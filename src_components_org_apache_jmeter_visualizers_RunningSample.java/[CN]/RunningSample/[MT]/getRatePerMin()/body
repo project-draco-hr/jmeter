@@ -1,0 +1,5 @@
+{
+  long howLongRunning=lastTime - firstTime;
+  if (howLongRunning == 0)   return Double.MAX_VALUE;
+  return (double)counter / howLongRunning * 60000.0;
+}

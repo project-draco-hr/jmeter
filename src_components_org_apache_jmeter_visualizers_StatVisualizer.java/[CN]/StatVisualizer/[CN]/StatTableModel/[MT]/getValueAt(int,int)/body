@@ -13,7 +13,7 @@ case 0:
 case 1:
   return new Long(s.getNumSamples());
 case 2:
-return new Double(s.getAverage());
+return new Long(s.getAverage());
 case 3:
 return new Long(s.getMin());
 case 4:
