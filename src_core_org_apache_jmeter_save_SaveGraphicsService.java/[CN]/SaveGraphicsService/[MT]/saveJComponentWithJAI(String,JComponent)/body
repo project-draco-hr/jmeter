@@ -6,13 +6,11 @@
   component.paint(grp);
   File outfile=new File(filename);
   FileOutputStream fos=createFile(outfile);
-  JPEGImageEncoder encoder=JPEGCodec.createJPEGEncoder(fos);
-  JPEGEncodeParam param=JPEGCodec.getDefaultJPEGEncodeParam(image);
-  param.setQuality(1,false);
-  encoder.setJPEGEncodeParam(param);
+  ImageEncoder encoder=ImageCodec.createImageEncoder("PNG",fos,null);
+  PNGEncodeParam param=new PNGEncodeParam.RGB();
+  encoder.setParam(param);
   try {
     encoder.encode(image);
-    fos.close();
   }
  catch (  Exception e) {
     e.printStackTrace();
