@@ -1,5 +1,6 @@
 {
   super();
-  filePanel=new FilePanel(this,JMeterUtils.getResString("file_visualizer_output_file"));
   errorLogging=new JCheckBox(JMeterUtils.getResString("log_errors_only"));
+  filePanel=new FilePanel(this,JMeterUtils.getResString("file_visualizer_output_file"));
+  filePanel.add(errorLogging);
 }

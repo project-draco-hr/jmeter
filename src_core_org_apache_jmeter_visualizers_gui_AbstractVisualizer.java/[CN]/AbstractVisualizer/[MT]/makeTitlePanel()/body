@@ -1,5 +1,5 @@
 {
-  Container box=super.makeTitlePanel();
-  box.add(getFilePanel());
-  return box;
+  Container panel=super.makeTitlePanel();
+  panel.add(getFilePanel());
+  return panel;
 }
