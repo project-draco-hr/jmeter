@@ -18,7 +18,7 @@
       startServer();
     }
  else     if (parser.getArgumentById(NONGUI_OPT) == null) {
-      startGui();
+      startGui(parser.getArgumentById(TESTFILE_OPT));
     }
  else {
       startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT));
