@@ -1,6 +1,4 @@
 {
-  mainPanel.removeAll();
-  mainPanel.add(comp);
-  mainPanel.validate();
-  mainPanel.repaint();
+  comp.setPreferredSize(comp.getMinimumSize());
+  mainPanel.setViewportView(comp);
 }
