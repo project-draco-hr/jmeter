@@ -1,10 +1,6 @@
 {
   if (endTime == 0) {
-    endTime=System.currentTimeMillis();
-    time=endTime - startTime - idleTime;
-    if (!startTimeStamp) {
-      timeStamp=endTime;
-    }
+    setEndTime(System.currentTimeMillis());
   }
  else {
     log.error("sampleEnd called twice",new Throwable("Invalid call sequence"));

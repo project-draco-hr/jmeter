@@ -1,0 +1,12 @@
+{
+  endTime=end;
+  if (!startTimeStamp) {
+    timeStamp=endTime;
+  }
+  if (startTime == 0) {
+    log.error("setEndTime must be called after setStartTime",new Throwable("Invalid call sequence"));
+  }
+ else {
+    time=endTime - startTime - idleTime;
+  }
+}

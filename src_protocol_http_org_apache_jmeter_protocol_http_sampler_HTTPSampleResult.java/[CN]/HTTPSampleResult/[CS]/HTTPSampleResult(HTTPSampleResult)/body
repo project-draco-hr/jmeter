@@ -1,5 +1,5 @@
 {
-  super(res.getTime());
+  setStartTime(res.getStartTime());
   setSampleLabel(res.getSampleLabel());
   setHTTPMethod(res.getHTTPMethod());
   setURL(res.getURL());

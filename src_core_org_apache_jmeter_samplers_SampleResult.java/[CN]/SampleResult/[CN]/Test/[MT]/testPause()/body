@@ -7,6 +7,6 @@
   res.sampleResume();
   Thread.sleep(100);
   res.sampleEnd();
-  assertTrue(res.time >= 200);
-  assertFalse(res.time >= 250);
+  assertTrue(res.getTime() >= 200);
+  assertFalse(res.getTime() >= 290);
 }
