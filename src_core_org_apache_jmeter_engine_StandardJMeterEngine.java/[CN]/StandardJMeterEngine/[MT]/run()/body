@@ -23,6 +23,7 @@
   TestCompiler.initialize();
   JMeterThread[] threads;
   Iterator iter=searcher.getSearchResults().iterator();
+  System.gc();
   if (iter.hasNext()) {
     notifyTestListenersOfStart();
   }
