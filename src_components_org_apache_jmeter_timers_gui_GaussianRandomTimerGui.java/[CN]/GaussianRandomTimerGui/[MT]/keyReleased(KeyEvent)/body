@@ -1,16 +1,6 @@
 {
   String temp=e.getComponent().getName();
-  if (temp.equals(DELAY_FIELD)) {
-    try {
-      Long.parseLong(delayField.getText());
-    }
- catch (    NumberFormatException nfe) {
-      if (delayField.getText().length() > 0) {
-        JOptionPane.showMessageDialog(this,"You must enter a valid number","Invalid data",JOptionPane.WARNING_MESSAGE);
-      }
-    }
-  }
- else   if (temp.equals(RANGE_FIELD)) {
+  if (temp.equals(RANGE_FIELD)) {
     try {
       Double.parseDouble(rangeField.getText());
     }

@@ -1,0 +1,5 @@
+{
+  variables=vars.getVariables();
+  String delayString=(String)getProperty(DELAY);
+  delay=Long.parseLong(delayString);
+}

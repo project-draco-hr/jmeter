@@ -28,7 +28,7 @@
   JPanel avgDelayPanel=new JPanel();
   JLabel delayLabel=new JLabel(JMeterUtils.getResString("gaussian_timer_delay"));
   avgDelayPanel.add(delayLabel);
-  delayField=new JTextField(6);
+  delayField=new JTextField(20);
   delayField.setText(DEFAULT_DELAY);
   delayField.setName(DELAY_FIELD);
   delayField.addKeyListener(this);

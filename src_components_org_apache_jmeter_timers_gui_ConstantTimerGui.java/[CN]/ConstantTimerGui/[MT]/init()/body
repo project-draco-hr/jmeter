@@ -14,11 +14,10 @@
   JPanel delayPanel=new JPanel();
   JLabel delayLabel=new JLabel(JMeterUtils.getResString("constant_timer_delay"));
   delayPanel.add(delayLabel);
-  delayField=new JTextField(6);
+  delayField=new JTextField(20);
   delayField.setText(DEFAULT_DELAY);
   delayPanel.add(delayField);
   mainPanel.add(delayPanel);
-  delayField.addKeyListener(this);
   delayField.setName(DELAY_FIELD);
   this.add(mainPanel);
 }
