@@ -1,3 +1,4 @@
 {
   getTestElement().setProperty(new BooleanProperty(TestElement.ENABLED,enabled));
+  treeModel.nodeChanged(this);
 }
