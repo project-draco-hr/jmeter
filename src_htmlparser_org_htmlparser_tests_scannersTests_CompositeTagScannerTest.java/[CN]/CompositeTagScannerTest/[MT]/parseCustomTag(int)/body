@@ -1,0 +1,7 @@
+{
+  parser.addScanner(new CustomScanner());
+  parseAndAssertNodeCount(expectedNodeCount);
+  assertType("node",CustomTag.class,node[0]);
+  CustomTag customTag=(CustomTag)node[0];
+  return customTag;
+}

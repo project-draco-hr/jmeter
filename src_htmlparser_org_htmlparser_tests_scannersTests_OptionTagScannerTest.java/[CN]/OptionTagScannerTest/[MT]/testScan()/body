@@ -1,0 +1,11 @@
+{
+  scanner=new OptionTagScanner("-i");
+  createParser(testHTML,"http://www.google.com/test/index.html");
+  parser.addScanner(scanner);
+  parseAndAssertNodeCount(9);
+  for (int j=0; j < i; j++) {
+    assertTrue("Node " + j + " should be Option Tag",node[j] instanceof OptionTag);
+    OptionTag OptionTag=(OptionTag)node[j];
+    assertEquals("Option Scanner",scanner,OptionTag.getThisScanner());
+  }
+}

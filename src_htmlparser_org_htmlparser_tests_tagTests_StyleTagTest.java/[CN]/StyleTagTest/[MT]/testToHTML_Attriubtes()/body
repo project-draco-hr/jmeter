@@ -1,0 +1,9 @@
+{
+  createParser("<STYLE type=\"text/css\">\n" + "<!--" + "{something....something}"+ "-->"+ "</STYLE>");
+  Parser.setLineSeparator("\r\n");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof StyleTag);
+  StyleTag styleTag=(StyleTag)node[0];
+  assertStringEquals("Raw String","<STYLE TYPE=\"text/css\">\r\n" + "<!--" + "{something....something}"+ "-->"+ "</STYLE>",styleTag.toHtml());
+}

@@ -1,0 +1,12 @@
+{
+  createParser("<html><head><title>Yahoo!</title><base href=http://www.yahoo.com/ target=_top><meta http-equiv=\"PICS-Label\" content='(PICS-1.1 \"http://www.icra.org/ratingsv02.html\" l r (cz 1 lz 1 nz 1 oz 1 vz 1) gen true for \"http://www.yahoo.com\" r (cz 1 lz 1 nz 1 oz 1 vz 1) \"http://www.rsac.org/ratingsv01.html\" l r (n 0 s 0 v 0 l 0) gen true for \"http://www.yahoo.com\" r (n 0 s 0 v 0 l 0))'><style>a.h{background-color:#ffee99}</style></head>");
+  TitleScanner titleScanner=new TitleScanner("-t");
+  parser.addScanner(titleScanner);
+  parser.addScanner(new StyleScanner("-s"));
+  parser.addScanner(new MetaTagScanner("-m"));
+  parseAndAssertNodeCount(7);
+  assertTrue(node[2] instanceof TitleTag);
+  TitleTag titleTag=(TitleTag)node[2];
+  assertEquals("Title","Yahoo!",titleTag.getTitle());
+  assertEquals("Title Scanner",titleScanner,titleTag.getThisScanner());
+}

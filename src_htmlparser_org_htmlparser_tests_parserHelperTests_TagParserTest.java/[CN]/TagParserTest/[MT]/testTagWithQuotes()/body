@@ -1,0 +1,9 @@
+{
+  String testHtml="<img src=\"http://g-images.amazon.com/images/G/01/merchants/logos/marshall-fields-logo-20.gif\" width=87 height=20 border=0 alt=\"Marshall Field's\">";
+  createParser(testHtml);
+  parseAndAssertNodeCount(1);
+  assertType("should be Tag",Tag.class,node[0]);
+  Tag tag=(Tag)node[0];
+  assertStringEquals("alt","Marshall Field's",tag.getAttribute("ALT"));
+  assertStringEquals("html","<IMG BORDER=\"0\" ALT=\"Marshall Field's\" WIDTH=\"87\" SRC=\"http://g-images.amazon.com/images/G/01/merchants/logos/marshall-fields-logo-20.gif\" HEIGHT=\"20\">",tag.toHtml());
+}

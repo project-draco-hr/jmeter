@@ -1,0 +1,6 @@
+{
+  assertAllExpectedTagAttributesFoundInActualTag(displayMessage,expectedTag,actualTag);
+  if (expectedTag.getAttributes().size() != actualTag.getAttributes().size()) {
+    assertActualTagHasNoExtraAttributes(displayMessage,expectedTag,actualTag);
+  }
+}

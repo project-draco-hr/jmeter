@@ -1,0 +1,5 @@
+{
+  String test="   This is a test";
+  String result=TagScanner.absorbLeadingBlanks(test);
+  assertEquals("Absorb test","This is a test",result);
+}

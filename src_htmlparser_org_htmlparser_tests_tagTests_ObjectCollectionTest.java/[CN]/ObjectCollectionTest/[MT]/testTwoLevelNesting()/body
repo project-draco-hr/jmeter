@@ -1,0 +1,13 @@
+{
+  createParser("<table>" + "	<DIV>" + "		<SPAN>The Refactoring Challenge</SPAN>"+ "		<SPAN>&#013;id: 6</SPAN>"+ "	</DIV>"+ "</table>");
+  parser.registerScanners();
+  parser.addScanner(new DivScanner());
+  parser.addScanner(new SpanScanner());
+  parser.addScanner(new TableScanner(parser));
+  parseAndAssertNodeCount(1);
+  TableTag tableTag=(TableTag)node[0];
+  NodeList nodeList=new NodeList();
+  tableTag.collectInto(nodeList,Span.class);
+  Node[] spans=nodeList.toNodeArray();
+  assertSpanContent(spans);
+}

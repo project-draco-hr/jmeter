@@ -1,0 +1,8 @@
+{
+  createParser("<html>" + "<head>" + "<title>Parser Test 2</title>"+ "<meta name=\"foo\" content=\"a<b\">"+ "</head>"+ "<body>"+ "<a href=\"http://www.yahoo.com/\">Yahoo!</a><br>"+ "<a href=\"http://www.excite.com\">Excite</a>"+ "</body>"+ "</html>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(11);
+  assertType("meta tag",MetaTag.class,node[3]);
+  MetaTag metaTag=(MetaTag)node[3];
+  assertStringEquals("meta content","a<b",metaTag.getMetaContent());
+}

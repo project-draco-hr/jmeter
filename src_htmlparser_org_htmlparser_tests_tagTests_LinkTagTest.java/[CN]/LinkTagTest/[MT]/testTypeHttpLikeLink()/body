@@ -1,0 +1,6 @@
+{
+  LinkTag linkTag=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("http://","","",false,false));
+  assertTrue("This is a http link",linkTag.isHTTPLikeLink());
+  LinkTag linkTag2=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("https://www.someurl.com","","",false,false));
+  assertTrue("This is a https link",linkTag2.isHTTPLikeLink());
+}

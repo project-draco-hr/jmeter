@@ -1,0 +1,15 @@
+{
+  createParser("<custom>" + "<custom>something</custom>" + "</custom>");
+  parser.addScanner(new CustomScanner(false));
+  parser.addScanner(new AnotherScanner());
+  parseAndAssertNodeCount(3);
+  CustomTag customTag=(CustomTag)node[0];
+  int x=customTag.getChildCount();
+  assertEquals("child count",0,customTag.getChildCount());
+  assertFalse("custom tag should not be xml end tag",customTag.isEmptyXmlTag());
+  assertStringEquals("first custom tag html","<CUSTOM></CUSTOM>",customTag.toHtml());
+  customTag=(CustomTag)node[1];
+  assertStringEquals("first custom tag html","<CUSTOM>something</CUSTOM>",customTag.toHtml());
+  EndTag endTag=(EndTag)node[2];
+  assertStringEquals("first custom tag html","</CUSTOM>",endTag.toHtml());
+}

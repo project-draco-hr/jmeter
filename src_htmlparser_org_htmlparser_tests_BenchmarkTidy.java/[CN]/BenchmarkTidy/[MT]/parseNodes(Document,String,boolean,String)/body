@@ -1,0 +1,24 @@
+{
+  NodeList nodeList=html.getElementsByTagName(htmlTag);
+  boolean uniqueBinary;
+  for (int i=0; i < nodeList.getLength(); i++) {
+    uniqueBinary=true;
+    Node tempNode=nodeList.item(i);
+    NamedNodeMap nnm=tempNode.getAttributes();
+    Node namedItem=null;
+    if (type) {
+      namedItem=nnm.getNamedItem("type");
+      if (namedItem == null) {
+        break;
+      }
+      String inputType=namedItem.getNodeValue();
+      if (inputType != null && inputType.equalsIgnoreCase("image")) {
+      }
+ else {
+        break;
+      }
+    }
+    namedItem=nnm.getNamedItem(srcTag);
+    System.out.println("Image Tag: " + htmlTag + " src="+ namedItem);
+  }
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals("test8 failed","http://a/b/c/g?y",(new LinkProcessor()).extract("g?y",baseURI));
+}

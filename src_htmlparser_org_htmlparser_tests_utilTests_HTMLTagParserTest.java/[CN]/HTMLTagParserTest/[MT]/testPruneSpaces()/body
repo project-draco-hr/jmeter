@@ -1,0 +1,4 @@
+{
+  String test="  fdfdf dfdf   ";
+  assertEquals("Expected Pruned string","fdfdf dfdf",TagParser.pruneSpaces(test));
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    Document doc=(Document)getDOM(data);
+    parseNodes(doc,"img",false,"src");
+  }
+ catch (  SAXException e) {
+    e.printStackTrace();
+  }
+}

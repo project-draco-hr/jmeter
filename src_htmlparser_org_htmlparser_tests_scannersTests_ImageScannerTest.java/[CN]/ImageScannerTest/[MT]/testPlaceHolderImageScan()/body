@@ -1,0 +1,11 @@
+{
+  createParser("<IMG width=1 height=1 alt=\"a\">","http://www.yahoo.com/ghi?abcdefg");
+  parser.addScanner(new ImageScanner("-i",new LinkProcessor()));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node identified should be HTMLImageTag",node[0] instanceof ImageTag);
+  ImageTag imageTag=(ImageTag)node[0];
+  assertEquals("Expected Image Locn","",imageTag.getImageURL());
+  assertEquals("Image width","1",imageTag.getAttribute("WIDTH"));
+  assertEquals("Image height","1",imageTag.getAttribute("HEIGHT"));
+  assertEquals("alt","a",imageTag.getAttribute("ALT"));
+}

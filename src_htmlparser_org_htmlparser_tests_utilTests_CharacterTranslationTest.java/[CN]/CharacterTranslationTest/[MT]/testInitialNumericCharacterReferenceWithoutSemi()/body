@@ -1,0 +1,3 @@
+{
+  assertEquals("numeric character reference without a semicolon at start of string doesn't work","? is the division sign.",Translate.decode("&#247; is the division sign."));
+}

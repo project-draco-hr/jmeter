@@ -1,0 +1,10 @@
+{
+  createParser("<IMG SRC=\"../abc/def/Hello \r\nWorld.jpg\">","http://www.yahoo.com/ghi");
+  Parser.setLineSeparator("\r\n");
+  parser.addScanner(new ImageScanner("-i",new LinkProcessor()));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node identified should be HTMLImageTag",node[0] instanceof ImageTag);
+  ImageTag imageTag=(ImageTag)node[0];
+  String exp=new String("http://www.yahoo.com/abc/def/Hello World.jpg");
+  assertStringEquals("Expected Image",exp,imageTag.getImageURL());
+}

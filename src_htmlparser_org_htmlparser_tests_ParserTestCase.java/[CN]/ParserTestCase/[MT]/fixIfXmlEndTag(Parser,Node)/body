@@ -1,0 +1,11 @@
+{
+  if (node instanceof Tag) {
+    Tag tag=(Tag)node;
+    if (tag.isEmptyXmlTag()) {
+      String currLine=parser.getReader().getCurrentLine();
+      int pos=parser.getReader().getLastReadPosition();
+      currLine=currLine.substring(0,pos + 1) + "</" + tag.getTagName()+ ">"+ currLine.substring(pos + 1,currLine.length());
+      parser.getReader().changeLine(currLine);
+    }
+  }
+}

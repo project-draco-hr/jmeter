@@ -1,0 +1,7 @@
+{
+  createParser("a\n\nb");
+  parseAndAssertNodeCount(1);
+  assertTrue("First node should be HTMLStringNode",node[0] instanceof StringNode);
+  StringNode stringNode=(StringNode)node[0];
+  assertStringEquals("First String node contents","a\r\n\r\nb",stringNode.getText());
+}

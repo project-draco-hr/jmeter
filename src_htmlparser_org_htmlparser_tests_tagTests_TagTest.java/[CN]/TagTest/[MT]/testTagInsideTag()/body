@@ -1,0 +1,9 @@
+{
+  String testHTML=new String("<META name=\"Hello\" value=\"World </I>\">");
+  createParser(testHTML);
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a tag",node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertEquals("Node contents","META name=\"Hello\" value=\"World </I>\"",tag.getText());
+  assertEquals("Meta Content","World </I>",tag.getAttribute("value"));
+}

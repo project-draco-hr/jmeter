@@ -1,0 +1,6 @@
+{
+  String testData1="BASE HREF=\"http://www.abc.com/\"";
+  assertTrue("Data 1 Should have evaluated true",scanner.evaluate(testData1,null));
+  String testData2="Base href=\"http://www.abc.com/\"";
+  assertTrue("Data 2 Should have evaluated true",scanner.evaluate(testData2,null));
+}

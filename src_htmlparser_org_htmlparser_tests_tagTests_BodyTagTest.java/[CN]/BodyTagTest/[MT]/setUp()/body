@@ -1,0 +1,9 @@
+{
+  super.setUp();
+  createParser("<html><head><title>body tag test</title></head><body>Yahoo!</body></html>");
+  parser.registerScanners();
+  parser.addScanner(new BodyScanner("-b"));
+  parseAndAssertNodeCount(6);
+  assertTrue(node[4] instanceof BodyTag);
+  bodyTag=(BodyTag)node[4];
+}

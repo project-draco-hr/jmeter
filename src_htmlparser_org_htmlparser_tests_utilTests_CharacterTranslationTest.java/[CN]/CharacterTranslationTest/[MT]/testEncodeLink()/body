@@ -1,0 +1,3 @@
+{
+  assertEquals("encode link doesn't work","&lt;a href=&quot;http://www.w3.org/TR/REC-html40/sgml/entities.html&quot;&gt;http://www.w3.org/TR/REC-html40/sgml/entities.html&lt;/a&gt;",Translate.encode("<a href=\"http://www.w3.org/TR/REC-html40/sgml/entities.html\">http://www.w3.org/TR/REC-html40/sgml/entities.html</a>"));
+}

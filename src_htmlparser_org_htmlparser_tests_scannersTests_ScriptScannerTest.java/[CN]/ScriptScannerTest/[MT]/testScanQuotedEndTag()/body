@@ -1,0 +1,7 @@
+{
+  createParser("<SCRIPT language=\"JavaScript\">document.write('</SCRIPT>');</SCRIPT>");
+  parser.addScanner(new ScriptScanner("-s"));
+  parseAndAssertNodeCount(1);
+  String s=node[0].toHtml();
+  assertEquals("Parse error","<SCRIPT LANGUAGE=\"JavaScript\">document.write('</SCRIPT>');</SCRIPT>",s);
+}

@@ -1,0 +1,7 @@
+{
+  int numTimes=30;
+  long time1[]=new long[numTimes], time2[]=new long[numTimes];
+  for (int i=0; i < numTimes; i++)   doInstanceofTest(time1,i,i * 10000);
+  for (int i=0; i < numTimes; i++)   doGetTypeTest(time2,i,i * 10000);
+  print(time1,time2);
+}

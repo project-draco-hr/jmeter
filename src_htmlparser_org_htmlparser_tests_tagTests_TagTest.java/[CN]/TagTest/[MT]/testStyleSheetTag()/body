@@ -1,0 +1,8 @@
+{
+  String testHTML1=new String("<link rel src=\"af.css\"/>");
+  createParser(testHTML1,"http://www.google.com/test/index.html");
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a tag",node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertEquals("StyleSheet Source","af.css",tag.getAttribute("src"));
+}

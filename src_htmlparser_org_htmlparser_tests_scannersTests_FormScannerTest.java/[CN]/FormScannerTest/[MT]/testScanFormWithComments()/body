@@ -1,0 +1,17 @@
+{
+  createParser("<form action=\"/search\" name=f><table cellspacing=0 cellpadding=0><tr><td width=75>&nbsp;" + "</td><td align=center><input type=hidden name=hl value=en><input type=hidden name=ie " + "value=\"UTF-8\"><input type=hidden name=oe value=\"UTF-8\"><!-- Hello World -->"+ "<input maxLength=256 size=55"+ " name=q value=\"\"><br><input type=submit value=\"Google Search\" name=btnG><input type="+ "submit value=\"I'm Feeling Lucky\" name=btnI></td><td valign=top nowrap><font size=-2>"+ "&nbsp;&#8226;&nbsp;<a href=/advanced_search?hl=en>Advanced&nbsp;Search</a><br>&nbsp;&#8226;"+ "&nbsp;<a href=/preferences?hl=en>Preferences</a><br>&nbsp;&#8226;&nbsp;<a href=/"+ "language_tools?hl=en>Language Tools</a></font></td></tr></table></form>");
+  parser.addScanner(new FormScanner("",parser));
+  parseAndAssertNodeCount(1);
+  assertTrue("Should be a HTMLFormTag",node[0] instanceof FormTag);
+  FormTag formTag=(FormTag)node[0];
+  RemarkNode[] remarkNode=new RemarkNode[10];
+  int i=0;
+  for (SimpleNodeIterator e=formTag.children(); e.hasMoreNodes(); ) {
+    Node formNode=(Node)e.nextNode();
+    if (formNode instanceof RemarkNode) {
+      remarkNode[i++]=(RemarkNode)formNode;
+    }
+  }
+  assertEquals("Remark Node Count",1,i);
+  assertEquals("First Remark Node"," Hello World ",remarkNode[0].toPlainTextString());
+}

@@ -1,0 +1,29 @@
+{
+  for (int j=0; j < nodeCount; j++) {
+    System.out.println(node[j].getClass().getName());
+    System.out.println(node[j].toHtml());
+  }
+  OptionTag OptionTag;
+  OptionTag=(OptionTag)node[0];
+  assertStringEquals("HTML String","<OPTION VALUE=\"Google Search\">Google</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[1];
+  assertStringEquals("HTML String","<OPTION VALUE=\"AltaVista Search\">AltaVista</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[2];
+  assertStringEquals("HTML String","<OPTION VALUE=\"Lycos Search\"></OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[3];
+  assertStringEquals("HTML String","<OPTION>Yahoo!</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[4];
+  assertStringEquals("HTML String","<OPTION>\r\nHotmail</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[5];
+  assertStringEquals("HTML String","<OPTION VALUE=\"ICQ Messenger\"></OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[6];
+  assertStringEquals("HTML String","<OPTION>Mailcity\r\n</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[7];
+  assertStringEquals("HTML String","<OPTION>\r\nIndiatimes\r\n</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[8];
+  assertStringEquals("HTML String","<OPTION>\r\nRediff\r\n</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[9];
+  assertStringEquals("HTML String","<OPTION>Cricinfo</OPTION>",OptionTag.toHtml());
+  OptionTag=(OptionTag)node[10];
+  assertStringEquals("HTML String","<OPTION VALUE=\"Microsoft Passport\"></OPTION>",OptionTag.toHtml());
+}

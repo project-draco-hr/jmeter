@@ -1,0 +1,9 @@
+{
+  createParser("<html>" + "<head>" + "<meta http-equiv=\"content-type\""+ " content=\"text/html;"+ " charset=windows-1252\">"+ "</head>"+ "</html>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(5);
+  assertType("Meta Tag expected",MetaTag.class,node[2]);
+  MetaTag metaTag=(MetaTag)node[2];
+  assertStringEquals("http-equiv","content-type",metaTag.getHttpEquiv());
+  assertStringEquals("content","text/html; charset=windows-1252",metaTag.getMetaContent());
+}

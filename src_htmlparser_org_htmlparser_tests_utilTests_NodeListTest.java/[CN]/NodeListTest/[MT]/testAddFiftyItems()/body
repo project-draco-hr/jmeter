@@ -1,0 +1,5 @@
+{
+  createTestDataAndPutInVector(50);
+  assertTestDataCouldBeExtractedFromVector(50);
+  assertEquals("Number of Adjustments",2,nodeList.getNumberOfAdjustments());
+}

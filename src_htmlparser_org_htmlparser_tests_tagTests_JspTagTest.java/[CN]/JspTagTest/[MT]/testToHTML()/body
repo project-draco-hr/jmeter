@@ -1,0 +1,17 @@
+{
+  createParser("<%@ taglib uri=\"/WEB-INF/struts.tld\" prefix=\"struts\" %>\n" + "<jsp:useBean id=\"transfer\" scope=\"session\" class=\"com.bank.PageBean\"/>\n" + "<%\n"+ "    org.apache.struts.util.BeanUtils.populate(transfer, request);\n"+ "    if(request.getParameter(\"marker\") == null)\n"+ "        // initialize a pseudo-property\n"+ "        transfer.set(\"days\", java.util.Arrays.asList(\n"+ "            new String[] {\"1\", \"2\", \"3\", \"4\", \"31\"}));\n"+ "    else \n"+ "        if(transfer.validate(request))\n"+ "            %><jsp:forward page=\"transferConfirm.jsp\"/><%\n"+ "%>\n");
+  Parser.setLineSeparator("\r\n");
+  parser.addScanner(new JspScanner("-j"));
+  parseAndAssertNodeCount(5);
+  assertTrue("Node 1 should be an HTMLJspTag",node[0] instanceof JspTag);
+  JspTag tag=(JspTag)node[0];
+  assertEquals("Raw String of the first JSP tag","<%@ taglib uri=\"/WEB-INF/struts.tld\" prefix=\"struts\" %>",tag.toHtml());
+  assertTrue("Node 2 should be an HTMLJspTag",node[2] instanceof JspTag);
+  JspTag tag2=(JspTag)node[2];
+  String expected="<%\r\n" + "    org.apache.struts.util.BeanUtils.populate(transfer, request);\r\n" + "    if(request.getParameter(\"marker\") == null)\r\n"+ "        // initialize a pseudo-property\r\n"+ "        transfer.set(\"days\", java.util.Arrays.asList(\r\n"+ "            new String[] {\"1\", \"2\", \"3\", \"4\", \"31\"}));\r\n"+ "    else \r\n"+ "        if(transfer.validate(request))\r\n"+ "            %>";
+  assertEquals("Raw String of the second JSP tag",expected,tag2.toHtml());
+  assertTrue("Node 4 should be an HTMLJspTag",node[4] instanceof JspTag);
+  JspTag tag4=(JspTag)node[4];
+  expected="<%\r\n" + "%>";
+  assertEquals("Raw String of the fourth JSP tag",expected,tag4.toHtml());
+}

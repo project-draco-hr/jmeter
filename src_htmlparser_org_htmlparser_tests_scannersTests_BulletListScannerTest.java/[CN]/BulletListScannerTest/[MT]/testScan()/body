@@ -1,0 +1,12 @@
+{
+  createParser("<ul TYPE=DISC>" + "<ul TYPE=\"DISC\"><li>Energy supply\n" + " (Campbell)  <A HREF=\"/hansard/37th3rd/h20307p.htm#1646\">1646</A>\n"+ " (MacPhail)  <A HREF=\"/hansard/37th3rd/h20307p.htm#1646\">1646</A>\n"+ "</ul><A NAME=\"calpinecorp\"></A><B>Calpine Corp.</B>\n"+ "<ul TYPE=\"DISC\"><li>Power plant projects\n"+ " (Neufeld)  <A HREF=\"/hansard/37th3rd/h20314p.htm#1985\">1985</A>\n"+ "</ul>"+ "</ul>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  NodeList nestedBulletLists=((CompositeTag)node[0]).searchFor(BulletList.class);
+  assertEquals("bullets in first list",2,nestedBulletLists.size());
+  BulletList firstList=(BulletList)nestedBulletLists.elementAt(0);
+  Bullet firstBullet=(Bullet)firstList.childAt(0);
+  Node firstNodeInFirstBullet=firstBullet.childAt(0);
+  assertType("first child in bullet",StringNode.class,firstNodeInFirstBullet);
+  assertStringEquals("expected text","Energy supply\r\n" + " (Campbell)  ",firstNodeInFirstBullet.toPlainTextString());
+}

@@ -1,0 +1,10 @@
+{
+  StringBuffer sb1=new StringBuffer();
+  sb1.append("<script src='<%=sourceFileName%>'></script>");
+  createParser(sb1.toString());
+  parser.addScanner(new ScriptScanner("-s"));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a script tag",node[0] instanceof ScriptTag);
+  ScriptTag scriptTag=(ScriptTag)node[0];
+  assertStringEquals("Script toHTML()","<SCRIPT SRC=\"<%=sourceFileName%>\"></SCRIPT>",scriptTag.toHtml());
+}

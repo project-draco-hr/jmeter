@@ -1,0 +1,8 @@
+{
+  String testHTML=new String("<META NAME=\"Keywords\" CONTENT=Moscou, modernisation, politique urbaine, sp?cificit?s culturelles, municipalit?, Moscou, modernisation, urban politics, cultural specificities, municipality\">");
+  createParser(testHTML);
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a tag",node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertStringEquals("Node contents","META NAME=\"Keywords\" CONTENT=\"Moscou, modernisation, politique urbaine, sp?cificit?s culturelles, municipalit?, Moscou, modernisation, urban politics, cultural specificities, municipality\"",tag.getText());
+}

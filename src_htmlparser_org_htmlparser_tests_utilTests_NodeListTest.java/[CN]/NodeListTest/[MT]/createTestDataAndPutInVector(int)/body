@@ -1,0 +1,7 @@
+{
+  testNodes=new Node[nodeCount];
+  for (int i=0; i < nodeCount; i++) {
+    testNodes[i]=createHTMLNodeObject();
+    nodeList.add(testNodes[i]);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  String testHTML="<A \n" + "HREF=\"/a?b=c>d&e=f&g=h&i=http://localhost/Testing/Report1.html\">20020702 Report 1</A>";
+  createParser(testHTML);
+  Node node=Tag.find(parser.getReader(),testHTML,0);
+  assertTrue("Node should be a tag",node instanceof Tag);
+  Tag tag=(Tag)node;
+  String href=tag.getAttribute("HREF");
+  assertStringEquals("Resolved Link","/a?b=c>d&e=f&g=h&i=http://localhost/Testing/Report1.html",href);
+}

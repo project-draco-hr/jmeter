@@ -1,0 +1,21 @@
+{
+  scanner=new SelectTagScanner("-i");
+  createParser(testHTML,"http://www.google.com/test/index.html");
+  scanner=new SelectTagScanner("-ta");
+  parser.addScanner(scanner);
+  parser.addScanner(new OptionTagScanner(""));
+  parseAndAssertNodeCount(5);
+  assertTrue(node[0] instanceof SelectTag);
+  assertTrue(node[1] instanceof SelectTag);
+  assertTrue(node[2] instanceof SelectTag);
+  assertTrue(node[3] instanceof SelectTag);
+  assertTrue(node[4] instanceof SelectTag);
+  for (int j=0; j < nodeCount; j++) {
+    SelectTag SelectTag=(SelectTag)node[j];
+    assertEquals("Select Scanner",scanner,SelectTag.getThisScanner());
+  }
+  SelectTag selectTag=(SelectTag)node[0];
+  OptionTag[] optionTags=selectTag.getOptionTags();
+  assertEquals("option tag array length",1,optionTags.length);
+  assertEquals("option tag value","option1",optionTags[0].getOptionText());
+}

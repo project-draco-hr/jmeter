@@ -1,0 +1,14 @@
+{
+  createParser(FormScannerTest.FORM_HTML);
+  parser.addScanner(new FormScanner(parser));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node 0 should be Form Tag",node[0] instanceof FormTag);
+  FormTag formTag=(FormTag)node[0];
+  NodeList nodeList=formTag.searchFor("USER NAME");
+  assertEquals("Should have found nodes",1,nodeList.size());
+  Node[] nodes=nodeList.toNodeArray();
+  assertEquals("Number of nodes found",1,nodes.length);
+  assertType("search result node",StringNode.class,nodes[0]);
+  StringNode stringNode=(StringNode)nodes[0];
+  assertEquals("Expected contents of string node","User Name",stringNode.getText());
+}

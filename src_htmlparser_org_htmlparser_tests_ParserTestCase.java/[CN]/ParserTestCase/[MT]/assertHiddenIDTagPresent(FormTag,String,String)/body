@@ -1,0 +1,6 @@
+{
+  InputTag inputTag=formTag.getInputTag(name);
+  assertNotNull("Hidden Tag " + name + " should have been there",inputTag);
+  assertStringEquals("Hidden Tag Contents",inputTagValue,inputTag.getAttribute("VALUE"));
+  assertStringEquals("Hidden Tag Type","hidden",inputTag.getAttribute("TYPE"));
+}

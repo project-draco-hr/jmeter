@@ -1,0 +1,6 @@
+{
+  createTestDataAndPutInVector(387);
+  Node nodes[]=nodeList.toNodeArray();
+  assertEquals("Length of array",387,nodes.length);
+  for (int i=0; i < nodes.length; i++)   assertNotNull("node " + i + " should not be null",nodes[i]);
+}

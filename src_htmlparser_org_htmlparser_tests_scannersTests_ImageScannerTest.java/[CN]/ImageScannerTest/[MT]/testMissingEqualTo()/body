@@ -1,0 +1,11 @@
+{
+  createParser("<img src\"/images/spacer.gif\" width=\"1\" height=\"1\" alt=\"\">","http://www.htmlparser.org/subdir1/subdir2");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue("Node identified should be HTMLImageTag",node[0] instanceof ImageTag);
+  ImageTag imageTag=(ImageTag)node[0];
+  assertStringEquals("Image Location","http://www.htmlparser.org/images/spacer.gif",imageTag.getImageURL());
+  assertEquals("Width","1",imageTag.getAttribute("WIDTH"));
+  assertEquals("Height","1",imageTag.getAttribute("HEIGHT"));
+  assertEquals("Alt","",imageTag.getAttribute("ALT"));
+}

@@ -1,0 +1,3 @@
+{
+  assertEquals("character references within a string don't work","Thus, the character entity reference ? is a more convenient form than ? for obtaining the division sign (?)",Translate.decode("Thus, the character entity reference &divide; is a more convenient form than &#247; for obtaining the division sign (?)"));
+}

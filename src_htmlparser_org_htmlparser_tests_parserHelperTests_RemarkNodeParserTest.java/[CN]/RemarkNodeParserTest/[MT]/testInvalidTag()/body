@@ -1,0 +1,9 @@
+{
+  createParser("<!\n" + "-\n" + "-\n"+ "ssd -->");
+  Parser.setLineSeparator("\n");
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a Tag but was " + node[0],node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertStringEquals("Expected contents","!\n" + "-\n" + "-\n"+ "ssd --",tag.getText());
+  Parser.setLineSeparator("\r\n");
+}

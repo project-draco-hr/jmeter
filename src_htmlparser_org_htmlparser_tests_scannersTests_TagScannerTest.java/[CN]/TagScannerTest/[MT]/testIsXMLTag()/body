@@ -1,0 +1,7 @@
+{
+  createParser("<OPTION value=\"#\">Select a destination</OPTION>");
+  Node node;
+  NodeIterator e=parser.elements();
+  node=(Node)e.nextNode();
+  assertTrue("OPTION tag could not be identified",TagScanner.isXMLTagFound(node,"OPTION"));
+}

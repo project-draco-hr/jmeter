@@ -1,0 +1,19 @@
+{
+  createParser("<Custom>" + "<Another/>" + "</Custom>");
+  parser.addScanner(new AnotherScanner());
+  CustomTag customTag=parseCustomTag(1);
+  int x=customTag.getChildCount();
+  assertEquals("child count",1,customTag.getChildCount());
+  assertFalse("custom tag should not be xml end tag",customTag.isEmptyXmlTag());
+  assertEquals("starting loc",0,customTag.getStartTag().elementBegin());
+  assertEquals("ending loc",7,customTag.getStartTag().elementEnd());
+  assertEquals("custom tag starting loc",0,customTag.elementBegin());
+  assertEquals("custom tag ending loc",26,customTag.elementEnd());
+  Node child=customTag.childAt(0);
+  assertType("child",AnotherTag.class,child);
+  AnotherTag tag=(AnotherTag)child;
+  assertEquals("another tag start pos",8,tag.elementBegin());
+  assertEquals("another tag ending pos",17,tag.elementEnd());
+  assertEquals("custom end tag start pos",18,customTag.getEndTag().elementBegin());
+  assertStringEquals("child html","<ANOTHER/>",child.toHtml());
+}

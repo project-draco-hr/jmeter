@@ -1,0 +1,5 @@
+{
+  getParameterTableFor("PARAM NAME=Param1 VALUE=Somik");
+  assertEquals("Param1","Param1",table.get("NAME"));
+  assertEquals("Somik","Somik",table.get("VALUE"));
+}

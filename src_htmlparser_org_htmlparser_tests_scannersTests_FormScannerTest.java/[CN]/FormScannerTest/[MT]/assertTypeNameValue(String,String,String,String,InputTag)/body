@@ -1,0 +1,5 @@
+{
+  assertEquals(description + " type",type,inputTag.getAttribute("TYPE"));
+  assertEquals(description + " name",name,inputTag.getAttribute("NAME"));
+  assertEquals(description + " value",value,inputTag.getAttribute("VALUE"));
+}

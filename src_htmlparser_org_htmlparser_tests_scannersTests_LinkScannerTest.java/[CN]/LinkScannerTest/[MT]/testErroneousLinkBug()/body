@@ -1,0 +1,10 @@
+{
+  createParser("<p>Site Comments?<br>" + "<a href=\"mailto:sam@neurogrid.com?subject=Site Comments\">" + "Mail Us"+ "<a>"+ "</p>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(6);
+  assertTrue("First node should be a Tag",node[0] instanceof Tag);
+  assertTrue("Second node should be a HTMLStringNode",node[1] instanceof StringNode);
+  StringNode stringNode=(StringNode)node[1];
+  assertEquals("Text of the StringNode","Site Comments?",stringNode.getText());
+  assertTrue("Third node should be a tag",node[2] instanceof Tag);
+}

@@ -1,0 +1,4 @@
+{
+  LineCounter lc=new LineCounter();
+  System.out.println("Line Count = " + lc.count(new File(args[0])));
+}

@@ -1,0 +1,9 @@
+{
+  createParser("<div><INPUT type=\"text\" name=\"X\">Hello</INPUT></div>");
+  parser.addScanner(new DivScanner());
+  parser.addScanner(new InputTagScanner());
+  parseAndAssertNodeCount(1);
+  assertType("node should be div",Div.class,node[0]);
+  Div div=(Div)node[0];
+  assertType("child not input",InputTag.class,div.getChild(0));
+}

@@ -1,0 +1,8 @@
+{
+  String testHTML="<HTML><HEAD><TITLE>Test Form Tag</TITLE></HEAD>" + "<BODY><FORM name=\"form0\"><INPUT type=\"text\" name=\"text0\"></FORM>" + "</BODY></HTML>";
+  createParser(testHTML);
+  parser.registerScanners();
+  parser.removeScanner(new FormScanner("",parser));
+  Node[] nodes=parser.extractAllNodesThatAre(FormTag.class);
+  assertEquals("shouldnt have found form tag",0,nodes.length);
+}

@@ -1,0 +1,7 @@
+{
+  createParser("<HTML>\n" + "<HEAD>\n" + "<TITLE>HTML Comment Test</TITLE>\n"+ "</HEAD>\n"+ "<BODY>\n"+ "<!-- Id: html-sgml.sgm,v 1.5 1995/05/26 21:29:50 connolly Exp  -->\n"+ "</BODY>\n"+ "</HTML>\n");
+  parseAndAssertNodeCount(10);
+  assertTrue("Node should be a HTMLRemarkNode but was " + node[7],node[7] instanceof RemarkNode);
+  RemarkNode remarkNode=(RemarkNode)node[7];
+  assertEquals("Remark Node contents"," Id: html-sgml.sgm,v 1.5 1995/05/26 21:29:50 connolly Exp  ",remarkNode.getText());
+}

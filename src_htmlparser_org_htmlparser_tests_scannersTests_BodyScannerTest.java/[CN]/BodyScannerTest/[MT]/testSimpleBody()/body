@@ -1,0 +1,12 @@
+{
+  createParser("<html><head><title>Test 1</title></head><body>This is a body tag</body></html>");
+  parser.registerScanners();
+  BodyScanner bodyScanner=new BodyScanner("-b");
+  parser.addScanner(bodyScanner);
+  parseAndAssertNodeCount(6);
+  assertTrue(node[4] instanceof BodyTag);
+  BodyTag bodyTag=(BodyTag)node[4];
+  assertEquals("Body","This is a body tag",bodyTag.getBody());
+  assertEquals("Body","<BODY>This is a body tag</BODY>",bodyTag.toHtml());
+  assertEquals("Body Scanner",bodyScanner,bodyTag.getThisScanner());
+}

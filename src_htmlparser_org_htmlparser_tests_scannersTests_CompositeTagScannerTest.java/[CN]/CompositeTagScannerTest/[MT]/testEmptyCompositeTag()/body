@@ -1,0 +1,12 @@
+{
+  createParser("<Custom/>");
+  CustomTag customTag=parseCustomTag(1);
+  int x=customTag.getChildCount();
+  assertEquals("child count",0,customTag.getChildCount());
+  assertTrue("custom tag should be xml end tag",customTag.isEmptyXmlTag());
+  assertEquals("starting loc",0,customTag.getStartTag().elementBegin());
+  assertEquals("ending loc",8,customTag.getStartTag().elementEnd());
+  assertEquals("starting line position",1,customTag.tagData.getStartLine());
+  assertEquals("ending line position",1,customTag.tagData.getEndLine());
+  assertStringEquals("html","<CUSTOM/>",customTag.toHtml());
+}

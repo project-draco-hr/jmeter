@@ -1,0 +1,5 @@
+{
+  ImageScanner scanner=new ImageScanner("-i",new LinkProcessor());
+  boolean retVal=scanner.evaluate("   img ",null);
+  assertEquals("Evaluation of IMG tag",new Boolean(true),new Boolean(retVal));
+}

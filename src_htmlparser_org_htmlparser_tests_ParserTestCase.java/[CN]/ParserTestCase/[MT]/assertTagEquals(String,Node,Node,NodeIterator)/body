@@ -1,0 +1,17 @@
+{
+  if (expectedNode instanceof Tag) {
+    Tag expectedTag=(Tag)expectedNode;
+    Tag actualTag=(Tag)actualNode;
+    if (isTagAnXmlEndTag(expectedTag)) {
+      if (!isTagAnXmlEndTag(actualTag)) {
+        assertAttributesMatch(displayMessage,expectedTag,actualTag);
+        Node tempNode=actualEnumeration.nextNode();
+        assertTrue("should be an end tag but was " + tempNode.getClass().getName(),tempNode instanceof EndTag);
+        actualTag=(EndTag)tempNode;
+        String expectedTagName=ParserUtils.removeChars(expectedTag.getTagName(),'/');
+        assertEquals("expected end tag",expectedTagName,actualTag.getTagName());
+      }
+    }
+ else     assertAttributesMatch(displayMessage,expectedTag,actualTag);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  createParser("<a href=http://www.google.com/webhp?hl=en>");
+  parser.registerScanners();
+  String temp=null;
+  for (NodeIterator e=parser.elements(); e.hasMoreNodes(); ) {
+    Node newNode=e.nextNode();
+    temp=newNode.toHtml();
+  }
+  assertNotNull("No nodes",temp);
+  assertEquals("Incorrect HTML output: ","<A HREF=\"http://www.google.com/webhp?hl=en\"></A>",temp);
+}

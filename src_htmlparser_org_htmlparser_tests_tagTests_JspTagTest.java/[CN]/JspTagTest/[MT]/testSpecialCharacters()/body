@@ -1,0 +1,9 @@
+{
+  StringBuffer sb1=new StringBuffer();
+  sb1.append("<% for (i=0;i<j;i++);%>");
+  createParser(sb1.toString());
+  parser.addScanner(new JspScanner("-j"));
+  parseAndAssertNodeCount(1);
+  JspTag jspTag=(JspTag)node[0];
+  assertEquals("jsp toHTML()","<% for (i=0;i<j;i++);%>",jspTag.toHtml());
+}

@@ -1,0 +1,8 @@
+{
+  Parser parser;
+  parser=new Parser();
+  if (1.4 <= Parser.getVersionNumber()) {
+    getParameterTableFor("a href=\"<%=Application(\"sURL\")%>/literature/index.htm");
+    assertStringEquals("href","<%=Application(\"sURL\")%>/literature/index.htm",(String)table.get("HREF"));
+  }
+}

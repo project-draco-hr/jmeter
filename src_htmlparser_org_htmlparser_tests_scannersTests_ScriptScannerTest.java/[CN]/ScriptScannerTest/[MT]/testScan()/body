@@ -1,0 +1,10 @@
+{
+  String testHtml="<SCRIPT>document.write(d+\".com\")</SCRIPT>";
+  createParser(testHtml,"http://www.google.com/test/index.html");
+  parser.addScanner(new ScriptScanner("-s"));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a script tag",node[0] instanceof ScriptTag);
+  ScriptTag scriptTag=(ScriptTag)node[0];
+  assertStringEquals("Expected Script Code","document.write(d+\".com\")",scriptTag.getScriptCode());
+  assertStringEquals("script tag html",testHtml,scriptTag.toHtml());
+}
