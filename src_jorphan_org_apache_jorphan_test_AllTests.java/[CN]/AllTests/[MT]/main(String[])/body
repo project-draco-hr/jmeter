@@ -12,7 +12,9 @@
   String n=System.getProperty(g);
   System.out.println(g + "=" + n);
   System.out.println("------------");
+  System.out.println("Creating test suite");
   TestSuite suite=suite(args[0]);
+  System.out.println("Starting test run");
   TestRunner.run(suite);
   System.out.println("+++++++++++");
   System.out.println("Headless? " + java.awt.GraphicsEnvironment.isHeadless());

@@ -2,7 +2,7 @@
   if (args.length >= 2) {
     Properties props=new Properties();
     try {
-      System.out.println("setting up logging props using file: " + args[1]);
+      System.out.println("Setting up logging props using file: " + args[1]);
       props.load(new FileInputStream(args[1]));
       LoggingManager.initializeLogging(props);
     }
