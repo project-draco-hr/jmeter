@@ -1,13 +1,14 @@
 {
   log.debug("Calling getStringValue from FunctionProperty");
   log.debug("boogedy boogedy");
-  if (!isRunningVersion() || !JMeterContextService.getContext().isSamplingStarted()) {
+  JMeterContext ctx=JMeterContextService.getContext();
+  if (!isRunningVersion() || !ctx.isSamplingStarted()) {
     log.debug("Not running version, return raw function string");
     return function.getRawParameters();
   }
  else {
     log.debug("Running version, executing function");
-    int iter=JMeterContextService.getContext().getVariables().getIteration();
+    int iter=ctx.getVariables().getIteration();
     if (iter < testIteration) {
       testIteration=-1;
     }
