@@ -1,0 +1,15 @@
+{
+  for (int idx=0; idx < SOAPOPS.length; idx++) {
+    Node act=(Node)SOAPOPS[idx];
+    NodeList opers=((Element)act).getElementsByTagName("soap:operation");
+    Element op=(Element)opers.item(0);
+    String value=op.getAttribute("soapAction");
+    String key=((Element)act).getAttribute("name");
+    this.ACTIONS.put(key,value);
+  }
+  Set keys=this.ACTIONS.keySet();
+  String[] stringmeth=new String[keys.size()];
+  Object[] stringKeys=keys.toArray();
+  System.arraycopy(stringKeys,0,stringmeth,0,keys.size());
+  return stringmeth;
+}

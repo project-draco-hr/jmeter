@@ -1,0 +1,8 @@
+{
+  try {
+    CONN=(HttpURLConnection)WSDLURL.openConnection();
+  }
+ catch (  IOException exception) {
+    throw exception;
+  }
+}

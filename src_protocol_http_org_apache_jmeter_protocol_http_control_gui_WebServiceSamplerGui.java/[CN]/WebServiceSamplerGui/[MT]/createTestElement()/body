@@ -1,5 +1,26 @@
 {
   WebServiceSampler sampler=new WebServiceSampler();
-  modifyTestElement(sampler);
+  this.configureTestElement(sampler);
+  try {
+    URL url=new URL(urlField.getText());
+    sampler.setDomain(url.getHost());
+    if (url.getPort() != -1) {
+      sampler.setPort(url.getPort());
+    }
+ else {
+      sampler.setPort(80);
+    }
+    sampler.setProtocol(url.getProtocol());
+    sampler.setMethod(WebServiceSampler.POST);
+    sampler.setPath(url.getPath());
+    sampler.setSoapAction(soapAction.getText());
+    sampler.setXmlData(soapXml.getText());
+    sampler.setXmlFile(soapXmlFile.getFilename());
+    sampler.setXmlPathLoc(randomXmlFile.getText());
+    sampler.setMemoryCache(memCache.isSelected());
+    sampler.setReadResponse(readResponse.isSelected());
+  }
+ catch (  MalformedURLException e) {
+  }
   return sampler;
 }

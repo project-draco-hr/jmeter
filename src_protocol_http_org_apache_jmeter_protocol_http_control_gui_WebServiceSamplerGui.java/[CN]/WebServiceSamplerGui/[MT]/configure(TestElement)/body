@@ -2,11 +2,23 @@
   super.configure(el);
   WebServiceSampler sampler=(WebServiceSampler)el;
   try {
-    urlField.setText(sampler.getUrl().toString());
+    if (sampler.getUrl() != null && sampler.getUrl().getHost() != null) {
+      urlField.setText(sampler.getUrl().toString());
+    }
     soapAction.setText(sampler.getSoapAction());
   }
  catch (  MalformedURLException e) {
   }
+  int port=sampler.getPort();
+  String strUrl=sampler.getProtocol() + "://" + sampler.getDomain();
+  if (port != -1 && port != 80) {
+    strUrl+=":" + sampler.getPort();
+  }
+  strUrl+=sampler.getPath() + "?" + sampler.getQueryString();
+  urlField.setText(strUrl);
   soapXml.setText(sampler.getXmlData());
   soapXmlFile.setFilename(sampler.getXmlFile());
+  randomXmlFile.setText(sampler.getXmlPathLoc());
+  memCache.setSelected(sampler.getMemoryCache());
+  readResponse.setSelected(sampler.getReadResponse());
 }

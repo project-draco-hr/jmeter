@@ -1,0 +1,17 @@
+{
+  try {
+    WSDLHelper help=new WSDLHelper("http://localhost/testWS/Service1.asmx?WSDL");
+    long start=System.currentTimeMillis();
+    help.parse();
+    String[] methods=help.getWebMethods();
+    System.out.println("el: " + (System.currentTimeMillis() - start));
+    for (int idx=0; idx < methods.length; idx++) {
+      System.out.println("method name: " + methods[idx]);
+    }
+    System.out.println("service url: " + help.getBinding());
+  }
+ catch (  Exception exception) {
+    System.out.println("main method catch:");
+    exception.printStackTrace();
+  }
+}

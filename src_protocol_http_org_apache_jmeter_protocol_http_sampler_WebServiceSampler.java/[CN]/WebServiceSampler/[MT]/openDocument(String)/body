@@ -1,0 +1,21 @@
+{
+  String xmlData=retrieveRuntimeXmlData();
+  if (xmlData != null && xmlData.length() > 0) {
+    Document doc=null;
+    try {
+      if (XDB == null) {
+        XDB=XMLParserUtils.getXMLDocBuilder();
+      }
+      doc=XDB.parse(new InputSource(new StringReader(xmlData)));
+      if (this.getPropertyAsBoolean(MEMORY_CACHE)) {
+        DOMPool.putDocument(key,doc);
+      }
+    }
+ catch (    Exception ex) {
+    }
+    return doc;
+  }
+ else {
+    return null;
+  }
+}

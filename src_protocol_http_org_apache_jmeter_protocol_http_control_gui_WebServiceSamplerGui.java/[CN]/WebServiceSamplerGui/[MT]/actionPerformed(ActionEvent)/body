@@ -1,0 +1,17 @@
+{
+  if (event.getSource() == selectButton) {
+    this.configureFromWSDL();
+  }
+ else {
+    if (this.urlField.getText() != null) {
+      String[] wsdlData=browseWSDL(wsdlField.getText());
+      if (wsdlData != null) {
+        wsdlMethods.setValues(wsdlData);
+        wsdlMethods.repaint();
+      }
+    }
+ else {
+      JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_url_error"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+    }
+  }
+}

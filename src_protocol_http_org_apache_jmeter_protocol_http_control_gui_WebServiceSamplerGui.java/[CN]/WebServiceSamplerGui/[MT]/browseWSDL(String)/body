@@ -1,0 +1,11 @@
+{
+  try {
+    HELPER=new WSDLHelper(url);
+    HELPER.parse();
+    return HELPER.getWebMethods();
+  }
+ catch (  Exception exception) {
+    JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_helper_error"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+    return null;
+  }
+}

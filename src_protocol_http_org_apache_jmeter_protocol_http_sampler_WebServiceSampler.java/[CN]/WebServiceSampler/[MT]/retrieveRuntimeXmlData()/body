@@ -1,5 +1,5 @@
 {
-  String file=getXmlFile();
+  String file=getRandomFileName();
   if (file.length() > 0) {
     TextFile contents=new TextFile(file);
     if (contents.exists()) {

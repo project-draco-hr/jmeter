@@ -3,17 +3,32 @@
     Envelope msgEnv=Envelope.unmarshall(createDocument());
     Message msg=new Message();
     long start=System.currentTimeMillis();
-    msg.send(this.getUrl(),"http://tempuri.org/doInference",msgEnv);
-    RESULT.setTime(System.currentTimeMillis() - start);
+    msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
     SOAPTransport st=msg.getSOAPTransport();
     BufferedReader br=st.receive();
-    StringBuffer buf=new StringBuffer();
-    String line;
-    while ((line=br.readLine()) != null) {
-      buf.append(line);
+    RESULT.setDataType(SampleResult.TEXT);
+    if (this.getPropertyAsBoolean(READ_RESPONSE)) {
+      StringBuffer buf=new StringBuffer();
+      String line;
+      while ((line=br.readLine()) != null) {
+        buf.append(line);
+      }
+      RESULT.setTime(System.currentTimeMillis() - start);
+      RESULT.setResponseData(buf.toString().getBytes());
     }
-    RESULT.setResponseMessage(buf.toString());
+ else {
+      br.read();
+      RESULT.setTime(System.currentTimeMillis() - start);
+      RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
+    }
+    RESULT.setTimeStamp(System.currentTimeMillis());
     RESULT.setSuccessful(true);
+    RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile());
+    RESULT.setDataEncoding(st.getResponseSOAPContext().getContentType());
+    RESULT.setResponseCode("200");
+    br.close();
+    msg=null;
+    st=null;
   }
  catch (  Exception exception) {
     RESULT.setSuccessful(false);

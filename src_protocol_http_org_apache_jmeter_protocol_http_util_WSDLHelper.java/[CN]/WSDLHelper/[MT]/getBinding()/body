@@ -1,0 +1,21 @@
+{
+  try {
+    NodeList services=this.WSDLDOC.getElementsByTagName("service");
+    Element node=(Element)services.item(0);
+    NodeList ports=node.getElementsByTagName("port");
+    for (int idx=0; idx < ports.getLength(); idx++) {
+      Element pnode=(Element)ports.item(idx);
+      String portname=pnode.getAttribute("name");
+      if (portname.equals(this.BINDNAME)) {
+        NodeList servlist=pnode.getElementsByTagName("soap:address");
+        Element addr=(Element)servlist.item(0);
+        this.SOAPBINDING=addr.getAttribute("location");
+        return this.SOAPBINDING;
+      }
+    }
+    return null;
+  }
+ catch (  Exception exception) {
+    return null;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  try {
+    this.connect();
+    this.buildDocument();
+    SOAPOPS=this.getOperations();
+    this.close();
+  }
+ catch (  IOException exception) {
+    throw (new WSDLException(exception));
+  }
+catch (  Exception exception) {
+    throw (new WSDLException(exception));
+  }
+}
