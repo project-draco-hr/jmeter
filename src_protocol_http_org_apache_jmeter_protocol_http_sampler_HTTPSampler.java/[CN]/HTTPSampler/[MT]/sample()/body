@@ -1,3 +1,10 @@
 {
-  return sample(0);
+  try {
+    SampleResult res=sample(getUrl(),getMethod(),false);
+    res.setSampleLabel(getName());
+    return res;
+  }
+ catch (  MalformedURLException e) {
+    return errorResult(e,0);
+  }
 }

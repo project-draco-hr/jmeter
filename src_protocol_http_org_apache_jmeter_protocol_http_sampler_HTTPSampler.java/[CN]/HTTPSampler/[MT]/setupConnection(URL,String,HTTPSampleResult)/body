@@ -1,0 +1,44 @@
+{
+  HttpURLConnection conn;
+  HttpURLConnection.setFollowRedirects(delegateRedirects);
+  conn=(HttpURLConnection)u.openConnection();
+  if ("https".equals(u.getProtocol())) {
+    try {
+      SSLManager.getInstance().setContext(conn);
+    }
+ catch (    Exception e) {
+      log.warn("You may have forgotten to set the ssl.provider property " + "in jmeter.properties",e);
+    }
+  }
+  if (getUseKeepAlive()) {
+    conn.setRequestProperty("Connection","keep-alive");
+  }
+ else {
+    conn.setRequestProperty("Connection","close");
+  }
+  conn.setRequestMethod(method);
+  setConnectionHeaders(conn,u,getHeaderManager());
+  String cookies=setConnectionCookie(conn,u,getCookieManager());
+  if (res != null) {
+    StringBuffer sb=new StringBuffer();
+    if (method.equals(HTTPSampler.POST)) {
+      sb.append("Query data:\n");
+      sb.append(this.getQueryString());
+      sb.append('\n');
+    }
+    if (cookies != null) {
+      sb.append("\nCookie Data:\n");
+      sb.append(cookies);
+      sb.append('\n');
+    }
+    res.setSamplerData(sb.toString());
+    res.setURL(u);
+    res.setHTTPMethod(method);
+    res.setRequestHeaders("TODO");
+  }
+  setConnectionAuthorization(conn,u,getAuthManager());
+  if (getMethod().equals(HTTPSampler.POST)) {
+    setPostHeaders(conn);
+  }
+  return conn;
+}

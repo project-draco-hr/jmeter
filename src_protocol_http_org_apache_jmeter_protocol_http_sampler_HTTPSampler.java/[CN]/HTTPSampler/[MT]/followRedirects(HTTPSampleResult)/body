@@ -1,0 +1,34 @@
+{
+  HTTPSampleResult totalRes=new HTTPSampleResult(res);
+  HTTPSampleResult lastRes=res;
+  int redirect;
+  for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {
+    String location=lastRes.getRedirectLocation();
+    try {
+      lastRes=sample(new URL(lastRes.getURL(),location),HTTPSampler.GET,true);
+    }
+ catch (    MalformedURLException e) {
+      lastRes=errorResult(e,0);
+    }
+    totalRes.addSubResult(lastRes);
+    totalRes.setTime(totalRes.getTime() + lastRes.getTime());
+    if (!lastRes.isRedirect()) {
+      break;
+    }
+  }
+  if (redirect == MAX_REDIRECTS) {
+    lastRes=errorResult(new IOException("Maximum number of redirects exceeded."),0);
+    totalRes.addSubResult(lastRes);
+  }
+  totalRes.setSampleLabel(totalRes.getSampleLabel() + "->" + lastRes.getSampleLabel());
+  totalRes.setURL(lastRes.getURL());
+  totalRes.setHTTPMethod(lastRes.getHTTPMethod());
+  totalRes.setRequestHeaders(lastRes.getRequestHeaders());
+  totalRes.setResponseData(lastRes.getResponseData());
+  totalRes.setResponseCode(lastRes.getResponseCode());
+  totalRes.setSuccessful(lastRes.isSuccessful());
+  totalRes.setResponseMessage(lastRes.getResponseMessage());
+  totalRes.setDataType(lastRes.getDataType());
+  totalRes.setResponseHeaders(lastRes.getResponseHeaders());
+  return totalRes;
+}

@@ -1,0 +1,10 @@
+{
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setDataType(HTTPSampleResult.TEXT);
+  res.setResponseData(e.toString().getBytes());
+  res.setResponseCode(NON_HTTP_RESPONSE_CODE);
+  res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
+  res.setTime(time);
+  res.setSuccessful(false);
+  return res;
+}

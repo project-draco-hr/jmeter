@@ -1,0 +1,30 @@
+{
+  Iterator urls=null;
+  try {
+    urls=HTMLParser.getParser().getEmbeddedResourceURLs(res.getResponseData(),res.getURL());
+  }
+ catch (  HTMLParseException e) {
+    res.addSubResult(errorResult(e,0));
+    res.setSuccessful(false);
+  }
+  if (urls != null && urls.hasNext()) {
+    if (createContainerResult) {
+      res=new HTTPSampleResult(res);
+    }
+    while (urls.hasNext()) {
+      Object binURL=urls.next();
+      try {
+        HTTPSampleResult binRes=sample((URL)binURL,HTTPSampler.GET,false);
+        res.addSubResult(binRes);
+        res.setTime(res.getTime() + binRes.getTime());
+        res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+      }
+ catch (      ClassCastException e) {
+        res.addSubResult(errorResult(new Exception(binURL + " is not a correct URI"),0));
+        res.setSuccessful(false);
+        continue;
+      }
+    }
+  }
+  return res;
+}
