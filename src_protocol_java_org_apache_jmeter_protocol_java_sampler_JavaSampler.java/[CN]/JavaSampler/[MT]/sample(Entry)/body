@@ -2,7 +2,7 @@
   if (javaClient == null) {
     log.debug(whoAmI() + "Creating Java Client");
     createJavaClient();
-    javaClient.setupTest(createArgumentsHashMap(getArguments()));
+    javaClient.setupTest(context);
   }
-  return javaClient.runTest(createArgumentsHashMap(getArguments()));
+  return createJavaClient().runTest(context);
 }

@@ -1,8 +1,0 @@
-{
-  log.debug(whoAmI() + "\tteardownTest()");
-  Iterator argsIt=arguments.entrySet().iterator();
-  while (argsIt.hasNext()) {
-    Entry entry=(Entry)argsIt.next();
-    log.debug(entry.getKey().toString() + "=" + entry.getValue().toString());
-  }
-}

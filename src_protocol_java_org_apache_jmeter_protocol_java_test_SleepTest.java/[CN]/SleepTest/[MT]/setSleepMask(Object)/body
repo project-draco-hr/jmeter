@@ -1,9 +1,0 @@
-{
-  try {
-    sleepMask=Long.parseLong((String)arg);
-  }
- catch (  Exception e) {
-    log.debug("Exception getting sleepMask:\t",e);
-    sleepMask=0x3ff;
-  }
-}

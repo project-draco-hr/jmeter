@@ -1,9 +1,0 @@
-{
-  HashMap newArgs=new HashMap();
-  Iterator iter=args.iterator();
-  while (iter.hasNext()) {
-    Argument item=(Argument)iter.next();
-    newArgs.put(item.getName(),item.getValue());
-  }
-  return newArgs;
-}

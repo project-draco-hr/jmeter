@@ -1,0 +1,32 @@
+{
+  if (evt.getSource() == classnameCombo) {
+    String className=(String)classnameCombo.getSelectedItem();
+    try {
+      JavaSamplerClient client=(JavaSamplerClient)Class.forName(className.trim(),true,Thread.currentThread().getContextClassLoader()).newInstance();
+      Arguments currArgs=new Arguments();
+      argsPanel.modifyTestElement(currArgs);
+      Map currArgsMap=currArgs.getArgumentsAsMap();
+      Arguments newArgs=new Arguments();
+      Arguments testParams=client.getDefaultParameters();
+      if (testParams != null) {
+        Iterator i=testParams.getArguments().iterator();
+        while (i.hasNext()) {
+          Argument arg=(Argument)i.next();
+          String name=arg.getName();
+          Object value=arg.getValue();
+          if (currArgsMap.containsKey(name)) {
+            Object newVal=currArgsMap.get(name);
+            if (newVal != null && newVal.toString().length() > 0) {
+              value=newVal;
+            }
+          }
+          newArgs.addArgument(name,value);
+        }
+      }
+      argsPanel.configure(newArgs);
+    }
+ catch (    Exception e) {
+      log.error("Error getting argument list for " + className,e);
+    }
+  }
+}

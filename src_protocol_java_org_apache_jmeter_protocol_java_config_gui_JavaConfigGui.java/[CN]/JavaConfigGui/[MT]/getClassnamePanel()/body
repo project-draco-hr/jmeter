@@ -5,12 +5,13 @@
   List possibleClasses=null;
   try {
     possibleClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JavaSamplerClient.class});
-    possibleClasses.remove("org.apache.jmeter.protocol.java.sampler.JavaSampler");
+    possibleClasses.remove("org.apache.jmeter.protocol.java.sampler.JavaSampler$ErrorSamplerClient");
   }
  catch (  Exception e) {
     log.debug("Exception getting interfaces.",e);
   }
   classnameCombo=new JComboBox(possibleClasses.toArray());
+  classnameCombo.addActionListener(this);
   classnameCombo.setName(CLASSNAMECOMBO);
   classnameCombo.setEditable(false);
   panel.add(classnameCombo);

@@ -1,0 +1,21 @@
+{
+  SampleResult results=new SampleResult();
+  try {
+    long start=System.currentTimeMillis();
+    long ct=start % getSleepMask();
+    Thread.sleep(getSleepTime() + ct);
+    long end=System.currentTimeMillis();
+    results.setTime(end - start);
+    results.setSuccessful(true);
+    results.setSampleLabel("Sleep Test: time = " + (getSleepTime() + ct));
+  }
+ catch (  Exception e) {
+    getLogger().error("SleepTest: error during sample",e);
+    results.setSuccessful(false);
+  }
+  if (getLogger().isDebugEnabled()) {
+    getLogger().debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
+    listParameters(context);
+  }
+  return results;
+}
