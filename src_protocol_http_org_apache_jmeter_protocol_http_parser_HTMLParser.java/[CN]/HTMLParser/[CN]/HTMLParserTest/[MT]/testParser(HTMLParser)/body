@@ -1,14 +1,6 @@
 {
-  final String[] EXPECTED_RESULT=new String[]{"http://myhost/mydir/images/image-a.gif","http://myhost/mydir/images/image-b.gif","http://myhost/mydir/images/image-c.gif","http://myhost/mydir/images/image-d.gif","http://myhost/mydir/images/image-e.gif","http://myhost/mydir/images/image-f.gif","http://myhost/mydir/images/image-a2.gif","http://myhost/mydir/images/image-b2.gif","http://myhost/mydir/images/image-c2.gif","http://myhost/mydir/images/image-d2.gif","http://myhost/mydir/images/image-e2.gif","http://myhost/mydir/images/image-f2.gif"};
-  File f=new File("testfiles/HTMLParserTestCase.html");
-  byte[] buffer=new byte[(int)f.length()];
-  int len=new FileInputStream(f).read(buffer);
-  assertEquals(len,buffer.length);
-  Iterator result=parser.getEmbeddedResourceURLs(buffer,new URL("http://myhost/mydir/myfile.html"));
-  Iterator expected=Arrays.asList(EXPECTED_RESULT).iterator();
-  while (expected.hasNext()) {
-    assertTrue(result.hasNext());
-    assertEquals(expected.next(),result.next().toString());
-  }
-  assertFalse(result.hasNext());
+  filetest(p,TESTFILE1,URL1,EXPECTED_RESULT1,null);
+  filetest(p,TESTFILE1,URL1,EXPECTED_RESULT1,null);
+  filetest(p,TESTFILE1,URL1,EXPECTED_RESULT1A,new Vector());
+  filetest(p,TESTFILE1,URL1,EXPECTED_RESULT1A,new Vector());
 }

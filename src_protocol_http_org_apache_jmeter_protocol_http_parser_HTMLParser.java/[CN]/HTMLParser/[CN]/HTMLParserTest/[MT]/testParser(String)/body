@@ -1,0 +1,9 @@
+{
+  Properties p=JMeterUtils.getJMeterProperties();
+  if (p == null) {
+    p=JMeterUtils.getProperties("jmeter.properties");
+  }
+  p.setProperty(PARSER_CLASSNAME,s);
+  testParser(getParser());
+  testParser(getParser());
+}

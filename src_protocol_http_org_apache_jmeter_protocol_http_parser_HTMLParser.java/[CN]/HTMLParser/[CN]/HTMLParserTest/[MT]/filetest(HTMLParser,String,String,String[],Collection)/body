@@ -1,0 +1,21 @@
+{
+  log.info("file   " + file);
+  log.info("parser " + p.getClass().getName());
+  File f=new File(file);
+  byte[] buffer=new byte[(int)f.length()];
+  int len=new FileInputStream(f).read(buffer);
+  assertEquals(len,buffer.length);
+  Iterator result;
+  if (c == null) {
+    result=p.getEmbeddedResourceURLs(buffer,new URL(url));
+  }
+ else {
+    result=p.getEmbeddedResourceURLs(buffer,new URL(url),c);
+  }
+  Iterator expected=Arrays.asList(expected_result).iterator();
+  while (expected.hasNext()) {
+    assertTrue(result.hasNext());
+    assertEquals(expected.next(),result.next().toString());
+  }
+  assertFalse(result.hasNext());
+}
