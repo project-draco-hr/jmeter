@@ -21,10 +21,12 @@
  catch (  IOException ioe) {
     log.error("",ioe);
   }
-  if (reader != null)   try {
-    reader.close();
-  }
- catch (  IOException e) {
+ finally {
+    if (reader != null)     try {
+      reader.close();
+    }
+ catch (    IOException e) {
+    }
   }
   return sb.toString();
 }
