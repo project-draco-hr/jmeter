@@ -1,3 +1,6 @@
 {
-  value=newMap;
+  if (isRunningVersion()) {
+    savedValue=this.value;
+  }
+  value=normalizeMap(newMap);
 }

@@ -1,23 +1,4 @@
 {
-  PropertyIterator iter=el.propertyIterator();
-  List newProps=new LinkedList();
-  while (iter.hasNext()) {
-    JMeterProperty prop=iter.next();
-    if (prop instanceof StringProperty) {
-      newProps.add(substituteReferences((StringProperty)prop));
-    }
- else     if (prop instanceof TestElementProperty) {
-      undoReverseReplace((TestElement)prop.getObjectValue());
-    }
- else     if (prop instanceof CollectionProperty) {
-      undoReverseReplace((CollectionProperty)prop);
-    }
- else     if (prop instanceof MapProperty) {
-      undoReverseReplace((MapProperty)prop);
-    }
-  }
-  Iterator props=newProps.iterator();
-  while (props.hasNext()) {
-    el.setProperty((JMeterProperty)props.next());
-  }
+  Collection newProps=replaceValues(el.propertyIterator(),new UndoVariableReplacement(masterFunction,variables));
+  setProperties(el,newProps);
 }

@@ -3,15 +3,5 @@
     value=savedValue;
     savedValue=null;
   }
-  Iterator iter=value.keySet().iterator();
-  while (iter.hasNext()) {
-    String name=(String)iter.next();
-    JMeterProperty prop=(JMeterProperty)value.get(name);
-    if (prop.isTemporary(owner)) {
-      iter.remove();
-    }
- else {
-      prop.recoverRunningVersion(owner);
-    }
-  }
+  recoverRunningVersionOfSubElements(owner);
 }

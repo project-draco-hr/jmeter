@@ -1,0 +1,20 @@
+{
+  List props=new LinkedList();
+  while (iter.hasNext()) {
+    JMeterProperty val=iter.next();
+    if (val instanceof StringProperty) {
+      val=transform.transformValue((StringProperty)val);
+    }
+ else     if (val instanceof MultiProperty) {
+      MultiProperty multiVal=(MultiProperty)val;
+      Collection newValues=replaceValues(multiVal.iterator(),transform);
+      multiVal.clear();
+      Iterator propIter=newValues.iterator();
+      while (propIter.hasNext()) {
+        multiVal.addProperty((JMeterProperty)propIter.next());
+      }
+    }
+    props.add(val);
+  }
+  return props;
+}

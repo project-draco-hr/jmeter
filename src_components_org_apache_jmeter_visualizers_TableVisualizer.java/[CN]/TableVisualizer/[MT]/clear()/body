@@ -1,4 +1,5 @@
 {
+  log.warn("Clear called",new Exception());
   model.clear();
   dataField.setText("0000");
   averageField.setText("0000");

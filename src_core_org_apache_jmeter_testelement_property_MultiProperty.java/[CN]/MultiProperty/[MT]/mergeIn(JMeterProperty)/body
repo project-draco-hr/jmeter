@@ -1,0 +1,14 @@
+{
+  if (prop.getObjectValue() == getObjectValue()) {
+    return;
+  }
+  if (prop instanceof MultiProperty) {
+    PropertyIterator iter=((MultiProperty)prop).iterator();
+    while (iter.hasNext()) {
+      addProperty(iter.next());
+    }
+  }
+ else {
+    addProperty(prop);
+  }
+}

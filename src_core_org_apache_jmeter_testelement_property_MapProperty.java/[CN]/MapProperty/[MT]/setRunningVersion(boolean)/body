@@ -1,7 +1,0 @@
-{
-  super.setRunningVersion(running);
-  PropertyIterator iter=valueIterator();
-  while (iter.hasNext()) {
-    iter.next().setRunningVersion(running);
-  }
-}

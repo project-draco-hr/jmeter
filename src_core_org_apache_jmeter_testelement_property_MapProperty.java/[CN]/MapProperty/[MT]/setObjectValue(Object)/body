@@ -1,8 +1,5 @@
 {
   if (v instanceof Map) {
-    if (isRunningVersion()) {
-      savedValue=this.value;
-    }
-    value=normalizeMap((Map)v);
+    setMap((Map)v);
   }
 }

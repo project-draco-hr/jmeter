@@ -1,0 +1,11 @@
+{
+  Iterator iter=getVariables().keySet().iterator();
+  String input=prop.getStringValue();
+  while (iter.hasNext()) {
+    String key=(String)iter.next();
+    String value=(String)getVariables().get(key);
+    input=StringUtilities.substitute(input,value,"${" + key + "}");
+  }
+  StringProperty newProp=new StringProperty(prop.getName(),input);
+  return newProp;
+}

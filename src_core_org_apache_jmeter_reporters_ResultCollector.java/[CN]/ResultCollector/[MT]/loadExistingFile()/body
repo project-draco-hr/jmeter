@@ -3,7 +3,7 @@
   if (new File(getFilename()).exists()) {
     try {
       Configuration savedSamples=getConfiguration(getFilename());
-      clear();
+      clearVisualizer();
       readSamples(savedSamples);
     }
  catch (    Exception e) {

@@ -1,5 +1,7 @@
 {
   if (value.size() == 0 || value.values().iterator().next().getClass().equals(prop.getClass())) {
-    value.put(name,prop);
+    if (!value.containsKey(name)) {
+      value.put(name,prop);
+    }
   }
 }

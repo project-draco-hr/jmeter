@@ -1,0 +1,12 @@
+{
+  PropertyIterator iter=iterator();
+  while (iter.hasNext()) {
+    JMeterProperty prop=iter.next();
+    if (prop.isTemporary(owner)) {
+      iter.remove();
+    }
+ else {
+      prop.recoverRunningVersion(owner);
+    }
+  }
+}
