@@ -1,4 +1,9 @@
 {
+  log.debug(this + "::StringFromFile.setParameters()");
   values=parameters.toArray();
-  if (values.length > 2)   throw new InvalidVariableException();
+  if ((values.length > 2) || (values.length < 1)) {
+    throw new InvalidVariableException();
+  }
+  openFile();
+  log.info("Variable name: " + myName);
 }

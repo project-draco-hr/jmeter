@@ -1,4 +1,7 @@
 {
   StringFromFile newReader=new StringFromFile();
+  if (log.isDebugEnabled()) {
+    log.debug(this + "::StringFromFile.clone()",new Throwable("debug"));
+  }
   return newReader;
 }

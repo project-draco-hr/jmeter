@@ -1,0 +1,11 @@
+{
+  fileName=((CompoundVariable)values[0]).execute();
+  try {
+    FileReader fis=new FileReader(fileName);
+    myBread=new BufferedReader(fis);
+    log.info("Opened " + fileName);
+  }
+ catch (  Exception e) {
+    log.error("Error in openFile " + fileName,e);
+  }
+}
