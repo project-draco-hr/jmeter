@@ -1,24 +1,13 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(getStaticLabel());
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  mainPanel.add(getNamePanel());
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
+  add(createTitleLabel());
+  add(getNamePanel());
   JPanel durationPanel=new JPanel();
   durationPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getDurationAttributesTitle()));
-  FlowLayout layout=new FlowLayout();
-  durationPanel.setLayout(layout);
   durationPanel.add(new JLabel(JMeterUtils.getResString("duration_assertion_label")));
   duration=new JTextField(5);
   duration.addFocusListener(this);
   durationPanel.add(duration);
-  mainPanel.add(durationPanel);
-  this.add(mainPanel);
+  add(durationPanel);
 }

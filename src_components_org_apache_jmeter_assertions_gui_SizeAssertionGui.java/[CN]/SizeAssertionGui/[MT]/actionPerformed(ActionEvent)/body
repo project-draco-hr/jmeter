@@ -1,4 +1,4 @@
 {
-  int comparator=new Integer(e.getActionCommand()).intValue();
+  int comparator=Integer.parseInt(e.getActionCommand());
   execState=comparator;
 }
