@@ -53,5 +53,8 @@ catch (  Exception e) {
       MatchResult result=(MatchResult)collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1);
       return generateResult(result);
     }
+catch (    IndexOutOfBoundsException e) {
+      return defaultValue;
+    }
   }
 }
