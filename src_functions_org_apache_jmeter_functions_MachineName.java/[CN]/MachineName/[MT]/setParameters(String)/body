@@ -1,0 +1,8 @@
+{
+  Collection params=this.parseArguments(parameters);
+  String[] values=(String[])params.toArray(new String[0]);
+  if (values.length > 0) {
+    if (values[0].toLowerCase().equals("true"))     fullHostName=true;
+    varName=values[values.length - 1];
+  }
+}

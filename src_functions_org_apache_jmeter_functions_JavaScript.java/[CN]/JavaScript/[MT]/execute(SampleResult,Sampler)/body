@@ -1,0 +1,17 @@
+{
+  JMeterVariables vars=getVariables();
+  String resultStr="";
+  Context cx=Context.enter();
+  try {
+    Scriptable scope=cx.initStandardObjects(null);
+    Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
+    resultStr=Context.toString(result);
+    vars.put(varName,resultStr);
+  }
+ catch (  JavaScriptException e) {
+  }
+ finally {
+    Context.exit();
+  }
+  return resultStr;
+}

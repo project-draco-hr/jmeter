@@ -1,0 +1,17 @@
+{
+  JMeterVariables vars=getVariables();
+  String machineName="";
+  try {
+    InetAddress Address=InetAddress.getLocalHost();
+    if (fullHostName) {
+      machineName=Address.getCanonicalHostName();
+    }
+ else {
+      machineName=Address.getHostName();
+    }
+  }
+ catch (  UnknownHostException e) {
+  }
+  vars.put(varName,machineName);
+  return machineName;
+}
