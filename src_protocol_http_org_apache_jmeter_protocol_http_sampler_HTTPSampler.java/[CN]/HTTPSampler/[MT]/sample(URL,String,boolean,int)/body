@@ -86,6 +86,7 @@ catch (      IOException e) {
   }
  catch (  IOException e) {
     res.sampleEnd();
+    res.setURL(url);
     return errorResult(e,url.toString(),res.getTime());
   }
  finally {
