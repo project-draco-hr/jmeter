@@ -18,6 +18,9 @@
  else     if (children[i].getName().equals("collection")) {
       element.setProperty(children[i].getAttribute("name"),createCollection(children[i]));
     }
+ else     if (children[i].getName().equals("map")) {
+      element.setProperty(children[i].getAttribute("name"),createMap(children[i]));
+    }
   }
   return element;
 }

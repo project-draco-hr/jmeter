@@ -1,0 +1,6 @@
+{
+  DefaultConfiguration config=new DefaultConfiguration("collection","collection");
+  config.setAttribute("class",col.getClass().getName());
+  setConfigName(config);
+  stack.add(config);
+}

@@ -1,0 +1,10 @@
+{
+  Iterator iter=getPropertyNames().iterator();
+  traverser.startTestElement(this);
+  while (iter.hasNext()) {
+    String key=(String)iter.next();
+    Object value=getProperty(key);
+    traverseObject(traverser,key,value);
+  }
+  traverser.endTestElement(this);
+}

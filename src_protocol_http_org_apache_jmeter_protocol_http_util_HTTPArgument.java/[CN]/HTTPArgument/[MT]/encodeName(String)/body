@@ -1,6 +1,0 @@
-{
-  if (getAlwaysEncode()) {
-    name=URLEncoder.encode(name);
-  }
-  setProperty(ENCODED_NAME,name);
-}

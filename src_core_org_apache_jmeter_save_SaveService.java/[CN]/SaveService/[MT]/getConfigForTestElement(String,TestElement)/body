@@ -1,27 +1,6 @@
 {
-  DefaultConfiguration config=new DefaultConfiguration("testelement","testelement");
-  if (named != null) {
-    config.setAttribute("name",named);
-  }
-  if (item.getProperty(TestElement.TEST_CLASS) != null) {
-    config.setAttribute("class",(String)item.getProperty(TestElement.TEST_CLASS));
-  }
- else {
-    config.setAttribute("class",item.getClass().getName());
-  }
-  Iterator iter=item.getPropertyNames().iterator();
-  while (iter.hasNext()) {
-    String name=(String)iter.next();
-    Object value=item.getProperty(name);
-    if (value instanceof TestElement) {
-      config.addChild(getConfigForTestElement(name,(TestElement)value));
-    }
- else     if (value instanceof Collection) {
-      config.addChild(createConfigForCollection(name,(Collection)value));
-    }
- else     if (value != null) {
-      config.addChild(createConfigForString(name,value.toString()));
-    }
-  }
+  TestElementSaver saver=new TestElementSaver(named);
+  item.traverse(saver);
+  Configuration config=saver.getConfiguration();
   return config;
 }

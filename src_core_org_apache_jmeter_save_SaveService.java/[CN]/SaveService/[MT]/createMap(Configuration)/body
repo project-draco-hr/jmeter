@@ -1,0 +1,19 @@
+{
+  Map map=(Map)Class.forName((String)config.getAttribute("class")).newInstance();
+  Configuration[] items=config.getChildren();
+  for (int i=0; i < items.length; i++) {
+    if (items[i].getName().equals("property")) {
+      map.put(items[i].getAttribute("name"),items[i].getValue(""));
+    }
+ else     if (items[i].getName().equals("testelement")) {
+      map.put(items[i].getAttribute("name"),createTestElement(items[i]));
+    }
+ else     if (items[i].getName().equals("collection")) {
+      map.put(items[i].getAttribute("name"),createCollection(items[i]));
+    }
+ else     if (items[i].getName().equals("map")) {
+      map.put(items[i].getAttribute("name"),createMap(items[i]));
+    }
+  }
+  return map;
+}

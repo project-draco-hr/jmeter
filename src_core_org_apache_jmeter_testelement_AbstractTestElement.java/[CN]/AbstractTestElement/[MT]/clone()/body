@@ -1,11 +1,5 @@
 {
-  try {
-    TestElement newObject=(TestElement)this.getClass().newInstance();
-    configureClone(newObject);
-    return newObject;
-  }
- catch (  Exception e) {
-    log.error("",e);
-  }
-  return null;
+  TestElementCloner cloner=new TestElementCloner();
+  this.traverse(cloner);
+  return cloner.getClonedElement();
 }

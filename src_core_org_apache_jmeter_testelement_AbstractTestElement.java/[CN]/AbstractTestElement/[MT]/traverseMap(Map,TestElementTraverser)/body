@@ -1,0 +1,10 @@
+{
+  traverser.startMap(map);
+  Iterator iter=map.keySet().iterator();
+  while (iter.hasNext()) {
+    Object key=iter.next();
+    Object value=map.get(key);
+    traverseObject(traverser,key,value);
+  }
+  traverser.endMap(map);
+}

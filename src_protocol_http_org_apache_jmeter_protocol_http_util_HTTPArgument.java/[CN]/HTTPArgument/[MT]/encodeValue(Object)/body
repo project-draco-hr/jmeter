@@ -1,8 +1,0 @@
-{
-  if (value != null) {
-    if (getAlwaysEncode()) {
-      value=URLEncoder.encode(value.toString());
-    }
-    setProperty(ENCODED_VALUE,value.toString());
-  }
-}

@@ -14,6 +14,9 @@
  else     if (items[i].getName().equals("string")) {
       coll.add(items[i].getValue(""));
     }
+ else     if (items[i].getName().equals("map")) {
+      coll.add(createMap(items[i]));
+    }
   }
   return coll;
 }

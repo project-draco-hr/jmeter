@@ -1,23 +1,9 @@
 {
   setAlwaysEncode(true);
   if (alreadyEncoded) {
-    try {
-      setName(URLDecoder.decode(name));
-    }
- catch (    IllegalArgumentException e) {
-      setName(name);
-    }
-    try {
-      setValue(URLDecoder.decode(value.toString()));
-    }
- catch (    IllegalArgumentException e) {
-      setValue(value.toString());
-    }
-    setProperty(ENCODED_NAME,name);
-    setProperty(ENCODED_VALUE,value.toString());
+    name=URLDecoder.decode(name);
+    value=URLDecoder.decode(value.toString());
   }
- else {
-    setName(name);
-    setValue(value);
-  }
+  setName(name);
+  setValue(value);
 }

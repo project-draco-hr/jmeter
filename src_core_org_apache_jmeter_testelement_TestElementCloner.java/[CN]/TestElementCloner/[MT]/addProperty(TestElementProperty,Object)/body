@@ -1,0 +1,8 @@
+{
+  if (parent instanceof TestElement) {
+    ((TestElement)parent).setProperty(prop.getKey().toString(),prop.getValue());
+  }
+ else   if (parent instanceof Map) {
+    ((Map)parent).put(prop.getKey(),prop.getValue());
+  }
+}

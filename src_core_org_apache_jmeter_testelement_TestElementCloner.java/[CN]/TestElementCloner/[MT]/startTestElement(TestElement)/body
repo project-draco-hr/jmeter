@@ -1,0 +1,15 @@
+{
+  try {
+    if (clonedRoot == null) {
+      clonedRoot=(TestElement)el.getClass().newInstance();
+      stack.add(clonedRoot);
+    }
+ else {
+      stack.add(el.getClass().newInstance());
+    }
+  }
+ catch (  InstantiationException e) {
+  }
+catch (  IllegalAccessException e) {
+  }
+}

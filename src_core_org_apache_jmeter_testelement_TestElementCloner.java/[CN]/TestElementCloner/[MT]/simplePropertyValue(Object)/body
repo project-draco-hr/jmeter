@@ -1,0 +1,13 @@
+{
+  try {
+    Object parent=stack.getLast();
+    if (parent instanceof TestElementProperty) {
+      ((TestElementProperty)parent).setValue(value);
+    }
+ else     if (parent instanceof Collection) {
+      ((Collection)parent).add(value);
+    }
+  }
+ catch (  NoSuchElementException e) {
+  }
+}
