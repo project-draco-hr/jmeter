@@ -1,9 +1,2 @@
 {
-  log.debug("testStarted(), thread: " + Thread.currentThread().getName());
-  try {
-    getKey();
-  }
- catch (  ConnectionPoolException e) {
-    log.error("Error initializing database connection",e);
-  }
 }
