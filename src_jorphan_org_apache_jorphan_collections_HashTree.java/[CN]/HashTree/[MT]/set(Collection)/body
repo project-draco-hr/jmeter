@@ -1,7 +1,4 @@
 {
-  Iterator iter=this.list().iterator();
-  while (iter.hasNext()) {
-    this.remove(iter.next());
-  }
+  clear();
   this.add(values);
 }

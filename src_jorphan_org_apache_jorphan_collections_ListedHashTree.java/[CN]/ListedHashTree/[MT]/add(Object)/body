@@ -1,6 +1,11 @@
 {
   if (!data.containsKey(key)) {
-    data.put(key,createNewTree());
+    HashTree newTree=createNewTree();
+    data.put(key,newTree);
     order.add(key);
+    return newTree;
+  }
+ else {
+    return getTree(key);
   }
 }

@@ -1,5 +1,11 @@
 {
-  HashTree newTree=new SortedHashTree();
+  HashTree newTree=null;
+  if (comparator == null) {
+    newTree=new SortedHashTree();
+  }
+ else {
+    newTree=new SortedHashTree(comparator);
+  }
   newTree.data=(Map)((HashMap)data).clone();
   return newTree;
 }

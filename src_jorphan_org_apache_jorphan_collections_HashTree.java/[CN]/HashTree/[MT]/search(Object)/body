@@ -1,19 +1,13 @@
 {
-  HashTree temp=null;
-  if (data.containsKey(key)) {
-    temp=(HashTree)data.get(key);
+  HashTree result=getTree(key);
+  if (result != null) {
+    return result;
   }
- else {
-    Iterator it=list().iterator();
-    while (it.hasNext()) {
-      if (temp == null) {
-        temp=((HashTree)it.next()).search(key);
-        break;
-      }
- else {
-        break;
-      }
-    }
+  TreeSearcher searcher=new TreeSearcher(key);
+  try {
+    traverse(searcher);
   }
-  return temp;
+ catch (  Exception e) {
+  }
+  return searcher.getResult();
 }
