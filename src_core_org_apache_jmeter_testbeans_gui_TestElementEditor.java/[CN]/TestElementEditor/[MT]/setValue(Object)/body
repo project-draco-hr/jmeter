@@ -1,8 +1,0 @@
-{
-  log.debug("Set to " + value);
-  if (value != null) {
-    element=(TestElement)value;
-    guiComponent.configure(element);
-    firePropertyChange();
-  }
-}
