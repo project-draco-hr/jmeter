@@ -1,0 +1,10 @@
+{
+  try {
+    String p1=URLEncoder.encode(p,CHAR_SET);
+    return p1;
+  }
+ catch (  Exception e) {
+    log.warn("System doesn't support utf-8",e);
+    return p;
+  }
+}

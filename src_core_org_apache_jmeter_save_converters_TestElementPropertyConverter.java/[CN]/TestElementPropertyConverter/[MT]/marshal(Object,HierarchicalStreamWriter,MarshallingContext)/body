@@ -1,6 +1,6 @@
 {
   TestElementProperty prop=(TestElementProperty)arg0;
-  writer.addAttribute("name",prop.getName());
+  writer.addAttribute("name",ConversionHelp.encode(prop.getName()));
   writer.addAttribute("elementType",prop.getObjectValue().getClass().getName());
   PropertyIterator iter=prop.iterator();
   while (iter.hasNext()) {

@@ -1,6 +1,6 @@
 {
   MultiProperty prop=(MultiProperty)createCollection(context.getRequiredType());
-  prop.setName(reader.getAttribute("name"));
+  prop.setName(ConversionHelp.decode(reader.getAttribute("name")));
   while (reader.hasMoreChildren()) {
     reader.moveDown();
     JMeterProperty subProp=(JMeterProperty)readItem(reader,context,prop);

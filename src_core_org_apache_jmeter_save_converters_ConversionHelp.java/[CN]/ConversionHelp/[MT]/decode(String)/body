@@ -1,0 +1,9 @@
+{
+  try {
+    return URLDecoder.decode(p,CHAR_SET);
+  }
+ catch (  Exception e) {
+    log.warn("System doesn't support utf-8",e);
+    return p;
+  }
+}
