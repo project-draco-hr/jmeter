@@ -17,11 +17,11 @@
         break;
       }
  catch (      BindException e) {
-        log.debug("Bind exception, try again");
         if (retry == 10) {
           log.error("Can't connect",e);
           throw e;
         }
+        log.debug("Bind exception, try again");
         conn.disconnect();
         this.setUseKeepAlive(false);
         continue;
@@ -85,10 +85,6 @@ catch (  IOException e) {
     return errorResult(e,System.currentTimeMillis() - t0);
   }
  finally {
-    try {
-      disconnect(conn);
-    }
- catch (    Exception e) {
-    }
+    disconnect(conn);
   }
 }
