@@ -3,7 +3,7 @@
   Socket con=(Socket)cp.get(TCPKEY);
   if (con != null) {
     log.debug(this + " Reusing connection " + con);
-    return (Socket)con;
+    return con;
   }
   try {
     con=new Socket(getServer(),getPort());
