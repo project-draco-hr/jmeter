@@ -1,18 +1,12 @@
 {
   if (!currentPage.equals(source)) {
-    if (currentPage.length() == 0) {
-      helpDoc=new HtmlPane();
-      scroller.setViewportView(helpDoc);
-      helpDoc.setEditable(false);
-    }
     try {
       helpDoc.setPage(source);
       currentPage=source;
     }
  catch (    IOException err) {
-      String msg="Couldn't load page " + source + " "+ err.toString();
-      log.error(msg);
-      helpDoc.setText(msg);
+      log.error(err.toString());
+      JMeterUtils.reportErrorToUser("Problem loading a help page - see log for details");
       currentPage="";
     }
   }
