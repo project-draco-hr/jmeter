@@ -1,0 +1,12 @@
+{
+  SampleResult s=e.getResult();
+  log.debug(s.getSampleLabel() + " OK? " + s.isSuccessful());
+  if (!s.isSuccessful()) {
+    if (isStopTest()) {
+      s.setStopTest(true);
+    }
+    if (isStopThread()) {
+      s.setStopThread(true);
+    }
+  }
+}
