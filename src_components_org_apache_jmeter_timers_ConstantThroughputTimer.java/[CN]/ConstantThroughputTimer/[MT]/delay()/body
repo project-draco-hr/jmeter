@@ -1,8 +1,7 @@
 {
-  log.info("in Delay, using throughput, which is " + getThroughput());
   long currentTime=System.currentTimeMillis();
-  long currentTarget=targetTime == 0 ? currentTime : targetTime;
-  targetTime=currentTarget + (long)(60000.0 / getThroughput());
+  long currentTarget=(previousTime == 0) ? currentTime + ((JMeterContextService.getContext().getThreadNum() + 1) * (long)(60000.0 / getThroughput())) : previousTime + (JMeterContextService.getNumberOfThreads() * (long)(60000.0 / getThroughput()));
+  previousTime=currentTarget;
   if (currentTime > currentTarget) {
     return 0;
   }
