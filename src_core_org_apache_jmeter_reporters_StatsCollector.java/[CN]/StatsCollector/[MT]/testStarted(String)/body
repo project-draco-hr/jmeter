@@ -1,0 +1,10 @@
+{
+  hosts.add(host);
+  try {
+    initializeFileOutput();
+  }
+ catch (  Exception e) {
+    log.error("",e);
+  }
+  inTest=true;
+}
