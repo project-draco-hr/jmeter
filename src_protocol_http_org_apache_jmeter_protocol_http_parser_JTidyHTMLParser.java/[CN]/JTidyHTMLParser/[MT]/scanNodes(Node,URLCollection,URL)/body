@@ -40,6 +40,10 @@ if (name.equalsIgnoreCase("link")) {
 urls.addURL(getValue(attrs,"href"),baseUrl);
 break;
 }
+if (name.equalsIgnoreCase("script")) {
+urls.addURL(getValue(attrs,"src"),baseUrl);
+break;
+}
 String back=getValue(attrs,"background");
 if (back != null) {
 urls.addURL(back,baseUrl);
