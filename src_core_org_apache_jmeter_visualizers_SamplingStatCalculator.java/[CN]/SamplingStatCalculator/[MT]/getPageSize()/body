@@ -1,7 +1,7 @@
 {
   double rate=0;
   if (this.getElapsed() > 0 && calculator.getTotalBytes() > 0) {
-    rate=(double)calculator.getTotalBytes() / ((double)this.getElapsed() / 1000);
+    rate=calculator.getTotalBytes() / ((double)this.getElapsed() / 1000);
   }
   if (rate < 0) {
     rate=0;
