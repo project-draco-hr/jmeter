@@ -5,7 +5,7 @@
   while (enum.hasMoreElements()) {
     JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
     if (subNode.isEnabled()) {
-      TestElement testElement=(TestElement)subNode.createTestElement();
+      TestElement testElement=(TestElement)subNode.getTestElement();
       if (testElement instanceof TestListener) {
         ((TestListener)testElement).testStarted();
       }

@@ -2,8 +2,8 @@
   try {
     if (currentNode != null) {
       log.debug("Updating current node " + currentNode.getName());
-      JMeterGUIComponent comp=getGui(currentNode.createTestElement());
-      TestElement el=currentNode.createTestElement();
+      JMeterGUIComponent comp=getGui(currentNode.getTestElement());
+      TestElement el=currentNode.getTestElement();
       comp.modifyTestElement(el);
     }
     currentNode=treeListener.getCurrentNode();

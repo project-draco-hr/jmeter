@@ -4,7 +4,7 @@
     JMeterTreeNode item=(JMeterTreeNode)iter.next();
     if (item.isEnabled()) {
       if (item.getUserObject() instanceof ReplaceableController) {
-        ReplaceableController rc=(ReplaceableController)item.createTestElement();
+        ReplaceableController rc=(ReplaceableController)item.getTestElement();
         HashTree subTree=tree.getTree(item);
         if (subTree != null) {
           rc.replace(subTree);
@@ -14,7 +14,7 @@
       }
  else {
         convertSubTree(tree.getTree(item));
-        TestElement testElement=item.createTestElement();
+        TestElement testElement=item.getTestElement();
         tree.replace(item,testElement);
       }
     }

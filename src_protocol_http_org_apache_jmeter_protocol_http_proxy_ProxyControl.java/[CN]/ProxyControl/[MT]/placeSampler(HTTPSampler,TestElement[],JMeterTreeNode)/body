@@ -23,7 +23,7 @@
     if (groupingMode == GROUPING_IN_CONTROLLERS) {
       for (int i=myTarget.getChildCount() - 1; i >= 0; i--) {
         JMeterTreeNode c=(JMeterTreeNode)myTarget.getChildAt(i);
-        if (c.createTestElement() instanceof GenericController) {
+        if (c.getTestElement() instanceof GenericController) {
           myTarget=c;
           break;
         }

@@ -7,7 +7,7 @@
   while (children.hasMoreElements()) {
     JMeterTreeNode templateNode=(JMeterTreeNode)children.nextElement();
     if (templateNode.isEnabled()) {
-      TestElement template=templateNode.createTestElement();
+      TestElement template=templateNode.getTestElement();
       if (template instanceof Timer) {
         TestElement timer=(TestElement)template.clone();
         try {

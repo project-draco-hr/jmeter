@@ -4,7 +4,7 @@
     for (int i=0; i < node.getChildCount(); i++) {
       StringBuffer name=new StringBuffer();
       JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
-      TestElement te=cur.createTestElement();
+      TestElement te=cur.getTestElement();
       if (te instanceof ThreadGroup) {
         name.append(parent_name);
         name.append(cur.getName());

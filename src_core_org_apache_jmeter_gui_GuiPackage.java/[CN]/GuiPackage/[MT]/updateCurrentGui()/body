@@ -1,6 +1,6 @@
 {
   currentNode=treeListener.getCurrentNode();
-  TestElement element=currentNode.createTestElement();
+  TestElement element=currentNode.getTestElement();
   JMeterGUIComponent comp=getGui(element);
   comp.configure(element);
 }

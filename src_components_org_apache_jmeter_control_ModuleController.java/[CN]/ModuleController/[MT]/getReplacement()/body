@@ -1,6 +1,6 @@
 {
   if (selectedNode != null) {
-    return selectedNode.createTestElement();
+    return selectedNode.getTestElement();
   }
  else {
     return this;

@@ -13,7 +13,7 @@
     Iterator iter=guiPackage.getTreeModel().getNodesOfType(Clearable.class).iterator();
     while (iter.hasNext()) {
       try {
-        Clearable item=(Clearable)guiPackage.getGui(((JMeterTreeNode)iter.next()).createTestElement());
+        Clearable item=(Clearable)guiPackage.getGui(((JMeterTreeNode)iter.next()).getTestElement());
         item.clear();
       }
  catch (      Exception ex) {
