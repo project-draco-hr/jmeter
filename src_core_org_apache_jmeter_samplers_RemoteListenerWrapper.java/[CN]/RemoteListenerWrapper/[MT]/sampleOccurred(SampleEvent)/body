@@ -1,6 +1,12 @@
 {
+  log.debug("Sample occurred");
   try {
-    listener.sampleOccurred(e);
+    if (holdSamples) {
+      sampleStore.add(e);
+    }
+ else {
+      listener.sampleOccurred(e);
+    }
   }
  catch (  RemoteException err) {
     log.error("",err);

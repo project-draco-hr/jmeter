@@ -1,6 +1,15 @@
 {
+  log.debug("Test ended");
   try {
+    if (holdSamples) {
+      Iterator i=sampleStore.iterator();
+      while (i.hasNext()) {
+        SampleEvent se=(SampleEvent)i.next();
+        listener.sampleOccurred(se);
+      }
+    }
     listener.testEnded();
+    sampleStore=null;
   }
  catch (  Exception ex) {
     log.error("",ex);

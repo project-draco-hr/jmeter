@@ -1,0 +1,7 @@
+{
+  holdSamples=JMeterUtils.getPropDefault("hold_samples",false);
+  if (holdSamples) {
+    sampleStore=new ArrayList();
+    log.info("Using Sample store for this test run");
+  }
+}
