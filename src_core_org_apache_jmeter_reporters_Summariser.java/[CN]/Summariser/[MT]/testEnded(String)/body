@@ -1,0 +1,18 @@
+{
+synchronized (accumulators) {
+    Totals t=(Totals)accumulators.get(myName);
+    if (t.last != -1) {
+      String str;
+      if (t.total.getNumSamples() != 0) {
+        str=format(t.delta,"+");
+        if (TOLOG)         log.info(str);
+        if (TOOUT)         System.out.println(str);
+      }
+      t.moveDelta();
+      str=format(t.total,"=");
+      if (TOLOG)       log.info(str);
+      if (TOOUT)       System.out.println(str);
+      t.last=-1;
+    }
+  }
+}

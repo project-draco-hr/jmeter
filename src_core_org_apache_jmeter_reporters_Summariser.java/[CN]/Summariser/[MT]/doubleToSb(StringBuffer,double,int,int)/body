@@ -1,0 +1,7 @@
+{
+  sb.setLength(0);
+  dfDouble.setMinimumFractionDigits(frac);
+  dfDouble.setMaximumFractionDigits(frac);
+  sb.append(dfDouble.format(d));
+  return JOrphanUtils.rightAlign(sb,len);
+}
