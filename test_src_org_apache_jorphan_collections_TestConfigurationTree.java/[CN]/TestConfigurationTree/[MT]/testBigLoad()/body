@@ -1,0 +1,9 @@
+{
+  ConfigurationTree tree=new ConfigurationTree(new FileReader("testfiles/test_config.xml"));
+  assertEquals("proxy.apache.org",tree.getValue("services/org.apache.service.DocumentService/proxy"));
+  assertEquals("Manager Notification",tree.getPropertyNames("services/org.apache.service.PreferenceService/preferenceSql")[6]);
+  assertEquals("JMeter",tree.getValue());
+  assertEquals("getBuddyList.sql",tree.getProperty("services/org.apache.service.PreferenceService/preferenceSql/Buddy List/sql"));
+  assertEquals("org.apache.service.dbObjects",tree.getPropertyNames("services/org.apache.service.sql.ObjectMappingService/packages")[0]);
+  assertEquals("The system could not find the resource you requested.  Please check your request and try again.\n" + "If the problem persists, report it to the system administrators.",tree.getProperty("services/org.apache.service.webaction.error.Redirector/exceptions/NoSuchObjectException/msg"));
+}

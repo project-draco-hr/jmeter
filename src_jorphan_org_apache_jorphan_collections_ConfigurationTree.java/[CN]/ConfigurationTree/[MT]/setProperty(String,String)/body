@@ -1,0 +1,10 @@
+{
+  ListedHashTree tree=(ListedHashTree)propTree.getTree(getPath(key));
+  if (tree != null) {
+    tree.clear();
+    tree.add(value);
+  }
+ else {
+    propTree.add(getPath(key),value);
+  }
+}

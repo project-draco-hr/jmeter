@@ -1,0 +1,38 @@
+{
+  boolean done=false;
+  try {
+    while (!done && !(line=readLine(buf,line)).equals("}")) {
+      int equals=line[0].indexOf("=");
+      if (line[0].endsWith("{")) {
+        line[0]=line[0].substring(0,line[0].length() - 1).trim();
+        equals=line[0].indexOf("=");
+        if (equals > -1) {
+          ConfigurationTree newTree=tree.add(line[0].substring(0,equals));
+          newTree.setValue(line[0].substring(equals + 1));
+          done=fromXML(buf,newTree,line);
+        }
+ else {
+          done=fromXML(buf,tree.add(line[0]),line);
+        }
+      }
+ else       if (equals > -1) {
+        String key=line[0].substring(0,equals);
+        if ((equals + 1) < line[0].length())         tree.add(key,line[0].substring(equals + 1));
+ else         tree.add(key);
+      }
+ else       if (line[0].equals("}")) {
+        return false;
+      }
+ else       if (line[0].length() > 0) {
+        tree.add(line[0]);
+      }
+    }
+  }
+ catch (  IOException e) {
+    if (e.getMessage().equals("End of File")) {
+      return true;
+    }
+ else     throw e;
+  }
+  return false;
+}

@@ -1,0 +1,8 @@
+{
+  if (vals != null) {
+    String[] props=new String[vals.length];
+    for (int i=0; i < vals.length; i++)     props[i]=(String)vals[i];
+    return props;
+  }
+  return null;
+}

@@ -1,0 +1,13 @@
+{
+  assertEquals("EON Developers",config.getValue("group1"));
+  config.setProperty("website/url","http://mydomain.com/homepage.jsp");
+  String props=config.toString();
+  TextFile tf=new TextFile(findTestFile("testfiles/configurationTest.xml"));
+  tf.setText(config.toString());
+  ConfigurationTree newTree=ConfigurationTree.fromXML(new FileReader(findTestFile("testfiles/configurationTest.xml")));
+  assertEquals("EON Developers",newTree.getValue("group1"));
+  assertEquals(props,newTree.toString());
+  assertEquals("math",config.getPropertyNames("school/subjects")[2]);
+  assertEquals("math",newTree.getPropertyNames("school/subjects")[2]);
+  assertEquals("http://mydomain.com/homepage.jsp",config.remove("website/url"));
+}

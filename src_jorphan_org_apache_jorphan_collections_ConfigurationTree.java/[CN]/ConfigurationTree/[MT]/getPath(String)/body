@@ -1,0 +1,7 @@
+{
+  if (key != null) {
+    String[] keys=key.split("/");
+    return keys;
+  }
+  return new String[0];
+}

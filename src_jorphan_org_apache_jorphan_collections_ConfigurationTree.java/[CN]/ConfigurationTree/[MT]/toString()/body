@@ -1,0 +1,9 @@
+{
+  StringWriter buf=new StringWriter();
+  try {
+    toXML(buf);
+  }
+ catch (  IOException e) {
+  }
+  return buf.toString();
+}

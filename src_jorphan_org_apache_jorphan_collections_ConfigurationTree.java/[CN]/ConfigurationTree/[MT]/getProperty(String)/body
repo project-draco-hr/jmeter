@@ -1,0 +1,17 @@
+{
+  HashTree subTree=propTree.getTree(getPath(key));
+  if (subTree != null) {
+    if (subTree.list() == null || subTree.list().size() == 0) {
+      return null;
+    }
+ else     if (subTree.list().size() == 1) {
+      return (String)subTree.getArray()[0];
+    }
+ else {
+      return null;
+    }
+  }
+ else {
+    return null;
+  }
+}

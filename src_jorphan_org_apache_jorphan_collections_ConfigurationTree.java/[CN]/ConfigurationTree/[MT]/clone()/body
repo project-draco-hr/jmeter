@@ -1,0 +1,5 @@
+{
+  ConfigurationTree config=new ConfigurationTree();
+  config.propTree=(ListedHashTree)propTree.clone();
+  return config;
+}

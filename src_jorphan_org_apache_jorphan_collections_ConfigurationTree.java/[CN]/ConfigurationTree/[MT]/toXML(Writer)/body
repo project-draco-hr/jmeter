@@ -1,0 +1,10 @@
+{
+  if (getValue() != null) {
+    buf.write(getValue());
+    buf.write(" {\n");
+  }
+ else   buf.write("{\n");
+  int level=1;
+  toXML(this,level,buf);
+  buf.write("}");
+}
