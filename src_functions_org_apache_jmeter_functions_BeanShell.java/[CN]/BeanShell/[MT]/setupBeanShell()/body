@@ -1,0 +1,17 @@
+{
+  ClassLoader loader=Thread.currentThread().getContextClassLoader();
+  try {
+    Class Interpreter=loader.loadClass("bsh.Interpreter");
+    instance=Interpreter.newInstance();
+    Class string=String.class;
+    Class object=Object.class;
+    eval=Interpreter.getMethod("eval",new Class[]{string});
+    setObj=Interpreter.getMethod("set",new Class[]{string,object});
+  }
+ catch (  ClassNotFoundException e) {
+    log.error("Beanshell Interpreter not found");
+  }
+catch (  Exception e) {
+    log.error("Problem starting BeanShell server ",e);
+  }
+}

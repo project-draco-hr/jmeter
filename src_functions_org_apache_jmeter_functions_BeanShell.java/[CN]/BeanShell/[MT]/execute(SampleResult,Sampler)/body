@@ -1,0 +1,32 @@
+{
+  JMeterVariables vars=getVariables();
+  String script=((CompoundVariable)values[0]).execute();
+  String varName="";
+  if (values.length > 1) {
+    varName=((CompoundVariable)values[1]).execute();
+  }
+  String resultStr="";
+  log.debug("Script=" + script);
+  try {
+    if (currentSampler != null) {
+      setObj.invoke(instance,new Object[]{"Sampler",currentSampler});
+    }
+    if (previousResult != null) {
+      setObj.invoke(instance,new Object[]{"SampleResult",previousResult});
+    }
+    setObj.invoke(instance,new Object[]{"log",log});
+    setObj.invoke(instance,new Object[]{"t",this});
+    Object bshOut=eval.invoke(instance,new Object[]{script});
+    if (bshOut != null) {
+      resultStr=bshOut.toString();
+    }
+    if (varName.length() > 0) {
+      vars.put(varName,resultStr);
+    }
+  }
+ catch (  Exception ex) {
+    log.warn("",ex);
+  }
+  log.debug("Output=" + resultStr);
+  return resultStr;
+}
