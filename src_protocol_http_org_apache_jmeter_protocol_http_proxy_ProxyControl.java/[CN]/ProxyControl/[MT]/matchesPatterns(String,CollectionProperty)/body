@@ -1,5 +1,5 @@
 {
-  PropertyIterator iter=getExcludePatterns().iterator();
+  PropertyIterator iter=patterns.iterator();
   while (iter.hasNext()) {
     String item=iter.next().getStringValue();
     Pattern pattern=null;

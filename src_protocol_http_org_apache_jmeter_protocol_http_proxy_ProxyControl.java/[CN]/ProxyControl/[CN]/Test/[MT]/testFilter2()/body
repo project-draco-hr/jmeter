@@ -1,0 +1,5 @@
+{
+  sampler.setPath("index.jsp");
+  sampler.setDomain("www.apache.org");
+  assertFalse("Should not match www.apache.org",control.filterUrl(sampler));
+}
