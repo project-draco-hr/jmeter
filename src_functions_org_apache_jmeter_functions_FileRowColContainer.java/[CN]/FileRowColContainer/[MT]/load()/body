@@ -5,7 +5,7 @@
     FileReader fis=new FileReader(fileName);
     myBread=new BufferedReader(fis);
     String line=myBread.readLine();
-    while (line != null) {
+    while (line != null && line.length() > 0) {
       fileData.add(splitLine(line,delimiter));
       line=myBread.readLine();
     }

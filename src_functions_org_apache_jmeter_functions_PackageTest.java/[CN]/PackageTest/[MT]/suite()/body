@@ -5,6 +5,7 @@
   suite.addTest(new PackageTest("CSVSetup"));
   suite.addTest(new PackageTest("CSVRun"));
   suite.addTest(new PackageTest("CSValias"));
+  suite.addTest(new PackageTest("CSVBlankLine"));
   suite.addTest(new PackageTest("CSVSetup"));
   TestSuite par=new ActiveTestSuite("Parallel");
   par.addTest(new PackageTest("CSVThread1"));
