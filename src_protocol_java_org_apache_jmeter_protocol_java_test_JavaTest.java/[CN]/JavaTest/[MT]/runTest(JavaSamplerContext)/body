@@ -13,12 +13,16 @@
   }
   results.sampleStart();
   long start=System.currentTimeMillis();
-  long ct=start % getSleepMask();
+  long sleep=getSleepTime() + (start % getSleepMask());
   try {
-    Thread.sleep(getSleepTime() + ct);
+    Thread.sleep(sleep);
     results.setSuccessful(success);
   }
- catch (  Exception e) {
+ catch (  InterruptedException e) {
+    getLogger().warn("JavaTest: interrupted.");
+    results.setSuccessful(true);
+  }
+catch (  Exception e) {
     getLogger().error("JavaTest: error during sample",e);
     results.setSuccessful(false);
   }

@@ -1,7 +1,7 @@
 {
   if (!initialized)   init();
+  clear();
   super.configure(element);
-  propertyMap.clear();
   for (PropertyIterator jprops=element.propertyIterator(); jprops.hasNext(); ) {
     JMeterProperty jprop=jprops.next();
     propertyMap.put(jprop.getName(),jprop.getObjectValue());

@@ -1,15 +1,15 @@
 {
   String pathAndQuery=null;
   if (this.getMethod().equals(GET) && getQueryString().length() > 0) {
-    if (this.getEncodedPath().indexOf("?") > -1) {
-      pathAndQuery=this.getEncodedPath() + "&" + getQueryString();
+    if (this.getPath().indexOf("?") > -1) {
+      pathAndQuery=this.getPath() + "&" + getQueryString();
     }
  else {
-      pathAndQuery=this.getEncodedPath() + "?" + getQueryString();
+      pathAndQuery=this.getPath() + "?" + getQueryString();
     }
   }
  else {
-    pathAndQuery=this.getEncodedPath();
+    pathAndQuery=this.getPath();
   }
   if (!pathAndQuery.startsWith("/")) {
     pathAndQuery="/" + pathAndQuery;

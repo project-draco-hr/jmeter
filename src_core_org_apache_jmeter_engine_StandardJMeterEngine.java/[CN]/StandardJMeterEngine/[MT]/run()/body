@@ -13,20 +13,19 @@
     serialized=true;
   }
   compileTree();
+  testListeners=new SearchByClass(TestListener.class);
+  getTestTree().traverse(testListeners);
+  notifyTestListenersOfStart();
+  getTestTree().traverse(new TurnElementsOn());
   List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));
   removeThreadGroups(testLevelElements);
   SearchByClass searcher=new SearchByClass(ThreadGroup.class);
-  testListeners=new SearchByClass(TestListener.class);
   setMode();
-  getTestTree().traverse(testListeners);
   getTestTree().traverse(searcher);
   TestCompiler.initialize();
   JMeterThread[] threads;
   Iterator iter=searcher.getSearchResults().iterator();
   System.gc();
-  if (iter.hasNext()) {
-    notifyTestListenersOfStart();
-  }
   notifier=new ListenerNotifier();
   schcdule_run=true;
   JMeterContextService.getContext().setSamplingStarted(true);

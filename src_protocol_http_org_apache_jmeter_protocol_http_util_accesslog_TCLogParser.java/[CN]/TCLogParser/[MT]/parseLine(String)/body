@@ -6,18 +6,12 @@
       COUNT++;
       line=FILTER.filter(line);
       if (line != null) {
-        String paramString=null;
-        paramString=this.stripFile(line);
-        this.checkParamFormat(line);
-        this.convertStringToJMRequest(paramString);
+        createUrl(line);
       }
     }
   }
  else {
     COUNT++;
-    String paramString=null;
-    paramString=this.stripFile(line);
-    this.checkParamFormat(line);
-    this.convertStringToJMRequest(paramString);
+    createUrl(line);
   }
 }

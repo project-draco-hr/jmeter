@@ -7,12 +7,10 @@
   SampleResult res=null;
   try {
     samp=(HTTPSampler)GENERATOR.generateRequest();
-    samp.setDomain(this.getDomain());
-    samp.setPort(this.getPort());
-    samp.setImageParser(this.isImageParser());
     PARSER.parse(1);
-    res=samp.sample();
-    res.setSampleLabel(samp.toString());
+    this.addTestElement(samp);
+    res=sample();
+    res.setSampleLabel(toString());
   }
  catch (  Exception e) {
   }

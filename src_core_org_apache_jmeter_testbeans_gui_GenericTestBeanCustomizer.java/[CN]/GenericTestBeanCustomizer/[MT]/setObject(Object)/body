@@ -17,7 +17,7 @@
       setEditorValue(i,propertyMap.get(descriptors[i].getName()));
     }
  catch (    IllegalArgumentException e) {
-      throw new Error("Bad property value." + e);
+      setEditorValue(i,descriptors[i].getValue(DEFAULT));
     }
   }
 }

@@ -9,6 +9,12 @@
         StringTokenizer token2=this.tokenize(toke," ");
         while (token2.hasMoreTokens()) {
           String t=(String)token2.nextElement();
+          if (t.equalsIgnoreCase(GET)) {
+            RMETHOD=GET;
+          }
+ else           if (t.equalsIgnoreCase(POST)) {
+            RMETHOD=POST;
+          }
           if (t.startsWith("/")) {
             url=t;
             break;

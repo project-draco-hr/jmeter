@@ -1,11 +1,16 @@
 {
-  String suffix;
-  int i=contentType.indexOf("/");
-  if (i == -1) {
-    suffix="unknown";
-  }
+  String suffix="unknown";
+  if (contentType != null) {
+    int i=contentType.indexOf("/");
+    if (i != -1) {
+      int j=contentType.indexOf(";");
+      if (j != -1) {
+        suffix=contentType.substring(i + 1,j);
+      }
  else {
-    suffix=contentType.substring(i + 1);
+        suffix=contentType.substring(i + 1);
+      }
+    }
   }
   return getFilename() + sequenceNumber + "."+ suffix;
 }
