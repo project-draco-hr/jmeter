@@ -1,8 +1,5 @@
 {
-  if (table.isEditing()) {
-    TableCellEditor cellEditor=table.getCellEditor(table.getEditingRow(),table.getEditingColumn());
-    cellEditor.stopCellEditing();
-  }
+  stopTableEditing();
   tableModel.addNewRow();
   tableModel.fireTableDataChanged();
   delete.setEnabled(true);
