@@ -1,12 +1,11 @@
 {
+  JMeterTreeNode[] nodes=GuiPackage.getInstance().getTreeListener().getSelectedNodes();
   if (e.getActionCommand().equals(ENABLE)) {
-    log.debug("enabling current gui object");
-    GuiPackage.getInstance().getCurrentNode().setEnabled(true);
-    GuiPackage.getInstance().getCurrentGui().setEnabled(true);
+    log.debug("enabling currently selected gui objects");
+    enableComponents(nodes,true);
   }
  else   if (e.getActionCommand().equals(DISABLE)) {
-    log.debug("disabling current gui object");
-    GuiPackage.getInstance().getCurrentNode().setEnabled(false);
-    GuiPackage.getInstance().getCurrentGui().setEnabled(false);
+    log.debug("disabling currently selected gui objects");
+    enableComponents(nodes,false);
   }
 }
