@@ -17,12 +17,15 @@
     }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
       startServer();
+      startBSH();
     }
  else     if (parser.getArgumentById(NONGUI_OPT) == null) {
       startGui(parser.getArgumentById(TESTFILE_OPT));
+      startBSH();
     }
  else {
       startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),parser.getArgumentById(REMOTE_OPT));
+      startBSH();
     }
   }
  catch (  IllegalUserActionException e) {
