@@ -1,0 +1,5 @@
+{
+  if (value.size() == 0 || valueIterator().next().getClass().equals(prop.getClass())) {
+    value.put(prop.getName(),prop);
+  }
+}
