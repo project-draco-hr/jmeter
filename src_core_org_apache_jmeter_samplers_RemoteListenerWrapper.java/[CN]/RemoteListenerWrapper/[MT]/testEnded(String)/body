@@ -1,5 +1,5 @@
 {
-  log.info("Test Ended");
+  log.info("Test Ended on " + host);
   try {
     if (holdSamples) {
       Iterator i=sampleStore.iterator();
@@ -11,7 +11,7 @@
     listener.testEnded(host);
     sampleStore=null;
   }
- catch (  Exception ex) {
-    log.error("",ex);
+ catch (  Throwable ex) {
+    log.error("testEnded(host)",ex);
   }
 }

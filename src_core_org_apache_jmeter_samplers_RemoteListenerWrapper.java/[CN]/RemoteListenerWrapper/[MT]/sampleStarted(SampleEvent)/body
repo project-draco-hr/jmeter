@@ -4,6 +4,6 @@
     listener.sampleStarted(e);
   }
  catch (  RemoteException err) {
-    log.error("",err);
+    log.error("sampleStarted",err);
   }
 }

@@ -4,7 +4,7 @@
   try {
     listener.testStarted(host);
   }
- catch (  Exception ex) {
-    log.error("",ex);
+ catch (  Throwable ex) {
+    log.error("testStarted(host)",ex);
   }
 }
