@@ -1,0 +1,6 @@
+{
+  if (nameMap.containsKey(guiName)) {
+    return nameMap.getProperty(guiName);
+  }
+  return guiName;
+}

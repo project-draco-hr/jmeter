@@ -1,6 +1,6 @@
 {
   TestElement element=null;
-  element=(TestElement)Class.forName((String)config.getAttribute("class")).newInstance();
+  element=(TestElement)Class.forName(NameUpdater.getCurrentName((String)config.getAttribute("class"))).newInstance();
   Configuration[] children=config.getChildren();
   for (int i=0; i < children.length; i++) {
     if (children[i].getName().equals("property")) {

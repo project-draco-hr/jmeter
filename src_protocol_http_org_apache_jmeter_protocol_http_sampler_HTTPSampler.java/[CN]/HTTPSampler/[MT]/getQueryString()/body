@@ -3,7 +3,13 @@
   PropertyIterator iter=getArguments().iterator();
   boolean first=true;
   while (iter.hasNext()) {
-    HTTPArgument item=(HTTPArgument)iter.next().getObjectValue();
+    HTTPArgument item=null;
+    try {
+      item=(HTTPArgument)iter.next().getObjectValue();
+    }
+ catch (    ClassCastException e) {
+      item=new HTTPArgument((Argument)iter.next().getObjectValue());
+    }
     if (!first) {
       buf.append("&");
     }
