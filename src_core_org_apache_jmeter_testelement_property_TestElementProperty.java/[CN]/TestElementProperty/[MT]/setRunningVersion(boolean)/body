@@ -1,4 +1,10 @@
 {
   super.setRunningVersion(runningVersion);
   value.setRunningVersion(runningVersion);
+  if (runningVersion) {
+    savedValue=value;
+  }
+ else {
+    savedValue=null;
+  }
 }
