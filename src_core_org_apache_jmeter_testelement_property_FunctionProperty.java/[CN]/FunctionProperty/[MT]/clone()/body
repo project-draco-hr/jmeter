@@ -1,0 +1,7 @@
+{
+  FunctionProperty prop=(FunctionProperty)super.clone();
+  prop.cacheValue=cacheValue;
+  prop.testIteration=testIteration;
+  prop.function=function;
+  return prop;
+}

@@ -1,0 +1,26 @@
+{
+  log.debug("Calling getStringValue from FunctionProperty");
+  log.debug("boogedy boogedy");
+  JMeterContext ctx=JMeterContextService.getContext();
+  if (!isRunningVersion() || !ctx.isSamplingStarted()) {
+    log.debug("Not running version, return raw function string");
+    return function.getRawParameters();
+  }
+ else {
+    log.debug("Running version, executing function");
+    int iter=ctx.getVariables().getIteration();
+    if (iter < testIteration) {
+      testIteration=-1;
+    }
+    if (useCache) {
+      if (iter > testIteration || cacheValue == null) {
+        testIteration=iter;
+        cacheValue=function.execute();
+      }
+      return cacheValue;
+    }
+ else {
+      return function.execute();
+    }
+  }
+}
