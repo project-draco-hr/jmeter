@@ -1,6 +1,6 @@
 {
   width=getWidth();
-  double height=(double)getHeight() - 1.0;
+  double height=getHeight() - 1.0;
   for (int y=0; y < 4; y++) {
     int q1=(int)(height - (height * 0.25 * y));
     g.setColor(Color.lightGray);
@@ -11,11 +11,11 @@
   g.setColor(Color.black);
   g.drawLine(xborder,(int)height,width,(int)height);
   g.drawLine(xborder,0,xborder,(int)height);
-  if (model != null && model.getCount() > 50) {
-    Number ninety=model.getPercentPoint(0.90);
-    Number fifty=model.getPercentPoint(0.50);
-    total=model.getCount();
-    Collection values=model.getDistribution().values();
+  if (p_model != null && p_model.getCount() > 50) {
+    Number ninety=p_model.getPercentPoint(0.90);
+    Number fifty=p_model.getPercentPoint(0.50);
+    total=p_model.getCount();
+    Collection values=p_model.getDistribution().values();
     Object[] objval=new Object[values.size()];
     objval=values.toArray(objval);
     Arrays.sort(objval,new NumberComparator());
@@ -36,7 +36,7 @@
       if (num[0].longValue() == ninety.longValue()) {
         g.setColor(Color.red);
         g.drawLine(ix,(int)height,ix,55);
-        g.drawLine(ix,(int)35,ix,0);
+        g.drawLine(ix,35,ix,0);
         g.drawString("90%",ix - 30,20);
         g.drawString(String.valueOf(num[0].longValue()),ix + 8,20);
       }
