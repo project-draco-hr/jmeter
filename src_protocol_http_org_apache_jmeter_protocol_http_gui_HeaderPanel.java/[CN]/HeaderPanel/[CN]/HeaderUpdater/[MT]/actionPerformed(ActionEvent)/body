@@ -28,10 +28,6 @@
     updateDialog=new JDialog();
     updateDialog.setSize(350,300);
     ok.addActionListener(new ActionListener(){
-      /** 
- * !ToDo (Method description)
- * @param ev  !ToDo (Parameter description)
- */
       public void actionPerformed(      ActionEvent ev){
         int i=index;
         Header c=new Header();
@@ -49,10 +45,6 @@
     }
 );
     cancel.addActionListener(new ActionListener(){
-      /** 
- * !ToDo (Method description)
- * @param ev  !ToDo (Parameter description)
- */
       public void actionPerformed(      ActionEvent ev){
         updateDialog.dispose();
       }

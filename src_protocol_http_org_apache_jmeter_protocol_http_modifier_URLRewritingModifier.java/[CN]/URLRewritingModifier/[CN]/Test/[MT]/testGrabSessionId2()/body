@@ -1,5 +1,5 @@
 {
-  String html="<a href=\"http://server.com/index.html?session_id=jfdkjdkfjddkfdfjkdjfdf\">";
+  String html="<a href=\"http://server.com/index.html?" + "session_id=jfdkjdkfjddkfdfjkdjfdf\">";
   response=new SampleResult();
   response.setResponseData(html.getBytes());
   URLRewritingModifier mod=new URLRewritingModifier();

@@ -1,7 +1,7 @@
 {
   HTTPSampler config=makeUrlConfig(".*index.*?param2=.+1");
   HTTPSampler context=makeContext("http://www.apache.org/subdir/previous.html");
-  String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"/home/index.html?param1=value1\">Goto index page</a></body></html>";
+  String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"/home/index.html?param1=value1\">" + "Goto index page</a></body></html>";
   SampleResult result=new SampleResult();
   String newUrl=config.getUrl().toString();
   result.setResponseData(responseText.getBytes());

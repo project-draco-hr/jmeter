@@ -6,6 +6,6 @@
     }
   }
  catch (  InvalidVariableException e) {
-    log.warn("Invalid variables included for replacement into recorded sample",e);
+    log.warn("Invalid variables included for replacement into recorded " + "sample",e);
   }
 }

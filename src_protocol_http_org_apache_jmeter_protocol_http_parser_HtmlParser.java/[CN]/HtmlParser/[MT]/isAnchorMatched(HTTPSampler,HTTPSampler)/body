@@ -8,7 +8,9 @@
   }
  catch (  Exception e) {
   }
-  if (query == null && config.getArguments().getArgumentCount() > 0)   return false;
+  if (query == null && config.getArguments().getArgumentCount() > 0) {
+    return false;
+  }
   while (iter.hasNext()) {
     Argument item=(Argument)iter.next().getObjectValue();
     if (query.indexOf(item.getName() + "=") == -1) {
