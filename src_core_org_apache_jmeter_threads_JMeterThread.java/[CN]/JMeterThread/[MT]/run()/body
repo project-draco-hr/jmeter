@@ -13,6 +13,7 @@
     controller.initialize();
     controller.addIterationListener(new IterationListener());
     threadContext.setSamplingStarted(true);
+    threadStarted();
     while (running) {
       Sampler sam;
       while (running && (sam=controller.next()) != null) {
@@ -55,5 +56,6 @@
     threadContext.clear();
     log.info("Thread " + threadName + " is done");
     monitor.threadFinished(this);
+    threadFinished();
   }
 }
