@@ -15,5 +15,10 @@
   sff1.execute();
   sff1.execute();
   assertEquals("fuenf",sff1.execute());
-  assertEquals("**ERR**",sff1.execute());
+  try {
+    sff1.execute();
+    fail("Should have thrown JMeterStopThreadException");
+  }
+ catch (  JMeterStopThreadException e) {
+  }
 }

@@ -1,27 +1,45 @@
 {
   String tn=Thread.currentThread().getName();
   fileName=((CompoundVariable)values[0]).execute();
+  String start="";
   if (values.length >= PARAM_START) {
-    String tmp=((CompoundVariable)values[PARAM_START - 1]).execute();
-    myStart=Integer.valueOf(tmp).intValue();
-    if (myCurrent == 0)     myCurrent=myStart;
+    start=((CompoundVariable)values[PARAM_START - 1]).execute();
+    try {
+      myStart=Integer.valueOf(start).intValue();
+    }
+ catch (    NumberFormatException e) {
+      myStart=1;
+    }
+    if (myCurrent == -1)     myCurrent=myStart;
   }
   if (values.length >= PARAM_END) {
     String tmp=((CompoundVariable)values[PARAM_END - 1]).execute();
-    myEnd=Integer.valueOf(tmp).intValue();
+    try {
+      myEnd=Integer.valueOf(tmp).intValue();
+    }
+ catch (    NumberFormatException e) {
+      myEnd=0;
+    }
   }
   if (values.length >= PARAM_START) {
-    log.info("Start =" + myStart + " Current = "+ myCurrent+ " End ="+ myEnd);
+    log.info(tn + " Start = " + myStart+ " Current = "+ myCurrent+ " End = "+ myEnd);
     if (values.length >= PARAM_END) {
       if (myCurrent > myEnd) {
-        log.info("No more files to process, " + myCurrent + " > "+ myEnd);
+        log.info(tn + " No more files to process, " + myCurrent+ " > "+ myEnd);
         myBread=null;
         return;
       }
     }
-    log.info("Using format " + fileName);
-    DecimalFormat myFormatter=new DecimalFormat(fileName);
-    fileName=myFormatter.format(myCurrent);
+    if (start.length() > 0) {
+      log.info("Using format " + fileName);
+      try {
+        DecimalFormat myFormatter=new DecimalFormat(fileName);
+        fileName=myFormatter.format(myCurrent);
+      }
+ catch (      NumberFormatException e) {
+        log.warn("Bad file name format ",e);
+      }
+    }
     myCurrent++;
   }
   log.info(tn + " opening file " + fileName);
