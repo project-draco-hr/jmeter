@@ -1,5 +1,6 @@
 {
-  this.setLayout(new BorderLayout());
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
   SampleResult rootSampleResult=new SampleResult();
   rootSampleResult.setSampleLabel("Root");
   rootSampleResult.setSuccessful(true);
@@ -10,17 +11,22 @@
   jTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
   jTree.addTreeSelectionListener(this);
   jTree.setShowsRootHandles(true);
-  treePane=new JScrollPane(jTree);
-  treePane.setPreferredSize(new Dimension(100,100));
+  JScrollPane treePane=new JScrollPane(jTree);
+  treePane.setPreferredSize(new Dimension(100,70));
   gridBag=new GridBagLayout();
   gbc=new GridBagConstraints();
   resultPanel=new JPanel(gridBag);
-  resultPane=new JScrollPane(resultPanel);
+  JScrollPane resultPane=new JScrollPane(resultPanel);
+  resultPane.setMinimumSize(new Dimension(100,70));
+  resultPane.setPreferredSize(resultPane.getMinimumSize());
   initHtmlOrTextButton();
   initTextArea();
   initHtmlEditPane();
   treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,resultPane);
-  getFilePanel().add(getErrorLoggingCheckbox(),BorderLayout.SOUTH);
-  add(getFilePanel(),BorderLayout.NORTH);
+  Box titlePanel=makeTitlePanel();
+  JCheckBox errorCheckBox=getErrorLoggingCheckbox();
+  errorCheckBox.setAlignmentX(JCheckBox.CENTER_ALIGNMENT);
+  titlePanel.add(errorCheckBox);
+  add(titlePanel,BorderLayout.NORTH);
   add(treeSplitPane,BorderLayout.CENTER);
 }

@@ -1,10 +1,14 @@
 {
   log.debug("Start : valueChanged1");
   DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-  if (log.isDebugEnabled())   log.debug("valueChanged : selected node - " + node);
+  if (log.isDebugEnabled()) {
+    log.debug("valueChanged : selected node - " + node);
+  }
   if (node != null) {
     SampleResult res=(SampleResult)node.getUserObject();
-    if (log.isDebugEnabled())     log.debug("valueChanged1 : sample result - " + res);
+    if (log.isDebugEnabled()) {
+      log.debug("valueChanged1 : sample result - " + res);
+    }
     if (res != null) {
       resultPanel.removeAll();
       JLabel loadTime=new JLabel();

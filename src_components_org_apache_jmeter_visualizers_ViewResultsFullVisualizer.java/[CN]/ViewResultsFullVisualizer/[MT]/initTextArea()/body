@@ -3,6 +3,7 @@
   textArea.setLineWrap(true);
   textArea.setWrapStyleWord(true);
   textArea.setTabSize(4);
+  textArea.setRows(4);
   gridBag.setConstraints(textArea,gbc);
   resultPanel.add(textArea);
   gbc.gridy++;
