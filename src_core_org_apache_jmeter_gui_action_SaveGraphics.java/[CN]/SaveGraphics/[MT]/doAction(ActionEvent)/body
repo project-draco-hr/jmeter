@@ -8,27 +8,25 @@
     component=GuiPackage.getInstance().getCurrentGui();
     if (component instanceof Printable) {
       comp=((Printable)component).getPrintableComponent();
-    }
-  }
-  String filename;
-  if (!SAVE_GRAPHICS.equals(e.getActionCommand())) {
-    JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName());
-    if (chooser == null) {
-      return;
-    }
-    filename=chooser.getSelectedFile().getAbsolutePath();
-    if (filename != null) {
-      SaveGraphicsService save=new SaveGraphicsService();
-      String ext=filename.substring(filename.length() - 4);
-      String name=filename.substring(0,filename.length() - 4);
-      if (ext.equals(SaveGraphicsService.PNG_EXTENSION)) {
-        save.saveJComponent(name,SaveGraphicsService.PNG,comp);
+      String filename;
+      JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName());
+      if (chooser == null) {
+        return;
       }
- else       if (ext.equals(SaveGraphicsService.TIFF_EXTENSION)) {
-        save.saveJComponent(name,SaveGraphicsService.TIFF,comp);
-      }
+      filename=chooser.getSelectedFile().getAbsolutePath();
+      if (filename != null) {
+        SaveGraphicsService save=new SaveGraphicsService();
+        String ext=filename.substring(filename.length() - 4);
+        String name=filename.substring(0,filename.length() - 4);
+        if (ext.equals(SaveGraphicsService.PNG_EXTENSION)) {
+          save.saveJComponent(name,SaveGraphicsService.PNG,comp);
+        }
+ else         if (ext.equals(SaveGraphicsService.TIFF_EXTENSION)) {
+          save.saveJComponent(name,SaveGraphicsService.TIFF,comp);
+        }
  else {
-        save.saveJComponent(filename,SaveGraphicsService.PNG,comp);
+          save.saveJComponent(filename,SaveGraphicsService.PNG,comp);
+        }
       }
     }
   }
