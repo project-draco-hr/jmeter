@@ -4,13 +4,13 @@
   while (iter.hasNext()) {
     JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
     if (item instanceof JMeterTreeNode) {
-      System.out.println("JMeterGUIComponent: skipping all tests  " + item.getClass().getName());
+      System.out.println("INFO: JMeterGUIComponent: skipping all tests  " + item.getClass().getName());
       continue;
     }
     TestSuite ts=new TestSuite(item.getClass().getName());
     ts.addTest(new JMeterTest("GUIComponents1",item));
     if (item instanceof TestBeanGUI) {
-      System.out.println("JMeterGUIComponent: skipping some tests " + item.getClass().getName());
+      System.out.println("INFO: JMeterGUIComponent: skipping some tests " + item.getClass().getName());
     }
  else {
       ts.addTest(new JMeterTest("GUIComponents2",item));

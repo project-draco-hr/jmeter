@@ -23,21 +23,21 @@
             objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{myThis}));
           }
  catch (          NoSuchMethodException f) {
-            System.out.println(exName + ": NoSuchMethodException  " + n);
+            System.out.println("WARN: " + exName + ": NoSuchMethodException  "+ n);
           }
         }
       }
  catch (      NoClassDefFoundError e) {
-        System.out.println(exName + ": NoClassDefFoundError " + n);
+        System.out.println("WARN: " + exName + ": NoClassDefFoundError "+ n);
       }
 catch (      IllegalAccessException e) {
         caught=e;
-        System.out.println(exName + ": IllegalAccessException " + n);
+        System.out.println("WARN: " + exName + ": IllegalAccessException "+ n);
       }
 catch (      Exception e) {
         caught=e;
         if ((e instanceof RemoteException) || e.getClass().getName().equals("java.awt.HeadlessException")) {
-          System.out.println("Error creating " + n + " "+ e.toString());
+          System.out.println("WARN: " + "Error creating " + n + " "+ e.toString());
         }
  else {
           throw new Exception("Error creating " + n + " "+ e.toString());
