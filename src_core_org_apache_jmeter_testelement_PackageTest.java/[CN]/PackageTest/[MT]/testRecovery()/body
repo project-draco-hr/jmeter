@@ -1,0 +1,13 @@
+{
+  ConfigTestElement config=new ConfigTestElement();
+  config.addProperty(new StringProperty("name","config"));
+  config.setRunningVersion(true);
+  LoginConfig loginConfig=new LoginConfig();
+  loginConfig.setUsername("user1");
+  loginConfig.setPassword("pass1");
+  assertEquals(new NullProperty(),config.getProperty("login"));
+  config.addProperty(new TestElementProperty("login",loginConfig));
+  assertEquals(loginConfig.toString(),config.getPropertyAsString("login"));
+  config.recoverRunningVersion();
+  assertEquals(new NullProperty(),config.getProperty("login"));
+}

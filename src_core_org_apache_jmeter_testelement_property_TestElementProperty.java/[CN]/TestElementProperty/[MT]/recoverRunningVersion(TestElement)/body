@@ -2,6 +2,6 @@
   if (savedValue != null) {
     value=savedValue;
   }
-  super.recoverRunningVersion(null);
   value.recoverRunningVersion();
+  super.recoverRunningVersion(null);
 }
