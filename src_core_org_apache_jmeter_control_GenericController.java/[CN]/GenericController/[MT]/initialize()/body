@@ -1,4 +1,13 @@
 {
-  first=true;
   resetCurrent();
+  resetIterCount();
+  done=false;
+  first=true;
+  TestElement elem;
+  for (int i=0; i < subControllersAndSamplers.size(); i++) {
+    elem=(TestElement)subControllersAndSamplers.get(i);
+    if (elem instanceof Controller) {
+      ((Controller)elem).initialize();
+    }
+  }
 }

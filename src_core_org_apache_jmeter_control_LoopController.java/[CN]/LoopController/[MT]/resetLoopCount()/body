@@ -1,8 +1,3 @@
 {
-  if (!getContinueForever() && getLoops() > -1) {
-    this.setShortCircuit(true);
-  }
- else {
-    loopCount=0;
-  }
+  loopCount=0;
 }

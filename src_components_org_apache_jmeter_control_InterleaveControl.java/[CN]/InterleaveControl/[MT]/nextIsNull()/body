@@ -1,0 +1,7 @@
+{
+  resetCurrent();
+  if (getStyle() == USE_SUB_CONTROLLERS) {
+    setFirst(true);
+  }
+  return next();
+}

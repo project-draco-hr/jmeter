@@ -1,4 +1,6 @@
 {
-  super.initialize();
-  interleave=false;
+  currentReturnedAtLeastOne=false;
+  searchStart=null;
+  skipNext=false;
+  incrementIterCount();
 }

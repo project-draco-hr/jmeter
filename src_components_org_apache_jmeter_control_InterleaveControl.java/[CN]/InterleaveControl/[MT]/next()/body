@@ -1,31 +1,7 @@
 {
-  setInterleave(DEFAULT_STYLE);
-  TestElement controller=getCurrentController();
-  fireIterEvents(controller);
-  if (controller == null) {
-    nextAtEnd();
-    return next();
+  if (isSkipNext()) {
+    reInitialize();
+    return null;
   }
-  if (controller instanceof Sampler) {
-    incrementCurrent();
-    return (Sampler)controller;
-  }
- else {
-    Controller c=(Controller)controller;
-    if (c.hasNext()) {
-      Sampler s=c.next();
-      if (getStyle() == DEFAULT_STYLE) {
-        incrementCurrent();
-      }
-      return s;
-    }
- else     if (c.isDone()) {
-      removeCurrentController();
-      return next();
-    }
- else {
-      incrementCurrent();
-      return next();
-    }
-  }
+  return super.next();
 }

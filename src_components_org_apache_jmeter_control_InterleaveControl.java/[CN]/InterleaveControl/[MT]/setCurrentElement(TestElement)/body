@@ -1,0 +1,8 @@
+{
+  if (searchStart == null) {
+    searchStart=currentElement;
+  }
+ else   if (searchStart == currentElement && !currentReturnedAtLeastOne) {
+    throw new NextIsNullException();
+  }
+}

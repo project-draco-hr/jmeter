@@ -1,6 +1,6 @@
 {
   super.configure(el);
-  if (((InterleaveControl)el).getStyle() == InterleaveControl.DEFAULT_STYLE) {
+  if (((InterleaveControl)el).getStyle() == InterleaveControl.IGNORE_SUB_CONTROLLERS) {
     style.setSelected(true);
   }
  else {

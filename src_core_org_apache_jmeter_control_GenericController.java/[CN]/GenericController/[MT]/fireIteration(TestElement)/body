@@ -1,7 +1,8 @@
 {
   Iterator iter=iterationListeners.iterator();
+  IterationDeliverEvent event=new IterationDeliverEvent(this,current);
   while (iter.hasNext()) {
-    IterationListener item=(IterationListener)iter.next();
-    item.iteration(new IterationEvent(this,current,getIterCount()));
+    LoopIterationListener item=(LoopIterationListener)iter.next();
+    item.iteration(event);
   }
 }

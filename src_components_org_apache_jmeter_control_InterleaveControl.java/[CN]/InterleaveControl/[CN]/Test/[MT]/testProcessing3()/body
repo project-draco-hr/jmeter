@@ -1,26 +1,29 @@
 {
+  testLog.debug("Testing Interleave Controller 3");
   GenericController controller=new GenericController();
   InterleaveControl sub_1=new InterleaveControl();
-  sub_1.setStyle(NEW_STYLE);
-  sub_1.addTestElement(makeSampler("one"));
-  sub_1.addTestElement(makeSampler("two"));
+  sub_1.setStyle(USE_SUB_CONTROLLERS);
+  sub_1.addTestElement(new TestSampler("one"));
+  sub_1.addTestElement(new TestSampler("two"));
   controller.addTestElement(sub_1);
-  controller.addTestElement(makeSampler("three"));
+  controller.addTestElement(new TestSampler("three"));
   LoopController sub_2=new LoopController();
   sub_2.setLoops(3);
   GenericController sub_3=new GenericController();
-  sub_2.addTestElement(makeSampler("four"));
-  sub_3.addTestElement(makeSampler("five"));
-  sub_3.addTestElement(makeSampler("six"));
+  sub_2.addTestElement(new TestSampler("four"));
+  sub_3.addTestElement(new TestSampler("five"));
+  sub_3.addTestElement(new TestSampler("six"));
   sub_2.addTestElement(sub_3);
-  sub_2.addTestElement(makeSampler("seven"));
+  sub_2.addTestElement(new TestSampler("seven"));
   sub_1.addTestElement(sub_2);
   String[] order=new String[]{"one","three","two","three","four","five","six","seven","four","five","six","seven","four","five","six","seven","three","one","three","two","three"};
   int counter=0;
+  int loops=1;
+  controller.initialize();
   while (counter < order.length) {
-    while (controller.hasNext()) {
-      TestElement sampler=controller.next();
-      assertEquals("failed on " + counter,order[counter],sampler.getPropertyAsString(TestElement.NAME));
+    TestElement sampler=null;
+    while ((sampler=controller.next()) != null) {
+      assertEquals("failed on" + counter,order[counter],sampler.getPropertyAsString(TestElement.NAME));
       counter++;
     }
   }

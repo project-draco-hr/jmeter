@@ -1,0 +1,11 @@
+{
+  if (c.isDone()) {
+    removeCurrentElement();
+  }
+ else {
+    incrementCurrent();
+  }
+  if (getStyle() == USE_SUB_CONTROLLERS && currentReturnedAtLeastOne) {
+    skipNext=true;
+  }
+}

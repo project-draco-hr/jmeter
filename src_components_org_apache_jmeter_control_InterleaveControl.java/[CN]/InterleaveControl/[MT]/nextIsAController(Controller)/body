@@ -1,0 +1,18 @@
+{
+  Sampler sampler=controller.next();
+  if (sampler == null) {
+    currentReturnedNull(controller);
+    return next();
+  }
+ else {
+    currentReturnedAtLeastOne=true;
+    if (getStyle() == IGNORE_SUB_CONTROLLERS) {
+      incrementCurrent();
+      skipNext=true;
+    }
+ else {
+      searchStart=null;
+    }
+    return sampler;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  TestSuite suite=new TestSuite();
+  suite.addTest(new Test("testProcessing"));
+  suite.addTest(new Test("testProcessing2"));
+  suite.addTest(new Test("testProcessing3"));
+  suite.addTest(new Test("testProcessing4"));
+  suite.addTest(new Test("testProcessing5"));
+  return suite;
+}

@@ -1,29 +1,26 @@
 {
-  TestElement controller=getCurrentController();
-  fireIterEvents(controller);
-  if (controller == null) {
-    nextAtEnd();
-    if (subControllersAndSamplers.size() > 0)     return next();
- else     return null;
-  }
-  if (controller instanceof Sampler) {
-    incrementCurrent();
-    samplersReturned++;
-    return (Sampler)controller;
-  }
- else {
-    Controller c=(Controller)controller;
-    if (c.hasNext()) {
-      Sampler s=c.next();
-      return s;
-    }
- else     if (c.isDone()) {
-      removeCurrentController();
-      return next();
+  log.debug("Calling next on: " + this.getClass().getName());
+  Sampler returnValue=null;
+  TestElement currentElement=null;
+  try {
+    currentElement=getCurrentElement();
+    log.debug("next element = " + currentElement);
+    setCurrentElement(currentElement);
+    if (currentElement == null) {
+      returnValue=nextIsNull();
     }
  else {
-      incrementCurrent();
-      return next();
+      fireIterEvents(currentElement);
+      if (currentElement instanceof Sampler) {
+        returnValue=nextIsASampler((Sampler)currentElement);
+      }
+ else {
+        returnValue=nextIsAController((Controller)currentElement);
+      }
     }
   }
+ catch (  NextIsNullException e) {
+    returnValue=null;
+  }
+  return returnValue;
 }
