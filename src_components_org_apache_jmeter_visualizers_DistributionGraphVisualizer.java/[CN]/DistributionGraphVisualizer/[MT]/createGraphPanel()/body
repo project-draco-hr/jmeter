@@ -1,0 +1,7 @@
+{
+  graphPanel=new JPanel();
+  graphPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.lightGray,Color.darkGray));
+  graphPanel.add(graph);
+  graphPanel.setBackground(Color.white);
+  return graphPanel;
+}

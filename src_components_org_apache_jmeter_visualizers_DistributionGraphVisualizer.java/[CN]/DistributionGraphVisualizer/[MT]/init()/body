@@ -1,0 +1,10 @@
+{
+  this.setLayout(new BorderLayout());
+  Border margin=new EmptyBorder(10,10,5,10);
+  this.setBorder(margin);
+  JPanel graphPanel=new JPanel(new BorderLayout());
+  graphPanel.add(createGraphPanel(),BorderLayout.CENTER);
+  graphPanel.add(createGraphInfoPanel(),BorderLayout.SOUTH);
+  this.add(makeTitlePanel(),BorderLayout.NORTH);
+  this.add(graphPanel,BorderLayout.CENTER);
+}

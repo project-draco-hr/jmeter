@@ -1,0 +1,7 @@
+{
+  model=new GraphModel();
+  model.addGraphListener(this);
+  graph=new DistributionGraph(model);
+  graph.setBackground(Color.white);
+  init();
+}

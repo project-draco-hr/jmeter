@@ -1,0 +1,14 @@
+{
+  final GraphModel m=this.model;
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      Graphics g=getGraphics();
+      if (g != null) {
+synchronized (m) {
+          drawSample(m,g);
+        }
+      }
+    }
+  }
+);
+}

@@ -1,0 +1,6 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString(labelResourceName));
+  label.setForeground(field.getForeground());
+  label.setLabelFor(field);
+  return label;
+}

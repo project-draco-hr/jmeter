@@ -1,0 +1,10 @@
+{
+  if (delay == counter) {
+    graphPanel.updateUI();
+    graph.updateGui(s);
+    counter=0;
+  }
+ else {
+    counter++;
+  }
+}

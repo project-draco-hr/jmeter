@@ -1,0 +1,7 @@
+{
+  if (graph.getWidth() < 10) {
+    graph.setPreferredSize(new Dimension(getWidth() - 40,getHeight() - 160));
+  }
+  graphPanel.updateUI();
+  graph.updateGui();
+}
