@@ -15,6 +15,7 @@
         element.setProperty(children[i].getAttribute("name"),children[i].getValue());
       }
  catch (      Exception ex) {
+        log.error("Problem loading property",ex);
         element.setProperty(children[i].getAttribute("name"),"");
       }
     }
