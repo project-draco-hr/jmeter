@@ -2,7 +2,10 @@
   Iterator iter=preProcessors.iterator();
   while (iter.hasNext()) {
     PreProcessor ex=(PreProcessor)iter.next();
-    log.debug("Running preprocessor: " + ((AbstractTestElement)ex).getName());
+    if (log.isDebugEnabled()) {
+      log.debug("Running preprocessor: " + ((AbstractTestElement)ex).getName());
+    }
+    if (ex instanceof TestBean)     ((TestBean)ex).prepare();
     ex.process();
   }
 }

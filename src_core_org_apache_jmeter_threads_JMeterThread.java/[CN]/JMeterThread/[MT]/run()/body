@@ -21,7 +21,9 @@
           SamplePackage pack=compiler.configureSampler(sam);
           threadContext.getVariables().putObject(PACKAGE_OBJECT,pack);
           delay(pack.getTimers());
-          SampleResult result=pack.getSampler().sample(null);
+          Sampler sampler=pack.getSampler();
+          if (sampler instanceof TestBean)           ((TestBean)sampler).prepare();
+          SampleResult result=sampler.sample(null);
           result.setThreadName(threadName);
           threadContext.setPreviousResult(result);
           runPostProcessors(pack.getPostProcessors());
