@@ -8,13 +8,13 @@
     columnOrNext=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
     FileDataContainer myfileData=getFileData(fileName);
     if (columnOrNext.equals("next()") || columnOrNext.equals("next")) {
-      myfileData.incrementRowPosition();
       storeCurrentLine(null);
       return "";
     }
     processedLines=reloadCurrentLine();
     if (myfileData != null && processedLines == null) {
       processedLines=(ArrayList)myfileData.getNextLine();
+      myfileData.incrementRowPosition();
       this.storeCurrentLine(processedLines);
     }
     try {
