@@ -1,7 +1,6 @@
 {
   if (delay == counter) {
-    graphPanel.updateUI();
-    graph.updateGui(s);
+    updateGui();
     counter=0;
   }
  else {

@@ -1,0 +1,8 @@
+{
+  double rval=0.0;
+  if (calculator.getCount() == 0) {
+    return (rval);
+  }
+  rval=(double)getCurrentSample().errorCount / (double)calculator.getCount();
+  return (rval);
+}

@@ -1,8 +1,0 @@
-{
-  String paramString=null;
-  paramString=this.stripFile(line);
-  if (paramString != null) {
-    this.checkParamFormat(line);
-    this.convertStringToJMRequest(paramString);
-  }
-}

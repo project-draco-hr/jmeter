@@ -10,6 +10,7 @@
     log.warn("Error replacing sample listeners",e);
   }
   try {
+    JMeterContextService.startTest();
     remote.setHost(host);
     log.info("sent host =" + host);
     remote.configure(test);

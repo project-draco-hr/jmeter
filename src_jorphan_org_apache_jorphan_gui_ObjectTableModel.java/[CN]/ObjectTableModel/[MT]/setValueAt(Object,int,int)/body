@@ -1,18 +1,12 @@
 {
   if (row < objects.size()) {
     Object value=objects.get(row);
-    if (col < setMethods.size()) {
-      Method setMethod=(Method)setMethods.get(col);
-      try {
+    if (col < writeFunctors.size()) {
+      Functor setMethod=(Functor)writeFunctors.get(col);
+      if (setMethod != null) {
         setMethod.invoke(value,new Object[]{cellValue});
+        super.fireTableDataChanged();
       }
- catch (      IllegalAccessException e) {
-        log.error("Illegal method access",e);
-      }
-catch (      InvocationTargetException e) {
-        log.error("incorrect method access",e);
-      }
-      super.fireTableDataChanged();
     }
   }
 }

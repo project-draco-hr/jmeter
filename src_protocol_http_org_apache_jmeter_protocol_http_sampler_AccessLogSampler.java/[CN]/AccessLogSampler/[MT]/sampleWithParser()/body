@@ -1,0 +1,23 @@
+{
+  initFilter();
+  instantiateParser();
+  SampleResult res=null;
+  try {
+    int thisCount=PARSER.parseAndConfigure(1,this);
+    if (thisCount == 0) {
+      if (count == 0) {
+        JMeterContextService.getContext().getThread().stop();
+      }
+      log.info("parser returned 0 paths");
+      filter.reset();
+      return null;
+    }
+    count=thisCount;
+    res=sample();
+    res.setSampleLabel(toString());
+  }
+ catch (  Exception e) {
+    log.warn("Sampling failure",e);
+  }
+  return res;
+}

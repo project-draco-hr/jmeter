@@ -12,6 +12,7 @@
   if (((TestPlan)plan[0]).isSerialized()) {
     serialized=true;
   }
+  JMeterContextService.startTest();
   compileTree();
   testListeners=new SearchByClass(TestListener.class);
   getTestTree().traverse(testListeners);

@@ -1,8 +1,0 @@
-{
-  Iterator iter=listeners.iterator();
-{
-    while (iter.hasNext()) {
-      ((GraphListener)iter.next()).updateGui(s);
-    }
-  }
-}

@@ -1,0 +1,11 @@
+{
+  long endTime=res.getTimeStamp();
+  long lastTime=getCurrentSample().endTime;
+  if (res.isStampedAtStart()) {
+    endTime+=res.getTime();
+  }
+  if (lastTime < endTime) {
+    lastTime=endTime;
+  }
+  return lastTime;
+}

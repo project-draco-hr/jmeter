@@ -40,7 +40,7 @@ catch (      IOException e) {
     if (method.equals(POST)) {
       sendPostData(conn);
     }
-    byte[] responseData=readResponse(conn);
+    byte[] responseData=readResponse(conn,res);
     res.sampleEnd();
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();

@@ -1,9 +1,3 @@
 {
-  init();
-  JMeterContext context=(JMeterContext)contextMap.get(Thread.currentThread().getName());
-  if (context == null) {
-    context=new JMeterContext();
-    setContext(context);
-  }
-  return context;
+  return (JMeterContext)threadContext.get();
 }

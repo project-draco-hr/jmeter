@@ -1,4 +1,3 @@
 {
-  Long sample=(Long)this.samples.get(i);
-  return sample.longValue();
+  return samples.getSample(i).data;
 }

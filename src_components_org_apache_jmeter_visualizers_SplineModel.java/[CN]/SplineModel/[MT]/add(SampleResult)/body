@@ -1,25 +1,12 @@
 {
-  long sample=sampleResult.getTime();
-  this.n++;
-  this.sum+=sample;
-  this.average=this.sum / this.n;
-  if (SHOW_INCOMING_SAMPLES) {
-    incoming=sample;
-  }
-  if (sample > maximum) {
-    maximum=sample;
-  }
-  if (sample < minimum) {
-    minimum=sample;
-  }
-  samples.add(new Long(sample));
-  int n=getNumberOfCollectedSamples();
+  samples.addSample(sampleResult);
+  long n=samples.getCount();
   if ((n % (numberOfNodes * refreshPeriod)) == 0) {
     float[] floatNode=new float[numberOfNodes];
-    int loadFactor=n / numberOfNodes;
+    long loadFactor=n / numberOfNodes;
     for (int i=0; i < numberOfNodes; i++) {
       for (int j=0; j < loadFactor; j++) {
-        floatNode[i]+=getSample((i * loadFactor) + j);
+        floatNode[i]+=samples.getSample((int)((i * loadFactor) + j)).data;
       }
       floatNode[i]=floatNode[i] / loadFactor;
     }

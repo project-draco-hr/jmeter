@@ -5,7 +5,6 @@
     threadContext.setThreadNum(getThreadNum());
     threadContext.setThread(this);
     testTree.traverse(compiler);
-    running=true;
     if (scheduler) {
       startScheduler();
     }

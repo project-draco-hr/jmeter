@@ -1,6 +1,6 @@
 {
-  noSamplesField.setText(Long.toString(model.getSampleCount()));
-  dataField.setText(Long.toString(model.getCurrentData()));
-  averageField.setText(Long.toString(model.getCurrentAverage()));
-  deviationField.setText(Long.toString(model.getCurrentDeviation()));
+  noSamplesField.setText(Long.toString(calc.getCount()));
+  dataField.setText(Long.toString(currentData));
+  averageField.setText(Long.toString((long)calc.getMean()));
+  deviationField.setText(Long.toString((long)calc.getStandardDeviation()));
 }

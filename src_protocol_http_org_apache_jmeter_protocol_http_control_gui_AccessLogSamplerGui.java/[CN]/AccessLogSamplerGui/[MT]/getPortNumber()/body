@@ -1,9 +1,0 @@
-{
-  try {
-    int port=Integer.parseInt(PORT.getText());
-    return port;
-  }
- catch (  NumberFormatException exception) {
-    return 80;
-  }
-}

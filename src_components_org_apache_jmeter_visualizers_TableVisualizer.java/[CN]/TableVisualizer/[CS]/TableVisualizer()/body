@@ -1,6 +1,5 @@
 {
   super();
-  model=new TableDataModel();
-  model.addGraphListener(this);
+  model=new ObjectTableModel(COLUMNS,new Functor[]{new Functor("getCount"),new Functor("getLabel"),new Functor("getData"),new Functor("isSuccess")},new Functor[]{null,null,null,null},new Class[]{Long.class,String.class,Long.class,Boolean.class});
   init();
 }

@@ -1,0 +1,4 @@
+{
+  if (getCurrentSample().endTime == 0)   return 0;
+  return getCurrentSample().endTime - firstTime;
+}

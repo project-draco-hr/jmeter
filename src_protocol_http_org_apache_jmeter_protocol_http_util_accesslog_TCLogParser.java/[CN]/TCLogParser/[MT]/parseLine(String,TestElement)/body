@@ -1,0 +1,24 @@
+{
+  String cleanedLine=this.cleanURL(line);
+  log.debug("parsing line: " + line);
+  el.setProperty(HTTPSampler.METHOD,RMETHOD);
+  if (FILTER != null) {
+    log.debug("filter is not null");
+    if (!FILTER.isFiltered(line)) {
+      log.debug("line was not filtered");
+      COUNT++;
+      line=FILTER.filter(cleanedLine);
+      if (line != null) {
+        createUrl(cleanedLine,el);
+      }
+    }
+ else {
+      log.debug("Line was filtered");
+    }
+  }
+ else {
+    log.debug("filter was null");
+    COUNT++;
+    createUrl(cleanedLine,el);
+  }
+}

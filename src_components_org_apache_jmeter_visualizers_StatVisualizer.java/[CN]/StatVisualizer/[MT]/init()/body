@@ -5,8 +5,7 @@
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
   mainPanel.add(makeTitlePanel());
-  myStatTableModel=new StatTableModel(model);
-  myJTable=new JTable(myStatTableModel);
+  myJTable=new JTable(model);
   myJTable.setPreferredScrollableViewportSize(new Dimension(500,70));
   myScrollPane=new JScrollPane(myJTable);
   this.add(mainPanel,BorderLayout.NORTH);

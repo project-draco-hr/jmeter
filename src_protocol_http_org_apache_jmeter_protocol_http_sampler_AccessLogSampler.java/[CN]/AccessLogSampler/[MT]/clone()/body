@@ -1,0 +1,15 @@
+{
+  AccessLogSampler s=(AccessLogSampler)super.clone();
+  if (filterClassName != null) {
+    try {
+      if (TestCloneable.class.isAssignableFrom(Class.forName(filterClassName))) {
+        filter=(Filter)Class.forName(filterClassName).newInstance();
+        s.filter=(Filter)((TestCloneable)filter).clone();
+      }
+    }
+ catch (    Exception e) {
+      log.warn("Could not clone cloneable filter",e);
+    }
+  }
+  return s;
+}

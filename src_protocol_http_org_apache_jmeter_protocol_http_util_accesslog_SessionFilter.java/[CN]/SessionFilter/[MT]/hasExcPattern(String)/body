@@ -1,0 +1,16 @@
+{
+synchronized (excludedIps) {
+    boolean exclude=false;
+    for (Iterator x=excludedIps.iterator(); x.hasNext(); ) {
+      if (text.indexOf((String)x.next()) > -1) {
+        exclude=true;
+        break;
+      }
+    }
+    if (!exclude) {
+      ipAddress=getIpAddress(text);
+      excludedIps.add(ipAddress);
+    }
+    return exclude;
+  }
+}

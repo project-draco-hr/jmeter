@@ -1,0 +1,21 @@
+{
+  String line=null;
+  try {
+    line=breader.readLine();
+    if (line == null && COUNT >= this.PARSECOUNT) {
+      this.READER.close();
+      this.READER=null;
+    }
+    while (line != null) {
+      if (line.length() > 0) {
+        this.parseLine(line,el);
+      }
+      if (this.PARSECOUNT != -1 && COUNT >= this.PARSECOUNT) {
+        break;
+      }
+    }
+  }
+ catch (  IOException ioe) {
+    log.error("Error reading log file",ioe);
+  }
+}

@@ -1,6 +1,8 @@
 {
   log.debug("Clear called",new Exception("Debug"));
-  model.clear();
+  model.clearData();
+  currentData=0;
+  calc.clear();
   dataField.setText("0000");
   averageField.setText("0000");
   deviationField.setText("0000");

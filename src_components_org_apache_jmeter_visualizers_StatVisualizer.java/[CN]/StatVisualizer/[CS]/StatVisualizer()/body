@@ -1,6 +1,6 @@
 {
   super();
-  model=new StatVisualizerModel();
-  model.addAccumListener(this);
+  model=new ObjectTableModel(COLUMNS,new Functor[]{new Functor("getLabel"),new Functor("getCount"),new Functor("getMean"),new Functor("getMedian"),new Functor("getPercentPoint",new Object[]{new Float(.900)}),new Functor("getMin"),new Functor("getMax"),new Functor("getErrorPercentageString"),new Functor("getRateString")},new Functor[]{null,null,null,null,null,null,null,null,null},new Class[]{String.class,Long.class,Long.class,Long.class,Long.class,Long.class,Long.class,String.class,String.class});
+  clear();
   init();
 }

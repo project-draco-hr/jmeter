@@ -1,14 +1,9 @@
 {
+  log.debug("Getting row value");
   Object value=objects.get(row);
-  Method getMethod=(Method)getMethods.get(col);
-  try {
-    return getMethod.invoke(value,new Object[0]);
-  }
- catch (  IllegalAccessException e) {
-    log.error("Illegal method access",e);
-  }
-catch (  InvocationTargetException e) {
-    log.error("incorrect method access",e);
+  Functor getMethod=(Functor)readFunctors.get(col);
+  if (getMethod != null) {
+    return getMethod.invoke(value);
   }
   return null;
 }

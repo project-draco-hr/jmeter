@@ -1,7 +1,0 @@
-{
-  SampleResult res=SampleResult.createTestSample(start,start + elapsed);
-  res.setSampleLabel(label);
-  res.setSuccessful(ok);
-  assertEquals(elapsed,res.getTime());
-  return res;
-}

@@ -2,6 +2,7 @@
   hosts.remove(host);
   if (hosts.size() == 0) {
     runningIndicator.setIcon(stoppedIcon);
+    JMeterContextService.endTest();
   }
   menuBar.setRunning(false,host);
   if (stoppingMessage != null) {

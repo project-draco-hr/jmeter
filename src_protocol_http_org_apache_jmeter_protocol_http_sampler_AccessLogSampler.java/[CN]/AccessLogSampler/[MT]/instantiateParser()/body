@@ -1,16 +1,15 @@
 {
-  if (this.getParserClassName() != null && this.getParserClassName().length() > 0) {
+  if (PARSER == null) {
     try {
-      if (PARSER == null) {
+      if (this.getParserClassName() != null && this.getParserClassName().length() > 0) {
         if (this.getLogFile() != null && this.getLogFile().length() > 0) {
-          PARSER=(LogParser)PARSERCLASS.newInstance();
+          PARSER=(LogParser)Class.forName(getParserClassName()).newInstance();
           PARSER.setSourceFile(this.getLogFile());
+          PARSER.setFilter(filter);
         }
       }
     }
- catch (    InstantiationException e) {
-    }
-catch (    IllegalAccessException e) {
+ catch (    Exception e) {
     }
   }
 }

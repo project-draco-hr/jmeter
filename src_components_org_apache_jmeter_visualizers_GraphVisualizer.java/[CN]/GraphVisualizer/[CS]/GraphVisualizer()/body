@@ -1,6 +1,5 @@
 {
-  model=new GraphModel();
-  model.addGraphListener(this);
+  model=new SamplingStatCalculator("Graph");
   graph=new Graph(model);
   init();
 }

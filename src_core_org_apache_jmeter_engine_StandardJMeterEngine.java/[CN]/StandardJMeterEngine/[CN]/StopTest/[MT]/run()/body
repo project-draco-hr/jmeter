@@ -11,4 +11,5 @@
     verifyThreadsStopped();
     notifyTestListenersOfEnd();
   }
+  JMeterContextService.endTest();
 }

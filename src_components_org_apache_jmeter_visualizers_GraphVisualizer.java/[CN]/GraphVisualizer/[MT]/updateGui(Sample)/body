@@ -1,10 +1,10 @@
 {
   graph.updateGui(s);
-  noSamplesField.setText(Long.toString(model.getSampleCount()));
+  noSamplesField.setText(Long.toString(s.count));
   dataField.setText(Long.toString(s.data));
   averageField.setText(Long.toString(s.average));
   deviationField.setText(Long.toString(s.deviation));
-  throughputField.setText(Float.toString(s.throughput) + "/" + minute);
+  throughputField.setText(Double.toString(60 * s.throughput) + "/" + minute);
   medianField.setText(Long.toString(s.median));
   updateYAxis();
 }

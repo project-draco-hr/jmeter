@@ -3,7 +3,7 @@ synchronized (accumulators) {
     Totals t=(Totals)accumulators.get(myName);
     if (t.last != -1) {
       String str;
-      if (t.total.getNumSamples() != 0) {
+      if (t.total.getCount() != 0) {
         str=format(t.delta,"+");
         if (TOLOG)         log.info(str);
         if (TOOUT)         System.out.println(str);
