@@ -1,7 +1,3 @@
 {
-  if (running) {
-    manager.shutdown();
-    keyMap.clear();
-    running=false;
-  }
+  manager.shutdown();
 }

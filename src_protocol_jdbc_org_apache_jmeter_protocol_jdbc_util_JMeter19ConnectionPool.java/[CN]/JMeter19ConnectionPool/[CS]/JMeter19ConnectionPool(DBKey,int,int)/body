@@ -1,0 +1,14 @@
+{
+  this.key=key;
+  this.maxConnections=maxConnections;
+  validateMaxConnections();
+  connectionArray=new ConnectionObject[maxConnections];
+  try {
+    for (int i=0; i < maxConnections; i++) {
+      connectionArray[i]=new ConnectionObject(key,maxUsage);
+    }
+  }
+ catch (  SQLException e) {
+    log.error("Error initializing JDBC connection pool",e);
+  }
+}

@@ -1,16 +1,19 @@
 {
-  ConnectionObject[] connectionArray=(ConnectionObject[])connections.get(key);
-  if (connectionArray == null || connectionArray.length == 0) {
+  ConnectionPool pool=getPool(key);
+  if (pool == null) {
     throw new NoConnectionsAvailableException();
   }
-  int maxConnections=key.getMaxConnections();
-  Connection c=null;
-  int index=(int)(100 * Math.random());
-  int count=-1;
-  while (++count < maxConnections && c == null) {
-    index++;
-    c=connectionArray[index % maxConnections].grab();
+ else {
+    try {
+      return pool.getConnection();
+    }
+ catch (    NoSuchElementException e) {
+      log.warn("NoSuchElementException getting database connection",e);
+      return null;
+    }
+catch (    Exception e) {
+      log.warn("Exception getting database connection from pool",e);
+      throw new NoConnectionsAvailableException();
+    }
   }
-  if (c != null)   rentedConnections.put(c,connectionArray[index % maxConnections]);
-  return c;
 }

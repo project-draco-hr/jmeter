@@ -1,3 +1,6 @@
 {
-  return url.hashCode() * 11;
+  if (hashCode == 0) {
+    hashCode=calculateHashCode();
+  }
+  return hashCode;
 }

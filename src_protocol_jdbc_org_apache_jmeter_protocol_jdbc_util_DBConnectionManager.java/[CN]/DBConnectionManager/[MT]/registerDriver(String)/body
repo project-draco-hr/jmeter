@@ -3,7 +3,7 @@
     DriverManager.registerDriver((Driver)Class.forName(driver).newInstance());
   }
  catch (  Exception e) {
-    log.error("",e);
+    log.error("Error registering database driver '" + driver + "'",e);
     return false;
   }
   return true;

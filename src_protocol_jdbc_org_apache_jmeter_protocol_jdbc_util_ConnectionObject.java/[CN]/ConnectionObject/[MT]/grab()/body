@@ -1,25 +1,33 @@
 {
   Connection c=null;
-  if (!inUse && !inMaintenance) {
+  if (inUse || inMaintenance) {
+    log.debug("Connection not available because it is " + (inUse ? "in use" : "in maintenance"));
+  }
+ else {
     if (con != null) {
       try {
         if (con.isClosed()) {
+          log.debug("Connection is closed.  " + "Putting it in maintenance.");
           inMaintenance=true;
           reset.start();
         }
  else         if (System.currentTimeMillis() - lastAccessed > accessInterval) {
+          log.debug("Connection is timed out.  " + "Putting it in maintenance.");
           inMaintenance=true;
           reset.start();
         }
  else {
+          log.debug("Connection is available." + "Marking it as in use.");
           inUse=true;
           c=con;
         }
       }
  catch (      SQLException e) {
+        log.warn("Exception checking if connection is closed",e);
       }
     }
  else {
+      log.debug("connection is null.  Putting it in maintenance.");
       inMaintenance=true;
       reset.start();
     }

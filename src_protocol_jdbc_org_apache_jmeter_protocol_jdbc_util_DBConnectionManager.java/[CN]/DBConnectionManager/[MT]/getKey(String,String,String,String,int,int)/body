@@ -1,14 +1,14 @@
 {
-  DBKey key=new DBKey();
-  if (registerDriver(driver)) {
-    key.setDriver(driver);
-    key.setMaxConnections(maxConnections);
-    key.setMaxUsage(maxUsage);
-    key.setPassword(password);
-    key.setUrl(url);
-    key.setUsername(username);
-    if (!connections.containsKey(key))     setup(key);
+  DBKey key=new DBKey(driver,url,username,password);
+synchronized (poolMap) {
+    if (!poolMap.containsKey(key)) {
+      if (registerDriver(driver)) {
+        poolMap.put(key,createConnectionPool(key,maxUsage,maxConnections));
+      }
+ else {
+        return null;
+      }
+    }
   }
- else   key=null;
   return key;
 }

@@ -1,8 +1,36 @@
 {
-  if (key instanceof DBKey) {
-    return url.equals(((DBKey)key).getUrl());
+  if (this == o2) {
+    return true;
   }
- else {
+  if (!(o2 instanceof DBKey)) {
     return false;
   }
+  DBKey key=(DBKey)o2;
+  if (!driver.equals(key.driver)) {
+    return false;
+  }
+  if (!url.equals(key.url)) {
+    return false;
+  }
+  if (username == null) {
+    if (key.username != null) {
+      return false;
+    }
+  }
+ else {
+    if (!username.equals(key.username)) {
+      return false;
+    }
+  }
+  if (password == null) {
+    if (key.password != null) {
+      return false;
+    }
+  }
+ else {
+    if (!password.equals(key.password)) {
+      return false;
+    }
+  }
+  return true;
 }

@@ -1,6 +1,10 @@
 {
-  Iterator iter=new HashSet(connections.keySet()).iterator();
-  while (iter.hasNext()) {
-    close((DBKey)iter.next());
+synchronized (poolMap) {
+    Iterator iter=poolMap.keySet().iterator();
+    while (iter.hasNext()) {
+      DBKey key=(DBKey)iter.next();
+      ConnectionPool pool=(ConnectionPool)poolMap.remove(key);
+      pool.close();
+    }
   }
 }

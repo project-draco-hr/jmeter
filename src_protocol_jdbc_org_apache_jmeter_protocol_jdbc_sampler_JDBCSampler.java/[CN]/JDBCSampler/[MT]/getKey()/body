@@ -1,8 +1,3 @@
 {
-  DBKey key=(DBKey)keyMap.get(getUrl());
-  if (key == null) {
-    key=manager.getKey(getUrl(),getUsername(),getPassword(),getDriver(),getMaxUse(),getNumConnections());
-    keyMap.put(getUrl(),key);
-  }
-  return key;
+  return manager.getKey(getUrl(),getUsername(),getPassword(),getDriver(),getMaxUse(),getNumConnections());
 }

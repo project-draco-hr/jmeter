@@ -1,51 +1,46 @@
 {
   DBKey key=getKey();
-  long start;
-  long end;
-  long time;
-  time=start=end=0;
   SampleResult res=new SampleResult();
-  Connection con=null;
-  ResultSet rs=null;
+  Connection conn=null;
   Statement stmt=null;
-  Data data=new Data();
   res.setSampleLabel(getName());
-  start=System.currentTimeMillis();
+  res.setSamplerData(this.toString());
+  long startTime=System.currentTimeMillis();
   try {
-    int count=0;
-    while (count < 20 && (con=manager.getConnection(key)) == null) {
+    conn=manager.getConnection(key);
+    stmt=conn.createStatement();
+    if (stmt.execute(getQuery())) {
+      ResultSet rs=null;
       try {
-        Thread.sleep(10);
+        rs=stmt.getResultSet();
+        Data data=getDataFromResultSet(rs);
+        res.setResponseData(data.toString().getBytes());
       }
- catch (      Exception err) {
-        count++;
+  finally {
+        if (rs != null) {
+          try {
+            rs.close();
+          }
+ catch (          SQLException exc) {
+            log.warn("Error closing ResultSet",exc);
+          }
+        }
       }
-    }
-    stmt=con.createStatement();
-    boolean retVal=stmt.execute(getQuery());
-    if (retVal) {
-      rs=stmt.getResultSet();
-      data=getDataFromResultSet(rs);
-      rs.close();
     }
  else {
       int updateCount=stmt.getUpdateCount();
+      String results=updateCount + " updates";
+      res.setResponseData(results.getBytes());
     }
-    stmt.close();
-    manager.releaseConnection(con);
-    res.setResponseData(data.toString().getBytes());
     res.setDataType(SampleResult.TEXT);
     res.setSuccessful(true);
   }
  catch (  Exception ex) {
-    if (rs != null) {
-      try {
-        rs.close();
-      }
- catch (      SQLException err) {
-        rs=null;
-      }
-    }
+    log.error("Error in JDBC sampling",ex);
+    res.setResponseData(new byte[0]);
+    res.setSuccessful(false);
+  }
+ finally {
     if (stmt != null) {
       try {
         stmt.close();
@@ -54,14 +49,10 @@
         stmt=null;
       }
     }
-    manager.releaseConnection(con);
-    log.error("Error in JDBC sampling",ex);
-    res.setResponseData(new byte[0]);
-    res.setSuccessful(false);
+    if (conn != null) {
+      manager.releaseConnection(key,conn);
+    }
   }
-  end=System.currentTimeMillis();
-  time+=end - start;
-  res.setTime(time);
-  res.setSamplerData(this.toString());
+  res.setTime(System.currentTimeMillis() - startTime);
   return res;
 }

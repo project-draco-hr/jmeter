@@ -1,0 +1,29 @@
+{
+  Connection c=null;
+  try {
+    DatabaseMetaData md=DriverManager.getConnection(key.getUrl(),key.getUsername(),key.getPassword()).getMetaData();
+    int dbMax=md.getMaxConnections();
+    if (dbMax > 0 && maxConnections > dbMax) {
+      log.warn("Connection pool configured for " + maxConnections + " but database claims to allow only "+ dbMax+ ".  Reducing the pool size, but problems may occur "+ "if multiple connection pools are in use for the "+ "same database.");
+      maxConnections=dbMax;
+    }
+ else     if (maxConnections > ABSOLUTE_MAX_CONNECTIONS) {
+      maxConnections=ABSOLUTE_MAX_CONNECTIONS;
+    }
+  }
+ catch (  Exception e) {
+    log.error("Couldn't get connection to database",e);
+    maxConnections=0;
+    return;
+  }
+ finally {
+    if (c != null) {
+      try {
+        c.close();
+      }
+ catch (      SQLException e) {
+        log.warn("Error closing metadata database connection",e);
+      }
+    }
+  }
+}

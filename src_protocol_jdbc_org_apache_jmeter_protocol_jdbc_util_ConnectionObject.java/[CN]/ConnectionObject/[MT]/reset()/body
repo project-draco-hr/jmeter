@@ -7,7 +7,7 @@
     }
     con=null;
   }
-  con=manager.newConnection(key);
+  con=DriverManager.getConnection(key.getUrl(),key.getUsername(),key.getPassword());
   useCount=0;
   lastAccessed=System.currentTimeMillis();
   inUse=false;
