@@ -35,10 +35,10 @@
         throw new IOException("Maximum number of redirects exceeded");
       }
       redirectUrl(conn,url);
-      SampleResult redirectResult=sample(redirects + 1);
-      res.addSubResult(redirectResult);
-      res.setSuccessful(redirectResult.isSuccessful());
-      res.setTime(res.getTime() + redirectResult.getTime());
+      SampleResult redirect=res;
+      res=sample(redirects + 1);
+      res.addSubResult(redirect);
+      res.setTime(res.getTime() + redirect.getTime());
     }
     log.debug("End : sample, redirects=" + redirects);
     if (isImageParser()) {
