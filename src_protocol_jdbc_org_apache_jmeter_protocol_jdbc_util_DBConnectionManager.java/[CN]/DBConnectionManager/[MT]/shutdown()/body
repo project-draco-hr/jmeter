@@ -1,4 +1,5 @@
 {
+  log.debug("Running shutdown from " + Thread.currentThread().getName());
 synchronized (poolMap) {
     Iterator iter=poolMap.keySet().iterator();
     while (iter.hasNext()) {

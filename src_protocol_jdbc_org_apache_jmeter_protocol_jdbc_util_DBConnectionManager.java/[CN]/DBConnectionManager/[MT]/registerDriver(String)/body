@@ -2,7 +2,19 @@
   try {
     DriverManager.registerDriver((Driver)Class.forName(driver).newInstance());
   }
- catch (  Exception e) {
+ catch (  SQLException e) {
+    log.error("Error registering database driver '" + driver + "'",e);
+    return false;
+  }
+catch (  InstantiationException e) {
+    log.error("Error registering database driver '" + driver + "'",e);
+    return false;
+  }
+catch (  IllegalAccessException e) {
+    log.error("Error registering database driver '" + driver + "'",e);
+    return false;
+  }
+catch (  ClassNotFoundException e) {
     log.error("Error registering database driver '" + driver + "'",e);
     return false;
   }
