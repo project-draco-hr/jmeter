@@ -1,9 +1,14 @@
 {
   ArrayList list=new ArrayList();
   NodeList bindings=WSDLDOC.getElementsByTagName("binding");
+  String soapBind="soap:binding";
+  if (bindings.getLength() == 0) {
+    bindings=WSDLDOC.getElementsByTagName("wsdl:binding");
+    soapBind="wsdlsoap:binding";
+  }
   for (int idx=0; idx < bindings.getLength(); idx++) {
     Element nd=(Element)bindings.item(idx);
-    NodeList slist=nd.getElementsByTagName("soap:binding");
+    NodeList slist=nd.getElementsByTagName(soapBind);
     if (slist.getLength() > 0) {
       this.BINDNAME=nd.getAttribute("name");
       list.add(nd);
