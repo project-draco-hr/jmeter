@@ -5,6 +5,7 @@
  else {
     if (subControllersAndSamplers.size() == 0) {
       setDone(true);
+      throw new NextIsNullException();
     }
     return null;
   }

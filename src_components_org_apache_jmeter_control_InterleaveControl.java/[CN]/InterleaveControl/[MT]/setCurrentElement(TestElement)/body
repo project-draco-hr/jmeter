@@ -2,7 +2,7 @@
   if (searchStart == null) {
     searchStart=currentElement;
   }
- else   if (searchStart == currentElement && !currentReturnedAtLeastOne) {
+ else   if (searchStart == currentElement && (!currentReturnedAtLeastOne && getStyle() == USE_SUB_CONTROLLERS)) {
     throw new NextIsNullException();
   }
 }
