@@ -2,14 +2,14 @@
   NodeList rootList=html.getChildNodes();
   List urls=new LinkedList();
   for (int x=0; x < rootList.getLength(); x++) {
-    urls.addAll(HtmlParser.createURLFromForm(rootList.item(x),(HTTPSampler)JMeterContextService.getContext().getPreviousSampler()));
+    urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),(HTTPSampler)JMeterContextService.getContext().getPreviousSampler()));
   }
   Iterator iter=urls.iterator();
   while (iter.hasNext()) {
     HTTPSampler newUrl=(HTTPSampler)iter.next();
     try {
       newUrl.setMethod(HTTPSampler.POST);
-      if (HtmlParser.isAnchorMatched(newUrl,config)) {
+      if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
         potentialLinks.add(newUrl);
       }
     }

@@ -21,7 +21,7 @@
     if (index == -1) {
       index=0;
     }
-    html=(Document)HtmlParser.getDOM(responseText.substring(index));
+    html=(Document)HtmlParsingUtils.getDOM(responseText.substring(index));
   }
  catch (  SAXException e) {
     return;

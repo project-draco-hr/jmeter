@@ -6,7 +6,7 @@
   while (iter.hasNext()) {
     replacementArg=(Argument)iter.next().getObjectValue();
     try {
-      if (HtmlParser.isArgumentMatched(replacementArg,arg)) {
+      if (HtmlParsingUtils.isArgumentMatched(replacementArg,arg)) {
         possibleReplacements.add(replacementArg);
       }
     }
