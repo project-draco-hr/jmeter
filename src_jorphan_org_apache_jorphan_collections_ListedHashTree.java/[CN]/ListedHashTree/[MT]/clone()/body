@@ -1,0 +1,6 @@
+{
+  ListedHashTree newTree=new ListedHashTree();
+  newTree.data=(Map)((HashMap)data).clone();
+  newTree.order=(List)((LinkedList)order).clone();
+  return newTree;
+}

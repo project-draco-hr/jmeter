@@ -1,0 +1,6 @@
+{
+  HashTree tree=getTree(currentKey);
+  data.remove(currentKey);
+  data.put(newKey,tree);
+  order.set(order.indexOf(currentKey),newKey);
+}

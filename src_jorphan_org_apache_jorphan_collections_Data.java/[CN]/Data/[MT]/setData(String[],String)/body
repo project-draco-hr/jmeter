@@ -1,0 +1,7 @@
+{
+  setHeaders(contents[0].split(delimiter));
+  int x=1;
+  while (x < contents.length) {
+    setLine(contents[x++].split(delimiter));
+  }
+}

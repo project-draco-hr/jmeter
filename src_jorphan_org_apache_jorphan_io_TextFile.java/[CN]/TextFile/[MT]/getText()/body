@@ -1,0 +1,18 @@
+{
+  String lineEnd=System.getProperty("line.separator");
+  StringBuffer sb=new StringBuffer();
+  try {
+    BufferedReader br=new BufferedReader(new FileReader(this));
+    String line="NOTNULL";
+    while (line != null) {
+      line=br.readLine();
+      if (line != null) {
+        sb.append(line + lineEnd);
+      }
+    }
+  }
+ catch (  IOException ioe) {
+    log.error("",ioe);
+  }
+  return sb.toString();
+}

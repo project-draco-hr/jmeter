@@ -1,0 +1,13 @@
+{
+  String[] headers=getHeaders();
+  List tempList=new ArrayList();
+  for (int i=0; i < headers.length; i++) {
+    if ((tempList=(ArrayList)data.get(header.get(i))) == null) {
+      tempList=new ArrayList();
+      data.put(headers[i],tempList);
+    }
+    tempList.add("");
+  }
+  size=tempList.size();
+  setCurrentPos(size - 1);
+}

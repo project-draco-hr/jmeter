@@ -1,0 +1,6 @@
+{
+  if (!data.containsKey(key)) {
+    data.put(key,createNewTree());
+    order.add(key);
+  }
+}

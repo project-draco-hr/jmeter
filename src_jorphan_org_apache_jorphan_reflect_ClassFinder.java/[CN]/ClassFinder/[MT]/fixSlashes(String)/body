@@ -1,0 +1,6 @@
+{
+  str=str.replace('\\','/');
+  str=replaceString(str,"//","_____");
+  str=replaceString(str,"_____","/");
+  return str;
+}

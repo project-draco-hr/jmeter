@@ -1,0 +1,19 @@
+{
+  int x=start, y=end - 1;
+  String basis=((List)data.get(column)).get((int)((x + y) / 2)).toString();
+  Object temp;
+  if (x == y)   return;
+  while (x <= y) {
+    while (x < end && ((List)data.get(column)).get(x).toString().compareTo(basis) < 0)     x++;
+    while (y >= (start - 1) && ((List)data.get(column)).get(y).toString().compareTo(basis) > 0)     y--;
+    if (x <= y) {
+      swapRows(x,y);
+      x++;
+      y--;
+    }
+  }
+  if (x == y)   x++;
+  y=end - x;
+  if (x > 0)   sortData(column,start,x);
+  if (y > 0)   sortData(column,x,end);
+}

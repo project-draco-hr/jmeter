@@ -1,0 +1,23 @@
+{
+  boolean flag=true;
+  if (o instanceof HashTree) {
+    HashTree oo=(HashTree)o;
+    Iterator it=data.keySet().iterator();
+    while (it.hasNext()) {
+      if (!oo.containsKey(it.next())) {
+        flag=false;
+        break;
+      }
+    }
+    if (flag) {
+      it=data.keySet().iterator();
+      while (it.hasNext()) {
+        Object temp=it.next();
+        flag=get(temp).equals(oo.get(temp));
+        if (!flag)         break;
+      }
+    }
+  }
+ else   flag=false;
+  return flag;
+}

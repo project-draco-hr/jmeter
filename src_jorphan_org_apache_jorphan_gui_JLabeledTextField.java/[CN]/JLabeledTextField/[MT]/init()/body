@@ -1,0 +1,25 @@
+{
+  this.setLayout(new FlowLayout(FlowLayout.LEFT));
+  mTextField.addFocusListener(new FocusListener(){
+    String oldValue="";
+    /** 
+ * Callback method when the focus to the Text Field component
+ * is lost.
+ * @param pFocusEvent The focus event that occured.
+ */
+    public void focusLost(    FocusEvent pFocusEvent){
+      if (oldValue.equals(mTextField.getText()) == false) {
+        notifyChangeListeners();
+      }
+    }
+    /** 
+ * Catch what the value was when focus was gained.
+ */
+    public void focusGained(    FocusEvent pFocusEvent){
+      oldValue=mTextField.getText();
+    }
+  }
+);
+  this.add(mLabel);
+  this.add(mTextField);
+}

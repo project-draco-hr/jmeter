@@ -1,0 +1,6 @@
+{
+  if (choiceList.getItemCount() > 1) {
+    choiceList.removeItemAt(choiceList.getSelectedIndex());
+    notifyChangeListeners();
+  }
+}

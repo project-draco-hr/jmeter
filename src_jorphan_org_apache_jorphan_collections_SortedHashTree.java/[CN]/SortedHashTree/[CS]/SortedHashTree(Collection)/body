@@ -1,0 +1,5 @@
+{
+  data=new TreeMap();
+  Iterator it=keys.iterator();
+  while (it.hasNext())   data.put(it.next(),new SortedHashTree());
+}

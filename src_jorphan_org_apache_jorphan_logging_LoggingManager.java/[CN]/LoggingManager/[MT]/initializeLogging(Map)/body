@@ -1,0 +1,6 @@
+{
+  if (logManager == null) {
+    logManager=new LoggingManager();
+  }
+  setLoggingLevels(properties,(String)properties.get(LOG_FILE));
+}

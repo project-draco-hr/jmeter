@@ -1,0 +1,8 @@
+{
+  super();
+  mLabel.setText(pLabel);
+  if (docModel != null) {
+    setDocumentModel(docModel);
+  }
+  init();
+}

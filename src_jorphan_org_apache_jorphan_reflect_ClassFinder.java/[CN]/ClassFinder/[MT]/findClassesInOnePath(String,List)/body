@@ -1,0 +1,22 @@
+{
+  File file=null;
+  String strPathName=null;
+  ZipFile zipFile=null;
+  ZipEntry zipEntry=null;
+  Enumeration entries=null;
+  String strEntry=null;
+  file=new File(strPath);
+  if (file.isDirectory()) {
+    findClassesInPathsDir(strPath,file,listClasses);
+  }
+ else   if (file.exists()) {
+    zipFile=new ZipFile(file);
+    entries=zipFile.entries();
+    while (entries.hasMoreElements()) {
+      strEntry=entries.nextElement().toString();
+      if (strEntry.endsWith(".class")) {
+        listClasses.add(fixClassName(strEntry));
+      }
+    }
+  }
+}

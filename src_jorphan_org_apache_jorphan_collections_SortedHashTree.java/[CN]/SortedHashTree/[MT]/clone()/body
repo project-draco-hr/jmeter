@@ -1,0 +1,5 @@
+{
+  HashTree newTree=new SortedHashTree();
+  newTree.data=(Map)((HashMap)data).clone();
+  return newTree;
+}
