@@ -6,7 +6,9 @@
     if (item instanceof JMeterTreeNode) {
       continue;
     }
-    suite.addTest(new JMeterTest("runGUIComponents",item));
+    TestSuite ts=new TestSuite(item.getClass().getName());
+    ts.addTest(new JMeterTest("runGUIComponents",item));
+    suite.addTest(ts);
   }
   return suite;
 }

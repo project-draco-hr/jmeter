@@ -6,7 +6,9 @@
     if (serObj.getClass().getName().endsWith("_Stub")) {
       continue;
     }
-    suite.addTest(new JMeterTest("runSerialTest",serObj));
+    TestSuite ts=new TestSuite(serObj.getClass().getName());
+    ts.addTest(new JMeterTest("runSerialTest",serObj));
+    suite.addTest(ts);
   }
   return suite;
 }
