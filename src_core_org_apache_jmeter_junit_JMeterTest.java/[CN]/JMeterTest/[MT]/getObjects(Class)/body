@@ -23,12 +23,12 @@
             objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{myThis}));
           }
  catch (          NoSuchMethodException f) {
-            System.out.println(exName + ": could not construct " + n);
+            System.out.println(exName + ": could not construct " + n+ " "+ f);
           }
         }
       }
  catch (      NoClassDefFoundError e) {
-        System.out.println(exName + ": could not construct " + n);
+        System.out.println(exName + ": could not construct " + n+ " "+ e);
       }
 catch (      IllegalAccessException e) {
         caught=e;
@@ -45,15 +45,7 @@ catch (      Exception e) {
     }
     caughtError=false;
   }
- catch (  Exception t) {
-    caught=t;
-    throw t;
-  }
-catch (  Error t) {
-    caught=t;
-    throw t;
-  }
- finally {
+  finally {
     if (caughtError) {
       System.out.println("Last class=" + n);
       System.out.println("objects.size=" + objects.size());
