@@ -3,7 +3,6 @@
   TestElement child=(TestElement)stack.getLast();
   trackIterationListeners(stack);
   if (child instanceof Sampler) {
-    log.debug("Saving configs for sampler: " + child);
     saveSamplerConfigs((Sampler)child);
   }
   stack.removeLast();
