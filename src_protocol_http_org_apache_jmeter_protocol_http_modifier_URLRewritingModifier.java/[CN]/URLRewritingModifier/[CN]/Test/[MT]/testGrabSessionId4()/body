@@ -7,7 +7,9 @@
   mod.setPathExtension(true);
   mod.setPathExtensionNoEquals(true);
   HTTPSampler sampler=createSampler();
-  mod.modifyEntry(sampler,response);
+  context.setCurrentSampler(sampler);
+  context.setPreviousResult(response);
+  mod.process();
   Arguments args=sampler.getArguments();
   assertEquals("index.html;%24sid%24KQNq3AAADQZoEQAxlkX8uQV5bjqVBPbT",sampler.getPath());
 }

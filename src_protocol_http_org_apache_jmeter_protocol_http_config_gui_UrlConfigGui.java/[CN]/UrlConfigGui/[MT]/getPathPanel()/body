@@ -9,7 +9,7 @@
   useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
   useKeepAlive.setName(USE_KEEPALIVE);
   useKeepAlive.setSelected(true);
-  Box panel=Box.createHorizontalBox();
+  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   panel.add(label);
   panel.add(Box.createHorizontalStrut(5));
   panel.add(path);
@@ -17,5 +17,6 @@
   panel.add(followRedirects);
   panel.add(Box.createHorizontalStrut(5));
   panel.add(useKeepAlive);
+  panel.setMinimumSize(panel.getPreferredSize());
   return panel;
 }

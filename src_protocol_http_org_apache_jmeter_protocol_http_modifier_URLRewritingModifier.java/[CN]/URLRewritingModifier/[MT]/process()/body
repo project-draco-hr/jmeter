@@ -1,4 +1,6 @@
 {
+  Sampler sampler=JMeterContextService.getContext().getCurrentSampler();
+  SampleResult responseText=JMeterContextService.getContext().getPreviousResult();
   initRegex(getArgumentName());
   String text=new String(responseText.getResponseData());
   Perl5Matcher matcher=JMeterUtils.getMatcher();
@@ -20,8 +22,4 @@
     value=result.group(1);
   }
   modify((HTTPSampler)sampler,value);
-  if (value.length() > 0) {
-    return true;
-  }
-  return false;
 }

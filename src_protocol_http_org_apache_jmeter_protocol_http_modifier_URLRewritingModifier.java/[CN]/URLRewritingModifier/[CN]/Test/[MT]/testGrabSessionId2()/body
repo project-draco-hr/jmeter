@@ -5,7 +5,9 @@
   URLRewritingModifier mod=new URLRewritingModifier();
   mod.setArgumentName("session_id");
   HTTPSampler sampler=createSampler();
-  mod.modifyEntry(sampler,response);
+  context.setCurrentSampler(sampler);
+  context.setPreviousResult(response);
+  mod.process();
   Arguments args=sampler.getArguments();
   assertEquals("jfdkjdkfjddkfdfjkdjfdf",((Argument)args.getArguments().get(0).getObjectValue()).getValue());
 }

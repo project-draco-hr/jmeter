@@ -14,12 +14,6 @@
       if ((item instanceof ConfigTestElement)) {
         configs.add(item);
       }
-      if (item instanceof Modifier) {
-        modifiers.add(item);
-      }
-      if (item instanceof ResponseBasedModifier) {
-        responseModifiers.add(item);
-      }
       if (item instanceof SampleListener) {
         listeners.add(item);
       }

@@ -6,7 +6,9 @@
   mod.setArgumentName("session_id");
   HTTPSampler sampler=createSampler();
   sampler.addArgument("session_id","adfasdfdsafasdfasd");
-  mod.modifyEntry(sampler,response);
+  context.setCurrentSampler(sampler);
+  context.setPreviousResult(response);
+  mod.process();
   Arguments args=sampler.getArguments();
   assertEquals("jfdkjdkf jddkfdfjkdjfdf\"",((Argument)args.getArguments().get(0).getObjectValue()).getValue());
   assertEquals("http://server.com:80/index.html?session_id=jfdkjdkf+jddkfdfjkdjfdf%22",sampler.toString());
