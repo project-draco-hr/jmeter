@@ -1,7 +1,7 @@
 {
   JMeterVariables vars=getVariables();
-  if (values.length >= 2) {
-    myName=((CompoundVariable)values[1]).execute();
+  if (values.length >= PARAM_NAME) {
+    myName=((CompoundVariable)values[PARAM_NAME - 1]).execute();
   }
   myValue=ERR_IND;
   if (firstTime) {
@@ -29,7 +29,17 @@
       log.error(tn + " error reading file " + e.toString());
     }
   }
-  vars.put(myName,myValue);
-  log.debug(this + "::StringFromFile.execute() name:" + myName+ " value:"+ myValue);
+ else {
+    if (values.length >= PARAM_END) {
+      log.info("Detected end of sequence.");
+      throw new RuntimeException("Stop Thread");
+    }
+  }
+  if (myName.length() > 0) {
+    vars.put(myName,myValue);
+  }
+  if (log.isDebugEnabled()) {
+    log.debug(this + "::StringFromFile.execute() name:" + myName+ " value:"+ myValue);
+  }
   return myValue;
 }

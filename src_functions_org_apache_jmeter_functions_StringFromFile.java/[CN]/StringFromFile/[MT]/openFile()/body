@@ -1,6 +1,29 @@
 {
   String tn=Thread.currentThread().getName();
   fileName=((CompoundVariable)values[0]).execute();
+  if (values.length >= PARAM_START) {
+    String tmp=((CompoundVariable)values[PARAM_START - 1]).execute();
+    myStart=Integer.valueOf(tmp).intValue();
+    if (myCurrent == 0)     myCurrent=myStart;
+  }
+  if (values.length >= PARAM_END) {
+    String tmp=((CompoundVariable)values[PARAM_END - 1]).execute();
+    myEnd=Integer.valueOf(tmp).intValue();
+  }
+  if (values.length >= PARAM_START) {
+    log.info("Start =" + myStart + " Current = "+ myCurrent+ " End ="+ myEnd);
+    if (values.length >= PARAM_END) {
+      if (myCurrent > myEnd) {
+        log.info("No more files to process, " + myCurrent + " > "+ myEnd);
+        myBread=null;
+        return;
+      }
+    }
+    log.info("Using format " + fileName);
+    DecimalFormat myFormatter=new DecimalFormat(fileName);
+    fileName=myFormatter.format(myCurrent);
+    myCurrent++;
+  }
   log.info(tn + " opening file " + fileName);
   try {
     fis=new FileReader(fileName);
