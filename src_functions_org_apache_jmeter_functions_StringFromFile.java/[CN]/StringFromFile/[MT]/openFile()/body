@@ -1,11 +1,13 @@
 {
+  String tn=Thread.currentThread().getName();
   fileName=((CompoundVariable)values[0]).execute();
+  log.info(tn + " opening file " + fileName);
   try {
-    FileReader fis=new FileReader(fileName);
+    fis=new FileReader(fileName);
     myBread=new BufferedReader(fis);
-    log.info("Opened " + fileName);
   }
  catch (  Exception e) {
     log.error("openFile() error: " + e.toString());
+    myBread=null;
   }
 }

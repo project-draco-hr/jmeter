@@ -3,7 +3,7 @@
   if (values.length >= 2) {
     myName=((CompoundVariable)values[1]).execute();
   }
-  myValue="**ERR**";
+  myValue=ERR_IND;
   if (firstTime) {
     openFile();
     firstTime=false;
@@ -13,14 +13,20 @@
       String line=myBread.readLine();
       if (line == null && reopenFile) {
         log.info("Reached EOF on " + fileName);
-        myBread.close();
+        closeFile();
         openFile();
-        line=myBread.readLine();
+        if (myBread != null) {
+          line=myBread.readLine();
+        }
+ else {
+          line=ERR_IND;
+        }
       }
       myValue=line;
     }
  catch (    Exception e) {
-      log.error("Error reading file " + e.toString());
+      String tn=Thread.currentThread().getName();
+      log.error(tn + " error reading file " + e.toString());
     }
   }
   vars.put(myName,myValue);
