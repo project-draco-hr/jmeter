@@ -4,7 +4,6 @@
     return port;
   }
  catch (  NumberFormatException exception) {
-    exception.printStackTrace();
     return 80;
   }
 }
