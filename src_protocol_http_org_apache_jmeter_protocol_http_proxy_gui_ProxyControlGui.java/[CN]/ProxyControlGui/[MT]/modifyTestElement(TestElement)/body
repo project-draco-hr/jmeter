@@ -6,7 +6,7 @@
     setIncludeListInProxyControl(model);
     setExcludeListInProxyControl(model);
     model.setCaptureHttpHeaders(httpHeaders.isSelected());
-    model.setSeparators(addSeparators.isSelected());
+    model.setGroupingMode(groupingMode.getSelectedIndex());
     model.setAssertions(addAssertions.isSelected());
     model.setUseKeepAlive(useKeepAlive.isSelected());
     TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();

@@ -23,5 +23,17 @@
  catch (  ClassNotFoundException e) {
     throw new Error(e);
   }
+  DefaultComboBoxModel m=new DefaultComboBoxModel();
+  m.addElement(JMeterUtils.getResString("grouping_no_groups"));
+  m.addElement(JMeterUtils.getResString("grouping_add_separators"));
+  groupingMode=new JComboBox(m);
+  groupingMode.setName(ProxyControl.GROUPING_MODE);
+  groupingMode.setSelectedIndex(0);
+  groupingMode.addActionListener(this);
+  groupingMode.setActionCommand(ProxyControl.GROUPING_MODE);
+  JLabel label2=new JLabel(JMeterUtils.getResString("grouping_mode"));
+  label2.setLabelFor(groupingMode);
+  panel.add(label2);
+  panel.add(groupingMode);
   return panel;
 }

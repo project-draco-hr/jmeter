@@ -1,5 +1,5 @@
 {
-  if (addSeparators) {
+  if (groupingMode == GROUPING_ADD_SEPARATORS) {
     GenericController sc=new GenericController();
     sc.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.control.gui.LogicControllerGui");
     sc.setName("-------------------");

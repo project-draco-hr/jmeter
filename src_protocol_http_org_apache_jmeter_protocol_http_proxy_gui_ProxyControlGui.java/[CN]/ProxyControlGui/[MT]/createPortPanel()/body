@@ -9,11 +9,6 @@
   httpHeaders.setSelected(true);
   httpHeaders.addActionListener(this);
   httpHeaders.setActionCommand(ProxyControl.CAPTURE_HTTP_HEADERS);
-  addSeparators=new JCheckBox(JMeterUtils.getResString("proxy_separators"));
-  addSeparators.setName(ProxyControl.ADD_SEPARATORS);
-  addSeparators.setSelected(false);
-  addSeparators.addActionListener(this);
-  addSeparators.setActionCommand(ProxyControl.ADD_SEPARATORS);
   addAssertions=new JCheckBox(JMeterUtils.getResString("proxy_assertions"));
   addAssertions.setName(ProxyControl.ADD_ASSERTIONS);
   addAssertions.setSelected(false);
@@ -30,7 +25,6 @@
   panel.add(Box.createHorizontalStrut(10));
   panel.add(httpHeaders);
   panel.add(useKeepAlive);
-  panel.add(addSeparators);
   panel.add(addAssertions);
   return panel;
 }
