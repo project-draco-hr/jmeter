@@ -8,7 +8,9 @@
     if (OldSaveService.getOutputFormat() == OldSaveService.SAVE_AS_XML) {
       trimmed=trimLastLine(filename);
     }
-    writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),"UTF-8"),true);
+    File ofile=new File(filename);
+    ofile.mkdirs();
+    writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(ofile,trimmed)),"UTF-8"),true);
     files.put(filename,writer);
   }
   if (!trimmed) {
