@@ -1,12 +1,12 @@
 {
-  if (child instanceof LoopIterationListener) {
-    loopIterListeners.add(child);
-  }
   if (child instanceof Controller) {
     Iterator iter=loopIterListeners.iterator();
     while (iter.hasNext()) {
       ((Controller)child).addIterationListener((LoopIterationListener)iter.next());
       iter.remove();
     }
+  }
+  if (child instanceof LoopIterationListener) {
+    loopIterListeners.add(child);
   }
 }
