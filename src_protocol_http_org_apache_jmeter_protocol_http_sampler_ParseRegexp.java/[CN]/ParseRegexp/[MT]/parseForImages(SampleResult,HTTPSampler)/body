@@ -17,12 +17,14 @@
     return res;
   }
   Set uniqueRLs=new LinkedHashSet();
-  Matcher matcher=(Matcher)localMatcher.get();
-  matcher.reset(new ByteArrayCharSequence(res.getResponseData()));
-  while (matcher.find()) {
+  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
+  PatternMatcherInput input=(PatternMatcherInput)localInput.get();
+  input.setInput(new String(res.getResponseData()));
+  while (matcher.contains(input,pattern)) {
+    MatchResult match=matcher.getMatch();
     String s;
-    if (log.isDebugEnabled())     log.debug("match groups " + matcher.groupCount());
-    s=matcher.group(1);
+    if (log.isDebugEnabled())     log.debug("match groups " + match.groups());
+    s=match.group(1);
     if (s != null) {
       try {
         baseUrl=new URL(baseUrl,s);
@@ -38,9 +40,9 @@
         return res;
       }
     }
-    for (int g=2; g < matcher.groupCount(); g++) {
-      s=matcher.group(g);
-      if (log.isDebugEnabled())       log.debug("group " + g + " - "+ s);
+    for (int g=2; g < match.groups(); g++) {
+      s=match.group(g);
+      if (log.isDebugEnabled())       log.debug("group " + g + " - "+ match.group(g));
       if (s != null)       uniqueRLs.add(s);
     }
   }
