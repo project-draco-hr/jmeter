@@ -1,0 +1,7 @@
+{
+  JLabel titleLabel=new JLabel(JMeterUtils.getResString("proxy_title"));
+  Font curFont=titleLabel.getFont();
+  titleLabel.setFont(curFont.deriveFont((float)curFont.getSize() + 4));
+  titleLabel.setAlignmentX(0.5f);
+  return titleLabel;
+}
