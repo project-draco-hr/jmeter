@@ -7,6 +7,7 @@
     }
     assertEquals("Failed on " + item.getClass().getName(),item.getStaticLabel(),item.getName());
     TestElement el=item.createTestElement();
+    assertNotNull("createTestElement failed on " + item.getClass().getName(),el);
     assertEquals("GUI-CLASS: Failed on " + item.getClass().getName(),item.getClass().getName(),el.getPropertyAsString(TestElement.GUI_CLASS));
     assertEquals("NAME: Failed on " + item.getClass().getName(),item.getName(),el.getPropertyAsString(TestElement.NAME));
     assertEquals("TEST-CLASS: Failed on " + item.getClass().getName(),el.getClass().getName(),el.getPropertyAsString(TestElement.TEST_CLASS));
