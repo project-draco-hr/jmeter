@@ -5,5 +5,5 @@
   assertEquals("org.apache.jmeter.testelement.property.FunctionProperty",newProp.getClass().getName());
   newProp.recoverRunningVersion(null);
   assertTrue(Integer.parseInt(newProp.getStringValue()) > -1);
-  assertEquals("2",JMeterContextService.getContext().getVariables().getObject("d,ay"));
+  assertEquals("2",jmctx.getVariables().getObject("d,ay"));
 }
