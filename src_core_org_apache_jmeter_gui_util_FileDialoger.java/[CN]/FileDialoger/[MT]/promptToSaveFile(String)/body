@@ -15,7 +15,12 @@
     }
   }
   clearFileFilters();
-  jfc.addChoosableFileFilter(new JMeterFileFilter(new String[]{ext}));
+  if (extensions != null) {
+    jfc.addChoosableFileFilter(new JMeterFileFilter(extensions));
+  }
+ else {
+    jfc.addChoosableFileFilter(new JMeterFileFilter(new String[]{ext}));
+  }
   int retVal=jfc.showSaveDialog(GuiPackage.getInstance().getMainFrame());
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
   if (retVal == JFileChooser.APPROVE_OPTION) {
