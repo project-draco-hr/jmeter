@@ -1,5 +1,5 @@
 {
-  String filename=sampler.getFileField();
+  String filename=sampler.getFilename();
   if ((filename != null) && (filename.trim().length() > 0)) {
     OutputStream out=connection.getOutputStream();
     writeln(out,"--" + BOUNDARY);
