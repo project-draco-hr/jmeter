@@ -1,6 +1,6 @@
 {
-  JMeterVariables variables=vars.getVariables();
-  if (!perUser) {
+  JMeterVariables variables=JMeterContextService.getContext().getVariables();
+  if (!isPerUser()) {
     globalCounter++;
     int value=start + (increment * globalCounter);
     if (value > end) {
@@ -11,8 +11,9 @@
   }
  else {
     String value=variables.get(getVarName());
-    if (value == null) {
+    if (value == null || value.equals("")) {
       variables.put(getVarName(),Integer.toString(start));
+      value=variables.get(getVarName());
     }
  else {
       try {
