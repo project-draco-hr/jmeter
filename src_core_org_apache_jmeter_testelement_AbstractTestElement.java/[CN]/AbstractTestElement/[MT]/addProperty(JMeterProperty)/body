@@ -1,9 +1,9 @@
 {
   if (isRunningVersion()) {
-    property.setTemporary(true,this);
+    setTemporary(property);
   }
  else {
-    property.clearTemporary(this);
+    clearTemporary(property);
   }
   JMeterProperty prop=getProperty(property.getName());
   if (prop instanceof NullProperty || (prop instanceof StringProperty && prop.getStringValue().equals(""))) {

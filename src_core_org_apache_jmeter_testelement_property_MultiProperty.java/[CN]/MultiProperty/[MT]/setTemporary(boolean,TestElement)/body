@@ -1,7 +1,0 @@
-{
-  super.setTemporary(temporary,owner);
-  PropertyIterator iter=iterator();
-  while (iter.hasNext()) {
-    iter.next().setTemporary(temporary,owner);
-  }
-}

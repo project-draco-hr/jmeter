@@ -1,13 +1,15 @@
 {
-  PropertyIterator iter=propertyIterator();
+  Iterator iter=propMap.entrySet().iterator();
   while (iter.hasNext()) {
-    JMeterProperty prop=iter.next();
-    if (prop.isTemporary(this)) {
+    Map.Entry entry=(Map.Entry)iter.next();
+    JMeterProperty prop=(JMeterProperty)entry.getValue();
+    if (isTemporary(prop)) {
       iter.remove();
-      prop.clearTemporary(this);
+      clearTemporary(prop);
     }
  else {
       prop.recoverRunningVersion(this);
     }
   }
+  emptyTemporary();
 }

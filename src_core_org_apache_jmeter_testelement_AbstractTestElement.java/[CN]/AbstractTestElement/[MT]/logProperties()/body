@@ -3,7 +3,7 @@
     PropertyIterator iter=propertyIterator();
     while (iter.hasNext()) {
       JMeterProperty prop=iter.next();
-      log.debug("Property " + prop.getName() + " is temp? "+ prop.isTemporary(this)+ " and is a "+ prop.getObjectValue());
+      log.debug("Property " + prop.getName() + " is temp? "+ isTemporary(prop)+ " and is a "+ prop.getObjectValue());
     }
   }
 }

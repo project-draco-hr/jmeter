@@ -3,7 +3,6 @@
     AbstractProperty prop=(AbstractProperty)this.getClass().newInstance();
     prop.name=name;
     prop.runningVersion=runningVersion;
-    prop.ownerMap=ownerMap;
     return prop;
   }
  catch (  InstantiationException e) {

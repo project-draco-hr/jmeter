@@ -2,7 +2,7 @@
   PropertyIterator iter=iterator();
   while (iter.hasNext()) {
     JMeterProperty prop=iter.next();
-    if (prop.isTemporary(owner) || prop.isTemporary(null)) {
+    if (owner.isTemporary(prop)) {
       iter.remove();
     }
  else {
