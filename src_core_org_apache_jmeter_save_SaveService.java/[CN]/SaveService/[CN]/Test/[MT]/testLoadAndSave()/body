@@ -11,7 +11,7 @@
     saveSubTree(tree,out);
     out.close();
     if (len != out.size()) {
-      fail("Loading file bin/testfiles/" + FILES[i] + " and "+ "saving it back changes its contents.");
+      fail("Loading file bin/testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ out.size()+ ".");
     }
   }
 }
