@@ -1,0 +1,12 @@
+{
+  if (url.indexOf("?") > -1) {
+    StringTokenizer tokens=this.tokenize(url,"?");
+    this.URL_PATH=tokens.nextToken();
+    this.GEN.setPath(URL_PATH);
+    return tokens.nextToken();
+  }
+ else {
+    this.GEN.setPath(url);
+    return url;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  String name=null;
+  String value=null;
+  try {
+    StringTokenizer param=this.tokenize(parameter,"=");
+    name=param.nextToken();
+    value=param.nextToken();
+  }
+ catch (  Exception e) {
+  }
+  if (value == null) {
+    value=new String();
+  }
+  return new NVPair(name.trim(),value.trim());
+}

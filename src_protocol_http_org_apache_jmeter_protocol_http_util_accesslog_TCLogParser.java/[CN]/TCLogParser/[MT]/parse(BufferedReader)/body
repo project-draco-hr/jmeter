@@ -1,0 +1,23 @@
+{
+  String line=null;
+  try {
+    line=breader.readLine();
+    if (line == null && COUNT >= this.PARSECOUNT) {
+      this.READER.close();
+      this.READER=null;
+      this.READER=new BufferedReader(new FileReader(this.SOURCE));
+      parse(this.READER);
+    }
+    while (line != null) {
+      if (line != null && line.length() > 0) {
+        this.parseLine(line);
+      }
+      if (this.PARSECOUNT != -1 && COUNT >= this.PARSECOUNT) {
+        break;
+      }
+    }
+  }
+ catch (  IOException ioe) {
+    ioe.printStackTrace();
+  }
+}

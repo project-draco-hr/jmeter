@@ -1,0 +1,19 @@
+{
+  if (this.FILEFILTER || this.PTRNFILTER || this.CHANGEEXT) {
+    if (this.FILEFILTER) {
+      return filterFile(path);
+    }
+ else     if (this.PTRNFILTER) {
+      return filterPattern(path);
+    }
+ else     if (this.CHANGEEXT) {
+      return replaceExtension(path);
+    }
+ else {
+      return false;
+    }
+  }
+ else {
+    return false;
+  }
+}

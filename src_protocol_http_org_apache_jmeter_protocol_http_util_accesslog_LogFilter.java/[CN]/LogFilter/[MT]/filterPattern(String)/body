@@ -1,0 +1,13 @@
+{
+  boolean match=false;
+  if (MATCHER == null) {
+    MATCHER=new Perl5Matcher();
+  }
+  if (this.INCPTRN != null) {
+    return incPattern(text);
+  }
+ else   if (this.EXCPTRN != null) {
+    return excPattern(text);
+  }
+  return false;
+}

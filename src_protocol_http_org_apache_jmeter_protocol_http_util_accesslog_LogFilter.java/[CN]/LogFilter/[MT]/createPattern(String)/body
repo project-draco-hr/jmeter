@@ -1,0 +1,10 @@
+{
+  try {
+    Perl5Compiler comp=new Perl5Compiler();
+    return comp.compile(pattern);
+  }
+ catch (  Exception exception) {
+    exception.printStackTrace();
+    return null;
+  }
+}
