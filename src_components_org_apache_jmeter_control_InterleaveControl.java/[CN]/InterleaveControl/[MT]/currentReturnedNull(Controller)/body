@@ -5,7 +5,4 @@
  else   if (getStyle() == USE_SUB_CONTROLLERS) {
     incrementCurrent();
   }
-  if (getStyle() == USE_SUB_CONTROLLERS && currentReturnedAtLeastOne) {
-    skipNext=true;
-  }
 }

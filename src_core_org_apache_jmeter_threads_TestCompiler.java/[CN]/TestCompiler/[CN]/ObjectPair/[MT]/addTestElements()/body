@@ -2,7 +2,4 @@
   if (parent instanceof Controller && (child instanceof Sampler || child instanceof Controller)) {
     parent.addTestElement(child);
   }
-  if (parent instanceof Controller && child instanceof LoopIterationListener) {
-    ((Controller)parent).addIterationListener((LoopIterationListener)child);
-  }
 }

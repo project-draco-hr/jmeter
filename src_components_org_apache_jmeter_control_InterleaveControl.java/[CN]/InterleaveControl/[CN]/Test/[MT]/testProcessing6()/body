@@ -1,0 +1,22 @@
+{
+  testLog.debug("Testing Interleave Controller 6");
+  GenericController controller=new GenericController();
+  InterleaveControl sub_1=new InterleaveControl();
+  controller.addTestElement(new TestSampler("one"));
+  sub_1.setStyle(IGNORE_SUB_CONTROLLERS);
+  controller.addTestElement(sub_1);
+  LoopController sub_2=new LoopController();
+  sub_1.addTestElement(sub_2);
+  sub_2.setLoops(3);
+  int counter=1;
+  controller.initialize();
+  for (int i=0; i < 4; i++) {
+    assertEquals(1,counter);
+    counter=0;
+    TestElement sampler=null;
+    while ((sampler=controller.next()) != null) {
+      assertEquals("one",sampler.getPropertyAsString(TestElement.NAME));
+      counter++;
+    }
+  }
+}
