@@ -2,26 +2,31 @@
   String name=((Component)e.getSource()).getName();
   String action=e.getActionCommand();
   if (action.equals("remote_stop")) {
-    GuiPackage.getInstance().getMainFrame().showStoppingMessage(name);
-    JMeterEngine engine=(JMeterEngine)remoteEngines.get(name);
-    engine.stopTest();
+    doRemoteStop(name);
   }
  else   if (action.equals("remote_start")) {
-    JMeterEngine engine=(JMeterEngine)remoteEngines.get(name);
-    if (engine == null) {
-      try {
-        engine=new ClientJMeterEngine(name);
-        remoteEngines.put(name,engine);
-      }
- catch (      Exception ex) {
-        log.error("",ex);
-        JMeterUtils.reportErrorToUser("Bad call to remote host");
-        return;
-      }
+    doRemoteInit(name);
+    doRemoteStart(name);
+  }
+ else   if (action.equals("remote_start_all")) {
+    String remote_hosts_string=JMeterUtils.getPropDefault("remote_hosts","127.0.0.1");
+    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
+    while (st.hasMoreElements()) {
+      String el=(String)st.nextElement();
+      doRemoteInit(el);
     }
- else {
-      engine.reset();
+    st=new java.util.StringTokenizer(remote_hosts_string,",");
+    while (st.hasMoreElements()) {
+      String el=(String)st.nextElement();
+      doRemoteStart(el);
     }
-    startEngine(engine,name);
+  }
+ else   if (action.equals("remote_stop_all")) {
+    String remote_hosts_string=JMeterUtils.getPropDefault("remote_hosts","127.0.0.1");
+    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
+    while (st.hasMoreElements()) {
+      String el=(String)st.nextElement();
+      doRemoteStop(el);
+    }
   }
 }

@@ -20,10 +20,20 @@
   if (remote_start != null) {
     runMenu.add(remote_start);
   }
+  remote_start_all=new JMenuItem(JMeterUtils.getResString("remote_start_all"),'Z');
+  remote_start_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,KeyEvent.CTRL_MASK));
+  remote_start_all.addActionListener(ActionRouter.getInstance());
+  remote_start_all.setActionCommand("remote_start_all");
+  runMenu.add(remote_start_all);
   runMenu.add(run_stop);
   if (remote_stop != null) {
     runMenu.add(remote_stop);
   }
+  remote_stop_all=new JMenuItem(JMeterUtils.getResString("remote_stop_all"),'X');
+  remote_stop_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,KeyEvent.CTRL_MASK));
+  remote_stop_all.addActionListener(ActionRouter.getInstance());
+  remote_stop_all.setActionCommand("remote_stop_all");
+  runMenu.add(remote_stop_all);
   runMenu.addSeparator();
   runMenu.add(run_clear);
   runMenu.add(run_clearAll);
