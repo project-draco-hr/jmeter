@@ -5,9 +5,9 @@
     }
   }
  else   if (columnIndex == 1) {
-    log.info("rowIndex = " + rowIndex);
+    log.debug("rowIndex = " + rowIndex);
     if ((rowIndex >= 0) && (rowIndex < urlList.size())) {
-      log.info(" url = " + urlList.get(rowIndex));
+      log.debug(" url = " + urlList.get(rowIndex));
       return urlList.get(rowIndex);
     }
   }
