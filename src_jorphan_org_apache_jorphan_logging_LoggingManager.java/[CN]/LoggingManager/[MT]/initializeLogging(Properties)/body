@@ -6,4 +6,5 @@
   setTarget(makeWriter(properties.getProperty(LOG_FILE,"jmeter.log"),LOG_FILE));
   setPriority(properties.getProperty(LOG_PRIORITY,"INFO"));
   setLoggingLevels(properties);
+  setConfig(properties);
 }
