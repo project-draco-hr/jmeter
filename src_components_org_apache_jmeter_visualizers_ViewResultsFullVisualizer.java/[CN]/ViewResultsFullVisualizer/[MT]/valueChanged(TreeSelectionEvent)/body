@@ -53,13 +53,11 @@ response=new String(responseBytes,"utf-8");
  catch (UnsupportedEncodingException err) {
 response=new String(responseBytes);
 }
-if (response != null) {
 if (textMode) {
-  showTextResponse(response);
+showTextResponse(response);
 }
  else {
-  showRenderedResponse(response);
-}
+showRenderedResponse(response);
 }
 }
  else if (responseBytes != null) {

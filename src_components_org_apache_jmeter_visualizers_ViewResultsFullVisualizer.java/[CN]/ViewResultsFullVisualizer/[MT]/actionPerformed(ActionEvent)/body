@@ -1,6 +1,6 @@
 {
   String command=e.getActionCommand();
-  if (command != null && command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND)) {
+  if (command != null && (command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND))) {
     textMode=!textMode;
     DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
     if (node == null) {
