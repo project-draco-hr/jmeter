@@ -1,5 +1,5 @@
 {
-  counter.setInteger((new Integer(counter.getInteger().intValue() + 1)));
+  counter[0]++;
   JMeterVariables vars=getVariables();
   boolean perThread=new Boolean(((CompoundVariable)variables[0]).execute()).booleanValue();
   String varName=((CompoundVariable)variables[variables.length - 1]).execute();
@@ -8,7 +8,7 @@
     counterString=Integer.toString(vars.getIteration());
   }
  else {
-    counterString=String.valueOf(counter.getInteger());
+    counterString=String.valueOf(counter[0]);
   }
   vars.put(varName,counterString);
   return counterString;
