@@ -14,14 +14,7 @@
   logprop("os.version");
   logprop("os.arch");
   logprop("java.class.version");
-  String cp=System.getProperty("java.class.path");
-  String cpe[]=JMeterUtils.split(cp,";","");
-  StringBuffer sb=new StringBuffer(3000);
-  for (int i=0; i < cpe.length; i++) {
-    sb.append(cpe[i]);
-    sb.append("\n");
-  }
-  log.info(sb.toString());
+  logprop("java.class.path");
   String e="java.awt.headless";
   String g="java.awt.graphicsenv";
   System.out.println("+++++++++++");
