@@ -5,13 +5,13 @@
   executions=getExecutions();
   iterations=getIteration();
   if (getStyle() == BYNUMBER) {
-    if (executions < getMaxThroughput()) {
+    if (executions < getMaxThroughputAsInt()) {
       retval=true;
     }
   }
  else {
-    if (iteration == 0 && getPercentThroughput() > 0)     retval=true;
- else     if ((executions / iteration) * 100 <= getPercentThroughput())     retval=true;
+    if (iteration == 0 && getPercentThroughputAsFloat() > 0)     retval=true;
+ else     if (((float)executions / iteration) * 100 <= getPercentThroughputAsFloat())     retval=true;
   }
   if (retval) {
     returnTrue=true;
