@@ -21,7 +21,6 @@
       RESULT.sampleEnd();
       RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
     }
-    RESULT.setTimeStamp(System.currentTimeMillis());
     RESULT.setSuccessful(true);
     RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile());
     RESULT.setDataEncoding(st.getResponseSOAPContext().getContentType());
