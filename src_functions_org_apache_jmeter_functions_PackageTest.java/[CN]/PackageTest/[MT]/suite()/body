@@ -1,12 +1,14 @@
 {
   TestSuite suite=new TestSuite("SingleThreaded");
+  suite.addTest(new PackageTest("CSVParams"));
   suite.addTest(new PackageTest("CSVNoFile"));
-  suite.addTest(new PackageTest("CSV2Setup"));
-  suite.addTest(new PackageTest("CSV2Run"));
-  suite.addTest(new PackageTest("CSV2Setup"));
+  suite.addTest(new PackageTest("CSVSetup"));
+  suite.addTest(new PackageTest("CSVRun"));
+  suite.addTest(new PackageTest("CSValias"));
+  suite.addTest(new PackageTest("CSVSetup"));
   TestSuite par=new ActiveTestSuite("Parallel");
-  par.addTest(new PackageTest("Thread1"));
-  par.addTest(new PackageTest("Thread2"));
+  par.addTest(new PackageTest("CSVThread1"));
+  par.addTest(new PackageTest("CSVThread2"));
   suite.addTest(par);
   return suite;
 }

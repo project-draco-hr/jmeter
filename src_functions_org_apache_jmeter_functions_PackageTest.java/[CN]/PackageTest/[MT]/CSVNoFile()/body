@@ -1,7 +1,15 @@
 {
-  CSVRead c1, c2;
-  c1=setParams("xtestfiles/test.csv","1");
-  c1.execute(null,null);
-  c2=setParams("xtestfiles/test.csv","next");
-  c2.execute(null,null);
+  String s;
+  cr1=setParams("xtestfiles/test.csv","1");
+  s=cr1.execute(null,null);
+  assertEquals("",s);
+  cr2=setParams("xtestfiles/test.csv","next");
+  s=cr2.execute(null,null);
+  assertEquals("",s);
+  cr3=setParams("xtestfiles/test.csv","*ABC");
+  s=cr3.execute(null,null);
+  assertEquals("",s);
+  cr4=setParams("*ABC","1");
+  s=cr4.execute(null,null);
+  assertEquals("",s);
 }
