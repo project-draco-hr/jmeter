@@ -10,6 +10,7 @@
  else {
       sampler.setPort(80);
     }
+    sampler.setWsdlURL(wsdlField.getText());
     sampler.setProtocol(url.getProtocol());
     sampler.setMethod(HTTPSamplerBase.POST);
     sampler.setPath(url.getPath());
