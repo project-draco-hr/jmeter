@@ -11,13 +11,11 @@
   serverTypeBox.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
       if (((String)serverTypeBox.getSelectedItem()).equals(POP3Label)) {
-        type=MailReaderSampler.TYPE_POP3;
         folderLabel.setEnabled(false);
         folderBox.setText("INBOX");
         folderBox.setEnabled(false);
       }
  else {
-        type=MailReaderSampler.TYPE_IMAP;
         folderLabel.setEnabled(true);
         folderBox.setEnabled(true);
       }
