@@ -1,5 +1,5 @@
 {
-  PluginManager.install(this);
+  PluginManager.install(this,true);
   JMeterTreeModel treeModel=new JMeterTreeModel();
   JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
   treeLis.setActionHandler(ActionRouter.getInstance());

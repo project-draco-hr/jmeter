@@ -1,6 +1,6 @@
 {
   JMeter driver=new JMeter();
-  PluginManager.install(this);
+  PluginManager.install(this,false);
   if (testFile == null) {
     throw new IllegalUserActionException();
   }
