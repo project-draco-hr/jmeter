@@ -1,5 +1,5 @@
 {
-  String testPath=System.getProperty("user.dir") + "/classes";
+  String testPath=JMeterUtils.getJMeterHome() + "/build";
   List listPaths=new ArrayList();
   ArrayList listClasses=new ArrayList();
   listPaths.add(testPath);
