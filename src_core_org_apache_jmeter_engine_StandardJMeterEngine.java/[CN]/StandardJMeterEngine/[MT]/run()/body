@@ -39,6 +39,8 @@
       threads[i].setThreadName(group.getName() + (groupCount++) + "-"+ (i + 1));
       scheduleThread(threads[i],group);
       threads[i].setEngine(this);
+      threads[i].setOnErrorStopTest(group.getOnErrorStopTest());
+      threads[i].setOnErrorStopThread(group.getOnErrorStopThread());
       Thread newThread=new Thread(threads[i]);
       newThread.setName(threads[i].getThreadName());
       allThreads.put(threads[i],newThread);

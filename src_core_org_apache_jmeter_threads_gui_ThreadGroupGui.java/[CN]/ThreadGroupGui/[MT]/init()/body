@@ -1,7 +1,10 @@
 {
   setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
-  add(makeTitlePanel(),BorderLayout.NORTH);
+  Box box=Box.createVerticalBox();
+  box.add(makeTitlePanel());
+  box.add(createOnErrorPanel());
+  add(box,BorderLayout.NORTH);
   VerticalPanel threadPropsPanel=new VerticalPanel();
   threadPropsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("thread_delay_properties")));
   JPanel threadPanel=new JPanel(new BorderLayout(5,0));

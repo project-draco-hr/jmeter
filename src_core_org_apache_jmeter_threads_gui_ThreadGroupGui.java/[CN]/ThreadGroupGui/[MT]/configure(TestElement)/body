@@ -12,4 +12,5 @@
   }
   start.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.START_TIME)));
   end.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.END_TIME)));
+  setSampleErrorBoxes((ThreadGroup)tg);
 }

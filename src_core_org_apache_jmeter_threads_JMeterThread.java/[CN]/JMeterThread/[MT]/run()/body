@@ -28,10 +28,10 @@
           checkAssertions(pack.getAssertions(),result);
           notifyListeners(pack.getSampleListeners(),result);
           compiler.done(pack);
-          if (result.isStopThread()) {
+          if (result.isStopThread() || (!result.isSuccessful() && onErrorStopThread)) {
             stopThread();
           }
-          if (result.isStopTest()) {
+          if (result.isStopTest() || (!result.isSuccessful() && onErrorStopTest)) {
             stopTest();
           }
           if (scheduler) {
