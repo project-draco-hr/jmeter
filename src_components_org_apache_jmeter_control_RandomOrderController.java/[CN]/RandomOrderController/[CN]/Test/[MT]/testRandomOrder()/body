@@ -1,0 +1,19 @@
+{
+  testLog.debug("Testing RandomOrderController");
+  RandomOrderController roc=new RandomOrderController();
+  roc.addTestElement(new TestSampler("zero"));
+  roc.addTestElement(new TestSampler("one"));
+  roc.addTestElement(new TestSampler("two"));
+  roc.addTestElement(new TestSampler("three"));
+  TestElement sampler=null;
+  List usedSamplers=new ArrayList();
+  roc.initialize();
+  while ((sampler=roc.next()) != null) {
+    String samplerName=sampler.getPropertyAsString(TestSampler.NAME);
+    if (usedSamplers.contains(samplerName)) {
+      assertTrue("Duplicate sampler returned from next()",false);
+    }
+    usedSamplers.add(samplerName);
+  }
+  assertTrue("All samplers were returned",usedSamplers.size() == 4);
+}
