@@ -1,3 +1,6 @@
 {
+  if (log.isDebugEnabled()) {
+    log.debug(Thread.currentThread().getName() + " getRowPosition = " + rowPosition);
+  }
   return rowPosition;
 }

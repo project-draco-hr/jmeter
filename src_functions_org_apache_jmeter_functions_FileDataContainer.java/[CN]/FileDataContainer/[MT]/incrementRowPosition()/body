@@ -5,4 +5,7 @@
       rowPosition=0;
     }
   }
+  if (log.isDebugEnabled()) {
+    log.debug(Thread.currentThread().getName() + " >>>> incrementRowPosition - returning : " + rowPosition);
+  }
 }

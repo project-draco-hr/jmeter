@@ -1,4 +1,6 @@
 {
   super();
   this.fileData=new ArrayList();
+  rowPosition=0;
+  log.debug(Thread.currentThread().getName() + " Constructed()");
 }
