@@ -5,15 +5,7 @@
   }
   initializeLogging(args);
   initializeManager(args);
-  try {
-    TestSuite suite=suite(args[0]);
-    PrintStream out=new PrintStream(new FileOutputStream("testresults.txt"));
-    junit.textui.TestRunner runner=new junit.textui.TestRunner(out);
-    runner.run(suite);
-    out.close();
-  }
- catch (  FileNotFoundException e) {
-    log.error("",e);
-  }
+  TestSuite suite=suite(args[0]);
+  TestRunner.run(suite);
   System.exit(0);
 }
