@@ -1,0 +1,14 @@
+{
+  JMeterVariables variables=vars.getVariables();
+  if (perUser) {
+    int value=start + (increment * (iterationCount - 1));
+    value=value % end;
+    variables.put(getVarName(),Integer.toString(value));
+  }
+ else {
+    globalCounter++;
+    int value=start + (increment * globalCounter);
+    value=value % end;
+    variables.put(getVarName(),Integer.toString(value));
+  }
+}

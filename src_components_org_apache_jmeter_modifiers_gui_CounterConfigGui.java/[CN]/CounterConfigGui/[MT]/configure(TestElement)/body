@@ -1,0 +1,9 @@
+{
+  super.configure(element);
+  CounterConfig config=(CounterConfig)element;
+  startField.setText(Integer.toString(config.getStart()));
+  endField.setText(Integer.toString(config.getEnd()));
+  incrField.setText(Integer.toString(config.getIncrement()));
+  varNameField.setText(config.getVarName());
+  perUserField.setSelected(config.isPerUser());
+}
