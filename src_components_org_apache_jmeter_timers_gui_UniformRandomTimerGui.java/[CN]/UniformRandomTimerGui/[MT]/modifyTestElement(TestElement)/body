@@ -1,0 +1,5 @@
+{
+  this.configureTestElement(timer);
+  ((RandomTimer)timer).setDelay(delayField.getText());
+  ((RandomTimer)timer).setRange(Double.parseDouble(rangeField.getText()));
+}

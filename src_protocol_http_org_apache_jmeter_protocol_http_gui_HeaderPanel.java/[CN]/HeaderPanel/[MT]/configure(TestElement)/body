@@ -1,4 +1,5 @@
 {
+  tableModel.manager.clear();
   super.configure(el);
-  tableModel.manager=(HeaderManager)el;
+  tableModel.manager.addTestElement((HeaderManager)el);
 }

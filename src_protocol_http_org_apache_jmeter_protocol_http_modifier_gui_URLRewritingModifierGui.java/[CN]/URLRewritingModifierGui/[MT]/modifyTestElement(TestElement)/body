@@ -1,0 +1,5 @@
+{
+  this.configureTestElement(modifier);
+  ((URLRewritingModifier)modifier).setArgumentName(argumentName.getText());
+  ((URLRewritingModifier)modifier).setPathExtension(pathExt.isSelected());
+}

@@ -1,27 +1,5 @@
 {
   ResponseAssertion el=new ResponseAssertion();
-  String[] testStrings=tableModel.getData().getColumn(COL_NAME);
-  for (int i=0; i < testStrings.length; i++) {
-    el.addTestString(testStrings[i]);
-  }
-  configureTestElement(el);
-  if (labelButton.isSelected()) {
-    el.setTestField(ResponseAssertion.SAMPLE_LABEL);
-  }
- else {
-    el.setTestField(ResponseAssertion.RESPONSE_DATA);
-  }
-  if (containsBox.isSelected()) {
-    el.setToContainsType();
-  }
- else {
-    el.setToMatchType();
-  }
-  if (notBox.isSelected()) {
-    el.setToNotType();
-  }
- else {
-    el.unsetNotType();
-  }
+  modifyTestElement(el);
   return el;
 }

@@ -3,9 +3,6 @@
     model=makeProxyControl();
   }
   log.debug("creating/configuring model = " + model);
-  model.setProperty(TestElement.NAME,getName());
-  model.setPort(Integer.parseInt(portField.getText()));
-  setIncludeListInProxyControl(model);
-  setExcludeListInProxyControl(model);
+  modifyTestElement(model);
   return model;
 }

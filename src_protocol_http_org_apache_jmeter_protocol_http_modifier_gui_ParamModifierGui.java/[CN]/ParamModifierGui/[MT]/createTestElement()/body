@@ -1,12 +1,5 @@
 {
   ParamModifier modifier=new ParamModifier();
-  configureTestElement(modifier);
-  ParamMask mask=modifier.getMask();
-  mask.setFieldName(_fieldName.getText());
-  mask.setPrefix(_prefix.getText());
-  mask.setLowerBound(Long.parseLong(_lowerBound.getText()));
-  mask.setIncrement(Long.parseLong(_increment.getText()));
-  mask.setUpperBound(Long.parseLong(_upperBound.getText()));
-  mask.setSuffix(_suffix.getText());
+  modifyTestElement(modifier);
   return modifier;
 }

@@ -1,11 +1,5 @@
 {
   InterleaveControl ic=new InterleaveControl();
-  configureTestElement(ic);
-  if (style.isSelected()) {
-    ic.setStyle(InterleaveControl.DEFAULT_STYLE);
-  }
- else {
-    ic.setStyle(InterleaveControl.NEW_STYLE);
-  }
+  modifyTestElement(ic);
   return ic;
 }

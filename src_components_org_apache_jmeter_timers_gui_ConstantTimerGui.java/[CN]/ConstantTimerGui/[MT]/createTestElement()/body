@@ -1,6 +1,5 @@
 {
   ConstantTimer timer=new ConstantTimer();
-  this.configureTestElement(timer);
-  timer.setDelay(delayField.getText());
+  modifyTestElement(timer);
   return timer;
 }

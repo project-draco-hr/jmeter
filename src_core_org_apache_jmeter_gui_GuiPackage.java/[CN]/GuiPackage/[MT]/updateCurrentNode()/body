@@ -4,10 +4,7 @@
       log.debug("Updating current node " + currentNode.createTestElement());
       JMeterGUIComponent comp=getGui(currentNode.createTestElement());
       TestElement el=currentNode.createTestElement();
-      nodesToGui.remove(el);
-      currentNode.setUserObject(comp.createTestElement());
-      el=currentNode.createTestElement();
-      nodesToGui.put(el,comp);
+      comp.modifyTestElement(el);
     }
     currentNode=treeListener.getCurrentNode();
   }

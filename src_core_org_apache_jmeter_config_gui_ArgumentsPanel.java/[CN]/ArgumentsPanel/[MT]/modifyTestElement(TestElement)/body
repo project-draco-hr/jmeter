@@ -1,0 +1,12 @@
+{
+  Data model=tableModel.getData();
+  Arguments arguments=null;
+  if (args instanceof Arguments) {
+    arguments=(Arguments)args;
+    model.reset();
+    while (model.next()) {
+      arguments.addArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1]),"=");
+    }
+  }
+  this.configureTestElement(args);
+}

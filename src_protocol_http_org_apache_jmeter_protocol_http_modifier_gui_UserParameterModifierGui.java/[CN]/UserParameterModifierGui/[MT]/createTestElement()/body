@@ -1,6 +1,5 @@
 {
   UserParameterModifier mod=new UserParameterModifier();
-  this.configureTestElement(mod);
-  mod.setXmlUri(fileNameField.getText());
+  modifyTestElement(mod);
   return mod;
 }

@@ -1,7 +1,5 @@
 {
   ConfigTestElement element=new ConfigTestElement();
-  configureTestElement(element);
-  element.setProperty(ConfigTestElement.USERNAME,username.getText());
-  element.setProperty(ConfigTestElement.PASSWORD,password.getText());
+  modifyTestElement(element);
   return element;
 }

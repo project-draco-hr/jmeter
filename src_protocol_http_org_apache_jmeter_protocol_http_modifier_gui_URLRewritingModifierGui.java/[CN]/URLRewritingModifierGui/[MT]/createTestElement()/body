@@ -1,7 +1,5 @@
 {
   URLRewritingModifier modifier=new URLRewritingModifier();
-  this.configureTestElement(modifier);
-  modifier.setArgumentName(argumentName.getText());
-  modifier.setPathExtension(pathExt.isSelected());
+  modifyTestElement(modifier);
   return modifier;
 }

@@ -65,7 +65,7 @@ catch (    NullPointerException err) {
     try {
       File tmp=FileDialoger.promptToSaveFile(null).getSelectedFile();
       if (tmp != null) {
-        createCookieManager().save(tmp.getAbsolutePath());
+        ((CookieManager)createTestElement()).save(tmp.getAbsolutePath());
       }
     }
  catch (    IOException ex) {

@@ -1,12 +1,7 @@
 {
   log.debug("Configuring gui with " + element);
-  if (model != null && model != element) {
-    model.addTestElement(element);
-  }
-  if (model == null) {
-    model=(ProxyControl)element;
-  }
-  setName(model.getProperty(TestElement.NAME).toString());
+  super.configure(element);
+  model=(ProxyControl)element;
   portField.setText(model.getProperty(ProxyControl.PORT).toString());
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());

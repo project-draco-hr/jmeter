@@ -1,12 +1,5 @@
 {
   CounterConfig config=new CounterConfig();
-  config.setStart(startField.getText());
-  if (endField.getText().length() > 0) {
-    config.setEnd(endField.getText());
-  }
-  config.setIncrement(incrField.getText());
-  config.setVarName(varNameField.getText());
-  config.setIsPerUser(perUserField.isSelected());
-  super.configureTestElement(config);
+  modifyTestElement(config);
   return config;
 }

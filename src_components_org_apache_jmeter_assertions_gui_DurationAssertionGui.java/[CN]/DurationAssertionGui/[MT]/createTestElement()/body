@@ -1,14 +1,5 @@
 {
   DurationAssertion el=new DurationAssertion();
-  configureTestElement(el);
-  String durationString=duration.getText();
-  long assertionDuration=0;
-  try {
-    assertionDuration=Long.parseLong(durationString);
-  }
- catch (  NumberFormatException e) {
-    assertionDuration=Long.MAX_VALUE;
-  }
-  el.setAllowedDuration(assertionDuration);
+  modifyTestElement(el);
   return el;
 }

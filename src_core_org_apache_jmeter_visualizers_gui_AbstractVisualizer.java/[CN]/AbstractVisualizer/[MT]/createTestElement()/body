@@ -2,21 +2,6 @@
   if (collector == null) {
     collector=new ResultCollector();
   }
-  configureTestElement(collector);
-  collector.setErrorLogging(errorLogging.isSelected());
-  try {
-    if (!getFile().equals("")) {
-      try {
-        collector.setFilename(getFile());
-      }
- catch (      IllegalUserActionException e) {
-        JMeterUtils.reportErrorToUser(e.getMessage());
-        setFile("");
-      }
-    }
-  }
- catch (  IOException e) {
-    log.error("",e);
-  }
+  modifyTestElement(collector);
   return (TestElement)collector.clone();
 }

@@ -1,7 +1,5 @@
 {
   ConfigTestElement element=new ConfigTestElement();
-  configureTestElement(element);
-  element.setProperty(JDBCSampler.CONNECTIONS,connField.getText());
-  element.setProperty(JDBCSampler.MAXUSE,maxUseField.getText());
+  modifyTestElement(element);
   return element;
 }

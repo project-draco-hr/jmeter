@@ -1,0 +1,11 @@
+{
+  super.configureTestElement(extractor);
+  extractor.setProperty(RegexExtractor.MATCH_NUMBER,matchNumberField.getText());
+  if (extractor instanceof RegexExtractor) {
+    RegexExtractor regex=(RegexExtractor)extractor;
+    regex.setRefName(refNameField.getText());
+    regex.setRegex(regexField.getText());
+    regex.setTemplate(templateField.getText());
+    regex.setDefaultValue(defaultField.getText());
+  }
+}

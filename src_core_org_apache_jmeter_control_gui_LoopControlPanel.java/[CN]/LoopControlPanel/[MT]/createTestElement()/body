@@ -1,11 +1,5 @@
 {
   LoopController lc=new LoopController();
-  configureTestElement(lc);
-  if (loops.getText().length() > 0) {
-    lc.setLoops(Integer.parseInt(loops.getText()));
-  }
- else {
-    lc.setLoops(-1);
-  }
+  modifyTestElement(lc);
   return lc;
 }

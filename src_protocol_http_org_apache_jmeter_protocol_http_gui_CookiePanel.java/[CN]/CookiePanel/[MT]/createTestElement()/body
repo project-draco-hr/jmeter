@@ -1,5 +1,5 @@
 {
-  CookieManager cookieManager=createCookieManager();
-  configureTestElement(cookieManager);
+  CookieManager cookieManager=new CookieManager();
+  modifyTestElement(cookieManager);
   return cookieManager;
 }

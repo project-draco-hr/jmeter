@@ -1,10 +1,5 @@
 {
   RegexExtractor extractor=new RegexExtractor();
-  extractor.setRefName(refNameField.getText());
-  extractor.setRegex(regexField.getText());
-  extractor.setTemplate(templateField.getText());
-  super.configureTestElement(extractor);
-  extractor.setProperty(RegexExtractor.MATCH_NUMBER,matchNumberField.getText());
-  extractor.setDefaultValue(defaultField.getText());
+  modifyTestElement(extractor);
   return extractor;
 }

@@ -1,4 +1,5 @@
 {
   super.configure(el);
-  tableModel.manager=(AuthManager)el;
+  tableModel.manager.clear();
+  tableModel.manager.addTestElement((AuthManager)el);
 }

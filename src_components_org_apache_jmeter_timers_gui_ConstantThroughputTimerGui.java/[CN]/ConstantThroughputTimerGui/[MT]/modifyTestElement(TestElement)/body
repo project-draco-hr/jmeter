@@ -1,0 +1,4 @@
+{
+  this.configureTestElement(timer);
+  ((ConstantThroughputTimer)timer).setThroughput(Long.parseLong(throughputField.getText()));
+}

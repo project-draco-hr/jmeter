@@ -1,7 +1,5 @@
 {
   FTPSampler sampler=new FTPSampler();
-  sampler.addTestElement(ftpDefaultPanel.createTestElement());
-  sampler.addTestElement(loginPanel.createTestElement());
-  this.configureTestElement(sampler);
+  modifyTestElement(sampler);
   return sampler;
 }

@@ -1,0 +1,5 @@
+{
+  wb.setProperty(TestElement.NAME,getName());
+  wb.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+  wb.setProperty(TestElement.TEST_CLASS,WorkBench.class.getName());
+}

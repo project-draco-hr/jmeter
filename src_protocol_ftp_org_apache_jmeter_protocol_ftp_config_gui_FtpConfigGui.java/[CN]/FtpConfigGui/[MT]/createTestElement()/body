@@ -1,7 +1,5 @@
 {
   ConfigTestElement element=new ConfigTestElement();
-  configureTestElement(element);
-  element.setProperty(FTPSampler.SERVER,server.getText());
-  element.setProperty(FTPSampler.FILENAME,filename.getText());
+  modifyTestElement(element);
   return element;
 }
