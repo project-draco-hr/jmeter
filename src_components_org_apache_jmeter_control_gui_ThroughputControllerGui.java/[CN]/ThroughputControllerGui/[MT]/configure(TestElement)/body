@@ -1,11 +1,12 @@
 {
   super.configure(el);
   if (((ThroughputController)el).getStyle() == ThroughputController.BYNUMBER) {
-    style.getModel().setSelectedItem(BYNUMBER_LABEL);
+    styleBox.getModel().setSelectedItem(BYNUMBER_LABEL);
     throughput.setText(String.valueOf(((ThroughputController)el).getMaxThroughput()));
   }
  else {
-    style.setSelectedItem(BYPERCENT_LABEL);
+    styleBox.setSelectedItem(BYPERCENT_LABEL);
     throughput.setText(String.valueOf(((ThroughputController)el).getPercentThroughput()));
   }
+  perthread.setSelected(((ThroughputController)el).isPerThread());
 }

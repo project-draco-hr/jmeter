@@ -1,10 +1,11 @@
 {
-  Object o=super.clone();
-  ((ThroughputController)o).numExecutions=numExecutions;
-  ((ThroughputController)o).iteration=iteration;
-  ((ThroughputController)o).globalNumExecutions=globalNumExecutions;
-  ((ThroughputController)o).globalIteration=globalIteration;
-  ((ThroughputController)o).numExecutionsLock=numExecutionsLock;
-  ((ThroughputController)o).iterationLock=iterationLock;
-  return o;
+  ThroughputController clone=(ThroughputController)super.clone();
+  clone.numExecutions=numExecutions;
+  clone.iteration=iteration;
+  clone.globalNumExecutions=globalNumExecutions;
+  clone.globalIteration=globalIteration;
+  clone.numExecutionsLock=numExecutionsLock;
+  clone.iterationLock=iterationLock;
+  clone.initialized=initialized;
+  return clone;
 }

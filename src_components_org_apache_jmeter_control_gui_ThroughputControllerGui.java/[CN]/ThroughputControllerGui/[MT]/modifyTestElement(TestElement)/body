@@ -1,7 +1,8 @@
 {
   configureTestElement(tc);
-  if (((String)style.getSelectedItem()).equals(BYNUMBER_LABEL)) {
-    ((ThroughputController)tc).setStyle(ThroughputController.BYNUMBER);
+  ((ThroughputController)tc).setStyle(style);
+  ((ThroughputController)tc).setPerThread(isPerThread);
+  if (style == ThroughputController.BYNUMBER) {
     try {
       ((ThroughputController)tc).setMaxThroughput(Integer.parseInt(throughput.getText().trim()));
     }
@@ -10,12 +11,11 @@
     }
   }
  else {
-    ((ThroughputController)tc).setStyle(ThroughputController.BYPERCENT);
     try {
       ((ThroughputController)tc).setPercentThroughput(Float.parseFloat(throughput.getText().trim()));
     }
  catch (    NumberFormatException e) {
-      ((ThroughputController)tc).setMaxThroughput(100);
+      ((ThroughputController)tc).setPercentThroughput(100);
     }
   }
 }

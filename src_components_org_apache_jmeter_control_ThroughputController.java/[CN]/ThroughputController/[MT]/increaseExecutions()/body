@@ -1,3 +1,10 @@
 {
-  setExecutions(getExecutions() + 1);
+  if (!isPerThread()) {
+synchronized (numExecutionsLock) {
+      setExecutions(getExecutions() + 1);
+    }
+  }
+ else {
+    setExecutions(getExecutions() + 1);
+  }
 }

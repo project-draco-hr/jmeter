@@ -1,11 +1,11 @@
 {
-  super();
+  globalNumExecutions=new IntegerWrapper();
+  globalIteration=new IntegerWrapper();
   numExecutionsLock=new Object();
   iterationLock=new Object();
-  globalNumExecutions=new IntegerWrapper(new Integer(0));
-  globalIteration=new IntegerWrapper(new Integer(0));
   setStyle(BYNUMBER);
   setPerThread(true);
-  setMaxThroughput(0);
+  setMaxThroughput(1);
   setPercentThroughput(100);
+  initialized=true;
 }

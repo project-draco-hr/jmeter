@@ -1,3 +1,10 @@
 {
-  setIteration(getIteration() + 1);
+  if (!isPerThread()) {
+synchronized (iterationLock) {
+      setIteration(getIteration() + 1);
+    }
+  }
+ else {
+    setIteration(getIteration() + 1);
+  }
 }

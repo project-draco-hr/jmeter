@@ -1,9 +1,7 @@
 {
-  if (getPerThread()) {
+  if (!isPerThread()) {
     int retValue;
-synchronized (numExecutionsLock) {
-      retValue=globalNumExecutions.getInteger().intValue();
-    }
+    retValue=globalNumExecutions.getInteger().intValue();
     return retValue;
   }
   return numExecutions;

@@ -1,0 +1,21 @@
+{
+  int executions, iterations;
+  if (!isPerThread()) {
+synchronized (numExecutionsLock) {
+      executions=getExecutions();
+    }
+synchronized (iterationLock) {
+      iterations=getIteration();
+    }
+  }
+ else {
+    executions=getExecutions();
+    iterations=getIteration();
+  }
+  if (getStyle() == BYNUMBER)   return executions < getMaxThroughput();
+ else {
+    if (iteration == 0 && getPercentThroughput() > 0)     return true;
+ else     if ((executions / iteration) * 100 <= getPercentThroughput())     return true;
+  }
+  return false;
+}

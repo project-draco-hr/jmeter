@@ -5,16 +5,8 @@
       increaseExecutions();
     }
  else {
-      if (getStyle() == BYNUMBER) {
-        if (getExecutions() < getMaxThroughput())         retVal=super.next();
-      }
- else {
-        if (getCurrentPercentThroughput() <= getPercentThroughput())         retVal=super.next();
-      }
+      if (canExecute())       retVal=super.next();
     }
-  }
-  if (retVal == null) {
-    reInitialize();
   }
   return retVal;
 }
