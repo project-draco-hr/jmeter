@@ -1,7 +1,0 @@
-{
-  log.debug("Start : testGetUrlConfig");
-  assertEquals(HTTPSampler.GET,hsf.getMethod());
-  assertEquals("file",hsf.getProtocol());
-  assertEquals("HTTPSamplerFullTestFile.txt",hsf.getPath());
-  log.debug("End   : testGetUrlConfig");
-}

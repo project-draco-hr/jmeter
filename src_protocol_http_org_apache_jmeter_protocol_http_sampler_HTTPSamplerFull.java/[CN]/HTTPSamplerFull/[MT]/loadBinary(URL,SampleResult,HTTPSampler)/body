@@ -21,6 +21,7 @@
     int errorLevel=getErrorLevel(conn,res);
     if (errorLevel == 2) {
       ret=sampler.readResponse(conn);
+      res.setContentType(conn.getHeaderField("Content-type"));
       res.setSuccessful(true);
       long endTime=System.currentTimeMillis();
       if (log.isDebugEnabled()) {
