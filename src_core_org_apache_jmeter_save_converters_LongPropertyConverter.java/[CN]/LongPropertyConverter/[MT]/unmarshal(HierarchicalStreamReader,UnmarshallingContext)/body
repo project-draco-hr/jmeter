@@ -1,0 +1,4 @@
+{
+  LongProperty prop=new LongProperty(reader.getAttribute("name"),Long.parseLong(reader.getValue()));
+  return prop;
+}

@@ -1,11 +1,11 @@
 {
-  if (SaveService.getOutputFormat() == SaveService.SAVE_AS_XML) {
+  if (OldSaveService.getOutputFormat() == OldSaveService.SAVE_AS_XML) {
     writer.println(XML_HEADER);
     writer.println(TESTRESULTS_START);
   }
- else   if (SaveService.getOutputFormat() == SaveService.SAVE_AS_CSV) {
-    if (SaveService.getPrintFieldNames()) {
-      writer.println(SaveService.printableFieldNamesToString());
+ else   if (OldSaveService.getOutputFormat() == OldSaveService.SAVE_AS_CSV) {
+    if (OldSaveService.getPrintFieldNames()) {
+      writer.println(OldSaveService.printableFieldNamesToString());
     }
   }
 }

@@ -1,0 +1,5 @@
+{
+  BooleanProperty prop=(BooleanProperty)obj;
+  writer.addAttribute("name",prop.getName());
+  writer.setValue(prop.getStringValue());
+}

@@ -10,7 +10,7 @@
       dataReader=new BufferedReader(new FileReader(getFilename()));
       String line;
       while ((line=dataReader.readLine()) != null) {
-        sendToVisualizer(SaveService.makeResultFromDelimitedString(line));
+        sendToVisualizer(OldSaveService.makeResultFromDelimitedString(line));
       }
     }
 catch (    Exception e) {

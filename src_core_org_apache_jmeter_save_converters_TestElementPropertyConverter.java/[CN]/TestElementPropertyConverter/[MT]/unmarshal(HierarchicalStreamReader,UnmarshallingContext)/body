@@ -1,0 +1,18 @@
+{
+  try {
+    TestElementProperty prop=(TestElementProperty)createCollection(context.getRequiredType());
+    prop.setName(reader.getAttribute("name"));
+    prop.setObjectValue((TestElement)Class.forName(reader.getAttribute("elementType")).newInstance());
+    while (reader.hasMoreChildren()) {
+      reader.moveDown();
+      JMeterProperty subProp=(JMeterProperty)readItem(reader,context,prop);
+      prop.addProperty(subProp);
+      reader.moveUp();
+    }
+    return prop;
+  }
+ catch (  Exception e) {
+    log.error("Couldn't unmarshall TestElementProperty",e);
+    return new TestElementProperty("ERROR",new ConfigTestElement());
+  }
+}

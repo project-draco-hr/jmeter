@@ -26,10 +26,10 @@
   }
  catch (  Exception err) {
   }
-  OutputStream writer=null;
+  Writer writer=null;
   try {
-    writer=new FileOutputStream(updateFile);
-    SaveService.saveSubTree(subTree,writer);
+    writer=new FileWriter(updateFile);
+    SaveService.saveTree(subTree,writer);
   }
  catch (  Throwable ex) {
     testPlanFile=null;

@@ -1,5 +1,5 @@
 {
-  if (SaveService.getOutputFormat() == SaveService.SAVE_AS_XML) {
+  if (OldSaveService.getOutputFormat() == OldSaveService.SAVE_AS_XML) {
     pw.print("\n");
     pw.print(TESTRESULTS_END);
   }

@@ -20,7 +20,7 @@
         log.info("Loading file: " + f);
       }
       reader=new FileInputStream(f);
-      HashTree tree=SaveService.loadSubTree(reader);
+      HashTree tree=(HashTree)SaveService.loadTree(reader);
       isTestPlan=insertLoadedTree(e.getID(),tree);
     }
   }

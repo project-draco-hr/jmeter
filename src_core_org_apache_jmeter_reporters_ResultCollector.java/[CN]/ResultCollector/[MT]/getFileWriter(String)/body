@@ -5,7 +5,7 @@
   PrintWriter writer=(PrintWriter)files.get(filename);
   boolean trimmed=true;
   if (writer == null) {
-    if (SaveService.getOutputFormat() == SaveService.SAVE_AS_XML) {
+    if (OldSaveService.getOutputFormat() == OldSaveService.SAVE_AS_XML) {
       trimmed=trimLastLine(filename);
     }
     writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),"UTF-8"),true);

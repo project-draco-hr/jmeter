@@ -8,7 +8,7 @@
     }
     reader=new FileInputStream(f);
     log.info("Loading file: " + f);
-    HashTree tree=SaveService.loadSubTree(reader);
+    HashTree tree=SaveService.loadTree(reader);
     convertSubTree(tree);
     if (logFile != null) {
       ResultCollector logger=new ResultCollector();

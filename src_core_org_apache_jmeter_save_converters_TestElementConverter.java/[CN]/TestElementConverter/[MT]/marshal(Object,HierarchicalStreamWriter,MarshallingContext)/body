@@ -1,0 +1,7 @@
+{
+  TestElement el=(TestElement)arg0;
+  PropertyIterator iter=el.propertyIterator();
+  while (iter.hasNext()) {
+    writeItem(iter.next(),context,writer);
+  }
+}

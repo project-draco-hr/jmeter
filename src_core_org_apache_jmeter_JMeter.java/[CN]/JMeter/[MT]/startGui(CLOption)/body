@@ -15,7 +15,7 @@
       File f=new File(testFile.getArgument());
       log.info("Loading file: " + f);
       FileInputStream reader=new FileInputStream(f);
-      HashTree tree=SaveService.loadSubTree(reader);
+      HashTree tree=SaveService.loadTree(reader);
       new Load().insertLoadedTree(1,tree);
     }
  catch (    Exception e) {

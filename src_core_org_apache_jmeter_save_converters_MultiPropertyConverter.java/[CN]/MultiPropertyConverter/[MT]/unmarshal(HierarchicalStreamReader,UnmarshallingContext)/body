@@ -1,0 +1,11 @@
+{
+  MultiProperty prop=(MultiProperty)createCollection(context.getRequiredType());
+  prop.setName(reader.getAttribute("name"));
+  while (reader.hasMoreChildren()) {
+    reader.moveDown();
+    JMeterProperty subProp=(JMeterProperty)readItem(reader,context,prop);
+    prop.addProperty(subProp);
+    reader.moveUp();
+  }
+  return prop;
+}

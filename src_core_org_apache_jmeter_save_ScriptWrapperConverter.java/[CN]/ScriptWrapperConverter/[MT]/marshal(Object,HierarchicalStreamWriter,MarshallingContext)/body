@@ -1,0 +1,7 @@
+{
+  ScriptWrapper wrap=(ScriptWrapper)arg0;
+  writer.addAttribute("version",wrap.version);
+  writer.startNode(classMapper.lookupName(wrap.testPlan.getClass()));
+  context.convertAnother(wrap.testPlan);
+  writer.endNode();
+}

@@ -12,7 +12,7 @@
     assertEquals("SHARED: Failed on " + name,"",el2.getPropertyAsString("NOT"));
   }
   log.debug("Saving element: " + el.getClass());
-  el=SaveService.createTestElement(SaveService.getConfigForTestElement(null,el));
+  el=OldSaveService.createTestElement(OldSaveService.getConfigForTestElement(null,el));
   log.debug("Successfully saved");
   guiItem.configure(el);
   assertEquals("CONFIGURE-TEST: Failed on " + name,el.getPropertyAsString(TestElement.NAME),guiItem.getName());
