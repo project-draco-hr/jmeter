@@ -1,8 +1,9 @@
 {
   running=false;
-  Iterator iter=new HashSet(allThreads).iterator();
+  Iterator iter=new HashSet(allThreads.keySet()).iterator();
   while (iter.hasNext()) {
     JMeterThread item=(JMeterThread)iter.next();
     item.stop();
+    ((Thread)allThreads.get(item)).interrupt();
   }
 }
