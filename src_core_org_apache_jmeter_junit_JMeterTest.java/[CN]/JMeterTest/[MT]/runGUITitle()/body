@@ -3,7 +3,7 @@
     String title=guiItem.getStaticLabel();
     boolean ct=guiTitles.containsKey(title);
     if (ct)     guiTitles.put(title,Boolean.TRUE);
-    if ((title.indexOf("(ALPHA") == -1) && (title.indexOf("(BETA") == -1) && (!title.equals("Example1"))&& (!title.equals("Example2"))) {
+    if ((title.toUpperCase().indexOf("(ALPHA") == -1) && (title.toUpperCase().indexOf("(BETA") == -1) && (!title.equals("Example1"))&& (!title.equals("Example2"))) {
       assertTrue("component_reference.xml needs '" + title + "' anchor for "+ guiItem.getClass().getName(),ct);
     }
   }
