@@ -8,7 +8,11 @@
         objects.add(c.newInstance());
       }
  catch (      InstantiationException e) {
-        objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{this}));
+        try {
+          objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{this}));
+        }
+ catch (        NoSuchMethodException f) {
+        }
       }
     }
  catch (    IllegalAccessException e) {
