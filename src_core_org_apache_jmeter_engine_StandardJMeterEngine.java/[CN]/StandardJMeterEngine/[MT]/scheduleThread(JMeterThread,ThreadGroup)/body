@@ -1,7 +1,12 @@
 {
   if (group.getScheduler()) {
     thread.setStartTime(group.getStartTime());
-    thread.setEndTime(group.getEndTime());
+    if (group.getDuration() > 0) {
+      thread.setEndTime(group.getDuration() * 1000 + (new Date().getTime()));
+    }
+ else {
+      thread.setEndTime(group.getEndTime());
+    }
     thread.setScheduled(true);
   }
 }
