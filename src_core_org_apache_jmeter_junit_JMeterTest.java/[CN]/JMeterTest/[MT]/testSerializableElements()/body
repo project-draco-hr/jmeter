@@ -6,7 +6,6 @@
       continue;
     }
     try {
-      log.debug("serializing class: " + serObj.getClass().getName());
       ByteArrayOutputStream bytes=new ByteArrayOutputStream();
       ObjectOutputStream out=new ObjectOutputStream(bytes);
       out.writeObject(serObj);

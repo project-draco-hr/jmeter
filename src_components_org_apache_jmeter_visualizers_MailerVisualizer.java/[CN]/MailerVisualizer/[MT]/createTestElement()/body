@@ -1,5 +1,7 @@
 {
-  TestElement element=super.createTestElement();
-  model.storeModel(element);
-  return element;
+  if (getModel() == null) {
+    setModel(new MailerResultCollector());
+  }
+  modifyTestElement(getModel());
+  return getModel();
 }

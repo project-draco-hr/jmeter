@@ -1,28 +1,4 @@
 {
-  super.sampleOccurred(event);
-  SampleResult sample=event.getResult();
-  if (!sample.isSuccessful()) {
-    failureCount++;
-  }
- else {
-    successCount++;
-  }
-  if (this.isFailing() && !siteDown && !failureMsgSent) {
-    Vector addressVector=newAddressVector(address);
-    sendMail(from,addressVector,failSubject,"URL Failed: " + sample.getSampleLabel(),smtpHost);
-    siteDown=true;
-    failureMsgSent=true;
-    successCount=0;
-  }
-  if (siteDown && (sample.getTime() != -1) & !successMsgSent) {
-    if (successCount > successLimit) {
-      Vector addressVector=newAddressVector(address);
-      sendMail(from,addressVector,successSubject,"URL Restarted: " + sample.getSampleLabel(),smtpHost);
-      siteDown=false;
-      successMsgSent=true;
-    }
-  }
-  if (successMsgSent && failureMsgSent) {
-    clear();
-  }
+  super.sampleOccurred(e);
+  getMailerModel().add(e.getResult());
 }

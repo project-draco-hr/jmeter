@@ -16,7 +16,9 @@
     if (!(item instanceof UnsharedComponent)) {
       assertEquals("GUI-CLASS: Failed on " + item.getClass().getName(),"",el2.getPropertyAsString("NOT"));
     }
+    log.debug("Saving element: " + el.getClass());
     el=SaveService.createTestElement(SaveService.getConfigForTestElement(null,el));
+    log.debug("Successfully saved");
     item.configure(el);
     assertEquals("CONFIGURE-TEST: Failed on " + item.getClass().getName(),el.getPropertyAsString(TestElement.NAME),item.getName());
     item.modifyTestElement(el2);

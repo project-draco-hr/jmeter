@@ -1,5 +1,4 @@
 {
   super.configure(el);
-  model.retrieveModel(el);
-  updateVisualizer();
+  updateVisualizer(((MailerResultCollector)el).getMailerModel());
 }
