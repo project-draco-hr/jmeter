@@ -1,6 +1,6 @@
 {
   String key=elementClass.getName();
-  JComponent gui=(JComponent)guiMap.get(key);
+  JComponent gui=(JComponent)GUI_MAP.get(key);
   if (gui != null) {
     return gui;
   }

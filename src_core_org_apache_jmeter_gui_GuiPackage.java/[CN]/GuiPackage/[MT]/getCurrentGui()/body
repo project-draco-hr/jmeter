@@ -1,7 +1,8 @@
 {
   try {
-    JMeterGUIComponent comp=getGui(treeListener.getCurrentNode().createTestElement());
-    comp.configure(treeListener.getCurrentNode().createTestElement());
+    TestElement currentNode=treeListener.getCurrentNode().createTestElement();
+    JMeterGUIComponent comp=getGui(currentNode);
+    comp.configure(currentNode);
     return comp;
   }
  catch (  Exception e) {

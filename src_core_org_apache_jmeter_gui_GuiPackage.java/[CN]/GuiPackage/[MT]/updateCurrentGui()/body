@@ -1,6 +1,7 @@
 {
   if (currentNode != null) {
-    JMeterGUIComponent comp=getGui(currentNode.createTestElement());
-    comp.configure(currentNode.createTestElement());
+    TestElement element=currentNode.createTestElement();
+    JMeterGUIComponent comp=getGui(element);
+    comp.configure(element);
   }
 }

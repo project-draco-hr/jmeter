@@ -1,6 +1,6 @@
 {
   String key=elementClass.getName();
-  ImageIcon icon=(ImageIcon)iconMap.get(key);
+  ImageIcon icon=(ImageIcon)ICON_MAP.get(key);
   if (icon != null) {
     return icon;
   }

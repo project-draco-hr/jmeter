@@ -2,10 +2,8 @@
   runningIndicator=new JButton(stoppedIcon);
   runningIndicator.setMargin(new Insets(0,0,0,0));
   runningIndicator.setBorder(BorderFactory.createEmptyBorder());
-  this.treeListener=treeListener;
-  this.actionHandler=actionHandler;
-  this.treeModel=treeModel;
+  tree=makeTree(treeModel,treeListener);
   GuiPackage.getInstance().setMainFrame(this);
   init();
-  this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+  setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 }

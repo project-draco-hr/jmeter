@@ -1,5 +1,5 @@
 {
-  tree=new JTree(this.treeModel);
+  JTree tree=new JTree(treeModel);
   tree.setCellRenderer(getCellRenderer());
   tree.setRootVisible(false);
   tree.setShowsRootHandles(true);

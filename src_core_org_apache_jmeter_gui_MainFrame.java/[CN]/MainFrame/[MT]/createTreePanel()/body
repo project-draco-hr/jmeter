@@ -1,4 +1,5 @@
 {
-  treePanel=new JScrollPane(makeTree());
+  JScrollPane treePanel=new JScrollPane(tree);
   treePanel.setMinimumSize(new Dimension(100,0));
+  return treePanel;
 }
