@@ -1,6 +1,12 @@
 {
   try {
-    Writer writer=new FileWriter(this);
+    Writer writer;
+    if (encoding == null) {
+      writer=new FileWriter(this);
+    }
+ else {
+      writer=new OutputStreamWriter(new FileOutputStream(this),encoding);
+    }
     writer.write(body);
     writer.flush();
     writer.close();

@@ -2,7 +2,14 @@
   String lineEnd=System.getProperty("line.separator");
   StringBuffer sb=new StringBuffer();
   try {
-    BufferedReader br=new BufferedReader(new FileReader(this));
+    Reader reader;
+    if (encoding == null) {
+      reader=new FileReader(this);
+    }
+ else {
+      reader=new InputStreamReader(new FileInputStream(this),encoding);
+    }
+    BufferedReader br=new BufferedReader(reader);
     String line="NOTNULL";
     while (line != null) {
       line=br.readLine();
