@@ -10,6 +10,12 @@
     if (labelButton.isSelected()) {
       ra.setTestField(ResponseAssertion.SAMPLE_LABEL);
     }
+ else     if (responseCodeButton.isSelected()) {
+      ra.setTestField(ResponseAssertion.RESPONSE_CODE);
+    }
+ else     if (responseMessageButton.isSelected()) {
+      ra.setTestField(ResponseAssertion.RESPONSE_MESSAGE);
+    }
  else {
       ra.setTestField(ResponseAssertion.RESPONSE_DATA);
     }

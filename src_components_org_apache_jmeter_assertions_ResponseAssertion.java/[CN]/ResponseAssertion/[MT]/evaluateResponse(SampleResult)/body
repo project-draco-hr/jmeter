@@ -2,9 +2,15 @@
   boolean pass=true;
   boolean not=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult();
-  String toCheck;
+  String toCheck="";
   if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
     toCheck=new String(response.responseDataAsBA());
+  }
+ else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
+    toCheck=response.getResponseCode();
+  }
+ else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(getTestField())) {
+    toCheck=response.getResponseMessage();
   }
  else {
     toCheck=response.getSamplerData();

@@ -3,11 +3,17 @@
   panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("assertion_resp_field")));
   responseStringButton=new JRadioButton(JMeterUtils.getResString("assertion_text_resp"));
   labelButton=new JRadioButton(JMeterUtils.getResString("assertion_url_samp"));
+  responseCodeButton=new JRadioButton(JMeterUtils.getResString("assertion_code_resp"));
+  responseMessageButton=new JRadioButton(JMeterUtils.getResString("assertion_message_resp"));
   ButtonGroup group=new ButtonGroup();
   group.add(responseStringButton);
   group.add(labelButton);
+  group.add(responseCodeButton);
+  group.add(responseMessageButton);
   panel.add(responseStringButton);
   panel.add(labelButton);
+  panel.add(responseCodeButton);
+  panel.add(responseMessageButton);
   responseStringButton.setSelected(true);
   return panel;
 }

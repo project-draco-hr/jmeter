@@ -17,10 +17,14 @@
   }
   if (ResponseAssertion.RESPONSE_DATA.equals(model.getTestField())) {
     responseStringButton.setSelected(true);
-    labelButton.setSelected(false);
+  }
+ else   if (ResponseAssertion.RESPONSE_CODE.equals(model.getTestField())) {
+    responseCodeButton.setSelected(true);
+  }
+ else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(model.getTestField())) {
+    responseMessageButton.setSelected(true);
   }
  else {
-    responseStringButton.setSelected(false);
     labelButton.setSelected(true);
   }
   tableModel.clearData();

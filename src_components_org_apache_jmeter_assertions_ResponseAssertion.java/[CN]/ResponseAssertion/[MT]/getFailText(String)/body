@@ -1,20 +1,33 @@
 {
   String text;
+  String what;
+  if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
+    what="text";
+  }
+ else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
+    what="code";
+  }
+ else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(getTestField())) {
+    what="message";
+  }
+ else {
+    what="URL";
+  }
 switch (getTestType()) {
 case CONTAINS:
-    text="Test failed, expected to contain ";
+    text=" expected to contain ";
   break;
 case NOT | CONTAINS:
-text="Test failed, expected not to contain ";
+text=" expected not to contain ";
 break;
 case MATCH:
-text="Test failed, expected to match ";
+text=" expected to match ";
 break;
 case NOT | MATCH:
-text="Test failed, expected not to match ";
+text=" expected not to match ";
 break;
 default :
-text="Test failed, expected something using ";
+text=" expected something using ";
 }
-return text + "/" + stringPattern+ "/";
+return "Test failed, " + what + text+ "/"+ stringPattern+ "/";
 }
