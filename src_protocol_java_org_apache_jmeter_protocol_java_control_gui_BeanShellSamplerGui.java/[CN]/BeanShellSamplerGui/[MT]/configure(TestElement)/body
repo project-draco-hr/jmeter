@@ -1,0 +1,5 @@
+{
+  scriptField.setText(element.getProperty(BeanShellSampler.SCRIPT).toString());
+  filename.setText(element.getProperty(BeanShellSampler.FILENAME).toString());
+  super.configure(element);
+}

@@ -1,0 +1,6 @@
+{
+  te.clear();
+  this.configureTestElement(te);
+  te.setProperty(BeanShellSampler.SCRIPT,scriptField.getText());
+  te.setProperty(BeanShellSampler.FILENAME,filename.getText());
+}

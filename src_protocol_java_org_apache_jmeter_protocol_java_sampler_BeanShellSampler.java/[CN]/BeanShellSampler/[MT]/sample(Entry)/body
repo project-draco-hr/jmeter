@@ -1,0 +1,47 @@
+{
+  SampleResult res=new SampleResult();
+  boolean isSuccessful=false;
+  res.setSampleLabel(getLabel());
+  long start=System.currentTimeMillis();
+  try {
+    String request=getScript();
+    String fileName=getFilename();
+    if (fileName.length() == 0) {
+      res.setSamplerData(request);
+    }
+ else {
+      res.setSamplerData(fileName);
+    }
+    bshInterpreter.set("Label",getLabel());
+    bshInterpreter.set("FileName",getFilename());
+    bshInterpreter.set("ResponseCode","200");
+    bshInterpreter.set("ResponseMessage","OK");
+    bshInterpreter.set("IsSuccess",true);
+    Object bshOut;
+    if (fileName.length() == 0) {
+      bshOut=bshInterpreter.eval(request);
+    }
+ else {
+      bshOut=bshInterpreter.source(fileName);
+    }
+    res.setResponseData(bshOut.toString().getBytes());
+    res.setDataType(SampleResult.TEXT);
+    res.setResponseCode(bshInterpreter.get("ResponseCode").toString());
+    res.setResponseMessage(bshInterpreter.get("ResponseMessage").toString());
+    isSuccessful=Boolean.valueOf(bshInterpreter.get("IsSuccess").toString()).booleanValue();
+  }
+ catch (  EvalError ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+catch (  IOException ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+  long end=System.currentTimeMillis();
+  res.setTime(end - start);
+  res.setSuccessful(isSuccessful);
+  return res;
+}
