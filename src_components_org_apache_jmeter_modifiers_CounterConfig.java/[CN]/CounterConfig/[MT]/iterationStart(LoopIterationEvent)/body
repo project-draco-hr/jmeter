@@ -1,5 +1,5 @@
 {
-  JMeterVariables variables=getThreadContext().getVariables();
+  JMeterVariables variables=JMeterContextService.getContext().getVariables();
   int start=getStart(), end=getEnd(), increment=getIncrement();
   if (!isPerUser()) {
     if (globalCounter == -1 || globalCounter > end) {
