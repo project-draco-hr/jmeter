@@ -1,5 +1,5 @@
 {
-  if (isSupportedProtocol(url)) {
+  if (isUnsupportedProtocol(url)) {
     return null;
   }
   StringBuffer header=new StringBuffer();
