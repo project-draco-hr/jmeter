@@ -4,7 +4,7 @@
   PropertyIterator iter2=item.propertyIterator();
   while (iter2.hasNext()) {
     JMeterProperty item2=iter2.next();
-    assertEquals(item2,clonedItem.getProperty(item2.getName()));
+    assertEquals(item2.getStringValue(),clonedItem.getProperty(item2.getName()).getStringValue());
     assertTrue(item2 != clonedItem.getProperty(item2.getName()));
   }
 }
