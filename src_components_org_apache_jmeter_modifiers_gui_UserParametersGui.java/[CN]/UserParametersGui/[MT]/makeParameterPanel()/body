@@ -1,5 +1,4 @@
 {
-  JPanel paramPanel=new JPanel(new BorderLayout());
   JLabel tableLabel=new JLabel(JMeterUtils.getResString("user_parameters_table"));
   initTableModel();
   paramTable=new JTable(tableModel);
@@ -7,13 +6,10 @@
   paramTable.setColumnSelectionAllowed(true);
   paramTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   paramTable.setCellSelectionEnabled(true);
+  paramTable.setPreferredScrollableViewportSize(new Dimension(100,70));
+  JPanel paramPanel=new JPanel(new BorderLayout());
   paramPanel.add(tableLabel,BorderLayout.NORTH);
-  JScrollPane scroller=new JScrollPane(paramTable);
-  Dimension tableDim=scroller.getPreferredSize();
-  tableDim.height=70;
-  scroller.setPreferredSize(tableDim);
-  scroller.setColumnHeaderView(paramTable.getTableHeader());
-  paramPanel.add(scroller,BorderLayout.CENTER);
+  paramPanel.add(new JScrollPane(paramTable),BorderLayout.CENTER);
   paramPanel.add(makeButtonPanel(),BorderLayout.SOUTH);
   return paramPanel;
 }

@@ -1,6 +1,6 @@
 {
-  JPanel titlePanel=new JPanel(new BorderLayout());
-  titlePanel.add(createTitleLabel(),BorderLayout.NORTH);
-  titlePanel.add(getNamePanel(),BorderLayout.SOUTH);
+  Box titlePanel=Box.createVerticalBox();
+  titlePanel.add(createTitleLabel());
+  titlePanel.add(getNamePanel());
   return titlePanel;
 }

@@ -1,12 +1,12 @@
 {
-  this.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEmptyBorder(5,10,5,5),JMeterUtils.getResString("counter_config_title")));
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  setBorder(makeBorder());
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
   startField=new JLabeledTextField(JMeterUtils.getResString("start"),5);
   incrField=new JLabeledTextField(JMeterUtils.getResString("increment"),5);
   endField=new JLabeledTextField(JMeterUtils.getResString("max"),5);
   varNameField=new JLabeledTextField(JMeterUtils.getResString("var_name"));
   perUserField=new JCheckBox(JMeterUtils.getResString("counter_per_user"));
-  add(getNamePanel());
+  add(makeTitlePanel());
   add(startField);
   add(incrField);
   add(endField);

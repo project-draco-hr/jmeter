@@ -1,5 +1,11 @@
 {
-  this.setLayout(new BorderLayout());
-  add(makeTitlePanel(),BorderLayout.NORTH);
-  add(makeParameterPanel(),BorderLayout.CENTER);
+  setBorder(makeBorder());
+  setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+  add(makeTitlePanel());
+  perIterationCheck=new JCheckBox(JMeterUtils.getResString("update_per_iter"),true);
+  Box perIterationPanel=Box.createHorizontalBox();
+  perIterationPanel.add(perIterationCheck);
+  perIterationPanel.add(Box.createHorizontalGlue());
+  add(perIterationPanel);
+  add(makeParameterPanel());
 }

@@ -1,8 +1,0 @@
-{
-  perIterationCheck=new JCheckBox(JMeterUtils.getResString("update_per_iter"));
-  JPanel panel=new JPanel(new BorderLayout());
-  panel.add(super.makeTitlePanel(),BorderLayout.NORTH);
-  panel.add(perIterationCheck,BorderLayout.SOUTH);
-  perIterationCheck.setSelected(true);
-  return panel;
-}

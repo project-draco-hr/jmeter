@@ -1,12 +1,13 @@
 {
   JPanel buttonPanel=new JPanel();
+  buttonPanel.setLayout(new GridLayout(2,2));
   addParameterButton=new JButton(JMeterUtils.getResString("add_parameter"));
   addUserButton=new JButton(JMeterUtils.getResString("add_user"));
   deleteRowButton=new JButton(JMeterUtils.getResString("delete_parameter"));
   deleteColumnButton=new JButton(JMeterUtils.getResString("delete_user"));
   buttonPanel.add(addParameterButton);
-  buttonPanel.add(addUserButton);
   buttonPanel.add(deleteRowButton);
+  buttonPanel.add(addUserButton);
   buttonPanel.add(deleteColumnButton);
   addParameterButton.addActionListener(new AddParamAction());
   addUserButton.addActionListener(new AddUserAction());
