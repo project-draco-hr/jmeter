@@ -9,7 +9,7 @@
     if (prop.startsWith(LOG_FILE + ".")) {
       String category=prop.substring(LOG_FILE.length() + 1);
       String file=appProperties.getProperty(prop);
-      setTarget(new WriterTarget(makeWriter(file,prop),format),category);
+      setTarget(new WriterTarget(makeWriter(file,prop),getFormat()),category);
     }
   }
 }
