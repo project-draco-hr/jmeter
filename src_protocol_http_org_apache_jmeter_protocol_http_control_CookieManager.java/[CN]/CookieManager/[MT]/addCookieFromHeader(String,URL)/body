@@ -32,7 +32,7 @@ catch (      Exception e) {
       }
     }
  else     if (key.equalsIgnoreCase("domain")) {
-      domain=nvp.substring(index + 1);
+      domain=nvp.substring(index + 1).trim();
       if (!domain.startsWith(".")) {
         domain="." + domain;
       }
