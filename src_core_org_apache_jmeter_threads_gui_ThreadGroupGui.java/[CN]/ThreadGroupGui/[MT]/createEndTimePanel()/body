@@ -1,12 +1,9 @@
 {
   JPanel panel=new JPanel(new BorderLayout(5,0));
-  JLabel label=new JLabel("endtime");
-  label.setLabelFor(endtime);
+  JLabel label=new JLabel(JMeterUtils.getResString("endtime"));
   panel.add(label,BorderLayout.WEST);
   Date today=new Date();
-  end=new JSpinner(new SpinnerDateModel(today,null,null,Calendar.MONTH));
-  endtime=new DateEditor(end,"dd/MM/yy HH:mm:ss");
-  end.setEditor(endtime);
+  end=new JDateField(today);
   panel.add(end,BorderLayout.CENTER);
   return panel;
 }

@@ -1,0 +1,9 @@
+{
+  if (minute < 59) {
+    minute=minute + 1;
+  }
+ else {
+    minute=0;
+    incrementHour();
+  }
+}

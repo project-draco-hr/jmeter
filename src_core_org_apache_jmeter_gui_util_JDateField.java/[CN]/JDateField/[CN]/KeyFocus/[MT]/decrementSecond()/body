@@ -1,0 +1,9 @@
+{
+  if (second > 0) {
+    second=second - 1;
+  }
+ else {
+    second=59;
+    decrementMinute();
+  }
+}

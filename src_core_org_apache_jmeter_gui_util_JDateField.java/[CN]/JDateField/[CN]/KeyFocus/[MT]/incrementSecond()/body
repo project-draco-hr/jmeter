@@ -1,0 +1,9 @@
+{
+  if (second < 59) {
+    second=second + 1;
+  }
+ else {
+    second=0;
+    incrementMinute();
+  }
+}

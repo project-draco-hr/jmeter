@@ -1,0 +1,9 @@
+{
+  if (mon < 12) {
+    mon=mon + 1;
+  }
+ else {
+    mon=1;
+    incrementYear();
+  }
+}

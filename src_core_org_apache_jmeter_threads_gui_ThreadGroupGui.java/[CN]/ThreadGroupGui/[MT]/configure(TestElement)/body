@@ -10,6 +10,6 @@
  else {
     mainPanel.setVisible(false);
   }
-  start.setValue(new Date(tg.getPropertyAsLong(ThreadGroup.START_TIME)));
-  end.setValue(new Date(tg.getPropertyAsLong(ThreadGroup.END_TIME)));
+  start.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.START_TIME)));
+  end.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.END_TIME)));
 }

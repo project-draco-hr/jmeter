@@ -22,11 +22,11 @@
   rampPanel.add(rampInput,BorderLayout.CENTER);
   threadPropsPanel.add(rampPanel);
   threadPropsPanel.add(createControllerPanel());
-  scheduler=new JCheckBox("Scheduler");
+  scheduler=new JCheckBox(JMeterUtils.getResString("scheduler"));
   scheduler.addItemListener(this);
   threadPropsPanel.add(scheduler);
   mainPanel=new VerticalPanel();
-  mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"Scheduler Cofiguration"));
+  mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("scheduler_cofiguration")));
   mainPanel.add(createStartTimePanel());
   mainPanel.add(createEndTimePanel());
   mainPanel.setVisible(false);
