@@ -5,7 +5,8 @@
   Enumeration enum=node.children();
   while (enum.hasMoreElements()) {
     JMeterTreeNode child=(JMeterTreeNode)enum.nextElement();
-    return traverseAndFind(userObject,child,nodeList);
+    JMeterTreeNode result=traverseAndFind(userObject,child);
+    if (result != null)     return result;
   }
   return null;
 }
