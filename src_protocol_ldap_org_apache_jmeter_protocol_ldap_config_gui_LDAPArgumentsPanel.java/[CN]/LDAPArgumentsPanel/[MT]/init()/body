@@ -1,0 +1,9 @@
+{
+  setLayout(new BorderLayout());
+  add(makeLabelPanel(),BorderLayout.NORTH);
+  add(makeMainPanel(),BorderLayout.CENTER);
+  add(Box.createVerticalStrut(70),BorderLayout.WEST);
+  add(makeButtonPanel(),BorderLayout.SOUTH);
+  table.revalidate();
+  sizeColumns(table);
+}

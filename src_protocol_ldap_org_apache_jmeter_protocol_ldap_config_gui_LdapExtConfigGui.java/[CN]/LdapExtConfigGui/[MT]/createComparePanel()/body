@@ -1,0 +1,16 @@
+{
+  VerticalPanel cbindPanel=new VerticalPanel();
+  JPanel cBPanel=new JPanel(new BorderLayout(5,0));
+  JLabel cBlabel0=new JLabel(JMeterUtils.getResString("entrydn"));
+  cBlabel0.setLabelFor(comparedn);
+  cBPanel.add(cBlabel0,BorderLayout.WEST);
+  cBPanel.add(comparedn,BorderLayout.CENTER);
+  cbindPanel.add(cBPanel);
+  JPanel cBPanel1=new JPanel(new BorderLayout(5,0));
+  JLabel cBlabel1=new JLabel(JMeterUtils.getResString("comparefilt"));
+  cBlabel1.setLabelFor(comparefilt);
+  cBPanel1.add(cBlabel1,BorderLayout.WEST);
+  cBPanel1.add(comparefilt,BorderLayout.CENTER);
+  cbindPanel.add(cBPanel1);
+  return cbindPanel;
+}

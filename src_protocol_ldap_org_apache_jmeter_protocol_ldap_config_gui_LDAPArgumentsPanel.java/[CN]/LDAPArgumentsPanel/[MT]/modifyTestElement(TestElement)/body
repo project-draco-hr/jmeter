@@ -1,0 +1,15 @@
+{
+  stopTableEditing();
+  Iterator modelData=tableModel.iterator();
+  LDAPArguments arguments=null;
+  if (args instanceof LDAPArguments) {
+    arguments=(LDAPArguments)args;
+    arguments.clear();
+    while (modelData.hasNext()) {
+      LDAPArgument arg=(LDAPArgument)modelData.next();
+      arg.setMetaData("=");
+      arguments.addArgument(arg);
+    }
+  }
+  this.configureTestElement(args);
+}

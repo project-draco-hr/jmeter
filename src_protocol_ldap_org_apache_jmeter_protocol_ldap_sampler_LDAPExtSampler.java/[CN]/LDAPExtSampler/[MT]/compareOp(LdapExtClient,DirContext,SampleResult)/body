@@ -1,0 +1,5 @@
+{
+  res.sampleStart();
+  ldap.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
+  res.sampleEnd();
+}

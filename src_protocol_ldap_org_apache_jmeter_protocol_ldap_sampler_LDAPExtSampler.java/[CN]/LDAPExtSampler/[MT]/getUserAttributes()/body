@@ -1,0 +1,17 @@
+{
+  BasicAttributes attrs=new BasicAttributes(true);
+  Attribute attr;
+  PropertyIterator iter=getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument item=(Argument)iter.next().getObjectValue();
+    attr=attrs.get(item.getName());
+    if (attr == null) {
+      attr=getBasicAttribute(item.getName(),item.getValue());
+    }
+ else {
+      attr.add(item.getValue());
+    }
+    attrs.put(attr);
+  }
+  return attrs;
+}

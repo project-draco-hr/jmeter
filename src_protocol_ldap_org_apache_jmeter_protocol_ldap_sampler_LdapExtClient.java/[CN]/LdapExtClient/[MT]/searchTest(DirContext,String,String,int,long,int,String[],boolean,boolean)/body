@@ -1,0 +1,5 @@
+{
+  SearchControls searchcontrols=null;
+  searchcontrols=new SearchControls(scope,countlim,timelim,attrs,retobj,deref);
+  answer=dirContext.search(searchBase,searchFilter,searchcontrols);
+}

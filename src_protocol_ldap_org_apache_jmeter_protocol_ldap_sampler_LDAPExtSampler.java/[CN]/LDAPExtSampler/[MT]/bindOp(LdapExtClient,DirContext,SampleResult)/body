@@ -1,0 +1,6 @@
+{
+  res.sampleStart();
+  dirContext=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw());
+  res.sampleEnd();
+  ldapContexts.put(Thread.currentThread().getName(),dirContext);
+}

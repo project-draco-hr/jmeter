@@ -1,0 +1,5 @@
+{
+  res.sampleStart();
+  ldap.searchTest(dirContext,getPropertyAsString(SEARCHBASE),getPropertyAsString(SEARCHFILTER),getPropertyAsInt(SCOPE),getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),getPropertyAsBoolean(RETOBJ),getPropertyAsBoolean(DEREF));
+  res.sampleEnd();
+}

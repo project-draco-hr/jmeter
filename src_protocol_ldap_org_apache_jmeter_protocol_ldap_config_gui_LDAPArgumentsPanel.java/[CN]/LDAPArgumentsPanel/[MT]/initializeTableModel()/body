@@ -1,0 +1,3 @@
+{
+  tableModel=new ObjectTableModel(new String[]{COLUMN_NAMES[0],COLUMN_NAMES[1],COLUMN_NAMES[2]},new Functor[]{new Functor("getName"),new Functor("getValue"),new Functor("getOpcode")},new Functor[]{new Functor("setName"),new Functor("setValue"),new Functor("setOpcode")},new Class[]{String.class,String.class,String.class});
+}

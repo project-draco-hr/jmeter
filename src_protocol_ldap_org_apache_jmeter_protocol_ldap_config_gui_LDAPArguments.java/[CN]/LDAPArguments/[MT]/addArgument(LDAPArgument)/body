@@ -1,0 +1,7 @@
+{
+  TestElementProperty newArg=new TestElementProperty(arg.getName(),arg);
+  if (isRunningVersion()) {
+    this.setTemporary(newArg);
+  }
+  getArguments().addItem(newArg);
+}

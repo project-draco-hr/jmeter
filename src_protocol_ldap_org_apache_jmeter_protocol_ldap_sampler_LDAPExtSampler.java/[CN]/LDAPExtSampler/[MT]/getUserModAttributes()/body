@@ -1,0 +1,30 @@
+{
+  ModificationItem[] mods=new ModificationItem[getLDAPArguments().getArguments().size()];
+  boolean add=true;
+  BasicAttributes attrs=new BasicAttributes(true);
+  BasicAttribute attr;
+  PropertyIterator iter=getLDAPArguments().iterator();
+  int count=0;
+  while (iter.hasNext()) {
+    LDAPArgument item=(LDAPArgument)iter.next().getObjectValue();
+    if ((item.getValue()).equals("")) {
+      attr=new BasicAttribute(item.getName());
+    }
+ else {
+      attr=getBasicAttribute(item.getName(),item.getValue());
+    }
+    if ("add".equals(item.getOpcode())) {
+      mods[count]=new ModificationItem(DirContext.ADD_ATTRIBUTE,attr);
+    }
+ else {
+      if ("delete".equals(item.getOpcode())) {
+        mods[count]=new ModificationItem(DirContext.REMOVE_ATTRIBUTE,attr);
+      }
+ else {
+        mods[count]=new ModificationItem(DirContext.REPLACE_ATTRIBUTE,attr);
+      }
+    }
+    count+=1;
+  }
+  return mods;
+}

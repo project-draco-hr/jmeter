@@ -1,0 +1,12 @@
+{
+  super.configure(el);
+  if (el instanceof LDAPArguments) {
+    tableModel.clearData();
+    PropertyIterator iter=((LDAPArguments)el).iterator();
+    while (iter.hasNext()) {
+      LDAPArgument arg=(LDAPArgument)iter.next().getObjectValue();
+      tableModel.addRow(arg);
+    }
+  }
+  checkDeleteStatus();
+}

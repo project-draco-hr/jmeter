@@ -1,0 +1,6 @@
+{
+  res.sampleStart();
+  ldap.disconnect(dirContext);
+  res.sampleEnd();
+  log.info("context and LdapExtClients removed");
+}

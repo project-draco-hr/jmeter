@@ -1,0 +1,4 @@
+{
+  SearchControls searchcontrols=new SearchControls(0,1,0,new String[0],false,false);
+  dirContext.search(entrydn,filter,searchcontrols);
+}
