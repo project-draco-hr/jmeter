@@ -1,11 +1,13 @@
 {
   if (event.getSource() == parserClassName) {
-    SAMPLER.instantiateParser();
+    SAMPLER.setParserClassName(parserClassName.getText());
+    handleParserEvent();
   }
   if (event.getSource() == logFile) {
   }
   if (event.getSource() == generatorClassName) {
-    SAMPLER.instantiateGenerator();
+    SAMPLER.setGeneratorClassName(generatorClassName.getText());
+    handleGeneratorEvent();
   }
   if (event.getSource() == HOSTNAME) {
   }

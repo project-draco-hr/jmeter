@@ -1,7 +1,6 @@
 {
   if (SAMPLER == null) {
     SAMPLER=new AccessLogSampler();
-    SAMPLER.setSamplerGUI(this);
     this.configureTestElement(SAMPLER);
     SAMPLER.setParserClassName(parserClassName.getText());
     SAMPLER.setGeneratorClassName(generatorClassName.getText());
