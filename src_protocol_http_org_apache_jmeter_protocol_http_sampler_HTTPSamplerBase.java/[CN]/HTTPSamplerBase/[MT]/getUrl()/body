@@ -1,6 +1,6 @@
 {
   String pathAndQuery=null;
-  if (this.getMethod().equals(HTTPSampler.GET) && getQueryString().length() > 0) {
+  if (this.getMethod().equals(GET) && getQueryString().length() > 0) {
     if (this.getEncodedPath().indexOf("?") > -1) {
       pathAndQuery=this.getEncodedPath() + "&" + getQueryString();
     }
@@ -18,6 +18,6 @@
     return new URL(getProtocol(),getDomain(),pathAndQuery);
   }
  else {
-    return new URL(getProtocol(),getPropertyAsString(HTTPSampler.DOMAIN),getPort(),pathAndQuery);
+    return new URL(getProtocol(),getPropertyAsString(DOMAIN),getPort(),pathAndQuery);
   }
 }
