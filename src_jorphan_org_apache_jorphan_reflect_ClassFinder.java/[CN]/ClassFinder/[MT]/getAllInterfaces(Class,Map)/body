@@ -1,7 +1,0 @@
-{
-  Class[] interfaces=theClass.getInterfaces();
-  for (int i=0; i < interfaces.length; i++) {
-    hInterfaces.put(interfaces[i].getName(),interfaces[i]);
-    getAllInterfaces(interfaces[i],hInterfaces);
-  }
-}

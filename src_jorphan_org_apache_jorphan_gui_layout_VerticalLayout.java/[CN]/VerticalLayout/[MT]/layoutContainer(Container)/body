@@ -1,6 +1,5 @@
 {
   Insets insets=parent.getInsets();
-  Dimension dim=layoutSize(parent,false);
 synchronized (parent.getTreeLock()) {
     int n=parent.getComponentCount();
     Dimension pd=parent.getSize();

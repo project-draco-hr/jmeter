@@ -1,6 +1,5 @@
 {
   try {
-    JMeterVariables vars=getVariables();
     ArrayList processedLines=null;
     String fileName=null;
     fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();

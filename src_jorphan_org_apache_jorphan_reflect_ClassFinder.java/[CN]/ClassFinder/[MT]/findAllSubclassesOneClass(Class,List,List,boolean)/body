@@ -1,11 +1,8 @@
 {
   Iterator iterClasses=null;
   String strClassName=null;
-  String strSuperClassName=null;
   Class c=null;
-  Class cParent=null;
   boolean bIsSubclass=false;
-  strSuperClassName=theClass.getName();
   iterClasses=listAllClasses.iterator();
   while (iterClasses.hasNext()) {
     strClassName=(String)iterClasses.next();

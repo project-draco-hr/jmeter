@@ -2,8 +2,6 @@
   if (splittee == null || splitChar == null) {
     return new String[0];
   }
-  StringTokenizer tokens;
-  String temp;
   int spot;
   while ((spot=splittee.indexOf(splitChar + splitChar)) != -1) {
     splittee=splittee.substring(0,spot + splitChar.length()) + splittee.substring(spot + 2 * splitChar.length(),splittee.length());
