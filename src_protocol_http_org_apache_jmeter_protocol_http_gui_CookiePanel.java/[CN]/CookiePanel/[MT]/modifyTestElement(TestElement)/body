@@ -7,5 +7,6 @@
       Cookie cookie=createCookie(tableModel.getRowData(i));
       cookieManager.add(cookie);
     }
+    cookieManager.setClearEachIteration(clearEachIteration.isSelected());
   }
 }

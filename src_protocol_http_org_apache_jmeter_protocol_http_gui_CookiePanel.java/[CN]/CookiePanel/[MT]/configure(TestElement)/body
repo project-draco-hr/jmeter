@@ -1,4 +1,5 @@
 {
   super.configure(el);
   populateTable((CookieManager)el);
+  clearEachIteration.setSelected(((CookieManager)el).getClearEachIteration());
 }

@@ -1,6 +1,10 @@
 {
   setLayout(new BorderLayout());
   setBorder(makeBorder());
-  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel northPanel=new JPanel();
+  northPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  northPanel.add(makeTitlePanel());
+  northPanel.add(clearEachIteration);
+  add(northPanel,BorderLayout.NORTH);
   add(createCookieTablePanel(),BorderLayout.CENTER);
 }
