@@ -12,7 +12,6 @@
   if (values.length > 2) {
     t=new Throwable(((CompoundVariable)values[2]).execute());
   }
-  Priority p=Priority.getPriorityForName(priorityString);
-  log.log(p,stringToLog,t);
+  LogFunction.logDetails(log,stringToLog,priorityString,t);
   return "";
 }

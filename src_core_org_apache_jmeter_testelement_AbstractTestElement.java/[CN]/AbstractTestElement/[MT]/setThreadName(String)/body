@@ -1,6 +1,6 @@
 {
   if (threadName != null) {
-    if (inthreadName != threadName)     throw new RuntimeException("Attempting to reset the thread name");
+    if (!threadName.equals(inthreadName))     throw new RuntimeException("Attempting to reset the thread name");
   }
   this.threadName=inthreadName;
 }

@@ -1,6 +1,6 @@
 {
   if (assertionResults == null) {
-    return null;
+    return EMPTY_AR;
   }
   return (AssertionResult[])assertionResults.toArray(new AssertionResult[0]);
 }

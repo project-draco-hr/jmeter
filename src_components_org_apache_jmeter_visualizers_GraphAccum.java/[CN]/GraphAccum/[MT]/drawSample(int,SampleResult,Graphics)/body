@@ -5,9 +5,7 @@
   SampleResult[] resultList=oneSample.getSubResults();
   int resultListCount=0;
   if (!previousPtsAlloc) {
-    if (resultList != null) {
-      resultListCount+=resultList.length;
-    }
+    resultListCount+=resultList.length;
     previousPts=new Point[resultListCount + 2];
   }
   Color currColor=Color.black;
