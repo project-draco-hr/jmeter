@@ -1,0 +1,7 @@
+{
+  TestSuite suite=new TestSuite();
+  suite.addTest(suiteGUIComponents());
+  suite.addTest(suiteSerializableElements());
+  suite.addTest(suiteTestElements());
+  return suite;
+}

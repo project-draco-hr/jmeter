@@ -1,0 +1,12 @@
+{
+  TestSuite suite=new TestSuite("GuiComponents");
+  Iterator iter=getObjects(JMeterGUIComponent.class).iterator();
+  while (iter.hasNext()) {
+    JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
+    if (item instanceof JMeterTreeNode) {
+      continue;
+    }
+    suite.addTest(new JMeterTest("runGUIComponents",item));
+  }
+  return suite;
+}
