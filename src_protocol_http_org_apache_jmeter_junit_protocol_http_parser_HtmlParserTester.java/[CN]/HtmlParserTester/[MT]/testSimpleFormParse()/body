@@ -8,9 +8,9 @@
   result.setResponseData(responseText.getBytes());
   result.setSampleLabel(context.toString());
   result.setURL(context.getUrl());
-  JMeterContextService.getContext().setCurrentSampler(context);
-  JMeterContextService.getContext().setCurrentSampler(config);
-  JMeterContextService.getContext().setPreviousResult(result);
+  jmctx.setCurrentSampler(context);
+  jmctx.setCurrentSampler(config);
+  jmctx.setPreviousResult(result);
   parser.process();
   assertEquals("http://www.apache.org/subdir/index.html",config.getUrl().toString());
   assertEquals("test=goto",config.getQueryString());
