@@ -2,16 +2,13 @@
   if (!isPerThread()) {
 synchronized (counterLock) {
       increaseIteration();
-      if (runThisTime) {
-        increaseExecutions();
-      }
+      runThisTime=decide();
+      if (runThisTime)       increaseExecutions();
     }
   }
  else {
     increaseIteration();
-    if (runThisTime) {
-      increaseExecutions();
-    }
+    runThisTime=decide();
+    if (runThisTime)     increaseExecutions();
   }
-  reInitialize();
 }

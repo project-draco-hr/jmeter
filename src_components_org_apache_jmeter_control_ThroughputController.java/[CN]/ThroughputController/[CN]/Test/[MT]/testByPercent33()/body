@@ -5,12 +5,12 @@
   sub_1.addTestElement(new TestSampler("one"));
   sub_1.addTestElement(new TestSampler("two"));
   LoopController controller=new LoopController();
-  controller.setLoops(7);
+  controller.setLoops(6);
   controller.addTestElement(new TestSampler("zero"));
   controller.addTestElement(sub_1);
   controller.addIterationListener(sub_1);
   controller.addTestElement(new TestSampler("three"));
-  String[] order=new String[]{"zero","three","zero","one","two","three","zero","three","zero","three","zero","one","two","three","zero","three","zero","three"};
+  String[] order=new String[]{"zero","three","zero","one","two","three","zero","three","zero","three","zero","one","two","three","zero","three"};
   int counter=0;
   sub_1.testStarted();
   controller.initialize();

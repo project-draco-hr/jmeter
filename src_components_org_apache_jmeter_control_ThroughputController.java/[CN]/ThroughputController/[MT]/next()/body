@@ -1,5 +1,5 @@
 {
-  if (runThisTime && getSubControllers().size() > 0 && current < getSubControllers().size()) {
+  if (runThisTime) {
     return super.next();
   }
   return null;
