@@ -2,5 +2,6 @@
   argumentName.setText(((URLRewritingModifier)el).getArgumentName());
   pathExt.setSelected(((URLRewritingModifier)el).isPathExtension());
   pathExtNoEquals.setSelected(((URLRewritingModifier)el).isPathExtensionNoEquals());
+  pathExtNoQuestionmark.setSelected(((URLRewritingModifier)el).isPathExtensionNoQuestionmark());
   super.configure(el);
 }

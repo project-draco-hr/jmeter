@@ -1,5 +1,7 @@
 {
-  pathExtensionEqualsRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "=([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
-  pathExtensionNoEqualsRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionEqualsQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "=([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionEqualsNoQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "=([^\"'>&\\s;?]*)[&\\s\"'>;?]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionNoEqualsQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionNoEqualsNoQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "([^\"'>&\\s;?]*)[&\\s\"'>;?]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
   parameterRegexp=JMeterUtils.getPatternCache().getPattern("[;\\?&]" + argName + "=([^\"'>&\\s;]*)[&\\s\"'>;]?$?"+ "|\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ argName+ "[\"']"+ "[^>]*"+ "\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "|\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "[^>]*"+ "\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ argName+ "[\"']",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
 }

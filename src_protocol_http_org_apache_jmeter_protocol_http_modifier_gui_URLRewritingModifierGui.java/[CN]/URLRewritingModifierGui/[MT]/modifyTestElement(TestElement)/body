@@ -3,4 +3,5 @@
   ((URLRewritingModifier)modifier).setArgumentName(argumentName.getText());
   ((URLRewritingModifier)modifier).setPathExtension(pathExt.isSelected());
   ((URLRewritingModifier)modifier).setPathExtensionNoEquals(pathExtNoEquals.isSelected());
+  ((URLRewritingModifier)modifier).setPathExtensionNoQuestionmark(pathExtNoQuestionmark.isSelected());
 }
