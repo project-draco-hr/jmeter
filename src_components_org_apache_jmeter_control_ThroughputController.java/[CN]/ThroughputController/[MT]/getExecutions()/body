@@ -1,8 +1,4 @@
 {
-  if (!isPerThread()) {
-    int retValue;
-    retValue=globalNumExecutions.getInteger().intValue();
-    return retValue;
-  }
-  return numExecutions;
+  if (!isPerThread())   return globalNumExecutions.getInteger().intValue();
+ else   return numExecutions;
 }

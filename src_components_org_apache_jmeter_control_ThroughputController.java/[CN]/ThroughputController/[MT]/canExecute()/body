@@ -1,21 +1,21 @@
 {
+  if (returnTrue)   return true;
   int executions, iterations;
-  if (!isPerThread()) {
-synchronized (numExecutionsLock) {
-      executions=getExecutions();
-    }
-synchronized (iterationLock) {
-      iterations=getIteration();
+  boolean retval=false;
+  executions=getExecutions();
+  iterations=getIteration();
+  if (getStyle() == BYNUMBER) {
+    if (executions < getMaxThroughput()) {
+      retval=true;
     }
   }
  else {
-    executions=getExecutions();
-    iterations=getIteration();
+    if (iteration == 0 && getPercentThroughput() > 0)     retval=true;
+ else     if ((executions / iteration) * 100 <= getPercentThroughput())     retval=true;
   }
-  if (getStyle() == BYNUMBER)   return executions < getMaxThroughput();
- else {
-    if (iteration == 0 && getPercentThroughput() > 0)     return true;
- else     if ((executions / iteration) * 100 <= getPercentThroughput())     return true;
+  if (retval) {
+    returnTrue=true;
+    increaseExecutions();
   }
-  return false;
+  return retval;
 }

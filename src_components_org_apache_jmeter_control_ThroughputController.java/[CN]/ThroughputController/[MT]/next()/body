@@ -1,11 +1,17 @@
 {
   Sampler retVal=null;
-  if (getSubControllers().size() > 0 && current <= getSubControllers().size()) {
-    if (current == getSubControllers().size()) {
-      increaseExecutions();
+  if (getSubControllers().size() > 0 && current < getSubControllers().size()) {
+    if (!isPerThread()) {
+synchronized (numExecutionsLock) {
+        if (canExecute()) {
+          retVal=super.next();
+        }
+      }
     }
  else {
-      if (canExecute())       retVal=super.next();
+      if (canExecute()) {
+        retVal=super.next();
+      }
     }
   }
   return retVal;

@@ -1,4 +1,11 @@
 {
-  increaseIteration();
+  if (!isPerThread()) {
+synchronized (iterationLock) {
+      increaseIteration();
+    }
+  }
+ else {
+    increaseIteration();
+  }
   reInitialize();
 }
