@@ -17,7 +17,7 @@
  else   if (command.equals(ADD_EXCLUDE)) {
     excludeModel.addNewRow();
     excludeModel.fireTableDataChanged();
-    if (stop.isEnabled())     enableRestart();
+    enableRestart();
   }
  else   if (command.equals(ADD_INCLUDE)) {
     includeModel.addNewRow();
