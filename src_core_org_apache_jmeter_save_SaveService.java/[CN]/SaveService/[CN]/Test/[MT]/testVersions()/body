@@ -1,0 +1,6 @@
+{
+  initProps();
+  checkVersions();
+  assertTrue("Unexpected version found",versionsOK);
+  assertEquals(PROPVERSION,propertiesVersion);
+}

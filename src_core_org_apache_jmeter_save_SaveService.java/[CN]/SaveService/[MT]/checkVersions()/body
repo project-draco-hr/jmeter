@@ -10,6 +10,9 @@
   checkVersion(TestElementConverter.class,"1.2");
   checkVersion(TestElementPropertyConverter.class,"1.2");
   checkVersion(ScriptWrapperConverter.class,"1.2");
+  if (!PROPVERSION.equalsIgnoreCase(propertiesVersion)) {
+    log.warn("Property file - expected " + PROPVERSION + ", found "+ propertiesVersion);
+  }
   if (versionsOK) {
     log.info("All converter versions present and correct");
   }

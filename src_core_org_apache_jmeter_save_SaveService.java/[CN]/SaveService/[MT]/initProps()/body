@@ -1,0 +1,24 @@
+{
+  Properties nameMap=new Properties();
+  try {
+    nameMap.load(new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault("saveservice_properties","/bin/saveservice.properties")));
+    Iterator it=nameMap.entrySet().iterator();
+    while (it.hasNext()) {
+      Map.Entry me=(Map.Entry)it.next();
+      String key=(String)me.getKey();
+      String val=(String)me.getValue();
+      if (!key.startsWith("_")) {
+        makeAlias(key,val);
+      }
+ else {
+        if (key.equalsIgnoreCase("_version")) {
+          log.info("Using SaveService properties file " + val);
+          propertiesVersion=val;
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+    log.error("Bad saveservice properties file",e);
+  }
+}
