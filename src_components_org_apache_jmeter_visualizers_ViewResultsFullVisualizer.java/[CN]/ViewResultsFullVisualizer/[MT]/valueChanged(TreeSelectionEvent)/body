@@ -11,6 +11,7 @@
     results.setText("");
     if (node != null) {
       SampleResult res=(SampleResult)node.getUserObject();
+      byte[] responseBytes=res.getResponseData();
       if (log.isDebugEnabled()) {
         log.debug("valueChanged1 : sample result - " + res);
       }
@@ -55,20 +56,7 @@ String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
 statsDoc.insertString(statsDoc.getLength(),"HTTP response message: " + responseMsgStr + "\n",null);
 statsDoc.insertString(statsDoc.getLength(),"\nHTTP response headers:\n" + res.getResponseHeaders() + "\n",null);
-byte[] responseBytes=(byte[])res.getResponseData();
-if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
-String response=null;
-try {
-if (responseBytes.length > 200 * 1024) {
-  response=("Response too large to be displayed (" + responseBytes.length + " bytes).");
-}
- else {
-  response=new String(responseBytes,"UTF-8");
-}
-}
- catch (UnsupportedEncodingException err) {
-throw new Error(err.toString());
-}
+String response=getResponseAsString(res);
 if (textMode) {
 showTextResponse(response);
 }
@@ -78,7 +66,6 @@ showRenderedResponse(response);
 }
  else if (responseBytes != null) {
 showImage(new ImageIcon(responseBytes));
-}
 }
 }
 }

@@ -8,22 +8,7 @@
       return;
     }
     SampleResult res=(SampleResult)node.getUserObject();
-    byte[] responseBytes=(byte[])res.getResponseData();
-    String response=null;
-    if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
-      try {
-        if (responseBytes.length > 200 * 1024) {
-          response=("Response too large to be displayed (" + responseBytes.length + " bytes).");
-          log.warn("Response too large to display.");
-        }
- else {
-          response=new String(responseBytes,"UTF-8");
-        }
-      }
- catch (      UnsupportedEncodingException err) {
-        throw new Error(err.toString());
-      }
-    }
+    String response=getResponseAsString(res);
     if (textMode) {
       showTextResponse(response);
     }
