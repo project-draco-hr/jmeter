@@ -1,4 +1,6 @@
 {
   super.configure(el);
   setFile(el.getPropertyAsString(ResultCollector.FILENAME));
+  ResultCollector rc=(ResultCollector)el;
+  errorLogging.setSelected(rc.isErrorLogging());
 }

@@ -3,6 +3,7 @@
     collector=new ResultCollector();
   }
   configureTestElement(collector);
+  collector.setErrorLogging(errorLogging.isSelected());
   try {
     if (!getFile().equals("")) {
       try {

@@ -1,9 +1,11 @@
 {
-  sendToVisualizer(e.getResult());
-  try {
-    recordResult(e.getResult());
-  }
- catch (  Exception err) {
-    log.error("",err);
+  if (!isErrorLogging() || !e.getResult().isSuccessful()) {
+    sendToVisualizer(e.getResult());
+    try {
+      recordResult(e.getResult());
+    }
+ catch (    Exception err) {
+      log.error("",err);
+    }
   }
 }

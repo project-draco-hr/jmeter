@@ -1,4 +1,6 @@
 {
+  this.setLayout(new FlowLayout(FlowLayout.LEFT));
+  setBorder(BorderFactory.createTitledBorder(title));
   add(label);
   add(filename);
   filename.addActionListener(this);
