@@ -1,9 +1,0 @@
-{
-  ArrayList result=new ArrayList();
-  StringTokenizer tokener=new StringTokenizer(theLine,",");
-  while (tokener.hasMoreTokens()) {
-    String token=tokener.nextToken();
-    result.add(token);
-  }
-  return result;
-}
