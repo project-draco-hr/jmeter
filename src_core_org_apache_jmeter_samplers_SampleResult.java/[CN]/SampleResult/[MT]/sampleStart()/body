@@ -1,6 +1,9 @@
 {
   if (startTime == 0) {
     startTime=System.currentTimeMillis();
+    if (startTimeStamp) {
+      timeStamp=startTime;
+    }
   }
  else {
     log.error("sampleStart called twice",new Throwable("Invalid call sequence"));
