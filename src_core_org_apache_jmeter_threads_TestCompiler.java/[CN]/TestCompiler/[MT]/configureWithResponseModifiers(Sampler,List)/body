@@ -1,0 +1,13 @@
+{
+  Iterator iter=responseModifiers.iterator();
+  while (iter.hasNext()) {
+    ResponseBasedModifier mod=(ResponseBasedModifier)iter.next();
+    mod=(ResponseBasedModifier)cloneIfNecessary(mod);
+    if (objectsWithFunctions.contains(mod)) {
+      replaceValues((TestElement)mod);
+    }
+    if (previousResult != null) {
+      mod.modifyEntry(sam,previousResult);
+    }
+  }
+}

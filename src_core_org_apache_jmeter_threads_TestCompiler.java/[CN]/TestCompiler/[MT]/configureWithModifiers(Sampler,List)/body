@@ -1,0 +1,11 @@
+{
+  Iterator iter=modifiers.iterator();
+  while (iter.hasNext()) {
+    Modifier mod=(Modifier)iter.next();
+    mod=(Modifier)cloneIfNecessary(mod);
+    if (objectsWithFunctions.contains(mod)) {
+      replaceValues((TestElement)mod);
+    }
+    mod.modifyEntry(sam);
+  }
+}

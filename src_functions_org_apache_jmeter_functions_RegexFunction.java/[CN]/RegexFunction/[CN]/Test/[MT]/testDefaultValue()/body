@@ -1,5 +1,6 @@
 {
   variable.setParameters(URLEncoder.encode("<value,, field=\"(pinposition\\d+)\">(\\d+)</value>") + "," + URLEncoder.encode("$2$, ")+ ",.333,,No Value Found");
+  variable.setJMeterVariables(new JMeterVariables());
   String match=variable.execute(result,null);
   assertEquals("No Value Found",match);
 }

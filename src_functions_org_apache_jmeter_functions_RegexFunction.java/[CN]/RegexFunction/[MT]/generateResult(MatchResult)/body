@@ -1,4 +1,5 @@
 {
+  saveGroups(match);
   StringBuffer result=new StringBuffer();
   for (int a=0; a < template.length; a++) {
     if (template[a] instanceof String) {

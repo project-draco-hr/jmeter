@@ -32,16 +32,20 @@
     return value.toString();
   }
  else   if (valueIndex.equals(RAND)) {
-    return generateResult((MatchResult)collectAllMatches.get(rand.nextInt(collectAllMatches.size())));
+    System.out.println("Number of matches = " + collectAllMatches.size());
+    MatchResult result=(MatchResult)collectAllMatches.get(rand.nextInt(collectAllMatches.size()));
+    return generateResult(result);
   }
  else {
     try {
       int index=Integer.parseInt(valueIndex) - 1;
-      return generateResult((MatchResult)collectAllMatches.get(index));
+      MatchResult result=(MatchResult)collectAllMatches.get(index);
+      return generateResult(result);
     }
  catch (    NumberFormatException e) {
       float ratio=Float.parseFloat(valueIndex);
-      return generateResult((MatchResult)collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1));
+      MatchResult result=(MatchResult)collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1);
+      return generateResult(result);
     }
   }
 }

@@ -1,5 +1,6 @@
 {
   function.setParameters("It should say:${${__regexFunction(" + URLEncoder.encode("<html>(.*)</html>") + ",$1$)}}");
+  function.setJMeterVariables(new JMeterVariables());
   assertEquals(3,function.compiledComponents.size());
   assertEquals("It should say:${",function.compiledComponents.getFirst().toString());
   assertTrue(function.hasFunction());

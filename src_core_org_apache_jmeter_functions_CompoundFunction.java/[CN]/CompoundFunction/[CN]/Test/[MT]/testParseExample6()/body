@@ -1,5 +1,6 @@
 {
   function.setParameters("${server}");
+  function.setJMeterVariables(new JMeterVariables());
   assertEquals(1,function.compiledComponents.size());
   assertTrue(!function.hasFunction());
   assertTrue(function.hasStatics());

@@ -4,4 +4,7 @@
   testTree=test;
   compiler=new TestCompiler(testTree,threadVars);
   controller=(Controller)testTree.getArray()[0];
+  SearchByClass threadListenerSearcher=new SearchByClass(ThreadListener.class);
+  test.traverse(threadListenerSearcher);
+  threadListeners=threadListenerSearcher.getSearchResults();
 }

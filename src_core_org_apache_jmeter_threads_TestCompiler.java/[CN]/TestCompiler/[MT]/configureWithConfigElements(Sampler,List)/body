@@ -1,0 +1,11 @@
+{
+  Iterator iter=configs.iterator();
+  while (iter.hasNext()) {
+    ConfigTestElement config=(ConfigTestElement)iter.next();
+    config=(ConfigTestElement)cloneIfNecessary(config);
+    if (objectsWithFunctions.contains(config)) {
+      replaceValues(config);
+    }
+    sam.addTestElement(config);
+  }
+}

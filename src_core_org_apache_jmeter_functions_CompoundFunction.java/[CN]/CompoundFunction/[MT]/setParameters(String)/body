@@ -32,7 +32,10 @@
         }
       }
  else {
-        addStringToComponents(compiledComponents,"${" + function + "}");
+        UnknownFunction unknown=new UnknownFunction(functionName);
+        compiledComponents.addLast(unknown);
+        hasFunction=true;
+        hasUnknowns=true;
       }
       if ((index + 1) < part.length()) {
         addStringToComponents(compiledComponents,part.substring(index + 1));

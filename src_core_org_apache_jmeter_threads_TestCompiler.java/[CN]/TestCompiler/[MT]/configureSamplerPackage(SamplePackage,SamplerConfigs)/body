@@ -1,0 +1,29 @@
+{
+  Iterator iter=configs.getAssertions().iterator();
+  while (iter.hasNext()) {
+    Assertion assertion=(Assertion)iter.next();
+    assertion=(Assertion)cloneIfNecessary(assertion);
+    if (objectsWithFunctions.contains(assertion)) {
+      replaceValues((TestElement)assertion);
+    }
+    ret.addAssertion(assertion);
+  }
+  iter=configs.getTimers().iterator();
+  while (iter.hasNext()) {
+    Timer timer=(Timer)iter.next();
+    timer=(Timer)cloneIfNecessary(timer);
+    if (objectsWithFunctions.contains(timer)) {
+      replaceValues((TestElement)timer);
+    }
+    ret.addTimer(timer);
+  }
+  iter=configs.getListeners().iterator();
+  while (iter.hasNext()) {
+    SampleListener lis=(SampleListener)iter.next();
+    lis=(SampleListener)cloneIfNecessary(lis);
+    if (objectsWithFunctions.contains(lis)) {
+      replaceValues((TestElement)lis);
+    }
+    ret.addSampleListener(lis);
+  }
+}

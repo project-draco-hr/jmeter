@@ -1,0 +1,7 @@
+{
+  threadVars.incIteration();
+  Iterator iter=threadListeners.iterator();
+  while (iter.hasNext()) {
+    ((ThreadListener)iter.next()).iterationStarted(threadVars.getIteration());
+  }
+}

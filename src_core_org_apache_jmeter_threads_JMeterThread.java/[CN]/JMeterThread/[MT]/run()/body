@@ -1,5 +1,6 @@
 {
   try {
+    initializeThreadListeners();
     testTree.traverse(compiler);
     running=true;
     Sampler entry=null;
@@ -7,7 +8,7 @@
     System.out.println("Thread " + Thread.currentThread().getName() + " started");
     while (running) {
       while (controller.hasNext() && running) {
-        threadVars.incIteration();
+        notifyThreadListeners();
         try {
           SamplePackage pack=compiler.configureSampler(controller.next());
           delay(pack.getTimers());

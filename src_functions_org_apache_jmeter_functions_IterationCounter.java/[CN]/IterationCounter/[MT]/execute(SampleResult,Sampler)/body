@@ -1,8 +1,14 @@
 {
+  counter++;
+  JMeterVariables vars=getVariables();
+  String falseCounterString=Integer.toString(counter);
+  String trueCounterString=Integer.toString(vars.getIteration());
+  vars.put(trueCount,trueCounterString);
+  vars.put(falseCount,falseCounterString);
   if (perThread) {
-    return Integer.toString(vars.getIteration());
+    return trueCounterString;
   }
  else {
-    return Integer.toString(counter++);
+    return falseCounterString;
   }
 }

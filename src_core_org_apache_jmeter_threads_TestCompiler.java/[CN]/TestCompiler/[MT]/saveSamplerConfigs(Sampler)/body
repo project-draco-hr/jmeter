@@ -1,5 +1,10 @@
 {
   List configs=new LinkedList();
+  List modifiers=new LinkedList();
+  List responseModifiers=new LinkedList();
+  List listeners=new LinkedList();
+  List timers=new LinkedList();
+  List assertions=new LinkedList();
   for (int i=stack.size(); i > 0; i--) {
     Iterator iter=testTree.list(stack.subList(0,i)).iterator();
     while (iter.hasNext()) {
@@ -9,8 +14,23 @@ synchronized (item) {
           objectsWithFunctions.add(item);
         }
       }
-      if (!(item instanceof Sampler)) {
+      if ((item instanceof ConfigTestElement)) {
         configs.add(item);
+      }
+      if (item instanceof Modifier) {
+        modifiers.add(item);
+      }
+      if (item instanceof ResponseBasedModifier) {
+        responseModifiers.add(item);
+      }
+      if (item instanceof SampleListener) {
+        listeners.add(item);
+      }
+      if (item instanceof Timer) {
+        timers.add(item);
+      }
+      if (item instanceof Assertion) {
+        assertions.add(item);
       }
     }
   }
@@ -19,5 +39,6 @@ synchronized (sam) {
       objectsWithFunctions.add(sam);
     }
   }
-  samplerConfigs.put(sam,configs);
+  SamplerConfigs samplerConfigs=new SamplerConfigs(configs,modifiers,responseModifiers,listeners,timers,assertions);
+  samplerConfigMap.put(sam,samplerConfigs);
 }

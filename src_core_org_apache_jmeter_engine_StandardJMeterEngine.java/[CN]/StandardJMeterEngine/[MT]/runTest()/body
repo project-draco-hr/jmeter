@@ -14,7 +14,6 @@
     if (iter.hasNext()) {
       notifyTestListenersOfStart();
     }
-    JMeterVariables.initialize();
     while (iter.hasNext()) {
       ThreadGroup group=(ThreadGroup)iter.next();
       threads=new JMeterThread[group.getNumThreads()];

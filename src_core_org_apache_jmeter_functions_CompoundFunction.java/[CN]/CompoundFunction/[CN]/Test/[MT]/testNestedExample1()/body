@@ -1,5 +1,6 @@
 {
   function.setParameters("${__regexFunction(<html>(${my_regex})</html>,$1$)}${__regexFunction(<html>(.*o)(.*o)(.*)</html>,$1$$3$)}");
+  function.setJMeterVariables(new JMeterVariables());
   assertEquals(2,function.compiledComponents.size());
   assertTrue(function.hasFunction());
   assertTrue(function.hasStatics());
