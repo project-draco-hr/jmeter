@@ -3,9 +3,9 @@
   result.setFailure(false);
   resultData=getResultBody(response.getResponseData());
   long resultSize=resultData.length;
-  if (((resultSize != getAllowedSize()) && (getAllowedSize() > 0))) {
+  if ((!(compareSize(resultSize)) && (getAllowedSize() > 0))) {
     result.setFailure(true);
-    Object[] arguments={new Long(resultSize),new Long(getAllowedSize())};
+    Object[] arguments={new Long(resultSize),new String(comparatorErrorMessage),new Long(getAllowedSize())};
     String message=MessageFormat.format(JMeterUtils.getResString("size_assertion_failure"),arguments);
     result.setFailureMessage(message);
   }

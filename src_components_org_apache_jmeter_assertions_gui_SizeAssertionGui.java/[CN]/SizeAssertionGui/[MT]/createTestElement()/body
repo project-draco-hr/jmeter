@@ -1,6 +1,5 @@
 {
-  SizeAssertion el=new SizeAssertion();
-  configureTestElement(el);
+  configureTestElement(sa);
   String sizeString=size.getText();
   long assertionSize=0;
   try {
@@ -9,6 +8,6 @@
  catch (  NumberFormatException e) {
     assertionSize=Long.MAX_VALUE;
   }
-  el.setAllowedSize(assertionSize);
-  return el;
+  sa.setAllowedSize(assertionSize);
+  return sa;
 }
