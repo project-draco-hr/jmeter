@@ -1,16 +1,10 @@
 {
-  JFileChooser jfc=null;
   if (lastJFCDirectory == null) {
     String start=JMeterUtils.getPropDefault("user.dir","");
     if (!start.equals("")) {
-      jfc=new JFileChooser(start);
+      jfc=new JFileChooser(new File(start));
     }
- else {
-      jfc=new JFileChooser();
-    }
-  }
- else {
-    jfc=new JFileChooser(lastJFCDirectory);
+    lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
   }
   String ext=".jmx";
   if (filename != null) {
@@ -20,6 +14,7 @@
       ext=filename.substring(i);
     }
   }
+  clearFileFilters();
   jfc.addChoosableFileFilter(new JMeterFileFilter(new String[]{ext}));
   int retVal=jfc.showSaveDialog(GuiPackage.getInstance().getMainFrame());
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();

@@ -1,6 +1,13 @@
 {
   notifier.stop();
   Iterator iter=testListeners.getSearchResults().iterator();
+  while (!notifier.isStopped()) {
+    try {
+      Thread.sleep(1000);
+    }
+ catch (    InterruptedException e) {
+    }
+  }
   while (iter.hasNext()) {
     if (host == null) {
       ((TestListener)iter.next()).testEnded();

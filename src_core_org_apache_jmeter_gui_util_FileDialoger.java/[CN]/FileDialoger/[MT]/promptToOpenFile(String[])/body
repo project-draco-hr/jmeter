@@ -1,17 +1,11 @@
 {
-  JFileChooser jfc=null;
   if (lastJFCDirectory == null) {
     String start=JMeterUtils.getPropDefault("user.dir","");
     if (!start.equals("")) {
-      jfc=new JFileChooser(start);
-    }
- else {
-      jfc=new JFileChooser();
+      jfc.setCurrentDirectory(new File(start));
     }
   }
- else {
-    jfc=new JFileChooser(lastJFCDirectory);
-  }
+  clearFileFilters();
   jfc.addChoosableFileFilter(new JMeterFileFilter(exts));
   int retVal=jfc.showOpenDialog(GuiPackage.getInstance().getMainFrame());
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();

@@ -3,6 +3,7 @@
     return super.removeFirst();
   }
  catch (  RuntimeException e) {
+    sleepTime=2000;
     return null;
   }
 }

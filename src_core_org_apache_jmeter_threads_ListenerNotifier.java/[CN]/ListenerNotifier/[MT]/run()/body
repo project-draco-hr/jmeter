@@ -9,7 +9,11 @@
         ((SampleListener)iter.next()).sampleOccurred(res);
       }
     }
-    Thread.yield();
+    try {
+      Thread.sleep(sleepTime);
+    }
+ catch (    InterruptedException e) {
+    }
   }
   isStopped=true;
 }
