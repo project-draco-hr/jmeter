@@ -1,0 +1,8 @@
+{
+  if (e.getActionCommand().equals(ENABLE)) {
+    GuiPackage.getInstance().getTreeListener().getCurrentNode().setEnabled(true);
+  }
+ else   if (e.getActionCommand().equals(DISABLE)) {
+    GuiPackage.getInstance().getTreeListener().getCurrentNode().setEnabled(false);
+  }
+}
