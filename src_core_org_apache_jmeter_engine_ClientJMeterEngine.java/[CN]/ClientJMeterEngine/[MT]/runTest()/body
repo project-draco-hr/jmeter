@@ -1,14 +1,5 @@
 {
-  testListeners=new SearchByClass(TestListener.class);
-  getTestTree().traverse(testListeners);
-  sampleListeners=new ConvertListeners();
-  getTestTree().traverse(sampleListeners);
-  try {
-    remote.setHost(host);
-    remote.configure(test);
-    remote.runTest();
-  }
- catch (  Exception ex) {
-    log.error("",ex);
-  }
+  log.warn("about to run remote test");
+  new Thread(this).start();
+  log.warn("done initiating run command");
 }

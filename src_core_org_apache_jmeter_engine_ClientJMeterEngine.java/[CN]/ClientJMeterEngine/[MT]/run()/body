@@ -1,0 +1,18 @@
+{
+  log.warn("running clientengine run method");
+  testListeners=new SearchByClass(TestListener.class);
+  getTestTree().traverse(testListeners);
+  sampleListeners=new ConvertListeners();
+  getTestTree().traverse(sampleListeners);
+  try {
+    remote.setHost(host);
+    log.warn("sent host info");
+    remote.configure(test);
+    log.warn("sent test");
+    remote.runTest();
+    log.warn("sent run command");
+  }
+ catch (  Exception ex) {
+    log.error("",ex);
+  }
+}
