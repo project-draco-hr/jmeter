@@ -1,0 +1,12 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append(getHTTPMethod());
+  sb.append(' ');
+  sb.append(getURL().toString());
+  String s=super.getSamplerData();
+  if (s != null) {
+    sb.append('\n');
+    sb.append(s);
+  }
+  return sb.toString();
+}

@@ -1,0 +1,15 @@
+{
+  super();
+  setSampleLabel(res.getSampleLabel());
+  setHTTPMethod(res.getHTTPMethod());
+  setURL(res.getURL());
+  setRequestHeaders(res.getRequestHeaders());
+  setResponseData(res.getResponseData());
+  setResponseCode(res.getResponseCode());
+  setSuccessful(res.isSuccessful());
+  setTime(res.getTime());
+  setResponseMessage(res.getResponseMessage());
+  setDataType(res.getDataType());
+  setResponseHeaders(res.getResponseHeaders());
+  addSubResult(res);
+}
