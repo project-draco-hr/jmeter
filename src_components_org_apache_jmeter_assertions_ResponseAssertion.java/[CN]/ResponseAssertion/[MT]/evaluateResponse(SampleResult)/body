@@ -2,19 +2,24 @@
   boolean pass=true;
   boolean not=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult();
+  String responseString=new String(response.getResponseData());
   try {
+    Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
     Iterator iter=getTestStrings().iterator();
     while (iter.hasNext()) {
-      String pattern=(String)iter.next();
+      String stringPattern=(String)iter.next();
+      Pattern pattern=patternCache.getPattern(stringPattern);
+      boolean found;
       if ((CONTAINS & getTestType()) > 0) {
-        pass=pass && (not ? !matcher.contains(new String(response.getResponseData()),compiler.compile(pattern)) : matcher.contains(new String(response.getResponseData()),compiler.compile(pattern)));
+        found=localMatcher.contains(responseString,pattern);
       }
  else {
-        pass=pass && (not ? !matcher.matches(new String(response.getResponseData()),compiler.compile(pattern)) : matcher.matches(new String(response.getResponseData()),compiler.compile(pattern)));
+        found=localMatcher.matches(responseString,pattern);
       }
+      pass=not ? !found : found;
       if (!pass) {
         result.setFailure(true);
-        result.setFailureMessage("Test Failed, expected " + notMessage + failMessage+ pattern);
+        result.setFailureMessage("Test Failed, expected " + notMessage + failMessage+ stringPattern);
         break;
       }
     }
@@ -23,7 +28,7 @@
     }
     result.setError(false);
   }
- catch (  MalformedPatternException e) {
+ catch (  MalformedCachePatternException e) {
     result.setError(true);
     result.setFailure(false);
     result.setFailureMessage("Bad test configuration" + e);
