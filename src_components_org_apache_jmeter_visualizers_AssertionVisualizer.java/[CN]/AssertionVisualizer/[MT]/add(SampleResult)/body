@@ -1,10 +1,15 @@
 {
-  if (null != sample.getSamplerData()) {
-    textArea.append(sample.getSamplerData().toString());
+  StringBuffer sb=new StringBuffer(100);
+  String sd=sample.getSamplerData();
+  if (null != sd) {
+    sb.append(sd);
   }
  else {
-    textArea.append(sample.getSampleLabel());
+    sb.append(sample.getSampleLabel());
   }
-  textArea.append(getAssertionResult(sample));
-  textArea.append("\n");
+  sb.append(getAssertionResult(sample));
+  sb.append("\n");
+synchronized (textArea) {
+    textArea.append(sb.toString());
+  }
 }
