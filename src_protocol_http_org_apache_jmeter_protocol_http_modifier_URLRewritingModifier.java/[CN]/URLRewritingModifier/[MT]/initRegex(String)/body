@@ -1,6 +1,5 @@
 {
-  equalsRegexp=JMeterUtils.getPatternCache().getPattern(argName + "=([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK);
-  formRegexp1=JMeterUtils.getPatternCache().getPattern("[Nn][Aa][Mm][Ee]=[\"']" + argName + "[\"'][^>]+[vV][Aa][Ll][Uu][Ee]=[\"']([^\"']*)[\"']",Perl5Compiler.MULTILINE_MASK);
-  formRegexp2=JMeterUtils.getPatternCache().getPattern("[vV][Aa][Ll][Uu][Ee]=[\"']([^\"']*)[\"'][^>]+[Nn][Aa][Mm][Ee]=[\"']" + argName + "[\"']",Perl5Compiler.MULTILINE_MASK);
-  noEqualsRegexp=JMeterUtils.getPatternCache().getPattern(argName + "([^\"'>&\\s]*)[&\\s\"'>]?$?",Perl5Compiler.MULTILINE_MASK);
+  pathExtensionEqualsRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "=([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK);
+  pathExtensionNoEqualsRegexp=JMeterUtils.getPatternCache().getPattern(";" + argName + "([^\"'>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK);
+  parameterRegexp=JMeterUtils.getPatternCache().getPattern("[;\\?&]" + argName + "=([^\"'>&\\s;]*)[&\\s\"'>;]?$?"+ "|\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ argName+ "[\"']"+ "[^>]*"+ "\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "|\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "[^>]*"+ "\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ argName+ "[\"']",Perl5Compiler.MULTILINE_MASK);
 }

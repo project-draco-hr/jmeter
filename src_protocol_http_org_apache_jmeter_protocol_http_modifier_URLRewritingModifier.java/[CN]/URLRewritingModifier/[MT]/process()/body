@@ -9,29 +9,24 @@
   Perl5Matcher matcher=JMeterUtils.getMatcher();
   String value="";
   if (isPathExtension() && isPathExtensionNoEquals()) {
-    if (matcher.contains(text,noEqualsRegexp)) {
+    if (matcher.contains(text,pathExtensionNoEqualsRegexp)) {
       MatchResult result=matcher.getMatch();
       value=result.group(1);
     }
   }
  else   if (isPathExtension()) {
-    if (matcher.contains(text,equalsRegexp)) {
+    if (matcher.contains(text,pathExtensionEqualsRegexp)) {
       MatchResult result=matcher.getMatch();
       value=result.group(1);
     }
   }
  else {
-    if (matcher.contains(text,equalsRegexp)) {
+    if (matcher.contains(text,parameterRegexp)) {
       MatchResult result=matcher.getMatch();
-      value=result.group(1);
-    }
- else     if (matcher.contains(text,formRegexp1)) {
-      MatchResult result=matcher.getMatch();
-      value=result.group(1);
-    }
- else     if (matcher.contains(text,formRegexp2)) {
-      MatchResult result=matcher.getMatch();
-      value=result.group(1);
+      for (int i=1; i < result.groups(); i++) {
+        value=result.group(i);
+        if (value != null)         break;
+      }
     }
   }
   modify((HTTPSampler)sampler,value);
