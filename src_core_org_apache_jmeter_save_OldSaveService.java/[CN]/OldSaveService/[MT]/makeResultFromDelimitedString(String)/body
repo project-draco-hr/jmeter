@@ -2,48 +2,48 @@
   SampleResult result=null;
   long timeStamp=0;
   long elapsed=0;
-  StringTokenizer splitter=new StringTokenizer(delim,defaultDelimiter);
+  StringTokenizer splitter=new StringTokenizer(delim,_saveConfig.getDelimiter());
   String text=null;
   try {
-    if (printMilliseconds) {
+    if (_saveConfig.printMilliseconds()) {
       text=splitter.nextToken();
       timeStamp=Long.parseLong(text);
     }
- else     if (formatter != null) {
+ else     if (_saveConfig.formatter() != null) {
       text=splitter.nextToken();
-      Date stamp=formatter.parse(text);
+      Date stamp=_saveConfig.formatter().parse(text);
       timeStamp=stamp.getTime();
     }
-    if (saveTime) {
+    if (_saveConfig.saveTime()) {
       text=splitter.nextToken();
       elapsed=Long.parseLong(text);
     }
     result=new SampleResult(timeStamp,elapsed);
-    if (saveLabel) {
+    if (_saveConfig.saveLabel()) {
       text=splitter.nextToken();
       result.setSampleLabel(text);
     }
-    if (saveResponseCode) {
+    if (_saveConfig.saveCode()) {
       text=splitter.nextToken();
       result.setResponseCode(text);
     }
-    if (saveResponseMessage) {
+    if (_saveConfig.saveMessage()) {
       text=splitter.nextToken();
       result.setResponseMessage(text);
     }
-    if (saveThreadName) {
+    if (_saveConfig.saveThreadName()) {
       text=splitter.nextToken();
       result.setThreadName(text);
     }
-    if (saveDataType) {
+    if (_saveConfig.saveDataType()) {
       text=splitter.nextToken();
       result.setDataType(text);
     }
-    if (saveSuccessful) {
+    if (_saveConfig.saveSuccess()) {
       text=splitter.nextToken();
       result.setSuccessful(Boolean.valueOf(text).booleanValue());
     }
-    if (saveAssertionResultsFailureMessage) {
+    if (_saveConfig.saveAssertionResultsFailureMessage()) {
       text=splitter.nextToken();
     }
   }

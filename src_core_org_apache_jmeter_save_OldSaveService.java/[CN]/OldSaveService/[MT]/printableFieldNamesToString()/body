@@ -1,44 +1,44 @@
 {
   StringBuffer text=new StringBuffer();
-  if (printMilliseconds || (formatter != null)) {
+  if (_saveConfig.printMilliseconds() || (_saveConfig.formatter() != null)) {
     text.append(SaveServiceConstants.TIME_STAMP);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveTime) {
+  if (_saveConfig.saveTime()) {
     text.append(SaveServiceConstants.TIME);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveLabel) {
+  if (_saveConfig.saveLabel()) {
     text.append(SaveServiceConstants.LABEL);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveResponseCode) {
+  if (_saveConfig.saveCode()) {
     text.append(SaveServiceConstants.RESPONSE_CODE);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveResponseMessage) {
+  if (_saveConfig.saveMessage()) {
     text.append(SaveServiceConstants.RESPONSE_MESSAGE);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveThreadName) {
+  if (_saveConfig.saveThreadName()) {
     text.append(SaveServiceConstants.THREAD_NAME);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveDataType) {
+  if (_saveConfig.saveDataType()) {
     text.append(SaveServiceConstants.DATA_TYPE);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveSuccessful) {
+  if (_saveConfig.saveSuccess()) {
     text.append(SaveServiceConstants.SUCCESSFUL);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
-  if (saveAssertionResultsFailureMessage) {
+  if (_saveConfig.saveAssertionResultsFailureMessage()) {
     text.append(SaveServiceConstants.FAILURE_MESSAGE);
-    text.append(defaultDelimiter);
+    text.append(_saveConfig.getDelimiter());
   }
   String resultString=null;
   int size=text.length();
-  int delSize=defaultDelimiter.length();
+  int delSize=_saveConfig.getDelimiter().length();
   if (size >= delSize) {
     resultString=text.substring(0,size - delSize);
   }

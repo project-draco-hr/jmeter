@@ -1,5 +1,5 @@
 {
-  Map map=(Map)Class.forName((String)config.getAttribute("class")).newInstance();
+  Map map=(Map)Class.forName(config.getAttribute("class")).newInstance();
   Configuration[] items=config.getChildren();
   for (int i=0; i < items.length; i++) {
     if (items[i].getName().equals("property")) {

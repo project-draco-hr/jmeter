@@ -18,5 +18,10 @@
   s.fieldNames=fieldNames;
   s.responseHeaders=responseHeaders;
   s.requestHeaders=requestHeaders;
+  s.formatter=formatter;
+  s.assertionsResultsToSave=assertionsResultsToSave;
+  s.saveAssertionResultsFailureMessage=saveAssertionResultsFailureMessage;
+  s.delimiter=delimiter;
+  s.printMilliseconds=printMilliseconds;
   return s;
 }

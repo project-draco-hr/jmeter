@@ -8,7 +8,7 @@
       parsedOK=true;
     }
  catch (    Exception e) {
-      log.warn("File load failure, trying old data format.",e);
+      log.warn("File load failure, trying old data format.");
       try {
         Configuration savedSamples=getConfiguration(getFilename());
         Configuration[] samples=savedSamples.getChildren();

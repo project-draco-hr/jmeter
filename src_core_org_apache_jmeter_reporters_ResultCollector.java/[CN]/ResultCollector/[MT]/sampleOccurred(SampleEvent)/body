@@ -2,10 +2,12 @@
   SampleResult result=e.getResult();
   if (!isErrorLogging() || !result.isSuccessful()) {
     sendToVisualizer(result);
+    SampleSaveConfiguration config=getSaveConfig();
+    result.setSaveConfig(config);
     try {
-      if (!getSaveConfig().saveAsXml()) {
+      if (!config.saveAsXml()) {
         if (out != null) {
-          String savee=OldSaveService.resultToDelimitedString(result,getSaveConfig());
+          String savee=OldSaveService.resultToDelimitedString(result);
           out.println(savee);
         }
       }

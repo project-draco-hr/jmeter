@@ -1,31 +1,31 @@
 {
   DefaultConfiguration config=new DefaultConfiguration(SAMPLE_RESULT_TAG_NAME,"JMeter Save Service");
-  if (saveTime) {
+  if (_saveConfig.saveTime()) {
     config.setAttribute(TIME,"" + result.getTime());
   }
-  if (saveLabel) {
+  if (_saveConfig.saveLabel()) {
     config.setAttribute(LABEL,result.getSampleLabel());
   }
-  if (saveResponseCode) {
+  if (_saveConfig.saveCode()) {
     config.setAttribute(RESPONSE_CODE,result.getResponseCode());
   }
-  if (saveResponseMessage) {
+  if (_saveConfig.saveMessage()) {
     config.setAttribute(RESPONSE_MESSAGE,result.getResponseMessage());
   }
-  if (saveThreadName) {
+  if (_saveConfig.saveThreadName()) {
     config.setAttribute(THREAD_NAME,result.getThreadName());
   }
-  if (saveDataType) {
+  if (_saveConfig.saveDataType()) {
     config.setAttribute(DATA_TYPE,result.getDataType());
   }
-  if (printMilliseconds) {
+  if (_saveConfig.printMilliseconds()) {
     config.setAttribute(TIME_STAMP,"" + result.getTimeStamp());
   }
- else   if (formatter != null) {
-    String stamp=formatter.format(new Date(result.getTimeStamp()));
+ else   if (_saveConfig.formatter() != null) {
+    String stamp=_saveConfig.formatter().format(new Date(result.getTimeStamp()));
     config.setAttribute(TIME_STAMP,stamp);
   }
-  if (saveSuccessful) {
+  if (_saveConfig.saveSuccess()) {
     config.setAttribute(SUCCESSFUL,JOrphanUtils.booleanToString(result.isSuccessful()));
   }
   SampleResult[] subResults=result.getSubResults();
@@ -45,7 +45,7 @@
     config.addChild(getConfiguration(result.getResponseData()));
   }
  else {
-    if (assertionsResultsToSave == SAVE_ALL_ASSERTIONS) {
+    if (_saveConfig.assertionsResultsToSave() == SampleSaveConfiguration.SAVE_ALL_ASSERTIONS) {
       config.addChild(createConfigForString("samplerData",result.getSamplerData()));
       if (assResults != null) {
         for (int i=0; i < assResults.length; i++) {
@@ -53,10 +53,10 @@
         }
       }
     }
- else     if ((assertionsResultsToSave == SAVE_FIRST_ASSERTION) && assResults != null && assResults.length > 0) {
+ else     if ((_saveConfig.assertionsResultsToSave() == SampleSaveConfiguration.SAVE_FIRST_ASSERTION) && assResults != null && assResults.length > 0) {
       config.addChild(getConfiguration(assResults[0]));
     }
-    if (saveResponseData) {
+    if (_saveConfig.saveResponseData()) {
       config.addChild(getConfiguration(result.getResponseData()));
     }
   }
