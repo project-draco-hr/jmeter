@@ -6,8 +6,12 @@
     address[k]=new InternetAddress(vEmails.elementAt(k).toString());
   }
   Properties props=new Properties();
-  props.put("mail.smtp.host",host);
+  props.put(MAIL_SMTP_HOST,host);
   Session session=Session.getDefaultInstance(props,null);
+  props=session.getProperties();
+  if (!host.equalsIgnoreCase(props.getProperty(MAIL_SMTP_HOST))) {
+    props.setProperty(MAIL_SMTP_HOST,host);
+  }
   session.setDebug(debug);
   Message msg=new MimeMessage(session);
   msg.setFrom(new InternetAddress(from));
