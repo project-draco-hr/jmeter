@@ -6,5 +6,6 @@
     }
  catch (    InterruptedException e) {
     }
+    notifyTestListenersOfEnd();
   }
 }

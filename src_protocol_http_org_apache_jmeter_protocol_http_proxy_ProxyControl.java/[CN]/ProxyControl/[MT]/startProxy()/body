@@ -1,4 +1,5 @@
 {
+  notifyTestListenersOfStart();
   server=new Daemon(getPort(),this);
   server.start();
 }

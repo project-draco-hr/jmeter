@@ -5,7 +5,7 @@
   JMeterTreeNode root;
   if (gp != null) {
     root=(JMeterTreeNode)GuiPackage.getInstance().getTreeModel().getRoot();
-    targetNodesModel.addElement(new TreeNodeWrapper(null,"Use Recording Controller"));
+    targetNodesModel.addElement(new TreeNodeWrapper(null,JMeterUtils.getResString("use_recording_controller")));
     buildNodesModel(root,"",0);
   }
   for (int i=0; i < targetNodesModel.getSize(); i++) {
