@@ -1,8 +1,8 @@
 {
   if (authManager != null) {
-    Authorization authHeader=authManager.getAuthForURL(u);
+    String authHeader=authManager.getAuthHeaderForURL(u);
     if (authHeader != null) {
-      httpState.setCredentials("realm",authHeader.getURL(),new NTCredentials(authHeader.getUser(),authHeader.getPass(),"thishost","targetdomain"));
+      method.setRequestHeader("Authorization",authHeader);
     }
   }
 }
