@@ -1,21 +1,27 @@
 {
-  String xmlData=retrieveRuntimeXmlData();
-  if (xmlData != null && xmlData.length() > 0) {
-    Document doc=null;
+  if (XDB == null) {
+    XDB=XMLParserUtils.getXMLDocBuilder();
+  }
+  Document doc=null;
+  if (getXmlFile().length() > 0 || getXmlPathLoc().length() > 0) {
     try {
-      if (XDB == null) {
-        XDB=XMLParserUtils.getXMLDocBuilder();
-      }
-      doc=XDB.parse(new InputSource(new StringReader(xmlData)));
-      if (this.getPropertyAsBoolean(MEMORY_CACHE)) {
-        DOMPool.putDocument(key,doc);
-      }
+      doc=XDB.parse(new FileInputStream(retrieveRuntimeXmlData()));
     }
- catch (    Exception ex) {
+ catch (    Exception e) {
     }
-    return doc;
   }
  else {
-    return null;
+    FILE_CONTENTS=getXmlData();
+    if (FILE_CONTENTS != null && FILE_CONTENTS.length() > 0) {
+      try {
+        doc=XDB.parse(new InputSource(new StringReader(FILE_CONTENTS)));
+      }
+ catch (      Exception ex) {
+      }
+    }
   }
+  if (this.getPropertyAsBoolean(MEMORY_CACHE)) {
+    DOMPool.putDocument(key,doc);
+  }
+  return doc;
 }

@@ -1,6 +1,7 @@
 {
   try {
-    Envelope msgEnv=Envelope.unmarshall(createDocument());
+    org.w3c.dom.Element rdoc=createDocument();
+    Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
     RESULT.sampleStart();
     if (this.getUseProxy()) {
@@ -40,7 +41,7 @@
       RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
     }
     RESULT.setSuccessful(true);
-    RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile());
+    RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile()+ "\n"+ FILE_CONTENTS);
     RESULT.setDataEncoding(st.getResponseSOAPContext().getContentType());
     RESULT.setResponseCode("200");
     br.close();

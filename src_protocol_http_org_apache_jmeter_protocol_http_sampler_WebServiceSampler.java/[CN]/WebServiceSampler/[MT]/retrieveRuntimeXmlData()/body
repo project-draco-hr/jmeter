@@ -1,10 +1,13 @@
 {
   String file=getRandomFileName();
   if (file.length() > 0) {
-    TextFile contents=new TextFile(file);
-    if (contents.exists()) {
-      return contents.getText();
+    if (this.getReadResponse()) {
+      TextFile tfile=new TextFile(file);
+      FILE_CONTENTS=tfile.getText();
     }
+    return new File(file);
   }
-  return getXmlData();
+ else {
+    return null;
+  }
 }
