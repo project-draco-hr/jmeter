@@ -1,7 +1,5 @@
 {
-  log.debug("merging in " + prop);
   if (isEqualType(prop)) {
-    log.debug("was of equal type");
     value.addTestElement((TestElement)prop.getObjectValue());
   }
 }
