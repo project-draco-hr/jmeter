@@ -1,0 +1,14 @@
+{
+  if (this.getGeneratorClassName() != null && this.getGeneratorClassName().length() > 0) {
+    try {
+      if (GENERATORCLASS == null) {
+        GENERATORCLASS=Class.forName(this.getGeneratorClassName());
+      }
+      return true;
+    }
+ catch (    ClassNotFoundException e) {
+      return false;
+    }
+  }
+  return false;
+}

@@ -1,4 +1,6 @@
 {
+  checkParser();
+  checkGenerator();
   this.instantiateParser();
   this.instantiateGenerator();
   HTTPSampler samp=null;
@@ -13,7 +15,6 @@
     res.setSampleLabel(samp.toString());
   }
  catch (  Exception e) {
-    e.printStackTrace();
   }
   return res;
 }

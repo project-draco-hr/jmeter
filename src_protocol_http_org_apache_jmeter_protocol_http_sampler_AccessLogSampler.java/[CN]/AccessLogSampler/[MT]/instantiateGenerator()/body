@@ -1,9 +1,6 @@
 {
   if (this.getGeneratorClassName() != null && this.getGeneratorClassName().length() > 0) {
     try {
-      if (GENERATORCLASS == null) {
-        GENERATORCLASS=Class.forName(this.getGeneratorClassName());
-      }
       GENERATOR=(Generator)GENERATORCLASS.newInstance();
       if (GENERATOR != null) {
         if (this.getDomain() != null) {
@@ -17,14 +14,9 @@
         PARSER.setGenerator(GENERATOR);
       }
     }
- catch (    ClassNotFoundException e) {
-      JOptionPane.showConfirmDialog(GUI,JMeterUtils.getResString("generator_cnf_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
-    }
-catch (    InstantiationException e) {
-      JOptionPane.showConfirmDialog(GUI,JMeterUtils.getResString("generator_instantiate_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+ catch (    InstantiationException e) {
     }
 catch (    IllegalAccessException e) {
-      JOptionPane.showConfirmDialog(GUI,JMeterUtils.getResString("generator_illegal_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
     }
   }
 }
