@@ -1,6 +1,6 @@
 {
   if (args.length < 1) {
-    System.out.println("You must specify a comma-delimited list of paths to search for unit tests");
+    System.out.println("You must specify a comma-delimited list of paths to search " + "for unit tests");
     System.exit(0);
   }
   initializeLogging(args);
