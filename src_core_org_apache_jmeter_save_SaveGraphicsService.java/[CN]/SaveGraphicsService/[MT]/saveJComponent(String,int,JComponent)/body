@@ -1,0 +1,18 @@
+{
+  Dimension size=component.getSize();
+  BufferedImage image=new BufferedImage(size.width,size.height,BufferedImage.TYPE_INT_RGB);
+  Graphics2D grp=image.createGraphics();
+  component.paint(grp);
+  if (type == PNG) {
+    filename+=PNG_EXTENSION;
+    this.savePNG(filename,image);
+  }
+ else   if (type == BMP) {
+    filename+=BMP_EXTENSION;
+    this.saveBMP(filename,image);
+  }
+ else   if (type == TIFF) {
+    filename=filename + TIFF_EXTENSION;
+    this.saveTIFF(filename,image);
+  }
+}

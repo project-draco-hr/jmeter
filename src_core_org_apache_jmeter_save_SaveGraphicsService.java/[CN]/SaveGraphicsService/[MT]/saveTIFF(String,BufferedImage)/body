@@ -1,0 +1,14 @@
+{
+  File outfile=new File(filename);
+  FileOutputStream fos=createFile(outfile);
+  ImageEncoder encoder=ImageCodec.createImageEncoder("TIFF",fos,null);
+  TIFFEncodeParam param=new TIFFEncodeParam();
+  encoder.setParam(param);
+  try {
+    encoder.encode(image);
+    fos.close();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}
