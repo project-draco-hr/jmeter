@@ -14,6 +14,9 @@
     }
     bshInterpreter.set("Label",getLabel());
     bshInterpreter.set("FileName",getFilename());
+    bshInterpreter.set("SampleResult",res);
+    bshInterpreter.set("Parameters",getParameters());
+    bshInterpreter.set("bsh.args",JOrphanUtils.split(getParameters()," "));
     bshInterpreter.set("ResponseCode","200");
     bshInterpreter.set("ResponseMessage","OK");
     bshInterpreter.set("IsSuccess",true);
@@ -24,7 +27,14 @@
  else {
       bshOut=bshInterpreter.source(fileName);
     }
-    res.setResponseData(bshOut.toString().getBytes());
+    String out;
+    if (bshOut == null) {
+      out="";
+    }
+ else {
+      out=bshOut.toString();
+    }
+    res.setResponseData(out.getBytes());
     res.setDataType(SampleResult.TEXT);
     res.setResponseCode(bshInterpreter.get("ResponseCode").toString());
     res.setResponseMessage(bshInterpreter.get("ResponseMessage").toString());
