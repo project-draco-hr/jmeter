@@ -1,9 +1,0 @@
-{
-  LoopController loop=new LoopController();
-  loop.setLoops(-1);
-  loop.addTestElement(new TestSampler("never run"));
-  loop.initialize();
-  for (int i=0; i < 42; i++) {
-    assertNotNull(loop.next());
-  }
-}
