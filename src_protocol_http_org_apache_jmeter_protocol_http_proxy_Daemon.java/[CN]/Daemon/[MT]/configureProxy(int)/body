@@ -12,7 +12,5 @@
   File adminDir=new File("Applet");
   config.setAdminPath(adminDir.getAbsolutePath());
   log.info("Proxy: OK");
-  log.info("Creating Cache Manager...");
-  cache=new Cache(config);
   log.info("Proxy: OK");
 }
