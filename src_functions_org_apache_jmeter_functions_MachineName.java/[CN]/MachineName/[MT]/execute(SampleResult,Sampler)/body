@@ -1,17 +1,10 @@
 {
   JMeterVariables vars=getVariables();
-  boolean fullHostName=false;
-  if (((CompoundFunction)values[0]).execute().toLowerCase().equals("true"))   fullHostName=true;
-  String varName=((CompoundFunction)values[values.length - 1]).execute();
+  String varName=((CompoundVariable)values[values.length - 1]).execute();
   String machineName="";
   try {
     InetAddress Address=InetAddress.getLocalHost();
-    if (fullHostName) {
-      machineName=Address.getCanonicalHostName();
-    }
- else {
-      machineName=Address.getHostName();
-    }
+    machineName=Address.getHostName();
   }
  catch (  UnknownHostException e) {
   }
