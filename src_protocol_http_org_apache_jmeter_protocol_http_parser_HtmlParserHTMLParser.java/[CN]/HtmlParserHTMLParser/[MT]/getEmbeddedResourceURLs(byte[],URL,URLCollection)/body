@@ -54,6 +54,10 @@
         ScriptTag script=(ScriptTag)node;
         binUrlStr=script.getAttribute("src");
       }
+ else       if (node instanceof LinkTagTag) {
+        LinkTagTag script=(LinkTagTag)node;
+        binUrlStr=script.getAttribute("href");
+      }
       if (binUrlStr == null) {
         continue;
       }
