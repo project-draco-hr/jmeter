@@ -2,7 +2,7 @@
   if (pFile.isDirectory()) {
     return true;
   }
-  if (acceptableExtensions.contains(getExtension(pFile)) == true) {
+  if (acceptableExtensions.contains(getExtension(pFile))) {
     return true;
   }
   return false;

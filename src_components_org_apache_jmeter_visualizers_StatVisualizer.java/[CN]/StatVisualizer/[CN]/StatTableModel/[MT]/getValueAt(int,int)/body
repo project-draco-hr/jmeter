@@ -1,7 +1,9 @@
 {
   RunningSample s;
   if (row == model.getRunningSampleCount()) {
-    if (col == 0)     return TOTAL_LABEL;
+    if (col == 0) {
+      return TOTAL_LABEL;
+    }
     s=model.getRunningSampleTotal();
   }
  else {

@@ -1,5 +1,7 @@
 {
-  if (returnTrue)   return true;
+  if (returnTrue) {
+    return true;
+  }
   int executions, iterations;
   boolean retval=false;
   executions=getExecutions();
@@ -10,8 +12,12 @@
     }
   }
  else {
-    if (iteration == 0 && getPercentThroughputAsFloat() > 0)     retval=true;
- else     if (((float)executions / iteration) * 100 <= getPercentThroughputAsFloat())     retval=true;
+    if (iteration == 0 && getPercentThroughputAsFloat() > 0) {
+      retval=true;
+    }
+ else     if (((float)executions / iteration) * 100 <= getPercentThroughputAsFloat()) {
+      retval=true;
+    }
   }
   if (retval) {
     returnTrue=true;

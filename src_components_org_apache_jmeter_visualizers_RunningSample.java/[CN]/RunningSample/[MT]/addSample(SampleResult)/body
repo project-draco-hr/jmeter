@@ -10,7 +10,13 @@
     lastTime=res.getTimeStamp();
   }
   runningSum+=aTimeInMillis;
-  if (aTimeInMillis > max)   max=aTimeInMillis;
-  if (aTimeInMillis < min)   min=aTimeInMillis;
-  if (!aSuccessFlag)   errorCount++;
+  if (aTimeInMillis > max) {
+    max=aTimeInMillis;
+  }
+  if (aTimeInMillis < min) {
+    min=aTimeInMillis;
+  }
+  if (!aSuccessFlag) {
+    errorCount++;
+  }
 }

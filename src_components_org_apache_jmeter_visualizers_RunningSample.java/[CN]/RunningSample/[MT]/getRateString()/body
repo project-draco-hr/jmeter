@@ -1,6 +1,8 @@
 {
   double rate=getRate();
-  if (rate == Double.MAX_VALUE)   return "N/A";
+  if (rate == Double.MAX_VALUE) {
+    return "N/A";
+  }
   String unit="sec";
   if (rate < 1.0) {
     rate*=60.0;

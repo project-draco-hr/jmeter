@@ -1,5 +1,7 @@
 {
   long rval=0;
-  if (min != Long.MAX_VALUE)   rval=min;
+  if (min != Long.MAX_VALUE) {
+    rval=min;
+  }
   return (rval);
 }

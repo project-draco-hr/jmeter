@@ -9,7 +9,9 @@
     for (j=0; j < _n; j++) {
       _A[i][j]=0;
     }
-    for (j=0; j < 4; j++)     _coefficients[i][j]=0;
+    for (j=0; j < 4; j++) {
+      _coefficients[i][j]=0;
+    }
   }
   for (i=0; i < _n; i++) {
     _rS[i]=0;

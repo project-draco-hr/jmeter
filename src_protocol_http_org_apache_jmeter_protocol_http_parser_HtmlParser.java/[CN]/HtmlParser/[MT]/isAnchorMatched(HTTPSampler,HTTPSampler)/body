@@ -20,9 +20,15 @@
     }
   }
   if (config.getDomain() != null && config.getDomain().length() > 0 && !newLink.getDomain().equals(config.getDomain())) {
-    if (!(ok=ok && matcher.matches(newLink.getDomain(),patternCache.getPattern(config.getDomain(),Perl5Compiler.READ_ONLY_MASK))))     return false;
+    if (!(ok=ok && matcher.matches(newLink.getDomain(),patternCache.getPattern(config.getDomain(),Perl5Compiler.READ_ONLY_MASK)))) {
+      return false;
+    }
   }
-  if (!newLink.getPath().equals(config.getPath()) && !matcher.matches(newLink.getPath(),patternCache.getPattern("[/]*" + config.getPath(),Perl5Compiler.READ_ONLY_MASK)))   return false;
-  if (!(ok=ok && matcher.matches(newLink.getProtocol(),patternCache.getPattern(config.getProtocol(),Perl5Compiler.READ_ONLY_MASK))))   return false;
+  if (!newLink.getPath().equals(config.getPath()) && !matcher.matches(newLink.getPath(),patternCache.getPattern("[/]*" + config.getPath(),Perl5Compiler.READ_ONLY_MASK))) {
+    return false;
+  }
+  if (!(ok=ok && matcher.matches(newLink.getProtocol(),patternCache.getPattern(config.getProtocol(),Perl5Compiler.READ_ONLY_MASK)))) {
+    return false;
+  }
   return ok;
 }

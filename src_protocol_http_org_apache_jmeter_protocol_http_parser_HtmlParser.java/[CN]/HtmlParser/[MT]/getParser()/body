@@ -4,7 +4,9 @@
   tidy.setCharEncoding(org.w3c.tidy.Configuration.UTF8);
   tidy.setQuiet(true);
   tidy.setShowWarnings(false);
-  if (log.isDebugEnabled())   log.debug("getParser1 : tidy parser created - " + tidy);
+  if (log.isDebugEnabled()) {
+    log.debug("getParser1 : tidy parser created - " + tidy);
+  }
   log.debug("End : getParser1");
   return tidy;
 }

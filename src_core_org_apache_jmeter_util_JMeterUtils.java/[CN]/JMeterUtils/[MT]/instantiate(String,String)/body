@@ -1,6 +1,10 @@
 {
-  if (className != null)   className.trim();
-  if (impls != null)   className.trim();
+  if (className != null) {
+    className.trim();
+  }
+  if (impls != null) {
+    className.trim();
+  }
   try {
     Class c=Class.forName(impls);
     try {

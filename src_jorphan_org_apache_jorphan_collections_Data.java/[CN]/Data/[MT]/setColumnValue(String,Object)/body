@@ -4,7 +4,9 @@
     tempList=new ArrayList();
     data.put(column,tempList);
   }
-  if (currentPos == -1)   currentPos=0;
+  if (currentPos == -1) {
+    currentPos=0;
+  }
   if (currentPos >= size) {
     size++;
     tempList.add(value);
@@ -12,5 +14,7 @@
  else   if (currentPos >= tempList.size()) {
     tempList.add(value);
   }
- else   tempList.set(currentPos,value);
+ else {
+    tempList.set(currentPos,value);
+  }
 }

@@ -1,7 +1,11 @@
 {
   try {
-    if (currentPos < size)     return ((List)data.get(column)).get(currentPos);
- else     return null;
+    if (currentPos < size) {
+      return ((List)data.get(column)).get(currentPos);
+    }
+ else {
+      return null;
+    }
   }
  catch (  Exception e) {
     return null;

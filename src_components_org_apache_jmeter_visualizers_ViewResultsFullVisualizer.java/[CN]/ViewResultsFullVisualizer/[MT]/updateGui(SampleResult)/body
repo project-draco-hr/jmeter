@@ -1,6 +1,8 @@
 {
   log.debug("Start : updateGui1");
-  if (log.isDebugEnabled())   log.debug("updateGui1 : sample result - " + res);
+  if (log.isDebugEnabled()) {
+    log.debug("updateGui1 : sample result - " + res);
+  }
   DefaultMutableTreeNode currNode=new DefaultMutableTreeNode(res);
   treeModel.insertNodeInto(currNode,root,root.getChildCount());
   addSubResults(currNode,res);

@@ -15,13 +15,17 @@
  else       if (tag.equalsIgnoreCase("input")) {
         url.addArgument(getAttributeValue(nodeAtts,"name"),getAttributeValue(nodeAtts,"value"));
       }
- else       if (tag.equalsIgnoreCase("textarea"))       try {
-        url.addArgument(getAttributeValue(nodeAtts,"name"),tempNode.getFirstChild().getNodeValue());
+ else       if (tag.equalsIgnoreCase("textarea")) {
+        try {
+          url.addArgument(getAttributeValue(nodeAtts,"name"),tempNode.getFirstChild().getNodeValue());
+        }
+ catch (        NullPointerException e) {
+          url.addArgument(getAttributeValue(nodeAtts,"name"),"");
+        }
       }
- catch (      NullPointerException e) {
-        url.addArgument(getAttributeValue(nodeAtts,"name"),"");
+ else       if (tag.equalsIgnoreCase("select")) {
+        selectName=getAttributeValue(nodeAtts,"name");
       }
- else       if (tag.equalsIgnoreCase("select"))       selectName=getAttributeValue(nodeAtts,"name");
  else       if (tag.equalsIgnoreCase("option")) {
         String value=getAttributeValue(nodeAtts,"value");
         if (value == null) {

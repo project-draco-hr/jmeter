@@ -14,10 +14,14 @@
       while (it.hasNext()) {
         Object temp=it.next();
         flag=get(temp).equals(oo.get(temp));
-        if (!flag)         break;
+        if (!flag) {
+          break;
+        }
       }
     }
   }
- else   flag=false;
+ else {
+    flag=false;
+  }
   return flag;
 }

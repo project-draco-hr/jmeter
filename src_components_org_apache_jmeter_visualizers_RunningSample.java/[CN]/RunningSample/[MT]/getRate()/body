@@ -1,5 +1,7 @@
 {
   long howLongRunning=lastTime - firstTime;
-  if (howLongRunning == 0)   return Double.MAX_VALUE;
+  if (howLongRunning == 0) {
+    return Double.MAX_VALUE;
+  }
   return (double)counter / howLongRunning * 1000.0;
 }

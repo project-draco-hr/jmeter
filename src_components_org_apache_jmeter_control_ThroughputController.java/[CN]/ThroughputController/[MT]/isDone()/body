@@ -1,5 +1,11 @@
 {
-  if (subControllersAndSamplers.size() == 0)   return true;
- else   if (getStyle() == BYNUMBER && getExecutions() >= getMaxThroughputAsInt())   return true;
- else   return false;
+  if (subControllersAndSamplers.size() == 0) {
+    return true;
+  }
+ else   if (getStyle() == BYNUMBER && getExecutions() >= getMaxThroughputAsInt()) {
+    return true;
+  }
+ else {
+    return false;
+  }
 }

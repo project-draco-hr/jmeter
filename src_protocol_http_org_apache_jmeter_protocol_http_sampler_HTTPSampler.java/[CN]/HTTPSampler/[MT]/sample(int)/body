@@ -16,7 +16,9 @@
       time=connect();
       sendPostData(conn);
     }
- else     time=connect();
+ else {
+      time=connect();
+    }
     saveConnectionCookies(conn,u,getCookieManager());
     int errorLevel=0;
     try {

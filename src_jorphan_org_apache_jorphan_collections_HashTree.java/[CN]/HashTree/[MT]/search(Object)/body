@@ -1,6 +1,8 @@
 {
   HashTree temp=null;
-  if (data.containsKey(key))   temp=(HashTree)data.get(key);
+  if (data.containsKey(key)) {
+    temp=(HashTree)data.get(key);
+  }
  else {
     Iterator it=list().iterator();
     while (it.hasNext()) {
@@ -8,7 +10,9 @@
         temp=((HashTree)it.next()).search(key);
         break;
       }
- else       break;
+ else {
+        break;
+      }
     }
   }
   return temp;

@@ -5,7 +5,9 @@
   String[] elements=getHeaders();
   for (int count=0; count < elements.length; count++) {
     temp.append(elements[count]);
-    if (count + 1 < elements.length)     temp.append("\t");
+    if (count + 1 < elements.length) {
+      temp.append("\t");
+    }
   }
   line[0]=temp.toString();
   reset();
@@ -14,7 +16,9 @@
     temp=new StringBuffer("");
     for (int count=0; count < elements.length; count++) {
       temp.append(getColumnValue(count));
-      if (count + 1 < elements.length)       temp.append("\t");
+      if (count + 1 < elements.length) {
+        temp.append("\t");
+      }
     }
     line[index++]=temp.toString();
   }

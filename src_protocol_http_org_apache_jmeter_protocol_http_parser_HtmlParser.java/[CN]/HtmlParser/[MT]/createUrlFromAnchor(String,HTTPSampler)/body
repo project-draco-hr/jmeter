@@ -6,25 +6,43 @@
   String contextPath=null;
   String contextFile=context.getPath();
   int indexContextQuery=contextFile.lastIndexOf('?');
-  if (indexContextQuery != -1)   contextPath=contextFile.substring(0,indexContextQuery);
- else   contextPath=contextFile;
+  if (indexContextQuery != -1) {
+    contextPath=contextFile.substring(0,indexContextQuery);
+  }
+ else {
+    contextPath=contextFile;
+  }
   int queryStarts=parsedUrlString.indexOf("?");
-  if (queryStarts == -1)   queryStarts=parsedUrlString.length();
-  if (parsedUrlString.startsWith("/"))   url.setPath(parsedUrlString.substring(0,queryStarts));
- else   if (parsedUrlString.startsWith(".."))   url.setPath(contextPath.substring(0,contextPath.substring(0,contextPath.lastIndexOf("/")).lastIndexOf("/")) + parsedUrlString.substring(2,queryStarts));
- else   if (!parsedUrlString.toLowerCase().startsWith("http"))   url.setPath(contextPath.substring(0,contextPath.lastIndexOf("/")) + "/" + parsedUrlString.substring(0,queryStarts));
+  if (queryStarts == -1) {
+    queryStarts=parsedUrlString.length();
+  }
+  if (parsedUrlString.startsWith("/")) {
+    url.setPath(parsedUrlString.substring(0,queryStarts));
+  }
+ else   if (parsedUrlString.startsWith("..")) {
+    url.setPath(contextPath.substring(0,contextPath.substring(0,contextPath.lastIndexOf("/")).lastIndexOf("/")) + parsedUrlString.substring(2,queryStarts));
+  }
+ else   if (!parsedUrlString.toLowerCase().startsWith("http")) {
+    url.setPath(contextPath.substring(0,contextPath.lastIndexOf("/")) + "/" + parsedUrlString.substring(0,queryStarts));
+  }
  else {
     URL u=new URL(parsedUrlString);
     String uPath=null;
     String uFile=u.getFile();
     int indexUQuery=uFile.lastIndexOf('?');
-    if (indexUQuery != -1)     uPath=uFile.substring(0,indexUQuery);
- else     uPath=uFile;
+    if (indexUQuery != -1) {
+      uPath=uFile.substring(0,indexUQuery);
+    }
+ else {
+      uPath=uFile;
+    }
     url.setPath(uPath);
     url.setDomain(u.getHost());
     url.setProtocol(u.getProtocol());
     url.setPort(u.getPort());
   }
-  if (queryStarts < parsedUrlString.length())   url.parseArguments(parsedUrlString.substring(queryStarts + 1));
+  if (queryStarts < parsedUrlString.length()) {
+    url.parseArguments(parsedUrlString.substring(queryStarts + 1));
+  }
   return url;
 }

@@ -1,4 +1,8 @@
 {
-  if (!isPerThread())   return globalIteration.getInteger().intValue();
- else   return iteration;
+  if (!isPerThread()) {
+    return globalIteration.getInteger().intValue();
+  }
+ else {
+    return iteration;
+  }
 }

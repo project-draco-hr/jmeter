@@ -1,6 +1,8 @@
 {
   NamedNodeMap atts=tempNode.getAttributes();
-  if (atts.getNamedItem("action") == null)   throw new MalformedURLException();
+  if (atts.getNamedItem("action") == null) {
+    throw new MalformedURLException();
+  }
   String action=atts.getNamedItem("action").getNodeValue();
   HTTPSampler url=createUrlFromAnchor(action,context);
   return url;

@@ -5,7 +5,9 @@ synchronized (this) {
       event=new TableModelEvent(this,currentRowCount - 1,index,TableModelEvent.ALL_COLUMNS,TableModelEvent.INSERT);
       currentRowCount=index + 2;
     }
- else     event=new TableModelEvent(this,index);
+ else {
+      event=new TableModelEvent(this,index);
+    }
   }
   fireTableChanged(event);
   fireTableChanged(new TableModelEvent(this,currentRowCount));

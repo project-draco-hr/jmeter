@@ -1,6 +1,8 @@
 {
   this.rawParameters=parameters;
-  if (parameters == null || parameters.length() == 0)   return;
+  if (parameters == null || parameters.length() == 0) {
+    return;
+  }
   compiledComponents=functionParser.compileString(parameters);
   if (compiledComponents.size() > 1 || !(compiledComponents.get(0) instanceof String)) {
     hasFunction=true;
