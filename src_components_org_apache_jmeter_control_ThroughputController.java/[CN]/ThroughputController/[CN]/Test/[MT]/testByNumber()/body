@@ -1,0 +1,27 @@
+{
+  ThroughputController sub_1=new ThroughputController();
+  sub_1.setStyle(BYNUMBER);
+  sub_1.setMaxThroughput(2);
+  sub_1.addTestElement(new TestSampler("one"));
+  sub_1.addTestElement(new TestSampler("two"));
+  LoopController controller=new LoopController();
+  controller.setLoops(5);
+  controller.addTestElement(new TestSampler("zero"));
+  controller.addTestElement(sub_1);
+  controller.addIterationListener(sub_1);
+  controller.addTestElement(new TestSampler("three"));
+  String[] order=new String[]{"zero","one","two","three","zero","one","two","three","zero","three","zero","three","zero","three"};
+  int counter=0;
+  sub_1.testStarted();
+  controller.initialize();
+  for (int i=0; i < 3; i++) {
+    TestElement sampler=null;
+    while ((sampler=controller.next()) != null) {
+      assertEquals("Counter: " + counter + ", i: "+ i+ ", executions: "+ sub_1.getExecutions()+ ", iteration: "+ sub_1.getIteration(),order[counter],sampler.getPropertyAsString(TestElement.NAME));
+      counter++;
+    }
+    assertEquals(counter,order.length);
+    counter=0;
+  }
+  sub_1.testEnded();
+}
