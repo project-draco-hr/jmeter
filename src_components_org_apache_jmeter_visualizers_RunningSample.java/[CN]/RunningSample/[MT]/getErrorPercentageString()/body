@@ -1,5 +1,4 @@
 {
   double myErrorPercentage=this.getErrorPercentage();
-  DecimalFormat myDF=new DecimalFormat("#0.00%");
-  return (myDF.format(myErrorPercentage));
+  return (errorFormatter.format(myErrorPercentage));
 }

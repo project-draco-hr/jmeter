@@ -2,13 +2,6 @@
   String aLabel=res.getSampleLabel();
   String responseCode=res.getResponseCode();
   RunningSample myRS;
-  if (responseCodeMap.containsKey(responseCode)) {
-    long tempLong=((Long)responseCodeMap.get(responseCode)).longValue();
-    responseCodeMap.put(responseCode,new Long(++tempLong));
-  }
- else {
-    responseCodeMap.put(responseCode,new Long(1));
-  }
   if (labelMap.containsKey(aLabel)) {
     myRS=(RunningSample)labelMap.get(aLabel);
   }
