@@ -1,6 +1,8 @@
 {
   tree=new JTree(this.treeModel);
   tree.setCellRenderer(getCellRenderer());
+  tree.setRootVisible(false);
+  tree.setShowsRootHandles(true);
   treeListener.setJTree(tree);
   tree.addTreeSelectionListener(treeListener);
   tree.addMouseListener(treeListener);

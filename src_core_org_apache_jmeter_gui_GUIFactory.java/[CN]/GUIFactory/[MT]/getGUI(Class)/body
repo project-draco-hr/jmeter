@@ -1,0 +1,11 @@
+{
+  String key=elementClass.getName();
+  JComponent gui=(JComponent)guiMap.get(key);
+  if (gui != null) {
+    return gui;
+  }
+  if (elementClass.getSuperclass() != null) {
+    return getGUI(elementClass.getSuperclass());
+  }
+  return null;
+}

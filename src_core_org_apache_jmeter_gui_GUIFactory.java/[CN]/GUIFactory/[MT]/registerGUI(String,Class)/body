@@ -1,0 +1,5 @@
+{
+  JMeterGUIComponent gui=(JMeterGUIComponent)guiClass.newInstance();
+  JComponent component=(JComponent)gui;
+  guiMap.put(key,gui);
+}

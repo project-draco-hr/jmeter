@@ -1,5 +1,20 @@
 {
   this.setLayout(new FlowLayout(FlowLayout.LEFT));
-  this.add(new JLabel(JMeterUtils.getResString("name")));
+  nameLabel=new JLabel(JMeterUtils.getResString("name"));
+  nameLabel.setName("name");
+  this.add(nameLabel);
   this.add(nameField);
+  nameLabel.setLabelFor(nameField);
+  nameField.setName("name");
+  nameField.getDocument().addDocumentListener(new DocumentListener(){
+    public void insertUpdate(    DocumentEvent e){
+      updateName(nameField.getText());
+    }
+    public void removeUpdate(    DocumentEvent e){
+      updateName(nameField.getText());
+    }
+    public void changedUpdate(    DocumentEvent e){
+    }
+  }
+);
 }

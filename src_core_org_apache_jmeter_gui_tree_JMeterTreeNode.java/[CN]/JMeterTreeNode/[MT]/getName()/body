@@ -1,4 +1,3 @@
 {
-  Object userObj=getUserObject();
-  return ((JMeterGUIComponent)userObj).getName();
+  return ((JMeterGUIComponent)getUserObject()).getName();
 }
