@@ -5,10 +5,12 @@
   List listeners=new LinkedList();
   List timers=new LinkedList();
   List assertions=new LinkedList();
-  List extractors=new LinkedList();
-  List pres=new LinkedList();
+  LinkedList posts=new LinkedList();
+  LinkedList pres=new LinkedList();
   for (int i=stack.size(); i > 0; i--) {
     Iterator iter=testTree.list(stack.subList(0,i)).iterator();
+    List tempPre=new LinkedList();
+    List tempPost=new LinkedList();
     while (iter.hasNext()) {
       TestElement item=(TestElement)iter.next();
       if ((item instanceof ConfigTestElement)) {
@@ -24,14 +26,16 @@
         assertions.add(item);
       }
       if (item instanceof PostProcessor) {
-        extractors.add(item);
+        tempPost.add(item);
       }
       if (item instanceof PreProcessor) {
-        pres.add(item);
+        tempPre.add(item);
       }
     }
+    pres.addAll(0,tempPre);
+    posts.addAll(0,tempPost);
   }
-  SamplePackage pack=new SamplePackage(configs,modifiers,responseModifiers,listeners,timers,assertions,extractors,pres);
+  SamplePackage pack=new SamplePackage(configs,modifiers,responseModifiers,listeners,timers,assertions,posts,pres);
   pack.setSampler(sam);
   pack.setRunningVersion(true);
   samplerConfigMap.put(sam,pack);

@@ -1,11 +1,13 @@
 {
 synchronized (lock) {
+    log.debug("Running up named: " + getName());
     PropertyIterator namesIter=getNames().iterator();
     PropertyIterator valueIter=getValues().iterator();
     JMeterVariables jmvars=JMeterContextService.getContext().getVariables();
     while (namesIter.hasNext() && valueIter.hasNext()) {
       String name=namesIter.next().getStringValue();
       String value=valueIter.next().getStringValue();
+      log.debug("saving variable: " + name + "="+ value);
       jmvars.put(name,value);
     }
   }

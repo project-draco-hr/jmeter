@@ -1,7 +1,8 @@
 {
-  ListIterator iter=preProcessors.listIterator(preProcessors.size());
-  while (iter.hasPrevious()) {
-    PreProcessor ex=(PreProcessor)iter.previous();
+  Iterator iter=preProcessors.iterator();
+  while (iter.hasNext()) {
+    PreProcessor ex=(PreProcessor)iter.next();
+    log.debug("Running preprocessor: " + ((AbstractTestElement)ex).getName());
     ex.process();
   }
 }

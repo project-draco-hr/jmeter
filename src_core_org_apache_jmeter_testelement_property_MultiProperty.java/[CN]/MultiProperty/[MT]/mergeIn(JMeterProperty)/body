@@ -5,7 +5,11 @@
   if (prop instanceof MultiProperty) {
     PropertyIterator iter=((MultiProperty)prop).iterator();
     while (iter.hasNext()) {
-      addProperty(iter.next());
+      JMeterProperty item=iter.next();
+      if (isRunningVersion()) {
+        item.setTemporary(true,null);
+      }
+      addProperty(item);
     }
   }
  else {
