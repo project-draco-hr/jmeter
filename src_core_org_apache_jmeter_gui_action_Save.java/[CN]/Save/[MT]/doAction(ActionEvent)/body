@@ -3,7 +3,7 @@
   if (e.getActionCommand().equals(SAVE)) {
     subTree=GuiPackage.getInstance().getCurrentSubTree();
   }
- else   if (e.getActionCommand().equals(SAVE_ALL)) {
+ else   if (e.getActionCommand().equals(SAVE_ALL) || e.getActionCommand().equals(SAVE_TO_PREVIOUS)) {
     subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
   }
   try {
@@ -11,13 +11,25 @@
   }
  catch (  Exception err) {
   }
-  JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmx");
-  if (chooser == null) {
-    return;
+  if (!SAVE_TO_PREVIOUS.equals(e.getActionCommand()) || testPlanFile == null) {
+    JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmx");
+    if (chooser == null) {
+      return;
+    }
+    if (e.getActionCommand().equals(SAVE_ALL) || e.getActionCommand().equals(SAVE_TO_PREVIOUS)) {
+      testPlanFile=chooser.getSelectedFile().getAbsolutePath();
+      chosenFile=testPlanFile;
+    }
+ else {
+      chosenFile=chooser.getSelectedFile().getAbsolutePath();
+    }
+  }
+ else {
+    chosenFile=testPlanFile;
   }
   OutputStream writer=null;
   try {
-    writer=new FileOutputStream(chooser.getSelectedFile());
+    writer=new FileOutputStream(chosenFile);
     SaveService.saveSubTree(subTree,writer);
   }
  catch (  Throwable ex) {

@@ -7,5 +7,5 @@
   parser.parse(new InputSource(reader));
   ListedHashTree tree=handler.getDataTree();
   updateTree(tree);
-  insertLoadedTree(443,tree);
+  return insertLoadedTree(443,tree);
 }

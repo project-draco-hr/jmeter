@@ -1,6 +1,7 @@
 {
   convertTree(tree);
-  GuiPackage.getInstance().addSubTree(tree);
+  boolean isTestPlan=GuiPackage.getInstance().addSubTree(tree);
   tree=GuiPackage.getInstance().getCurrentSubTree();
   ActionRouter.getInstance().actionPerformed(new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,CheckDirty.SUB_TREE_LOADED));
+  return isTestPlan;
 }

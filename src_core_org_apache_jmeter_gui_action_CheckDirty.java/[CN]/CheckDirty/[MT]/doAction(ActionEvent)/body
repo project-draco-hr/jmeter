@@ -4,7 +4,7 @@
     ListedHashTree subTree=GuiPackage.getInstance().getCurrentSubTree();
     subTree.traverse(this);
   }
- else   if (action.equals(SAVE_ALL)) {
+ else   if (action.equals(SAVE_ALL) || action.equals(SAVE_TO_PREVIOUS)) {
     ListedHashTree subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
     subTree.traverse(this);
   }

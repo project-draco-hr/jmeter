@@ -1,4 +1,5 @@
 {
+  boolean ret=false;
   Iterator iter=subTree.list().iterator();
   while (iter.hasNext()) {
     JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
@@ -6,9 +7,11 @@
       current=(JMeterTreeNode)((JMeterTreeNode)getRoot()).getChildAt(0);
       current.configure(item.createTestElement());
       addSubTree(subTree.get(item),current);
+      ret=true;
     }
  else {
       addSubTree(subTree.get(item),addComponent(item,current));
     }
   }
+  return ret;
 }
