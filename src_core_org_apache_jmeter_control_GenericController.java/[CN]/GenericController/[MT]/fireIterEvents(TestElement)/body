@@ -1,0 +1,9 @@
+{
+  if (isNextFirst()) {
+    fireIterationStart(current);
+    first=false;
+  }
+  if (current instanceof GenericController && ((GenericController)current).isNextFirst()) {
+    fireIteration(current);
+  }
+}

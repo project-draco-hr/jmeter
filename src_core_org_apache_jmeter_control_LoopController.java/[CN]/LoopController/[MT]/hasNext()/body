@@ -1,5 +1,5 @@
 {
-  if (getLoops() != 0) {
+  if (getLoops() != 0 && !endOfLoop()) {
     return super.hasNext();
   }
  else {

@@ -17,7 +17,10 @@
     }
  else {
       currentHasNextIsFalse();
-      if (searchStart == null)       searchStart=(Controller)controller;
+      if (((Controller)controller).samplersReturned() == 0) {
+        interleave=false;
+        if (searchStart == null)         searchStart=(Controller)controller;
+      }
       retVal=hasNext();
     }
   }

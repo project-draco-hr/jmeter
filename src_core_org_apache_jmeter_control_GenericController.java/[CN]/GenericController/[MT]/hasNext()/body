@@ -3,6 +3,7 @@
   Object controller=getCurrentController();
   if (controller == null) {
     retVal=hasNextAtEnd();
+    resetCurrent();
   }
  else   if (controller instanceof Controller) {
     if (((Controller)controller).hasNext()) {
@@ -15,9 +16,6 @@
   }
  else {
     retVal=true;
-  }
-  if (!retVal) {
-    reInitialize();
   }
   return retVal;
 }

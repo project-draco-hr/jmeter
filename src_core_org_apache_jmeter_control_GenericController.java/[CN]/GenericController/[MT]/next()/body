@@ -1,12 +1,14 @@
 {
-  fireIterEvents();
   TestElement controller=getCurrentController();
+  fireIterEvents(controller);
   if (controller == null) {
     nextAtEnd();
-    return next();
+    if (subControllersAndSamplers.size() > 0)     return next();
+ else     return null;
   }
   if (controller instanceof Sampler) {
     incrementCurrent();
+    samplersReturned++;
     return (Sampler)controller;
   }
  else {
