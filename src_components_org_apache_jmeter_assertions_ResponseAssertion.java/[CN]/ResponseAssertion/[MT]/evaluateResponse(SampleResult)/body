@@ -2,6 +2,9 @@
   boolean pass=true;
   boolean not=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult();
+  if (response.getResponseData() == null) {
+    return setResultForNull(result);
+  }
   String responseString=new String(response.getResponseData());
   try {
     Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();

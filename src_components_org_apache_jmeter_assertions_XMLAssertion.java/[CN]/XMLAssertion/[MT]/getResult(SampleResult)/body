@@ -1,5 +1,8 @@
 {
   AssertionResult result=new AssertionResult();
+  if (response.getResponseData() == null) {
+    return setResultForNull(result);
+  }
   result.setFailure(false);
   String resultData=new String(getResultBody(response.getResponseData()));
   if (builder == null) {
