@@ -6,7 +6,9 @@
   }
  catch (  Exception e) {
     try {
-      p.load(ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties"));
+      InputStream is=ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties");
+      if (is == null)       throw new RuntimeException("Could not read JMeter properties file");
+      p.load(is);
     }
  catch (    IOException ex) {
     }
