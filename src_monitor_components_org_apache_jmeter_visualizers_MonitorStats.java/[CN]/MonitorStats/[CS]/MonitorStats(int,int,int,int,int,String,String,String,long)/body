@@ -1,11 +1,11 @@
 {
-  this.health=health;
-  this.load=load;
-  this.cpuload=cpuload;
-  this.memload=memload;
-  this.threadload=threadload;
-  this.host=host;
-  this.port=port;
-  this.protocol=protocol;
-  this.timestamp=time;
+  this.setHealth(health);
+  this.setLoad(load);
+  this.setCpuLoad(cpuload);
+  this.setMemLoad(memload);
+  this.setThreadLoad(threadload);
+  this.setHost(host);
+  this.setPort(port);
+  this.setProtocol(protocol);
+  this.setTimeStamp(time);
 }

@@ -1,4 +1,3 @@
 {
-  MonitorStats newstats=new MonitorStats(current.health,current.load,current.cpuload,current.memload,current.threadload,current.host,current.port,current.protocol,current.timestamp);
-  return new MonitorModel(newstats);
+  return new MonitorModel(cloneMonitorStats());
 }

@@ -1,4 +1,5 @@
 {
+  this.CURRENT=model;
   if (MAP.containsKey(model.getURL())) {
     List newlist=updateArray(model,(List)MAP.get(model.getURL()));
     MAP.put(model.getURL(),newlist);

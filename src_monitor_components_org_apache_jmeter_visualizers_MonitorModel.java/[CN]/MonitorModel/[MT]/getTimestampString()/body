@@ -1,5 +1,5 @@
 {
-  Date date=new Date(this.current.timestamp);
+  Date date=new Date(this.current.getTimeStamp());
   SimpleDateFormat ft=new SimpleDateFormat();
   return ft.format(date);
 }
