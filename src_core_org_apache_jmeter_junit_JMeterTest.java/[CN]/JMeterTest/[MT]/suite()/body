@@ -3,7 +3,12 @@
   JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
   treeLis.setActionHandler(ActionRouter.getInstance());
   GuiPackage.getInstance(treeLis,treeModel);
-  org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
+  try {
+    org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
+  }
+ catch (  RuntimeException e) {
+    System.out.println("Cannot create MainFrame: " + e);
+  }
   TestSuite suite=new TestSuite();
   suite.addTest(new JMeterTest("createTitleSet"));
   suite.addTest(suiteGUIComponents());
