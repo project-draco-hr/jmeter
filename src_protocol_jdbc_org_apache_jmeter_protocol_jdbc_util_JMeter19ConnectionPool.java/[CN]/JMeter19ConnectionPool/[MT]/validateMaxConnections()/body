@@ -1,5 +1,4 @@
 {
-  Connection c=null;
   try {
     DatabaseMetaData md=DriverManager.getConnection(key.getUrl(),key.getUsername(),key.getPassword()).getMetaData();
     int dbMax=md.getMaxConnections();
@@ -17,13 +16,5 @@
     return;
   }
  finally {
-    if (c != null) {
-      try {
-        c.close();
-      }
- catch (      SQLException e) {
-        log.warn("Error closing metadata database connection",e);
-      }
-    }
   }
 }
