@@ -8,7 +8,7 @@
     Iterator iter=getTestStrings().iterator();
     while (iter.hasNext()) {
       String stringPattern=(String)iter.next();
-      Pattern pattern=patternCache.getPattern(stringPattern);
+      Pattern pattern=patternCache.getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
       boolean found;
       if ((CONTAINS & getTestType()) > 0) {
         found=localMatcher.contains(responseString,pattern);
