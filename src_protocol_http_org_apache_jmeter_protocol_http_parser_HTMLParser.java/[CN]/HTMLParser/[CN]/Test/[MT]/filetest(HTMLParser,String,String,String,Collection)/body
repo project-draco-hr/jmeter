@@ -1,6 +1,6 @@
 {
   log.info("file   " + file);
-  File f=new File(file);
+  File f=findFile(file);
   byte[] buffer=new byte[(int)f.length()];
   int len=new FileInputStream(f).read(buffer);
   assertEquals(len,buffer.length);

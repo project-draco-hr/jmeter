@@ -1,7 +1,7 @@
 {
   ArrayList al=new ArrayList();
   if (file != null && file.length() > 0) {
-    BufferedReader br=new BufferedReader(new FileReader(new File(file)));
+    BufferedReader br=new BufferedReader(new FileReader(findFile(file)));
     String line=br.readLine();
     while (line != null) {
       al.add(line);
