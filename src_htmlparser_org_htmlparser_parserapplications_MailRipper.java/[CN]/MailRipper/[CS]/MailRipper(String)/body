@@ -1,0 +1,10 @@
+{
+  try {
+    parser=new Parser(resourceLocation,new DefaultParserFeedback());
+    parser.registerScanners();
+  }
+ catch (  ParserException e) {
+    System.err.println("Could not create parser object");
+    e.printStackTrace();
+  }
+}

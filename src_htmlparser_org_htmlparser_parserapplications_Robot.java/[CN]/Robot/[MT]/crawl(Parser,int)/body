@@ -1,0 +1,22 @@
+{
+  System.out.println(" crawlDepth = " + crawlDepth);
+  for (NodeIterator e=parser.elements(); e.hasMoreNodes(); ) {
+    Node node=e.nextNode();
+    if (node instanceof LinkTag) {
+      LinkTag linkTag=(LinkTag)node;
+{
+        if (!linkTag.isMailLink()) {
+          if (linkTag.getLink().toUpperCase().indexOf("HTM") != -1 || linkTag.getLink().toUpperCase().indexOf("COM") != -1 || linkTag.getLink().toUpperCase().indexOf("ORG") != -1) {
+            if (crawlDepth > 0) {
+              Parser newParser=new Parser(linkTag.getLink(),new DefaultParserFeedback());
+              newParser.registerScanners();
+              System.out.print("Crawling to " + linkTag.getLink());
+              crawl(newParser,crawlDepth - 1);
+            }
+ else             System.out.println(linkTag.getLink());
+          }
+        }
+      }
+    }
+  }
+}
