@@ -8,7 +8,7 @@
       }
  catch (      IntrospectionException e1) {
         log.error("Can't obtain icon",e1);
-        throw new Error(e1);
+        throw new org.apache.jorphan.util.JMeterError(e1);
       }
     }
  else {
