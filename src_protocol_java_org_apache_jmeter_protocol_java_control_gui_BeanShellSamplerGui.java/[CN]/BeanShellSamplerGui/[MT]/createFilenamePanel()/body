@@ -1,5 +1,5 @@
 {
-  JLabel label=new JLabel(fileLabel);
+  JLabel label=new JLabel(JMeterUtils.getResString("bsh_script_file"));
   filename=new JTextField(10);
   filename.setName(BeanShellSampler.FILENAME);
   label.setLabelFor(filename);

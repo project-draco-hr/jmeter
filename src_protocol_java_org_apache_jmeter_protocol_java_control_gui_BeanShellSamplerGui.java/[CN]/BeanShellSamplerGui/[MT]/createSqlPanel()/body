@@ -3,7 +3,7 @@
   scriptField.setRows(4);
   scriptField.setLineWrap(true);
   scriptField.setWrapStyleWord(true);
-  JLabel label=new JLabel(scriptLabel);
+  JLabel label=new JLabel(JMeterUtils.getResString("bsh_script"));
   label.setLabelFor(scriptField);
   JPanel panel=new JPanel(new BorderLayout());
   panel.add(label,BorderLayout.NORTH);
