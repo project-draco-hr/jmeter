@@ -4,7 +4,7 @@
     value=null;
   }
  else   if (type == boolean.class || type == Boolean.class) {
-    value=new Boolean(property.getBooleanValue());
+    value=JOrphanUtils.valueOf(property.getBooleanValue());
   }
  else   if (type == double.class || type == Double.class) {
     value=new Double(property.getDoubleValue());
