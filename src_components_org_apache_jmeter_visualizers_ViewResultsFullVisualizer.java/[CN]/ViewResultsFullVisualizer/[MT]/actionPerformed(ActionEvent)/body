@@ -12,10 +12,16 @@
     String response=null;
     if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
       try {
-        response=new String(responseBytes,"UTF-8");
+        if (responseBytes.length > 200 * 1024) {
+          response=("Response too large to be displayed (" + responseBytes.length + " bytes).");
+          log.warn("Response too large to display.");
+        }
+ else {
+          response=new String(responseBytes,"UTF-8");
+        }
       }
  catch (      UnsupportedEncodingException err) {
-        response=new String(responseBytes);
+        throw new Error(err.toString());
       }
     }
     if (textMode) {

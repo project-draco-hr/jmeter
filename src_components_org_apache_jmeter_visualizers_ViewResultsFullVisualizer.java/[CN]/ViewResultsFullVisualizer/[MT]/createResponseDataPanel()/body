@@ -4,7 +4,6 @@
   resultsScrollPane=makeScrollPane(results);
   imageLabel=new JLabel();
   JPanel resultsPane=new JPanel(new BorderLayout());
-  resultsPane.setBorder(BorderFactory.createTitledBorder("Response Data"));
   resultsPane.add(resultsScrollPane,BorderLayout.CENTER);
   resultsPane.add(createHtmlOrTextPane(),BorderLayout.SOUTH);
   return resultsPane;
