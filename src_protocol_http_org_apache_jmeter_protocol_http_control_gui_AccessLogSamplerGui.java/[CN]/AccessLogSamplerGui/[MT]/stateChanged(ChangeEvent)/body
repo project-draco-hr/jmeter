@@ -1,0 +1,14 @@
+{
+  if (event.getSource() == parserClassName) {
+    SAMPLER.instantiateParser();
+  }
+  if (event.getSource() == logFile) {
+  }
+  if (event.getSource() == generatorClassName) {
+    SAMPLER.instantiateGenerator();
+  }
+  if (event.getSource() == HOSTNAME) {
+  }
+  if (event.getSource() == PORT) {
+  }
+}

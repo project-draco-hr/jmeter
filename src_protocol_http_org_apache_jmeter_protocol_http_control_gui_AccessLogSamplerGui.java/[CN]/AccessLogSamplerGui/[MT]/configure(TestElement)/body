@@ -1,0 +1,20 @@
+{
+  super.configure(el);
+  SAMPLER=(AccessLogSampler)el;
+  if (SAMPLER.getParserClassName().length() > 0) {
+    parserClassName.setText(SAMPLER.getParserClassName());
+  }
+ else {
+    parserClassName.setText(this.DEFAULT_PARSER);
+  }
+  if (SAMPLER.getGeneratorClassName().length() > 0) {
+    generatorClassName.setText(SAMPLER.getGeneratorClassName());
+  }
+ else {
+    generatorClassName.setText(this.DEFAULT_GENERATOR);
+  }
+  logFile.setFilename(SAMPLER.getLogFile());
+  HOSTNAME.setText(SAMPLER.getDomain());
+  PORT.setText(String.valueOf(SAMPLER.getPort()));
+  getImages.setSelected(SAMPLER.isImageParser());
+}

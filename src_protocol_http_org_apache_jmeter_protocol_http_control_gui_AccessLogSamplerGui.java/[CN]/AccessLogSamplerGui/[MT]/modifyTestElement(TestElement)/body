@@ -1,0 +1,16 @@
+{
+  SAMPLER=(AccessLogSampler)s;
+  SAMPLER.setSamplerGUI(this);
+  this.configureTestElement(SAMPLER);
+  SAMPLER.setParserClassName(parserClassName.getText());
+  SAMPLER.setGeneratorClassName(generatorClassName.getText());
+  SAMPLER.setLogFile(logFile.getFilename());
+  SAMPLER.setDomain(HOSTNAME.getText());
+  SAMPLER.setPort(getPortNumber());
+  if (getImages.isSelected()) {
+    SAMPLER.setImageParser(true);
+  }
+ else {
+    SAMPLER.setImageParser(false);
+  }
+}
