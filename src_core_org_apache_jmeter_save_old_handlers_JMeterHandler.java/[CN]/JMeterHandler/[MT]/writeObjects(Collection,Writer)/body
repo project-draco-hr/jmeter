@@ -1,7 +1,0 @@
-{
-  Iterator iter=objects.iterator();
-  while (iter.hasNext()) {
-    writeObject(iter.next(),out);
-    out.write("\n");
-  }
-}

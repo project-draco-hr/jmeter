@@ -1,9 +1,0 @@
-{
-  Arguments args=new Arguments();
-  int i=0;
-  for (Iterator iter=list.iterator(); iter.hasNext(); ) {
-    String pattern=(String)iter.next();
-    args.addArgument("arg" + i++,pattern);
-  }
-  writeProperty(out,name,args);
-}

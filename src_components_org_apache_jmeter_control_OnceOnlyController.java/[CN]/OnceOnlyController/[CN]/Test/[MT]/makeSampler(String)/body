@@ -1,5 +1,5 @@
 {
-  org.apache.jmeter.protocol.http.sampler.HTTPSampler s=new org.apache.jmeter.protocol.http.sampler.HTTPSampler();
+  TestSampler s=new TestSampler();
   s.setName(name);
   return s;
 }

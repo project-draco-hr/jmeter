@@ -1,8 +1,0 @@
-{
-  CookieManager cookies=(CookieManager)cm;
-  out.write("<CookieManager name=\"");
-  out.write(JMeterHandler.convertToXML(cookies.getName()));
-  out.write("\">\n");
-  JMeterHandler.writeObjects(cookies.getCookies(),out);
-  out.write("</CookieManager>\n");
-}

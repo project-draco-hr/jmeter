@@ -1,8 +1,0 @@
-{
-  try {
-    timer.setRange(Double.parseDouble(data));
-  }
- catch (  NumberFormatException e) {
-    timer.setRange(0);
-  }
-}

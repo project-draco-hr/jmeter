@@ -1,8 +1,0 @@
-{
-  if (objectStack.size() == 0) {
-    throw new NoCurrentHandlerException();
-  }
- else {
-    return (TagHandler)objectStack.getLast();
-  }
-}

@@ -1,9 +1,0 @@
-{
-  Arguments args=(Arguments)parm1;
-  out.write("<Arguments>\n");
-  Iterator iter=args.iterator();
-  while (iter.hasNext()) {
-    writeArgument((Argument)iter.next(),out);
-  }
-  out.write("</Arguments>\n");
-}

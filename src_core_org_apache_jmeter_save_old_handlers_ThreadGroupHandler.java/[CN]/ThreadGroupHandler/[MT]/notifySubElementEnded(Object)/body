@@ -1,8 +1,0 @@
-{
-  if (childObj instanceof LoopController) {
-    Iterator children=xmlParent.takeChildObjects(this).iterator();
-    if (children.hasNext()) {
-      group.setSamplerController((LoopController)((TagHandler)children.next()).getModel());
-    }
-  }
-}

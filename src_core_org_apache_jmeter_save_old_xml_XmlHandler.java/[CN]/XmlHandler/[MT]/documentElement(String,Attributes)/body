@@ -1,8 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug("startElement= " + name);
-    for (int i=0; i < atts.getLength(); i++) {
-      log.debug(" Attribute= " + atts.getQName(i) + "="+ atts.getValue(i));
-    }
-  }
-}

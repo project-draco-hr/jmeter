@@ -1,5 +1,0 @@
-{
-  Configuration config=new DefaultConfigurationBuilder().buildFromFile(assertionFile);
-  ResponseAssertion testEl=(ResponseAssertion)createTestElement(config.getChild("testelement"));
-  assertEquals("save this string \\d+",testEl.getTestStrings().get(0));
-}

@@ -14,17 +14,8 @@
       isTestPlan=insertLoadedTree(e.getID(),tree);
     }
   }
- catch (  IllegalUserActionException ex) {
+ catch (  Exception ex) {
     JMeterUtils.reportErrorToUser(ex.getMessage());
-  }
-catch (  Throwable ex) {
-    try {
-      isTestPlan=legacyLoad(f);
-    }
- catch (    Throwable err) {
-      log.error("",err);
-      JMeterUtils.reportErrorToUser("Couldn't load JMX file.  May have been corrupted");
-    }
   }
  finally {
     GuiPackage.getInstance().getMainFrame().repaint();

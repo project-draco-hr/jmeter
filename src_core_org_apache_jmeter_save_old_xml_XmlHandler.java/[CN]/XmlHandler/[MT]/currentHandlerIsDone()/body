@@ -1,8 +1,0 @@
-{
-  try {
-    return getCurrentHandler().isDone();
-  }
- catch (  NoCurrentHandlerException e) {
-    return false;
-  }
-}

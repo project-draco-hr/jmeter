@@ -1,5 +1,0 @@
-{
-  if (item.getProperty(TestElement.GUI_CLASS).equals("org.apache.jmeter.protocol.http.config.gui.UrlConfigGui")) {
-    item.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.config.gui.HttpDefaultsGui");
-  }
-}

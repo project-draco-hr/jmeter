@@ -1,4 +1,0 @@
-{
-  log.warn("***Parsing Warning**\n" + " Line:   " + err.getLineNumber() + "\n"+ " URI:    "+ err.getSystemId()+ "\n"+ " Message: "+ err.getMessage());
-  throw new SAXException("Warning encountered");
-}

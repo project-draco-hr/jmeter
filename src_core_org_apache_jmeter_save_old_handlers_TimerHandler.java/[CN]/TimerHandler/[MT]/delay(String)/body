@@ -1,8 +1,0 @@
-{
-  try {
-    timer.setDelay(Long.parseLong(data));
-  }
- catch (  NumberFormatException e) {
-    timer.setDelay(0);
-  }
-}

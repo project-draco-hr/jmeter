@@ -1,6 +1,0 @@
-{
-  List children=xmlParent.takeChildObjects(this);
-  if (children.size() == 1) {
-    sampler.addTestElement((TestElement)((TagHandler)children.get(0)).getModel());
-  }
-}

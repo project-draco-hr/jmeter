@@ -1,9 +1,0 @@
-{
-  sampler=new HTTPSampler();
-  if (Boolean.valueOf(atts.getValue("getImages")).booleanValue())   ;
-{
-    sampler=new HTTPSamplerFull();
-  }
-  sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
-  sampler.setName(atts.getValue("name"));
-}

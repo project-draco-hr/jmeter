@@ -1,4 +1,0 @@
-{
-  log.error("***Parsing Fatal Error**\n" + " Line:   " + e.getLineNumber() + "\n"+ " URI:    "+ e.getSystemId()+ "\n"+ " Message: "+ e.getMessage());
-  throw new SAXException("Fatal Error encountered");
-}

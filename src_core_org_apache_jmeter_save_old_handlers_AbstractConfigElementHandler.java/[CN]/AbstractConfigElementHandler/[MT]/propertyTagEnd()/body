@@ -1,6 +1,0 @@
-{
-  List children=xmlParent.takeChildObjects(this);
-  if (children.size() == 1) {
-    config.setProperty(JMeterHandler.convertProperty(currentProperty),((TagHandler)children.get(0)).getModel());
-  }
-}

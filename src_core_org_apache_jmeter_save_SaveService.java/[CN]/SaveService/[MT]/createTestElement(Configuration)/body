@@ -1,13 +1,6 @@
 {
   TestElement element=null;
-  try {
-    element=(TestElement)Class.forName((String)config.getAttribute("class")).newInstance();
-  }
- catch (  InstantiationException e) {
-    if (config.getAttribute("class").equals("org.apache.jmeter.assertions.Assertion")) {
-      element=new ResponseAssertion();
-    }
-  }
+  element=(TestElement)Class.forName((String)config.getAttribute("class")).newInstance();
   Configuration[] children=config.getChildren();
   for (int i=0; i < children.length; i++) {
     if (children[i].getName().equals("property")) {

@@ -1,6 +1,0 @@
-{
-  controller=(LoopController)Class.forName(atts.getValue("type")).newInstance();
-  controller.setProperty(TestElement.GUI_CLASS,JMeterHandler.getGuiClass(atts.getValue("type")));
-  ((LoopController)controller).setName(atts.getValue("name"));
-  ((LoopController)controller).setLoops(Integer.parseInt(atts.getValue("iterations")));
-}

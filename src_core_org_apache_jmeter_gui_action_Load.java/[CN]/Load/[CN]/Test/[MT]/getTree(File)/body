@@ -1,10 +1,5 @@
 {
   FileInputStream reader=new FileInputStream(f);
-  XmlHandler handler=new XmlHandler(new JMeterNameSpaceHandler());
-  XMLReader parser=JMeterUtils.getXMLParser();
-  parser.setContentHandler(handler);
-  parser.setErrorHandler(handler);
-  parser.parse(new InputSource(reader));
-  HashTree tree=handler.getDataTree();
+  HashTree tree=SaveService.loadSubTree(reader);
   return tree;
 }

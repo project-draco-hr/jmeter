@@ -1,7 +1,0 @@
-{
-  List cookies=xmlParent.takeChildObjects(this);
-  Iterator iter=cookies.iterator();
-  while (iter.hasNext()) {
-    cookieManager.add((Cookie)((TagHandler)iter.next()).getModel());
-  }
-}
