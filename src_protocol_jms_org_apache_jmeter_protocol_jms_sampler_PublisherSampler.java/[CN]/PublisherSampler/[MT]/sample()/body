@@ -8,12 +8,11 @@
   if (this.PUB != null) {
     result.sampleStart();
     for (int idx=0; idx < loop; idx++) {
-      this.PUB.publish(this.getTextMessage());
+      String tmsg=this.getMessageContent();
+      this.PUB.publish(tmsg);
+      this.BUFFER.append(tmsg);
     }
     result.sampleEnd();
-    for (int idx=0; idx < loop; idx++) {
-      this.BUFFER.append(this.getTextMessage());
-    }
     String content=this.BUFFER.toString();
     result.setBytes(content.getBytes().length);
     result.setResponseCode("message published successfully");
