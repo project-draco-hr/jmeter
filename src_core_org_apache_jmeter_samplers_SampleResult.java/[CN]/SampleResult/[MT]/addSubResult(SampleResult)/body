@@ -3,4 +3,5 @@
     subResults=new ArrayList();
   }
   subResults.add(subResult);
+  setTime(getTime() + subResult.getTime());
 }
