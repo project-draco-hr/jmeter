@@ -1,13 +1,20 @@
 {
-  contentLength=ContentLength;
   String out=new String();
   out+=HTTP_PROTOCOL + " 200 Ok" + CR;
   out+="Server: " + HTTP_SERVER + CR;
   out+="MIME-version: 1.0" + CR;
-  if (0 < ContentType.length())   out+="Content-type: " + ContentType + CR;
- else   out+="Content-Type: text/html" + CR;
-  if (0 != contentLength)   out+="Content-Length: " + Long.toString(contentLength) + CR;
-  if (0 < lastModified.length())   out+="Last-Modified: " + lastModified + CR;
+  if (0 < contentType.length()) {
+    out+="Content-type: " + contentType + CR;
+  }
+ else {
+    out+="Content-Type: text/html" + CR;
+  }
+  if (0 != contentLength) {
+    out+="Content-Length: " + Long.toString(contentLength) + CR;
+  }
+  if (0 < lastModified.length()) {
+    out+="Last-Modified: " + lastModified + CR;
+  }
   out+=CR;
   return out;
 }

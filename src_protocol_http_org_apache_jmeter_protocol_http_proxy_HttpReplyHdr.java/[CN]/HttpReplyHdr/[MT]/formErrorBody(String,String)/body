@@ -1,11 +1,11 @@
 {
   String out;
   out="<HTML><HEAD><TITLE>";
-  out+=Error;
+  out+=error;
   out+="</TITLE></HEAD>";
-  out+="<BODY><H2>" + Error + "</H2>\n";
+  out+="<BODY><H2>" + error + "</H2>\n";
   out+="</P></H3>";
-  out+=Description;
+  out+=description;
   out+="</BODY></HTML>";
   return out;
 }
