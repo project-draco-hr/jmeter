@@ -1,8 +1,8 @@
 {
-  HTTPSampler config=(HTTPSampler)SaveService.loadTree(new FileInputStream(System.getProperty("user.dir") + "/testfiles/load_bug_list.jmx")).getArray()[0];
+  HTTPSamplerBase config=(HTTPSamplerBase)SaveService.loadTree(new FileInputStream(System.getProperty("user.dir") + "/testfiles/load_bug_list.jmx")).getArray()[0];
   config.setRunningVersion(true);
   HTTPSampleResult result=new HTTPSampleResult();
-  HTTPSampler context=(HTTPSampler)SaveService.loadTree(new FileInputStream(System.getProperty("user.dir") + "/testfiles/Load_JMeter_Page.jmx")).getArray()[0];
+  HTTPSamplerBase context=(HTTPSamplerBase)SaveService.loadTree(new FileInputStream(System.getProperty("user.dir") + "/testfiles/Load_JMeter_Page.jmx")).getArray()[0];
   jmctx.setCurrentSampler(context);
   jmctx.setCurrentSampler(config);
   result.setResponseData(new TextFile(System.getProperty("user.dir") + HTMLFileName).getText().getBytes());

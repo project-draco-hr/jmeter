@@ -1,11 +1,11 @@
 {
   Sampler sam=getThreadContext().getCurrentSampler();
-  HTTPSampler sampler=null;
-  if (!(sam instanceof HTTPSampler)) {
+  HTTPSamplerBase sampler=null;
+  if (!(sam instanceof HTTPSamplerBase)) {
     return;
   }
  else {
-    sampler=(HTTPSampler)sam;
+    sampler=(HTTPSamplerBase)sam;
   }
   boolean modified=false;
   PropertyIterator iter=sampler.getArguments().iterator();

@@ -6,9 +6,9 @@
   }
   Iterator iter=urls.iterator();
   while (iter.hasNext()) {
-    HTTPSampler newUrl=(HTTPSampler)iter.next();
+    HTTPSamplerBase newUrl=(HTTPSamplerBase)iter.next();
     try {
-      newUrl.setMethod(HTTPSampler.POST);
+      newUrl.setMethod(HTTPSamplerBase.POST);
       if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
         potentialLinks.add(newUrl);
       }

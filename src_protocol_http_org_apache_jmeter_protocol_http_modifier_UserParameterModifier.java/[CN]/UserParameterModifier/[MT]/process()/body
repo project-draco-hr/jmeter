@@ -1,9 +1,9 @@
 {
   Sampler entry=getThreadContext().getCurrentSampler();
-  if (!(entry instanceof HTTPSampler)) {
+  if (!(entry instanceof HTTPSamplerBase)) {
     return;
   }
-  HTTPSampler config=(HTTPSampler)entry;
+  HTTPSamplerBase config=(HTTPSamplerBase)entry;
   Map currentUser=allAvailableUsers.getNextUserMods();
   PropertyIterator iter=config.getArguments().iterator();
   while (iter.hasNext()) {
