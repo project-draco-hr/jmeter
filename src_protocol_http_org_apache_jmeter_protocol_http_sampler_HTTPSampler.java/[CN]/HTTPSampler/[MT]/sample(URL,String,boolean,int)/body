@@ -34,7 +34,7 @@ catch (      IOException e) {
     if (retry > 10) {
       throw new BindException();
     }
-    if (getMethod().equals(HTTPSampler.POST)) {
+    if (method.equals(HTTPSampler.POST)) {
       sendPostData(conn);
     }
     byte[] responseData=readResponse(conn);

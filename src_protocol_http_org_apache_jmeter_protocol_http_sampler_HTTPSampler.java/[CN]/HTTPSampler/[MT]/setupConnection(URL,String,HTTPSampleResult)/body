@@ -38,7 +38,7 @@
     res.setRequestHeaders(hdrs);
   }
   setConnectionAuthorization(conn,u,getAuthManager());
-  if (getMethod().equals(HTTPSampler.POST)) {
+  if (method.equals(HTTPSampler.POST)) {
     setPostHeaders(conn);
   }
   return conn;
