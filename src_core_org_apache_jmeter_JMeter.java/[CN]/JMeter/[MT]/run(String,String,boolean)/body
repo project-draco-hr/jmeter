@@ -9,6 +9,8 @@
     reader=new FileInputStream(f);
     log.info("Loading file: " + f);
     HashTree tree=SaveService.loadSubTree(reader);
+    DisabledComponentRemover remover=new DisabledComponentRemover(tree);
+    tree.traverse(remover);
     if (logFile != null) {
       ResultCollector logger=new ResultCollector();
       logger.setFilename(logFile);
@@ -29,13 +31,16 @@
       List engines=new LinkedList();
       while (st.hasMoreElements()) {
         String el=(String)st.nextElement();
+        println("Configuring remote engine for " + el);
         engines.add(doRemoteInit(el.trim(),tree));
       }
+      println("Starting remote engines");
       Iterator iter=engines.iterator();
       while (iter.hasNext()) {
         engine=(JMeterEngine)iter.next();
         engine.runTest();
       }
+      println("Remote engines have been started");
     }
   }
  catch (  Exception e) {
