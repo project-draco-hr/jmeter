@@ -4,9 +4,11 @@
   Enumeration enum=myNode.children();
   while (enum.hasMoreElements()) {
     JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
-    TestElement testElement=(TestElement)subNode.createTestElement();
-    if (testElement instanceof SampleListener) {
-      ((SampleListener)testElement).sampleOccurred(event);
+    if (subNode.isEnabled()) {
+      TestElement testElement=(TestElement)subNode.createTestElement();
+      if (testElement instanceof SampleListener) {
+        ((SampleListener)testElement).sampleOccurred(event);
+      }
     }
   }
 }
