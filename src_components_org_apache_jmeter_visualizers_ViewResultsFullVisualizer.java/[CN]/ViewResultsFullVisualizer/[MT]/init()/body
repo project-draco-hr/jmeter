@@ -16,12 +16,11 @@
   treePane.setPreferredSize(new Dimension(100,70));
   JPanel statsPane=new JPanel(new GridLayout(1,1));
   stats=new JTextArea();
-  statsPane.add(new JScrollPane(stats));
-  JPanel resultsPane=new JPanel(new BorderLayout());
-  results=new JTextArea();
+  statsPane.add(makeScrollPane(stats));
+  initSampleDataArea();
   initHtmlOrTextButton();
-  resultsPane.add(htmlOrTextButton,BorderLayout.NORTH);
-  resultsPane.add(new JScrollPane(results),BorderLayout.CENTER);
+  results=new JTextArea();
+  JPanel resultsPane=makeResultPane();
   JSplitPane split2=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,statsPane);
   JSplitPane mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split2,resultsPane);
   add(mainSplit,BorderLayout.CENTER);

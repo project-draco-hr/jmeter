@@ -13,7 +13,7 @@
     if (res != null) {
       log.debug("valueChanged1 : load time - " + res.getTime());
       if (res != null && res.getSamplerData() != null) {
-        stats.append("Request data: " + res.getSamplerData() + "\n");
+        sampleDataField.setText("Request data: " + res.getSamplerData().trim());
       }
       stats.append("Load time: " + res.getTime() + "\n");
       String responseCode=res.getResponseCode();
