@@ -1,0 +1,10 @@
+{
+  super.configure(el);
+  tableModel.clearData();
+  Iterator iter=el.getPropertyNames().iterator();
+  while (iter.hasNext()) {
+    String str=(String)iter.next();
+    tableModel.addRow(new Object[]{str,el.getProperty(str)});
+  }
+  checkDeleteStatus();
+}

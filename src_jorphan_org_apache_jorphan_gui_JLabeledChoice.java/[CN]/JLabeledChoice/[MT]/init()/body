@@ -7,7 +7,7 @@
  * @param pFocusEvent The focus event that occured.
  */
     public void itemStateChanged(    ItemEvent e){
-      if (e.getStateChange() == e.SELECTED) {
+      if (e.getStateChange() == ItemEvent.SELECTED) {
         notifyChangeListeners();
       }
     }

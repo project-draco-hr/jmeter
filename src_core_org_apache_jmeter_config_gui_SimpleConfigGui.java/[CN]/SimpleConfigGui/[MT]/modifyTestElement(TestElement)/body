@@ -1,0 +1,8 @@
+{
+  Data model=tableModel.getData();
+  model.reset();
+  while (model.next()) {
+    el.setProperty((String)model.getColumnValue(COLUMN_NAMES[0]),model.getColumnValue(COLUMN_NAMES[1]));
+  }
+  super.configureTestElement(el);
+}

@@ -1,0 +1,30 @@
+{
+  tableModel=new PowerTableModel(new String[]{COLUMN_NAMES[0],COLUMN_NAMES[1]},new Class[]{String.class,String.class});
+  JPanel tPanel=new JPanel();
+  tPanel.setLayout(new VerticalLayout(1,VerticalLayout.CENTER));
+  table=new JTable(tableModel);
+  table.setEnabled(true);
+  table.setCellSelectionEnabled(true);
+  table.setRowSelectionAllowed(true);
+  table.setColumnSelectionAllowed(false);
+  table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  JScrollPane scroller=new JScrollPane(table);
+  Dimension tableDim=scroller.getPreferredSize();
+  tableDim.height=300;
+  scroller.setPreferredSize(tableDim);
+  scroller.setColumnHeaderView(table.getTableHeader());
+  add=new JButton(JMeterUtils.getResString("add"));
+  add.setActionCommand(ADD);
+  add.setEnabled(true);
+  delete=new JButton(JMeterUtils.getResString("delete"));
+  delete.setActionCommand(DELETE);
+  checkDeleteStatus();
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+  add.addActionListener(this);
+  delete.addActionListener(this);
+  buttonPanel.add(add);
+  buttonPanel.add(delete);
+  this.add(scroller,BorderLayout.CENTER);
+  this.add(buttonPanel,BorderLayout.SOUTH);
+}
