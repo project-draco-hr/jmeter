@@ -1,0 +1,8 @@
+{
+  try {
+    return super.removeFirst();
+  }
+ catch (  RuntimeException e) {
+    return null;
+  }
+}

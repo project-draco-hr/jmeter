@@ -1,4 +1,5 @@
 {
+  notifier.stop();
   Iterator iter=testListeners.getSearchResults().iterator();
   while (iter.hasNext()) {
     if (host == null) {

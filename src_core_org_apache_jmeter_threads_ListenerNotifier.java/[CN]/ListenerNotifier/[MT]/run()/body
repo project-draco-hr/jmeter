@@ -1,0 +1,15 @@
+{
+  Iterator iter;
+  while (running || this.size() > 0) {
+    SampleEvent res=(SampleEvent)this.removeFirst();
+    if (res != null) {
+      List listeners=(List)this.removeFirst();
+      iter=listeners.iterator();
+      while (iter.hasNext()) {
+        ((SampleListener)iter.next()).sampleOccurred(res);
+      }
+    }
+    Thread.yield();
+  }
+  isStopped=true;
+}
