@@ -1,0 +1,5 @@
+{
+  UserParameterModifier clone=(UserParameterModifier)super.clone();
+  clone.allAvailableUsers=allAvailableUsers;
+  return clone;
+}
