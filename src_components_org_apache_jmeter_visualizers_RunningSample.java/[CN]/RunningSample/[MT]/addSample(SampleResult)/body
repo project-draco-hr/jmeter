@@ -1,10 +1,13 @@
 {
   long aTimeInMillis=res.getTime();
   boolean aSuccessFlag=res.isSuccessful();
-  lastTime=res.getTimeStamp();
   counter++;
-  if (firstTime == 0L) {
-    firstTime=lastTime;
+  long startTime=res.getTimeStamp() - aTimeInMillis;
+  if (firstTime > startTime) {
+    firstTime=startTime;
+  }
+  if (lastTime < res.getTimeStamp()) {
+    lastTime=res.getTimeStamp();
   }
   runningSum+=aTimeInMillis;
   if (aTimeInMillis > max)   max=aTimeInMillis;
