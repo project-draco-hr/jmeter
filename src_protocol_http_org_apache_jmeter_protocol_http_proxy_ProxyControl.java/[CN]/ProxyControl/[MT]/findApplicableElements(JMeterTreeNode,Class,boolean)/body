@@ -14,7 +14,6 @@
   }
   for (JMeterTreeNode controller=myTarget; controller != null; controller=(JMeterTreeNode)controller.getParent()) {
     enum=controller.children();
-    String guiClassName=null;
     while (enum.hasMoreElements()) {
       JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
       if (subNode.isEnabled()) {
