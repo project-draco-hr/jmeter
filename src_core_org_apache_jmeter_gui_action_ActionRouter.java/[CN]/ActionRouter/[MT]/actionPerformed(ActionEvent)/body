@@ -5,7 +5,10 @@
     Iterator iter=commandObjects.iterator();
     while (iter.hasNext()) {
       try {
-        ((Command)iter.next()).doAction(e);
+        Command c=(Command)iter.next();
+        preActionPerformed(c.getClass(),e);
+        c.doAction(e);
+        postActionPerformed(c.getClass(),e);
       }
  catch (      Exception err) {
         log.error("",err);
