@@ -36,6 +36,9 @@
       if (elementsToSkip.contains(item.getClass().getName()) || elementsToSkip.contains(item.getStaticLabel())) {
         continue;
       }
+ else {
+        elementsToSkip.add(item.getClass().getName());
+      }
       Collection categories=item.getMenuCategories();
       if (categories == null) {
         continue;
