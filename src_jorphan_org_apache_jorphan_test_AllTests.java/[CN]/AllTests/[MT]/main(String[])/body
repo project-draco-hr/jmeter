@@ -18,6 +18,9 @@
  catch (  Exception e1) {
     System.out.println("Error finding class " + n + " "+ e1);
   }
+catch (  java.lang.InternalError e1) {
+    System.out.println("Error finding class " + n + " "+ e1);
+  }
   System.out.println("------------");
   TestSuite suite=suite(args[0]);
   TestRunner.run(suite);
@@ -32,6 +35,9 @@
     System.out.println("Instantiated: " + n);
   }
  catch (  Exception e1) {
+    System.out.println("Error with class " + n + " "+ e1);
+  }
+catch (  java.lang.InternalError e1) {
     System.out.println("Error with class " + n + " "+ e1);
   }
   System.out.println("------------");
