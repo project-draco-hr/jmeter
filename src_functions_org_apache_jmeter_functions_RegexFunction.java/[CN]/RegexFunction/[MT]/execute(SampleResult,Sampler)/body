@@ -32,7 +32,6 @@
     return value.toString();
   }
  else   if (valueIndex.equals(RAND)) {
-    System.out.println("Number of matches = " + collectAllMatches.size());
     MatchResult result=(MatchResult)collectAllMatches.get(rand.nextInt(collectAllMatches.size()));
     return generateResult(result);
   }
