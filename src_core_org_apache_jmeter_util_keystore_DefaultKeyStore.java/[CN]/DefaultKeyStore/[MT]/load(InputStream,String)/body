@@ -15,8 +15,12 @@
       break;
     }
   }
-  if (null == key)   throw new Exception("No key found");
-  if (null == certChain)   throw new Exception("No certificate chain found");
+  if (null == key) {
+    throw new Exception("No key found");
+  }
+  if (null == certChain) {
+    throw new Exception("No certificate chain found");
+  }
   this.key=key;
   this.certChain=certChain;
 }
