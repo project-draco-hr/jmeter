@@ -40,13 +40,19 @@
     res.setResponseMessage(bshInterpreter.get("ResponseMessage").toString());
     isSuccessful=Boolean.valueOf(bshInterpreter.get("IsSuccess").toString()).booleanValue();
   }
- catch (  EvalError ex) {
-    log.debug("",ex);
+ catch (  NoClassDefFoundError ex) {
+    log.error("BeanShell Jar missing? " + ex.toString());
+    res.setResponseCode("501");
+    res.setResponseMessage(ex.toString());
+    res.setStopThread(true);
+  }
+catch (  IOException ex) {
+    log.warn(ex.toString());
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
   }
-catch (  IOException ex) {
-    log.debug("",ex);
+catch (  Exception ex) {
+    log.warn(ex.toString());
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
   }
