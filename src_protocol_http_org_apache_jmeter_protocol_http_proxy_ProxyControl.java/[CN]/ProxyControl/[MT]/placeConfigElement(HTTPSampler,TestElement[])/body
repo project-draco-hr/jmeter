@@ -1,29 +1,30 @@
 {
+  JMeterTreeNode myTarget=target;
   TestElement urlConfig=null;
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
-  if (target == null) {
+  if (myTarget == null) {
     List nodes=treeModel.getNodesOfType(RecordingController.class);
     Iterator iter=nodes.iterator();
     while (iter.hasNext()) {
       JMeterTreeNode node=(JMeterTreeNode)iter.next();
       if (node.isEnabled()) {
-        target=node;
+        myTarget=node;
         break;
       }
     }
   }
-  if (target == null) {
+  if (myTarget == null) {
     List nodes=treeModel.getNodesOfType(ThreadGroup.class);
     Iterator iter=nodes.iterator();
     while (iter.hasNext()) {
       JMeterTreeNode node=(JMeterTreeNode)iter.next();
       if (node.isEnabled()) {
-        target=node;
+        myTarget=node;
         break;
       }
     }
   }
-  Enumeration enum=target.children();
+  Enumeration enum=myTarget.children();
   String guiClassName=null;
   while (enum.hasMoreElements()) {
     JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
@@ -41,22 +42,32 @@
     sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
     try {
       boolean firstInBatch=false;
-      if (lastTime == 0) {
-        lastTime=System.currentTimeMillis();
-        firstInBatch=true;
-      }
       long now=System.currentTimeMillis();
       if (now - lastTime > sampleGap) {
-        addDivider(treeModel,target);
+        if (!myTarget.isLeaf() && groupingMode == GROUPING_ADD_SEPARATORS) {
+          addDivider(treeModel,myTarget);
+        }
+        if (groupingMode == GROUPING_IN_CONTROLLERS) {
+          addSimpleController(treeModel,myTarget,sampler.getName());
+        }
         firstInBatch=true;
       }
-      lastTime=System.currentTimeMillis();
+      lastTime=now;
       if (groupingMode == GROUPING_STORE_FIRST_ONLY) {
         if (!firstInBatch)         return;
         sampler.setFollowRedirects(true);
         sampler.setImageParser(true);
       }
-      JMeterTreeNode newNode=treeModel.addComponent(sampler,target);
+      if (groupingMode == GROUPING_IN_CONTROLLERS) {
+        for (int i=myTarget.getChildCount() - 1; i >= 0; i--) {
+          JMeterTreeNode c=(JMeterTreeNode)myTarget.getChildAt(i);
+          if (c.createTestElement() instanceof GenericController) {
+            myTarget=c;
+            break;
+          }
+        }
+      }
+      JMeterTreeNode newNode=treeModel.addComponent(sampler,myTarget);
       if (firstInBatch) {
         addAssertion(treeModel,newNode);
         firstInBatch=false;

@@ -1,6 +1,6 @@
 {
   GenericController sc=new GenericController();
   sc.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.control.gui.LogicControllerGui");
-  sc.setName("-------------------");
+  sc.setName(name);
   model.addComponent(sc,node);
 }

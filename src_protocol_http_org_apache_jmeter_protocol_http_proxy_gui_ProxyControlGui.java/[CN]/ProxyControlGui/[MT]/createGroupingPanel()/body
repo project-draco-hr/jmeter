@@ -2,7 +2,7 @@
   DefaultComboBoxModel m=new DefaultComboBoxModel();
   m.addElement(JMeterUtils.getResString("grouping_no_groups"));
   m.addElement(JMeterUtils.getResString("grouping_add_separators"));
-  m.addElement("[not implemented]");
+  m.addElement(JMeterUtils.getResString("grouping_in_controllers"));
   m.addElement(JMeterUtils.getResString("grouping_store_first_only"));
   groupingMode=new JComboBox(m);
   groupingMode.setName(ProxyControl.GROUPING_MODE);
