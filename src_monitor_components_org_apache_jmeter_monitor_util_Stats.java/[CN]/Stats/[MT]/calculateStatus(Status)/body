@@ -3,7 +3,6 @@
     Connector cntr=(Connector)stat.getConnector().get(0);
     int max=cntr.getThreadInfo().getMaxThreads();
     int current=cntr.getThreadInfo().getCurrentThreadsBusy();
-    int spare=cntr.getThreadInfo().getMaxSpareThreads();
     double per=(double)current / (double)max;
     if (per > WARNING_PER) {
       return WARNING;

@@ -3,7 +3,6 @@
   if (sample instanceof HTTPSampleResult) {
     surl=((HTTPSampleResult)sample).getURL();
   }
-  String rescontent=new String(sample.getResponseData());
   if (sample.getResponseCode().equals("200") && ((HTTPSampleResult)sample).isMonitor()) {
     ObjectFactory of=ObjectFactory.getInstance();
     Status st=of.parseBytes(sample.getResponseData());
