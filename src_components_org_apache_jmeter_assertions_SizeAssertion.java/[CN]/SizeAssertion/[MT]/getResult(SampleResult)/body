@@ -4,7 +4,7 @@
   if (response.getResponseData() == null) {
     return setResultForNull(result);
   }
-  resultData=getResultBody(response.getResponseData());
+  resultData=response.getResponseData();
   long resultSize=resultData.length;
   if ((!(compareSize(resultSize)) && (getAllowedSize() > 0))) {
     result.setFailure(true);
