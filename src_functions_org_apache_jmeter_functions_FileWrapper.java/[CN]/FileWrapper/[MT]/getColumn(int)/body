@@ -1,0 +1,6 @@
+{
+  if (currentRow == NO_LINE) {
+    currentRow=container.nextRow();
+  }
+  return container.getColumn(currentRow,col);
+}

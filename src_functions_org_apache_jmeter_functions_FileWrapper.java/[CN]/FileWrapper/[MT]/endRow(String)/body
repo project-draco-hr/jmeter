@@ -1,0 +1,10 @@
+{
+  Map my=(Map)filePacks.get();
+  FileWrapper fw=(FileWrapper)(my).get(file);
+  if (fw == null) {
+    log.warn("endRow(): no entry for " + file);
+  }
+ else {
+    fw.endRow();
+  }
+}

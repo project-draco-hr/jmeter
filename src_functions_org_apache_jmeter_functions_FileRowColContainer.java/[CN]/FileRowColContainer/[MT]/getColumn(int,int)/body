@@ -1,0 +1,6 @@
+{
+  String colData;
+  colData=(String)((ArrayList)fileData.get(row)).get(col);
+  log.debug(fileName + "(" + row+ ","+ col+ "): "+ colData);
+  return colData;
+}

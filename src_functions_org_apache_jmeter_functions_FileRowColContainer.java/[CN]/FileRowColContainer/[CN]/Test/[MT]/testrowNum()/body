@@ -1,0 +1,20 @@
+{
+  FileRowColContainer f=new FileRowColContainer("testfiles/test.csv");
+  assertNotNull(f);
+  assertEquals("Expected 4 lines",4,f.fileData.size());
+  int myRow=f.nextRow();
+  assertEquals(0,myRow);
+  assertEquals(1,f.nextRow);
+  myRow=f.nextRow();
+  assertEquals(1,myRow);
+  assertEquals(2,f.nextRow);
+  myRow=f.nextRow();
+  assertEquals(2,myRow);
+  assertEquals(3,f.nextRow);
+  myRow=f.nextRow();
+  assertEquals(3,myRow);
+  assertEquals(0,f.nextRow);
+  myRow=f.nextRow();
+  assertEquals(0,myRow);
+  assertEquals(1,f.nextRow);
+}

@@ -1,0 +1,9 @@
+{
+  FileRowColContainer frcc;
+  if ((frcc=(FileRowColContainer)fileContainers.get(alias)) == null) {
+    frcc=new FileRowColContainer(file);
+    log.info("Opened " + file + " as "+ alias);
+    fileContainers.put(alias,frcc);
+  }
+  return frcc;
+}

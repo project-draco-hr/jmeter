@@ -1,0 +1,10 @@
+{
+  log.debug("clearAll()");
+  Map my=(Map)filePacks.get();
+  for (Iterator i=my.entrySet().iterator(); i.hasNext(); ) {
+    Object fw=i.next();
+    log.info("Removing " + fw.toString());
+    i.remove();
+  }
+  fileContainers.clear();
+}

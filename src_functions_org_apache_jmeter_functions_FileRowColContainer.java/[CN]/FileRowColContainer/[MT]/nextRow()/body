@@ -1,0 +1,9 @@
+{
+  int row=nextRow;
+  nextRow++;
+  if (nextRow >= fileData.size()) {
+    nextRow=0;
+  }
+  log.debug("Row: " + row);
+  return row;
+}
