@@ -1,30 +1,35 @@
 {
   if (source == addressField) {
-    this.addressie=this.addressField.getText();
-    log("AddressField=" + addressField.getText());
+    model.setToAddress(this.addressField.getText());
   }
  else   if (source == fromField) {
-    this.from=this.fromField.getText();
-    log("FromField=" + fromField.getText());
+    model.setFromAddress(this.fromField.getText());
   }
  else   if (source == smtpHostField) {
-    this.smtpHost=this.smtpHostField.getText();
-    log("smtpHostField=" + smtpHostField.getText());
+    model.setSmtpHost(this.smtpHostField.getText());
   }
- else   if (source == failsubjectField) {
-    this.failsubject=this.failsubjectField.getText();
-    log("failsubjectField=" + failsubjectField.getText());
+ else   if (source == failureSubjectField) {
+    model.setFailureSubject(this.failureSubjectField.getText());
   }
- else   if (source == successsubjectField) {
-    this.successsubject=this.successsubjectField.getText();
-    log("successsubjectField=" + successsubjectField.getText());
+ else   if (source == successSubjectField) {
+    model.setSuccessSubject(this.successSubjectField.getText());
   }
  else   if (source == failureLimitField) {
-    this.failureLimit=Long.parseLong(this.failureLimitField.getText());
-    log("failureLimitField=" + failureLimitField.getText());
+    try {
+      model.setFailureLimit(Long.parseLong(this.failureLimitField.getText()));
+    }
+ catch (    NumberFormatException e) {
+      log("failureLimitField=" + failureLimitField.getText());
+      JOptionPane.showMessageDialog(null,JMeterUtils.getResString("you_must_enter_a_valid_number"),"Error",JOptionPane.ERROR_MESSAGE);
+    }
   }
  else   if (source == successLimitField) {
-    this.successLimit=Long.parseLong(this.successLimitField.getText());
-    log("successLimitField=" + successLimitField.getText());
+    try {
+      model.setSuccessLimit(Long.parseLong(this.successLimitField.getText()));
+    }
+ catch (    NumberFormatException e) {
+      log("successLimitField=" + successLimitField.getText());
+      JOptionPane.showMessageDialog(null,JMeterUtils.getResString("you_must_enter_a_valid_number"),"Error",JOptionPane.ERROR_MESSAGE);
+    }
   }
 }

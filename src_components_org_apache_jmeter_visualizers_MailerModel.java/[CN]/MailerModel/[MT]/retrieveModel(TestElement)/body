@@ -1,0 +1,14 @@
+{
+  try {
+    setToAddress(element.getPropertyAsString(TO_KEY));
+    setFromAddress(element.getPropertyAsString(FROM_KEY));
+    setSmtpHost(element.getPropertyAsString(HOST_KEY));
+    setSuccessSubject(element.getPropertyAsString(SUCCESS_KEY));
+    setFailureSubject(element.getPropertyAsString(FAILURE_KEY));
+    setFailureLimit(Long.parseLong((String)element.getProperty(FAILURE_LIMIT_KEY)));
+    setSuccessLimit(Long.parseLong((String)element.getProperty(SUCCESS_LIMIT_KEY)));
+  }
+ catch (  Exception e) {
+    log("Couldn't load MailerVisualizer...");
+  }
+}

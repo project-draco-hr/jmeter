@@ -1,15 +1,6 @@
 {
   super();
-  this.appProperties=JMeterUtils.getJMeterProperties();
-  try {
-    successLimit=Long.parseLong(appProperties.getProperty("mailer.successlimit"));
-  }
- catch (  Exception ex) {
-  }
-  try {
-    failureLimit=Long.parseLong(appProperties.getProperty("mailer.failurelimit"));
-  }
- catch (  Exception ex) {
-  }
+  model=new MailerModel();
+  model.addModelListener(this);
   initGui();
 }

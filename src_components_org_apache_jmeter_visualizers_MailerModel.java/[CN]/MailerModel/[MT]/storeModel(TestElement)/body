@@ -1,0 +1,9 @@
+{
+  element.setProperty(TO_KEY,getToAddress());
+  element.setProperty(FROM_KEY,getFromAddress());
+  element.setProperty(HOST_KEY,getSmtpHost());
+  element.setProperty(SUCCESS_KEY,getSuccessSubject());
+  element.setProperty(FAILURE_KEY,getFailureSubject());
+  element.setProperty(FAILURE_LIMIT_KEY,new Long(getFailureLimit()));
+  element.setProperty(SUCCESS_LIMIT_KEY,new Long(getSuccessLimit()));
+}

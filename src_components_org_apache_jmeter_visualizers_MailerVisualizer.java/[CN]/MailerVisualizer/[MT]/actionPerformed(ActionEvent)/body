@@ -2,16 +2,21 @@
   try {
     JComponent c=(JComponent)e.getSource();
     if (c == testerButton) {
-      log("### Test To:  " + this.addressie + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failsubject+ ", "+ "Success Subject:  "+ this.successsubject);
-      String testMessage=("### Test To:  " + this.addressie + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failsubject+ ", "+ "Success Subject:  "+ this.successsubject);
-      Vector addressVector=newAddressVector(addressie);
-      sendMail(from,addressVector,"Testing addressies",testMessage,smtpHost);
+      String testString="JMeter-Testmail" + "\n" + "To:  " + model.getToAddress() + "\n"+ "Via:  "+ model.getSmtpHost()+ "\n"+ "Fail Subject:  "+ model.getFailureSubject()+ "\n"+ "Success Subject:  "+ model.getSuccessSubject();
+      log(testString);
+      model.sendMail(model.getFromAddress(),model.getAddressVector(),"Testing mail-addresses",testString,model.getSmtpHost());
+      log("Mail sent successfully!!");
     }
  else {
       doEventHandling(c);
     }
   }
- catch (  Exception ex) {
-    JOptionPane.showMessageDialog(this,ex,"Error",JOptionPane.ERROR_MESSAGE);
+ catch (  UnknownHostException e1) {
+    log("Invalid Mail Server " + e1.toString());
+    displayMessage(JMeterUtils.getResString("invalid_mail_server"),true);
+  }
+catch (  Exception ex) {
+    log("Couldn't send mail..." + ex.toString());
+    displayMessage(JMeterUtils.getResString("invalid_mail_server"),true);
   }
 }

@@ -1,0 +1,10 @@
+{
+  int type=0;
+  if (isError) {
+    type=JOptionPane.ERROR_MESSAGE;
+  }
+ else {
+    type=JOptionPane.INFORMATION_MESSAGE;
+  }
+  JOptionPane.showMessageDialog(null,message,"Error",type);
+}

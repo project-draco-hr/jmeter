@@ -1,0 +1,19 @@
+{
+  String host=smtpHost;
+  boolean debug=Boolean.valueOf(host).booleanValue();
+  InetAddress remote=InetAddress.getByName(host);
+  InternetAddress[] address=new InternetAddress[vEmails.size()];
+  for (int k=0; k < vEmails.size(); k++) {
+    address[k]=new InternetAddress(vEmails.elementAt(k).toString());
+  }
+  Properties props=new Properties();
+  props.put("mail.smtp.host",host);
+  Session session=Session.getDefaultInstance(props,null);
+  session.setDebug(debug);
+  Message msg=new MimeMessage(session);
+  msg.setFrom(new InternetAddress(from));
+  msg.setRecipients(Message.RecipientType.TO,address);
+  msg.setSubject(subject);
+  msg.setText(attText);
+  Transport.send(msg);
+}
