@@ -4,9 +4,10 @@
   config.setMethod(HTTPSampler.POST);
   HTTPSampler context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<form action=\"index.html\" method=\"POST\">" + "<input type=\"checkbox\" name=\"test\""+ " value=\"goto\">Goto index page</form></body></html>";
-  SampleResult result=new SampleResult();
+  HTTPSampleResult result=new HTTPSampleResult();
   result.setResponseData(responseText.getBytes());
   result.setSampleLabel(context.toString());
+  result.setURL(context.getUrl());
   JMeterContextService.getContext().setCurrentSampler(context);
   JMeterContextService.getContext().setCurrentSampler(config);
   JMeterContextService.getContext().setPreviousResult(result);

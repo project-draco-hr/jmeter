@@ -2,7 +2,7 @@
   NodeList rootList=html.getChildNodes();
   List urls=new LinkedList();
   for (int x=0; x < rootList.getLength(); x++) {
-    urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),(HTTPSampler)JMeterContextService.getContext().getPreviousSampler()));
+    urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),result.getURL()));
   }
   Iterator iter=urls.iterator();
   while (iter.hasNext()) {

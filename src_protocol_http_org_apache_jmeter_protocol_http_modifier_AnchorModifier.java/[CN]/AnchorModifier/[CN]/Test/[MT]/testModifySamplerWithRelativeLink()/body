@@ -5,7 +5,8 @@
   HTTPSampler context=(HTTPSampler)SaveService.loadSubTree(new FileInputStream(System.getProperty("user.dir") + "/testfiles/Load_JMeter_Page.jmx")).getArray()[0];
   JMeterContextService.getContext().setCurrentSampler(context);
   JMeterContextService.getContext().setCurrentSampler(config);
-  result.setResponseData(new TextFile(System.getProperty("user.dir") + "/testfiles/jmeter_home_page.html").getText().getBytes());
+  result.setResponseData(new TextFile(System.getProperty("user.dir") + "/testfiles/jmeter_home_page_with_relative_links.html").getText().getBytes());
+  result.setURL(new URL("http://nagoya.apache.org/fakepage.html"));
   result.setSampleLabel(context.toString());
   result.setSamplerData(context.toString());
   JMeterContextService.getContext().setPreviousResult(result);

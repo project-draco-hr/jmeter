@@ -1,12 +1,15 @@
 {
-  SampleResult result=JMeterContextService.getContext().getPreviousResult();
   Sampler sam=JMeterContextService.getContext().getCurrentSampler();
+  SampleResult res=JMeterContextService.getContext().getPreviousResult();
   HTTPSampler sampler=null;
-  if (result == null || !(sam instanceof HTTPSampler)) {
+  HTTPSampleResult result=null;
+  if (res == null || !(sam instanceof HTTPSampler) || !(res instanceof HTTPSampleResult)) {
+    log.info("Can't apply HTML Link Parser when the previous" + " sampler run is not an HTTP Request.");
     return;
   }
  else {
     sampler=(HTTPSampler)sam;
+    result=(HTTPSampleResult)res;
   }
   List potentialLinks=new ArrayList();
   String responseText="";
