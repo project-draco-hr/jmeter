@@ -31,7 +31,6 @@ synchronized (statCalc) {
     graphMax=deviation * 3;
   }
   Sample s=new Sample(sample,(long)average,deviation,throughput,median,!success);
-  previous=sample;
   current=s;
   samples.add(s);
   return s;

@@ -31,7 +31,7 @@
     g.drawLine((previousPts[0].x) % width,previousPts[0].y,x % width,d.height - data);
   }
   previousPts[0]=new Point(x % width,d.height - data);
-  if (legendPanel != null && noLegendYet) {
+  if (noLegendYet) {
     gbc.gridx=0;
     gbc.gridy=compCount++;
     gbc.anchor=GridBagConstraints.WEST;
@@ -55,7 +55,7 @@
     g.drawLine((previousPts[1].x) % width,previousPts[1].y,x % width,d.height - data);
   }
   previousPts[1]=new Point(x % width,d.height - data);
-  if (legendPanel != null && noLegendYet) {
+  if (noLegendYet) {
     gbc.gridx=0;
     gbc.gridy=compCount++;
     gbc.anchor=GridBagConstraints.WEST;
@@ -85,7 +85,7 @@
         g.drawLine((previousPts[currPreviousPts].x) % width,previousPts[currPreviousPts].y,x % width,d.height - data);
       }
       previousPts[currPreviousPts++]=new Point(x % width,d.height - data);
-      if (legendPanel != null && noLegendYet) {
+      if (noLegendYet) {
         gbc.gridx=0;
         gbc.gridy=compCount++;
         gbc.anchor=GridBagConstraints.WEST;
