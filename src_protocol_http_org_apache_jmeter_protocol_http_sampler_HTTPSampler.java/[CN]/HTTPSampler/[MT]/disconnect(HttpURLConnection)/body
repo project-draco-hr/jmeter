@@ -1,7 +1,9 @@
 {
-  String connection=conn.getHeaderField("Connection");
-  String protocol=conn.getHeaderField(0);
-  if ((connection == null && (protocol == null || !protocol.startsWith("HTTP/1.1"))) || (connection != null && connection.equalsIgnoreCase("close"))) {
-    conn.disconnect();
+  if (conn != null) {
+    String connection=conn.getHeaderField("Connection");
+    String protocol=conn.getHeaderField(0);
+    if ((connection == null && (protocol == null || !protocol.startsWith("HTTP/1.1"))) || (connection != null && connection.equalsIgnoreCase("close"))) {
+      conn.disconnect();
+    }
   }
 }
