@@ -2,7 +2,7 @@
   if (save.saveTime())   writer.addAttribute("t",Long.toString(res.getTime()));
   if (save.saveLatency())   writer.addAttribute("lt",Long.toString(res.getLatency()));
   if (save.saveTimestamp())   writer.addAttribute("ts",Long.toString(res.getTimeStamp()));
-  if (save.saveSuccess())   writer.addAttribute("s",Boolean.toString(res.isSuccessful()));
+  if (save.saveSuccess())   writer.addAttribute("s",JOrphanUtils.booleanToString(res.isSuccessful()));
   if (save.saveLabel())   writer.addAttribute("lb",ConversionHelp.encode(res.getSampleLabel()));
   if (save.saveCode())   writer.addAttribute("rs",ConversionHelp.encode(res.getResponseCode()));
   if (save.saveMessage())   writer.addAttribute("rm",ConversionHelp.encode(res.getResponseMessage()));
