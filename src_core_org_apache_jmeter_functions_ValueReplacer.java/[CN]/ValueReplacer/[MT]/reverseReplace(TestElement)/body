@@ -1,2 +1,17 @@
 {
+  Iterator iter=el.getPropertyNames().iterator();
+  while (iter.hasNext()) {
+    String propName=(String)iter.next();
+    Object propValue=el.getProperty(propName);
+    if (propValue instanceof String) {
+      Object newValue=substituteValues((String)propValue);
+      el.setProperty(propName,newValue);
+    }
+ else     if (propValue instanceof TestElement) {
+      reverseReplace((TestElement)propValue);
+    }
+ else     if (propValue instanceof Collection) {
+      el.setProperty(propName,reverseReplace((Collection)propValue));
+    }
+  }
 }

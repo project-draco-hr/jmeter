@@ -1,0 +1,6 @@
+{
+  String input="arg1=param1;param1";
+  String pattern="param1";
+  String sub="${value}";
+  assertEquals("arg1=${value};${value}",StringUtilities.substitute(input,pattern,sub));
+}

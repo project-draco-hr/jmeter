@@ -1,0 +1,9 @@
+{
+  Iterator iter=variables.keySet().iterator();
+  while (iter.hasNext()) {
+    String key=(String)iter.next();
+    String value=(String)variables.get(key);
+    input=StringUtilities.substitute(input,value,"${" + key + "}");
+  }
+  return input;
+}

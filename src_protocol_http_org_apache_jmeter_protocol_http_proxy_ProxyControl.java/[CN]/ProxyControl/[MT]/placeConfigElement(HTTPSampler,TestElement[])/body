@@ -1,4 +1,5 @@
 {
+  ValueReplacer replacer=GuiPackage.getInstance().getReplacer();
   TestElement urlConfig=null;
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
   List nodes=treeModel.getNodesOfType(RecordController.class);
@@ -19,6 +20,7 @@
     }
     if (areMatched(sampler,urlConfig)) {
       removeValuesFromSampler(sampler,urlConfig);
+      replacer.reverseReplace(sampler);
       HttpTestSampleGui test=new HttpTestSampleGui();
       test.configure(sampler);
       try {
@@ -26,6 +28,7 @@
         for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
           if (subConfigs[i] instanceof HeaderManager) {
             HeaderPanel comp=new HeaderPanel();
+            replacer.reverseReplace(subConfigs[i]);
             comp.configure(subConfigs[i]);
             treeModel.addComponent(comp,newNode);
           }

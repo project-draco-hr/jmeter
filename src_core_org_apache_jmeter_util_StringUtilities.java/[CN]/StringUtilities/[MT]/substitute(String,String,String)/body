@@ -1,0 +1,12 @@
+{
+  StringBuffer ret=new StringBuffer();
+  int start=0;
+  int index=-1;
+  while ((index=input.indexOf(pattern,start)) >= start) {
+    ret.append(input.substring(start,index));
+    ret.append(sub);
+    start=index + pattern.length();
+  }
+  ret.append(input.substring(start));
+  return ret.toString();
+}

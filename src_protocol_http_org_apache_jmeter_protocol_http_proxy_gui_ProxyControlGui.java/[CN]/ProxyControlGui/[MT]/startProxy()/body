@@ -1,5 +1,5 @@
 {
-  ValueReplacer replacer=getReplacer();
+  ValueReplacer replacer=GuiPackage.getInstance().getReplacer();
   try {
     replacer.replaceValues(model);
     model.startProxy();

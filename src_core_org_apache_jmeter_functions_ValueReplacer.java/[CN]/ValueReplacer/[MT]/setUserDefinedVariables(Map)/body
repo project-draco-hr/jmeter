@@ -1,8 +1,4 @@
 {
   masterFunction.setUserDefinedVariables(variables);
-  Iterator iter=variables.keySet().iterator();
-  while (iter.hasNext()) {
-    Object key=iter.next();
-    reverseMap.put(variables.get(key),key);
-  }
+  this.variables=variables;
 }
