@@ -7,10 +7,10 @@
       w.write(buffer,0,x);
     }
   }
- catch (  SocketTimeoutException e) {
+ catch (  InterruptedIOException e) {
   }
 catch (  IOException e) {
-    log.debug("Read error",e);
+    log.warn("Read error:" + e);
     return "";
   }
   log.debug("Read:\n" + w.toString());
