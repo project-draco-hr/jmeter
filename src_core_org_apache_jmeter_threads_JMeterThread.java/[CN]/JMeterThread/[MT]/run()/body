@@ -22,6 +22,8 @@
           threadContext.getVariables().putObject(PACKAGE_OBJECT,pack);
           delay(pack.getTimers());
           Sampler sampler=pack.getSampler();
+          sampler.setThreadContext(threadContext);
+          sampler.setThreadName(threadName);
           if (sampler instanceof TestBean)           ((TestBean)sampler).prepare();
           SampleResult result=sampler.sample(null);
           result.setThreadName(threadName);
