@@ -1,8 +1,10 @@
 {
-  this.setLayout(new BorderLayout(0,0));
-  this.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+  setLayout(new BorderLayout(0,5));
   if (displayName) {
-    this.add(makeTitlePanel(),BorderLayout.NORTH);
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
   }
-  this.createTablePanel();
+  add(createTablePanel(),BorderLayout.CENTER);
+  add(Box.createVerticalStrut(70),BorderLayout.WEST);
+  add(createButtonPanel(),BorderLayout.SOUTH);
 }

@@ -1,6 +1,8 @@
 {
-  JPanel panel=new JPanel();
-  panel.add(new JLabel(JMeterUtils.getResString("password")));
-  panel.add(password);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  JLabel label=new JLabel(JMeterUtils.getResString("password"));
+  label.setLabelFor(password);
+  panel.add(label,BorderLayout.WEST);
+  panel.add(password,BorderLayout.CENTER);
   return panel;
 }

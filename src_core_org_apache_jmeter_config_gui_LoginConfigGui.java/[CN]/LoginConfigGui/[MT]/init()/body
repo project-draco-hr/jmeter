@@ -1,8 +1,11 @@
 {
-  this.setLayout(new VerticalLayout(1,VerticalLayout.LEFT));
+  setLayout(new BorderLayout(0,5));
   if (displayName) {
-    this.add(makeTitlePanel());
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
   }
-  this.add(createUsernamePanel());
-  this.add(createPasswordPanel());
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.add(createUsernamePanel());
+  mainPanel.add(createPasswordPanel());
+  add(mainPanel,BorderLayout.CENTER);
 }
