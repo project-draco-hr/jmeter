@@ -2,7 +2,6 @@
   String html="href='index.html?session_id=jfdkjdkfjddkfdfjkdjfdf\t";
   response=new SampleResult();
   response.setResponseData(html.getBytes());
-  URLRewritingModifier mod=new URLRewritingModifier();
   mod.setArgumentName("session_id");
   HTTPSampler sampler=createSampler();
   context.setCurrentSampler(sampler);

@@ -1,5 +1,5 @@
 {
-  Sampler sam=JMeterContextService.getContext().getCurrentSampler();
+  Sampler sam=getThreadContext().getCurrentSampler();
   HTTPSampler sampler=null;
   if (!(sam instanceof HTTPSampler)) {
     return;

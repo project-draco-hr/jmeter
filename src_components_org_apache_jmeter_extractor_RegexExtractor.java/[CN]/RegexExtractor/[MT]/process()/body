@@ -1,6 +1,6 @@
 {
   initTemplate();
-  JMeterContext context=JMeterContextService.getContext();
+  JMeterContext context=getThreadContext();
   if (context.getPreviousResult() == null || context.getPreviousResult().getResponseData() == null) {
     return;
   }

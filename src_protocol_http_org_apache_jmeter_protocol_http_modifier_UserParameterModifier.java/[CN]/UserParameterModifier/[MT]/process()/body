@@ -1,5 +1,5 @@
 {
-  Sampler entry=JMeterContextService.getContext().getCurrentSampler();
+  Sampler entry=getThreadContext().getCurrentSampler();
   if (!(entry instanceof HTTPSampler)) {
     return;
   }

@@ -20,7 +20,7 @@
       res.setResponseCode("200");
       res.setResponseMessage("Called: " + calls);
       res.setThreadName(threadName);
-      threadContext=JMeterContextService.getContext();
+      threadContext=getThreadContext();
       threadVars=threadContext.getVariables();
       SamplePackage pack=(SamplePackage)threadVars.getObject(JMeterThread.PACKAGE_OBJECT);
       if (pack == null) {

@@ -1,5 +1,5 @@
 {
-  JMeterContext context=JMeterContextService.getContext();
+  JMeterContext context=getThreadContext();
   String inputVariable=getInputValString() + "_" + (loopCount + 1);
   if (context.getVariables().get(inputVariable) != null) {
     context.getVariables().put(getReturnValString(),context.getVariables().get(inputVariable));

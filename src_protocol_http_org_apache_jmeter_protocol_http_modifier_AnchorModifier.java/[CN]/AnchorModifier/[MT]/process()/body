@@ -1,6 +1,7 @@
 {
-  Sampler sam=JMeterContextService.getContext().getCurrentSampler();
-  SampleResult res=JMeterContextService.getContext().getPreviousResult();
+  JMeterContext context=getThreadContext();
+  Sampler sam=context.getCurrentSampler();
+  SampleResult res=context.getPreviousResult();
   HTTPSampler sampler=null;
   HTTPSampleResult result=null;
   if (res == null || !(sam instanceof HTTPSampler) || !(res instanceof HTTPSampleResult)) {

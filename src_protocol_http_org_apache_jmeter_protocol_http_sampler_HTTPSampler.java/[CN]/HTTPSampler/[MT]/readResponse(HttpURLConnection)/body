@@ -1,5 +1,5 @@
 {
-  byte[] readBuffer=JMeterContextService.getContext().getReadBuffer();
+  byte[] readBuffer=getThreadContext().getReadBuffer();
   BufferedInputStream in;
   boolean logError=false;
   try {

@@ -1,6 +1,7 @@
 {
+  JMeterContext context=getThreadContext();
   getCookies().addItem(c);
-  if (JMeterContextService.getContext().isSamplingStarted()) {
-    JMeterContextService.getContext().getVariables().put(c.getName(),c.getValue());
+  if (context.isSamplingStarted()) {
+    context.getVariables().put(c.getName(),c.getValue());
   }
 }

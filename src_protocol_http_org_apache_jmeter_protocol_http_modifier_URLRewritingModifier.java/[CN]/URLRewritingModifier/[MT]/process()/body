@@ -1,6 +1,7 @@
 {
-  Sampler sampler=JMeterContextService.getContext().getCurrentSampler();
-  SampleResult responseText=JMeterContextService.getContext().getPreviousResult();
+  JMeterContext ctx=getThreadContext();
+  Sampler sampler=ctx.getCurrentSampler();
+  SampleResult responseText=ctx.getPreviousResult();
   if (responseText == null) {
     return;
   }

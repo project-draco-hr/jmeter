@@ -4,6 +4,7 @@
     response=new SampleResult();
     response.setResponseData(html[i].getBytes());
     URLRewritingModifier mod=new URLRewritingModifier();
+    mod.setThreadContext(context);
     mod.setArgumentName("sid");
     mod.setPathExtension(false);
     HTTPSampler sampler=createSampler();

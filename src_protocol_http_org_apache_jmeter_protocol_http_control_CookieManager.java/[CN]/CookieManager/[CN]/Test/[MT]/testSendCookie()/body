@@ -1,5 +1,4 @@
 {
-  CookieManager man=new CookieManager();
   man.add(new Cookie("id","value","jakarta.apache.org","/",false,9999999999L));
   HTTPSampler sampler=new HTTPSampler();
   sampler.setDomain("jakarta.apache.org");
