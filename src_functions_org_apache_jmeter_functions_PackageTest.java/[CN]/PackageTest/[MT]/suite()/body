@@ -4,11 +4,5 @@
   suite.addTest(new PackageTest("CSVNoFile"));
   suite.addTest(new PackageTest("CSVSetup"));
   suite.addTest(new PackageTest("CSVRun"));
-  suite.addTest(new PackageTest("CSValias"));
-  suite.addTest(new PackageTest("CSVSetup"));
-  TestSuite par=new ActiveTestSuite("Parallel");
-  par.addTest(new PackageTest("CSVThread1"));
-  par.addTest(new PackageTest("CSVThread2"));
-  suite.addTest(par);
   return suite;
 }

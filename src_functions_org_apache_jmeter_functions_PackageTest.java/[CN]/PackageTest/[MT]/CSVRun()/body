@@ -18,4 +18,7 @@
   assertEquals("b1",cr1.execute(null,null));
   assertEquals("c1",cr2.execute(null,null));
   assertEquals("d1",cr3.execute(null,null));
+  assertEquals("a1",cr5.execute(null,null));
+  assertEquals("",cr6.execute(null,null));
+  assertEquals("a2",cr5.execute(null,null));
 }

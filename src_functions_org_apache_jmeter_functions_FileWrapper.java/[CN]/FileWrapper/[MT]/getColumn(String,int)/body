@@ -6,6 +6,7 @@
       log.warn("Cannot perform initial open using alias " + file);
     }
  else {
+      file=checkDefault(file);
       log.info("Attaching " + file);
       open(file,file);
       fw=(FileWrapper)my.get(file);

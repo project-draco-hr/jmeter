@@ -1,5 +1,10 @@
 {
   log.info("Opening " + file + " as "+ alias);
+  file=checkDefault(file);
+  if (alias.length() == 0) {
+    log.error("Alias cannot be empty");
+    return;
+  }
   Map m=(Map)filePacks.get();
   if (m.get(alias) == null) {
     FileRowColContainer frcc;

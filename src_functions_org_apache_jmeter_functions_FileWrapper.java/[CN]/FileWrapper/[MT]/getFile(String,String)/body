@@ -2,8 +2,11 @@
   FileRowColContainer frcc;
   if ((frcc=(FileRowColContainer)fileContainers.get(alias)) == null) {
     frcc=new FileRowColContainer(file);
-    log.info("Opened " + file + " as "+ alias);
     fileContainers.put(alias,frcc);
+    log.info("Saved " + file + " as "+ alias);
+    if (defaultFile.length() == 0) {
+      defaultFile=file;
+    }
   }
   return frcc;
 }
