@@ -1,0 +1,9 @@
+{
+  List comps=new LinkedList();
+  comps.add(mLabel);
+  Enumeration en=this.bGroup.getElements();
+  while (en.hasMoreElements()) {
+    comps.add(en.nextElement());
+  }
+  return comps;
+}
