@@ -10,4 +10,5 @@
   tg.setProperty(new BooleanProperty(ThreadGroup.SCHEDULER,scheduler.isSelected()));
   tg.setProperty(new StringProperty(ThreadGroup.ON_SAMPLE_ERROR,onSampleError()));
   tg.setProperty(ThreadGroup.DURATION,duration.getText());
+  tg.setProperty(ThreadGroup.DELAY,delay.getText());
 }

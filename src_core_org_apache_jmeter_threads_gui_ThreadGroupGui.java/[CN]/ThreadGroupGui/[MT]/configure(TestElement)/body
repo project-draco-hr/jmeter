@@ -13,5 +13,6 @@
   start.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.START_TIME)));
   end.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.END_TIME)));
   duration.setText(tg.getPropertyAsString(ThreadGroup.DURATION));
+  delay.setText(tg.getPropertyAsString(ThreadGroup.DELAY));
   setSampleErrorBoxes((ThreadGroup)tg);
 }

@@ -33,6 +33,7 @@
   mainPanel.add(createStartTimePanel());
   mainPanel.add(createEndTimePanel());
   mainPanel.add(createDurationPanel());
+  mainPanel.add(createDelayPanel());
   mainPanel.setVisible(false);
   VerticalPanel intgrationPanel=new VerticalPanel();
   intgrationPanel.add(threadPropsPanel);
