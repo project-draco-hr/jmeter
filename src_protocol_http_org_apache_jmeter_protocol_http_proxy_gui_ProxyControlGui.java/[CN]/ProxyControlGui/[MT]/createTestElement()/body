@@ -1,8 +1,6 @@
 {
   if (model == null) {
-    model=new ProxyControl();
-    model.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
-    model.setProperty(TestElement.TEST_CLASS,model.getClass().getName());
+    model=makeProxyControl();
   }
   log.debug("creating/configuring model = " + model);
   model.setProperty(TestElement.NAME,getName());

@@ -1,0 +1,6 @@
+{
+  ProxyControl local=new ProxyControl();
+  local.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+  local.setProperty(TestElement.TEST_CLASS,local.getClass().getName());
+  return local;
+}

@@ -1,4 +1,4 @@
 {
   JPopupMenu pop=((JMeterGUIComponent)getCurrentNode()).createPopupMenu();
-  displayPopUp(e,pop);
+  GuiPackage.getInstance().displayPopUp(e,pop);
 }

@@ -11,6 +11,7 @@
         tree.setSelectionPath(currentPath);
       }
       if (getCurrentNode() instanceof JMeterGUIComponent) {
+        log.debug("About to display pop-up");
         displayPopUp(e);
       }
     }

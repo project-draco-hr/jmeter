@@ -1,5 +1,7 @@
 {
   ValueReplacer replacer=new ValueReplacer(variables);
+  assertTrue(variables.getUserDefinedVariables().containsKey("server"));
+  assertTrue(replacer.variables.containsKey("server"));
   TestElement element=new TestPlan();
   element.setProperty("domain","jakarta.apache.org");
   List args=new LinkedList();
