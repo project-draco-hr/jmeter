@@ -17,7 +17,7 @@
       object=new Double(value);
     }
  else     if (type.getName().equals(BOOLEAN)) {
-      object=new Boolean(value);
+      object=Boolean.valueOf(value);
     }
  else     if (type.getName().equals(CHAR)) {
       if (value.length() == 1) {
