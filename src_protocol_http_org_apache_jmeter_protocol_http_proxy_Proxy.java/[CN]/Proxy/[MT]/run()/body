@@ -2,7 +2,7 @@
   HttpRequestHdr request=new HttpRequestHdr();
   SampleResult result=null;
   HeaderManager headers=null;
-  HTTPSampler sampler=new HTTPSampler();
+  HTTPSamplerBase sampler=new HTTPSampler();
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     sampler=request.getSampler();

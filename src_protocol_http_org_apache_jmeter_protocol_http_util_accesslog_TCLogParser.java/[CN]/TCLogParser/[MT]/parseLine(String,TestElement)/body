@@ -1,7 +1,7 @@
 {
   String cleanedLine=this.cleanURL(line);
   log.debug("parsing line: " + line);
-  el.setProperty(HTTPSampler.METHOD,RMETHOD);
+  el.setProperty(HTTPSamplerBase.METHOD,RMETHOD);
   if (FILTER != null) {
     log.debug("filter is not null");
     if (!FILTER.isFiltered(line)) {

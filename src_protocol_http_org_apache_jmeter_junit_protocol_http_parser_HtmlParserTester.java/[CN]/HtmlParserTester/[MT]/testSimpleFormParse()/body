@@ -1,8 +1,8 @@
 {
-  HTTPSampler config=makeUrlConfig(".*index.html");
+  HTTPSamplerBase config=makeUrlConfig(".*index.html");
   config.addArgument("test","g.*");
-  config.setMethod(HTTPSampler.POST);
-  HTTPSampler context=makeContext("http://www.apache.org/subdir/previous.html");
+  config.setMethod(HTTPSamplerBase.POST);
+  HTTPSamplerBase context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<form action=\"index.html\" method=\"POST\">" + "<input type=\"checkbox\" name=\"test\""+ " value=\"goto\">Goto index page</form></body></html>";
   HTTPSampleResult result=new HTTPSampleResult();
   result.setResponseData(responseText.getBytes());

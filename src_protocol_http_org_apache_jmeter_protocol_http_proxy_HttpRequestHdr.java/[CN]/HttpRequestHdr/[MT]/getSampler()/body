@@ -1,6 +1,6 @@
 {
   HttpTestSampleGui tempGui=new HttpTestSampleGui();
-  HTTPSampler result=createSampler();
+  HTTPSamplerBase result=createSampler();
   tempGui.configure(result);
   tempGui.modifyTestElement(result);
   result.setFollowRedirects(false);

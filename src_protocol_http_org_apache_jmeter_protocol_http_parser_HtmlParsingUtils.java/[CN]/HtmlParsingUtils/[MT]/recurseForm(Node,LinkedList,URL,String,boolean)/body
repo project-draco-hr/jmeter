@@ -3,7 +3,7 @@
   String tag=tempNode.getNodeName();
   try {
     if (inForm) {
-      HTTPSampler url=(HTTPSampler)urlConfigs.getLast();
+      HTTPSamplerBase url=(HTTPSamplerBase)urlConfigs.getLast();
       if (tag.equalsIgnoreCase("form")) {
         try {
           urlConfigs.add(createFormUrlConfig(tempNode,context));

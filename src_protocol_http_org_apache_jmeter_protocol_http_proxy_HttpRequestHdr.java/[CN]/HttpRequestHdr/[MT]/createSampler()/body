@@ -1,6 +1,6 @@
 {
   MultipartUrlConfig urlConfig=null;
-  HTTPSampler sampler=new HTTPSampler();
+  HTTPSamplerBase sampler=new HTTPSampler();
   sampler.setDomain(serverName());
   log.debug("Proxy: setting server: " + sampler.getDomain());
   sampler.setMethod(method);

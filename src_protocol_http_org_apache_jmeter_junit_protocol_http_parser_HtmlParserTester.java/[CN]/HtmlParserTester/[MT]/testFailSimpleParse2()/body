@@ -1,6 +1,6 @@
 {
-  HTTPSampler config=makeUrlConfig(".*login\\.html");
-  HTTPSampler context=makeContext("http://www.apache.org/subdir/previous.html");
+  HTTPSamplerBase config=makeUrlConfig(".*login\\.html");
+  HTTPSamplerBase context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"/home/index.html?param1=value1\">" + "Goto index page</a></body></html>";
   HTTPSampleResult result=new HTTPSampleResult();
   result.setResponseData(responseText.getBytes());

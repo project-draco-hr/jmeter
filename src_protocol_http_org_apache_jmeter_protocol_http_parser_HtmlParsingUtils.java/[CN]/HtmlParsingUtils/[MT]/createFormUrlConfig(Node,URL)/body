@@ -4,6 +4,6 @@
     throw new MalformedURLException();
   }
   String action=atts.getNamedItem("action").getNodeValue();
-  HTTPSampler url=createUrlFromAnchor(action,context);
+  HTTPSamplerBase url=createUrlFromAnchor(action,context);
   return url;
 }

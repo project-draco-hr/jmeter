@@ -1,6 +1,6 @@
 {
   URL u=new URL(url);
-  HTTPSampler context=new HTTPSampler();
+  HTTPSamplerBase context=new HTTPNullSampler();
   context.setDomain(u.getHost());
   context.setPath(u.getPath());
   context.setPort(u.getPort());

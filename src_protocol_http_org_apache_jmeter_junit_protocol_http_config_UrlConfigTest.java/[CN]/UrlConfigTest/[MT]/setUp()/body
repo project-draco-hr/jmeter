@@ -3,17 +3,17 @@
   args.addArgument("username","mstover");
   args.addArgument("password","pass");
   args.addArgument("action","login");
-  config=new HTTPSampler();
+  config=new HTTPNullSampler();
   config.setName("Full Config");
-  config.setProperty(HTTPSampler.DOMAIN,"www.lazer.com");
-  config.setProperty(HTTPSampler.PATH,"login.jsp");
-  config.setProperty(HTTPSampler.METHOD,HTTPSampler.POST);
-  config.setProperty(new TestElementProperty(HTTPSampler.ARGUMENTS,args));
-  defaultConfig=new HTTPSampler();
+  config.setProperty(HTTPSamplerBase.DOMAIN,"www.lazer.com");
+  config.setProperty(HTTPSamplerBase.PATH,"login.jsp");
+  config.setProperty(HTTPSamplerBase.METHOD,HTTPSamplerBase.POST);
+  config.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
+  defaultConfig=new HTTPNullSampler();
   defaultConfig.setName("default");
-  defaultConfig.setProperty(HTTPSampler.DOMAIN,"www.xerox.com");
-  defaultConfig.setProperty(HTTPSampler.PATH,"default.html");
-  partialConfig=new HTTPSampler();
-  partialConfig.setProperty(HTTPSampler.PATH,"main.jsp");
-  partialConfig.setProperty(HTTPSampler.METHOD,HTTPSampler.GET);
+  defaultConfig.setProperty(HTTPSamplerBase.DOMAIN,"www.xerox.com");
+  defaultConfig.setProperty(HTTPSamplerBase.PATH,"default.html");
+  partialConfig=new HTTPNullSampler();
+  partialConfig.setProperty(HTTPSamplerBase.PATH,"main.jsp");
+  partialConfig.setProperty(HTTPSamplerBase.METHOD,HTTPSamplerBase.GET);
 }
