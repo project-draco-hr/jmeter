@@ -1,28 +1,5 @@
 {
-  if (!isSupportedProtocol(url)) {
-    return null;
-  }
-  URL url2=null;
-  try {
-    if (url.getPort() == -1) {
-      int port=url.getProtocol().equalsIgnoreCase("http") ? 80 : 443;
-      url2=new URL(url.getProtocol(),url.getHost(),port,url.getPath());
-    }
- else     if ((url.getPort() == 80 && url.getProtocol().equalsIgnoreCase("http")) || (url.getPort() == 443 && url.getProtocol().equalsIgnoreCase("https"))) {
-      url2=new URL(url.getProtocol(),url.getHost(),url.getPath());
-    }
-  }
- catch (  MalformedURLException e) {
-    log.error("Internal error!",e);
-  }
-  String s1=url.toString();
-  String s2=null;
-  if (url2 != null)   s2=url2.toString();
-  for (PropertyIterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
-    Authorization auth=(Authorization)enum.next().getObjectValue();
-    if (s1.startsWith(auth.getURL()) || s2 != null && s2.startsWith(auth.getURL())) {
-      return "Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass());
-    }
-  }
-  return null;
+  Authorization auth=getAuthForURL(url);
+  if (auth == null)   return null;
+  return "Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass());
 }
