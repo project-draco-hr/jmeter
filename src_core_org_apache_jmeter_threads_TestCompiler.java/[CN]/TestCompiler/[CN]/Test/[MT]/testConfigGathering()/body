@@ -8,8 +8,14 @@
   sampler.setName("sampler");
   Arguments args=new Arguments();
   args.addArgument("param1","value1");
+  HTTPSampler sampler2=new HTTPSampler();
+  sampler.setName("sampler2");
+  Arguments args2=new Arguments();
+  args2.addArgument(new HTTPArgument("xml","<data>1234</data>"));
+  sampler2.setArguments(args2);
   testing.add(controller,config1);
   testing.add(controller,sampler);
+  testing.add(controller,sampler2);
   testing.get(controller).add(sampler,args);
   TestCompiler.initialize();
   TestCompiler compiler=new TestCompiler(testing,new JMeterVariables());
@@ -17,4 +23,5 @@
   sampler=(HTTPSampler)compiler.configureSampler(sampler).getSampler();
   assertEquals(config1.getProperty(HTTPSampler.DOMAIN),sampler.getDomain());
   assertEquals(args.getArgument(0).getName(),sampler.getArguments().getArgument(0).getName());
+  assertEquals(1,sampler.getArguments().getArguments().size());
 }

@@ -1,5 +1,5 @@
 {
-  textArea.append((String)sample.getSampleLabel());
+  textArea.append(sample.getSamplerData().toString());
   textArea.append(getAssertionResult(sample));
   textArea.append("\n");
 }

@@ -9,7 +9,7 @@ synchronized (item) {
           objectsWithFunctions.add(item);
         }
       }
-      if (item != sam) {
+      if (!(item instanceof Sampler)) {
         configs.add(item);
       }
     }
