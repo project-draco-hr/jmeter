@@ -13,16 +13,18 @@
     if (res != null) {
       log.debug("valueChanged1 : load time - " + res.getTime());
       if (res != null && res.getSamplerData() != null) {
-        sampleDataField.setText("Request data: " + res.getSamplerData().trim());
+        sampleDataField.setText(res.getSamplerData().trim());
       }
       stats.append("Load time: " + res.getTime() + "\n");
       String responseCode=res.getResponseCode();
       log.debug("valueChanged1 : response code - " + responseCode);
       int responseLevel=0;
-      if (responseCode != null)       try {
-        responseLevel=Integer.parseInt(responseCode) / 100;
-      }
- catch (      NumberFormatException numberFormatException) {
+      if (responseCode != null) {
+        try {
+          responseLevel=Integer.parseInt(responseCode) / 100;
+        }
+ catch (        NumberFormatException numberFormatException) {
+        }
       }
 switch (responseLevel) {
 case 3:
@@ -51,7 +53,7 @@ if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
   icon=new ImageIcon(responseBytes);
 }
 if (response != null) {
-  if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
+  if (textMode) {
     showTextResponse(response);
   }
  else {

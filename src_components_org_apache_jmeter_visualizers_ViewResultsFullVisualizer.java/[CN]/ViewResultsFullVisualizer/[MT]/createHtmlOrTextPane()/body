@@ -1,0 +1,17 @@
+{
+  ButtonGroup group=new ButtonGroup();
+  JRadioButton textButton=new JRadioButton(TEXT_BUTTON_LABEL);
+  textButton.setActionCommand(TEXT_COMMAND);
+  textButton.addActionListener(this);
+  textButton.setSelected(textMode);
+  group.add(textButton);
+  JRadioButton htmlButton=new JRadioButton(HTML_BUTTON_LABEL);
+  htmlButton.setActionCommand(HTML_COMMAND);
+  htmlButton.addActionListener(this);
+  htmlButton.setSelected(!textMode);
+  group.add(htmlButton);
+  JPanel pane=new JPanel();
+  pane.add(textButton);
+  pane.add(htmlButton);
+  return pane;
+}

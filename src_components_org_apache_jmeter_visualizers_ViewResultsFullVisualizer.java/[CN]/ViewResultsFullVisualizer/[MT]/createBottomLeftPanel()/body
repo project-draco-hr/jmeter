@@ -1,0 +1,8 @@
+{
+  stats=new JTextArea();
+  stats.setEditable(false);
+  stats.setBackground(getBackground());
+  JScrollPane pane=makeScrollPane(stats);
+  pane.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+  return pane;
+}

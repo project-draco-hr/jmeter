@@ -1,14 +1,17 @@
 {
+  if (response == null) {
+    results.setText("");
+    return;
+  }
   int htmlIndex=response.indexOf("<HTML>");
   if (htmlIndex < 0) {
     htmlIndex=response.indexOf("<html>");
   }
-  if (htmlIndex > -1) {
-    String html=response.substring(htmlIndex,response.length());
-    results.setText(html);
+  if (htmlIndex < 0) {
+    htmlIndex=0;
   }
- else {
-    results.setText(response);
-  }
+  String html=response.substring(htmlIndex);
+  results.setContentType("text/html");
+  results.setText(html);
   results.setCaretPosition(0);
 }

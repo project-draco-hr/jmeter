@@ -1,27 +1,13 @@
 {
-  setLayout(new BorderLayout());
+  setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
-  SampleResult rootSampleResult=new SampleResult();
-  rootSampleResult.setSampleLabel("Root");
-  rootSampleResult.setSuccessful(true);
-  root=new DefaultMutableTreeNode(rootSampleResult);
-  treeModel=new DefaultTreeModel(root);
-  jTree=new JTree(treeModel);
-  jTree.setCellRenderer(new ResultsNodeRenderer());
-  jTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-  jTree.addTreeSelectionListener(this);
-  jTree.setShowsRootHandles(true);
-  JScrollPane treePane=new JScrollPane(jTree);
-  treePane.setPreferredSize(new Dimension(100,70));
-  JPanel statsPane=new JPanel(new GridLayout(1,1));
-  stats=new JTextArea();
-  statsPane.add(makeScrollPane(stats));
-  initSampleDataArea();
-  initHtmlOrTextButton();
-  results=new JTextArea();
-  JPanel resultsPane=makeResultPane();
-  JSplitPane split2=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,statsPane);
-  JSplitPane mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split2,resultsPane);
+  Component topLeft=createTopLeftPanel();
+  Component bottomLeft=createBottomLeftPanel();
+  JSplitPane leftSide=new JSplitPane(JSplitPane.VERTICAL_SPLIT,topLeft,bottomLeft);
+  Component topRight=createTopRightPanel();
+  Component bottomRight=createBottomRightPanel();
+  JSplitPane rightSide=new JSplitPane(JSplitPane.VERTICAL_SPLIT,topRight,bottomRight);
+  JSplitPane mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,leftSide,rightSide);
   add(mainSplit,BorderLayout.CENTER);
 }

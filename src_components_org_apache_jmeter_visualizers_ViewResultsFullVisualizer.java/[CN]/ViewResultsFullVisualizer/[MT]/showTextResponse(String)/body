@@ -1,4 +1,5 @@
 {
-  results.setText(response);
+  results.setContentType("text/plain");
+  results.setText(response == null ? "" : response);
   results.setCaretPosition(0);
 }

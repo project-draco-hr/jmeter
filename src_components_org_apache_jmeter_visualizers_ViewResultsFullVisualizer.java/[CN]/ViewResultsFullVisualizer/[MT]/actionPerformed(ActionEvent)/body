@@ -1,29 +1,28 @@
 {
-  if (htmlOrTextButton.equals(e.getSource())) {
+  String command=e.getActionCommand();
+  if (command != null && command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND)) {
+    textMode=!textMode;
     DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
     if (node == null) {
       results.setText("");
+      return;
+    }
+    SampleResult res=(SampleResult)node.getUserObject();
+    byte[] responseBytes=(byte[])res.getResponseData();
+    String response=null;
+    if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
+      try {
+        response=new String(responseBytes,"utf-8");
+      }
+ catch (      UnsupportedEncodingException err) {
+        response=new String(responseBytes);
+      }
+    }
+    if (textMode) {
+      showTextResponse(response);
     }
  else {
-      SampleResult res=(SampleResult)node.getUserObject();
-      byte[] responseBytes=(byte[])res.getResponseData();
-      String response=null;
-      if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
-        try {
-          response=new String(responseBytes,"utf-8");
-        }
- catch (        UnsupportedEncodingException err) {
-          response=new String(responseBytes);
-        }
-      }
-      if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
-        showRenderedResponse(response);
-        htmlOrTextButton.setText(TEXT_BUTTON_LABEL);
-      }
- else {
-        showTextResponse(response);
-        htmlOrTextButton.setText(HTML_BUTTON_LABEL);
-      }
+      showRenderedResponse(response);
     }
   }
 }
