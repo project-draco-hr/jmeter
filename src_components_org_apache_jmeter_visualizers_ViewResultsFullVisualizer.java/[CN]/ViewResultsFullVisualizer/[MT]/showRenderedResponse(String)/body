@@ -3,9 +3,9 @@
     results.setText("");
     return;
   }
-  int htmlIndex=response.indexOf("<HTML>");
+  int htmlIndex=response.indexOf("<HTML");
   if (htmlIndex < 0) {
-    htmlIndex=response.indexOf("<html>");
+    htmlIndex=response.indexOf("<html");
   }
   if (htmlIndex < 0) {
     htmlIndex=0;
