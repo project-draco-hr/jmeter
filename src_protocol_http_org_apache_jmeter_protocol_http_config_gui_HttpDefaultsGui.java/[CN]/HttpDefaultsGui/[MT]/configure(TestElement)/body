@@ -1,0 +1,7 @@
+{
+  super.configure(el);
+  domain.setText(el.getPropertyAsString(HTTPSampler.DOMAIN));
+  path.setText(el.getPropertyAsString(HTTPSampler.PATH));
+  port.setText(el.getPropertyAsString(HTTPSampler.PORT));
+  argPanel.configure((TestElement)el.getProperty(HTTPSampler.ARGUMENTS));
+}

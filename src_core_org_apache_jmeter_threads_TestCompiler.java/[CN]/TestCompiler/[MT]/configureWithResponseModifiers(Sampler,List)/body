@@ -2,12 +2,12 @@
   Iterator iter=responseModifiers.iterator();
   while (iter.hasNext()) {
     ResponseBasedModifier mod=(ResponseBasedModifier)iter.next();
-    mod=(ResponseBasedModifier)cloneIfNecessary(mod);
+    TestElement cloned=(TestElement)cloneIfNecessary(mod);
     if (objectsWithFunctions.contains(mod)) {
-      replaceValues((TestElement)mod);
+      replaceValues(cloned);
     }
     if (previousResult != null) {
-      mod.modifyEntry(sam,previousResult);
+      ((ResponseBasedModifier)cloned).modifyEntry(sam,previousResult);
     }
   }
 }

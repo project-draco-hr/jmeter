@@ -13,24 +13,6 @@
   webRequestPanel.add(northPanel,BorderLayout.NORTH);
   webRequestPanel.add(getParameterPanel(),BorderLayout.CENTER);
   webRequestPanel.add(getFilePanel(),BorderLayout.SOUTH);
-  if (displayName) {
-    JPanel mainPanel=new JPanel();
-    Border margin=new EmptyBorder(10,10,5,10);
-    mainPanel.setBorder(margin);
-    mainPanel.setLayout(new BorderLayout());
-    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("url_full_config_title"));
-    Font curFont=panelTitleLabel.getFont();
-    int curFontSize=curFont.getSize();
-    curFontSize+=4;
-    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-    mainPanel.add(panelTitleLabel);
-    mainPanel.add(getNamePanel());
-    mainPanel.add(webServerPanel);
-    mainPanel.add(webRequestPanel);
-    this.add(mainPanel);
-  }
- else {
-    this.add(webServerPanel,BorderLayout.NORTH);
-    this.add(webRequestPanel,BorderLayout.CENTER);
-  }
+  this.add(webServerPanel,BorderLayout.NORTH);
+  this.add(webRequestPanel,BorderLayout.CENTER);
 }

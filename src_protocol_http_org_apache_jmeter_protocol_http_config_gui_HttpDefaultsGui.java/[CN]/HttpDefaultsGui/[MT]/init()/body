@@ -1,0 +1,22 @@
+{
+  Border margin=new EmptyBorder(10,10,5,10);
+  this.setBorder(margin);
+  this.setLayout(new BorderLayout());
+  argPanel=new HTTPArgumentsPanel();
+  this.add(argPanel,BorderLayout.CENTER);
+  domain=new JLabeledTextField(JMeterUtils.getResString("web_server_domain"));
+  path=new JLabeledTextField(JMeterUtils.getResString("path"));
+  port=new JLabeledTextField(JMeterUtils.getResString("web_server_port"));
+  JPanel topPanel=new JPanel(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel title=new JLabel(JMeterUtils.getResString("url_config_title"));
+  Font curFont=title.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  title.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  topPanel.add(title);
+  topPanel.add(getNamePanel());
+  topPanel.add(domain);
+  topPanel.add(path);
+  topPanel.add(port);
+  this.add(topPanel,BorderLayout.NORTH);
+}

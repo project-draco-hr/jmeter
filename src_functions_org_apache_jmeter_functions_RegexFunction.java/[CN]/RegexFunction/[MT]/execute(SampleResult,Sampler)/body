@@ -25,6 +25,8 @@
     while (it.hasNext()) {
       if (!first) {
         value.append(between);
+      }
+ else {
         first=false;
       }
       value.append(generateResult((MatchResult)it.next()));

@@ -13,7 +13,7 @@
   titlePanel.add(panelTitleLabel,BorderLayout.NORTH);
   titlePanel.add(getNamePanel(),BorderLayout.SOUTH);
   mainPanel.add(titlePanel,BorderLayout.NORTH);
-  urlConfigGui=new MultipartUrlConfigGui(false);
+  urlConfigGui=new MultipartUrlConfigGui();
   mainPanel.add(urlConfigGui,BorderLayout.CENTER);
   mainPanel.add(createOptionalTasksPanel(),BorderLayout.SOUTH);
   this.add(mainPanel);
