@@ -1,4 +1,5 @@
 {
+  currentSampler=sampler;
   SamplePackage pack=(SamplePackage)samplerConfigMap.get(sampler);
   pack.setSampler(sampler);
   runPreProcessors(pack.getPreProcessors());
