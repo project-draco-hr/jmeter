@@ -56,7 +56,7 @@
     log.debug("End : sample2");
     if (isImageParser()) {
       if (imageSampler == null) {
-        imageSampler=new HTTPSamplerFull();
+        imageSampler=new NewHTTPSamplerFull();
       }
       res=imageSampler.parseForImages(res,this);
     }
