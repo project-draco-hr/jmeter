@@ -11,5 +11,5 @@
  else {
     col=new java.util.HashSet();
   }
-  return getEmbeddedResourceURLs(html,baseUrl,col);
+  return getEmbeddedResourceURLs(html,baseUrl,new URLCollection(col));
 }

@@ -21,28 +21,28 @@ if (tmp != null) try {
 break;
 }
 if (name.equalsIgnoreCase("img")) {
-addURL(urls,getValue(attrs,"src"),baseUrl);
+urls.addURL(getValue(attrs,"src"),baseUrl);
 break;
 }
 if (name.equalsIgnoreCase("applet")) {
-addURL(urls,getValue(attrs,"code"),baseUrl);
+urls.addURL(getValue(attrs,"code"),baseUrl);
 break;
 }
 if (name.equalsIgnoreCase("input")) {
 String src=getValue(attrs,"src");
 String typ=getValue(attrs,"type");
 if ((src != null) && (typ.equalsIgnoreCase("image"))) {
-addURL(urls,src,baseUrl);
+urls.addURL(src,baseUrl);
 }
 break;
 }
 if (name.equalsIgnoreCase("link")) {
-addURL(urls,getValue(attrs,"href"),baseUrl);
+urls.addURL(getValue(attrs,"href"),baseUrl);
 break;
 }
 String back=getValue(attrs,"background");
 if (back != null) {
-addURL(urls,back,baseUrl);
+urls.addURL(back,baseUrl);
 break;
 }
 NodeList children=node.getChildNodes();

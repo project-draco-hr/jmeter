@@ -28,15 +28,7 @@
         log.debug("group " + g + " - "+ match.group(g));
       }
       if (s != null) {
-        try {
-          urls.add(new URL(baseUrl,s));
-        }
- catch (        MalformedURLException e) {
-          if (log.isDebugEnabled()) {
-            log.debug("Can't build URL from RL " + s + " in page "+ baseUrl);
-          }
-          urls.add(s);
-        }
+        urls.addURL(s,baseUrl);
       }
     }
   }

@@ -53,12 +53,7 @@
       if (binUrlStr == null) {
         continue;
       }
-      try {
-        urls.add(new URL(baseUrl,binUrlStr));
-      }
- catch (      MalformedURLException mfue) {
-        urls.add(binUrlStr);
-      }
+      urls.addURL(binUrlStr,baseUrl);
     }
     log.debug("End   : parseNodes");
   }
