@@ -3,14 +3,14 @@
   this.configureTestElement(element);
   Arguments args=(Arguments)argsPanel.createTestElement();
   HTTPArgument.convertArgumentsToHTTP(args);
-  element.setProperty(new TestElementProperty(HTTPSampler.ARGUMENTS,args));
-  element.setProperty(HTTPSampler.DOMAIN,domain.getText());
-  element.setProperty(HTTPSampler.PORT,port.getText());
-  element.setProperty(HTTPSampler.PROTOCOL,protocol.getText());
-  element.setProperty(HTTPSampler.METHOD,(post.isSelected() ? "POST" : "GET"));
-  element.setProperty(HTTPSampler.PATH,path.getText());
-  element.setProperty(new BooleanProperty(HTTPSampler.FOLLOW_REDIRECTS,followRedirects.isSelected()));
-  element.setProperty(new BooleanProperty(HTTPSampler.AUTO_REDIRECTS,autoRedirects.isSelected()));
-  element.setProperty(new BooleanProperty(HTTPSampler.USE_KEEPALIVE,useKeepAlive.isSelected()));
+  element.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
+  element.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
+  element.setProperty(HTTPSamplerBase.PORT,port.getText());
+  element.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());
+  element.setProperty(HTTPSamplerBase.METHOD,(post.isSelected() ? "POST" : "GET"));
+  element.setProperty(HTTPSamplerBase.PATH,path.getText());
+  element.setProperty(new BooleanProperty(HTTPSamplerBase.FOLLOW_REDIRECTS,followRedirects.isSelected()));
+  element.setProperty(new BooleanProperty(HTTPSamplerBase.AUTO_REDIRECTS,autoRedirects.isSelected()));
+  element.setProperty(new BooleanProperty(HTTPSamplerBase.USE_KEEPALIVE,useKeepAlive.isSelected()));
   return element;
 }

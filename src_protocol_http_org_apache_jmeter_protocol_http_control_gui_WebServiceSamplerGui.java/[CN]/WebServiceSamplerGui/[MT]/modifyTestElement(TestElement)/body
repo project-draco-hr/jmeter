@@ -11,7 +11,7 @@
       sampler.setPort(80);
     }
     sampler.setProtocol(url.getProtocol());
-    sampler.setMethod(WebServiceSampler.POST);
+    sampler.setMethod(HTTPSamplerBase.POST);
     sampler.setPath(url.getPath());
     sampler.setSoapAction(soapAction.getText());
     sampler.setXmlData(soapXml.getText());

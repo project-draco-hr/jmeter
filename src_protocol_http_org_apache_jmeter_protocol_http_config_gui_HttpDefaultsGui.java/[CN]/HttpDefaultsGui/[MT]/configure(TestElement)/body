@@ -1,8 +1,8 @@
 {
   super.configure(el);
-  protocol.setText(el.getPropertyAsString(HTTPSampler.PROTOCOL));
-  domain.setText(el.getPropertyAsString(HTTPSampler.DOMAIN));
-  path.setText(el.getPropertyAsString(HTTPSampler.PATH));
-  port.setText(el.getPropertyAsString(HTTPSampler.PORT));
-  argPanel.configure((TestElement)el.getProperty(HTTPSampler.ARGUMENTS).getObjectValue());
+  protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
+  domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
+  path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
+  port.setText(el.getPropertyAsString(HTTPSamplerBase.PORT));
+  argPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
 }

@@ -1,8 +1,8 @@
 {
   super.configureTestElement(config);
-  config.setProperty(HTTPSampler.PROTOCOL,protocol.getText());
-  config.setProperty(HTTPSampler.DOMAIN,domain.getText());
-  config.setProperty(HTTPSampler.PATH,path.getText());
-  config.setProperty(new TestElementProperty(HTTPSampler.ARGUMENTS,argPanel.createTestElement()));
-  config.setProperty(HTTPSampler.PORT,port.getText());
+  config.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());
+  config.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
+  config.setProperty(HTTPSamplerBase.PATH,path.getText());
+  config.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,argPanel.createTestElement()));
+  config.setProperty(HTTPSamplerBase.PORT,port.getText());
 }
