@@ -1,5 +1,5 @@
 {
-  Iterator iter=listeners.iterator();
+  Iterator iter=((List)listeners.clone()).iterator();
   while (iter.hasNext()) {
     ((CellEditorListener)iter.next()).editingStopped(new ChangeEvent(this));
   }

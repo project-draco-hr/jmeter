@@ -1,8 +1,11 @@
 {
+  initializeTableModel();
   table=new JTable(tableModel);
   table.setEnabled(true);
   table.addFocusListener(this);
-  table.setDefaultEditor(String.class,new TextAreaTableCellEditor());
+  TextAreaTableCellEditor editor=new TextAreaTableCellEditor();
+  table.setDefaultEditor(String.class,editor);
+  editor.addCellEditorListener(this);
   TextAreaCellRenderer renderer=new TextAreaCellRenderer();
   table.setRowHeight(renderer.getPreferredHeight());
   table.setDefaultRenderer(String.class,renderer);

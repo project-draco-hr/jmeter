@@ -1,4 +1,5 @@
 {
+  setAlwaysEncode(true);
   if (alreadyEncoded) {
     try {
       setName(URLDecoder.decode(name));

@@ -1,4 +1,10 @@
 {
-  this.configureTestElement(tableModel.args);
-  return (TestElement)tableModel.args.clone();
+  Data model=tableModel.getData();
+  Arguments args=new Arguments();
+  model.reset();
+  while (model.next()) {
+    args.addArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1]));
+  }
+  this.configureTestElement(args);
+  return (TestElement)args.clone();
 }

@@ -1,0 +1,17 @@
+{
+  Data model=tableModel.getData();
+  Arguments args=new Arguments();
+  model.reset();
+  while (model.next()) {
+    if (((Boolean)model.getColumnValue(ENCODE_OR_NOT)).booleanValue()) {
+      args.addArgument(new HTTPArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1])));
+    }
+ else {
+      HTTPArgument arg=new HTTPArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1]),true);
+      arg.setAlwaysEncode(false);
+      args.addArgument(arg);
+    }
+  }
+  this.configureTestElement(args);
+  return (TestElement)args.clone();
+}

@@ -1,7 +1,12 @@
 {
   super.configure(el);
   if (el instanceof Arguments) {
-    tableModel.setUnderlyingModel((Arguments)el.clone());
+    tableModel.clearData();
+    Iterator iter=((Arguments)el).getArguments().iterator();
+    while (iter.hasNext()) {
+      Argument arg=(Argument)iter.next();
+      tableModel.addRow(new Object[]{arg.getName(),arg.getValue()});
+    }
   }
   checkDeleteStatus();
 }

@@ -6,5 +6,7 @@
   editor.revalidate();
   pane=new JScrollPane(editor,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
   pane.validate();
+  this.row=row;
+  this.col=col;
   return pane;
 }

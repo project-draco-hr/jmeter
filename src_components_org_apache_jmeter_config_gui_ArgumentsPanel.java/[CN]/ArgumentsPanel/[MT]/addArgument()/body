@@ -1,0 +1,11 @@
+{
+  if (table.isEditing()) {
+    TableCellEditor cellEditor=table.getCellEditor(table.getEditingRow(),table.getEditingColumn());
+    cellEditor.stopCellEditing();
+  }
+  tableModel.addNewRow();
+  tableModel.fireTableDataChanged();
+  delete.setEnabled(true);
+  int rowToSelect=tableModel.getRowCount() - 1;
+  table.setRowSelectionInterval(rowToSelect,rowToSelect);
+}
