@@ -1,0 +1,19 @@
+{
+  String url;
+  URLConnection conn;
+  boolean change;
+  url=getURL();
+  conn=getConnection();
+  if (((null == conn) && (null != connection)) || ((null != conn) && !conn.equals(connection))) {
+    try {
+      if (null == mParser)       mParser=new Parser(connection);
+ else       mParser.setConnection(connection);
+      mPropertySupport.firePropertyChange(PROP_URL_PROPERTY,url,getURL());
+      mPropertySupport.firePropertyChange(PROP_CONNECTION_PROPERTY,conn,mParser.getConnection());
+      setStrings();
+    }
+ catch (    ParserException pe) {
+      updateStrings(pe.toString());
+    }
+  }
+}

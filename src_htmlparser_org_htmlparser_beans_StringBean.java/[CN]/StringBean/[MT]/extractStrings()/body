@@ -1,0 +1,12 @@
+{
+  String ret;
+  mParser.flushScanners();
+  mParser.registerScanners();
+  mIsPre=false;
+  mIsScript=false;
+  mBuffer=new StringBuffer(4096);
+  mParser.visitAllNodesWith(this);
+  ret=mBuffer.toString();
+  mBuffer=null;
+  return (ret);
+}

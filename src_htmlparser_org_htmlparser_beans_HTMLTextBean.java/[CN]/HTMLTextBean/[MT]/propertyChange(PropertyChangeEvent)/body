@@ -1,0 +1,6 @@
+{
+  if (event.getPropertyName().equals(StringBean.PROP_STRINGS_PROPERTY)) {
+    setText(getBean().getStrings());
+    setCaretPosition(0);
+  }
+}

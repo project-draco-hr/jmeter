@@ -1,0 +1,15 @@
+{
+  initComponents();
+  mTrail=new java.util.Vector(25);
+  mCrumb=-1;
+  show();
+  mSplitPane.setDividerLocation(0.5);
+  hide();
+  mLinkBean.addPropertyChangeListener(this);
+  mStringBean.addPropertyChangeListener(this);
+  mTextField.addActionListener(this);
+  mLinkBean.addMouseListener(this);
+  mLinks.setSelected(mStringBean.getLinks());
+  mCollapse.setSelected(mStringBean.getCollapse());
+  mNobreak.setSelected(mStringBean.getReplaceNonBreakingSpaces());
+}
