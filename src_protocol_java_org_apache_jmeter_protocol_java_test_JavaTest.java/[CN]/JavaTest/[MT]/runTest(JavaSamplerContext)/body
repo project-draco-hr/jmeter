@@ -11,6 +11,7 @@
     results.setResponseData(resultData.getBytes());
     results.setDataType(SampleResult.TEXT);
   }
+  results.sampleStart();
   long start=System.currentTimeMillis();
   long ct=start % getSleepMask();
   try {
@@ -22,8 +23,7 @@
     results.setSuccessful(false);
   }
  finally {
-    long end=System.currentTimeMillis();
-    results.setTime(end - start);
+    results.sampleEnd();
   }
   if (getLogger().isDebugEnabled()) {
     getLogger().debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());

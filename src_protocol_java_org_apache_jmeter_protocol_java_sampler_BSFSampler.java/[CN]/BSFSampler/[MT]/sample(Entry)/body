@@ -3,7 +3,7 @@
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
   res.setSampleLabel(getLabel());
-  long start=System.currentTimeMillis();
+  res.sampleStart();
   try {
     String request=getScript();
     res.setSamplerData(request);
@@ -27,8 +27,7 @@ catch (  Exception ex) {
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
   }
-  long end=System.currentTimeMillis();
-  res.setTime(end - start);
+  res.sampleEnd();
   res.setSuccessful(isSuccessful);
   return res;
 }

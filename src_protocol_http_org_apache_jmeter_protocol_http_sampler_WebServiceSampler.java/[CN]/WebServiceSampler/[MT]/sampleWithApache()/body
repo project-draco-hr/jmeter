@@ -2,7 +2,7 @@
   try {
     Envelope msgEnv=Envelope.unmarshall(createDocument());
     Message msg=new Message();
-    long start=System.currentTimeMillis();
+    RESULT.sampleStart();
     msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
     SOAPTransport st=msg.getSOAPTransport();
     BufferedReader br=st.receive();
@@ -13,12 +13,12 @@
       while ((line=br.readLine()) != null) {
         buf.append(line);
       }
-      RESULT.setTime(System.currentTimeMillis() - start);
+      RESULT.sampleEnd();
       RESULT.setResponseData(buf.toString().getBytes());
     }
  else {
       br.read();
-      RESULT.setTime(System.currentTimeMillis() - start);
+      RESULT.sampleEnd();
       RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
     }
     RESULT.setTimeStamp(System.currentTimeMillis());

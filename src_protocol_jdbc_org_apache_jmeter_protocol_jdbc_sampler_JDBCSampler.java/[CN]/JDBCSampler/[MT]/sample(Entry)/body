@@ -3,7 +3,7 @@
   SampleResult res=new SampleResult();
   res.setSampleLabel(getName());
   res.setSamplerData(this.toString());
-  long startTime=System.currentTimeMillis();
+  res.sampleStart();
   Connection conn=null;
   Statement stmt=null;
   try {
@@ -54,6 +54,6 @@
       manager.releaseConnection(key,conn);
     }
   }
-  res.setTime(System.currentTimeMillis() - startTime);
+  res.sampleEnd();
   return res;
 }
