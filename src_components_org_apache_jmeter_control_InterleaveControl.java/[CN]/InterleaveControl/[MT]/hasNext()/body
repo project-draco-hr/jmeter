@@ -1,35 +1,29 @@
 {
+  if (interleave) {
+    interleave=false;
+    return false;
+  }
   boolean retVal;
   Object controller=getCurrentController();
   if (controller == null) {
     retVal=hasNextAtEnd();
   }
  else   if (controller instanceof Controller) {
-    if (start != null) {
-      if (((Controller)controller).equals(start)) {
-        return false;
-      }
+    if (searchStart != null && ((Controller)controller).equals(searchStart)) {
+      retVal=false;
     }
- else {
-      start=(Controller)controller;
-    }
-    if (((Controller)controller).hasNext()) {
+ else     if (((Controller)controller).hasNext()) {
       retVal=true;
     }
  else {
       currentHasNextIsFalse();
+      if (searchStart == null)       searchStart=(Controller)controller;
       retVal=hasNext();
     }
   }
  else {
     retVal=true;
   }
-  if (controller == null) {
-    reInitialize();
-  }
-  if (interleave) {
-    interleave=false;
-    return false;
-  }
+  searchStart=null;
   return retVal;
 }
