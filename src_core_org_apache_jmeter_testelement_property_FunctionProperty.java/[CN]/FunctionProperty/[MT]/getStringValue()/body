@@ -1,4 +1,6 @@
 {
+  log.debug("Calling getStringValue from FunctionProperty");
+  log.debug("boogedy boogedy");
   if (!isRunningVersion() || !JMeterContextService.getContext().isSamplingStarted()) {
     log.debug("Not running version, return raw function string");
     return function.getRawParameters();

@@ -1,0 +1,49 @@
+{
+  char[] current=new char[1];
+  char previous=' ';
+  ;
+  StringBuffer buffer=new StringBuffer();
+  Object function;
+  try {
+    while (reader.read(current) == 1) {
+      if (current[0] == '\\') {
+        if (reader.read(current) == 0) {
+          break;
+        }
+        previous=' ';
+        buffer.append(current[0]);
+        continue;
+      }
+ else       if (current[0] == '(' && previous != ' ') {
+        log.debug("making function from: " + buffer.toString());
+        function=CompoundVariable.getNamedFunction(buffer.toString());
+        buffer.setLength(0);
+        if (function instanceof Function) {
+          ((Function)function).setParameters(parseParams(reader));
+          if (reader.read(current) == 0 || current[0] != '}') {
+            throw new InvalidVariableException();
+          }
+          return function;
+        }
+ else {
+          continue;
+        }
+      }
+ else       if (current[0] == '}') {
+        function=CompoundVariable.getNamedFunction(buffer.toString());
+        buffer.setLength(0);
+        return function;
+      }
+ else {
+        buffer.append(current[0]);
+        previous=current[0];
+      }
+    }
+  }
+ catch (  IOException e) {
+    log.error("Error parsing function: " + buffer.toString(),e);
+    return null;
+  }
+  log.warn("Probably an invalid function string: " + buffer.toString());
+  return buffer.toString();
+}

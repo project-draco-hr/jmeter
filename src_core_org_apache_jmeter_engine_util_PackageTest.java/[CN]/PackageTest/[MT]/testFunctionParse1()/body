@@ -1,0 +1,9 @@
+{
+  StringProperty prop=new StringProperty("date","${__javaScript((new Date().getDate() / 100).toString().substr(${__javaScript(1+1,d\\,ay)}\\,2),heute)}");
+  JMeterProperty newProp=transformer.transformValue(prop);
+  newProp.setRunningVersion(true);
+  assertEquals("org.apache.jmeter.testelement.property.FunctionProperty",newProp.getClass().getName());
+  newProp.recoverRunningVersion(null);
+  assertTrue(Integer.parseInt(newProp.getStringValue()) > -1);
+  assertEquals("2",JMeterContextService.getContext().getVariables().getObject("d,ay"));
+}

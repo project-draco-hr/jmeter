@@ -1,0 +1,12 @@
+{
+  variables=new HashMap();
+  variables.put("my_regex",".*");
+  variables.put("server","jakarta.apache.org");
+  result=new SampleResult();
+  result.setResponseData("<html>hello world</html>".getBytes());
+  transformer=new ReplaceStringWithFunctions(new CompoundVariable(),variables);
+  JMeterContextService.getContext().setSamplingStarted(true);
+  JMeterContextService.getContext().setPreviousResult(result);
+  JMeterContextService.getContext().getVariables().put("server","jakarta.apache.org");
+  JMeterContextService.getContext().getVariables().put("my_regex",".*");
+}
