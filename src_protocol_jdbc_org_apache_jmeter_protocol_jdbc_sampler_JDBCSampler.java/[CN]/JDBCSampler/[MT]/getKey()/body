@@ -1,3 +1,6 @@
 {
-  return manager.getKey(getUrl(),getUsername(),getPassword(),getDriver(),getJDBCProperties());
+  if (dbkey == null) {
+    dbkey=manager.getKey(getUrl(),getUsername(),getPassword(),getDriver(),getJDBCProperties());
+  }
+  return dbkey;
 }
