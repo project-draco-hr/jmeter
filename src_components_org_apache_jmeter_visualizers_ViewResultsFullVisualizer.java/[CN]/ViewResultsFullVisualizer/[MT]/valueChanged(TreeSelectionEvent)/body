@@ -59,7 +59,7 @@ byte[] responseBytes=(byte[])res.getResponseData();
 if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
 String response=null;
 try {
-response=new String(responseBytes,"utf-8");
+response=new String(responseBytes,"UTF-8");
 }
  catch (UnsupportedEncodingException err) {
 response=new String(responseBytes);

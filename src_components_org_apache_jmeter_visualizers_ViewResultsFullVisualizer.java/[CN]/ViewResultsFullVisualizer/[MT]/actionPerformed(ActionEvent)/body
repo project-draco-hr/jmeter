@@ -12,7 +12,7 @@
     String response=null;
     if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
       try {
-        response=new String(responseBytes,"utf-8");
+        response=new String(responseBytes,"UTF-8");
       }
  catch (      UnsupportedEncodingException err) {
         response=new String(responseBytes);

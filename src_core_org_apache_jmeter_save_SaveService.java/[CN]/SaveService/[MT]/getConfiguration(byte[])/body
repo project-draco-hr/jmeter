@@ -1,7 +1,7 @@
 {
   DefaultConfiguration config=new DefaultConfiguration(BINARY,"JMeter Save Service");
   try {
-    config.setValue(new String(bin,"utf-8"));
+    config.setValue(new String(bin,"UTF-8"));
   }
  catch (  UnsupportedEncodingException e) {
     log.error("",e);

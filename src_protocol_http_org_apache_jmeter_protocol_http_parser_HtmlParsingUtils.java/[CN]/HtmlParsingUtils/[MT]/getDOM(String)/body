@@ -1,7 +1,7 @@
 {
   log.debug("Start : getDOM1");
   try {
-    Node node=getParser().parseDOM(new ByteArrayInputStream(text.getBytes(getUTFEncodingName())),null);
+    Node node=getParser().parseDOM(new ByteArrayInputStream(text.getBytes("UTF-8")),null);
     if (log.isDebugEnabled()) {
       log.debug("node : " + node);
     }
