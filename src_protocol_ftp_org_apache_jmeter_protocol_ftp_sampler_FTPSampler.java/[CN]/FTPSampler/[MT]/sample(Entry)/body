@@ -1,8 +1,5 @@
 {
   SampleResult res=new SampleResult();
-  Connection con=null;
-  ResultSet rs=null;
-  Statement stmt=null;
   boolean isSuccessful=false;
   res.setSampleLabel(getLabel());
   long start=System.currentTimeMillis();
