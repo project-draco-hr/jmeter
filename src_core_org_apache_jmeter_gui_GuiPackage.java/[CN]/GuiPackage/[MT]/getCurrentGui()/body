@@ -1,9 +1,7 @@
 {
   try {
     JMeterGUIComponent comp=getGui(treeListener.getCurrentNode().createTestElement());
-    if (!(comp instanceof UnsharedComponent)) {
-      comp.configure(treeListener.getCurrentNode().createTestElement());
-    }
+    comp.configure(treeListener.getCurrentNode().createTestElement());
     return comp;
   }
  catch (  Exception e) {

@@ -3,21 +3,16 @@
   Iterator iter=getExcludePatterns().iterator();
   while (iter.hasNext()) {
     String item=(String)iter.next();
-    try {
-      Pattern pattern=compiler.compile(item);
-      StringBuffer url=new StringBuffer(sampler.getDomain());
-      url.append(":");
-      url.append(sampler.getPort());
-      url.append(sampler.getPath());
-      if (sampler.getQueryString().length() > 0) {
-        url.append("?");
-        url.append(sampler.getQueryString());
-      }
-      ok=ok && !matcher.matches(url.toString(),pattern);
+    Pattern pattern=patternCache.getPattern(item,Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
+    StringBuffer url=new StringBuffer(sampler.getDomain());
+    url.append(":");
+    url.append(sampler.getPort());
+    url.append(sampler.getPath());
+    if (sampler.getQueryString().length() > 0) {
+      url.append("?");
+      url.append(sampler.getQueryString());
     }
- catch (    MalformedPatternException e) {
-      JMeterUtils.reportErrorToUser("Bad Regular expression: " + item);
-    }
+    ok=ok && !matcher.matches(url.toString(),pattern);
     if (!ok) {
       return ok;
     }

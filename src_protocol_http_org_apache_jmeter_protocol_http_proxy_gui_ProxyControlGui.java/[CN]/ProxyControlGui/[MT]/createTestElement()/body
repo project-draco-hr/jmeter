@@ -4,6 +4,7 @@
     model.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
     model.setProperty(TestElement.TEST_CLASS,model.getClass().getName());
   }
+  log.debug("creating/configuring model = " + model);
   model.setProperty(TestElement.NAME,getName());
   model.setPort(Integer.parseInt(portField.getText()));
   setIncludeListInProxyControl(model);

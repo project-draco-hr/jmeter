@@ -4,7 +4,6 @@
     model.stopProxy();
     stop.setEnabled(false);
     start.setEnabled(true);
-    model=null;
   }
  else   if (command.equals(START)) {
     model=(ProxyControl)createTestElement();
@@ -18,7 +17,7 @@
  else   if (command.equals(this.ADD_EXCLUDE)) {
     excludeModel.addNewRow();
     excludeModel.fireTableDataChanged();
-    if (model != null)     enableRestart();
+    if (stop.isEnabled())     enableRestart();
   }
  else   if (command.equals(this.ADD_INCLUDE)) {
     includeModel.addNewRow();

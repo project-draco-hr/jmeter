@@ -1,8 +1,14 @@
 {
-  ProxyControl el=(ProxyControl)element;
-  setName(element.getProperty(TestElement.NAME).toString());
-  portField.setText(element.getProperty(ProxyControl.PORT).toString());
-  populateTable(includeModel,el.getIncludePatterns().iterator());
-  populateTable(excludeModel,el.getExcludePatterns().iterator());
-  model=el;
+  log.debug("Configuring gui with " + element);
+  if (model != null && model != element) {
+    model.addTestElement(element);
+  }
+  if (model == null) {
+    model=(ProxyControl)element;
+  }
+  setName(model.getProperty(TestElement.NAME).toString());
+  portField.setText(model.getProperty(ProxyControl.PORT).toString());
+  populateTable(includeModel,model.getIncludePatterns().iterator());
+  populateTable(excludeModel,model.getExcludePatterns().iterator());
+  repaint();
 }

@@ -1,7 +1,6 @@
 {
   matcher=new Perl5Matcher();
-  compiler=new Perl5Compiler();
   setPort(DEFAULT_PORT);
-  setExcludeList(new LinkedList());
-  setIncludeList(new LinkedList());
+  setExcludeList(new HashSet());
+  setIncludeList(new HashSet());
 }
