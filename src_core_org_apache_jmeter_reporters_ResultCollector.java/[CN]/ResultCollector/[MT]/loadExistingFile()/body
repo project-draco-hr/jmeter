@@ -1,5 +1,4 @@
 {
-  inLoading=true;
   if (new File(getFilename()).exists()) {
     clearVisualizer();
     try {
@@ -17,5 +16,4 @@ catch (    Exception e) {
       log.error("",e);
     }
   }
-  inLoading=false;
 }
