@@ -9,13 +9,19 @@
   try {
     f=chooser.getSelectedFile();
     if (f != null) {
+      log.info("Loading file: " + f);
       reader=new FileInputStream(f);
       HashTree tree=SaveService.loadSubTree(reader);
       isTestPlan=insertLoadedTree(e.getID(),tree);
     }
   }
  catch (  Exception ex) {
-    JMeterUtils.reportErrorToUser(ex.getMessage());
+    String msg=ex.getMessage();
+    if (msg == null) {
+      msg="Unexpected error - see log for details";
+      log.warn("Unexpected error",ex);
+    }
+    JMeterUtils.reportErrorToUser(msg);
   }
  finally {
     GuiPackage.getInstance().updateCurrentGui();

@@ -1,3 +1,7 @@
 {
+  if (errorMsg == null) {
+    errorMsg="Unknown error - see log file";
+    log.warn("Unknown error",new Throwable("errorMsg == null"));
+  }
   JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
 }

@@ -1,4 +1,7 @@
 {
+  if (tree == null) {
+    throw new Exception("Error in TestPlan - see log file");
+  }
   boolean isTestPlan=tree.getArray()[0] instanceof TestPlan;
   HashTree newTree=GuiPackage.getInstance().addSubTree(tree);
   GuiPackage.getInstance().updateCurrentGui();
