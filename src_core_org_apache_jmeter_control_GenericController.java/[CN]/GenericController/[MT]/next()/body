@@ -1,4 +1,5 @@
 {
+  fireIterEvents();
   log.debug("Calling next on: " + this.getClass().getName());
   Sampler returnValue=null;
   TestElement currentElement=null;
@@ -9,7 +10,6 @@
       returnValue=nextIsNull();
     }
  else {
-      fireIterEvents(currentElement);
       if (currentElement instanceof Sampler) {
         returnValue=nextIsASampler((Sampler)currentElement);
       }

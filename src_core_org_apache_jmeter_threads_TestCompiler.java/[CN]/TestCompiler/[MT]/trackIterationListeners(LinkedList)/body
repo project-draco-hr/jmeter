@@ -1,0 +1,18 @@
+{
+  TestElement child=(TestElement)stack.getLast();
+  if (child instanceof LoopIterationListener) {
+    ListIterator iter=stack.listIterator(stack.size());
+    while (iter.hasPrevious()) {
+      TestElement item=(TestElement)iter.previous();
+      if (item == child) {
+        continue;
+      }
+ else {
+        if (item instanceof Controller) {
+          ((Controller)item).addIterationListener((LoopIterationListener)child);
+          break;
+        }
+      }
+    }
+  }
+}
