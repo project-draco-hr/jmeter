@@ -5,23 +5,15 @@
   }
   String rescontent=new String(sample.getResponseData());
   if (sample.getResponseCode().equals("200") && ((HTTPSampleResult)sample).isMonitor()) {
-    try {
-      JAXBContext jxbc=new ObjectFactory();
-      Unmarshaller mar=jxbc.createUnmarshaller();
-      String resdata=new String(sample.getResponseData());
-      resdata=resdata.trim();
-      resdata=resdata.replaceAll("\"&#63;\"","\"0\"");
-      StreamSource ss=new StreamSource(new ByteArrayInputStream(resdata.getBytes()));
-      Object ld=mar.unmarshal(ss);
-      if (ld instanceof Status) {
-        Status st=(Status)ld;
-        MonitorStats stat=new MonitorStats(Stats.calculateStatus(st),Stats.calculateLoad(st),0,Stats.calculateMemoryLoad(st),Stats.calculateThreadLoad(st),surl.getHost(),String.valueOf(surl.getPort()),surl.getProtocol(),System.currentTimeMillis());
-        MonitorModel mo=new MonitorModel(stat);
-        this.addSample(mo);
-        notifyListeners(mo);
-      }
+    ObjectFactory of=ObjectFactory.getInstance();
+    Status st=of.parseBytes(sample.getResponseData());
+    if (st != null) {
+      MonitorStats stat=new MonitorStats(Stats.calculateStatus(st),Stats.calculateLoad(st),0,Stats.calculateMemoryLoad(st),Stats.calculateThreadLoad(st),surl.getHost(),String.valueOf(surl.getPort()),surl.getProtocol(),System.currentTimeMillis());
+      MonitorModel mo=new MonitorModel(stat);
+      this.addSample(mo);
+      notifyListeners(mo);
     }
- catch (    JAXBException e) {
+ else {
       noResponse(surl);
     }
   }
