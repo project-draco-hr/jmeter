@@ -1,12 +1,14 @@
 {
   if (displayName) {
-    setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-    setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
-    add(makeTitlePanel());
-    add(createLoopCountPanel());
+    setLayout(new BorderLayout(0,5));
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
+    JPanel mainPanel=new JPanel(new BorderLayout());
+    mainPanel.add(createLoopCountPanel(),BorderLayout.NORTH);
+    add(mainPanel,BorderLayout.CENTER);
   }
  else {
     setLayout(new BorderLayout());
-    this.add(createLoopCountPanel(),BorderLayout.NORTH);
+    add(createLoopCountPanel(),BorderLayout.NORTH);
   }
 }
