@@ -1,10 +1,27 @@
 {
-  if (!interleave) {
-    return super.hasNext();
+  boolean retVal;
+  Object controller=getCurrentController();
+  if (controller == null) {
+    retVal=hasNextAtEnd();
+  }
+ else   if (controller instanceof Controller) {
+    if (((Controller)controller).hasNext()) {
+      retVal=true;
+    }
+ else {
+      currentHasNextIsFalse();
+      retVal=hasNext();
+    }
   }
  else {
+    retVal=true;
+  }
+  if (controller == null) {
+    reInitialize();
+  }
+  if (interleave) {
     interleave=false;
-    super.hasNext();
     return false;
   }
+  return retVal;
 }

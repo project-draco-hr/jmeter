@@ -14,21 +14,13 @@
   sub_3.addTestElement(makeSampler("six"));
   sub_2.addTestElement(sub_3);
   sub_2.addTestElement(makeSampler("seven"));
-  controller.addTestElement(sub_2);
-  String[] interleaveOrder=new String[]{"one","two"};
-  String[] order=new String[]{"dummy","three","four","five","six","seven","four","five","six","seven","four","five","six","seven"};
-  int counter=14;
-  for (int i=0; i < 4; i++) {
-    assertEquals(14,counter);
-    counter=0;
+  sub_1.addTestElement(sub_2);
+  String[] order=new String[]{"one","three","two","three","four","three","one","three","two","three","five","three","one","three","two","three","six","three","one","three"};
+  int counter=0;
+  while (counter < order.length) {
     while (controller.hasNext()) {
       TestElement sampler=controller.next();
-      if (counter == 0) {
-        assertEquals(interleaveOrder[i % 2],sampler.getProperty(TestElement.NAME));
-      }
- else {
-        assertEquals(order[counter],sampler.getProperty(TestElement.NAME));
-      }
+      assertEquals("failed on " + counter,order[counter],sampler.getProperty(TestElement.NAME));
       counter++;
     }
   }

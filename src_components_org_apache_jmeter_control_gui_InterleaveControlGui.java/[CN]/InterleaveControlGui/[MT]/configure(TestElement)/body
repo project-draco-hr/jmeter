@@ -1,0 +1,9 @@
+{
+  super.configure(el);
+  if (((InterleaveControl)el).getStyle() == InterleaveControl.DEFAULT_STYLE) {
+    style.setSelected(true);
+  }
+ else {
+    style.setSelected(false);
+  }
+}

@@ -13,4 +13,6 @@
   namePanel=new NamePanel();
   mainPanel.add(namePanel);
   this.add(mainPanel);
+  style=new JCheckBox(JMeterUtils.getResString("ignore_subcontrollers"));
+  this.add(style);
 }

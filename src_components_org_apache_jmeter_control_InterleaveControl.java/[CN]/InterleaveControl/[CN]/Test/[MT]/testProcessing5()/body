@@ -1,0 +1,23 @@
+{
+  GenericController controller=new GenericController();
+  InterleaveControl sub_1=new InterleaveControl();
+  sub_1.setStyle(NEW_STYLE);
+  controller.addTestElement(sub_1);
+  GenericController sub_2=new GenericController();
+  sub_2.addTestElement(makeSampler("one"));
+  sub_2.addTestElement(makeSampler("two"));
+  sub_1.addTestElement(sub_2);
+  GenericController sub_3=new GenericController();
+  sub_3.addTestElement(makeSampler("three"));
+  sub_3.addTestElement(makeSampler("four"));
+  sub_1.addTestElement(sub_3);
+  String[] order=new String[]{"one","two","three","four"};
+  int counter=0;
+  while (counter < order.length) {
+    while (controller.hasNext()) {
+      TestElement sampler=controller.next();
+      assertEquals("failed on " + counter,order[counter],sampler.getProperty(TestElement.NAME));
+      counter++;
+    }
+  }
+}
