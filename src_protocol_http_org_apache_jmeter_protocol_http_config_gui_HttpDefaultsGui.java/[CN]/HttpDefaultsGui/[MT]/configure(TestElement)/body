@@ -1,5 +1,6 @@
 {
   super.configure(el);
+  protocol.setText(el.getPropertyAsString(HTTPSampler.PROTOCOL));
   domain.setText(el.getPropertyAsString(HTTPSampler.DOMAIN));
   path.setText(el.getPropertyAsString(HTTPSampler.PATH));
   port.setText(el.getPropertyAsString(HTTPSampler.PORT));

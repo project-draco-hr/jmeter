@@ -3,6 +3,7 @@
   argsPanel.configure((TestElement)el.getProperty(HTTPSampler.ARGUMENTS));
   domain.setText((String)el.getProperty(HTTPSampler.DOMAIN));
   port.setText((String)el.getPropertyAsString(HTTPSampler.PORT));
+  protocol.setText((String)el.getProperty(HTTPSampler.PROTOCOL));
   if ("POST".equals(el.getProperty(HTTPSampler.METHOD))) {
     post.setSelected(true);
     get.setSelected(false);
@@ -14,12 +15,4 @@
   path.setText((String)el.getProperty(HTTPSampler.PATH));
   followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.FOLLOW_REDIRECTS));
   useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.USE_KEEPALIVE));
-  if ("http".equals(el.getProperty(HTTPSampler.PROTOCOL))) {
-    http.setSelected(true);
-    https.setSelected(false);
-  }
- else {
-    https.setSelected(true);
-    http.setSelected(false);
-  }
 }

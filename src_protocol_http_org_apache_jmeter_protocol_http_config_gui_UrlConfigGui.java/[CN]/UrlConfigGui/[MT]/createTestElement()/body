@@ -6,10 +6,10 @@
   element.setProperty(HTTPSampler.ARGUMENTS,args);
   element.setProperty(HTTPSampler.DOMAIN,domain.getText());
   element.setProperty(HTTPSampler.PORT,port.getText());
+  element.setProperty(HTTPSampler.PROTOCOL,protocol.getText());
   element.setProperty(HTTPSampler.METHOD,(post.isSelected() ? "POST" : "GET"));
   element.setProperty(HTTPSampler.PATH,path.getText());
   element.setProperty(HTTPSampler.FOLLOW_REDIRECTS,new Boolean(followRedirects.isSelected()));
   element.setProperty(HTTPSampler.USE_KEEPALIVE,new Boolean(useKeepAlive.isSelected()));
-  element.setProperty(HTTPSampler.PROTOCOL,(http.isSelected() ? "http" : "https"));
   return element;
 }

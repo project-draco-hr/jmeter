@@ -4,6 +4,7 @@
   this.setLayout(new BorderLayout());
   argPanel=new HTTPArgumentsPanel();
   this.add(argPanel,BorderLayout.CENTER);
+  protocol=new JLabeledTextField(JMeterUtils.getResString("url_config_protocol"));
   domain=new JLabeledTextField(JMeterUtils.getResString("web_server_domain"));
   path=new JLabeledTextField(JMeterUtils.getResString("path"));
   port=new JLabeledTextField(JMeterUtils.getResString("web_server_port"));
@@ -15,6 +16,7 @@
   title.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
   topPanel.add(title);
   topPanel.add(getNamePanel());
+  topPanel.add(protocol);
   topPanel.add(domain);
   topPanel.add(path);
   topPanel.add(port);
