@@ -1,0 +1,14 @@
+{
+  try {
+    URL url=new URL(getURLData());
+    setDomain(url.getHost());
+    setPort(url.getPort());
+    setProtocol(url.getProtocol());
+    setMethod(POST);
+    setPath(url.getPath());
+  }
+ catch (  MalformedURLException e1) {
+    log.error("Bad url: " + getURLData(),e1);
+  }
+  return super.sample(e);
+}
