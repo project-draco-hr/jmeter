@@ -1,5 +1,6 @@
 {
   TestSuite suite=new TestSuite();
+  suite.addTest(new JMeterTest("createTitleSet"));
   suite.addTest(suiteGUIComponents());
   suite.addTest(suiteSerializableElements());
   suite.addTest(suiteTestElements());

@@ -1,0 +1,6 @@
+{
+  if (guiTitles.size() > 0) {
+    String title=guiItem.getStaticLabel();
+    assertTrue("Component ref should contain entry for " + title,guiTitles.contains(title));
+  }
+}
