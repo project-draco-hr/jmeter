@@ -27,15 +27,12 @@
       }
  catch (      IllegalAccessException e) {
       }
-catch (      java.awt.HeadlessException e) {
-        System.out.println("Error creating " + n + " "+ e.toString());
-      }
 catch (      Exception e) {
-        if (e instanceof RemoteException) {
+        if ((e instanceof RemoteException) || e.getClass().getName().equals("java.awt.HeadlessException")) {
           System.out.println("Error creating " + n + " "+ e.toString());
         }
  else {
-          throw new Exception("Error creating " + n,e);
+          throw new Exception("Error creating " + n + " "+ e.toString());
         }
       }
     }
