@@ -56,6 +56,12 @@
     }
     res.setTime(time);
     log.debug("End : sample2");
+    if (isImageParser()) {
+      if (imageSampler == null) {
+        imageSampler=new HTTPSamplerFull();
+      }
+      res=imageSampler.parseForImages(res,this);
+    }
     return res;
   }
  catch (  IOException ex) {

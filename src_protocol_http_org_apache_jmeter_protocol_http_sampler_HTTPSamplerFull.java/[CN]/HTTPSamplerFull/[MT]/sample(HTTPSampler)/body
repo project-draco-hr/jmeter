@@ -1,0 +1,8 @@
+{
+  log.debug("Start : HTTPSamplerFull sample");
+  SampleResult res=sampler.sample(new Entry());
+  if (log.isDebugEnabled()) {
+    log.debug("Main page loading time - " + res.getTime());
+  }
+  return parseForImages(res,sampler);
+}

@@ -37,7 +37,7 @@
   }
   Vector removeIndices=new Vector();
   for (int i=getCookies().size() - 1; i >= 0; i--) {
-    Cookie cookie=(Cookie)getCookies().get(i);
+    Cookie cookie=(Cookie)getCookies().get(i).getObjectValue();
     if (cookie == null)     continue;
     if (cookie.getPath().equals(newCookie.getPath()) && cookie.getDomain().equals(newCookie.getDomain()) && cookie.getName().equals(newCookie.getName())) {
       removeIndices.addElement(new Integer(i));

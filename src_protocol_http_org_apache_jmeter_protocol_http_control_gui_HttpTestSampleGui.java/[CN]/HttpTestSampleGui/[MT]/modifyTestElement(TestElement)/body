@@ -2,5 +2,11 @@
   TestElement el=urlConfigGui.createTestElement();
   sampler.clear();
   sampler.addTestElement(el);
+  if (getImages.isSelected()) {
+    ((HTTPSampler)sampler).setImageParser(true);
+  }
+ else {
+    ((HTTPSampler)sampler).setImageParser(false);
+  }
   this.configureTestElement(sampler);
 }

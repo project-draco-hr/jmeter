@@ -2,10 +2,5 @@
   super.configure(element);
   urlConfigGui.configure(element);
   String testClass=element.getPropertyAsString(TestElement.TEST_CLASS);
-  if (testClass != null && testClass.endsWith("Full")) {
-    getImages.setSelected(true);
-  }
- else {
-    getImages.setSelected(false);
-  }
+  getImages.setSelected(((HTTPSampler)element).isImageParser());
 }

@@ -1,13 +1,8 @@
 {
-  log.debug("Start : HTTPSamplerFull sample");
-  SampleResult res=super.sample(e);
-  if (log.isDebugEnabled()) {
-    log.debug("Main page loading time - " + res.getTime());
-  }
   String displayName=res.getSampleLabel();
   Document html=null;
   try {
-    baseUrl=getUrl();
+    baseUrl=sampler.getUrl();
     if (log.isDebugEnabled()) {
       log.debug("baseUrl - " + baseUrl.toString());
     }
@@ -16,8 +11,8 @@
  catch (  SAXException se) {
     log.error("Error parsing document - " + se);
     res.setResponseData(se.toString().getBytes());
-    res.setResponseCode(NON_HTTP_RESPONSE_CODE);
-    res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
+    res.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
     res.setSuccessful(false);
     return res;
   }
@@ -25,16 +20,16 @@ catch (  MalformedURLException mfue) {
     log.error("Error creating URL '" + displayName + "'");
     log.error("MalformedURLException - " + mfue);
     res.setResponseData(mfue.toString().getBytes());
-    res.setResponseCode(NON_HTTP_RESPONSE_CODE);
-    res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
+    res.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
     res.setSuccessful(false);
     return res;
   }
   Set uniqueURLs=new HashSet();
-  parseNodes(html,"img",false,"src",uniqueURLs,res);
-  parseNodes(html,"applet",false,"code",uniqueURLs,res);
-  parseNodes(html,"input",true,"src",uniqueURLs,res);
-  parseNodes(html,"body",false,"background",uniqueURLs,res);
+  parseNodes(html,"img",false,"src",uniqueURLs,res,sampler);
+  parseNodes(html,"applet",false,"code",uniqueURLs,res,sampler);
+  parseNodes(html,"input",true,"src",uniqueURLs,res,sampler);
+  parseNodes(html,"body",false,"background",uniqueURLs,res,sampler);
   if (log.isDebugEnabled()) {
     log.debug("Total time - " + res.getTime());
   }

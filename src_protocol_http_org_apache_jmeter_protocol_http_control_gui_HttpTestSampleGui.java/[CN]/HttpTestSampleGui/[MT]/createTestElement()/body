@@ -1,11 +1,5 @@
 {
-  HTTPSampler sampler;
-  if (getImages.isSelected()) {
-    sampler=new HTTPSamplerFull();
-  }
- else {
-    sampler=new HTTPSampler();
-  }
+  HTTPSampler sampler=new HTTPSampler();
   modifyTestElement(sampler);
   return sampler;
 }

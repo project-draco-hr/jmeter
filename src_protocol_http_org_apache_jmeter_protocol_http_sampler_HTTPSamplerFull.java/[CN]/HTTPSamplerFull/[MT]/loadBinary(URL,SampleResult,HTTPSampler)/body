@@ -2,9 +2,10 @@
   log.debug("Start : loadBinary");
   byte[] ret=new byte[0];
   res.setSamplerData(new HTTPSampler(url).toString());
+  HttpURLConnection conn;
   try {
-    conn=setupConnection(url,GET);
-    connect();
+    conn=sampler.setupConnection(url,HTTPSampler.GET);
+    sampler.connect();
   }
  catch (  IOException ioe) {
     if (log.isDebugEnabled()) {
@@ -19,7 +20,7 @@
     }
     int errorLevel=getErrorLevel(conn,res);
     if (errorLevel == 2) {
-      ret=readResponse(conn);
+      ret=sampler.readResponse(conn);
       res.setSuccessful(true);
       long endTime=System.currentTimeMillis();
       if (log.isDebugEnabled()) {

@@ -17,8 +17,8 @@
     log.error("getErrorLevel : " + conn.getHeaderFieldKey(0));
     log.error("getErrorLevel : " + "Error getting response code for HttpUrlConnection - ",e2);
     res.setResponseData(e2.toString().getBytes());
-    res.setResponseCode(NON_HTTP_RESPONSE_CODE);
-    res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
+    res.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
     res.setSuccessful(false);
   }
   log.debug("End   : getErrorLevel");
