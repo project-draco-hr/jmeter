@@ -47,7 +47,7 @@ catch (      IOException e) {
     res.setResponseMessage(conn.getResponseMessage());
     String ct=conn.getHeaderField("Content-type");
     res.setContentType(ct);
-    if (ct.startsWith("image/")) {
+    if (ct != null && ct.startsWith("image/")) {
       res.setDataType(HTTPSampleResult.BINARY);
     }
  else {
