@@ -8,5 +8,7 @@
   suite.addTest(suiteSerializableElements());
   suite.addTest(suiteTestElements());
   suite.addTest(suiteBeanComponents());
+  suite.addTest(new JMeterTest("createFunctionSet"));
+  suite.addTest(suiteFunctions());
   return suite;
 }

@@ -1,0 +1,11 @@
+{
+  TestSuite suite=new TestSuite("Functions");
+  Iterator iter=getObjects(AbstractFunction.class).iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    TestSuite ts=new TestSuite(item.getClass().getName());
+    ts.addTest(new JMeterTest("runFunction",(AbstractFunction)item));
+    suite.addTest(ts);
+  }
+  return suite;
+}
