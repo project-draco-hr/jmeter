@@ -1,9 +1,7 @@
 {
-  Collection params=this.parseArguments(parameters);
-  String[] values=(String[])params.toArray(new String[0]);
-  varName=values[values.length - 1];
-  sum=0;
-  for (int i=0; i < values.length - 1; i++) {
-    sum+=Integer.parseInt(values[i]);
+  Collection params=this.parseArguments2(parameters);
+  values=params.toArray();
+  if (values.length < 3) {
+    throw new InvalidVariableException();
   }
 }

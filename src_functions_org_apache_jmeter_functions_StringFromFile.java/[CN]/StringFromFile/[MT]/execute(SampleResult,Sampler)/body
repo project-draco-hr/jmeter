@@ -1,12 +1,15 @@
 {
   JMeterVariables vars=getVariables();
+  String fileName=((CompoundFunction)values[0]).execute();
+  myName=((CompoundFunction)values[1]).execute();
+  openFile(fileName);
   myValue="**ERR**";
   if (null != myBread) {
     try {
       String line=myBread.readLine();
       if (line == null && reopenFile) {
         myBread.close();
-        openFile();
+        openFile(fileName);
         line=myBread.readLine();
       }
       myValue=line;

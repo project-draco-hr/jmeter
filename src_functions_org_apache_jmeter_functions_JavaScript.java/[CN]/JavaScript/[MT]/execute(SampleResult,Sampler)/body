@@ -1,5 +1,7 @@
 {
   JMeterVariables vars=getVariables();
+  String script=((CompoundFunction)values[0]).execute();
+  String varName=((CompoundFunction)values[values.length - 1]).execute();
   String resultStr="";
   Context cx=Context.enter();
   try {
@@ -9,6 +11,7 @@
     vars.put(varName,resultStr);
   }
  catch (  JavaScriptException e) {
+    throw new InvalidVariableException();
   }
  finally {
     Context.exit();

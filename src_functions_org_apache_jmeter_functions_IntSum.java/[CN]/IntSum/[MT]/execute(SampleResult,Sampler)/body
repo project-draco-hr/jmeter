@@ -1,5 +1,10 @@
 {
   JMeterVariables vars=getVariables();
+  int sum=0;
+  String varName=((CompoundFunction)values[values.length - 1]).execute();
+  for (int i=0; i < values.length - 1; i++) {
+    sum+=Integer.parseInt(((CompoundFunction)values[i]).execute());
+  }
   String totalString=Integer.toString(sum);
   vars.put(varName,totalString);
   return totalString;

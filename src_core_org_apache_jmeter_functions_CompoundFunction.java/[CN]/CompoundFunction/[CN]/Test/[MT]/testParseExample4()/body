@@ -3,7 +3,6 @@
   function.setJMeterVariables(new JMeterVariables());
   assertEquals(1,function.compiledComponents.size());
   assertTrue(function.hasFunction());
-  assertTrue(!function.hasStatics());
   assertEquals("${non-existing function}",function.execute(result,null));
   assertEquals("${non-existing function}",function.execute(null,null));
 }

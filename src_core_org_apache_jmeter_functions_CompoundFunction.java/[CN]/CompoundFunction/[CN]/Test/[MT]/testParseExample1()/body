@@ -4,7 +4,6 @@
   assertEquals(1,function.compiledComponents.size());
   assertEquals("org.apache.jmeter.functions.RegexFunction",function.compiledComponents.getFirst().getClass().getName());
   assertTrue(function.hasFunction());
-  assertTrue(!function.hasStatics());
   assertEquals("hello world",((Function)function.compiledComponents.getFirst()).execute(result,null));
   assertEquals("hello world",function.execute(result,null));
 }

@@ -1,0 +1,25 @@
+{
+  StringTokenizer tk=new StringTokenizer(params,",",true);
+  List arguments=new LinkedList();
+  String previous="";
+  while (tk.hasMoreTokens()) {
+    String arg=tk.nextToken();
+    if (arg.equals(",") && (previous.equals(",") || previous.length() == 0)) {
+      arguments.add(new CompoundFunction());
+    }
+ else     if (!arg.equals(",")) {
+      try {
+        CompoundFunction compoundArg=new CompoundFunction();
+        compoundArg.setParameters(URLDecoder.decode(arg));
+        arguments.add(compoundArg);
+      }
+ catch (      InvalidVariableException e) {
+      }
+    }
+    previous=arg;
+  }
+  if (previous.equals(",")) {
+    arguments.add(new CompoundFunction());
+  }
+  return arguments;
+}

@@ -1,4 +1,23 @@
 {
+  try {
+    searchPattern=compiler.compile(((CompoundFunction)values[0]).execute());
+    generateTemplate(((CompoundFunction)values[1]).execute());
+    valueIndex=((CompoundFunction)values[2]).execute();
+    if (valueIndex.equals(""))     valueIndex="1";
+    between=((CompoundFunction)values[3]).execute();
+    String dv=((CompoundFunction)values[4]).execute();
+    if (!dv.equals("")) {
+      defaultValue=dv;
+    }
+    name=((CompoundFunction)values[values.length - 1]).execute();
+  }
+ catch (  MalformedPatternException e) {
+    log.error("",e);
+    throw new InvalidVariableException("Bad regex pattern");
+  }
+catch (  Exception e) {
+    throw new InvalidVariableException(e.getMessage());
+  }
   getVariables().put(name,defaultValue);
   if (previousResult == null || previousResult.getResponseData() == null) {
     return defaultValue;

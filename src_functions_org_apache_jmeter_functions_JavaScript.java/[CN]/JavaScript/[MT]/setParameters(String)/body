@@ -1,13 +1,7 @@
 {
-  Collection params=this.parseArguments(parameters);
-  String[] values=(String[])params.toArray(new String[0]);
-  if (values.length > 1) {
-    varName=values[values.length - 1];
-  }
-  try {
-    script=values[0];
-  }
- catch (  Exception e) {
+  Collection params=this.parseArguments2(parameters);
+  values=params.toArray();
+  if (values.length < 2) {
     throw new InvalidVariableException();
   }
 }

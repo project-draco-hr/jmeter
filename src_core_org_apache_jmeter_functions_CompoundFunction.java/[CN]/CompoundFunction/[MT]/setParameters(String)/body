@@ -12,23 +12,17 @@
     if (index > -1 && previous.equals("${")) {
       String function=part.substring(0,index);
       String functionName=parseFunctionName(function);
-      if (definedValues.containsKey(functionName)) {
-        Object replacement=definedValues.get(functionName);
-        if (replacement instanceof Class) {
-          try {
-            hasFunction=true;
-            Function func=(Function)((Class)replacement).newInstance();
-            func.setParameters(extractParams(function));
-            compiledComponents.addLast(func);
-          }
- catch (          Exception e) {
-            log.error("",e);
-            throw new InvalidVariableException();
-          }
+      if (functions.containsKey(functionName)) {
+        Object replacement=functions.get(functionName);
+        try {
+          hasFunction=true;
+          Function func=(Function)((Class)replacement).newInstance();
+          func.setParameters(extractParams(function));
+          compiledComponents.addLast(func);
         }
- else {
-          hasStatics=true;
-          addStringToComponents(compiledComponents,(String)replacement);
+ catch (        Exception e) {
+          log.error("",e);
+          throw new InvalidVariableException();
         }
       }
  else {
@@ -49,30 +43,5 @@
       addStringToComponents(compiledComponents,part);
     }
     previous=part;
-  }
-  if (!hasFunction) {
-    staticSubstitution=compiledComponents.getLast().toString();
-    if (hasStatics()) {
-      compiledComponents.clear();
-      hasStatics=false;
-      setParameters(staticSubstitution);
-      hasStatics=true;
-    }
-  }
- else   if (hasStatics()) {
-    iter=new LinkedList(compiledComponents).iterator();
-    while (iter.hasNext()) {
-      Object item=iter.next();
-      if (item instanceof StringBuffer) {
-        CompoundFunction nestedFunc=new CompoundFunction();
-        nestedFunc.setUserDefinedVariables(new HashMap());
-        nestedFunc.setParameters(item.toString());
-        if (nestedFunc.hasFunction()) {
-          int index=compiledComponents.indexOf(item);
-          compiledComponents.remove(index);
-          compiledComponents.add(index,nestedFunc);
-        }
-      }
-    }
   }
 }

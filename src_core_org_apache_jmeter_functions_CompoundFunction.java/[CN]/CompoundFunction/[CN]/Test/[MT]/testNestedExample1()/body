@@ -3,7 +3,6 @@
   function.setJMeterVariables(new JMeterVariables());
   assertEquals(2,function.compiledComponents.size());
   assertTrue(function.hasFunction());
-  assertTrue(function.hasStatics());
   assertEquals("hello world",((Function)function.compiledComponents.get(0)).execute(result,null));
   assertEquals("hellorld",((Function)function.compiledComponents.get(1)).execute(result,null));
   assertEquals("hello worldhellorld",function.execute(result,null));
