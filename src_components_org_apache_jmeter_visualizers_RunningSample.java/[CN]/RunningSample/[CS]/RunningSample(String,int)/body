@@ -1,11 +1,5 @@
 {
   this.label=label;
   this.index=index;
-  counter=0L;
-  runningSum=0L;
-  max=Long.MIN_VALUE;
-  min=Long.MAX_VALUE;
-  errorCount=0L;
-  firstTime=Long.MAX_VALUE;
-  lastTime=0L;
+  init();
 }
