@@ -1,4 +1,5 @@
 {
+  String parserName=p.getClass().getName().substring("org.apache.jmeter.protocol.http.parser".length());
   log.debug("file   " + file);
   File f=findTestFile(file);
   byte[] buffer=new byte[(int)f.length()];
@@ -29,13 +30,13 @@
     result=temp.iterator();
   }
   while (expected.hasNext()) {
-    assertTrue("Expecting another result",result.hasNext());
+    assertTrue(parserName + "::Expecting another result",result.hasNext());
     try {
-      assertEquals(expected.next(),((URL)result.next()).toString());
+      assertEquals(parserName + "(" + file+ ")",expected.next(),((URL)result.next()).toString());
     }
  catch (    ClassCastException e) {
-      fail("Expected URL, but got " + e.toString());
+      fail(parserName + "::Expected URL, but got " + e.toString());
     }
   }
-  assertFalse("Should have reached the end of the results",result.hasNext());
+  assertFalse(parserName + "::Should have reached the end of the results",result.hasNext());
 }
