@@ -1,0 +1,16 @@
+{
+  VerticalPanel searchPanel=new VerticalPanel();
+  JPanel searchBPanel=new JPanel(new BorderLayout(5,0));
+  JLabel label=new JLabel(JMeterUtils.getResString("search_base"));
+  label.setLabelFor(searchbase);
+  searchBPanel.add(label,BorderLayout.WEST);
+  searchBPanel.add(searchbase,BorderLayout.CENTER);
+  JPanel searchFPanel=new JPanel(new BorderLayout(5,0));
+  JLabel label2=new JLabel(JMeterUtils.getResString("search_filter"));
+  label2.setLabelFor(searchfilter);
+  searchFPanel.add(label2,BorderLayout.WEST);
+  searchFPanel.add(searchfilter,BorderLayout.CENTER);
+  searchPanel.add(searchBPanel);
+  searchPanel.add(searchFPanel);
+  return searchPanel;
+}

@@ -1,0 +1,48 @@
+{
+  CardLayout cl=(CardLayout)(cards.getLayout());
+  if (user_Defined.isSelected()) {
+    if (addTest.isSelected()) {
+      cl.show(cards,"Add");
+      tableModifyPanel.clear();
+      searchbase.setText("");
+      searchfilter.setText("");
+      delete.setText("");
+    }
+ else     if (deleteTest.isSelected()) {
+      cl.show(cards,"Delete");
+      tableModifyPanel.clear();
+      tableAddPanel.clear();
+      searchbase.setText("");
+      searchfilter.setText("");
+    }
+ else     if (searchTest.isSelected()) {
+      cl.show(cards,"Search");
+      delete.setText("");
+      tableModifyPanel.clear();
+      tableAddPanel.clear();
+    }
+ else     if (modifyTest.isSelected()) {
+      cl.show(cards,"Modify");
+      tableAddPanel.clear();
+      searchbase.setText("");
+      searchfilter.setText("");
+      delete.setText("");
+    }
+ else {
+      cl.show(cards,"");
+      tableAddPanel.clear();
+      tableModifyPanel.clear();
+      searchbase.setText("");
+      searchfilter.setText("");
+      delete.setText("");
+    }
+  }
+ else {
+    cl.show(cards,"");
+    tableAddPanel.clear();
+    tableModifyPanel.clear();
+    searchbase.setText("");
+    searchfilter.setText("");
+    delete.setText("");
+  }
+}

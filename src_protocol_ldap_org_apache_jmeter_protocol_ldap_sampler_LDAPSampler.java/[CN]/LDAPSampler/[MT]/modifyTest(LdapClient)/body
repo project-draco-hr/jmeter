@@ -1,0 +1,18 @@
+{
+  long start=0L;
+  long end=0L;
+  if (getPropertyAsBoolean(USER_DEFINED)) {
+    start=System.currentTimeMillis();
+    ldap.modifyTest(getUserModAttributes(),getPropertyAsString(BASE_ENTRY_DN));
+    end=System.currentTimeMillis();
+  }
+ else {
+    ldap.createTest(getBasicAttributes(),getPropertyAsString(ADD));
+    setProperty(new StringProperty(MODIFY,getPropertyAsString(ADD)));
+    start=System.currentTimeMillis();
+    ldap.modifyTest(getModificationItem(),getPropertyAsString(MODIFY));
+    end=System.currentTimeMillis();
+    ldap.deleteTest(getPropertyAsString(ADD));
+  }
+  return (end - start);
+}

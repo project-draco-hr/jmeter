@@ -1,0 +1,17 @@
+{
+  JPanel testPanel=new JPanel(new BorderLayout());
+  testPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("test_configuration")));
+  testPanel.add(new JLabel(JMeterUtils.getResString("test")));
+  JPanel rowPanel=new JPanel();
+  rowPanel.add(addTest);
+  bGroup.add(addTest);
+  rowPanel.add(deleteTest);
+  bGroup.add(deleteTest);
+  rowPanel.add(searchTest);
+  bGroup.add(searchTest);
+  rowPanel.add(modifyTest);
+  bGroup.add(modifyTest);
+  testPanel.add(rowPanel,BorderLayout.NORTH);
+  testPanel.add(user_Defined,BorderLayout.CENTER);
+  return testPanel;
+}

@@ -1,0 +1,15 @@
+{
+  ModificationItem[] mods=new ModificationItem[getArguments().getArguments().size()];
+  boolean add=true;
+  BasicAttributes attrs=new BasicAttributes(true);
+  BasicAttribute attr;
+  PropertyIterator iter=getArguments().iterator();
+  int count=0;
+  while (iter.hasNext()) {
+    Argument item=(Argument)iter.next().getObjectValue();
+    attr=getBasicAttribute(item.getName(),item.getValue());
+    mods[count]=new ModificationItem(DirContext.REPLACE_ATTRIBUTE,attr);
+    count=+1;
+  }
+  return mods;
+}

@@ -1,0 +1,4 @@
+{
+  SearchControls searchcontrols=new SearchControls(2,1L,0,null,false,false);
+  dirContext.search(searchBase,searchFilter,searchcontrols);
+}

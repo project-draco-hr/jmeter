@@ -1,0 +1,21 @@
+{
+  BasicAttributes basicattributes=new BasicAttributes();
+  BasicAttribute basicattribute=new BasicAttribute("objectclass");
+  basicattribute.add("top");
+  basicattribute.add("person");
+  basicattribute.add("organizationalPerson");
+  basicattribute.add("inetOrgPerson");
+  basicattributes.put(basicattribute);
+  String s1="User";
+  String s3="Test";
+  String s5="user";
+  String s6="test";
+  counter+=1;
+  basicattributes.put(new BasicAttribute("givenname",s1));
+  basicattributes.put(new BasicAttribute("sn",s3));
+  basicattributes.put(new BasicAttribute("cn","TestUser" + counter));
+  basicattributes.put(new BasicAttribute("uid",s5));
+  basicattributes.put(new BasicAttribute("userpassword",s6));
+  setProperty(new StringProperty(ADD,"cn=TestUser" + counter));
+  return basicattributes;
+}

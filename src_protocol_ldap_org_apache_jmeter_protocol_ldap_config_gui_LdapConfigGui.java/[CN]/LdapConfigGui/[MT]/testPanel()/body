@@ -1,0 +1,9 @@
+{
+  cards=new JPanel(new CardLayout());
+  cards.add(new JPanel(),"");
+  cards.add(createAddPanel(),"Add");
+  cards.add(createModifyPanel(),"Modify");
+  cards.add(createDeletePanel(),"Delete");
+  cards.add(createSearchPanel(),"Search");
+  return cards;
+}

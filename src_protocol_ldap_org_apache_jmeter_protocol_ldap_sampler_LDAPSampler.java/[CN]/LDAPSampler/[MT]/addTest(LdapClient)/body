@@ -1,0 +1,16 @@
+{
+  long start=0L;
+  long end=0L;
+  if (getPropertyAsBoolean(USER_DEFINED)) {
+    start=System.currentTimeMillis();
+    ldap.createTest(getUserAttributes(),getPropertyAsString(BASE_ENTRY_DN));
+    end=System.currentTimeMillis();
+  }
+ else {
+    start=System.currentTimeMillis();
+    ldap.createTest(getBasicAttributes(),getPropertyAsString(ADD));
+    end=System.currentTimeMillis();
+    ldap.deleteTest(getPropertyAsString(ADD));
+  }
+  return (end - start);
+}

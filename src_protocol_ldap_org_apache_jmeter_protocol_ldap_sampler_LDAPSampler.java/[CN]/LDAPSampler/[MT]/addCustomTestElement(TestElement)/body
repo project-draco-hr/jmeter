@@ -1,0 +1,5 @@
+{
+  if (element instanceof LdapConfig || element instanceof LoginConfig) {
+    mergeIn(element);
+  }
+}
