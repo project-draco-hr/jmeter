@@ -21,7 +21,8 @@
         if (t != null)         log.warn(t.toString());
       }
     }
-    eval.invoke(instance,new Object[]{"server(portnum)"});
+    eval.invoke(instance,new Object[]{"setAccessibility(true);"});
+    eval.invoke(instance,new Object[]{"server(portnum);"});
   }
  catch (  ClassNotFoundException e) {
     log.error("Beanshell Interpreter not found");
