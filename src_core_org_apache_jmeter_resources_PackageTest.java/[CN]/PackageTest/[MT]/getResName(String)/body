@@ -1,0 +1,8 @@
+{
+  if (lang.length() == 0) {
+    return "messages.properties";
+  }
+ else {
+    return "messages_" + lang.toLowerCase() + ".properties";
+  }
+}

@@ -1,0 +1,5 @@
+{
+  InputStream ras=this.getClass().getResourceAsStream(res);
+  PropertyResourceBundle prb=new PropertyResourceBundle(ras);
+  return countKeys(prb.getKeys(),l);
+}

@@ -1,0 +1,13 @@
+{
+  int i=0;
+  InputStream ras=this.getClass().getResourceAsStream(res);
+  BufferedReader fileReader=new BufferedReader(new InputStreamReader(ras));
+  String s;
+  while ((s=fileReader.readLine()) != null) {
+    if (s.length() > 0) {
+      l.add(s.substring(0,s.indexOf('=')));
+      i++;
+    }
+  }
+  return i;
+}

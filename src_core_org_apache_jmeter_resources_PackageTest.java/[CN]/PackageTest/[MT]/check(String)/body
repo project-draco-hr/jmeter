@@ -1,0 +1,43 @@
+{
+  ArrayList alf=new ArrayList(500);
+  ArrayList alr=new ArrayList(500);
+  String res=getResName(resname);
+  readRF(res,alf);
+  getRAS(res,alr);
+  Collections.sort(alf);
+  Collections.sort(alr);
+  String last="";
+  for (int i=0; i < alf.size(); i++) {
+    String curr=(String)alf.get(i);
+    if (curr.equals(last)) {
+      subTestFailures++;
+      System.out.println("\nDuplicate key =" + curr + " in "+ res);
+    }
+    last=curr;
+  }
+  if (defaultList != null) {
+    if (defaultListSize != alr.size()) {
+      subTestFailures++;
+      System.out.println("\nKey counts differ: " + getResName("") + "="+ defaultListSize+ " "+ res+ "="+ alr.size());
+    }
+    if (!defaultList.equals(alr)) {
+      subTestFailures++;
+      System.out.println("\nKeys in " + res + " do not match keys in "+ getResName(""));
+      for (int i=0; i < alr.size(); i++) {
+        String d=(String)defaultList.get(i);
+        String a=(String)alr.get(i);
+        if (!d.equals(a)) {
+          System.out.println("First difference: " + a + "!="+ d);
+          break;
+        }
+      }
+    }
+  }
+ else {
+    defaultList=alr;
+    defaultListSize=alr.size();
+  }
+  if (subTestFailures > 0) {
+    fail("One or more subtests failed");
+  }
+}

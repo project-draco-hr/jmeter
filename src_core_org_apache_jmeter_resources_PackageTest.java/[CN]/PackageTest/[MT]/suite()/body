@@ -1,0 +1,8 @@
+{
+  TestSuite ts=new TestSuite();
+  ts.addTest(new PackageTest("testDefault"));
+  ts.addTest(new PackageTest("testDE"));
+  ts.addTest(new PackageTest("testNO"));
+  ts.addTest(new PackageTest("testJA"));
+  return ts;
+}
