@@ -11,7 +11,7 @@
       String tagText=tag.getText();
       int indexSrc=tagText.indexOf("src");
       if (indexSrc != -1) {
-        String newtext=tagText.replaceAll("alt=\"\" ","");
+        String newtext=JOrphanUtils.replaceFirst(tagText,"alt=\"\" ","");
         tag.setText(newtext + " alt=\"\"");
         table=tag.redoParseAttributes();
         relativeLink=(String)table.get("SRC");

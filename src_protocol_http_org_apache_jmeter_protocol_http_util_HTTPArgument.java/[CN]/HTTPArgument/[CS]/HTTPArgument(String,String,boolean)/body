@@ -2,12 +2,12 @@
   setAlwaysEncoded(true);
   if (alreadyEncoded) {
     try {
-      name=URLDecoder.decode(name,"UTF-8");
-      value=URLDecoder.decode(value.toString(),"UTF-8");
+      name=JOrphanUtils.decode(name,"UTF-8");
+      value=JOrphanUtils.decode(value.toString(),"UTF-8");
     }
  catch (    UnsupportedEncodingException e) {
       log.error("UTF-8 encoding not supported!");
-      throw new Error(e);
+      throw new Error(e.toString());
     }
   }
   setName(name);

@@ -21,7 +21,7 @@
     ar.addPostActionListener(remove,listener);
   }
  catch (  ClassNotFoundException e) {
-    throw new Error(e);
+    throw new Error(e.toString());
   }
   return panel;
 }

@@ -1,7 +1,7 @@
 {
   boolean ans;
   try {
-    String strVal=appProperties.getProperty(propName,(Boolean.valueOf(defaultVal)).toString()).trim();
+    String strVal=appProperties.getProperty(propName,JOrphanUtils.booleanToString(defaultVal)).trim();
     if (strVal.equalsIgnoreCase("true") || strVal.equalsIgnoreCase("t")) {
       ans=true;
     }

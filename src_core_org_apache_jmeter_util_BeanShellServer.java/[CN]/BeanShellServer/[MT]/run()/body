@@ -17,8 +17,6 @@
       }
  catch (      InvocationTargetException e1) {
         log.warn("Could not source " + serverfile);
-        Throwable t=e1.getCause();
-        if (t != null)         log.warn(t.toString());
       }
     }
     eval.invoke(instance,new Object[]{"setAccessibility(true);"});

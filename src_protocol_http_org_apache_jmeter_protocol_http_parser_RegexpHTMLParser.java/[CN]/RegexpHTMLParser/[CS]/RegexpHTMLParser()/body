@@ -7,7 +7,7 @@
   }
  catch (  MalformedPatternException mpe) {
     log.error("Internal error compiling regular expression in ParseRegexp.");
-    log.error("MalformedPatterException - " + mpe);
-    throw new Error(mpe);
+    log.error("MalformedPatternException - " + mpe);
+    throw new Error(mpe.toString());
   }
 }

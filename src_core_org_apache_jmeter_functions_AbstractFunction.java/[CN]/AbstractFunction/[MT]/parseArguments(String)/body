@@ -9,10 +9,10 @@
     }
  else     if (!arg.equals(",")) {
       try {
-        arguments.add(URLDecoder.decode(arg,"UTF-8"));
+        arguments.add(JOrphanUtils.decode(arg,"UTF-8"));
       }
  catch (      UnsupportedEncodingException e) {
-        throw new Error(e);
+        throw new Error("Should not happen: " + e.toString());
       }
     }
     previous=arg;

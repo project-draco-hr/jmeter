@@ -1,3 +1,3 @@
 {
-  return getDomain() + "\tTRUE\t" + getPath()+ "\t"+ Boolean.valueOf(getSecure()).toString().toUpperCase()+ "\t"+ getExpires()+ "\t"+ getName()+ "\t"+ getValue();
+  return getDomain() + "\tTRUE\t" + getPath()+ "\t"+ JOrphanUtils.booleanToSTRING(getSecure())+ "\t"+ getExpires()+ "\t"+ getName()+ "\t"+ getValue();
 }
