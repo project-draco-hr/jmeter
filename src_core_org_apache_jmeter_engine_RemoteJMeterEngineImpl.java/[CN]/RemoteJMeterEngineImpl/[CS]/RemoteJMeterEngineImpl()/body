@@ -1,12 +1,3 @@
 {
-  log.info("Starting backing engine");
-  log.debug("This = " + this);
-  try {
-    backingEngine=new StandardJMeterEngine(InetAddress.getLocalHost().getHostName());
-    Naming.rebind("JMeterEngine",this);
-  }
- catch (  Exception ex) {
-    log.error("rmiregistry needs to be running to start JMeter in server " + "mode\n\t" + ex.toString());
-    throw new RemoteException("Cannot start. See server log file.");
-  }
+  init(DEFAULT_RMI_PORT);
 }
