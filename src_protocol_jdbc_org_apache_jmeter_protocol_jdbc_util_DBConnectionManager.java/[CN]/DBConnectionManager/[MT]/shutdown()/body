@@ -1,8 +1,6 @@
 {
-synchronized (connections) {
-    Iterator iter=connections.keySet().iterator();
-    while (iter.hasNext()) {
-      close((DBKey)iter.next());
-    }
+  Iterator iter=new HashSet(connections.keySet()).iterator();
+  while (iter.hasNext()) {
+    close((DBKey)iter.next());
   }
 }
