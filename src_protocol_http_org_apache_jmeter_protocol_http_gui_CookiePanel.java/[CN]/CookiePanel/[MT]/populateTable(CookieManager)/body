@@ -1,4 +1,5 @@
 {
+  tableModel.clearData();
   Iterator iter=manager.getCookies().iterator();
   while (iter.hasNext()) {
     addCookieToTable((Cookie)iter.next());
