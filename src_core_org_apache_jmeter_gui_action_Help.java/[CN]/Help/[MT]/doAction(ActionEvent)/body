@@ -1,0 +1,11 @@
+{
+  if (helpWindow == null) {
+    helpWindow=new JDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("help"),false);
+    helpWindow.getContentPane().setLayout(new GridLayout(1,1));
+    ComponentUtil.centerComponentInWindow(helpWindow,60);
+  }
+  helpDoc.scrollToReference(GuiPackage.getInstance().getTreeListener().getCurrentNode().getStaticLabel().replace(' ','_'));
+  helpWindow.getContentPane().removeAll();
+  helpWindow.getContentPane().add(scroller);
+  helpWindow.show();
+}
