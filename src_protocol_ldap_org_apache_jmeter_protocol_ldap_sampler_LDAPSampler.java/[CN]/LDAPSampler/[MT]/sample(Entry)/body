@@ -1,7 +1,8 @@
 {
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
-  res.setSampleLabel(getLabel() + ": " + getPropertyAsString(TEST));
+  res.setSampleLabel(getLabel());
+  res.setSamplerData(getPropertyAsString(TEST));
   long time=0L;
   LdapClient ldap=new LdapClient();
   try {
@@ -18,13 +19,24 @@
  else     if (getPropertyAsString(TEST).equals("search")) {
       time=searchTest(ldap);
     }
-    res.setResponseData("success full".getBytes());
+    if (getPropertyAsString(TEST).equals("search") && !searchFoundEntries) {
+      res.setResponseCode("201");
+      res.setResponseMessage("OK - no results");
+      res.setResponseData("successful - no results".getBytes());
+    }
+ else {
+      res.setResponseCode("200");
+      res.setResponseMessage("OK");
+      res.setResponseData("successful".getBytes());
+    }
+    res.setDataType(SampleResult.TEXT);
     isSuccessful=true;
     ldap.disconnect();
   }
  catch (  Exception ex) {
-    res.setResponseData(ex.toString().getBytes());
     log.error("Ldap client - ",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
     ldap.disconnect();
     isSuccessful=false;
     time=0L;

@@ -7,7 +7,7 @@
     setProperty(new StringProperty(SEARCHFILTER,getPropertyAsString(ADD)));
   }
   start=System.currentTimeMillis();
-  ldap.searchTest(getPropertyAsString(SEARCHBASE),getPropertyAsString(SEARCHFILTER));
+  searchFoundEntries=ldap.searchTest(getPropertyAsString(SEARCHBASE),getPropertyAsString(SEARCHFILTER));
   end=System.currentTimeMillis();
   if (!getPropertyAsBoolean(USER_DEFINED)) {
     ldap.deleteTest(getPropertyAsString(ADD));
