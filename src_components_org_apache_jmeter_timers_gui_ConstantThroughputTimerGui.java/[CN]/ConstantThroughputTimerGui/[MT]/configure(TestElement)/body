@@ -1,4 +1,5 @@
 {
   super.configure(el);
-  throughputField.setText(((ConstantThroughputTimer)el).getThroughput() + "");
+  ConstantThroughputTimer e=(ConstantThroughputTimer)el;
+  throughputField.setText(String.valueOf(e.getThroughput()));
 }
