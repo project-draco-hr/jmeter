@@ -4,6 +4,12 @@
   nodesToGui=new HashMap();
   testBeanGUIs=new HashMap();
   Introspector.flushCaches();
-  getMainFrame().setMainPanel((javax.swing.JComponent)getCurrentGui());
-  getMainFrame().setEditMenu(getTreeListener().getCurrentNode().createPopupMenu());
+  MainFrame mf=getMainFrame();
+  if (mf == null) {
+    log.warn("Mainframe is null");
+  }
+ else {
+    mf.setMainPanel((javax.swing.JComponent)getCurrentGui());
+    mf.setEditMenu(getTreeListener().getCurrentNode().createPopupMenu());
+  }
 }
