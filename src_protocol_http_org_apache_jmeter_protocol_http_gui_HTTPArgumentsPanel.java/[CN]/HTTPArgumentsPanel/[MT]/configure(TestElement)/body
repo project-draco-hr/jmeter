@@ -6,7 +6,7 @@
     Iterator iter=((Arguments)el).getArguments().iterator();
     while (iter.hasNext()) {
       HTTPArgument arg=(HTTPArgument)iter.next();
-      tableModel.addRow(new Object[]{arg.getName(),arg.getValue(),arg.getEncodedName() + arg.getMetaData() + arg.getEncodedValue(),new Boolean(arg.getAlwaysEncode())});
+      tableModel.addRow(new Object[]{arg.getName(),arg.getValue(),new Boolean(arg.getAlwaysEncode())});
     }
   }
   checkDeleteStatus();

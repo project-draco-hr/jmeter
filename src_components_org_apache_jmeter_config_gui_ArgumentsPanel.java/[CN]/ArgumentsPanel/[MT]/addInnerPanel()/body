@@ -9,7 +9,10 @@
   TextAreaCellRenderer renderer=new TextAreaCellRenderer();
   table.setRowHeight(renderer.getPreferredHeight());
   table.setDefaultRenderer(String.class,renderer);
+  table.setCellSelectionEnabled(true);
   table.setRowSelectionAllowed(true);
+  table.setColumnSelectionAllowed(false);
+  table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   JScrollPane scroller=new JScrollPane(table);
   Dimension tableDim=scroller.getPreferredSize();
   tableDim.height=70;
