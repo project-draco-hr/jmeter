@@ -1,10 +1,4 @@
 {
-  String port=this.getPropertyAsString(PROXY_PORT);
-  if (port == null || port.length() == 0) {
-    if (System.getProperty("http.proxyPort") != null) {
-      port=System.getProperty("http.proxyPort");
-      this.setProxyPort(port);
-    }
-  }
+  this.checkProxy();
   return this.getPropertyAsInt(PROXY_PORT);
 }
