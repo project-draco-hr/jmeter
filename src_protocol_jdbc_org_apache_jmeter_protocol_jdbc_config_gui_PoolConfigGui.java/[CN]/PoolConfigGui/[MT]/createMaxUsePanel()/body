@@ -1,9 +1,11 @@
 {
-  JPanel panel=new JPanel();
-  panel.add(new JLabel(JMeterUtils.getResString("database_conn_pool_max_usage")));
-  maxUseField.setText(DEFAULT_MAX_USE);
+  maxUseField=new JTextField(DEFAULT_MAX_USE,5);
   maxUseField.setName(MAXUSE);
   maxUseField.addFocusListener(this);
-  panel.add(maxUseField);
+  JLabel label=new JLabel(JMeterUtils.getResString("database_conn_pool_max_usage"));
+  label.setLabelFor(maxUseField);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  panel.add(label,BorderLayout.WEST);
+  panel.add(maxUseField,BorderLayout.CENTER);
   return panel;
 }

@@ -1,26 +1,14 @@
 {
+  setLayout(new BorderLayout(0,5));
   if (displayName) {
-    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-    JPanel mainPanel=new JPanel();
-    Border margin=new EmptyBorder(10,10,5,10);
-    mainPanel.setBorder(margin);
-    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    mainPanel.add(makeTitlePanel());
-    JPanel connPoolPanel=new JPanel();
-    connPoolPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    connPoolPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_conn_pool_props")));
-    connPoolPanel.add(createConnPanel());
-    connPoolPanel.add(createMaxUsePanel());
-    mainPanel.add(connPoolPanel);
-    this.add(mainPanel);
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
   }
- else {
-    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    JPanel connPoolPanel=new JPanel();
-    connPoolPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    connPoolPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_conn_pool_props")));
-    connPoolPanel.add(createConnPanel());
-    connPoolPanel.add(createMaxUsePanel());
-    this.add(connPoolPanel);
-  }
+  VerticalPanel poolPanel=new VerticalPanel();
+  poolPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_conn_pool_props")));
+  poolPanel.add(createConnPanel());
+  poolPanel.add(createMaxUsePanel());
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.add(poolPanel);
+  add(mainPanel,BorderLayout.CENTER);
 }

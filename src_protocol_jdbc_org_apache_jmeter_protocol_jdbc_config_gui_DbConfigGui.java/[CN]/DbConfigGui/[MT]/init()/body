@@ -1,36 +1,19 @@
 {
+  setLayout(new BorderLayout(0,5));
   if (displayName) {
-    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-    JPanel mainPanel=new JPanel();
-    Border margin=new EmptyBorder(10,10,5,10);
-    mainPanel.setBorder(margin);
-    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    mainPanel.add(makeTitlePanel());
-    JPanel urlJDBCPanel=new JPanel();
-    urlJDBCPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    urlJDBCPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_url_jdbc_props")));
-    urlJDBCPanel.add(getUrlPanel());
-    urlJDBCPanel.add(getDriverPanel());
-    mainPanel.add(urlJDBCPanel);
-    loginGui=new LoginConfigGui(false);
-    JPanel loginPanel=new JPanel();
-    loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
-    loginPanel.add(loginGui);
-    mainPanel.add(loginPanel);
-    this.add(mainPanel);
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
   }
- else {
-    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    JPanel urlJDBCPanel=new JPanel();
-    urlJDBCPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    urlJDBCPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_url_jdbc_props")));
-    urlJDBCPanel.add(getUrlPanel());
-    urlJDBCPanel.add(getDriverPanel());
-    this.add(urlJDBCPanel);
-    loginGui=new LoginConfigGui(false);
-    JPanel loginPanel=new JPanel();
-    loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
-    loginPanel.add(loginGui);
-    this.add(loginPanel);
-  }
+  VerticalPanel mainPanel=new VerticalPanel();
+  VerticalPanel urlJDBCPanel=new VerticalPanel();
+  urlJDBCPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_url_jdbc_props")));
+  urlJDBCPanel.add(getUrlPanel());
+  urlJDBCPanel.add(getDriverPanel());
+  mainPanel.add(urlJDBCPanel);
+  JPanel loginPanel=new JPanel(new BorderLayout());
+  loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
+  loginGui=new LoginConfigGui(false);
+  loginPanel.add(loginGui,BorderLayout.NORTH);
+  mainPanel.add(loginPanel);
+  add(mainPanel,BorderLayout.CENTER);
 }

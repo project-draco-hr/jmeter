@@ -1,9 +1,11 @@
 {
-  JPanel panel=new JPanel();
-  panel.add(new JLabel(JMeterUtils.getResString("database_conn_pool_size")));
-  connField.setText(DEFAULT_NUM_CONNECTIONS);
+  connField=new JTextField(DEFAULT_NUM_CONNECTIONS,5);
   connField.setName(CONNECTIONS);
   connField.addFocusListener(this);
-  panel.add(connField);
+  JLabel label=new JLabel(JMeterUtils.getResString("database_conn_pool_size"));
+  label.setLabelFor(connField);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  panel.add(label,BorderLayout.WEST);
+  panel.add(connField,BorderLayout.CENTER);
   return panel;
 }

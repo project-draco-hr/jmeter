@@ -1,15 +1,15 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  mainPanel.add(makeTitlePanel());
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel mainPanel=new JPanel(new BorderLayout(0,5));
+  VerticalPanel connPanel=new VerticalPanel();
   dbGui=new DbConfigGui(false);
-  mainPanel.add(dbGui);
+  connPanel.add(dbGui);
   poolGui=new PoolConfigGui(false);
-  mainPanel.add(poolGui);
+  connPanel.add(poolGui);
+  mainPanel.add(connPanel,BorderLayout.NORTH);
   sqlGui=new SqlConfigGui(false);
-  mainPanel.add(sqlGui);
-  this.add(mainPanel);
+  mainPanel.add(sqlGui,BorderLayout.CENTER);
+  add(mainPanel,BorderLayout.CENTER);
 }
