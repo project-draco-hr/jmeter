@@ -3,5 +3,15 @@
     errorMsg="Unknown error - see log file";
     log.warn("Unknown error",new Throwable("errorMsg == null"));
   }
-  JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
+  try {
+    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
+  }
+ catch (  RuntimeException e) {
+    if (e.getClass().getName().equals("java.awt.HeadlessException")) {
+      log.warn("reportErrorToUser(\"" + errorMsg + "\") caused",e);
+    }
+ else {
+      throw e;
+    }
+  }
 }
