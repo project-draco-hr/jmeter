@@ -2,6 +2,9 @@
   hosts.add(host);
   try {
     initializeFileOutput();
+    if (getVisualizer() != null) {
+      this.isStats=getVisualizer().isStats();
+    }
   }
  catch (  Exception e) {
     log.error("",e);

@@ -1,6 +1,6 @@
 {
   if (out != null) {
-    if (!isResultMarked(result)) {
+    if (!isResultMarked(result) && !this.isStats) {
       result.setSaveConfig(getSaveConfig());
       SaveService.saveSampleResult(result,out);
     }
