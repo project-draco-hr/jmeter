@@ -1,30 +1,30 @@
 {
-  catClass.debug("Start : HTTPSamplerFull parseNodes");
+  log.debug("Start : HTTPSamplerFull parseNodes");
   NodeList nodeList=html.getElementsByTagName(htmlTag);
   boolean uniqueBinary;
   SampleResult binRes=null;
   for (int i=0; i < nodeList.getLength(); i++) {
     uniqueBinary=true;
     Node tempNode=nodeList.item(i);
-    if (catClass.isDebugEnabled()) {
-      catClass.debug("'" + htmlTag + "' tag: "+ tempNode);
+    if (log.isDebugEnabled()) {
+      log.debug("'" + htmlTag + "' tag: "+ tempNode);
     }
     NamedNodeMap nnm=tempNode.getAttributes();
     Node namedItem=null;
     if (type) {
       namedItem=nnm.getNamedItem("type");
       if (namedItem == null) {
-        catClass.debug("namedItem 'null' - ignoring");
+        log.debug("namedItem 'null' - ignoring");
         break;
       }
       String inputType=namedItem.getNodeValue();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("Input type - " + inputType);
+      if (log.isDebugEnabled()) {
+        log.debug("Input type - " + inputType);
       }
       if (inputType != null && inputType.equalsIgnoreCase("image")) {
       }
  else {
-        catClass.debug("type != 'image' - ignoring");
+        log.debug("type != 'image' - ignoring");
         break;
       }
     }
@@ -40,8 +40,8 @@
       binUrl=new URL(baseUrl,binUrlStr);
     }
  catch (    MalformedURLException mfue) {
-      catClass.error("Error creating URL '" + baseUrl + " , "+ binUrlStr+ "'");
-      catClass.error("MalformedURLException - " + mfue);
+      log.error("Error creating URL '" + baseUrl + " , "+ binUrlStr+ "'");
+      log.error("MalformedURLException - " + mfue);
       binRes.setResponseData(mfue.toString().getBytes());
       binRes.setResponseCode(NON_HTTP_RESPONSE_CODE);
       binRes.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
@@ -49,9 +49,9 @@
       res.addSubResult(binRes);
       break;
     }
-    if (catClass.isDebugEnabled()) {
-      catClass.debug("Binary url - " + binUrlStr);
-      catClass.debug("Full Binary url - " + binUrl);
+    if (log.isDebugEnabled()) {
+      log.debug("Binary url - " + binUrlStr);
+      log.debug("Full Binary url - " + binUrl);
     }
     binRes.setSampleLabel(binUrl.toString());
     uniqueBinary=uniques.add(binUrl.toString());
@@ -60,7 +60,7 @@
         loadBinary(binUrl,binRes);
       }
  catch (      IOException ioe) {
-        catClass.error("Error reading from URL - " + ioe);
+        log.error("Error reading from URL - " + ioe);
         binRes.setResponseData(ioe.toString().getBytes());
         binRes.setResponseCode(NON_HTTP_RESPONSE_CODE);
         binRes.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
@@ -68,14 +68,14 @@
       }
     }
  else {
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("Skipping duplicate - " + binUrl);
+      if (log.isDebugEnabled()) {
+        log.debug("Skipping duplicate - " + binUrl);
       }
       break;
     }
-    catClass.debug("Adding result");
+    log.debug("Adding result");
     res.addSubResult(binRes);
     res.setTime(res.getTime() + binRes.getTime());
   }
-  catClass.debug("End   : HTTPSamplerFull parseNodes");
+  log.debug("End   : HTTPSamplerFull parseNodes");
 }

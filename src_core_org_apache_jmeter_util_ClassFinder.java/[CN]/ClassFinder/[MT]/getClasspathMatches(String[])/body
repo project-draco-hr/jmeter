@@ -19,12 +19,12 @@
     }
  else {
       for (i=0; i < strPathsOrJars.length; i++) {
-        if (catClass.isDebugEnabled()) {
-          catClass.debug("strPath(lower) : " + strPath.toLowerCase());
-          catClass.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
+        if (log.isDebugEnabled()) {
+          log.debug("strPath(lower) : " + strPath.toLowerCase());
+          log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
         }
         if (strPath.endsWith(strPathsOrJars[i])) {
-          catClass.debug("match!!!");
+          log.debug("match!!!");
           listPaths.add(strPath);
         }
       }

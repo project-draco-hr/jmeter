@@ -1,12 +1,12 @@
 {
-  catClass.debug("Start : getParser");
+  log.debug("Start : getParser");
   Tidy tidy=new Tidy();
   tidy.setCharEncoding(org.w3c.tidy.Configuration.UTF8);
   tidy.setQuiet(true);
   tidy.setShowWarnings(false);
-  if (catClass.isDebugEnabled()) {
-    catClass.debug("getParser : tidy parser created - " + tidy);
+  if (log.isDebugEnabled()) {
+    log.debug("getParser : tidy parser created - " + tidy);
   }
-  catClass.debug("End   : getParser");
+  log.debug("End   : getParser");
   return tidy;
 }

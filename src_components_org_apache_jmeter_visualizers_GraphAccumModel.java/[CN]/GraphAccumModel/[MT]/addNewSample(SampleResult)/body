@@ -1,9 +1,9 @@
 {
-  catClass.debug("Start : addNewSample1");
+  log.debug("Start : addNewSample1");
   long totalTime=res.getTime();
-  if (catClass.isDebugEnabled()) {
-    catClass.debug("addNewSample1 : time - " + totalTime);
-    catClass.debug("addNewSample1 : max - " + max);
+  if (log.isDebugEnabled()) {
+    log.debug("addNewSample1 : time - " + totalTime);
+    log.debug("addNewSample1 : max - " + max);
   }
   if (totalTime > max) {
     bigChange=true;
@@ -11,6 +11,6 @@
   }
   current=res;
   samples.add(res);
-  catClass.debug("End : addNewSample1");
+  log.debug("End : addNewSample1");
   fireDataChanged();
 }

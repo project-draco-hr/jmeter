@@ -19,7 +19,7 @@
       model.setFailureLimit(Long.parseLong(this.failureLimitField.getText()));
     }
  catch (    NumberFormatException e) {
-      log("failureLimitField=" + failureLimitField.getText());
+      log.warn("failureLimitField=" + failureLimitField.getText(),e);
       JOptionPane.showMessageDialog(null,JMeterUtils.getResString("you_must_enter_a_valid_number"),"Error",JOptionPane.ERROR_MESSAGE);
     }
   }
@@ -28,7 +28,7 @@
       model.setSuccessLimit(Long.parseLong(this.successLimitField.getText()));
     }
  catch (    NumberFormatException e) {
-      log("successLimitField=" + successLimitField.getText());
+      log.warn("successLimitField=" + successLimitField.getText(),e);
       JOptionPane.showMessageDialog(null,JMeterUtils.getResString("you_must_enter_a_valid_number"),"Error",JOptionPane.ERROR_MESSAGE);
     }
   }

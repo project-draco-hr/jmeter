@@ -1,0 +1,10 @@
+{
+  Enumeration names=appProperties.keys();
+  while (names.hasMoreElements()) {
+    String prop=(String)names.nextElement();
+    if (prop.startsWith(LOG_PRIORITY)) {
+      String name=prop.substring(LOG_PRIORITY.length() + 1);
+      logManager.setPriority(Priority.getPriorityForName(getPropDefault(prop,"WARN")),name);
+    }
+  }
+}

@@ -1,14 +1,14 @@
 {
-  catClass.debug("Start : valueChanged1");
+  log.debug("Start : valueChanged1");
   DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-  if (catClass.isDebugEnabled())   catClass.debug("valueChanged : selected node - " + node);
+  if (log.isDebugEnabled())   log.debug("valueChanged : selected node - " + node);
   if (node != null) {
     SampleResult res=(SampleResult)node.getUserObject();
-    if (catClass.isDebugEnabled())     catClass.debug("valueChanged1 : sample result - " + res);
+    if (log.isDebugEnabled())     log.debug("valueChanged1 : sample result - " + res);
     if (res != null) {
       resultPanel.removeAll();
       JLabel loadTime=new JLabel();
-      catClass.debug("valueChanged1 : load time - " + res.getTime());
+      log.debug("valueChanged1 : load time - " + res.getTime());
       loadTime.setText("Load time : " + res.getTime());
       gbc.gridx=0;
       gbc.gridy=0;
@@ -24,7 +24,7 @@
       resultPanel.add(loadTime,gbc.clone());
       JLabel httpResponseCode=new JLabel();
       String responseCode=res.getResponseCode();
-      catClass.debug("valueChanged1 : response code - " + responseCode);
+      log.debug("valueChanged1 : response code - " + responseCode);
       int responseLevel=0;
       if (responseCode != null)       try {
         responseLevel=Integer.parseInt(responseCode) / 100;
@@ -46,7 +46,7 @@ gridBag.setConstraints(httpResponseCode,gbc);
 resultPanel.add(httpResponseCode);
 JLabel httpResponseMsg=new JLabel();
 String responseMsgStr=res.getResponseMessage();
-catClass.debug("valueChanged1 : response message - " + responseMsgStr);
+log.debug("valueChanged1 : response message - " + responseMsgStr);
 httpResponseMsg.setText("HTTP response message : " + responseMsgStr);
 gbc.gridx=0;
 gbc.gridy++;
@@ -85,5 +85,5 @@ resultPanel.repaint();
 resultPanel.revalidate();
 }
 }
-catClass.debug("End : valueChanged1");
+log.debug("End : valueChanged1");
 }

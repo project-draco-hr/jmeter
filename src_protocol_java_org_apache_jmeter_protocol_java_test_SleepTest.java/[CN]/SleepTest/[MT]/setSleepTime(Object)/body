@@ -3,7 +3,7 @@
     sleepTime=Long.parseLong((String)arg);
   }
  catch (  Exception e) {
-    cat.debug("Exception getting sleepTime:\t",e);
+    log.debug("Exception getting sleepTime:\t",e);
     sleepTime=1000l;
   }
 }

@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : init1");
+  log.debug("Start : init1");
   graph=new GraphAccum(model);
   graph.setVisualizer(this);
   this.setLayout(new BorderLayout());
@@ -22,5 +22,5 @@
   JSplitPane graphSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,graphScrollPanel,legendScrollPanel);
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(graphSplitPane,BorderLayout.CENTER);
-  catClass.debug("End : init1");
+  log.debug("End : init1");
 }

@@ -1,0 +1,11 @@
+{
+  if (target == null) {
+    target=new WriterTarget(targetFile,format);
+    Hierarchy.getDefaultHierarchy().setDefaultLogTarget(new WriterTarget(targetFile,format));
+  }
+ else {
+    target.close();
+    target=new WriterTarget(targetFile,format);
+    Hierarchy.getDefaultHierarchy().setDefaultLogTarget(new WriterTarget(targetFile,format));
+  }
+}

@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : updateGui2");
+  log.debug("Start : updateGui2");
   final int xPos=model.getSampleCount();
   SwingUtilities.invokeLater(new Runnable(){
     public void run(){
@@ -10,5 +10,5 @@
     }
   }
 );
-  catClass.debug("End : updateGui2");
+  log.debug("End : updateGui2");
 }

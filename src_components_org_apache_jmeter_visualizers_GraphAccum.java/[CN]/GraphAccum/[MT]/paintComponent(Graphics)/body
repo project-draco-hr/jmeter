@@ -1,6 +1,6 @@
 {
   super.paintComponent(g);
-  catClass.debug("Start : paintComponent1");
+  log.debug("Start : paintComponent1");
   Dimension d=this.getSize();
 synchronized (model.getList()) {
     previousPtsAlloc=false;
@@ -10,5 +10,5 @@ synchronized (model.getList()) {
       drawSample(i * PLOT_X_WIDTH,s,g);
     }
   }
-  catClass.debug("End : paintComponent1");
+  log.debug("End : paintComponent1");
 }

@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : getErrorLevel");
+  log.debug("Start : getErrorLevel");
   int errorLevel=2;
   try {
     int responseCode=((HttpURLConnection)conn).getResponseCode();
@@ -7,20 +7,20 @@
     errorLevel=responseCode / 100;
     res.setResponseCode(String.valueOf(responseCode));
     res.setResponseMessage(responseMessage);
-    if (catClass.isDebugEnabled()) {
-      catClass.debug("getErrorLevel : responseCode - " + responseCode);
-      catClass.debug("getErrorLevel : responseMessage - " + responseMessage);
+    if (log.isDebugEnabled()) {
+      log.debug("getErrorLevel : responseCode - " + responseCode);
+      log.debug("getErrorLevel : responseMessage - " + responseMessage);
     }
   }
  catch (  Exception e2) {
     System.out.println("getErrorLevel : " + conn.getHeaderField(0));
     System.out.println("getErrorLevel : " + conn.getHeaderFieldKey(0));
-    catClass.error("getErrorLevel : " + "Error getting response code for HttpUrlConnection - " + e2);
+    log.error("getErrorLevel : " + "Error getting response code for HttpUrlConnection - " + e2);
     res.setResponseData(e2.toString().getBytes());
     res.setResponseCode(NON_HTTP_RESPONSE_CODE);
     res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
     res.setSuccessful(false);
   }
-  catClass.debug("End   : getErrorLevel");
+  log.debug("End   : getErrorLevel");
   return errorLevel;
 }

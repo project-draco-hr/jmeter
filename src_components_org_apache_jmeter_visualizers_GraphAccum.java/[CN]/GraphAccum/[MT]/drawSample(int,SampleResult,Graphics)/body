@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : drawSample1");
+  log.debug("Start : drawSample1");
   int lastLevel=0;
   int compCount=0;
   SampleResult[] resultList=oneSample.getSubResults();
@@ -19,8 +19,8 @@
   lPanel.add(legendPanel);
   Dimension d=this.getSize();
   long totalTime=oneSample.getTime();
-  if (catClass.isDebugEnabled()) {
-    catClass.debug("drawSample1 : total time - " + totalTime);
+  if (log.isDebugEnabled()) {
+    log.debug("drawSample1 : total time - " + totalTime);
   }
   int data=(int)(totalTime * d.height / model.getMax());
   g.setColor(currColor);
@@ -42,8 +42,8 @@
     gridBag.setConstraints(totalTimeLabel,gbc);
     legendPanel.add(totalTimeLabel);
   }
-  if (catClass.isDebugEnabled()) {
-    catClass.debug("drawSample1 : main page load time - " + oneSample.getTime());
+  if (log.isDebugEnabled()) {
+    log.debug("drawSample1 : main page load time - " + oneSample.getTime());
   }
   data=(int)(oneSample.getTime() * d.height / model.getMax());
   currColor=ColorHelper.changeColorCyclicIncrement(currColor,40);
@@ -71,8 +71,8 @@
   if (resultList != null) {
     for (int i=0; i < resultList.length; i++) {
       SampleResult componentRes=(SampleResult)resultList[i];
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("drawSample1 : componentRes - " + componentRes.getSampleLabel() + " loading time - "+ componentRes.getTime());
+      if (log.isDebugEnabled()) {
+        log.debug("drawSample1 : componentRes - " + componentRes.getSampleLabel() + " loading time - "+ componentRes.getTime());
       }
       data=(int)(componentRes.getTime() * d.height / model.getMax());
       data+=lastLevel;
@@ -107,5 +107,5 @@
   if (!previousPtsAlloc) {
     previousPtsAlloc=true;
   }
-  catClass.debug("End : drawSample1");
+  log.debug("End : drawSample1");
 }

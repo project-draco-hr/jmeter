@@ -9,6 +9,6 @@
     setSuccessLimit(Long.parseLong((String)element.getProperty(SUCCESS_LIMIT_KEY)));
   }
  catch (  Exception e) {
-    log("Couldn't load MailerVisualizer...");
+    log.error("Couldn't load MailerVisualizer...");
   }
 }

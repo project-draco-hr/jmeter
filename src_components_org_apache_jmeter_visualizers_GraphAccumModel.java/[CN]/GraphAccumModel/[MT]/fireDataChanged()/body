@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : fireDataChanged1");
+  log.debug("Start : fireDataChanged1");
   Iterator iter=listeners.iterator();
   if (bigChange) {
     while (iter.hasNext()) {
@@ -10,5 +10,5 @@
  else {
     quickUpdate(current);
   }
-  catClass.debug("End : fireDataChanged1");
+  log.debug("End : fireDataChanged1");
 }

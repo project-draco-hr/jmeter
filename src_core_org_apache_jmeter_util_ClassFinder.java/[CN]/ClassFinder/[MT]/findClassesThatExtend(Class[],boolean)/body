@@ -11,16 +11,16 @@
     }
   }
   strPathsOrJars=addJarsInPath(strPathsOrJars);
-  if (catClass.isDebugEnabled()) {
+  if (log.isDebugEnabled()) {
     for (int k=0; k < strPathsOrJars.length; k++) {
-      catClass.debug("strPathsOrJars : " + strPathsOrJars[k]);
+      log.debug("strPathsOrJars : " + strPathsOrJars[k]);
     }
   }
   listPaths=getClasspathMatches(strPathsOrJars);
-  if (catClass.isDebugEnabled()) {
+  if (log.isDebugEnabled()) {
     Iterator tIter=listPaths.iterator();
     for (; tIter.hasNext(); ) {
-      catClass.debug("listPaths : " + tIter.next());
+      log.debug("listPaths : " + tIter.next());
     }
   }
   listClasses=new ArrayList();
@@ -29,10 +29,10 @@
     listSuperClasses.add(superClasses[i].getName());
   }
   findClassesInPaths(listPaths,listClasses);
-  if (catClass.isDebugEnabled()) {
+  if (log.isDebugEnabled()) {
     Iterator tIter=listClasses.iterator();
     for (; tIter.hasNext(); ) {
-      catClass.debug("listClasses : " + tIter.next());
+      log.debug("listClasses : " + tIter.next());
     }
   }
   List subClassList=findAllSubclasses(listSuperClasses,listClasses,innerClasses);

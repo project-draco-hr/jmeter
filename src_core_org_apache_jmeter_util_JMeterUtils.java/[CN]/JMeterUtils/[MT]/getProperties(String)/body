@@ -12,5 +12,14 @@
     }
   }
   appProperties=p;
+  logManager=new LoggingManager();
+  try {
+    logManager.setTarget(new PrintWriter(new FileWriter(getPropDefault(LOG_FILE,"jmeter.log"))));
+  }
+ catch (  IOException e) {
+    System.out.println("bad log file");
+  }
+  logManager.setPriority(Priority.getPriorityForName(getPropDefault(LOG_PRIORITY,"WARN")),"jmeter");
+  setLoggingLevels();
   return p;
 }

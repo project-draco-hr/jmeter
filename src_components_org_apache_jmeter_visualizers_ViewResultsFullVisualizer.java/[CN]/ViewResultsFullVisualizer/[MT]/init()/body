@@ -1,6 +1,6 @@
 {
   this.setLayout(new BorderLayout());
-  catClass.debug("Start : init1");
+  log.debug("Start : init1");
   SampleResult rootSampleResult=new SampleResult();
   rootSampleResult.setSampleLabel("Root");
   root=new DefaultMutableTreeNode(rootSampleResult);
@@ -16,5 +16,5 @@
   treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,resultPane);
   add(getFilePanel(),BorderLayout.NORTH);
   add(treeSplitPane,BorderLayout.CENTER);
-  catClass.debug("End : init1");
+  log.debug("End : init1");
 }

@@ -1,5 +1,5 @@
 {
-  cat.debug(whoAmI() + "\trunTest");
+  log.debug(whoAmI() + "\trunTest");
   Thread.yield();
   SampleResult results=new SampleResult();
   results.setTime(0);

@@ -12,7 +12,7 @@
         sendMail(fromAddress,addressVector,failureSubject,"URL Failed: " + sample.getSampleLabel(),smtpHost);
       }
  catch (      Exception e) {
-        log(e.toString());
+        log.error("Problem sending mail",e);
       }
       siteDown=true;
       failureMsgSent=true;
@@ -26,7 +26,7 @@
         sendMail(fromAddress,addressVector,successSubject,"URL Restarted: " + sample.getSampleLabel(),smtpHost);
       }
  catch (      Exception e) {
-        log(e.toString());
+        log.error("Problem sending mail",e);
       }
       siteDown=false;
       successMsgSent=true;

@@ -1,8 +1,8 @@
 {
-  catClass.debug("Start : clear1");
+  log.debug("Start : clear1");
   samples.clear();
   max=1;
   bigChange=true;
   this.fireDataChanged();
-  catClass.debug("End : clear1");
+  log.debug("End : clear1");
 }

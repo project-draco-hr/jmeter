@@ -8,7 +8,7 @@
     possibleClasses.remove("org.apache.jmeter.protocol.java.sampler.JavaSampler");
   }
  catch (  Exception e) {
-    cat.debug("Exception getting interfaces.",e);
+    log.debug("Exception getting interfaces.",e);
   }
   classnameCombo=new JComboBox(possibleClasses.toArray());
   classnameCombo.setName(CLASSNAMECOMBO);

@@ -9,15 +9,15 @@
           Object[] args={};
           javaClient=(JavaSamplerClient)constructors[i].newInstance(args);
           javaClient.setupTest(createArgumentsHashMap(getArguments()));
-          if (cat.isDebugEnabled()) {
-            cat.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(javaClient.hashCode()));
+          if (log.isDebugEnabled()) {
+            log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(javaClient.hashCode()));
           }
           break;
         }
       }
     }
  catch (    Exception e) {
-      cat.error(whoAmI() + "\tException creating: " + getClassname(),e);
+      log.error(whoAmI() + "\tException creating: " + getClassname(),e);
       javaClient=this;
     }
   }
