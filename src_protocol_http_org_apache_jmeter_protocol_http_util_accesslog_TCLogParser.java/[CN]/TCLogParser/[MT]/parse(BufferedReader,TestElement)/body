@@ -13,6 +13,7 @@
       if (this.PARSECOUNT != -1 && COUNT >= this.PARSECOUNT) {
         break;
       }
+      line=breader.readLine();
     }
   }
  catch (  IOException ioe) {
