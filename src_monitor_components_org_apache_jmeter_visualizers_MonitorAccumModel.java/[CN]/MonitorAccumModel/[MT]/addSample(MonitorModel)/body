@@ -1,0 +1,12 @@
+{
+  this.CURRENT=model;
+  if (MAP.containsKey(model.getURL())) {
+    List newlist=updateArray(model,(List)MAP.get(model.getURL()));
+    MAP.put(model.getURL(),newlist);
+  }
+ else {
+    List samples=Collections.synchronizedList(new LinkedList());
+    samples.add(model);
+    MAP.put(model.getURL(),samples);
+  }
+}

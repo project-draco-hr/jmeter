@@ -1,0 +1,14 @@
+{
+  if (!SERVERMAP.containsKey(model.getURL())) {
+    DefaultMutableTreeNode newnode=new DefaultMutableTreeNode(model);
+    newnode.setAllowsChildren(false);
+    SERVERMAP.put(model.getURL(),newnode);
+    ROOTNODE.add(newnode);
+    TREEPANE.updateUI();
+  }
+  DefaultMutableTreeNode node=(DefaultMutableTreeNode)SERVERTREE.getLastSelectedPathComponent();
+  Object usrobj=node.getUserObject();
+  if (usrobj instanceof MonitorModel) {
+    GRAPH.updateGui((MonitorModel)usrobj);
+  }
+}

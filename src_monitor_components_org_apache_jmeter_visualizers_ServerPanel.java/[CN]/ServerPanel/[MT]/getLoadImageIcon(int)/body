@@ -1,0 +1,32 @@
+{
+  if (load <= 10) {
+    return LOAD_1;
+  }
+ else   if (load > 10 && load <= 20) {
+    return LOAD_2;
+  }
+ else   if (load > 20 && load <= 30) {
+    return LOAD_3;
+  }
+ else   if (load > 30 && load <= 40) {
+    return LOAD_4;
+  }
+ else   if (load > 40 && load <= 50) {
+    return LOAD_5;
+  }
+ else   if (load > 50 && load <= 60) {
+    return LOAD_6;
+  }
+ else   if (load > 60 && load <= 70) {
+    return LOAD_7;
+  }
+ else   if (load > 70 && load <= 80) {
+    return LOAD_8;
+  }
+ else   if (load > 80 && load <= 90) {
+    return LOAD_9;
+  }
+ else {
+    return LOAD_10;
+  }
+}

@@ -1,0 +1,48 @@
+{
+  double width=(double)getWidth();
+  double height=(double)getHeight() - 10.0;
+  int xaxis=(int)(width * (x / width));
+  int lastx=(int)(width * ((x - 1) / width));
+  if (YGRID && x == 1) {
+    int q1=(int)(height * 0.25);
+    int q2=(int)(height * 0.50);
+    int q3=(int)(height * 0.75);
+    g.setColor(JMeterColor.lightGray);
+    g.drawLine(0,q1,getWidth(),q1);
+    g.drawLine(0,q2,getWidth(),q2);
+    g.drawLine(0,q3,getWidth(),q3);
+  }
+  if (XGRID && x == 1) {
+    int x1=(int)(width * 0.25);
+    int x2=(int)(width * 0.50);
+    int x3=(int)(width * 0.75);
+    g.drawLine(x1,0,x1,getHeight());
+    g.drawLine(x2,0,x2,getHeight());
+    g.drawLine(x3,0,x3,getHeight());
+    g.drawLine(getWidth(),0,getWidth(),getHeight());
+  }
+  if (HEALTH) {
+    int hly=(int)(height - (height * ((double)model.getHealth() / 3.0)));
+    int lasty=(int)(height - (height * ((double)last.getHealth() / 3.0)));
+    g.setColor(JMeterColor.GREEN);
+    g.drawLine(lastx,lasty,xaxis,hly);
+  }
+  if (LOAD) {
+    int ldy=(int)(height - (height * ((double)model.getLoad() / 100.0)));
+    int lastldy=(int)(height - (height * ((double)last.getLoad() / 100.0)));
+    g.setColor(Color.BLUE);
+    g.drawLine(lastx,lastldy,xaxis,ldy);
+  }
+  if (MEM) {
+    int mmy=(int)(height - (height * ((double)model.getMemload() / 100.0)));
+    int lastmmy=(int)(height - (height * ((double)last.getMemload() / 100.0)));
+    g.setColor(JMeterColor.ORANGE);
+    g.drawLine(lastx,lastmmy,xaxis,mmy);
+  }
+  if (THREAD) {
+    int thy=(int)(height - (height * ((double)model.getThreadload() / 100.0)));
+    int lastthy=(int)(height - (height * ((double)last.getThreadload() / 100.0)));
+    g.setColor(Color.RED);
+    g.drawLine(lastx,lastthy,xaxis,thy);
+  }
+}

@@ -1,0 +1,18 @@
+{
+  Dimension lsize=new Dimension(33,20);
+  JPanel labels=new JPanel();
+  labels.setLayout(new BorderLayout());
+  JLabel top=new JLabel(" " + GRID_LABEL_TOP);
+  top.setFont(plaintext);
+  top.setPreferredSize(lsize);
+  labels.add(top,BorderLayout.NORTH);
+  JLabel mid=new JLabel(" " + GRID_LABEL_MIDDLE);
+  mid.setFont(plaintext);
+  mid.setPreferredSize(lsize);
+  labels.add(mid,BorderLayout.CENTER);
+  JLabel bottom=new JLabel(" " + GRID_LABEL_BOTTOM);
+  bottom.setFont(plaintext);
+  bottom.setPreferredSize(lsize);
+  labels.add(bottom,BorderLayout.SOUTH);
+  return labels;
+}

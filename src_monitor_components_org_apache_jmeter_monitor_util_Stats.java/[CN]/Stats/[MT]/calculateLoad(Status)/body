@@ -1,0 +1,17 @@
+{
+  if (stat != null) {
+    long totMem=stat.getJvm().getMemory().getTotal();
+    long usedMem=stat.getJvm().getMemory().getFree();
+    double memdiv=(double)usedMem / (double)totMem;
+    double memWeight=DEFAULT_MEMORY_FACTOR * memdiv;
+    Connector cntr=(Connector)stat.getConnector().get(0);
+    int maxThread=cntr.getThreadInfo().getMaxThreads();
+    int curThread=cntr.getThreadInfo().getCurrentThreadsBusy();
+    double thdiv=(double)curThread / (double)maxThread;
+    double threadWeight=DEFAULT_THREAD_FACTOR * thdiv;
+    return (int)(memWeight + threadWeight);
+  }
+ else {
+    return 0;
+  }
+}

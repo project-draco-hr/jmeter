@@ -1,0 +1,9 @@
+{
+  double load=0;
+  if (stat != null) {
+    double total=(double)stat.getJvm().getMemory().getTotal();
+    double used=(double)stat.getJvm().getMemory().getFree();
+    load=(used / total);
+  }
+  return (int)(load * 100);
+}

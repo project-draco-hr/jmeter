@@ -1,0 +1,23 @@
+{
+  this.setLayout(new BorderLayout());
+  ImageIcon legend=JMeterUtils.getImage("monitor-legend.gif");
+  JLabel label=new JLabel(legend);
+  label.setPreferredSize(new Dimension(550,25));
+  this.add(label,BorderLayout.NORTH);
+  this.SERVERS=new JPanel();
+  this.SERVERS.setLayout(new BoxLayout(SERVERS,BoxLayout.Y_AXIS));
+  this.SERVERS.setAlignmentX(Component.LEFT_ALIGNMENT);
+  SCROLL=new JScrollPane(this.SERVERS);
+  SCROLL.setPreferredSize(new Dimension(300,300));
+  this.add(SCROLL,BorderLayout.CENTER);
+  String eqstring1=" " + INFO_H + "   |   "+ INFO_A;
+  String eqstring2=" " + INFO_W + "   |   "+ INFO_D;
+  String eqstring3=" " + INFO_LOAD;
+  JLabel eqs=new JLabel();
+  eqs.setLayout(new BorderLayout());
+  eqs.setPreferredSize(new Dimension(500,60));
+  eqs.add(new JLabel(eqstring1),BorderLayout.NORTH);
+  eqs.add(new JLabel(eqstring2),BorderLayout.CENTER);
+  eqs.add(new JLabel(eqstring3),BorderLayout.SOUTH);
+  this.add(eqs,BorderLayout.SOUTH);
+}

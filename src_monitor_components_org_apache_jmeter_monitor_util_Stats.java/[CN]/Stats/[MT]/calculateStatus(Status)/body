@@ -1,0 +1,24 @@
+{
+  if (stat != null) {
+    Connector cntr=(Connector)stat.getConnector().get(0);
+    int max=cntr.getThreadInfo().getMaxThreads();
+    int current=cntr.getThreadInfo().getCurrentThreadsBusy();
+    int spare=cntr.getThreadInfo().getMaxSpareThreads();
+    double per=(double)current / (double)max;
+    if (per > WARNING_PER) {
+      return WARNING;
+    }
+ else     if (per >= ACTIVE_PER && per <= WARNING_PER) {
+      return ACTIVE;
+    }
+ else     if (per < ACTIVE_PER && per > HEALTHY_PER) {
+      return HEALTHY;
+    }
+ else {
+      return DEAD;
+    }
+  }
+ else {
+    return DEAD;
+  }
+}

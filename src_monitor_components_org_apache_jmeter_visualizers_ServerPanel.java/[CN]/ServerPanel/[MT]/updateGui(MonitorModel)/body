@@ -1,0 +1,8 @@
+{
+  this.DATA=null;
+  this.DATA=stat;
+  loadIcon.setIcon(getLoadImageIcon(stat.getLoad()));
+  healthIcon.setIcon(getHealthyImageIcon(stat.getHealth()));
+  timestampField.setText(stat.getTimestampString());
+  this.updateGui();
+}

@@ -1,0 +1,26 @@
+{
+  Dimension lsize=new Dimension(130,18);
+  JPanel legend=new JPanel();
+  legend.setLayout(new FlowLayout());
+  JLabel health=new JLabel(LEGEND_HEALTH);
+  health.setFont(plaintext);
+  health.setPreferredSize(lsize);
+  health.setIcon(LEGEND_HEALTH_ICON);
+  legend.add(health);
+  JLabel load=new JLabel(LEGEND_LOAD);
+  load.setFont(plaintext);
+  load.setPreferredSize(lsize);
+  load.setIcon(LEGEND_LOAD_ICON);
+  legend.add(load);
+  JLabel mem=new JLabel(LEGEND_MEM);
+  mem.setFont(plaintext);
+  mem.setPreferredSize(lsize);
+  mem.setIcon(LEGEND_MEM_ICON);
+  legend.add(mem);
+  JLabel thd=new JLabel(LEGEND_THREAD);
+  thd.setFont(plaintext);
+  thd.setPreferredSize(lsize);
+  thd.setIcon(LEGEND_THREAD_ICON);
+  legend.add(thd);
+  return legend;
+}

@@ -1,0 +1,18 @@
+{
+  ImageIcon i=null;
+switch (health) {
+case Stats.HEALTHY:
+    i=HEALTHY;
+  break;
+case Stats.ACTIVE:
+i=ACTIVE;
+break;
+case Stats.WARNING:
+i=WARNING;
+break;
+case Stats.DEAD:
+i=DEAD;
+break;
+}
+return i;
+}

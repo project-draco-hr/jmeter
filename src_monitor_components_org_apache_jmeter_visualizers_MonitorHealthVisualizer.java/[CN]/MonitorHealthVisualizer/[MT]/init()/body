@@ -1,0 +1,7 @@
+{
+  this.setLayout(new BorderLayout());
+  Border margin=new EmptyBorder(10,10,5,10);
+  this.setBorder(margin);
+  this.add(this.makeTitlePanel(),BorderLayout.NORTH);
+  this.createTabs();
+}
