@@ -6,7 +6,7 @@
   boolean trimmed=true;
   if (writer == null) {
     trimmed=trimLastLine(filename);
-    writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),"UTF-8"));
+    writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),"UTF-8"),true);
     files.put(filename,writer);
   }
   if (!trimmed) {
