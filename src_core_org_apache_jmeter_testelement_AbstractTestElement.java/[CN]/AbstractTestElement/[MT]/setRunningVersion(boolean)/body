@@ -1,4 +1,5 @@
 {
+  log.debug("Setting " + this.getClass() + " to running version: "+ runningVersion);
   this.runningVersion=runningVersion;
   PropertyIterator iter=propertyIterator();
   while (iter.hasNext()) {

@@ -21,6 +21,7 @@
   }
   notifier=new ListenerNotifier();
   schcdule_run=true;
+  JMeterContextService.getContext().setSamplingStarted(true);
   while (iter.hasNext()) {
     ThreadGroup group=(ThreadGroup)iter.next();
     threads=new JMeterThread[group.getNumThreads()];
