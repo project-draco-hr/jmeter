@@ -8,6 +8,7 @@
     }
     TestSuite ts=new TestSuite(item.getClass().getName());
     ts.addTest(new JMeterTest("runFunction",(Function)item));
+    ts.addTest(new JMeterTest("runFunction2",(Function)item));
     suite.addTest(ts);
   }
   return suite;
