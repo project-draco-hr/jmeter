@@ -3,7 +3,8 @@
   StringBuffer header=new StringBuffer();
   for (PropertyIterator enum=getCookies().iterator(); enum.hasNext(); ) {
     Cookie cookie=(Cookie)enum.next().getObjectValue();
-    if (url.getHost().endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && (System.currentTimeMillis() / 1000) <= cookie.getExpires()) {
+    String host="." + url.getHost();
+    if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && (System.currentTimeMillis() / 1000) <= cookie.getExpires()) {
       if (header.length() > 0) {
         header.append("; ");
       }

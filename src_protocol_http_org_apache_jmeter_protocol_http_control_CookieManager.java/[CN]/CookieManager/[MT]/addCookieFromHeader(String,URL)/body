@@ -5,7 +5,7 @@
   int index=nvp.indexOf("=");
   String name=nvp.substring(0,index);
   String value=nvp.substring(index + 1);
-  String domain=url.getHost();
+  String domain="." + url.getHost();
   String path="/";
   Cookie newCookie=new Cookie(name,value,domain,path,false,System.currentTimeMillis() + 1000 * 60 * 60* 24);
   while (st.hasMoreTokens()) {
@@ -28,7 +28,11 @@
       }
     }
  else     if (key.equalsIgnoreCase("domain")) {
-      newCookie.setDomain(nvp.substring(index + 1));
+      domain=nvp.substring(index + 1);
+      if (!domain.startsWith(".")) {
+        domain="." + domain;
+      }
+      newCookie.setDomain(domain);
     }
  else     if (key.equalsIgnoreCase("path")) {
       newCookie.setPath(nvp.substring(index + 1));

@@ -1,0 +1,7 @@
+{
+  CookieManager man=new CookieManager();
+  URL url=new URL("http://ache.org/");
+  man.addCookieFromHeader("test=1",url);
+  url=new URL("http://jakarta.apache.org/");
+  assertNull(man.getCookieHeaderForURL(url));
+}

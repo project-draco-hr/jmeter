@@ -1,0 +1,6 @@
+{
+  CookieManager man=new CookieManager();
+  URL url=new URL("http://jakarta.apache.org/");
+  man.addCookieFromHeader("test=1;domain=.jakarta.apache.org",url);
+  assertNotNull(man.getCookieHeaderForURL(url));
+}
