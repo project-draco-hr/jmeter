@@ -1,3 +1,8 @@
 {
-  return createJavaClient().runTest(createArgumentsHashMap(getArguments()));
+  if (javaClient == null) {
+    log.debug(whoAmI() + "Creating Java Client");
+    createJavaClient();
+    javaClient.setupTest(createArgumentsHashMap(getArguments()));
+  }
+  return javaClient.runTest(createArgumentsHashMap(getArguments()));
 }

@@ -2,18 +2,9 @@
   if (javaClient == null) {
     try {
       Class javaClass=Class.forName(getClassname().trim(),false,Thread.currentThread().getContextClassLoader());
-      java.lang.reflect.Constructor[] constructors=javaClass.getConstructors();
-      for (int i=0; i < constructors.length; i++) {
-        Class[] params=constructors[i].getParameterTypes();
-        if (params.length == 0) {
-          Object[] args={};
-          javaClient=(JavaSamplerClient)constructors[i].newInstance(args);
-          javaClient.setupTest(createArgumentsHashMap(getArguments()));
-          if (log.isDebugEnabled()) {
-            log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(javaClient.hashCode()));
-          }
-          break;
-        }
+      javaClient=(JavaSamplerClient)javaClass.newInstance();
+      if (log.isDebugEnabled()) {
+        log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(javaClient.hashCode()));
       }
     }
  catch (    Exception e) {
