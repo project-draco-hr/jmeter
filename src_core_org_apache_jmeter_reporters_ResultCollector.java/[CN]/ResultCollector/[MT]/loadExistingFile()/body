@@ -1,12 +1,19 @@
 {
   inLoading=true;
   if (new File(getFilename()).exists()) {
+    clearVisualizer();
     try {
       Configuration savedSamples=getConfiguration(getFilename());
-      clearVisualizer();
       readSamples(savedSamples);
     }
- catch (    Exception e) {
+ catch (    SAXException e) {
+      BufferedReader dataReader=new BufferedReader(new FileReader(getFilename()));
+      String line;
+      while ((line=dataReader.readLine()) != null) {
+        sendToVisualizer(SaveService.makeResultFromDelimitedString(line));
+      }
+    }
+catch (    Exception e) {
       log.error("",e);
     }
   }

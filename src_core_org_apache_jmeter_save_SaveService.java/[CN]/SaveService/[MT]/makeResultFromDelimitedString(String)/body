@@ -1,0 +1,51 @@
+{
+  SampleResult result=new SampleResult();
+  StringTokenizer splitter=new StringTokenizer(delim,defaultDelimiter);
+  String text=null;
+  if (printMilliseconds) {
+    text=splitter.nextToken();
+    result.setTimeStamp(Long.parseLong(text));
+  }
+ else   if (formatter != null) {
+    text=splitter.nextToken();
+    try {
+      Date stamp=formatter.parse(text);
+      result.setTimeStamp(stamp.getTime());
+    }
+ catch (    ParseException e) {
+      e.printStackTrace();
+    }
+  }
+  if (saveTime) {
+    text=splitter.nextToken();
+    result.setTime(Long.parseLong(text));
+  }
+  if (saveLabel) {
+    text=splitter.nextToken();
+    result.setSampleLabel(text);
+  }
+  if (saveResponseCode) {
+    text=splitter.nextToken();
+    result.setResponseCode(text);
+  }
+  if (saveResponseMessage) {
+    text=splitter.nextToken();
+    result.setResponseMessage(text);
+  }
+  if (saveThreadName) {
+    text=splitter.nextToken();
+    result.setThreadName(text);
+  }
+  if (saveDataType) {
+    text=splitter.nextToken();
+    result.setDataType(text);
+  }
+  if (saveSuccessful) {
+    text=splitter.nextToken();
+    result.setSuccessful(new Boolean(text).booleanValue());
+  }
+  if (saveAssertionResultsFailureMessage) {
+    text=splitter.nextToken();
+  }
+  return result;
+}
