@@ -5,7 +5,7 @@
     mainFrame.setEditMenu(menu);
   }
  catch (  NullPointerException e) {
-    System.out.println("Null pointer: JMeterTreeListener.updateMenuItem()");
-    e.printStackTrace();
+    log.error("Null pointer: JMeterTreeListener.updateMenuItem()",e);
+    log.error("",e);
   }
 }

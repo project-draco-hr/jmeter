@@ -3,6 +3,6 @@
     listener.testEnded(host);
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
 }

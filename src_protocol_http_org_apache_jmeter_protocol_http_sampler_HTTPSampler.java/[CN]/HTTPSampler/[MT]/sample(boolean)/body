@@ -52,7 +52,7 @@
     return res;
   }
  catch (  IOException ex) {
-    ex.printStackTrace();
+    log.error("",ex);
     res.setDataType(res.TEXT);
     try {
       res.setResponseData(readResponse(conn));

@@ -4,7 +4,7 @@
   while (iter.hasNext() && iter2.hasNext()) {
     JMenuItem start=(JMenuItem)iter.next();
     JMenuItem stop=(JMenuItem)iter2.next();
-    System.out.println("host = " + host + " start = "+ start.getText());
+    log.info("host = " + host + " start = "+ start.getText());
     if (start.getText().equals(host)) {
       start.setEnabled(!running);
     }

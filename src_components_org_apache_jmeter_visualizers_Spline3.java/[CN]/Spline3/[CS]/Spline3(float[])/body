@@ -9,16 +9,14 @@
   try {
     long startTime=System.currentTimeMillis();
     this.interpolation();
-    if (DEBUG) {
+    if (log.isDebugEnabled()) {
       long endTime=System.currentTimeMillis();
       long elapsedTime=endTime - startTime;
-      System.out.print("New Spline curve interpolated in ");
-      System.out.println(elapsedTime + " ms");
+      log.debug("New Spline curve interpolated in ");
+      log.debug(elapsedTime + " ms");
     }
   }
  catch (  Exception e) {
-    System.err.print("Error when interpolating : ");
-    System.err.println(e);
-    e.printStackTrace();
+    log.error("Error when interpolating : ",e);
   }
 }

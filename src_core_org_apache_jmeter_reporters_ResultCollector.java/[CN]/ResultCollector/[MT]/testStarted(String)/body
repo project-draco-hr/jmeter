@@ -4,7 +4,7 @@
     initializeFileOutput();
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   inTest=true;
 }

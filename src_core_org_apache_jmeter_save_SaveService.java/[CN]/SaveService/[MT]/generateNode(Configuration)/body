@@ -4,14 +4,7 @@
     element=createTestElement(config.getChild("testelement"));
   }
  catch (  Exception e) {
-    try {
-      PrintWriter logger=new PrintWriter(new FileWriter("c:\\log.txt"));
-      e.printStackTrace(logger);
-      logger.close();
-      System.out.println("Problem loading part of file");
-    }
- catch (    Exception err) {
-    }
+    log.error("Problem loading part of file",e);
     return null;
   }
   ListedHashTree subTree=new ListedHashTree(element);

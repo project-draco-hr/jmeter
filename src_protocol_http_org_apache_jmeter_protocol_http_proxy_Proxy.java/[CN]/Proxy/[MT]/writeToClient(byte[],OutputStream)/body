@@ -2,10 +2,10 @@
   try {
     out.write(inBytes);
     out.flush();
-    System.out.println("Done writing to client");
+    log.info("Done writing to client");
   }
  catch (  IOException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
  finally {
     try {

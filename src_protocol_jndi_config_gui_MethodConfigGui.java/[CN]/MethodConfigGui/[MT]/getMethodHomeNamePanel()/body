@@ -1,5 +1,5 @@
 {
-  catClass.info("Start : getMethodHomeNamePanel1");
+  log.info("Start : getMethodHomeNamePanel1");
   JPanel panel=new JPanel();
   panel.add(new JLabel(JMeterUtils.getResString("jndi_method_home_name")));
   String methodName=model.getMethodHomeName();
@@ -7,6 +7,6 @@
     methodHomeNameBox.setSelectedItem(methodName);
   }
   panel.add(methodHomeNameBox);
-  catClass.info("End : getMethodHomeNamePanel1");
+  log.info("End : getMethodHomeNamePanel1");
   return panel;
 }

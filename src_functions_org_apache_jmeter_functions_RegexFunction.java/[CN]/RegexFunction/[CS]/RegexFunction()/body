@@ -3,6 +3,6 @@
     templatePattern=compiler.compile("\\$(\\d+)\\$");
   }
  catch (  MalformedPatternException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 }

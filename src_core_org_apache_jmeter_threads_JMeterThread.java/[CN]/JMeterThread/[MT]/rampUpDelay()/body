@@ -4,7 +4,7 @@
       Thread.sleep(initialDelay);
     }
  catch (    InterruptedException e) {
-      e.printStackTrace();
+      log.error("",e);
     }
   }
 }

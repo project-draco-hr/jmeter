@@ -20,7 +20,7 @@
     }
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
     maxConnections=1;
   }
   connectionArray=new ConnectionObject[maxConnections];

@@ -3,7 +3,7 @@
     return new ImageIcon(JMeterUtils.class.getClassLoader().getResource("org/apache/jmeter/images/" + name.trim()));
   }
  catch (  NullPointerException e) {
-    System.out.println(name);
+    log.warn("no icon for " + name);
     return null;
   }
 }

@@ -4,12 +4,12 @@
       s=new Socket(host,port);
     }
  else {
-      System.out.println("creating socket on " + port);
+      log.info("creating socket on " + port);
       ServerSocket server=new ServerSocket(port);
-      System.out.println("accepting...");
+      log.info("accepting...");
       portCreated=true;
       s=server.accept();
-      System.out.println("accepted");
+      log.info("accepted");
     }
   }
  catch (  Exception e) {
@@ -27,7 +27,7 @@
     s.close();
   }
  catch (  Exception e) {
-    System.out.println("FTP client: dataGrabber - " + e.toString());
+    log.error("FTP client: dataGrabber",e);
   }
   done=true;
 }

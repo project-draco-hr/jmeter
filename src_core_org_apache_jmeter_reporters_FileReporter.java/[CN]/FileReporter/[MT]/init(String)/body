@@ -31,11 +31,10 @@
       v.addElement(value);
     }
  catch (    NumberFormatException nfe) {
-      System.out.println(nfe.toString());
-      System.out.println("This line could not be parsed: " + line);
+      log.error("This line could not be parsed: " + line,nfe);
     }
 catch (    Exception e) {
-      System.out.println(e.toString());
+      log.error("This line caused a problem: " + line,e);
     }
   }
   reader.close();

@@ -13,7 +13,7 @@
         remoteEngines.put(name,engine);
       }
  catch (      Exception ex) {
-        ex.printStackTrace();
+        log.error("",ex);
         JMeterUtils.reportErrorToUser("Bad call to remote host");
         return;
       }

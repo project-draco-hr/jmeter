@@ -5,9 +5,8 @@
     allUsers=readXMLParameters.getXMLParameters(getXmlUri());
   }
  catch (  Exception e) {
-    e.printStackTrace();
-    System.err.println("Unable to read parameters from xml file " + getXmlUri());
-    System.err.println("No unique values for http requests will be substituted for each thread");
+    log.error("Unable to read parameters from xml file " + getXmlUri());
+    log.error("No unique values for http requests will be substituted for each thread",e);
   }
   allAvailableUsers=new UserSequence(allUsers);
 }

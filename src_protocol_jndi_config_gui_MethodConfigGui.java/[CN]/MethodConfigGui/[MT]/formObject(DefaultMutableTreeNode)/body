@@ -1,24 +1,24 @@
 {
-  catClass.info("Start : formObject1");
+  log.info("Start : formObject1");
   Object obj=node.getUserObject();
   Object returnVal=null;
   if (obj instanceof MethodConfigUserObject) {
     MethodConfigUserObject userObject=(MethodConfigUserObject)obj;
     returnVal=userObject.getObject();
-    if (catClass.isDebugEnabled()) {
-      catClass.debug("formObject1 : primitive - " + userObject);
+    if (log.isDebugEnabled()) {
+      log.debug("formObject1 : primitive - " + userObject);
     }
   }
  else   if (obj instanceof Class) {
     Class type=(Class)obj;
     if (type.isPrimitive()) {
       String errorStr=type.getName() + " is a primitive with uninitialized values";
-      catClass.error("formObject1 : " + errorStr);
+      log.error("formObject1 : " + errorStr);
       throw new MethodConfigUserObjectException(errorStr);
     }
  else {
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("formObject1 : Creating object - " + type);
+      if (log.isDebugEnabled()) {
+        log.debug("formObject1 : Creating object - " + type);
       }
       int childCount=node.getChildCount();
       Object[] constituents=new Object[childCount];
@@ -28,22 +28,22 @@
       Field[] fields=type.getFields();
       try {
         for (int i=0; i < constituents.length; i++) {
-          catClass.debug("formObject1 : setting - " + fields[i].getName());
-          catClass.debug("formObject1 : to value - " + constituents[i] + " of - "+ constituents[i].getClass());
+          log.debug("formObject1 : setting - " + fields[i].getName());
+          log.debug("formObject1 : to value - " + constituents[i] + " of - "+ constituents[i].getClass());
           returnVal=type.newInstance();
           fields[i].set(returnVal,constituents[i]);
         }
       }
  catch (      IllegalAccessException e) {
-        catClass.error(e);
+        log.error(e);
         throw new MethodConfigUserObjectException(e.getMessage());
       }
 catch (      InstantiationException e) {
-        catClass.error(e);
+        log.error(e);
         throw new MethodConfigUserObjectException(e.getMessage());
       }
     }
   }
-  catClass.info("End : formObject1");
+  log.info("End : formObject1");
   return returnVal;
 }

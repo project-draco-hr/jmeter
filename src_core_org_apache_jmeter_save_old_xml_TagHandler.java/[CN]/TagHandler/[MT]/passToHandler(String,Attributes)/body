@@ -10,10 +10,10 @@
     unknownTagStart(localName,atts);
   }
 catch (  InvocationTargetException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 catch (  IllegalAccessException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   callTagCombo(atts);
 }

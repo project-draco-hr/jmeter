@@ -9,6 +9,6 @@
     remote.runTest();
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
 }

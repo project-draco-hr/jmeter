@@ -4,6 +4,6 @@
     addObjectToTree(gui);
   }
  catch (  Exception err) {
-    err.printStackTrace();
+    log.error("",err);
   }
 }

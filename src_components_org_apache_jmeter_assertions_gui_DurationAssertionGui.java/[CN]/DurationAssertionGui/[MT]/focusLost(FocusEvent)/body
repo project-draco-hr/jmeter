@@ -12,7 +12,7 @@
       isInvalid=true;
     }
     if (isInvalid) {
-      System.out.println("DurationAssertionGui: Not a valid number!");
+      log.warn("DurationAssertionGui: Not a valid number!");
       JOptionPane.showMessageDialog(null,JMeterUtils.getResString("duration_assertion_input_error"),"Error",JOptionPane.ERROR_MESSAGE);
     }
   }

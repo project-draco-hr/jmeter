@@ -6,7 +6,7 @@
     filename=LRUfilename=null;
     date=null;
     if (htable.isEmpty()) {
-      System.out.println("Could not make free space: Hash table empty...");
+      log.info("Could not make free space: Hash table empty...");
       return;
     }
     for (Enumeration keys=htable.keys(); keys.hasMoreElements(); ) {
@@ -23,7 +23,7 @@
       config.setBytesCached(config.getBytesCached() - nbytes);
     }
  else {
-      System.out.println("File " + LRUfilename + " could not be deleted...");
+      log.info("File " + LRUfilename + " could not be deleted...");
       return;
     }
   }

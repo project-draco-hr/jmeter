@@ -4,7 +4,7 @@
     return new Perl5Matcher().contains(rawData,pattern);
   }
  catch (  MalformedPatternException e) {
-    e.printStackTrace();
+    log.error("",e);
     return false;
   }
 }

@@ -7,7 +7,7 @@
     loadExistingFile();
   }
  catch (  SAXException e) {
-    e.printStackTrace();
+    log.error("",e);
     throw new IOException("File " + f + " was improperly formatted");
   }
 catch (  ConfigurationException e) {

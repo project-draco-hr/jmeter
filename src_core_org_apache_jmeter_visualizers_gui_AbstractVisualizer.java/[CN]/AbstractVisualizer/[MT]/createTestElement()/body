@@ -15,7 +15,7 @@
     }
   }
  catch (  IOException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   return (TestElement)collector.clone();
 }

@@ -4,6 +4,6 @@
     SwingUtilities.invokeLater(this);
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 }

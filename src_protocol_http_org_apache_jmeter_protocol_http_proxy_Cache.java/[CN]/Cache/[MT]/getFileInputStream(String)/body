@@ -7,7 +7,7 @@
   }
  catch (  FileNotFoundException fnf) {
     try {
-      System.out.println("File Not Found:" + getFileName(rawUrl) + " "+ fnf);
+      log.warn("File Not Found:" + getFileName(rawUrl),fnf);
     }
  catch (    Exception e) {
     }

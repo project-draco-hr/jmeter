@@ -5,9 +5,9 @@
     }
   }
  else   if (columnIndex == 1) {
-    System.out.print("rowIndex = " + rowIndex);
+    log.info("rowIndex = " + rowIndex);
     if ((rowIndex >= 0) && (rowIndex < urlList.size())) {
-      System.out.println(" url = " + urlList.get(rowIndex));
+      log.info(" url = " + urlList.get(rowIndex));
       return urlList.get(rowIndex);
     }
   }

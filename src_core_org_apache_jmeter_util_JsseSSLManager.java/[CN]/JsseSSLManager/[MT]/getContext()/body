@@ -15,7 +15,7 @@
       JmeterKeyStore keys=this.getKeyStore();
       managerFactory.init(null,this.defaultpw.toCharArray());
       KeyManager[] managers=managerFactory.getKeyManagers();
-      System.out.println(keys.getClass().toString());
+      log.info(keys.getClass().toString());
       for (int i=0; i < managers.length; i++) {
         if (managers[i] instanceof X509KeyManager) {
           X509KeyManager manager=(X509KeyManager)managers[i];
@@ -33,10 +33,10 @@
     int len=(dCiphers.length > sCiphers.length) ? dCiphers.length : sCiphers.length;
     for (int i=0; i < len; i++) {
       if (i < dCiphers.length) {
-        System.out.println("Default Cipher: " + dCiphers[i]);
+        log.info("Default Cipher: " + dCiphers[i]);
       }
       if (i < sCiphers.length) {
-        System.out.println("Supported Cipher: " + sCiphers[i]);
+        log.info("Supported Cipher: " + sCiphers[i]);
       }
     }
   }

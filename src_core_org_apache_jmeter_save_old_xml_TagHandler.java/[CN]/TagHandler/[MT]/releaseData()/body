@@ -12,7 +12,7 @@
  catch (    NoSuchMethodException e) {
     }
 catch (    Exception ex) {
-      ex.printStackTrace();
+      log.error("",ex);
     }
   }
   dataStore=null;

@@ -4,7 +4,7 @@
       ((SaveHandler)((Saveable)obj).getTagHandlerClass().newInstance()).save((Saveable)obj,out);
     }
  catch (    Exception ex) {
-      ex.printStackTrace();
+      log.error("",ex);
     }
   }
  else {

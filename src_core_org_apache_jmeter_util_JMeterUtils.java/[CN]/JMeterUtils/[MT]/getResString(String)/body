@@ -9,7 +9,7 @@
     resString=RESOURCES.getString(key);
   }
  catch (  MissingResourceException mre) {
-    System.out.println("ERROR! Resource string not found: [" + key + "]");
+    log.warn("ERROR! Resource string not found: [" + key + "]");
     resString="";
   }
   return resString;

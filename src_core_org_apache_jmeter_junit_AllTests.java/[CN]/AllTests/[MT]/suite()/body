@@ -8,15 +8,15 @@
         suite.addTest(new TestSuite(Class.forName(name)));
       }
  catch (      Exception ex) {
-        System.out.println("error adding test :" + ex);
+        log.error("error adding test :" + ex);
       }
     }
   }
  catch (  IOException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 catch (  ClassNotFoundException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   return suite;
 }

@@ -1,4 +1,4 @@
 {
-  System.out.println("WrappedX509Manager: chooseServerAlias: " + this.manager.chooseServerAlias(keyType,issuers));
+  log.info("WrappedX509Manager: chooseServerAlias: " + this.manager.chooseServerAlias(keyType,issuers));
   return this.manager.chooseServerAlias(keyType,issuers);
 }

@@ -7,7 +7,7 @@
     listClasses=ClassFinder.findClassesThatExtend(new Class[]{Class.forName("org.apache.jmeter.gui.action.Command")});
     commands=new HashMap(listClasses.size());
     if (listClasses.size() == 0) {
-      System.out.println("!!!!!Uh-oh, didn't find any action handlers!!!!!");
+      log.warn("!!!!!Uh-oh, didn't find any action handlers!!!!!");
     }
     iterClasses=listClasses.iterator();
     while (iterClasses.hasNext()) {
@@ -29,7 +29,6 @@
     }
   }
  catch (  Exception e) {
-    System.out.println("exception finding action handlers");
-    e.printStackTrace();
+    log.error("exception finding action handlers",e);
   }
 }

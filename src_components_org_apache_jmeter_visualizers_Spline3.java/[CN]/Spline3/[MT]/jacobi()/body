@@ -3,8 +3,8 @@
   float[] newX=new float[_n];
   float[] oldX=new float[_n];
   if (!converge()) {
-    if (DEBUG) {
-      System.err.println("Warning : " + "equation system resolving is unstable");
+    if (log.isDebugEnabled()) {
+      log.debug("Warning : " + "equation system resolving is unstable");
     }
   }
   for (i=0; i < _n; i++) {
@@ -28,19 +28,19 @@
     iterations++;
   }
   if (this.precision(oldX,newX) < this._minPrecision) {
-    if (DEBUG) {
-      System.out.print("Minimal precision (");
-      System.out.print(this._minPrecision + ") reached after ");
-      System.out.println(iterations + " iterations");
+    if (log.isDebugEnabled()) {
+      log.debug("Minimal precision (");
+      log.debug(this._minPrecision + ") reached after ");
+      log.debug(iterations + " iterations");
     }
   }
  else   if (iterations > this._maxIterations) {
-    if (DEBUG) {
-      System.out.print("Maximal number of iterations (");
-      System.out.println(this._maxIterations + ") reached");
-      System.out.print("Warning : precision is only ");
-      System.out.print(this.precision(oldX,newX));
-      System.out.println(", divergence is possible");
+    if (log.isDebugEnabled()) {
+      log.debug("Maximal number of iterations (");
+      log.debug(this._maxIterations + ") reached");
+      log.debug("Warning : precision is only ");
+      log.debug("" + this.precision(oldX,newX));
+      log.debug(", divergence is possible");
     }
   }
   for (i=0; i < _n; i++) {

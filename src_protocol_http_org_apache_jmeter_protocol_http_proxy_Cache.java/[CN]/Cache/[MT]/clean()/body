@@ -1,5 +1,5 @@
 {
-  System.out.println("Cleaning the cache...");
+  log.info("Cleaning the cache...");
   for (Enumeration keys=htable.keys(); keys.hasMoreElements(); ) {
     String filename=(String)keys.nextElement();
     File file=new File(filename);
@@ -15,5 +15,5 @@
   }
   config.setHits(0);
   config.setMisses(0);
-  System.out.println("Cache is clean.");
+  log.info("Cache is clean.");
 }

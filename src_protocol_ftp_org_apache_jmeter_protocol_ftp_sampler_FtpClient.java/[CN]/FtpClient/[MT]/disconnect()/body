@@ -4,7 +4,7 @@
     getResponse();
   }
  catch (  Exception e) {
-    System.out.println("FTP client - " + e.toString());
+    log.error("FTP client - ",e);
   }
   try {
     in.close();
@@ -12,6 +12,6 @@
     s.close();
   }
  catch (  Exception e) {
-    System.out.println("FTP client - " + e.toString());
+    log.error("FTP client - ",e);
   }
 }

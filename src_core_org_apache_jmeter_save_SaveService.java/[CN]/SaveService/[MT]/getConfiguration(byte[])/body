@@ -4,7 +4,7 @@
     config.setValue(new String(bin,"utf-8"));
   }
  catch (  UnsupportedEncodingException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   return config;
 }

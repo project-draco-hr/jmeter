@@ -5,6 +5,7 @@
   Map user;
   if (indexOfUsers.hasNext()) {
     user=(Map)indexOfUsers.next();
+    log.debug("UserSequence.getNextuserMods(): current parameters will be changed to: " + user);
   }
  else {
     user=new HashMap();

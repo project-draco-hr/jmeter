@@ -22,7 +22,7 @@
             compiledComponents.addLast(func);
           }
  catch (          Exception e) {
-            e.printStackTrace();
+            log.error("",e);
             throw new InvalidVariableException();
           }
         }

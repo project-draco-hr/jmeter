@@ -1,5 +1,5 @@
 {
-  catClass.info("Start : init1");
+  log.info("Start : init1");
   GuiPackage guiPkg=GuiPackage.getInstance();
   frame=guiPkg.getMainFrame();
   model.setState(MethodConfig.METHOD_GET_HOME_NAMES);
@@ -9,7 +9,7 @@
   methodHomeNameBox.setAlignmentX(Component.LEFT_ALIGNMENT);
   methodHomeNameBox.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
-      catClass.debug("actionPerformed1 : Home name method JComboBox changed");
+      log.debug("actionPerformed1 : Home name method JComboBox changed");
       JComboBox comboBox=(JComboBox)e.getSource();
       String method=(String)methodHomeNameBox.getSelectedItem();
       model.setMethodHomeName(method);
@@ -28,7 +28,7 @@
   remoteInterfaceBox.setAlignmentX(Component.LEFT_ALIGNMENT);
   remoteInterfaceBox.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
-      catClass.debug("actionPerformed1 : Remote Interface JComboBox changed");
+      log.debug("actionPerformed1 : Remote Interface JComboBox changed");
       JComboBox comboBox=(JComboBox)e.getSource();
       String interfaceName=(String)remoteInterfaceBox.getSelectedItem();
       ArrayList remoteInterfaceList=(ArrayList)model.getRemoteInterfaceList();
@@ -61,7 +61,7 @@
   methodRemoteNameBox.setAlignmentX(Component.LEFT_ALIGNMENT);
   methodRemoteNameBox.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
-      catClass.debug("actionPerformed1 : Remote method name JComboBox changed");
+      log.debug("actionPerformed1 : Remote method name JComboBox changed");
       JComboBox comboBox=(JComboBox)e.getSource();
       String method=(String)methodRemoteNameBox.getSelectedItem();
       model.setMethodRemoteName(method);
@@ -106,5 +106,5 @@
   jndiPanel.add(controlPanel);
   mainPanel.add(jndiPanel);
   this.add(mainPanel);
-  catClass.info("End : init1");
+  log.info("End : init1");
 }

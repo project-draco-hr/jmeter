@@ -1,6 +1,6 @@
 {
   try {
-    System.out.println("Running the test!");
+    log.info("Running the test!");
     running=true;
     compileTree();
     List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));

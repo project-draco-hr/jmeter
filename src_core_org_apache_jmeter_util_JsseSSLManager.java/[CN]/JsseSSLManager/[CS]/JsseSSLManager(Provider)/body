@@ -19,5 +19,5 @@
     System.setProperty("javax.net.debug","all");
   }
   this.getContext();
-  System.out.println("JsseSSLManager installed");
+  log.info("JsseSSLManager installed");
 }

@@ -7,7 +7,7 @@
       readSamples(savedSamples);
     }
  catch (    Exception e) {
-      e.printStackTrace();
+      log.error("",e);
     }
   }
   inLoading=false;

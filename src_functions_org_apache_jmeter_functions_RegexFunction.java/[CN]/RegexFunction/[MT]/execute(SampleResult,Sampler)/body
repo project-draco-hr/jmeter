@@ -13,7 +13,7 @@
     }
   }
  catch (  NumberFormatException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   if (collectAllMatches.size() == 0) {
     return defaultValue;

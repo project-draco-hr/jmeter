@@ -17,7 +17,7 @@
     out.close();
   }
  catch (  FileNotFoundException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
   System.exit(0);
 }

@@ -3,6 +3,6 @@
     remote.stopTest();
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
 }

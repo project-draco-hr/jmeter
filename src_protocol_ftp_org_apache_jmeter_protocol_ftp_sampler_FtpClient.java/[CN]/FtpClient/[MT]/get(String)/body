@@ -12,7 +12,7 @@
     int lower=getLower(dataPort);
     String ip=InetAddress.getLocalHost().getHostAddress().replace('.',',');
     String port=ip + "," + upper+ ","+ lower;
-    System.out.println("port:" + port);
+    log.info("port:" + port);
     send("PORT " + port);
     getResponse();
     dataGrabber grab=new dataGrabber(ip,dataPort);
@@ -20,8 +20,8 @@
     }
     send("RETR " + file);
     String response=in.readLine();
-    System.out.println(response);
-    System.out.println(dataPort);
+    log.info(response);
+    log.info("" + dataPort);
     data="FTP client - File Not Found";
     if (!response.startsWith("5")) {
       while (!grab.isDone()) {

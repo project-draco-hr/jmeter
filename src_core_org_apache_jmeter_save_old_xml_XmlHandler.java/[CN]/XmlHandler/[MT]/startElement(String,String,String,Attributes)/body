@@ -1,11 +1,12 @@
 {
+  documentElement(localName + ":" + qName,atts);
   TagHandler newXmlObject=informer.getXmlObject(qName,atts);
   if (newXmlObject == null) {
     try {
       getCurrentHandler().passToHandler(qName,atts);
     }
  catch (    Exception ex) {
-      System.out.println("No current Handler for " + qName);
+      log.debug("No current Handler for " + qName);
     }
   }
  else {
@@ -16,7 +17,7 @@
       getCurrentHandler().passToHandler(qName,atts);
     }
  catch (    Exception ex) {
-      System.out.println("(2)No current Handler for " + qName);
+      log.debug("(2)No current Handler for " + qName);
     }
   }
 }

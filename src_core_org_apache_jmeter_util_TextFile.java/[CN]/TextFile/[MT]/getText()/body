@@ -12,7 +12,7 @@
     }
   }
  catch (  IOException ioe) {
-    System.err.println(ioe.getMessage());
+    log.error("",ioe);
   }
   return sb.toString();
 }

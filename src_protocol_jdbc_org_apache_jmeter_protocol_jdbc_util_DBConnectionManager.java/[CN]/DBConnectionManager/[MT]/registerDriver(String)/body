@@ -3,7 +3,7 @@
     DriverManager.registerDriver((Driver)Class.forName(driver).newInstance());
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
     return false;
   }
   return true;

@@ -4,6 +4,6 @@
     Naming.rebind("JMeterEngine",this);
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
 }

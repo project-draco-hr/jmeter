@@ -5,7 +5,7 @@
     running=true;
     Sampler entry=null;
     rampUpDelay();
-    System.out.println("Thread " + Thread.currentThread().getName() + " started");
+    log.info("Thread " + Thread.currentThread().getName() + " started");
     while (running) {
       while (controller.hasNext() && running) {
         notifyThreadListeners();
@@ -19,7 +19,7 @@
           notifyListeners(pack.getSampleListeners(),result);
         }
  catch (        Exception e) {
-          e.printStackTrace();
+          log.error("",e);
         }
       }
       if (controller.isDone()) {

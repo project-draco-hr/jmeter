@@ -11,7 +11,7 @@
         newObject.setProperty(key,cloneCollection(value));
       }
  catch (      Exception e) {
-        e.printStackTrace();
+        log.error("",e);
       }
     }
  else {

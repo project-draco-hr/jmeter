@@ -19,7 +19,7 @@
     target.deliverSampler(sampler,new TestElement[]{headers});
   }
  catch (  UnknownHostException uhe) {
-    System.out.println("Server Not Found.");
+    log.warn("Server Not Found.",uhe);
     try {
       DataOutputStream out=new DataOutputStream(ClientSocket.getOutputStream());
       out.writeBytes(reply.formServerNotFound());
@@ -29,7 +29,7 @@
     }
   }
 catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
     try {
       if (TakenFromCache) {
         fileInputStream.close();
@@ -49,7 +49,7 @@ catch (  Exception e) {
       ClientSocket.close();
     }
  catch (    Exception e) {
-      e.printStackTrace();
+      log.error("",e);
     }
   }
 }

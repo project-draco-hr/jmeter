@@ -1,5 +1,5 @@
 {
-  System.out.println("Sending the applet...");
+  log.info("Sending the applet...");
   String page="";
   try {
     File appletHtmlPage=new File(config.getAdminPath() + File.separator + "Admin.html");
@@ -16,6 +16,6 @@
     out.close();
   }
  catch (  Exception e) {
-    System.out.println("Error: can't open applet html page");
+    log.error("can't open applet html page",e);
   }
 }

@@ -20,7 +20,7 @@
             ((RemoteSampleListener)iter.next()).sampleOccurred(event);
           }
  catch (          Exception ex) {
-            ex.printStackTrace();
+            log.error("",ex);
           }
         }
       }
@@ -29,7 +29,7 @@
       }
     }
  catch (    Throwable ex) {
-      ex.printStackTrace();
+      log.error("",ex);
     }
   }
 }

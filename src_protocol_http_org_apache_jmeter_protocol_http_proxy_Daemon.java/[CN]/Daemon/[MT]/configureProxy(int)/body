@@ -1,7 +1,7 @@
 {
   this.daemonPort=daemonPort;
-  System.out.println("Initializing...");
-  System.out.print("Creating Config Object...");
+  log.info("Initializing...");
+  log.info("Creating Config Object...");
   config=new Config();
   config.setIsAppletContext(false);
   config.setLocalHost(InetAddress.getLocalHost().getHostName());
@@ -11,8 +11,8 @@
   config.setJmxScriptDir("proxy_script");
   File adminDir=new File("Applet");
   config.setAdminPath(adminDir.getAbsolutePath());
-  System.out.println("OK");
-  System.out.print("Creating Cache Manager...");
+  log.info("Proxy: OK");
+  log.info("Creating Cache Manager...");
   cache=new Cache(config);
-  System.out.println("OK");
+  log.info("Proxy: OK");
 }

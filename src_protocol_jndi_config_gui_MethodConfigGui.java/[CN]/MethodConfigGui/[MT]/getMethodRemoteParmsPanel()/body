@@ -1,5 +1,5 @@
 {
-  catClass.info("Start : getMethodRemoteParmsPanel1");
+  log.info("Start : getMethodRemoteParmsPanel1");
   JPanel panel=new JPanel();
   panel.add(new JLabel(JMeterUtils.getResString("jndi_method_remote_parms")));
   rootRemote=new DefaultMutableTreeNode("Root");
@@ -15,11 +15,11 @@
     public void mousePressed(    MouseEvent e){
       TreePath selPath=jTreeRemote.getPathForLocation(e.getX(),e.getY());
       if (e.getClickCount() == 2) {
-        System.out.println("Double clicked on - " + selPath.getLastPathComponent());
+        log.info("Double clicked on - " + selPath.getLastPathComponent());
         DefaultMutableTreeNode node=(DefaultMutableTreeNode)selPath.getLastPathComponent();
         int childCount=node.getChildCount();
         if (childCount == 0) {
-          System.out.println("Pop!!!");
+          log.info("Pop!!!");
           Object userObject=node.getUserObject();
           Class type=null;
           if (userObject instanceof Class) {
@@ -32,7 +32,7 @@
           dialog.pack();
           dialog.setVisible(true);
           MethodConfigUserObject input=dialog.getValidatedInput();
-          System.out.println("input - " + input);
+          log.info("input - " + input);
           if (input != null) {
             node.setUserObject(input);
           }
@@ -42,6 +42,6 @@
   }
 ;
   jTreeRemote.addMouseListener(ml);
-  catClass.info("End : getMethodHomeParmsPanel1");
+  log.info("End : getMethodHomeParmsPanel1");
   return panel;
 }

@@ -7,12 +7,12 @@
     try {
       if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
         this.keyStore=JmeterKeyStore.getInstance("pkcs12");
-        System.out.println("KeyStore Type: PKCS 12");
+        log.info("KeyStore Type: PKCS 12");
         System.setProperty("javax.net.ssl.keyStoreType","pkcs12");
       }
  else {
         this.keyStore=JmeterKeyStore.getInstance("JKS");
-        System.out.println("KeyStore Type: JKS");
+        log.info("KeyStore Type: JKS");
       }
     }
  catch (    Exception e) {
@@ -49,8 +49,8 @@ synchronized (this) {
     }
  catch (    Exception e) {
     }
-    System.out.println("JmeterKeyStore Location: " + fileName);
-    System.out.println("JmeterKeyStore type: " + this.keyStore.getClass().toString());
+    log.info("JmeterKeyStore Location: " + fileName);
+    log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());
   }
   return this.keyStore;
 }

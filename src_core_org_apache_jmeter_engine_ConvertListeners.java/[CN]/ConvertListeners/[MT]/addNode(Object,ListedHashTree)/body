@@ -1,12 +1,12 @@
 {
   if (node instanceof ThreadGroup) {
-    System.out.println("num threads = " + ((ThreadGroup)node).getNumThreads());
+    log.info("num threads = " + ((ThreadGroup)node).getNumThreads());
   }
   Iterator iter=subTree.list().iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
     if (item instanceof ThreadGroup) {
-      System.out.println("num threads = " + ((ThreadGroup)item).getNumThreads());
+      log.info("num threads = " + ((ThreadGroup)item).getNumThreads());
     }
     if (item instanceof Remoteable && (item instanceof TestListener || item instanceof SampleListener)) {
       try {
@@ -25,7 +25,7 @@
         }
       }
  catch (      RemoteException e) {
-        e.printStackTrace();
+        log.error("",e);
       }
     }
   }

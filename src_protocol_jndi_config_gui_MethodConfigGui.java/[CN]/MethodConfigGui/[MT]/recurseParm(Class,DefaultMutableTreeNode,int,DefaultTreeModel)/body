@@ -1,10 +1,10 @@
 {
-  catClass.debug("Start - recurseParm1");
+  log.debug("Start - recurseParm1");
   DefaultMutableTreeNode node=new DefaultMutableTreeNode(parmType);
   treeModel.insertNodeInto(node,parentNode,childIndex);
-  System.out.println("recurseParm1 - parent : " + parentNode);
-  System.out.println("recurseParm1 - parent : " + treeModel.getChildCount(parentNode));
-  System.out.println("recurseParm1 - child : " + treeModel.getChildCount(node));
+  log.info("recurseParm1 - parent : " + parentNode);
+  log.info("recurseParm1 - parent : " + treeModel.getChildCount(parentNode));
+  log.info("recurseParm1 - child : " + treeModel.getChildCount(node));
   if (parmType.isPrimitive()) {
   }
  else   if (parmType.getName().equals(STRING_CLASS)) {
@@ -15,9 +15,9 @@
     Field[] fields=parmType.getFields();
     for (int i=0; i < fields.length; i++) {
       Class fieldClass=fields[i].getType();
-      catClass.debug("recurseParm1 : field #" + i + " - "+ fieldClass);
+      log.debug("recurseParm1 : field #" + i + " - "+ fieldClass);
       recurseParm(fieldClass,node,i,treeModel);
     }
   }
-  catClass.debug("End - recurseParm1");
+  log.debug("End - recurseParm1");
 }

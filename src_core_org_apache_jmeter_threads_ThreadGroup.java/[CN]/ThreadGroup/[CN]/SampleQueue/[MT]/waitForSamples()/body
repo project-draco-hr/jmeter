@@ -3,6 +3,6 @@
     this.wait();
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
 }

@@ -21,7 +21,7 @@
     SaveService.saveSubTree(subTree,writer);
   }
  catch (  Throwable ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
  finally {
     closeWriter(writer);

@@ -20,7 +20,7 @@
         out.writeBytes(config.toString());
         out.flush();
         config.parse(in.readLine());
-        System.out.println("Configuration changed by administrator.");
+        log.info("Configuration changed by administrator.");
         if (config.getCleanCache()) {
           cache.clean();
           config.setCleanCache(false);
@@ -28,7 +28,7 @@
       }
     }
  catch (    Exception e) {
-      System.out.println("Connection with administrator closed.");
+      log.error("Connection with administrator closed.",e);
     }
  finally {
       try {

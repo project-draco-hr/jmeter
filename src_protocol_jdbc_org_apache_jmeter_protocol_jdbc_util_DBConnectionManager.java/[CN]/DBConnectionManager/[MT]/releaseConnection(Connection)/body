@@ -8,7 +8,7 @@
     connOb.release();
   }
  else {
-    System.out.println("DBConnectionManager: Lost a connection connection='" + c + "'\r\n");
+    log.warn("DBConnectionManager: Lost a connection connection='" + c);
     c=null;
   }
 }

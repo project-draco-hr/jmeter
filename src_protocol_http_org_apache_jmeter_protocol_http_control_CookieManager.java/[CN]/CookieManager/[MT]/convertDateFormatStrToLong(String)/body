@@ -6,7 +6,7 @@
   }
  catch (  ParseException e) {
     time=0;
-    System.out.println("DateFormat.ParseException: " + e.getMessage());
+    log.error("DateFormat.ParseException: ",e);
   }
   return time;
 }

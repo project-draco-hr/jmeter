@@ -4,8 +4,7 @@
     gui=(JMeterGUIComponent)Class.forName((String)item.getProperty(TestElement.GUI_CLASS)).newInstance();
   }
  catch (  Exception e) {
-    System.out.println("Couldn't get gui for " + item);
-    e.printStackTrace();
+    log.warn("Couldn't get gui for " + item,e);
     gui=new WorkBenchGui();
   }
   gui.configure(item);

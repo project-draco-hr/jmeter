@@ -1,5 +1,5 @@
 {
-  System.out.println("### Test To:  " + this.address + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failSubject+ ", "+ "Success Subject:  "+ this.successSubject);
+  log.debug("### Test To:  " + this.address + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failSubject+ ", "+ "Success Subject:  "+ this.successSubject);
   String testMessage=("### Test To:  " + this.address + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failSubject+ ", "+ "Success Subject:  "+ this.successSubject);
   Vector addressVector=newAddressVector(address);
   sendMail(from,addressVector,"Testing addressies",testMessage,smtpHost);

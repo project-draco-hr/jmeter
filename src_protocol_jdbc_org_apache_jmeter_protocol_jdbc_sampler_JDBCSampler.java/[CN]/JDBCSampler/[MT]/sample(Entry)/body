@@ -52,7 +52,7 @@
       }
     }
     manager.releaseConnection(con);
-    ex.printStackTrace();
+    log.error("",ex);
   }
   end=System.currentTimeMillis();
   time+=end - start;

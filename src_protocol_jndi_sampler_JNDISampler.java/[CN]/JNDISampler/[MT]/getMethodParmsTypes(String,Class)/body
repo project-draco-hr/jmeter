@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : getMethodParms1");
+  log.debug("Start : getMethodParms1");
   Method[] methods=objectClass.getMethods();
   Method method=null;
   Class[] methodParmTypes=null;
@@ -19,8 +19,8 @@
     }
     strbuff.append(")");
     String name=strbuff.toString();
-    if (catClass.isDebugEnabled()) {
-      catClass.debug("getMethodParms1 : current method to be compared - " + name);
+    if (log.isDebugEnabled()) {
+      log.debug("getMethodParms1 : current method to be compared - " + name);
     }
     if (name.equals(methodName)) {
       method=methods[i];
@@ -31,6 +31,6 @@
   Vector returnValues=new Vector();
   returnValues.add(method);
   returnValues.add(methodParmTypes);
-  catClass.debug("End : getMethodParms1");
+  log.debug("End : getMethodParms1");
   return returnValues;
 }

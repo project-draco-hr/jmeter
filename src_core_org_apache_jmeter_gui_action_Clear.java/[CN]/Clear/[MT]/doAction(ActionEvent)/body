@@ -6,7 +6,7 @@
       ((Clearable)model).clear();
     }
  catch (    Throwable ex) {
-      ex.printStackTrace();
+      log.error("",ex);
     }
   }
  else {
@@ -17,7 +17,7 @@
         item.clear();
       }
  catch (      Exception ex) {
-        ex.printStackTrace();
+        log.error("",ex);
       }
     }
   }

@@ -17,14 +17,14 @@
     msg.setSubject(subject);
     msg.setText(attText);
     Transport.send(msg);
-    System.out.println("Mail sent successfully!!");
+    log.info("Mail sent successfully!!");
   }
  catch (  UnknownHostException e1) {
-    System.out.println("NxError:Invalid Mail Server " + e1);
+    log.fatalError("NxError:Invalid Mail Server ",e1);
     System.exit(1);
   }
 catch (  Exception e) {
-    e.printStackTrace();
+    log.fatalError("",e);
     System.exit(1);
   }
 }

@@ -8,7 +8,7 @@
       }
  else {
         this.trustStore=KeyStore.getInstance("JKS");
-        System.out.println("KeyStore Type: JKS");
+        log.info("KeyStore Type: JKS");
       }
     }
  catch (    Exception e) {
@@ -32,8 +32,8 @@
     }
  catch (    Exception e) {
     }
-    System.out.println("TrustStore Location: " + fileName);
-    System.out.println("TrustStore type: " + this.keyStore.getClass().toString());
+    log.info("TrustStore Location: " + fileName);
+    log.info("TrustStore type: " + this.keyStore.getClass().toString());
   }
   return this.trustStore;
 }

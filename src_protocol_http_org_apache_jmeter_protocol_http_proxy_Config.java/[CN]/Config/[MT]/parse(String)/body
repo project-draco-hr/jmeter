@@ -1,36 +1,36 @@
 {
-  System.out.println("Parsing administrator request...");
+  log.info("Parsing administrator request...");
   int size;
   int i;
   StringTokenizer s=new StringTokenizer(config,separator);
   isFatherProxy=s.nextToken().equals("true");
-  System.out.println("Use father proxy = " + isFatherProxy);
+  log.info("Use father proxy = " + isFatherProxy);
   fatherProxyHost=s.nextToken();
   if (fatherProxyHost.equals("NULL")) {
     fatherProxyHost="";
   }
-  System.out.println("Father proxy name = " + fatherProxyHost);
+  log.info("Father proxy name = " + fatherProxyHost);
   fatherProxyPort=Integer.parseInt(s.nextToken());
-  System.out.println("Father proxy port = " + fatherProxyPort);
+  log.info("Father proxy port = " + fatherProxyPort);
   size=Integer.parseInt(s.nextToken());
   deniedHosts=new String[size];
   for (i=0; i < size; i++) {
     deniedHosts[i]=s.nextToken();
-    System.out.println("Deny access to " + deniedHosts[i]);
+    log.info("Deny access to " + deniedHosts[i]);
   }
   password=s.nextToken();
-  System.out.println("password = " + password);
+  log.info("password = " + password);
   isCaching=s.nextToken().equals("true");
-  System.out.println("Caching = " + isCaching);
+  log.info("Caching = " + isCaching);
   cacheSize=Long.parseLong(s.nextToken());
-  System.out.println("Cache size = " + cacheSize);
+  log.info("Cache size = " + cacheSize);
   cleanCache=s.nextToken().equals("true");
-  System.out.println("Do cache clean up = " + cleanCache);
+  log.info("Do cache clean up = " + cleanCache);
   size=Integer.parseInt(s.nextToken());
   cacheMasks=new String[size];
   for (i=0; i < size; i++) {
     cacheMasks[i]=s.nextToken();
-    System.out.println("Don't cache " + cacheMasks[i]);
+    log.info("Don't cache " + cacheMasks[i]);
   }
   proxyMachineNameAndPort=s.nextToken();
   if (isAppletContext) {

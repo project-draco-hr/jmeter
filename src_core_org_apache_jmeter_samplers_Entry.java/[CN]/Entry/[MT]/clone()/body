@@ -3,7 +3,7 @@
     return super.clone();
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
   return null;
 }

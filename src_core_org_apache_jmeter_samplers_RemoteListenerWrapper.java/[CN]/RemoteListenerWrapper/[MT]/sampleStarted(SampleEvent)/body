@@ -3,6 +3,6 @@
     listener.sampleStarted(e);
   }
  catch (  RemoteException err) {
-    err.printStackTrace();
+    log.error("",err);
   }
 }

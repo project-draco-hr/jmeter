@@ -14,20 +14,20 @@
       }
     }
  catch (    ClassNotFoundException e) {
-      System.err.println("Error loading class " + className + ": class is not found");
+      log.error("Error loading class " + className + ": class is not found");
     }
 catch (    IllegalAccessException e) {
-      System.err.println("Error loading class " + className + ": does not have access");
+      log.error("Error loading class " + className + ": does not have access");
     }
 catch (    InstantiationException e) {
-      System.err.println("Error loading class " + className + ": could not instantiate");
+      log.error("Error loading class " + className + ": could not instantiate");
     }
 catch (    NoClassDefFoundError e) {
-      System.err.println("Error loading class " + className + ": couldn't find class "+ e.getMessage());
+      log.error("Error loading class " + className + ": couldn't find class "+ e.getMessage());
     }
   }
  catch (  ClassNotFoundException e) {
-    System.err.println("Error loading class " + impls + ": was not found.");
+    log.error("Error loading class " + impls + ": was not found.");
   }
   return null;
 }

@@ -56,7 +56,7 @@
       }
     }
  catch (    IOException ex) {
-      ex.printStackTrace();
+      log.error("",ex);
     }
 catch (    NullPointerException err) {
     }
@@ -69,7 +69,7 @@ catch (    NullPointerException err) {
       }
     }
  catch (    IOException ex) {
-      ex.printStackTrace();
+      log.error("",ex);
     }
 catch (    NullPointerException err) {
     }

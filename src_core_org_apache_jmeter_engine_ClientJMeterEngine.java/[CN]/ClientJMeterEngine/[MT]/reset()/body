@@ -3,6 +3,6 @@
     remote.reset();
   }
  catch (  Exception ex) {
-    ex.printStackTrace();
+    log.error("",ex);
   }
 }

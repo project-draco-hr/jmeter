@@ -1,5 +1,5 @@
 {
-  System.out.println("WrappedX509Manager: getClientAliases: ");
-  System.out.println(new String[]{this.store.getAlias()});
+  log.info("WrappedX509Manager: getClientAliases: ");
+  log.info(this.store.getAlias());
   return new String[]{this.store.getAlias()};
 }

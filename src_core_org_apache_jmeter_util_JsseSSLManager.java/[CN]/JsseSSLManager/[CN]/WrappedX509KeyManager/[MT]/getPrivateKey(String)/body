@@ -1,4 +1,4 @@
 {
-  System.out.println("WrappedX509Manager: getPrivateKey: " + this.store.getPrivateKey());
+  log.info("WrappedX509Manager: getPrivateKey: " + this.store.getPrivateKey());
   return this.store.getPrivateKey();
 }

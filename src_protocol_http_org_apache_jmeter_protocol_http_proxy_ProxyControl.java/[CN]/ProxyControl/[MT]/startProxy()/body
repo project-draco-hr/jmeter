@@ -4,6 +4,6 @@
     server.start();
   }
  catch (  UnknownHostException e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 }

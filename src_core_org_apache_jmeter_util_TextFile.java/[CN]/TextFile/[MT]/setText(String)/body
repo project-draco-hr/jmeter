@@ -6,6 +6,6 @@
     writer.close();
   }
  catch (  IOException ioe) {
-    System.err.println(ioe.getMessage());
+    log.error("",ioe);
   }
 }

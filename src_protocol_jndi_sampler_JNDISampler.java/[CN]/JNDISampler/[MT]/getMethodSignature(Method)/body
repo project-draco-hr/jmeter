@@ -1,5 +1,5 @@
 {
-  catClass.debug("Start : getMethodSignature1");
+  log.debug("Start : getMethodSignature1");
   StringBuffer strbuff=new StringBuffer();
   Class[] parameterTypes=method.getParameterTypes();
   strbuff.append(method.getName());
@@ -13,7 +13,7 @@
   }
   strbuff.append(")");
   String returnVal=strbuff.toString();
-  catClass.debug("getMethodSignature1 : method signature - " + returnVal);
-  catClass.debug("End : getMethodSignature1");
+  log.debug("getMethodSignature1 : method signature - " + returnVal);
+  log.debug("End : getMethodSignature1");
   return returnVal;
 }

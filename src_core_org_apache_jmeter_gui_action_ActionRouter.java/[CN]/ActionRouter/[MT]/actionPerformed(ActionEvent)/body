@@ -7,12 +7,12 @@
         ((Command)iter.next()).doAction(e);
       }
  catch (      Exception err) {
-        err.printStackTrace();
+        log.error("",err);
       }
     }
   }
  catch (  NullPointerException er) {
-    er.printStackTrace();
+    log.error("",er);
     JMeterUtils.reportErrorToUser("Sorry, this feature (" + e.getActionCommand() + ") not yet implemented");
   }
 }

@@ -21,7 +21,7 @@ catch (  Throwable ex) {
       legacyLoad(f);
     }
  catch (    Throwable err) {
-      err.printStackTrace();
+      log.error("",err);
       JMeterUtils.reportErrorToUser("Couldn't load JMX file.  May have been corrupted");
     }
   }

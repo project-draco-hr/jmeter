@@ -1,5 +1,5 @@
 {
-  catClass.info("Start : sample1");
+  log.info("Start : sample1");
   boolean reflectionStatus=false;
   boolean stateJustChanged=false;
   long start=(long)0;
@@ -27,8 +27,8 @@
       for (int i=0; i < JndiConfig.JNDI_PROPS.length; i++) {
         String value=jndiConfig.getValue(i);
         if (value != null) {
-          if (catClass.isDebugEnabled()) {
-            catClass.debug("sample1 : JNDI env - " + JndiConfig.JNDI_PROPS[i] + " = "+ value);
+          if (log.isDebugEnabled()) {
+            log.debug("sample1 : JNDI env - " + JndiConfig.JNDI_PROPS[i] + " = "+ value);
           }
           ht.put(JndiConfig.JNDI_PROPS[i],value);
         }
@@ -36,7 +36,7 @@
       start=System.currentTimeMillis();
       ctx=new InitialContext(ht);
       end=System.currentTimeMillis();
-      catClass.info("sample1 : Got initial context");
+      log.info("sample1 : Got initial context");
       jndiConfig.setInitialContext(ctx);
     }
     ctxTime=end - start;
@@ -45,14 +45,14 @@
     String lookupName=null;
     if (lookupConfig != null) {
       lookupName=lookupConfig.getLookupName();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("sample1 : LookupName - " + lookupName);
+      if (log.isDebugEnabled()) {
+        log.debug("sample1 : LookupName - " + lookupName);
       }
       start=System.currentTimeMillis();
       ref=ctx.lookup(lookupName);
       end=System.currentTimeMillis();
       lookupTime=end - start;
-      catClass.info("Got remote interface");
+      log.info("Got remote interface");
       lookupRes.setTime(lookupTime);
       lookupRes.putValue(SampleResult.DISPLAY_NAME,"Remote Interface Lookup - " + lookupName);
     }
@@ -63,9 +63,9 @@
     int state=model.getState();
     reflectionStatus=model.getReflectionStatus();
     String[] strings=null;
-    if (catClass.isDebugEnabled()) {
-      catClass.debug("sample1 : state - " + state);
-      catClass.debug("sample1 : reflectionStatus - " + reflectionStatus);
+    if (log.isDebugEnabled()) {
+      log.debug("sample1 : state - " + state);
+      log.debug("sample1 : reflectionStatus - " + reflectionStatus);
     }
     if ((state == MethodConfig.METHOD_GET_HOME_NAMES && reflectionStatus && !stateJustChanged)) {
       Method[] methods=lookupNameClass.getMethods();
@@ -79,8 +79,8 @@
     }
     if ((state == MethodConfig.METHOD_GET_HOME_PARMS && reflectionStatus && !stateJustChanged)) {
       String methodHomeName=methodConfig.getMethodHomeName();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("sample1 : selected methodHomeName - " + methodHomeName);
+      if (log.isDebugEnabled()) {
+        log.debug("sample1 : selected methodHomeName - " + methodHomeName);
       }
       Vector returnValues=getMethodParmsTypes(methodHomeName,lookupNameClass);
       Method method=(Method)returnValues.get(0);
@@ -91,33 +91,30 @@
       stateJustChanged=true;
     }
     if ((state == MethodConfig.METHOD_INVOKE_HOME && reflectionStatus && !stateJustChanged) || (state >= MethodConfig.METHOD_INVOKE_HOME && !reflectionStatus)) {
-      catClass.debug("sample1 : METHOD_INVOKE_HOME");
+      log.debug("sample1 : METHOD_INVOKE_HOME");
       Method method=model.getHomeMethod();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("sample1 : home method to be invoked - " + method);
+      if (log.isDebugEnabled()) {
+        log.debug("sample1 : home method to be invoked - " + method);
       }
       homeMethodRes=new SampleResult();
       Object[] parmsArray=null;
       try {
         parmsArray=methodConfigGui.getMethodParmsValues(MethodConfig.METHOD_INVOKE_HOME);
-        if (catClass.isDebugEnabled()) {
-          catClass.debug("sample1 : home method parms - " + parmsArray);
+        if (log.isDebugEnabled()) {
+          log.debug("sample1 : home method parms - " + parmsArray);
         }
         start=System.currentTimeMillis();
         remoteInterface=method.invoke(ref,parmsArray);
-        System.out.println("return - " + remoteInterface);
+        log.info("return - " + remoteInterface);
       }
  catch (      IllegalAccessException err) {
-        catClass.error(err);
-        System.out.println(err);
+        log.error(err);
       }
 catch (      InvocationTargetException err) {
-        catClass.error(err);
-        System.out.println(err);
+        log.error(err);
       }
 catch (      MethodConfigUserObjectException err) {
-        catClass.error(err);
-        System.out.println(err);
+        log.error(err);
       }
       end=System.currentTimeMillis();
       if (!reflectionStatus) {
@@ -135,8 +132,8 @@ catch (      MethodConfigUserObjectException err) {
     if ((state == MethodConfig.METHOD_GET_REMOTE_NAMES && reflectionStatus && !stateJustChanged)) {
       remoteInterface=model.getRemoteInterfaceType();
       Class remoteInterfaceClass=remoteInterface.getClass();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("updateGui1 : remoteInterfaceClass - " + remoteInterfaceClass);
+      if (log.isDebugEnabled()) {
+        log.debug("updateGui1 : remoteInterfaceClass - " + remoteInterfaceClass);
       }
       Method[] methods=remoteInterfaceClass.getMethods();
       strings=new String[methods.length];
@@ -149,8 +146,8 @@ catch (      MethodConfigUserObjectException err) {
     }
     if ((state == MethodConfig.METHOD_GET_REMOTE_PARMS && reflectionStatus && !stateJustChanged)) {
       String methodRemoteName=methodConfig.getMethodRemoteName();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("sample1 : selected methodRemoteName - " + methodRemoteName);
+      if (log.isDebugEnabled()) {
+        log.debug("sample1 : selected methodRemoteName - " + methodRemoteName);
       }
       Object selectedRemoteInterfaceType=model.getRemoteInterfaceType();
       Class selectedRemoteInterfaceTypeClass=selectedRemoteInterfaceType.getClass();
@@ -163,10 +160,10 @@ catch (      MethodConfigUserObjectException err) {
       stateJustChanged=true;
     }
     if ((state == MethodConfig.METHOD_INVOKE_REMOTE && reflectionStatus && !stateJustChanged) || (state >= MethodConfig.METHOD_INVOKE_REMOTE && !reflectionStatus)) {
-      catClass.debug("sample1 : METHOD_INVOKE_REMOTE");
+      log.debug("sample1 : METHOD_INVOKE_REMOTE");
       Method method=model.getRemoteMethod();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("sample1 : remote method to be invoked - " + method);
+      if (log.isDebugEnabled()) {
+        log.debug("sample1 : remote method to be invoked - " + method);
       }
       Object selectedRemoteInterfaceType=model.getRemoteInterfaceType();
       remoteMethodRes=new SampleResult();
@@ -175,19 +172,16 @@ catch (      MethodConfigUserObjectException err) {
         parmsArray=methodConfigGui.getMethodParmsValues(MethodConfig.METHOD_INVOKE_REMOTE);
         start=System.currentTimeMillis();
         results=method.invoke(selectedRemoteInterfaceType,parmsArray);
-        System.out.println("return - " + results);
+        log.info("return - " + results);
       }
  catch (      IllegalAccessException err) {
-        catClass.error(err);
-        System.out.println(err);
+        log.error(err);
       }
 catch (      InvocationTargetException err) {
-        catClass.error(err);
-        System.out.println(err);
+        log.error(err);
       }
 catch (      MethodConfigUserObjectException err) {
-        catClass.error(err);
-        System.out.println(err);
+        log.error(err);
       }
       end=System.currentTimeMillis();
       if (!reflectionStatus) {
@@ -221,14 +215,13 @@ catch (      MethodConfigUserObjectException err) {
     }
     res.putValue(SampleResult.RESULT_LIST,resultList);
     res.putValue(SampleResult.TOTAL_TIME,new Long(totalTime));
-    System.out.println("!!!!! ctxTime : " + ctxTime);
-    System.out.println("!!!!! lookupTime : " + lookupTime);
-    System.out.println("!!!!! homeMethodTime : " + homeMethodTime);
+    log.info("!!!!! ctxTime : " + ctxTime);
+    log.info("!!!!! lookupTime : " + lookupTime);
+    log.info("!!!!! homeMethodTime : " + homeMethodTime);
   }
  catch (  NamingException err) {
-    catClass.error(err);
-    System.err.println(err);
+    log.error(err);
   }
-  catClass.info("End : sample1");
+  log.info("End : sample1");
   return res;
 }

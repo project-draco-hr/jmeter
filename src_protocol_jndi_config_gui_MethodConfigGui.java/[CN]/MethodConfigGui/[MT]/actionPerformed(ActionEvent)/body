@@ -2,8 +2,8 @@
   String command=e.getActionCommand();
   ReflectionJMeterEngine engine=null;
   GuiPackage guiPackage=null;
-  if (catClass.isDebugEnabled()) {
-    catClass.debug("actionPerformed1 : command - " + command);
+  if (log.isDebugEnabled()) {
+    log.debug("actionPerformed1 : command - " + command);
   }
   if (command.equals(REFLECT)) {
     guiPackage=GuiPackage.getInstance();
@@ -11,8 +11,8 @@
     engine=new ReflectionJMeterEngine();
     for (Iterator i=groups.iterator(); i.hasNext(); ) {
       ThreadGroup tg=(ThreadGroup)i.next();
-      if (catClass.isDebugEnabled()) {
-        catClass.debug("actionPerformed1 : threadgroup - " + tg);
+      if (log.isDebugEnabled()) {
+        log.debug("actionPerformed1 : threadgroup - " + tg);
       }
       engine.addThreadGroup(tg);
     }

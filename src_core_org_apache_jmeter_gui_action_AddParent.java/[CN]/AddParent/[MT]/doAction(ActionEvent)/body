@@ -5,6 +5,6 @@
     addParentToTree(controller);
   }
  catch (  Exception err) {
-    err.printStackTrace();
+    log.error("",err);
   }
 }

@@ -9,7 +9,7 @@
       Thread.sleep(sum);
     }
  catch (    InterruptedException e) {
-      e.printStackTrace();
+      log.error("",e);
     }
   }
 }

@@ -1,4 +1,4 @@
 {
-  System.out.println("Secure = " + getProperty(SECURE));
+  log.info("Secure = " + getProperty(SECURE));
   return this.getPropertyAsBoolean(SECURE);
 }

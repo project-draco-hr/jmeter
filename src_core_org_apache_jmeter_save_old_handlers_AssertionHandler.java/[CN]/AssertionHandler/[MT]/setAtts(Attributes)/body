@@ -7,6 +7,6 @@
     model.setProperty(TestElement.GUI_CLASS,JMeterHandler.getGuiClass(atts.getValue("class")));
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 }

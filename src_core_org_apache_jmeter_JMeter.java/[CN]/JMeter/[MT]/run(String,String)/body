@@ -22,6 +22,6 @@
   }
  catch (  Exception e) {
     System.out.println("Error in NonGUIDriver" + e.getMessage());
-    e.printStackTrace();
+    log.error("",e);
   }
 }

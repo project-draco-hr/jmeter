@@ -20,7 +20,7 @@
     }
   }
  catch (  MalformedPatternException e) {
-    e.printStackTrace();
+    log.error("",e);
     throw new InvalidVariableException("Bad regex pattern");
   }
 catch (  Exception e) {

@@ -6,6 +6,6 @@
  catch (  NoSuchMethodException e) {
   }
 catch (  Exception e) {
-    e.printStackTrace();
+    log.error("",e);
   }
 }
