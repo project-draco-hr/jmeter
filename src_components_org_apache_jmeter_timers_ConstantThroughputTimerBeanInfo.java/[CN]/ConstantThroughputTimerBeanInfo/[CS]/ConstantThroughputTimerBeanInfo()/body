@@ -1,0 +1,7 @@
+{
+  super(ConstantThroughputTimer.class);
+  createPropertyGroup("delay",new String[]{"throughput"});
+  PropertyDescriptor p=property("throughput");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,new Double(0.0));
+}
