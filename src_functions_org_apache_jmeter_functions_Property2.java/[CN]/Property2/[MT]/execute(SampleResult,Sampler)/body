@@ -1,0 +1,9 @@
+{
+  String propertyName=((CompoundVariable)values[0]).execute();
+  String propertyDefault="1";
+  if (values.length > 1) {
+    propertyDefault=((CompoundVariable)values[1]).execute();
+  }
+  String propertyValue=JMeterUtils.getPropDefault(propertyName,propertyDefault);
+  return propertyValue;
+}
