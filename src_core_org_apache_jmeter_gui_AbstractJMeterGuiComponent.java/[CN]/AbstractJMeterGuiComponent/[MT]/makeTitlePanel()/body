@@ -1,8 +1,6 @@
 {
-  Box titlePanel=Box.createVerticalBox();
+  VerticalPanel titlePanel=new VerticalPanel();
   titlePanel.add(createTitleLabel());
   titlePanel.add(getNamePanel());
-  titlePanel.validate();
-  titlePanel.setMinimumSize(titlePanel.getPreferredSize());
   return titlePanel;
 }

@@ -1,6 +1,7 @@
 {
   setLayout(new BorderLayout());
   setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
   SampleResult rootSampleResult=new SampleResult();
   rootSampleResult.setSampleLabel("Root");
   rootSampleResult.setSuccessful(true);
@@ -13,12 +14,15 @@
   jTree.setShowsRootHandles(true);
   JScrollPane treePane=new JScrollPane(jTree);
   treePane.setPreferredSize(new Dimension(100,70));
-  gridBag=new GridBagLayout();
-  gbc=new GridBagConstraints();
-  initTextArea();
-  initHtmlEditPane();
-  treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,getBottomPane());
-  Box titlePanel=makeTitlePanel();
-  add(titlePanel,BorderLayout.NORTH);
-  add(treeSplitPane,BorderLayout.CENTER);
+  JPanel statsPane=new JPanel(new GridLayout(1,1));
+  stats=new JTextArea();
+  statsPane.add(new JScrollPane(stats));
+  JPanel resultsPane=new JPanel(new BorderLayout());
+  results=new JTextArea();
+  initHtmlOrTextButton();
+  resultsPane.add(htmlOrTextButton,BorderLayout.NORTH);
+  resultsPane.add(new JScrollPane(results),BorderLayout.CENTER);
+  JSplitPane split2=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,statsPane);
+  JSplitPane mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,split2,resultsPane);
+  add(mainSplit,BorderLayout.CENTER);
 }

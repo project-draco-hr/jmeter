@@ -1,12 +1,29 @@
 {
   if (htmlOrTextButton.equals(e.getSource())) {
-    if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
-      showRenderedResponse(response);
-      htmlOrTextButton.setText(TEXT_BUTTON_LABEL);
+    DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+    if (node == null) {
+      results.setText("");
     }
  else {
-      showTextResponse(response);
-      htmlOrTextButton.setText(HTML_BUTTON_LABEL);
+      SampleResult res=(SampleResult)node.getUserObject();
+      byte[] responseBytes=(byte[])res.getResponseData();
+      String response=null;
+      if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
+        try {
+          response=new String(responseBytes,"utf-8");
+        }
+ catch (        UnsupportedEncodingException err) {
+          response=new String(responseBytes);
+        }
+      }
+      if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
+        showRenderedResponse(response);
+        htmlOrTextButton.setText(TEXT_BUTTON_LABEL);
+      }
+ else {
+        showTextResponse(response);
+        htmlOrTextButton.setText(HTML_BUTTON_LABEL);
+      }
     }
   }
 }

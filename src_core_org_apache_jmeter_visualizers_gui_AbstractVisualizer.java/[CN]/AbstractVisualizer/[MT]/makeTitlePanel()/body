@@ -1,7 +1,5 @@
 {
-  Box box=super.makeTitlePanel();
+  Container box=super.makeTitlePanel();
   box.add(getFilePanel());
-  box.validate();
-  box.setMinimumSize(box.getPreferredSize());
   return box;
 }

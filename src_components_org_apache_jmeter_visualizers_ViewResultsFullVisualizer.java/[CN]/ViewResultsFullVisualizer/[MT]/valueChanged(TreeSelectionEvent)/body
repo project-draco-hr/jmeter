@@ -4,6 +4,7 @@
   if (log.isDebugEnabled()) {
     log.debug("valueChanged : selected node - " + node);
   }
+  stats.setText("");
   if (node != null) {
     SampleResult res=(SampleResult)node.getUserObject();
     if (log.isDebugEnabled()) {
@@ -11,15 +12,10 @@
     }
     if (res != null) {
       log.debug("valueChanged1 : load time - " + res.getTime());
-      loadTimeLabel.setText("Load time : " + res.getTime());
-      gbc.gridx=0;
-      gbc.gridy=0;
-      gbc.anchor=GridBagConstraints.WEST;
-      gbc.weightx=1.0;
-      gbc.insets=new Insets(0,10,0,0);
       if (res != null && res.getSamplerData() != null) {
-        postDataField.setText(res.getSamplerData().toString());
+        stats.append("Request data: " + res.getSamplerData() + "\n");
       }
+      stats.append("Load time: " + res.getTime() + "\n");
       String responseCode=res.getResponseCode();
       log.debug("valueChanged1 : response code - " + responseCode);
       int responseLevel=0;
@@ -30,18 +26,19 @@
       }
 switch (responseLevel) {
 case 3:
-        responseCodeLabel.setForeground(REDIRECT_COLOR);
+        break;
 case 4:
-      responseCodeLabel.setForeground(CLIENT_ERROR_COLOR);
+      break;
 case 5:
-    responseCodeLabel.setForeground(SERVER_ERROR_COLOR);
+    break;
 }
-responseCodeLabel.setText(JMeterUtils.getResString("HTTP response code") + " : " + responseCode);
+stats.append("HTTP response code: " + responseCode + "\n");
 String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
-responseMsgLabel.setText("HTTP response message : " + responseMsgStr);
+stats.append("HTTP response message: " + responseMsgStr);
 byte[] responseBytes=(byte[])res.getResponseData();
 ImageIcon icon=null;
+String response=null;
 if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
   try {
     response=new String(responseBytes,"utf-8");
@@ -61,13 +58,6 @@ if (response != null) {
     showRenderedResponse(response);
   }
 }
- else if (icon != null) {
-  JLabel image=new JLabel();
-  image.setIcon(icon);
-  showImage(image);
-}
-treeSplitPane.revalidate();
-treeSplitPane.repaint();
 }
 }
 log.debug("End : valueChanged1");

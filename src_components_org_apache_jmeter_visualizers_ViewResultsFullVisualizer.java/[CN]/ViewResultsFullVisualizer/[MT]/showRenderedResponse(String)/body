@@ -5,11 +5,10 @@
   }
   if (htmlIndex > -1) {
     String html=response.substring(htmlIndex,response.length());
-    htmlEditPane.setText(html);
+    results.setText(html);
   }
  else {
-    htmlEditPane.setText(response);
+    results.setText(response);
   }
-  htmlEditPane.setCaretPosition(0);
-  textScrollArea.setViewportView(htmlEditPane);
+  results.setCaretPosition(0);
 }

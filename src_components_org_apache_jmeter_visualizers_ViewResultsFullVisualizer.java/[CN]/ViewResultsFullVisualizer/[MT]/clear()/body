@@ -2,9 +2,10 @@
   log.debug("Start : clear1");
   int totalChild=root.getChildCount();
   if (log.isDebugEnabled())   log.debug("clear1 : total child - " + totalChild);
-  for (int i=0; i < totalChild; i++)   treeModel.removeNodeFromParent((DefaultMutableTreeNode)root.getChildAt(0));
-  textArea.setText("");
-  textScrollArea.setViewportView(textArea);
+  for (int i=0; i < totalChild; i++) {
+    treeModel.removeNodeFromParent((DefaultMutableTreeNode)root.getChildAt(0));
+  }
+  results.setText("");
   childIndex=0;
   log.debug("End : clear1");
 }

@@ -1,10 +1,11 @@
 {
-  setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+  setLayout(new BorderLayout());
+  Box subPanel=Box.createHorizontalBox();
   nameLabel=new JLabel(JMeterUtils.getResString("name"));
   nameLabel.setName("name");
-  add(nameLabel);
-  add(Box.createHorizontalStrut(2));
-  add(nameField);
+  subPanel.add(nameLabel);
+  subPanel.add(nameField);
+  subPanel.add(Box.createHorizontalGlue());
   nameLabel.setLabelFor(nameField);
   nameField.setName("name");
   nameField.getDocument().addDocumentListener(new DocumentListener(){
@@ -18,5 +19,5 @@
     }
   }
 );
-  setMaximumSize(new Dimension(getMaximumSize().width,getPreferredSize().height));
+  add(subPanel,BorderLayout.WEST);
 }

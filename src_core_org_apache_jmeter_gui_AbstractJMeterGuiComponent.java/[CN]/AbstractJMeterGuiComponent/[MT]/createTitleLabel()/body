@@ -4,5 +4,6 @@
   titleLabel.setFont(curFont.deriveFont((float)curFont.getSize() + 4));
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   panel.add(titleLabel);
+  panel.setMaximumSize(new Dimension(panel.getMaximumSize().width,panel.getPreferredSize().height));
   return panel;
 }
