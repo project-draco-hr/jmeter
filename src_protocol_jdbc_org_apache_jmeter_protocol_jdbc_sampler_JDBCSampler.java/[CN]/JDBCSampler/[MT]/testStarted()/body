@@ -1,4 +1,5 @@
 {
+  log.debug("testStarted(), thread: " + Thread.currentThread().getName());
   try {
     getKey();
   }
