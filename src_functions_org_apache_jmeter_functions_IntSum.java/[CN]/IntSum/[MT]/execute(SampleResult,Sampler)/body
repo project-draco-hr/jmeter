@@ -1,0 +1,6 @@
+{
+  JMeterVariables vars=getVariables();
+  String totalString=Integer.toString(sum);
+  vars.put(varName,totalString);
+  return totalString;
+}

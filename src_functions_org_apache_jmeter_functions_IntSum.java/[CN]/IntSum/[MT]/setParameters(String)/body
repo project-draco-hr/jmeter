@@ -1,0 +1,9 @@
+{
+  Collection params=this.parseArguments(parameters);
+  String[] values=(String[])params.toArray(new String[0]);
+  varName=values[values.length - 1];
+  sum=0;
+  for (int i=0; i < values.length - 1; i++) {
+    sum+=Integer.parseInt(values[i]);
+  }
+}
