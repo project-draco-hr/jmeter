@@ -2,7 +2,7 @@
   setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
   setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
   add(createTitleLabel());
-  add(namePanel);
+  add(getNamePanel());
   add(createPortPanel());
   add(createIncludePanel());
   add(createExcludePanel());
