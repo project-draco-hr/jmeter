@@ -1,3 +1,5 @@
 {
-  ((MailerResultCollector)getModel()).getMailerModel().clear();
+  if (getModel() != null) {
+    ((MailerResultCollector)getModel()).getMailerModel().clear();
+  }
 }
