@@ -2,4 +2,5 @@
   guis=new HashMap();
   nodesToGui=new HashMap();
   testBeanGUIs=new HashMap();
+  ActionRouter.getInstance().actionPerformed(new ActionEvent(this,3333,"edit"));
 }
