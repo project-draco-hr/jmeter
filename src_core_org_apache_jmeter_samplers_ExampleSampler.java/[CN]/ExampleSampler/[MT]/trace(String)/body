@@ -1,0 +1,6 @@
+{
+  String tl=getTitle();
+  String tn=Thread.currentThread().getName();
+  String th=this.toString();
+  log.debug(tn + " (" + classCount+ ") "+ tl+ " "+ s+ " "+ th);
+}
