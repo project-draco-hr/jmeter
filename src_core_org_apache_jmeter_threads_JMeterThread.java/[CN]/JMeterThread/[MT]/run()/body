@@ -10,6 +10,7 @@
     log.info("Thread " + Thread.currentThread().getName() + " started");
     controller.initialize();
     controller.addIterationListener(new IterationListener());
+    threadContext.setSamplingStarted(true);
     while (running) {
       Sampler sam;
       while (running && (sam=controller.next()) != null) {
@@ -17,9 +18,7 @@
           threadContext.setCurrentSampler(sam);
           SamplePackage pack=compiler.configureSampler(sam);
           delay(pack.getTimers());
-          threadContext.setSamplingStarted(true);
           SampleResult result=pack.getSampler().sample(null);
-          threadContext.setSamplingStarted(false);
           result.setThreadName(threadName);
           result.setTimeStamp(System.currentTimeMillis());
           threadContext.setPreviousResult(result);
@@ -38,6 +37,7 @@
     }
   }
   finally {
+    threadContext.setSamplingStarted(false);
     log.info("Thread " + threadName + " is done");
     monitor.threadFinished(this);
   }
