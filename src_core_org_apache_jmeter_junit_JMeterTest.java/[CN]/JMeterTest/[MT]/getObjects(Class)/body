@@ -1,6 +1,6 @@
 {
   String exName=extendsClass.getName();
-  Object myThis=new String();
+  Object myThis="";
   Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
   String n="";
