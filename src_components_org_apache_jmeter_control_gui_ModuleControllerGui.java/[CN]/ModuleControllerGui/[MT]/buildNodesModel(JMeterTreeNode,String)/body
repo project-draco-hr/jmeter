@@ -1,0 +1,16 @@
+{
+  if (node != null) {
+    int cc=node.getChildCount();
+    for (int i=0; i < cc; i++) {
+      JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
+      TestElement te=cur.createTestElement();
+      if (te instanceof Controller && !(te instanceof ModuleController)) {
+        TreeNodeWrapper tnw=new TreeNodeWrapper(cur,parent_name + cur.getName());
+        nodesModel.addElement(tnw);
+        String name;
+        name=cur.getName() + " > ";
+        buildNodesModel(cur,name);
+      }
+    }
+  }
+}

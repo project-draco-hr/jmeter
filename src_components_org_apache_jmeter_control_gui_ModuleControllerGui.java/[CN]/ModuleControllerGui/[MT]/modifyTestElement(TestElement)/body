@@ -1,0 +1,6 @@
+{
+  configureTestElement(element);
+  if (selected != null) {
+    ((ModuleController)element).setSelectedNode(selected);
+  }
+}

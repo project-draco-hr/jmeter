@@ -1,0 +1,19 @@
+{
+  GuiPackage gp=GuiPackage.getInstance();
+  JMeterTreeModel tm=null;
+  JMeterTreeNode root=null;
+  JMeterTreeNode wb=null;
+  if (gp != null) {
+    tm=gp.getTreeModel();
+    root=(JMeterTreeNode)tm.getRoot();
+    wb=null;
+    int cc=root.getChildCount();
+    for (int i=0; i < cc; i++) {
+      JMeterTreeNode cur=(JMeterTreeNode)root.getChildAt(i);
+      if (cur.getUserObject() instanceof WorkBench) {
+        wb=cur;
+      }
+    }
+  }
+  return wb;
+}

@@ -1,0 +1,8 @@
+{
+  if (selectedNode != null) {
+    return selectedNode.createTestElement();
+  }
+ else {
+    return this;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  TreeNodeWrapper selected, current;
+  selected=(TreeNodeWrapper)nodesModel.getSelectedItem();
+  nodesModel.removeAllElements();
+  JMeterTreeNode wb=getWorkBench();
+  buildNodesModel(wb,"");
+  if (selected != null) {
+    for (int i=0; i < nodesModel.getSize(); i++) {
+      current=(TreeNodeWrapper)nodesModel.getElementAt(i);
+      if (current.getTreeNode().equals(selected.getTreeNode())) {
+        nodesModel.setSelectedItem(current);
+      }
+    }
+  }
+}
