@@ -9,4 +9,6 @@
   parser.addScanner(new AppletScanner());
   parser.addScanner(new ScriptScanner());
   parser.addScanner(new LinkTagScanner());
+  parser.addScanner(new FrameScanner());
+  parser.addScanner(new BgSoundScanner());
 }

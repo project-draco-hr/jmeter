@@ -61,6 +61,14 @@
         LinkTagTag script=(LinkTagTag)node;
         binUrlStr=script.getAttribute("href");
       }
+ else       if (node instanceof FrameTag) {
+        FrameTag script=(FrameTag)node;
+        binUrlStr=script.getAttribute("src");
+      }
+ else       if (node instanceof BgSoundTag) {
+        BgSoundTag script=(BgSoundTag)node;
+        binUrlStr=script.getAttribute("src");
+      }
       if (binUrlStr == null) {
         continue;
       }
