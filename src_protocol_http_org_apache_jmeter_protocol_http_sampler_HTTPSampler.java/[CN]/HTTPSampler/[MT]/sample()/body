@@ -1,6 +1,6 @@
 {
   try {
-    SampleResult res=sample(getUrl(),getMethod(),false);
+    SampleResult res=sample(getUrl(),getMethod(),false,0);
     res.setSampleLabel(getName());
     return res;
   }

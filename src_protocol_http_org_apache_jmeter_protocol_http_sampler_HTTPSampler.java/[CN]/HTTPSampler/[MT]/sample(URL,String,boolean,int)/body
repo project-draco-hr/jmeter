@@ -66,13 +66,18 @@ catch (      IOException e) {
           log.debug("Location set to - " + res.getRedirectLocation());
         }
         if (getFollowRedirects()) {
-          res=followRedirects(res);
+          res=followRedirects(res,frameDepth);
           didFollowRedirects=true;
         }
       }
       if (isImageParser() && res.getDataType().equals(HTTPSampleResult.TEXT)) {
-        boolean createContainerResults=!didFollowRedirects;
-        res=downloadPageResources(res,createContainerResults);
+        if (frameDepth > MAX_FRAME_DEPTH) {
+          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),0));
+        }
+ else {
+          boolean createContainerResults=!didFollowRedirects;
+          res=downloadPageResources(res,createContainerResults,frameDepth);
+        }
       }
     }
     log.debug("End : sample");

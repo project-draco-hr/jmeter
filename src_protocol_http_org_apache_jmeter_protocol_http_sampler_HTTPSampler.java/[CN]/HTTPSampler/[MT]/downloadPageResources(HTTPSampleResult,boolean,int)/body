@@ -14,7 +14,7 @@
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {
-        HTTPSampleResult binRes=sample((URL)binURL,HTTPSampler.GET,false);
+        HTTPSampleResult binRes=sample((URL)binURL,HTTPSampler.GET,false,frameDepth + 1);
         res.addSubResult(binRes);
         res.setTime(res.getTime() + binRes.getTime());
         res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
