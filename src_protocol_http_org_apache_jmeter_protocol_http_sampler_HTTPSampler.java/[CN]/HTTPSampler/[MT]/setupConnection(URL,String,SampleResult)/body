@@ -30,5 +30,8 @@
     res.setRequestHeaders("TODO");
   }
   setConnectionAuthorization(conn,u,getAuthManager());
+  if (getMethod().equals(HTTPSampler.POST)) {
+    setPostHeaders(conn);
+  }
   return conn;
 }

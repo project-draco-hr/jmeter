@@ -1,58 +1,45 @@
 {
   log.debug("Start : sample, redirects =" + redirects);
-  long time=System.currentTimeMillis();
+  long t0=System.currentTimeMillis();
   SampleResult res=new SampleResult();
-  URL u=null;
+  URL url=null;
   try {
-    u=getUrl();
+    url=getUrl();
     res.setSampleLabel(getName());
     if (log.isDebugEnabled()) {
-      log.debug("sample2 : sampling url - " + u);
+      log.debug("sample2 : sampling url - " + url);
     }
-    conn=setupConnection(u,getMethod(),res);
-    if (getMethod().equals(HTTPSampler.POST)) {
-      setPostHeaders(conn);
-      time=connect();
-      sendPostData(conn);
+    conn=setupConnection(url,getMethod(),res);
+    t0=connect();
+    if (getMethod().equals(HTTPSampler.POST))     sendPostData(conn);
+    byte[] responseData=readResponse(conn);
+    long t1=System.currentTimeMillis();
+    res.setResponseData(responseData);
+    int errorLevel=conn.getResponseCode();
+    res.setResponseCode(Integer.toString(errorLevel));
+    res.setSuccessful(200 <= errorLevel && errorLevel <= 399);
+    res.setResponseMessage(conn.getResponseMessage());
+    String ct=conn.getHeaderField("Content-type");
+    res.setContentType(ct);
+    if (ct.startsWith("image/")) {
+      res.setDataType(SampleResult.BINARY);
     }
  else {
-      time=connect();
+      res.setDataType(SampleResult.TEXT);
     }
-    saveConnectionCookies(conn,u,getCookieManager());
-    int errorLevel=0;
-    try {
-      errorLevel=getErrorLevel(conn,res,time);
-    }
- catch (    IOException e) {
-      time=bundleResponseInResult(time,res,conn);
-      res.setSuccessful(false);
-      res.setTime(time);
-      return res;
-    }
-    if (errorLevel / 100 == 2 || errorLevel == 304) {
-      time=bundleResponseInResult(time,res,conn);
-    }
- else     if (errorLevel / 100 == 3) {
+    res.setResponseHeaders(getResponseHeaders(conn));
+    res.setTime(t1 - t0);
+    saveConnectionCookies(conn,url,getCookieManager());
+    if (getFollowRedirects() && 301 <= errorLevel && errorLevel <= 303) {
       if (redirects >= MAX_REDIRECTS) {
         throw new IOException("Maximum number of redirects exceeded");
       }
-      if (!getFollowRedirects()) {
-        time=bundleResponseInResult(time,res,conn);
-      }
- else {
-        time=bundleResponseInResult(time,res,conn);
-        redirectUrl(conn,u);
-        SampleResult redirectResult=sample(redirects + 1);
-        res.addSubResult(redirectResult);
-        res.setSuccessful(redirectResult.isSuccessful());
-        time+=redirectResult.getTime();
-      }
+      redirectUrl(conn,url);
+      SampleResult redirectResult=sample(redirects + 1);
+      res.addSubResult(redirectResult);
+      res.setSuccessful(redirectResult.isSuccessful());
+      res.setTime(res.getTime() + redirectResult.getTime());
     }
- else {
-      time=bundleResponseInResult(time,res,conn);
-      res.setSuccessful(false);
-    }
-    res.setTime(time);
     log.debug("End : sample, redirects=" + redirects);
     if (isImageParser()) {
       if (imageSampler == null) {
@@ -68,7 +55,7 @@
     res.setResponseData(ex.toString().getBytes());
     res.setResponseCode(NON_HTTP_RESPONSE_CODE);
     res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
-    res.setTime(System.currentTimeMillis() - time);
+    res.setTime(System.currentTimeMillis() - t0);
     res.setSuccessful(false);
   }
  finally {
