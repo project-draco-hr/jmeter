@@ -9,4 +9,5 @@
     assertionSize=Long.MAX_VALUE;
   }
   ((SizeAssertion)el).setAllowedSize(assertionSize);
+  ((SizeAssertion)el).setCompOper(getState());
 }

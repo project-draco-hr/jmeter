@@ -1,6 +1,7 @@
 {
   boolean result=false;
-switch (comparator) {
+  int comp=getCompOper();
+switch (comp) {
 case EQUAL:
     result=(resultSize == getAllowedSize());
   comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_equal");

@@ -2,4 +2,5 @@
   super.configure(el);
   SizeAssertion assertion=(SizeAssertion)el;
   size.setText(String.valueOf(assertion.getAllowedSize()));
+  setState(assertion.getCompOper());
 }
