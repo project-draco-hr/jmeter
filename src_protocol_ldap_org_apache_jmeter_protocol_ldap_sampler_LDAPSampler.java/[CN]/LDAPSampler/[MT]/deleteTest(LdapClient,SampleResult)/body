@@ -1,12 +1,9 @@
 {
-  long start=0L;
-  long end=0L;
   if (!getPropertyAsBoolean(USER_DEFINED)) {
     ldap.createTest(getBasicAttributes(),getPropertyAsString(ADD));
     setProperty(new StringProperty(DELETE,getPropertyAsString(ADD)));
   }
-  start=System.currentTimeMillis();
+  res.sampleStart();
   ldap.deleteTest(getPropertyAsString(DELETE));
-  end=System.currentTimeMillis();
-  return (end - start);
+  res.sampleEnd();
 }

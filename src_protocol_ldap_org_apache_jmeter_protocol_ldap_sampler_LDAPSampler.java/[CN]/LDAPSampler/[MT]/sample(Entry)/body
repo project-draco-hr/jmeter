@@ -3,21 +3,20 @@
   boolean isSuccessful=false;
   res.setSampleLabel(getLabel());
   res.setSamplerData(getPropertyAsString(TEST));
-  long time=0L;
   LdapClient ldap=new LdapClient();
   try {
     ldap.connect(getServername(),getPort(),getRootdn(),getUsername(),getPassword());
     if (getPropertyAsString(TEST).equals("add")) {
-      time=addTest(ldap);
+      addTest(ldap,res);
     }
  else     if (getPropertyAsString(TEST).equals("delete")) {
-      time=deleteTest(ldap);
+      deleteTest(ldap,res);
     }
  else     if (getPropertyAsString(TEST).equals("modify")) {
-      time=modifyTest(ldap);
+      modifyTest(ldap,res);
     }
  else     if (getPropertyAsString(TEST).equals("search")) {
-      time=searchTest(ldap);
+      searchTest(ldap,res);
     }
     if (getPropertyAsString(TEST).equals("search") && !searchFoundEntries) {
       res.setResponseCode("201");
@@ -39,9 +38,7 @@
     res.setResponseMessage(ex.toString());
     ldap.disconnect();
     isSuccessful=false;
-    time=0L;
   }
-  res.setTime(time);
   res.setSuccessful(isSuccessful);
   return res;
 }
