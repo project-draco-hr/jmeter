@@ -5,10 +5,10 @@
     threadContext.setThreadNum(getThreadNum());
     testTree.traverse(compiler);
     running=true;
-    rampUpDelay();
     if (scheduler) {
       startScheduler();
     }
+    rampUpDelay();
     log.info("Thread " + Thread.currentThread().getName() + " started");
     controller.initialize();
     controller.addIterationListener(new IterationListener());
