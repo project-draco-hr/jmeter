@@ -1,4 +1,5 @@
 {
   log.debug("Created " + this);
   protocolHandler=getProtocol();
+  log.debug("Using Protocol Handler: " + protocolHandler.getClass().getName());
 }

@@ -1,0 +1,14 @@
+{
+  saveGroups(match,namep,vars);
+  StringBuffer result=new StringBuffer();
+  for (int a=0; a < template.length; a++) {
+    if (template[a] instanceof String) {
+      result.append(template[a]);
+    }
+ else {
+      result.append(match.group(((Integer)template[a]).intValue()));
+    }
+  }
+  vars.put(namep,result.toString());
+  return result.toString();
+}

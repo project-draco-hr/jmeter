@@ -1,7 +1,11 @@
 {
+  String valueIndex="", defaultValue="", between="";
+  String name="";
+  Pattern searchPattern;
+  Object[] tmplt;
   try {
     searchPattern=patternCache.getPattern(((CompoundVariable)values[0]).execute(),Perl5Compiler.READ_ONLY_MASK);
-    generateTemplate(((CompoundVariable)values[1]).execute());
+    tmplt=generateTemplate(((CompoundVariable)values[1]).execute());
     if (values.length > 2) {
       valueIndex=((CompoundVariable)values[2]).execute();
     }
@@ -22,9 +26,10 @@
     }
   }
  catch (  Exception e) {
-    throw new InvalidVariableException(e.getMessage());
+    throw new InvalidVariableException(e.toString());
   }
-  getVariables().put(name,defaultValue);
+  JMeterVariables vars=getVariables();
+  vars.put(name,defaultValue);
   if (previousResult == null || previousResult.getResponseData() == null) {
     return defaultValue;
   }
@@ -46,7 +51,6 @@ catch (  Exception e) {
     return defaultValue;
   }
  finally {
-    JMeterVariables vars=getVariables();
     vars.put(name + "_matchNr","" + collectAllMatches.size());
   }
   if (collectAllMatches.size() == 0) {
@@ -63,24 +67,24 @@ catch (  Exception e) {
  else {
         first=false;
       }
-      value.append(generateResult((MatchResult)it.next()));
+      value.append(generateResult((MatchResult)it.next(),name,tmplt,vars));
     }
     return value.toString();
   }
  else   if (valueIndex.equals(RAND)) {
     MatchResult result=(MatchResult)collectAllMatches.get(rand.nextInt(collectAllMatches.size()));
-    return generateResult(result);
+    return generateResult(result,name,tmplt,vars);
   }
  else {
     try {
       int index=Integer.parseInt(valueIndex) - 1;
       MatchResult result=(MatchResult)collectAllMatches.get(index);
-      return generateResult(result);
+      return generateResult(result,name,tmplt,vars);
     }
  catch (    NumberFormatException e) {
       float ratio=Float.parseFloat(valueIndex);
       MatchResult result=(MatchResult)collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1);
-      return generateResult(result);
+      return generateResult(result,name,tmplt,vars);
     }
 catch (    IndexOutOfBoundsException e) {
       return defaultValue;

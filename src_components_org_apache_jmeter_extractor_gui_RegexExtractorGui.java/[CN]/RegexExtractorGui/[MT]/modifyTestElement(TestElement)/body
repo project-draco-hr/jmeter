@@ -1,6 +1,6 @@
 {
   super.configureTestElement(extractor);
-  extractor.setProperty(RegexExtractor.USEHEADERS,JOrphanUtils.booleanToSTRING(useHeaders.isSelected()));
+  extractor.setProperty(RegexExtractor.USEHEADERS,JOrphanUtils.booleanToString(useHeaders.isSelected()));
   extractor.setProperty(RegexExtractor.MATCH_NUMBER,matchNumberField.getText());
   if (extractor instanceof RegexExtractor) {
     RegexExtractor regex=(RegexExtractor)extractor;

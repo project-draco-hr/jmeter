@@ -15,5 +15,7 @@
   panel.add(responseCodeButton);
   panel.add(responseMessageButton);
   responseStringButton.setSelected(true);
+  assumeSuccess=new JCheckBox(JMeterUtils.getResString("assertion_assume_success"));
+  panel.add(assumeSuccess);
   return panel;
 }

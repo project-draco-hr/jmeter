@@ -1,8 +1,0 @@
-{
-  try {
-    return this.getUrl().toString() + ((POST.equals(getMethod())) ? "\nQuery Data: " + getQueryString() : "");
-  }
- catch (  MalformedURLException e) {
-    return "";
-  }
-}

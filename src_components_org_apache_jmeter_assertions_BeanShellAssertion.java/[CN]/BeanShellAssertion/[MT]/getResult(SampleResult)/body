@@ -15,7 +15,6 @@
     bshInterpreter.set("SampleLabel",response.getSampleLabel());
     bshInterpreter.set("SamplerData",response.getSamplerData());
     bshInterpreter.set("Successful",response.isSuccessful());
-    bshInterpreter.set("Result",result);
     bshInterpreter.set("FailureMessage","");
     bshInterpreter.set("Failure",false);
     if (fileName.length() == 0) {
@@ -29,10 +28,10 @@
     result.setError(false);
   }
  catch (  NoClassDefFoundError ex) {
-    result.setError(true);
     log.error("BeanShell Jar missing? " + ex.toString());
+    result.setError(true);
+    result.setFailureMessage("BeanShell Jar missing? " + ex.toString());
     response.setStopThread(true);
-    result.setFailureMessage("");
   }
 catch (  IOException ex) {
     result.setError(true);

@@ -1,4 +1,7 @@
 {
+  if (table.isEditing()) {
+    table.getCellEditor().stopCellEditing();
+  }
   Data model=tableModel.getData();
   model.reset();
   while (model.next()) {

@@ -19,6 +19,7 @@
  else {
       ra.setTestField(ResponseAssertion.RESPONSE_DATA);
     }
+    ra.setAssumeSuccess(assumeSuccess.isSelected());
     if (containsBox.isSelected()) {
       ra.setToContainsType();
     }

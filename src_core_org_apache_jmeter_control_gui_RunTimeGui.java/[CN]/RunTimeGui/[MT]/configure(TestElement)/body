@@ -1,0 +1,9 @@
+{
+  super.configure(element);
+  if (element instanceof RunTime) {
+    setState(((RunTime)element).getRuntimeString());
+  }
+ else {
+    setState(1);
+  }
+}

@@ -1,8 +1,0 @@
-{
-  if (result != null) {
-    JMeterVariables vars=getVariables();
-    for (int x=0; x < result.groups(); x++) {
-      vars.put(name + "_g" + x,result.group(x));
-    }
-  }
-}

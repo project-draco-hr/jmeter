@@ -2,7 +2,7 @@
   if (c instanceof CounterConfig) {
     CounterConfig config=(CounterConfig)c;
     config.setStart(startField.getText());
-    if (endField.getText().length() > 0) {
+{
       config.setEnd(endField.getText());
     }
     config.setIncrement(incrField.getText());

@@ -1,4 +1,7 @@
 {
+  if (paramTable.isEditing()) {
+    paramTable.getCellEditor().stopCellEditing();
+  }
   ((UserParameters)params).setNames(new CollectionProperty(UserParameters.NAMES,tableModel.getColumnData(JMeterUtils.getResString("name"))));
   CollectionProperty threadLists=new CollectionProperty(UserParameters.THREAD_VALUES,new ArrayList());
   log.debug("making threadlists from gui = " + threadLists);

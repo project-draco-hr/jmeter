@@ -27,6 +27,7 @@
  else {
     labelButton.setSelected(true);
   }
+  assumeSuccess.setSelected(model.getAssumeSuccess());
   tableModel.clearData();
   PropertyIterator tests=model.getTestStrings().iterator();
   while (tests.hasNext()) {

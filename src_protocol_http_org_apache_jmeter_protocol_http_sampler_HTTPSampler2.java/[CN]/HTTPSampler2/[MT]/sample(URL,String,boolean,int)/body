@@ -20,7 +20,7 @@
     int statusCode=httpMethod.execute(httpState,connection);
     byte[] responseData=httpMethod.getResponseBody();
     res.sampleEnd();
-    res.setSampleLabel(httpMethod.getPath());
+    res.setSampleLabel(httpMethod.getURI().toString());
     res.setResponseData(responseData);
     res.setResponseCode(Integer.toString(statusCode));
     res.setSuccessful(200 <= statusCode && statusCode <= 399);

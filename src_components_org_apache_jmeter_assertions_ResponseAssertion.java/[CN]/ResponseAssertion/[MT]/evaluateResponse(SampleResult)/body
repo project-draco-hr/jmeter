@@ -3,6 +3,9 @@
   boolean not=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult();
   String toCheck="";
+  if (getAssumeSuccess()) {
+    response.setSuccessful(true);
+  }
   if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
     toCheck=new StringBuffer(response.getResponseHeaders()).append(new String(response.responseDataAsBA())).toString();
   }

@@ -1,0 +1,11 @@
+{
+  params=new LinkedList();
+  params.add(new CompoundVariable("<value,, field=\"(pinposition\\d+)\">(\\d+)</value>"));
+  params.add(new CompoundVariable("$2$, "));
+  params.add(new CompoundVariable(".333"));
+  params.add(new CompoundVariable(""));
+  params.add(new CompoundVariable("No Value Found"));
+  variable.setParameters(params);
+  String match=variable.execute(result,null);
+  assertEquals("No Value Found",match);
+}

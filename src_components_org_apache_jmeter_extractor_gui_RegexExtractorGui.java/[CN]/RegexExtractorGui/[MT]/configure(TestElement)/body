@@ -1,6 +1,6 @@
 {
   super.configure(el);
-  useBody.setSelected(el.getPropertyAsBoolean(RegexExtractor.USEHEADERS));
+  useHeaders.setSelected(el.getPropertyAsBoolean(RegexExtractor.USEHEADERS));
   regexField.setText(el.getPropertyAsString(RegexExtractor.REGEX));
   templateField.setText(el.getPropertyAsString(RegexExtractor.TEMPLATE));
   defaultField.setText(el.getPropertyAsString(RegexExtractor.DEFAULT));

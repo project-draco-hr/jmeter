@@ -1,0 +1,10 @@
+{
+  reInitialize();
+  if (endOfLoop()) {
+    setDone(true);
+    return null;
+  }
+ else {
+    return next();
+  }
+}

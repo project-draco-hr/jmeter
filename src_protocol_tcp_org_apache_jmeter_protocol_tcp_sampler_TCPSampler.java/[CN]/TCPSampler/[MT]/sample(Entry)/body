@@ -2,7 +2,7 @@
   log.info(getLabel() + " " + getFilename()+ " "+ getUsername()+ " "+ getPassword());
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
-  res.setSampleLabel(getLabel());
+  res.setSampleLabel(getName());
   res.sampleStart();
   try {
     Socket sock=getSocket();
@@ -22,6 +22,26 @@
       res.setResponseCode("200");
       res.setResponseMessage("OK");
       isSuccessful=true;
+      if (STATUS_PREFIX.length() > 0) {
+        int i=in.indexOf(STATUS_PREFIX);
+        int j=in.indexOf(STATUS_SUFFIX,i + STATUS_PREFIX.length());
+        if (i != -1 && j > i) {
+          String rc=in.substring(i + STATUS_PREFIX.length(),j);
+          res.setResponseCode(rc);
+          isSuccessful=checkResponseCode(rc);
+          if (haveStatusProps) {
+            res.setResponseMessage(statusProps.getProperty(rc,"Status code not found in properties"));
+          }
+ else {
+            res.setResponseMessage("No status property file");
+          }
+        }
+ else {
+          res.setResponseCode("999");
+          res.setResponseMessage("Status value not found");
+          isSuccessful=false;
+        }
+      }
     }
   }
  catch (  Exception ex) {

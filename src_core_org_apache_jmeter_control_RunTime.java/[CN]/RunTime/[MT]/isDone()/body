@@ -1,0 +1,8 @@
+{
+  if (System.currentTimeMillis() - startTime < 1000 * getRuntime()) {
+    return super.isDone();
+  }
+ else {
+    return true;
+  }
+}
