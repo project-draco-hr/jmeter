@@ -7,6 +7,7 @@
   greaterthanequalButton=createComparatorButton(">=",SizeAssertion.GREATERTHANEQUAL,group);
   lessthanequalButton=createComparatorButton("<=",SizeAssertion.LESSTHANEQUAL,group);
   equalButton.setSelected(true);
+  execState=Integer.parseInt(equalButton.getActionCommand());
   Box checkPanel=Box.createVerticalBox();
   JLabel compareLabel=new JLabel(JMeterUtils.getResString("size_assertion_comparator_label"));
   checkPanel.add(compareLabel);
