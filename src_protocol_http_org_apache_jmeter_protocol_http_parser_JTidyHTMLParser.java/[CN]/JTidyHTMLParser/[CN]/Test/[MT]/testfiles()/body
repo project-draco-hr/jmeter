@@ -1,0 +1,17 @@
+{
+  log.info("testfiles");
+  final String[] EXPECTED_RESULT=new String[]{"http://myhost/mydir/images/image-a.gif","http://myhost/mydir/images/image-b.gif","http://myhost/mydir/images/image-c.gif","http://myhost/mydir/images/image-d.gif","http://myhost/mydir/images/image-e.gif","http://myhost/mydir/images/image-f.gif","http://myhost/mydir/images/image-a2.gif","http://myhost/mydir/images/image-b2.gif","http://myhost/mydir/images/image-c2.gif","http://myhost/mydir/images/image-d2.gif","http://myhost/mydir/images/image-e2.gif","http://myhost/mydir/images/image-f2.gif"};
+  Iterator expected=Arrays.asList(EXPECTED_RESULT).iterator();
+  JTidyHTMLParser p=new JTidyHTMLParser();
+  byte[] ba;
+  URL u;
+  Iterator result;
+  ba=getFile("testfiles/HTMLParserTestCase.html");
+  u=new URL("http://myhost/mydir/myfile.html");
+  result=p.getEmbeddedResourceURLs(ba,u);
+  while (expected.hasNext()) {
+    assertTrue(result.hasNext());
+    assertEquals(expected.next(),result.next().toString());
+  }
+  assertFalse(result.hasNext());
+}
