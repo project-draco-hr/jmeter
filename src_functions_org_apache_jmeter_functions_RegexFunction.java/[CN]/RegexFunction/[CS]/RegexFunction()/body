@@ -1,9 +1,4 @@
 {
   valueIndex=between=name="";
-  try {
-    templatePattern=compiler.compile("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK);
-  }
- catch (  MalformedPatternException e) {
-    log.error("",e);
-  }
+  templatePattern=patternCache.getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK);
 }

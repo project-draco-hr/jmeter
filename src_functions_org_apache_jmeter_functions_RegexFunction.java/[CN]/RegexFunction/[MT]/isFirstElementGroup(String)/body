@@ -1,10 +1,4 @@
 {
-  try {
-    Pattern pattern=compiler.compile("^\\$\\d+\\$");
-    return new Perl5Matcher().contains(rawData,pattern);
-  }
- catch (  MalformedPatternException e) {
-    log.error("",e);
-    return false;
-  }
+  Pattern pattern=patternCache.getPattern("^\\$\\d+\\$",Perl5Compiler.READ_ONLY_MASK);
+  return new Perl5Matcher().contains(rawData,pattern);
 }

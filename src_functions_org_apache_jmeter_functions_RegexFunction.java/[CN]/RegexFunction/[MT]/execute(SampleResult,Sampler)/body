@@ -1,6 +1,6 @@
 {
   try {
-    searchPattern=compiler.compile(((CompoundVariable)values[0]).execute());
+    searchPattern=patternCache.getPattern(((CompoundVariable)values[0]).execute(),Perl5Compiler.READ_ONLY_MASK);
     generateTemplate(((CompoundVariable)values[1]).execute());
     if (values.length > 2) {
       valueIndex=((CompoundVariable)values[2]).execute();
@@ -21,11 +21,7 @@
       name=((CompoundVariable)values[values.length - 1]).execute();
     }
   }
- catch (  MalformedPatternException e) {
-    log.error("",e);
-    throw new InvalidVariableException("Bad regex pattern");
-  }
-catch (  Exception e) {
+ catch (  Exception e) {
     throw new InvalidVariableException(e.getMessage());
   }
   getVariables().put(name,defaultValue);
