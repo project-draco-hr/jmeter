@@ -1,6 +1,11 @@
 {
   if (this.CHANGEEXT) {
-    return this.NEWFILE;
+    if (replaceExtension(text)) {
+      return this.NEWFILE;
+    }
+ else {
+      return text;
+    }
   }
  else   if (this.USEFILE) {
     return text;

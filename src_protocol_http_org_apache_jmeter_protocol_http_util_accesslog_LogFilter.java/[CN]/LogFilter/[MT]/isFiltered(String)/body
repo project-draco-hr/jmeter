@@ -6,9 +6,6 @@
  else     if (this.PTRNFILTER) {
       return filterPattern(path);
     }
- else     if (this.CHANGEEXT) {
-      return replaceExtension(path);
-    }
  else {
       return false;
     }

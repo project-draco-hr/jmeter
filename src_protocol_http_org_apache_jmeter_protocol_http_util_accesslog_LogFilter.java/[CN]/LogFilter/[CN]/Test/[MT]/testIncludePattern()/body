@@ -4,7 +4,7 @@
     TestData td=TESTDATA[idx];
     String theFile=td.file;
     boolean expect=td.inclpatt;
-    testf.isFiltered(theFile);
+    assertEquals(!expect,testf.isFiltered(theFile));
     String line=testf.filter(theFile);
     if (line != null) {
       assertTrue("Expect to accept " + theFile,expect);

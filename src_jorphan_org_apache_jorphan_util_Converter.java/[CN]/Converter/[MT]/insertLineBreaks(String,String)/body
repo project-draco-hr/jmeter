@@ -1,0 +1,19 @@
+{
+  if (v == null) {
+    return "";
+  }
+ else {
+    StringBuffer replacement=new StringBuffer();
+    StringTokenizer tokens=new StringTokenizer(v,"\n",true);
+    while (tokens.hasMoreTokens()) {
+      String token=tokens.nextToken();
+      if (token.compareTo("\n") == 0) {
+        replacement.append(insertion);
+      }
+ else {
+        replacement.append(token);
+      }
+    }
+    return replacement.toString();
+  }
+}

@@ -3,7 +3,7 @@
     return excFile(file);
   }
  else   if (this.INCFILE != null) {
-    return incFile(file);
+    return !incFile(file);
   }
   return false;
 }

@@ -1,17 +1,17 @@
 {
-  line=this.cleanURL(line);
+  String cleanedLine=this.cleanURL(line);
   this.GEN.setMethod(this.RMETHOD);
   if (FILTER != null) {
     if (!FILTER.isFiltered(line)) {
       COUNT++;
-      line=FILTER.filter(line);
+      line=FILTER.filter(cleanedLine);
       if (line != null) {
-        createUrl(line);
+        createUrl(cleanedLine);
       }
     }
   }
  else {
     COUNT++;
-    createUrl(line);
+    createUrl(cleanedLine);
   }
 }

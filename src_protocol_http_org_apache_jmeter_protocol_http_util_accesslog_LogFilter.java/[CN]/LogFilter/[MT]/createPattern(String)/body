@@ -1,7 +1,6 @@
 {
   try {
-    Perl5Compiler comp=new Perl5Compiler();
-    return comp.compile(pattern,Perl5Compiler.READ_ONLY_MASK);
+    return JMeterUtils.getPatternCache().getPattern(pattern,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.SINGLELINE_MASK);
   }
  catch (  Exception exception) {
     exception.printStackTrace();

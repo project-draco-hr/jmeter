@@ -1,7 +1,6 @@
 {
   try {
     JMeterProperty prop=getProperty(LOOPS);
-    if (prop instanceof FunctionProperty)     ((FunctionProperty)prop).setUseCache(false);
     return Integer.parseInt(prop.getStringValue());
   }
  catch (  NumberFormatException e) {

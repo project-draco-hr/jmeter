@@ -47,6 +47,9 @@ catch (      IllegalAccessException e) {
         log.debug("Editor for property " + name + " is wrapped in "+ propertyEditor);
       }
     }
+    if (propertyEditor.getCustomEditor() instanceof JScrollPane) {
+      scrollerCount++;
+    }
     editors[i]=propertyEditor;
     setEditorValue(i,descriptors[i].getValue(DEFAULT));
     propertyEditor.addPropertyChangeListener(this);

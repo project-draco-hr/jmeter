@@ -1,28 +1,3 @@
 {
-  Object value;
-  if (property instanceof NullProperty) {
-    value=null;
-  }
- else   if (type == boolean.class || type == Boolean.class) {
-    value=JOrphanUtils.valueOf(property.getBooleanValue());
-  }
- else   if (type == double.class || type == Double.class) {
-    value=new Double(property.getDoubleValue());
-  }
- else   if (type == float.class || type == Float.class) {
-    value=new Float(property.getFloatValue());
-  }
- else   if (type == int.class || type == Integer.class) {
-    value=new Integer(property.getIntValue());
-  }
- else   if (type == long.class || type == Long.class) {
-    value=new Long(property.getLongValue());
-  }
- else   if (type == String.class) {
-    value=property.getStringValue();
-  }
- else {
-    value=property.getObjectValue();
-  }
-  return value;
+  return Converter.convert(property.getObjectValue(),type);
 }

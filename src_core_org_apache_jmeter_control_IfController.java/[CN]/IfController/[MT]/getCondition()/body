@@ -1,5 +1,3 @@
 {
-  JMeterProperty prop=getProperty(CONDITION);
-  if (prop instanceof FunctionProperty)   ((FunctionProperty)prop).setUseCache(false);
-  return prop.getStringValue();
+  return getPropertyAsString(CONDITION);
 }

@@ -1,6 +1,4 @@
 {
-  log.debug("Calling getStringValue from FunctionProperty");
-  log.debug("boogedy boogedy");
   JMeterContext ctx=JMeterContextService.getContext();
   if (!isRunningVersion() || !ctx.isSamplingStarted()) {
     log.debug("Not running version, return raw function string");
@@ -12,15 +10,10 @@
     if (iter < testIteration) {
       testIteration=-1;
     }
-    if (useCache) {
-      if (iter > testIteration || cacheValue == null) {
-        testIteration=iter;
-        cacheValue=function.execute();
-      }
-      return cacheValue;
+    if (iter > testIteration || cacheValue == null) {
+      testIteration=iter;
+      cacheValue=function.execute();
     }
- else {
-      return function.execute();
-    }
+    return cacheValue;
   }
 }

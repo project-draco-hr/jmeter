@@ -2,7 +2,7 @@
   this.USEFILE=true;
   boolean exc=false;
   for (int idx=0; idx < this.EXCPATTERNS.size(); idx++) {
-    if (MATCHER.contains(text,(Pattern)this.EXCPATTERNS.get(idx))) {
+    if (JMeterUtils.getMatcher().contains(text,(Pattern)this.EXCPATTERNS.get(idx))) {
       exc=true;
       this.USEFILE=false;
       break;

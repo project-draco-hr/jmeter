@@ -39,6 +39,6 @@
  else {
     sampler.parseArguments(postData);
   }
-  log.debug("sampler path = " + sampler.getEncodedPath());
+  log.debug("sampler path = " + sampler.getPath());
   return sampler;
 }
