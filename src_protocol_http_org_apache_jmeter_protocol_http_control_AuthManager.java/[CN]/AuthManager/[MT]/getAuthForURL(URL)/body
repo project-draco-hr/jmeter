@@ -18,8 +18,8 @@
   String s1=url.toString();
   String s2=null;
   if (url2 != null)   s2=url2.toString();
-  for (PropertyIterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
-    Authorization auth=(Authorization)enum.next().getObjectValue();
+  for (PropertyIterator iter=getAuthObjects().iterator(); iter.hasNext(); ) {
+    Authorization auth=(Authorization)iter.next().getObjectValue();
     String uRL=auth.getURL();
     if (s1.startsWith(uRL) || s2 != null && s2.startsWith(uRL)) {
       return auth;

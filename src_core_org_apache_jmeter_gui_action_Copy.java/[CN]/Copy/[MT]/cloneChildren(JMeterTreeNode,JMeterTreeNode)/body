@@ -1,7 +1,7 @@
 {
-  Enumeration enum=from.children();
-  while (enum.hasMoreElements()) {
-    JMeterTreeNode child=(JMeterTreeNode)enum.nextElement();
+  Enumeration enumFrom=from.children();
+  while (enumFrom.hasMoreElements()) {
+    JMeterTreeNode child=(JMeterTreeNode)enumFrom.nextElement();
     JMeterTreeNode childClone=(JMeterTreeNode)child.clone();
     childClone.setUserObject(((TestElement)child.getUserObject()).clone());
     to.add(childClone);
