@@ -16,14 +16,14 @@
   }
  catch (  ClassNotFoundException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
 catch (  InstantiationException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
 catch (  IllegalAccessException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
 }

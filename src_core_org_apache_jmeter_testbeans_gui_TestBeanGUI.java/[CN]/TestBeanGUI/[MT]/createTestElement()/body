@@ -6,10 +6,10 @@
   }
  catch (  InstantiationException e) {
     log.error("Can't create test element",e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
 catch (  IllegalAccessException e) {
     log.error("Can't create test element",e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
 }

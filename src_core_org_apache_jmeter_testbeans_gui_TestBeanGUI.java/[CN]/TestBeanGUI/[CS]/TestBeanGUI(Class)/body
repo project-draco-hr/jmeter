@@ -12,7 +12,7 @@
   }
  catch (  IntrospectionException e) {
     log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
   Arrays.sort(descriptors,new PropertyComparator());
   editors=new PropertyEditor[descriptors.length];
@@ -34,11 +34,11 @@
       }
  catch (      InstantiationException e) {
         log.error("Can't create property editor.",e);
-        throw new Error(e);
+        throw new Error(e.toString());
       }
 catch (      IllegalAccessException e) {
         log.error("Can't create property editor.",e);
-        throw new Error(e);
+        throw new Error(e.toString());
       }
     }
  else {

@@ -11,7 +11,7 @@
     }
  catch (    IntrospectionException e) {
       log.error("Can't get beanInfo for " + this.getClass().getName(),e);
-      throw new Error(e);
+      throw new Error(e.toString());
     }
   }
 }

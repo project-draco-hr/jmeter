@@ -5,7 +5,7 @@
   JPanel mainPanel=new JPanel(new GridBagLayout());
   GridBagConstraints cl=new GridBagConstraints();
   cl.gridx=0;
-  cl.anchor=GridBagConstraints.LINE_END;
+  cl.anchor=GridBagConstraints.EAST;
   cl.insets=new Insets(0,1,0,1);
   GridBagConstraints ce=new GridBagConstraints();
   ce.fill=GridBagConstraints.BOTH;
@@ -46,7 +46,7 @@
     label.setLabelFor(customEditor);
     cl.gridy=y;
     cl.gridwidth=multiLineEditor ? 2 : 1;
-    cl.anchor=multiLineEditor ? GridBagConstraints.CENTER : GridBagConstraints.LINE_END;
+    cl.anchor=multiLineEditor ? GridBagConstraints.CENTER : GridBagConstraints.EAST;
     currentPanel.add(label,cl);
     ce.gridx=multiLineEditor ? 0 : 1;
     ce.gridy=multiLineEditor ? ++y : y;

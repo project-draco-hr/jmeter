@@ -7,7 +7,7 @@
       setEditorValue(i,jprop.getObjectValue());
     }
  catch (    IllegalArgumentException e) {
-      throw new Error("Bad property value.",e);
+      throw new Error("Bad property value." + e);
     }
   }
 }

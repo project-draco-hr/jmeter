@@ -4,5 +4,5 @@
   editor=new WrapperEditor(new SimpleFileEditor(),new ComboStringEditor(),true,true);
   panel=new JPanel(new BorderLayout(5,0));
   panel.add(editor.getCustomEditor(),BorderLayout.CENTER);
-  panel.add(button,BorderLayout.LINE_END);
+  panel.add(button,BorderLayout.EAST);
 }

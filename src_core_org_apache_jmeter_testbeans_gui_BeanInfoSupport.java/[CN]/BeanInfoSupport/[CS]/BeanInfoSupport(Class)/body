@@ -5,7 +5,7 @@
   }
  catch (  IntrospectionException e) {
     log.error("Can't introspect.",e);
-    throw new Error(e);
+    throw new Error(e.toString());
   }
   try {
     ResourceBundle resourceBundle=ResourceBundle.getBundle(beanClass.getName() + "Resources",JMeterUtils.getLocale());
@@ -19,7 +19,6 @@
     PropertyDescriptor[] properties=getPropertyDescriptors();
     for (int i=0; i < properties.length; i++) {
       String name=properties[i].getName();
-      String s;
       try {
         properties[i].setDisplayName(resourceBundle.getString(name + ".displayName"));
       }
