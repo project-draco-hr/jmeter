@@ -14,10 +14,12 @@
     }
  else {
       Enumeration enum=node.children();
+      String guiClassName=null;
       while (enum.hasMoreElements()) {
         JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
         TestElement sample=(TestElement)subNode.createTestElement();
-        if (sample.getPropertyAsString(TestElement.GUI_CLASS).equals("org.apache.jmeter.protocol.http.config.gui.UrlConfigGui")) {
+        guiClassName=sample.getPropertyAsString(TestElement.GUI_CLASS);
+        if (guiClassName.equals(UrlConfigGui.class.getName()) || guiClassName.equals(HttpDefaultsGui.class.getName())) {
           urlConfig=sample;
           break;
         }

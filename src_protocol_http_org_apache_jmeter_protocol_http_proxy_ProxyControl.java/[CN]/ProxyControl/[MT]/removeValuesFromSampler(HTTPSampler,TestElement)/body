@@ -1,8 +1,10 @@
 {
-  if (urlConfig != null && sampler.getDomain().equals(urlConfig.getProperty(HTTPSampler.DOMAIN))) {
-    sampler.setDomain("");
-  }
-  if (urlConfig != null && sampler.getPath().equals(urlConfig.getProperty(HTTPSampler.PATH))) {
-    sampler.setPath("");
+  if (urlConfig != null) {
+    if (sampler.getDomain().equals(urlConfig.getProperty(HTTPSampler.DOMAIN))) {
+      sampler.setDomain("");
+    }
+    if (sampler.getPath().equals(urlConfig.getProperty(HTTPSampler.PATH))) {
+      sampler.setPath("");
+    }
   }
 }
