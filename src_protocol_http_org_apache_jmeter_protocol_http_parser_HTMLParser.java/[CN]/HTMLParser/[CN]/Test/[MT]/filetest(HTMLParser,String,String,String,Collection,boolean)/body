@@ -11,10 +11,21 @@
  else {
     result=p.getEmbeddedResourceURLs(buffer,new URL(url),c);
   }
-  Iterator expected=getFile(resultFile).iterator();
+  Iterator expected;
+  if (orderMatters) {
+    expected=getFile(resultFile).iterator();
+  }
+ else {
+    expected=new TreeSet(getFile(resultFile)).iterator();
+    TreeSet temp=new TreeSet();
+    while (result.hasNext()) {
+      temp.add(result.next().toString());
+    }
+    result=temp.iterator();
+  }
   while (expected.hasNext()) {
-    assertTrue(result.hasNext());
+    assertTrue("Expecting another result",result.hasNext());
     assertEquals(expected.next(),result.next().toString());
   }
-  assertFalse(result.hasNext());
+  assertFalse("Should have reached the end of the results",result.hasNext());
 }
