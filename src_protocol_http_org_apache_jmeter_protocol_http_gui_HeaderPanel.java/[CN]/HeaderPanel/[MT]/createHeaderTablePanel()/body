@@ -4,6 +4,7 @@
   tempPanel.setLayout(new VerticalLayout(0,VerticalLayout.CENTER));
   tempPanel.setBorder(new CompoundBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("headers_stored")),margin));
   headerTable=new JTable(tableModel);
+  headerTable.addFocusListener(this);
   headerTable.setCellSelectionEnabled(true);
   headerTable.setRowSelectionAllowed(true);
   headerTable.setColumnSelectionAllowed(false);
