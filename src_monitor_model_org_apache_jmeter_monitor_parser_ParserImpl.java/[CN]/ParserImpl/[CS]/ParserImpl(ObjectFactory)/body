@@ -1,10 +1,11 @@
 {
   super();
-  FACTORY=factory;
+  this.FACTORY=factory;
   try {
     PARSERFACTORY=SAXParserFactory.newInstance();
     PARSER=PARSERFACTORY.newSAXParser();
     DOCHANDLER=new MonitorHandler();
+    DOCHANDLER.setObjectFactory(this.FACTORY);
   }
  catch (  SAXException e) {
   }

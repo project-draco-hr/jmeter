@@ -1,3 +1,16 @@
 {
-  return null;
+  try {
+    InputSource is=new InputSource();
+    is.setByteStream(new ByteArrayInputStream(bytes));
+    PARSER.parse(is,DOCHANDLER);
+    return DOCHANDLER.getContents();
+  }
+ catch (  SAXException e) {
+    e.printStackTrace();
+    return DOCHANDLER.getContents();
+  }
+catch (  IOException e) {
+    e.printStackTrace();
+    return DOCHANDLER.getContents();
+  }
 }
