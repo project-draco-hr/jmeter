@@ -1,4 +1,4 @@
 {
   HashTree tree=getTreePath(treePath);
-  return tree.getArray();
+  return (tree != null) ? tree.getArray() : null;
 }
