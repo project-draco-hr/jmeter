@@ -22,7 +22,7 @@
       startGui(parser.getArgumentById(TESTFILE_OPT));
     }
  else {
-      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT));
+      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),parser.getArgumentById(REMOTE_OPT));
     }
   }
  catch (  IllegalUserActionException e) {

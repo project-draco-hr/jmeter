@@ -1,2 +1,7 @@
 {
+  started--;
+  log.info("Remote host " + host + " finished");
+  if (started == 0) {
+    testEnded();
+  }
 }

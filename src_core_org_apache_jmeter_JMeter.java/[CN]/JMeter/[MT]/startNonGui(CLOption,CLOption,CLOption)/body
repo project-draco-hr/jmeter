@@ -5,9 +5,9 @@
     throw new IllegalUserActionException();
   }
   if (logFile == null) {
-    driver.run(testFile.getArgument(),null);
+    driver.run(testFile.getArgument(),null,remoteStart != null);
   }
  else {
-    driver.run(testFile.getArgument(),logFile.getArgument());
+    driver.run(testFile.getArgument(),logFile.getArgument(),remoteStart != null);
   }
 }
