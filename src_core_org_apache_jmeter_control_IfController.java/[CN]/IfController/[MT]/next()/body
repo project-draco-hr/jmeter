@@ -7,5 +7,10 @@
     logger.error(e.getMessage(),e);
   }
   if (result)   return super.next();
- else   return null;
+ else   try {
+    return nextIsNull();
+  }
+ catch (  NextIsNullException e1) {
+    return null;
+  }
 }
