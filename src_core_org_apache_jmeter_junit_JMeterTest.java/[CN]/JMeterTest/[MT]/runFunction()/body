@@ -4,7 +4,9 @@
     boolean ct=funcTitles.containsKey(title);
     if (ct)     funcTitles.put(title,Boolean.TRUE);
     if (title.indexOf("(ALPHA") == -1 && title.indexOf("(EXPERIMENTAL") == -1) {
-      assertTrue("function.xml needs '" + title + "' entry for "+ funcItem.getClass().getName(),ct);
+      String s="function.xml needs '" + title + "' entry for "+ funcItem.getClass().getName();
+      if (!ct)       log.warn(s);
+      assertTrue(s,ct);
     }
   }
 }

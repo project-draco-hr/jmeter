@@ -4,7 +4,9 @@
     boolean ct=guiTitles.containsKey(title);
     if (ct)     guiTitles.put(title,Boolean.TRUE);
     if ((title.toUpperCase().indexOf("(ALPHA") == -1) && (title.toUpperCase().indexOf("(BETA") == -1) && (!title.equals("Example1"))&& (!title.equals("Example2"))) {
-      assertTrue("component_reference.xml needs '" + title + "' anchor for "+ guiItem.getClass().getName(),ct);
+      String s="component_reference.xml needs '" + title + "' anchor for "+ guiItem.getClass().getName();
+      if (!ct)       log.warn(s);
+      assertTrue(s,ct);
     }
   }
 }
