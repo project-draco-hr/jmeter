@@ -1,6 +1,6 @@
 {
   int load=0;
-  if (stat != null) {
+  if (stat != null && stat.getConnector().size() > 0) {
     Connector cntr=(Connector)stat.getConnector().get(0);
     double max=(double)cntr.getThreadInfo().getMaxThreads();
     double current=(double)cntr.getThreadInfo().getCurrentThreadsBusy();

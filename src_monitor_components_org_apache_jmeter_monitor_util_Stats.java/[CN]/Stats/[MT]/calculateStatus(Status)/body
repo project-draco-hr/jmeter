@@ -1,5 +1,5 @@
 {
-  if (stat != null) {
+  if (stat != null && stat.getConnector().size() > 0) {
     Connector cntr=(Connector)stat.getConnector().get(0);
     int max=cntr.getThreadInfo().getMaxThreads();
     int current=cntr.getThreadInfo().getCurrentThreadsBusy();
