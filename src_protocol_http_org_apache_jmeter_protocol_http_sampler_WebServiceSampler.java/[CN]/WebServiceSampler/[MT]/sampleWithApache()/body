@@ -4,9 +4,16 @@
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
     RESULT.sampleStart();
+    SOAPHTTPConnection spconn=null;
+    if (this.getHeaderManager() != null && this.getHeaderManager().getSOAPHeader() != null) {
+      spconn=(SOAPHTTPConnection)this.getHeaderManager().getSOAPHeader();
+    }
+ else {
+      spconn=new SOAPHTTPConnection();
+    }
+    String phost="";
+    int pport=0;
     if (this.getUseProxy()) {
-      String phost="";
-      int pport=0;
       if (this.getProxyHost().length() > 0 && this.getProxyPort() > 0) {
         phost=this.getProxyHost();
         pport=this.getProxyPort();
@@ -17,12 +24,17 @@
           pport=Integer.parseInt(System.getProperty("http.proxyPort"));
         }
       }
-      SOAPHTTPConnection spconn=new SOAPHTTPConnection();
-      spconn.setProxyHost(phost);
-      spconn.setProxyPort(pport);
-      msg.setSOAPTransport(spconn);
+      if (phost.length() > 0 && pport > 0) {
+        spconn.setProxyHost(phost);
+        spconn.setProxyPort(pport);
+      }
     }
+    spconn.setMaintainSession(true);
+    msg.setSOAPTransport(spconn);
     msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
+    if (this.getHeaderManager() != null) {
+      this.getHeaderManager().setSOAPHeader(spconn);
+    }
     SOAPTransport st=msg.getSOAPTransport();
     BufferedReader br=st.receive();
     RESULT.setDataType(SampleResult.TEXT);
