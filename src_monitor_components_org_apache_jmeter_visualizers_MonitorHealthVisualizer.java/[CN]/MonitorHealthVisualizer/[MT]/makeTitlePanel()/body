@@ -2,6 +2,6 @@
   VerticalPanel titlePanel=new VerticalPanel();
   titlePanel.add(createTitleLabel());
   titlePanel.add(getNamePanel());
-  titlePanel.add(super.getFilePanel());
+  titlePanel.add(getFilePanel());
   return titlePanel;
 }

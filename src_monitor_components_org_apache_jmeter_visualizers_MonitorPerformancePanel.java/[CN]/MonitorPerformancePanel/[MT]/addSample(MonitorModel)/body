@@ -7,8 +7,10 @@
     this.TREEPANE.updateUI();
   }
   DefaultMutableTreeNode node=(DefaultMutableTreeNode)SERVERTREE.getLastSelectedPathComponent();
-  Object usrobj=node.getUserObject();
-  if (usrobj instanceof MonitorModel) {
-    GRAPH.updateGui((MonitorModel)usrobj);
+  if (node != null) {
+    Object usrobj=node.getUserObject();
+    if (usrobj instanceof MonitorModel) {
+      GRAPH.updateGui((MonitorModel)usrobj);
+    }
   }
 }

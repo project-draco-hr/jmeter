@@ -1,7 +1,0 @@
-{
-  if (collector == null) {
-    collector=new ResultCollector();
-  }
-  modifyTestElement(collector);
-  return (TestElement)collector.clone();
-}
