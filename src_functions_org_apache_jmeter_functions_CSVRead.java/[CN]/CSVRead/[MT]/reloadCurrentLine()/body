@@ -1,6 +1,0 @@
-{
-  if (log.isDebugEnabled()) {
-    log.debug(Thread.currentThread().getName() + " " + getId()+ " reloaded "+ getThreadData().get(getId()));
-  }
-  return (ArrayList)getThreadData().get(getId());
-}

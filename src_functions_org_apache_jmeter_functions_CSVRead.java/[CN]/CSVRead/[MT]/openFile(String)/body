@@ -1,9 +1,0 @@
-{
-  try {
-    FileReader fis=new FileReader(fileName);
-    myBread=new BufferedReader(fis);
-  }
- catch (  FileNotFoundException e) {
-    log.error(e.toString());
-  }
-}

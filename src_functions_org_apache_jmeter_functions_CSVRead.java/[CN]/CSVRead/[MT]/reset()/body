@@ -1,5 +1,0 @@
-{
-  log.debug(Thread.currentThread().getName() + " " + getId()+ " reseting .... ");
-  this.setFileData(null);
-  CSVRead.threadData=new Hashtable();
-}

@@ -1,43 +1,26 @@
 {
-  String columnOrNext="";
   String myValue="";
+  String fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();
+  String columnOrNext=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
+  log.debug("execute (" + fileName + " , "+ columnOrNext+ ")   ");
+  if (columnOrNext.startsWith("*")) {
+    FileWrapper.open(fileName,columnOrNext);
+    return "";
+  }
+  if (columnOrNext.equals("next()") || columnOrNext.equals("next")) {
+    FileWrapper.endRow(fileName);
+    return "";
+  }
   try {
-    ArrayList processedLines=null;
-    String fileName=null;
-    fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();
-    columnOrNext=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
-    FileDataContainer myfileData=getFileData(fileName);
-    if (columnOrNext.equals("next()") || columnOrNext.equals("next")) {
-      storeCurrentLine(null);
-      return "";
-    }
-    processedLines=reloadCurrentLine();
-    if (myfileData != null && processedLines == null) {
-      processedLines=(ArrayList)myfileData.getNextLine();
-      myfileData.incrementRowPosition();
-      this.storeCurrentLine(processedLines);
-    }
-    try {
-      int columnIndex=Integer.parseInt(columnOrNext);
-      if (processedLines != null) {
-        myValue=(String)processedLines.get(columnIndex);
-      }
- else {
-        log.error("No file data found");
-      }
-    }
- catch (    NumberFormatException e) {
-      log.warn("Column number error: " + columnOrNext + " "+ e.toString());
-    }
-catch (    IndexOutOfBoundsException e) {
-      log.warn("Invalid column number: " + columnOrNext + " "+ e.toString());
-    }
-    if (log.isDebugEnabled()) {
-      log.debug(Thread.currentThread().getName() + " " + getId()+ ">>>> execute ("+ fileName+ " , "+ columnOrNext+ ")   "+ this.hashCode());
-    }
+    int columnIndex=Integer.parseInt(columnOrNext);
+    myValue=FileWrapper.getColumn(fileName,columnIndex);
   }
- catch (  IOException e) {
-    log.error("execute",e);
+ catch (  NumberFormatException e) {
+    log.warn("Column number error: " + columnOrNext + " "+ e.toString());
   }
+catch (  IndexOutOfBoundsException e) {
+    log.warn("Invalid column number: " + columnOrNext + " "+ e.toString());
+  }
+  log.debug("execute value: " + myValue);
   return myValue;
 }
