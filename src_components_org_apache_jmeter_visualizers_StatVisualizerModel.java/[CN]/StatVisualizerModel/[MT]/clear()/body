@@ -1,4 +1,6 @@
 {
+  runningSamples.clear();
   labelMap.clear();
+  total=new RunningSample("__TOTAL__",-1);
   this.fireDataChanged();
 }

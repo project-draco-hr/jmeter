@@ -1,14 +1,16 @@
 {
   String aLabel=res.getSampleLabel();
   String responseCode=res.getResponseCode();
-  RunningSample myRS;
-  if (labelMap.containsKey(aLabel)) {
-    myRS=(RunningSample)labelMap.get(aLabel);
+  RunningSample s;
+synchronized (labelMap) {
+    s=(RunningSample)labelMap.get(aLabel);
+    if (s == null) {
+      s=new RunningSample(aLabel,runningSamples.size());
+      runningSamples.add(s);
+      labelMap.put(aLabel,s);
+    }
   }
- else {
-    myRS=new RunningSample();
-    labelMap.put(aLabel,myRS);
-  }
-  myRS.addSample(res);
-  this.fireDataChanged(myRS);
+  s.addSample(res);
+  total.addSample(res);
+  this.fireDataChanged(s);
 }

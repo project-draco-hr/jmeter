@@ -1,9 +1,0 @@
-{
-  Integer row=(Integer)rowValues.get(key);
-  if (row == null) {
-    return data.size();
-  }
- else {
-    return row.intValue();
-  }
-}

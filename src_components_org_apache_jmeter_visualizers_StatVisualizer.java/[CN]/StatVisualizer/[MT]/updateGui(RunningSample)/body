@@ -1,4 +1,3 @@
 {
-  updateChart(myStatTableModel,s);
-  myStatTableModel.fireTableDataChanged();
+  myStatTableModel.rowChanged(s.getIndex());
 }

@@ -1,18 +1,16 @@
 {
   long howLongRunning=lastTime - firstTime;
   if (howLongRunning == 0)   return ("N/A");
-  double samplesPerSecond=(double)((double)howLongRunning * threadNames.size()) / (double)getAverage();
-  double factor=(double)((double)1000 / (double)howLongRunning);
-  samplesPerSecond=samplesPerSecond * factor;
-  String perString="/sec";
-  if (samplesPerSecond < 1.0) {
-    samplesPerSecond*=60;
-    perString="/min";
+  double rate=(double)howLongRunning / counter / 1000.0;
+  String unit="sec";
+  if (rate < 1.0) {
+    rate*=60.0;
+    unit="min";
   }
-  if (samplesPerSecond < 1.0) {
-    samplesPerSecond*=60;
-    perString="/hour";
+  if (rate < 1.0) {
+    rate*=60.0;
+    unit="hour";
   }
-  String rval=rateFormatter.format(samplesPerSecond) + perString;
+  String rval=rateFormatter.format(rate) + "/" + unit;
   return (rval);
 }

@@ -11,7 +11,7 @@
   panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
   mainPanel.add(panelTitleLabel);
   mainPanel.add(getFilePanel());
-  myStatTableModel=new StatTableModel();
+  myStatTableModel=new StatTableModel(model);
   myJTable=new JTable(myStatTableModel);
   myJTable.setPreferredScrollableViewportSize(new Dimension(500,70));
   myScrollPane=new JScrollPane(myJTable);
