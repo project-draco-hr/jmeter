@@ -1,4 +1,8 @@
 {
-  if (key instanceof DBKey)   return url.equals(((DBKey)key).getUrl());
- else   return false;
+  if (key instanceof DBKey) {
+    return url.equals(((DBKey)key).getUrl());
+  }
+ else {
+    return false;
+  }
 }
