@@ -1,0 +1,17 @@
+{
+  state=checkIllegalState(i,state,ch,tag);
+  state=checkFinishedState(encounteredQuery,i,state,ch,tag,pos);
+  state=toggleIgnoringState(state,ch,ignorechar);
+  if (state == TAG_BEFORE_PARSING_STATE && ch != '<') {
+    state=TAG_ILLEGAL_STATE;
+  }
+  if (state == TAG_IGNORE_DATA_STATE && ch == '<') {
+    if (!isWellFormedTag(tag,pos))     state=TAG_IGNORE_BEGIN_TAG_STATE;
+  }
+  if (state == TAG_IGNORE_BEGIN_TAG_STATE && ch == '>') {
+    state=TAG_IGNORE_DATA_STATE;
+  }
+  checkIfAppendable(encounteredQuery,state,ch,tag);
+  state=checkBeginParsingState(i,state,ch,tag);
+  return state;
+}

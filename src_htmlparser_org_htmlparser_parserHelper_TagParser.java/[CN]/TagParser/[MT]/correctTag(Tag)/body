@@ -1,0 +1,11 @@
+{
+  String tempText=tag.getText();
+  StringBuffer absorbedText=new StringBuffer();
+  char c;
+  for (int j=0; j < tempText.length(); j++) {
+    c=tempText.charAt(j);
+    if (c != '"')     absorbedText.append(c);
+  }
+  StringBuffer result=insertInvertedCommasCorrectly(absorbedText);
+  tag.setText(result.toString());
+}

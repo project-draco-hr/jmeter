@@ -1,0 +1,23 @@
+{
+  int state=TAG_BEFORE_PARSING_STATE;
+  int i=position;
+  char ch;
+  char[] ignorechar=new char[1];
+  Tag tag=new Tag(new TagData(position,0,reader.getLastLineNumber(),0,"",input,"",false));
+  Bool encounteredQuery=new Bool(false);
+  while (i < tag.getTagLine().length() && state != TAG_FINISHED_PARSING_STATE && state != TAG_ILLEGAL_STATE) {
+    ch=tag.getTagLine().charAt(i);
+    state=automataInput(encounteredQuery,i,state,ch,tag,i,ignorechar);
+    i=incrementCounter(i,reader,state,tag);
+  }
+  if (state == TAG_FINISHED_PARSING_STATE) {
+    String tagLine=tag.getTagLine();
+    if (i > 1 && tagLine.charAt(i - 2) == '/') {
+      tag.setEmptyXmlTag(true);
+      String tagContents=tag.getText();
+      tag.setText(tagContents.substring(0,tagContents.length() - 1));
+    }
+    return tag;
+  }
+ else   return null;
+}

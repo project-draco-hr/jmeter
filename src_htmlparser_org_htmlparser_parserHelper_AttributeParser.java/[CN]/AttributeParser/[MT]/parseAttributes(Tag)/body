@@ -1,0 +1,63 @@
+{
+  Hashtable h=new Hashtable();
+  String element, name, value, nextPart=null;
+  String empty=null;
+  name=null;
+  value=null;
+  element=null;
+  boolean waitingForEqual=false;
+  delim=delima;
+  StringTokenizer tokenizer=new StringTokenizer(tag.getText(),delim,true);
+  while (true) {
+    nextPart=getNextPart(tokenizer,delim);
+    delim=delima;
+    if (element == null && nextPart != null && !nextPart.equals("=")) {
+      element=nextPart;
+      putDataIntoTable(h,element,null,true);
+    }
+ else {
+      if (nextPart != null && (0 < nextPart.length())) {
+        if (name == null) {
+          if (!nextPart.substring(0,1).equals(" ")) {
+            name=nextPart;
+            waitingForEqual=true;
+          }
+        }
+ else {
+          if (waitingForEqual) {
+            if (nextPart.equals("=")) {
+              waitingForEqual=false;
+              delim=delimb;
+            }
+ else {
+              putDataIntoTable(h,name,"",false);
+              name=nextPart;
+              value=null;
+            }
+          }
+          if (!waitingForEqual && !nextPart.equals("=")) {
+            value=nextPart;
+            putDataIntoTable(h,name,value,false);
+            name=null;
+            value=null;
+          }
+        }
+      }
+ else {
+        if (name != null) {
+          if (name.equals("/")) {
+            putDataIntoTable(h,Tag.EMPTYTAG,"",false);
+          }
+ else {
+            putDataIntoTable(h,name,"",false);
+          }
+          name=null;
+          value=null;
+        }
+        break;
+      }
+    }
+  }
+  if (null == element)   putDataIntoTable(h,"",null,true);
+  return h;
+}

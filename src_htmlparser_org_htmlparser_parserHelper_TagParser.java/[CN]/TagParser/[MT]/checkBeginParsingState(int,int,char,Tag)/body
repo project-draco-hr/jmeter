@@ -1,0 +1,7 @@
+{
+  if (ch == '<' && (state == TAG_BEFORE_PARSING_STATE || state == TAG_ILLEGAL_STATE)) {
+    tag.setTagBegin(i);
+    state=TAG_BEGIN_PARSING_STATE;
+  }
+  return state;
+}

@@ -1,0 +1,15 @@
+{
+  int firstSpace;
+  int lastSpace;
+  firstSpace=token.indexOf(' ');
+  while (firstSpace == 0) {
+    token=token.substring(1,token.length());
+    firstSpace=token.indexOf(' ');
+  }
+  lastSpace=token.lastIndexOf(' ');
+  while (lastSpace == token.length() - 1) {
+    token=token.substring(0,token.length() - 1);
+    lastSpace=token.lastIndexOf(' ');
+  }
+  return token;
+}

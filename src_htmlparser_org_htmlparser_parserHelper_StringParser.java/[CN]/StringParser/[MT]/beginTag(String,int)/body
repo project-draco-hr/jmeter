@@ -1,0 +1,10 @@
+{
+  char ch;
+  boolean ret;
+  ret=false;
+  if (pos + 2 <= line.length())   if ('<' == line.charAt(pos)) {
+    ch=line.charAt(pos + 1);
+    if ('/' == ch || '%' == ch || Character.isLetter(ch) || '!' == ch)     ret=true;
+  }
+  return (ret);
+}

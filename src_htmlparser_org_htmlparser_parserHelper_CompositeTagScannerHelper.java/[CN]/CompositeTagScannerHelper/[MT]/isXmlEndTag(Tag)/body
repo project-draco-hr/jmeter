@@ -1,0 +1,5 @@
+{
+  String tagText=tag.getText();
+  int lastSlash=tagText.lastIndexOf("/");
+  return (lastSlash == tagText.length() - 1 || tag.isEmptyXmlTag()) && tag.getText().indexOf("://") == -1;
+}

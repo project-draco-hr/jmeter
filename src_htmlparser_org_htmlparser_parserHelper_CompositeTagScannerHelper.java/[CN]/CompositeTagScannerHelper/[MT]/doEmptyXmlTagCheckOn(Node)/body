@@ -1,0 +1,9 @@
+{
+  if (currentNode instanceof Tag) {
+    Tag possibleEndTag=(Tag)currentNode;
+    if (isXmlEndTag(tag)) {
+      endTag=possibleEndTag;
+      endTagFound=true;
+    }
+  }
+}

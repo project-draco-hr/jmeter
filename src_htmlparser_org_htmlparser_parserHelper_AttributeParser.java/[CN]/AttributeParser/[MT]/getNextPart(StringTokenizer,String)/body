@@ -1,0 +1,47 @@
+{
+  String tokenAccumulator=null;
+  boolean isDoubleQuote=false;
+  boolean isSingleQuote=false;
+  boolean isDataReady=false;
+  String currentToken;
+  while (isDataReady == false && tokenizer.hasMoreTokens()) {
+    currentToken=tokenizer.nextToken(deli);
+    if (isDoubleQuote || isSingleQuote) {
+      if (isDoubleQuote && currentToken.charAt(0) == doubleQuote) {
+        isDoubleQuote=false;
+        isDataReady=true;
+      }
+ else       if (isSingleQuote && currentToken.charAt(0) == singleQuote) {
+        isSingleQuote=false;
+        isDataReady=true;
+      }
+ else {
+        tokenAccumulator+=currentToken;
+        continue;
+      }
+    }
+ else     if (currentToken.charAt(0) == doubleQuote) {
+      isDoubleQuote=true;
+      tokenAccumulator="";
+      continue;
+    }
+ else     if (currentToken.charAt(0) == singleQuote) {
+      isSingleQuote=true;
+      tokenAccumulator="";
+      continue;
+    }
+ else     tokenAccumulator=currentToken;
+    if (tokenAccumulator.equals(currentToken)) {
+      if (delim.indexOf(tokenAccumulator) >= 0) {
+        if (tokenAccumulator.equals("=")) {
+          isDataReady=true;
+        }
+      }
+ else {
+        isDataReady=true;
+      }
+    }
+ else     isDataReady=true;
+  }
+  return tokenAccumulator;
+}
