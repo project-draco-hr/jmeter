@@ -2,6 +2,11 @@
   addSeparator(menu);
   menu.add(makeMenuItem(JMeterUtils.getResString("open"),"Open","open"));
   menu.add(makeMenuItem(JMeterUtils.getResString("save_as"),"Save As","save_as"));
+  JMenuItem savePicture=makeMenuItem(JMeterUtils.getResString("save_as_image"),"Save Image","save_graphics",KeyStroke.getKeyStroke(KeyEvent.VK_G,KeyEvent.CTRL_MASK));
+  menu.add(savePicture);
+  if (!(GuiPackage.getInstance().getCurrentGui() instanceof Printable)) {
+    savePicture.setEnabled(false);
+  }
   JMenuItem disabled=makeMenuItem(JMeterUtils.getResString("disable"),"Disable","disable");
   JMenuItem enabled=makeMenuItem(JMeterUtils.getResString("enable"),"Enable","enable");
   boolean isEnabled=GuiPackage.getInstance().getTreeListener().getCurrentNode().isEnabled();
