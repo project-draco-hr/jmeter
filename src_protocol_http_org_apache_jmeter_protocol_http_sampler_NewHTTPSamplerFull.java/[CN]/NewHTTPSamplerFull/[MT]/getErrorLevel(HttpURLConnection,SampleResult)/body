@@ -1,0 +1,26 @@
+{
+  log.debug("Start : getErrorLevel");
+  int errorLevel=2;
+  try {
+    int responseCode=((HttpURLConnection)conn).getResponseCode();
+    String responseMessage=((HttpURLConnection)conn).getResponseMessage();
+    errorLevel=responseCode / 100;
+    res.setResponseCode(String.valueOf(responseCode));
+    res.setResponseMessage(responseMessage);
+    if (log.isDebugEnabled()) {
+      log.debug("getErrorLevel : responseCode - " + responseCode);
+      log.debug("getErrorLevel : responseMessage - " + responseMessage);
+    }
+  }
+ catch (  Exception e2) {
+    log.error("getErrorLevel : " + conn.getHeaderField(0));
+    log.error("getErrorLevel : " + conn.getHeaderFieldKey(0));
+    log.error("getErrorLevel : " + "Error getting response code for HttpUrlConnection - ",e2);
+    res.setResponseData(e2.toString().getBytes());
+    res.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
+    res.setSuccessful(false);
+  }
+  log.debug("End   : getErrorLevel");
+  return errorLevel;
+}

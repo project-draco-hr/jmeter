@@ -1,0 +1,15 @@
+{
+  log.debug("Start : testSampleMain");
+  String fileInput="<html>\n\n" + "<title>\n" + "  A simple applet\n"+ "</title>\n"+ "<body background=\"back.jpg\" vlink=\"#dd0000\" "+ "link=\"#0000ff\">\n"+ "<center>\n"+ "<h2>   A simple applet\n"+ "</h2>\n"+ "<br>\n"+ "<br>\n"+ "<table>\n"+ "<td width = 20>\n"+ "<td width = 500 align = left>\n"+ "<img src=\"/tomcat.gif\">\n"+ "<img src=\"/tomcat.gif\">\n"+ "<a href=\"NervousText.java\"> Read my code <a>\n"+ "<p><applet code=NervousText.class width=400 height=200>\n"+ "</applet>\n"+ "<p><applet code=NervousText.class width=400 height=200>\n"+ "</applet>\n"+ "</table>\n"+ "<form>\n"+ "  <input type=\"image\" src=\"/tomcat-power.gif\">\n"+ "</form>\n"+ "<form>\n"+ "  <input type=\"image\" src=\"/tomcat-power.gif\">\n"+ "</form>\n"+ "</body>\n"+ "</html>\n";
+  byte[] bytes=fileInput.getBytes();
+  try {
+    FileOutputStream fos=new FileOutputStream("HTTPSamplerFullTestFile.txt");
+    fos.write(bytes);
+    fos.close();
+  }
+ catch (  IOException ioe) {
+    fail("Cannot create HTTPSamplerFullTestFile.txt in current directory " + "for testing - " + ioe);
+  }
+  assertNull("Cannot think of way to test sample",null);
+  log.debug("End   : testSampleMain");
+}

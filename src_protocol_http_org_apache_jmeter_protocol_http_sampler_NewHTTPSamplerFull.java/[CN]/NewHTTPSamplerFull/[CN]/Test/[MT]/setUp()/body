@@ -1,0 +1,9 @@
+{
+  log.debug("Start : setUp1");
+  hsf=new HTTPSampler();
+  hsf.setMethod(HTTPSampler.GET);
+  hsf.setProtocol("file");
+  hsf.setPath("HTTPSamplerFullTestFile.txt");
+  hsf.setImageParser(true);
+  log.debug("End   : setUp1");
+}
