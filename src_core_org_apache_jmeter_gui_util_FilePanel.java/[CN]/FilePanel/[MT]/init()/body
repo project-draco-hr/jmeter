@@ -1,5 +1,4 @@
 {
-  setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
   setBorder(BorderFactory.createTitledBorder(title));
   add(label);
   add(Box.createHorizontalStrut(5));
@@ -7,8 +6,6 @@
   add(Box.createHorizontalStrut(5));
   filename.addActionListener(this);
   add(browse);
-  add(Box.createHorizontalGlue());
   browse.setActionCommand("browse");
   browse.addActionListener(this);
-  setMaximumSize(new Dimension(getMaximumSize().width,getPreferredSize().height));
 }

@@ -1,7 +1,4 @@
 {
-  Box panel=Box.createHorizontalBox();
-  panel.add(filePanel);
-  panel.add(getErrorLoggingCheckbox());
-  panel.add(Box.createHorizontalGlue());
-  return panel;
+  filePanel.add(getErrorLoggingCheckbox());
+  return filePanel;
 }
