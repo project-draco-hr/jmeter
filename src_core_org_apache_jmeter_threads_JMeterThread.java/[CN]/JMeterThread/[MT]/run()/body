@@ -43,7 +43,7 @@
     }
   }
   finally {
-    threadContext.setSamplingStarted(false);
+    threadContext.clear();
     log.info("Thread " + threadName + " is done");
     monitor.threadFinished(this);
   }
