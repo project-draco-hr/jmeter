@@ -8,7 +8,7 @@
   TreeCloner cloner=new TreeCloner();
   original.traverse(cloner);
   ListedHashTree newTree=cloner.getClonedTree();
-  this.assertTrue(original != newTree);
+  assertTrue(original != newTree);
   assertEquals(original.size(),newTree.size());
   assertEquals(original.getTree(original.getArray()[0]).size(),newTree.getTree(newTree.getArray()[0]).size());
   assertTrue(original.getArray()[0] != newTree.getArray()[0]);

@@ -7,7 +7,7 @@
   while (running) {
     time=System.currentTimeMillis();
     try {
-      currentThread().sleep(incr);
+      Thread.sleep(incr);
     }
  catch (    Exception e) {
     }

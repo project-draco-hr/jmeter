@@ -18,6 +18,7 @@
           result.setThreadName(threadName);
           result.setTimeStamp(System.currentTimeMillis());
           checkAssertions(pack.getAssertions(),result);
+          runExtractors(pack.getExtractors(),result);
           notifyListeners(pack.getSampleListeners(),result);
         }
  catch (        Exception e) {

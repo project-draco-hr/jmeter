@@ -1,0 +1,20 @@
+{
+  JPanel panel=new JPanel(new GridBagLayout());
+  GridBagConstraints gbc=new GridBagConstraints();
+  initConstraints(gbc);
+  addField(panel,refNameField,gbc);
+  resetContraints(gbc);
+  gbc.gridy++;
+  addField(panel,regexField,gbc);
+  resetContraints(gbc);
+  gbc.gridy++;
+  addField(panel,templateField,gbc);
+  resetContraints(gbc);
+  gbc.gridy++;
+  addField(panel,matchNumberField,gbc);
+  resetContraints(gbc);
+  gbc.gridy++;
+  gbc.weighty=1;
+  addField(panel,defaultField,gbc);
+  return panel;
+}

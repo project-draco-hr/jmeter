@@ -1,0 +1,10 @@
+{
+  regexField=new JLabeledTextField(JMeterUtils.getResString("regex_field"));
+  templateField=new JLabeledTextField(JMeterUtils.getResString("template_field"));
+  defaultField=new JLabeledTextField(JMeterUtils.getResString("default_value_field"));
+  refNameField=new JLabeledTextField(JMeterUtils.getResString("ref_name_field"));
+  matchNumberField=new JLabeledTextField(JMeterUtils.getResString("match_num_field"));
+  setLayout(new BorderLayout());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(makeParameterPanel(),BorderLayout.CENTER);
+}

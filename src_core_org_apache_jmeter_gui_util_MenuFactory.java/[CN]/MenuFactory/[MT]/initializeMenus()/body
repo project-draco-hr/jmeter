@@ -9,6 +9,7 @@
     responseBasedModifiers=new LinkedList();
     assertions=new LinkedList();
     listeners=new LinkedList();
+    extractors=new LinkedList();
     nonTestElements=new LinkedList();
     menuMap.put(TIMERS,timers);
     menuMap.put(ASSERTIONS,assertions);
@@ -19,6 +20,7 @@
     menuMap.put(NON_TEST_ELEMENTS,nonTestElements);
     menuMap.put(RESPONSE_BASED_MODIFIERS,responseBasedModifiers);
     menuMap.put(SAMPLERS,samplers);
+    menuMap.put(EXTRACTORS,extractors);
     Collections.sort(guiClasses);
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
@@ -38,6 +40,9 @@
       }
       if (categories.contains(TIMERS)) {
         timers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(EXTRACTORS)) {
+        extractors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
       }
       if (categories.contains(CONTROLLERS)) {
         controllers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));

@@ -1,6 +1,6 @@
 {
-  if (node instanceof PerThreadClonable) {
-    node=((PerThreadClonable)node).clone();
+  if (node instanceof PerThreadClonable || (!forThread && node instanceof TestElement)) {
+    node=((TestElement)node).clone();
     newTree.add(objects,node);
   }
  else {

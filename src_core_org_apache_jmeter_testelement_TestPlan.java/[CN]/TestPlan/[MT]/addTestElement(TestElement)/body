@@ -1,4 +1,5 @@
 {
+  super.addTestElement(tg);
   if (tg instanceof ThreadGroup) {
     addThreadGroup((ThreadGroup)tg);
   }

@@ -1,0 +1,8 @@
+{
+  super.configure(el);
+  regexField.setText(el.getPropertyAsString(RegexExtractor.REGEX));
+  templateField.setText(el.getPropertyAsString(RegexExtractor.TEMPLATE));
+  defaultField.setText(el.getPropertyAsString(RegexExtractor.DEFAULT));
+  matchNumberField.setText(el.getPropertyAsString(RegexExtractor.MATCH_NUMBER));
+  refNameField.setText(el.getPropertyAsString(RegexExtractor.REFNAME));
+}

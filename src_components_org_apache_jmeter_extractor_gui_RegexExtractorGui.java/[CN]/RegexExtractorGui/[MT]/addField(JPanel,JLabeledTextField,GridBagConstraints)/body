@@ -1,0 +1,8 @@
+{
+  List item=field.getComponentList();
+  panel.add((Component)item.get(0),gbc.clone());
+  gbc.gridx++;
+  gbc.weightx=1;
+  ;
+  panel.add((Component)item.get(1),gbc.clone());
+}
