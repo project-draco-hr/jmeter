@@ -15,6 +15,7 @@
         doc=XDB.parse(new InputSource(new StringReader(FILE_CONTENTS)));
       }
  catch (      Exception ex) {
+        log.debug(ex.getMessage());
       }
     }
   }
