@@ -1,6 +1,6 @@
 {
   long currentTime=System.currentTimeMillis();
-  long currentTarget=(previousTime == 0) ? currentTime + ((JMeterContextService.getContext().getThreadNum() + 1) * (long)(60000.0 / getThroughput())) : previousTime + (JMeterContextService.getNumberOfThreads() * (long)(60000.0 / getThroughput()));
+  long currentTarget=calculateCurrentTarget(currentTime);
   previousTime=currentTarget;
   if (currentTime > currentTarget) {
     return 0;

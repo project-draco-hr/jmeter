@@ -1,0 +1,10 @@
+{
+  long currentTarget=currentTime;
+  if (previousTime == 0) {
+    currentTarget=currentTime + ((legacyMode) ? (long)(60000.0 / getThroughput()) : (JMeterContextService.getContext().getThreadNum() + 1) * (long)(60000.0 / getThroughput()));
+  }
+ else {
+    currentTarget=currentTime + ((legacyMode) ? (long)(60000.0 / getThroughput()) : (JMeterContextService.getNumberOfThreads()) * (long)(60000.0 / getThroughput()));
+  }
+  return currentTarget;
+}
