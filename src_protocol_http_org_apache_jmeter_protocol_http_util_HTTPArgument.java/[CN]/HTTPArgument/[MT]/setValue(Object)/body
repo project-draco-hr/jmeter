@@ -1,4 +1,6 @@
 {
-  super.setValue(newValue);
-  encodeValue(newValue);
+  if (newValue == null || !newValue.equals(getValue())) {
+    super.setValue(newValue);
+    encodeValue(newValue);
+  }
 }

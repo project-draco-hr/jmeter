@@ -1,4 +1,6 @@
 {
-  super.setName(newName);
-  encodeName(newName);
+  if (newName == null || !newName.equals(getName())) {
+    super.setName(newName);
+    encodeName(newName);
+  }
 }

@@ -26,7 +26,7 @@
     }
     if (name.length() > 0) {
       try {
-        addArgument(URLDecoder.decode(name),URLDecoder.decode(value),metaData);
+        addEncodedArgument(name,value,metaData);
       }
  catch (      Exception e) {
         System.out.println("UrlConfig:parseArguments(): Unable to parse argument=[" + value + "]");
