@@ -1,4 +1,4 @@
 {
-  this((RemoteJMeterEngine)Naming.lookup("//" + host + "/JMeterEngine"));
+  this(getEngine(host));
   this.host=host;
 }
