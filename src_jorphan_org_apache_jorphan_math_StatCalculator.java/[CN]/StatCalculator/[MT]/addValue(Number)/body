@@ -1,0 +1,19 @@
+{
+  int index=Collections.binarySearch(values,val);
+  if (index >= 0 && index < values.size()) {
+    values.add(index,val);
+  }
+ else   if (index == values.size() || values.size() == 0) {
+    values.add(val);
+  }
+ else {
+    ;
+    values.add((index * (-1)) - 1,val);
+  }
+  count++;
+  double currentVal=val.doubleValue();
+  sum+=currentVal;
+  sumOfSquares+=currentVal * currentVal;
+  mean=sum / count;
+  deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
+}

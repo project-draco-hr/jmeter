@@ -11,5 +11,8 @@
  else   if (e.getItem() == throughput) {
     this.graph.enableThroughput(e.getStateChange() == ItemEvent.SELECTED);
   }
+ else   if (e.getItem() == median) {
+    this.graph.enableMedian(e.getStateChange() == ItemEvent.SELECTED);
+  }
   this.graph.repaint();
 }

@@ -15,6 +15,11 @@
     g.setColor(Color.blue);
     g.drawLine(x % width,d.height - average,x % width,(d.height - average - 1));
   }
+  if (median) {
+    int median=(int)(oneSample.median * d.height / model.getGraphMax());
+    g.setColor(JMeterColor.purple);
+    g.drawLine(x % width,d.height - median,x % width,(d.height - median - 1));
+  }
   if (deviation) {
     int deviation=(int)(oneSample.deviation * d.height / model.getGraphMax());
     g.setColor(Color.red);
