@@ -1,4 +1,5 @@
 {
+  table.tableChanged(new TableModelEvent(model));
   tableScrollPanel.revalidate();
   tableScrollPanel.repaint();
   noSamplesField.setText(Long.toString(model.getSampleCount()));

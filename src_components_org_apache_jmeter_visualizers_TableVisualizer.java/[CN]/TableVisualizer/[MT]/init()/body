@@ -4,7 +4,7 @@
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("View Results in Table"));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("view_results_in_table"));
   Font curFont=panelTitleLabel.getFont();
   int curFontSize=curFont.getSize();
   curFontSize+=4;
