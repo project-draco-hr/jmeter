@@ -1,6 +1,5 @@
 {
   if (threadContext == null) {
-    log.warn("ThreadContext was not set up - should only happen in JUnit testing...",new Throwable("Debug"));
     threadContext=JMeterContextService.getContext();
   }
   return threadContext;
