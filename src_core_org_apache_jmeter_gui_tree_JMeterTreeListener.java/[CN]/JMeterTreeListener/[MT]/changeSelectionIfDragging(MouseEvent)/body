@@ -3,7 +3,7 @@
     GuiPackage.getInstance().getMainFrame().drawDraggedComponent(dragIcon,e.getX(),e.getY());
     if (tree.getPathForLocation(e.getX(),e.getY()) != null) {
       currentPath=tree.getPathForLocation(e.getX(),e.getY());
-      if (getCurrentNode() != draggedNode) {
+      if (!contains(draggedNodes,getCurrentNode())) {
         tree.setSelectionPath(currentPath);
       }
     }

@@ -1,5 +1,5 @@
 {
-  if (dragging && isValidDragAction(draggedNode,getCurrentNode())) {
+  if (dragging && isValidDragAction(draggedNodes,getCurrentNode())) {
     dragging=false;
     JPopupMenu dragNdrop=new JPopupMenu();
     JMenuItem item=new JMenuItem(JMeterUtils.getResString("Insert Before"));

@@ -1,5 +1,4 @@
 {
-  JMeterTreeNode draggedNode=GuiPackage.getInstance().getTreeListener().getDraggedNode();
   JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
   setCopiedNode((JMeterTreeNode)treeListener.getCurrentNode());
 }

@@ -2,7 +2,7 @@
   boolean isValid=true;
   TreeNode[] path=dest.getPath();
   for (int i=0; i < path.length; i++) {
-    if (path[i] == source) {
+    if (contains(source,path[i])) {
       isValid=false;
     }
   }
