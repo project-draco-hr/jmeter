@@ -9,8 +9,7 @@
     reader=new FileInputStream(f);
     log.info("Loading file: " + f);
     HashTree tree=SaveService.loadSubTree(reader);
-    DisabledComponentRemover remover=new DisabledComponentRemover(tree);
-    tree.traverse(remover);
+    convertSubTree(tree);
     if (logFile != null) {
       ResultCollector logger=new ResultCollector();
       logger.setFilename(logFile);
@@ -51,7 +50,7 @@
     }
   }
  catch (  Exception e) {
-    System.out.println("Error in NonGUIDriver" + e.getMessage());
+    System.out.println("Error in NonGUIDriver " + e.toString());
     log.error("",e);
   }
 }

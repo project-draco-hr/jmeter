@@ -1,0 +1,14 @@
+{
+  Iterator iter=new LinkedList(tree.list()).iterator();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    if (isEnabled(item)) {
+{
+        convertSubTree(tree.getTree(item));
+      }
+    }
+ else {
+      tree.remove(item);
+    }
+  }
+}
