@@ -1,8 +1,8 @@
 {
   if (addSeparators) {
-    TestElement sc=new GenericController();
+    GenericController sc=new GenericController();
     sc.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.control.gui.LogicControllerGui");
-    sc.setProperty(TestElement.NAME,"-------------------");
+    sc.setName("-------------------");
     model.addComponent(sc,node);
   }
 }
