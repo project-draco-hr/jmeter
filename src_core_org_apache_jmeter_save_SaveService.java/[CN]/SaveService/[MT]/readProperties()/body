@@ -22,6 +22,7 @@
     formatter=new SimpleDateFormat(timeStampFormat);
   }
   whichAssertionResults=props.getProperty(ASSERTION_RESULTS_PROP,NONE);
+  saveAssertionResultsFailureMessage=TRUE.equalsIgnoreCase(props.getProperty(ASSERTION_RESULTS_FAILURE_MESSAGE_PROP,FALSE));
   if (NONE.equals(whichAssertionResults)) {
     assertionsResultsToSave=SAVE_NO_ASSERTIONS;
   }

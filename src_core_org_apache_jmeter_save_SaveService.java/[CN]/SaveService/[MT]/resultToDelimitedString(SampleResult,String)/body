@@ -7,6 +7,7 @@
  else   if (formatter != null) {
     String stamp=formatter.format(new Date(sample.getTimeStamp()));
     text.append(stamp);
+    text.append(delimiter);
   }
   if (saveTime) {
     text.append("" + sample.getTime());
@@ -34,6 +35,18 @@
   }
   if (saveSuccessful) {
     text.append("" + sample.isSuccessful());
+    text.append(delimiter);
+  }
+  if (saveAssertionResultsFailureMessage) {
+    String message=null;
+    AssertionResult[] results=sample.getAssertionResults();
+    if (results.length > 0) {
+      message=results[0].getFailureMessage();
+    }
+    if (message == null) {
+      message="";
+    }
+    text.append(message);
     text.append(delimiter);
   }
   String resultString=null;

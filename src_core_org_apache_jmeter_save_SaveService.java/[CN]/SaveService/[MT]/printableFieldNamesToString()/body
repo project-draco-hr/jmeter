@@ -32,6 +32,10 @@
     text.append(SaveServiceConstants.SUCCESSFUL);
     text.append(defaultDelimiter);
   }
+  if (saveAssertionResultsFailureMessage) {
+    text.append(SaveServiceConstants.FAILURE_MESSAGE);
+    text.append(defaultDelimiter);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=defaultDelimiter.length();
