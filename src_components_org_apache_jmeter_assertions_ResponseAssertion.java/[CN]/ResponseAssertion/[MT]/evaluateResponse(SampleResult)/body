@@ -2,10 +2,17 @@
   boolean pass=true;
   boolean not=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult();
-  if (response.getResponseData() == null) {
+  String toCheck;
+  if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
+    toCheck=new String(response.responseDataAsBA());
+  }
+ else {
+    toCheck=response.getSamplerData();
+    if (toCheck == null)     toCheck="";
+  }
+  if (toCheck.length() == 0) {
     return setResultForNull(result);
   }
-  String responseString=new String(response.getResponseData());
   try {
     Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
     PropertyIterator iter=getTestStrings().iterator();
@@ -14,15 +21,15 @@
       Pattern pattern=patternCache.getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
       boolean found;
       if ((CONTAINS & getTestType()) > 0) {
-        found=localMatcher.contains(responseString,pattern);
+        found=localMatcher.contains(toCheck,pattern);
       }
  else {
-        found=localMatcher.matches(responseString,pattern);
+        found=localMatcher.matches(toCheck,pattern);
       }
       pass=not ? !found : found;
       if (!pass) {
         result.setFailure(true);
-        result.setFailureMessage("Test Failed, expected " + notMessage + failMessage+ stringPattern);
+        result.setFailureMessage(getFailText(stringPattern));
         break;
       }
     }
