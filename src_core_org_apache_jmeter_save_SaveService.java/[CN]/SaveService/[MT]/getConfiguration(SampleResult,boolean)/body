@@ -26,7 +26,7 @@
     config.setAttribute(TIME_STAMP,stamp);
   }
   if (saveSuccessful) {
-    config.setAttribute(SUCCESSFUL,new Boolean(result.isSuccessful()).toString());
+    config.setAttribute(SUCCESSFUL,Boolean.valueOf(result.isSuccessful()).toString());
   }
   SampleResult[] subResults=result.getSubResults();
   if (subResults != null) {

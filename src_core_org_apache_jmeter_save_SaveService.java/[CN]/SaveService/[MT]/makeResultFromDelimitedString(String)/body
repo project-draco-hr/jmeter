@@ -42,7 +42,7 @@
   }
   if (saveSuccessful) {
     text=splitter.nextToken();
-    result.setSuccessful(new Boolean(text).booleanValue());
+    result.setSuccessful(Boolean.valueOf(text).booleanValue());
   }
   if (saveAssertionResultsFailureMessage) {
     text=splitter.nextToken();
