@@ -1,0 +1,5 @@
+{
+  FileInputStream reader=new FileInputStream(f);
+  HashTree tree=SaveService.loadSubTree(reader);
+  return tree;
+}
