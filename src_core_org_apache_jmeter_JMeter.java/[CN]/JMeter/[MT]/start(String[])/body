@@ -7,6 +7,7 @@
   try {
     initializeProperties(parser);
     setProxy(parser);
+    log.info("Version " + JMeterUtils.getJMeterVersion());
     if (parser.getArgumentById(VERSION_OPT) != null) {
       System.out.println("Apache JMeter, Copyright (c) 2002 The Apache Software Foundation");
       System.out.println("Version " + JMeterUtils.getJMeterVersion());

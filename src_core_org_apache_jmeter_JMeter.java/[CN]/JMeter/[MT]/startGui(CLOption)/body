@@ -13,6 +13,7 @@
   if (testFile != null) {
     try {
       File f=new File(testFile.getArgument());
+      log.info("Loading file: " + f);
       FileInputStream reader=new FileInputStream(f);
       HashTree tree=SaveService.loadSubTree(reader);
       new Load().insertLoadedTree(1,tree);
