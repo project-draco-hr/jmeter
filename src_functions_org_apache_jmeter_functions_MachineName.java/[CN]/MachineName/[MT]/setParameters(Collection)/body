@@ -1,6 +1,6 @@
 {
   values=parameters.toArray();
-  if (values.length < 2) {
-    throw new InvalidVariableException();
+  if (values.length != PARAMETER_COUNT) {
+    throw new InvalidVariableException("Parameter Count != " + PARAMETER_COUNT);
   }
 }
