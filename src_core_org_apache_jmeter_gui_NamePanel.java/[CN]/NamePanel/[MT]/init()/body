@@ -1,9 +1,10 @@
 {
-  this.setLayout(new FlowLayout(FlowLayout.LEFT));
+  setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
   nameLabel=new JLabel(JMeterUtils.getResString("name"));
   nameLabel.setName("name");
-  this.add(nameLabel);
-  this.add(nameField);
+  add(nameLabel);
+  add(Box.createHorizontalStrut(2));
+  add(nameField);
   nameLabel.setLabelFor(nameField);
   nameField.setName("name");
   nameField.getDocument().addDocumentListener(new DocumentListener(){
