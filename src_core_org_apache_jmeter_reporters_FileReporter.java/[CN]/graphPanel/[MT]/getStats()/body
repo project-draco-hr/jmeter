@@ -21,7 +21,7 @@
   DecimalFormat df=new DecimalFormat("#0.0");
   GridBagConstraints c=new GridBagConstraints();
   c.insets=new Insets(3,6,3,6);
-  c.fill=c.BOTH;
+  c.fill=GridBagConstraints.BOTH;
   c.gridwidth=1;
   c.gridheight=1;
   JLabel count=new JLabel("Count: " + total);

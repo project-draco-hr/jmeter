@@ -14,22 +14,22 @@
     model=(ProxyControl)createTestElement();
     startProxy();
   }
- else   if (command.equals(this.ADD_EXCLUDE)) {
+ else   if (command.equals(ADD_EXCLUDE)) {
     excludeModel.addNewRow();
     excludeModel.fireTableDataChanged();
     if (stop.isEnabled())     enableRestart();
   }
- else   if (command.equals(this.ADD_INCLUDE)) {
+ else   if (command.equals(ADD_INCLUDE)) {
     includeModel.addNewRow();
     includeModel.fireTableDataChanged();
     enableRestart();
   }
- else   if (command.equals(this.DELETE_EXCLUDE)) {
+ else   if (command.equals(DELETE_EXCLUDE)) {
     excludeModel.removeRow(excludeTable.getSelectedRow());
     excludeModel.fireTableDataChanged();
     enableRestart();
   }
- else   if (command.equals(this.DELETE_INCLUDE)) {
+ else   if (command.equals(DELETE_INCLUDE)) {
     includeModel.removeRow(includeTable.getSelectedRow());
     includeModel.fireTableDataChanged();
     enableRestart();

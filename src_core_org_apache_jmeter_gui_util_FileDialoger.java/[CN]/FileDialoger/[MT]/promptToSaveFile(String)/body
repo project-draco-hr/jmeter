@@ -18,7 +18,7 @@
   jfc.addChoosableFileFilter(new JMeterFileFilter(new String[]{ext}));
   int retVal=jfc.showSaveDialog(GuiPackage.getInstance().getMainFrame());
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
-  if (retVal == jfc.APPROVE_OPTION) {
+  if (retVal == JFileChooser.APPROVE_OPTION) {
     return jfc;
   }
  else {
