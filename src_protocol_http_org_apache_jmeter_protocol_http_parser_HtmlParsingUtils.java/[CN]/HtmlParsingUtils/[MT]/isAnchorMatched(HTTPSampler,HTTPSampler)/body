@@ -4,9 +4,11 @@
   PropertyIterator iter=config.getArguments().iterator();
   String query=null;
   try {
-    query=URLDecoder.decode(newLink.getQueryString());
+    query=URLDecoder.decode(newLink.getQueryString(),"UTF-8");
   }
- catch (  Exception e) {
+ catch (  UnsupportedEncodingException e) {
+    log.error("UTF-8 encoding not supported!");
+    throw new Error(e);
   }
   if (query == null && config.getArguments().getArgumentCount() > 0) {
     return false;

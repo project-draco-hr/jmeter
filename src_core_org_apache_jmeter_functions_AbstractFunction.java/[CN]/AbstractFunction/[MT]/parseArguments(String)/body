@@ -8,7 +8,12 @@
       arguments.add("");
     }
  else     if (!arg.equals(",")) {
-      arguments.add(URLDecoder.decode(arg));
+      try {
+        arguments.add(URLDecoder.decode(arg,"UTF-8"));
+      }
+ catch (      UnsupportedEncodingException e) {
+        throw new Error(e);
+      }
     }
     previous=arg;
   }
