@@ -6,7 +6,7 @@
     Naming.rebind("JMeterEngine",this);
   }
  catch (  Exception ex) {
-    log.error("rmiregistry needs to be running to start JMeter in server " + "mode",ex);
+    log.error("rmiregistry needs to be running to start JMeter in server " + "mode\n\t" + ex.toString());
     throw new RemoteException("Cannot start. See server log file.");
   }
 }
