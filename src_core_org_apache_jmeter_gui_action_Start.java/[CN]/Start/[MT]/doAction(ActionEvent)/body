@@ -1,10 +1,15 @@
 {
-  if (e.getActionCommand().equals("start")) {
+  if (e.getActionCommand().equals(JMeterMenuBar.ACTION_START)) {
     startEngine();
   }
- else   if (e.getActionCommand().equals("stop")) {
+ else   if (e.getActionCommand().equals(JMeterMenuBar.ACTION_STOP)) {
     GuiPackage.getInstance().getMainFrame().showStoppingMessage("");
     engine.stopTest();
+    engine=null;
+  }
+ else   if (e.getActionCommand().equals(JMeterMenuBar.ACTION_SHUTDOWN)) {
+    GuiPackage.getInstance().getMainFrame().showStoppingMessage("");
+    engine.askThreadsToStop();
     engine=null;
   }
 }

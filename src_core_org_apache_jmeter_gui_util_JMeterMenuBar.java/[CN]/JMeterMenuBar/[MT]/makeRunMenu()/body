@@ -4,12 +4,17 @@
   run_start=new JMenuItem(JMeterUtils.getResString("start"),'S');
   run_start.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,KeyEvent.CTRL_MASK));
   run_start.addActionListener(ActionRouter.getInstance());
-  run_start.setActionCommand("start");
+  run_start.setActionCommand(ACTION_START);
   run_stop=new JMenuItem(JMeterUtils.getResString("stop"),'T');
   run_stop.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PERIOD,KeyEvent.CTRL_MASK));
   run_stop.setEnabled(false);
   run_stop.addActionListener(ActionRouter.getInstance());
-  run_stop.setActionCommand("stop");
+  run_stop.setActionCommand(ACTION_STOP);
+  run_shut=new JMenuItem(JMeterUtils.getResString("shutdown"),'Y');
+  run_shut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_COMMA,KeyEvent.CTRL_MASK));
+  run_shut.setEnabled(false);
+  run_shut.addActionListener(ActionRouter.getInstance());
+  run_shut.setActionCommand(ACTION_SHUTDOWN);
   run_clear=new JMenuItem(JMeterUtils.getResString("clear"),'C');
   run_clear.addActionListener(ActionRouter.getInstance());
   run_clear.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR);
@@ -28,6 +33,7 @@
   remote_start_all.setActionCommand("remote_start_all");
   runMenu.add(remote_start_all);
   runMenu.add(run_stop);
+  runMenu.add(run_shut);
   if (remote_stop != null) {
     runMenu.add(remote_stop);
   }
