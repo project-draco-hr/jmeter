@@ -4,6 +4,8 @@
   String soapBind="soap:binding";
   if (bindings.getLength() == 0) {
     bindings=WSDLDOC.getElementsByTagName("wsdl:binding");
+  }
+  if (WSDLDOC.getElementsByTagName(soapBind).getLength() == 0) {
     soapBind="wsdlsoap:binding";
   }
   for (int idx=0; idx < bindings.getLength(); idx++) {

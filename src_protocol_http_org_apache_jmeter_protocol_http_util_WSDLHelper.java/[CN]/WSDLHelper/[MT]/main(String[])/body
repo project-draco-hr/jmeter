@@ -1,6 +1,6 @@
 {
   try {
-    WSDLHelper help=new WSDLHelper("http://localhost/AxisWSDL.xml");
+    WSDLHelper help=new WSDLHelper("http://localhost/test-setup.xml");
     long start=System.currentTimeMillis();
     help.parse();
     String[] methods=help.getWebMethods();

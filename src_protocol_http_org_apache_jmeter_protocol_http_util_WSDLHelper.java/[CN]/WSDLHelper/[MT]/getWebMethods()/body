@@ -5,6 +5,9 @@
     if (opers.getLength() == 0) {
       opers=((Element)act).getElementsByTagName("wsdlsoap:operation");
     }
+    if (opers.getLength() == 0) {
+      opers=((Element)act).getElementsByTagName("wsdl:operation");
+    }
     Element op=(Element)opers.item(0);
     String value=op.getAttribute("soapAction");
     String key=((Element)act).getAttribute("name");

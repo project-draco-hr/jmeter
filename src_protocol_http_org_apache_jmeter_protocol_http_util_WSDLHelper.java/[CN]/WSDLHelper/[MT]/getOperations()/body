@@ -7,6 +7,8 @@
     String soapOp="soap:operation";
     if (opnodes.getLength() == 0) {
       opnodes=one.getElementsByTagName("wsdl:operation");
+    }
+    if (one.getElementsByTagName(soapOp).getLength() == 0) {
       soapOp="wsdlsoap:operation";
     }
     for (int idz=0; idz < opnodes.getLength(); idz++) {
