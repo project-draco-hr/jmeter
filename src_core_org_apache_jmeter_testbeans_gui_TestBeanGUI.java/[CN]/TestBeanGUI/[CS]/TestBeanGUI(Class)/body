@@ -7,13 +7,12 @@
   }
   this.testBeanClass=testBeanClass;
   try {
-    beanInfo=Introspector.getBeanInfo(testBeanClass,TestBean.class);
+    beanInfo=Introspector.getBeanInfo(testBeanClass);
   }
  catch (  IntrospectionException e) {
     log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
     throw new Error(e.toString());
   }
-  properties=beanInfo.getPropertyDescriptors();
   customizerClass=beanInfo.getBeanDescriptor().getCustomizerClass();
   initialized=false;
 }

@@ -1,7 +1,7 @@
 {
   JMeterUtils.setLocale(new Locale(language,""));
   try {
-    beanInfo=Introspector.getBeanInfo(testBeanClass,TestBean.class);
+    beanInfo=Introspector.getBeanInfo(testBeanClass);
     bundle=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);
   }
  catch (  IntrospectionException e) {

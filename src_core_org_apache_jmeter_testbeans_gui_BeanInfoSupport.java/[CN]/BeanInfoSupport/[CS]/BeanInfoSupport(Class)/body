@@ -36,4 +36,5 @@
  catch (  MissingResourceException e) {
     log.warn("Localized strings not available for bean " + beanClass);
   }
+  JMeterUtils.addLocaleChangeListener(this);
 }

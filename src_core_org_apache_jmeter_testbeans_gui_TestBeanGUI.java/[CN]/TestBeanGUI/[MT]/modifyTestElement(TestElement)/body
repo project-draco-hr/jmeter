@@ -1,10 +1,17 @@
 {
-  super.configureTestElement(element);
+  configureTestElement(element);
   PropertyDescriptor[] props=beanInfo.getPropertyDescriptors();
   for (int i=0; i < props.length; i++) {
     String name=props[i].getName();
-    JMeterProperty jprop=wrapInProperty(propertyMap.get(name));
-    jprop.setName(name);
-    element.setProperty(jprop);
+    Object value=propertyMap.get(name);
+    log.debug("Modify " + name + " to "+ value);
+    if (value == null) {
+      element.removeProperty(name);
+    }
+ else {
+      JMeterProperty jprop=wrapInProperty(propertyMap.get(name));
+      jprop.setName(name);
+      element.setProperty(jprop);
+    }
   }
 }
