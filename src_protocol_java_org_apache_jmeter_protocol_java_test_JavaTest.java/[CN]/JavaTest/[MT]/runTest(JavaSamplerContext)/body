@@ -1,27 +1,29 @@
 {
   setupValues(context);
   SampleResult results=new SampleResult();
+  results.setResponseCode(responseCode);
+  results.setResponseMessage(responseMessage);
+  results.setSampleLabel(label);
+  if (samplerData != null && samplerData.length() > 0) {
+    results.setSamplerData(samplerData);
+  }
+  if (resultData != null && resultData.length() > 0) {
+    results.setResponseData(resultData.getBytes());
+    results.setDataType(SampleResult.TEXT);
+  }
+  long start=System.currentTimeMillis();
+  long ct=start % getSleepMask();
   try {
-    long start=System.currentTimeMillis();
-    results.setResponseCode(responseCode);
-    results.setResponseMessage(responseMessage);
-    if (samplerData != null && samplerData.length() > 0) {
-      results.setSamplerData(samplerData);
-    }
-    if (resultData != null && resultData.length() > 0) {
-      results.setResponseData(resultData.getBytes());
-      results.setDataType(SampleResult.TEXT);
-    }
-    long ct=start % getSleepMask();
     Thread.sleep(getSleepTime() + ct);
-    long end=System.currentTimeMillis();
-    results.setTime(end - start);
     results.setSuccessful(success);
-    results.setSampleLabel(label);
   }
  catch (  Exception e) {
     getLogger().error("JavaTest: error during sample",e);
     results.setSuccessful(false);
+  }
+ finally {
+    long end=System.currentTimeMillis();
+    results.setTime(end - start);
   }
   if (getLogger().isDebugEnabled()) {
     getLogger().debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
