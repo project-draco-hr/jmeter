@@ -1,0 +1,7 @@
+{
+  System.out.println("Matching with " + linkTag.getLinkText());
+  if (linkTag.getLinkText().toUpperCase().indexOf(linkTextToFind) != -1) {
+    linkTagFound=true;
+    count++;
+  }
+}

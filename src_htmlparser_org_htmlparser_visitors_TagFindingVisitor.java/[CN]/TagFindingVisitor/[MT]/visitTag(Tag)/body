@@ -1,0 +1,6 @@
+{
+  for (int i=0; i < tagsToBeFound.length; i++)   if (tag.getTagName().equalsIgnoreCase(tagsToBeFound[i])) {
+    count[i]++;
+    tags[i].add(tag);
+  }
+}
