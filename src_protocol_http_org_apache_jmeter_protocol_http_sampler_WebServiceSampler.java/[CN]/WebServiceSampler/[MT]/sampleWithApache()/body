@@ -3,6 +3,12 @@
     Envelope msgEnv=Envelope.unmarshall(createDocument());
     Message msg=new Message();
     RESULT.sampleStart();
+    if (this.getUseProxy()) {
+      SOAPHTTPConnection spconn=new SOAPHTTPConnection();
+      spconn.setProxyHost(this.getProxyHost());
+      spconn.setProxyPort(this.getProxyPort());
+      msg.setSOAPTransport(spconn);
+    }
     msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
     SOAPTransport st=msg.getSOAPTransport();
     BufferedReader br=st.receive();
