@@ -2,7 +2,7 @@
   String actual="*NONE*";
   try {
     actual=(String)clazz.getMethod("getVersion",null).invoke(null,null);
-    actual=actual.substring("$Revision: ".length(),actual.length() - 2);
+    actual=extractVersion(actual);
   }
  catch (  Exception e) {
   }

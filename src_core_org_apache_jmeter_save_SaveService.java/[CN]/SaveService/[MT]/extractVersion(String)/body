@@ -1,0 +1,8 @@
+{
+  if (rev.length() > REVPFX.length() + REVSFX.length()) {
+    return rev.substring(REVPFX.length(),rev.length() - REVSFX.length());
+  }
+ else {
+    return rev;
+  }
+}

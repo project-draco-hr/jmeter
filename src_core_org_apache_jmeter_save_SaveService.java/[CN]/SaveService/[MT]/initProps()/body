@@ -12,6 +12,7 @@
       }
  else {
         if (key.equalsIgnoreCase("_version")) {
+          val=extractVersion(val);
           log.info("Using SaveService properties file " + val);
           propertiesVersion=val;
         }

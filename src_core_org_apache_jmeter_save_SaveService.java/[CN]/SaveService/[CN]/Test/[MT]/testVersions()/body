@@ -2,5 +2,5 @@
   initProps();
   checkVersions();
   assertTrue("Unexpected version found",versionsOK);
-  assertEquals(PROPVERSION,propertiesVersion);
+  assertEquals("Property Version mismatch",PROPVERSION,propertiesVersion);
 }
