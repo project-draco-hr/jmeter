@@ -5,9 +5,7 @@
     firePropertyChange();
   }
  else {
-    if (log.isDebugEnabled()) {
-      log.debug("Invalid value. Reverting to last valid value.");
-    }
+    JOptionPane.showMessageDialog(guiEditor.getCustomEditor().getParent(),JMeterUtils.getResString("property_editor.value_is_invalid_message"),JMeterUtils.getResString("property_editor.value_is_invalid_title"),JOptionPane.WARNING_MESSAGE);
     guiEditor.setAsText(lastValidValue);
   }
 }

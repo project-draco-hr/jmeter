@@ -5,6 +5,7 @@
   this.acceptsExpressions=acceptsExpressions;
   this.acceptsOther=acceptsOther;
   setValue(defaultValue);
+  lastValidValue=getAsText();
   if (guiEditor instanceof ComboStringEditor) {
     String[] tags=((ComboStringEditor)guiEditor).getTags();
     String v;
