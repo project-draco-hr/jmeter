@@ -1,0 +1,106 @@
+{
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  JPanel serverTypePanel=new JPanel();
+  serverTypePanel.add(new JLabel(ServerTypeLabel));
+  DefaultComboBoxModel serverTypeModel=new DefaultComboBoxModel();
+  serverTypeModel.addElement(POP3Label);
+  serverTypeModel.addElement(IMAPLabel);
+  serverTypeBox=new JComboBox(serverTypeModel);
+  serverTypeBox.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      if (((String)serverTypeBox.getSelectedItem()).equals(POP3Label)) {
+        type=MailReaderSampler.TYPE_POP3;
+        folderLabel.setEnabled(false);
+        folderBox.setText("INBOX");
+        folderBox.setEnabled(false);
+      }
+ else {
+        type=MailReaderSampler.TYPE_IMAP;
+        folderLabel.setEnabled(true);
+        folderBox.setEnabled(true);
+      }
+    }
+  }
+);
+  serverTypePanel.add(serverTypeBox);
+  add(serverTypePanel);
+  JPanel serverPanel=new JPanel();
+  serverPanel.add(new JLabel(ServerLabel));
+  serverBox=new JTextField(20);
+  serverPanel.add(serverBox);
+  add(serverPanel);
+  JPanel accountNamePanel=new JPanel();
+  accountNamePanel.add(new JLabel(AccountLabel));
+  usernameBox=new JTextField(20);
+  accountNamePanel.add(usernameBox);
+  add(accountNamePanel);
+  JPanel accountPassPanel=new JPanel();
+  accountPassPanel.add(new JLabel(PasswordLabel));
+  passwordBox=new JTextField(20);
+  accountPassPanel.add(passwordBox);
+  add(accountPassPanel);
+  JPanel folderPanel=new JPanel();
+  folderLabel=new JLabel(FolderLabel);
+  folderBox=new JTextField("INBOX",10);
+  folderPanel.add(folderLabel);
+  folderPanel.add(folderBox);
+  add(folderPanel);
+  HorizontalPanel numMessagesPanel=new HorizontalPanel();
+  numMessagesPanel.add(new JLabel(NumMessagesLabel));
+  ButtonGroup nmbg=new ButtonGroup();
+  allMessagesButton=new JRadioButton(AllMessagesLabel);
+  allMessagesButton.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      if (allMessagesButton.isSelected()) {
+        someMessagesField.setEnabled(false);
+      }
+    }
+  }
+);
+  someMessagesButton=new JRadioButton();
+  someMessagesButton.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      if (someMessagesButton.isSelected()) {
+        someMessagesField.setEnabled(true);
+      }
+    }
+  }
+);
+  nmbg.add(allMessagesButton);
+  nmbg.add(someMessagesButton);
+  someMessagesField=new JTextField(5);
+  someMessagesField.setText(Integer.toString(0));
+  someMessagesField.addFocusListener(new FocusListener(){
+    public void focusGained(    FocusEvent e){
+    }
+    public void focusLost(    FocusEvent e){
+      try {
+        num_messages=Integer.parseInt(someMessagesField.getText());
+      }
+ catch (      NumberFormatException nfe) {
+        num_messages=0;
+      }
+    }
+  }
+);
+  allMessagesButton.setSelected(true);
+  numMessagesPanel.add(allMessagesButton);
+  numMessagesPanel.add(someMessagesButton);
+  numMessagesPanel.add(someMessagesField);
+  add(numMessagesPanel);
+  deleteBox=new JCheckBox(DeleteLabel,delete);
+  deleteBox.addItemListener(new ItemListener(){
+    public void itemStateChanged(    ItemEvent event){
+      if (event.getStateChange() == ItemEvent.SELECTED) {
+        delete=true;
+      }
+ else {
+        delete=false;
+      }
+    }
+  }
+);
+  add(deleteBox);
+}
