@@ -1,6 +1,6 @@
 {
   Iterator iter;
-  while (running || this.size() > 0) {
+  while (running || this.size() > 1) {
     SampleEvent res=(SampleEvent)this.removeFirst();
     if (res != null) {
       List listeners=(List)this.removeFirst();
@@ -15,5 +15,6 @@
  catch (    InterruptedException e) {
     }
   }
+  log.debug("Listener Notifier stopped");
   isStopped=true;
 }

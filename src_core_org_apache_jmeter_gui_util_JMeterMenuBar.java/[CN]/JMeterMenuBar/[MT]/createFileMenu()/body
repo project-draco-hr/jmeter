@@ -1,0 +1,27 @@
+{
+  fileMenu=new JMenu(JMeterUtils.getResString("file"));
+  fileMenu.setMnemonic('F');
+  file_save_all=new JMenuItem(JMeterUtils.getResString("save_all"),'A');
+  file_save_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,KeyEvent.CTRL_MASK));
+  file_save_all.setActionCommand("save_all");
+  file_save_all.addActionListener(ActionRouter.getInstance());
+  file_save_all.setEnabled(true);
+  file_load=new JMenuItem(JMeterUtils.getResString("open"),'O');
+  file_load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,KeyEvent.CTRL_MASK));
+  file_load.addActionListener(ActionRouter.getInstance());
+  file_load.setEnabled(false);
+  file_load.setActionCommand("open");
+  file_new=new JMenuItem(JMeterUtils.getResString("new"),'N');
+  file_new.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,KeyEvent.CTRL_MASK));
+  file_new.setActionCommand("new");
+  file_new.addActionListener(ActionRouter.getInstance());
+  file_exit=new JMenuItem(JMeterUtils.getResString("exit"),'X');
+  file_exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,KeyEvent.CTRL_MASK));
+  file_exit.setActionCommand("exit");
+  file_exit.addActionListener(ActionRouter.getInstance());
+  fileMenu.add(file_new);
+  fileMenu.add(file_load);
+  fileMenu.add(file_save_all);
+  fileMenu.addSeparator();
+  fileMenu.add(file_exit);
+}

@@ -2,7 +2,12 @@
   HttpURLConnection conn;
   conn=(HttpURLConnection)u.openConnection();
   if ("https".equals(u.getProtocol())) {
-    SSLManager.getInstance().setContext(conn);
+    try {
+      SSLManager.getInstance().setContext(conn);
+    }
+ catch (    Exception e) {
+      log.warn("You may have forgotten to set the ssl.provider property in jmeter.properties",e);
+    }
   }
   conn.setFollowRedirects(false);
   if (getUseKeepAlive()) {

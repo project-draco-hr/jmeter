@@ -1,0 +1,25 @@
+{
+  JMenu languageMenu=new JMenu(JMeterUtils.getResString("choose_language"));
+  languageMenu.setMnemonic('C');
+  JMenuItem english=new JMenuItem(JMeterUtils.getResString("english"),'E');
+  english.addActionListener(ActionRouter.getInstance());
+  english.setActionCommand(ChangeLanguage.CHANGE_LANGUAGE);
+  english.setName("en");
+  languageMenu.add(english);
+  JMenuItem japanese=new JMenuItem(JMeterUtils.getResString("japanese"),'J');
+  japanese.addActionListener(ActionRouter.getInstance());
+  japanese.setActionCommand(ChangeLanguage.CHANGE_LANGUAGE);
+  japanese.setName("ja");
+  languageMenu.add(japanese);
+  JMenuItem norway=new JMenuItem(JMeterUtils.getResString("norwegian"),'N');
+  norway.addActionListener(ActionRouter.getInstance());
+  norway.setActionCommand(ChangeLanguage.CHANGE_LANGUAGE);
+  norway.setName("no");
+  languageMenu.add(norway);
+  JMenuItem german=new JMenuItem(JMeterUtils.getResString("german"),'G');
+  german.addActionListener(ActionRouter.getInstance());
+  german.setActionCommand(ChangeLanguage.CHANGE_LANGUAGE);
+  german.setName("de");
+  languageMenu.add(german);
+  return languageMenu;
+}

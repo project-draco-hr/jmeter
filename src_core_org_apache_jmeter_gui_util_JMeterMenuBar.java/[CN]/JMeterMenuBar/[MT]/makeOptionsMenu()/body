@@ -1,0 +1,28 @@
+{
+  optionsMenu=new JMenu(JMeterUtils.getResString("option"));
+  JMenuItem functionHelper=new JMenuItem(JMeterUtils.getResString("function_dialog_menu_item"),'F');
+  functionHelper.addActionListener(ActionRouter.getInstance());
+  functionHelper.setActionCommand("functions");
+  functionHelper.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,KeyEvent.CTRL_MASK));
+  lafMenu=new JMenu(JMeterUtils.getResString("appearance"));
+  UIManager.LookAndFeelInfo lafs[]=UIManager.getInstalledLookAndFeels();
+  for (int i=0; i < lafs.length; ++i) {
+    JMenuItem laf=new JMenuItem(lafs[i].getName());
+    laf.addActionListener(ActionRouter.getInstance());
+    laf.setActionCommand("laf:" + lafs[i].getClassName());
+    lafMenu.setMnemonic('L');
+    lafMenu.add(laf);
+  }
+  optionsMenu.setMnemonic('O');
+  optionsMenu.add(functionHelper);
+  optionsMenu.add(lafMenu);
+  if (SSLManager.isSSLSupported()) {
+    sslManager=new JMenuItem(JMeterUtils.getResString("sslManager"));
+    sslManager.addActionListener(ActionRouter.getInstance());
+    sslManager.setActionCommand("sslManager");
+    sslManager.setMnemonic('S');
+    sslManager.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,KeyEvent.CTRL_MASK));
+    optionsMenu.add(sslManager);
+  }
+  optionsMenu.add(makeLanguageMenu());
+}

@@ -1,10 +1,9 @@
 {
   String str=url;
   int i=str.indexOf("//");
-  if (i < 0) {
-    return "";
+  if (i > 0) {
+    str=str.substring(i + 2);
   }
-  str=str.substring(i + 2);
   i=str.indexOf("/");
   if (0 < i) {
     str=str.substring(0,i);
