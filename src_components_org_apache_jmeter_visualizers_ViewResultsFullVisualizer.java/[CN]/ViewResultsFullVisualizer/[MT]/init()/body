@@ -3,9 +3,11 @@
   log.debug("Start : init1");
   SampleResult rootSampleResult=new SampleResult();
   rootSampleResult.setSampleLabel("Root");
+  rootSampleResult.setSuccessful(true);
   root=new DefaultMutableTreeNode(rootSampleResult);
   treeModel=new DefaultTreeModel(root);
   jTree=new JTree(treeModel);
+  jTree.setCellRenderer(new ResultsNodeRenderer());
   jTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
   jTree.addTreeSelectionListener(this);
   treePane=new JScrollPane(jTree);
