@@ -1,7 +1,7 @@
 {
   Function returnFunction=null;
   LinkedList parameterList;
-  String functionName, params, decodedParams;
+  String functionName, params;
   int paramsStart=functionStr.indexOf("(");
   if (paramsStart > -1)   functionName=functionStr.substring(0,functionStr.indexOf("("));
  else   functionName=functionStr;

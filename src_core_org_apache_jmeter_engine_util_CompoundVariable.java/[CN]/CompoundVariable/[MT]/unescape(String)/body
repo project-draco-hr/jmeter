@@ -1,0 +1,9 @@
+{
+  String result=input;
+  try {
+    result=Util.substitute(new Perl5Matcher(),compiler.compile(unescapePattern),new Perl5Substitution("$1"),input,Util.SUBSTITUTE_ALL);
+  }
+ catch (  MalformedPatternException e) {
+  }
+  return result;
+}

@@ -7,7 +7,7 @@
   while (funcStartIndex > -1) {
     pre=current.substring(0,funcStartIndex);
     if (!pre.equals("")) {
-      components.addLast(pre);
+      components.addLast(unescape(pre));
     }
     funcEndIndex=findMatching("${","}",current);
     functionStr=current.substring(funcStartIndex + 2,funcEndIndex);
@@ -23,7 +23,7 @@
     funcStartIndex=current.indexOf("${");
   }
   if (!current.equals("")) {
-    components.addLast(current);
+    components.addLast(unescape(current));
   }
   return components;
 }
