@@ -1,14 +1,14 @@
 {
-  JPanel loopPanel=new JPanel();
+  JPanel loopPanel=new JPanel(new BorderLayout(5,0));
   JLabel loopsLabel=new JLabel(JMeterUtils.getResString("iterator_num"));
-  loopPanel.add(loopsLabel);
-  loops=new JTextField(5);
-  loopPanel.add(loops);
+  loopPanel.add(loopsLabel,BorderLayout.WEST);
+  loops=new JTextField("1",5);
   loops.setName(LOOPS);
-  loops.setText("1");
+  loopsLabel.setLabelFor(loops);
+  loopPanel.add(loops,BorderLayout.CENTER);
   infinite=new JCheckBox(JMeterUtils.getResString("infinite"));
   infinite.setActionCommand(INFINITE);
   infinite.addActionListener(this);
-  loopPanel.add(infinite);
+  loopPanel.add(infinite,BorderLayout.EAST);
   return loopPanel;
 }

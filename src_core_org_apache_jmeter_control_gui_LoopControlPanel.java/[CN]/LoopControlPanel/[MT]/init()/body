@@ -6,6 +6,7 @@
     add(createLoopCountPanel());
   }
  else {
-    this.add(createLoopCountPanel());
+    setLayout(new BorderLayout());
+    this.add(createLoopCountPanel(),BorderLayout.NORTH);
   }
 }

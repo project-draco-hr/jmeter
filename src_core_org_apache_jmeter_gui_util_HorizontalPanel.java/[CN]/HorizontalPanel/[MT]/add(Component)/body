@@ -1,4 +1,7 @@
 {
+  if (hgap > 0 && subPanel.getComponentCount() > 0) {
+    subPanel.add(Box.createHorizontalStrut(hgap));
+  }
   if (c instanceof JComponent) {
     ((JComponent)c).setAlignmentY(verticalAlign);
   }
