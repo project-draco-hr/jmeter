@@ -6,6 +6,7 @@
   List timers=new LinkedList();
   List assertions=new LinkedList();
   List extractors=new LinkedList();
+  List pres=new LinkedList();
   log.debug("Full stack = " + stack);
   for (int i=stack.size(); i > 0; i--) {
     log.debug("looping, i = " + i);
@@ -39,6 +40,9 @@ synchronized (item) {
       if (item instanceof PostProcessor) {
         extractors.add(item);
       }
+      if (item instanceof PreProcessor) {
+        pres.add(item);
+      }
     }
   }
 synchronized (sam) {
@@ -46,6 +50,6 @@ synchronized (sam) {
       objectsWithFunctions.add(sam);
     }
   }
-  SamplerConfigs samplerConfigs=new SamplerConfigs(configs,modifiers,responseModifiers,listeners,timers,assertions,extractors);
+  SamplerConfigs samplerConfigs=new SamplerConfigs(configs,modifiers,responseModifiers,listeners,timers,assertions,extractors,pres);
   samplerConfigMap.put(sam,samplerConfigs);
 }

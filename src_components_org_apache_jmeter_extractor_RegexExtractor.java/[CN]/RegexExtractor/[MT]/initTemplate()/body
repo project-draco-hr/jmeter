@@ -1,4 +1,7 @@
 {
+  if (template != null) {
+    return;
+  }
   List pieces=new ArrayList();
   List combined=new LinkedList();
   String rawTemplate=getTemplate();

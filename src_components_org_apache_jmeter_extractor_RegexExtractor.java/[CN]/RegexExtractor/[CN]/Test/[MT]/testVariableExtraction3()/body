@@ -2,7 +2,6 @@
   extractor.setRegex("<value field=\"(pinposition\\d+)\">(\\d+)</value>");
   extractor.setTemplate("_$1$");
   extractor.setMatchNumber(2);
-  extractor.setJMeterVariables(vars);
-  extractor.process(result);
+  extractor.process();
   assertEquals("_pinposition2",vars.get("regVal"));
 }

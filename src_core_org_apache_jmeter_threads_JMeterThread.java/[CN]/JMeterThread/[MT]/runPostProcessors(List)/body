@@ -1,0 +1,7 @@
+{
+  ListIterator iter=extractors.listIterator(extractors.size());
+  while (iter.hasPrevious()) {
+    PostProcessor ex=(PostProcessor)iter.previous();
+    ex.process();
+  }
+}

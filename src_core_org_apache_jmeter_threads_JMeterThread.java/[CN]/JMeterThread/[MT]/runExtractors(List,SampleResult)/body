@@ -1,7 +1,0 @@
-{
-  Iterator iter=extractors.iterator();
-  while (iter.hasNext()) {
-    PostProcessor ex=(PostProcessor)iter.next();
-    ex.process(result);
-  }
-}

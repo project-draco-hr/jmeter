@@ -1,0 +1,33 @@
+{
+  initTemplate();
+  JMeterContext context=JMeterContextService.getContext();
+  log.debug("RegexExtractor processing result");
+  context.getVariables().put(getRefName(),getDefaultValue());
+  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
+  PatternMatcherInput input=new PatternMatcherInput(new String(context.getPreviousResult().getResponseData()));
+  log.debug("Regex = " + getRegex());
+  Pattern pattern=patternCache.getPattern(getRegex(),Perl5Compiler.READ_ONLY_MASK);
+  List matches=new ArrayList();
+  int x=0;
+  boolean done=false;
+  do {
+    if (matcher.contains(input,pattern)) {
+      log.debug("RegexExtractor: Match found!");
+      matches.add(matcher.getMatch());
+    }
+ else {
+      done=true;
+    }
+    x++;
+  }
+ while (x != getMatchNumber() && !done);
+  try {
+    MatchResult match=getCorrectMatch(matches);
+    if (match != null) {
+      context.getVariables().put(getRefName(),generateResult(match));
+    }
+  }
+ catch (  RuntimeException e) {
+    log.warn("Error while generating result");
+  }
+}

@@ -9,7 +9,8 @@
     responseBasedModifiers=new LinkedList();
     assertions=new LinkedList();
     listeners=new LinkedList();
-    extractors=new LinkedList();
+    postProcessors=new LinkedList();
+    preProcessors=new LinkedList();
     nonTestElements=new LinkedList();
     menuMap.put(TIMERS,timers);
     menuMap.put(ASSERTIONS,assertions);
@@ -20,7 +21,8 @@
     menuMap.put(NON_TEST_ELEMENTS,nonTestElements);
     menuMap.put(RESPONSE_BASED_MODIFIERS,responseBasedModifiers);
     menuMap.put(SAMPLERS,samplers);
-    menuMap.put(POST_PROCESSORS,extractors);
+    menuMap.put(POST_PROCESSORS,postProcessors);
+    menuMap.put(PRE_PROCESSORS,preProcessors);
     Collections.sort(guiClasses);
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
@@ -42,7 +44,10 @@
         timers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
       }
       if (categories.contains(POST_PROCESSORS)) {
-        extractors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        postProcessors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(PRE_PROCESSORS)) {
+        preProcessors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
       }
       if (categories.contains(CONTROLLERS)) {
         controllers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));

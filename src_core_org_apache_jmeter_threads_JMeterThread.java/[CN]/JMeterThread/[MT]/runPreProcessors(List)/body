@@ -1,0 +1,7 @@
+{
+  ListIterator iter=preProcessors.listIterator(preProcessors.size());
+  while (iter.hasPrevious()) {
+    PreProcessor ex=(PreProcessor)iter.previous();
+    ex.process();
+  }
+}

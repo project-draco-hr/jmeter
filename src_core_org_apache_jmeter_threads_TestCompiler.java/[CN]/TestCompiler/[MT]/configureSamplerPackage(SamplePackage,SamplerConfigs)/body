@@ -26,13 +26,22 @@
     }
     ret.addSampleListener((SampleListener)cloned);
   }
-  iter=configs.getExtractors().iterator();
+  iter=configs.getPostProcessors().iterator();
   while (iter.hasNext()) {
     PostProcessor ex=(PostProcessor)iter.next();
     TestElement cloned=(TestElement)cloneIfNecessary(ex);
     if (objectsWithFunctions.contains(ex)) {
       replaceValues(cloned);
     }
-    ret.addExtractor((PostProcessor)cloned);
+    ret.addPostProcessor((PostProcessor)cloned);
+  }
+  iter=configs.getPreProcessors().iterator();
+  while (iter.hasNext()) {
+    PreProcessor ex=(PreProcessor)iter.next();
+    TestElement cloned=(TestElement)cloneIfNecessary(ex);
+    if (objectsWithFunctions.contains(ex)) {
+      replaceValues(cloned);
+    }
+    ret.addPreProcessor((PreProcessor)cloned);
   }
 }

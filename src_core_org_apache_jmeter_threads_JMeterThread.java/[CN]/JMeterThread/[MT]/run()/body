@@ -15,6 +15,7 @@
             notifyThreadListeners();
           }
           SamplePackage pack=compiler.configureSampler(controller.next());
+          runPreProcessors(pack.getPreProcessors());
           delay(pack.getTimers());
           SampleResult result=pack.getSampler().sample(null);
           result.setThreadName(threadName);
@@ -22,7 +23,7 @@
           threadContext.setPreviousResult(result);
           threadContext.setCurrentSampler(pack.getSampler());
           checkAssertions(pack.getAssertions(),result);
-          runExtractors(pack.getExtractors(),result);
+          runPostProcessors(pack.getPostProcessors());
           notifyListeners(pack.getSampleListeners(),result);
         }
  catch (        Exception e) {
