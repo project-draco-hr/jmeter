@@ -1,0 +1,7 @@
+{
+  String TEST_REQ="GET http://localhost/matrix.html?update=yes&d=1&d=2&d=&d=&d=&d=&d=&d=1&d=2&d=1&d=&d= HTTP/1.0\n\n";
+  HttpRequestHdr req=new HttpRequestHdr();
+  req.parse(new java.io.ByteArrayInputStream(TEST_REQ.getBytes()));
+  HTTPSampler s=req.getSampler();
+  assertEquals(s.getArguments().getArguments().size(),13);
+}
