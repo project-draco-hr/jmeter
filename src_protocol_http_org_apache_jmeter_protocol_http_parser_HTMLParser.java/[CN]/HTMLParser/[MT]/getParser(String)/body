@@ -1,7 +1,7 @@
 {
   HTMLParser pars=(HTMLParser)parsers.get(htmlParserClassName);
   if (pars != null) {
-    log.info("Fetched " + htmlParserClassName);
+    log.debug("Fetched " + htmlParserClassName);
     return pars;
   }
   try {
