@@ -9,10 +9,17 @@
         ((SampleListener)iter.next()).sampleOccurred(res);
       }
     }
-    try {
-      Thread.sleep(sleepTime);
+    if (sleepTime > 0) {
+      try {
+        Thread.sleep(sleepTime);
+      }
+ catch (      InterruptedException e) {
+      }
     }
- catch (    InterruptedException e) {
+ else {
+      if (size() > 200) {
+        Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+      }
     }
   }
   log.debug("Listener Notifier stopped");

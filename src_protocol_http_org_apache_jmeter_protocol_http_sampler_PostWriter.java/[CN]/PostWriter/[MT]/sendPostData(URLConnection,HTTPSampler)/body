@@ -1,10 +1,6 @@
 {
-  ((HttpURLConnection)connection).setRequestMethod("POST");
   String filename=sampler.getFileField();
   if ((filename != null) && (filename.trim().length() > 0)) {
-    connection.setRequestProperty("Content-type","multipart/form-data; boundary=" + BOUNDARY);
-    connection.setDoOutput(true);
-    connection.setDoInput(true);
     OutputStream out=connection.getOutputStream();
     writeln(out,"--" + BOUNDARY);
     Iterator args=sampler.getArguments().iterator();
@@ -16,15 +12,11 @@
     writeFileToURL(out,filename,sampler.getFileField(),getFileStream(filename),sampler.getMimetype());
     writeln(out,"--" + BOUNDARY + "--");
     out.flush();
-    out.close();
   }
  else {
     String postData=sampler.getQueryString();
-    connection.setRequestProperty("Content-length","" + postData.length());
-    connection.setRequestProperty("Content-type","application/x-www-form-urlencoded");
-    connection.setDoOutput(true);
     PrintWriter out=new PrintWriter(connection.getOutputStream());
     out.print(postData);
-    out.close();
+    out.flush();
   }
 }

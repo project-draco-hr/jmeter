@@ -28,6 +28,7 @@
     }
   }
   finally {
+    log.info("Thread " + threadName + " is done");
     monitor.threadFinished(this);
   }
 }

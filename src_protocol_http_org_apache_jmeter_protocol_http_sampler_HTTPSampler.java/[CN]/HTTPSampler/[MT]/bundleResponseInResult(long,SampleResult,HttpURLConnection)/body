@@ -1,4 +1,5 @@
 {
+  res.setDataType(res.TEXT);
   byte[] ret=readResponse(conn);
   byte[] head=getResponseHeaders(conn,res);
   time=System.currentTimeMillis() - time;
@@ -7,6 +8,5 @@
   System.arraycopy(ret,0,complete,head.length,ret.length);
   res.setResponseData(complete);
   res.setSuccessful(true);
-  res.setDataType(res.TEXT);
   return time;
 }

@@ -1,0 +1,24 @@
+{
+  long time=System.currentTimeMillis();
+  try {
+    conn.connect();
+  }
+ catch (  IOException e) {
+    log.debug("Connection failed, turning off keep-alive and trying again");
+    if (connectionTries++ == 10) {
+      log.error("Can't connect",e);
+      throw e;
+    }
+    conn.disconnect();
+    conn=null;
+    System.gc();
+    Runtime.getRuntime().runFinalization();
+    this.setUseKeepAlive(false);
+    conn=setupConnection(getUrl(),getMethod());
+    if (getMethod().equals(HTTPSampler.POST)) {
+      postWriter.setHeaders(conn,this);
+    }
+    time=connect();
+  }
+  return time;
+}
