@@ -1,21 +1,37 @@
 {
-  Iterator iter;
-  while (running || this.size() > 1) {
-    SampleEvent res=(SampleEvent)this.removeFirst();
-    if (res != null) {
-      List listeners=(List)this.removeFirst();
-      notifyListeners(res,listeners);
+  boolean isMaximumPriority=false;
+  int normalCount=0;
+  while (running) {
+    long startTime=System.currentTimeMillis();
+    processNotifications();
+    long sleep=SLEEP_TIME - (System.currentTimeMillis() - startTime);
+    if (!running) {
+      break;
     }
-    try {
-      Thread.sleep(sleepTime);
+    if (sleep < 0) {
+      isMaximumPriority=true;
+      normalCount=0;
+      if (log.isInfoEnabled()) {
+        log.info("ListenerNotifier exceeded maximum " + "notification time by " + (-sleep) + "ms");
+      }
+      boostPriority();
     }
- catch (    InterruptedException e) {
-    }
-    if (size() > MAX && Thread.currentThread().getPriority() == Thread.NORM_PRIORITY) {
-      log.debug("Notifier thread priority going from normal to max, size = " + size());
-      Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+ else {
+      normalCount++;
+      if (isMaximumPriority && normalCount >= 3) {
+        isMaximumPriority=false;
+        unboostPriority();
+      }
+      if (log.isDebugEnabled()) {
+        log.debug("ListenerNotifier sleeping for " + sleep + "ms");
+      }
+      try {
+        Thread.sleep(sleep);
+      }
+ catch (      InterruptedException e) {
+      }
     }
   }
-  log.debug("Listener Notifier stopped");
+  processNotifications();
   isStopped=true;
 }

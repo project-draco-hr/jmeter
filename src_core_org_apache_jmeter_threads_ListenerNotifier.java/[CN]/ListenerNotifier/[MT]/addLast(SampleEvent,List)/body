@@ -1,10 +1,6 @@
 {
-  if (size() > ABS_MAX) {
-    notifyListeners(item,listeners);
-  }
- else {
-    super.addLast(item);
-    super.addLast(listeners);
-    sleepTime=0;
+synchronized (listenerEvents) {
+    listenerEvents.add(item);
+    listenerEvents.add(listeners);
   }
 }

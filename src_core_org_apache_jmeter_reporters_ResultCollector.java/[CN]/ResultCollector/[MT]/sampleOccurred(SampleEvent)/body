@@ -4,8 +4,10 @@
     sendToVisualizer(result);
     try {
       if (SaveService.getOutputFormat() == SaveService.SAVE_AS_CSV) {
-        String savee=SaveService.resultToDelimitedString(result);
-        out.println(savee);
+        if (out != null) {
+          String savee=SaveService.resultToDelimitedString(result);
+          out.println(savee);
+        }
       }
  else {
         recordResult(result);

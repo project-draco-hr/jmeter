@@ -1,11 +1,10 @@
 {
   if (res != null) {
     StringBuffer display=new StringBuffer();
-    List assertionResults=Arrays.asList(res.getAssertionResults());
+    AssertionResult assertionResults[]=res.getAssertionResults();
     if (assertionResults != null) {
-      Iterator iter=assertionResults.iterator();
-      while (iter.hasNext()) {
-        AssertionResult item=(AssertionResult)iter.next();
+      for (int i=0; i < assertionResults.length; i++) {
+        AssertionResult item=assertionResults[i];
         if (item.isFailure() || item.isError()) {
           display.append("\n\t\t");
           display.append(item.getFailureMessage());

@@ -1,0 +1,6 @@
+{
+  if (Thread.currentThread().getPriority() != Thread.NORM_PRIORITY) {
+    log.info("ListenerNotifier: Returning thread priority to normal.");
+    Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
+  }
+}

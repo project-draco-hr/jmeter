@@ -1,0 +1,4 @@
+{
+  GuiPackage.getInstance().getTreeModel().removeNodeFromParent(node);
+  GuiPackage.getInstance().removeNode(node.createTestElement());
+}

@@ -1,0 +1,6 @@
+{
+  if (Thread.currentThread().getPriority() != Thread.MAX_PRIORITY) {
+    log.info("ListenerNotifier: Boosting thread priority to maximum.");
+    Thread.currentThread().setPriority(Thread.MAX_PRIORITY);
+  }
+}

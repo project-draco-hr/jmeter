@@ -1,5 +1,4 @@
 {
-  Thread noteThread=new Thread(this);
-  noteThread.start();
   isStopped=false;
+  new Thread(this).start();
 }

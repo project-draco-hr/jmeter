@@ -1,3 +1,6 @@
 {
+  if (subResults == null) {
+    return null;
+  }
   return (SampleResult[])subResults.toArray(new SampleResult[0]);
 }
