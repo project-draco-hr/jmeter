@@ -1,6 +1,4 @@
 {
-  if (getStyle() == NEW_STYLE) {
-    interleave=true;
-  }
+  setInterleave(NEW_STYLE);
   super.incrementCurrent();
 }

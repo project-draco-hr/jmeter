@@ -1,7 +1,5 @@
 {
-  if (getStyle() == DEFAULT_STYLE) {
-    interleave=true;
-  }
+  setInterleave(DEFAULT_STYLE);
   TestElement controller=getCurrentController();
   if (controller == null) {
     nextAtEnd();
