@@ -1,7 +1,7 @@
 {
   byte[] responseBytes=res.getResponseData();
   String response=null;
-  if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
+  if ((SampleResult.TEXT).equals(res.getDataType())) {
     try {
       if (responseBytes.length > 200 * 1024) {
         response=("Response too large to be displayed (" + responseBytes.length + " bytes).");

@@ -25,7 +25,7 @@
     res.setResponseCode(Integer.toString(statusCode));
     res.setSuccessful(200 <= statusCode && statusCode <= 399);
     res.setResponseMessage(httpMethod.getStatusText());
-    String ct=httpMethod.getResponseHeader("Content-type").getValue();
+    String ct=httpMethod.getResponseHeader("Content-Type").getValue();
     res.setContentType(ct);
     if (ct != null) {
       String de=ct.toLowerCase();
@@ -55,7 +55,7 @@
           didFollowRedirects=true;
         }
       }
-      if (isImageParser() && res.getDataType().equals(HTTPSampleResult.TEXT) && res.isSuccessful()) {
+      if (isImageParser() && (HTTPSampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
         if (frameDepth > MAX_FRAME_DEPTH) {
           res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),null,0));
         }

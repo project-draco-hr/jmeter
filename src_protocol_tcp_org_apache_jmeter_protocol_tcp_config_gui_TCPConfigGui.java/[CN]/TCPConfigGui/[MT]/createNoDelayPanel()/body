@@ -1,10 +1,10 @@
 {
   JLabel label=new JLabel(JMeterUtils.getResString("tcp_nodelay"));
-  nodelay=new JTextField(10);
-  nodelay.setName(NODELAY);
-  label.setLabelFor(nodelay);
+  setNoDelay=new JCheckBox();
+  setNoDelay.setName(NODELAY);
+  label.setLabelFor(setNoDelay);
   JPanel nodelayPanel=new JPanel(new BorderLayout(5,0));
   nodelayPanel.add(label,BorderLayout.WEST);
-  nodelayPanel.add(nodelay,BorderLayout.CENTER);
+  nodelayPanel.add(setNoDelay,BorderLayout.CENTER);
   return nodelayPanel;
 }

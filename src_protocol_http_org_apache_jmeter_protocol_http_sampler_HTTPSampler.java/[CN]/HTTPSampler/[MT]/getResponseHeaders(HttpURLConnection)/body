@@ -3,12 +3,7 @@
   headerBuf.append(conn.getHeaderField(0));
   headerBuf.append("\n");
   for (int i=1; conn.getHeaderFieldKey(i) != null; i++) {
-    if (!conn.getHeaderFieldKey(i).equalsIgnoreCase("transfer-encoding")) {
-      headerBuf.append(conn.getHeaderFieldKey(i));
-      headerBuf.append(": ");
-      headerBuf.append(conn.getHeaderField(i));
-      headerBuf.append("\n");
-    }
+    modifyHeaderValues(conn,i,headerBuf);
   }
   return headerBuf.toString();
 }

@@ -1,0 +1,10 @@
+{
+  if (errorsOnly.isSelected()) {
+    warningThresholdField.setEnabled(false);
+    warningThresholdField.setEditable(false);
+  }
+ else {
+    warningThresholdField.setEnabled(true);
+    warningThresholdField.setEditable(true);
+  }
+}

@@ -77,7 +77,7 @@ catch (      IOException e) {
           didFollowRedirects=true;
         }
       }
-      if (isImageParser() && res.getDataType().equals(HTTPSampleResult.TEXT) && res.isSuccessful()) {
+      if (isImageParser() && (HTTPSampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
         if (frameDepth > MAX_FRAME_DEPTH) {
           res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),null,0));
         }

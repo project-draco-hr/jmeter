@@ -13,11 +13,10 @@
  else {
       InputStream is=sock.getInputStream();
       OutputStream os=sock.getOutputStream();
-      TCPClient proto=(TCPClient)getProtocol();
-      log.debug("Found class " + proto.toString());
-      String req=proto.write(os);
+      String req=getRequestData();
       res.setSamplerData(req);
-      String in=proto.read(is);
+      protocolHandler.write(os,req);
+      String in=protocolHandler.read(is);
       res.setResponseData(in.getBytes());
       res.setDataType(SampleResult.TEXT);
       res.setResponseCode("200");

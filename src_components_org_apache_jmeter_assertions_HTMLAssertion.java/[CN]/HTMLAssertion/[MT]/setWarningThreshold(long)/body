@@ -1,0 +1,11 @@
+{
+  if (inWarningThreshold < 0L) {
+    throw new IllegalArgumentException(JMeterUtils.getResString("argument_must_not_be_negative"));
+  }
+  if (inWarningThreshold == Long.MAX_VALUE) {
+    setProperty(new LongProperty(WARNING_THRESHOLD_KEY,0));
+  }
+ else {
+    setProperty(new LongProperty(WARNING_THRESHOLD_KEY,inWarningThreshold));
+  }
+}

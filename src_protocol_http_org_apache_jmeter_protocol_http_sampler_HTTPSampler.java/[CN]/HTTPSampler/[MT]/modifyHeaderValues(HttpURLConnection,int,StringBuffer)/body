@@ -1,0 +1,9 @@
+{
+  if ("transfer-encoding".equalsIgnoreCase(conn.getHeaderFieldKey(headerIndex))) {
+    return;
+  }
+  resultBuf.append(conn.getHeaderFieldKey(headerIndex));
+  resultBuf.append(": ");
+  resultBuf.append(conn.getHeaderField(headerIndex));
+  resultBuf.append("\n");
+}

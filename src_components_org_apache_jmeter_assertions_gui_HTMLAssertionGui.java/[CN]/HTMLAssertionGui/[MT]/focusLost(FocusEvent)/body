@@ -1,0 +1,37 @@
+{
+  log.debug("HTMLAssertionGui.focusLost() called");
+  String errorThresholdString=errorThresholdField.getText();
+  if (errorThresholdString != null) {
+    boolean isInvalid=false;
+    try {
+      long errorThreshold=Long.parseLong(errorThresholdString);
+      if (errorThreshold < 0) {
+        isInvalid=true;
+      }
+    }
+ catch (    NumberFormatException ex) {
+      isInvalid=true;
+    }
+    if (isInvalid) {
+      log.warn("HTMLAssertionGui: Error threshold Not a valid number!");
+      JOptionPane.showMessageDialog(null,"Threshold for errors is invalid","Error",JOptionPane.ERROR_MESSAGE);
+    }
+  }
+  String warningThresholdString=warningThresholdField.getText();
+  if (warningThresholdString != null) {
+    boolean isInvalid=false;
+    try {
+      long warningThreshold=Long.parseLong(warningThresholdString);
+      if (warningThreshold < 0) {
+        isInvalid=true;
+      }
+    }
+ catch (    NumberFormatException ex) {
+      isInvalid=true;
+    }
+    if (isInvalid) {
+      log.warn("HTMLAssertionGui: Error threshold Not a valid number!");
+      JOptionPane.showMessageDialog(null,"Threshold for warnings is invalid","Error",JOptionPane.ERROR_MESSAGE);
+    }
+  }
+}
