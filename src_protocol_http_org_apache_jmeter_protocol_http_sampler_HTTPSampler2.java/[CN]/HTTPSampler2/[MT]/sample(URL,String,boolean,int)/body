@@ -25,8 +25,12 @@
     res.setResponseCode(Integer.toString(statusCode));
     res.setSuccessful(200 <= statusCode && statusCode <= 399);
     res.setResponseMessage(httpMethod.getStatusText());
-    String ct=httpMethod.getResponseHeader("Content-Type").getValue();
-    res.setContentType(ct);
+    String ct=null;
+    Header h=httpMethod.getResponseHeader("Content-Type");
+    if (h != null) {
+      ct=h.getValue();
+      res.setContentType(ct);
+    }
     if (ct != null) {
       String de=ct.toLowerCase();
       final String cs="charset=";
