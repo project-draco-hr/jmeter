@@ -6,14 +6,14 @@
   JPanel mainPanel=new JPanel();
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
   JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("graph_full_results_title"));
   Font curFont=panelTitleLabel.getFont();
   int curFontSize=curFont.getSize();
   curFontSize+=4;
   panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
   mainPanel.add(panelTitleLabel);
-  mainPanel.add(this.getNamePanel());
+  mainPanel.add(getNamePanel());
   mainPanel.add(getFilePanel());
   JScrollPane graphScrollPanel=new JScrollPane(graph,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
   graphScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));

@@ -1,10 +1,11 @@
 {
-  this.setLayout(new FlowLayout(FlowLayout.LEFT));
+  setLayout(new BorderLayout());
   setBorder(BorderFactory.createTitledBorder(title));
-  add(label);
-  add(filename);
+  add(label,BorderLayout.WEST);
+  add(filename,BorderLayout.CENTER);
   filename.addActionListener(this);
-  add(browse);
+  add(browse,BorderLayout.EAST);
   browse.setActionCommand("browse");
   browse.addActionListener(this);
+  setMaximumSize(new Dimension(getMaximumSize().width,getPreferredSize().height));
 }

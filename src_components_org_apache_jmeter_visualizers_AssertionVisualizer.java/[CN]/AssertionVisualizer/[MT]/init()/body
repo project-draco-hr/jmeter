@@ -3,7 +3,7 @@
   JPanel mainPanel=new JPanel();
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
   JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("assertion_visualizer_title"));
   Font curFont=panelTitleLabel.getFont();
   int curFontSize=curFont.getSize();
@@ -14,12 +14,12 @@
   mainPanel.add(getFilePanel());
   JLabel textAreaLabel=new JLabel(JMeterUtils.getResString("assertion_textarea_label"));
   mainPanel.add(textAreaLabel);
-  textArea=new JTextArea(10,40);
+  textArea=new JTextArea();
   textArea.setEditable(false);
   textArea.setLineWrap(false);
   JScrollPane areaScrollPane=new JScrollPane(textArea);
   areaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
   areaScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-  this.add(mainPanel,BorderLayout.NORTH);
-  this.add(areaScrollPane,BorderLayout.CENTER);
+  mainPanel.add(areaScrollPane);
+  this.add(mainPanel,BorderLayout.CENTER);
 }

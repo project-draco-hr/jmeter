@@ -2,6 +2,5 @@
   super();
   model=new StatVisualizerModel();
   model.addAccumListener(this);
-  this.setPreferredSize(new Dimension(width,800));
   init();
 }

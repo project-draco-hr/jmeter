@@ -9,7 +9,9 @@
   jTree.setCellRenderer(new ResultsNodeRenderer());
   jTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
   jTree.addTreeSelectionListener(this);
+  jTree.setShowsRootHandles(true);
   treePane=new JScrollPane(jTree);
+  treePane.setPreferredSize(new Dimension(100,100));
   gridBag=new GridBagLayout();
   gbc=new GridBagConstraints();
   resultPanel=new JPanel(gridBag);
@@ -18,7 +20,7 @@
   initTextArea();
   initHtmlEditPane();
   treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,resultPane);
-  getFilePanel().add(getErrorLoggingCheckbox());
+  getFilePanel().add(getErrorLoggingCheckbox(),BorderLayout.SOUTH);
   add(getFilePanel(),BorderLayout.NORTH);
   add(treeSplitPane,BorderLayout.CENTER);
 }
