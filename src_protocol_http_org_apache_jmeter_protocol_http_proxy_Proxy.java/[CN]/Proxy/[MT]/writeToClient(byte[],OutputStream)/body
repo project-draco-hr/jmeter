@@ -6,12 +6,14 @@
   }
  catch (  IOException e) {
     log.error("",e);
+    throw e;
   }
  finally {
     try {
       out.close();
     }
  catch (    Exception ex) {
+      log.warn("Error while closing socket",ex);
     }
   }
 }

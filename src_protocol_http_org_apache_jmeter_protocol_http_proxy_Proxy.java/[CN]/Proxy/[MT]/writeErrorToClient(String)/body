@@ -1,0 +1,11 @@
+{
+  try {
+    OutputStream sockOut=clientSocket.getOutputStream();
+    DataOutputStream out=new DataOutputStream(sockOut);
+    out.writeBytes(message);
+    out.flush();
+  }
+ catch (  Exception e) {
+    log.warn("Exception while writing error",e);
+  }
+}
