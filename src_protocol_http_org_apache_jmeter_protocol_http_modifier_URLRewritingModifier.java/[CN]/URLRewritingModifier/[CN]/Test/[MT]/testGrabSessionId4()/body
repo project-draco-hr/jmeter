@@ -1,0 +1,13 @@
+{
+  String html="href='index.html;%24sid%24KQNq3AAADQZoEQAxlkX8uQV5bjqVBPbT'";
+  response=new SampleResult();
+  response.setResponseData(html.getBytes());
+  URLRewritingModifier mod=new URLRewritingModifier();
+  mod.setArgumentName("%24sid%24");
+  mod.setPathExtension(true);
+  mod.setPathExtensionNoEquals(true);
+  HTTPSampler sampler=createSampler();
+  mod.modifyEntry(sampler,response);
+  Arguments args=sampler.getArguments();
+  assertEquals("index.html;%24sid%24KQNq3AAADQZoEQAxlkX8uQV5bjqVBPbT",sampler.getPath());
+}

@@ -1,14 +1,10 @@
 {
-  String html="location: http://server.com/index.html?session_id=jfdkjdkf%20jddkfdfjkdjfdf%22";
+  String html="location: http://server.com/index.html?session_id=jfdkjdkf%20jddkfdfjkdjfdf%22;";
   response=new SampleResult();
   response.setResponseData(html.getBytes());
   URLRewritingModifier mod=new URLRewritingModifier();
   mod.setArgumentName("session_id");
-  HTTPSampler sampler=new HTTPSampler();
-  sampler.setDomain("server.com");
-  sampler.setPath("index.html");
-  sampler.setMethod(HTTPSampler.GET);
-  sampler.setProtocol("http");
+  HTTPSampler sampler=createSampler();
   sampler.addArgument("session_id","adfasdfdsafasdfasd");
   mod.modifyEntry(sampler,response);
   Arguments args=sampler.getArguments();

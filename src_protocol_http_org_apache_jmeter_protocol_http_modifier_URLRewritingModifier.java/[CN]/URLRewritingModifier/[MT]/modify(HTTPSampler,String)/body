@@ -1,6 +1,11 @@
 {
   if (isPathExtension()) {
-    sampler.setPath(sampler.getPath() + ";" + getArgumentName()+ "="+ value);
+    if (isPathExtensionNoEquals()) {
+      sampler.setPath(sampler.getPath() + ";" + getArgumentName()+ value);
+    }
+ else {
+      sampler.setPath(sampler.getPath() + ";" + getArgumentName()+ "="+ value);
+    }
   }
  else {
     sampler.getArguments().removeArgument(getArgumentName());

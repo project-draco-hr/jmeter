@@ -1,8 +1,10 @@
 {
-  setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+  setLayout(new BorderLayout());
+  Box box=Box.createVerticalBox();
   setBorder(makeBorder());
-  add(makeTitlePanel());
-  add(createFieldPanel());
-  add(createTypePanel());
-  add(createStringPanel());
+  box.add(makeTitlePanel());
+  box.add(createFieldPanel());
+  box.add(createTypePanel());
+  box.add(createStringPanel());
+  add(box,BorderLayout.NORTH);
 }

@@ -1,0 +1,8 @@
+{
+  HTTPSampler sampler=new HTTPSampler();
+  sampler.setDomain("server.com");
+  sampler.setPath("index.html");
+  sampler.setMethod(HTTPSampler.GET);
+  sampler.setProtocol("http");
+  return sampler;
+}

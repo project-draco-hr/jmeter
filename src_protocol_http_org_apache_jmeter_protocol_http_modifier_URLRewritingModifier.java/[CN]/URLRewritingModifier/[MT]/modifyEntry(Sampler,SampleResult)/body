@@ -3,7 +3,7 @@
     initRegex(getArgumentName());
   }
   String text=new String(responseText.getResponseData());
-  Perl5Matcher matcher=new Perl5Matcher();
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
   String value="";
   if (matcher.contains(text,case1)) {
     MatchResult result=matcher.getMatch();
@@ -14,6 +14,10 @@
     value=result.group(1);
   }
  else   if (matcher.contains(text,case3)) {
+    MatchResult result=matcher.getMatch();
+    value=result.group(1);
+  }
+ else   if (matcher.contains(text,case4)) {
     MatchResult result=matcher.getMatch();
     value=result.group(1);
   }
