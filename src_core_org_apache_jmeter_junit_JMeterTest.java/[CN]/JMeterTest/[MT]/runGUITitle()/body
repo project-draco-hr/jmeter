@@ -3,7 +3,7 @@
     String title=guiItem.getStaticLabel();
     boolean ct=guiTitles.contains(title);
     if ((title.indexOf("(ALPHA") == -1) && (title.indexOf("(BETA") == -1)) {
-      assertTrue("Component ref should contain entry for " + title,ct);
+      assertTrue("component_reference.xml needs '" + title + "' anchor for "+ guiItem.getClass().getName(),ct);
     }
   }
 }
