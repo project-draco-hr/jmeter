@@ -2,7 +2,6 @@
   setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
-  JPanel mainPanel=new JPanel(new BorderLayout());
   VerticalPanel threadPropsPanel=new VerticalPanel();
   threadPropsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("thread_delay_properties")));
   JPanel threadPanel=new JPanel(new BorderLayout(5,0));
@@ -23,6 +22,16 @@
   rampPanel.add(rampInput,BorderLayout.CENTER);
   threadPropsPanel.add(rampPanel);
   threadPropsPanel.add(createControllerPanel());
-  mainPanel.add(threadPropsPanel,BorderLayout.NORTH);
-  add(mainPanel,BorderLayout.CENTER);
+  scheduler=new JCheckBox("Scheduler");
+  scheduler.addItemListener(this);
+  threadPropsPanel.add(scheduler);
+  mainPanel=new VerticalPanel();
+  mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"Scheduler Cofiguration"));
+  mainPanel.add(createStartTimePanel());
+  mainPanel.add(createEndTimePanel());
+  mainPanel.setVisible(false);
+  VerticalPanel intgrationPanel=new VerticalPanel();
+  intgrationPanel.add(threadPropsPanel);
+  intgrationPanel.add(mainPanel);
+  add(intgrationPanel,BorderLayout.CENTER);
 }

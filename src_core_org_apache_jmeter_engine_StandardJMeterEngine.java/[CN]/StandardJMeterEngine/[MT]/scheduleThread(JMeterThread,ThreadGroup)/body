@@ -1,0 +1,7 @@
+{
+  if (group.getScheduler()) {
+    thread.setStartTime(group.getStartTime());
+    thread.setEndTime(group.getEndTime());
+    thread.setScheduled(true);
+  }
+}

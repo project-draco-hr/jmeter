@@ -7,6 +7,9 @@
     running=true;
     Sampler entry=null;
     rampUpDelay();
+    if (scheduler) {
+      startScheduler();
+    }
     log.info("Thread " + Thread.currentThread().getName() + " started");
     controller.initialize();
     controller.addIterationListener(new IterationListener());
@@ -26,6 +29,9 @@
           checkAssertions(pack.getAssertions(),result);
           notifyListeners(pack.getSampleListeners(),result);
           compiler.done(pack);
+          if (scheduler) {
+            stopScheduler();
+          }
         }
  catch (        Exception e) {
           log.error("",e);

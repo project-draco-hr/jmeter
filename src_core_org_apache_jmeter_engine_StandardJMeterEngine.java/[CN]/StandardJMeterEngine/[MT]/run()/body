@@ -20,6 +20,7 @@
     notifyTestListenersOfStart();
   }
   notifier=new ListenerNotifier();
+  schcdule_run=true;
   while (iter.hasNext()) {
     ThreadGroup group=(ThreadGroup)iter.next();
     threads=new JMeterThread[group.getNumThreads()];
@@ -31,6 +32,7 @@
       threads[i].setInitialContext(JMeterContextService.getContext());
       threads[i].setInitialDelay((int)(((float)(group.getRampUp() * 1000) / (float)group.getNumThreads()) * (float)i));
       threads[i].setThreadName(group.getName() + "-" + (i + 1));
+      scheduleThread(threads[i],group);
       Thread newThread=new Thread(threads[i]);
       newThread.setName(group.getName() + "-" + (i + 1));
       allThreads.put(threads[i],newThread);
@@ -39,6 +41,7 @@
       }
       newThread.start();
     }
+    schcdule_run=false;
     if (serialized) {
       while (running && allThreads.size() > 0) {
         try {

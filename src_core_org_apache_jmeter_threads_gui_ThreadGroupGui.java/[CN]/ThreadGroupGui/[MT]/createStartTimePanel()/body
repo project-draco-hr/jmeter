@@ -1,0 +1,12 @@
+{
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  JLabel label=new JLabel("starttime");
+  label.setLabelFor(starttime);
+  panel.add(label,BorderLayout.WEST);
+  Date today=new Date();
+  start=new JSpinner(new SpinnerDateModel(today,null,null,Calendar.MONTH));
+  starttime=new DateEditor(start,"dd/MM/yy HH:mm:ss");
+  start.setEditor(starttime);
+  panel.add(start,BorderLayout.CENTER);
+  return panel;
+}

@@ -1,0 +1,14 @@
+{
+  long delay=(startTime - System.currentTimeMillis());
+  if (delay > 0) {
+    try {
+      running=true;
+      Thread.sleep(delay);
+    }
+ catch (    Exception e) {
+    }
+  }
+ else {
+    running=false;
+  }
+}
