@@ -2,6 +2,8 @@
   CLArgsParser parser=new CLArgsParser(args,options);
   if (null != parser.getErrorString()) {
     System.err.println("Error: " + parser.getErrorString());
+    System.out.println("Usage");
+    System.out.println(CLUtil.describeOptions(options).toString());
     return;
   }
   try {
