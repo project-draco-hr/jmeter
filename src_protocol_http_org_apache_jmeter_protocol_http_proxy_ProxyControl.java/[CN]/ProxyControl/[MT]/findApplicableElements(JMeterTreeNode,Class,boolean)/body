@@ -1,0 +1,38 @@
+{
+  JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
+  LinkedList elements=new LinkedList();
+  Enumeration enum=treeModel.getNodeOf(this).children();
+  while (enum.hasMoreElements()) {
+    JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
+    if (subNode.isEnabled()) {
+      TestElement element=(TestElement)subNode.getUserObject();
+      if (myClass.isInstance(element)) {
+        if (ascending)         elements.addFirst(element);
+ else         elements.add(element);
+      }
+    }
+  }
+  for (JMeterTreeNode controller=myTarget; controller != null; controller=(JMeterTreeNode)controller.getParent()) {
+    enum=controller.children();
+    String guiClassName=null;
+    while (enum.hasMoreElements()) {
+      JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
+      if (subNode.isEnabled()) {
+        TestElement element=(TestElement)subNode.getUserObject();
+        if (myClass.isInstance(element)) {
+          log.debug("Applicable: " + element.getPropertyAsString(TestElement.NAME));
+          if (ascending)           elements.addFirst(element);
+ else           elements.add(element);
+        }
+        if (element instanceof TestPlan) {
+          Arguments args=(Arguments)element.getProperty(TestPlan.USER_DEFINED_VARIABLES).getObjectValue();
+          if (myClass.isInstance(args)) {
+            if (ascending)             elements.addFirst(args);
+ else             elements.add(args);
+          }
+        }
+      }
+    }
+  }
+  return elements;
+}

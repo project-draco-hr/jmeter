@@ -1,9 +1,7 @@
 {
-  if (addAssertions) {
-    ResponseAssertion ra=new ResponseAssertion();
-    ra.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.assertions.gui.AssertionGui");
-    ra.setName("Check response");
-    ra.setTestField(ResponseAssertion.RESPONSE_DATA);
-    model.addComponent(ra,node);
-  }
+  ResponseAssertion ra=new ResponseAssertion();
+  ra.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.assertions.gui.AssertionGui");
+  ra.setName("Check response");
+  ra.setTestField(ResponseAssertion.RESPONSE_DATA);
+  model.addComponent(ra,node);
 }

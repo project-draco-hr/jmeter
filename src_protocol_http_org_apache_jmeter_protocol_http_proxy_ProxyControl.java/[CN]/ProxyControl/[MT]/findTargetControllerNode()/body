@@ -1,0 +1,12 @@
+{
+  JMeterTreeNode myTarget=getTarget();
+  if (myTarget != null)   return myTarget;
+  myTarget=findFirstNodeOfType(RecordingController.class);
+  if (myTarget != null)   return myTarget;
+  myTarget=findFirstNodeOfType(ThreadGroup.class);
+  if (myTarget != null)   return myTarget;
+  myTarget=findFirstNodeOfType(WorkBench.class);
+  if (myTarget != null)   return myTarget;
+  log.error("Program error: proxy recording target not found.");
+  return null;
+}

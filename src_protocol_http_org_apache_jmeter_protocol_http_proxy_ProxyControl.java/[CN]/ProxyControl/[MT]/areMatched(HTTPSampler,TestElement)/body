@@ -1,3 +1,0 @@
-{
-  return urlConfig == null || (urlConfig.getPropertyAsString(HTTPSampler.DOMAIN).equals("") || urlConfig.getPropertyAsString(HTTPSampler.DOMAIN).equals(sampler.getDomain())) && (urlConfig.getPropertyAsString(HTTPSampler.PATH).equals("") || urlConfig.getPropertyAsString(HTTPSampler.PATH).equals(sampler.getPath()));
-}
