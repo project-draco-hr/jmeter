@@ -1,0 +1,35 @@
+{
+  IntegerProperty jp1=new IntegerProperty("name1",123);
+  IntegerProperty jp2=new IntegerProperty("name1",123);
+  IntegerProperty jp3=new IntegerProperty("name2",-123);
+  IntegerProperty jp4=new IntegerProperty("name2",123);
+  IntegerProperty jp5=new IntegerProperty("name2",Integer.MIN_VALUE);
+  IntegerProperty jp6=new IntegerProperty("name2",Integer.MIN_VALUE);
+  IntegerProperty jp7=new IntegerProperty("name2",Integer.MAX_VALUE);
+  IntegerProperty jp8=new IntegerProperty("name2",Integer.MAX_VALUE);
+  IntegerProperty jp9=new IntegerProperty("name1",Integer.MIN_VALUE);
+  IntegerProperty jp10=new IntegerProperty("name1",Integer.MAX_VALUE);
+  checkEquals(jp1,jp2);
+  checkNotEquals(jp1,jp3);
+  checkNotEquals(jp2,jp3);
+  checkNotEquals(jp3,jp4);
+  checkEquals(jp5,jp6);
+  checkNotEquals(jp3,jp6);
+  checkEquals(jp7,jp8);
+  checkNotEquals(jp4,jp7);
+  checkNotEquals(jp9,jp5);
+  checkNotEquals(jp10,jp7);
+  checkNotEquals(jp9,jp10);
+  try {
+    new IntegerProperty(null);
+    fail("Should have generated an Illegal Argument Exception");
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  try {
+    new IntegerProperty(null,0);
+    fail("Should have generated an Illegal Argument Exception");
+  }
+ catch (  IllegalArgumentException e) {
+  }
+}

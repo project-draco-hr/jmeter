@@ -1,0 +1,15 @@
+{
+  BooleanProperty jpn1=new BooleanProperty();
+  BooleanProperty jpn2=new BooleanProperty();
+  BooleanProperty jp1=new BooleanProperty("name1",true);
+  BooleanProperty jp2=new BooleanProperty("name1",true);
+  BooleanProperty jp3=new BooleanProperty("name2",true);
+  BooleanProperty jp4=new BooleanProperty("name2",false);
+  checkEquals(jpn1,jpn2);
+  checkNotEquals(jpn1,jp1);
+  checkNotEquals(jpn1,jp2);
+  checkEquals(jp1,jp2);
+  checkNotEquals(jp1,jp3);
+  checkNotEquals(jp2,jp3);
+  checkNotEquals(jp3,jp4);
+}
