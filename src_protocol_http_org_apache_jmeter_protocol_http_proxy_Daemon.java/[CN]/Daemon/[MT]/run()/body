@@ -1,0 +1,26 @@
+{
+  CookieManager cookieManager=new CookieManager();
+  running=true;
+  try {
+    System.out.print("Creating Daemon Socket...");
+    MainSocket=new ServerSocket(daemonPort);
+    System.out.println(" port " + daemonPort + " OK");
+    System.out.println("Proxy up and running!");
+    while (running) {
+      Socket ClientSocket=MainSocket.accept();
+      Proxy thd=new Proxy(ClientSocket,cache,config,target,cookieManager);
+      thd.start();
+    }
+    System.out.println("Proxy Server stopped");
+  }
+ catch (  Exception e) {
+    System.out.println("Proxy Server stopped");
+  }
+ finally {
+    try {
+      MainSocket.close();
+    }
+ catch (    Exception exc) {
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  String[] strNew=new String[strings.length];
+  for (int i=0; i < strings.length; i++) {
+    strNew[i]=fixSlashes(strings[i]);
+  }
+  return strNew;
+}

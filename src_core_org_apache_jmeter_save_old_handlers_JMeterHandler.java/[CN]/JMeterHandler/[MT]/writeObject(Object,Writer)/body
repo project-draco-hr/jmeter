@@ -1,0 +1,13 @@
+{
+  if (obj instanceof Saveable) {
+    try {
+      ((SaveHandler)((Saveable)obj).getTagHandlerClass().newInstance()).save((Saveable)obj,out);
+    }
+ catch (    Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+ else {
+    out.write(convertToXML(obj.toString()));
+  }
+}

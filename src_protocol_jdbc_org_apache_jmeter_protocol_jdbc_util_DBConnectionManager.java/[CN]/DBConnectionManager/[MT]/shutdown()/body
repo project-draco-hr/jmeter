@@ -1,0 +1,6 @@
+{
+  Iterator iter=connections.keySet().iterator();
+  while (iter.hasNext()) {
+    close((DBKey)iter.next());
+  }
+}

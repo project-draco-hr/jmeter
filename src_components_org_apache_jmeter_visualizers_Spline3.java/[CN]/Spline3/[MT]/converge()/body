@@ -1,0 +1,18 @@
+{
+  boolean converge=true;
+  int i=0, j=0;
+  float lineSum=0F;
+  for (i=0; i < _n; i++) {
+    if (converge == true) {
+      lineSum=0;
+      for (j=0; j < _n; j++) {
+        lineSum=lineSum + Math.abs(_A[i][j]);
+      }
+      lineSum=lineSum - Math.abs(_A[i][i]);
+      if (lineSum > Math.abs(_A[i][i])) {
+        converge=false;
+      }
+    }
+  }
+  return converge;
+}

@@ -1,0 +1,8 @@
+{
+  if (contentType != null && contentType.startsWith(MultipartUrlConfig.MULTIPART_FORM)) {
+    return new MultipartUrlConfig(contentType.substring(contentType.indexOf("oundary=") + 8));
+  }
+ else {
+    return null;
+  }
+}

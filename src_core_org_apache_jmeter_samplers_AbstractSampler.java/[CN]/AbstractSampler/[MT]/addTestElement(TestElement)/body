@@ -1,0 +1,13 @@
+{
+  if (element instanceof Assertion) {
+    addAssertion((Assertion)element);
+  }
+ else {
+    if (element.getClass().getName().equals(ConfigTestElement.class.getName())) {
+      mergeIn(element);
+    }
+ else {
+      addCustomTestElement(element);
+    }
+  }
+}

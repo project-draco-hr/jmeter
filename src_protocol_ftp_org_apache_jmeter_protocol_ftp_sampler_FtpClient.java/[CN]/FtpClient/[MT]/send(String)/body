@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < command.length(); i++) {
+    out.write(command.charAt(i));
+  }
+  out.write('\r');
+  out.write('\n');
+  out.flush();
+}

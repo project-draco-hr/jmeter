@@ -1,0 +1,4 @@
+{
+  HttpsURLConnection secureConn=(HttpsURLConnection)conn;
+  secureConn.setSSLSocketFactory(this.getContext().getSocketFactory());
+}

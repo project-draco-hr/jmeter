@@ -1,0 +1,27 @@
+{
+  boolean flag=true;
+  if (o instanceof ListedHashTree) {
+    ListedHashTree oo=(ListedHashTree)o;
+    Iterator it=order.iterator();
+    while (it.hasNext()) {
+      if (!oo.containsKey(it.next())) {
+        flag=false;
+        break;
+      }
+    }
+    if (flag) {
+      it=order.iterator();
+      while (it.hasNext()) {
+        Object temp=it.next();
+        flag=get(temp).equals(oo.get(temp));
+        if (!flag) {
+          break;
+        }
+      }
+    }
+  }
+ else {
+    flag=false;
+  }
+  return flag;
+}

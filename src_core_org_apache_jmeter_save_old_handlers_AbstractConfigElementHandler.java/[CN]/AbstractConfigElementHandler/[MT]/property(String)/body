@@ -1,0 +1,6 @@
+{
+  if (data != null && data.trim().length() > 0) {
+    config.setProperty(JMeterHandler.convertProperty(currentProperty),data.trim());
+    currentProperty=null;
+  }
+}

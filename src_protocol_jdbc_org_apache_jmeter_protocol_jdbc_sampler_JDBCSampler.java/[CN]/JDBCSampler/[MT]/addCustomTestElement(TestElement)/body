@@ -1,0 +1,5 @@
+{
+  if (element instanceof SqlConfig || element instanceof PoolConfig || element instanceof DbConfig) {
+    this.mergeIn(element);
+  }
+}

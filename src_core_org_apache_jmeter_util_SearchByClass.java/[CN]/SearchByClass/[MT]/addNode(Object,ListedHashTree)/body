@@ -1,0 +1,8 @@
+{
+  if (searchClass.isAssignableFrom(node.getClass())) {
+    objectsOfClass.add(node);
+    ListedHashTree tree=new ListedHashTree(node);
+    tree.set(node,subTree);
+    subTrees.put(node,tree);
+  }
+}

@@ -1,0 +1,22 @@
+{
+  List tempList;
+  StringBuffer temp=new StringBuffer("");
+  String[] line=new String[size + 1];
+  String[] elements=getHeaders();
+  for (int count=0; count < elements.length; count++) {
+    temp.append(elements[count]);
+    if (count + 1 < elements.length)     temp.append("\t");
+  }
+  line[0]=temp.toString();
+  reset();
+  int index=1;
+  while (next()) {
+    temp=new StringBuffer("");
+    for (int count=0; count < elements.length; count++) {
+      temp.append(getColumnValue(count));
+      if (count + 1 < elements.length)       temp.append("\t");
+    }
+    line[index++]=temp.toString();
+  }
+  return line;
+}

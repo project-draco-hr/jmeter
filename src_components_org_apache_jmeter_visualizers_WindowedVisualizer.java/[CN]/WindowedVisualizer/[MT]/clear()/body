@@ -1,0 +1,18 @@
+{
+  try {
+    windowField.setText(Integer.toString(this.graph.setWindowSize(Integer.parseInt(windowField.getText()))));
+  }
+ catch (  Exception ignored) {
+  }
+  ;
+  try {
+    samplesField.setText(Integer.toString(this.graph.setSamples(Integer.parseInt(samplesField.getText()))));
+  }
+ catch (  Exception ignored) {
+  }
+  ;
+  this.graph.clear();
+  dataField.setText("0000ms");
+  averageField.setText("0000ms");
+  repaint();
+}

@@ -1,0 +1,28 @@
+{
+  SampleResult res=new SampleResult();
+  Connection con=null;
+  ResultSet rs=null;
+  Statement stmt=null;
+  boolean isSuccessful=false;
+  res.setSampleLabel(getLabel());
+  long start=System.currentTimeMillis();
+  try {
+    FtpClient ftp=new FtpClient();
+    ftp.connect(getServer(),getUsername(),getPassword());
+    ftp.setPassive(true);
+    String s=ftp.get(getFilename());
+    res.setResponseData(s.getBytes());
+    ftp.disconnect();
+    isSuccessful=true;
+  }
+ catch (  java.net.ConnectException cex) {
+    res.setResponseData(cex.toString().getBytes());
+  }
+catch (  Exception ex) {
+    res.setResponseData(ex.toString().getBytes());
+  }
+  long end=System.currentTimeMillis();
+  res.setTime(end - start);
+  res.setSuccessful(isSuccessful);
+  return res;
+}

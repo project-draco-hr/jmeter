@@ -1,0 +1,15 @@
+{
+  int sum=0;
+  Iterator iter=timers.iterator();
+  while (iter.hasNext()) {
+    sum+=((Timer)iter.next()).delay();
+  }
+  if (sum > 0) {
+    try {
+      Thread.sleep(sum);
+    }
+ catch (    InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  boolean isAccepted=false;
+  if (f.isDirectory()) {
+    isAccepted=true;
+  }
+ else {
+    if (accept(f.getName().toLowerCase())) {
+      isAccepted=true;
+    }
+ else {
+      isAccepted=false;
+    }
+  }
+  return isAccepted;
+}

@@ -1,0 +1,16 @@
+{
+  if (key == null) {
+    return null;
+  }
+  key=key.replace(' ','_');
+  key=key.toLowerCase();
+  String resString=null;
+  try {
+    resString=RESOURCES.getString(key);
+  }
+ catch (  MissingResourceException mre) {
+    System.out.println("ERROR! Resource string not found: [" + key + "]");
+    resString="";
+  }
+  return resString;
+}

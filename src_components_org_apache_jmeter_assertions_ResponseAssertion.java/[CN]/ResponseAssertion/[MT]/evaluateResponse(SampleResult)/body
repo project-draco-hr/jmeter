@@ -1,0 +1,32 @@
+{
+  boolean pass=true;
+  boolean not=(NOT & getTestType()) > 0;
+  AssertionResult result=new AssertionResult();
+  try {
+    Iterator iter=getTestStrings().iterator();
+    while (iter.hasNext()) {
+      String pattern=(String)iter.next();
+      if ((CONTAINS & getTestType()) > 0) {
+        pass=pass && (not ? !matcher.contains(new String(response.getResponseData()),compiler.compile(pattern)) : matcher.contains(new String(response.getResponseData()),compiler.compile(pattern)));
+      }
+ else {
+        pass=pass && (not ? !matcher.matches(new String(response.getResponseData()),compiler.compile(pattern)) : matcher.matches(new String(response.getResponseData()),compiler.compile(pattern)));
+      }
+      if (!pass) {
+        result.setFailure(true);
+        result.setFailureMessage("Test Failed, expected " + notMessage + failMessage+ pattern);
+        break;
+      }
+    }
+    if (pass) {
+      result.setFailure(false);
+    }
+    result.setError(false);
+  }
+ catch (  MalformedPatternException e) {
+    result.setError(true);
+    result.setFailure(false);
+    result.setFailureMessage("Bad test configuration" + e);
+  }
+  return result;
+}

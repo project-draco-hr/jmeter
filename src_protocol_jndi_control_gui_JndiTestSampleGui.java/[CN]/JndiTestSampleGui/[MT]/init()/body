@@ -1,0 +1,19 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  JPanel mainPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("jndi_testing_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel);
+  namePanel=new NamePanel(model);
+  mainPanel.add(namePanel);
+  jndiConfigGui=new JndiConfigGui(false);
+  jndiConfigGui.setModel(model.getDefaultJndiConfig());
+  mainPanel.add(jndiConfigGui);
+  this.add(mainPanel);
+}

@@ -1,0 +1,11 @@
+{
+  String[] contents=getDataAsText();
+  StringBuffer sb=new StringBuffer();
+  boolean first=true;
+  for (int x=0; x < contents.length; x++) {
+    if (!first)     sb.append("\n");
+ else     first=false;
+    sb.append(contents[x]);
+  }
+  return sb.toString();
+}

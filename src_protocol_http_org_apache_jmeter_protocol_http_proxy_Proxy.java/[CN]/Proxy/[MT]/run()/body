@@ -1,0 +1,55 @@
+{
+  String serverName="";
+  HttpURLConnection url;
+  byte line[];
+  HttpRequestHdr request=new HttpRequestHdr();
+  HttpReplyHdr reply=new HttpReplyHdr();
+  FileInputStream fileInputStream=null;
+  FileOutputStream fileOutputStream=null;
+  boolean TakenFromCache=false;
+  boolean isCachable=false;
+  try {
+    byte[] clientRequest=request.parse(new BufferedInputStream(ClientSocket.getInputStream()));
+    HTTPSampler sampler=request.getSampler();
+    HeaderManager headers=request.getHeaderManager();
+    sampler.setHeaderManager(headers);
+    byte[] serverResponse=sampler.sample().getResponseData();
+    writeToClient(serverResponse,new BufferedOutputStream(ClientSocket.getOutputStream()));
+    headers.removeHeaderNamed("cookie");
+    target.deliverSampler(sampler,new TestElement[]{headers});
+  }
+ catch (  UnknownHostException uhe) {
+    System.out.println("Server Not Found.");
+    try {
+      DataOutputStream out=new DataOutputStream(ClientSocket.getOutputStream());
+      out.writeBytes(reply.formServerNotFound());
+      out.flush();
+    }
+ catch (    Exception uhe2) {
+    }
+  }
+catch (  Exception e) {
+    e.printStackTrace();
+    try {
+      if (TakenFromCache) {
+        fileInputStream.close();
+      }
+ else       if (isCachable) {
+        fileOutputStream.close();
+      }
+      DataOutputStream out=new DataOutputStream(ClientSocket.getOutputStream());
+      out.writeBytes(reply.formTimeout());
+      out.flush();
+    }
+ catch (    Exception uhe2) {
+    }
+  }
+ finally {
+    try {
+      ClientSocket.close();
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+}

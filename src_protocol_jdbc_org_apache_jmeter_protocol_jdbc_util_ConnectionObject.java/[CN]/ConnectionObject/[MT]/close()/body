@@ -1,0 +1,10 @@
+{
+  if (con != null) {
+    try {
+      con.close();
+    }
+ catch (    SQLException e) {
+    }
+  }
+  con=null;
+}

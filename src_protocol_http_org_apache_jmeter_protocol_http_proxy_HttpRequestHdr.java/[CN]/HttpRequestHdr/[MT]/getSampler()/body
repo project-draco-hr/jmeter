@@ -1,0 +1,8 @@
+{
+  HttpTestSampleGui tempGui=new HttpTestSampleGui();
+  tempGui.configure(createSampler());
+  HTTPSampler result=(HTTPSampler)tempGui.createTestElement();
+  result.setFollowRedirects(false);
+  result.setUseKeepAlive(true);
+  return result;
+}

@@ -1,0 +1,24 @@
+{
+  if (null == SSLManager.manager) {
+    if (SSLManager.isSSLSupported) {
+      String classname=null;
+      if (SSLManager.isIAIKProvider) {
+        classname="org.apache.jmeter.util.IaikSSLManager";
+      }
+ else {
+        classname="org.apache.jmeter.util.JsseSSLManager";
+      }
+      try {
+        Class clazz=Class.forName(classname);
+        Constructor con=clazz.getConstructor(new Class[]{Provider.class});
+        SSLManager.manager=(SSLManager)con.newInstance(new Object[]{SSLManager.sslProvider});
+      }
+ catch (      Exception e) {
+        e.printStackTrace(System.err);
+        SSLManager.isSSLSupported=false;
+        return null;
+      }
+    }
+  }
+  return SSLManager.manager;
+}

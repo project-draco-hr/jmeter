@@ -1,0 +1,17 @@
+{
+  Object ret=getProperty(EXPIRES);
+  if (ret == null) {
+    return 0;
+  }
+ else   if (ret instanceof Long) {
+    return ((Long)ret).longValue();
+  }
+ else   if (ret instanceof String) {
+    try {
+      return Long.parseLong((String)ret);
+    }
+ catch (    Exception ex) {
+    }
+  }
+  return 0;
+}

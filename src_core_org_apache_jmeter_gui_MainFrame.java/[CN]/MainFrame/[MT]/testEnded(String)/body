@@ -1,0 +1,7 @@
+{
+  hosts.remove(host);
+  if (hosts.size() == 0) {
+    runningIndicator.setIcon(stoppedIcon);
+  }
+  menuBar.setRunning(false,host);
+}

@@ -1,0 +1,8 @@
+{
+  if (!data.containsKey(key)) {
+    set(key,value);
+  }
+ else {
+    get(key).add(value);
+  }
+}

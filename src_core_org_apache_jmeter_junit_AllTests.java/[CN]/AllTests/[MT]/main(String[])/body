@@ -1,0 +1,19 @@
+{
+  if (args.length < 1) {
+    System.out.println("Need an argument specifying the jmeter property file");
+    System.exit(0);
+  }
+  JMeterUtils.getProperties(args[0]);
+  JMeterUtils.setJMeterHome(new File(System.getProperty("user.dir")).getParent());
+  try {
+    TestSuite suite=suite();
+    PrintStream out=new PrintStream(new FileOutputStream("testresults.txt"));
+    junit.textui.TestRunner runner=new junit.textui.TestRunner(out);
+    runner.run(suite);
+    out.close();
+  }
+ catch (  FileNotFoundException e) {
+    e.printStackTrace();
+  }
+  System.exit(0);
+}

@@ -1,0 +1,65 @@
+{
+  try {
+    List guiClasses=ClassFinder.findClassesThatExtend(new Class[]{JMeterGUIComponent.class});
+    timers=new LinkedList();
+    controllers=new LinkedList();
+    samplers=new LinkedList();
+    configElements=new LinkedList();
+    modifiers=new LinkedList();
+    responseBasedModifiers=new LinkedList();
+    assertions=new LinkedList();
+    listeners=new LinkedList();
+    nonTestElements=new LinkedList();
+    menuMap.put(TIMERS,timers);
+    menuMap.put(ASSERTIONS,assertions);
+    menuMap.put(CONFIG_ELEMENTS,configElements);
+    menuMap.put(CONTROLLERS,controllers);
+    menuMap.put(LISTENERS,listeners);
+    menuMap.put(MODIFIERS,modifiers);
+    menuMap.put(NON_TEST_ELEMENTS,nonTestElements);
+    menuMap.put(RESPONSE_BASED_MODIFIERS,responseBasedModifiers);
+    menuMap.put(SAMPLERS,samplers);
+    Collections.sort(guiClasses);
+    Iterator iter=guiClasses.iterator();
+    while (iter.hasNext()) {
+      JMeterGUIComponent item=(JMeterGUIComponent)Class.forName((String)iter.next()).newInstance();
+      if (elementsToSkip.contains(item.getClass().getName()) || elementsToSkip.contains(item.getStaticLabel())) {
+        continue;
+      }
+      Collection categories=item.getMenuCategories();
+      if (categories == null) {
+        continue;
+      }
+      if (categories.contains(TIMERS)) {
+        timers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(CONTROLLERS)) {
+        controllers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(SAMPLERS)) {
+        samplers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(RESPONSE_BASED_MODIFIERS)) {
+        responseBasedModifiers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(NON_TEST_ELEMENTS)) {
+        nonTestElements.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(MODIFIERS)) {
+        modifiers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(LISTENERS)) {
+        listeners.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(CONFIG_ELEMENTS)) {
+        configElements.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+      if (categories.contains(ASSERTIONS)) {
+        assertions.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+      }
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

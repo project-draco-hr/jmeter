@@ -1,0 +1,16 @@
+{
+  StringTokenizer tk=new StringTokenizer(params,",",true);
+  List arguments=new LinkedList();
+  String previous="";
+  while (tk.hasMoreTokens()) {
+    String arg=tk.nextToken();
+    if (arg.equals(",") && previous.equals(",")) {
+      arguments.add("");
+    }
+ else     if (!arg.equals(",")) {
+      arguments.add(URLDecoder.decode(arg));
+    }
+    previous=arg;
+  }
+  return arguments;
+}

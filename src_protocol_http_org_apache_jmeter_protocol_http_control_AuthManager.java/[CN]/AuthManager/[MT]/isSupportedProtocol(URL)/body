@@ -1,0 +1,3 @@
+{
+  return !url.getProtocol().toUpperCase().equals("HTTP") && !url.getProtocol().toUpperCase().equals("HTTPS");
+}

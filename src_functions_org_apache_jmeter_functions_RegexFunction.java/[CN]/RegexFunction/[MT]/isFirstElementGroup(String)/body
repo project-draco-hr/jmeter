@@ -1,0 +1,10 @@
+{
+  try {
+    Pattern pattern=compiler.compile("^\\$\\d+\\$");
+    return new Perl5Matcher().contains(rawData,pattern);
+  }
+ catch (  MalformedPatternException e) {
+    e.printStackTrace();
+    return false;
+  }
+}

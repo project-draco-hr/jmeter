@@ -1,0 +1,4 @@
+{
+  System.out.println("***Parsing Error**\n" + " Line:   " + errs.getLineNumber() + "\n"+ " URI:    "+ errs.getSystemId()+ "\n"+ " Message: "+ errs.getMessage());
+  throw new SAXException("Error encountered");
+}

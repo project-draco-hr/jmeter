@@ -1,0 +1,18 @@
+{
+  super();
+  from=JMeterUtils.getPropDefault("mailer.from","");
+  address=JMeterUtils.getPropDefault("mailer.addressies","");
+  smtpHost=JMeterUtils.getPropDefault("mailer.smtphost","");
+  failSubject=JMeterUtils.getPropDefault("mailer.failsubject","");
+  successSubject=JMeterUtils.getPropDefault("mailer.successsubject","");
+  try {
+    failureLimit=Long.parseLong(JMeterUtils.getPropDefault("mailer.failurelimit","2"));
+  }
+ catch (  NumberFormatException ex) {
+  }
+  try {
+    successLimit=Long.parseLong(JMeterUtils.getPropDefault("mailer.successlimit","2"));
+  }
+ catch (  NumberFormatException ex) {
+  }
+}

@@ -1,0 +1,11 @@
+{
+  ListedHashTree tree=new ListedHashTree("key");
+  ListedHashTree newTree=new ListedHashTree("value");
+  tree.add("key",newTree);
+  assertEquals(tree.list().size(),1);
+  assertEquals(tree.getArray()[0],"key");
+  assertEquals(tree.get("key").list().size(),1);
+  assertEquals(tree.get("key").get("value").size(),0);
+  assertEquals(tree.get("key").getArray()[0],"value");
+  this.assertNotNull(tree.get("key").get("value"));
+}

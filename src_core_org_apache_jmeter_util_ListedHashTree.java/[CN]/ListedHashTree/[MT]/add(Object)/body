@@ -1,0 +1,6 @@
+{
+  if (!data.containsKey(key)) {
+    data.put(key,new ListedHashTree());
+    order.add(key);
+  }
+}

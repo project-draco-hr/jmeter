@@ -1,0 +1,34 @@
+{
+  ArrayList listPaths=null;
+  StringTokenizer stPaths=null;
+  String strPath=null;
+  int i;
+  listPaths=new ArrayList();
+  stPaths=new StringTokenizer(System.getProperty("java.class.path"),System.getProperty("path.separator"));
+  if (strPathsOrJars != null) {
+    strPathsOrJars=fixDotDirs(strPathsOrJars);
+    strPathsOrJars=fixSlashes(strPathsOrJars);
+    strPathsOrJars=fixEndingSlashes(strPathsOrJars);
+  }
+  while (stPaths.hasMoreTokens()) {
+    strPath=fixDotDir((String)stPaths.nextToken());
+    strPath=fixSlashes(strPath);
+    strPath=fixEndingSlashes(strPath);
+    if (strPathsOrJars == null) {
+      listPaths.add(strPath);
+    }
+ else {
+      for (i=0; i < strPathsOrJars.length; i++) {
+        if (catClass.isDebugEnabled()) {
+          catClass.debug("strPath(lower) : " + strPath.toLowerCase());
+          catClass.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
+        }
+        if (strPath.endsWith(strPathsOrJars[i])) {
+          catClass.debug("match!!!");
+          listPaths.add(strPath);
+        }
+      }
+    }
+  }
+  return listPaths;
+}

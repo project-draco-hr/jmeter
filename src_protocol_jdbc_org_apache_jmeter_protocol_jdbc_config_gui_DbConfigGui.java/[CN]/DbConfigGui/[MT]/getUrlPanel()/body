@@ -1,0 +1,7 @@
+{
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("database_url")));
+  urlField.setName(URL);
+  panel.add(urlField);
+  return panel;
+}

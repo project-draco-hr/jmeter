@@ -1,0 +1,17 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  authManagerPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  authManagerPanel.setBorder(margin);
+  authManagerPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("auth_manager_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  authManagerPanel.add(panelTitleLabel);
+  authManagerPanel.add(getNamePanel());
+  JPanel authTablePanel=createAuthTablePanel();
+  authManagerPanel.add(authTablePanel);
+  this.add(authManagerPanel);
+}

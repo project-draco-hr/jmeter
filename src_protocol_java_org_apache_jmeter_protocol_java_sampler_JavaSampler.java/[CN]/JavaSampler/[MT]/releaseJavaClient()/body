@@ -1,0 +1,6 @@
+{
+  if (javaClient != null) {
+    javaClient.teardownTest(createArgumentsHashMap(getArguments()));
+  }
+  javaClient=null;
+}

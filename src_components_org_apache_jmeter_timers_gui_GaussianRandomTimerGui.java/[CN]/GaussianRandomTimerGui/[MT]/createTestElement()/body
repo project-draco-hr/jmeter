@@ -1,0 +1,7 @@
+{
+  RandomTimer timer=new GaussianRandomTimer();
+  this.configureTestElement(timer);
+  timer.setDelay(Long.parseLong(delayField.getText()));
+  timer.setRange(Double.parseDouble(rangeField.getText()));
+  return timer;
+}

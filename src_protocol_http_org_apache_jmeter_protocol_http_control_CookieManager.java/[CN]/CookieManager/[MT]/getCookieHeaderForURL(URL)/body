@@ -1,0 +1,19 @@
+{
+  if (!url.getProtocol().toUpperCase().trim().equals("HTTP") && !url.getProtocol().toUpperCase().trim().equals("HTTPS"))   return null;
+  StringBuffer header=new StringBuffer();
+  for (Iterator enum=getCookies().iterator(); enum.hasNext(); ) {
+    Cookie cookie=(Cookie)enum.next();
+    if (url.getHost().endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && (System.currentTimeMillis() / 1000) <= cookie.getExpires()) {
+      if (header.length() > 0) {
+        header.append("; ");
+      }
+      header.append(cookie.getName()).append("=").append(cookie.getValue());
+    }
+  }
+  if (header.length() != 0) {
+    return header.toString();
+  }
+ else {
+    return null;
+  }
+}

@@ -1,0 +1,49 @@
+{
+  int i=0, j=0, iterations=0;
+  float[] newX=new float[_n];
+  float[] oldX=new float[_n];
+  if (!converge()) {
+    if (DEBUG) {
+      System.err.println("Warning : " + "equation system resolving is unstable");
+    }
+  }
+  for (i=0; i < _n; i++) {
+    newX[i]=0;
+    oldX[i]=0;
+  }
+  while ((this.precision(oldX,newX) > this._minPrecision) && (iterations < this._maxIterations)) {
+    for (i=0; i < _n; i++) {
+      oldX[i]=newX[i];
+    }
+    for (i=0; i < _n; i++) {
+      newX[i]=_B[i];
+      for (j=0; j < i; j++) {
+        newX[i]=newX[i] - (_A[i][j] * oldX[j]);
+      }
+      for (j=i + 1; j < _n; j++) {
+        newX[i]=newX[i] - (_A[i][j] * oldX[j]);
+      }
+      newX[i]=newX[i] / _A[i][i];
+    }
+    iterations++;
+  }
+  if (this.precision(oldX,newX) < this._minPrecision) {
+    if (DEBUG) {
+      System.out.print("Minimal precision (");
+      System.out.print(this._minPrecision + ") reached after ");
+      System.out.println(iterations + " iterations");
+    }
+  }
+ else   if (iterations > this._maxIterations) {
+    if (DEBUG) {
+      System.out.print("Maximal number of iterations (");
+      System.out.println(this._maxIterations + ") reached");
+      System.out.print("Warning : precision is only ");
+      System.out.print(this.precision(oldX,newX));
+      System.out.println(", divergence is possible");
+    }
+  }
+  for (i=0; i < _n; i++) {
+    _rS[i + 1]=newX[i];
+  }
+}

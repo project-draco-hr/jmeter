@@ -1,0 +1,10 @@
+{
+  Iterator iter=listeners.iterator();
+  while (iter.hasNext()) {
+    Object myObj=iter.next();
+    if (!(myObj instanceof GraphListener)) {
+      continue;
+    }
+    ((GraphListener)myObj).updateGui();
+  }
+}

@@ -1,0 +1,13 @@
+{
+  String name=e.getComponent().getName();
+  int i=0;
+  while (i < JndiConfig.JNDI_PROPS.length) {
+    if (name.equals(JndiConfig.JNDI_PROPS[i])) {
+      break;
+    }
+    i++;
+  }
+  if (i < JndiConfig.JNDI_PROPS.length) {
+    model.setValue(i,jndi_fields[i].getText());
+  }
+}

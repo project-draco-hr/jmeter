@@ -1,0 +1,21 @@
+{
+  DefaultConfiguration config=new DefaultConfiguration("collection","collection");
+  if (propertyName != null) {
+    config.setAttribute("name",propertyName);
+  }
+  config.setAttribute("class",list.getClass().getName());
+  Iterator iter=list.iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    if (item instanceof TestElement) {
+      config.addChild(getConfigForTestElement(null,(TestElement)item));
+    }
+ else     if (item instanceof Collection) {
+      config.addChild(createConfigForCollection(null,(Collection)item));
+    }
+ else {
+      config.addChild(createConfigForString(item.toString()));
+    }
+  }
+  return config;
+}

@@ -1,0 +1,9 @@
+{
+  if (value == null || value.equals("")) {
+    value=" ";
+  }
+  DefaultConfiguration config=new DefaultConfiguration("property","property");
+  config.setAttribute("name",name);
+  config.setValue(value);
+  return config;
+}

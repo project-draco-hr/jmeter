@@ -1,0 +1,8 @@
+{
+  if (componentMap.containsKey(old)) {
+    return (String)componentMap.get(old);
+  }
+ else {
+    return old;
+  }
+}

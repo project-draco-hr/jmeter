@@ -1,0 +1,11 @@
+{
+  Object temp;
+  if (key.size() == 0)   return;
+ else   if (key.size() == 1)   set(key.first(),values);
+ else {
+    temp=key.first();
+    key.remove(temp);
+    add(temp,key.first());
+    get(temp).set(key,values);
+  }
+}

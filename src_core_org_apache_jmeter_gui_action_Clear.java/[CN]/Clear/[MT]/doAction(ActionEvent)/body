@@ -1,0 +1,24 @@
+{
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  if (e.getActionCommand().equals(CLEAR)) {
+    JMeterGUIComponent model=(JMeterGUIComponent)guiPackage.getTreeListener().getCurrentNode().getUserObject();
+    try {
+      ((Clearable)model).clear();
+    }
+ catch (    Throwable ex) {
+      ex.printStackTrace();
+    }
+  }
+ else {
+    Iterator iter=guiPackage.getTreeModel().getNodesOfType(Clearable.class).iterator();
+    while (iter.hasNext()) {
+      try {
+        Clearable item=(Clearable)((JMeterTreeNode)iter.next()).getUserObject();
+        item.clear();
+      }
+ catch (      Exception ex) {
+        ex.printStackTrace();
+      }
+    }
+  }
+}

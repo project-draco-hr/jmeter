@@ -1,0 +1,9 @@
+{
+  function.setParameters("${__regexFunction(<html>(${my_regex})</html>,$1$)}");
+  assertEquals(1,function.compiledComponents.size());
+  assertTrue(function.compiledComponents.getFirst() instanceof RegexFunction);
+  assertTrue(function.hasFunction());
+  assertTrue(function.hasStatics());
+  assertEquals("hello world",((Function)function.compiledComponents.getFirst()).execute(result,null));
+  assertEquals("hello world",function.execute(result,null));
+}

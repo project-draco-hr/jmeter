@@ -1,0 +1,15 @@
+{
+  try {
+    TagHandler handler=(TagHandler)((Class)saveHandlers.get(tagName)).newInstance();
+    handler.setTagName(handler.getPrimaryTagName());
+    handler.setAtts(atts);
+    return handler;
+  }
+ catch (  NullPointerException e) {
+    return null;
+  }
+catch (  Exception ex) {
+    ex.printStackTrace();
+    return null;
+  }
+}

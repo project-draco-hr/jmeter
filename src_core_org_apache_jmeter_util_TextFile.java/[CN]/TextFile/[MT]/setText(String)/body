@@ -1,0 +1,11 @@
+{
+  try {
+    Writer writer=new FileWriter(this);
+    writer.write(body);
+    writer.flush();
+    writer.close();
+  }
+ catch (  IOException ioe) {
+    System.err.println(ioe.getMessage());
+  }
+}

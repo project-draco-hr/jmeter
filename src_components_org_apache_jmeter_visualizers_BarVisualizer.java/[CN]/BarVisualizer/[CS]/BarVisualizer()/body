@@ -1,0 +1,12 @@
+{
+  super();
+  this.graph=new Graph();
+  this.slider=new JSlider(JSlider.VERTICAL,0,MAX_SCALE,1000);
+  this.slider.addChangeListener(this);
+  this.slider.setPaintLabels(false);
+  this.slider.setPaintTicks(false);
+  this.setLayout(new BorderLayout());
+  this.add(slider,BorderLayout.WEST);
+  this.add(graph,BorderLayout.CENTER);
+  this.setPreferredSize(new Dimension(500,100));
+}

@@ -1,0 +1,19 @@
+{
+  Timer timer=(Timer)parm1;
+  out.write("<Timer type=\"");
+  out.write(JMeterHandler.convertToXML(timer.getClass().getName()));
+  out.write("\"");
+  if (timer instanceof JMeterComponentModel) {
+    out.write(" name=\"");
+    out.write(JMeterHandler.convertToXML(((JMeterComponentModel)timer).getName()));
+    out.write("\"");
+  }
+  out.write(">\n");
+  out.write("<delay>");
+  out.write(Long.toString(timer.getDelay()));
+  out.write("</delay>\n");
+  out.write("<range>");
+  out.write(Double.toString(timer.getRange()));
+  out.write("</range>\n");
+  out.write("</Timer>\n");
+}

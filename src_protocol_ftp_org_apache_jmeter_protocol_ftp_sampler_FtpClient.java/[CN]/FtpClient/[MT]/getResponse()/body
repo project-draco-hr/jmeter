@@ -1,0 +1,11 @@
+{
+  StringBuffer response=new StringBuffer();
+  String line=in.readLine();
+  response.append(line);
+  while (line.charAt(3) == '-') {
+    line=in.readLine();
+    response.append("\n");
+    response.append(line);
+  }
+  return response.toString();
+}

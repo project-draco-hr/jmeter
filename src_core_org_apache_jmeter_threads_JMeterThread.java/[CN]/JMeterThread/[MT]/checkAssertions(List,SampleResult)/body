@@ -1,0 +1,8 @@
+{
+  Iterator iter=assertions.iterator();
+  while (iter.hasNext()) {
+    AssertionResult assertion=((Assertion)iter.next()).getResult(result);
+    result.setSuccessful(result.isSuccessful() && !(assertion.isError() || assertion.isFailure()));
+    result.addAssertionResult(assertion);
+  }
+}

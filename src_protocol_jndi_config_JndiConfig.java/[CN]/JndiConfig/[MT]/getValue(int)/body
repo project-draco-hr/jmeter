@@ -1,0 +1,9 @@
+{
+  String string=(String)this.getProperty(JNDI_PROPS[i]);
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("getValue1 : int - " + i);
+    catClass.debug("getValue1 : name - " + JNDI_PROPS[i]);
+    catClass.debug("getValue1 : value - " + string);
+  }
+  return string;
+}

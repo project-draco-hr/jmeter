@@ -1,0 +1,9 @@
+{
+  menuBar=new JMeterMenuBar();
+  createToolBar();
+  createMainPanel();
+  createTreePanel();
+  addThemAll();
+  addWindowListener(new WindowHappenings());
+  tree.setSelectionRow(1);
+}

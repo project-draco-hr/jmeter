@@ -1,0 +1,9 @@
+{
+  if (isPathExtension()) {
+    sampler.setPath(sampler.getPath() + ";" + getArgumentName()+ "="+ value);
+  }
+ else {
+    sampler.getArguments().removeArgument(getArgumentName());
+    sampler.getArguments().addArgument(new HTTPArgument(getArgumentName(),value,true));
+  }
+}

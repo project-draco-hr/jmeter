@@ -1,0 +1,14 @@
+{
+  String temp=e.getComponent().getName();
+  if (temp.equals(LOOPS)) {
+    try {
+      Integer.parseInt(loops.getText());
+    }
+ catch (    NumberFormatException ex) {
+      if (loops.getText().length() > 0) {
+        JOptionPane.showMessageDialog(this,"You must enter a valid number","Invalid data",JOptionPane.WARNING_MESSAGE);
+        loops.setText("");
+      }
+    }
+  }
+}

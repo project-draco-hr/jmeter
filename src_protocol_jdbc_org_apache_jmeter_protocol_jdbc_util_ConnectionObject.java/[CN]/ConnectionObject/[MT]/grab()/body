@@ -1,0 +1,28 @@
+{
+  Connection c=null;
+  if (!inUse && !inMaintenance) {
+    if (con != null) {
+      try {
+        if (con.isClosed()) {
+          inMaintenance=true;
+          reset.start();
+        }
+ else         if (System.currentTimeMillis() - lastAccessed > accessInterval) {
+          inMaintenance=true;
+          reset.start();
+        }
+ else {
+          inUse=true;
+          c=con;
+        }
+      }
+ catch (      SQLException e) {
+      }
+    }
+ else {
+      inMaintenance=true;
+      reset.start();
+    }
+  }
+  return c;
+}

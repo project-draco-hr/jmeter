@@ -1,0 +1,11 @@
+{
+  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  panel.add(new JLabel(JMeterUtils.getResString("port")));
+  portField=new JTextField(8);
+  portField.setName(ProxyControl.PORT);
+  portField.addKeyListener(this);
+  portField.setText("8080");
+  panel.add(portField);
+  panel.revalidate();
+  return panel;
+}

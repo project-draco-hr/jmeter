@@ -1,0 +1,32 @@
+{
+  CLArgsParser parser=new CLArgsParser(args,options);
+  if (null != parser.getErrorString()) {
+    System.err.println("Error: " + parser.getErrorString());
+    return;
+  }
+  try {
+    initializeProperties(parser);
+    setProxy(parser);
+    if (parser.getArgumentById(VERSION_OPT) != null) {
+      System.out.println("Apache JMeter, Copyright (c) 2002 The Apache Software Foundation");
+      System.out.println("Version " + JMeterUtils.getJMeterVersion());
+    }
+ else     if (parser.getArgumentById(HELP_OPT) != null) {
+      System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
+    }
+ else     if (parser.getArgumentById(SERVER_OPT) != null) {
+      startServer();
+    }
+ else     if (parser.getArgumentById(NONGUI_OPT) == null) {
+      startGui();
+    }
+ else {
+      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT));
+    }
+  }
+ catch (  IllegalUserActionException e) {
+    System.out.println(e.getMessage());
+    System.out.println("Incorrect Usage");
+    System.out.println(CLUtil.describeOptions(options).toString());
+  }
+}

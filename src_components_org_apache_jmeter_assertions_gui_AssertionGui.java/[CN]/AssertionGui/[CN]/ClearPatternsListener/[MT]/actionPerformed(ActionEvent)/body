@@ -1,0 +1,11 @@
+{
+  int index=stringTable.getSelectedRow();
+  stringTable.getCellEditor(index,stringTable.getSelectedColumn()).cancelCellEditing();
+  if (index > -1) {
+    tableModel.removeRow(index);
+    tableModel.fireTableDataChanged();
+  }
+  if (stringTable.getModel().getRowCount() == 0) {
+    deletePattern.setEnabled(false);
+  }
+}

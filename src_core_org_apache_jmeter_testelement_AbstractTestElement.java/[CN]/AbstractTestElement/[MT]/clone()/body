@@ -1,0 +1,11 @@
+{
+  try {
+    TestElement newObject=(TestElement)this.getClass().newInstance();
+    configureClone(newObject);
+    return newObject;
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return null;
+}

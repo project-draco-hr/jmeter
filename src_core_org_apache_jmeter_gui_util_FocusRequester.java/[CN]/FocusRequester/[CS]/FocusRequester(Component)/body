@@ -1,0 +1,9 @@
+{
+  this.comp=comp;
+  try {
+    SwingUtilities.invokeLater(this);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

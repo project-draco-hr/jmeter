@@ -1,0 +1,21 @@
+{
+  config=configObject;
+  MinFreeSpace=15000;
+  htable=new Hashtable();
+  File cacheDir=new File("Cache");
+  cacheDir.mkdirs();
+  basePath=cacheDir.getAbsolutePath();
+  int i;
+  File file=new File(basePath);
+  ;
+  String filename;
+  String files[]=file.list();
+  for (i=0; i < files.length; i++) {
+    file=new File(basePath + File.separatorChar + files[i]);
+    file.delete();
+  }
+  config.setFilesCached(0);
+  config.setBytesCached(0);
+  config.setHits(0);
+  config.setMisses(0);
+}

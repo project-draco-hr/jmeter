@@ -1,0 +1,15 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append("-------------------------------\n");
+  sb.append("Dumping ParamMask Object\n");
+  sb.append("-------------------------------\n");
+  sb.append("Name          = " + getFieldName() + "\n");
+  sb.append("Prefix        = " + getPrefix() + "\n");
+  sb.append("Current Value = " + _value + "\n");
+  sb.append("Lower Bound   = " + getLowerBound() + "\n");
+  sb.append("Upper Bound   = " + getUpperBound() + "\n");
+  sb.append("Increment     = " + getIncrement() + "\n");
+  sb.append("Suffix        = " + getSuffix() + "\n");
+  sb.append("-------------------------------\n");
+  return sb.toString();
+}

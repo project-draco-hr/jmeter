@@ -1,0 +1,10 @@
+{
+  if (type.isInstance(node.getUserObject())) {
+    nodeList.add(node);
+  }
+  Enumeration enum=node.children();
+  while (enum.hasMoreElements()) {
+    JMeterTreeNode child=(JMeterTreeNode)enum.nextElement();
+    traverseAndFind(type,child,nodeList);
+  }
+}

@@ -1,0 +1,63 @@
+{
+  Class colClass=getColumnClass(i);
+  try {
+    return colClass.newInstance();
+  }
+ catch (  Exception e) {
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{String.class});
+      return constr.newInstance(new Object[]{""});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Integer.TYPE});
+      return constr.newInstance(new Object[]{new Integer(0)});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Long.TYPE});
+      return constr.newInstance(new Object[]{new Long(0L)});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Boolean.TYPE});
+      return constr.newInstance(new Object[]{new Boolean(false)});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Float.TYPE});
+      return constr.newInstance(new Object[]{new Float(0F)});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Double.TYPE});
+      return constr.newInstance(new Object[]{new Double(0D)});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Character.TYPE});
+      return constr.newInstance(new Object[]{new Character(' ')});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Byte.TYPE});
+      return constr.newInstance(new Object[]{new Byte(Byte.MIN_VALUE)});
+    }
+ catch (    Exception err) {
+    }
+    try {
+      Constructor constr=colClass.getConstructor(new Class[]{Short.TYPE});
+      return constr.newInstance(new Object[]{new Short(Short.MIN_VALUE)});
+    }
+ catch (    Exception err) {
+    }
+  }
+  return "";
+}

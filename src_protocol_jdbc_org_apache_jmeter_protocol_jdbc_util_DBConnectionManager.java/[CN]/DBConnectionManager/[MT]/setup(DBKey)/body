@@ -1,0 +1,31 @@
+{
+  String url=key.getUrl();
+  String username=key.getUsername();
+  String password=key.getPassword();
+  int maxConnections=key.getMaxConnections();
+  int maxUsage=key.getMaxUsage();
+  ConnectionObject[] connectionArray;
+  int dbMax;
+  try {
+    DriverManager.registerDriver((java.sql.Driver)Class.forName(key.getDriver()).newInstance());
+    DatabaseMetaData md=DriverManager.getConnection(url,username,password).getMetaData();
+    dbMax=md.getMaxConnections();
+    if (dbMax > 0 && maxConnections > dbMax) {
+      maxConnections=dbMax;
+      key.setMaxConnections(maxConnections);
+    }
+ else     if (maxConnections > absoluteMaxConnections) {
+      maxConnections=absoluteMaxConnections;
+      key.setMaxConnections(maxConnections);
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    maxConnections=1;
+  }
+  connectionArray=new ConnectionObject[maxConnections];
+  int count=-1;
+  while (++count < maxConnections)   connectionArray[count]=new ConnectionObject(this,key);
+  connections.put(key,connectionArray);
+  System.gc();
+}

@@ -1,0 +1,21 @@
+{
+  if (collector == null) {
+    collector=new ResultCollector();
+  }
+  configureTestElement(collector);
+  try {
+    if (!getFile().equals("")) {
+      try {
+        collector.setFilename(getFile());
+      }
+ catch (      IllegalUserActionException e) {
+        JMeterUtils.reportErrorToUser(e.getMessage());
+        setFile("");
+      }
+    }
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+  return (TestElement)collector.clone();
+}

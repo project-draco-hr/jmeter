@@ -1,0 +1,22 @@
+{
+  List possibleReplacements=new ArrayList();
+  Iterator iter=args.iterator();
+  Argument replacementArg;
+  while (iter.hasNext()) {
+    replacementArg=(Argument)iter.next();
+    try {
+      if (HtmlParser.isArgumentMatched(replacementArg,arg)) {
+        possibleReplacements.add(replacementArg);
+      }
+    }
+ catch (    Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+  if (possibleReplacements.size() > 0) {
+    replacementArg=(Argument)possibleReplacements.get(rand.nextInt(possibleReplacements.size()));
+    arg.setName(replacementArg.getName());
+    arg.setValue(replacementArg.getValue());
+    args.removeArgument(replacementArg);
+  }
+}

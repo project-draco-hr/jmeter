@@ -1,0 +1,9 @@
+{
+  if (this.getProperty(PORT) instanceof String) {
+    setPort(Integer.parseInt((String)getProperty(PORT)));
+    return ((Integer)this.getProperty(PORT)).intValue();
+  }
+ else {
+    return ((Integer)this.getProperty(PORT)).intValue();
+  }
+}

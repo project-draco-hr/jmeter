@@ -1,0 +1,33 @@
+{
+  try {
+    if (passive) {
+      s=new Socket(host,port);
+    }
+ else {
+      System.out.println("creating socket on " + port);
+      ServerSocket server=new ServerSocket(port);
+      System.out.println("accepting...");
+      portCreated=true;
+      s=server.accept();
+      System.out.println("accepted");
+    }
+  }
+ catch (  Exception e) {
+  }
+  try {
+    InputStream in=s.getInputStream();
+    BufferedInputStream dataIn=new BufferedInputStream(in);
+    int bufferSize=4096;
+    byte[] inputBuffer=new byte[bufferSize];
+    int i=0;
+    while ((i=dataIn.read(inputBuffer,0,bufferSize)) != -1) {
+      buffer.append((char)i);
+    }
+    dataIn.close();
+    s.close();
+  }
+ catch (  Exception e) {
+    System.out.println("FTP client: dataGrabber - " + e.toString());
+  }
+  done=true;
+}

@@ -1,0 +1,13 @@
+{
+  boolean set=true;
+  while (set) {
+    try {
+      reset();
+      set=false;
+    }
+ catch (    SQLException e) {
+      System.out.println("ConnectionObject: e=" + e.toString() + "url = "+ key.getUrl());
+    }
+  }
+  reset=new Thread(this);
+}

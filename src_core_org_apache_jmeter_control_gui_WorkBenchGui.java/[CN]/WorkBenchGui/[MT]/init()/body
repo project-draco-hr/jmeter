@@ -1,0 +1,15 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  JPanel mainPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("workbench_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel);
+  mainPanel.add(namePanel);
+  this.add(mainPanel);
+}

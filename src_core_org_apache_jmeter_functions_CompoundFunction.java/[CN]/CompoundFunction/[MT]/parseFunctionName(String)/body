@@ -1,0 +1,8 @@
+{
+  String functionName=function;
+  int parenIndex=-1;
+  if ((parenIndex=function.indexOf("(")) > -1) {
+    functionName=function.substring(0,parenIndex);
+  }
+  return functionName;
+}

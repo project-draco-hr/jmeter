@@ -1,0 +1,89 @@
+{
+  catClass.debug("Start : valueChanged1");
+  DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+  if (catClass.isDebugEnabled())   catClass.debug("valueChanged : selected node - " + node);
+  if (node != null) {
+    SampleResult res=(SampleResult)node.getUserObject();
+    if (catClass.isDebugEnabled())     catClass.debug("valueChanged1 : sample result - " + res);
+    if (res != null) {
+      resultPanel.removeAll();
+      JLabel loadTime=new JLabel();
+      catClass.debug("valueChanged1 : load time - " + res.getTime());
+      loadTime.setText("Load time : " + res.getTime());
+      gbc.gridx=0;
+      gbc.gridy=0;
+      gbc.anchor=GridBagConstraints.WEST;
+      gbc.weightx=1.0;
+      gbc.insets=new Insets(0,10,0,0);
+      if (res != null && res.getSamplerData() != null) {
+        JLabeledTextArea postData=new JLabeledTextArea(JMeterUtils.getResString("request_data"),null);
+        postData.setText(res.getSamplerData().toString());
+        resultPanel.add(postData,gbc.clone());
+        gbc.gridy++;
+      }
+      resultPanel.add(loadTime,gbc.clone());
+      JLabel httpResponseCode=new JLabel();
+      String responseCode=res.getResponseCode();
+      catClass.debug("valueChanged1 : response code - " + responseCode);
+      int responseLevel=0;
+      if (responseCode != null)       try {
+        responseLevel=Integer.parseInt(responseCode) / 100;
+      }
+ catch (      NumberFormatException numberFormatException) {
+      }
+switch (responseLevel) {
+case 3:
+        httpResponseCode.setForeground(REDIRECT_COLOR);
+case 4:
+      httpResponseCode.setForeground(CLIENT_ERROR_COLOR);
+case 5:
+    httpResponseCode.setForeground(SERVER_ERROR_COLOR);
+}
+httpResponseCode.setText(JMeterUtils.getResString("HTTP response code") + " : " + responseCode);
+gbc.gridx=0;
+gbc.gridy++;
+gridBag.setConstraints(httpResponseCode,gbc);
+resultPanel.add(httpResponseCode);
+JLabel httpResponseMsg=new JLabel();
+String responseMsgStr=res.getResponseMessage();
+catClass.debug("valueChanged1 : response message - " + responseMsgStr);
+httpResponseMsg.setText("HTTP response message : " + responseMsgStr);
+gbc.gridx=0;
+gbc.gridy++;
+gridBag.setConstraints(httpResponseMsg,gbc);
+resultPanel.add(httpResponseMsg);
+gbc.gridy++;
+byte[] responseBytes=(byte[])res.getResponseData();
+String response=null;
+ImageIcon icon=null;
+if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
+  try {
+    response=new String(responseBytes,"utf-8");
+  }
+ catch (  UnsupportedEncodingException err) {
+    response=new String(responseBytes);
+  }
+}
+ else if (responseBytes != null) {
+  icon=new ImageIcon(responseBytes);
+}
+if (response != null) {
+  JTextArea textArea=new JTextArea();
+  textArea.setText(response);
+  gbc.gridx=0;
+  gridBag.setConstraints(textArea,gbc);
+  resultPanel.add(textArea);
+}
+ else if (icon != null) {
+  JLabel image=new JLabel();
+  image.setIcon(icon);
+  gbc.gridx=0;
+  gridBag.setConstraints(image,gbc);
+  resultPanel.add(image);
+}
+resultPanel.repaint();
+resultPanel.revalidate();
+}
+}
+catClass.debug("End : valueChanged1");
+}

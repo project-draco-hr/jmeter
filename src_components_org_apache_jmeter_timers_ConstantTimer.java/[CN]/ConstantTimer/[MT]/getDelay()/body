@@ -1,0 +1,9 @@
+{
+  Object delay=getProperty(DELAY);
+  if (delay instanceof Long) {
+    return ((Long)delay).longValue();
+  }
+ else {
+    return Long.parseLong((String)delay);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  try {
+    TextFile text=new TextFile(filename);
+    String xml=text.getText();
+    xml=xml.substring(0,xml.indexOf("</testResults>"));
+    text.setText(xml);
+  }
+ catch (  Exception e) {
+    return false;
+  }
+  return true;
+}

@@ -1,0 +1,8 @@
+{
+  this.setLayout(new VerticalLayout(1,VerticalLayout.LEFT));
+  if (displayName) {
+    this.add(getNamePanel());
+  }
+  this.add(createUsernamePanel());
+  this.add(createPasswordPanel());
+}

@@ -1,0 +1,7 @@
+{
+  Arguments args=(Arguments)getProperty(USER_DEFINED_VARIABLES);
+  if (args != null) {
+    return args.getArgumentsAsMap();
+  }
+  return new HashMap();
+}

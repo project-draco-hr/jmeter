@@ -1,0 +1,7 @@
+{
+  ListedHashTree tree=getTree(testFile2);
+  loader.updateTree(tree);
+  assertTrue(tree.list(tree.list().get(0)).get(0) instanceof GenericController);
+  loader.convertTree(tree);
+  assertEquals(new LogicControllerGui().getStaticLabel(),((JMeterGUIComponent)tree.list(tree.list().get(0)).get(0)).getStaticLabel());
+}

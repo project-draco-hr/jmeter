@@ -1,0 +1,18 @@
+{
+  ParamMask mask=(ParamMask)parm1;
+  out.write("\n");
+  out.write("  <ParamMask>\n");
+  out.write("    <mask name=\"");
+  out.write(JMeterHandler.convertToXML(mask.getName()));
+  out.write("\" prefix=\"");
+  out.write(JMeterHandler.convertToXML(mask.getPrefix()));
+  out.write("\" upperBound=\"");
+  out.write(JMeterHandler.convertToXML(Long.toString(mask.getUpperBound())));
+  out.write("\" lowerBound=\"");
+  out.write(JMeterHandler.convertToXML(Long.toString(mask.getLowerBound())));
+  out.write("\" increment=\"");
+  out.write(JMeterHandler.convertToXML(Long.toString(mask.getIncrement())));
+  out.write("\">");
+  out.write("</mask>\n");
+  out.write("  </ParamMask>\n");
+}

@@ -1,0 +1,9 @@
+{
+  TestPlan tp=new TestPlan();
+  tp.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+  tp.setProperty(TestElement.TEST_CLASS,TestPlan.class.getName());
+  tp.setName(getName());
+  tp.setFunctionalMode(functionalMode.isSelected());
+  tp.setUserDefinedVariables((Arguments)argsPanel.createTestElement());
+  return tp;
+}

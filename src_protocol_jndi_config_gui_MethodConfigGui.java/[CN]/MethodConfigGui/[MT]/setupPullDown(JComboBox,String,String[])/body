@@ -1,0 +1,16 @@
+{
+  catClass.info("Start : setupPullDown1");
+  if (methodNameBox.getItemCount() == 0) {
+    if (strings != null) {
+      for (int i=0; i < strings.length; i++) {
+        catClass.debug("setupPullDown1 :  adding method - " + strings[i]);
+        methodNameBox.addItem(strings[i]);
+      }
+    }
+  }
+  String methodNameBoxSelected=(String)methodNameBox.getSelectedItem();
+  if ((methodName != null) && !methodName.equals(methodNameBoxSelected)) {
+    methodNameBox.setSelectedItem(methodName);
+  }
+  catClass.info("End : setupPullDown1");
+}

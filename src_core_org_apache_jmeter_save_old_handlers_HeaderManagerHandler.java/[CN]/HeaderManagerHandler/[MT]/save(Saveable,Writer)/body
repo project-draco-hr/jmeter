@@ -1,0 +1,8 @@
+{
+  HeaderManager headers=(HeaderManager)cm;
+  out.write("<HeaderManager name=\"");
+  out.write(JMeterHandler.convertToXML(headers.getName()));
+  out.write("\">\n");
+  JMeterHandler.writeObjects(headers.getHeaders(),out);
+  out.write("</HeaderManager>\n");
+}

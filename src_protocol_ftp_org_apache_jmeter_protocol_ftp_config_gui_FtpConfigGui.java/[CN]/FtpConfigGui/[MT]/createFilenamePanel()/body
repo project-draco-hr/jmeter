@@ -1,0 +1,7 @@
+{
+  JPanel filenamePanel=new JPanel();
+  filenamePanel.add(new JLabel(JMeterUtils.getResString("file_to_retrieve")));
+  filename.setName(FILENAME);
+  filenamePanel.add(filename);
+  return filenamePanel;
+}

@@ -1,0 +1,10 @@
+{
+  String name=((Component)e.getSource()).getName();
+  try {
+    JMeterGUIComponent controller=(JMeterGUIComponent)Class.forName(name).newInstance();
+    addParentToTree(controller);
+  }
+ catch (  Exception err) {
+    err.printStackTrace();
+  }
+}

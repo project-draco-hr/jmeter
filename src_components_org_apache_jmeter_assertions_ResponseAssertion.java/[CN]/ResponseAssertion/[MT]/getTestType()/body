@@ -1,0 +1,12 @@
+{
+  Object type=getProperty(TEST_TYPE);
+  if (type == null) {
+    return CONTAINS;
+  }
+ else   if (type instanceof Integer) {
+    return ((Integer)type).intValue();
+  }
+ else {
+    return Integer.parseInt((String)type);
+  }
+}

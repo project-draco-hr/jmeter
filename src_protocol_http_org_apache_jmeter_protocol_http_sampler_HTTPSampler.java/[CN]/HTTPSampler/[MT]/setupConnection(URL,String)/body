@@ -1,0 +1,19 @@
+{
+  HttpURLConnection conn;
+  conn=(HttpURLConnection)u.openConnection();
+  if ("https".equals(u.getProtocol())) {
+    SSLManager.getInstance().setContext(conn);
+  }
+  conn.setFollowRedirects(false);
+  if (getUseKeepAlive()) {
+    conn.setRequestProperty("Connection","keep-alive");
+  }
+ else {
+    conn.setRequestProperty("Connection","close");
+  }
+  conn.setRequestMethod(method);
+  setConnectionHeaders(conn,u,getHeaderManager());
+  setConnectionCookie(conn,u,getCookieManager());
+  setConnectionAuthorization(conn,u,getAuthManager());
+  return conn;
+}

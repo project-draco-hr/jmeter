@@ -1,0 +1,23 @@
+{
+  setProvider(provider);
+  try {
+    Class iaikProvider=SSLManager.class.getClassLoader().loadClass("iaik.security.jsse.provider.IAIKJSSEProvider");
+    setProvider((Provider)iaikProvider.newInstance());
+  }
+ catch (  Exception e) {
+  }
+  try {
+    Class sunProvider=SSLManager.class.getClassLoader().loadClass("com.sun.net.ssl.internal.ssl.Provider");
+    setProvider((Provider)sunProvider.newInstance());
+  }
+ catch (  Exception e) {
+  }
+  if (null == this.rand) {
+    this.rand=new SecureRandom();
+  }
+  if ("all".equalsIgnoreCase(JMeterUtils.getPropDefault("javax.net.debug","none"))) {
+    System.setProperty("javax.net.debug","all");
+  }
+  this.getContext();
+  System.out.println("JsseSSLManager installed");
+}

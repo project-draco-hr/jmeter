@@ -1,0 +1,8 @@
+{
+  int n=samples.size();
+  long[] longSample=new long[n];
+  for (int i=0; i < n; i++) {
+    longSample[i]=((Long)samples.get(i)).longValue();
+  }
+  return longSample;
+}

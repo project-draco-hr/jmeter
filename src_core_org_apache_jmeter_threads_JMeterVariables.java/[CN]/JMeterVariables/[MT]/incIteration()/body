@@ -1,0 +1,9 @@
+{
+  int[] a=(int[])iterationData.get(getThreadName());
+  if (a == null) {
+    a=new int[1];
+    a[0]=0;
+    iterationData.put(getThreadName(),a);
+  }
+  a[0]++;
+}

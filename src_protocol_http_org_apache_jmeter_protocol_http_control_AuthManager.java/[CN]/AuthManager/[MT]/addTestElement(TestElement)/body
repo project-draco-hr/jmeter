@@ -1,0 +1,8 @@
+{
+  if (el.getProperty("password") != null && el.getProperty("username") != null && el.getProperty("url") != null) {
+    addAuth(new Authorization(el.getPropertyAsString("url"),el.getPropertyAsString("username"),el.getPropertyAsString("password")));
+  }
+ else {
+    super.addTestElement(el);
+  }
+}

@@ -1,0 +1,32 @@
+{
+  if (displayName) {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+    JPanel mainPanel=new JPanel();
+    Border margin=new EmptyBorder(10,10,5,10);
+    mainPanel.setBorder(margin);
+    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("database_conn_pool_title"));
+    Font curFont=panelTitleLabel.getFont();
+    int curFontSize=curFont.getSize();
+    curFontSize+=4;
+    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+    mainPanel.add(panelTitleLabel);
+    mainPanel.add(getNamePanel());
+    JPanel connPoolPanel=new JPanel();
+    connPoolPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    connPoolPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_conn_pool_props")));
+    connPoolPanel.add(createConnPanel());
+    connPoolPanel.add(createMaxUsePanel());
+    mainPanel.add(connPoolPanel);
+    this.add(mainPanel);
+  }
+ else {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JPanel connPoolPanel=new JPanel();
+    connPoolPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    connPoolPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_conn_pool_props")));
+    connPoolPanel.add(createConnPanel());
+    connPoolPanel.add(createMaxUsePanel());
+    this.add(connPoolPanel);
+  }
+}

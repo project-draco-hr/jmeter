@@ -1,0 +1,10 @@
+{
+  addSeparator(menu);
+  if (removable) {
+    menu.add(makeMenuItem(JMeterUtils.getResString("remove"),"Remove",JMeterUtils.getResString("remove")));
+  }
+  menu.add(makeMenuItem(JMeterUtils.getResString("cut"),"Cut","Cut"));
+  menu.add(makeMenuItem(JMeterUtils.getResString("copy"),"Copy","Copy"));
+  menu.add(makeMenuItem(JMeterUtils.getResString("paste"),"Paste","Paste"));
+  menu.add(makeMenuItem(JMeterUtils.getResString("paste_insert"),"Paste Insert","Paste Insert"));
+}

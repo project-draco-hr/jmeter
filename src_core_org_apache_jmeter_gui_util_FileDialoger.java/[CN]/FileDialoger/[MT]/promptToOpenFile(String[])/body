@@ -1,0 +1,24 @@
+{
+  JFileChooser jfc=null;
+  if (lastJFCDirectory == null) {
+    String start=JMeterUtils.getPropDefault("user.dir","");
+    if (!start.equals("")) {
+      jfc=new JFileChooser(start);
+    }
+ else {
+      jfc=new JFileChooser();
+    }
+  }
+ else {
+    jfc=new JFileChooser(lastJFCDirectory);
+  }
+  jfc.addChoosableFileFilter(new JMeterFileFilter(exts));
+  int retVal=jfc.showOpenDialog(GuiPackage.getInstance().getMainFrame());
+  lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
+  if (retVal == jfc.APPROVE_OPTION) {
+    return jfc;
+  }
+ else {
+    return null;
+  }
+}

@@ -1,0 +1,5 @@
+{
+  super(new JMeterTreeNode(new NamePanel()));
+  this.insertNodeInto(new JMeterTreeNode(new TestPlanGui()),(JMeterTreeNode)getRoot(),0);
+  this.insertNodeInto(new JMeterTreeNode(new WorkBenchGui()),(JMeterTreeNode)getRoot(),1);
+}

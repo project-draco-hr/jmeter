@@ -1,0 +1,19 @@
+{
+  System.out.println("Cleaning the cache...");
+  for (Enumeration keys=htable.keys(); keys.hasMoreElements(); ) {
+    String filename=(String)keys.nextElement();
+    File file=new File(filename);
+    long nbytes=file.length();
+    boolean result=file.delete();
+    if (result == true) {
+      htable.remove(filename);
+      config.decreaseFilesCached();
+      config.setBytesCached(config.getBytesCached() - nbytes);
+    }
+ else {
+    }
+  }
+  config.setHits(0);
+  config.setMisses(0);
+  System.out.println("Cache is clean.");
+}

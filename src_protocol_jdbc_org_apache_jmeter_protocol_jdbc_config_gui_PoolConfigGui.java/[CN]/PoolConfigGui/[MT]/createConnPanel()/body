@@ -1,0 +1,9 @@
+{
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("database_conn_pool_size")));
+  connField.setText(DEFAULT_NUM_CONNECTIONS);
+  connField.setName(CONNECTIONS);
+  connField.addFocusListener(this);
+  panel.add(connField);
+  return panel;
+}

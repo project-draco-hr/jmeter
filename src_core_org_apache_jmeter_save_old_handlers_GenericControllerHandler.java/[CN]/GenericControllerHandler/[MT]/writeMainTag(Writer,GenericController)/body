@@ -1,0 +1,7 @@
+{
+  out.write("<Controller type=\"");
+  out.write(JMeterHandler.convertToXML(controller.getClass().getName()));
+  out.write("\" name=\"");
+  out.write(JMeterHandler.convertToXML(controller.getName()));
+  out.write("\">\n");
+}

@@ -1,0 +1,19 @@
+{
+  try {
+    String lineEnd=System.getProperty("line.separator");
+    BufferedReader fileReader=new BufferedReader(new InputStreamReader(JMeterUtils.class.getClassLoader().getResourceAsStream(name)));
+    StringBuffer text=new StringBuffer();
+    String line="NOTNULL";
+    while (line != null) {
+      line=fileReader.readLine();
+      if (line != null) {
+        text.append(line);
+        text.append(lineEnd);
+      }
+    }
+    return text.toString();
+  }
+ catch (  IOException e) {
+    return "";
+  }
+}

@@ -1,0 +1,44 @@
+{
+  if (null == this.context) {
+    try {
+      this.context=SSLContext.getInstance("TLS",this.pro);
+    }
+ catch (    Exception e) {
+      try {
+        this.context=SSLContext.getInstance("TLS");
+      }
+ catch (      Exception ee) {
+      }
+    }
+    try {
+      KeyManagerFactory managerFactory=KeyManagerFactory.getInstance("SunX509");
+      JmeterKeyStore keys=this.getKeyStore();
+      managerFactory.init(null,this.defaultpw.toCharArray());
+      KeyManager[] managers=managerFactory.getKeyManagers();
+      System.out.println(keys.getClass().toString());
+      for (int i=0; i < managers.length; i++) {
+        if (managers[i] instanceof X509KeyManager) {
+          X509KeyManager manager=(X509KeyManager)managers[i];
+          managers[i]=new WrappedX509KeyManager(manager,keys);
+        }
+      }
+      TrustManager[] trusts=new TrustManager[]{new AlwaysTrustManager(this.getTrustStore())};
+      context.init(managers,trusts,this.rand);
+      HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+    }
+ catch (    Exception e) {
+    }
+    String[] dCiphers=this.context.getSocketFactory().getDefaultCipherSuites();
+    String[] sCiphers=this.context.getSocketFactory().getSupportedCipherSuites();
+    int len=(dCiphers.length > sCiphers.length) ? dCiphers.length : sCiphers.length;
+    for (int i=0; i < len; i++) {
+      if (i < dCiphers.length) {
+        System.out.println("Default Cipher: " + dCiphers[i]);
+      }
+      if (i < sCiphers.length) {
+        System.out.println("Supported Cipher: " + sCiphers[i]);
+      }
+    }
+  }
+  return this.context;
+}

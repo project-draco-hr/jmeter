@@ -1,0 +1,11 @@
+{
+  AssertionResult result=new AssertionResult();
+  result.setFailure(false);
+  if (((response.getTime() > getAllowedDuration()) && (getAllowedDuration() > 0))) {
+    result.setFailure(true);
+    Object[] arguments={new Long(response.getTime()),new Long(getAllowedDuration())};
+    String message=MessageFormat.format(JMeterUtils.getResString("duration_assertion_failure"),arguments);
+    result.setFailureMessage(message);
+  }
+  return result;
+}

@@ -1,0 +1,26 @@
+{
+  try {
+    Iterator tk=parseArguments(params).iterator();
+    valueIndex="1";
+    between="";
+    defaultValue=URLDecoder.decode(params);
+    searchPattern=compiler.compile((String)tk.next());
+    generateTemplate((String)tk.next());
+    if (tk.hasNext()) {
+      valueIndex=(String)tk.next();
+    }
+    if (tk.hasNext()) {
+      between=(String)tk.next();
+    }
+    if (tk.hasNext()) {
+      defaultValue=(String)tk.next();
+    }
+  }
+ catch (  MalformedPatternException e) {
+    e.printStackTrace();
+    throw new InvalidVariableException("Bad regex pattern");
+  }
+catch (  Exception e) {
+    throw new InvalidVariableException(e.getMessage());
+  }
+}

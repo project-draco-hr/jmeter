@@ -1,0 +1,7 @@
+{
+  catClass.debug("Start : setModel1");
+  this.model=(GraphAccumModel)model;
+  this.model.addGraphAccumListener(this);
+  repaint();
+  catClass.debug("End : setModel1");
+}

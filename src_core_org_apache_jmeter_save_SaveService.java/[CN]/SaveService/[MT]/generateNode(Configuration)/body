@@ -1,0 +1,26 @@
+{
+  TestElement element=null;
+  try {
+    element=createTestElement(config.getChild("testelement"));
+  }
+ catch (  Exception e) {
+    try {
+      PrintWriter logger=new PrintWriter(new FileWriter("c:\\log.txt"));
+      e.printStackTrace(logger);
+      logger.close();
+      System.out.println("Problem loading part of file");
+    }
+ catch (    Exception err) {
+    }
+    return null;
+  }
+  ListedHashTree subTree=new ListedHashTree(element);
+  Configuration[] subNodes=config.getChildren("node");
+  for (int i=0; i < subNodes.length; i++) {
+    ListedHashTree t=generateNode(subNodes[i]);
+    if (t != null) {
+      subTree.add(element,t);
+    }
+  }
+  return subTree;
+}

@@ -1,0 +1,26 @@
+{
+  catClass.debug("Start : init1");
+  graph=new GraphAccum(model);
+  graph.setVisualizer(this);
+  this.setLayout(new BorderLayout());
+  JPanel mainPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("graph_full_results_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel);
+  mainPanel.add(this.getNamePanel());
+  mainPanel.add(getFilePanel());
+  JScrollPane graphScrollPanel=new JScrollPane(graph,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  graphScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+  legendPanel=new JPanel();
+  JScrollPane legendScrollPanel=new JScrollPane(legendPanel);
+  JSplitPane graphSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,graphScrollPanel,legendScrollPanel);
+  this.add(mainPanel,BorderLayout.NORTH);
+  this.add(graphSplitPane,BorderLayout.CENTER);
+  catClass.debug("End : init1");
+}

@@ -1,0 +1,5 @@
+{
+  if (value != null) {
+    setProperty(ENCODED_VALUE,URLEncoder.encode(value.toString()));
+  }
+}

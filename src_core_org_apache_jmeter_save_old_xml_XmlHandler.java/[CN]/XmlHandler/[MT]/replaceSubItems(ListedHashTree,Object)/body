@@ -1,0 +1,9 @@
+{
+  ListedHashTree subSubTree=subTree.get(item);
+  List subItems=subSubTree.list();
+  Iterator iter2=subItems.iterator();
+  while (iter2.hasNext()) {
+    Object subItem=iter2.next();
+    subTree.set(subItem,subSubTree.get(subItem));
+  }
+}

@@ -1,0 +1,10 @@
+{
+  String str="";
+  if (tk.hasMoreTokens()) {
+    str=tk.nextToken();
+  }
+  while (tk.hasMoreTokens()) {
+    str+=" " + tk.nextToken();
+  }
+  return str;
+}

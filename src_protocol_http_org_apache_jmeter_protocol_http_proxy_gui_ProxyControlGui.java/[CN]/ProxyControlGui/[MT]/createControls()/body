@@ -1,0 +1,19 @@
+{
+  JPanel panel=new JPanel();
+  start=new JButton(JMeterUtils.getResString("start"));
+  start.addActionListener(this);
+  start.setActionCommand(START);
+  stop=new JButton(JMeterUtils.getResString("stop"));
+  stop.addActionListener(this);
+  stop.setActionCommand(STOP);
+  restart=new JButton(JMeterUtils.getResString("restart"));
+  restart.addActionListener(this);
+  restart.setActionCommand(RESTART);
+  panel.add(start);
+  panel.add(stop);
+  panel.add(restart);
+  start.setEnabled(true);
+  stop.setEnabled(false);
+  restart.setEnabled(false);
+  return panel;
+}

@@ -1,0 +1,34 @@
+{
+  Iterator iter=element.getPropertyNames().iterator();
+  while (iter.hasNext()) {
+    String key=(String)iter.next();
+    Object value=element.getProperty(key);
+    if (getProperty(key) == null || getProperty(key).equals("")) {
+      setProperty(key,value);
+      continue;
+    }
+    if (value instanceof TestElement) {
+      if (getProperty(key) == null) {
+        setProperty(key,value);
+      }
+ else       if (getProperty(key) instanceof TestElement) {
+        ((TestElement)getProperty(key)).addTestElement((TestElement)value);
+      }
+    }
+ else     if (value instanceof Collection) {
+      Iterator iter2=((Collection)value).iterator();
+      Collection localCollection=(Collection)getProperty(key);
+      if (localCollection == null) {
+        setProperty(key,value);
+      }
+ else {
+        while (iter2.hasNext()) {
+          Object item=iter2.next();
+          if (!localCollection.contains(item)) {
+            localCollection.add(item);
+          }
+        }
+      }
+    }
+  }
+}

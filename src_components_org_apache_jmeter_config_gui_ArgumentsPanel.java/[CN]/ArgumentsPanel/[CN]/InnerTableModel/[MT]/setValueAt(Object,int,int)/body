@@ -1,0 +1,12 @@
+{
+  Argument arg=(Argument)args.getArgument(row);
+  if (arg == null) {
+    return;
+  }
+  if (col == 0) {
+    arg.setName((String)value);
+  }
+ else {
+    arg.setValue((String)value);
+  }
+}

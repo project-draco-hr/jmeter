@@ -1,0 +1,10 @@
+{
+  URL u=new URL(url);
+  HTTPSampler context=new HTTPSampler();
+  context.setDomain(u.getHost());
+  context.setPath(u.getPath());
+  context.setPort(u.getPort());
+  context.setProtocol(u.getProtocol());
+  context.parseArguments(u.getQuery());
+  return context;
+}

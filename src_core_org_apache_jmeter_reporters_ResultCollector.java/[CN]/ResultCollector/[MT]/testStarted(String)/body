@@ -1,0 +1,10 @@
+{
+  hosts.add(host);
+  try {
+    initializeFileOutput();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  inTest=true;
+}

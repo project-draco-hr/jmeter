@@ -1,0 +1,16 @@
+{
+  catClass.debug("Start : getDOM");
+  try {
+    Node node=getParser().parseDOM(new ByteArrayInputStream(text.getBytes(getUTFEncodingName())),null);
+    if (catClass.isDebugEnabled()) {
+      catClass.debug("node : " + node);
+    }
+    catClass.debug("End   : getDOM");
+    return node;
+  }
+ catch (  UnsupportedEncodingException e) {
+    catClass.error("getDOM1 : Unsupported encoding exception - " + e);
+    catClass.debug("End   : getDOM");
+    throw new RuntimeException("UTF-8 encoding failed - " + e);
+  }
+}

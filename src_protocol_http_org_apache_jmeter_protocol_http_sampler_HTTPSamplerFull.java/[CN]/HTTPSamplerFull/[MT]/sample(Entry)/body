@@ -1,0 +1,43 @@
+{
+  catClass.debug("Start : HTTPSamplerFull sample");
+  SampleResult res=super.sample(e);
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("Main page loading time - " + res.getTime());
+  }
+  String displayName=res.getSampleLabel();
+  Document html=null;
+  try {
+    baseUrl=getUrl();
+    if (catClass.isDebugEnabled()) {
+      catClass.debug("baseUrl - " + baseUrl.toString());
+    }
+    html=(Document)getDOM(new String(res.getResponseData()));
+  }
+ catch (  SAXException se) {
+    catClass.error("Error parsing document - " + se);
+    res.setResponseData(se.toString().getBytes());
+    res.setResponseCode(NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
+    res.setSuccessful(false);
+    return res;
+  }
+catch (  MalformedURLException mfue) {
+    catClass.error("Error creating URL '" + displayName + "'");
+    catClass.error("MalformedURLException - " + mfue);
+    res.setResponseData(mfue.toString().getBytes());
+    res.setResponseCode(NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
+    res.setSuccessful(false);
+    return res;
+  }
+  Set uniqueURLs=new HashSet();
+  parseNodes(html,"img",false,"src",uniqueURLs,res);
+  parseNodes(html,"applet",false,"code",uniqueURLs,res);
+  parseNodes(html,"input",true,"src",uniqueURLs,res);
+  parseNodes(html,"body",false,"background",uniqueURLs,res);
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("Total time - " + res.getTime());
+  }
+  catClass.debug("End   : HTTPSamplerFull sample");
+  return res;
+}

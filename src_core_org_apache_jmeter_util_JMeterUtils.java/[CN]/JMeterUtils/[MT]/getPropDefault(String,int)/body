@@ -1,0 +1,10 @@
+{
+  int ans;
+  try {
+    ans=(Integer.valueOf(appProperties.getProperty(propName,Integer.toString(defaultVal)).trim())).intValue();
+  }
+ catch (  Exception e) {
+    ans=defaultVal;
+  }
+  return ans;
+}

@@ -1,0 +1,21 @@
+{
+  super.paintComponent(g);
+  Dimension d=this.getSize();
+  for (int i=1, y; i < GRIDS; i++) {
+    y=d.height - (i * d.height / GRIDS);
+    g.setColor(Color.black);
+    g.drawLine(5,y,d.width - 35,y);
+    g.setColor(Color.blue);
+    g.drawString(Integer.toString(i * scale),d.width - 30,y + this.getFont().getSize() / 2);
+  }
+  int bars=(d.width - 40) / 8;
+  if (counter < bars)   bars=counter;
+  if (this.limit == 0) {
+    this.limit=1;
+  }
+  for (int i=bars; i > 0; i--) {
+    int sample=((Integer)this.samples.elementAt(this.counter - i)).intValue() * d.height / this.limit;
+    g.setColor(this.barColor);
+    g.fill3DRect(d.width - 36 - 8 * i,d.height - sample,5,sample,true);
+  }
+}

@@ -1,0 +1,7 @@
+{
+  String[] r=new String[header.size()];
+  if (r.length > 0) {
+    r=(String[])header.toArray(r);
+  }
+  return r;
+}

@@ -1,0 +1,12 @@
+{
+  samples.clear();
+  averageSum=0;
+  variationSum=0;
+  counter=0;
+  previous=0;
+  max=1;
+  graphMax=1;
+  bigChange=true;
+  current=new Sample(0,0,0,0,false);
+  this.fireDataChanged();
+}

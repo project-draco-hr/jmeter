@@ -1,0 +1,55 @@
+{
+  catClass.debug("Start : loadBinary");
+  byte[] ret=new byte[0];
+  res.setSamplerData(new HTTPSampler(url));
+  HttpURLConnection conn=null;
+  try {
+    conn=setupConnection(url,GET);
+    conn.connect();
+  }
+ catch (  IOException ioe) {
+    if (catClass.isDebugEnabled()) {
+      catClass.debug("loadBinary : error in setupConnection " + ioe);
+    }
+    throw ioe;
+  }
+  try {
+    long time=System.currentTimeMillis();
+    if (catClass.isDebugEnabled()) {
+      catClass.debug("loadBinary : start time - " + time);
+    }
+    int errorLevel=getErrorLevel(conn,res);
+    if (errorLevel == 2) {
+      ret=readResponse(conn);
+      res.setSuccessful(true);
+      long endTime=System.currentTimeMillis();
+      if (catClass.isDebugEnabled()) {
+        catClass.debug("loadBinary : end   time - " + endTime);
+      }
+      res.setTime(endTime - time);
+    }
+ else {
+      res.setSuccessful(false);
+      int responseCode=((HttpURLConnection)conn).getResponseCode();
+      String responseMsg=((HttpURLConnection)conn).getResponseMessage();
+      catClass.error("loadBinary : failed code - " + responseCode);
+      catClass.error("loadBinary : failed message - " + responseMsg);
+    }
+    if (catClass.isDebugEnabled()) {
+      catClass.debug("loadBinary : binary - " + ret[0] + ret[1]);
+      catClass.debug("loadBinary : loadTime - " + res.getTime());
+    }
+    catClass.debug("End   : loadBinary");
+    res.setResponseData(ret);
+    res.setDataType(SampleResult.BINARY);
+    return ret;
+  }
+  finally {
+    try {
+      String connection=conn.getHeaderField("Connection");
+      if (connection == null || connection.equalsIgnoreCase("close"))       conn.disconnect();
+    }
+ catch (    Exception e) {
+    }
+  }
+}

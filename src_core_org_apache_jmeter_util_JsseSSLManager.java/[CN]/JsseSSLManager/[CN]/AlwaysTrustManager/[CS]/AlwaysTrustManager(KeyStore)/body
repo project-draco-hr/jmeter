@@ -1,0 +1,21 @@
+{
+  try {
+    java.util.Enumeration enum=store.aliases();
+    java.util.ArrayList list=new java.util.ArrayList(store.size());
+    while (enum.hasMoreElements()) {
+      String alias=(String)enum.nextElement();
+      System.out.print("AlwaysTrustManager alias: " + alias);
+      if (store.isCertificateEntry(alias)) {
+        list.add(store.getCertificate(alias));
+        System.out.println(" INSTALLED");
+      }
+ else {
+        System.out.println(" SKIPPED");
+      }
+    }
+    this.certs=(X509Certificate[])list.toArray(new X509Certificate[]{});
+  }
+ catch (  Exception e) {
+    this.certs=null;
+  }
+}

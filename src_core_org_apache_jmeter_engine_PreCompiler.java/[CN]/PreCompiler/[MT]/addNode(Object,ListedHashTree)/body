@@ -1,0 +1,8 @@
+{
+  if (node instanceof TestPlan) {
+    masterFunction.setUserDefinedVariables(((TestPlan)node).getUserDefinedVariables());
+  }
+  if (node instanceof TestElement) {
+    replaceValues((TestElement)node);
+  }
+}

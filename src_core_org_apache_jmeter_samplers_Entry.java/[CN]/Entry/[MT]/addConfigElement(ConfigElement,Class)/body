@@ -1,0 +1,11 @@
+{
+  if (config != null) {
+    ConfigElement current=(ConfigElement)configSet.get(asClass);
+    if (current == null) {
+      configSet.put(asClass,cloneIfNecessary(config));
+    }
+ else {
+      current.addConfigElement(config);
+    }
+  }
+}

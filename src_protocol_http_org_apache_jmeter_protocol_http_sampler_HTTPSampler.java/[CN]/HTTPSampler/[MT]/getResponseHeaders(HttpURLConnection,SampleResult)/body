@@ -1,0 +1,19 @@
+{
+  StringBuffer headerBuf=new StringBuffer();
+  headerBuf.append(conn.getHeaderField(0).substring(0,8));
+  headerBuf.append(" ");
+  headerBuf.append(conn.getResponseCode());
+  headerBuf.append(" ");
+  headerBuf.append(conn.getResponseMessage());
+  headerBuf.append("\n");
+  for (int i=1; conn.getHeaderFieldKey(i) != null; i++) {
+    if (!conn.getHeaderFieldKey(i).equalsIgnoreCase("transfer-encoding")) {
+      headerBuf.append(conn.getHeaderFieldKey(i));
+      headerBuf.append(": ");
+      headerBuf.append(conn.getHeaderField(i));
+      headerBuf.append("\n");
+    }
+  }
+  headerBuf.append("\n");
+  return headerBuf.toString().getBytes("8859_1");
+}

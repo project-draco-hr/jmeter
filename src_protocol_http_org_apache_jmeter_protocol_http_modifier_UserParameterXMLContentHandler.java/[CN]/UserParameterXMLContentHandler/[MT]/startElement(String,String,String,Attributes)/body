@@ -1,0 +1,10 @@
+{
+  contents.reset();
+  if (qName.equals("parameter")) {
+    paramname="";
+    paramvalue="";
+  }
+  if (qName.equals("thread")) {
+    nameValuePair=new HashMap();
+  }
+}

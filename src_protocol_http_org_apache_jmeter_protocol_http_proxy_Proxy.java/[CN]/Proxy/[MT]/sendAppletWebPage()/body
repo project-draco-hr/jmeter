@@ -1,0 +1,21 @@
+{
+  System.out.println("Sending the applet...");
+  String page="";
+  try {
+    File appletHtmlPage=new File(config.getAdminPath() + File.separator + "Admin.html");
+    BufferedReader in=new BufferedReader(new InputStreamReader(new FileInputStream(appletHtmlPage)));
+    String s=null;
+    while ((s=in.readLine()) != null) {
+      page+=s;
+    }
+    page=page.substring(0,page.indexOf("PORT")) + config.getAdminPort() + page.substring(page.indexOf("PORT") + 4);
+    in.close();
+    DataOutputStream out=new DataOutputStream(ClientSocket.getOutputStream());
+    out.writeBytes(page);
+    out.flush();
+    out.close();
+  }
+ catch (  Exception e) {
+    System.out.println("Error: can't open applet html page");
+  }
+}

@@ -1,0 +1,7 @@
+{
+  JavaConfig config=new JavaConfig();
+  this.configureTestElement(config);
+  config.setArguments((Arguments)argsPanel.createTestElement());
+  config.setClassname(classnameCombo.getSelectedItem().toString());
+  return config;
+}

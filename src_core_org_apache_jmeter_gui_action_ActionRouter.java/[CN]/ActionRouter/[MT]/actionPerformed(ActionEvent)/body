@@ -1,0 +1,18 @@
+{
+  try {
+    Set commandObjects=(Set)commands.get(e.getActionCommand());
+    Iterator iter=commandObjects.iterator();
+    while (iter.hasNext()) {
+      try {
+        ((Command)iter.next()).doAction(e);
+      }
+ catch (      Exception err) {
+        err.printStackTrace();
+      }
+    }
+  }
+ catch (  NullPointerException er) {
+    er.printStackTrace();
+    JMeterUtils.reportErrorToUser("Sorry, this feature (" + e.getActionCommand() + ") not yet implemented");
+  }
+}

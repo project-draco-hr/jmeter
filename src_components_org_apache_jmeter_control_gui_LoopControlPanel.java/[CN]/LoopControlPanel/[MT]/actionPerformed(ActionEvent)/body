@@ -1,0 +1,10 @@
+{
+  if (infinite.isSelected()) {
+    loops.setText("");
+    loops.setEnabled(false);
+  }
+ else {
+    loops.setEnabled(true);
+    new FocusRequester(loops);
+  }
+}

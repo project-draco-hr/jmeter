@@ -1,0 +1,6 @@
+{
+  ConfigTestElement element=new ConfigTestElement();
+  configureTestElement(element);
+  element.setProperty(JDBCSampler.QUERY,sqlField.getText());
+  return element;
+}

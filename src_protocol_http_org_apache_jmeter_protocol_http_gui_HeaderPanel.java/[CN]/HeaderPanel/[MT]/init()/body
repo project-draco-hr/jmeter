@@ -1,0 +1,17 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  headerManagerPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  headerManagerPanel.setBorder(margin);
+  headerManagerPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("header_manager_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  headerManagerPanel.add(panelTitleLabel);
+  headerManagerPanel.add(getNamePanel());
+  JPanel headerTablePanel=createHeaderTablePanel();
+  headerManagerPanel.add(headerTablePanel);
+  this.add(headerManagerPanel);
+}

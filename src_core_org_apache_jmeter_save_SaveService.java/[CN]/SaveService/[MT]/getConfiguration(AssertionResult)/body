@@ -1,0 +1,7 @@
+{
+  DefaultConfiguration config=new DefaultConfiguration(ASSERTION_RESULT_TAG_NAME,"JMeter Save Service");
+  config.setAttribute(FAILURE_MESSAGE,assResult.getFailureMessage());
+  config.setAttribute(ERROR,"" + assResult.isError());
+  config.setAttribute(FAILURE,"" + assResult.isFailure());
+  return config;
+}

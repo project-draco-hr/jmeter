@@ -1,0 +1,13 @@
+{
+  File file=new File(authFile);
+  if (!file.isAbsolute())   file=new File(System.getProperty("user.dir") + File.separator + authFile);
+  PrintWriter writer=new PrintWriter(new FileWriter(file));
+  writer.println("# JMeter generated Cookie file");
+  List cookies=getCookies();
+  for (int i=0; i < cookies.size(); i++) {
+    Cookie cook=(Cookie)cookies.get(i);
+    writer.println(cook.toString());
+  }
+  writer.flush();
+  writer.close();
+}

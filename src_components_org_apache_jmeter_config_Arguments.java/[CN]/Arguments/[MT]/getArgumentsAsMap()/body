@@ -1,0 +1,9 @@
+{
+  Iterator iter=getArguments().iterator();
+  Map argMap=new HashMap();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next();
+    argMap.put(arg.getName(),arg.getValue());
+  }
+  return argMap;
+}

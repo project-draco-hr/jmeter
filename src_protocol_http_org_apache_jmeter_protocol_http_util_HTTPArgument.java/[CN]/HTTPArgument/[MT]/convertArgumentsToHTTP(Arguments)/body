@@ -1,0 +1,15 @@
+{
+  List newArguments=new LinkedList();
+  Iterator iter=args.getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next();
+    if (!(arg instanceof HTTPArgument)) {
+      newArguments.add(new HTTPArgument(arg));
+    }
+ else {
+      newArguments.add(arg);
+    }
+  }
+  args.removeAllArguments();
+  args.setArguments(newArguments);
+}

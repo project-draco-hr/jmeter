@@ -1,0 +1,7 @@
+{
+  out.write("<property name=\"");
+  out.write(JMeterHandler.convertToXML(key));
+  out.write("\">");
+  JMeterHandler.writeObject(value,out);
+  out.write("</property>\n");
+}

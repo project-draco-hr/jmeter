@@ -1,0 +1,5 @@
+{
+  addSeparator(menu);
+  menu.add(makeMenuItem(JMeterUtils.getResString("open"),"Open",JMeterUtils.getResString("open")));
+  menu.add(makeMenuItem(JMeterUtils.getResString("save"),"Save","save"));
+}

@@ -1,0 +1,8 @@
+{
+  if (perThread) {
+    return Integer.toString(vars.getIteration());
+  }
+ else {
+    return Integer.toString(counter++);
+  }
+}

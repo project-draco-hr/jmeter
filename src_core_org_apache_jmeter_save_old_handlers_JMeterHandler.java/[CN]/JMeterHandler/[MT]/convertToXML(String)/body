@@ -1,0 +1,62 @@
+{
+  if (input == null) {
+    return null;
+  }
+  String retVal="";
+  StringBuffer buffer=new StringBuffer(input);
+  int length=buffer.length();
+  for (int i=0; i < length; i++) {
+    char ch=buffer.charAt(i);
+    int chInt=(int)ch;
+    if (Character.isLetterOrDigit(ch) || ch == '\n' || ch == '\r' || ch == '\t' || ch == ' ') {
+      continue;
+    }
+    int chType=Character.getType(ch);
+    if (chType == Character.CONTROL || chType == Character.UNASSIGNED) {
+      buffer.setCharAt(i,' ');
+    }
+  }
+  input=buffer.toString();
+  buffer=new StringBuffer();
+  java.util.StringTokenizer tokenizer=new java.util.StringTokenizer(input,TOKENS,true);
+  while (tokenizer.hasMoreTokens()) {
+    String nextToken=tokenizer.nextToken();
+    length=nextToken.length();
+    if (length > 1) {
+      buffer.append(nextToken);
+    }
+ else     if (length == 1) {
+      char ch=nextToken.charAt(0);
+switch (ch) {
+case '&':
+        buffer.append("&amp;");
+      break;
+case '\'':
+    buffer.append("&apos;");
+  break;
+case '"':
+buffer.append("&quot;");
+break;
+case '<':
+buffer.append("&lt;");
+break;
+case '>':
+buffer.append("&gt;");
+break;
+case '\n':
+case '\r':
+case '\t':
+case '\f':
+case '\b':
+case '\\':
+buffer.append("&#");
+buffer.append((int)ch);
+buffer.append(";");
+break;
+default :
+buffer.append(nextToken);
+}
+}
+}
+return buffer.toString();
+}

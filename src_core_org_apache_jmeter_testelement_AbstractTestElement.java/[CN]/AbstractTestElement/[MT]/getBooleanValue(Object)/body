@@ -1,0 +1,11 @@
+{
+  if (bound == null) {
+    return false;
+  }
+ else   if (bound instanceof Boolean) {
+    return ((Boolean)bound).booleanValue();
+  }
+ else {
+    return new Boolean((String)bound).booleanValue();
+  }
+}

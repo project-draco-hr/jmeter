@@ -1,0 +1,19 @@
+{
+  ListedHashTree temp=null;
+  if (data.containsKey(key)) {
+    temp=(ListedHashTree)data.get(key);
+  }
+ else {
+    Iterator it=list().iterator();
+    while (it.hasNext()) {
+      if (temp == null) {
+        temp=((ListedHashTree)it.next()).search(key);
+        break;
+      }
+ else {
+        break;
+      }
+    }
+  }
+  return temp;
+}

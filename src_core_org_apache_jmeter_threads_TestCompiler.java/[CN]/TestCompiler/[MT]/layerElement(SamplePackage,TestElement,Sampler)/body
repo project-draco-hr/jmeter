@@ -1,0 +1,29 @@
+{
+  boolean replace=objectsWithFunctions.contains(config);
+  if (config instanceof PerSampleClonable) {
+    config=(TestElement)((PerSampleClonable)config).clone();
+  }
+  if (config instanceof Modifier) {
+    ((Modifier)config).modifyEntry(clonedSampler);
+  }
+  if (config instanceof ResponseBasedModifier && previousResult != null) {
+    ((ResponseBasedModifier)config).modifyEntry(clonedSampler,previousResult);
+  }
+  if (config instanceof SampleListener) {
+    ret.addSampleListener((SampleListener)config);
+  }
+  if (config instanceof Assertion) {
+    ret.addAssertion((Assertion)config);
+  }
+  if (config instanceof Timer) {
+    ret.addTimer((Timer)config);
+  }
+  if (replace && config instanceof PerSampleClonable) {
+    replaceValues(config);
+  }
+ else   if (replace) {
+    config=(TestElement)config.clone();
+    replaceValues(config);
+  }
+  clonedSampler.addTestElement(config);
+}

@@ -1,0 +1,8 @@
+{
+  List headers=xmlParent.takeChildObjects(this);
+  Iterator iter=headers.iterator();
+  while (iter.hasNext()) {
+    TestElement header=(TestElement)((TagHandler)iter.next()).getModel();
+    headerManager.add(new Header((String)header.getProperty(TestElement.NAME),(String)header.getProperty("value")));
+  }
+}

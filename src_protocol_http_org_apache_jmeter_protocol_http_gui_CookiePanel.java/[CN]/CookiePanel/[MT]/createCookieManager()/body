@@ -1,0 +1,8 @@
+{
+  CookieManager cookieManager=new CookieManager();
+  for (int i=0; i < tableModel.getRowCount(); i++) {
+    Cookie cookie=createCookie(tableModel.getRowData(i));
+    cookieManager.add(cookie);
+  }
+  return cookieManager;
+}

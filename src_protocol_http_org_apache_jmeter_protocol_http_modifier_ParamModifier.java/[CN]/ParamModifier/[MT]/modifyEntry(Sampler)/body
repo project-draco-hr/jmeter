@@ -1,0 +1,19 @@
+{
+  HTTPSampler sampler=null;
+  if (!(sam instanceof HTTPSampler)) {
+    return false;
+  }
+ else {
+    sampler=(HTTPSampler)sam;
+  }
+  boolean modified=false;
+  Iterator iter=sampler.getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next();
+    modified=modifyArgument(arg);
+    if (modified) {
+      break;
+    }
+  }
+  return modified;
+}

@@ -1,0 +1,8 @@
+{
+  Iterator classes=ClassFinder.findClassesThatExtend(new Class[]{extendsClass}).iterator();
+  List objects=new LinkedList();
+  while (classes.hasNext()) {
+    objects.add(Class.forName((String)classes.next()).newInstance());
+  }
+  return objects;
+}

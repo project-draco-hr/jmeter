@@ -1,0 +1,5 @@
+{
+  Connection c;
+  c=DriverManager.getConnection(key.getUrl(),key.getUsername(),key.getPassword());
+  return c;
+}

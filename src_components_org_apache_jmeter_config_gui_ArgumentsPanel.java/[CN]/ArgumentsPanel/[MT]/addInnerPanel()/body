@@ -1,0 +1,29 @@
+{
+  table=new JTable(tableModel);
+  table.setEnabled(true);
+  table.addFocusListener(this);
+  table.setDefaultEditor(String.class,new TextAreaTableCellEditor());
+  TextAreaCellRenderer renderer=new TextAreaCellRenderer();
+  table.setRowHeight(renderer.getPreferredHeight());
+  table.setDefaultRenderer(String.class,renderer);
+  table.setRowSelectionAllowed(true);
+  JScrollPane scroller=new JScrollPane(table);
+  Dimension tableDim=scroller.getPreferredSize();
+  tableDim.height=70;
+  scroller.setPreferredSize(tableDim);
+  scroller.setColumnHeaderView(table.getTableHeader());
+  add=new JButton(JMeterUtils.getResString("add"));
+  add.setActionCommand(ADD);
+  add.setEnabled(true);
+  delete=new JButton(JMeterUtils.getResString("delete"));
+  delete.setActionCommand(DELETE);
+  checkDeleteStatus();
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+  add.addActionListener(this);
+  delete.addActionListener(this);
+  buttonPanel.add(add);
+  buttonPanel.add(delete);
+  this.add(scroller,BorderLayout.CENTER);
+  this.add(buttonPanel,BorderLayout.SOUTH);
+}

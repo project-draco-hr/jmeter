@@ -1,0 +1,18 @@
+{
+  if (shortCircuitIsDone()) {
+    return true;
+  }
+  boolean isdone=true;
+  Iterator iter=subControllersAndSamplers.iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    if (item instanceof Sampler) {
+      return false;
+    }
+ else {
+      isdone=isdone && ((Controller)item).isDone();
+    }
+  }
+  setShortCircuit(isdone);
+  return isdone;
+}

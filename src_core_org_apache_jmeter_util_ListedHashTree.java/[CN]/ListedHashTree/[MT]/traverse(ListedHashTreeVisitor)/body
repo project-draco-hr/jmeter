@@ -1,0 +1,8 @@
+{
+  Iterator iter=list().iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    visitor.addNode(item,get(item));
+    get(item).traverseInto(visitor);
+  }
+}

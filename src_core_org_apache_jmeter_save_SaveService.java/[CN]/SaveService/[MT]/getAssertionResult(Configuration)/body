@@ -1,0 +1,7 @@
+{
+  AssertionResult result=new AssertionResult();
+  result.setError(config.getAttributeAsBoolean(ERROR,false));
+  result.setFailure(config.getAttributeAsBoolean(FAILURE,false));
+  result.setFailureMessage(config.getAttribute(FAILURE_MESSAGE,""));
+  return result;
+}

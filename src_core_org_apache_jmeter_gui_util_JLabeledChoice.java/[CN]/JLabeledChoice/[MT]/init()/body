@@ -1,0 +1,28 @@
+{
+  choiceList.setBorder(BorderFactory.createLoweredBevelBorder());
+  choiceList.addItemListener(new ItemListener(){
+    /** 
+ * Callback method when the focus to the Text Field component
+ * is lost.
+ * @param pFocusEvent The focus event that occured.
+ */
+    public void itemStateChanged(    ItemEvent e){
+      if (e.getStateChange() == e.SELECTED) {
+        notifyChangeListeners();
+      }
+    }
+  }
+);
+  this.add(mLabel);
+  this.add(choiceList);
+  if (choiceList.isEditable()) {
+    add=new JButton("Add");
+    add.setMargin(new Insets(1,1,1,1));
+    add.addActionListener(new AddListener());
+    this.add(add);
+    delete=new JButton("Del");
+    delete.setMargin(new Insets(1,1,1,1));
+    delete.addActionListener(new DeleteListener());
+    this.add(delete);
+  }
+}

@@ -1,0 +1,25 @@
+{
+  if (System.currentTimeMillis() < sleepTill) {
+    return false;
+  }
+ else {
+    sleepTill=System.currentTimeMillis() + 1000L;
+  }
+  Iterator e=dataset.keySet().iterator();
+  int ridx=-1;
+  while (e.hasNext()) {
+    ridx++;
+    String thisKey=(String)e.next();
+    RunningSample rs=(RunningSample)dataset.get(thisKey);
+    aTable.setValueAt((String)thisKey,ridx,0);
+    aTable.setValueAt(new Long(rs.getNumSamples()),ridx,1);
+    aTable.setValueAt(new Long(rs.getAverage()),ridx,2);
+    aTable.setValueAt(new Long(rs.getMin()),ridx,3);
+    aTable.setValueAt(new Long(rs.getMax()),ridx,4);
+    aTable.setValueAt(rs.getErrorPercentageString(),ridx,5);
+    aTable.setValueAt(rs.getRateString(),ridx,6);
+    if (rs.getErrorPercentage() > .5) {
+    }
+  }
+  return (true);
+}

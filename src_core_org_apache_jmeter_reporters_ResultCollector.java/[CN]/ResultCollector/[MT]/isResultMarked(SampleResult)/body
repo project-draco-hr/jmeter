@@ -1,0 +1,7 @@
+{
+  boolean marked=res.isMarked(getFilename());
+  if (!marked) {
+    res.setMarked(getFilename());
+  }
+  return marked;
+}

@@ -1,0 +1,13 @@
+{
+  if (anEvent instanceof MouseEvent) {
+    if (((MouseEvent)anEvent).getClickCount() > 0) {
+      return true;
+    }
+  }
+ else   if (anEvent instanceof FocusEvent) {
+    if (((FocusEvent)anEvent).getID() == FocusEvent.FOCUS_GAINED) {
+      return true;
+    }
+  }
+  return true;
+}

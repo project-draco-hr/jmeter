@@ -1,0 +1,5 @@
+{
+  super.configure(el);
+  delayField.setText(el.getProperty(RandomTimer.DELAY).toString());
+  rangeField.setText(el.getProperty(RandomTimer.RANGE).toString());
+}

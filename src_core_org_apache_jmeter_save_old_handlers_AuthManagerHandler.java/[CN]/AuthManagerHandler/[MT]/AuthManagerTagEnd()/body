@@ -1,0 +1,7 @@
+{
+  List auths=xmlParent.takeChildObjects(this);
+  Iterator iter=auths.iterator();
+  while (iter.hasNext()) {
+    authMan.addTestElement((TestElement)((TagHandler)iter.next()).getModel());
+  }
+}

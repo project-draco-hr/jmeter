@@ -1,0 +1,6 @@
+{
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("username")));
+  panel.add(username);
+  return panel;
+}

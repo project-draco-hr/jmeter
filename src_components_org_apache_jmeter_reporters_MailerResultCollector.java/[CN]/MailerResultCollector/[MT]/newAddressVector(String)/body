@@ -1,0 +1,12 @@
+{
+  Vector addressVector=new Vector();
+  String addressSep=", ";
+  StringTokenizer next=new StringTokenizer(theAddressie,addressSep);
+  while (next.hasMoreTokens()) {
+    String theToken=next.nextToken();
+    if (theToken.indexOf("@") > 0) {
+      addressVector.addElement(theToken);
+    }
+  }
+  return addressVector;
+}

@@ -1,0 +1,5 @@
+{
+  if (!"PKCS12".equalsIgnoreCase(type)) {
+    throw new Exception("Invalid keystore type");
+  }
+}

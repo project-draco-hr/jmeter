@@ -1,0 +1,12 @@
+{
+  catClass.info("Start : getRemoteInterfaceListPanel1");
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("jndi_method_remote_interface_list")));
+  Object remoteInterfaceType=model.getRemoteInterfaceType();
+  if (remoteInterfaceType != null) {
+    remoteInterfaceBox.setSelectedItem(remoteInterfaceType.toString());
+  }
+  panel.add(remoteInterfaceBox);
+  catClass.info("End : getRemoteInterfaceListPanel1");
+  return panel;
+}

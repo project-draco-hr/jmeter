@@ -1,0 +1,5 @@
+{
+  jmxScriptDir=filename;
+  File file=new File(System.getProperty("user.dir") + File.separator + jmxScriptDir);
+  file.mkdirs();
+}

@@ -1,0 +1,8 @@
+{
+  add(label);
+  add(filename);
+  filename.addActionListener(this);
+  add(browse);
+  browse.setActionCommand("browse");
+  browse.addActionListener(this);
+}

@@ -1,0 +1,8 @@
+{
+  JMeterComponentModel save=(JMeterComponentModel)saveObject;
+  out.write("<JMeterComponent type=\"");
+  out.write(JMeterHandler.convertToXML(save.getClass().getName()));
+  out.write("\" name=\"");
+  out.write(JMeterHandler.convertToXML(save.getName()));
+  out.write("\"/>");
+}

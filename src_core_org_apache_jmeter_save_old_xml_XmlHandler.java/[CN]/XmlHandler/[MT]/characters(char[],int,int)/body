@@ -1,0 +1,10 @@
+{
+  try {
+    if (start >= 0 && start < chardata.length && (end + start) <= chardata.length) {
+      getCurrentHandler().handleData(new String(chardata,start,end));
+    }
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

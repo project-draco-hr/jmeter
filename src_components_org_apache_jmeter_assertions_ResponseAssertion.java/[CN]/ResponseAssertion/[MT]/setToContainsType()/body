@@ -1,0 +1,4 @@
+{
+  setTestType((getTestType() | CONTAINS) & (MATCH ^ (CONTAINS | MATCH | NOT)));
+  failMessage="to contain: ";
+}

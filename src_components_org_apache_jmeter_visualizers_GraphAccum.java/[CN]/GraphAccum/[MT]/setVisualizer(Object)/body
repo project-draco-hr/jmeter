@@ -1,0 +1,6 @@
+{
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("setVisualizer1 : Setting visualizer - " + visualizer);
+  }
+  this.visualizer=(GraphAccumVisualizer)visualizer;
+}

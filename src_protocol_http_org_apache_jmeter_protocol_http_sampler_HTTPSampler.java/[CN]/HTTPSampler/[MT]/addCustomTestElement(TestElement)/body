@@ -1,0 +1,37 @@
+{
+  if (element instanceof Arguments) {
+    if (getProperty(ARGUMENTS) != null) {
+      ((Arguments)getProperty(ARGUMENTS)).addTestElement(element);
+    }
+ else {
+      setProperty(ARGUMENTS,element);
+    }
+  }
+ else   if (element instanceof AuthManager) {
+    if (getProperty(AUTH_MANAGER) != null) {
+      ((TestElement)getProperty(AUTH_MANAGER)).addTestElement(element);
+    }
+ else {
+      setProperty(AUTH_MANAGER,element);
+    }
+  }
+ else   if (element instanceof CookieManager) {
+    if (getProperty(COOKIE_MANAGER) != null) {
+      ((TestElement)getProperty(COOKIE_MANAGER)).addTestElement(element);
+    }
+ else {
+      setProperty(COOKIE_MANAGER,element);
+    }
+  }
+ else   if (element instanceof HeaderManager) {
+    if (getProperty(HEADER_MANAGER) != null) {
+      ((TestElement)getProperty(HEADER_MANAGER)).addTestElement(element);
+    }
+ else {
+      setProperty(HEADER_MANAGER,element);
+    }
+  }
+ else   if (element instanceof HTTPSampler || element instanceof ConfigTestElement) {
+    this.mergeIn(element);
+  }
+}

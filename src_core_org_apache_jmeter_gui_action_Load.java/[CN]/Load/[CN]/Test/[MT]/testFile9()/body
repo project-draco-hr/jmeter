@@ -1,0 +1,6 @@
+{
+  ListedHashTree tree=getTree(testFile9);
+  assertTrue(tree.list().get(0) instanceof org.apache.jmeter.testelement.TestPlan);
+  loader.convertTree(tree);
+  assertTrue(tree.list().get(0) instanceof org.apache.jmeter.control.gui.TestPlanGui);
+}

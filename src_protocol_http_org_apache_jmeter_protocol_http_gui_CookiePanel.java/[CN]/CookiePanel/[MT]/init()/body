@@ -1,0 +1,17 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  cookieManagerPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  cookieManagerPanel.setBorder(margin);
+  cookieManagerPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("cookie_manager_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  cookieManagerPanel.add(panelTitleLabel);
+  cookieManagerPanel.add(getNamePanel());
+  JPanel cookieTablePanel=createCookieTablePanel();
+  cookieManagerPanel.add(cookieTablePanel);
+  this.add(cookieManagerPanel);
+}

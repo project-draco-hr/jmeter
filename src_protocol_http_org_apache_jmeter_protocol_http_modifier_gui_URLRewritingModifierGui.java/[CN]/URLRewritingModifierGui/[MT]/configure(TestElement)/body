@@ -1,0 +1,5 @@
+{
+  argumentName.setText(((URLRewritingModifier)el).getArgumentName());
+  pathExt.setSelected(((URLRewritingModifier)el).isPathExtension());
+  super.configure(el);
+}

@@ -1,0 +1,11 @@
+{
+  try {
+    Object model=getCurrentNode().getUserObject();
+    MainFrame mainFrame=GuiPackage.getInstance().getMainFrame();
+    mainFrame.setEditMenu(menu);
+  }
+ catch (  NullPointerException e) {
+    System.out.println("Null pointer: JMeterTreeListener.updateMenuItem()");
+    e.printStackTrace();
+  }
+}

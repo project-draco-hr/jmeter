@@ -1,0 +1,18 @@
+{
+  releaseData();
+  try {
+    Class handler=this.getClass();
+    endTag(localName);
+    Method method=handler.getMethod(localName + "TagEnd",new Class[0]);
+    method.invoke(this,new Object[0]);
+  }
+ catch (  NoSuchMethodException e) {
+    unknownTagEnd(localName);
+  }
+catch (  InvocationTargetException e) {
+    e.printStackTrace();
+  }
+catch (  IllegalAccessException e) {
+    e.printStackTrace();
+  }
+}

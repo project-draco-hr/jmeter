@@ -1,0 +1,43 @@
+{
+  if (type == null || value == null) {
+    throw new MethodConfigUserObjectException("Parameters of MethodConfigUserObject constructor cannot be null");
+  }
+  this.type=type;
+  try {
+    if (type.getName().equals(INTEGER)) {
+      object=new Integer(value);
+    }
+ else     if (type.getName().equals(LONG)) {
+      object=new Long(value);
+    }
+ else     if (type.getName().equals(FLOAT)) {
+      object=new Float(value);
+    }
+ else     if (type.getName().equals(DOUBLE)) {
+      object=new Double(value);
+    }
+ else     if (type.getName().equals(BOOLEAN)) {
+      object=new Boolean(value);
+    }
+ else     if (type.getName().equals(CHAR)) {
+      if (value.length() == 1) {
+        object=new Character(value.charAt(0));
+      }
+ else {
+        throw new MethodConfigUserObjectException("Value format not compatible with class");
+      }
+    }
+ else     if (type.getName().equals(BYTE)) {
+      object=new Byte(value);
+    }
+ else     if (type.getName().equals(SHORT)) {
+      object=new Short(value);
+    }
+ else     if (type.getName().equals(STRING_CLASS)) {
+      object=new String(value);
+    }
+  }
+ catch (  NumberFormatException e) {
+    throw new MethodConfigUserObjectException("Value format not compatible with class");
+  }
+}

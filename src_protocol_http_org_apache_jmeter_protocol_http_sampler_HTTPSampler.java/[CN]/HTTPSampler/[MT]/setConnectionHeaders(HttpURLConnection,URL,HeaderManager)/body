@@ -1,0 +1,12 @@
+{
+  if (headerManager != null) {
+    Collection headers=headerManager.getHeaders();
+    if (headers != null) {
+      Iterator i=headers.iterator();
+      while (i.hasNext()) {
+        Header header=(Header)i.next();
+        conn.setRequestProperty(header.getName(),header.getValue());
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  super(name,value);
+  if (alreadyEncoded) {
+    setProperty(ENCODED_NAME,name);
+    setProperty(ENCODED_VALUE,value.toString());
+  }
+ else {
+    encodeName(name);
+    encodeValue(value);
+  }
+}

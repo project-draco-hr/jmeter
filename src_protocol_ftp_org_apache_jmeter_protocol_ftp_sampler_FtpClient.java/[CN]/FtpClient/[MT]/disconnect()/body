@@ -1,0 +1,17 @@
+{
+  try {
+    send("QUIT");
+    getResponse();
+  }
+ catch (  Exception e) {
+    System.out.println("FTP client - " + e.toString());
+  }
+  try {
+    in.close();
+    out.close();
+    s.close();
+  }
+ catch (  Exception e) {
+    System.out.println("FTP client - " + e.toString());
+  }
+}

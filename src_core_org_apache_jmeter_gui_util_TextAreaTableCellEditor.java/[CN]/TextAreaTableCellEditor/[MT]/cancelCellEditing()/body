@@ -1,0 +1,6 @@
+{
+  Iterator iter=listeners.iterator();
+  while (iter.hasNext()) {
+    ((CellEditorListener)iter.next()).editingCanceled(new ChangeEvent(this));
+  }
+}

@@ -1,0 +1,6 @@
+{
+  if (manager == null) {
+    manager=new DBConnectionManager();
+  }
+  return manager;
+}

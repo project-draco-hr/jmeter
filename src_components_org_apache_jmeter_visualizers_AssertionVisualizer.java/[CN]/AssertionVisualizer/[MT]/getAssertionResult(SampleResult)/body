@@ -1,0 +1,18 @@
+{
+  if (res != null) {
+    StringBuffer display=new StringBuffer();
+    List assertionResults=Arrays.asList(res.getAssertionResults());
+    if (assertionResults != null) {
+      Iterator iter=assertionResults.iterator();
+      while (iter.hasNext()) {
+        AssertionResult item=(AssertionResult)iter.next();
+        if (item.isFailure() || item.isError()) {
+          display.append("\n\t\t");
+          display.append(item.getFailureMessage());
+        }
+      }
+    }
+    return display.toString();
+  }
+  return "";
+}

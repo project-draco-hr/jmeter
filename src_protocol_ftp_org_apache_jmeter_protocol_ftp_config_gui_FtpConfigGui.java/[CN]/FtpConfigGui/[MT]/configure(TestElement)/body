@@ -1,0 +1,5 @@
+{
+  super.configure(element);
+  server.setText((String)element.getProperty(FTPSampler.SERVER));
+  filename.setText((String)element.getProperty(FTPSampler.FILENAME));
+}

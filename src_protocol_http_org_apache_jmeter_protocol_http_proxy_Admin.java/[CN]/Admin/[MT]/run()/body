@@ -1,0 +1,42 @@
+{
+  while (true) {
+    try {
+      appletSocket=adminSocket.accept();
+      in=new BufferedReader(new InputStreamReader(new DataInputStream(appletSocket.getInputStream())));
+      out=new DataOutputStream(appletSocket.getOutputStream());
+      do {
+        String passwordCandidate=in.readLine();
+        if (config.getPassword().equals(passwordCandidate)) {
+          out.writeBytes("ACCEPT\n");
+          break;
+        }
+ else {
+          out.writeBytes("REJECT\n");
+        }
+        out.flush();
+      }
+ while (true);
+      while (true) {
+        out.writeBytes(config.toString());
+        out.flush();
+        config.parse(in.readLine());
+        System.out.println("Configuration changed by administrator.");
+        if (config.getCleanCache()) {
+          cache.clean();
+          config.setCleanCache(false);
+        }
+      }
+    }
+ catch (    Exception e) {
+      System.out.println("Connection with administrator closed.");
+    }
+ finally {
+      try {
+        out.close();
+        in.close();
+      }
+ catch (      Exception exc) {
+      }
+    }
+  }
+}

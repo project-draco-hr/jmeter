@@ -1,0 +1,12 @@
+{
+  final int xPos=model.getSampleCount();
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      Graphics g=getGraphics();
+      if (g != null) {
+        drawSample(xPos,oneSample,g);
+      }
+    }
+  }
+);
+}

@@ -1,0 +1,8 @@
+{
+  if (o instanceof AbstractTestElement) {
+    return ((AbstractTestElement)o).testInfo.equals(testInfo);
+  }
+ else {
+    return false;
+  }
+}

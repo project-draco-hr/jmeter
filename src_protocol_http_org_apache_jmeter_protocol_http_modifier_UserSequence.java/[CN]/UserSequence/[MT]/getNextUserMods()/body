@@ -1,0 +1,13 @@
+{
+  if (!indexOfUsers.hasNext()) {
+    indexOfUsers=allUsers.iterator();
+  }
+  Map user;
+  if (indexOfUsers.hasNext()) {
+    user=(Map)indexOfUsers.next();
+  }
+ else {
+    user=new HashMap();
+  }
+  return user;
+}

@@ -1,0 +1,47 @@
+{
+  if (previousResult == null || previousResult.getResponseData() == null) {
+    return defaultValue;
+  }
+  List collectAllMatches=new ArrayList();
+  try {
+    PatternMatcher matcher=new Perl5Matcher();
+    String responseText=new String(previousResult.getResponseData());
+    PatternMatcherInput input=new PatternMatcherInput(responseText);
+    while (matcher.contains(input,searchPattern)) {
+      MatchResult match=matcher.getMatch();
+      collectAllMatches.add(match);
+    }
+  }
+ catch (  NumberFormatException e) {
+    e.printStackTrace();
+  }
+  if (collectAllMatches.size() == 0) {
+    return defaultValue;
+  }
+  if (valueIndex.equals(ALL)) {
+    StringBuffer value=new StringBuffer();
+    Iterator it=collectAllMatches.iterator();
+    boolean first=true;
+    while (it.hasNext()) {
+      if (!first) {
+        value.append(between);
+        first=false;
+      }
+      value.append(generateResult((MatchResult)it.next()));
+    }
+    return value.toString();
+  }
+ else   if (valueIndex.equals(RAND)) {
+    return generateResult((MatchResult)collectAllMatches.get(rand.nextInt(collectAllMatches.size())));
+  }
+ else {
+    try {
+      int index=Integer.parseInt(valueIndex) - 1;
+      return generateResult((MatchResult)collectAllMatches.get(index));
+    }
+ catch (    NumberFormatException e) {
+      float ratio=Float.parseFloat(valueIndex);
+      return generateResult((MatchResult)collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1));
+    }
+  }
+}

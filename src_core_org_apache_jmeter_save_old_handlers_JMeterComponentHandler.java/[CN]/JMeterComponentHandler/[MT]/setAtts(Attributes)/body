@@ -1,0 +1,5 @@
+{
+  model=(TestElement)Class.forName(JMeterHandler.getComponentConversion(atts.getValue("type"))).newInstance();
+  model.setProperty(TestElement.NAME,atts.getValue("name"));
+  model.setProperty(TestElement.GUI_CLASS,JMeterHandler.getGuiClass(atts.getValue("type")));
+}

@@ -1,0 +1,8 @@
+{
+  super();
+  model=new GraphAccumModel();
+  model.addGraphAccumListener(this);
+  init();
+  catClass.debug("Start : GraphAccumVisualizer1");
+  catClass.debug("End : GraphAccumVisualizer1");
+}

@@ -1,0 +1,12 @@
+{
+  Iterator iter=listeners.iterator();
+  if (bigChange) {
+    while (iter.hasNext()) {
+      ((GraphListener)iter.next()).updateGui();
+    }
+    bigChange=false;
+  }
+ else {
+    quickUpdate(current);
+  }
+}

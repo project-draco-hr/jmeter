@@ -1,0 +1,6 @@
+{
+  ByteArrayOutputStream tempOut=new ByteArrayOutputStream();
+  serializer.serialize(tempOut,SaveService.getConfiguration(result,functionalMode));
+  String serVer=tempOut.toString();
+  return serVer.substring(serVer.indexOf(System.getProperty("line.separator")));
+}

@@ -1,0 +1,61 @@
+{
+  NamedNodeMap nodeAtts=tempNode.getAttributes();
+  String tag=tempNode.getNodeName();
+  try {
+    if (inForm) {
+      HTTPSampler url=(HTTPSampler)urlConfigs.getLast();
+      if (tag.equalsIgnoreCase("form")) {
+        try {
+          urlConfigs.add(createFormUrlConfig(tempNode,context));
+        }
+ catch (        MalformedURLException e) {
+          inForm=false;
+        }
+      }
+ else       if (tag.equalsIgnoreCase("input")) {
+        url.addArgument(getAttributeValue(nodeAtts,"name"),getAttributeValue(nodeAtts,"value"));
+      }
+ else       if (tag.equalsIgnoreCase("textarea"))       try {
+        url.addArgument(getAttributeValue(nodeAtts,"name"),tempNode.getFirstChild().getNodeValue());
+      }
+ catch (      NullPointerException e) {
+        url.addArgument(getAttributeValue(nodeAtts,"name"),"");
+      }
+ else       if (tag.equalsIgnoreCase("select"))       selectName=getAttributeValue(nodeAtts,"name");
+ else       if (tag.equalsIgnoreCase("option")) {
+        String value=getAttributeValue(nodeAtts,"value");
+        if (value == null) {
+          try {
+            value=tempNode.getFirstChild().getNodeValue();
+          }
+ catch (          NullPointerException e) {
+            value="";
+          }
+        }
+        url.addArgument(selectName,value);
+      }
+    }
+ else     if (tag.equalsIgnoreCase("form")) {
+      try {
+        urlConfigs.add(createFormUrlConfig(tempNode,context));
+        inForm=true;
+      }
+ catch (      MalformedURLException e) {
+        inForm=false;
+      }
+      try {
+        Thread.sleep(5000);
+      }
+ catch (      Exception e) {
+      }
+    }
+  }
+ catch (  Exception ex) {
+    System.out.println("Some bad HTML " + printNode(tempNode));
+  }
+  NodeList childNodes=tempNode.getChildNodes();
+  for (int x=0; x < childNodes.getLength(); x++) {
+    inForm=recurseForm(childNodes.item(x),urlConfigs,context,selectName,inForm);
+  }
+  return inForm;
+}

@@ -1,0 +1,15 @@
+{
+  this.setLayout(new BorderLayout(10,10));
+  this.setBorder(BorderFactory.createEmptyBorder(5,10,5,5));
+  this.add(getNamePanel(),BorderLayout.NORTH);
+  JPanel southPanel=new JPanel(new BorderLayout());
+  functionalMode=new JCheckBox(JMeterUtils.getResString("functional_mode"));
+  southPanel.add(functionalMode,BorderLayout.NORTH);
+  JTextArea explain=new JTextArea(JMeterUtils.getResString("functional_mode_explanation"));
+  explain.setColumns(30);
+  explain.setRows(10);
+  explain.setBackground(this.getBackground());
+  southPanel.add(explain,BorderLayout.CENTER);
+  add(getVariablePanel(),BorderLayout.CENTER);
+  add(southPanel,BorderLayout.SOUTH);
+}

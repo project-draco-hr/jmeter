@@ -1,0 +1,5 @@
+{
+  if (config instanceof JndiConfig) {
+    updatePropertyIfAbsent((JndiConfig)config);
+  }
+}

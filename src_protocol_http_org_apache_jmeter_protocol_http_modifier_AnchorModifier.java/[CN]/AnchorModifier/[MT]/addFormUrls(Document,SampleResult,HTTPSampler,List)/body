@@ -1,0 +1,20 @@
+{
+  NodeList rootList=html.getChildNodes();
+  List urls=new LinkedList();
+  for (int x=0; x < rootList.getLength(); x++) {
+    urls.addAll(HtmlParser.createURLFromForm(rootList.item(x),(HTTPSampler)result.getSamplerData()));
+  }
+  Iterator iter=urls.iterator();
+  while (iter.hasNext()) {
+    HTTPSampler newUrl=(HTTPSampler)iter.next();
+    try {
+      newUrl.setMethod(HTTPSampler.POST);
+      if (HtmlParser.isAnchorMatched(newUrl,config)) {
+        potentialLinks.add(newUrl);
+      }
+    }
+ catch (    org.apache.oro.text.regex.MalformedPatternException e) {
+      System.out.println("Bad pattern");
+    }
+  }
+}

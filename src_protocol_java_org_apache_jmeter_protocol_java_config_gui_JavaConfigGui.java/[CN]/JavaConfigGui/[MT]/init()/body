@@ -1,0 +1,26 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  JPanel classnameRequestPanel=new JPanel();
+  classnameRequestPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  classnameRequestPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("protocol_java_border")));
+  classnameRequestPanel.add(getClassnamePanel());
+  classnameRequestPanel.add(getParameterPanel());
+  if (displayName) {
+    JPanel mainPanel=new JPanel();
+    Border margin=new EmptyBorder(10,10,5,10);
+    mainPanel.setBorder(margin);
+    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("protocol_java_config_tile"));
+    Font curFont=panelTitleLabel.getFont();
+    int curFontSize=curFont.getSize();
+    curFontSize+=4;
+    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+    mainPanel.add(panelTitleLabel);
+    mainPanel.add(getNamePanel());
+    mainPanel.add(classnameRequestPanel);
+    this.add(mainPanel);
+  }
+ else {
+    this.add(classnameRequestPanel);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  Iterator iter=getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next();
+    if (arg.getName().equals(argName)) {
+      iter.remove();
+    }
+  }
+}

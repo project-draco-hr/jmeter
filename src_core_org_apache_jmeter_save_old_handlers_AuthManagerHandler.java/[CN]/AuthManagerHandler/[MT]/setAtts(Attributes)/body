@@ -1,0 +1,5 @@
+{
+  authMan=new AuthManager();
+  authMan.setName(atts.getValue("name"));
+  authMan.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.gui.AuthPanel");
+}

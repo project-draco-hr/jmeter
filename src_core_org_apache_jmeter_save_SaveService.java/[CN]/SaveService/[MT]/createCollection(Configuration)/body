@@ -1,0 +1,19 @@
+{
+  Collection coll=(Collection)Class.forName((String)config.getAttribute("class")).newInstance();
+  Configuration[] items=config.getChildren();
+  for (int i=0; i < items.length; i++) {
+    if (items[i].getName().equals("property")) {
+      coll.add(items[i].getValue());
+    }
+ else     if (items[i].getName().equals("testelement")) {
+      coll.add(createTestElement(items[i]));
+    }
+ else     if (items[i].getName().equals("collection")) {
+      coll.add(createCollection(items[i]));
+    }
+ else     if (items[i].getName().equals("string")) {
+      coll.add(items[i].getValue());
+    }
+  }
+  return coll;
+}

@@ -1,0 +1,92 @@
+{
+  fileMenu=new JMenu(JMeterUtils.getResString("file"));
+  fileMenu.setMnemonic('F');
+  file_save_all=new JMenuItem(JMeterUtils.getResString("save_all"),'A');
+  file_save_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A,KeyEvent.CTRL_MASK));
+  file_save_all.setActionCommand("save_all");
+  file_save_all.addActionListener(ActionRouter.getInstance());
+  file_save_all.setEnabled(true);
+  file_load=new JMenuItem(JMeterUtils.getResString("open"),'O');
+  file_load.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O,KeyEvent.CTRL_MASK));
+  file_load.addActionListener(ActionRouter.getInstance());
+  file_load.setEnabled(false);
+  file_new=new JMenuItem(JMeterUtils.getResString("new"),'N');
+  file_new.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,KeyEvent.CTRL_MASK));
+  file_new.setActionCommand("new");
+  file_new.addActionListener(ActionRouter.getInstance());
+  file_exit=new JMenuItem(JMeterUtils.getResString("exit"),'X');
+  file_exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q,KeyEvent.CTRL_MASK));
+  file_exit.setActionCommand("exit");
+  file_exit.addActionListener(ActionRouter.getInstance());
+  fileMenu.add(file_new);
+  fileMenu.add(file_load);
+  fileMenu.add(file_save_all);
+  fileMenu.addSeparator();
+  fileMenu.add(file_exit);
+  editMenu=new JMenu(JMeterUtils.getResString("edit"));
+  editMenu.setEnabled(false);
+  runMenu=new JMenu(JMeterUtils.getResString("run"));
+  runMenu.setMnemonic('R');
+  run_start=new JMenuItem(JMeterUtils.getResString("start"),'S');
+  run_start.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,KeyEvent.CTRL_MASK));
+  run_start.addActionListener(ActionRouter.getInstance());
+  run_start.setActionCommand("start");
+  run_stop=new JMenuItem(JMeterUtils.getResString("stop"),'T');
+  run_stop.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PERIOD,KeyEvent.CTRL_MASK));
+  run_stop.setEnabled(false);
+  run_stop.addActionListener(ActionRouter.getInstance());
+  run_stop.setActionCommand("stop");
+  run_clear=new JMenuItem(JMeterUtils.getResString("clear"),'C');
+  run_clear.addActionListener(ActionRouter.getInstance());
+  run_clear.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR);
+  run_clearAll=new JMenuItem(JMeterUtils.getResString("clear_all"),'a');
+  run_clearAll.addActionListener(ActionRouter.getInstance());
+  run_clearAll.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR_ALL);
+  runMenu.add(run_start);
+  if (remote_start != null) {
+    runMenu.add(remote_start);
+  }
+  runMenu.add(run_stop);
+  if (remote_stop != null) {
+    runMenu.add(remote_stop);
+  }
+  runMenu.addSeparator();
+  runMenu.add(run_clear);
+  runMenu.add(run_clearAll);
+  optionsMenu=new JMenu(JMeterUtils.getResString("option"));
+  JMenuItem functionHelper=new JMenuItem(JMeterUtils.getResString("function_dialog_menu_item"),'F');
+  functionHelper.addActionListener(ActionRouter.getInstance());
+  functionHelper.setActionCommand("functions");
+  functionHelper.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F,KeyEvent.CTRL_MASK));
+  lafMenu=new JMenu(JMeterUtils.getResString("appearance"));
+  UIManager.LookAndFeelInfo lafs[]=UIManager.getInstalledLookAndFeels();
+  for (int i=0; i < lafs.length; ++i) {
+    JMenuItem laf=new JMenuItem(lafs[i].getName());
+    laf.addActionListener(ActionRouter.getInstance());
+    laf.setActionCommand("laf:" + lafs[i].getClassName());
+    lafMenu.setMnemonic('L');
+    lafMenu.add(laf);
+  }
+  optionsMenu.setMnemonic('O');
+  optionsMenu.add(functionHelper);
+  optionsMenu.add(lafMenu);
+  if (SSLManager.isSSLSupported()) {
+    sslManager=new JMenuItem(JMeterUtils.getResString("sslManager"));
+    sslManager.addActionListener(ActionRouter.getInstance());
+    sslManager.setActionCommand("sslManager");
+    sslManager.setMnemonic('S');
+    sslManager.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M,KeyEvent.CTRL_MASK));
+    optionsMenu.add(sslManager);
+  }
+  helpMenu=new JMenu(JMeterUtils.getResString("help"));
+  helpMenu.setMnemonic('H');
+  help_about=new JMenuItem(JMeterUtils.getResString("about"),'A');
+  help_about.setActionCommand("about");
+  help_about.addActionListener(ActionRouter.getInstance());
+  helpMenu.add(help_about);
+  this.add(fileMenu);
+  this.add(editMenu);
+  this.add(runMenu);
+  this.add(optionsMenu);
+  this.add(helpMenu);
+}

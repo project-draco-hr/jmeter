@@ -1,0 +1,41 @@
+{
+  String command=action.getActionCommand();
+  if (command.equals(STOP)) {
+    model.stopProxy();
+    stop.setEnabled(false);
+    start.setEnabled(true);
+    model=null;
+  }
+ else   if (command.equals(START)) {
+    model=(ProxyControl)createTestElement();
+    model.startProxy();
+    start.setEnabled(false);
+    stop.setEnabled(true);
+  }
+ else   if (command.equals(RESTART)) {
+    model.stopProxy();
+    model=(ProxyControl)createTestElement();
+    model.startProxy();
+    restart.setEnabled(false);
+  }
+ else   if (command.equals(this.ADD_EXCLUDE)) {
+    excludeModel.addNewRow();
+    excludeModel.fireTableDataChanged();
+    if (model != null)     enableRestart();
+  }
+ else   if (command.equals(this.ADD_INCLUDE)) {
+    includeModel.addNewRow();
+    includeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(this.DELETE_EXCLUDE)) {
+    excludeModel.removeRow(excludeTable.getSelectedRow());
+    excludeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(this.DELETE_INCLUDE)) {
+    includeModel.removeRow(includeTable.getSelectedRow());
+    includeModel.fireTableDataChanged();
+    enableRestart();
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (config.expectsModification()) {
+    return config;
+  }
+ else {
+    return (ConfigElement)config.clone();
+  }
+}

@@ -1,0 +1,11 @@
+{
+  function.setParameters("It should say:${${__regexFunction(" + URLEncoder.encode("<html>(.*)</html>") + ",$1$)}}");
+  assertEquals(3,function.compiledComponents.size());
+  assertEquals("It should say:${",function.compiledComponents.getFirst().toString());
+  assertTrue(function.hasFunction());
+  assertTrue(!function.hasStatics());
+  assertEquals("hello world",((Function)function.compiledComponents.get(1)).execute(result,null));
+  assertEquals("}",function.compiledComponents.get(2).toString());
+  assertEquals("It should say:${hello world}",function.execute(result,null));
+  assertEquals("It should say:${<html>(.*)</html>,$1$}",function.execute(null,null));
+}

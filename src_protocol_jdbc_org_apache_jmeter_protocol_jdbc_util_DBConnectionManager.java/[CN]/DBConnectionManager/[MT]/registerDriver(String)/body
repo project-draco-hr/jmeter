@@ -1,0 +1,10 @@
+{
+  try {
+    DriverManager.registerDriver((Driver)Class.forName(driver).newInstance());
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    return false;
+  }
+  return true;
+}

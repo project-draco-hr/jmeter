@@ -1,0 +1,43 @@
+{
+  File datafile=new File(file);
+  BufferedReader reader=null;
+  if (datafile.canRead()) {
+    reader=new BufferedReader(new FileReader(datafile));
+  }
+ else {
+    JOptionPane.showMessageDialog(null,"The file you specified cannot be read.","Information",JOptionPane.INFORMATION_MESSAGE);
+    return;
+  }
+  String line;
+  while ((line=reader.readLine()) != null) {
+    try {
+      line.trim();
+      if (line.startsWith("#") || line.length() == 0)       continue;
+      int splitter=line.lastIndexOf(' ');
+      String key=line.substring(0,splitter);
+      int len=line.length() - 1;
+      Integer value=null;
+      if (line.charAt(len) == ',') {
+        value=new Integer(line.substring(splitter + 1,len));
+      }
+ else {
+        value=new Integer(line.substring(splitter + 1));
+      }
+      Vector v=getData(key);
+      if (v == null) {
+        v=new Vector();
+        this.data.put(key,v);
+      }
+      v.addElement(value);
+    }
+ catch (    NumberFormatException nfe) {
+      System.out.println(nfe.toString());
+      System.out.println("This line could not be parsed: " + line);
+    }
+catch (    Exception e) {
+      System.out.println(e.toString());
+    }
+  }
+  reader.close();
+  showPanel();
+}

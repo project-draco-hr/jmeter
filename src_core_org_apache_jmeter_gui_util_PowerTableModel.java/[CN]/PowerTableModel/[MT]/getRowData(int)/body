@@ -1,0 +1,7 @@
+{
+  Object[] rowData=new Object[getColumnCount()];
+  for (int i=0; i < rowData.length; i++) {
+    rowData[i]=model.getColumnValue(i,row);
+  }
+  return rowData;
+}

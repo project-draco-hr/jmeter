@@ -1,0 +1,40 @@
+{
+  List listPaths=null;
+  ArrayList listClasses=null;
+  List listSuperClasses=null;
+  String[] strPathsOrJars=JMeterUtils.split(JMeterUtils.getPropDefault("search_paths","lib/ext"),";");
+  for (int i=0; i < strPathsOrJars.length; i++) {
+    File file=new File(strPathsOrJars[i]);
+    if (!file.isAbsolute()) {
+      file=new File(JMeterUtils.getJMeterHome(),strPathsOrJars[i]);
+      strPathsOrJars[i]=file.getPath();
+    }
+  }
+  strPathsOrJars=addJarsInPath(strPathsOrJars);
+  if (catClass.isDebugEnabled()) {
+    for (int k=0; k < strPathsOrJars.length; k++) {
+      catClass.debug("strPathsOrJars : " + strPathsOrJars[k]);
+    }
+  }
+  listPaths=getClasspathMatches(strPathsOrJars);
+  if (catClass.isDebugEnabled()) {
+    Iterator tIter=listPaths.iterator();
+    for (; tIter.hasNext(); ) {
+      catClass.debug("listPaths : " + tIter.next());
+    }
+  }
+  listClasses=new ArrayList();
+  listSuperClasses=new ArrayList();
+  for (int i=0; i < superClasses.length; i++) {
+    listSuperClasses.add(superClasses[i].getName());
+  }
+  findClassesInPaths(listPaths,listClasses);
+  if (catClass.isDebugEnabled()) {
+    Iterator tIter=listClasses.iterator();
+    for (; tIter.hasNext(); ) {
+      catClass.debug("listClasses : " + tIter.next());
+    }
+  }
+  List subClassList=findAllSubclasses(listSuperClasses,listClasses,innerClasses);
+  return subClassList;
+}

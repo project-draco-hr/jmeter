@@ -1,0 +1,24 @@
+{
+  int n=r.length;
+  this._m=n;
+  this._r=new float[n];
+  for (int i=0; i < n; i++) {
+    _r[i]=r[i];
+  }
+  this._n=n - 2;
+  try {
+    long startTime=System.currentTimeMillis();
+    this.interpolation();
+    if (DEBUG) {
+      long endTime=System.currentTimeMillis();
+      long elapsedTime=endTime - startTime;
+      System.out.print("New Spline curve interpolated in ");
+      System.out.println(elapsedTime + " ms");
+    }
+  }
+ catch (  Exception e) {
+    System.err.print("Error when interpolating : ");
+    System.err.println(e);
+    e.printStackTrace();
+  }
+}

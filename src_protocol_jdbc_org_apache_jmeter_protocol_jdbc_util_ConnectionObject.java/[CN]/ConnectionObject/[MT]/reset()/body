@@ -1,0 +1,15 @@
+{
+  if (con != null) {
+    try {
+      con.close();
+    }
+ catch (    Exception e) {
+    }
+    con=null;
+  }
+  con=manager.newConnection(key);
+  useCount=0;
+  lastAccessed=System.currentTimeMillis();
+  inUse=false;
+  inMaintenance=false;
+}

@@ -1,0 +1,24 @@
+{
+  DefaultConfiguration config=new DefaultConfiguration(SAMPLE_RESULT_TAG_NAME,"JMeter Save Service");
+  config.setAttribute(TIME,"" + result.getTime());
+  config.setAttribute(LABEL,result.getSampleLabel());
+  config.setAttribute(RESPONSE_CODE,result.getResponseCode());
+  config.setAttribute(RESPONSE_MESSAGE,result.getResponseMessage());
+  config.setAttribute(THREAD_NAME,result.getThreadName());
+  config.setAttribute(DATA_TYPE,result.getDataType());
+  config.setAttribute(TIME_STAMP,"" + result.getTimeStamp());
+  config.setAttribute(SUCCESSFUL,new Boolean(result.isSuccessful()).toString());
+  SampleResult[] subResults=result.getSubResults();
+  for (int i=0; i < subResults.length; i++) {
+    config.addChild(getConfiguration(subResults[i],funcTest));
+  }
+  if (funcTest) {
+    config.addChild(getConfigForTestElement(null,result.getSamplerData()));
+    AssertionResult[] assResults=result.getAssertionResults();
+    for (int i=0; i < assResults.length; i++) {
+      config.addChild(getConfiguration(assResults[i]));
+    }
+    config.addChild(getConfiguration(result.getResponseData()));
+  }
+  return config;
+}

@@ -1,0 +1,10 @@
+{
+  if (e.getActionCommand().equals("start")) {
+    startEngine();
+  }
+ else   if (e.getActionCommand().equals("stop")) {
+    engine.stopTest();
+    engine=null;
+    GuiPackage.getInstance().getMainFrame().showStoppingMessage();
+  }
+}

@@ -1,0 +1,9 @@
+{
+  InetAddress addr=InetAddress.getByName(host);
+  s=new Socket(addr,port);
+  out=new BufferedWriter(new OutputStreamWriter(s.getOutputStream()));
+  InputStreamReader isr=new InputStreamReader(s.getInputStream());
+  in=new BufferedReader(isr);
+  send("USER " + username);
+  send("PASS " + password);
+}

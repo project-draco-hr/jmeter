@@ -1,0 +1,12 @@
+{
+  catClass.info("Start : getMethodRemoteNamePanel1");
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("jndi_method_remote_name")));
+  String methodName=model.getMethodRemoteName();
+  if (methodName != null) {
+    methodRemoteNameBox.setSelectedItem(methodName);
+  }
+  panel.add(methodRemoteNameBox);
+  catClass.info("End : getMethodRemoteNamePanel1");
+  return panel;
+}

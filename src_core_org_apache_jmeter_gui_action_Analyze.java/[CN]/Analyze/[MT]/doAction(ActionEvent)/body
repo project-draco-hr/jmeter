@@ -1,0 +1,16 @@
+{
+  FileReporter analyzer=new FileReporter();
+  try {
+    File f=FileDialoger.promptToOpenFile(new String[]{".jtl"}).getSelectedFile();
+    if (f != null) {
+      try {
+        analyzer.init(f.getPath());
+      }
+ catch (      IOException err) {
+        JMeterUtils.reportErrorToUser("The file you selected could not be analyzed");
+      }
+    }
+  }
+ catch (  NullPointerException err) {
+  }
+}

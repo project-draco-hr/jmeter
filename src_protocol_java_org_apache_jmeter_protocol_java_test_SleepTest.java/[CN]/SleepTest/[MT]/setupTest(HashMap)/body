@@ -1,0 +1,14 @@
+{
+  cat.debug(whoAmI() + "\tsetupTest()");
+  Iterator argsIt=arguments.entrySet().iterator();
+  while (argsIt.hasNext()) {
+    Entry entry=(Entry)argsIt.next();
+    cat.debug(entry.getKey().toString() + "=" + entry.getValue().toString());
+  }
+  if (arguments.containsKey("SleepTime")) {
+    setSleepTime(arguments.get("SleepTime"));
+  }
+  if (arguments.containsKey("SleepMask")) {
+    setSleepMask(arguments.get("SleepMask"));
+  }
+}

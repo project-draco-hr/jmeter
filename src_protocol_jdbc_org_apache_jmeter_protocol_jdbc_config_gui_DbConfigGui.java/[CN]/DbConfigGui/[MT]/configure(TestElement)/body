@@ -1,0 +1,6 @@
+{
+  super.configure(element);
+  urlField.setText((String)element.getProperty(JDBCSampler.URL));
+  driverField.setText((String)element.getProperty(JDBCSampler.DRIVER));
+  loginGui.configure(element);
+}

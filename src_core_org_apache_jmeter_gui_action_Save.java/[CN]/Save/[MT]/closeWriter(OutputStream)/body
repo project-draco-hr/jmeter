@@ -1,0 +1,10 @@
+{
+  if (writer != null) {
+    try {
+      writer.close();
+    }
+ catch (    Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+}

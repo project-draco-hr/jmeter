@@ -1,0 +1,58 @@
+{
+  send("SYST");
+  getResponse();
+  send("PWD");
+  getResponse();
+  send("TYPE I");
+  getResponse();
+  String data="";
+  if (!passive) {
+    dataPort++;
+    int upper=getUpper(dataPort);
+    int lower=getLower(dataPort);
+    String ip=InetAddress.getLocalHost().getHostAddress().replace('.',',');
+    String port=ip + "," + upper+ ","+ lower;
+    System.out.println("port:" + port);
+    send("PORT " + port);
+    getResponse();
+    dataGrabber grab=new dataGrabber(ip,dataPort);
+    while (!grab.isPortCreated()) {
+    }
+    send("RETR " + file);
+    String response=in.readLine();
+    System.out.println(response);
+    System.out.println(dataPort);
+    data="FTP client - File Not Found";
+    if (!response.startsWith("5")) {
+      while (!grab.isDone()) {
+      }
+      data=grab.getData();
+    }
+  }
+ else {
+    send("PASV");
+    String port=getResponse();
+    while (!port.startsWith("227")) {
+      port=getResponse();
+    }
+    int start=port.indexOf('(');
+    int end=port.indexOf(')');
+    port=port.substring(start + 1,end);
+    int a=port.indexOf(',');
+    int b=port.indexOf(',',a + 1);
+    int c=port.indexOf(',',b + 1);
+    int d=port.indexOf(',',c + 1);
+    int e=port.indexOf(',',d + 1);
+    String ip=port.substring(0,a) + "." + port.substring(a + 1,b)+ "."+ port.substring(b + 1,c)+ "."+ port.substring(c + 1,d);
+    int upper=Integer.parseInt(port.substring(d + 1,e));
+    int lower=Integer.parseInt(port.substring(e + 1));
+    int dataPort=getPort(upper,lower);
+    send("RETR " + file);
+    dataGrabber grab=new dataGrabber(ip,dataPort);
+    getResponse();
+    while (!grab.isDone()) {
+    }
+    data=grab.getData();
+  }
+  return data;
+}

@@ -1,0 +1,4 @@
+{
+  config.setBytesCached(config.getBytesCached() + nbytes);
+  if (config.getBytesFree() <= MinFreeSpace)   MakeFreeSpace(rawUrl);
+}

@@ -1,0 +1,8 @@
+{
+  Object[] returnValue;
+  Object o;
+  List temp=(List)data.get(columnName);
+  if (temp != null)   returnValue=temp.toArray();
+ else   returnValue=new Object[0];
+  return returnValue;
+}

@@ -1,0 +1,9 @@
+{
+  if (pFile.isDirectory()) {
+    return true;
+  }
+  if (acceptableExtensions.contains(getExtension(pFile)) == true) {
+    return true;
+  }
+  return false;
+}

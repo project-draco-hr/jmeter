@@ -1,0 +1,20 @@
+{
+  if (++counter < samples) {
+    int s=(int)sam;
+    if (cursor < window - 1) {
+      cursor++;
+    }
+ else {
+      cursor=0;
+    }
+    sum-=sample[cursor];
+    sample[cursor]=s;
+    sum+=s;
+    if (s > max)     max=s;
+    average[cursor]=sum / window;
+  }
+ else {
+    active=false;
+  }
+  return average[cursor];
+}

@@ -1,0 +1,12 @@
+{
+  JMeter driver=new JMeter();
+  if (testFile == null) {
+    throw new IllegalUserActionException();
+  }
+  if (logFile == null) {
+    driver.run(testFile.getArgument(),null);
+  }
+ else {
+    driver.run(testFile.getArgument(),logFile.getArgument());
+  }
+}

@@ -1,0 +1,9 @@
+{
+  Iterator iter=new LinkedList(tree.list()).iterator();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    convertTree(tree.get(item));
+    JMeterGUIComponent comp=generateGUIComponent(item);
+    tree.replace(item,comp);
+  }
+}

@@ -1,0 +1,28 @@
+{
+  Dimension d=this.getSize();
+  if (data) {
+    int data=(int)(oneSample.data * d.height / model.getGraphMax());
+    if (!oneSample.error) {
+      g.setColor(Color.black);
+    }
+ else {
+      g.setColor(JMeterColor.YELLOW);
+    }
+    g.drawLine(x % width,d.height - data,x % width,d.height - data - 1);
+  }
+  if (average) {
+    int average=(int)(oneSample.average * d.height / model.getGraphMax());
+    g.setColor(Color.blue);
+    g.drawLine(x % width,d.height - average,x % width,(d.height - average - 1));
+  }
+  if (deviation) {
+    int deviation=(int)(oneSample.deviation * d.height / model.getGraphMax());
+    g.setColor(Color.red);
+    g.drawLine(x % width,d.height - deviation,x % width,(d.height - deviation - 1));
+  }
+  if (throughput) {
+    int throughput=(int)(oneSample.throughput * d.height / model.getThroughputMax());
+    g.setColor(JMeterColor.dark_green);
+    g.drawLine(x % width,d.height - throughput,x % width,(d.height - throughput - 1));
+  }
+}

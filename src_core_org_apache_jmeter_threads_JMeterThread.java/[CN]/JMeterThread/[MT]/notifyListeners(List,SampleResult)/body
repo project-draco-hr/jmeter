@@ -1,0 +1,9 @@
+{
+  SampleEvent event=new SampleEvent(result,(String)controller.getProperty(TestElement.NAME));
+  Iterator iter=listeners.iterator();
+  while (iter.hasNext()) {
+    SampleListener lis=(SampleListener)iter.next();
+    SampleListener item=lis;
+    item.sampleOccurred(event);
+  }
+}

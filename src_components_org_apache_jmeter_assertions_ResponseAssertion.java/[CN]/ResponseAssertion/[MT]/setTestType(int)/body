@@ -1,0 +1,15 @@
+{
+  setProperty(TEST_TYPE,new Integer(testType));
+  if ((testType & NOT) > 0) {
+    notMessage="not ";
+  }
+ else {
+    notMessage="";
+  }
+  if ((testType & CONTAINS) > 0) {
+    failMessage="to contain: ";
+  }
+ else {
+    failMessage="to match: ";
+  }
+}

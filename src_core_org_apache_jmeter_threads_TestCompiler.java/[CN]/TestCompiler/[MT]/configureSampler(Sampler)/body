@@ -1,0 +1,19 @@
+{
+  currentSampler=sampler;
+  SamplePackage ret=new SamplePackage();
+  Sampler clonedSampler=sampler;
+  if (sampler instanceof PerSampleClonable) {
+    clonedSampler=(Sampler)((PerSampleClonable)sampler).clone();
+  }
+  if (objectsWithFunctions.contains(sampler)) {
+    replaceValues(clonedSampler);
+  }
+  ret.setSampler(clonedSampler);
+  ret.addSampleListener(this);
+  Iterator iter=((List)samplerConfigs.get(sampler)).iterator();
+  while (iter.hasNext()) {
+    TestElement config=(TestElement)iter.next();
+    layerElement(ret,config,clonedSampler);
+  }
+  return ret;
+}

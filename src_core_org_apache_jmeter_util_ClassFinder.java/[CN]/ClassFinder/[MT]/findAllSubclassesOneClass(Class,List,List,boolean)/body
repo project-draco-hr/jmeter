@@ -1,0 +1,30 @@
+{
+  Iterator iterClasses=null;
+  String strClassName=null;
+  String strSuperClassName=null;
+  Class c=null;
+  Class cParent=null;
+  boolean bIsSubclass=false;
+  strSuperClassName=theClass.getName();
+  iterClasses=listAllClasses.iterator();
+  while (iterClasses.hasNext()) {
+    strClassName=(String)iterClasses.next();
+    if ((strClassName.indexOf("$") == -1) || innerClasses) {
+      try {
+        if (strClassName == null)         continue;
+        c=Class.forName(strClassName,true,Thread.currentThread().getContextClassLoader());
+        if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers())) {
+          bIsSubclass=theClass.isAssignableFrom(c);
+        }
+ else {
+          bIsSubclass=false;
+        }
+        if (bIsSubclass) {
+          listSubClasses.add(strClassName);
+        }
+      }
+ catch (      Throwable ignored) {
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  catClass.info("Start : getMethodParmsValues1");
+  int childCount=root.getChildCount();
+  Object[] parmsValues=new Object[childCount];
+  for (int i=0; i < childCount; i++) {
+    parmsValues[i]=formObject((DefaultMutableTreeNode)treeModelHome.getChild(root,i));
+  }
+  catClass.info("End : getMethodParmsValues1");
+  return parmsValues;
+}

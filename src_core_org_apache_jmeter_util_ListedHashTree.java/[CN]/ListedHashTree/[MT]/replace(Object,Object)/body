@@ -1,0 +1,6 @@
+{
+  ListedHashTree tree=this.get(currentKey);
+  data.remove(currentKey);
+  data.put(newKey,tree);
+  order.set(order.indexOf(currentKey),newKey);
+}

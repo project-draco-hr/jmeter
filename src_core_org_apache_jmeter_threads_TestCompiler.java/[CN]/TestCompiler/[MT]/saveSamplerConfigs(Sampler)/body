@@ -1,0 +1,23 @@
+{
+  List configs=new LinkedList();
+  for (int i=stack.size(); i > 0; i--) {
+    Iterator iter=testTree.list(stack.subList(0,i)).iterator();
+    while (iter.hasNext()) {
+      TestElement item=(TestElement)iter.next();
+synchronized (item) {
+        if (hasFunctions(item)) {
+          objectsWithFunctions.add(item);
+        }
+      }
+      if (item != sam) {
+        configs.add(item);
+      }
+    }
+  }
+synchronized (sam) {
+    if (hasFunctions(sam)) {
+      objectsWithFunctions.add(sam);
+    }
+  }
+  samplerConfigs.put(sam,configs);
+}

@@ -1,0 +1,14 @@
+{
+  super.paintComponent(g);
+  catClass.debug("Start : paintComponent1");
+  Dimension d=this.getSize();
+synchronized (model.getList()) {
+    previousPtsAlloc=false;
+    Iterator e=model.getList().iterator();
+    for (int i=0; e.hasNext(); i++) {
+      SampleResult s=(SampleResult)e.next();
+      drawSample(i * PLOT_X_WIDTH,s,g);
+    }
+  }
+  catClass.debug("End : paintComponent1");
+}

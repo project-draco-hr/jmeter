@@ -1,0 +1,12 @@
+{
+  if (out == null && getFilename() != null) {
+    if (out == null) {
+      try {
+        out=getFileWriter(getFilename());
+      }
+ catch (      FileNotFoundException e) {
+        out=null;
+      }
+    }
+  }
+}

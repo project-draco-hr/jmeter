@@ -1,0 +1,24 @@
+{
+  JPanel panel=new JPanel();
+  stringTable=new JTable(0,1);
+  stringTable.addFocusListener(this);
+  tableModel=new PowerTableModel(new String[]{COL_NAME},new Class[]{String.class});
+  stringTable.setModel(tableModel);
+  TextAreaCellRenderer renderer=new TextAreaCellRenderer();
+  stringTable.setDefaultEditor(String.class,new TextAreaTableCellEditor());
+  stringTable.setRowHeight(renderer.getPreferredHeight());
+  stringTable.setDefaultRenderer(String.class,renderer);
+  panel.setLayout(new BorderLayout());
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("assertion_patterns_to_test")));
+  panel.add(new JScrollPane(stringTable),BorderLayout.CENTER);
+  addPattern=new JButton(JMeterUtils.getResString("add"));
+  deletePattern=new JButton(JMeterUtils.getResString("delete"));
+  addPattern.addActionListener(new AddPatternListener());
+  deletePattern.addActionListener(new ClearPatternsListener());
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.add(addPattern);
+  buttonPanel.add(deletePattern);
+  panel.add(buttonPanel,BorderLayout.SOUTH);
+  deletePattern.setEnabled(false);
+  return panel;
+}

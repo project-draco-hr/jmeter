@@ -1,0 +1,21 @@
+{
+  SampleResult result=new SampleResult();
+  result.setThreadName(config.getAttribute(THREAD_NAME,""));
+  result.setDataType(config.getAttribute(DATA_TYPE,""));
+  result.setResponseCode(config.getAttribute(RESPONSE_CODE,""));
+  result.setResponseMessage(config.getAttribute(RESPONSE_MESSAGE,""));
+  result.setTime(config.getAttributeAsLong(TIME,0L));
+  result.setTimeStamp(config.getAttributeAsLong(TIME_STAMP,0L));
+  result.setSuccessful(config.getAttributeAsBoolean(SUCCESSFUL,false));
+  result.setSampleLabel(config.getAttribute(LABEL,""));
+  result.setResponseData(getBinaryData(config.getChild(BINARY)));
+  Configuration[] subResults=config.getChildren(SAMPLE_RESULT_TAG_NAME);
+  for (int i=0; i < subResults.length; i++) {
+    result.addSubResult(getSampleResult(subResults[i]));
+  }
+  Configuration[] assResults=config.getChildren(ASSERTION_RESULT_TAG_NAME);
+  for (int i=0; i < assResults.length; i++) {
+    result.addAssertionResult(getAssertionResult(assResults[i]));
+  }
+  return result;
+}

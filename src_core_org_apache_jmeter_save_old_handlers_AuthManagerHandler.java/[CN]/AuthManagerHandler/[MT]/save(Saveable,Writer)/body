@@ -1,0 +1,8 @@
+{
+  AuthManager save=(AuthManager)s;
+  out.write("<AuthManager name=\"");
+  out.write(JMeterHandler.convertToXML(save.getName()));
+  out.write("\">\n");
+  JMeterHandler.writeObjects(save.getAuthObjects(),out);
+  out.write("</AuthManager>\n");
+}

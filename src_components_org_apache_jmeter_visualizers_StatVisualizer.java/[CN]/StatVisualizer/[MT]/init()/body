@@ -1,0 +1,20 @@
+{
+  this.setLayout(new BorderLayout());
+  JPanel mainPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel("Aggregate Report");
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel);
+  mainPanel.add(getFilePanel());
+  myStatTableModel=new StatTableModel();
+  myJTable=new JTable(myStatTableModel);
+  myJTable.setPreferredScrollableViewportSize(new Dimension(500,70));
+  myScrollPane=new JScrollPane(myJTable);
+  this.add(mainPanel,BorderLayout.NORTH);
+  this.add(myScrollPane,BorderLayout.CENTER);
+}

@@ -1,0 +1,30 @@
+{
+  super.paintComponent(g);
+  Dimension dimension=this.getSize();
+  int width=dimension.width;
+  int height=dimension.height;
+  if (model.getDataCurve() == null) {
+    g.setColor(this.getBackground());
+    g.fillRect(0,0,width,height);
+    g.setColor(WAITING_COLOR);
+    g.drawString(JMeterUtils.getResString("spline_visualizer_waitingmessage"),(width - 120) / 2,height - (height - 12) / 2);
+    return;
+  }
+  boolean resized=true;
+  if (width == lastWidth && height == lastHeight) {
+    resized=false;
+  }
+ else {
+    resized=true;
+    lastWidth=width;
+    lastHeight=height;
+  }
+  this.plot=model.getDataCurve().getPlots(width,height);
+  int n=plot.length;
+  int curY=plot[0];
+  for (int i=1; i < n; i++) {
+    g.setColor(Color.black);
+    g.drawLine(i - 1,height - curY - 1,i,height - plot[i] - 1);
+    curY=plot[i];
+  }
+}

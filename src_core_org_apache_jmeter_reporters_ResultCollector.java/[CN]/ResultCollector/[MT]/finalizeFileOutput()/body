@@ -1,0 +1,8 @@
+{
+  if (out != null) {
+    writeFileEnd();
+    out.close();
+    files.remove(getFilename());
+    out=null;
+  }
+}

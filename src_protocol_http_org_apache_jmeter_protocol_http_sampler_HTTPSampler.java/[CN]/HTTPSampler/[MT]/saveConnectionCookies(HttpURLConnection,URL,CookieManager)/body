@@ -1,0 +1,9 @@
+{
+  if (cookieManager != null) {
+    for (int i=1; conn.getHeaderFieldKey(i) != null; i++) {
+      if (conn.getHeaderFieldKey(i).equalsIgnoreCase("set-cookie")) {
+        cookieManager.addCookieFromHeader(conn.getHeaderField(i),u);
+      }
+    }
+  }
+}

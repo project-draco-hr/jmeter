@@ -1,0 +1,8 @@
+{
+  String retval=getPrefix() + Long.toString(_value) + getSuffix();
+  _value+=getIncrement();
+  if (_value > getUpperBound()) {
+    _value=getLowerBound();
+  }
+  return retval;
+}

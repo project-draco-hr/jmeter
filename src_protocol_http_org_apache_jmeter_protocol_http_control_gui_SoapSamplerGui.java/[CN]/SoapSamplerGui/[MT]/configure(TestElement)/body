@@ -1,0 +1,10 @@
+{
+  super.configure(el);
+  SoapSampler sampler=(SoapSampler)el;
+  try {
+    urlField.setText(sampler.getUrl().toString());
+  }
+ catch (  MalformedURLException e) {
+  }
+  soapXml.setText(sampler.getXmlData());
+}

@@ -1,0 +1,8 @@
+{
+  catClass.info("Start : clone1");
+  JndiTestSample control=new JndiTestSample();
+  control.setDefaultJndiConfig(defaultJndiConfig);
+  this.standardCloneProc(control);
+  catClass.info("End : clone1");
+  return control;
+}

@@ -1,0 +1,10 @@
+{
+  ProxyControl element=new ProxyControl();
+  element.setProperty(TestElement.NAME,getName());
+  element.setPort(Integer.parseInt(portField.getText()));
+  setIncludeListInProxyControl(element);
+  setExcludeListInProxyControl(element);
+  element.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+  element.setProperty(TestElement.TEST_CLASS,element.getClass().getName());
+  return element;
+}

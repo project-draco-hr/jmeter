@@ -1,0 +1,10 @@
+{
+  ThreadGroup tg=new ThreadGroup();
+  tg.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+  tg.setProperty(TestElement.TEST_CLASS,ThreadGroup.class.getName());
+  tg.setSamplerController((LoopController)loopPanel.createTestElement());
+  tg.setProperty(TestElement.NAME,namePanel.getName());
+  tg.setProperty(ThreadGroup.NUM_THREADS,threadInput.getText());
+  tg.setProperty(ThreadGroup.RAMP_TIME,rampInput.getText());
+  return tg;
+}

@@ -1,0 +1,19 @@
+{
+  if (isSupportedProtocol(url)) {
+    return null;
+  }
+  StringBuffer header=new StringBuffer();
+  for (Iterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
+    Authorization auth=(Authorization)enum.next();
+    if (url.toString().startsWith(auth.getURL())) {
+      header.append("Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass()));
+      break;
+    }
+  }
+  if (header.length() != 0) {
+    return header.toString();
+  }
+ else {
+    return null;
+  }
+}

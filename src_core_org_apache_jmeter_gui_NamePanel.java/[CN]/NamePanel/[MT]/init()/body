@@ -1,0 +1,5 @@
+{
+  this.setLayout(new FlowLayout(FlowLayout.LEFT));
+  this.add(new JLabel(JMeterUtils.getResString("name")));
+  this.add(nameField);
+}

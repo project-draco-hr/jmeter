@@ -1,0 +1,34 @@
+{
+  long sample=sampleResult.getTime();
+  this.n++;
+  this.sum+=sample;
+  this.average=this.sum / this.n;
+  if (SHOW_INCOMING_SAMPLES) {
+    incoming=sample;
+  }
+  if (sample > maximum) {
+    maximum=sample;
+  }
+  if (sample < minimum) {
+    minimum=sample;
+  }
+  samples.add(new Long(sample));
+  int n=getNumberOfCollectedSamples();
+  if ((n % (numberOfNodes * refreshPeriod)) == 0) {
+    float[] floatNode=new float[numberOfNodes];
+    long[] longSample=getSamples();
+    int loadFactor=n / numberOfNodes;
+    for (int i=0; i < numberOfNodes; i++) {
+      for (int j=0; j < loadFactor; j++) {
+        floatNode[i]+=getSample((i * loadFactor) + j);
+      }
+      floatNode[i]=floatNode[i] / loadFactor;
+    }
+    dataCurve=new Spline3(floatNode);
+    if (listener != null) {
+      listener.updateGui();
+    }
+  }
+ else {
+  }
+}

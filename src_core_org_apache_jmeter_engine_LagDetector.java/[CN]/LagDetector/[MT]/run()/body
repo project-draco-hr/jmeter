@@ -1,0 +1,18 @@
+{
+  running=true;
+  long totalTime=0;
+  long time;
+  totalLag=0;
+  count=0;
+  while (running) {
+    time=System.currentTimeMillis();
+    try {
+      currentThread().sleep(incr);
+    }
+ catch (    Exception e) {
+    }
+    time=System.currentTimeMillis() - time;
+    totalLag+=time - incr;
+    count++;
+  }
+}

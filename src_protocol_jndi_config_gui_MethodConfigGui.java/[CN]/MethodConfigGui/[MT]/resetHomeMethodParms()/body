@@ -1,0 +1,9 @@
+{
+  catClass.info("Start : resetHomeMethodParms1");
+  int totalChild=rootHome.getChildCount();
+  for (int i=0; i < totalChild; i++) {
+    treeModelHome.removeNodeFromParent((DefaultMutableTreeNode)rootHome.getChildAt(0));
+  }
+  rootHome.setUserObject("Root");
+  catClass.info("End : resetHomeMethodParms1");
+}

@@ -1,0 +1,16 @@
+{
+  if (keys.size() == 0) {
+    return getArray();
+  }
+  if (keys.size() == 1) {
+    return getArray(keys.first());
+  }
+ else {
+    Iterator iter=keys.iterator();
+    ListedHashTree tree=this;
+    while (iter.hasNext()) {
+      tree=tree.get(iter.next());
+    }
+    return tree.getArray();
+  }
+}

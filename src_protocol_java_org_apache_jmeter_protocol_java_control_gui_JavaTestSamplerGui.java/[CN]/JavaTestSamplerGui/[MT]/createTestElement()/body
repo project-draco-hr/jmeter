@@ -1,0 +1,7 @@
+{
+  JavaConfig config=(JavaConfig)javaPanel.createTestElement();
+  JavaSampler sampler=new JavaSampler();
+  this.configureTestElement(sampler);
+  sampler.addTestElement(config);
+  return sampler;
+}

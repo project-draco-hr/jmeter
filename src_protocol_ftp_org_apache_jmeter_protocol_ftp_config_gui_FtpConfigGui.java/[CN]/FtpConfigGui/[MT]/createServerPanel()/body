@@ -1,0 +1,7 @@
+{
+  JPanel serverPanel=new JPanel();
+  serverPanel.add(new JLabel(JMeterUtils.getResString("server")));
+  server.setName(SERVER);
+  serverPanel.add(server);
+  return serverPanel;
+}

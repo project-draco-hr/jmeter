@@ -1,0 +1,9 @@
+{
+  Map userDefinedVariables=new HashMap();
+  userDefinedVariables.put("my_regex",".*");
+  userDefinedVariables.put("server","jakarta.apache.org");
+  function=new CompoundFunction();
+  function.setUserDefinedVariables(userDefinedVariables);
+  result=new SampleResult();
+  result.setResponseData("<html>hello world</html>".getBytes());
+}

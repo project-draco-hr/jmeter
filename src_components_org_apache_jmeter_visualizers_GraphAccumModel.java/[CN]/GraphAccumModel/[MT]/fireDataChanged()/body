@@ -1,0 +1,14 @@
+{
+  catClass.debug("Start : fireDataChanged1");
+  Iterator iter=listeners.iterator();
+  if (bigChange) {
+    while (iter.hasNext()) {
+      ((GraphAccumListener)iter.next()).updateGui();
+    }
+    bigChange=false;
+  }
+ else {
+    quickUpdate(current);
+  }
+  catClass.debug("End : fireDataChanged1");
+}

@@ -1,0 +1,7 @@
+{
+  String string=(String)this.getProperty(METHOD_HOME_NAME);
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("getMethodHomeName1 : method home name - " + string);
+  }
+  return string;
+}

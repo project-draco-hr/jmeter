@@ -1,0 +1,6 @@
+{
+  LoopController controller=(LoopController)cont;
+  writeMainTag(out,controller);
+  writeSubElements(controller,out);
+  out.write("</LoopController>");
+}

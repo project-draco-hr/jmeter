@@ -1,0 +1,7 @@
+{
+  if (!dragging) {
+    dragging=true;
+    draggedNode=getCurrentNode();
+  }
+  changeSelectionIfDragging(e);
+}

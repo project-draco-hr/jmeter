@@ -1,0 +1,64 @@
+{
+  DBKey key=getKey();
+  long start;
+  long end;
+  long time;
+  time=start=end=0;
+  SampleResult res=new SampleResult();
+  Connection con=null;
+  ResultSet rs=null;
+  Statement stmt=null;
+  Data data=new Data();
+  res.setSampleLabel(getQuery());
+  start=System.currentTimeMillis();
+  try {
+    int count=0;
+    while (count < 20 && (con=manager.getConnection(key)) == null) {
+      try {
+        Thread.sleep(10);
+      }
+ catch (      Exception err) {
+        count++;
+      }
+    }
+    stmt=con.createStatement();
+    boolean retVal=stmt.execute(getQuery());
+    if (retVal) {
+      rs=stmt.getResultSet();
+      data=getDataFromResultSet(rs);
+      rs.close();
+    }
+ else {
+      int updateCount=stmt.getUpdateCount();
+    }
+    stmt.close();
+    manager.releaseConnection(con);
+  }
+ catch (  Exception ex) {
+    if (rs != null) {
+      try {
+        rs.close();
+      }
+ catch (      SQLException err) {
+        rs=null;
+      }
+    }
+    if (stmt != null) {
+      try {
+        stmt.close();
+      }
+ catch (      SQLException err) {
+        stmt=null;
+      }
+    }
+    manager.releaseConnection(con);
+    ex.printStackTrace();
+  }
+  end=System.currentTimeMillis();
+  time+=end - start;
+  res.setTime(time);
+  res.setResponseData(data.toString().getBytes());
+  res.setSamplerData(this);
+  res.setSuccessful(true);
+  return res;
+}

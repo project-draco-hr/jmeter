@@ -1,0 +1,15 @@
+{
+  JPanel loopPanel=new JPanel();
+  JLabel loopsLabel=new JLabel(JMeterUtils.getResString("iterator_num"));
+  loopPanel.add(loopsLabel);
+  loops=new JTextField(5);
+  loopPanel.add(loops);
+  loops.setName(LOOPS);
+  loops.addKeyListener(this);
+  loops.setText("1");
+  infinite=new JCheckBox(JMeterUtils.getResString("infinite"));
+  infinite.setActionCommand(INFINITE);
+  infinite.addActionListener(this);
+  loopPanel.add(infinite);
+  return loopPanel;
+}

@@ -1,0 +1,9 @@
+{
+  if (keys.size() == 0)   return getArray();
+  if (keys.size() == 1)   return getArray(keys.first());
+ else {
+    Object temp=keys.first();
+    keys.remove(temp);
+    return get(temp).getArray(keys);
+  }
+}

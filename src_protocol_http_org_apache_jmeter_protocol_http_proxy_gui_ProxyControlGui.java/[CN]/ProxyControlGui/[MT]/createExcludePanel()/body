@@ -1,0 +1,22 @@
+{
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("patterns_to_exclude")));
+  excludeTable=new JTable();
+  excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class});
+  JScrollPane scroller=new JScrollPane(excludeTable);
+  scroller.setBackground(panel.getBackground());
+  excludeTable.setModel(excludeModel);
+  addExclude=new JButton(JMeterUtils.getResString("add"));
+  deleteExclude=new JButton(JMeterUtils.getResString("delete"));
+  addExclude.setActionCommand(ADD_EXCLUDE);
+  deleteExclude.setActionCommand(DELETE_EXCLUDE);
+  addExclude.addActionListener(this);
+  deleteExclude.addActionListener(this);
+  panel.add(scroller,BorderLayout.CENTER);
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.add(addExclude);
+  buttonPanel.add(deleteExclude);
+  panel.add(buttonPanel,BorderLayout.SOUTH);
+  excludeTable.addFocusListener(this);
+  return panel;
+}

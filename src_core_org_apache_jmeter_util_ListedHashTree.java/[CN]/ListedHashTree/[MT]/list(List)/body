@@ -1,0 +1,11 @@
+{
+  if (keys.size() == 0) {
+    return list();
+  }
+ else   if (keys.size() == 1) {
+    return get(keys.get(0)).list();
+  }
+ else {
+    return get(keys.get(0)).list(keys.subList(1,keys.size()));
+  }
+}

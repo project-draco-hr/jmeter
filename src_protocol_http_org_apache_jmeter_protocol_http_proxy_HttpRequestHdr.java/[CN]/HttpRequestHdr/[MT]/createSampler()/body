@@ -1,0 +1,26 @@
+{
+  MultipartUrlConfig urlConfig=null;
+  HTTPSampler sampler=new HTTPSampler();
+  sampler.setDomain(serverName());
+  sampler.setMethod(method);
+  sampler.setPath(serverUrl());
+  sampler.setName(sampler.getPath());
+  if (url.indexOf(":") > -1) {
+    sampler.setProtocol(url.substring(0,url.indexOf(":")));
+  }
+ else {
+    sampler.setProtocol("http");
+  }
+  sampler.setPort(serverPort());
+  if ((urlConfig=isMultipart(getContentType())) != null) {
+    urlConfig.parseArguments(postData);
+    sampler.setArguments(urlConfig.getArguments());
+    sampler.setFileField(urlConfig.getFileFieldName());
+    sampler.setFilename(urlConfig.getFilename());
+    sampler.setMimetype(urlConfig.getMimeType());
+  }
+ else {
+    sampler.parseArguments(postData);
+  }
+  return sampler;
+}

@@ -1,0 +1,21 @@
+{
+  String displayText=value.toString();
+  if (displayText.length() > 10) {
+    displayText=displayText.substring(0,10);
+  }
+  JLabel label=new JLabel(displayText);
+  if (isSelected) {
+    label.setBackground(Color.blue);
+    label.setForeground(Color.white);
+    label.setOpaque(true);
+  }
+ else {
+    label.setForeground(Color.black);
+    label.setBackground(Color.white);
+  }
+  if (cellHasFocus) {
+    label.setBorder(BorderFactory.createEtchedBorder());
+  }
+  label.setText(displayText);
+  return label;
+}

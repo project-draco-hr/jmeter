@@ -1,0 +1,29 @@
+{
+  TestElement element=null;
+  try {
+    element=(TestElement)Class.forName((String)config.getAttribute("class")).newInstance();
+  }
+ catch (  InstantiationException e) {
+    if (config.getAttribute("class").equals("org.apache.jmeter.assertions.Assertion")) {
+      element=new ResponseAssertion();
+    }
+  }
+  Configuration[] children=config.getChildren();
+  for (int i=0; i < children.length; i++) {
+    if (children[i].getName().equals("property")) {
+      try {
+        element.setProperty(children[i].getAttribute("name"),children[i].getValue());
+      }
+ catch (      Exception ex) {
+        element.setProperty(children[i].getAttribute("name"),"");
+      }
+    }
+ else     if (children[i].getName().equals("testelement")) {
+      element.setProperty(children[i].getAttribute("name"),createTestElement(children[i]));
+    }
+ else     if (children[i].getName().equals("collection")) {
+      element.setProperty(children[i].getAttribute("name"),createCollection(children[i]));
+    }
+  }
+  return element;
+}

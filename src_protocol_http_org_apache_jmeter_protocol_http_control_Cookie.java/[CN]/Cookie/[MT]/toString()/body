@@ -1,0 +1,3 @@
+{
+  return getDomain() + "\tTRUE\t" + getPath()+ "\t"+ new Boolean(getSecure()).toString().toUpperCase()+ "\t"+ getExpires()+ "\t"+ getName()+ "\t"+ getValue();
+}

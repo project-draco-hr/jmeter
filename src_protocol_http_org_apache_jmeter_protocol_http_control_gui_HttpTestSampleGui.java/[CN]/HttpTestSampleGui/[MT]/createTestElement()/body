@@ -1,0 +1,13 @@
+{
+  HTTPSampler sampler;
+  TestElement el=urlConfigGui.createTestElement();
+  if (getImages.isSelected()) {
+    sampler=new HTTPSamplerFull();
+  }
+ else {
+    sampler=new HTTPSampler();
+  }
+  sampler.addTestElement(el);
+  this.configureTestElement(sampler);
+  return sampler;
+}

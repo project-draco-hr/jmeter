@@ -1,0 +1,37 @@
+{
+  this.setLayout(new GridBagLayout());
+  GridBagConstraints gbc=new GridBagConstraints();
+  gbc.anchor=gbc.WEST;
+  gbc.fill=gbc.BOTH;
+  gbc.gridheight=1;
+  gbc.gridwidth=1;
+  gbc.gridx=0;
+  gbc.gridy=0;
+  gbc.weightx=1;
+  gbc.weighty=1;
+  JPanel mainPanel=new JPanel();
+  add(mainPanel,gbc.clone());
+  gbc.weighty=0;
+  mainPanel.setLayout(new GridBagLayout());
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("assertion_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel,gbc.clone());
+  gbc.gridy++;
+  mainPanel.add(getNamePanel(),gbc.clone());
+  gbc.gridx++;
+  mainPanel.add(Box.createHorizontalGlue(),gbc.clone());
+  gbc.gridx--;
+  gbc.gridy++;
+  mainPanel.add(createFieldPanel(),gbc.clone());
+  gbc.gridy++;
+  mainPanel.add(createTypePanel(),gbc.clone());
+  gbc.gridy++;
+  gbc.weighty=1;
+  gbc.gridwidth=2;
+  mainPanel.add(createStringPanel(),gbc.clone());
+}

@@ -1,0 +1,9 @@
+{
+  sendToVisualizer(e.getResult());
+  try {
+    recordResult(e.getResult());
+  }
+ catch (  Exception err) {
+    err.printStackTrace();
+  }
+}

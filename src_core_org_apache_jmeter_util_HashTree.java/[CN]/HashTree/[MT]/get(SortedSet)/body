@@ -1,0 +1,9 @@
+{
+  if (keys.size() == 1)   return get(keys.first());
+ else   if (keys.size() > 1) {
+    Object temp=keys.first();
+    keys.remove(temp);
+    return get(temp).get(keys);
+  }
+  return new HashTree();
+}

@@ -1,0 +1,8 @@
+{
+  catClass.debug("Start : setUp1");
+  hsf=new HTTPSamplerFull();
+  hsf.setMethod(HTTPSampler.GET);
+  hsf.setProtocol("file");
+  hsf.setPath("HTTPSamplerFullTestFile.txt");
+  catClass.debug("End   : setUp1");
+}

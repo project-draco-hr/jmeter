@@ -1,0 +1,7 @@
+{
+  super();
+  model=new StatVisualizerModel();
+  model.addGraphListener(this);
+  this.setPreferredSize(new Dimension(width,800));
+  init();
+}

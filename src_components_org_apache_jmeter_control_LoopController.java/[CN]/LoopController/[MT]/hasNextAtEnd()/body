@@ -1,0 +1,10 @@
+{
+  resetCurrent();
+  incrementLoopCount();
+  if (endOfLoop()) {
+    return false;
+  }
+ else {
+    return hasNext();
+  }
+}

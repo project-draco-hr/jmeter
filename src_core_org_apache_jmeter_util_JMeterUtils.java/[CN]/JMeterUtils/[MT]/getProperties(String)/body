@@ -1,0 +1,16 @@
+{
+  Properties p=new Properties(System.getProperties());
+  try {
+    File f=new File(file);
+    p.load(new FileInputStream(f));
+  }
+ catch (  Exception e) {
+    try {
+      p.load(JMeterUtils.class.getClassLoader().getSystemResourceAsStream("org/apache/jmeter/jmeter.properties"));
+    }
+ catch (    IOException ex) {
+    }
+  }
+  appProperties=p;
+  return p;
+}

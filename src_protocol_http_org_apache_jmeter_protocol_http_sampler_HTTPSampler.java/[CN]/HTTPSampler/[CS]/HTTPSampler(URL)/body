@@ -1,0 +1,11 @@
+{
+  setMethod(GET);
+  setDomain(u.getHost());
+  setPath(u.getPath());
+  setPort(u.getPort());
+  setProtocol(u.getProtocol());
+  parseArguments(u.getQuery());
+  setFollowRedirects(true);
+  setUseKeepAlive(true);
+  setArguments(new Arguments());
+}

@@ -1,0 +1,5 @@
+{
+  if (element instanceof FtpConfig || element instanceof LoginConfig) {
+    mergeIn(element);
+  }
+}

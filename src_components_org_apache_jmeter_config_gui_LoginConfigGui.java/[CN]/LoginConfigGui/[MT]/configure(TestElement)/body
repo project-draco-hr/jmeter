@@ -1,0 +1,5 @@
+{
+  super.configure(element);
+  username.setText((String)element.getProperty(ConfigTestElement.USERNAME));
+  password.setText((String)element.getProperty(ConfigTestElement.PASSWORD));
+}

@@ -1,0 +1,10 @@
+{
+  data=new HashMap();
+  order=new LinkedList();
+  Iterator it=keys.iterator();
+  while (it.hasNext()) {
+    Object temp=it.next();
+    data.put(temp,new ListedHashTree());
+    order.add(temp);
+  }
+}

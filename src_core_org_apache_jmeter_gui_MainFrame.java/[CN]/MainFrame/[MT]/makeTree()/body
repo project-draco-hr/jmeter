@@ -1,0 +1,10 @@
+{
+  tree=new JTree(this.treeModel);
+  tree.setCellRenderer(getCellRenderer());
+  treeListener.setJTree(tree);
+  tree.addTreeSelectionListener(treeListener);
+  tree.addMouseListener(treeListener);
+  tree.addMouseMotionListener(treeListener);
+  tree.addKeyListener(treeListener);
+  return tree;
+}

@@ -1,0 +1,12 @@
+{
+  samples.clear();
+  this.n=0;
+  this.sum=0;
+  this.average=0;
+  minimum=Integer.MAX_VALUE;
+  maximum=Integer.MIN_VALUE;
+  this.dataCurve=null;
+  if (listener != null) {
+    listener.updateGui();
+  }
+}

@@ -1,0 +1,11 @@
+{
+  super.paintComponent(g);
+  Dimension d=this.getSize();
+synchronized (model.getSamples()) {
+    Iterator e=model.getSamples().iterator();
+    for (int i=0; e.hasNext(); i++) {
+      Sample s=(Sample)e.next();
+      drawSample(i,s,g);
+    }
+  }
+}

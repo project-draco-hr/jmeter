@@ -1,0 +1,23 @@
+{
+  List stack=new LinkedList();
+  Iterator iter=objectStack.iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    stack.add(item);
+    if (item.equals(handler)) {
+      break;
+    }
+  }
+  ListedHashTree subTree=objectHierarchy.get(stack);
+  if (subTree == null) {
+    return new LinkedList();
+  }
+  List items=new LinkedList(subTree.list());
+  iter=items.iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    replaceSubItems(subTree,item);
+    subTree.remove(item);
+  }
+  return items;
+}

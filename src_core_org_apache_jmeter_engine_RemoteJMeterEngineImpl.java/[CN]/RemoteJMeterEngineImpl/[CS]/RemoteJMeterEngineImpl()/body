@@ -1,0 +1,9 @@
+{
+  try {
+    backingEngine=new StandardJMeterEngine(InetAddress.getLocalHost().getHostName());
+    Naming.rebind("JMeterEngine",this);
+  }
+ catch (  Exception ex) {
+    ex.printStackTrace();
+  }
+}

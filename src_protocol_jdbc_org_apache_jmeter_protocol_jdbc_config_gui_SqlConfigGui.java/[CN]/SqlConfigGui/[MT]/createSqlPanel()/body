@@ -1,0 +1,6 @@
+{
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("database_sql_query_string")));
+  panel.add(sqlField);
+  return panel;
+}

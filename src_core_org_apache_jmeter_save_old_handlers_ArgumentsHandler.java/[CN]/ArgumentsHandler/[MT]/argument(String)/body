@@ -1,0 +1,7 @@
+{
+  if (data != null) {
+    data=data.trim();
+  }
+  args.addArgument(currentArgument,data);
+  currentArgument=null;
+}

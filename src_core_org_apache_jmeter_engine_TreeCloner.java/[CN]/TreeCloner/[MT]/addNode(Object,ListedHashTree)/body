@@ -1,0 +1,10 @@
+{
+  if (node instanceof PerThreadClonable) {
+    node=((PerThreadClonable)node).clone();
+    newTree.add(objects,node);
+  }
+ else {
+    newTree.add(objects,node);
+  }
+  objects.addLast(node);
+}

@@ -1,0 +1,27 @@
+{
+  JPanel panel=new JPanel();
+  panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
+  panel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+  panel.add(new JLabel(JMeterUtils.getResString("protocol")));
+  panel.add(Box.createRigidArea(new Dimension(5,0)));
+  http=new JRadioButton(JMeterUtils.getResString("url_config_http"));
+  https=new JRadioButton(JMeterUtils.getResString("url_config_https"));
+  ButtonGroup protocolButtonGroup=new ButtonGroup();
+  protocolButtonGroup.add(http);
+  protocolButtonGroup.add(https);
+  http.setSelected(true);
+  panel.add(http);
+  panel.add(https);
+  panel.add(Box.createRigidArea(new Dimension(20,0)));
+  post=new JRadioButton(JMeterUtils.getResString("url_config_post"));
+  get=new JRadioButton(JMeterUtils.getResString("url_config_get"));
+  ButtonGroup methodButtonGroup=new ButtonGroup();
+  methodButtonGroup.add(post);
+  methodButtonGroup.add(get);
+  panel.add(new JLabel(JMeterUtils.getResString("method")));
+  panel.add(Box.createRigidArea(new Dimension(5,0)));
+  post.setSelected(true);
+  panel.add(get);
+  panel.add(post);
+  return panel;
+}

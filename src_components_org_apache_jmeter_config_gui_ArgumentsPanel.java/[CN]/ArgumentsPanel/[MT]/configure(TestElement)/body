@@ -1,0 +1,7 @@
+{
+  super.configure(el);
+  if (el instanceof Arguments) {
+    tableModel.setUnderlyingModel((Arguments)el.clone());
+  }
+  checkDeleteStatus();
+}

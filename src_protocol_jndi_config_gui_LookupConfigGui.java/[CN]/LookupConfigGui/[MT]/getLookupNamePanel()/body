@@ -1,0 +1,11 @@
+{
+  catClass.info("Start : getLookupNamePanel1");
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("jndi_lookup_name")));
+  lookupField.setText(model.getLookupName());
+  lookupField.setName(JMeterUtils.getResString("jndi_lookup_name"));
+  lookupField.addKeyListener(this);
+  panel.add(lookupField);
+  catClass.info("End : getLookupNamePanel1");
+  return panel;
+}

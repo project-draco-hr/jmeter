@@ -1,0 +1,9 @@
+{
+  if (key.size() == 0)   return;
+ else   if (key.size() == 1)   add(key.get(0),value);
+ else {
+    Object temp=key.remove(0);
+    add(temp,key.get(0));
+    get(temp).add(key,value);
+  }
+}

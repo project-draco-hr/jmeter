@@ -1,0 +1,14 @@
+{
+  inLoading=true;
+  if (new File(getFilename()).exists()) {
+    clear();
+    try {
+      Configuration savedSamples=getConfiguration(getFilename());
+      readSamples(savedSamples);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+  inLoading=false;
+}

@@ -1,0 +1,8 @@
+{
+  noSamplesField.setText(Long.toString(model.getSampleCount()));
+  dataField.setText(Long.toString(s.data));
+  averageField.setText(Long.toString(s.average));
+  deviationField.setText(Long.toString(s.deviation));
+  throughputField.setText(Float.toString(s.throughput) + "/" + minute);
+  updateYAxis();
+}

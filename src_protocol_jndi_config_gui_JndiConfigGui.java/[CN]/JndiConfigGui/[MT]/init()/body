@@ -1,0 +1,38 @@
+{
+  for (int i=0; i < JndiConfig.JNDI_PROPS.length; i++) {
+    jndi_fields[i]=new JTextField(20);
+  }
+  if (displayName) {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+    JPanel mainPanel=new JPanel();
+    Border margin=new EmptyBorder(10,10,5,10);
+    mainPanel.setBorder(margin);
+    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("jndi_config_title"));
+    Font curFont=panelTitleLabel.getFont();
+    int curFontSize=curFont.getSize();
+    curFontSize+=4;
+    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+    mainPanel.add(panelTitleLabel);
+    namePanel=new NamePanel(model);
+    mainPanel.add(namePanel);
+    JPanel urlJNDIPanel=new JPanel();
+    urlJNDIPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    urlJNDIPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("jndi_url_jndi_props")));
+    for (int i=0; i < JndiConfig.JNDI_PROPS.length; i++) {
+      urlJNDIPanel.add(getPanel(i));
+    }
+    mainPanel.add(urlJNDIPanel);
+    this.add(mainPanel);
+  }
+ else {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JPanel urlJNDIPanel=new JPanel();
+    urlJNDIPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    urlJNDIPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("jndi_url_jndi_props")));
+    for (int i=0; i < JndiConfig.JNDI_PROPS.length; i++) {
+      urlJNDIPanel.add(getPanel(i));
+    }
+    this.add(urlJNDIPanel);
+  }
+}

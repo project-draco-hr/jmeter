@@ -1,0 +1,9 @@
+{
+  try {
+    table.getCellEditor().stopCellEditing();
+    table.revalidate();
+    table.repaint();
+  }
+ catch (  NullPointerException err) {
+  }
+}

@@ -1,0 +1,40 @@
+{
+  this.setLayout(new BorderLayout());
+  JPanel webServerPanel=new JPanel();
+  webServerPanel.setLayout(new BorderLayout());
+  webServerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_server")));
+  webServerPanel.add(getDomainPanel(),BorderLayout.NORTH);
+  webServerPanel.add(getPortPanel(),BorderLayout.SOUTH);
+  JPanel webRequestPanel=new JPanel();
+  webRequestPanel.setLayout(new BorderLayout());
+  webRequestPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_request")));
+  JPanel northPanel=new JPanel(new BorderLayout());
+  northPanel.add(getProtocolAndMethodPanel(),BorderLayout.NORTH);
+  northPanel.add(getPathPanel(),BorderLayout.SOUTH);
+  webRequestPanel.add(northPanel,BorderLayout.NORTH);
+  webRequestPanel.add(getParameterPanel(),BorderLayout.CENTER);
+  if (displayName) {
+    JPanel mainPanel=new JPanel();
+    Border margin=new EmptyBorder(10,10,5,10);
+    mainPanel.setBorder(margin);
+    mainPanel.setLayout(new BorderLayout());
+    JPanel normalPanel=new JPanel(new VerticalLayout(5,VerticalLayout.LEFT));
+    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("url_config_title"));
+    Font curFont=panelTitleLabel.getFont();
+    int curFontSize=curFont.getSize();
+    curFontSize+=4;
+    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+    normalPanel.add(panelTitleLabel);
+    if (displayName) {
+      normalPanel.add(getNamePanel());
+    }
+    normalPanel.add(webServerPanel);
+    mainPanel.add(normalPanel,BorderLayout.NORTH);
+    mainPanel.add(webRequestPanel,BorderLayout.CENTER);
+    this.add(mainPanel,BorderLayout.CENTER);
+  }
+ else {
+    this.add(webServerPanel,BorderLayout.NORTH);
+    this.add(webRequestPanel,BorderLayout.CENTER);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  setName((String)tg.getProperty(TestElement.NAME));
+  threadInput.setText(tg.getProperty(ThreadGroup.NUM_THREADS).toString());
+  rampInput.setText(tg.getProperty(ThreadGroup.RAMP_TIME).toString());
+  loopPanel.configure((TestElement)tg.getProperty(ThreadGroup.MAIN_CONTROLLER));
+}

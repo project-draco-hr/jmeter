@@ -1,0 +1,6 @@
+{
+  if (propertyConversion.containsKey(prop)) {
+    return (String)propertyConversion.get(prop);
+  }
+ else   return prop;
+}

@@ -1,0 +1,19 @@
+{
+  catClass.debug("Start : init1");
+  SampleResult rootSampleResult=new SampleResult();
+  rootSampleResult.setSampleLabel("Root");
+  root=new DefaultMutableTreeNode(rootSampleResult);
+  treeModel=new DefaultTreeModel(root);
+  jTree=new JTree(treeModel);
+  jTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  jTree.addTreeSelectionListener(this);
+  treePane=new JScrollPane(jTree);
+  gridBag=new GridBagLayout();
+  gbc=new GridBagConstraints();
+  resultPanel=new JPanel(gridBag);
+  resultPanel.setPreferredSize(new Dimension(2000,800));
+  resultPane=new JScrollPane(resultPanel);
+  treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,resultPane);
+  add(treeSplitPane);
+  catClass.debug("End : init1");
+}

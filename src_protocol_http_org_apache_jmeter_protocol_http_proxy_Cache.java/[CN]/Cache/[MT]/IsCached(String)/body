@@ -1,0 +1,6 @@
+{
+  String filename=getFileName(rawUrl);
+  if (filename == null)   return false;
+  if (htable.get(filename) != null)   return true;
+  return false;
+}

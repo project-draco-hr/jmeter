@@ -1,0 +1,23 @@
+{
+  if (dragging && draggedNode != getCurrentNode()) {
+    dragging=false;
+    JPopupMenu dragNdrop=new JPopupMenu();
+    JMenuItem item=new JMenuItem(JMeterUtils.getResString("Insert Before"));
+    item.addActionListener(actionHandler);
+    item.setActionCommand(DragNDrop.INSERT_BEFORE);
+    dragNdrop.add(item);
+    item=new JMenuItem(JMeterUtils.getResString("Insert After"));
+    item.addActionListener(actionHandler);
+    item.setActionCommand(DragNDrop.INSERT_AFTER);
+    dragNdrop.add(item);
+    item=new JMenuItem(JMeterUtils.getResString("Add as Child"));
+    item.addActionListener(actionHandler);
+    item.setActionCommand(DragNDrop.ADD);
+    dragNdrop.add(item);
+    dragNdrop.addSeparator();
+    item=new JMenuItem(JMeterUtils.getResString("Cancel"));
+    dragNdrop.add(item);
+    displayPopUp(e,dragNdrop);
+  }
+  dragging=false;
+}

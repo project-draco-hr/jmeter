@@ -1,0 +1,14 @@
+{
+  if (qName.equals("paramname")) {
+    paramname=contents.toString();
+  }
+  if (qName.equals("paramvalue")) {
+    paramvalue=contents.toString();
+  }
+  if (qName.equals("parameter")) {
+    nameValuePair.put(paramname,paramvalue);
+  }
+  if (qName.equals("thread")) {
+    userThreads.add(nameValuePair);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("setValue1 : int - " + i);
+    catClass.debug("setValue1 : name - " + JNDI_PROPS[i]);
+    catClass.debug("setValue1 : value - " + string);
+  }
+  this.putProperty(JNDI_PROPS[i],string);
+}

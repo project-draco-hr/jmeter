@@ -1,0 +1,6 @@
+{
+  function.setParameters("");
+  assertEquals(0,function.compiledComponents.size());
+  assertTrue(!function.hasFunction());
+  assertTrue(!function.hasStatics());
+}

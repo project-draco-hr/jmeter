@@ -1,0 +1,11 @@
+{
+  if (bound == null) {
+    return (long)0;
+  }
+ else   if (bound instanceof Long) {
+    return ((Long)bound).longValue();
+  }
+ else {
+    return Long.parseLong((String)bound);
+  }
+}

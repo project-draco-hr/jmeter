@@ -1,0 +1,32 @@
+{
+  lookupField=new JTextField(20);
+  if (displayName) {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+    JPanel mainPanel=new JPanel();
+    Border margin=new EmptyBorder(10,10,5,10);
+    mainPanel.setBorder(margin);
+    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("jndi_lookup_title"));
+    Font curFont=panelTitleLabel.getFont();
+    int curFontSize=curFont.getSize();
+    curFontSize+=4;
+    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+    mainPanel.add(panelTitleLabel);
+    namePanel=new NamePanel(model);
+    mainPanel.add(namePanel);
+    JPanel jndiPanel=new JPanel();
+    jndiPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    jndiPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("jndi_lookup_name")));
+    jndiPanel.add(getLookupNamePanel());
+    mainPanel.add(jndiPanel);
+    this.add(mainPanel);
+  }
+ else {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JPanel jndiPanel=new JPanel();
+    jndiPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    jndiPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("jndi_lookup_name")));
+    jndiPanel.add(getLookupNamePanel());
+    this.add(jndiPanel);
+  }
+}

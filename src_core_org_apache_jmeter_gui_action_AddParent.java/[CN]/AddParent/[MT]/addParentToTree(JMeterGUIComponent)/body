@@ -1,0 +1,10 @@
+{
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  JMeterTreeNode newNode=new JMeterTreeNode(newParent);
+  JMeterTreeNode currentNode=guiPackage.getTreeListener().getCurrentNode();
+  JMeterTreeNode parentNode=(JMeterTreeNode)currentNode.getParent();
+  int index=parentNode.getIndex(currentNode);
+  guiPackage.getTreeModel().removeNodeFromParent(currentNode);
+  guiPackage.getTreeModel().insertNodeInto(newNode,(JMeterTreeNode)parentNode,index);
+  guiPackage.getTreeModel().insertNodeInto(currentNode,newNode,newNode.getChildCount());
+}

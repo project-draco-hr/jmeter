@@ -1,0 +1,24 @@
+{
+  SampleResult results=new SampleResult();
+  try {
+    long ct=System.currentTimeMillis();
+    ct%=getSleepMask();
+    long start=System.currentTimeMillis();
+    Thread.sleep(getSleepTime() + ct);
+    long end=System.currentTimeMillis();
+    results.setTime(end - start);
+    results.setSuccessful(true);
+    results.setSampleLabel("Sleep Test: time = " + getSleepTime() + ct);
+  }
+ catch (  Exception e) {
+  }
+  if (cat.isDebugEnabled()) {
+    cat.debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
+    Iterator argsIt=arguments.entrySet().iterator();
+    while (argsIt.hasNext()) {
+      Entry entry=(Entry)argsIt.next();
+      cat.debug(entry.getKey().toString() + "=" + entry.getValue().toString());
+    }
+  }
+  return results;
+}

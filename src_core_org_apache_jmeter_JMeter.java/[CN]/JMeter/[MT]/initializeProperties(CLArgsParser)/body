@@ -1,0 +1,9 @@
+{
+  if (parser.getArgumentById(PROPFILE_OPT) != null) {
+    JMeterUtils.getProperties(parser.getArgumentById(PROPFILE_OPT).getArgument());
+  }
+ else {
+    JMeterUtils.getProperties(NewDriver.getJMeterDir() + File.separator + "bin"+ File.separator+ "jmeter.properties");
+  }
+  JMeterUtils.setJMeterHome(NewDriver.getJMeterDir());
+}

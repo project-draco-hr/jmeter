@@ -1,0 +1,19 @@
+{
+  if (dataStore != null) {
+    try {
+      if (getMethodName().equals("")) {
+        setData(dataStore.toString());
+      }
+ else {
+        Method method=this.getClass().getMethod(getMethodName(),new Class[]{String.class});
+        method.invoke(this,new Object[]{dataStore.toString()});
+      }
+    }
+ catch (    NoSuchMethodException e) {
+    }
+catch (    Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+  dataStore=null;
+}

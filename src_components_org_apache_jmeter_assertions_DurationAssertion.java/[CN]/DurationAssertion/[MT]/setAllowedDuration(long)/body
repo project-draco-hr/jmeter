@@ -1,0 +1,11 @@
+{
+  if (duration < 0L) {
+    throw new IllegalArgumentException(JMeterUtils.getResString("argument_must_not_be_negative"));
+  }
+  if (duration == Long.MAX_VALUE) {
+    setProperty(DURATION_KEY,new Long(0));
+  }
+ else {
+    setProperty(DURATION_KEY,new Long(duration));
+  }
+}

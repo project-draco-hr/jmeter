@@ -1,0 +1,17 @@
+{
+  ListedHashTree original=new ListedHashTree();
+  GenericController controller=new GenericController();
+  controller.setName("controller");
+  Arguments args=new Arguments();
+  args.setName("args");
+  original.add(controller,args);
+  TreeCloner cloner=new TreeCloner();
+  original.traverse(cloner);
+  ListedHashTree newTree=cloner.getClonedTree();
+  this.assertTrue(original != newTree);
+  assertEquals(original.size(),newTree.size());
+  assertEquals(original.get(original.getArray()[0]).size(),newTree.get(newTree.getArray()[0]).size());
+  assertTrue(original.getArray()[0] != newTree.getArray()[0]);
+  assertEquals(((GenericController)original.getArray()[0]).getName(),((GenericController)newTree.getArray()[0]).getName());
+  assertSame(original.get(original.getArray()[0]).getArray()[0],newTree.get(newTree.getArray()[0]).getArray()[0]);
+}

@@ -1,0 +1,24 @@
+{
+  ResultSetMetaData meta;
+  Data data=new Data();
+  meta=rs.getMetaData();
+  int numColumns=meta.getColumnCount();
+  String[] dbCols=new String[numColumns];
+  for (int count=1; count <= numColumns; count++) {
+    dbCols[count - 1]=meta.getColumnName(count);
+    data.addHeader(dbCols[count - 1]);
+  }
+  while (rs.next()) {
+    data.next();
+    for (int count=0; count < numColumns; count++) {
+      Object o=rs.getObject(count + 1);
+      if (o == null) {
+      }
+ else       if (o instanceof byte[]) {
+        o=new String((byte[])o);
+      }
+      data.addColumnValue(dbCols[count],o);
+    }
+  }
+  return data;
+}

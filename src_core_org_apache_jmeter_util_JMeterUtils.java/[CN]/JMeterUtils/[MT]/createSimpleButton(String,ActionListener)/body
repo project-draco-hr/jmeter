@@ -1,0 +1,10 @@
+{
+  JButton button=new JButton(getImage(name + ".gif"));
+  button.setActionCommand(name);
+  button.addActionListener(listener);
+  button.setFocusPainted(false);
+  button.setBorderPainted(false);
+  button.setOpaque(false);
+  button.setPreferredSize(new Dimension(25,25));
+  return button;
+}

@@ -1,0 +1,16 @@
+{
+  if (part == null || part.length() == 0) {
+    return;
+  }
+  if (refinedComponents.size() == 0) {
+    refinedComponents.addLast(new StringBuffer(part));
+  }
+ else {
+    if (refinedComponents.getLast() instanceof StringBuffer) {
+      ((StringBuffer)refinedComponents.getLast()).append(part);
+    }
+ else {
+      refinedComponents.addLast(new StringBuffer(part));
+    }
+  }
+}

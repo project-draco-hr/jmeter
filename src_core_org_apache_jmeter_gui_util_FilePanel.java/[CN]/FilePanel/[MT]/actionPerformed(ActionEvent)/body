@@ -1,0 +1,12 @@
+{
+  if (e.getActionCommand().equals("browse")) {
+    JFileChooser chooser=FileDialoger.promptToOpenFile(new String[]{".jtl"});
+    if (chooser != null && chooser.getSelectedFile() != null) {
+      filename.setText(chooser.getSelectedFile().getPath());
+      fireFileChanged();
+    }
+  }
+ else {
+    fireFileChanged();
+  }
+}

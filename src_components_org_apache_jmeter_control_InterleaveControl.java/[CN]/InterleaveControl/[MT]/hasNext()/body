@@ -1,0 +1,10 @@
+{
+  if (!interleave) {
+    return super.hasNext();
+  }
+ else {
+    interleave=false;
+    super.hasNext();
+    return false;
+  }
+}

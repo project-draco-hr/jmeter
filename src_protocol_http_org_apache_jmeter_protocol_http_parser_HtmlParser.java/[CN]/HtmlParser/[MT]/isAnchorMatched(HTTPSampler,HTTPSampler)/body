@@ -1,0 +1,25 @@
+{
+  boolean ok=true;
+  Iterator iter=config.getArguments().iterator();
+  String query=null;
+  try {
+    query=URLDecoder.decode(newLink.getQueryString());
+  }
+ catch (  Exception e) {
+  }
+  if (query == null && config.getArguments().getArgumentCount() > 0)   return false;
+  while (iter.hasNext()) {
+    Argument item=(Argument)iter.next();
+    if (query.indexOf(item.getName() + "=") == -1) {
+      if (!(ok=ok && matcher.contains(query,compiler.compile(item.getName())))) {
+        return false;
+      }
+    }
+  }
+  if (config.getDomain() != null && config.getDomain().length() > 0 && !newLink.getDomain().equals(config.getDomain())) {
+    if (!(ok=ok && matcher.matches(newLink.getDomain(),compiler.compile(config.getDomain()))))     return false;
+  }
+  if (!newLink.getPath().equals(config.getPath()) && !matcher.matches(newLink.getPath(),compiler.compile("[/]*" + config.getPath())))   return false;
+  if (!(ok=ok && matcher.matches(newLink.getProtocol(),compiler.compile(config.getProtocol()))))   return false;
+  return ok;
+}

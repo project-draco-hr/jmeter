@@ -1,0 +1,5 @@
+{
+  System.out.println("WrappedX509Manager: getCertificateChain(" + alias + ")");
+  System.out.println(this.store.getCertificateChain());
+  return this.store.getCertificateChain();
+}

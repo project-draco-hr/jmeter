@@ -1,0 +1,11 @@
+{
+  StringBuffer ret=new StringBuffer();
+  ret.append("Class=DBKey(" + "\n");
+  ret.append("driver=" + driver + "\n");
+  ret.append("url=" + url + "\n");
+  ret.append("username=" + username + "\n");
+  ret.append("Number of connections=" + maxConnections + "\n");
+  ret.append("Max times each connection used before renewing=" + maxUsage + "\n");
+  ret.append(")");
+  return ret.toString();
+}

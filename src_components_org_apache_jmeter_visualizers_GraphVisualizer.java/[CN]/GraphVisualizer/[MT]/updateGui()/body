@@ -1,0 +1,9 @@
+{
+  graph.updateGui();
+  noSamplesField.setText(Long.toString(model.getSampleCount()));
+  dataField.setText(Long.toString(model.getCurrentData()));
+  averageField.setText(Long.toString(model.getCurrentAverage()));
+  deviationField.setText(Long.toString(model.getCurrentDeviation()));
+  throughputField.setText(Float.toString(model.getCurrentThroughput()) + "/" + minute);
+  updateYAxis();
+}

@@ -1,0 +1,8 @@
+{
+  Iterator iter=getObjects(TestElement.class).iterator();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    checkElementCloning(item);
+    assertTrue(item.getClass().getName() + " must implement Serializable",item instanceof Serializable);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  ListedHashTree tree=getTree(testFile3);
+  assertTrue(tree.list().get(0) instanceof org.apache.jmeter.threads.ThreadGroup);
+  loader.convertTree(tree);
+  assertTrue(tree.list().get(0) instanceof org.apache.jmeter.threads.gui.ThreadGroupGui);
+}

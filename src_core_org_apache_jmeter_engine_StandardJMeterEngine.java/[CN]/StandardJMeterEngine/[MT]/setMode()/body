@@ -1,0 +1,6 @@
+{
+  SearchByClass testPlan=new SearchByClass(TestPlan.class);
+  getTestTree().traverse(testPlan);
+  Object[] plan=testPlan.getSearchResults().toArray();
+  ResultCollector.enableFunctionalMode(((TestPlan)plan[0]).isFunctionalMode());
+}

@@ -1,0 +1,13 @@
+{
+  JPanel panel=new JPanel();
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("assertion_resp_field")));
+  responseStringButton=new JRadioButton(JMeterUtils.getResString("assertion_text_resp"));
+  labelButton=new JRadioButton(JMeterUtils.getResString("assertion_url_samp"));
+  ButtonGroup group=new ButtonGroup();
+  group.add(responseStringButton);
+  group.add(labelButton);
+  panel.add(responseStringButton);
+  panel.add(labelButton);
+  responseStringButton.setSelected(true);
+  return panel;
+}

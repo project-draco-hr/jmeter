@@ -1,0 +1,77 @@
+{
+  String action=e.getActionCommand();
+  if (action.equals("Delete")) {
+    if (tableModel.getRowCount() > 0) {
+      if (cookieTable.isEditing()) {
+        TableCellEditor cellEditor=cookieTable.getCellEditor(cookieTable.getEditingRow(),cookieTable.getEditingColumn());
+        cellEditor.cancelCellEditing();
+      }
+      int rowSelected=cookieTable.getSelectedRow();
+      if (rowSelected != -1) {
+        tableModel.removeRow(rowSelected);
+        tableModel.fireTableDataChanged();
+        if (tableModel.getRowCount() == 0) {
+          deleteButton.setEnabled(false);
+          saveButton.setEnabled(false);
+        }
+ else {
+          int rowToSelect=rowSelected;
+          if (rowSelected >= tableModel.getRowCount()) {
+            rowToSelect=rowSelected - 1;
+          }
+          cookieTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+        }
+      }
+    }
+  }
+ else   if (action.equals("Add")) {
+    if (cookieTable.isEditing()) {
+      TableCellEditor cellEditor=cookieTable.getCellEditor(cookieTable.getEditingRow(),cookieTable.getEditingColumn());
+      cellEditor.stopCellEditing();
+    }
+    tableModel.addNewRow();
+    tableModel.fireTableDataChanged();
+    if (!deleteButton.isEnabled()) {
+      deleteButton.setEnabled(true);
+    }
+    if (!saveButton.isEnabled()) {
+      saveButton.setEnabled(true);
+    }
+    int rowToSelect=tableModel.getRowCount() - 1;
+    cookieTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+  }
+ else   if (action.equals("Load")) {
+    try {
+      File tmp=FileDialoger.promptToOpenFile().getSelectedFile();
+      if (tmp != null) {
+        CookieManager manager=new CookieManager();
+        manager.addFile(tmp.getAbsolutePath());
+        Cookie cookie=manager.get(0);
+        addCookieToTable(cookie);
+        tableModel.fireTableDataChanged();
+        if (tableModel.getRowCount() > 0) {
+          deleteButton.setEnabled(true);
+          saveButton.setEnabled(true);
+        }
+      }
+    }
+ catch (    IOException ex) {
+      ex.printStackTrace();
+    }
+catch (    NullPointerException err) {
+    }
+  }
+ else   if (action.equals("Save")) {
+    try {
+      File tmp=FileDialoger.promptToSaveFile(null).getSelectedFile();
+      if (tmp != null) {
+        createCookieManager().save(tmp.getAbsolutePath());
+      }
+    }
+ catch (    IOException ex) {
+      ex.printStackTrace();
+    }
+catch (    NullPointerException err) {
+    }
+  }
+}

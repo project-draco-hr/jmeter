@@ -1,0 +1,17 @@
+{
+  long howLongRunning=lastTime - firstTime;
+  if (howLongRunning == 0)   return ("N/A");
+  double samplesPerSecond=((double)counter / ((double)howLongRunning / 1000.0));
+  String perString="/sec";
+  if (samplesPerSecond < 1.0) {
+    samplesPerSecond*=60;
+    perString="/min";
+  }
+  if (samplesPerSecond < 1.0) {
+    samplesPerSecond*=60;
+    perString="/hour";
+  }
+  DecimalFormat myDF=new DecimalFormat("#.0");
+  String rval=myDF.format(samplesPerSecond) + perString;
+  return (rval);
+}

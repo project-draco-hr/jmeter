@@ -1,0 +1,13 @@
+{
+  GuiPackage gui=GuiPackage.getInstance();
+  ListedHashTree testTree=gui.getTreeModel().getTestPlan();
+  convertSubTree(testTree);
+  testTree.add(testTree.getArray()[0],gui.getMainFrame());
+  engine.configure(testTree);
+  try {
+    engine.runTest();
+  }
+ catch (  JMeterEngineException e) {
+    JOptionPane.showMessageDialog(gui.getMainFrame(),e.getMessage(),JMeterUtils.getResString("Error Occurred"),JOptionPane.ERROR_MESSAGE);
+  }
+}

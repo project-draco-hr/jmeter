@@ -1,0 +1,22 @@
+{
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("patterns_to_include")));
+  includeTable=new JTable();
+  includeModel=new PowerTableModel(new String[]{INCLUDE_COL},new Class[]{String.class});
+  JScrollPane scroller=new JScrollPane(includeTable);
+  scroller.setBackground(panel.getBackground());
+  includeTable.setModel(includeModel);
+  addInclude=new JButton(JMeterUtils.getResString("add"));
+  deleteInclude=new JButton(JMeterUtils.getResString("delete"));
+  addInclude.setActionCommand(ADD_INCLUDE);
+  deleteInclude.setActionCommand(DELETE_INCLUDE);
+  addInclude.addActionListener(this);
+  deleteInclude.addActionListener(this);
+  panel.add(scroller,BorderLayout.CENTER);
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.add(addInclude);
+  buttonPanel.add(deleteInclude);
+  panel.add(buttonPanel,BorderLayout.SOUTH);
+  includeTable.addFocusListener(this);
+  return panel;
+}

@@ -1,0 +1,6 @@
+{
+  System.out.println("startElement= " + name);
+  for (int i=0; i < atts.getLength(); i++) {
+    System.out.println(" Attribute= " + atts.getQName(i) + "="+ atts.getValue(i));
+  }
+}

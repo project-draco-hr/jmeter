@@ -1,0 +1,12 @@
+{
+  catClass.debug("Start : getUTFEncodingName1");
+  if (utfEncodingName == null) {
+    String versionNum=System.getProperty("java.version");
+    if (catClass.isDebugEnabled())     catClass.debug("getUTFEncodingName1 : versionNum - " + versionNum);
+    if (versionNum.startsWith("1.1"))     utfEncodingName="UTF8";
+ else     utfEncodingName="UTF-8";
+  }
+  if (catClass.isDebugEnabled())   catClass.debug("getUTFEncodingName1 : Returning utfEncodingName - " + utfEncodingName);
+  catClass.debug("End : getUTFEncodingName1");
+  return utfEncodingName;
+}

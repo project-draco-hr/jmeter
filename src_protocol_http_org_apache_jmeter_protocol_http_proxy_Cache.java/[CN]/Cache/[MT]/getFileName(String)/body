@@ -1,0 +1,7 @@
+{
+  String filename=basePath + File.separatorChar + rawUrl.substring(7).replace('/','@');
+  if (filename.indexOf('?') != -1 || filename.indexOf("cgi-bin") != -1) {
+    return null;
+  }
+  return filename;
+}

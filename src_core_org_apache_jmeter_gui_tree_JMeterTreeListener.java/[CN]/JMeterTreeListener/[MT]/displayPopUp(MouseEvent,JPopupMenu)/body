@@ -1,0 +1,8 @@
+{
+  if (popup != null) {
+    popup.pack();
+    popup.show(tree,e.getX(),e.getY());
+    popup.setVisible(true);
+    popup.requestFocus();
+  }
+}

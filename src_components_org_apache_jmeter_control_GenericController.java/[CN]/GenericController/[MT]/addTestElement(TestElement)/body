@@ -1,0 +1,5 @@
+{
+  if (child instanceof Controller || child instanceof Sampler) {
+    addController(child);
+  }
+}

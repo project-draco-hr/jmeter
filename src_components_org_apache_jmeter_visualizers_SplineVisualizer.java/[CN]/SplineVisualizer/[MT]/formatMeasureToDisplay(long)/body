@@ -1,0 +1,9 @@
+{
+  String numberString=String.valueOf(measure);
+  if (FILL_UP_WITH_ZEROS) {
+    for (int i=numberString.length(); i < NUMBERS_TO_DISPLAY; i++) {
+      numberString="0" + numberString;
+    }
+  }
+  return numberString;
+}

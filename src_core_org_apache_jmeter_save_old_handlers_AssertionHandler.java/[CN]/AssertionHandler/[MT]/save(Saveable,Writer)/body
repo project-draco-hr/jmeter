@@ -1,0 +1,18 @@
+{
+  ResponseAssertion saved=(ResponseAssertion)objectToSave;
+  out.write("<");
+  out.write(getPrimaryTagName());
+  out.write(" name=\"");
+  out.write(saved.getName());
+  out.write("\" class=\"");
+  out.write(saved.getClass().getName());
+  out.write("\" testType=\"");
+  out.write("" + saved.getTestType());
+  out.write("\" testField=\"");
+  out.write(saved.getTestField());
+  out.write("\">");
+  writeTestStrings(saved,out);
+  out.write("\n</");
+  out.write(getPrimaryTagName());
+  out.write(">");
+}

@@ -1,0 +1,42 @@
+{
+  if (displayName) {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+    JPanel mainPanel=new JPanel();
+    Border margin=new EmptyBorder(10,10,5,10);
+    mainPanel.setBorder(margin);
+    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("database_login_title"));
+    Font curFont=panelTitleLabel.getFont();
+    int curFontSize=curFont.getSize();
+    curFontSize+=4;
+    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+    mainPanel.add(panelTitleLabel);
+    mainPanel.add(getNamePanel());
+    JPanel urlJDBCPanel=new JPanel();
+    urlJDBCPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    urlJDBCPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_url_jdbc_props")));
+    urlJDBCPanel.add(getUrlPanel());
+    urlJDBCPanel.add(getDriverPanel());
+    mainPanel.add(urlJDBCPanel);
+    loginGui=new LoginConfigGui(false);
+    JPanel loginPanel=new JPanel();
+    loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
+    loginPanel.add(loginGui);
+    mainPanel.add(loginPanel);
+    this.add(mainPanel);
+  }
+ else {
+    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    JPanel urlJDBCPanel=new JPanel();
+    urlJDBCPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+    urlJDBCPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("database_url_jdbc_props")));
+    urlJDBCPanel.add(getUrlPanel());
+    urlJDBCPanel.add(getDriverPanel());
+    this.add(urlJDBCPanel);
+    loginGui=new LoginConfigGui(false);
+    JPanel loginPanel=new JPanel();
+    loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
+    loginPanel.add(loginGui);
+    this.add(loginPanel);
+  }
+}

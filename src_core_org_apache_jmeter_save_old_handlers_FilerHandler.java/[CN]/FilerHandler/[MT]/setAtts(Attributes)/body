@@ -1,0 +1,6 @@
+{
+  model=new ResultCollector();
+  model.setName(atts.getValue("name"));
+  model.setFilename(atts.getValue("file"));
+  model.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.visualizers.GraphVisualizer");
+}

@@ -1,0 +1,9 @@
+{
+  int size=0;
+  for (int t=0; t < keys.size(); t++) {
+    String key=(String)keys.elementAt(t);
+    Vector v=(Vector)data.get(key);
+    size=Math.max(size,v.size());
+  }
+  return size;
+}

@@ -1,0 +1,5 @@
+{
+  super.configure(element);
+  connField.setText(element.getProperty(JDBCSampler.CONNECTIONS).toString());
+  maxUseField.setText(element.getProperty(JDBCSampler.MAXUSE).toString());
+}

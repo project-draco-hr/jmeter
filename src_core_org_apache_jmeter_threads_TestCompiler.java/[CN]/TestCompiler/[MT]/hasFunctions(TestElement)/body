@@ -1,0 +1,23 @@
+{
+  boolean hasFunctions=false;
+  Iterator iter=el.getPropertyNames().iterator();
+  while (iter.hasNext()) {
+    String propName=(String)iter.next();
+    Object propValue=el.getProperty(propName);
+    if (propValue instanceof Function) {
+      ((Function)propValue).setJMeterVariables(threadVars);
+      hasFunctions=true;
+    }
+ else     if (propValue instanceof TestElement) {
+      if (hasFunctions((TestElement)propValue)) {
+        hasFunctions=true;
+      }
+    }
+ else     if (propValue instanceof Collection) {
+      if (hasFunctions((Collection)propValue)) {
+        hasFunctions=true;
+      }
+    }
+  }
+  return hasFunctions;
+}

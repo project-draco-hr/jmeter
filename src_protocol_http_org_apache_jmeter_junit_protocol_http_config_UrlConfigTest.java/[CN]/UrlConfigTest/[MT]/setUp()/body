@@ -1,0 +1,19 @@
+{
+  Arguments args=new Arguments();
+  args.addArgument("username","mstover");
+  args.addArgument("password","pass");
+  args.addArgument("action","login");
+  config=new HTTPSampler();
+  config.setName("Full Config");
+  config.setProperty(HTTPSampler.DOMAIN,"www.lazer.com");
+  config.setProperty(HTTPSampler.PATH,"login.jsp");
+  config.setProperty(HTTPSampler.METHOD,HTTPSampler.POST);
+  config.setProperty(HTTPSampler.ARGUMENTS,args);
+  defaultConfig=new HTTPSampler();
+  defaultConfig.setName("default");
+  defaultConfig.setProperty(HTTPSampler.DOMAIN,"www.xerox.com");
+  defaultConfig.setProperty(HTTPSampler.PATH,"default.html");
+  partialConfig=new HTTPSampler();
+  partialConfig.setProperty(HTTPSampler.PATH,"main.jsp");
+  partialConfig.setProperty(HTTPSampler.METHOD,HTTPSampler.GET);
+}

@@ -1,0 +1,5 @@
+{
+  variable.setParameters(URLEncoder.encode("<value field=\"(pinposition\\d+)\">(\\d+)</value>") + ",$2$,2");
+  String match=variable.execute(result,null);
+  assertEquals("5",match);
+}

@@ -1,0 +1,33 @@
+{
+  int daemonPort;
+switch (args.length) {
+case 0:
+    daemonPort=defaultDaemonPort;
+  break;
+case 1:
+try {
+  daemonPort=Integer.parseInt(args[0]);
+}
+ catch (NumberFormatException e) {
+  System.out.println("Error: Invalid daemon port");
+  return;
+}
+if (daemonPort > maxDaemonPort) {
+System.out.println("Error: Invalid daemon port");
+return;
+}
+break;
+default :
+System.out.println("Usage: Proxy [daemon port]");
+return;
+}
+Daemon demon=new Daemon();
+try {
+demon.configureProxy(daemonPort);
+}
+ catch (UnknownHostException e) {
+System.out.println("Unknown host");
+System.exit(-1);
+}
+demon.start();
+}

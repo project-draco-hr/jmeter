@@ -1,0 +1,7 @@
+{
+  super();
+  model=new SplineModel();
+  graph=new SplineGraph();
+  this.model.setListener(this);
+  setGUI();
+}

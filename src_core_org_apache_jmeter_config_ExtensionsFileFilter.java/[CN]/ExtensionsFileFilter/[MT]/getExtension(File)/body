@@ -1,0 +1,10 @@
+{
+  String name=pFile.getName();
+  int index=name.lastIndexOf('.');
+  if (index == -1 || index == name.length()) {
+    return "";
+  }
+ else {
+    return name.substring(index + 1);
+  }
+}

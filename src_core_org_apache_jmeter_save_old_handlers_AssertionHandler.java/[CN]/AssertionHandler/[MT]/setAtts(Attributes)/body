@@ -1,0 +1,12 @@
+{
+  try {
+    model=(ResponseAssertion)Class.forName(JMeterHandler.getComponentConversion(atts.getValue("class"))).newInstance();
+    model.setName(atts.getValue("name"));
+    model.setTestType(Integer.parseInt(atts.getValue("testType")));
+    model.setTestField(JMeterHandler.convertProperty(atts.getValue("testField")));
+    model.setProperty(TestElement.GUI_CLASS,JMeterHandler.getGuiClass(atts.getValue("class")));
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

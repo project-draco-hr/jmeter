@@ -1,0 +1,14 @@
+{
+  if (key == null || key.size() == 0) {
+    add(value);
+    return;
+  }
+ else   if (key.size() == 1) {
+    add(key.get(0),value);
+  }
+ else {
+    Object temp=key.get(0);
+    add(temp,key.get(1));
+    get(temp).add(key.subList(1,key.size()),value);
+  }
+}

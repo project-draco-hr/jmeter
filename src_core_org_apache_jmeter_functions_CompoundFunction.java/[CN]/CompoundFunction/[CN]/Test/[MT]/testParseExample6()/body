@@ -1,0 +1,7 @@
+{
+  function.setParameters("${server}");
+  assertEquals(1,function.compiledComponents.size());
+  assertTrue(!function.hasFunction());
+  assertTrue(function.hasStatics());
+  assertEquals("jakarta.apache.org",function.execute(null,null));
+}

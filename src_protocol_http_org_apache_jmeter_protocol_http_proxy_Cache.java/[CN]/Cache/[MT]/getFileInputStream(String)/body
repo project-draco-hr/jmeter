@@ -1,0 +1,18 @@
+{
+  FileInputStream in=null;
+  try {
+    String filename=getFileName(rawUrl);
+    htable.put(filename,new Date());
+    in=new FileInputStream(filename);
+  }
+ catch (  FileNotFoundException fnf) {
+    try {
+      System.out.println("File Not Found:" + getFileName(rawUrl) + " "+ fnf);
+    }
+ catch (    Exception e) {
+    }
+  }
+ finally {
+    return in;
+  }
+}

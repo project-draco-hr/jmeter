@@ -1,0 +1,9 @@
+{
+  ConnectionObject[] connectionArray=(ConnectionObject[])connections.get(key);
+  int count=-1;
+  while (++count < connectionArray.length) {
+    connectionArray[count].close();
+    connectionArray[count]=null;
+  }
+  connections.remove(key);
+}

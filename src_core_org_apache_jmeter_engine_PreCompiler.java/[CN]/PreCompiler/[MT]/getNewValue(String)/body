@@ -1,0 +1,17 @@
+{
+  Object newValue=propValue;
+  masterFunction.clear();
+  try {
+    masterFunction.setParameters((String)propValue);
+  }
+ catch (  InvalidVariableException e) {
+    testValid=false;
+  }
+  if (masterFunction.hasFunction()) {
+    newValue=masterFunction.getFunction();
+  }
+ else   if (masterFunction.hasStatics()) {
+    newValue=masterFunction.getStaticSubstitution();
+  }
+  return newValue;
+}

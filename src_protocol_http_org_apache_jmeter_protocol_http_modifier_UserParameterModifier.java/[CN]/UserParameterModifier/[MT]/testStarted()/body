@@ -1,0 +1,13 @@
+{
+  List allUsers=new LinkedList();
+  try {
+    UserParameterXMLParser readXMLParameters=new UserParameterXMLParser();
+    allUsers=readXMLParameters.getXMLParameters(getXmlUri());
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+    System.err.println("Unable to read parameters from xml file " + getXmlUri());
+    System.err.println("No unique values for http requests will be substituted for each thread");
+  }
+  allAvailableUsers=new UserSequence(allUsers);
+}

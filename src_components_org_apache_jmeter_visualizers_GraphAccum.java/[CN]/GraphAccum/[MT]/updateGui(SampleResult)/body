@@ -1,0 +1,14 @@
+{
+  catClass.debug("Start : updateGui2");
+  final int xPos=model.getSampleCount();
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      Graphics g=getGraphics();
+      if (g != null) {
+        drawSample(xPos * PLOT_X_WIDTH,oneSample,g);
+      }
+    }
+  }
+);
+  catClass.debug("End : updateGui2");
+}

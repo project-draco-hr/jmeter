@@ -1,0 +1,11 @@
+{
+  Iterator iter=testListeners.getSearchResults().iterator();
+  while (iter.hasNext()) {
+    if (host == null) {
+      ((TestListener)iter.next()).testStarted();
+    }
+ else {
+      ((TestListener)iter.next()).testStarted(host);
+    }
+  }
+}

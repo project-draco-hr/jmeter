@@ -1,0 +1,9 @@
+{
+  setName((String)element.getProperty(TestElement.NAME));
+  if (element instanceof LoopController) {
+    setState(((LoopController)element).getLoops());
+  }
+ else {
+    setState(1);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  HTTPSampler config=new HTTPSampler();
+  config.setProtocol("http");
+  config.setMethod(HTTPSampler.GET);
+  config.parseArguments("param1");
+  config.setPath("/index.html");
+  config.setDomain("www.apache.org");
+  assertEquals("http://www.apache.org:80/index.html?param1",config.getUrl().toString());
+}

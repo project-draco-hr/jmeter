@@ -1,0 +1,20 @@
+{
+  ListedHashTree testing=new ListedHashTree();
+  GenericController controller=new GenericController();
+  ConfigTestElement config1=new ConfigTestElement();
+  config1.setName("config1");
+  config1.setProperty(HTTPSampler.DOMAIN,"www.jarkarta.org");
+  HTTPSampler sampler=new HTTPSampler();
+  sampler.setName("sampler");
+  Arguments args=new Arguments();
+  args.addArgument("param1","value1");
+  testing.add(controller,config1);
+  testing.add(controller,sampler);
+  testing.get(controller).add(sampler,args);
+  TestCompiler.initialize();
+  TestCompiler compiler=new TestCompiler(testing,new JMeterVariables());
+  testing.traverse(compiler);
+  sampler=(HTTPSampler)compiler.configureSampler(sampler).getSampler();
+  assertEquals(config1.getProperty(HTTPSampler.DOMAIN),sampler.getDomain());
+  assertEquals(args.getArgument(0).getName(),sampler.getArguments().getArgument(0).getName());
+}

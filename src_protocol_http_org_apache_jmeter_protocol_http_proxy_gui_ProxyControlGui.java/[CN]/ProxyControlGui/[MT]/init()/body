@@ -1,0 +1,38 @@
+{
+  this.setLayout(new GridBagLayout());
+  GridBagConstraints gbc=new GridBagConstraints();
+  gbc.anchor=gbc.WEST;
+  gbc.fill=gbc.BOTH;
+  gbc.gridheight=1;
+  gbc.gridwidth=1;
+  gbc.gridx=0;
+  gbc.gridy=0;
+  gbc.weightx=1;
+  gbc.weighty=1;
+  JPanel mainPanel=new JPanel();
+  add(mainPanel,gbc.clone());
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new GridBagLayout());
+  gbc.weighty=0;
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("proxy_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel,gbc.clone());
+  gbc.gridy++;
+  mainPanel.add(namePanel,gbc.clone());
+  gbc.gridy++;
+  mainPanel.add(createPortPanel(),gbc.clone());
+  gbc.gridy++;
+  gbc.fill=gbc.BOTH;
+  gbc.weighty=.5;
+  mainPanel.add(createIncludePanel(),gbc.clone());
+  gbc.gridy++;
+  mainPanel.add(createExcludePanel(),gbc.clone());
+  gbc.gridy++;
+  gbc.fill=gbc.NONE;
+  gbc.weighty=0;
+  mainPanel.add(createControls(),gbc.clone());
+}

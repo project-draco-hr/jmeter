@@ -1,0 +1,31 @@
+{
+  super.configure(el);
+  ResponseAssertion model=(ResponseAssertion)el;
+  if (model.isContainsType()) {
+    containsBox.setSelected(true);
+    matchesBox.setSelected(false);
+  }
+ else {
+    containsBox.setSelected(false);
+    matchesBox.setSelected(true);
+  }
+  if (model.isNotType()) {
+    notBox.setSelected(true);
+  }
+ else {
+    notBox.setSelected(false);
+  }
+  if (ResponseAssertion.RESPONSE_DATA.equals(model.getTestField())) {
+    responseStringButton.setSelected(true);
+    labelButton.setSelected(false);
+  }
+ else {
+    responseStringButton.setSelected(false);
+    labelButton.setSelected(true);
+  }
+  Iterator tests=model.getTestStrings().iterator();
+  while (tests.hasNext()) {
+    tableModel.addRow(new Object[]{tests.next()});
+  }
+  tableModel.fireTableDataChanged();
+}

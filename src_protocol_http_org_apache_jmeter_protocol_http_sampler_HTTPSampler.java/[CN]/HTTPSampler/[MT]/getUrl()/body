@@ -1,0 +1,23 @@
+{
+  String pathAndQuery=null;
+  if (this.getMethod().equals(HTTPSampler.GET) && getQueryString().length() > 0) {
+    if (this.getPath().indexOf("?") > -1) {
+      pathAndQuery=this.getPath() + "&" + getQueryString();
+    }
+ else {
+      pathAndQuery=this.getPath() + "?" + getQueryString();
+    }
+  }
+ else {
+    pathAndQuery=this.getPath();
+  }
+  if (!pathAndQuery.startsWith("/")) {
+    pathAndQuery="/" + pathAndQuery;
+  }
+  if (getPort() == 0) {
+    return new URL(getProtocol(),getDomain(),pathAndQuery);
+  }
+ else {
+    return new URL(getProtocol(),(String)getProperty(HTTPSampler.DOMAIN),getPort(),pathAndQuery);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  List tempList;
+  Iterator it=data.keySet().iterator();
+  if (currentPos > -1 && currentPos < size) {
+    while (it.hasNext()) {
+      tempList=(List)data.get(it.next());
+      tempList.remove(currentPos);
+    }
+    if (currentPos > 0) {
+      currentPos--;
+    }
+    size--;
+  }
+}

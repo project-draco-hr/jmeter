@@ -1,0 +1,10 @@
+{
+  Object numConn=this.getProperty(JDBCSampler.CONNECTIONS);
+  if (numConn instanceof Integer) {
+    return ((Integer)numConn).intValue();
+  }
+ else   if (numConn instanceof String) {
+    return Integer.parseInt((String)numConn);
+  }
+  return 1;
+}

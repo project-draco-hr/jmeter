@@ -1,0 +1,34 @@
+{
+  GenericController controller=new GenericController();
+  GenericController sub_1=new InterleaveControl();
+  sub_1.addTestElement(makeSampler("one"));
+  sub_1.addTestElement(makeSampler("two"));
+  controller.addTestElement(sub_1);
+  controller.addTestElement(makeSampler("three"));
+  LoopController sub_2=new LoopController();
+  sub_2.setLoops(3);
+  GenericController sub_3=new GenericController();
+  sub_2.addTestElement(makeSampler("four"));
+  sub_3.addTestElement(makeSampler("five"));
+  sub_3.addTestElement(makeSampler("six"));
+  sub_2.addTestElement(sub_3);
+  sub_2.addTestElement(makeSampler("seven"));
+  controller.addTestElement(sub_2);
+  String[] interleaveOrder=new String[]{"one","two"};
+  String[] order=new String[]{"dummy","three","four","five","six","seven","four","five","six","seven","four","five","six","seven"};
+  int counter=14;
+  for (int i=0; i < 4; i++) {
+    assertEquals(14,counter);
+    counter=0;
+    while (controller.hasNext()) {
+      TestElement sampler=controller.next();
+      if (counter == 0) {
+        assertEquals(interleaveOrder[i % 2],sampler.getProperty(TestElement.NAME));
+      }
+ else {
+        assertEquals(order[counter],sampler.getProperty(TestElement.NAME));
+      }
+      counter++;
+    }
+  }
+}

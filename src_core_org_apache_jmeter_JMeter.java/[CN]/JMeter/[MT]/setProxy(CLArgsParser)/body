@@ -1,0 +1,19 @@
+{
+  if (parser.getArgumentById(PROXY_USERNAME) != null) {
+    if (parser.getArgumentById(PROXY_PASSWORD) != null) {
+      Authenticator.setDefault(new ProxyAuthenticator(parser.getArgumentById(PROXY_USERNAME).getArgument(),parser.getArgumentById(PROXY_PASSWORD).getArgument()));
+    }
+ else {
+      Authenticator.setDefault(new ProxyAuthenticator(parser.getArgumentById(PROXY_USERNAME).getArgument(),""));
+    }
+  }
+  if (parser.getArgumentById(PROXY_HOST) != null && parser.getArgumentById(PROXY_PORT) != null) {
+    System.setProperty("http.proxyHost",parser.getArgumentById(PROXY_HOST).getArgument());
+    System.setProperty("https.proxyHost",parser.getArgumentById(PROXY_HOST).getArgument());
+    System.setProperty("http.proxyPort",parser.getArgumentById(PROXY_PORT).getArgument());
+    System.setProperty("https.proxyPort",parser.getArgumentById(PROXY_PORT).getArgument());
+  }
+ else   if (parser.getArgumentById(PROXY_HOST) != null || parser.getArgumentById(PROXY_PORT) != null) {
+    throw new IllegalUserActionException(JMeterUtils.getResString("proxy_cl_error"));
+  }
+}

@@ -1,0 +1,24 @@
+{
+  boolean ok=false;
+  if (sampler.getDomain() == null || sampler.getDomain().equals("")) {
+    return false;
+  }
+  if (getIncludePatterns().size() == 0) {
+    ok=true;
+  }
+ else {
+    ok=checkIncludes(sampler);
+  }
+  if (!ok) {
+    return ok;
+  }
+ else {
+    if (getExcludePatterns().size() == 0) {
+      return ok;
+    }
+ else {
+      ok=checkExcludes(sampler);
+    }
+  }
+  return ok;
+}

@@ -1,0 +1,56 @@
+{
+  String password=this.defaultpw;
+  if (null == this.keyStore) {
+    String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
+    String fileName=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStore",defaultName);
+    System.setProperty("javax.net.ssl.keyStore",fileName);
+    try {
+      if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
+        this.keyStore=JmeterKeyStore.getInstance("pkcs12");
+        System.out.println("KeyStore Type: PKCS 12");
+        System.setProperty("javax.net.ssl.keyStoreType","pkcs12");
+      }
+ else {
+        this.keyStore=JmeterKeyStore.getInstance("JKS");
+        System.out.println("KeyStore Type: JKS");
+      }
+    }
+ catch (    Exception e) {
+      JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),e,JMeterUtils.getResString("ssl_error_title"),JOptionPane.ERROR_MESSAGE);
+      this.keyStore=null;
+      throw new RuntimeException("KeyStore Problem");
+    }
+    if (null == password) {
+      if (null == defaultpw) {
+        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword");
+        if (null == defaultpw) {
+synchronized (this) {
+            this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
+            JMeterUtils.getJMeterProperties().setProperty("javax.net.ssl.keyStorePassword",this.defaultpw);
+          }
+        }
+      }
+      password=this.defaultpw;
+      System.setProperty("javax.net.ssl.keyStorePassword",password);
+    }
+    try {
+      File initStore=new File(fileName);
+      if (initStore.exists()) {
+        try {
+          this.keyStore.load(new FileInputStream(initStore),password);
+        }
+ catch (        Exception e) {
+          throw new RuntimeException("Can't load KeyStore!!!  " + e.getMessage());
+        }
+      }
+ else {
+        this.keyStore.load(null,password);
+      }
+    }
+ catch (    Exception e) {
+    }
+    System.out.println("JmeterKeyStore Location: " + fileName);
+    System.out.println("JmeterKeyStore type: " + this.keyStore.getClass().toString());
+  }
+  return this.keyStore;
+}

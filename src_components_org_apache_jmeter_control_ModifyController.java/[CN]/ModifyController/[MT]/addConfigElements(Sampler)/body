@@ -1,0 +1,17 @@
+{
+  if (entry != null) {
+    Iterator iter=this.getConfigElements().iterator();
+    while (iter.hasNext()) {
+      Object item=iter.next();
+      if (item instanceof Modifier) {
+        ((Modifier)item).modifyEntry(entry);
+      }
+ else       if (item instanceof ResponseBasedModifier) {
+        ((ResponseBasedModifier)item).modifyEntry(entry,currentResult);
+      }
+ else {
+        entry.addTestElement((TestElement)item);
+      }
+    }
+  }
+}

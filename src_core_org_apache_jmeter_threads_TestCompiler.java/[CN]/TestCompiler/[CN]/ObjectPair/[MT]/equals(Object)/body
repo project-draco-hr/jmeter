@@ -1,0 +1,6 @@
+{
+  if (o instanceof ObjectPair) {
+    return one == ((ObjectPair)o).one && two == ((ObjectPair)o).two;
+  }
+  return false;
+}

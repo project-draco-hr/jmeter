@@ -1,0 +1,13 @@
+{
+  ConnectionObject[] connectionArray=(ConnectionObject[])connections.get(key);
+  int maxConnections=key.getMaxConnections();
+  Connection c=null;
+  int index=(int)(100 * Math.random());
+  int count=-1;
+  while (++count < maxConnections && c == null) {
+    index++;
+    c=connectionArray[index % maxConnections].grab();
+  }
+  if (c != null)   rentedConnections.put(c,connectionArray[index % maxConnections]);
+  return c;
+}

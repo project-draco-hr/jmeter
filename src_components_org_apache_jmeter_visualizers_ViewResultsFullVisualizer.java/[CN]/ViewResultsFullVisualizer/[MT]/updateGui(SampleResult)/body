@@ -1,0 +1,17 @@
+{
+  catClass.debug("Start : updateGui1");
+  if (catClass.isDebugEnabled())   catClass.debug("updateGui1 : sample result - " + res);
+  DefaultMutableTreeNode currNode=new DefaultMutableTreeNode(res);
+  treeModel.insertNodeInto(currNode,root,root.getChildCount());
+  SampleResult[] subResults=res.getSubResults();
+  if (subResults != null) {
+    int leafIndex=0;
+    for (int i=0; i < subResults.length; i++) {
+      SampleResult child=subResults[i];
+      if (catClass.isDebugEnabled())       catClass.debug("updateGui1 : child sample result - " + child);
+      DefaultMutableTreeNode leafNode=new DefaultMutableTreeNode(child);
+      treeModel.insertNodeInto(leafNode,currNode,leafIndex++);
+    }
+  }
+  catClass.debug("End : updateGui1");
+}

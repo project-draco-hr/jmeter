@@ -1,0 +1,11 @@
+{
+  try {
+    config=configObject;
+    cache=cacheManager;
+    adminSocket=new ServerSocket(0);
+    config.setAdminPort(adminSocket.getLocalPort());
+  }
+ catch (  IOException e) {
+    System.out.println("Error opening admin socket");
+  }
+}

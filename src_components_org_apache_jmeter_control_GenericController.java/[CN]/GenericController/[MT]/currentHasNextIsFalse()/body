@@ -1,0 +1,8 @@
+{
+  if (((Controller)getCurrentController()).isDone()) {
+    removeCurrentController();
+  }
+ else {
+    incrementCurrent();
+  }
+}

@@ -1,0 +1,14 @@
+{
+  if (c == null) {
+    return;
+  }
+  ConnectionObject connOb=(ConnectionObject)rentedConnections.get(c);
+  if (connOb != null) {
+    rentedConnections.remove(c);
+    connOb.release();
+  }
+ else {
+    System.out.println("DBConnectionManager: Lost a connection connection='" + c + "'\r\n");
+    c=null;
+  }
+}

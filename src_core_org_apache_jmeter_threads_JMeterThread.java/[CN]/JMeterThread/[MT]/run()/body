@@ -1,0 +1,32 @@
+{
+  try {
+    testTree.traverse(compiler);
+    running=true;
+    Sampler entry=null;
+    rampUpDelay();
+    System.out.println("Thread " + Thread.currentThread().getName() + " started");
+    while (running) {
+      while (controller.hasNext() && running) {
+        threadVars.incIteration();
+        try {
+          SamplePackage pack=compiler.configureSampler(controller.next());
+          delay(pack.getTimers());
+          SampleResult result=pack.getSampler().sample(null);
+          result.setThreadName(threadName);
+          result.setTimeStamp(System.currentTimeMillis());
+          checkAssertions(pack.getAssertions(),result);
+          notifyListeners(pack.getSampleListeners(),result);
+        }
+ catch (        Exception e) {
+          e.printStackTrace();
+        }
+      }
+      if (controller.isDone()) {
+        running=false;
+      }
+    }
+  }
+  finally {
+    monitor.threadFinished(this);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  JPanel mainPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("constant_timer_title"));
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel);
+  mainPanel.add(getNamePanel());
+  JPanel delayPanel=new JPanel();
+  JLabel delayLabel=new JLabel(JMeterUtils.getResString("constant_timer_delay"));
+  delayPanel.add(delayLabel);
+  delayField=new JTextField(6);
+  delayField.setText(DEFAULT_DELAY);
+  delayPanel.add(delayField);
+  mainPanel.add(delayPanel);
+  delayField.addKeyListener(this);
+  delayField.setName(DELAY_FIELD);
+  this.add(mainPanel);
+}

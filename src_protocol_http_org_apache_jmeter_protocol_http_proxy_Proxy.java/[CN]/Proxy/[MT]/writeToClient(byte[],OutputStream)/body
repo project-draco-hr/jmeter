@@ -1,0 +1,17 @@
+{
+  try {
+    out.write(inBytes);
+    out.flush();
+    System.out.println("Done writing to client");
+  }
+ catch (  IOException e) {
+    e.printStackTrace();
+  }
+ finally {
+    try {
+      out.close();
+    }
+ catch (    Exception ex) {
+    }
+  }
+}

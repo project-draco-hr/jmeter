@@ -1,0 +1,6 @@
+{
+  config=(TestElement)Class.forName(JMeterHandler.getComponentConversion(atts.getValue("type"))).newInstance();
+  config.setProperty(TestElement.TEST_CLASS,atts.getValue("type"));
+  config.setProperty(TestElement.GUI_CLASS,JMeterHandler.getGuiClass(atts.getValue("type")));
+  config.setProperty(TestElement.NAME,atts.getValue("name"));
+}

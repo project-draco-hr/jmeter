@@ -1,0 +1,8 @@
+{
+  if ((((Object[])data.get(row))[col]) != null) {
+    return (((Object[])(data.get(row)))[col]);
+  }
+ else {
+    return (" ");
+  }
+}

@@ -1,0 +1,39 @@
+{
+  try {
+    System.out.println("Running the test!");
+    running=true;
+    compileTree();
+    SearchByClass searcher=new SearchByClass(ThreadGroup.class);
+    testListeners=new SearchByClass(TestListener.class);
+    setMode();
+    getTestTree().traverse(testListeners);
+    getTestTree().traverse(searcher);
+    TestCompiler.initialize();
+    JMeterThread[] threads;
+    Iterator iter=searcher.getSearchResults().iterator();
+    if (iter.hasNext()) {
+      notifyTestListenersOfStart();
+    }
+    JMeterVariables.initialize();
+    while (iter.hasNext()) {
+      ThreadGroup group=(ThreadGroup)iter.next();
+      threads=new JMeterThread[group.getNumThreads()];
+      for (int i=0; running && i < threads.length; i++) {
+        threads[i]=new JMeterThread(cloneTree(searcher.getSubTree(group)),this);
+        threads[i].setInitialDelay((int)(((float)(group.getRampUp() * 1000) / (float)group.getNumThreads()) * (float)i));
+        threads[i].setThreadName(group.getName() + "-" + (i + 1));
+        Thread newThread=new Thread(threads[i]);
+        newThread.setName(group.getName() + "-" + (i + 1));
+        allThreads.add(threads[i]);
+        newThread.start();
+      }
+    }
+  }
+ catch (  Exception err) {
+    stopTest();
+    StringWriter string=new StringWriter();
+    PrintWriter writer=new PrintWriter(string);
+    err.printStackTrace(writer);
+    throw new JMeterEngineException(string.toString());
+  }
+}

@@ -1,0 +1,13 @@
+{
+  FileOutputStream out=null;
+  String filename;
+  try {
+    filename=getFileName(rawUrl);
+    out=new FileOutputStream(filename);
+  }
+ catch (  IOException e) {
+  }
+ finally {
+    return out;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  ConfigTestElement element=new ConfigTestElement();
+  configureTestElement(element);
+  element.setProperty(JDBCSampler.URL,urlField.getText());
+  element.setProperty(JDBCSampler.DRIVER,driverField.getText());
+  element.addTestElement(loginGui.createTestElement());
+  return element;
+}

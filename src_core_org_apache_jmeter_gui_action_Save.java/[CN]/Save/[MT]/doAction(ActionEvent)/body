@@ -1,0 +1,30 @@
+{
+  ListedHashTree subTree=null;
+  if (e.getActionCommand().equals(SAVE)) {
+    subTree=GuiPackage.getInstance().getCurrentSubTree();
+  }
+ else   if (e.getActionCommand().equals(SAVE_ALL)) {
+    subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
+  }
+  try {
+    convertSubTree(subTree);
+  }
+ catch (  Exception err) {
+  }
+  JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmx");
+  if (chooser == null) {
+    return;
+  }
+  OutputStream writer=null;
+  try {
+    writer=new FileOutputStream(chooser.getSelectedFile());
+    SaveService.saveSubTree(subTree,writer);
+  }
+ catch (  Throwable ex) {
+    ex.printStackTrace();
+  }
+ finally {
+    closeWriter(writer);
+    GuiPackage.getInstance().getMainFrame().repaint();
+  }
+}

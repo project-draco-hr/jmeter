@@ -1,0 +1,6 @@
+{
+  MenuElement[] elements=menu.getSubElements();
+  if ((elements.length > 0) && !(elements[elements.length - 1] instanceof JPopupMenu.Separator)) {
+    menu.addSeparator();
+  }
+}

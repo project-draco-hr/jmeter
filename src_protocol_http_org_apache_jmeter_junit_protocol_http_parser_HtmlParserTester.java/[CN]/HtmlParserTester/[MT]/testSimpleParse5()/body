@@ -1,0 +1,12 @@
+{
+  HTTPSampler config=makeUrlConfig("/subdir/index\\.h.*");
+  HTTPSampler context=makeContext("http://www.apache.org/subdir/one/previous.html");
+  String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"../index.html\">Goto index page</a></body></html>";
+  SampleResult result=new SampleResult();
+  result.setResponseData(responseText.getBytes());
+  result.setSampleLabel(context.toString());
+  result.setSamplerData(context);
+  parser.modifyEntry(config,result);
+  String newUrl=config.getUrl().toString();
+  assertEquals("http://www.apache.org:80/subdir/index.html",newUrl);
+}

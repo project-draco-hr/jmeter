@@ -1,0 +1,30 @@
+{
+  if (source == addressField) {
+    this.addressie=this.addressField.getText();
+    log("AddressField=" + addressField.getText());
+  }
+ else   if (source == fromField) {
+    this.from=this.fromField.getText();
+    log("FromField=" + fromField.getText());
+  }
+ else   if (source == smtpHostField) {
+    this.smtpHost=this.smtpHostField.getText();
+    log("smtpHostField=" + smtpHostField.getText());
+  }
+ else   if (source == failsubjectField) {
+    this.failsubject=this.failsubjectField.getText();
+    log("failsubjectField=" + failsubjectField.getText());
+  }
+ else   if (source == successsubjectField) {
+    this.successsubject=this.successsubjectField.getText();
+    log("successsubjectField=" + successsubjectField.getText());
+  }
+ else   if (source == failureLimitField) {
+    this.failureLimit=Long.parseLong(this.failureLimitField.getText());
+    log("failureLimitField=" + failureLimitField.getText());
+  }
+ else   if (source == successLimitField) {
+    this.successLimit=Long.parseLong(this.successLimitField.getText());
+    log("successLimitField=" + successLimitField.getText());
+  }
+}

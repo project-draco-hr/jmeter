@@ -1,0 +1,7 @@
+{
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("database_driver_class")));
+  driverField.setName(DRIVER);
+  panel.add(driverField);
+  return panel;
+}

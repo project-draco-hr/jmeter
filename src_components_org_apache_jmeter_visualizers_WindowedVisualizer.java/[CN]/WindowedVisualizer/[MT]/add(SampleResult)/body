@@ -1,0 +1,7 @@
+{
+  long sample=sampleResult.getTime();
+  int average=this.graph.add(sample);
+  dataField.setText(sample + "ms");
+  averageField.setText(average + "ms");
+  repaint();
+}

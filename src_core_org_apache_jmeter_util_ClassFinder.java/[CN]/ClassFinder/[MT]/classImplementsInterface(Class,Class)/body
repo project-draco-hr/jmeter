@@ -1,0 +1,13 @@
+{
+  HashMap mapInterfaces=new HashMap();
+  String strKey=null;
+  getAllInterfaces(theClass,mapInterfaces);
+  Iterator iterInterfaces=mapInterfaces.keySet().iterator();
+  while (iterInterfaces.hasNext()) {
+    strKey=(String)iterInterfaces.next();
+    if (mapInterfaces.get(strKey) == theInterface) {
+      return true;
+    }
+  }
+  return false;
+}

@@ -1,0 +1,7 @@
+{
+  if (string.endsWith("/") || string.endsWith("\\")) {
+    string=string.substring(0,string.length() - 1);
+    string=fixEndingSlashes(string);
+  }
+  return string;
+}

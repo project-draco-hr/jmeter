@@ -1,0 +1,14 @@
+{
+  Object[] temp;
+  if (row >= data.size()) {
+    data.setSize(row + 1);
+  }
+  if ((Object[])(data.get(row)) == null) {
+    temp=new Object[this.getColumnCount()];
+  }
+ else {
+    temp=(Object[])(data.get(row));
+  }
+  temp[col]=value;
+  data.set(row,temp);
+}

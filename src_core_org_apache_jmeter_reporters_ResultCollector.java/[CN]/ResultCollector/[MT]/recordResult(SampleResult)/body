@@ -1,0 +1,7 @@
+{
+  if (out != null) {
+    if (!isResultMarked(result)) {
+      out.print(getSerializedSampleResult(result));
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  long time=0;
+  try {
+    Date date=dateFormat.parse(dateStr);
+    time=date.getTime();
+  }
+ catch (  ParseException e) {
+    time=0;
+    System.out.println("DateFormat.ParseException: " + e.getMessage());
+  }
+  return time;
+}

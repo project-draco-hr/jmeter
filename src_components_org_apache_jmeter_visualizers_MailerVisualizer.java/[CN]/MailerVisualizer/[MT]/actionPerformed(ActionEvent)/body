@@ -1,0 +1,17 @@
+{
+  try {
+    JComponent c=(JComponent)e.getSource();
+    if (c == testerButton) {
+      log("### Test To:  " + this.addressie + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failsubject+ ", "+ "Success Subject:  "+ this.successsubject);
+      String testMessage=("### Test To:  " + this.addressie + ", "+ "Via:  "+ this.smtpHost+ ", "+ "Fail Subject:  "+ this.failsubject+ ", "+ "Success Subject:  "+ this.successsubject);
+      Vector addressVector=newAddressVector(addressie);
+      sendMail(from,addressVector,"Testing addressies",testMessage,smtpHost);
+    }
+ else {
+      doEventHandling(c);
+    }
+  }
+ catch (  Exception ex) {
+    JOptionPane.showMessageDialog(this,ex,"Error",JOptionPane.ERROR_MESSAGE);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  try {
+    Configuration config=builder.build(in);
+    ListedHashTree loadedTree=generateNode(config);
+    return loadedTree;
+  }
+ catch (  ConfigurationException e) {
+    throw new IOException("Problem loading using Avalon Configuration tools");
+  }
+catch (  SAXException e) {
+    throw new IOException("Problem with SAX implementation");
+  }
+}
