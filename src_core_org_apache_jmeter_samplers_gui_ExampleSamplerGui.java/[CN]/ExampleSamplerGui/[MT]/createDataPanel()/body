@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("example_data"));
+  data=new JTextField(10);
+  data.setName(ExampleSampler.DATA);
+  label.setLabelFor(data);
+  JPanel dataPanel=new JPanel(new BorderLayout(5,0));
+  dataPanel.add(label,BorderLayout.WEST);
+  dataPanel.add(data,BorderLayout.CENTER);
+  return dataPanel;
+}
