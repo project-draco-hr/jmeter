@@ -1,0 +1,21 @@
+{
+  Object r=null;
+  try {
+    if (o == null) {
+      r=m.invoke(instance,new Object[]{s});
+    }
+ else {
+      r=m.invoke(instance,new Object[]{s,o});
+    }
+  }
+ catch (  IllegalArgumentException e) {
+    log.error("Error invoking bsh method " + m.getName() + "\n",e);
+  }
+catch (  IllegalAccessException e) {
+    log.error("Error invoking bsh method " + m.getName() + "\n",e);
+  }
+catch (  InvocationTargetException e) {
+    log.error("Error invoking bsh method " + m.getName() + "\n",e);
+  }
+  return r;
+}

@@ -22,6 +22,9 @@
           if (reader.read(current) == 0 || current[0] != '}') {
             throw new InvalidVariableException();
           }
+          if (function instanceof TestListener) {
+            StandardJMeterEngine.register((TestListener)function);
+          }
           return function;
         }
  else {

@@ -1,0 +1,20 @@
+{
+  Iterator iterClasses=null;
+  Set listSubClasses=null;
+  String strClassName=null;
+  Class tempClass=null;
+  listSubClasses=new TreeSet();
+  iterClasses=listSuperClasses.iterator();
+  while (iterClasses.hasNext()) {
+    strClassName=(String)iterClasses.next();
+    if ((strClassName.indexOf("$") == -1) || innerClasses) {
+      try {
+        tempClass=Class.forName(strClassName,false,Thread.currentThread().getContextClassLoader());
+        findAllSubclassesOneClass(tempClass,listAllClasses,listSubClasses,innerClasses);
+      }
+ catch (      Throwable ignored) {
+      }
+    }
+  }
+  return listSubClasses;
+}

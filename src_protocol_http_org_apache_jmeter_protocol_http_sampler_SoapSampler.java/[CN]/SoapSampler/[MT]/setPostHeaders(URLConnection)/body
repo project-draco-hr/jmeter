@@ -1,6 +1,6 @@
 {
   ((HttpURLConnection)connection).setRequestMethod("POST");
-  connection.setRequestProperty("Content-length","" + getXmlData().length());
+  connection.setRequestProperty("Content-Length","" + getXmlData().length());
   if (getHeaderManager() != null) {
     HeaderManager mngr=getHeaderManager();
     int headerSize=mngr.size();
@@ -10,7 +10,7 @@
     }
   }
  else {
-    connection.setRequestProperty("Content-type","text/xml");
+    connection.setRequestProperty("Content-Type","text/xml");
   }
   connection.setDoOutput(true);
 }

@@ -45,7 +45,15 @@
             stopScheduler();
           }
         }
- catch (        Exception e) {
+ catch (        JMeterStopTestException e) {
+          log.info("Stopping Test: " + e.toString());
+          stopTest();
+        }
+catch (        JMeterStopThreadException e) {
+          log.info("Stopping Thread: " + e.toString());
+          stopThread();
+        }
+catch (        Exception e) {
           log.error("",e);
         }
       }
@@ -54,7 +62,14 @@
       }
     }
   }
- catch (  Exception e) {
+ catch (  JMeterStopTestException e) {
+    log.info("Stopping Test: " + e.toString());
+    stopTest();
+  }
+catch (  JMeterStopThreadException e) {
+    log.info("Stop Thread seen: " + e.toString());
+  }
+catch (  Exception e) {
     log.error("Test failed!",e);
   }
  finally {

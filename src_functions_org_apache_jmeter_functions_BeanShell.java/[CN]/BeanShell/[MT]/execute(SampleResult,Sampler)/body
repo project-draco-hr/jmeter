@@ -1,5 +1,9 @@
 {
-  JMeterVariables vars=getVariables();
+  if (bshSet == null) {
+    throw new InvalidVariableException("BeanShell not found");
+  }
+  JMeterContext jmctx=JMeterContextService.getContext();
+  JMeterVariables vars=jmctx.getVariables();
   String script=((CompoundVariable)values[0]).execute();
   String varName="";
   if (values.length > 1) {
@@ -9,14 +13,15 @@
   log.debug("Script=" + script);
   try {
     if (currentSampler != null) {
-      setObj.invoke(instance,new Object[]{"Sampler",currentSampler});
+      bshInvoke(bshSet,"Sampler",currentSampler);
     }
     if (previousResult != null) {
-      setObj.invoke(instance,new Object[]{"SampleResult",previousResult});
+      bshInvoke(bshSet,"SampleResult",previousResult);
     }
-    setObj.invoke(instance,new Object[]{"log",log});
-    setObj.invoke(instance,new Object[]{"t",this});
-    Object bshOut=eval.invoke(instance,new Object[]{script});
+    bshInvoke(bshSet,"ctx",jmctx);
+    bshInvoke(bshSet,"vars",vars);
+    bshInvoke(bshSet,"threadName",Thread.currentThread().getName());
+    Object bshOut=bshInvoke(bshEval,script,null);
     if (bshOut != null) {
       resultStr=bshOut.toString();
     }
@@ -25,7 +30,7 @@
     }
   }
  catch (  Exception ex) {
-    log.warn("",ex);
+    log.warn("Error running BSH script",ex);
   }
   log.debug("Output=" + resultStr);
   return resultStr;

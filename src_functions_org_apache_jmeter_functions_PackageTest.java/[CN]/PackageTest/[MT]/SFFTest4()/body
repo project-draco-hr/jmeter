@@ -1,0 +1,5 @@
+{
+  StringFromFile sff=SFFParams("xxtestfiles/SFFTest1.txt","","","");
+  assertEquals(StringFromFile.ERR_IND,sff.execute());
+  assertEquals(StringFromFile.ERR_IND,sff.execute());
+}

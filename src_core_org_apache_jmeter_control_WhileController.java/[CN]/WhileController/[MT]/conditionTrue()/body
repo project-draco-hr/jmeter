@@ -1,0 +1,12 @@
+{
+  String cnd=getCondition();
+  if (cnd.length() == 0 || "LAST".equalsIgnoreCase(cnd)) {
+    JMeterVariables threadVars=JMeterContextService.getContext().getVariables();
+    return !"false".equalsIgnoreCase(threadVars.get(JMeterThread.LAST_SAMPLE_OK));
+  }
+  if ("ALL".equalsIgnoreCase(cnd)) {
+    JMeterVariables threadVars=JMeterContextService.getContext().getVariables();
+    return !"false".equalsIgnoreCase(threadVars.get(JMeterThread.ALL_SAMPLES_OK));
+  }
+  return IfController.evaluateCondition(cnd);
+}

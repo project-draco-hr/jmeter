@@ -11,8 +11,9 @@
   if (null != myBread) {
     try {
       String line=myBread.readLine();
-      if (line == null && reopenFile) {
-        log.info("Reached EOF on " + fileName);
+      if (line == null) {
+        String tn=Thread.currentThread().getName();
+        log.info(tn + " EOF on  file " + fileName);
         closeFile();
         openFile();
         if (myBread != null) {
@@ -20,26 +21,32 @@
         }
  else {
           line=ERR_IND;
+          if (myEnd != COUNT_UNUSED) {
+            log.info(tn + " Detected end of sequence.");
+            throw new JMeterStopThreadException("End of sequence");
+          }
         }
       }
       myValue=line;
     }
- catch (    Exception e) {
+ catch (    IOException e) {
       String tn=Thread.currentThread().getName();
       log.error(tn + " error reading file " + e.toString());
     }
   }
  else {
-    if (values.length >= PARAM_END) {
-      log.info("Detected end of sequence.");
-      throw new RuntimeException("Stop Thread");
+    if (myEnd != COUNT_UNUSED) {
+      String tn=Thread.currentThread().getName();
+      log.info(tn + " Detected end of sequence.");
+      throw new JMeterStopThreadException("End of sequence");
     }
   }
   if (myName.length() > 0) {
     vars.put(myName,myValue);
   }
   if (log.isDebugEnabled()) {
-    log.debug(this + "::StringFromFile.execute() name:" + myName+ " value:"+ myValue);
+    String tn=Thread.currentThread().getName();
+    log.debug(tn + " name:" + myName+ " value:"+ myValue);
   }
   return myValue;
 }

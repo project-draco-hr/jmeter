@@ -1,7 +1,7 @@
 {
   StringBuffer sb=new StringBuffer();
   sb.append(getHTTPMethod());
-  URL u=getURL();
+  URL u=super.getURL();
   if (u != null) {
     sb.append(' ');
     sb.append(u.toString());

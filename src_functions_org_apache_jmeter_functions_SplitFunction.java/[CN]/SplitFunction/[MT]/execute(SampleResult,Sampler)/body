@@ -1,0 +1,16 @@
+{
+  JMeterVariables vars=getVariables();
+  String stringToSplit=((CompoundVariable)values[0]).execute();
+  String varNamePrefix=((CompoundVariable)values[1]).execute();
+  String splitString=",";
+  if (values.length > 2) {
+    splitString=((CompoundVariable)values[2]).execute();
+  }
+  String parts[]=JMeterUtils.split(stringToSplit,splitString,"?");
+  vars.put(varNamePrefix,stringToSplit);
+  vars.put(varNamePrefix + "_n","" + parts.length);
+  for (int i=1; i <= parts.length; i++) {
+    vars.put(varNamePrefix + "_" + i,parts[i - 1]);
+  }
+  return stringToSplit;
+}

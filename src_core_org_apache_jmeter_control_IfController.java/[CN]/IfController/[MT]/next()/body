@@ -1,11 +1,5 @@
 {
-  boolean result=false;
-  try {
-    result=evaluateCondition();
-  }
- catch (  Exception e) {
-    logger.error(e.getMessage(),e);
-  }
+  boolean result=evaluateCondition(getCondition());
   if (result)   return super.next();
  else   try {
     return nextIsNull();

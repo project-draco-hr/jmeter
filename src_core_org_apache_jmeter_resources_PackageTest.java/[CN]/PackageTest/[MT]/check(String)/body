@@ -1,35 +1,3 @@
 {
-  ArrayList alf=new ArrayList(500);
-  String res=getResName(resname);
-  readRF(res,alf);
-  Collections.sort(alf);
-  String last="";
-  for (int i=0; i < alf.size(); i++) {
-    String curr=(String)alf.get(i);
-    if (curr.equals(last)) {
-      subTestFailures++;
-      System.out.println("\nDuplicate key =" + curr + " in "+ res);
-    }
-    last=curr;
-  }
-  if (resname.length() == 0) {
-    defaultPRB=getRAS(res);
-  }
- else {
-    Enumeration enum=getRAS(res).getKeys();
-    while (enum.hasMoreElements()) {
-      String key=null;
-      try {
-        key=(String)enum.nextElement();
-        defaultPRB.getString(key);
-      }
- catch (      MissingResourceException e) {
-        subTestFailures++;
-        System.out.println("Locale: " + resname + " has unexpected key: "+ key);
-      }
-    }
-  }
-  if (subTestFailures > 0) {
-    fail("One or more subtests failed");
-  }
+  check(resname,true);
 }

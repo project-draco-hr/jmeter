@@ -5,8 +5,9 @@
     instance=Interpreter.newInstance();
     Class string=String.class;
     Class object=Object.class;
-    eval=Interpreter.getMethod("eval",new Class[]{string});
-    setObj=Interpreter.getMethod("set",new Class[]{string,object});
+    bshEval=Interpreter.getMethod("eval",new Class[]{string});
+    bshSet=Interpreter.getMethod("set",new Class[]{string,object});
+    bshSource=Interpreter.getMethod("source",new Class[]{string});
   }
  catch (  ClassNotFoundException e) {
     log.error("Beanshell Interpreter not found");
@@ -14,4 +15,7 @@
 catch (  Exception e) {
     log.error("Problem starting BeanShell server ",e);
   }
+  bshInvoke(bshSet,"log",log);
+  String initFile=JMeterUtils.getPropDefault(INIT_FILE,null);
+  if (initFile != null)   bshInvoke(bshSource,initFile,null);
 }

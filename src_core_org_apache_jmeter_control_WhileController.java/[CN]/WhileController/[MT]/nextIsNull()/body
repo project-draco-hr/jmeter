@@ -1,0 +1,10 @@
+{
+  reInitialize();
+  if (conditionTrue()) {
+    return next();
+  }
+ else {
+    setDone(true);
+    return null;
+  }
+}

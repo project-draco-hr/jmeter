@@ -4,5 +4,7 @@
   Box box=Box.createVerticalBox();
   box.add(makeTitlePanel());
   box.add(createFilenamePanel());
+  errorsOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_errors"));
+  box.add(errorsOnly);
   add(box,BorderLayout.NORTH);
 }

@@ -12,10 +12,15 @@
     results.setDataType(SampleResult.TEXT);
   }
   results.sampleStart();
-  long start=System.currentTimeMillis();
-  long sleep=getSleepTime() + (start % getSleepMask());
+  long sleep=sleepTime;
+  if (sleepTime > 0 && sleepMask > 0) {
+    long start=System.currentTimeMillis();
+    sleep=sleepTime + (start % sleepMask);
+  }
   try {
-    Thread.sleep(sleep);
+    if (sleep > 0) {
+      Thread.sleep(sleep);
+    }
     results.setSuccessful(success);
   }
  catch (  InterruptedException e) {

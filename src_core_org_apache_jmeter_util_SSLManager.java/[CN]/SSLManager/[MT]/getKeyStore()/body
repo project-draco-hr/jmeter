@@ -22,7 +22,7 @@
     }
     if (null == password) {
       if (null == defaultpw) {
-        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword","password");
+        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword");
         if (null == defaultpw) {
 synchronized (this) {
             this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);

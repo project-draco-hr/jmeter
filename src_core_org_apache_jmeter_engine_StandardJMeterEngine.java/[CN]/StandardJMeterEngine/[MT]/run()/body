@@ -1,6 +1,7 @@
 {
   log.info("Running the test!");
   running=true;
+  testList=new ArrayList();
   SearchByClass testPlan=new SearchByClass(TestPlan.class);
   getTestTree().traverse(testPlan);
   Object[] plan=testPlan.getSearchResults().toArray();
@@ -16,6 +17,9 @@
   compileTree();
   testListeners=new SearchByClass(TestListener.class);
   getTestTree().traverse(testListeners);
+  Collection col=testListeners.getSearchResults();
+  col.addAll(testList);
+  testList=null;
   notifyTestListenersOfStart();
   getTestTree().traverse(new TurnElementsOn());
   List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));

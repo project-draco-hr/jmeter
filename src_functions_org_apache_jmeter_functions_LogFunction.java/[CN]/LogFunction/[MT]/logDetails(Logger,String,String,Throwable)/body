@@ -7,6 +7,9 @@
   }
  else {
     Priority p=Priority.getPriorityForName(prio);
-    log.log(p,s,t);
+    if (log.isPriorityEnabled(p)) {
+      String tn=Thread.currentThread().getName();
+      log.log(p,tn + " " + s,t);
+    }
   }
 }

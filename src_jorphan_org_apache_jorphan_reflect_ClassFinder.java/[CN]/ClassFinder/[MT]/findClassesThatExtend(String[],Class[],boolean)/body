@@ -1,6 +1,6 @@
 {
   List listPaths=null;
-  ArrayList listClasses=null;
+  Set listClasses=null;
   List listSuperClasses=null;
   strPathsOrJars=addJarsInPath(strPathsOrJars);
   if (log.isDebugEnabled()) {
@@ -15,7 +15,7 @@
       log.debug("listPaths : " + tIter.next());
     }
   }
-  listClasses=new ArrayList();
+  listClasses=new TreeSet();
   listSuperClasses=new ArrayList();
   for (int i=0; i < superClasses.length; i++) {
     listSuperClasses.add(superClasses[i].getName());
@@ -27,6 +27,6 @@
       log.debug("listClasses : " + tIter.next());
     }
   }
-  List subClassList=findAllSubclasses(listSuperClasses,listClasses,innerClasses);
-  return subClassList;
+  Set subClassList=findAllSubclasses(listSuperClasses,listClasses,innerClasses);
+  return new ArrayList(subClassList);
 }
