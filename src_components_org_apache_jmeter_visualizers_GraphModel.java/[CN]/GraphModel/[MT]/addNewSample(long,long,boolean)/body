@@ -5,10 +5,11 @@
   if (sample > max) {
     max=sample;
   }
-  averageSum+=sample;
-  long average=averageSum / ++counter;
-  variationSum+=Math.pow(sample - average,2);
-  long deviation=(long)Math.pow(variationSum / counter,0.5);
+  counter++;
+  sum+=sample;
+  float average=((float)sum) / counter;
+  sumOfSquares+=sample * sample;
+  long deviation=(long)Math.sqrt((sumOfSquares / counter) - average * average);
   float throughput=0;
   if (timeStamp - startTime > 0) {
     throughput=(float)(((float)(samples.size() + 1)) / ((float)(timeStamp - startTime)) * 60000);
@@ -19,13 +20,13 @@
   }
   if (average > graphMax) {
     bigChange=true;
-    graphMax=average * 3;
+    graphMax=(long)average * 3;
   }
   if (deviation > graphMax) {
     bigChange=true;
     graphMax=deviation * 3;
   }
-  Sample s=new Sample(sample,average,deviation,throughput,!success);
+  Sample s=new Sample(sample,(long)average,deviation,throughput,!success);
   previous=sample;
   current=s;
   samples.add(s);

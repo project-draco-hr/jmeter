@@ -1,15 +1,15 @@
 {
   String pathAndQuery=null;
   if (this.getMethod().equals(HTTPSampler.GET) && getQueryString().length() > 0) {
-    if (this.getPath().indexOf("?") > -1) {
-      pathAndQuery=this.getPath() + "&" + getQueryString();
+    if (this.getEncodedPath().indexOf("?") > -1) {
+      pathAndQuery=this.getEncodedPath() + "&" + getQueryString();
     }
  else {
-      pathAndQuery=this.getPath() + "?" + getQueryString();
+      pathAndQuery=this.getEncodedPath() + "?" + getQueryString();
     }
   }
  else {
-    pathAndQuery=this.getPath();
+    pathAndQuery=this.getEncodedPath();
   }
   if (!pathAndQuery.startsWith("/")) {
     pathAndQuery="/" + pathAndQuery;

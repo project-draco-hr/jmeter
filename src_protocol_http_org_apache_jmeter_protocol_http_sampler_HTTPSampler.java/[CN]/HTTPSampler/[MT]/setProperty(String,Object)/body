@@ -1,0 +1,6 @@
+{
+  super.setProperty(key,prop);
+  if (PATH.equals(key)) {
+    setEncodedPath(prop.toString());
+  }
+}

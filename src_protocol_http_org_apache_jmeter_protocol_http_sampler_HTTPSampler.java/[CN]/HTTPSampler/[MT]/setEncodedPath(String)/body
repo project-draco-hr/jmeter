@@ -1,0 +1,4 @@
+{
+  path=Util.substitute((Perl5Matcher)localMatcher.get(),patternCache.getPattern(" ",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK),spaceSub,path,Util.SUBSTITUTE_ALL);
+  setProperty(ENCODED_PATH,path);
+}
