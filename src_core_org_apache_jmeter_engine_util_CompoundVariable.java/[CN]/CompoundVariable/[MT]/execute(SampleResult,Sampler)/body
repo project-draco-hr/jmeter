@@ -2,12 +2,14 @@
   if (compiledComponents == null || compiledComponents.size() == 0) {
     return "";
   }
+  boolean testDynamic=false;
   StringBuffer results=new StringBuffer();
   Iterator iter=compiledComponents.iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
     log.debug("executing object: " + item);
     if (item instanceof Function) {
+      testDynamic=true;
       try {
         results.append(((Function)item).execute(previousResult,currentSampler));
       }
@@ -15,11 +17,16 @@
       }
     }
  else     if (item instanceof SimpleVariable) {
+      testDynamic=true;
       results.append(((SimpleVariable)item).toString());
     }
  else {
       results.append(item);
     }
+  }
+  if (!testDynamic) {
+    isDynamic=false;
+    permanentResults=results.toString();
   }
   return results.toString();
 }

@@ -1,0 +1,9 @@
+{
+  JMeterVariables vars=getVariables();
+  int min=Integer.parseInt(minimum.execute());
+  int max=Integer.parseInt(maximum.execute());
+  int rand=(int)Math.round(min + Math.random() * (max - min));
+  String randString=Integer.toString(rand);
+  vars.put(varName.execute(),randString);
+  return randString;
+}
