@@ -5,6 +5,10 @@
   }
   initializeLogging(args);
   initializeManager(args);
+  logprop("java.version");
+  logprop("java.vendor");
+  logprop("java.class.version");
+  logprop("java.class.path");
   String e="java.awt.headless";
   String g="java.awt.graphicsenv";
   System.out.println("+++++++++++");
