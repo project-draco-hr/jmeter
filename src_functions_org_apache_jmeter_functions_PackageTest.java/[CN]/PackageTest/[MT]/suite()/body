@@ -1,0 +1,11 @@
+{
+  TestSuite suite=new TestSuite("SingleThreaded");
+  suite.addTest(new PackageTest("CSV2Setup"));
+  suite.addTest(new PackageTest("CSV2Run"));
+  suite.addTest(new PackageTest("CSV2Setup"));
+  TestSuite par=new ActiveTestSuite("Parallel");
+  par.addTest(new PackageTest("Thread1"));
+  par.addTest(new PackageTest("Thread2"));
+  suite.addTest(par);
+  return suite;
+}
