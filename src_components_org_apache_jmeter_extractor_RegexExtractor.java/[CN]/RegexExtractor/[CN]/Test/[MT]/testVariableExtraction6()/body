@@ -4,6 +4,6 @@
   extractor.setMatchNumber(4);
   extractor.setDefaultValue("default");
   extractor.setJMeterVariables(vars);
-  extractor.processResult(result);
+  extractor.process(result);
   assertEquals("default",vars.get("regVal"));
 }

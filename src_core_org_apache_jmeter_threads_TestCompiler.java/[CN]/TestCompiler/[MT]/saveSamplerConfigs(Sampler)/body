@@ -36,7 +36,7 @@ synchronized (item) {
       if (item instanceof Assertion) {
         assertions.add(item);
       }
-      if (item instanceof Extractor) {
+      if (item instanceof PostProcessor) {
         extractors.add(item);
       }
     }

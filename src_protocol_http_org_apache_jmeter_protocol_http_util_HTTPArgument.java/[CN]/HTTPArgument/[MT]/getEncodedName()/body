@@ -1,3 +1,8 @@
 {
-  return cache.getEncoded(getName());
+  if (getAlwaysEncode()) {
+    return cache.getEncoded(getName());
+  }
+ else {
+    return getName();
+  }
 }

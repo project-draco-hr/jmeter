@@ -20,7 +20,7 @@
     menuMap.put(NON_TEST_ELEMENTS,nonTestElements);
     menuMap.put(RESPONSE_BASED_MODIFIERS,responseBasedModifiers);
     menuMap.put(SAMPLERS,samplers);
-    menuMap.put(EXTRACTORS,extractors);
+    menuMap.put(POST_PROCESSORS,extractors);
     Collections.sort(guiClasses);
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
@@ -41,7 +41,7 @@
       if (categories.contains(TIMERS)) {
         timers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
       }
-      if (categories.contains(EXTRACTORS)) {
+      if (categories.contains(POST_PROCESSORS)) {
         extractors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
       }
       if (categories.contains(CONTROLLERS)) {

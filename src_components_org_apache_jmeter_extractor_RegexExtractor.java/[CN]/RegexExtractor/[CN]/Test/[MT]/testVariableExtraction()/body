@@ -3,6 +3,6 @@
   extractor.setTemplate("$2$");
   extractor.setMatchNumber(2);
   extractor.setJMeterVariables(vars);
-  extractor.processResult(result);
+  extractor.process(result);
   assertEquals("5",vars.get("regVal"));
 }

@@ -3,6 +3,6 @@
   extractor.setTemplate("$1$");
   extractor.setMatchNumber(3);
   extractor.setJMeterVariables(vars);
-  extractor.processResult(result);
+  extractor.process(result);
   assertEquals("pinposition3",vars.get("regVal"));
 }

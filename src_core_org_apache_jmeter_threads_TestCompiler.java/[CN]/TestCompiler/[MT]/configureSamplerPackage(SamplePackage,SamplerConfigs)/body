@@ -28,11 +28,11 @@
   }
   iter=configs.getExtractors().iterator();
   while (iter.hasNext()) {
-    Extractor ex=(Extractor)iter.next();
+    PostProcessor ex=(PostProcessor)iter.next();
     TestElement cloned=(TestElement)cloneIfNecessary(ex);
     if (objectsWithFunctions.contains(ex)) {
       replaceValues(cloned);
     }
-    ret.addExtractor((Extractor)cloned);
+    ret.addExtractor((PostProcessor)cloned);
   }
 }
