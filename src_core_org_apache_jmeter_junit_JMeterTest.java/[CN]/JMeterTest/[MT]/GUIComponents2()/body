@@ -9,7 +9,7 @@
   el.setProperty(TestElement.NAME,"hey, new name!:");
   el.setProperty("NOT","Shouldn't be here");
   if (!(guiItem instanceof UnsharedComponent)) {
-    assertEquals("GUI-CLASS: Failed on " + name,"",el2.getPropertyAsString("NOT"));
+    assertEquals("SHARED: Failed on " + name,"",el2.getPropertyAsString("NOT"));
   }
   log.debug("Saving element: " + el.getClass());
   el=SaveService.createTestElement(SaveService.getConfigForTestElement(null,el));
