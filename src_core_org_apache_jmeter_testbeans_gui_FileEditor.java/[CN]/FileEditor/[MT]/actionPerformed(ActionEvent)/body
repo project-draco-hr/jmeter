@@ -1,5 +1,5 @@
 {
   JFileChooser chooser=FileDialoger.promptToOpenFile();
   File file=chooser.getSelectedFile();
-  setValue(file);
+  setValue(file.getPath());
 }
