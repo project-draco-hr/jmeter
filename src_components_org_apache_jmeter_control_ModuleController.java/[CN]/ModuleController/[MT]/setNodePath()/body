@@ -1,0 +1,11 @@
+{
+  Vector nodePath=new Vector();
+  if (selectedNode != null) {
+    TreeNode[] path=selectedNode.getPath();
+    for (int i=0; i < path.length; i++) {
+      nodePath.add(((JMeterTreeNode)path[i]).getName());
+    }
+    nodePath.add(selectedNode.getName());
+  }
+  setProperty(new CollectionProperty(NODE_PATH,nodePath));
+}

@@ -1,0 +1,13 @@
+{
+  if (selectedNode == null) {
+    Vector nodePath=getNodePath();
+    if (nodePath != null) {
+      GuiPackage gp=GuiPackage.getInstance();
+      if (gp != null) {
+        JMeterTreeNode root=(JMeterTreeNode)gp.getTreeModel().getRoot();
+        nodePath.remove(0);
+        traverse(root,nodePath);
+      }
+    }
+  }
+}

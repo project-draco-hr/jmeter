@@ -1,0 +1,12 @@
+{
+  if (node != null && nodePath.size() > 0) {
+    for (int i=0; i < node.getChildCount(); i++) {
+      JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
+      if (cur.getName().equals(nodePath.elementAt(0).toString())) {
+        selectedNode=cur;
+        nodePath.remove(0);
+        traverse(cur,nodePath);
+      }
+    }
+  }
+}
