@@ -1,10 +1,10 @@
 {
   try {
-    String p1=URLEncoder.encode(p,CHAR_SET);
+    String p1=JOrphanUtils.encode(p,CHAR_SET);
     return p1;
   }
- catch (  Exception e) {
-    log.warn("System doesn't support utf-8",e);
+ catch (  UnsupportedEncodingException e) {
+    log.warn("System doesn't support " + CHAR_SET,e);
     return p;
   }
 }
