@@ -7,7 +7,7 @@
       }
     }
  catch (    NamingException e) {
-      log.error(e.getMessage());
+      log.error(e.getCause().toString());
     }
   }
   return factory;
