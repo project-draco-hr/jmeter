@@ -1,15 +1,30 @@
 {
   running=true;
+  ServerSocket mainSocket=null;
   try {
     log.info("Creating Daemon Socket...");
-    MainSocket=new ServerSocket(daemonPort);
+    mainSocket=new ServerSocket(daemonPort);
+    mainSocket.setSoTimeout(ACCEPT_TIMEOUT);
     log.info(" port " + daemonPort + " OK");
     log.info("Proxy up and running!");
     while (running) {
-      Socket ClientSocket=MainSocket.accept();
-      Proxy thd=(Proxy)proxyClass.newInstance();
-      thd.configure(ClientSocket,target);
-      thd.start();
+      try {
+        Socket clientSocket=mainSocket.accept();
+        if (running) {
+          Proxy thd=(Proxy)proxyClass.newInstance();
+          thd.configure(clientSocket,target);
+          thd.start();
+        }
+ else {
+          try {
+            clientSocket.close();
+          }
+ catch (          IOException e) {
+          }
+        }
+      }
+ catch (      InterruptedIOException e) {
+      }
     }
     log.info("Proxy Server stopped");
   }
@@ -18,7 +33,7 @@
   }
  finally {
     try {
-      MainSocket.close();
+      mainSocket.close();
     }
  catch (    Exception exc) {
     }

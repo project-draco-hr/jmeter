@@ -1,33 +1,26 @@
 {
-  int daemonPort;
-switch (args.length) {
-case 0:
-    daemonPort=defaultDaemonPort;
-  break;
-case 1:
-try {
-  daemonPort=Integer.parseInt(args[0]);
-}
- catch (NumberFormatException e) {
-  log.error("Invalid daemon port",e);
-  return;
-}
-if (daemonPort > maxDaemonPort) {
-log.error("Invalid daemon port");
-return;
-}
-break;
-default :
-log.info("Usage: Proxy [daemon port]");
-return;
-}
-Daemon demon=new Daemon();
-try {
-demon.configureProxy(daemonPort);
-}
- catch (UnknownHostException e) {
-log.fatalError("Unknown host",e);
-System.exit(-1);
-}
-demon.start();
+  if (args.length > 1) {
+    System.err.println("Usage: Daemon [daemon port]");
+    log.info("Usage: Daemon [daemon port]");
+    return;
+  }
+  int daemonPort=DEFAULT_DAEMON_PORT;
+  if (args.length > 0) {
+    try {
+      daemonPort=Integer.parseInt(args[0]);
+    }
+ catch (    NumberFormatException e) {
+      System.err.println("Invalid daemon port: " + e);
+      log.error("Invalid daemon port",e);
+      return;
+    }
+    if (daemonPort <= 0 || daemonPort > MAX_DAEMON_PORT) {
+      System.err.println("Invalid daemon port");
+      log.error("Invalid daemon port");
+      return;
+    }
+  }
+  Daemon demon=new Daemon();
+  demon.configureProxy(daemonPort);
+  demon.start();
 }

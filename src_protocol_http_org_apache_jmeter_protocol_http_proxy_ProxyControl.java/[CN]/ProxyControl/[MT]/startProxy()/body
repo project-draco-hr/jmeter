@@ -1,9 +1,4 @@
 {
-  try {
-    server=new Daemon(getPort(),this);
-    server.start();
-  }
- catch (  UnknownHostException e) {
-    log.error("",e);
-  }
+  server=new Daemon(getPort(),this);
+  server.start();
 }

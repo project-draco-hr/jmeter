@@ -1,16 +1,4 @@
 {
   this.daemonPort=daemonPort;
-  log.info("Initializing...");
-  log.info("Creating Config Object...");
-  config=new Config();
-  config.setIsAppletContext(false);
-  config.setLocalHost(InetAddress.getLocalHost().getHostName());
-  String tmp=InetAddress.getLocalHost().toString();
-  config.setLocalIP(tmp.substring(tmp.indexOf('/') + 1));
-  config.setProxyMachineNameAndPort(InetAddress.getLocalHost().getHostName() + ":" + daemonPort);
-  config.setJmxScriptDir("proxy_script");
-  File adminDir=new File("Applet");
-  config.setAdminPath(adminDir.getAbsolutePath());
-  log.info("Proxy: OK");
   log.info("Proxy: OK");
 }

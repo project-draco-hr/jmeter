@@ -1,17 +1,3 @@
 {
-  this.running=false;
-  Socket endIt=null;
-  try {
-    endIt=new Socket(InetAddress.getLocalHost().getHostName(),daemonPort);
-    endIt.getOutputStream().write(5);
-  }
- catch (  IOException e) {
-  }
- finally {
-    try {
-      endIt.close();
-    }
- catch (    Exception e) {
-    }
-  }
+  running=false;
 }
