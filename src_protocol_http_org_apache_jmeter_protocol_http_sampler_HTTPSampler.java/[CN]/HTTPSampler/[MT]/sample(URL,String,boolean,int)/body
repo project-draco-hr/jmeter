@@ -41,13 +41,21 @@ catch (      IOException e) {
     res.setResponseCode(Integer.toString(errorLevel));
     res.setSuccessful(200 <= errorLevel && errorLevel <= 399);
     res.setResponseMessage(conn.getResponseMessage());
-    String ct=conn.getHeaderField("Content-type");
+    String ct=conn.getContentType();
     res.setContentType(ct);
-    if (ct != null && ct.startsWith("image/")) {
-      res.setDataType(HTTPSampleResult.BINARY);
-    }
+    if (ct != null) {
+      String de=ct.toLowerCase();
+      final String cs="charset=";
+      int cset=de.indexOf(cs);
+      if (cset >= 0) {
+        res.setDataEncoding(de.substring(cset + cs.length()));
+      }
+      if (ct.startsWith("image/")) {
+        res.setDataType(HTTPSampleResult.BINARY);
+      }
  else {
-      res.setDataType(HTTPSampleResult.TEXT);
+        res.setDataType(HTTPSampleResult.TEXT);
+      }
     }
     res.setResponseHeaders(getResponseHeaders(conn));
     if (res.isRedirect()) {
