@@ -1,7 +1,5 @@
 {
   ModificationItem[] mods=new ModificationItem[getLDAPArguments().getArguments().size()];
-  boolean add=true;
-  BasicAttributes attrs=new BasicAttributes(true);
   BasicAttribute attr;
   PropertyIterator iter=getLDAPArguments().iterator();
   int count=0;
