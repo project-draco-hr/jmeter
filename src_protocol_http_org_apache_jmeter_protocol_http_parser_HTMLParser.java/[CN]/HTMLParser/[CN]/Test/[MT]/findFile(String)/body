@@ -1,7 +1,0 @@
-{
-  File f=new File(file);
-  if (!f.exists() && !f.isAbsolute()) {
-    f=f.getAbsoluteFile();
-  }
-  return f;
-}
