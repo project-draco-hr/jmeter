@@ -4,12 +4,12 @@
   HeaderManager headers=null;
   HTTPSampler sampler=new HTTPSampler();
   try {
-    byte[] clientRequest=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+    request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     sampler=request.getSampler();
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     result=sampler.sample();
-    writeToClient(result.getResponseData(),new BufferedOutputStream(clientSocket.getOutputStream()));
+    writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
   }
  catch (  UnknownHostException uhe) {

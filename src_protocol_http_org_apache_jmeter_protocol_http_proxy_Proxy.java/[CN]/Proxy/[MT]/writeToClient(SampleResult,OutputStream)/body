@@ -1,6 +1,7 @@
 {
   try {
-    out.write(inBytes);
+    out.write((res.getResponseHeaders() + "\n").getBytes());
+    out.write(res.getResponseData());
     out.flush();
     log.debug("Done writing to client");
   }
