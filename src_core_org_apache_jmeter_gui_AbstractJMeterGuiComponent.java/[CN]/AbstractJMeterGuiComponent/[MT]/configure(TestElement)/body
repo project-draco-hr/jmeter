@@ -1,3 +1,4 @@
 {
   setName((String)element.getProperty(TestElement.NAME));
+  enabled=element.getPropertyAsBoolean(TestElement.ENABLED);
 }

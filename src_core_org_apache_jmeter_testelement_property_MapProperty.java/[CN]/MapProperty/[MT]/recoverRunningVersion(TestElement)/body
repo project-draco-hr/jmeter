@@ -1,0 +1,11 @@
+{
+  Iterator iter=value.keySet().iterator();
+  while (iter.hasNext()) {
+    String name=(String)iter.next();
+    JMeterProperty prop=(JMeterProperty)value.get(name);
+    if (prop.isTemporary(owner)) {
+      iter.remove();
+      value.remove(name);
+    }
+  }
+}

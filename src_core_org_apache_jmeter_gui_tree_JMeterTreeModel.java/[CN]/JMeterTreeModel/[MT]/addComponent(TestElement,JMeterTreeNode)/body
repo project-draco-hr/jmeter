@@ -3,6 +3,14 @@
     throw new IllegalUserActionException("This node cannot hold sub-elements");
   }
   JMeterTreeNode newNode=new JMeterTreeNode((TestElement)component,this);
+  try {
+    if (((String)component.getProperty(TestElement.ENABLED)).equals("false")) {
+      newNode.setEnabled(false);
+    }
+  }
+ catch (  Exception e) {
+    newNode.setEnabled(true);
+  }
   this.insertNodeInto(newNode,node,node.getChildCount());
   return newNode;
 }

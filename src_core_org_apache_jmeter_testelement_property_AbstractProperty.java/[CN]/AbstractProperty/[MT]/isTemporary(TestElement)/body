@@ -1,0 +1,8 @@
+{
+  if (ownerMap == null) {
+    return false;
+  }
+ else {
+    return ((boolean[])ownerMap.get(owner))[0];
+  }
+}

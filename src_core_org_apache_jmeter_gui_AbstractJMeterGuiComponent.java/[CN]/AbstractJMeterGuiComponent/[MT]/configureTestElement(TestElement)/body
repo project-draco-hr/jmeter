@@ -2,4 +2,6 @@
   mc.setProperty(TestElement.NAME,getName());
   mc.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
   mc.setProperty(TestElement.TEST_CLASS,mc.getClass().getName());
+  log.debug("setting element to enabled: " + enabled);
+  mc.setProperty(TestElement.ENABLED,new Boolean(enabled).toString());
 }

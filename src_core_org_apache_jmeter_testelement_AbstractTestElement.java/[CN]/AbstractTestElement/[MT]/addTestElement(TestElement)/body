@@ -1,5 +1,16 @@
 {
-  if (el.getClass().equals(this.getClass())) {
+  if (isRunningVersion()) {
+    Iterator iter=temporaryMembers.iterator();
+    while (iter.hasNext()) {
+      TestElement item=(TestElement)iter.next();
+      if (item.getClass().equals(el.getClass())) {
+        item.addTestElement(el);
+        return;
+      }
+    }
+    temporaryMembers.add(el);
+  }
+ else   if (el.getClass().equals(this.getClass())) {
     mergeIn(el);
   }
 }

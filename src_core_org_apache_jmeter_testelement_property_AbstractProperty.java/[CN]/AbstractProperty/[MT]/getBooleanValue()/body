@@ -1,0 +1,7 @@
+{
+  String val=getStringValue();
+  if (val == null) {
+    return false;
+  }
+  return Boolean.valueOf(val).booleanValue();
+}

@@ -10,7 +10,7 @@
   curFontSize+=4;
   panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
   mainPanel.add(panelTitleLabel);
-  namePanel=new NamePanel();
+  namePanel=getNamePanel();
   mainPanel.add(namePanel);
   JPanel threadPropsPanel=new JPanel();
   margin=new EmptyBorder(5,10,10,10);

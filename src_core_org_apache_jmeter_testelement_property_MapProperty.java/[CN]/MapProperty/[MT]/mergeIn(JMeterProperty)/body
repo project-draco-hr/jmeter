@@ -1,0 +1,11 @@
+{
+  if (prop instanceof MapProperty) {
+    PropertyIterator iter=((MapProperty)prop).valueIterator();
+    while (iter.hasNext()) {
+      JMeterProperty subProp=iter.next();
+      if (!value.containsKey(subProp.getName())) {
+        value.put(subProp.getName(),subProp);
+      }
+    }
+  }
+}

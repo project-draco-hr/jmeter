@@ -1,4 +1,5 @@
 {
+  this.rawParameters=parameters;
   if (parameters == null || parameters.length() == 0)   return;
   compiledComponents=buildComponents(parameters);
 }

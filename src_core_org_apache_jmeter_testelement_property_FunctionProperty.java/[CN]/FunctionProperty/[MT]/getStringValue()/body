@@ -1,0 +1,16 @@
+{
+  if (!isRunningVersion()) {
+    return function.getRawParameters();
+  }
+ else {
+    int iter=JMeterContextService.getContext().getVariables().getIteration();
+    if (iter < testIteration) {
+      testIteration=-1;
+    }
+    if (iter > testIteration || cacheValue == null) {
+      testIteration=iter;
+      cacheValue=function.execute();
+    }
+    return cacheValue;
+  }
+}

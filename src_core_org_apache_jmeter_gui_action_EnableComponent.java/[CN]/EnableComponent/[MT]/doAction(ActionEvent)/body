@@ -1,8 +1,10 @@
 {
   if (e.getActionCommand().equals(ENABLE)) {
-    GuiPackage.getInstance().getTreeListener().getCurrentNode().setEnabled(true);
+    log.debug("enabling current gui object");
+    GuiPackage.getInstance().getCurrentGui().setEnabled(true);
   }
  else   if (e.getActionCommand().equals(DISABLE)) {
-    GuiPackage.getInstance().getTreeListener().getCurrentNode().setEnabled(false);
+    log.debug("disabling current gui object");
+    GuiPackage.getInstance().getCurrentGui().setEnabled(false);
   }
 }

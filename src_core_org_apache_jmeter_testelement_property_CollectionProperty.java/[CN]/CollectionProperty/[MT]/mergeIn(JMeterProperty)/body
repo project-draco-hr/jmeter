@@ -1,0 +1,8 @@
+{
+  if (prop instanceof CollectionProperty) {
+    PropertyIterator iter=((CollectionProperty)prop).iterator();
+    while (iter.hasNext()) {
+      value.add(iter.next());
+    }
+  }
+}

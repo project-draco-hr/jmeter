@@ -1,0 +1,8 @@
+{
+  if (arg0 instanceof JMeterProperty) {
+    return getStringValue().compareTo(((JMeterProperty)arg0).getStringValue());
+  }
+ else {
+    return -1;
+  }
+}

@@ -1,0 +1,9 @@
+{
+  if (runningVersion) {
+    temporaryMembers=new LinkedList();
+  }
+ else {
+    temporaryMembers=null;
+  }
+  this.runningVersion=runningVersion;
+}

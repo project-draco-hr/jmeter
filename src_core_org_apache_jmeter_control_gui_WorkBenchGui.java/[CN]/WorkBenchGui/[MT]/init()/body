@@ -10,6 +10,6 @@
   curFontSize+=4;
   panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
   mainPanel.add(panelTitleLabel);
-  mainPanel.add(namePanel);
+  mainPanel.add(getNamePanel());
   this.add(mainPanel);
 }

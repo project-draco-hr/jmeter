@@ -1,0 +1,15 @@
+{
+  try {
+    AbstractProperty prop=(AbstractProperty)this.getClass().newInstance();
+    prop.name=name;
+    prop.runningVersion=runningVersion;
+    prop.ownerMap=ownerMap;
+    return prop;
+  }
+ catch (  InstantiationException e) {
+    return null;
+  }
+catch (  IllegalAccessException e) {
+    return null;
+  }
+}
