@@ -1,0 +1,14 @@
+{
+  setLayout(new BorderLayout(0,5));
+  if (displayName) {
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
+  }
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.add(createServerPanel());
+  mainPanel.add(createPortPanel());
+  mainPanel.add(createTimeoutPanel());
+  mainPanel.add(createNoDelayPanel());
+  mainPanel.add(createFilenamePanel());
+  add(mainPanel,BorderLayout.CENTER);
+}

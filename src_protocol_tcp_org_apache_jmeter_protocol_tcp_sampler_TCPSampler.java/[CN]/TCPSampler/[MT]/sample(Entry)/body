@@ -1,0 +1,37 @@
+{
+  log.info(getLabel() + " " + getFilename()+ " "+ getUsername()+ " "+ getPassword());
+  SampleResult res=new SampleResult();
+  boolean isSuccessful=false;
+  res.setSampleLabel(getLabel());
+  long start=System.currentTimeMillis();
+  try {
+    Socket sock=getSocket();
+    if (sock == null) {
+      res.setResponseCode("500");
+      res.setResponseMessage(getError());
+    }
+ else {
+      InputStream is=sock.getInputStream();
+      OutputStream os=sock.getOutputStream();
+      TCPClient proto=(TCPClient)getProtocol();
+      log.debug("Found class " + proto.toString());
+      String req=proto.write(os);
+      res.setSamplerData(req);
+      String in=proto.read(is);
+      res.setResponseData(in.getBytes());
+      res.setDataType(SampleResult.TEXT);
+      res.setResponseCode("200");
+      res.setResponseMessage("OK");
+      isSuccessful=true;
+    }
+  }
+ catch (  Exception ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+  long end=System.currentTimeMillis();
+  res.setTime(end - start);
+  res.setSuccessful(isSuccessful);
+  return res;
+}

@@ -1,0 +1,14 @@
+{
+  Object TCPClient=null;
+  Class javaClass=getClass(getClassname());
+  try {
+    TCPClient=javaClass.newInstance();
+    if (log.isDebugEnabled()) {
+      log.debug(this + "Created: " + getClassname()+ "@"+ Integer.toHexString(TCPClient.hashCode()));
+    }
+  }
+ catch (  Exception e) {
+    log.error(this + " Exception creating: " + getClassname(),e);
+  }
+  return TCPClient;
+}

@@ -1,0 +1,8 @@
+{
+  configureTestElement(element);
+  element.setProperty(TCPSampler.SERVER,server.getText());
+  element.setProperty(TCPSampler.PORT,port.getText());
+  element.setProperty(TCPSampler.FILENAME,filename.getText());
+  element.setProperty(TCPSampler.NODELAY,nodelay.getText());
+  element.setProperty(TCPSampler.TIMEOUT,timeout.getText());
+}

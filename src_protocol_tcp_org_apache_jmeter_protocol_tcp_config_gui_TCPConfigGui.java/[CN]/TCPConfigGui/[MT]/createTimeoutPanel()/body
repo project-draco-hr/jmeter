@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("tcp_timeout"));
+  timeout=new JTextField(10);
+  timeout.setName(TIMEOUT);
+  label.setLabelFor(timeout);
+  JPanel timeoutPanel=new JPanel(new BorderLayout(5,0));
+  timeoutPanel.add(label,BorderLayout.WEST);
+  timeoutPanel.add(timeout,BorderLayout.CENTER);
+  return timeoutPanel;
+}

@@ -1,0 +1,18 @@
+{
+  byte[] buffer=new byte[4096];
+  ByteArrayOutputStream w=new ByteArrayOutputStream();
+  int x=0;
+  try {
+    while ((x=is.read(buffer)) > -1) {
+      w.write(buffer,0,x);
+    }
+  }
+ catch (  SocketTimeoutException e) {
+  }
+catch (  IOException e) {
+    log.debug("Read error",e);
+    return "";
+  }
+  log.debug("Read:\n" + w.toString());
+  return w.toString();
+}

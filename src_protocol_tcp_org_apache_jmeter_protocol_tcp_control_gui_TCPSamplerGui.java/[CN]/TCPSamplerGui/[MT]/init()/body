@@ -1,0 +1,12 @@
+{
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  VerticalPanel mainPanel=new VerticalPanel();
+  TcpDefaultPanel=new TCPConfigGui(false);
+  mainPanel.add(TcpDefaultPanel);
+  loginPanel=new LoginConfigGui(false);
+  loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
+  mainPanel.add(loginPanel);
+  add(mainPanel,BorderLayout.CENTER);
+}

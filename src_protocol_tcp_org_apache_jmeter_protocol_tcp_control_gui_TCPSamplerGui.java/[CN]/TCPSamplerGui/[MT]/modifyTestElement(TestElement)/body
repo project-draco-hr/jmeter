@@ -1,0 +1,6 @@
+{
+  sampler.clear();
+  ((TCPSampler)sampler).addTestElement(TcpDefaultPanel.createTestElement());
+  ((TCPSampler)sampler).addTestElement(loginPanel.createTestElement());
+  this.configureTestElement(sampler);
+}

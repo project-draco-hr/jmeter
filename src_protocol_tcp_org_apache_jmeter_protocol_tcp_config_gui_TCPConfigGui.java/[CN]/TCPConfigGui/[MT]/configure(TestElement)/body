@@ -1,0 +1,8 @@
+{
+  super.configure(element);
+  server.setText(element.getPropertyAsString(TCPSampler.SERVER));
+  port.setText(element.getPropertyAsString(TCPSampler.PORT));
+  filename.setText(element.getPropertyAsString(TCPSampler.FILENAME));
+  timeout.setText(element.getPropertyAsString(TCPSampler.TIMEOUT));
+  nodelay.setText(element.getPropertyAsString(TCPSampler.NODELAY));
+}
