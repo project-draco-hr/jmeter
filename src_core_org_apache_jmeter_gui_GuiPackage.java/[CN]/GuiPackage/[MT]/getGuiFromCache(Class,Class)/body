@@ -1,0 +1,15 @@
+{
+  JMeterGUIComponent comp=(JMeterGUIComponent)guis.get(guiClass);
+  if (comp == null) {
+    if (guiClass == TestBeanGUI.class) {
+      comp=new TestBeanGUI(testClass);
+    }
+ else {
+      comp=(JMeterGUIComponent)guiClass.newInstance();
+    }
+    if (!(comp instanceof UnsharedComponent)) {
+      guis.put(guiClass,comp);
+    }
+  }
+  return comp;
+}

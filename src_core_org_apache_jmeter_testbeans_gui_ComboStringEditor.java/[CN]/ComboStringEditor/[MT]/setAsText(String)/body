@@ -1,0 +1,8 @@
+{
+  combo.setEditable(true);
+  if (value == null)   combo.setSelectedItem(UNDEFINED);
+ else   combo.setSelectedItem(value);
+  if (!startingEdit && combo.getSelectedIndex() >= 0) {
+    combo.setEditable(false);
+  }
+}

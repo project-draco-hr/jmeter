@@ -1,0 +1,19 @@
+{
+  String text=guiEditor.getAsText();
+  if (text == null) {
+    if (!acceptsNull)     shouldNeverHappen();
+  }
+ else   if (!acceptsExpressions || !isExpression(text)) {
+    try {
+      typeEditor.setAsText(text);
+    }
+ catch (    IllegalArgumentException e) {
+      shouldNeverHappen(e);
+    }
+    text=typeEditor.getAsText();
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("->\"" + text + "\"");
+  }
+  return text;
+}

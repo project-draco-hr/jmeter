@@ -1,0 +1,15 @@
+{
+  configureTestElement(element);
+  for (int i=0; i < editors.length; i++) {
+    if (editors[i] == null)     continue;
+    Object value=editors[i].getValue();
+    if (value == null) {
+      element.removeProperty(descriptors[i].getName());
+    }
+ else {
+      JMeterProperty jprop=wrapInProperty(value);
+      jprop.setName(descriptors[i].getName());
+      element.setProperty(jprop);
+    }
+  }
+}

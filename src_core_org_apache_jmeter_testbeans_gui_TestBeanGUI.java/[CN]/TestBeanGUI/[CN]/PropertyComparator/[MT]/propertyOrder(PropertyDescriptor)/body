@@ -1,0 +1,5 @@
+{
+  Integer order=(Integer)d.getValue("order");
+  if (order == null)   order=new Integer(0);
+  return order;
+}

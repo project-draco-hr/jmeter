@@ -1,0 +1,8 @@
+{
+  super();
+  this.typeEditor=typeEditor;
+  this.guiEditor=guiEditor;
+  this.acceptsNull=acceptsNull;
+  this.acceptsExpressions=acceptsExpressions;
+  guiEditor.addPropertyChangeListener(this);
+}

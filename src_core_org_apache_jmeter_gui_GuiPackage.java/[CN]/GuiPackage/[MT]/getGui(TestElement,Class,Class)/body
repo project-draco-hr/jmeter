@@ -1,0 +1,15 @@
+{
+  try {
+    JMeterGUIComponent comp=(JMeterGUIComponent)nodesToGui.get(node);
+    log.debug("Gui retrieved = " + comp);
+    if (comp == null) {
+      comp=getGuiFromCache(guiClass,testClass);
+      nodesToGui.put(node,comp);
+    }
+    return comp;
+  }
+ catch (  Exception e) {
+    log.error("Problem retrieving gui",e);
+    return null;
+  }
+}

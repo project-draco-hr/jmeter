@@ -1,0 +1,5 @@
+{
+  Integer order=(Integer)beanInfo.getBeanDescriptor().getValue("group." + group + ".order");
+  if (order == null)   order=new Integer(0);
+  return order;
+}

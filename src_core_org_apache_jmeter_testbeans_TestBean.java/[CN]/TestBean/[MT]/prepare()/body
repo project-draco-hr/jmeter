@@ -1,0 +1,14 @@
+{
+  Object[] param=new Object[1];
+  for (PropertyIterator jprops=propertyIterator(); jprops.hasNext(); ) {
+    JMeterProperty jprop=jprops.next();
+    PropertyDescriptor descriptor=(PropertyDescriptor)descriptors.get(jprop.getName());
+    if (descriptor == null)     continue;
+    Class type=descriptor.getPropertyType();
+    Object value=unwrapProperty(jprop,type);
+    if (value != null || !type.isPrimitive()) {
+      param[0]=value;
+      invokeOrBailOut(descriptor.getWriteMethod(),param);
+    }
+  }
+}

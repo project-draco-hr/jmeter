@@ -1,0 +1,68 @@
+{
+  super();
+  if (!TestBean.class.isAssignableFrom(testBeanClass)) {
+    Error e=new Error();
+    log.error("This should never happen!",e);
+    throw e;
+  }
+  this.testBeanClass=testBeanClass;
+  try {
+    beanInfo=Introspector.getBeanInfo(testBeanClass,TestBean.class);
+    descriptors=beanInfo.getPropertyDescriptors();
+  }
+ catch (  IntrospectionException e) {
+    log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
+    throw new Error(e);
+  }
+  Arrays.sort(descriptors,new PropertyComparator());
+  editors=new PropertyEditor[descriptors.length];
+  for (int i=0; i < descriptors.length; i++) {
+    String name=descriptors[i].getName();
+    if (descriptors[i].isHidden() || descriptors[i].getReadMethod() == null || descriptors[i].getWriteMethod() == null) {
+      log.debug("No editor for property " + name);
+      editors[i]=null;
+      continue;
+    }
+    PropertyEditor propertyEditor;
+    Class editorClass=descriptors[i].getPropertyEditorClass();
+    if (log.isDebugEnabled()) {
+      log.debug("Property " + name + " has editor class "+ editorClass);
+    }
+    if (editorClass != null) {
+      try {
+        propertyEditor=(PropertyEditor)editorClass.newInstance();
+      }
+ catch (      InstantiationException e) {
+        log.error("Can't create property editor.",e);
+        throw new Error(e);
+      }
+catch (      IllegalAccessException e) {
+        log.error("Can't create property editor.",e);
+        throw new Error(e);
+      }
+    }
+ else {
+      Class c=descriptors[i].getPropertyType();
+      propertyEditor=PropertyEditorManager.findEditor(c);
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Property " + name + " has property editor "+ propertyEditor);
+    }
+    if (propertyEditor == null) {
+      log.debug("No editor for property " + name);
+      editors[i]=null;
+      continue;
+    }
+    if (!propertyEditor.supportsCustomEditor()) {
+      propertyEditor=createWrapperEditor(propertyEditor,descriptors[i]);
+      if (log.isDebugEnabled()) {
+        log.debug("Editor for property " + name + " is wrapped in "+ propertyEditor);
+      }
+    }
+    editors[i]=propertyEditor;
+    setEditorValue(i,descriptors[i].getValue("default"));
+  }
+  propertyFieldLabelMessage=new MessageFormat(JMeterUtils.getResString("property_as_field_label"));
+  propertyToolTipMessage=new MessageFormat(JMeterUtils.getResString("property_tool_tip"));
+  init();
+}

@@ -1,0 +1,7 @@
+{
+  if (tags.equals(strings))   return;
+  for (int i=0; i < tags.length; i++)   model.removeElement(tags[i]);
+  tags=strings == null ? new String[0] : strings;
+  int b=noUndefined ? 0 : 1;
+  for (int i=0; i < tags.length; i++)   model.insertElementAt(tags[i],b + i);
+}

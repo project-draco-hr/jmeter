@@ -1,13 +1,29 @@
 {
+  JMeterGUIComponent comp;
+  Class c;
   try {
-    JMeterGUIComponent comp=getGuiFromCache(guiClass);
+    c=Class.forName(objClass);
+    if (TestBean.class.isAssignableFrom(c)) {
+      comp=getGuiFromCache(TestBeanGUI.class,c);
+    }
+ else {
+      comp=getGuiFromCache(c,null);
+    }
     comp.clear();
     TestElement node=comp.createTestElement();
     nodesToGui.put(node,comp);
     return node;
   }
- catch (  Exception e) {
-    log.error("Problem retrieving gui",e);
-    return null;
+ catch (  ClassNotFoundException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new Error(e);
+  }
+catch (  InstantiationException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new Error(e);
+  }
+catch (  IllegalAccessException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new Error(e);
   }
 }

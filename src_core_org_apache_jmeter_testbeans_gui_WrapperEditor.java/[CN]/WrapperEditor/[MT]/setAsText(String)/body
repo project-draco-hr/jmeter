@@ -1,0 +1,21 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug(text == null ? "<-null" : "<-\"" + text + "\"");
+  }
+  String value;
+  if (text == null) {
+    if (!acceptsNull)     shouldNeverHappen();
+    value=null;
+  }
+ else {
+    if (acceptsExpressions && isExpression(text)) {
+      value=text;
+    }
+ else {
+      typeEditor.setAsText(text);
+      value=typeEditor.getAsText();
+    }
+  }
+  guiEditor.setValue(value);
+  firePropertyChange();
+}

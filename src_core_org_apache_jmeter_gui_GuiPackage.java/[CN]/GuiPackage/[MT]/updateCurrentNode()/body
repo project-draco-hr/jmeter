@@ -1,7 +1,7 @@
 {
   try {
     if (currentNode != null) {
-      log.debug("Updating current node " + currentNode.createTestElement());
+      log.debug("Updating current node " + currentNode.getName());
       JMeterGUIComponent comp=getGui(currentNode.createTestElement());
       TestElement el=currentNode.createTestElement();
       comp.modifyTestElement(el);

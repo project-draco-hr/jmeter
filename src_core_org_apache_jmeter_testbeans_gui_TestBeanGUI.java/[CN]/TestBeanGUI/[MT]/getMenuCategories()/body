@@ -1,0 +1,28 @@
+{
+  List menuCategories=new LinkedList();
+  if (Assertion.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.ASSERTIONS);
+  }
+  if (ConfigElement.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.CONFIG_ELEMENTS);
+  }
+  if (Controller.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.CONTROLLERS);
+  }
+  if (Visualizer.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.LISTENERS);
+  }
+  if (PostProcessor.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.POST_PROCESSORS);
+  }
+  if (PreProcessor.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.PRE_PROCESSORS);
+  }
+  if (Sampler.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.SAMPLERS);
+  }
+  if (Timer.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.TIMERS);
+  }
+  return menuCategories;
+}

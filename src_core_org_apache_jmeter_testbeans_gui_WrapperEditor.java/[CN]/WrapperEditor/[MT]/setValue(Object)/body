@@ -1,0 +1,19 @@
+{
+  String text;
+  if (log.isDebugEnabled()) {
+    log.debug("<-" + (value != null ? value.getClass().getName() : "NULL") + ":"+ value);
+  }
+  if (value == null) {
+    if (!acceptsNull)     throw new IllegalArgumentException();
+    text=null;
+  }
+ else   if (acceptsExpressions && isExpression(value)) {
+    text=(String)value;
+  }
+ else {
+    typeEditor.setValue(value);
+    text=typeEditor.getAsText();
+  }
+  guiEditor.setValue(text);
+  firePropertyChange();
+}

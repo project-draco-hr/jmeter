@@ -1,6 +1,6 @@
 {
   try {
-    List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class});
+    List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
     timers=new LinkedList();
     controllers=new LinkedList();
     samplers=new LinkedList();
@@ -22,49 +22,59 @@
     Collections.sort(guiClasses);
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
+      String name=(String)iter.next();
       JMeterGUIComponent item;
       try {
-        item=(JMeterGUIComponent)Class.forName((String)iter.next()).newInstance();
+        Class c=Class.forName(name);
+        if (TestBean.class.isAssignableFrom(c)) {
+          item=new TestBeanGUI(c);
+        }
+ else {
+          item=(JMeterGUIComponent)c.newInstance();
+        }
       }
  catch (      Throwable e) {
+        log.info("Could not instantiate " + name,e);
         continue;
       }
-      if (elementsToSkip.contains(item.getClass().getName()) || elementsToSkip.contains(item.getStaticLabel())) {
+      if (elementsToSkip.contains(name) || elementsToSkip.contains(item.getStaticLabel())) {
+        log.debug("Skipping " + name);
         continue;
       }
  else {
-        elementsToSkip.add(item.getClass().getName());
+        elementsToSkip.add(name);
       }
       Collection categories=item.getMenuCategories();
       if (categories == null) {
+        log.debug(name + " participates in no menus.");
         continue;
       }
       if (categories.contains(TIMERS)) {
-        timers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        timers.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(POST_PROCESSORS)) {
-        postProcessors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        postProcessors.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(PRE_PROCESSORS)) {
-        preProcessors.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        preProcessors.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(CONTROLLERS)) {
-        controllers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        controllers.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(SAMPLERS)) {
-        samplers.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        samplers.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(NON_TEST_ELEMENTS)) {
-        nonTestElements.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        nonTestElements.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(LISTENERS)) {
-        listeners.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        listeners.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(CONFIG_ELEMENTS)) {
-        configElements.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        configElements.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(ASSERTIONS)) {
-        assertions.add(new MenuInfo(item.getStaticLabel(),item.getClass().getName()));
+        assertions.add(new MenuInfo(item.getStaticLabel(),name));
       }
     }
   }

@@ -1,0 +1,38 @@
+{
+  String[] editorTags=typeEditor.getTags();
+  String[] additionalTags=(String[])descriptor.getValue("tags");
+  String[] tags=null;
+  if (editorTags == null)   tags=additionalTags;
+ else   if (additionalTags == null)   tags=editorTags;
+ else {
+    tags=new String[editorTags.length + additionalTags.length];
+    int j=0;
+    for (int i=0; i < editorTags.length; i++)     tags[j++]=editorTags[i];
+    for (int i=0; i < additionalTags.length; i++)     tags[j++]=additionalTags[i];
+  }
+  boolean noUndefined=Boolean.TRUE.equals(descriptor.getValue("noUndefined"));
+  boolean noEdit=Boolean.TRUE.equals(descriptor.getValue("noEdit"));
+  PropertyEditor guiEditor;
+  if (noUndefined && tags == null) {
+    guiEditor=new FieldStringEditor();
+  }
+ else {
+    ComboStringEditor e=new ComboStringEditor();
+    e.setNoUndefined(noUndefined);
+    e.setNoEdit(noEdit);
+    e.setTags(tags);
+    guiEditor=e;
+  }
+  WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!noUndefined,!noEdit);
+  Object defaultValue=descriptor.getValue("default");
+  if (guiEditor instanceof ComboStringEditor && !noEdit) {
+    if (tags != null) {
+      ((ComboStringEditor)guiEditor).setInitialEditValue(tags[0]);
+    }
+ else {
+      ((ComboStringEditor)guiEditor).setInitialEditValue("${}");
+    }
+  }
+  wrapper.setValue(defaultValue);
+  return wrapper;
+}

@@ -1,3 +1,9 @@
 {
-  return getGui(node,node.getPropertyAsString(TestElement.GUI_CLASS));
+  try {
+    return getGui(node,Class.forName(node.getPropertyAsString(TestElement.GUI_CLASS)),Class.forName(node.getPropertyAsString(TestElement.TEST_CLASS)));
+  }
+ catch (  ClassNotFoundException e) {
+    log.error("Could not get GUI for " + node.getPropertyAsString(TestElement.GUI_CLASS),e);
+    return null;
+  }
 }

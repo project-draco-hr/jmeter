@@ -1,0 +1,12 @@
+{
+  String text=guiEditor.getAsText();
+  if (isValidValue(text)) {
+    lastValidValue=text;
+  }
+ else {
+    if (log.isDebugEnabled()) {
+      log.debug("Invalid value. Reverting to last valid value.");
+    }
+    guiEditor.setAsText(lastValidValue);
+  }
+}

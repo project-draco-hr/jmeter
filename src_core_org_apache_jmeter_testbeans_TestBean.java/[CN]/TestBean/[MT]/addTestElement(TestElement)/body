@@ -1,0 +1,10 @@
+{
+  for (Iterator descs=descriptors.values().iterator(); descs.hasNext(); ) {
+    PropertyDescriptor desc=(PropertyDescriptor)descs.next();
+    if (desc.getPropertyType().isInstance(el) && desc.getPropertyEditorClass() == null) {
+      invokeOrBailOut(desc.getWriteMethod(),new Object[]{el});
+      return;
+    }
+  }
+  super.addTestElement(el);
+}

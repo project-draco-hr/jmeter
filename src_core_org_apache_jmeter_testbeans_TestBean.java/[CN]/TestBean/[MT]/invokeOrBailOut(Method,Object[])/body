@@ -1,0 +1,17 @@
+{
+  try {
+    return method.invoke(this,params);
+  }
+ catch (  IllegalArgumentException e) {
+    log.error("This should never happen.",e);
+    throw new Error(e);
+  }
+catch (  IllegalAccessException e) {
+    log.error("This should never happen.",e);
+    throw new Error(e);
+  }
+catch (  InvocationTargetException e) {
+    log.error("This should never happen.",e);
+    throw new Error(e);
+  }
+}

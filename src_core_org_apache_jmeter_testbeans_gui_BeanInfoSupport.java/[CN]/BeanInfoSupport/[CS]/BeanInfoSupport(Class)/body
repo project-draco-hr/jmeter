@@ -1,0 +1,40 @@
+{
+  this.beanClass=beanClass;
+  try {
+    rootBeanInfo=Introspector.getBeanInfo(beanClass,Introspector.IGNORE_IMMEDIATE_BEANINFO);
+  }
+ catch (  IntrospectionException e) {
+    log.error("Can't introspect.",e);
+    throw new Error(e);
+  }
+  try {
+    ResourceBundle resourceBundle=ResourceBundle.getBundle(beanClass.getName() + "Resources",JMeterUtils.getLocale());
+    getBeanDescriptor().setValue("resourceBundle",resourceBundle);
+    try {
+      getBeanDescriptor().setDisplayName(resourceBundle.getString("displayName"));
+    }
+ catch (    MissingResourceException e) {
+      log.debug("Localized display name not available for bean " + beanClass.getName());
+    }
+    PropertyDescriptor[] properties=getPropertyDescriptors();
+    for (int i=0; i < properties.length; i++) {
+      String name=properties[i].getName();
+      String s;
+      try {
+        properties[i].setDisplayName(resourceBundle.getString(name + ".displayName"));
+      }
+ catch (      MissingResourceException e) {
+        log.debug("Localized display name not available for property " + name);
+      }
+      try {
+        properties[i].setShortDescription(resourceBundle.getString(name + ".shortDescription"));
+      }
+ catch (      MissingResourceException e) {
+        log.debug("Localized short description not available for property " + name);
+      }
+    }
+  }
+ catch (  MissingResourceException e) {
+    log.warn("Localized strings not available for bean " + beanClass + " on locale "+ JMeterUtils.getLocale());
+  }
+}

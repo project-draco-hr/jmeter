@@ -1,0 +1,6 @@
+{
+  if (noEdit == b)   return;
+  noEdit=b;
+  if (noEdit)   model.removeElement(EDIT);
+ else   model.addElement(EDIT);
+}
