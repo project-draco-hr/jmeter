@@ -3,20 +3,7 @@
   if (c instanceof ResultCollector) {
     ResultCollector rc=(ResultCollector)c;
     rc.setErrorLogging(errorLogging.isSelected());
-    try {
-      if (!getFile().equals("")) {
-        try {
-          rc.setFilename(getFile());
-        }
- catch (        IllegalUserActionException e) {
-          JMeterUtils.reportErrorToUser(e.getMessage());
-          setFile("");
-        }
-      }
-    }
- catch (    IOException e) {
-      log.error("",e);
-    }
+    rc.setFilename(getFile());
     collector=rc;
   }
 }

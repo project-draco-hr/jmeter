@@ -1,16 +1,6 @@
 {
   if (inTest) {
-    throw new IllegalUserActionException(JMeterUtils.getResString("busy_testing"));
+    return;
   }
-  try {
-    setFilenameProperty(f);
-    loadExistingFile();
-  }
- catch (  SAXException e) {
-    log.error("",e);
-    throw new IOException("File " + f + " was improperly formatted");
-  }
-catch (  ConfigurationException e) {
-    throw new IOException("File " + f + " was improperly formatted");
-  }
+  setFilenameProperty(f);
 }
