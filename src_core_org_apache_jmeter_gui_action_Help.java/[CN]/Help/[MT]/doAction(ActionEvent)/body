@@ -13,7 +13,7 @@
     helpDoc.scrollToReference(source[1]);
   }
  else {
-    resetPage(helpPage);
+    resetPage(HELP_PAGE);
     helpDoc.scrollToReference(GuiPackage.getInstance().getTreeListener().getCurrentNode().getStaticLabel().replace(' ','_'));
   }
 }

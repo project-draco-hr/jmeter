@@ -1,5 +1,10 @@
 {
   if (!currentPage.equals(source)) {
+    if (currentPage.length() == 0) {
+      helpDoc=new HtmlPane();
+      scroller.setViewportView(helpDoc);
+      helpDoc.setEditable(false);
+    }
     try {
       helpDoc.setPage(source);
       currentPage=source;
