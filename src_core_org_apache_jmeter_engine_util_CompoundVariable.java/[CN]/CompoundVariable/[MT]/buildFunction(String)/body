@@ -8,10 +8,9 @@
   if (functions.containsKey(functionName)) {
     Object replacement=functions.get(functionName);
     params=extractParams(functionStr);
-    decodedParams=ArgumentDecoder.decode(params);
     try {
       returnFunction=(Function)((Class)replacement).newInstance();
-      Collection paramList=parseParams(decodedParams);
+      Collection paramList=parseParams(params);
       returnFunction.setParameters(paramList);
     }
  catch (    Exception e) {

@@ -17,7 +17,8 @@
       subSearch=searchString.substring(openIndex + 1,searchString.length());
       int subMatch=findMatching(openStr,closeStr,subSearch);
       while (subMatch != -1) {
-        previousMatch+=subMatch + 1;
+        if (previousMatch == -1)         previousMatch=openIndex + subMatch + 1;
+ else         previousMatch+=subMatch + 1;
         subSearch=searchString.substring(previousMatch + 1,searchString.length());
         subMatch=findMatching(openStr,closeStr,subSearch);
       }

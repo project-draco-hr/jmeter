@@ -11,7 +11,7 @@
       if (!first) {
         functionCall.append(",");
       }
-      functionCall.append(ArgumentEncoder.encode((String)arg.getValue()));
+      functionCall.append((String)arg.getValue());
       first=false;
     }
     functionCall.append(")");
