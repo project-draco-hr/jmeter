@@ -1,5 +1,5 @@
 {
   Arguments args=new Arguments();
   modifyTestElement(args);
-  return (TestElement)args.clone();
+  return args;
 }
