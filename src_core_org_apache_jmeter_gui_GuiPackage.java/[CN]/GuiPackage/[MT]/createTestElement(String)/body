@@ -14,16 +14,20 @@
     nodesToGui.put(node,comp);
     return node;
   }
- catch (  ClassNotFoundException e) {
+ catch (  NoClassDefFoundError e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new Error(e.toString());
+    throw new RuntimeException(e.toString());
+  }
+catch (  ClassNotFoundException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new RuntimeException(e.toString());
   }
 catch (  InstantiationException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new Error(e.toString());
+    throw new RuntimeException(e.toString());
   }
 catch (  IllegalAccessException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new Error(e.toString());
+    throw new RuntimeException(e.toString());
   }
 }
