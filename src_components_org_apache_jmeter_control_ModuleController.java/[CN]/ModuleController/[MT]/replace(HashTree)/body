@@ -1,3 +1,7 @@
 {
+  if (!selectedNode.isEnabled()) {
+    selectedNode=cloneTreeNode(selectedNode);
+    selectedNode.setEnabled(true);
+  }
   createSubTree(tree,selectedNode);
 }
