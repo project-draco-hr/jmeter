@@ -1,0 +1,16 @@
+{
+  FileServer server=FileServer.getFileServer();
+  if (vars == null) {
+    server.reserveFile(getFilename());
+    vars=JOrphanUtils.split(getVariableNames(),",");
+  }
+  try {
+    String[] lineValues=JOrphanUtils.split(server.readLine(getFilename()),",");
+    for (int a=0; a < vars.length && a < lineValues.length; a++) {
+      this.getThreadContext().getVariables().put(vars[a],lineValues[a]);
+    }
+  }
+ catch (  IOException e) {
+    log.error("Failed to read file: " + getFilename());
+  }
+}

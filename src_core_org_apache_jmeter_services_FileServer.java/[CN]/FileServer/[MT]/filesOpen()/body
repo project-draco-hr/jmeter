@@ -1,0 +1,11 @@
+{
+  Iterator iter=files.keySet().iterator();
+  while (iter.hasNext()) {
+    String name=(String)iter.next();
+    Object[] file=(Object[])files.get(name);
+    if (file[1] != null) {
+      return true;
+    }
+  }
+  return false;
+}

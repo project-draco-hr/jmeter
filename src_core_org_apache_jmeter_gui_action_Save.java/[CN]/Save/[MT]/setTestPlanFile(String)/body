@@ -1,4 +1,10 @@
 {
   testPlanFile=f;
   GuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
+  try {
+    FileServer.getFileServer().setBasedir(testPlanFile);
+  }
+ catch (  IOException e1) {
+    log.error("Failure setting file server's base dir",e1);
+  }
 }

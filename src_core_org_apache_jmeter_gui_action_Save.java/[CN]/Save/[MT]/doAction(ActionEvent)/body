@@ -17,7 +17,7 @@
     }
     updateFile=chooser.getSelectedFile().getAbsolutePath();
     if (!e.getActionCommand().equals(SAVE_AS)) {
-      testPlanFile=updateFile;
+      setTestPlanFile(updateFile);
     }
   }
   ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),CheckDirty.SUB_TREE_SAVED));

@@ -18,6 +18,7 @@
       }
  else {
         log.info("Loading file: " + f);
+        FileServer.getFileServer().setBasedir(f.getAbsolutePath());
       }
       reader=new FileInputStream(f);
       HashTree tree=(HashTree)SaveService.loadTree(reader);
