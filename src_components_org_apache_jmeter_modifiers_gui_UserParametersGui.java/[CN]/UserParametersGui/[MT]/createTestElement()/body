@@ -1,0 +1,11 @@
+{
+  UserParameters params=new UserParameters();
+  params.setNames(tableModel.getColumnData(NAME_COLUMN));
+  List threadLists=new LinkedList();
+  for (int x=1; x < tableModel.getColumnCount(); x++) {
+    threadLists.add(tableModel.getColumnData(THREAD_COLUMNS + "_" + x));
+  }
+  params.setThreadLists(threadLists);
+  super.configureTestElement(params);
+  return params;
+}

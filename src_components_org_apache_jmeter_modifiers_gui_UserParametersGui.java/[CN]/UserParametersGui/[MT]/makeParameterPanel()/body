@@ -1,0 +1,19 @@
+{
+  JPanel paramPanel=new JPanel(new BorderLayout());
+  JLabel tableLabel=new JLabel(JMeterUtils.getResString("user_parameters_table"));
+  tableModel=new PowerTableModel(new String[]{NAME_COLUMN,THREAD_COLUMNS + "_" + numUserColumns},new Class[]{String.class,String.class});
+  paramTable=new JTable(tableModel);
+  paramTable.setRowSelectionAllowed(true);
+  paramTable.setColumnSelectionAllowed(true);
+  paramTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  paramTable.setCellSelectionEnabled(true);
+  paramPanel.add(tableLabel,BorderLayout.NORTH);
+  JScrollPane scroller=new JScrollPane(paramTable);
+  Dimension tableDim=scroller.getPreferredSize();
+  tableDim.height=70;
+  scroller.setPreferredSize(tableDim);
+  scroller.setColumnHeaderView(paramTable.getTableHeader());
+  paramPanel.add(scroller,BorderLayout.CENTER);
+  paramPanel.add(makeButtonPanel(),BorderLayout.SOUTH);
+  return paramPanel;
+}

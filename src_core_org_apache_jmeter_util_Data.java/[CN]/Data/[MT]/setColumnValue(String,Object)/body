@@ -9,5 +9,8 @@
     size++;
     tempList.add(value);
   }
+ else   if (currentPos >= tempList.size()) {
+    tempList.add(value);
+  }
  else   tempList.set(currentPos,value);
 }

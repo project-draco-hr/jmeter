@@ -1,0 +1,6 @@
+{
+  List list=this.getColumnAsObjectArray(colName);
+  for (int x=0; x < list.size(); x++) {
+    list.set(x,value);
+  }
+}

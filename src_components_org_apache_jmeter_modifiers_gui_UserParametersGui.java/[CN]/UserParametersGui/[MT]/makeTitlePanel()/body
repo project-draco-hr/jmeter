@@ -1,0 +1,7 @@
+{
+  JLabel title=new JLabel(label);
+  JPanel titlePanel=new JPanel(new BorderLayout());
+  titlePanel.add(title,BorderLayout.NORTH);
+  titlePanel.add(getNamePanel(),BorderLayout.SOUTH);
+  return titlePanel;
+}

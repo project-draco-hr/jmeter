@@ -1,0 +1,19 @@
+{
+  tableModel.clearData();
+  UserParameters params=(UserParameters)el;
+  List names=params.getNames();
+  List threadValues=params.getThreadLists();
+  tableModel.setColumnData(0,names);
+  Iterator iter=threadValues.iterator();
+  if (iter.hasNext()) {
+    tableModel.setColumnData(1,(List)iter.next());
+  }
+  int count=2;
+  while (iter.hasNext()) {
+    String colName=THREAD_COLUMNS + "_" + count;
+    tableModel.addNewColumn(colName,String.class);
+    tableModel.setColumnData(count,(List)iter.next());
+    count++;
+  }
+  super.configure(el);
+}

@@ -1,0 +1,10 @@
+{
+  Iterator namesIter=getNames().iterator();
+  Iterator valueIter=getValues().iterator();
+  JMeterVariables jmvars=vars.getVariables();
+  while (namesIter.hasNext() && valueIter.hasNext()) {
+    String name=(String)namesIter.next();
+    String value=(String)valueIter.next();
+    jmvars.put(name,value);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  if (threadValues == null || !threadValues.hasNext()) {
+    threadValues=((List)getProperty(THREAD_VALUES)).iterator();
+  }
+  if (threadValues.hasNext()) {
+    return (List)threadValues.next();
+  }
+ else {
+    return new LinkedList();
+  }
+}
