@@ -2,6 +2,10 @@
   hosts.remove(host);
   if (hosts.size() == 0) {
     runningIndicator.setIcon(stoppedIcon);
+    if (stoppingMessage != null) {
+      stoppingMessage.dispose();
+      stoppingMessage=null;
+    }
   }
   menuBar.setRunning(false,host);
 }

@@ -3,8 +3,8 @@
   try {
     conn.connect();
   }
- catch (  IOException e) {
-    log.debug("Connection failed, turning off keep-alive and trying again");
+ catch (  BindException e) {
+    log.debug("Bind exception, try again");
     if (connectionTries++ == 10) {
       log.error("Can't connect",e);
       throw e;
@@ -19,6 +19,14 @@
       postWriter.setHeaders(conn,this);
     }
     time=connect();
+  }
+catch (  IOException e) {
+    log.debug("Connection failed, giving up");
+    conn.disconnect();
+    conn=null;
+    System.gc();
+    Runtime.getRuntime().runFinalization();
+    throw e;
   }
   return time;
 }

@@ -1,0 +1,4 @@
+{
+  ValueReplacer replacer=new ValueReplacer(((TestPlan)((JMeterGUIComponent)GuiPackage.getInstance().getTreeModel().getTestPlan().getArray()[0]).createTestElement()).getUserDefinedVariables());
+  return replacer;
+}

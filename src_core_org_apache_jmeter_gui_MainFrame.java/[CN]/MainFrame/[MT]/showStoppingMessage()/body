@@ -7,7 +7,9 @@
   ComponentUtil.centerComponentInComponent(this,stoppingMessage);
   SwingUtilities.invokeLater(new Runnable(){
     public void run(){
-      stoppingMessage.show();
+      if (stoppingMessage != null) {
+        stoppingMessage.show();
+      }
     }
   }
 );

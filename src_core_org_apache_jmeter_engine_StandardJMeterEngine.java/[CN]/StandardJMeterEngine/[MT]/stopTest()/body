@@ -1,16 +1,5 @@
 {
   running=false;
-  Iterator iter=new HashSet(allThreads.keySet()).iterator();
-  while (iter.hasNext()) {
-    JMeterThread item=(JMeterThread)iter.next();
-    item.stop();
-    Thread t=(Thread)allThreads.get(item);
-    if (t != null) {
-      t.interrupt();
-    }
- else {
-      log.warn("Lost thread: " + item.getThreadName());
-      allThreads.remove(item);
-    }
-  }
+  Thread stopThread=new Thread(this);
+  stopThread.start();
 }

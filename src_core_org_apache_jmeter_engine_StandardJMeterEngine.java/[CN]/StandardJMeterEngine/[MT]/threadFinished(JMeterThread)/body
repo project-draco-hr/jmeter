@@ -1,6 +1,3 @@
 {
   allThreads.remove(thread);
-  if (allThreads.size() == 0) {
-    notifyTestListenersOfEnd();
-  }
 }

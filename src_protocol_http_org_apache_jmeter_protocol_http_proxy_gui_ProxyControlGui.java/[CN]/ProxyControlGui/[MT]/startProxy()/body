@@ -1,0 +1,13 @@
+{
+  ValueReplacer replacer=getReplacer();
+  try {
+    replacer.replaceValues(model);
+    model.startProxy();
+    start.setEnabled(false);
+    stop.setEnabled(true);
+    restart.setEnabled(false);
+  }
+ catch (  InvalidVariableException e) {
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("invalid_variables"),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+}

@@ -1,8 +1,14 @@
 {
   if (node instanceof TestPlan) {
-    masterFunction.setUserDefinedVariables(((TestPlan)node).getUserDefinedVariables());
+    replacer.setUserDefinedVariables(((TestPlan)node).getUserDefinedVariables());
   }
   if (node instanceof TestElement) {
-    replaceValues((TestElement)node);
+    try {
+      replacer.replaceValues((TestElement)node);
+    }
+ catch (    InvalidVariableException e) {
+      log.error("invalid variables",e);
+      testValid=false;
+    }
   }
 }

@@ -8,15 +8,12 @@
   }
  else   if (command.equals(START)) {
     model=(ProxyControl)createTestElement();
-    model.startProxy();
-    start.setEnabled(false);
-    stop.setEnabled(true);
+    startProxy();
   }
  else   if (command.equals(RESTART)) {
     model.stopProxy();
     model=(ProxyControl)createTestElement();
-    model.startProxy();
-    restart.setEnabled(false);
+    startProxy();
   }
  else   if (command.equals(this.ADD_EXCLUDE)) {
     excludeModel.addNewRow();

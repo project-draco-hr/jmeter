@@ -1,7 +1,7 @@
 {
   TestElement urlConfig=null;
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
-  List nodes=treeModel.getNodesOfType(LogicControllerGui.class);
+  List nodes=treeModel.getNodesOfType(RecordController.class);
   if (nodes.size() == 0) {
     nodes=treeModel.getNodesOfType(ThreadGroupGui.class);
   }
