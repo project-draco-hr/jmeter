@@ -1,6 +1,17 @@
 {
   try {
-    return GUIFactory.getIcon(Class.forName(createTestElement().getPropertyAsString(TestElement.GUI_CLASS)));
+    if (createTestElement() instanceof TestBean) {
+      try {
+        return new ImageIcon(Introspector.getBeanInfo(createTestElement().getClass()).getIcon(BeanInfo.ICON_COLOR_16x16));
+      }
+ catch (      IntrospectionException e1) {
+        log.error("Can't obtain icon",e1);
+        throw new Error(e1);
+      }
+    }
+ else {
+      return GUIFactory.getIcon(Class.forName(createTestElement().getPropertyAsString(TestElement.GUI_CLASS)));
+    }
   }
  catch (  ClassNotFoundException e) {
     log.warn("Can't get icon for class " + createTestElement(),e);
