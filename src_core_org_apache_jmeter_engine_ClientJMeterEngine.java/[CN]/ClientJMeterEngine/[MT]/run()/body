@@ -3,7 +3,12 @@
   testListeners=new SearchByClass(TestListener.class);
   getTestTree().traverse(testListeners);
   sampleListeners=new ConvertListeners();
-  getTestTree().traverse(sampleListeners);
+  try {
+    getTestTree().traverse(sampleListeners);
+  }
+ catch (  IndexOutOfBoundsException e) {
+    log.warn("Error replacing sample listeners",e);
+  }
   try {
     remote.setHost(host);
     log.info("sent host =" + host);
