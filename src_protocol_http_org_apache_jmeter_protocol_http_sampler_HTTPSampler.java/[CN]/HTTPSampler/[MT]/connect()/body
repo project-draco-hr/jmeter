@@ -2,6 +2,7 @@
   long time=System.currentTimeMillis();
   try {
     conn.connect();
+    connectionTries=0;
   }
  catch (  BindException e) {
     log.debug("Bind exception, try again");

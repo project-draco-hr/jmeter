@@ -64,7 +64,7 @@
     }
     return res;
   }
- catch (  IOException ex) {
+ catch (  Exception ex) {
     log.warn(ex.getMessage(),ex);
     res.setDataType(SampleResult.TEXT);
     res.setResponseData(ex.toString().getBytes());

@@ -59,7 +59,7 @@
       try {
         loadBinary(binUrl,binRes,sampler);
       }
- catch (      IOException ioe) {
+ catch (      Exception ioe) {
         log.error("Error reading from URL - " + ioe);
         binRes.setResponseData(ioe.toString().getBytes());
         binRes.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);

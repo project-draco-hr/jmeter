@@ -7,7 +7,7 @@
     conn=sampler.setupConnection(url,HTTPSampler.GET);
     sampler.connect();
   }
- catch (  IOException ioe) {
+ catch (  Exception ioe) {
     if (log.isDebugEnabled()) {
       log.debug("loadBinary : error in setupConnection " + ioe);
     }

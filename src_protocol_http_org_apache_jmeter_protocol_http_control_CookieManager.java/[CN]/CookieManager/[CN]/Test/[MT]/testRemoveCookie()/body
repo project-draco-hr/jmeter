@@ -1,0 +1,6 @@
+{
+  CookieManager man=new CookieManager();
+  man.add(new Cookie("id","me","127.0.0.1","/",false,0));
+  man.removeCookieNamed("id");
+  assertEquals(0,man.getCookieCount());
+}

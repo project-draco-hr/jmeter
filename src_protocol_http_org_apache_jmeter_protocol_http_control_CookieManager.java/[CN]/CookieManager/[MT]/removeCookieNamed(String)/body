@@ -1,11 +1,9 @@
 {
-  Vector removeIndices=new Vector();
-  for (int i=getCookies().size() - 1; i > 0; i--) {
-    Cookie cookie=(Cookie)getCookies().get(i).getObjectValue();
-    if (cookie == null)     continue;
-    if (cookie.getName().equals(name))     removeIndices.addElement(new Integer(i));
-  }
-  for (Enumeration e=removeIndices.elements(); e.hasMoreElements(); ) {
-    getCookies().remove(((Integer)e.nextElement()).intValue());
+  PropertyIterator iter=getCookies().iterator();
+  while (iter.hasNext()) {
+    Cookie cookie=(Cookie)iter.next().getObjectValue();
+    if (cookie.getName().equals(name)) {
+      iter.remove();
+    }
   }
 }
