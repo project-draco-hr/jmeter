@@ -51,6 +51,11 @@
         firstInBatch=true;
       }
       lastTime=System.currentTimeMillis();
+      if (groupingMode == GROUPING_STORE_FIRST_ONLY) {
+        if (!firstInBatch)         return;
+        sampler.setFollowRedirects(true);
+        sampler.setImageParser(true);
+      }
       JMeterTreeNode newNode=treeModel.addComponent(sampler,target);
       if (firstInBatch) {
         addAssertion(treeModel,newNode);
