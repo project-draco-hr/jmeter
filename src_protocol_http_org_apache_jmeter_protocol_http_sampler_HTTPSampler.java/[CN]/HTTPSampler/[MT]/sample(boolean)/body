@@ -52,7 +52,14 @@
     return res;
   }
  catch (  IOException ex) {
-    res.setResponseData(ex.toString().getBytes());
+    ex.printStackTrace();
+    res.setDataType(res.TEXT);
+    try {
+      res.setResponseData(readResponse(conn));
+    }
+ catch (    IOException e) {
+      res.setResponseData(ex.toString().getBytes());
+    }
     res.setResponseCode(NON_HTTP_RESPONSE_CODE);
     res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
     res.setTime(System.currentTimeMillis() - time);

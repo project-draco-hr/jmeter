@@ -1,6 +1,12 @@
 {
   byte[] buffer=new byte[4096];
-  BufferedInputStream in=new BufferedInputStream(conn.getInputStream());
+  BufferedInputStream in;
+  try {
+    in=new BufferedInputStream(conn.getInputStream());
+  }
+ catch (  Exception e) {
+    in=new BufferedInputStream(conn.getErrorStream());
+  }
   java.io.ByteArrayOutputStream w=new ByteArrayOutputStream();
   int x=0;
   while ((x=in.read(buffer)) > -1) {
