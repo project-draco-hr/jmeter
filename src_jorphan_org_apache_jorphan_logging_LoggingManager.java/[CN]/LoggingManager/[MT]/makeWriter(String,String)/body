@@ -1,0 +1,12 @@
+{
+  Writer wt;
+  try {
+    wt=new FileWriter(logFile);
+  }
+ catch (  Exception e) {
+    System.out.println(propName + "=" + logFile+ " "+ e.toString());
+    System.out.println("[" + propName + "-> System.out]");
+    wt=new PrintWriter(System.out);
+  }
+  return wt;
+}

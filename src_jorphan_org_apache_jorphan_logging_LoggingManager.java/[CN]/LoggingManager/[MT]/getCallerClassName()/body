@@ -1,0 +1,7 @@
+{
+  String name=ClassContext.getCallerClassNameAt(3);
+  if (name.startsWith(PACKAGE_PREFIX)) {
+    name=name.substring(PACKAGE_PREFIX.length());
+  }
+  return name;
+}
