@@ -14,6 +14,6 @@
   }
  else {
     resetPage(HELP_PAGE);
-    helpDoc.scrollToReference(GuiPackage.getInstance().getTreeListener().getCurrentNode().getStaticLabel().replace(' ','_'));
+    helpDoc.scrollToReference(GuiPackage.getInstance().getTreeListener().getCurrentNode().getDocAnchor());
   }
 }
