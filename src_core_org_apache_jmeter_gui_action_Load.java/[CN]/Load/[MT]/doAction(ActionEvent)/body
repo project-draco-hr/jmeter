@@ -21,7 +21,7 @@
         FileServer.getFileServer().setBasedir(f.getAbsolutePath());
       }
       reader=new FileInputStream(f);
-      HashTree tree=(HashTree)SaveService.loadTree(reader);
+      HashTree tree=SaveService.loadTree(reader);
       isTestPlan=insertLoadedTree(e.getID(),tree);
     }
   }
@@ -34,6 +34,11 @@
     JMeterUtils.reportErrorToUser(msg);
   }
  finally {
+    try {
+      reader.close();
+    }
+ catch (    IOException e1) {
+    }
     GuiPackage.getInstance().updateCurrentGui();
     GuiPackage.getInstance().getMainFrame().repaint();
   }
