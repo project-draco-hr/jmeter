@@ -1,9 +1,10 @@
 {
   PropertyIterator iter=el.propertyIterator();
+  List newProps=new LinkedList();
   while (iter.hasNext()) {
     JMeterProperty prop=iter.next();
     if (prop instanceof StringProperty) {
-      el.setProperty(substituteReferences((StringProperty)prop));
+      newProps.add(substituteReferences((StringProperty)prop));
     }
  else     if (prop instanceof TestElementProperty) {
       undoReverseReplace((TestElement)prop.getObjectValue());
@@ -14,5 +15,9 @@
  else     if (prop instanceof MapProperty) {
       undoReverseReplace((MapProperty)prop);
     }
+  }
+  Iterator props=newProps.iterator();
+  while (props.hasNext()) {
+    el.setProperty((JMeterProperty)props.next());
   }
 }
