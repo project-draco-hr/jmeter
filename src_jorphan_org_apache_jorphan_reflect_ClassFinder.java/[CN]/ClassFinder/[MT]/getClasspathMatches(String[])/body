@@ -11,23 +11,31 @@
     strPathsOrJars=fixSlashes(strPathsOrJars);
     strPathsOrJars=fixEndingSlashes(strPathsOrJars);
   }
+  if (log.isDebugEnabled()) {
+    for (i=0; i < strPathsOrJars.length; i++) {
+      log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
+    }
+  }
   while (stPaths.hasMoreTokens()) {
     strPath=fixDotDir((String)stPaths.nextToken());
     strPath=fixSlashes(strPath);
     strPath=fixEndingSlashes(strPath);
     if (strPathsOrJars == null) {
+      log.debug("Adding: " + strPath);
       listPaths.add(strPath);
     }
  else {
+      boolean found=false;
       for (i=0; i < strPathsOrJars.length; i++) {
-        if (log.isDebugEnabled()) {
-          log.debug("strPath(lower) : " + strPath.toLowerCase());
-          log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
-        }
         if (strPath.endsWith(strPathsOrJars[i])) {
-          log.debug("match!!!");
+          found=true;
+          log.debug("Adding " + strPath + " found at "+ i);
           listPaths.add(strPath);
+          break;
         }
+      }
+      if (!found) {
+        log.debug("Did not find: " + strPath);
       }
     }
   }
