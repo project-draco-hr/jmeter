@@ -1,0 +1,7 @@
+{
+  StringBuffer ret;
+  ret=new StringBuffer(length);
+  ret.append(string);
+  while (length > ret.length())   ret.insert(0,character);
+  return (ret.toString());
+}

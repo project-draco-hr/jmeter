@@ -1,0 +1,8 @@
+{
+  if (baseUrl.charAt(baseUrl.length() - 1) == '/') {
+    return baseUrl.substring(0,baseUrl.length() - 1);
+  }
+ else {
+    return baseUrl;
+  }
+}

@@ -1,0 +1,15 @@
+{
+  int index;
+  int spaces;
+  StringBuffer ret;
+  ret=new StringBuffer(string.length());
+  index=0;
+  while ((index < string.length()) && (-1 != (spaces=string.indexOf("  ",index)))) {
+    ret.append("        // " + string.substring(index,spaces));
+    if (!string.substring(index,spaces).endsWith(nl))     ret.append(nl);
+    while ((spaces < string.length()) && Character.isWhitespace(string.charAt(spaces)))     spaces++;
+    index=spaces;
+  }
+  if (index < string.length())   ret.append("        // " + string.substring(index));
+  return (ret.toString());
+}

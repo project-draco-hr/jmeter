@@ -1,0 +1,19 @@
+{
+  Node ret;
+  if (null == reader)   ret=null;
+ else   try {
+    ret=reader.readElement();
+    if (null != ret)     preRead.addElement(ret);
+  }
+ catch (  Exception e) {
+    StringBuffer msgBuffer=new StringBuffer();
+    msgBuffer.append("Unexpected Exception occurred while reading ");
+    msgBuffer.append(resourceLocn);
+    msgBuffer.append(", in nextHTMLNode");
+    reader.appendLineDetails(msgBuffer);
+    ParserException ex=new ParserException(msgBuffer.toString(),e);
+    feedback.error(msgBuffer.toString(),ex);
+    throw ex;
+  }
+  return (ret);
+}

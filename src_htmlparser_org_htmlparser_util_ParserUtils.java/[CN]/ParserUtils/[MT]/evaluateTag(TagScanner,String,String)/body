@@ -1,0 +1,5 @@
+{
+  pTagString=TagScanner.absorbLeadingBlanks(pTagString);
+  if (pTagString.toUpperCase().indexOf(pTagName) == 0)   return true;
+ else   return false;
+}

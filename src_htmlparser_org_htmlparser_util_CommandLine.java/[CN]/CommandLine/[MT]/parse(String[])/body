@@ -1,0 +1,44 @@
+{
+  for (int i=0; i < args.length; i++) {
+    String thisArg=args[i];
+    String nextArg=null;
+    if (i < args.length - 1) {
+      nextArg=args[i + 1];
+    }
+    if (thisArg.startsWith("-")) {
+      if (thisArg.length() > 2) {
+        Character chr=new Character(thisArg.charAt(1));
+        if (commands.contains(chr)) {
+          String key=chr.toString();
+          String val=thisArg.substring(2);
+          if (VERBOSE) {
+            System.out.println("Value " + key + "="+ val);
+          }
+          values.put(key,val);
+        }
+      }
+      if (nextArg != null && !nextArg.startsWith("-")) {
+        String key=thisArg.substring(1);
+        String val=nextArg;
+        if (VERBOSE) {
+          System.out.println("Value " + key + "="+ val);
+        }
+        values.put(key,val);
+        i++;
+      }
+ else {
+        String flag=thisArg.substring(1);
+        flags.add(flag);
+        if (VERBOSE) {
+          System.out.println("Flag " + flag);
+        }
+      }
+    }
+ else {
+      if (VERBOSE) {
+        System.out.println("Name " + thisArg);
+      }
+      names.add(thisArg);
+    }
+  }
+}
