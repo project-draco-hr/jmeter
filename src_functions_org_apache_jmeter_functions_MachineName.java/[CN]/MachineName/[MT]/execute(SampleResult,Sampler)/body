@@ -1,6 +1,6 @@
 {
   JMeterVariables vars=getVariables();
-  String varName=((CompoundVariable)values[values.length - 1]).execute();
+  String varName=((CompoundFunction)values[values.length - 1]).execute();
   String machineName="";
   try {
     InetAddress Address=InetAddress.getLocalHost();
