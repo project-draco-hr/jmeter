@@ -1,14 +1,31 @@
 {
   JMeterVariables variables=vars.getVariables();
-  if (perUser) {
-    int value=start + (increment * (iterationCount - 1));
-    value=value % end;
+  if (!perUser) {
+    globalCounter++;
+    int value=start + (increment * globalCounter);
+    if (value > end) {
+      globalCounter=0;
+      value=start;
+    }
     variables.put(getVarName(),Integer.toString(value));
   }
  else {
-    globalCounter++;
-    int value=start + (increment * globalCounter);
-    value=value % end;
-    variables.put(getVarName(),Integer.toString(value));
+    String value=variables.get(getVarName());
+    if (value == null) {
+      variables.put(getVarName(),Integer.toString(start));
+    }
+ else {
+      try {
+        int current=Integer.parseInt(value);
+        current+=increment;
+        if (current > end) {
+          current=start;
+        }
+        variables.put(getVarName(),Integer.toString(current));
+      }
+ catch (      NumberFormatException e) {
+        log.info("Bad number in Counter config",e);
+      }
+    }
   }
 }
