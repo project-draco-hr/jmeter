@@ -1,8 +1,16 @@
 {
-  resultPanel.remove(textArea);
-  int htmlIndex=response.indexOf("<html>");
-  String html=response.substring(htmlIndex,response.length());
-  htmlEditPane.setText(html);
+  int htmlIndex=response.indexOf("<HTML>");
+  if (htmlIndex < 0) {
+    htmlIndex=response.indexOf("<html>");
+  }
+  if (htmlIndex > -1) {
+    resultPanel.remove(textArea);
+    String html=response.substring(htmlIndex,response.length());
+    htmlEditPane.setText(html);
+  }
+ else {
+    htmlEditPane.setText(response);
+  }
   htmlEditPane.setCaretPosition(0);
   gbc.gridx=0;
   gbc.gridy++;
