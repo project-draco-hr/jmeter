@@ -23,8 +23,6 @@
   rampPanel.add(rampInput,BorderLayout.CENTER);
   threadPropsPanel.add(rampPanel);
   threadPropsPanel.add(createControllerPanel());
-  HorizontalPanel horizPanel=new HorizontalPanel();
-  horizPanel.add(threadPropsPanel);
-  mainPanel.add(horizPanel,BorderLayout.NORTH);
+  mainPanel.add(threadPropsPanel,BorderLayout.NORTH);
   add(mainPanel,BorderLayout.CENTER);
 }

@@ -10,5 +10,6 @@
   infinite.setActionCommand(INFINITE);
   infinite.addActionListener(this);
   loopPanel.add(infinite,BorderLayout.EAST);
+  loopPanel.add(Box.createHorizontalStrut(loopsLabel.getPreferredSize().width + loops.getPreferredSize().width + infinite.getPreferredSize().width),BorderLayout.NORTH);
   return loopPanel;
 }
