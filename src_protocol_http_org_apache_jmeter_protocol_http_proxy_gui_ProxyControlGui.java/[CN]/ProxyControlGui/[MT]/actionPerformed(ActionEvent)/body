@@ -42,11 +42,6 @@
     log.debug("Change target " + targetNodes.getSelectedItem());
     log.debug("In model " + model);
     TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
-    if (nw == null) {
-      model.setTarget(null);
-    }
- else {
-      model.setTarget(nw.getTreeNode());
-    }
+    model.setTarget(nw.getTreeNode());
   }
 }

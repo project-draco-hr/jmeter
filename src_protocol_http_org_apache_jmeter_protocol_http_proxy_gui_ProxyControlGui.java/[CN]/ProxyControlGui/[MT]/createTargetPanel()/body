@@ -1,7 +1,6 @@
 {
   targetNodesModel=new DefaultComboBoxModel();
   targetNodes=new JComboBox(targetNodesModel);
-  targetNodes.addActionListener(this);
   targetNodes.setActionCommand(CHANGE_TARGET);
   JLabel label=new JLabel(JMeterUtils.getResString("proxy_target"));
   label.setLabelFor(targetNodes);
