@@ -1,0 +1,8 @@
+{
+  try {
+    saver.alias(alias,Class.forName(clazz));
+  }
+ catch (  ClassNotFoundException e) {
+    log.warn("Could not set up alias " + alias + " "+ e.toString());
+  }
+}
