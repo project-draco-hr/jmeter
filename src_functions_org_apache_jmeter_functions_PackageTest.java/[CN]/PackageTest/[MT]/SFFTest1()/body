@@ -1,0 +1,19 @@
+{
+  StringFromFile sff1=SFFParams("testfiles/SFFTest#.txt","","1","3");
+  assertEquals("uno",sff1.execute());
+  assertEquals("dos",sff1.execute());
+  assertEquals("tres",sff1.execute());
+  assertEquals("cuatro",sff1.execute());
+  assertEquals("cinco",sff1.execute());
+  assertEquals("one",sff1.execute());
+  assertEquals("two",sff1.execute());
+  sff1.execute();
+  sff1.execute();
+  assertEquals("five",sff1.execute());
+  assertEquals("eins",sff1.execute());
+  sff1.execute();
+  sff1.execute();
+  sff1.execute();
+  assertEquals("fuenf",sff1.execute());
+  assertEquals("**ERR**",sff1.execute());
+}

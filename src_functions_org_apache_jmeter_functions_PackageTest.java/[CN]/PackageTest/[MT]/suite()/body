@@ -11,5 +11,8 @@
   par.addTest(new PackageTest("CSVThread1"));
   par.addTest(new PackageTest("CSVThread2"));
   suite.addTest(par);
+  TestSuite sff=new TestSuite("StringFromFile");
+  sff.addTest(new PackageTest("SFFTest1"));
+  suite.addTest(sff);
   return suite;
 }
