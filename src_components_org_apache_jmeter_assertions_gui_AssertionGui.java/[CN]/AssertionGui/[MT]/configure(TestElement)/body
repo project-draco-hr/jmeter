@@ -23,6 +23,7 @@
     responseStringButton.setSelected(false);
     labelButton.setSelected(true);
   }
+  tableModel.clearData();
   Iterator tests=model.getTestStrings().iterator();
   while (tests.hasNext()) {
     tableModel.addRow(new Object[]{tests.next()});

@@ -1,0 +1,9 @@
+{
+  try {
+    FileReader fis=new FileReader(fileName);
+    myBread=new BufferedReader(fis);
+  }
+ catch (  Exception e) {
+    log.error("openFile",e);
+  }
+}

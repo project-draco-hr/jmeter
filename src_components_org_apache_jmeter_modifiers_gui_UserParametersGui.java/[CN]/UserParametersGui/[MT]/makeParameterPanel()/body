@@ -1,7 +1,7 @@
 {
   JPanel paramPanel=new JPanel(new BorderLayout());
   JLabel tableLabel=new JLabel(JMeterUtils.getResString("user_parameters_table"));
-  tableModel=new PowerTableModel(new String[]{JMeterUtils.getResString("name"),THREAD_COLUMNS + "_" + numUserColumns},new Class[]{String.class,String.class});
+  initTableModel();
   paramTable=new JTable(tableModel);
   paramTable.setRowSelectionAllowed(true);
   paramTable.setColumnSelectionAllowed(true);

@@ -1,0 +1,20 @@
+{
+  JMeterVariables vars=getVariables();
+  myValue="**ERR**";
+  if (null != myBread) {
+    try {
+      String line=myBread.readLine();
+      if (line == null && reopenFile) {
+        myBread.close();
+        openFile();
+        line=myBread.readLine();
+      }
+      myValue=line;
+    }
+ catch (    Exception e) {
+      log.error("Token",e);
+    }
+  }
+  vars.put(myName,myValue);
+  return myValue;
+}

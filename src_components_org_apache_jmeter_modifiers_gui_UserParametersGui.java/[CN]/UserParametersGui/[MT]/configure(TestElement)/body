@@ -1,5 +1,6 @@
 {
-  tableModel.clearData();
+  initTableModel();
+  paramTable.setModel(tableModel);
   UserParameters params=(UserParameters)el;
   List names=params.getNames();
   List threadValues=params.getThreadLists();
