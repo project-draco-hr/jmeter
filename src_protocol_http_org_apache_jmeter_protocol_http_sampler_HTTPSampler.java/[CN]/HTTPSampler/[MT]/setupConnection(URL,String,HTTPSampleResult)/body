@@ -17,7 +17,7 @@
     conn.setRequestProperty("Connection","close");
   }
   conn.setRequestMethod(method);
-  setConnectionHeaders(conn,u,getHeaderManager());
+  String hdrs=setConnectionHeaders(conn,u,getHeaderManager());
   String cookies=setConnectionCookie(conn,u,getCookieManager());
   if (res != null) {
     StringBuffer sb=new StringBuffer();
@@ -34,7 +34,7 @@
     res.setSamplerData(sb.toString());
     res.setURL(u);
     res.setHTTPMethod(method);
-    res.setRequestHeaders("TODO");
+    res.setRequestHeaders(hdrs);
   }
   setConnectionAuthorization(conn,u,getAuthManager());
   if (getMethod().equals(HTTPSampler.POST)) {
