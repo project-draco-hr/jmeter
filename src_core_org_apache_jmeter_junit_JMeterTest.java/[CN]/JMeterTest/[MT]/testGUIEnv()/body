@@ -1,0 +1,6 @@
+{
+  String nm=(String)java.security.AccessController.doPrivileged(new sun.security.action.GetPropertyAction("java.awt.graphicsenv",null));
+  System.out.println("\njava.awt.graphicsenv=" + nm);
+  GraphicsEnvironment ge=GraphicsEnvironment.getLocalGraphicsEnvironment();
+  System.out.println("ge=" + ge);
+}
