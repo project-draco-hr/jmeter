@@ -63,6 +63,7 @@
   g.setConstraints(successLimitField,c);
   mailerPanel.add(successLimitField);
   testerButton=new JButton("Test Mail");
+  testerButton.addActionListener(this);
   testerButton.setEnabled(true);
   c.gridwidth=1;
   g.setConstraints(testerButton,c);
