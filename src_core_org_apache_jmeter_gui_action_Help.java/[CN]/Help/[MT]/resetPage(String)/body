@@ -1,0 +1,11 @@
+{
+  if (!currentPage.equals(source)) {
+    try {
+      helpDoc.setPage(source);
+      currentPage=source;
+    }
+ catch (    IOException err) {
+      log.error("Couldn't load page: " + source,err);
+    }
+  }
+}

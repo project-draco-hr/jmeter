@@ -4,6 +4,9 @@
   this.getContentPane().setLayout(new BorderLayout(10,10));
   JPanel comboPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   comboPanel.add(functionList);
+  JButton helpButton=new JButton(JMeterUtils.getResString("help"));
+  helpButton.addActionListener(new HelpListener());
+  comboPanel.add(helpButton);
   this.getContentPane().add(comboPanel,BorderLayout.NORTH);
   this.getContentPane().add(parameterPanel,BorderLayout.CENTER);
   JPanel resultsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
