@@ -1,19 +1,15 @@
 {
-  res.setDataType(SampleResult.TEXT);
   byte[] ret=readResponse(conn);
-  byte[] head=getResponseHeaders(conn,res);
   time=System.currentTimeMillis() - time;
   String ct=conn.getHeaderField("Content-type");
   res.setContentType(ct);
+  res.setResponseHeaders(getResponseHeaders(conn));
+  res.setResponseData(ret);
   if (ct.startsWith("image/")) {
     res.setDataType(SampleResult.BINARY);
-    res.setResponseData(ret);
   }
  else {
-    byte[] complete=new byte[ret.length + head.length];
-    System.arraycopy(head,0,complete,0,head.length);
-    System.arraycopy(ret,0,complete,head.length,ret.length);
-    res.setResponseData(complete);
+    res.setDataType(SampleResult.TEXT);
   }
   res.setSuccessful(true);
   return time;

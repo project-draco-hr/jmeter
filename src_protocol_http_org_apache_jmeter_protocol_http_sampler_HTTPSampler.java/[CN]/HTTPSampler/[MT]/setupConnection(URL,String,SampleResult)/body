@@ -22,9 +22,12 @@
   if (res != null) {
     StringBuffer sb=new StringBuffer();
     sb.append(this.toString());
-    sb.append("\nCookie Data:\n");
-    sb.append(cookies);
+    if (cookies != null) {
+      sb.append("\nCookie Data:\n");
+      sb.append(cookies);
+    }
     res.setSamplerData(sb.toString());
+    res.setRequestHeaders("TODO");
   }
   setConnectionAuthorization(conn,u,getAuthManager());
   return conn;
