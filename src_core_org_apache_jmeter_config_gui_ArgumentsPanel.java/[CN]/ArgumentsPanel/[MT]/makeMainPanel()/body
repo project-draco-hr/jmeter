@@ -3,7 +3,5 @@
   table=new JTable(tableModel);
   table.addFocusListener(this);
   table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-  JScrollPane pane=new JScrollPane(table);
-  pane.setPreferredSize(pane.getMinimumSize());
-  return pane;
+  return makeScrollPane(table);
 }

@@ -4,10 +4,8 @@
     setBorder(makeBorder());
     add(makeTitlePanel(),BorderLayout.NORTH);
   }
-  Box classnameRequestPanel=Box.createVerticalBox();
-  classnameRequestPanel.add(getClassnamePanel());
-  classnameRequestPanel.add(Box.createVerticalStrut(5));
-  classnameRequestPanel.add(getParameterPanel());
-  classnameRequestPanel.add(Box.createVerticalGlue());
+  JPanel classnameRequestPanel=new JPanel(new BorderLayout(0,5));
+  classnameRequestPanel.add(createClassnamePanel(),BorderLayout.NORTH);
+  classnameRequestPanel.add(createParameterPanel(),BorderLayout.CENTER);
   add(classnameRequestPanel,BorderLayout.CENTER);
 }

@@ -2,7 +2,7 @@
   List possibleClasses=null;
   try {
     possibleClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JavaSamplerClient.class});
-    possibleClasses.remove("org.apache.jmeter.protocol.java.sampler.JavaSampler$ErrorSamplerClient");
+    possibleClasses.remove(JavaSampler.class.getName() + "$ErrorSamplerClient");
   }
  catch (  Exception e) {
     log.debug("Exception getting interfaces.",e);
