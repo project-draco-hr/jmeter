@@ -27,6 +27,7 @@
       sb.append('\n');
     }
     if (cookies != null) {
+      res.setCookies(cookies);
       sb.append("\nCookie Data:\n");
       sb.append(cookies);
       sb.append('\n');

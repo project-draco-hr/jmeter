@@ -11,5 +11,6 @@
   setResponseMessage(res.getResponseMessage());
   setDataType(res.getDataType());
   setResponseHeaders(res.getResponseHeaders());
+  setCookies(res.getCookies());
   addSubResult(res);
 }
