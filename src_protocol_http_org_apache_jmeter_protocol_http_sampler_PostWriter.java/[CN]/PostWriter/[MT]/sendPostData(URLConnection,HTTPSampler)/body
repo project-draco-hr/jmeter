@@ -12,6 +12,7 @@
     writeFileToURL(out,filename,sampler.getFileField(),getFileStream(filename),sampler.getMimetype());
     writeln(out,"--" + BOUNDARY + "--");
     out.flush();
+    out.close();
   }
  else {
     String postData=sampler.getQueryString();

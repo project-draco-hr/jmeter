@@ -4,6 +4,7 @@
   }
  catch (  RuntimeException e) {
     sleepTime=2000;
+    log.debug("Setting notifier thread priority to normal");
     Thread.currentThread().setPriority(Thread.NORM_PRIORITY);
     return null;
   }

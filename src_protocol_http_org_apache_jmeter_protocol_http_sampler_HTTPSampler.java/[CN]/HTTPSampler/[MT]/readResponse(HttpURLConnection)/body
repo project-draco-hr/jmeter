@@ -12,6 +12,7 @@
   while ((x=in.read(buffer)) > -1) {
     w.write(buffer,0,x);
   }
+  in.close();
   w.flush();
   w.close();
   return w.toByteArray();
