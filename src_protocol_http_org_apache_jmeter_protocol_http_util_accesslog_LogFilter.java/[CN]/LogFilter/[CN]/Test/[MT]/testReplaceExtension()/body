@@ -1,0 +1,5 @@
+{
+  testf.setReplaceExtension("html","jsp");
+  testf.isFiltered(TESTSTR);
+  assertEquals(TESTSTROUT,testf.filter(TESTSTR));
+}

@@ -1,0 +1,16 @@
+{
+  testf.excludeFiles(INCL);
+  for (int idx=0; idx < TESTDATA.length; idx++) {
+    TestData td=TESTDATA[idx];
+    String theFile=td.file;
+    boolean expect=td.exclfile;
+    testf.isFiltered(theFile);
+    String line=testf.filter(theFile);
+    if (line != null) {
+      assertTrue("Expect to accept " + theFile,expect);
+    }
+ else {
+      assertFalse("Expect to reject " + theFile,expect);
+    }
+  }
+}
