@@ -1,7 +1,5 @@
 {
-  HTTPSampleResult res=new HTTPSampleResult(time);
   res.setSampleLabel("Error");
-  res.setSamplerData(data);
   res.setDataType(HTTPSampleResult.TEXT);
   ByteArrayOutputStream text=new ByteArrayOutputStream(200);
   e.printStackTrace(new PrintStream(text));
@@ -9,11 +7,6 @@
   res.setResponseCode(NON_HTTP_RESPONSE_CODE);
   res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
   res.setSuccessful(false);
-  try {
-    res.setURL(getUrl());
-  }
- catch (  MalformedURLException ex) {
-  }
   res.setMonitor(this.isMonitor());
   return res;
 }

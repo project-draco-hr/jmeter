@@ -1,12 +1,13 @@
 {
+  int actualCount=0;
   String line=null;
   try {
     line=breader.readLine();
     while (line != null) {
       if (line.length() > 0) {
-        this.parseLine(line,el);
+        actualCount+=this.parseLine(line,el);
       }
-      if (this.PARSECOUNT != -1 && COUNT >= this.PARSECOUNT) {
+      if (parseCount != -1 && actualCount >= parseCount) {
         break;
       }
       line=breader.readLine();
@@ -20,4 +21,5 @@
  catch (  IOException ioe) {
     log.error("Error reading log file",ioe);
   }
+  return actualCount;
 }

@@ -1,0 +1,7 @@
+{
+  if (PARSER != null) {
+    PARSER.close();
+  }
+  started=false;
+  super.testEnded();
+}

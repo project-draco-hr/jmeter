@@ -1,7 +1,7 @@
 {
-  if (filter == null && filterClassName != null) {
+  if (filter == null && filterClassName != null && filterClassName.length() > 0) {
     try {
-      filter=(LogFilter)Class.forName(filterClassName).newInstance();
+      filter=(Filter)Class.forName(filterClassName).newInstance();
     }
  catch (    Exception e) {
       log.warn("Couldn't instantiate filter '" + filterClassName + "'",e);

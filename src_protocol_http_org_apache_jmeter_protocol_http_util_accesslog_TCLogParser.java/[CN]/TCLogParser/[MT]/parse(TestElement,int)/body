@@ -6,10 +6,10 @@
     if (this.READER == null) {
       this.READER=new BufferedReader(new FileReader(this.SOURCE));
     }
-    parse(this.READER,el);
+    return parse(this.READER,el,parseCount);
   }
  catch (  Exception exception) {
     log.error("Problem creating samples",exception);
   }
-  return true;
+  return 0;
 }

@@ -58,6 +58,7 @@
     res.setURL(u);
     res.setHTTPMethod(method);
     res.setRequestHeaders(hdrs);
+    res.setQueryString(getQueryString());
   }
   setConnectionAuthorization(httpMethod,u,getAuthManager());
   if (method.equals(POST)) {

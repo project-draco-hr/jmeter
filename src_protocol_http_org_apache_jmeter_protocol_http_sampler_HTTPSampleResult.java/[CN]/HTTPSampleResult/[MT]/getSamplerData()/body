@@ -5,11 +5,12 @@
   if (u != null) {
     sb.append(' ');
     sb.append(u.toString());
-  }
-  String s=super.getSamplerData();
-  if (s != null) {
-    sb.append('\n');
-    sb.append(s);
+    if ("POST".equals(getHTTPMethod())) {
+      sb.append(getQueryString());
+    }
+    sb.append("\n");
+    sb.append(getRequestHeaders());
+    sb.append(getCookies());
   }
   return sb.toString();
 }

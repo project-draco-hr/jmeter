@@ -1,15 +1,20 @@
 {
-  log.debug("Stopping test");
-  if (running) {
-    running=false;
-    tellThreadsToStop();
-    try {
-      Thread.sleep(10 * allThreads.size());
+  try {
+    log.debug("Stopping test");
+    if (running) {
+      running=false;
+      tellThreadsToStop();
+      try {
+        Thread.sleep(10 * allThreads.size());
+      }
+ catch (      InterruptedException e) {
+      }
+      verifyThreadsStopped();
+      notifyTestListenersOfEnd();
     }
- catch (    InterruptedException e) {
-    }
-    verifyThreadsStopped();
-    notifyTestListenersOfEnd();
+    JMeterContextService.endTest();
   }
-  JMeterContextService.endTest();
+ catch (  Exception e) {
+    log.error("Bad!",e);
+  }
 }

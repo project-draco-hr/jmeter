@@ -1,10 +1,9 @@
 {
   log.debug("Start : clear1");
-  int totalChild=root.getChildCount();
   if (log.isDebugEnabled()) {
-    log.debug("clear1 : total child - " + totalChild);
+    log.debug("clear1 : total child - " + root.getChildCount());
   }
-  for (int i=0; i < totalChild; i++) {
+  while (root.getChildCount() > 0) {
     treeModel.removeNodeFromParent((DefaultMutableTreeNode)root.getChildAt(0));
   }
   results.setText("");

@@ -8,7 +8,7 @@
       lastRes=sample(new URL(lastRes.getURL(),location),GET,true,frameDepth);
     }
  catch (    MalformedURLException e) {
-      lastRes=errorResult(e,location,0);
+      lastRes=errorResult(e,lastRes);
     }
     totalRes.addSubResult(lastRes);
     if (!lastRes.isRedirect()) {
@@ -16,12 +16,13 @@
     }
   }
   if (redirect >= MAX_REDIRECTS) {
-    lastRes=errorResult(new IOException("Exceeeded maximum number of redirects: " + MAX_REDIRECTS),null,0);
+    lastRes=errorResult(new IOException("Exceeeded maximum number of redirects: " + MAX_REDIRECTS),lastRes);
     totalRes.addSubResult(lastRes);
   }
   totalRes.setSampleLabel(totalRes.getSampleLabel() + "->" + lastRes.getSampleLabel());
   totalRes.setURL(lastRes.getURL());
   totalRes.setHTTPMethod(lastRes.getHTTPMethod());
+  totalRes.setQueryString(lastRes.getQueryString());
   totalRes.setRequestHeaders(lastRes.getRequestHeaders());
   totalRes.setResponseData(lastRes.getResponseData());
   totalRes.setResponseCode(lastRes.getResponseCode());

@@ -79,7 +79,7 @@ catch (      IOException e) {
       }
       if (isImageParser() && (HTTPSampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
         if (frameDepth > MAX_FRAME_DEPTH) {
-          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),null,0));
+          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),res));
         }
  else {
           boolean createContainerResults=!didFollowRedirects;
@@ -92,7 +92,7 @@ catch (      IOException e) {
   }
  catch (  IOException e) {
     res.sampleEnd();
-    return errorResult(e,url.toString(),res.getTime());
+    return errorResult(e,res);
   }
  finally {
     disconnect(conn);

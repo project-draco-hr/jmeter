@@ -23,16 +23,16 @@
     StringBuffer sb=new StringBuffer();
     if (method.equals(POST)) {
       String q=this.getQueryString();
-      res.setQueryString(q);
-      sb.append("Query data:\n");
+      sb.append("\nQuery data:\n");
       sb.append(q);
-      sb.append('\n');
+      res.setQueryString(sb.toString());
     }
     if (cookies != null) {
-      res.setCookies(cookies);
-      sb.append("\nCookie Data:\n");
-      sb.append(cookies);
-      sb.append('\n');
+      StringBuffer temp=new StringBuffer("\nCookie Data:\n");
+      temp.append(cookies);
+      temp.append('\n');
+      res.setCookies(temp.toString());
+      sb.append(temp);
     }
     res.setSamplerData(sb.toString());
     res.setURL(u);

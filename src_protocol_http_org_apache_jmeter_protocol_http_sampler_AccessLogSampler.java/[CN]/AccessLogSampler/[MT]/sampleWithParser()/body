@@ -5,11 +5,11 @@
   try {
     int thisCount=PARSER.parseAndConfigure(1,this);
     if (thisCount == 0) {
-      if (count == 0) {
+      if (count == 0 || filter == null) {
         JMeterContextService.getContext().getThread().stop();
       }
-      log.info("parser returned 0 paths");
-      filter.reset();
+      if (filter != null)       filter.reset();
+      getCookieManager().clear();
       count=0;
       return null;
     }
