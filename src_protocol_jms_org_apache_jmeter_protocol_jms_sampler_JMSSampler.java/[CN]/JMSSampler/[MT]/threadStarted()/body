@@ -1,0 +1,51 @@
+{
+  logThreadStart();
+  super.threadStarted();
+  Context context=null;
+  try {
+    context=getInitialContext();
+    QueueConnectionFactory factory=(QueueConnectionFactory)context.lookup(getQueueConnectionFactory());
+    Queue queue=(Queue)context.lookup(getSendQueue());
+    sendQueue=queue;
+    if (!useTemporyQueue()) {
+      receiveQueue=(Queue)context.lookup(getReceiveQueue());
+      Receiver.createReceiver(factory,receiveQueue);
+    }
+    connection=factory.createQueueConnection();
+    session=connection.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("Session created");
+    }
+    if (getPropertyAsBoolean(IS_ONE_WAY)) {
+      producer=session.createSender(sendQueue);
+    }
+ else {
+      if (useTemporyQueue()) {
+        executor=new TemporaryQueueExecutor(session,sendQueue);
+      }
+ else {
+        producer=session.createSender(sendQueue);
+        executor=new FixedQueueExecutor(producer,getTimeout());
+      }
+    }
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("Starting connection");
+    }
+    connection.start();
+  }
+ catch (  JMSException e) {
+    LOGGER.warn(e);
+  }
+catch (  NamingException e) {
+    LOGGER.warn(e);
+  }
+ finally {
+    if (context != null) {
+      try {
+        context.close();
+      }
+ catch (      NamingException e1) {
+      }
+    }
+  }
+}

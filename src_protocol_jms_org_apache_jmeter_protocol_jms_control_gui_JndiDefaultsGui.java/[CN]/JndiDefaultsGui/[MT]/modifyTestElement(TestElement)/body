@@ -1,0 +1,5 @@
+{
+  super.configureTestElement(config);
+  config.setProperty(JMSSampler.JNDI_CONTEXT_PROVIDER_URL,providerUrl.getText());
+  config.setProperty(JMSSampler.JNDI_INITIAL_CONTEXT_FACTORY,initialContextFactory.getText());
+}

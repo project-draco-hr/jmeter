@@ -1,0 +1,11 @@
+{
+  if (factory != null) {
+    try {
+      return factory.createTopicConnection();
+    }
+ catch (    JMSException e) {
+      e.printStackTrace();
+    }
+  }
+  return null;
+}

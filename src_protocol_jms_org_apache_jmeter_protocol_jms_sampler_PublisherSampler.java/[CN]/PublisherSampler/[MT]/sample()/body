@@ -1,0 +1,27 @@
+{
+  SampleResult result=new SampleResult();
+  result.setSampleLabel("PublisherSampler:" + this.getTopic());
+  if (this.PUB == null) {
+    this.initClient();
+  }
+  int loop=this.getIterationCount();
+  if (this.PUB != null) {
+    result.sampleStart();
+    for (int idx=0; idx < loop; idx++) {
+      this.PUB.publish(this.getTextMessage());
+    }
+    result.sampleEnd();
+    for (int idx=0; idx < loop; idx++) {
+      this.BUFFER.append(this.getTextMessage());
+    }
+    String content=this.BUFFER.toString();
+    result.setBytes(content.getBytes().length);
+    result.setResponseCode("message published successfully");
+    result.setResponseMessage(loop + " messages published");
+    result.setSuccessful(true);
+    result.setResponseData(content.getBytes());
+    result.setSampleCount(loop);
+    this.BUFFER.setLength(0);
+  }
+  return result;
+}

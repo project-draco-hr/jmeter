@@ -1,0 +1,16 @@
+{
+  log.info("SubscriberSampler.testEnded called");
+  this.RUN=false;
+  this.resetCount();
+  ClientPool.clearClient();
+  this.BUFFER=null;
+  if (this.SUBSCRIBER != null) {
+    this.SUBSCRIBER=null;
+  }
+  try {
+    this.finalize();
+  }
+ catch (  Throwable e) {
+    log.error(e.getMessage());
+  }
+}

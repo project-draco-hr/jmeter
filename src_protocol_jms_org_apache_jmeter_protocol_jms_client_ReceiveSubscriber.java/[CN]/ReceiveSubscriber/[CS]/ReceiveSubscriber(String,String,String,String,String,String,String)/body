@@ -1,0 +1,9 @@
+{
+  Context ctx=initJNDI(jndi,url,useAuth,user,pwd);
+  if (ctx != null) {
+    initConnection(ctx,connfactory,topic);
+  }
+ else {
+    log.equals("Could not initialize JNDI Initial Context Factory");
+  }
+}

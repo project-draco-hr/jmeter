@@ -1,0 +1,35 @@
+{
+  SampleResult result=new SampleResult();
+  result.setSampleLabel("SubscriberSampler:" + this.getTopic());
+  if (this.SUBSCRIBER == null) {
+    this.initReceiveClient();
+    this.SUBSCRIBER.start();
+  }
+  int loop=this.getIterationCount();
+  this.SUBSCRIBER.setLoop(loop);
+  this.SUBSCRIBER.resume();
+  result.sampleStart();
+  while (this.SUBSCRIBER.count(0) < loop) {
+    try {
+      Thread.sleep(1);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+  result.sampleEnd();
+  result.setResponseMessage(loop + " samples messages recieved");
+  if (this.getReadResponseAsBoolean()) {
+    result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
+  }
+ else {
+    result.setBytes(this.SUBSCRIBER.getMessage().getBytes().length);
+  }
+  result.setSuccessful(true);
+  result.setResponseCode(loop + " message(s) recieved successfully");
+  result.setSamplerData("Not applicable");
+  result.setSampleCount(loop);
+  this.SUBSCRIBER.clear();
+  this.SUBSCRIBER.resetCount();
+  return result;
+}

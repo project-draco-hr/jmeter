@@ -1,0 +1,43 @@
+{
+  SampleResult res=new SampleResult();
+  res.setSampleLabel(getName());
+  res.setSamplerData(getContent());
+  res.setDataType(SampleResult.TEXT);
+  res.sampleStart();
+  try {
+    TextMessage msg=session.createTextMessage();
+    msg.setText(getContent());
+    addJMSProperties(msg);
+    if (getPropertyAsBoolean(IS_ONE_WAY)) {
+      producer.send(msg);
+      res.setSuccessful(true);
+      res.setResponseData("Oneway request has no response data".getBytes());
+    }
+ else {
+      if (!useTemporyQueue()) {
+        msg.setJMSReplyTo(receiveQueue);
+      }
+      Message replyMsg=executor.sendAndReceive(msg);
+      if (replyMsg == null) {
+        res.setSuccessful(false);
+        LOGGER.debug("No reply message received");
+      }
+ else {
+        if (replyMsg instanceof TextMessage) {
+          res.setResponseData(((TextMessage)replyMsg).getText().getBytes());
+        }
+ else {
+          res.setResponseData(replyMsg.toString().getBytes());
+        }
+        res.setSuccessful(true);
+      }
+    }
+  }
+ catch (  Exception e) {
+    LOGGER.warn(e);
+    res.setResponseData(new byte[0]);
+    res.setSuccessful(false);
+  }
+  res.sampleEnd();
+  return res;
+}

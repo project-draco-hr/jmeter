@@ -1,0 +1,5 @@
+{
+  this.SUBSCRIBER=new ReceiveSubscriber(this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.getUseAuth(),this.getUsername(),this.getPassword());
+  ClientPool.addClient(this.SUBSCRIBER);
+  log.info("SubscriberSampler.initReceiveClient called");
+}

@@ -1,0 +1,27 @@
+{
+  activate();
+  Message reply;
+  while (isActive()) {
+    reply=null;
+    try {
+      reply=consumer.receive();
+      LOGGER.debug("CorrId:" + reply.getJMSCorrelationID());
+      if (reply.getJMSCorrelationID() == null) {
+        LOGGER.debug("Received message with correlation id null, will discard message");
+      }
+ else {
+        MessageAdmin.getAdmin().putReply(reply.getJMSCorrelationID(),reply);
+      }
+    }
+ catch (    JMSException e1) {
+      e1.printStackTrace();
+    }
+  }
+  if (session != null)   try {
+    session.close();
+    if (conn != null)     conn.close();
+  }
+ catch (  JMSException e) {
+    e.printStackTrace();
+  }
+}

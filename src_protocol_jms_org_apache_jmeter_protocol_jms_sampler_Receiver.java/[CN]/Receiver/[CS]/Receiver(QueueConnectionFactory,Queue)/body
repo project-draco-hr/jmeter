@@ -1,0 +1,6 @@
+{
+  conn=factory.createQueueConnection();
+  session=conn.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);
+  consumer=session.createReceiver(receiveQueue);
+  conn.start();
+}

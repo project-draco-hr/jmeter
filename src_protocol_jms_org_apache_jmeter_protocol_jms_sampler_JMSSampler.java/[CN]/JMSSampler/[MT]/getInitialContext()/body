@@ -1,0 +1,17 @@
+{
+  Hashtable table=new Hashtable();
+  if (getInitialContextFactory() != null && getInitialContextFactory().trim().length() > 0) {
+    if (LOGGER.isDebugEnabled())     LOGGER.debug("Using InitialContext [" + getInitialContextFactory() + "]");
+    table.put(Context.INITIAL_CONTEXT_FACTORY,getInitialContextFactory());
+  }
+  if (LOGGER.isDebugEnabled())   LOGGER.debug("Using Provider [" + getContextProvider() + "]");
+  if (getContextProvider() != null && getContextProvider().trim().length() > 0) {
+    if (LOGGER.isDebugEnabled())     LOGGER.debug("Using Provider [" + getContextProvider() + "]");
+    table.put(Context.PROVIDER_URL,getContextProvider());
+  }
+  Context context=new InitialContext(table);
+  if (LOGGER.isDebugEnabled()) {
+    printEnvironment(context);
+  }
+  return context;
+}

@@ -1,0 +1,18 @@
+{
+  PublisherSampler sampler=new PublisherSampler();
+  this.configureTestElement(sampler);
+  sampler.setJNDIIntialContextFactory(jndiICF.getText());
+  sampler.setProviderUrl(urlField.getText());
+  sampler.setConnectionFactory(jndiConnFac.getText());
+  sampler.setTopic(jmsTopic.getText());
+  sampler.setUsername(jmsUser.getText());
+  sampler.setPassword(jmsPwd.getText());
+  sampler.setTextMessage(textMessage.getText());
+  sampler.setInputFile(messageFile.getFilename());
+  sampler.setRandomPath(randomFile.getFilename());
+  sampler.setConfigChoice(configChoice.getText());
+  sampler.setMessageChoice(msgChoice.getText());
+  sampler.setIterations(iterations.getText());
+  sampler.setUseAuth(reqAuth.getText());
+  return sampler;
+}

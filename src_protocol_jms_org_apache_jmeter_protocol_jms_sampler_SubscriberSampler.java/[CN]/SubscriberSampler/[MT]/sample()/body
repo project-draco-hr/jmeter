@@ -1,0 +1,8 @@
+{
+  if (this.getClientChoice().equals(JMSSubscriberGui.receive_str)) {
+    return sampleWithReceive();
+  }
+ else {
+    return sampleWithListener();
+  }
+}

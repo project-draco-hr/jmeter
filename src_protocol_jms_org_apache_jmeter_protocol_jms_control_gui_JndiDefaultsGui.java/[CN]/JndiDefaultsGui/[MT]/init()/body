@@ -1,0 +1,13 @@
+{
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  Box mainPanel=Box.createVerticalBox();
+  VerticalPanel urlPanel=new VerticalPanel();
+  providerUrl=new JLabeledTextField(JMeterUtils.getResString("initial_context_factory"));
+  urlPanel.add(providerUrl);
+  initialContextFactory=new JLabeledTextField(JMeterUtils.getResString("provider_url"));
+  urlPanel.add(initialContextFactory);
+  mainPanel.add(urlPanel);
+  add(mainPanel,BorderLayout.CENTER);
+}

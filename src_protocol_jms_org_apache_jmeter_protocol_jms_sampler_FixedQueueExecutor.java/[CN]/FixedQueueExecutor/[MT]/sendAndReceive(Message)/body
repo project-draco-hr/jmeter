@@ -1,0 +1,14 @@
+{
+  producer.send(request);
+  MessageAdmin.getAdmin().putRequest(request.getJMSMessageID(),request);
+  try {
+synchronized (request) {
+      request.wait(timeout);
+    }
+  }
+ catch (  InterruptedException e) {
+    System.err.println("Interrupt exception caught");
+    e.printStackTrace();
+  }
+  return MessageAdmin.getAdmin().get(request.getJMSMessageID());
+}

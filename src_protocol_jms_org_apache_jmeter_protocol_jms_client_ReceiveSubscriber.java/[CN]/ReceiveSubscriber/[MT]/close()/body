@@ -1,0 +1,23 @@
+{
+  try {
+    this.CONN.stop();
+    this.SUBSCRIBER.close();
+    this.SESSION.close();
+    this.CONN.close();
+    this.SUBSCRIBER=null;
+    this.SESSION=null;
+    this.CONN=null;
+    this.RUN=false;
+    this.CLIENTTHREAD.interrupt();
+    this.CLIENTTHREAD=null;
+    this.buffer.setLength(0);
+    this.buffer=null;
+    this.finalize();
+  }
+ catch (  JMSException e) {
+    log.error(e.getMessage());
+  }
+catch (  Throwable e) {
+    log.error(e.getMessage());
+  }
+}

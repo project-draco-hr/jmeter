@@ -1,0 +1,24 @@
+{
+  Context ctx=(Context)MAP.get(jndi + url);
+  if (ctx == null) {
+    Properties props=new Properties();
+    props.setProperty(Context.INITIAL_CONTEXT_FACTORY,jndi);
+    props.setProperty(Context.PROVIDER_URL,url);
+    if (useAuth != null && useAuth.equals(BaseJMSSampler.required) && user != null && pwd != null && user.length() > 0 && pwd.length() > 0) {
+      props.setProperty(Context.SECURITY_PRINCIPAL,user);
+      props.setProperty(Context.SECURITY_CREDENTIALS,pwd);
+      log.info("authentication properties set");
+    }
+    try {
+      ctx=new InitialContext(props);
+      log.info("created the JNDI initial context factory");
+    }
+ catch (    NamingException e) {
+      log.error("lookupContext:: " + e.getMessage());
+    }
+    if (ctx != null) {
+      MAP.put(jndi + url,ctx);
+    }
+  }
+  return ctx;
+}

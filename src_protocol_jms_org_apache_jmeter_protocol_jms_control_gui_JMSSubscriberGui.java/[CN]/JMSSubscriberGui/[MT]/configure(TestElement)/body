@@ -1,0 +1,14 @@
+{
+  super.configure(el);
+  SubscriberSampler sampler=(SubscriberSampler)el;
+  jndiICF.setText(sampler.getJNDIInitialContextFactory());
+  urlField.setText(sampler.getProviderUrl());
+  jndiConnFac.setText(sampler.getConnectionFactory());
+  jmsTopic.setText(sampler.getTopic());
+  jmsUser.setText(sampler.getUsername());
+  jmsPwd.setText(sampler.getPassword());
+  iterations.setText(sampler.getIterations());
+  reqAuth.setText(sampler.getUseAuth());
+  readResponse.setSelected(sampler.getReadResponseAsBoolean());
+  clientChoice.setText(sampler.getClientChoice());
+}

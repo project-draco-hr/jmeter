@@ -1,0 +1,8 @@
+{
+  if (event.getSource() == this.configChoice) {
+    updateConfig(this.configChoice.getText());
+  }
+ else   if (event.getSource() == this.msgChoice) {
+    updateMessageType(this.msgChoice.getText());
+  }
+}

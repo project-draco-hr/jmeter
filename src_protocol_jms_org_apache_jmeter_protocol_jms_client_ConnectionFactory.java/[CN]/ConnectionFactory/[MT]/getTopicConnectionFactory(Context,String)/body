@@ -1,0 +1,11 @@
+{
+  while (factory == null) {
+    try {
+      factory=(TopicConnectionFactory)ctx.lookup(fac);
+    }
+ catch (    NamingException e) {
+      e.printStackTrace();
+    }
+  }
+  return factory;
+}

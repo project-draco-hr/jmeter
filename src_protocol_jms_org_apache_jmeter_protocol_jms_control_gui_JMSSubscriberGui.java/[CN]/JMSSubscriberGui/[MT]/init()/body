@@ -1,0 +1,32 @@
+{
+  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  JPanel mainPanel=new JPanel();
+  Border margin=new EmptyBorder(10,10,5,10);
+  mainPanel.setBorder(margin);
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  JLabel panelTitleLabel=new JLabel(getStaticLabel());
+  Font curFont=panelTitleLabel.getFont();
+  int curFontSize=curFont.getSize();
+  curFontSize+=4;
+  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
+  mainPanel.add(panelTitleLabel);
+  mainPanel.add(getNamePanel());
+  lookup=new JPanel();
+  lookup.setLayout(new VerticalLayout(6,VerticalLayout.LEFT));
+  mainPanel.add(lookup);
+  lookup.add(jndiICF);
+  lookup.add(urlField);
+  lookup.add(jndiConnFac);
+  reqAuth.addChangeListener(this);
+  JPanel commonParams=new JPanel();
+  commonParams.setLayout(new VerticalLayout(6,VerticalLayout.LEFT));
+  mainPanel.add(commonParams);
+  commonParams.add(jmsTopic);
+  commonParams.add(reqAuth);
+  commonParams.add(jmsUser);
+  commonParams.add(jmsPwd);
+  commonParams.add(iterations);
+  commonParams.add(readResponse);
+  commonParams.add(clientChoice);
+  this.add(mainPanel);
+}

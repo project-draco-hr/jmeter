@@ -1,0 +1,12 @@
+{
+  OnMessageSubscriber sub=(OnMessageSubscriber)ClientPool.get(this);
+  if (sub == null) {
+    sub=new OnMessageSubscriber(this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.getUseAuth(),this.getUsername(),this.getPassword());
+    sub.setMessageListener(this);
+    ClientPool.addClient(sub);
+    ClientPool.put(this,sub);
+  }
+  this.RUN=true;
+  log.info("SubscriberSampler.initClient called");
+  return sub;
+}

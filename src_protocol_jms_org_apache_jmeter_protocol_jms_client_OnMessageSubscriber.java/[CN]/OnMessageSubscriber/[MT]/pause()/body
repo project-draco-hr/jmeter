@@ -1,0 +1,8 @@
+{
+  try {
+    this.CONN.stop();
+  }
+ catch (  JMSException e) {
+    log.error("failed to stop recieving");
+  }
+}

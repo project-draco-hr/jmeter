@@ -1,0 +1,12 @@
+{
+  Map map=getArguments().getArgumentsAsMap();
+  Iterator argIt=map.keySet().iterator();
+  while (argIt.hasNext()) {
+    String name=(String)argIt.next();
+    String value=(String)map.get(name);
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("Adding property [" + name + "="+ value+ "]");
+    }
+    msg.setStringProperty(name,value);
+  }
+}

@@ -1,0 +1,14 @@
+{
+  log.info("PublisherSampler.testEnded called");
+  Thread.currentThread().interrupt();
+  this.PUB=null;
+  this.BUFFER.setLength(0);
+  this.BUFFER=null;
+  ClientPool.clearClient();
+  try {
+    this.finalize();
+  }
+ catch (  Throwable e) {
+    log.error(e.getMessage());
+  }
+}
