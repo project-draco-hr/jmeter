@@ -1,15 +1,19 @@
 {
   String s;
   cr1=setParams("xtestfiles/test.csv","1");
+  log.info("Expecting file not found");
   s=cr1.execute(null,null);
   assertEquals("",s);
   cr2=setParams("xtestfiles/test.csv","next");
+  log.info("Expecting no entry for file");
   s=cr2.execute(null,null);
   assertEquals("",s);
   cr3=setParams("xtestfiles/test.csv","*ABC");
+  log.info("Expecting file not found");
   s=cr3.execute(null,null);
   assertEquals("",s);
   cr4=setParams("*ABC","1");
+  log.info("Expecting cannot open file");
   s=cr4.execute(null,null);
   assertEquals("",s);
 }
