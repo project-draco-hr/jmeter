@@ -1,24 +1,58 @@
 {
   DefaultConfiguration config=new DefaultConfiguration(SAMPLE_RESULT_TAG_NAME,"JMeter Save Service");
-  config.setAttribute(TIME,"" + result.getTime());
-  config.setAttribute(LABEL,result.getSampleLabel());
-  config.setAttribute(RESPONSE_CODE,result.getResponseCode());
-  config.setAttribute(RESPONSE_MESSAGE,result.getResponseMessage());
-  config.setAttribute(THREAD_NAME,result.getThreadName());
-  config.setAttribute(DATA_TYPE,result.getDataType());
-  config.setAttribute(TIME_STAMP,"" + result.getTimeStamp());
-  config.setAttribute(SUCCESSFUL,new Boolean(result.isSuccessful()).toString());
+  if (saveTime) {
+    config.setAttribute(TIME,"" + result.getTime());
+  }
+  if (saveLabel) {
+    config.setAttribute(LABEL,result.getSampleLabel());
+  }
+  if (saveResponseCode) {
+    config.setAttribute(RESPONSE_CODE,result.getResponseCode());
+  }
+  if (saveResponseMessage) {
+    config.setAttribute(RESPONSE_MESSAGE,result.getResponseMessage());
+  }
+  if (saveThreadName) {
+    config.setAttribute(THREAD_NAME,result.getThreadName());
+  }
+  if (saveDataType) {
+    config.setAttribute(DATA_TYPE,result.getDataType());
+  }
+  if (printMilliseconds) {
+    config.setAttribute(TIME_STAMP,"" + result.getTimeStamp());
+  }
+ else   if (formatter != null) {
+    String stamp=formatter.format(new Date(result.getTimeStamp()));
+    config.setAttribute(TIME_STAMP,stamp);
+  }
+  if (saveSuccessful) {
+    config.setAttribute(SUCCESSFUL,new Boolean(result.isSuccessful()).toString());
+  }
   SampleResult[] subResults=result.getSubResults();
   for (int i=0; i < subResults.length; i++) {
     config.addChild(getConfiguration(subResults[i],funcTest));
   }
+  AssertionResult[] assResults=result.getAssertionResults();
   if (funcTest) {
     config.addChild(getConfigForTestElement(null,result.getSamplerData()));
-    AssertionResult[] assResults=result.getAssertionResults();
     for (int i=0; i < assResults.length; i++) {
       config.addChild(getConfiguration(assResults[i]));
     }
     config.addChild(getConfiguration(result.getResponseData()));
+  }
+ else {
+    if (assertionsResultsToSave == SAVE_ALL_ASSERTIONS) {
+      config.addChild(getConfigForTestElement(null,result.getSamplerData()));
+      for (int i=0; i < assResults.length; i++) {
+        config.addChild(getConfiguration(assResults[i]));
+      }
+    }
+ else     if ((assertionsResultsToSave == SAVE_FIRST_ASSERTION) && assResults.length > 0) {
+      config.addChild(getConfiguration(assResults[0]));
+    }
+    if (saveResponseData) {
+      config.addChild(getConfiguration(result.getResponseData()));
+    }
   }
   return config;
 }

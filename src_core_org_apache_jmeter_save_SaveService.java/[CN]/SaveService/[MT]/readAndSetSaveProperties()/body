@@ -1,0 +1,33 @@
+{
+  Properties systemProps=System.getProperties();
+  Properties props=new Properties(systemProps);
+  try {
+    props=JMeterUtils.getProperties(PROPS_FILE);
+  }
+ catch (  Exception e) {
+    log.error("SaveService.readAndSetSaveProperties: Problem loading properties file " + PROPS_FILE,e);
+  }
+  saveDataType=TRUE.equalsIgnoreCase(props.getProperty(SAVE_DATA_TYPE_PROP,TRUE));
+  saveLabel=TRUE.equalsIgnoreCase(props.getProperty(SAVE_LABEL_PROP,TRUE));
+  saveResponseCode=TRUE.equalsIgnoreCase(props.getProperty(SAVE_RESPONSE_CODE_PROP,TRUE));
+  saveResponseData=TRUE.equalsIgnoreCase(props.getProperty(SAVE_RESPONSE_DATA_PROP,FALSE));
+  saveResponseMessage=TRUE.equalsIgnoreCase(props.getProperty(SAVE_RESPONSE_MESSAGE_PROP,TRUE));
+  saveSuccessful=TRUE.equalsIgnoreCase(props.getProperty(SAVE_SUCCESSFUL_PROP,TRUE));
+  saveThreadName=TRUE.equalsIgnoreCase(props.getProperty(SAVE_THREAD_NAME_PROP,TRUE));
+  saveTime=TRUE.equalsIgnoreCase(props.getProperty(SAVE_TIME_PROP,TRUE));
+  timeStampFormat=props.getProperty(TIME_STAMP_FORMAT_PROP,MILLISECONDS);
+  printMilliseconds=MILLISECONDS.equalsIgnoreCase(timeStampFormat);
+  if (!printMilliseconds && !NONE.equalsIgnoreCase(timeStampFormat) && (timeStampFormat != null)) {
+    formatter=new SimpleDateFormat(timeStampFormat);
+  }
+  whichAssertionResults=props.getProperty(ASSERTION_RESULTS_PROP,NONE);
+  if (NONE.equals(whichAssertionResults)) {
+    assertionsResultsToSave=SAVE_NO_ASSERTIONS;
+  }
+ else   if (FIRST.equals(whichAssertionResults)) {
+    assertionsResultsToSave=SAVE_FIRST_ASSERTION;
+  }
+ else   if (ALL.equals(whichAssertionResults)) {
+    assertionsResultsToSave=SAVE_ALL_ASSERTIONS;
+  }
+}
