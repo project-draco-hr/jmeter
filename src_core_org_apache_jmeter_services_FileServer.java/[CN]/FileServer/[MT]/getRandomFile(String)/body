@@ -1,0 +1,12 @@
+{
+  File input=null;
+  if (basedir != null) {
+    File src=new File(basedir);
+    if (src.isDirectory() && src.list() != null) {
+      File[] files=src.listFiles(new JMeterFileFilter(new String[]{".txt,.obj"}));
+      int count=files.length;
+      input=files[random.nextInt(count)];
+    }
+  }
+  return input;
+}
