@@ -15,6 +15,9 @@
   test.addTestElement(loop);
   String[] order=new String[]{"zero","one","two","three","zero","one","two","three","zero","three","zero","three","zero","three","zero","three","zero","three","zero","three","zero","three","zero","three"};
   sub_1.testStarted();
+  test.setRunningVersion(true);
+  sub_1.setRunningVersion(true);
+  loop.setRunningVersion(true);
   test.initialize();
   for (int counter=0; counter < order.length; counter++) {
     TestElement sampler=test.next();

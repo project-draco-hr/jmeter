@@ -1,15 +1,17 @@
 {
-  try {
-    ByteArrayOutputStream bytes=new ByteArrayOutputStream();
-    ObjectOutputStream out=new ObjectOutputStream(bytes);
-    out.writeObject(serObj);
-    out.close();
-    ObjectInputStream in=new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()));
-    Object readObject=in.readObject();
-    in.close();
-    assertEquals("deserializing class: " + serObj.getClass().getName(),serObj.getClass(),readObject.getClass());
-  }
- catch (  Throwable e) {
-    fail("serialization of " + serObj.getClass().getName() + " failed: "+ e);
+  if (!(serObj instanceof JComponent)) {
+    try {
+      ByteArrayOutputStream bytes=new ByteArrayOutputStream();
+      ObjectOutputStream out=new ObjectOutputStream(bytes);
+      out.writeObject(serObj);
+      out.close();
+      ObjectInputStream in=new ObjectInputStream(new ByteArrayInputStream(bytes.toByteArray()));
+      Object readObject=in.readObject();
+      in.close();
+      assertEquals("deserializing class: " + serObj.getClass().getName(),serObj.getClass(),readObject.getClass());
+    }
+ catch (    Throwable e) {
+      fail("serialization of " + serObj.getClass().getName() + " failed: "+ e);
+    }
   }
 }

@@ -17,6 +17,10 @@
   String[] interleaveOrder=new String[]{"one","two"};
   String[] order=new String[]{"","","three","four","five","six","seven","four","five","six","seven","four","five","six","seven"};
   int counter=15;
+  controller.setRunningVersion(true);
+  sub_1.setRunningVersion(true);
+  sub_2.setRunningVersion(true);
+  sub_3.setRunningVersion(true);
   controller.initialize();
   for (int i=0; i < 4; i++) {
     assertEquals(15,counter);

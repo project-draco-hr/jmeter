@@ -18,6 +18,10 @@
   sub_1.addTestElement(sub_2);
   String[] order=new String[]{"one","three","two","three","four","five","six","seven","four","five","six","seven","four","five","six","seven","three","one","three","two","three"};
   int counter=0;
+  controller.setRunningVersion(true);
+  sub_1.setRunningVersion(true);
+  sub_2.setRunningVersion(true);
+  sub_3.setRunningVersion(true);
   controller.initialize();
   while (counter < order.length) {
     TestElement sampler=null;

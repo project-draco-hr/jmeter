@@ -16,6 +16,10 @@
   controller.addTestElement(sub_2);
   String[] order=new String[]{"one","two","three","four","five","six","seven","four","five","six","seven","four","five","six","seven"};
   int counter=15;
+  controller.setRunningVersion(true);
+  sub_1.setRunningVersion(true);
+  sub_2.setRunningVersion(true);
+  sub_3.setRunningVersion(true);
   controller.initialize();
   for (int i=0; i < 2; i++) {
     assertEquals(15,counter);
