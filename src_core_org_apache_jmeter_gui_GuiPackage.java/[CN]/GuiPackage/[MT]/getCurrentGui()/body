@@ -2,6 +2,9 @@
   try {
     TestElement currentNode=treeListener.getCurrentNode().createTestElement();
     JMeterGUIComponent comp=getGui(currentNode);
+    if (!(comp instanceof AbstractVisualizer)) {
+      comp.clear();
+    }
     comp.configure(currentNode);
     return comp;
   }
