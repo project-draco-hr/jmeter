@@ -1,6 +1,6 @@
 {
   try {
-    TextFile text=new TextFile(filename);
+    TextFile text=new TextFile(filename,"UTF-8");
     if (!text.exists()) {
       return false;
     }
