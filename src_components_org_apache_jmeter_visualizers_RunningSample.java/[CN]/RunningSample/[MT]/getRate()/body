@@ -1,4 +1,5 @@
 {
+  if (counter == 0)   return 0.0;
   long howLongRunning=lastTime - firstTime;
   if (howLongRunning == 0) {
     return Double.MAX_VALUE;
