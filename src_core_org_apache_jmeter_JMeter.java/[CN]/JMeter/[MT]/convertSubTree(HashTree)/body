@@ -2,7 +2,7 @@
   Iterator iter=new LinkedList(tree.list()).iterator();
   while (iter.hasNext()) {
     TestElement item=(TestElement)iter.next();
-    if (isEnabled(item)) {
+    if (item.isEnabled()) {
 {
         convertSubTree(tree.getTree(item));
       }
