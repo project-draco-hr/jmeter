@@ -1,15 +1,6 @@
 {
-  setStartTime(res.getStartTime());
-  setSampleLabel(res.getSampleLabel());
+  super(res);
   setHTTPMethod(res.getHTTPMethod());
   setURL(res.getURL());
-  setRequestHeaders(res.getRequestHeaders());
-  setResponseData(res.getResponseData());
-  setResponseCode(res.getResponseCode());
-  setSuccessful(res.isSuccessful());
-  setResponseMessage(res.getResponseMessage());
-  setDataType(res.getDataType());
-  setResponseHeaders(res.getResponseHeaders());
   setCookies(res.getCookies());
-  addSubResult(res);
 }
