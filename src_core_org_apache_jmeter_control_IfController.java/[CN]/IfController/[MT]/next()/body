@@ -1,9 +1,11 @@
 {
-  Sampler currentElement=super.next();
-  if (!isDone()) {
-    return currentElement;
+  boolean result=false;
+  try {
+    result=evaluateCondition();
   }
- else {
-    return null;
+ catch (  Exception e) {
+    logger.error(e.getMessage(),e);
   }
+  if (result)   return super.next();
+ else   return null;
 }
