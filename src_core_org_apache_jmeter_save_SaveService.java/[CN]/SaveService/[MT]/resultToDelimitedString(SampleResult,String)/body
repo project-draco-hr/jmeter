@@ -1,0 +1,49 @@
+{
+  StringBuffer text=new StringBuffer();
+  if (printMilliseconds) {
+    text.append("" + sample.getTimeStamp());
+    text.append(delimiter);
+  }
+ else   if (formatter != null) {
+    String stamp=formatter.format(new Date(sample.getTimeStamp()));
+    text.append(stamp);
+  }
+  if (saveTime) {
+    text.append("" + sample.getTime());
+    text.append(delimiter);
+  }
+  if (saveLabel) {
+    text.append(sample.getSampleLabel());
+    text.append(delimiter);
+  }
+  if (saveResponseCode) {
+    text.append(sample.getResponseCode());
+    text.append(delimiter);
+  }
+  if (saveResponseMessage) {
+    text.append(sample.getResponseMessage());
+    text.append(delimiter);
+  }
+  if (saveThreadName) {
+    text.append(sample.getThreadName());
+    text.append(delimiter);
+  }
+  if (saveDataType) {
+    text.append(sample.getDataType());
+    text.append(delimiter);
+  }
+  if (saveSuccessful) {
+    text.append("" + sample.isSuccessful());
+    text.append(delimiter);
+  }
+  String resultString=null;
+  int size=text.length();
+  int delSize=delimiter.length();
+  if (size >= delSize) {
+    resultString=text.substring(0,size - delSize);
+  }
+ else {
+    resultString=text.toString();
+  }
+  return resultString;
+}

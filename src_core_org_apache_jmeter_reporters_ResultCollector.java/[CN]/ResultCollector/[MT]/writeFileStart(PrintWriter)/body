@@ -1,4 +1,11 @@
 {
-  writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-  writer.println("<testResults>");
+  if (SaveService.getOutputFormat() == SaveService.SAVE_AS_XML) {
+    writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    writer.println("<testResults>");
+  }
+ else   if (SaveService.getOutputFormat() == SaveService.SAVE_AS_CSV) {
+    if (SaveService.getPrintFieldNames()) {
+      writer.println(SaveService.printableFieldNamesToString());
+    }
+  }
 }

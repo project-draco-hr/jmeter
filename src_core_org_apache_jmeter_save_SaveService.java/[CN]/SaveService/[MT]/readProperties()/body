@@ -5,8 +5,9 @@
     props=JMeterUtils.getProperties(PROPS_FILE);
   }
  catch (  Exception e) {
-    log.error("SaveService.readAndSetSaveProperties: Problem loading properties file " + PROPS_FILE,e);
+    log.error("SaveService.readProperties: Problem loading properties file " + PROPS_FILE,e);
   }
+  printFieldNames=TRUE.equalsIgnoreCase(props.getProperty(PRINT_FIELD_NAMES_PROP,FALSE));
   saveDataType=TRUE.equalsIgnoreCase(props.getProperty(SAVE_DATA_TYPE_PROP,TRUE));
   saveLabel=TRUE.equalsIgnoreCase(props.getProperty(SAVE_LABEL_PROP,TRUE));
   saveResponseCode=TRUE.equalsIgnoreCase(props.getProperty(SAVE_RESPONSE_CODE_PROP,TRUE));
@@ -30,4 +31,12 @@
  else   if (ALL.equals(whichAssertionResults)) {
     assertionsResultsToSave=SAVE_ALL_ASSERTIONS;
   }
+  String howToSave=props.getProperty(OUTPUT_FORMAT_PROP,XML);
+  if (CSV.equals(howToSave)) {
+    outputFormat=SAVE_AS_CSV;
+  }
+ else {
+    outputFormat=SAVE_AS_XML;
+  }
+  defaultDelimiter=props.getProperty(DEFAULT_DELIMITER_PROP,",");
 }

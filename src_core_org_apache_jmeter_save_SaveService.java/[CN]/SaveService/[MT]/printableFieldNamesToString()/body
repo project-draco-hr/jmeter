@@ -1,0 +1,45 @@
+{
+  StringBuffer text=new StringBuffer();
+  if (printMilliseconds || (formatter != null)) {
+    text.append(SaveServiceConstants.TIME_STAMP);
+    text.append(defaultDelimiter);
+  }
+  if (saveTime) {
+    text.append(SaveServiceConstants.TIME);
+    text.append(defaultDelimiter);
+  }
+  if (saveLabel) {
+    text.append(SaveServiceConstants.LABEL);
+    text.append(defaultDelimiter);
+  }
+  if (saveResponseCode) {
+    text.append(SaveServiceConstants.RESPONSE_CODE);
+    text.append(defaultDelimiter);
+  }
+  if (saveResponseMessage) {
+    text.append(SaveServiceConstants.RESPONSE_MESSAGE);
+    text.append(defaultDelimiter);
+  }
+  if (saveThreadName) {
+    text.append(SaveServiceConstants.THREAD_NAME);
+    text.append(defaultDelimiter);
+  }
+  if (saveDataType) {
+    text.append(SaveServiceConstants.DATA_TYPE);
+    text.append(defaultDelimiter);
+  }
+  if (saveSuccessful) {
+    text.append(SaveServiceConstants.SUCCESSFUL);
+    text.append(defaultDelimiter);
+  }
+  String resultString=null;
+  int size=text.length();
+  int delSize=defaultDelimiter.length();
+  if (size >= delSize) {
+    resultString=text.substring(0,size - delSize);
+  }
+ else {
+    resultString=text.toString();
+  }
+  return resultString;
+}

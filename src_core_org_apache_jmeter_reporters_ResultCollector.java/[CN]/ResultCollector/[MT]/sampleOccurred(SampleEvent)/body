@@ -1,8 +1,15 @@
 {
-  if (!isErrorLogging() || !e.getResult().isSuccessful()) {
-    sendToVisualizer(e.getResult());
+  SampleResult result=e.getResult();
+  if (!isErrorLogging() || !result.isSuccessful()) {
+    sendToVisualizer(result);
     try {
-      recordResult(e.getResult());
+      if (SaveService.getOutputFormat() == SaveService.SAVE_AS_CSV) {
+        String savee=SaveService.resultToDelimitedString(result);
+        out.println(savee);
+      }
+ else {
+        recordResult(result);
+      }
     }
  catch (    Exception err) {
       log.error("",err);
