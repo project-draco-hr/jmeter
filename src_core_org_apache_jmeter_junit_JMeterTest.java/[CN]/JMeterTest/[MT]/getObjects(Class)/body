@@ -12,8 +12,9 @@
       if (n.endsWith("RemoteJMeterEngineImpl")) {
         continue;
       }
-      Class c=Class.forName(n);
+      Class c=null;
       try {
+        c=Class.forName(n);
         try {
           objects.add(c.newInstance());
         }
