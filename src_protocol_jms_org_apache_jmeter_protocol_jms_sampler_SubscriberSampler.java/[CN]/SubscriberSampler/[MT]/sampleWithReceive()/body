@@ -5,16 +5,15 @@
     this.initReceiveClient();
     this.SUBSCRIBER.start();
   }
-  int loop=this.getIterationCount();
-  this.SUBSCRIBER.setLoop(loop);
-  this.SUBSCRIBER.resume();
+  this.loop=this.getIterationCount();
+  this.SUBSCRIBER.setLoop(this.loop);
   result.sampleStart();
-  while (this.SUBSCRIBER.count(0) < loop) {
+  while (this.SUBSCRIBER.count(0) < this.loop) {
     try {
-      Thread.sleep(1);
+      Thread.sleep(0,50);
     }
  catch (    Exception e) {
-      e.printStackTrace();
+      log.info(e.getMessage());
     }
   }
   result.sampleEnd();
@@ -28,7 +27,7 @@
   result.setSuccessful(true);
   result.setResponseCode(loop + " message(s) recieved successfully");
   result.setSamplerData("Not applicable");
-  result.setSampleCount(loop);
+  result.setSampleCount(this.loop);
   this.SUBSCRIBER.clear();
   this.SUBSCRIBER.resetCount();
   return result;

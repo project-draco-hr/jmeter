@@ -2,17 +2,16 @@
   SampleResult result=new SampleResult();
   result.setSampleLabel("SubscriberSampler:" + this.getTopic());
   OnMessageSubscriber sub=initListenerClient();
-  int loop=this.getIterationCount();
-  sub.resume();
+  this.loop=this.getIterationCount();
   result.sampleStart();
-  while (this.RUN && this.count(0) < loop) {
+  while (this.RUN && this.count(0) < this.loop) {
     try {
-      Thread.sleep(0,500);
+      Thread.sleep(0,50);
     }
  catch (    Exception e) {
+      log.info(e.getMessage());
     }
   }
-  sub.pause();
   result.sampleEnd();
   result.setResponseMessage(loop + " samples messages recieved");
   if (this.getReadResponseAsBoolean()) {
