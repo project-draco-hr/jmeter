@@ -6,5 +6,5 @@
  else {
     type=JOptionPane.INFORMATION_MESSAGE;
   }
-  JOptionPane.showMessageDialog(null,message,"Error",type);
+  JOptionPane.showMessageDialog(null,message,isError ? "Error" : "Information",type);
 }
