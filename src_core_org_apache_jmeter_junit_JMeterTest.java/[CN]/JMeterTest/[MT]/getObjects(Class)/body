@@ -2,7 +2,11 @@
   Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
   while (classes.hasNext()) {
-    Class c=Class.forName((String)classes.next());
+    String n=(String)classes.next();
+    if (n.endsWith("RemoteJMeterEngineImpl")) {
+      continue;
+    }
+    Class c=Class.forName(n);
     try {
       try {
         objects.add(c.newInstance());
@@ -16,6 +20,14 @@
       }
     }
  catch (    IllegalAccessException e) {
+    }
+catch (    Exception e) {
+      if (e instanceof RemoteException) {
+        log.warn(e.toString());
+      }
+ else {
+        throw new Exception(e);
+      }
     }
   }
   return objects;
