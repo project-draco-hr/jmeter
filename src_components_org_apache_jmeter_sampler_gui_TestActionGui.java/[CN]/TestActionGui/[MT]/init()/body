@@ -1,0 +1,71 @@
+{
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  HorizontalPanel targetPanel=new HorizontalPanel();
+  targetPanel.add(new JLabel(targetLabel));
+  DefaultComboBoxModel targetModel=new DefaultComboBoxModel();
+  targetModel.addElement(threadTarget);
+  targetModel.addElement(testTarget);
+  targetBox=new JComboBox(targetModel);
+  targetBox.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      if (((String)targetBox.getSelectedItem()).equals(threadTarget)) {
+        target=TestAction.THREAD;
+      }
+ else {
+        target=TestAction.TEST;
+      }
+    }
+  }
+);
+  targetPanel.add(targetBox);
+  add(targetPanel);
+  HorizontalPanel actionPanel=new HorizontalPanel();
+  ButtonGroup actionButtons=new ButtonGroup();
+  pauseButton=new JRadioButton(pauseAction,true);
+  pauseButton.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      if (pauseButton.isSelected()) {
+        action=TestAction.PAUSE;
+        durationField.setEnabled(true);
+      }
+    }
+  }
+);
+  stopButton=new JRadioButton(stopAction,false);
+  stopButton.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      if (stopButton.isSelected()) {
+        action=TestAction.STOP;
+        durationField.setEnabled(false);
+      }
+    }
+  }
+);
+  actionButtons.add(pauseButton);
+  actionButtons.add(stopButton);
+  actionPanel.add(new JLabel(actionLabel));
+  actionPanel.add(pauseButton);
+  actionPanel.add(stopButton);
+  add(actionPanel);
+  HorizontalPanel durationPanel=new HorizontalPanel();
+  durationField=new JTextField(5);
+  durationField.setText(Integer.toString(duration));
+  durationField.addFocusListener(new FocusListener(){
+    public void focusLost(    FocusEvent e){
+      try {
+        duration=Integer.parseInt(durationField.getText());
+      }
+ catch (      NumberFormatException nfe) {
+        duration=0;
+      }
+    }
+    public void focusGained(    FocusEvent e){
+    }
+  }
+);
+  durationPanel.add(new JLabel("Duration"));
+  durationPanel.add(durationField);
+  add(durationPanel);
+}

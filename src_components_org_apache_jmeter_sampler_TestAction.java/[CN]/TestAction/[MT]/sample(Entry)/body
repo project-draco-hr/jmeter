@@ -1,0 +1,23 @@
+{
+  JMeterContext context=JMeterContextService.getContext();
+  int target=getTarget();
+  int action=getAction();
+  if (target == THREAD) {
+    JMeterThread thread=context.getThread();
+    if (action == PAUSE) {
+      thread.pauseThread(getDuration());
+    }
+ else     if (action == STOP) {
+      context.getThread().stop();
+    }
+  }
+ else   if (target == TEST) {
+    if (action == PAUSE) {
+      context.getEngine().pauseTest(getDuration());
+    }
+ else     if (action == STOP) {
+      context.getEngine().askThreadsToStop();
+    }
+  }
+  return null;
+}
