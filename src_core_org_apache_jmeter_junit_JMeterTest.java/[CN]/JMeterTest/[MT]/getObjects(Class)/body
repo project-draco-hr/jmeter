@@ -2,6 +2,7 @@
   Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
   String n="";
+  boolean caughtError=true;
   try {
     while (classes.hasNext()) {
       n=(String)classes.next();
@@ -35,10 +36,13 @@ catch (      Exception e) {
         }
       }
     }
+    caughtError=false;
   }
   finally {
-    System.out.println("\nLast class=" + n);
-    System.out.println("objects.size=" + objects.size());
+    if (caughtError) {
+      System.out.println("\nLast class=" + n);
+      System.out.println("objects.size=" + objects.size());
+    }
   }
   return objects;
 }
