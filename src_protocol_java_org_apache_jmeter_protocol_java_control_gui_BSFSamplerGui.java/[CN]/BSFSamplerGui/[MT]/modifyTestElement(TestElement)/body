@@ -1,0 +1,8 @@
+{
+  te.clear();
+  this.configureTestElement(te);
+  te.setProperty(BSFSampler.FILENAME,filename.getText());
+  te.setProperty(BSFSampler.LANGUAGE,langField.getText());
+  te.setProperty(BSFSampler.PARAMETERS,parameters.getText());
+  te.setProperty(BSFSampler.SCRIPT,scriptField.getText());
+}

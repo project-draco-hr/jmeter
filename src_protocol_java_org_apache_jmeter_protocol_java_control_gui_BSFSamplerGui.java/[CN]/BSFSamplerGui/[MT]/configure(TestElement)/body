@@ -1,0 +1,5 @@
+{
+  super.configure(element);
+  scriptField.setText(element.getProperty(BSFSampler.SCRIPT).toString());
+  langField.setText(element.getProperty(BSFSampler.LANGUAGE).toString());
+}
