@@ -9,7 +9,7 @@
  catch (  Exception e) {
   }
   if (value == null) {
-    value=new String();
+    value="";
   }
   return new NVPair(name.trim(),value.trim());
 }

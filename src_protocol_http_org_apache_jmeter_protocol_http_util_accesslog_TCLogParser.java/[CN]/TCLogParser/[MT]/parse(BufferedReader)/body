@@ -9,7 +9,7 @@
       parse(this.READER);
     }
     while (line != null) {
-      if (line != null && line.length() > 0) {
+      if (line.length() > 0) {
         this.parseLine(line);
       }
       if (this.PARSECOUNT != -1 && COUNT >= this.PARSECOUNT) {
