@@ -1,0 +1,12 @@
+{
+  getLogger().debug(whoAmI() + "\tsetupTest()");
+  listParameters(context);
+  sleepTime=context.getLongParameter("SleepTime",DEFAULT_SLEEP_TIME);
+  sleepMask=context.getLongParameter("SleepMask",DEFAULT_SLEEP_MASK);
+  responseMessage=context.getParameter(RESPONSEMESSAGE_NAME,RESPONSEMESSAGE_DEFAULT);
+  responseCode=context.getParameter(RESPONSECODE_NAME,RESPONSEMESSAGE_DEFAULT);
+  success=context.getParameter(SUCCESS_NAME,SUCCESS_DEFAULT).equalsIgnoreCase("OK");
+  label=context.getParameter(LABEL_NAME,LABEL_DEFAULT);
+  samplerData=context.getParameter(SAMPLERDATA_NAME,SAMPLERDATA_DEFAULT);
+  resultData=context.getParameter(RESULTDATA_NAME,RESULTDATA_DEFAULT);
+}

@@ -1,0 +1,12 @@
+{
+  Arguments params=new Arguments();
+  params.addArgument(SLEEP_NAME,String.valueOf(DEFAULT_SLEEP_TIME));
+  params.addArgument(MASK_NAME,DEFAULT_MASK_STRING);
+  params.addArgument(LABEL_NAME,LABEL_DEFAULT);
+  params.addArgument(RESPONSECODE_NAME,RESPONSECODE_DEFAULT);
+  params.addArgument(RESPONSEMESSAGE_NAME,RESPONSEMESSAGE_DEFAULT);
+  params.addArgument(SUCCESS_NAME,SUCCESS_DEFAULT);
+  params.addArgument(SAMPLERDATA_NAME,SAMPLERDATA_DEFAULT);
+  params.addArgument(RESULTDATA_NAME,SAMPLERDATA_DEFAULT);
+  return params;
+}
