@@ -54,6 +54,7 @@ statsDoc.insertString(statsDoc.getLength(),"HTTP response code: " + responseCode
 String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
 statsDoc.insertString(statsDoc.getLength(),"HTTP response message: " + responseMsgStr + "\n",null);
+statsDoc.insertString(statsDoc.getLength(),"\nHTTP response headers:\n" + res.getResponseHeaders() + "\n",null);
 byte[] responseBytes=(byte[])res.getResponseData();
 if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
 String response=null;
