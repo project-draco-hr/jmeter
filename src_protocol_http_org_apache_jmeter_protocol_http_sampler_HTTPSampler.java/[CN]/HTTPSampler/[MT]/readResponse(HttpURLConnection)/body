@@ -9,8 +9,17 @@
       in=new BufferedInputStream(conn.getInputStream());
     }
   }
- catch (  Exception e) {
-    log.info("Getting error message from server",e);
+ catch (  IOException e) {
+    if (e.getCause() instanceof FileNotFoundException) {
+      log.warn(e.getCause().toString());
+    }
+ else {
+      log.error("Getting error message from server",e);
+    }
+    in=new BufferedInputStream(conn.getErrorStream());
+  }
+catch (  Exception e) {
+    log.warn("Getting error message from server",e);
     in=new BufferedInputStream(conn.getErrorStream());
   }
   java.io.ByteArrayOutputStream w=new ByteArrayOutputStream();
