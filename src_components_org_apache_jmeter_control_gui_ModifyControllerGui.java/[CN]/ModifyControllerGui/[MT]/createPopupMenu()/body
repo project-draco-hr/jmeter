@@ -1,7 +1,0 @@
-{
-  JPopupMenu pop=new JPopupMenu();
-  pop.add(MenuFactory.makeMenus(new String[]{MenuFactory.CONTROLLERS,MenuFactory.SAMPLERS,MenuFactory.CONFIG_ELEMENTS,MenuFactory.MODIFIERS,MenuFactory.RESPONSE_BASED_MODIFIERS},JMeterUtils.getResString("Add"),"Add"));
-  MenuFactory.addEditMenu(pop,true);
-  MenuFactory.addFileMenu(pop);
-  return pop;
-}
