@@ -1,3 +1,6 @@
 {
-  return filePanel;
+  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  panel.add(filePanel);
+  panel.add(getErrorLoggingCheckbox());
+  return panel;
 }

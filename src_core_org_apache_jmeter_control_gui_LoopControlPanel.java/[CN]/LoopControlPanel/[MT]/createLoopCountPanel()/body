@@ -5,7 +5,6 @@
   loops=new JTextField(5);
   loopPanel.add(loops);
   loops.setName(LOOPS);
-  loops.addKeyListener(this);
   loops.setText("1");
   infinite=new JCheckBox(JMeterUtils.getResString("infinite"));
   infinite.setActionCommand(INFINITE);

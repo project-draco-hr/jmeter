@@ -5,7 +5,6 @@
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
   mainPanel.add(makeTitlePanel());
-  mainPanel.add(getFilePanel());
   table=new JTable(model);
   tableScrollPanel=new JScrollPane(table);
   tableScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));

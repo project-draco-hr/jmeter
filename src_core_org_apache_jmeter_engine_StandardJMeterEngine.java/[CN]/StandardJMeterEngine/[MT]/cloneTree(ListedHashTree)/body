@@ -1,5 +1,5 @@
 {
-  TreeCloner cloner=new TreeCloner(false);
+  TreeCloner cloner=new TreeCloner(true);
   tree.traverse(cloner);
   return cloner.getClonedTree();
 }

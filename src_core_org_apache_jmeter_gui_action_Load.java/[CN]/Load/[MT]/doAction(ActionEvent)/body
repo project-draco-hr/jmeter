@@ -18,6 +18,7 @@
     JMeterUtils.reportErrorToUser(ex.getMessage());
   }
  finally {
+    GuiPackage.getInstance().updateCurrentGui();
     GuiPackage.getInstance().getMainFrame().repaint();
   }
   if (isTestPlan && f != null) {

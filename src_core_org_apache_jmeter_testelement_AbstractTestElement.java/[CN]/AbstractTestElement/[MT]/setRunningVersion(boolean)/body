@@ -2,6 +2,6 @@
   this.runningVersion=runningVersion;
   PropertyIterator iter=propertyIterator();
   while (iter.hasNext()) {
-    iter.next().setRunningVersion(true);
+    iter.next().setRunningVersion(runningVersion);
   }
 }

@@ -1,7 +1,7 @@
 {
   long currentTime=System.currentTimeMillis();
   long currentTarget=targetTime == 0 ? currentTime : targetTime;
-  targetTime=currentTarget + delay;
+  targetTime=currentTarget + 60000 / getThroughput();
   if (currentTime > currentTarget) {
     return 0;
   }

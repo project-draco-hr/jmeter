@@ -8,6 +8,7 @@
   if (node instanceof TestElement) {
     try {
       replacer.replaceValues((TestElement)node);
+      ((TestElement)node).setRunningVersion(true);
     }
  catch (    InvalidVariableException e) {
       log.error("invalid variables",e);

@@ -9,5 +9,6 @@
   while (iter.hasNext()) {
     clonedElement.setProperty((JMeterProperty)iter.next().clone());
   }
+  clonedElement.setRunningVersion(runningVersion);
   return clonedElement;
 }

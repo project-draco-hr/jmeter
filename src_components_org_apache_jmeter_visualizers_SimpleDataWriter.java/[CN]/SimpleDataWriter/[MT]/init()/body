@@ -5,6 +5,5 @@
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
   mainPanel.add(makeTitlePanel());
-  mainPanel.add(getFilePanel());
   this.add(mainPanel,BorderLayout.NORTH);
 }

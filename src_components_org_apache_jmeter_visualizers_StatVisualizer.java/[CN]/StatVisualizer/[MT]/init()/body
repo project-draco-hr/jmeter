@@ -4,13 +4,7 @@
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
-  JLabel panelTitleLabel=new JLabel(VISUALIZER_NAME);
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  mainPanel.add(getFilePanel());
+  mainPanel.add(makeTitlePanel());
   myStatTableModel=new StatTableModel(model);
   myJTable=new JTable(myStatTableModel);
   myJTable.setPreferredScrollableViewportSize(new Dimension(500,70));

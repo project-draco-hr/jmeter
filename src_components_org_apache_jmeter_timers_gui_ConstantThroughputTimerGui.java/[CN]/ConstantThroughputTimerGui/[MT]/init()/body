@@ -7,7 +7,6 @@
   throughputPanel.add(new JLabel(JMeterUtils.getResString("constant_throughput_timer_throughput")));
   throughputField=new JTextField(6);
   throughputField.setText(DEFAULT_THROUGHPUT);
-  throughputField.addKeyListener(this);
   throughputField.setName(THROUGHPUT_FIELD);
   throughputPanel.add(throughputField);
   add(throughputPanel);

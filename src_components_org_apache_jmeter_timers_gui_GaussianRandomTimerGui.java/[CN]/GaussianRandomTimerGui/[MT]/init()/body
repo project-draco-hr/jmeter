@@ -11,7 +11,6 @@
   rangeField=new JTextField(6);
   rangeField.setText(DEFAULT_RANGE);
   rangeField.setName(RANGE_FIELD);
-  rangeField.addKeyListener(this);
   delayDevPanel.add(rangeField);
   threadDelayPropsPanel.add(delayDevPanel);
   Box avgDelayPanel=Box.createHorizontalBox();
@@ -20,7 +19,6 @@
   delayField=new JTextField(6);
   delayField.setText(DEFAULT_DELAY);
   delayField.setName(DELAY_FIELD);
-  delayField.addKeyListener(this);
   avgDelayPanel.add(delayField);
   threadDelayPropsPanel.add(avgDelayPanel);
   threadDelayPropsPanel.setMaximumSize(new Dimension(threadDelayPropsPanel.getMaximumSize().width,threadDelayPropsPanel.getPreferredSize().height));
