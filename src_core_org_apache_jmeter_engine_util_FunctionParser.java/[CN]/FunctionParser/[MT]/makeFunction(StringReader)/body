@@ -15,7 +15,6 @@
         continue;
       }
  else       if (current[0] == '(' && previous != ' ') {
-        log.debug("making function from: " + buffer.toString());
         function=CompoundVariable.getNamedFunction(buffer.toString());
         buffer.setLength(0);
         if (function instanceof Function) {
