@@ -1,3 +1,4 @@
 {
-  HTMLParserTest.testParser(new HtmlParserHTMLParser());
+  log.info("testParser");
+  HTMLParserTest.testParser(getParserInstance());
 }

@@ -1,6 +1,0 @@
-{
-  java.io.File f=new java.io.File(s);
-  byte[] buffer=new byte[(int)f.length()];
-  new java.io.FileInputStream(f).read(buffer);
-  return buffer;
-}
