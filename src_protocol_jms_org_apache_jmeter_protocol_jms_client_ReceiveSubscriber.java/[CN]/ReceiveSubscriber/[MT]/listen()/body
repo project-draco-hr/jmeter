@@ -1,9 +1,9 @@
 {
   log.info("Subscriber2.listen() called");
-  try {
-    while (RUN) {
+  while (RUN) {
+    try {
       Message message=this.SUBSCRIBER.receive();
-      if (message instanceof TextMessage) {
+      if (message != null && message instanceof TextMessage) {
         TextMessage msg=(TextMessage)message;
         if (msg.getText().trim().length() > 0) {
           this.buffer.append(msg.getText());
@@ -11,8 +11,8 @@
         }
       }
     }
-  }
- catch (  JMSException e) {
-    log.info("Communication error: " + e.getMessage());
+ catch (    JMSException e) {
+      log.info("Communication error: " + e.getMessage());
+    }
   }
 }

@@ -1,3 +1,11 @@
 {
+  if (factory != null) {
+    try {
+      return qfactory.createQueueConnection();
+    }
+ catch (    JMSException e) {
+      log.error(e.getMessage());
+    }
+  }
   return null;
 }

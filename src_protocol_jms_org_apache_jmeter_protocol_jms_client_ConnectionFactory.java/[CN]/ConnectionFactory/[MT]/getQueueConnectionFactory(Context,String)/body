@@ -1,0 +1,14 @@
+{
+  while (qfactory == null) {
+    try {
+      Object objfac=ctx.lookup(fac);
+      if (objfac instanceof QueueConnectionFactory) {
+        qfactory=(QueueConnectionFactory)objfac;
+      }
+    }
+ catch (    NamingException e) {
+      log.error(e.getMessage());
+    }
+  }
+  return qfactory;
+}
