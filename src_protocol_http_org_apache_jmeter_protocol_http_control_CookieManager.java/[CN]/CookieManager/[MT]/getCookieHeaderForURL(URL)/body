@@ -4,7 +4,7 @@
   for (PropertyIterator enum=getCookies().iterator(); enum.hasNext(); ) {
     Cookie cookie=(Cookie)enum.next().getObjectValue();
     String host="." + url.getHost();
-    if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && (System.currentTimeMillis() / 1000) <= cookie.getExpires()) {
+    if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && ((cookie.getExpires() == 0) || (System.currentTimeMillis() / 1000) <= cookie.getExpires())) {
       if (header.length() > 0) {
         header.append("; ");
       }
