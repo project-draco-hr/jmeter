@@ -1,0 +1,6 @@
+{
+  if (DO_STATE_CHECKS) {
+    if (m_state != STATE_STOPPED)     throw new IllegalStateException(this + ": getDuration() must be called from STOPPED state, current state is " + STATE_NAMES[m_state]);
+  }
+  return m_data;
+}

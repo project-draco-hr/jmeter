@@ -1,0 +1,8 @@
+{
+  final long data=System.currentTimeMillis();
+  if (DO_STATE_CHECKS) {
+    if (m_state != STATE_STARTED)     throw new IllegalStateException(this + ": stop() must be called from STARTED state, current state is " + STATE_NAMES[m_state]);
+  }
+  m_data=data - m_data;
+  if (DO_STATE_CHECKS)   m_state=STATE_STOPPED;
+}
