@@ -1,6 +1,6 @@
 {
-  globalNumExecutions=new IntegerWrapper();
-  globalIteration=new IntegerWrapper();
+  globalNumExecutions=new IntegerWrapper(new Integer(0));
+  globalIteration=new IntegerWrapper(new Integer(-1));
   numExecutionsLock=new Object();
   iterationLock=new Object();
   setStyle(BYNUMBER);
