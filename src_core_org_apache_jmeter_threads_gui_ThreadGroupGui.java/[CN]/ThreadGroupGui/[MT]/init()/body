@@ -6,7 +6,7 @@
   box.add(createOnErrorPanel());
   add(box,BorderLayout.NORTH);
   VerticalPanel threadPropsPanel=new VerticalPanel();
-  threadPropsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("thread_delay_properties")));
+  threadPropsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("thread_properties")));
   JPanel threadPanel=new JPanel(new BorderLayout(5,0));
   JLabel threadLabel=new JLabel(JMeterUtils.getResString("number_of_threads"));
   threadPanel.add(threadLabel,BorderLayout.WEST);
