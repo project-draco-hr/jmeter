@@ -1,0 +1,12 @@
+{
+  final CLOptionDescriptor test=new CLOptionDescriptor("nulltest",CLOptionDescriptor.ARGUMENT_DISALLOWED,'n',null);
+  final String[] args={"-n","testarg"};
+  final CLOptionDescriptor[] options={test};
+  final CLArgsParser parser=new CLArgsParser(args,options);
+  final CLOption optionByID=parser.getArgumentById('n');
+  assertNotNull(optionByID);
+  assertEquals('n',optionByID.getDescriptor().getId());
+  final StringBuffer sb=CLUtil.describeOptions(options);
+  final String lineSeparator=System.getProperty("line.separator");
+  assertEquals("Testing display of null description","\t-n, --nulltest" + lineSeparator,sb.toString());
+}

@@ -1,0 +1,9 @@
+{
+  assertion.setXPathString("//row/value[@field = 'noalias']");
+  assertion.setNegated(true);
+  AssertionResult res=assertion.getResult(jmctx.getPreviousResult());
+  log.debug(" res " + res.isError());
+  log.debug(" failure " + res.getFailureMessage());
+  assertFalse(res.isError());
+  assertFalse(res.isFailure());
+}

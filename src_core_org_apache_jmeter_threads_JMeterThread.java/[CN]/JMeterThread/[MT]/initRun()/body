@@ -1,0 +1,19 @@
+{
+  JMeterContextService.incrNumberOfThreads();
+  threadContext=JMeterContextService.getContext();
+  threadContext.setVariables(threadVars);
+  threadContext.setThreadNum(getThreadNum());
+  threadContext.getVariables().put(LAST_SAMPLE_OK,"true");
+  threadContext.setThread(this);
+  testTree.traverse(compiler);
+  if (scheduler) {
+    startScheduler();
+  }
+  rampUpDelay();
+  log.info("Thread " + Thread.currentThread().getName() + " started");
+  if (startEarlier)   threadContext.setSamplingStarted(true);
+  controller.initialize();
+  controller.addIterationListener(new IterationListener());
+  if (!startEarlier)   threadContext.setSamplingStarted(true);
+  threadStarted();
+}

@@ -10,8 +10,15 @@
  else {
     mainPanel.setVisible(false);
   }
-  start.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.START_TIME)));
-  end.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.END_TIME)));
+  String s=tg.getPropertyAsString(ThreadGroup.START_TIME);
+  if (s.length() == 0) {
+    start.setDate(new Date());
+    end.setDate(new Date());
+  }
+ else {
+    start.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.START_TIME)));
+    end.setDate(new Date(tg.getPropertyAsLong(ThreadGroup.END_TIME)));
+  }
   duration.setText(tg.getPropertyAsString(ThreadGroup.DURATION));
   delay.setText(tg.getPropertyAsString(ThreadGroup.DELAY));
   setSampleErrorBoxes((ThreadGroup)tg);

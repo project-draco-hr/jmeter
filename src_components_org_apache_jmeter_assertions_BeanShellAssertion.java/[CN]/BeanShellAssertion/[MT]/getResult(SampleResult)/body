@@ -1,5 +1,11 @@
 {
   AssertionResult result=new AssertionResult();
+  if (bshInterpreter == null) {
+    result.setFailure(true);
+    result.setError(true);
+    result.setFailureMessage("BeanShell Interpreter not found");
+    return result;
+  }
   try {
     String request=getScript();
     String fileName=getFilename();
@@ -7,6 +13,7 @@
     bshInterpreter.set("FileName",getFilename());
     bshInterpreter.set("Parameters",getParameters());
     bshInterpreter.set("bsh.args",JOrphanUtils.split(getParameters()," "));
+    bshInterpreter.set("SampleResult",response);
     bshInterpreter.set("Response",response);
     bshInterpreter.set("ResponseData",response.getResponseData());
     bshInterpreter.set("ResponseCode",response.getResponseCode());
@@ -33,11 +40,6 @@
     result.setError(true);
     result.setFailureMessage("BeanShell Jar missing? " + ex.toString());
     response.setStopThread(true);
-  }
-catch (  IOException ex) {
-    result.setError(true);
-    result.setFailureMessage(ex.toString());
-    log.warn(ex.toString());
   }
 catch (  Exception ex) {
     result.setError(true);

@@ -1,0 +1,15 @@
+{
+  int ret;
+  getProperty(SWITCH_VALUE).recoverRunningVersion(null);
+  String sel=getSelection();
+  try {
+    ret=Integer.parseInt(sel);
+  }
+ catch (  NumberFormatException e) {
+    ret=0;
+  }
+  if (ret < 0 || ret >= getSubControllers().size()) {
+    ret=0;
+  }
+  return ret;
+}

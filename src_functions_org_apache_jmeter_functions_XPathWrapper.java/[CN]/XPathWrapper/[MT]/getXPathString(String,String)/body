@@ -1,0 +1,20 @@
+{
+  Map my=(Map)filePacks.get();
+  XPathWrapper fw=(XPathWrapper)(my).get(file);
+  if (fw == null) {
+    if (file.startsWith("*")) {
+      log.warn("Cannot perform initial open using alias " + file);
+    }
+ else {
+      file=checkDefault(file);
+      log.info("Attaching " + file);
+      open(file,xpathString,file);
+      fw=(XPathWrapper)my.get(file);
+    }
+    if (fw == null) {
+      log.error("XPathWrapper is null!");
+      return "";
+    }
+  }
+  return fw.getXPathString();
+}

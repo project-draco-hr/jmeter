@@ -1,0 +1,9 @@
+{
+  if (XPathUtil.documentBuilderFactory == null || documentBuilderFactory.isValidating() != validate || documentBuilderFactory.isNamespaceAware() != namespace || documentBuilderFactory.isIgnoringElementContentWhitespace() != whitespace) {
+    documentBuilderFactory=DocumentBuilderFactory.newInstance();
+    documentBuilderFactory.setValidating(validate);
+    documentBuilderFactory.setNamespaceAware(namespace);
+    documentBuilderFactory.setIgnoringElementContentWhitespace(whitespace);
+  }
+  return XPathUtil.documentBuilderFactory;
+}

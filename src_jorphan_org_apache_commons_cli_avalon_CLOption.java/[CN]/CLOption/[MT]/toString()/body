@@ -1,0 +1,11 @@
+{
+  final StringBuffer sb=new StringBuffer();
+  sb.append("[Option ");
+  sb.append((char)m_descriptor.getId());
+  if (null != m_arguments) {
+    sb.append(", ");
+    sb.append(Arrays.asList(m_arguments));
+  }
+  sb.append(" ]");
+  return sb.toString();
+}

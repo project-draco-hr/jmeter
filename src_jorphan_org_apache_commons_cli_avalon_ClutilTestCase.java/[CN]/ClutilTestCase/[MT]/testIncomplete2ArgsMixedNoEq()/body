@@ -1,0 +1,14 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{DEFINE,CLEAR1};
+  final String[] args=new String[]{"-DStupid","-c"};
+  final CLArgsParser parser=new CLArgsParser(args,options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+  final List clOptions=parser.getArguments();
+  final int size=clOptions.size();
+  assertEquals(size,2);
+  assertEquals(((CLOption)clOptions.get(1)).getDescriptor().getId(),CLEAR1_OPT);
+  final CLOption option=(CLOption)clOptions.get(0);
+  assertEquals(option.getDescriptor().getId(),DEFINE_OPT);
+  assertEquals(option.getArgument(0),"Stupid");
+  assertEquals(option.getArgument(1),"");
+}

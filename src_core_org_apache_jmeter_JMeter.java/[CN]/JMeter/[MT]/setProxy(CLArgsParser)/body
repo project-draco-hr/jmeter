@@ -1,17 +1,23 @@
 {
   if (parser.getArgumentById(PROXY_USERNAME) != null) {
     if (parser.getArgumentById(PROXY_PASSWORD) != null) {
-      Authenticator.setDefault(new ProxyAuthenticator(parser.getArgumentById(PROXY_USERNAME).getArgument(),parser.getArgumentById(PROXY_PASSWORD).getArgument()));
+      String u, p;
+      Authenticator.setDefault(new ProxyAuthenticator(u=parser.getArgumentById(PROXY_USERNAME).getArgument(),p=parser.getArgumentById(PROXY_PASSWORD).getArgument()));
+      log.info("Set Proxy login: " + u + "/"+ p);
     }
  else {
-      Authenticator.setDefault(new ProxyAuthenticator(parser.getArgumentById(PROXY_USERNAME).getArgument(),""));
+      String u;
+      Authenticator.setDefault(new ProxyAuthenticator(u=parser.getArgumentById(PROXY_USERNAME).getArgument(),""));
+      log.info("Set Proxy login: " + u);
     }
   }
   if (parser.getArgumentById(PROXY_HOST) != null && parser.getArgumentById(PROXY_PORT) != null) {
-    System.setProperty("http.proxyHost",parser.getArgumentById(PROXY_HOST).getArgument());
+    String h, p;
+    System.setProperty("http.proxyHost",h=parser.getArgumentById(PROXY_HOST).getArgument());
     System.setProperty("https.proxyHost",parser.getArgumentById(PROXY_HOST).getArgument());
-    System.setProperty("http.proxyPort",parser.getArgumentById(PROXY_PORT).getArgument());
+    System.setProperty("http.proxyPort",p=parser.getArgumentById(PROXY_PORT).getArgument());
     System.setProperty("https.proxyPort",parser.getArgumentById(PROXY_PORT).getArgument());
+    log.info("Set http[s].proxyHost: " + h + " Port: "+ p);
   }
  else   if (parser.getArgumentById(PROXY_HOST) != null || parser.getArgumentById(PROXY_PORT) != null) {
     throw new IllegalUserActionException(JMeterUtils.getResString("proxy_cl_error"));

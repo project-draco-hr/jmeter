@@ -1,7 +1,21 @@
 {
   values=parameters.toArray();
   if (values.length < 1 || values.length > 2) {
-    throw new InvalidVariableException("Wrong number of variables");
+    throw new InvalidVariableException("Expecting 1 or 2 parameters, but found " + values.length);
   }
-  setupBeanShell();
+  try {
+    bshInterpreter=new BeanShellInterpreter();
+    try {
+      bshInterpreter.init(JMeterUtils.getProperty(INIT_FILE),log);
+    }
+ catch (    IOException e) {
+      log.warn("Can't init interpreter");
+    }
+catch (    JMeterException e) {
+      log.warn("Can't init interpreter");
+    }
+  }
+ catch (  ClassNotFoundException e) {
+    throw new InvalidVariableException("BeanShell not found");
+  }
 }

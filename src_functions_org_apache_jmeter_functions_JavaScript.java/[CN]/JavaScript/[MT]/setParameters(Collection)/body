@@ -1,6 +1,6 @@
 {
   values=parameters.toArray();
-  if (values.length < 2) {
-    throw new InvalidVariableException();
+  if (values.length != 2) {
+    throw new InvalidVariableException("Expecting 2 parameters, but found " + values.length);
   }
 }

@@ -1,7 +1,7 @@
 {
   reInitialize();
-  if (conditionTrue(true)) {
-    return next();
+  if (!endOfLoop(true)) {
+    return super.next();
   }
  else {
     setDone(true);

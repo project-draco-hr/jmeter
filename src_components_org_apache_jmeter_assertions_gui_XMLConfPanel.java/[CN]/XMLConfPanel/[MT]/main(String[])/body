@@ -1,0 +1,12 @@
+{
+  JPanel comb=new JPanel();
+  XMLConfPanel xml=new XMLConfPanel();
+  XPathPanel xpath=new XPathPanel();
+  JFrame frame=new JFrame(xml.getClass().getName());
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  comb.add(xpath);
+  comb.add(xml);
+  frame.add(comb);
+  frame.pack();
+  frame.setVisible(true);
+}

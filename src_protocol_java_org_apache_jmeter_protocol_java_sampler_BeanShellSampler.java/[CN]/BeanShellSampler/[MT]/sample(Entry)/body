@@ -3,6 +3,13 @@
   boolean isSuccessful=false;
   res.setSampleLabel(getLabel());
   res.sampleStart();
+  if (bshInterpreter == null) {
+    res.sampleEnd();
+    res.setResponseCode("503");
+    res.setResponseMessage("BeanShell Interpreter not found");
+    res.setSuccessful(false);
+    return res;
+  }
   try {
     String request=getScript();
     String fileName=getFilename();
@@ -46,11 +53,6 @@
     res.setResponseCode("501");
     res.setResponseMessage(ex.toString());
     res.setStopThread(true);
-  }
-catch (  IOException ex) {
-    log.warn(ex.toString());
-    res.setResponseCode("500");
-    res.setResponseMessage(ex.toString());
   }
 catch (  Exception ex) {
     log.warn(ex.toString());

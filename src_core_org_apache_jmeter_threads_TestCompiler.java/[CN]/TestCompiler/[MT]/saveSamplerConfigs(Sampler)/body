@@ -9,6 +9,7 @@
   LinkedList posts=new LinkedList();
   LinkedList pres=new LinkedList();
   for (int i=stack.size(); i > 0; i--) {
+    addDirectParentControllers(controllers,(TestElement)stack.get(i - 1));
     Iterator iter=testTree.list(stack.subList(0,i)).iterator();
     List tempPre=new LinkedList();
     List tempPost=new LinkedList();
@@ -31,9 +32,6 @@
       }
       if (item instanceof PreProcessor) {
         tempPre.add(item);
-      }
-      if (item instanceof Controller) {
-        controllers.add(item);
       }
     }
     pres.addAll(0,tempPre);

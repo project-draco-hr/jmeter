@@ -1,0 +1,12 @@
+{
+  if (tolerant == null) {
+    tolerant=new JCheckBox(JMeterUtils.getResString("xml_tolerant_button"));
+    tolerant.addActionListener(new ActionListener(){
+      public void actionPerformed(      ActionEvent e){
+        tolerant();
+      }
+    }
+);
+  }
+  return tolerant;
+}

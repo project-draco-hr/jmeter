@@ -1,0 +1,32 @@
+{
+  log.info("Opening " + file + " as "+ alias);
+  file=checkDefault(file);
+  if (alias.length() == 0) {
+    log.error("Alias cannot be empty");
+    return;
+  }
+  Map m=(Map)filePacks.get();
+  if (m.get(alias) == null) {
+    XPathFileContainer frcc;
+    try {
+      frcc=getFile(file,xpathString,alias);
+      log.info("Stored " + file + " as "+ alias);
+      m.put(alias,new XPathWrapper(frcc));
+    }
+ catch (    FileNotFoundException e) {
+      log.warn(e.getLocalizedMessage());
+    }
+catch (    IOException e) {
+      log.warn(e.getLocalizedMessage());
+    }
+catch (    ParserConfigurationException e) {
+      log.warn(e.getLocalizedMessage());
+    }
+catch (    SAXException e) {
+      log.warn(e.getLocalizedMessage());
+    }
+catch (    TransformerException e) {
+      log.warn(e.getLocalizedMessage());
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{DEFINE};
+  final CLArgsParser parser=new CLArgsParser(new String[]{"--define","a-b,c=d-e,f"},options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+  final List clOptions=parser.getArguments();
+  final int size=clOptions.size();
+  assertEquals(1,size);
+  assertEquals(DEFINE_OPT,((CLOption)clOptions.get(0)).getDescriptor().getId());
+  final CLOption option=(CLOption)clOptions.get(0);
+  assertEquals("a-b,c",option.getArgument(0));
+  assertEquals("d-e,f",option.getArgument(1));
+}

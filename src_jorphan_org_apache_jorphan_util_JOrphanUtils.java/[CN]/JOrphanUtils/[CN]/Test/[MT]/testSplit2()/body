@@ -1,0 +1,9 @@
+{
+  String in=",,a,bc";
+  String out[]=split(in,",");
+  assertEquals("Should detect the leading split chars; ",2,out.length - 2);
+  assertEquals("",out[0]);
+  assertEquals("",out[1]);
+  assertEquals("a",out[2]);
+  assertEquals("bc",out[3]);
+}

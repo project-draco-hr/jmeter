@@ -1,7 +1,7 @@
 {
   reInitialize();
   if (endOfLoop()) {
-    setDone(true);
+    resetLoopCount();
     return null;
   }
  else {

@@ -1,0 +1,10 @@
+{
+  Document doc;
+  if (tolerant) {
+    doc=tidyDoc(stream);
+  }
+ else {
+    doc=makeDocumentBuilder(validate,whitespace,namespace).parse(stream);
+  }
+  return doc;
+}

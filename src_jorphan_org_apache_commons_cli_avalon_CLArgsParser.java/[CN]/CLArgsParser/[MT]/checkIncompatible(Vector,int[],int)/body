@@ -1,0 +1,24 @@
+{
+  final int size=arguments.size();
+  for (int i=0; i < size; i++) {
+    if (original == i) {
+      continue;
+    }
+    final CLOption option=(CLOption)arguments.elementAt(i);
+    final int id=option.getDescriptor().getId();
+    for (int j=0; j < incompatible.length; j++) {
+      if (id == incompatible[j]) {
+        final CLOption originalOption=(CLOption)arguments.elementAt(original);
+        final int originalId=originalOption.getDescriptor().getId();
+        String message=null;
+        if (id == originalId) {
+          message="Duplicate options for " + describeDualOption(originalId) + " found.";
+        }
+ else {
+          message="Incompatible options -" + describeDualOption(id) + " and "+ describeDualOption(originalId)+ " found.";
+        }
+        throw new ParseException(message,0);
+      }
+    }
+  }
+}

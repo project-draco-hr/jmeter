@@ -1,0 +1,7 @@
+{
+  if (currentRow == NO_LINE) {
+    currentRow=container.nextRow();
+  }
+  log.debug("getting match number " + currentRow);
+  return container.getXPathString(currentRow);
+}

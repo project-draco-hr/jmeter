@@ -1,13 +1,16 @@
 {
   if (group.getScheduler()) {
+    long now=System.currentTimeMillis();
     if (group.getDelay() > 0) {
-      thread.setStartTime(group.getDelay() * 1000 + (new Date().getTime()));
+      thread.setStartTime(group.getDelay() * 1000 + now);
     }
  else {
-      thread.setStartTime(group.getStartTime());
+      long start=group.getStartTime();
+      if (start < now)       start=now;
+      thread.setStartTime(start);
     }
     if (group.getDuration() > 0) {
-      thread.setEndTime(group.getDuration() * 1000 + (new Date().getTime()));
+      thread.setEndTime(group.getDuration() * 1000 + (thread.getStartTime()));
     }
  else {
       thread.setEndTime(group.getEndTime());

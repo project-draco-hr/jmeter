@@ -1,0 +1,10 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{FILE};
+  final CLArgsParser parser=new CLArgsParser(new String[]{"--file=-=,-"},options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+  final List clOptions=parser.getArguments();
+  final int size=clOptions.size();
+  assertEquals(1,size);
+  assertEquals(FILE_OPT,((CLOption)clOptions.get(0)).getDescriptor().getId());
+  assertEquals("-=,-",((CLOption)clOptions.get(0)).getArgument());
+}

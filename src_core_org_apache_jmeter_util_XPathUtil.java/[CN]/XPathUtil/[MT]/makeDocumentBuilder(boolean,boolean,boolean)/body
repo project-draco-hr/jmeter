@@ -1,0 +1,5 @@
+{
+  DocumentBuilder builder=makeDocumentBuilderFactory(validate,whitespace,namespace).newDocumentBuilder();
+  builder.setErrorHandler(new MyErrorHandler(validate,false));
+  return builder;
+}

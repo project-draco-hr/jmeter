@@ -1,0 +1,12 @@
+{
+  Box hbox=Box.createHorizontalBox();
+  hbox.add(Box.createHorizontalGlue());
+  hbox.add(getXPathTextField());
+  hbox.add(Box.createHorizontalGlue());
+  hbox.add(getCheckXPathButton());
+  Box vbox=Box.createVerticalBox();
+  vbox.add(hbox);
+  vbox.add(Box.createVerticalGlue());
+  vbox.add(getNegatedCheckBox());
+  add(vbox);
+}

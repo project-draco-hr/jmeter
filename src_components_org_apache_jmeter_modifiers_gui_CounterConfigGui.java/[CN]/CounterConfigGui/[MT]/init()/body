@@ -1,9 +1,9 @@
 {
   setBorder(makeBorder());
   setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  startField=new JLabeledTextField(JMeterUtils.getResString("start"),5);
-  incrField=new JLabeledTextField(JMeterUtils.getResString("increment"),5);
-  endField=new JLabeledTextField(JMeterUtils.getResString("max"),5);
+  startField=new JLabeledTextField(JMeterUtils.getResString("start") + "          ");
+  incrField=new JLabeledTextField(JMeterUtils.getResString("increment"));
+  endField=new JLabeledTextField(JMeterUtils.getResString("max"));
   varNameField=new JLabeledTextField(JMeterUtils.getResString("var_name"));
   perUserField=new JCheckBox(JMeterUtils.getResString("counter_per_user"));
   add(makeTitlePanel());

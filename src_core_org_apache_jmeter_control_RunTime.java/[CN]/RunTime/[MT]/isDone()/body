@@ -1,5 +1,5 @@
 {
-  if (System.currentTimeMillis() - startTime < 1000 * getRuntime()) {
+  if (getRuntime() > 0 && getSubControllers().size() > 0) {
     return super.isDone();
   }
  else {

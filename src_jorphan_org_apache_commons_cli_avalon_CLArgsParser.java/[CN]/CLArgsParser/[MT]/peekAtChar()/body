@@ -1,0 +1,6 @@
+{
+  if (INVALID == m_lastChar) {
+    m_lastChar=readChar();
+  }
+  return (char)m_lastChar;
+}

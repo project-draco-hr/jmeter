@@ -1,0 +1,37 @@
+{
+  InputStream fis=null;
+  try {
+    DocumentBuilder builder=DocumentBuilderFactory.newInstance().newDocumentBuilder();
+    fis=new FileInputStream(fileName);
+    nodeList=XPathAPI.selectNodeList(builder.parse(fis),xpath);
+    log.debug("found " + nodeList.getLength());
+  }
+ catch (  FileNotFoundException e) {
+    nodeList=null;
+    log.warn(e.toString());
+    throw e;
+  }
+catch (  IOException e) {
+    nodeList=null;
+    log.warn(e.toString());
+    throw e;
+  }
+catch (  ParserConfigurationException e) {
+    nodeList=null;
+    log.warn(e.toString());
+    throw e;
+  }
+catch (  SAXException e) {
+    nodeList=null;
+    log.warn(e.toString());
+    throw e;
+  }
+catch (  TransformerException e) {
+    nodeList=null;
+    log.warn(e.toString());
+    throw e;
+  }
+ finally {
+    if (fis != null)     fis.close();
+  }
+}

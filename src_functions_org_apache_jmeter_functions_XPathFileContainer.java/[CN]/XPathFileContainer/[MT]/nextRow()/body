@@ -1,0 +1,9 @@
+{
+  int row=nextRow;
+  nextRow++;
+  if (nextRow >= size()) {
+    nextRow=0;
+  }
+  log.debug(new StringBuffer("Row: ").append(row).toString());
+  return row;
+}

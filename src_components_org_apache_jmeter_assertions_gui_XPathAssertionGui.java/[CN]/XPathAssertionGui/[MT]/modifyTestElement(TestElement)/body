@@ -1,0 +1,12 @@
+{
+  super.configureTestElement(el);
+  if (el instanceof XPathAssertion) {
+    XPathAssertion assertion=(XPathAssertion)el;
+    assertion.setValidating(xml.isValidate());
+    assertion.setWhitespace(xml.isWhitespace());
+    assertion.setTolerant(xml.isTolerant());
+    assertion.setNamespace(xml.isNamespace());
+    assertion.setNegated(xpath.isNegated());
+    assertion.setXPathString(xpath.getXPath());
+  }
+}

@@ -1,7 +1,7 @@
 {
   loopPanel=new LoopControlPanel(false);
   LoopController looper=(LoopController)loopPanel.createTestElement();
-  looper.setLoops(-1);
+  looper.setLoops(1);
   loopPanel.configure(looper);
   return loopPanel;
 }

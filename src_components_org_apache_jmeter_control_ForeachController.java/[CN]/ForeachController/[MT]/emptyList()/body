@@ -1,6 +1,6 @@
 {
   JMeterContext context=getThreadContext();
-  String inputVariable=getInputValString() + "_1";
+  String inputVariable=getInputVal() + getSeparator() + "1";
   if (context.getVariables().get(inputVariable) != null) {
     return false;
   }

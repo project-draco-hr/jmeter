@@ -1,9 +1,9 @@
 {
   JMeterContext context=getThreadContext();
-  String inputVariable=getInputValString() + "_" + (loopCount + 1);
+  String inputVariable=getInputVal() + getSeparator() + (loopCount + 1);
   if (context.getVariables().get(inputVariable) != null) {
-    context.getVariables().put(getReturnValString(),context.getVariables().get(inputVariable));
-    log.debug("ForEach resultstring isDone=" + context.getVariables().get(getReturnValString()));
+    context.getVariables().put(getReturnVal(),context.getVariables().get(inputVariable));
+    log.debug("ForEach resultstring isDone=" + context.getVariables().get(getReturnVal()));
     return false;
   }
   return super.isDone();

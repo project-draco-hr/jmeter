@@ -1,0 +1,10 @@
+{
+  Map my=(Map)filePacks.get();
+  XPathWrapper fw=(XPathWrapper)(my).get(file);
+  if (fw == null) {
+    return -1;
+  }
+ else {
+    return fw.currentRow;
+  }
+}

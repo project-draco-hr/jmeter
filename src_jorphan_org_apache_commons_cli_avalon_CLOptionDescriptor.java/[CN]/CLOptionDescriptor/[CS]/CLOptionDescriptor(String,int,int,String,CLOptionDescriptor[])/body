@@ -1,0 +1,10 @@
+{
+  m_id=id;
+  m_name=name;
+  m_flags=flags;
+  m_description=description;
+  m_incompatible=new int[incompatible.length];
+  for (int i=0; i < incompatible.length; i++) {
+    m_incompatible[i]=incompatible[i].getId();
+  }
+}

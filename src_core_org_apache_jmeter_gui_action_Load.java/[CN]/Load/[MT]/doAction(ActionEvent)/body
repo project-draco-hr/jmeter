@@ -37,7 +37,7 @@
     GuiPackage.getInstance().updateCurrentGui();
     GuiPackage.getInstance().getMainFrame().repaint();
   }
-  if (isTestPlan && f != null) {
+  if (!merging && isTestPlan && f != null) {
     ((Save)ActionRouter.getInstance().getAction("save","org.apache.jmeter.gui.action.Save")).setTestPlanFile(f.getAbsolutePath());
   }
 }

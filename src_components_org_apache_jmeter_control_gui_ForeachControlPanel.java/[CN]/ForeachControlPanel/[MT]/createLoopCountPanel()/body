@@ -14,7 +14,9 @@
   returnValLabel.setLabelFor(returnVal);
   returnValSubPanel.add(returnValLabel,BorderLayout.WEST);
   returnValSubPanel.add(returnVal,BorderLayout.CENTER);
+  useSeparator=new JCheckBox(JMeterUtils.getResString("foreach_use_separator"),true);
   loopPanel.add(inputValSubPanel);
   loopPanel.add(returnValSubPanel);
+  loopPanel.add(useSeparator);
   return loopPanel;
 }

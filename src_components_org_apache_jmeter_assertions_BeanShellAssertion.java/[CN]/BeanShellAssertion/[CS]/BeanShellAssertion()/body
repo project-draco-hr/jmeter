@@ -1,21 +1,18 @@
 {
-  String init="";
   try {
-    bshInterpreter=new Interpreter();
-    init=JMeterUtils.getPropDefault(INIT_FILE,null);
-    if (init != null) {
-      try {
-        bshInterpreter.source(null);
-      }
- catch (      IOException e) {
-        log.warn("Error processing init file " + init + " "+ e);
-      }
-catch (      Exception e) {
-        log.warn("Error processing init file " + init + " "+ e);
-      }
+    bshInterpreter=new BeanShellInterpreter();
+    String init=JMeterUtils.getProperty(INIT_FILE);
+    try {
+      bshInterpreter.init(init,log);
+    }
+ catch (    IOException e) {
+      log.warn("Could not initialise interpreter",e);
+    }
+catch (    JMeterException e) {
+      log.warn("Could not initialise interpreter",e);
     }
   }
- catch (  NoClassDefFoundError e) {
-    bshInterpreter=null;
+ catch (  ClassNotFoundException e) {
+    log.error("Could not establish BeanShellInterpreter: " + e);
   }
 }

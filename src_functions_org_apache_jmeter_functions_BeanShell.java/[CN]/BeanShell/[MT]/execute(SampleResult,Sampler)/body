@@ -1,5 +1,5 @@
 {
-  if (bshSet == null) {
+  if (bshInterpreter == null) {
     throw new InvalidVariableException("BeanShell not found");
   }
   JMeterContext jmctx=JMeterContextService.getContext();
@@ -13,15 +13,15 @@
   log.debug("Script=" + script);
   try {
     if (currentSampler != null) {
-      bshInvoke(bshSet,"Sampler",currentSampler);
+      bshInterpreter.set("Sampler",currentSampler);
     }
     if (previousResult != null) {
-      bshInvoke(bshSet,"SampleResult",previousResult);
+      bshInterpreter.set("SampleResult",previousResult);
     }
-    bshInvoke(bshSet,"ctx",jmctx);
-    bshInvoke(bshSet,"vars",vars);
-    bshInvoke(bshSet,"threadName",Thread.currentThread().getName());
-    Object bshOut=bshInvoke(bshEval,script,null);
+    bshInterpreter.set("ctx",jmctx);
+    bshInterpreter.set("vars",vars);
+    bshInterpreter.set("threadName",Thread.currentThread().getName());
+    Object bshOut=bshInterpreter.eval(script);
     if (bshOut != null) {
       resultStr=bshOut.toString();
     }

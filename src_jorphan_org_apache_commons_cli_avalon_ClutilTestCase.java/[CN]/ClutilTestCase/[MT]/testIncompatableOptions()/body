@@ -1,0 +1,13 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{DEFINE,ALL,CLEAR1,BLEE};
+  final CLArgsParser parser=new CLArgsParser(ARGLIST4,options);
+  assertNotNull(parser.getErrorString());
+  final List clOptions=parser.getArguments();
+  final int size=clOptions.size();
+  assertEquals(size,5);
+  assertEquals(((CLOption)clOptions.get(0)).getDescriptor().getId(),DEFINE_OPT);
+  assertEquals(((CLOption)clOptions.get(1)).getDescriptor().getId(),0);
+  assertEquals(((CLOption)clOptions.get(2)).getDescriptor().getId(),ALL_OPT);
+  assertEquals(((CLOption)clOptions.get(3)).getDescriptor().getId(),BLEE_OPT);
+  assertEquals(((CLOption)clOptions.get(4)).getDescriptor().getId(),0);
+}

@@ -1,0 +1,17 @@
+{
+  String myValue="";
+  String fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();
+  String xpathString=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
+  log.debug("execute (" + fileName + " "+ xpathString+ ")   ");
+  try {
+    myValue=XPathWrapper.getXPathString(fileName,xpathString);
+  }
+ catch (  NumberFormatException e) {
+    log.warn(Thread.currentThread().getName() + " - can't parse column number: " + " "+ e.toString());
+  }
+catch (  IndexOutOfBoundsException e) {
+    log.warn(Thread.currentThread().getName() + " - invalid column number:  at row " + XPathWrapper.getCurrentRow(fileName)+ " "+ e.toString());
+  }
+  log.debug("execute value: " + myValue);
+  return myValue;
+}
