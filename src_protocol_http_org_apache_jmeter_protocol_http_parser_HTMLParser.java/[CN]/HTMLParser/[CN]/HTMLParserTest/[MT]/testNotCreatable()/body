@@ -3,10 +3,7 @@
     getParser(TestClass.class.getName());
   }
  catch (  Error e) {
-    if (e.getCause() instanceof NoSuchMethodException) {
-    }
- else {
-      throw e;
-    }
+    if (e.getCause() instanceof InstantiationException)     return;
+    throw e;
   }
 }

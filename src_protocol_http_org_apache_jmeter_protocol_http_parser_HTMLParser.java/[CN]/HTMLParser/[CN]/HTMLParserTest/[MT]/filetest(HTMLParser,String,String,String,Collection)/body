@@ -1,6 +1,5 @@
 {
   log.info("file   " + file);
-  log.info("parser " + p.getClass().getName());
   File f=new File(file);
   byte[] buffer=new byte[(int)f.length()];
   int len=new FileInputStream(f).read(buffer);
