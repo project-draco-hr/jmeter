@@ -14,7 +14,9 @@
   }
   URL newUrl=new URL(loc);
   setMethod(GET);
+  setProtocol(newUrl.getProtocol());
   setDomain(newUrl.getHost());
+  setPort(newUrl.getPort());
   setPath(newUrl.getFile());
   removeArguments();
   parseArguments(newUrl.getQuery());

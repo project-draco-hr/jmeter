@@ -16,7 +16,7 @@
     this.setUseKeepAlive(false);
     conn=setupConnection(getUrl(),getMethod());
     if (getMethod().equals(HTTPSampler.POST)) {
-      postWriter.setHeaders(conn,this);
+      setPostHeaders(conn);
     }
     time=connect();
   }

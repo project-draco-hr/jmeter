@@ -1,5 +1,6 @@
 {
   HttpURLConnection conn;
+  HttpURLConnection.setFollowRedirects(false);
   conn=(HttpURLConnection)u.openConnection();
   if ("https".equals(u.getProtocol())) {
     try {
@@ -9,7 +10,6 @@
       log.warn("You may have forgotten to set the ssl.provider property in jmeter.properties",e);
     }
   }
-  conn.setFollowRedirects(false);
   if (getUseKeepAlive()) {
     conn.setRequestProperty("Connection","keep-alive");
   }

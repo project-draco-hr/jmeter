@@ -2,8 +2,6 @@
   log.debug("Start : sample2");
   long time=System.currentTimeMillis();
   SampleResult res=new SampleResult();
-  if (redirected) {
-  }
   URL u=null;
   try {
     u=getUrl();
@@ -13,13 +11,12 @@
       log.debug("sample2 : sampling url - " + u);
     }
     conn=setupConnection(u,getMethod());
-    if (!redirected && getProperty(HTTPSampler.METHOD).equals(HTTPSampler.POST)) {
-      postWriter.setHeaders(conn,this);
-    }
-    time=connect();
-    if (!redirected && getProperty(HTTPSampler.METHOD).equals(HTTPSampler.POST)) {
+    if (getProperty(HTTPSampler.METHOD).equals(HTTPSampler.POST)) {
+      setPostHeaders(conn);
+      time=connect();
       sendPostData(conn);
     }
+ else     time=connect();
     saveConnectionCookies(conn,u,getCookieManager());
     int errorLevel=0;
     try {
@@ -35,13 +32,16 @@
       time=bundleResponseInResult(time,res,conn);
     }
  else     if (errorLevel / 100 == 3) {
-      if (redirected || !getFollowRedirects()) {
+      if (redirects >= MAX_REDIRECTS) {
+        throw new IOException("Maximum number of redirects exceeded");
+      }
+      if (!getFollowRedirects()) {
         time=bundleResponseInResult(time,res,conn);
       }
  else {
         redirectUrl(conn,u);
         time=System.currentTimeMillis() - time;
-        res=sample(true);
+        res=sample(redirects + 1);
         time+=res.getTime();
       }
     }
