@@ -1,6 +1,7 @@
 {
   super();
-  createTextField(size);
-  mLabel.setText(pLabel);
+  mTextField=createTextField(size);
+  mLabel=new JLabel(pLabel);
+  mLabel.setLabelFor(mTextField);
   init();
 }

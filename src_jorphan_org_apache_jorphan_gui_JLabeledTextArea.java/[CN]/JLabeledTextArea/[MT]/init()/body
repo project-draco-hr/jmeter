@@ -1,28 +1,10 @@
 {
-  this.setLayout(new BorderLayout());
+  setLayout(new BorderLayout());
+  mTextArea=new JTextArea();
+  mTextArea.setRows(4);
   mTextArea.setLineWrap(true);
   mTextArea.setWrapStyleWord(true);
-  mTextArea.addFocusListener(new FocusListener(){
-    String oldValue="";
-    /** 
- * Callback method when the focus to the Text Field component
- * is lost.
- * @param pFocusEvent The focus event that occured.
- */
-    public void focusLost(    FocusEvent pFocusEvent){
-      if (oldValue.equals(mTextArea.getText()) == false) {
-        notifyChangeListeners();
-      }
-    }
-    /** 
- * Catch what the value was when focus was gained.
- */
-    public void focusGained(    FocusEvent pFocusEvent){
-      oldValue=mTextArea.getText();
-    }
-  }
-);
-  mTextArea.setBorder(BorderFactory.createLoweredBevelBorder());
+  mTextArea.addFocusListener(this);
   this.add(mLabel,BorderLayout.NORTH);
-  this.add(mTextArea,BorderLayout.CENTER);
+  this.add(new JScrollPane(mTextArea),BorderLayout.CENTER);
 }

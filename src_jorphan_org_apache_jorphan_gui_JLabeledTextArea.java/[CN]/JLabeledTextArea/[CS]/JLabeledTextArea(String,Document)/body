@@ -1,6 +1,6 @@
 {
   super();
-  mLabel.setText(pLabel);
+  mLabel=new JLabel(pLabel);
   if (docModel != null) {
     setDocumentModel(docModel);
   }
