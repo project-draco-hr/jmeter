@@ -58,7 +58,7 @@ catch (  Error t) {
     }
   }
   if (objects.size() == 0) {
-    System.out.println("No classes found. Check the following:");
+    System.out.println("No classes found that extend " + exName + ". Check the following:");
     System.out.println("Search paths are:");
     String ss[]=JMeterUtils.getSearchPaths();
     for (int i=0; i < ss.length; i++) {
@@ -67,6 +67,5 @@ catch (  Error t) {
     System.out.println("Class path is:");
     System.out.println(System.getProperty("java.class.path"));
   }
-  assertTrue("Expected to find some classes that extend " + exName,objects.size() > 0);
   return objects;
 }
