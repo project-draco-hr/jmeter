@@ -1,6 +1,5 @@
 {
   String aLabel=res.getSampleLabel();
-  String responseCode=res.getResponseCode();
   RunningSample s;
 synchronized (labelMap) {
     s=(RunningSample)labelMap.get(aLabel);

@@ -3,7 +3,7 @@
   JMeterTreeModel treeModel=new JMeterTreeModel();
   JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
   treeLis.setActionHandler(ActionRouter.getInstance());
-  GuiPackage guiPack=GuiPackage.getInstance(treeLis,treeModel);
+  GuiPackage.getInstance(treeLis,treeModel);
   org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
   main.setTitle("Apache JMeter");
   main.setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());

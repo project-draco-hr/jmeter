@@ -1,7 +1,6 @@
 {
   super.paintComponent(g);
   log.debug("Start : paintComponent1");
-  Dimension d=this.getSize();
 synchronized (model.getList()) {
     previousPtsAlloc=false;
     Iterator e=model.getList().iterator();

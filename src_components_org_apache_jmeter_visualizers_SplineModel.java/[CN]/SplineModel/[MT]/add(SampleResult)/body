@@ -16,7 +16,6 @@
   int n=getNumberOfCollectedSamples();
   if ((n % (numberOfNodes * refreshPeriod)) == 0) {
     float[] floatNode=new float[numberOfNodes];
-    long[] longSample=getSamples();
     int loadFactor=n / numberOfNodes;
     for (int i=0; i < numberOfNodes; i++) {
       for (int j=0; j < loadFactor; j++) {
