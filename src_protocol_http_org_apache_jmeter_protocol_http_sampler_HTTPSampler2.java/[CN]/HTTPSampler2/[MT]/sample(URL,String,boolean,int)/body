@@ -1,0 +1,78 @@
+{
+  String urlStr=url.toString();
+  log.debug("Start : sample" + urlStr);
+  log.debug("method" + method);
+  httpMethod=null;
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setSampleLabel(urlStr);
+  res.sampleStart();
+  try {
+    HttpConnection connection=setupConnection(url,method,res);
+    if (method.equals(HTTPSampler2.POST)) {
+      sendPostData(httpMethod);
+    }
+    httpMethod.execute(httpState,connection);
+    if (httpMethod.getStatusCode() == HttpStatus.SC_OK) {
+    }
+ else {
+      System.err.println("Unexpected failure: " + httpMethod.getStatusLine().toString());
+    }
+    byte[] responseData=httpMethod.getResponseBody();
+    res.sampleEnd();
+    res.setResponseData(responseData);
+    int errorLevel=httpMethod.getStatusCode();
+    res.setResponseCode(Integer.toString(errorLevel));
+    res.setSuccessful(200 <= errorLevel && errorLevel <= 399);
+    res.setResponseMessage(httpMethod.getStatusText());
+    String ct=httpMethod.getResponseHeader("Content-type").getValue();
+    res.setContentType(ct);
+    if (ct != null) {
+      String de=ct.toLowerCase();
+      final String cs="charset=";
+      int cset=de.indexOf(cs);
+      if (cset >= 0) {
+        res.setDataEncoding(de.substring(cset + cs.length()));
+      }
+      if (ct.startsWith("image/")) {
+        res.setDataType(HTTPSampleResult.BINARY);
+      }
+ else {
+        res.setDataType(HTTPSampleResult.TEXT);
+      }
+    }
+    res.setResponseHeaders(getResponseHeaders(httpMethod));
+    if (res.isRedirect()) {
+      res.setRedirectLocation(httpMethod.getResponseHeader("Location").getValue());
+    }
+    saveConnectionCookies(httpState,getCookieManager());
+    if (!areFollowingRedirect) {
+      boolean didFollowRedirects=false;
+      if (res.isRedirect()) {
+        log.debug("Location set to - " + res.getRedirectLocation());
+        if (getFollowRedirects()) {
+          res=followRedirects(res,frameDepth);
+          didFollowRedirects=true;
+        }
+      }
+      if (isImageParser() && res.getDataType().equals(HTTPSampleResult.TEXT) && res.isSuccessful()) {
+        if (frameDepth > MAX_FRAME_DEPTH) {
+          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),null,0));
+        }
+ else {
+          boolean createContainerResults=!didFollowRedirects;
+          res=downloadPageResources(res,createContainerResults,frameDepth);
+        }
+      }
+    }
+    log.debug("End : sample");
+    if (httpMethod != null)     httpMethod.releaseConnection();
+    return res;
+  }
+ catch (  IOException e) {
+    res.sampleEnd();
+    return errorResult(e,url.toString(),res.getTime());
+  }
+ finally {
+    if (httpMethod != null)     httpMethod.releaseConnection();
+  }
+}

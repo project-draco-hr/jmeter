@@ -1,0 +1,8 @@
+{
+  if (cookieManager != null) {
+    org.apache.commons.httpclient.Cookie[] c=state.getCookies();
+    for (int i=0; i < c.length; i++) {
+      cookieManager.add(new org.apache.jmeter.protocol.http.control.Cookie(c[i].getName(),c[i].getValue(),c[i].getDomain(),c[i].getPath(),c[i].getSecure(),c[i].getExpiryDate().getTime()));
+    }
+  }
+}

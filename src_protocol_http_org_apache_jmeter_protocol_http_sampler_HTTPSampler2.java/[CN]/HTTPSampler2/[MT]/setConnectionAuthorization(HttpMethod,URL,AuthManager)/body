@@ -1,0 +1,8 @@
+{
+  if (authManager != null) {
+    String authHeader=authManager.getAuthHeaderForURL(u);
+    if (authHeader != null) {
+      method.setRequestHeader("Authorization",authHeader);
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  StringBuffer headerBuf=new StringBuffer();
+  Header rh[]=conn.getResponseHeaders();
+  headerBuf.append(rh[0].toString());
+  headerBuf.append("\n");
+  for (int i=1; i < rh.length; i++) {
+    String key=rh[i].getName();
+    if (!key.equalsIgnoreCase("transfer-encoding")) {
+      headerBuf.append(key);
+      headerBuf.append(": ");
+      headerBuf.append(rh[i].getValue());
+      headerBuf.append("\n");
+    }
+  }
+  return headerBuf.toString();
+}
