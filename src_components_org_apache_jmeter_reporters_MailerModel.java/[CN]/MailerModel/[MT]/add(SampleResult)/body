@@ -21,7 +21,7 @@
       successMsgSent=false;
     }
   }
-  if (siteDown && (sample.getTime() != -1) & !successMsgSent) {
+  if (siteDown && (sample.getTime() != -1) && !successMsgSent) {
     if (successCount > getSuccessLimit()) {
       Vector addressVector=getAddressVector();
       try {
