@@ -1,0 +1,12 @@
+{
+  scriptField=new JTextArea();
+  scriptField.setRows(4);
+  scriptField.setLineWrap(true);
+  scriptField.setWrapStyleWord(true);
+  JLabel label=new JLabel(JMeterUtils.getResString("bsh_assertion_script"));
+  label.setLabelFor(scriptField);
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.add(label,BorderLayout.NORTH);
+  panel.add(new JScrollPane(scriptField),BorderLayout.CENTER);
+  return panel;
+}

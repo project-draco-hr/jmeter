@@ -1,0 +1,48 @@
+{
+  AssertionResult result=new AssertionResult();
+  try {
+    String request=getScript();
+    String fileName=getFilename();
+    bshInterpreter.set("FileName",getFilename());
+    bshInterpreter.set("Parameters",getParameters());
+    bshInterpreter.set("bsh.args",JOrphanUtils.split(getParameters()," "));
+    bshInterpreter.set("Response",response);
+    bshInterpreter.set("ResponseData",response.getResponseData());
+    bshInterpreter.set("ResponseCode",response.getResponseCode());
+    bshInterpreter.set("ResponseMessage",response.getResponseMessage());
+    bshInterpreter.set("ResponseHeaders",response.getResponseHeaders());
+    bshInterpreter.set("RequestHeaders",response.getRequestHeaders());
+    bshInterpreter.set("SampleLabel",response.getSampleLabel());
+    bshInterpreter.set("SamplerData",response.getSamplerData());
+    bshInterpreter.set("Successful",response.isSuccessful());
+    bshInterpreter.set("Result",result);
+    bshInterpreter.set("FailureMessage","");
+    bshInterpreter.set("Failure",false);
+    if (fileName.length() == 0) {
+      bshInterpreter.eval(request);
+    }
+ else {
+      bshInterpreter.source(fileName);
+    }
+    result.setFailureMessage(bshInterpreter.get("FailureMessage").toString());
+    result.setFailure(Boolean.valueOf(bshInterpreter.get("Failure").toString()).booleanValue());
+    result.setError(false);
+  }
+ catch (  NoClassDefFoundError ex) {
+    result.setError(true);
+    log.error("BeanShell Jar missing? " + ex.toString());
+    response.setStopThread(true);
+    result.setFailureMessage("");
+  }
+catch (  IOException ex) {
+    result.setError(true);
+    result.setFailureMessage(ex.toString());
+    log.warn(ex.toString());
+  }
+catch (  Exception ex) {
+    result.setError(true);
+    result.setFailureMessage(ex.toString());
+    log.warn(ex.toString());
+  }
+  return result;
+}

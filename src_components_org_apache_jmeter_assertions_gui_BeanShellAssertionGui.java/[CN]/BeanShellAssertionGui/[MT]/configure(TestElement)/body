@@ -1,0 +1,6 @@
+{
+  scriptField.setText(element.getProperty(BeanShellAssertion.SCRIPT).toString());
+  filename.setText(element.getProperty(BeanShellAssertion.FILENAME).toString());
+  parameters.setText(element.getProperty(BeanShellAssertion.PARAMETERS).toString());
+  super.configure(element);
+}
