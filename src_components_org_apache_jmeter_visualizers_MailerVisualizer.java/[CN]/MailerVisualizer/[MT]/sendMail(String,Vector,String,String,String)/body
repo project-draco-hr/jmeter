@@ -20,11 +20,11 @@
     System.out.println("Mail sent successfully!!");
   }
  catch (  UnknownHostException e1) {
-    System.out.println("NxError:Invalid Mail Server " + e1);
-    System.exit(1);
+    System.out.println("Invalid Mail Server " + e1);
+    JOptionPane.showMessageDialog(null,JMeterUtils.getResString("invalid_mail_server"),"Error",JOptionPane.ERROR_MESSAGE);
   }
 catch (  Exception e) {
-    e.printStackTrace();
-    System.exit(1);
+    System.out.println("Couldn't send mail...");
+    JOptionPane.showMessageDialog(null,JMeterUtils.getResString("mailer_error"),"Error",JOptionPane.ERROR_MESSAGE);
   }
 }

@@ -7,7 +7,6 @@
     assertionDuration=Long.parseLong(durationString);
   }
  catch (  NumberFormatException e) {
-    System.out.println("exception");
     assertionDuration=Long.MAX_VALUE;
   }
   el.setAllowedDuration(assertionDuration);

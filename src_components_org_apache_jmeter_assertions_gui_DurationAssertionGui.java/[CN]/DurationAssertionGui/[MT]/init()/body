@@ -17,6 +17,7 @@
   durationPanel.setLayout(layout);
   durationPanel.add(new JLabel(JMeterUtils.getResString("duration_assertion_label")));
   duration=new JTextField(5);
+  duration.addFocusListener(this);
   durationPanel.add(duration);
   mainPanel.add(durationPanel);
   this.add(mainPanel);
