@@ -2,8 +2,14 @@
   List props=new LinkedList();
   while (iter.hasNext()) {
     JMeterProperty val=iter.next();
+    if (log.isDebugEnabled()) {
+      log.debug("About to replace in property of tipe: " + val.getClass() + ": "+ val);
+    }
     if (val instanceof StringProperty) {
       val=transform.transformValue((StringProperty)val);
+      if (log.isDebugEnabled()) {
+        log.debug("Replacement result: " + val);
+      }
     }
  else     if (val instanceof MultiProperty) {
       MultiProperty multiVal=(MultiProperty)val;
@@ -12,6 +18,14 @@
       Iterator propIter=newValues.iterator();
       while (propIter.hasNext()) {
         multiVal.addProperty((JMeterProperty)propIter.next());
+      }
+      if (log.isDebugEnabled()) {
+        log.debug("Replacement result: " + multiVal);
+      }
+    }
+ else {
+      if (log.isDebugEnabled()) {
+        log.debug("Won't replace.");
       }
     }
     props.add(val);
