@@ -1,6 +1,5 @@
 {
   JTextField temp=(JTextField)evt.getSource();
-  boolean pass=true;
   long longVal=0;
   try {
     longVal=Long.parseLong(temp.getText());
