@@ -10,7 +10,7 @@ synchronized (statCalc) {
     median=statCalc.getMedian().longValue();
   }
   if (samples.size() == 0) {
-    startTime=timeStamp;
+    startTime=timeStamp - sample;
   }
   float throughput=0;
   if (timeStamp - startTime > 0) {
