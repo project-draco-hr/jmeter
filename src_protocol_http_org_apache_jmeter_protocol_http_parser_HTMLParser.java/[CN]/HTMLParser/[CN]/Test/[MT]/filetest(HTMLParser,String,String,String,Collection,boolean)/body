@@ -9,7 +9,7 @@
     result=p.getEmbeddedResourceURLs(buffer,new URL(url));
   }
  else {
-    result=p.getEmbeddedResourceURLs(buffer,new URL(url),new URLCollection(c));
+    result=p.getEmbeddedResourceURLs(buffer,new URL(url),c);
   }
   Iterator expected;
   if (orderMatters) {
