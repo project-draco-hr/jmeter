@@ -1,3 +1,5 @@
 {
-  pairing.clear();
+synchronized (pairing) {
+    pairing.clear();
+  }
 }
