@@ -27,6 +27,7 @@
       readLength++;
     }
   }
+  log.debug("Client Request Line: " + line.toString());
   postData=line.toString().trim();
   return clientRequest.toByteArray();
 }

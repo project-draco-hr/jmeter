@@ -1,4 +1,5 @@
 {
+  log.debug("Node is class:" + node.getClass());
   JMeterGUIComponent treeNode=(JMeterGUIComponent)node;
   if (checkMode) {
     if (previousGuiItems.containsKey(treeNode)) {

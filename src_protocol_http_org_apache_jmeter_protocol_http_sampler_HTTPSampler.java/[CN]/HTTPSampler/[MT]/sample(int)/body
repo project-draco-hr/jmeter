@@ -40,12 +40,10 @@
         time=bundleResponseInResult(time,res,conn);
       }
  else {
-        time=System.currentTimeMillis() - time;
-        HTTPSampler redirect=(HTTPSampler)this.clone();
-        redirect.redirectUrl(conn,u);
-        SampleResult redirectResult=redirect.sample(redirects + 1);
+        time=bundleResponseInResult(time,res,conn);
+        redirectUrl(conn,u);
+        SampleResult redirectResult=sample(redirects + 1);
         res.addSubResult(redirectResult);
-        res.setResponseData(redirectResult.getResponseData());
         res.setSuccessful(redirectResult.isSuccessful());
         time+=redirectResult.getTime();
       }
