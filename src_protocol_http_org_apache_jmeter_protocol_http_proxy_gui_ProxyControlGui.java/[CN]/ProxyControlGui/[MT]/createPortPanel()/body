@@ -19,11 +19,18 @@
   addAssertions.setSelected(false);
   addAssertions.addActionListener(this);
   addAssertions.setActionCommand(ProxyControl.ADD_ASSERTIONS);
+  useKeepAlive=new JCheckBox(JMeterUtils.getResString("proxy_usekeepalive"));
+  useKeepAlive.setName(ProxyControl.ADD_ASSERTIONS);
+  useKeepAlive.setSelected(false);
+  useKeepAlive.addActionListener(this);
+  useKeepAlive.setActionCommand(ProxyControl.ADD_ASSERTIONS);
   HorizontalPanel panel=new HorizontalPanel();
   panel.add(label);
   panel.add(portField);
   panel.add(Box.createHorizontalStrut(10));
   panel.add(httpHeaders);
+  panel.add(Box.createHorizontalStrut(10));
+  panel.add(useKeepAlive);
   panel.add(Box.createHorizontalStrut(10));
   panel.add(addSeparators);
   panel.add(Box.createHorizontalStrut(10));

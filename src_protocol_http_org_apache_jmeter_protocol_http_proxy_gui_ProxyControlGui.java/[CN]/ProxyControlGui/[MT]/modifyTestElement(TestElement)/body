@@ -8,5 +8,6 @@
     model.setCaptureHttpHeaders(httpHeaders.isSelected());
     model.setSeparators(addSeparators.isSelected());
     model.setAssertions(addAssertions.isSelected());
+    model.setUseKeepAlive(useKeepAlive.isSelected());
   }
 }

@@ -26,6 +26,7 @@
       if (areMatched(sampler,urlConfig)) {
         removeValuesFromSampler(sampler,urlConfig);
         replaceValues(sampler,subConfigs);
+        sampler.setUseKeepAlive(useKeepAlive);
         sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
         try {
           boolean firstInBatch=false;
