@@ -1,15 +1,12 @@
 {
   String body=formErrorBody(error,description);
-  String header=new String();
-  header+=HTTP_PROTOCOL + " " + error+ CR;
-  header+="Server: " + HTTP_SERVER + CR;
-  header+="MIME-version: 1.0" + CR;
-  header+="Content-type: text/html" + CR;
-  if (0 < lastModified.length()) {
-    header+="Last-Modified: " + lastModified + CR;
-  }
-  header+="Content-Length: " + String.valueOf(body.length()) + CR;
-  header+=CR;
-  header+=body;
-  return header;
+  StringBuffer header=new StringBuffer();
+  header.append(HTTP_PROTOCOL).append(" ").append(error).append(CR);
+  header.append("Server: ").append(HTTP_SERVER).append(CR);
+  header.append("MIME-version: 1.0").append(CR);
+  header.append("Content-type: text/html").append(CR);
+  header.append("Content-Length: ").append(body.length()).append(CR);
+  header.append(CR);
+  header.append(body);
+  return header.toString();
 }

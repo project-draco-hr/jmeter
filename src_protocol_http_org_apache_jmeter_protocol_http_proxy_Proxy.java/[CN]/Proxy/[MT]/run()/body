@@ -1,6 +1,5 @@
 {
   HttpRequestHdr request=new HttpRequestHdr();
-  HttpReplyHdr reply=new HttpReplyHdr();
   try {
     byte[] clientRequest=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     HeaderManager headers=request.getHeaderManager();
@@ -13,11 +12,11 @@
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
-    writeErrorToClient(reply.formServerNotFound());
+    writeErrorToClient(HttpReplyHdr.formServerNotFound());
   }
 catch (  Exception e) {
     log.error("",e);
-    writeErrorToClient(reply.formTimeout());
+    writeErrorToClient(HttpReplyHdr.formTimeout());
   }
  finally {
     try {
