@@ -1,0 +1,17 @@
+{
+  try {
+    Hashtable table=tag.getAttributes();
+    String relativeLink=(String)table.get("HREF");
+    if (relativeLink != null) {
+      relativeLink=ParserUtils.removeChars(relativeLink,'\n');
+      relativeLink=ParserUtils.removeChars(relativeLink,'\r');
+    }
+    return processor.extract(relativeLink,url);
+  }
+ catch (  Exception e) {
+    String msg;
+    if (tag != null)     msg=tag.getText();
+ else     msg="null";
+    throw new ParserException("HTMLLinkScanner.extractLink() : Error while extracting link from tag " + msg + ", url = "+ url,e);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  boolean xmlTagFound=false;
+  if (node instanceof Tag) {
+    Tag tag=(Tag)node;
+    if (tag.getText().toUpperCase().indexOf(tagName) == 0) {
+      xmlTagFound=true;
+    }
+  }
+  return xmlTagFound;
+}

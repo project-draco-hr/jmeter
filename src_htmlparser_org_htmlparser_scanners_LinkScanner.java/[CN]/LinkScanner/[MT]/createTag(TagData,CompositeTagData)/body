@@ -1,0 +1,21 @@
+{
+  String link=extractLink(compositeTagData.getStartTag(),tagData.getUrlBeingParsed());
+  int mailto=link.indexOf("mailto");
+  boolean mailLink=false;
+  if (mailto == 0) {
+    mailto=link.indexOf(":");
+    link=link.substring(mailto + 1);
+    mailLink=true;
+  }
+  int javascript=link.indexOf("javascript:");
+  boolean javascriptLink=false;
+  if (javascript == 0) {
+    link=link.substring(11);
+    javascriptLink=true;
+  }
+  String accessKey=getAccessKey(compositeTagData.getStartTag());
+  String myLinkText=compositeTagData.getChildren().toString();
+  LinkTag linkTag=new LinkTag(tagData,compositeTagData,new LinkData(link,myLinkText,accessKey,mailLink,javascriptLink));
+  linkTag.setThisScanner(this);
+  return linkTag;
+}

@@ -1,0 +1,5 @@
+{
+  String tagContents=tagData.getTagContents();
+  tagData.setTagContents(tagContents.substring(1,tagContents.length() - 1));
+  return new JspTag(tagData);
+}

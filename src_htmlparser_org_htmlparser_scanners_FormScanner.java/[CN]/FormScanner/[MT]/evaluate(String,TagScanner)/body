@@ -1,0 +1,13 @@
+{
+  if (previousOpenScanner instanceof LinkScanner) {
+    linkScannerAlreadyOpen=true;
+    StringBuffer msg=new StringBuffer();
+    msg.append("<");
+    msg.append(s);
+    msg.append(">");
+    msg.append(PREVIOUS_DIRTY_LINK_MESSAGE);
+    feedback.warning(msg.toString());
+  }
+ else   linkScannerAlreadyOpen=false;
+  return super.evaluate(s,previousOpenScanner);
+}

@@ -1,0 +1,4 @@
+{
+  CompositeTagScannerHelper helper=new CompositeTagScannerHelper(this,tag,url,reader,currLine,balance_quotes);
+  return helper.scan();
+}

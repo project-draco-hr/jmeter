@@ -1,0 +1,10 @@
+{
+  super(filter);
+  this.nameOfTagToMatch=nameOfTagToMatch;
+  this.allowSelfChildren=allowSelfChildren;
+  this.balance_quotes=balance_quotes;
+  this.tagEnderSet=new HashSet();
+  for (int i=0; i < tagEnders.length; i++)   tagEnderSet.add(tagEnders[i]);
+  this.endTagEnderSet=new HashSet();
+  for (int i=0; i < endTagEnders.length; i++)   endTagEnderSet.add(endTagEnders[i]);
+}
