@@ -58,7 +58,7 @@
   }
  catch (  IOException ex) {
     log.warn(ex.getMessage(),ex);
-    res.setDataType(res.TEXT);
+    res.setDataType(SampleResult.TEXT);
     res.setResponseData(ex.toString().getBytes());
     res.setResponseCode(NON_HTTP_RESPONSE_CODE);
     res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);

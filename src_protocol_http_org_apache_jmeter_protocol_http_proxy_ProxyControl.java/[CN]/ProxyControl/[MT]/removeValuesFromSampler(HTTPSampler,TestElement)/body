@@ -3,6 +3,9 @@
     if (sampler.getDomain().equals(urlConfig.getProperty(HTTPSampler.DOMAIN))) {
       sampler.setDomain("");
     }
+    if (("" + sampler.getPort()).equals(urlConfig.getProperty(HTTPSampler.PORT))) {
+      sampler.setPort(HTTPSampler.UNSPECIFIED_PORT);
+    }
     if (sampler.getPath().equals(urlConfig.getProperty(HTTPSampler.PATH))) {
       sampler.setPath("");
     }

@@ -1,6 +1,6 @@
 {
   int port=getPropertyAsInt(PORT);
-  if (port == 0) {
+  if (port == UNSPECIFIED_PORT) {
     if ("https".equalsIgnoreCase(getProtocol())) {
       return 443;
     }

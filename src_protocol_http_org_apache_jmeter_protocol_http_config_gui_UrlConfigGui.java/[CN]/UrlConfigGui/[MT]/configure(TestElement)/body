@@ -2,7 +2,13 @@
   setName((String)el.getProperty(TestElement.NAME));
   argsPanel.configure((TestElement)el.getProperty(HTTPSampler.ARGUMENTS));
   domain.setText((String)el.getProperty(HTTPSampler.DOMAIN));
-  port.setText((String)el.getPropertyAsString(HTTPSampler.PORT));
+  String portString=(String)el.getPropertyAsString(HTTPSampler.PORT);
+  if (portString.equals("" + HTTPSampler.UNSPECIFIED_PORT)) {
+    port.setText("");
+  }
+ else {
+    port.setText(portString);
+  }
   protocol.setText((String)el.getProperty(HTTPSampler.PROTOCOL));
   if ("POST".equals(el.getProperty(HTTPSampler.METHOD))) {
     post.setSelected(true);
