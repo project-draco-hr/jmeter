@@ -2,5 +2,5 @@
   tableModel=new PowerTableModel(new String[]{COLUMN_NAMES[0],COLUMN_NAMES[1]},new Class[]{String.class,String.class});
   table=new JTable(tableModel);
   table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-  return new JScrollPane(table);
+  return makeScrollPane(table);
 }
