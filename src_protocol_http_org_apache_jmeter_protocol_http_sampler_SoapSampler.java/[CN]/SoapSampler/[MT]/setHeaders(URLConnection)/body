@@ -1,0 +1,6 @@
+{
+  ((HttpURLConnection)connection).setRequestMethod("POST");
+  connection.setRequestProperty("Content-length","" + getXmlData().length());
+  connection.setRequestProperty("Content-type","text/xml");
+  connection.setDoOutput(true);
+}
