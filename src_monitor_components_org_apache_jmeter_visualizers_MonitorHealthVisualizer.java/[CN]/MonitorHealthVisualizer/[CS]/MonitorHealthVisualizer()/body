@@ -2,4 +2,5 @@
   MODEL=new MonitorAccumModel();
   GRAPH=new MonitorGraph(MODEL);
   init();
+  MODEL.setBufferSize(JMeterUtils.getPropDefault(BUFFER,800));
 }

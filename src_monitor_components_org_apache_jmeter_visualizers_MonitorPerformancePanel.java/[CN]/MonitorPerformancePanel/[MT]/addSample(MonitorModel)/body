@@ -4,7 +4,7 @@
     newnode.setAllowsChildren(false);
     SERVERMAP.put(model.getURL(),newnode);
     ROOTNODE.add(newnode);
-    TREEPANE.updateUI();
+    this.TREEPANE.updateUI();
   }
   DefaultMutableTreeNode node=(DefaultMutableTreeNode)SERVERTREE.getLastSelectedPathComponent();
   Object usrobj=node.getUserObject();

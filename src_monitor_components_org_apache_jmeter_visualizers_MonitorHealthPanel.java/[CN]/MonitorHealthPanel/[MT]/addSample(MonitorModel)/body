@@ -9,13 +9,12 @@
       SERVERMAP.put(model.getURL(),pane);
     }
     pane.updateGui(model);
-    this.SERVERS.updateUI();
   }
  else {
     ServerPanel newpane=new ServerPanel(model);
     SERVERMAP.put(model.getURL(),newpane);
     this.SERVERS.add(newpane);
     newpane.updateGui(model);
-    this.SERVERS.updateUI();
   }
+  this.SERVERS.updateUI();
 }
