@@ -1,0 +1,14 @@
+{
+  Object value=objects.get(row);
+  Method setMethod=(Method)setMethods.get(col);
+  try {
+    setMethod.invoke(value,new Object[]{cellValue});
+  }
+ catch (  IllegalAccessException e) {
+    log.error("Illegal method access",e);
+  }
+catch (  InvocationTargetException e) {
+    log.error("incorrect method access",e);
+  }
+  super.fireTableDataChanged();
+}

@@ -4,10 +4,12 @@
   assertTrue(replacer.variables.containsKey("server"));
   TestElement element=new TestPlan();
   element.setProperty("domain","jakarta.apache.org");
-  List args=new LinkedList();
+  List args=new ArrayList();
   args.add("username is jack");
   args.add("jacks_password");
   element.setProperty("args",args);
   replacer.reverseReplace(element);
   assertEquals("${server}",element.getProperty("domain"));
+  args=(List)element.getProperty("args");
+  assertEquals("${password}",args.get(1));
 }

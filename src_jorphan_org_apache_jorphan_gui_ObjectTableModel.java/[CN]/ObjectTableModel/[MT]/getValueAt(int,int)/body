@@ -1,0 +1,14 @@
+{
+  Object value=objects.get(row);
+  Method getMethod=(Method)getMethods.get(col);
+  try {
+    return getMethod.invoke(value,new Object[0]);
+  }
+ catch (  IllegalAccessException e) {
+    log.error("Illegal method access",e);
+  }
+catch (  InvocationTargetException e) {
+    log.error("incorrect method access",e);
+  }
+  return null;
+}

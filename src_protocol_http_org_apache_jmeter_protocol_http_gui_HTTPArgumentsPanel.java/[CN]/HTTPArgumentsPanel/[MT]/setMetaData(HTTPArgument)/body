@@ -1,9 +1,0 @@
-{
-  Data model=tableModel.getData();
-  if (((Boolean)model.getColumnValue(INCLUDE_EQUALS)).booleanValue() || model.getColumnValue(Arguments.COLUMN_NAMES[1]).toString().length() > 0) {
-    arg.setMetaData("=");
-  }
- else {
-    arg.setMetaData("");
-  }
-}

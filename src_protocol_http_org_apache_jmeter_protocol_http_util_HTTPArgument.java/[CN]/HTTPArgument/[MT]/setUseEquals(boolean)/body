@@ -1,0 +1,9 @@
+{
+  if (ue) {
+    setMetaData("=");
+  }
+ else {
+    setMetaData("");
+  }
+  setProperty(USE_EQUALS,new Boolean(ue));
+}

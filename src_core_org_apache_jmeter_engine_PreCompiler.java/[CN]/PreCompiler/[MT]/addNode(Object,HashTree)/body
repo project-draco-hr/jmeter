@@ -1,6 +1,9 @@
 {
   if (node instanceof TestPlan) {
     replacer.setUserDefinedVariables(((TestPlan)node).getUserDefinedVariables());
+    JMeterVariables vars=new JMeterVariables();
+    vars.putAll(((TestPlan)node).getUserDefinedVariables());
+    JMeterContextService.getContext().setVariables(vars);
   }
   if (node instanceof TestElement) {
     try {

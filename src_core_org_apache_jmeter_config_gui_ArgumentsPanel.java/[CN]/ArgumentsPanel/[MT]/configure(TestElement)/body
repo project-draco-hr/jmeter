@@ -5,7 +5,7 @@
     Iterator iter=((Arguments)el).getArguments().iterator();
     while (iter.hasNext()) {
       Argument arg=(Argument)iter.next();
-      tableModel.addRow(new Object[]{arg.getName(),arg.getValue()});
+      tableModel.addRow(arg);
     }
   }
   checkDeleteStatus();

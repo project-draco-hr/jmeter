@@ -4,4 +4,7 @@
   variables.addParameter("username","jack");
   variables.addParameter("password","jacks_password");
   variables.addParameter("regex",".*");
+  JMeterVariables vars=new JMeterVariables();
+  vars.put("server","jakarta.apache.org");
+  JMeterContextService.getContext().setVariables(vars);
 }

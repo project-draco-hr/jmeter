@@ -1,5 +1,5 @@
 {
-  if (getAlwaysEncode()) {
+  if (isAlwaysEncoded()) {
     return cache.getEncoded(getName());
   }
  else {

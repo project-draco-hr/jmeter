@@ -1,5 +1,5 @@
 {
-  setAlwaysEncode(true);
+  setAlwaysEncoded(true);
   if (alreadyEncoded) {
     name=URLDecoder.decode(name);
     value=URLDecoder.decode(value.toString());

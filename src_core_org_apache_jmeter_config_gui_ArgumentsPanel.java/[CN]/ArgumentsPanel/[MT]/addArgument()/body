@@ -1,7 +1,6 @@
 {
   stopTableEditing();
-  tableModel.addNewRow();
-  tableModel.fireTableDataChanged();
+  tableModel.addRow(makeNewArgument());
   delete.setEnabled(true);
   int rowToSelect=tableModel.getRowCount() - 1;
   table.setRowSelectionInterval(rowToSelect,rowToSelect);

@@ -1,3 +1,3 @@
 {
-  tableModel=new PowerTableModel(new String[]{Arguments.COLUMN_NAMES[0],Arguments.COLUMN_NAMES[1]},new Class[]{String.class,String.class});
+  tableModel=new ObjectTableModel(new String[]{Arguments.COLUMN_NAMES[0],Arguments.COLUMN_NAMES[1]},new String[]{"name","value"},new Class[]{String.class,Object.class},new Class[]{String.class,String.class},new Argument());
 }

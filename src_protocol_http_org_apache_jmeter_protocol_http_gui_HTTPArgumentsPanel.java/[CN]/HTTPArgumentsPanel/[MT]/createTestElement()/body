@@ -1,21 +1,9 @@
 {
-  Data model=tableModel.getData();
+  Iterator modelData=tableModel.iterator();
   Arguments args=new Arguments();
-  model.reset();
-  while (model.next()) {
-    if (((Boolean)model.getColumnValue(ENCODE_OR_NOT)).booleanValue()) {
-      HTTPArgument arg=new HTTPArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1]));
-      setMetaData(arg);
-      args.addArgument(arg);
-    }
- else {
-      HTTPArgument arg=new HTTPArgument();
-      arg.setAlwaysEncode(false);
-      arg.setName((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]));
-      arg.setValue(model.getColumnValue(Arguments.COLUMN_NAMES[1]));
-      setMetaData(arg);
-      args.addArgument(arg);
-    }
+  while (modelData.hasNext()) {
+    HTTPArgument arg=(HTTPArgument)modelData.next();
+    args.addArgument(arg);
   }
   this.configureTestElement(args);
   return (TestElement)args.clone();
