@@ -14,7 +14,7 @@
   log.debug("Saving element: " + el.getClass());
   StringWriter writer=new StringWriter();
   SaveService.saveElement(el,writer);
-  el=SaveService.loadElement(new StringReader(writer.toString()));
+  el=(TestElement)SaveService.loadElement(new StringReader(writer.toString()));
   log.debug("Successfully saved");
   guiItem.configure(el);
   assertEquals("CONFIGURE-TEST: Failed on " + name,el.getPropertyAsString(TestElement.NAME),guiItem.getName());
