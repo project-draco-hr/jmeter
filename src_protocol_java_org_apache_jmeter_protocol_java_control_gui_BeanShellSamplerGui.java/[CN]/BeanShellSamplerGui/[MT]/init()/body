@@ -3,9 +3,10 @@
   setBorder(makeBorder());
   Box box=Box.createVerticalBox();
   box.add(makeTitlePanel());
+  box.add(createParameterPanel());
   box.add(createFilenamePanel());
   add(box,BorderLayout.NORTH);
-  JPanel panel=createSqlPanel();
+  JPanel panel=createScriptPanel();
   add(panel,BorderLayout.CENTER);
   add(Box.createVerticalStrut(panel.getPreferredSize().height),BorderLayout.WEST);
 }
