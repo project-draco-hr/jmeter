@@ -1,4 +1,10 @@
 {
   HttpsURLConnection secureConn=(HttpsURLConnection)conn;
   secureConn.setSSLSocketFactory(this.getContext().getSocketFactory());
+  HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+    public boolean verify(    String urlHostname,    String certHostname){
+      return true;
+    }
+  }
+);
 }
