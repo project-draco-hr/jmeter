@@ -8,9 +8,6 @@
     strClassName=(String)iterClasses.next();
     if ((strClassName.indexOf("$") == -1) || innerClasses) {
       try {
-        if (strClassName == null) {
-          continue;
-        }
         c=Class.forName(strClassName,false,Thread.currentThread().getContextClassLoader());
         if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers())) {
           bIsSubclass=theClass.isAssignableFrom(c);

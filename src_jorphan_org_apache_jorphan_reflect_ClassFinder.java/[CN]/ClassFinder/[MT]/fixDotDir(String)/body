@@ -1,5 +1,6 @@
 {
-  if (path != null && path.equals(".")) {
+  if (path == null)   return null;
+  if (path.equals(".")) {
     return System.getProperty("user.dir");
   }
  else {
