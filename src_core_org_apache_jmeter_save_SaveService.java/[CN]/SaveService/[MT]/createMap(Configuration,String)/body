@@ -3,17 +3,17 @@
   Configuration[] items=config.getChildren();
   for (int i=0; i < items.length; i++) {
     if (items[i].getName().equals("property")) {
-      JMeterProperty prop=createProperty(items[i]);
+      JMeterProperty prop=createProperty(items[i],testClass);
       map.put(prop.getName(),prop);
     }
  else     if (items[i].getName().equals("testelement")) {
       map.put(items[i].getAttribute("name",""),new TestElementProperty(items[i].getAttribute("name",""),createTestElement(items[i])));
     }
  else     if (items[i].getName().equals("collection")) {
-      map.put(items[i].getAttribute("name"),new CollectionProperty(items[i].getAttribute("name",""),createCollection(items[i])));
+      map.put(items[i].getAttribute("name"),new CollectionProperty(items[i].getAttribute("name",""),createCollection(items[i],testClass)));
     }
  else     if (items[i].getName().equals("map")) {
-      map.put(items[i].getAttribute("name",""),new MapProperty(items[i].getAttribute("name",""),createMap(items[i])));
+      map.put(items[i].getAttribute("name",""),new MapProperty(items[i].getAttribute("name",""),createMap(items[i],testClass)));
     }
   }
   return map;

@@ -1,11 +1,12 @@
 {
   TestElement element=null;
-  element=(TestElement)Class.forName(NameUpdater.getCurrentName((String)config.getAttribute("class"))).newInstance();
+  String testClass=(String)config.getAttribute("class");
+  element=(TestElement)Class.forName(NameUpdater.getCurrentName(testClass)).newInstance();
   Configuration[] children=config.getChildren();
   for (int i=0; i < children.length; i++) {
     if (children[i].getName().equals("property")) {
       try {
-        element.setProperty(createProperty(children[i]));
+        element.setProperty(createProperty(children[i],testClass));
       }
  catch (      Exception ex) {
         log.error("Problem loading property",ex);
@@ -16,10 +17,10 @@
       element.setProperty(new TestElementProperty(children[i].getAttribute("name",""),createTestElement(children[i])));
     }
  else     if (children[i].getName().equals("collection")) {
-      element.setProperty(new CollectionProperty(children[i].getAttribute("name",""),createCollection(children[i])));
+      element.setProperty(new CollectionProperty(children[i].getAttribute("name",""),createCollection(children[i],testClass)));
     }
  else     if (children[i].getName().equals("map")) {
-      element.setProperty(new MapProperty(children[i].getAttribute("name",""),createMap(children[i])));
+      element.setProperty(new MapProperty(children[i].getAttribute("name",""),createMap(children[i],testClass)));
     }
   }
   return element;
