@@ -21,8 +21,9 @@
       }
  else       if (node instanceof BaseHrefTag) {
         BaseHrefTag baseHref=(BaseHrefTag)node;
+        String baseref=baseHref.getBaseUrl().toString();
         try {
-          if (!baseHref.equals("")) {
+          if (!baseref.equals("")) {
             baseUrl=new URL(baseUrl,baseHref.getBaseUrl() + "/");
           }
         }
