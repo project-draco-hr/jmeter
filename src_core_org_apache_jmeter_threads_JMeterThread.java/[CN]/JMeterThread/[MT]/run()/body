@@ -2,6 +2,7 @@
   try {
     threadContext=JMeterContextService.getContext();
     threadContext.setVariables(threadVars);
+    threadContext.setThreadNum(getThreadNum());
     initializeThreadListeners();
     testTree.traverse(compiler);
     running=true;

@@ -2,6 +2,15 @@
   threadVars.incIteration();
   Iterator iter=threadListeners.iterator();
   while (iter.hasNext()) {
-    ((ThreadListener)iter.next()).iterationStarted(threadVars.getIteration());
+    ThreadListener listener=(ThreadListener)iter.next();
+    if (listener instanceof TestElement) {
+      ((TestElement)listener).setRunningVersion(true);
+      listener.iterationStarted(threadVars.getIteration());
+      ((TestElement)listener).recoverRunningVersion();
+      ((TestElement)listener).setRunningVersion(false);
+    }
+ else {
+      listener.iterationStarted(threadVars.getIteration());
+    }
   }
 }

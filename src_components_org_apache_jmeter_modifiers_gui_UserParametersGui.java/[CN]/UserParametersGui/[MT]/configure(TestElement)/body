@@ -13,8 +13,9 @@
   while (iter.hasNext()) {
     String colName=THREAD_COLUMNS + "_" + count;
     tableModel.addNewColumn(colName,String.class);
-    tableModel.setColumnData(count,(List)iter.next());
+    tableModel.setColumnData(count,(List)iter.next().getObjectValue());
     count++;
   }
+  perIterationCheck.setSelected(params.isPerIteration());
   super.configure(el);
 }

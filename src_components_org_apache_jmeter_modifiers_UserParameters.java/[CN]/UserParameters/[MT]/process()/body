@@ -1,10 +1,5 @@
 {
-  PropertyIterator namesIter=getNames().iterator();
-  PropertyIterator valueIter=getValues().iterator();
-  JMeterVariables jmvars=JMeterContextService.getContext().getVariables();
-  while (namesIter.hasNext() && valueIter.hasNext()) {
-    String name=namesIter.next().getStringValue();
-    String value=valueIter.next().getStringValue();
-    jmvars.put(name,value);
+  if (!isPerIteration()) {
+    setValues();
   }
 }
