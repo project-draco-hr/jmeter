@@ -1,5 +1,7 @@
 {
-  running=false;
-  Thread stopThread=new Thread(this);
-  stopThread.start();
+  if (running) {
+    running=false;
+    Thread stopThread=new Thread(this);
+    stopThread.start();
+  }
 }
