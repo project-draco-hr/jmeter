@@ -1,3 +1,8 @@
 {
-  return getPropertyAsInt(LOOPS);
+  try {
+    return Integer.parseInt(getPropertyAsString(LOOPS));
+  }
+ catch (  NumberFormatException e) {
+    return 0;
+  }
 }
