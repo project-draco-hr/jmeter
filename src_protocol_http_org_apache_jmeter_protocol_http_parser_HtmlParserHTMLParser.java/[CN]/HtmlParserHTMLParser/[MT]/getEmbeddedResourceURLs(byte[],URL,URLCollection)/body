@@ -50,6 +50,10 @@
           binUrlStr=img.getImageURL();
         }
       }
+ else       if (node instanceof ScriptTag) {
+        ScriptTag script=(ScriptTag)node;
+        binUrlStr=script.getAttribute("src");
+      }
       if (binUrlStr == null) {
         continue;
       }

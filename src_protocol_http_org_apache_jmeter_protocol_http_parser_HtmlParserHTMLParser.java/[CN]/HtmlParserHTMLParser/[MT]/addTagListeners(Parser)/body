@@ -7,4 +7,5 @@
   parser.addScanner(linkScanner.createBaseHREFScanner("-b"));
   parser.addScanner(new InputTagScanner());
   parser.addScanner(new AppletScanner());
+  parser.addScanner(new ScriptScanner());
 }
