@@ -1,10 +1,7 @@
 {
-  String contentType=(String)headers.get("Content-Type");
-  if (contentType == null) {
-    contentType=(String)headers.get("Content-type");
+  Header contentTypeHeader=(Header)headers.get("content-type");
+  if (contentTypeHeader != null) {
+    return contentTypeHeader.getValue();
   }
-  if (contentType == null) {
-    contentType=(String)headers.get("content-type");
-  }
-  return contentType;
+  return "";
 }

@@ -3,9 +3,8 @@
   Iterator keys=headers.keySet().iterator();
   while (keys.hasNext()) {
     String key=(String)keys.next();
-    if (!key.equalsIgnoreCase("proxy-connection") && !key.equalsIgnoreCase("content-length")) {
-      Header h=new Header(key,(String)headers.get(key));
-      manager.add(h);
+    if (!key.equals("proxy-connection") && !key.equals("content-length")) {
+      manager.add((Header)headers.get(key));
     }
   }
   manager.setName("Browser-derived headers");
