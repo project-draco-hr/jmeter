@@ -16,17 +16,21 @@
       }
     }
  else     if (value instanceof Collection) {
-      Iterator iter2=((Collection)value).iterator();
       Collection localCollection=(Collection)getProperty(key);
       if (localCollection == null) {
         setProperty(key,value);
       }
  else {
+        Iterator iter2=((Collection)value).iterator();
         while (iter2.hasNext()) {
           Object item=iter2.next();
           if (!localCollection.contains(item)) {
-            localCollection.add(item);
+            localCollection.remove(item);
           }
+        }
+        iter2=((Collection)value).iterator();
+        while (iter2.hasNext()) {
+          localCollection.add(iter2.next());
         }
       }
     }
