@@ -1,8 +1,0 @@
-{
-  super.setProperty(key,prop);
-  log.error("Setting property in HTTPSampler: " + key);
-  if (PATH.equals(key)) {
-    log.error("Setting encoded path");
-    setEncodedPath(prop);
-  }
-}

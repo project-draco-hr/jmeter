@@ -1,7 +1,7 @@
 {
   model.clearData();
   while (iter.hasNext()) {
-    model.addRow(new Object[]{iter.next()});
+    model.addRow(new Object[]{iter.next().getStringValue()});
   }
   model.fireTableDataChanged();
 }

@@ -1,8 +1,8 @@
 {
   boolean ok=true;
-  Iterator iter=getExcludePatterns().iterator();
+  PropertyIterator iter=getExcludePatterns().iterator();
   while (iter.hasNext()) {
-    String item=((StringProperty)iter.next()).getStringValue();
+    String item=iter.next().getStringValue();
     Pattern pattern=patternCache.getPattern(item,Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
     StringBuffer url=new StringBuffer(sampler.getDomain());
     url.append(":");

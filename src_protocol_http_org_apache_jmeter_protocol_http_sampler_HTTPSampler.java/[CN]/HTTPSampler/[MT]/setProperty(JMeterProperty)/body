@@ -1,8 +1,6 @@
 {
-  log.debug("setting property " + prop.getName() + " in HTTPSampler");
   super.setProperty(prop);
   if (PATH.equals(prop.getName())) {
-    log.error("Setting encoded path");
     setEncodedPath(prop.getStringValue());
   }
 }
