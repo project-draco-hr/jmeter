@@ -1,5 +1,8 @@
 {
   List menuCategories=new LinkedList();
+  if (beanInfo.getBeanDescriptor().isExpert() && !JMeterUtils.isExpertMode()) {
+    return null;
+  }
   if (Assertion.class.isAssignableFrom(testBeanClass)) {
     menuCategories.add(MenuFactory.ASSERTIONS);
   }

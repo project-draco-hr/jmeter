@@ -6,7 +6,7 @@
   editors=new PropertyEditor[descriptors.length];
   for (int i=0; i < descriptors.length; i++) {
     String name=descriptors[i].getName();
-    if (descriptors[i].isHidden() || descriptors[i].getReadMethod() == null || descriptors[i].getWriteMethod() == null) {
+    if (descriptors[i].isHidden() || (descriptors[i].isExpert() && !JMeterUtils.isExpertMode()) || descriptors[i].getReadMethod() == null || descriptors[i].getWriteMethod() == null) {
       log.debug("No editor for property " + name);
       editors[i]=null;
       continue;
