@@ -4,7 +4,7 @@
       if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
         String ref=e.getURL().getRef();
         if (ref != null && ref.length() > 0) {
-          log.warn("reference to scroll to = " + ref);
+          log.debug("reference to scroll to = " + ref);
           scrollToReference(ref);
         }
       }
