@@ -2,7 +2,9 @@
   try {
     GuiPackage.getInstance().getReplacer().reverseReplace(sampler);
     for (int i=0; i < configs.length; i++) {
-      GuiPackage.getInstance().getReplacer().reverseReplace(configs[i]);
+      if (configs[i] != null) {
+        GuiPackage.getInstance().getReplacer().reverseReplace(configs[i]);
+      }
     }
   }
  catch (  InvalidVariableException e) {

@@ -4,8 +4,15 @@
   portField.addKeyListener(this);
   JLabel label=new JLabel(JMeterUtils.getResString("port"));
   label.setLabelFor(portField);
+  httpHeaders=new JCheckBox(JMeterUtils.getResString("proxy_headers"));
+  httpHeaders.setName(ProxyControl.CAPTURE_HTTP_HEADERS);
+  httpHeaders.setSelected(true);
+  httpHeaders.addActionListener(this);
+  httpHeaders.setActionCommand(ProxyControl.CAPTURE_HTTP_HEADERS);
   HorizontalPanel panel=new HorizontalPanel();
   panel.add(label);
   panel.add(portField);
+  panel.add(Box.createHorizontalStrut(10));
+  panel.add(httpHeaders);
   return panel;
 }

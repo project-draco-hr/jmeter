@@ -3,6 +3,7 @@
   super.configure(element);
   model=(ProxyControl)element;
   portField.setText(model.getPropertyAsString(ProxyControl.PORT));
+  httpHeaders.setSelected(model.getPropertyAsBoolean(ProxyControl.CAPTURE_HTTP_HEADERS));
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());
   repaint();

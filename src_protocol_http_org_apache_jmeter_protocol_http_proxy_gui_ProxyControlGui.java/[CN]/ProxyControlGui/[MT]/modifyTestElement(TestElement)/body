@@ -1,9 +1,10 @@
 {
   configureTestElement(el);
   if (el instanceof ProxyControl) {
-    ((ProxyControl)el).setPort(portField.getText());
-    setIncludeListInProxyControl((ProxyControl)el);
-    setExcludeListInProxyControl((ProxyControl)el);
     model=(ProxyControl)el;
+    model.setPort(portField.getText());
+    setIncludeListInProxyControl(model);
+    setExcludeListInProxyControl(model);
+    model.setCaptureHttpHeaders(httpHeaders.isSelected());
   }
 }
