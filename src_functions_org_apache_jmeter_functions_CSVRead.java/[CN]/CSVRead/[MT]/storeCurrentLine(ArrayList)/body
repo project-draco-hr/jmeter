@@ -1,0 +1,10 @@
+{
+  String id=getId();
+  log.debug(id + "storing " + currentLine);
+  if (currentLine == null) {
+    getThreadData().remove(id);
+  }
+ else {
+    getThreadData().put(id,currentLine);
+  }
+}

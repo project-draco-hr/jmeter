@@ -1,0 +1,32 @@
+{
+  try {
+    JMeterVariables vars=getVariables();
+    ArrayList processedLines=null;
+    String fileName=null;
+    fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();
+    myName=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
+    FileDataContainer fileData=getFileData(fileName);
+    if (myName.equals("next()") || myName.equals("next")) {
+      fileData.incrementRowPosition();
+      storeCurrentLine(null);
+    }
+    processedLines=reloadCurrentLine();
+    if (fileData != null && processedLines == null) {
+      processedLines=(ArrayList)fileData.getNextLine();
+      this.storeCurrentLine(processedLines);
+    }
+    int columnIndex=0;
+    try {
+      columnIndex=Integer.parseInt(myName);
+      myValue=(String)processedLines.get(columnIndex);
+    }
+ catch (    Exception e) {
+      myValue="";
+    }
+    log.debug(Thread.currentThread().getName() + ">>>> execute (" + fileName+ " , "+ myName+ ")   "+ this.hashCode());
+  }
+ catch (  Exception e) {
+    log.error("execute",e);
+  }
+  return myValue;
+}

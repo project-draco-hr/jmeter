@@ -1,0 +1,4 @@
+{
+  log.debug(getId() + "reloaded " + getThreadData().get(getId()));
+  return (ArrayList)getThreadData().get(getId());
+}

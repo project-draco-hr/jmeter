@@ -1,0 +1,21 @@
+{
+  FileDataContainer fileData=new FileDataContainer();
+  openFile(fileName);
+  if (null != myBread) {
+    try {
+      String line=myBread.readLine();
+      while (line != null) {
+        fileData.addLine(line);
+        line=myBread.readLine();
+      }
+      myBread.close();
+      setFileData(fileData);
+      return fileData;
+    }
+ catch (    java.io.IOException e) {
+      log.error("load(" + fileName + ")",e);
+      throw e;
+    }
+  }
+  return fileData;
+}

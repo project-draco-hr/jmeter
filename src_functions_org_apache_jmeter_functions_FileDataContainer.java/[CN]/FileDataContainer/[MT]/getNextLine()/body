@@ -1,0 +1,10 @@
+{
+  ArrayList result=null;
+  if (fileData != null && fileData.size() > 0) {
+    if (rowPosition == -1) {
+      rowPosition=0;
+    }
+    result=(ArrayList)fileData.get(rowPosition);
+  }
+  return result;
+}

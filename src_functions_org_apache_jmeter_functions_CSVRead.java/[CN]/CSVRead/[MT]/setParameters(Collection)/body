@@ -1,0 +1,6 @@
+{
+  log.debug(getId() + "setParameter - Collection" + parameters);
+  reset();
+  values=parameters.toArray();
+  if (values.length > 2)   throw new InvalidVariableException();
+}
