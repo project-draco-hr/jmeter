@@ -22,7 +22,9 @@
  else       if (node instanceof BaseHrefTag) {
         BaseHrefTag baseHref=(BaseHrefTag)node;
         try {
-          baseUrl=new URL(baseUrl,baseHref.getBaseUrl() + "/");
+          if (!baseHref.equals("")) {
+            baseUrl=new URL(baseUrl,baseHref.getBaseUrl() + "/");
+          }
         }
  catch (        MalformedURLException e1) {
           throw new HTMLParseException(e1);
