@@ -7,7 +7,7 @@
     if (TestElement.class.isAssignableFrom(descriptors[i].getPropertyType()) && descriptors[i].getPropertyEditorClass() == null)     continue;
     String name=descriptors[i].getName();
     bundle.getString(name + ".displayName");
-    String group=(String)descriptors[i].getValue(TestBeanGUI.GROUP);
+    String group=(String)descriptors[i].getValue(GenericTestBeanCustomizer.GROUP);
     if (group != null)     bundle.getString(group + ".displayName");
   }
 }

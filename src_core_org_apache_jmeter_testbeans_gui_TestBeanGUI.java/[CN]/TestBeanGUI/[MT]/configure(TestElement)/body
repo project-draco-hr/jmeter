@@ -1,13 +1,23 @@
 {
+  if (!initialized)   init();
   super.configure(element);
-  for (int i=0; i < editors.length; i++) {
-    if (editors[i] == null)     continue;
-    JMeterProperty jprop=element.getProperty(descriptors[i].getName());
-    try {
-      setEditorValue(i,jprop.getObjectValue());
-    }
- catch (    IllegalArgumentException e) {
-      throw new Error("Bad property value." + e);
-    }
+  propertyMap.clear();
+  for (PropertyIterator jprops=element.propertyIterator(); jprops.hasNext(); ) {
+    JMeterProperty jprop=jprops.next();
+    propertyMap.put(jprop.getName(),jprop.getObjectValue());
   }
+  if (customizer != null) {
+    customizer.setObject(propertyMap);
+  }
+ else {
+    if (initialized)     remove(customizerIndexInPanel);
+    Customizer c=(Customizer)customizers.get(element);
+    if (c == null) {
+      c=createCustomizer();
+      c.setObject(propertyMap);
+      customizers.put(element,c);
+    }
+    add((Component)c,BorderLayout.CENTER);
+  }
+  initialized=true;
 }

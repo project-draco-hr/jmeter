@@ -1,6 +1,7 @@
 {
   if (value != null) {
-    guiComponent.configure((TestElement)value);
+    element=(TestElement)value;
+    guiComponent.configure(element);
     firePropertyChange();
   }
 }

@@ -1,6 +1,9 @@
 {
   try {
     TestElement element=(TestElement)testBeanClass.newInstance();
+    configure(element);
+    super.clear();
+    configureTestElement(element);
     modifyTestElement(element);
     return element;
   }

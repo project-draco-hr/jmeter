@@ -24,24 +24,6 @@
     e.setTags(tags);
     guiEditor=e;
   }
-  WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!notNull,!notExpression,!notOther);
-  Object defaultValue=descriptor.getValue(DEFAULT);
-  try {
-    wrapper.setValue(defaultValue);
-  }
- catch (  IllegalArgumentException e) {
-    log.error("The default value for property " + descriptor.getName() + " is not valid. Or a default value was not provided and "+ " property attribute notUndefined is set to true.");
-    throw new Error(e.toString());
-  }
-  if (guiEditor instanceof ComboStringEditor) {
-    String v;
-    if (notOther)     v="${}";
- else     if (notNull)     v="";
- else     if (defaultValue != null)     v=wrapper.getAsText();
- else     if (tags != null && tags.length > 0)     v=tags[0];
- else     if (notExpression)     v="";
- else     v="${}";
-    ((ComboStringEditor)guiEditor).setInitialEditValue(v);
-  }
+  WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!notNull,!notExpression,!notOther,descriptor.getValue(DEFAULT));
   return wrapper;
 }
