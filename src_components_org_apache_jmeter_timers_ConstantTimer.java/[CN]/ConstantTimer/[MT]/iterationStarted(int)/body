@@ -5,7 +5,7 @@
     delay=Long.parseLong(delayString);
   }
  catch (  ClassCastException ex) {
-    log.error("Unable to determine delay - you may have used an undefined variable in the test element with the name: " + getName(),ex);
+    log.error("Unable to determine delay - you may have used an undefined " + "variable in the test element with the name: " + getName(),ex);
     delay=0;
   }
 }
