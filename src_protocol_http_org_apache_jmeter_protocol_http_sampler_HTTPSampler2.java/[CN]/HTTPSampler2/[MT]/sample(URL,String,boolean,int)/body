@@ -14,22 +14,16 @@
   res.sampleStart();
   try {
     HttpConnection connection=setupConnection(url,method,res);
-    if (method.equals(HTTPSampler2.POST)) {
+    if (method.equals(POST)) {
       sendPostData(httpMethod);
     }
-    httpMethod.execute(httpState,connection);
-    if (httpMethod.getStatusCode() == HttpStatus.SC_OK) {
-    }
- else {
-      System.err.println("Unexpected failure: " + httpMethod.getStatusLine().toString());
-    }
+    int statusCode=httpMethod.execute(httpState,connection);
     byte[] responseData=httpMethod.getResponseBody();
     res.sampleEnd();
     res.setSampleLabel(httpMethod.getPath());
     res.setResponseData(responseData);
-    int errorLevel=httpMethod.getStatusCode();
-    res.setResponseCode(Integer.toString(errorLevel));
-    res.setSuccessful(200 <= errorLevel && errorLevel <= 399);
+    res.setResponseCode(Integer.toString(statusCode));
+    res.setSuccessful(200 <= statusCode && statusCode <= 399);
     res.setResponseMessage(httpMethod.getStatusText());
     String ct=httpMethod.getResponseHeader("Content-type").getValue();
     res.setContentType(ct);

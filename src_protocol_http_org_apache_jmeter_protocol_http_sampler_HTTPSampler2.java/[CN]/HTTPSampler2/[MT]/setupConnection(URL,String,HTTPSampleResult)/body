@@ -17,7 +17,7 @@
     httpConn.setProxyHost(System.getProperty("http.proxyHost"));
     httpConn.setProxyPort(Integer.parseInt(System.getProperty("http.proxyPort","80")));
   }
-  if (method.equals(HTTPSampler2.POST)) {
+  if (method.equals(POST)) {
     httpMethod=new PostMethod(urlStr);
   }
  else {
@@ -29,7 +29,7 @@
   if (httpConn.isProxied() && httpConn.isSecure()) {
     httpMethod=new ConnectMethod(httpMethod);
   }
-  httpMethod.setFollowRedirects(delegateRedirects && getFollowRedirects());
+  httpMethod.setFollowRedirects(getPropertyAsBoolean(AUTO_REDIRECTS));
   if (getUseKeepAlive()) {
     httpMethod.setRequestHeader("Connection","keep-alive");
   }
@@ -40,7 +40,7 @@
   String cookies=setConnectionCookie(httpMethod,u,getCookieManager());
   if (res != null) {
     StringBuffer sb=new StringBuffer();
-    if (method.equals(HTTPSampler.POST)) {
+    if (method.equals(POST)) {
       String q=this.getQueryString();
       res.setQueryString(q);
       sb.append("Query data:\n");
@@ -59,7 +59,7 @@
     res.setRequestHeaders(hdrs);
   }
   setConnectionAuthorization(httpMethod,u,getAuthManager());
-  if (method.equals(HTTPSampler2.POST)) {
+  if (method.equals(POST)) {
     setPostHeaders((PostMethod)httpMethod);
   }
   return httpConn;

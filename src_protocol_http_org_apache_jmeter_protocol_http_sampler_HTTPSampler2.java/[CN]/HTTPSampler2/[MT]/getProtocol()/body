@@ -1,9 +1,0 @@
-{
-  String protocol=getPropertyAsString(PROTOCOL);
-  if (protocol == null || protocol.equals("")) {
-    return DEFAULT_PROTOCOL;
-  }
- else {
-    return protocol;
-  }
-}

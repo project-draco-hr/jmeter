@@ -5,7 +5,7 @@
   for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {
     String location=encodeSpaces(lastRes.getRedirectLocation());
     try {
-      lastRes=sample(new URL(lastRes.getURL(),location),HTTPSampler2.GET,true,frameDepth);
+      lastRes=sample(new URL(lastRes.getURL(),location),GET,true,frameDepth);
     }
  catch (    MalformedURLException e) {
       lastRes=errorResult(e,location,0);
