@@ -1,3 +1,3 @@
 {
-  return getResStringDefault(key,"[res_key=" + key + "]");
+  return getResStringDefault(key,RES_KEY_PFX + key + "]");
 }
