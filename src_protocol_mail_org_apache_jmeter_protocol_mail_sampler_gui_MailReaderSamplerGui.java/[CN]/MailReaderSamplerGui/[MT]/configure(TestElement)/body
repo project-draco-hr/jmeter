@@ -1,6 +1,6 @@
 {
   MailReaderSampler mrs=(MailReaderSampler)element;
-  if (mrs.getServerType() == MailReaderSampler.TYPE_POP3) {
+  if (mrs.getServerType().equals(MailReaderSampler.TYPE_POP3)) {
     serverTypeBox.setSelectedItem(POP3Label);
     folderBox.setText("INBOX");
   }
