@@ -1,5 +1,5 @@
 {
-  if (dragging && draggedNode != getCurrentNode()) {
+  if (dragging && isValidDragAction(draggedNode,getCurrentNode())) {
     dragging=false;
     JPopupMenu dragNdrop=new JPopupMenu();
     JMenuItem item=new JMenuItem(JMeterUtils.getResString("Insert Before"));
@@ -18,6 +18,9 @@
     item=new JMenuItem(JMeterUtils.getResString("Cancel"));
     dragNdrop.add(item);
     displayPopUp(e,dragNdrop);
+  }
+ else {
+    GuiPackage.getInstance().getMainFrame().repaint();
   }
   dragging=false;
 }

@@ -2,6 +2,9 @@
   if (!dragging) {
     dragging=true;
     draggedNode=getCurrentNode();
+    if (draggedNode.getUserObject() instanceof TestPlanGui || draggedNode.getUserObject() instanceof WorkBenchGui) {
+      dragging=false;
+    }
   }
   changeSelectionIfDragging(e);
 }
