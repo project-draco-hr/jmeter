@@ -9,14 +9,11 @@
     rampUpDelay();
     log.info("Thread " + Thread.currentThread().getName() + " started");
     controller.initialize();
-    int i=0;
+    controller.addIterationListener(new IterationListener());
     while (running) {
       Sampler sam;
       while (running && (sam=controller.next()) != null) {
         try {
-          if (i == 0) {
-            notifyTestListeners();
-          }
           threadContext.setCurrentSampler(sam);
           SamplePackage pack=compiler.configureSampler(sam);
           delay(pack.getTimers());
@@ -28,7 +25,6 @@
           runPostProcessors(pack.getPostProcessors());
           notifyListeners(pack.getSampleListeners(),result);
           compiler.done(pack);
-          i++;
         }
  catch (        Exception e) {
           log.error("",e);
@@ -36,10 +32,6 @@
       }
       if (controller.isDone()) {
         running=false;
-      }
- else {
-        i=0;
-        controller.initialize();
       }
     }
   }
