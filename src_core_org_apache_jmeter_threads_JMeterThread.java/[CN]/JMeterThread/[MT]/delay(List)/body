@@ -2,7 +2,9 @@
   int sum=0;
   Iterator iter=timers.iterator();
   while (iter.hasNext()) {
-    sum+=((Timer)iter.next()).delay();
+    Timer timer=(Timer)iter.next();
+    if (timer instanceof TestBean)     ((TestBean)timer).prepare();
+    sum+=timer.delay();
   }
   if (sum > 0) {
     try {
