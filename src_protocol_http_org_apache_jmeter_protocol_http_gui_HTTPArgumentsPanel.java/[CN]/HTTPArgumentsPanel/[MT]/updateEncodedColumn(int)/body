@@ -1,9 +1,0 @@
-{
-  if (((Boolean)tableModel.getValueAt(row,3)).booleanValue()) {
-    tableModel.setValueAt(URLEncoder.encode((String)tableModel.getValueAt(row,0)) + "=" + URLEncoder.encode((String)tableModel.getValueAt(row,1)),row,2);
-  }
- else {
-    tableModel.setValueAt(tableModel.getValueAt(row,0) + "=" + tableModel.getValueAt(row,1),row,2);
-  }
-  tableModel.fireTableDataChanged();
-}

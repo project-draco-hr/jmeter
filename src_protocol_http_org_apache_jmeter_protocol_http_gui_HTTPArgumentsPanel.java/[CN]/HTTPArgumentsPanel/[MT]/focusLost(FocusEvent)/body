@@ -1,6 +1,0 @@
-{
-  super.focusLost(e);
-  for (int x=0; x < tableModel.getRowCount(); x++) {
-    updateEncodedColumn(x);
-  }
-}
