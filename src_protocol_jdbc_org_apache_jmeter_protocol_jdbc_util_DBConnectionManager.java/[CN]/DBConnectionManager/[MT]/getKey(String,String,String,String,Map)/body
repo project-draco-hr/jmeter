@@ -3,7 +3,7 @@
 synchronized (poolMap) {
     if (!poolMap.containsKey(key)) {
       if (registerDriver(driver)) {
-        poolMap.put(key,createConnectionPool(key,maxUsage,maxConnections));
+        poolMap.put(key,createConnectionPool(key,properties));
       }
  else {
         return null;

@@ -1,0 +1,11 @@
+{
+  Map props=new HashMap();
+  PropertyIterator iter=propertyIterator();
+  while (iter.hasNext()) {
+    JMeterProperty prop=iter.next();
+    if (prop.getName().startsWith(JDBCSAMPLER_PROPERTY_PREFIX)) {
+      props.put(prop.getName(),prop);
+    }
+  }
+  return props;
+}

@@ -1,6 +1,7 @@
 {
   this.key=key;
-  this.maxConnections=maxConnections;
+  this.maxConnections=((JMeterProperty)properties.get(CONNECTIONS)).getIntValue();
+  int maxUsage=((JMeterProperty)properties.get(MAXUSE)).getIntValue();
   validateMaxConnections();
   connectionArray=new ConnectionObject[maxConnections];
   try {
