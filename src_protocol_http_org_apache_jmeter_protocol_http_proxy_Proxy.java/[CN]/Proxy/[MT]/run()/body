@@ -6,15 +6,11 @@
   try {
     byte[] clientRequest=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     sampler=request.getSampler();
-    if (captureHttpHeaders) {
-      headers=request.getHeaderManager();
-      sampler.setHeaderManager(headers);
-    }
+    headers=request.getHeaderManager();
+    sampler.setHeaderManager(headers);
     serverResponse=sampler.sample().getResponseData();
     writeToClient(serverResponse,new BufferedOutputStream(clientSocket.getOutputStream()));
-    if (captureHttpHeaders) {
-      headers.removeHeaderNamed("cookie");
-    }
+    headers.removeHeaderNamed("cookie");
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
@@ -25,7 +21,7 @@ catch (  Exception e) {
     writeErrorToClient(HttpReplyHdr.formTimeout());
   }
  finally {
-    target.deliverSampler(sampler,new TestElement[]{headers},serverResponse);
+    target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},serverResponse);
     try {
       clientSocket.close();
     }

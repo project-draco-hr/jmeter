@@ -2,7 +2,7 @@
   try {
     out.write(inBytes);
     out.flush();
-    log.info("Done writing to client");
+    log.debug("Done writing to client");
   }
  catch (  IOException e) {
     log.error("",e);
