@@ -1,5 +1,5 @@
 {
-  super();
+  super(res.getTime());
   setSampleLabel(res.getSampleLabel());
   setHTTPMethod(res.getHTTPMethod());
   setURL(res.getURL());
@@ -7,7 +7,6 @@
   setResponseData(res.getResponseData());
   setResponseCode(res.getResponseCode());
   setSuccessful(res.isSuccessful());
-  setTime(res.getTime());
   setResponseMessage(res.getResponseMessage());
   setDataType(res.getDataType());
   setResponseHeaders(res.getResponseHeaders());

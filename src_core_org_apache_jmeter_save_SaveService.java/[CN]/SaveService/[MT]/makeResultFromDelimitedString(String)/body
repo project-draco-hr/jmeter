@@ -1,16 +1,18 @@
 {
-  SampleResult result=new SampleResult();
+  SampleResult result=null;
+  long timeStamp=0;
+  long elapsed=0;
   StringTokenizer splitter=new StringTokenizer(delim,defaultDelimiter);
   String text=null;
   if (printMilliseconds) {
     text=splitter.nextToken();
-    result.setTimeStamp(Long.parseLong(text));
+    timeStamp=Long.parseLong(text);
   }
  else   if (formatter != null) {
     text=splitter.nextToken();
     try {
       Date stamp=formatter.parse(text);
-      result.setTimeStamp(stamp.getTime());
+      timeStamp=stamp.getTime();
     }
  catch (    ParseException e) {
       e.printStackTrace();
@@ -18,8 +20,9 @@
   }
   if (saveTime) {
     text=splitter.nextToken();
-    result.setTime(Long.parseLong(text));
+    elapsed=Long.parseLong(text);
   }
+  result=new SampleResult(timeStamp,elapsed);
   if (saveLabel) {
     text=splitter.nextToken();
     result.setSampleLabel(text);
