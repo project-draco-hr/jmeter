@@ -25,6 +25,10 @@
         }
       }
  catch (      ParseException pe) {
+        log.error("Couldn't parse Cookie expiration time.",pe);
+      }
+catch (      Exception e) {
+        log.error("Couln't parse Cookie expiration time: likely JDK bug.",e);
       }
     }
  else     if (key.equalsIgnoreCase("domain")) {
