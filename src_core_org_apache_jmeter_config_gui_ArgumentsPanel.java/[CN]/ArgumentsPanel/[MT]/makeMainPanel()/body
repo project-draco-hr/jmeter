@@ -1,0 +1,11 @@
+{
+  initializeTableModel();
+  table=new JTable(tableModel);
+  table.setEnabled(true);
+  table.addFocusListener(this);
+  table.setCellSelectionEnabled(true);
+  table.setRowSelectionAllowed(true);
+  table.setColumnSelectionAllowed(false);
+  table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  return new JScrollPane(table);
+}

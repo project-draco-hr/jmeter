@@ -1,3 +1,6 @@
 {
-  return subPanel.add(arg0);
+  if (c instanceof JComponent) {
+    ((JComponent)c).setAlignmentY(verticalAlign);
+  }
+  return subPanel.add(c);
 }

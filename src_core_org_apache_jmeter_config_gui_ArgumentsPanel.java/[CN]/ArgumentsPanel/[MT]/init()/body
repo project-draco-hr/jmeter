@@ -1,9 +1,9 @@
 {
-  this.setLayout(new BorderLayout(0,0));
-  this.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
-  Component labelPanel=makeLabelPanel();
-  this.add(labelPanel,BorderLayout.NORTH);
-  this.addInnerPanel();
+  this.setLayout(new BorderLayout());
+  this.add(makeLabelPanel(),BorderLayout.NORTH);
+  this.add(makeMainPanel(),BorderLayout.CENTER);
+  this.add(Box.createVerticalStrut(70),BorderLayout.WEST);
+  this.add(makeButtonPanel(),BorderLayout.SOUTH);
   table.revalidate();
   sizeColumns(table);
 }

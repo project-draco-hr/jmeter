@@ -1,13 +1,8 @@
 {
-  setLayout(new BorderLayout());
-  Box subPanel=Box.createHorizontalBox();
+  setLayout(new BorderLayout(5,0));
   nameLabel=new JLabel(JMeterUtils.getResString("name"));
   nameLabel.setName("name");
-  subPanel.add(nameLabel);
-  subPanel.add(nameField);
-  subPanel.add(Box.createHorizontalGlue());
   nameLabel.setLabelFor(nameField);
-  nameField.setName("name");
   nameField.getDocument().addDocumentListener(new DocumentListener(){
     public void insertUpdate(    DocumentEvent e){
       updateName(nameField.getText());
@@ -19,5 +14,6 @@
     }
   }
 );
-  add(subPanel,BorderLayout.WEST);
+  add(nameLabel,BorderLayout.WEST);
+  add(nameField,BorderLayout.CENTER);
 }

@@ -1,9 +1,5 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  mainPanel.add(makeTitlePanel());
-  this.add(mainPanel);
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
 }

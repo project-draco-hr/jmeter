@@ -1,9 +1,8 @@
 {
   this.setLayout(new BorderLayout(10,10));
-  this.setBorder(BorderFactory.createEmptyBorder(5,10,5,5));
-  Box northPanel=Box.createVerticalBox();
-  northPanel.add(makeTitlePanel());
-  add(northPanel,BorderLayout.NORTH);
+  this.setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(getVariablePanel(),BorderLayout.CENTER);
   JPanel southPanel=new JPanel(new BorderLayout());
   functionalMode=new JCheckBox(JMeterUtils.getResString("functional_mode"));
   southPanel.add(functionalMode,BorderLayout.NORTH);
@@ -11,6 +10,5 @@
   explain.setEditable(false);
   explain.setBackground(this.getBackground());
   southPanel.add(explain,BorderLayout.CENTER);
-  add(getVariablePanel(),BorderLayout.CENTER);
   add(southPanel,BorderLayout.SOUTH);
 }
