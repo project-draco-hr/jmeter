@@ -1,5 +1,5 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  this.setLayout(new BorderLayout());
   JPanel mainPanel=new JPanel();
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
@@ -20,6 +20,6 @@
   JScrollPane areaScrollPane=new JScrollPane(textArea);
   areaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
   areaScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-  mainPanel.add(areaScrollPane);
-  this.add(mainPanel);
+  this.add(mainPanel,BorderLayout.NORTH);
+  this.add(areaScrollPane,BorderLayout.CENTER);
 }
