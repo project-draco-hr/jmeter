@@ -1,17 +1,8 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("random_control_title"));
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  mainPanel.add(getNamePanel());
-  this.add(mainPanel);
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
+  add(createTitleLabel());
+  add(getNamePanel());
   style=new JCheckBox(JMeterUtils.getResString("ignore_subcontrollers"));
-  this.add(style);
+  add(style);
 }
