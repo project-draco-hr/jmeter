@@ -16,17 +16,13 @@
  else {
       first=false;
     }
-    log.debug("Making query: appending name = '" + item.getEncodedName() + "'");
     buf.append(item.getEncodedName());
     if (item.getMetaData() == null) {
-      log.debug("Making query: appending metadata(which was null) = '" + item.getMetaData() + "'");
       buf.append("=");
     }
  else {
-      log.debug("Making query: appending metadata = '" + item.getMetaData() + "'");
       buf.append(item.getMetaData());
     }
-    log.debug("Making query: appending value = '" + item.getEncodedValue() + "'");
     buf.append(item.getEncodedValue());
   }
   return buf.toString();

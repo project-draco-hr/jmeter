@@ -20,7 +20,9 @@
       try {
         String expires=nvp.substring(index + 1);
         Date date=dateFormat.parse(expires);
-        newCookie.setExpires(date.getTime());
+        if (date.getTime() > System.currentTimeMillis()) {
+          newCookie.setExpires(date.getTime());
+        }
       }
  catch (      ParseException pe) {
       }

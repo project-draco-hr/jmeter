@@ -1,8 +1,6 @@
 {
   String pathAndQuery=null;
-  log.debug("#4, encoded path = " + getEncodedPath());
   if (this.getMethod().equals(HTTPSampler.GET) && getQueryString().length() > 0) {
-    log.debug("Path = " + getPath() + "Encoded path = "+ getEncodedPath());
     if (this.getEncodedPath().indexOf("?") > -1) {
       pathAndQuery=this.getEncodedPath() + "&" + getQueryString();
     }
@@ -11,7 +9,6 @@
     }
   }
  else {
-    log.debug("Path = " + getPath() + "Encoded path = "+ getEncodedPath());
     pathAndQuery=this.getEncodedPath();
   }
   if (!pathAndQuery.startsWith("/")) {
