@@ -1,12 +1,7 @@
 {
   Iterator iter=files.keySet().iterator();
   while (iter.hasNext()) {
-    String name=(String)iter.next();
-    Object[] file=(Object[])files.get(name);
-    if (file[1] != null) {
-      ((Reader)file[1]).close();
-      file[1]=null;
-    }
+    closeFile((String)iter.next());
   }
   files.clear();
 }

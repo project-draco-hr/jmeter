@@ -1,0 +1,13 @@
+{
+  Object[] file=(Object[])files.get(filename);
+  if (file != null) {
+    if (file[1] == null) {
+      file[1]=new BufferedWriter(new FileWriter((File)file[0]));
+    }
+ else     if (!(file[1] instanceof Writer)) {
+      throw new IOException("File " + filename + " already in use");
+    }
+    BufferedWriter writer=(BufferedWriter)file[1];
+    writer.write(value);
+  }
+}
