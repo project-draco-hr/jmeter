@@ -1,12 +1,13 @@
 {
-  DBKey key=getKey();
+  DBKey key=null;
   SampleResult res=new SampleResult();
-  Connection conn=null;
-  Statement stmt=null;
   res.setSampleLabel(getName());
   res.setSamplerData(this.toString());
   long startTime=System.currentTimeMillis();
+  Connection conn=null;
+  Statement stmt=null;
   try {
+    key=getKey();
     conn=manager.getConnection(key);
     stmt=conn.createStatement();
     if (stmt.execute(getQuery())) {

@@ -11,5 +11,6 @@
   }
  catch (  SQLException e) {
     log.error("Error initializing JDBC connection pool",e);
+    throw new ConnectionPoolException("Error initializing JDBC connection pool: " + e);
   }
 }
