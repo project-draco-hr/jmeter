@@ -11,7 +11,9 @@
     }
     conn=setupConnection(url,getMethod(),res);
     t0=connect();
-    if (getMethod().equals(HTTPSampler.POST))     sendPostData(conn);
+    if (getMethod().equals(HTTPSampler.POST)) {
+      sendPostData(conn);
+    }
     byte[] responseData=readResponse(conn);
     long t1=System.currentTimeMillis();
     res.setResponseData(responseData);
@@ -30,23 +32,27 @@
     res.setResponseHeaders(getResponseHeaders(conn));
     res.setTime(t1 - t0);
     saveConnectionCookies(conn,url,getCookieManager());
-    if (getFollowRedirects() && 301 <= errorLevel && errorLevel <= 303) {
+    if (301 <= errorLevel && errorLevel <= 303) {
       if (redirects >= MAX_REDIRECTS) {
         throw new IOException("Maximum number of redirects exceeded");
       }
-      redirectUrl(conn,url);
-      SampleResult redirect=res;
-      res=sample(redirects + 1);
-      res.addSubResult(redirect);
-      res.setTime(res.getTime() + redirect.getTime());
+      if (getFollowRedirects()) {
+        redirectUrl(conn,url);
+        SampleResult redirect=res;
+        res=sample(redirects + 1);
+        res.addSubResult(redirect);
+        res.setTime(res.getTime() + redirect.getTime());
+      }
+    }
+ else {
+      if (isImageParser()) {
+        if (imageSampler == null) {
+          imageSampler=new HTTPSamplerFull();
+        }
+        res=imageSampler.downloadEmbeddedResources(res,this);
+      }
     }
     log.debug("End : sample, redirects=" + redirects);
-    if (isImageParser()) {
-      if (imageSampler == null) {
-        imageSampler=new HTTPSamplerFull();
-      }
-      res=imageSampler.downloadEmbeddedResources(res,this);
-    }
     return res;
   }
  catch (  Exception ex) {
