@@ -1,10 +1,52 @@
 {
-  tellThreadsToStop();
-  try {
-    Thread.sleep(10 * allThreads.size());
+  log.info("Running the test!");
+  running=true;
+  SearchByClass testPlan=new SearchByClass(TestPlan.class);
+  getTestTree().traverse(testPlan);
+  Object[] plan=testPlan.getSearchResults().toArray();
+  if (((TestPlan)plan[0]).isSerialized())   serialized=true;
+  compileTree();
+  List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));
+  removeThreadGroups(testLevelElements);
+  SearchByClass searcher=new SearchByClass(ThreadGroup.class);
+  testListeners=new SearchByClass(TestListener.class);
+  setMode();
+  getTestTree().traverse(testListeners);
+  getTestTree().traverse(searcher);
+  TestCompiler.initialize();
+  JMeterThread[] threads;
+  Iterator iter=searcher.getSearchResults().iterator();
+  if (iter.hasNext()) {
+    notifyTestListenersOfStart();
   }
- catch (  InterruptedException e) {
+  notifier=new ListenerNotifier();
+  while (iter.hasNext()) {
+    ThreadGroup group=(ThreadGroup)iter.next();
+    threads=new JMeterThread[group.getNumThreads()];
+    for (int i=0; running && i < threads.length; i++) {
+      ListedHashTree threadGroupTree=(ListedHashTree)searcher.getSubTree(group);
+      threadGroupTree.add(group,testLevelElements);
+      threads[i]=new JMeterThread(cloneTree(threadGroupTree),this,notifier);
+      threads[i].setThreadNum(i);
+      threads[i].setInitialContext(JMeterContextService.getContext());
+      threads[i].setInitialDelay((int)(((float)(group.getRampUp() * 1000) / (float)group.getNumThreads()) * (float)i));
+      threads[i].setThreadName(group.getName() + "-" + (i + 1));
+      Thread newThread=new Thread(threads[i]);
+      newThread.setName(group.getName() + "-" + (i + 1));
+      allThreads.put(threads[i],newThread);
+      if (serialized && !iter.hasNext() && i == threads.length - 1) {
+        serialized=false;
+      }
+      newThread.start();
+    }
+    if (serialized) {
+      while (running && allThreads.size() > 0) {
+        try {
+          Thread.sleep(1000);
+        }
+ catch (        InterruptedException e) {
+        }
+      }
+    }
   }
-  verifyThreadsStopped();
-  notifyTestListenersOfEnd();
 }

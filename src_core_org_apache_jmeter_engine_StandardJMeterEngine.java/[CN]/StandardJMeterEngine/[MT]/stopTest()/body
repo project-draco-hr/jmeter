@@ -1,7 +1,13 @@
 {
   if (running) {
     running=false;
-    Thread stopThread=new Thread(this);
-    stopThread.start();
+    tellThreadsToStop();
+    try {
+      Thread.sleep(10 * allThreads.size());
+    }
+ catch (    InterruptedException e) {
+    }
+    verifyThreadsStopped();
+    notifyTestListenersOfEnd();
   }
 }

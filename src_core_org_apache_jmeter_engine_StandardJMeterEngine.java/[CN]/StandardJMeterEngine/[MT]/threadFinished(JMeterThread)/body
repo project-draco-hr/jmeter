@@ -1,6 +1,6 @@
 {
   allThreads.remove(thread);
-  if (allThreads.size() == 0) {
+  if (!serialized && allThreads.size() == 0) {
     stopTest();
   }
 }

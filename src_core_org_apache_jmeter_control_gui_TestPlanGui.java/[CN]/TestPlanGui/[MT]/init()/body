@@ -3,12 +3,14 @@
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
   add(createVariablePanel(),BorderLayout.CENTER);
-  JPanel southPanel=new JPanel(new BorderLayout());
+  VerticalPanel southPanel=new VerticalPanel();
+  serializedMode=new JCheckBox(JMeterUtils.getResString("testplan.serialized"));
+  southPanel.add(serializedMode);
   functionalMode=new JCheckBox(JMeterUtils.getResString("functional_mode"));
-  southPanel.add(functionalMode,BorderLayout.NORTH);
+  southPanel.add(functionalMode);
   JTextArea explain=new JTextArea(JMeterUtils.getResString("functional_mode_explanation"));
   explain.setEditable(false);
   explain.setBackground(this.getBackground());
-  southPanel.add(explain,BorderLayout.CENTER);
+  southPanel.add(explain);
   add(southPanel,BorderLayout.SOUTH);
 }
