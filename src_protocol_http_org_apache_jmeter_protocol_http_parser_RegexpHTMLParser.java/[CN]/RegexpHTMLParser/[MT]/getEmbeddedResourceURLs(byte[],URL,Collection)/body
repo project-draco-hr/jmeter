@@ -1,5 +1,4 @@
 {
-  Set uniqueURLs=new LinkedHashSet();
   Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
   PatternMatcherInput input=(PatternMatcherInput)localInput.get();
   input.setInput(new String(html));
@@ -28,16 +27,16 @@
       }
       if (s != null) {
         try {
-          uniqueURLs.add(new URL(baseUrl,s));
+          urls.add(new URL(baseUrl,s));
         }
  catch (        MalformedURLException e) {
           if (log.isDebugEnabled()) {
             log.debug("Can't build URL from RL " + s + " in page "+ baseUrl);
           }
-          uniqueURLs.add(s);
+          urls.add(s);
         }
       }
     }
   }
-  return uniqueURLs.iterator();
+  return urls.iterator();
 }

@@ -6,7 +6,7 @@
   int type=node.getNodeType();
 switch (type) {
 case Node.DOCUMENT_NODE:
-    scanNodes(((Document)node).getDocumentElement(),uniqueURLs,baseUrl);
+    scanNodes(((Document)node).getDocumentElement(),urls,baseUrl);
   break;
 case Node.ELEMENT_NODE:
 NamedNodeMap attrs=node.getAttributes();
@@ -21,35 +21,35 @@ if (tmp != null) try {
 break;
 }
 if (name.equalsIgnoreCase("img")) {
-addURL(uniqueURLs,getValue(attrs,"src"),baseUrl);
+addURL(urls,getValue(attrs,"src"),baseUrl);
 break;
 }
 if (name.equalsIgnoreCase("applet")) {
-addURL(uniqueURLs,getValue(attrs,"code"),baseUrl);
+addURL(urls,getValue(attrs,"code"),baseUrl);
 break;
 }
 if (name.equalsIgnoreCase("input")) {
 String src=getValue(attrs,"src");
 String typ=getValue(attrs,"type");
 if ((src != null) && (typ.equalsIgnoreCase("image"))) {
-addURL(uniqueURLs,src,baseUrl);
+addURL(urls,src,baseUrl);
 }
 break;
 }
 if (name.equalsIgnoreCase("link")) {
-addURL(uniqueURLs,getValue(attrs,"href"),baseUrl);
+addURL(urls,getValue(attrs,"href"),baseUrl);
 break;
 }
 String back=getValue(attrs,"background");
 if (back != null) {
-addURL(uniqueURLs,back,baseUrl);
+addURL(urls,back,baseUrl);
 break;
 }
 NodeList children=node.getChildNodes();
 if (children != null) {
 int len=children.getLength();
 for (int i=0; i < len; i++) {
-scanNodes(children.item(i),uniqueURLs,baseUrl);
+scanNodes(children.item(i),urls,baseUrl);
 }
 }
 break;

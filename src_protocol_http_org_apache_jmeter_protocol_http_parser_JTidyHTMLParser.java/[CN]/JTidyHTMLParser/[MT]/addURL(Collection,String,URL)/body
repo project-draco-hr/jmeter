@@ -2,10 +2,10 @@
   if (url == null)   return;
   boolean b=false;
   try {
-    b=uniqueURLs.add(new URL(baseUrl,url));
+    b=urls.add(new URL(baseUrl,url));
   }
  catch (  MalformedURLException mfue) {
-    b=uniqueURLs.add(url);
+    b=urls.add(url);
   }
   if (b) {
     log.debug("Added   " + url);

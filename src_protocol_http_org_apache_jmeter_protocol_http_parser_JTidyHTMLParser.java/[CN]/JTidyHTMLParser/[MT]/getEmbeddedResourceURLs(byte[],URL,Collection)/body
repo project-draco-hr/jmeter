@@ -1,5 +1,4 @@
 {
-  LinkedHashSet uniqueURLs=new LinkedHashSet();
   Document dom=null;
   try {
     dom=(Document)getDOM(html);
@@ -7,6 +6,6 @@
  catch (  SAXException se) {
     throw new HTMLParseException(se);
   }
-  scanNodes(dom,uniqueURLs,baseUrl);
-  return uniqueURLs.iterator();
+  scanNodes(dom,urls,baseUrl);
+  return urls.iterator();
 }

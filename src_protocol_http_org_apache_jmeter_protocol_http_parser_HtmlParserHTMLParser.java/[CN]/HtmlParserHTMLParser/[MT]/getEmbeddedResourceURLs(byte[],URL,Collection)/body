@@ -10,7 +10,6 @@
  catch (  Exception e) {
     throw new HTMLParseException(e);
   }
-  Set uniqueURLs=new LinkedHashSet();
   try {
     for (NodeIterator e=htmlParser.elements(); e.hasMoreNodes(); ) {
       Node node=e.nextNode();
@@ -39,15 +38,15 @@
         continue;
       }
       try {
-        uniqueURLs.add(new URL(baseUrl,binUrlStr));
+        urls.add(new URL(baseUrl,binUrlStr));
       }
  catch (      MalformedURLException mfue) {
-        uniqueURLs.add(binUrlStr);
+        urls.add(binUrlStr);
       }
     }
     log.debug("End   : NewHTTPSamplerFull parseNodes");
   }
  catch (  ParserException e) {
   }
-  return uniqueURLs.iterator();
+  return urls.iterator();
 }
