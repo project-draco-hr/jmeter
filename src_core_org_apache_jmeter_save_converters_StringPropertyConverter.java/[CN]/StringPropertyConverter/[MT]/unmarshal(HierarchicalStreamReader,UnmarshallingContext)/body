@@ -1,4 +1,10 @@
 {
-  StringProperty prop=new StringProperty(reader.getAttribute("name"),reader.getValue());
-  return prop;
+  try {
+    StringProperty prop=new StringProperty(URLDecoder.decode(reader.getAttribute("name"),"UTF-8"),reader.getValue());
+    return prop;
+  }
+ catch (  UnsupportedEncodingException e) {
+    log.warn("System doesn't support utf-8",e);
+    return null;
+  }
 }

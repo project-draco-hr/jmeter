@@ -1,5 +1,10 @@
 {
   StringProperty prop=(StringProperty)obj;
-  writer.addAttribute("name",prop.getName());
+  try {
+    writer.addAttribute("name",URLEncoder.encode(prop.getName(),"UTF-8"));
+  }
+ catch (  UnsupportedEncodingException e) {
+    log.warn("System doesn't support utf-8",e);
+  }
   writer.setValue(prop.getStringValue());
 }
