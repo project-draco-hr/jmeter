@@ -4,7 +4,7 @@
   float[] oldX=new float[_n];
   if (!converge()) {
     if (log.isDebugEnabled()) {
-      log.debug("Warning : " + "equation system resolving is unstable");
+      log.debug("Warning : equation system resolving is unstable");
     }
   }
   for (i=0; i < _n; i++) {
