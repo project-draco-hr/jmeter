@@ -3,6 +3,6 @@
     return createMethod(types).invoke(invokee,getArgs());
   }
  catch (  Exception e) {
-    throw new RuntimeException(e);
+    throw new org.apache.jorphan.util.JMeterError(e);
   }
 }
