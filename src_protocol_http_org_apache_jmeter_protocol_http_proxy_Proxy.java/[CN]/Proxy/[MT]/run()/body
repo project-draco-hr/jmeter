@@ -16,7 +16,7 @@
     byte[] serverResponse=sampler.sample().getResponseData();
     writeToClient(serverResponse,new BufferedOutputStream(ClientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
-    target.deliverSampler(sampler,new TestElement[]{headers});
+    target.deliverSampler(sampler,new TestElement[]{headers},serverResponse);
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
