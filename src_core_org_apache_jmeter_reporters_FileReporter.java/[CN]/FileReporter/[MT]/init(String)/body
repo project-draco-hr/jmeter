@@ -11,7 +11,7 @@
   String line;
   while ((line=reader.readLine()) != null) {
     try {
-      line.trim();
+      line=line.trim();
       if (line.startsWith("#") || line.length() == 0) {
         continue;
       }
