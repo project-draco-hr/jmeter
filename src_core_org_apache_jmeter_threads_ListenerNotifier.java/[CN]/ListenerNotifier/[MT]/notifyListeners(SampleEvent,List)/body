@@ -1,0 +1,7 @@
+{
+  Iterator iter;
+  iter=listeners.iterator();
+  while (iter.hasNext()) {
+    ((SampleListener)iter.next()).sampleOccurred(res);
+  }
+}

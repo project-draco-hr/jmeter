@@ -1,5 +1,10 @@
 {
-  super.addLast(item);
-  super.addLast(listeners);
-  sleepTime=0;
+  if (size() > ABS_MAX) {
+    notifyListeners(item,listeners);
+  }
+ else {
+    super.addLast(item);
+    super.addLast(listeners);
+    sleepTime=0;
+  }
 }
