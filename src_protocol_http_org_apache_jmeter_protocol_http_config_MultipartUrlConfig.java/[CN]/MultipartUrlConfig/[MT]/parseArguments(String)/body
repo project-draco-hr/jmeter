@@ -18,7 +18,7 @@
       String name=parts[i].substring(index,parts[i].indexOf("\"",index));
       index=parts[i].indexOf("\n",index) + 2;
       String value=parts[i].substring(index).trim();
-      this.addArgument(name,value);
+      this.addEncodedArgument(name,value);
     }
   }
 }
