@@ -1,6 +1,9 @@
 {
+  updateCurrentNode();
   guis=new HashMap();
   nodesToGui=new HashMap();
   testBeanGUIs=new HashMap();
-  ActionRouter.getInstance().actionPerformed(new ActionEvent(this,3333,"edit"));
+  Introspector.flushCaches();
+  getMainFrame().setMainPanel((javax.swing.JComponent)getCurrentGui());
+  getMainFrame().setEditMenu(((JMeterGUIComponent)getTreeListener().getCurrentNode()).createPopupMenu());
 }
