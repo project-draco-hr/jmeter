@@ -1,9 +1,22 @@
 {
   ArrayList result=new ArrayList();
-  StringTokenizer tokener=new StringTokenizer(theLine,delim);
+  StringTokenizer tokener=new StringTokenizer(theLine,delim,true);
+  boolean lastWasDelim=true;
   while (tokener.hasMoreTokens()) {
     String token=tokener.nextToken();
-    result.add(token);
+    if (token.equals(delim)) {
+      if (lastWasDelim) {
+        result.add("");
+      }
+      lastWasDelim=true;
+    }
+ else {
+      lastWasDelim=false;
+      result.add(token);
+    }
+  }
+  if (lastWasDelim) {
+    result.add("");
   }
   return result;
 }
