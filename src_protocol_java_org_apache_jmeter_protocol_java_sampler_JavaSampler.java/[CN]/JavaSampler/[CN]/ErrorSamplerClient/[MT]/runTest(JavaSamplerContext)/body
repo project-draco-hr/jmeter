@@ -4,7 +4,7 @@
   SampleResult results=new SampleResult();
   results.setTime(0);
   results.setSuccessful(false);
-  results.setResponseData(new String("Class not found: " + getClassname()).getBytes());
+  results.setResponseData(("Class not found: " + getClassname()).getBytes());
   results.setSampleLabel("ERROR: " + getClassname());
   return results;
 }
