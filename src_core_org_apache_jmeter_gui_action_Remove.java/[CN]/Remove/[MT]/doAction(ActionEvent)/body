@@ -7,4 +7,5 @@
     removeNode(nodes[i]);
   }
   guiPackage.getTreeListener().getJTree().setSelectionPath(newTreePath);
+  guiPackage.updateCurrentGui();
 }
