@@ -1,7 +1,8 @@
 {
-  boolean marked=res.isMarked(getFilename());
+  String filename=getFilename();
+  boolean marked=res.isMarked(filename);
   if (!marked) {
-    res.setMarked(getFilename());
+    res.setMarked(filename);
   }
   return marked;
 }

@@ -1,7 +1,7 @@
 {
   if (SaveService.getOutputFormat() == SaveService.SAVE_AS_XML) {
-    writer.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-    writer.println("<testResults>");
+    writer.println(XML_HEADER);
+    writer.println(TESTRESULTS_START);
   }
  else   if (SaveService.getOutputFormat() == SaveService.SAVE_AS_CSV) {
     if (SaveService.getPrintFieldNames()) {

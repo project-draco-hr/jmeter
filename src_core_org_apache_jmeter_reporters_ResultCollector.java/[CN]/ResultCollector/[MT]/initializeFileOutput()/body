@@ -1,8 +1,9 @@
 {
-  if (out == null && getFilename() != null) {
+  String filename=getFilename();
+  if (out == null && filename != null) {
     if (out == null) {
       try {
-        out=getFileWriter(getFilename());
+        out=getFileWriter(filename);
       }
  catch (      FileNotFoundException e) {
         out=null;

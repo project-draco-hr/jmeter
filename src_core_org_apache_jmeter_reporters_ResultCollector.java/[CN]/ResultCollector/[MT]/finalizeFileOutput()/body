@@ -1,6 +1,6 @@
 {
   if (out != null) {
-    writeFileEnd();
+    writeFileEnd(out);
     out.close();
     files.remove(getFilename());
     out=null;
