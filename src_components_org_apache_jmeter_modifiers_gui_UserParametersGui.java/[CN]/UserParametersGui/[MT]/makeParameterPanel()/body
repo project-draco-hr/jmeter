@@ -2,11 +2,7 @@
   JLabel tableLabel=new JLabel(JMeterUtils.getResString("user_parameters_table"));
   initTableModel();
   paramTable=new JTable(tableModel);
-  paramTable.setRowSelectionAllowed(true);
-  paramTable.setColumnSelectionAllowed(true);
   paramTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-  paramTable.setCellSelectionEnabled(true);
-  paramTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   JPanel paramPanel=new JPanel(new BorderLayout());
   paramPanel.add(tableLabel,BorderLayout.NORTH);
   paramPanel.add(new JScrollPane(paramTable),BorderLayout.CENTER);

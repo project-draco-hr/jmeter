@@ -1,22 +1,27 @@
 {
-  try {
-    GuiPackage.getInstance().updateCurrentNode();
-    Set commandObjects=(Set)commands.get(e.getActionCommand());
-    Iterator iter=commandObjects.iterator();
-    while (iter.hasNext()) {
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
       try {
-        Command c=(Command)iter.next();
-        preActionPerformed(c.getClass(),e);
-        c.doAction(e);
-        postActionPerformed(c.getClass(),e);
+        GuiPackage.getInstance().updateCurrentNode();
+        Set commandObjects=(Set)commands.get(e.getActionCommand());
+        Iterator iter=commandObjects.iterator();
+        while (iter.hasNext()) {
+          try {
+            Command c=(Command)iter.next();
+            preActionPerformed(c.getClass(),e);
+            c.doAction(e);
+            postActionPerformed(c.getClass(),e);
+          }
+ catch (          Exception err) {
+            log.error("",err);
+          }
+        }
       }
- catch (      Exception err) {
-        log.error("",err);
+ catch (      NullPointerException er) {
+        log.error("",er);
+        JMeterUtils.reportErrorToUser("Sorry, this feature (" + e.getActionCommand() + ") not yet implemented");
       }
     }
   }
- catch (  NullPointerException er) {
-    log.error("",er);
-    JMeterUtils.reportErrorToUser("Sorry, this feature (" + e.getActionCommand() + ") not yet implemented");
-  }
+);
 }
