@@ -5,10 +5,8 @@
   res.setDataType(SampleResult.TEXT);
   res.sampleStart();
   try {
-    TextMessage msg=session.createTextMessage();
-    msg.setText(getContent());
-    addJMSProperties(msg);
-    if (getPropertyAsBoolean(IS_ONE_WAY)) {
+    TextMessage msg=createMessage();
+    if (isOneway()) {
       producer.send(msg);
       res.setSuccessful(true);
       res.setResponseData("Oneway request has no response data".getBytes());

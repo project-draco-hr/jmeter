@@ -17,4 +17,5 @@
   initialContextFactory.setText(el.getPropertyAsString(JMSSampler.JNDI_INITIAL_CONTEXT_FACTORY));
   providerUrl.setText(el.getPropertyAsString(JMSSampler.JNDI_CONTEXT_PROVIDER_URL));
   jmsPropertiesPanel.configure((TestElement)el.getProperty(JMSSampler.JMS_PROPERTIES).getObjectValue());
+  jndiPropertiesPanel.configure((TestElement)el.getProperty(JMSSampler.JNDI_PROPERTIES).getObjectValue());
 }

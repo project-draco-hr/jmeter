@@ -1,7 +1,7 @@
 {
   PlaceHolder holder=(PlaceHolder)table.get(id);
-  if (LOGGER.isDebugEnabled()) {
-    LOGGER.debug("put reply id " + id + " for holder "+ holder);
+  if (log.isDebugEnabled()) {
+    log.debug("put reply id " + id + " for holder "+ holder);
   }
   if (holder != null) {
     holder.setReply(reply);

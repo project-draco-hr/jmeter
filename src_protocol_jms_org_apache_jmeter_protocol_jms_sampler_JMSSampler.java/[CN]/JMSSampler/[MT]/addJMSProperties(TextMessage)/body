@@ -1,5 +1,5 @@
 {
-  Map map=getArguments().getArgumentsAsMap();
+  Map map=getArguments(JMSSampler.JMS_PROPERTIES).getArgumentsAsMap();
   Iterator argIt=map.keySet().iterator();
   while (argIt.hasNext()) {
     String name=(String)argIt.next();

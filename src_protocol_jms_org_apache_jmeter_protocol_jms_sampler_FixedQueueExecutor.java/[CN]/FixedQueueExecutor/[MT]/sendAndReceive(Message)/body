@@ -7,8 +7,7 @@ synchronized (request) {
     }
   }
  catch (  InterruptedException e) {
-    System.err.println("Interrupt exception caught");
-    e.printStackTrace();
+    log.warn("Interrupt exception caught",e);
   }
   return MessageAdmin.getAdmin().get(request.getJMSMessageID());
 }

@@ -1,0 +1,6 @@
+{
+  TextMessage msg=session.createTextMessage();
+  msg.setText(getContent());
+  addJMSProperties(msg);
+  return msg;
+}

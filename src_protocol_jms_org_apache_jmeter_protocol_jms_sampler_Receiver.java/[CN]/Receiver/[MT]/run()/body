@@ -5,9 +5,9 @@
     reply=null;
     try {
       reply=consumer.receive();
-      LOGGER.debug("CorrId:" + reply.getJMSCorrelationID());
+      log.debug("CorrId:" + reply.getJMSCorrelationID());
       if (reply.getJMSCorrelationID() == null) {
-        LOGGER.debug("Received message with correlation id null, will discard message");
+        log.debug("Received message with correlation id null, will discard message");
       }
  else {
         MessageAdmin.getAdmin().putReply(reply.getJMSCorrelationID(),reply);

@@ -1,10 +1,10 @@
 {
   PlaceHolder holder=(PlaceHolder)table.remove(id);
-  if (LOGGER.isDebugEnabled()) {
-    LOGGER.debug("get reply for " + id + " for "+ holder);
+  if (log.isDebugEnabled()) {
+    log.debug("get reply for " + id + " for "+ holder);
   }
   if (!holder.hasReply()) {
-    LOGGER.debug("Message " + id + " not found.");
+    log.debug("Message " + id + " not found.");
   }
   return (Message)holder.getReply();
 }

@@ -10,6 +10,8 @@
   element.setProperty(JMSSampler.XML_DATA,soapXml.getText());
   element.setProperty(JMSSampler.JNDI_INITIAL_CONTEXT_FACTORY,initialContextFactory.getText());
   element.setProperty(JMSSampler.JNDI_CONTEXT_PROVIDER_URL,providerUrl.getText());
+  Arguments jndiArgs=(Arguments)jndiPropertiesPanel.createTestElement();
+  element.setProperty(new TestElementProperty(JMSSampler.JNDI_PROPERTIES,jndiArgs));
   Arguments args=(Arguments)jmsPropertiesPanel.createTestElement();
   element.setProperty(new TestElementProperty(JMSSampler.JMS_PROPERTIES,args));
   return element;

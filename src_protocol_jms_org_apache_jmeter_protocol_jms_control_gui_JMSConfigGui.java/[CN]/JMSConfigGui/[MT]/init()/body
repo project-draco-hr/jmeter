@@ -11,14 +11,7 @@
   JPanel receiveQueuePanel=new JPanel(new BorderLayout(5,0));
   receiveQueuePanel.add(receiveQueue);
   jmsQueueingPanel.add(receiveQueuePanel,BorderLayout.SOUTH);
-  JPanel jndiPanel=new JPanel(new BorderLayout());
-  jndiPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_jndi_props")));
-  JPanel contextPanel=new JPanel(new BorderLayout(10,0));
-  contextPanel.add(initialContextFactory);
-  jndiPanel.add(contextPanel,BorderLayout.NORTH);
-  JPanel providerPanel=new JPanel(new BorderLayout(10,0));
-  providerPanel.add(providerUrl);
-  jndiPanel.add(providerPanel,BorderLayout.SOUTH);
+  JPanel jndiPanel=createJNDIPanel();
   JPanel messagePanel=new JPanel(new BorderLayout());
   messagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_message_title")));
   JPanel messageNorthPanel=new JPanel(new BorderLayout());
