@@ -1,7 +1,4 @@
 {
-  JPanel panel=new JPanel();
-  panel.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
-  panel.add(new JLabel(JMeterUtils.getResString("protocol_java_classname")));
   List possibleClasses=null;
   try {
     possibleClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JavaSamplerClient.class});
@@ -10,10 +7,14 @@
  catch (  Exception e) {
     log.debug("Exception getting interfaces.",e);
   }
+  JLabel label=new JLabel(JMeterUtils.getResString("protocol_java_classname"));
   classnameCombo=new JComboBox(possibleClasses.toArray());
   classnameCombo.addActionListener(this);
   classnameCombo.setName(CLASSNAMECOMBO);
   classnameCombo.setEditable(false);
+  label.setLabelFor(classnameCombo);
+  HorizontalPanel panel=new HorizontalPanel();
+  panel.add(label);
   panel.add(classnameCombo);
   return panel;
 }
