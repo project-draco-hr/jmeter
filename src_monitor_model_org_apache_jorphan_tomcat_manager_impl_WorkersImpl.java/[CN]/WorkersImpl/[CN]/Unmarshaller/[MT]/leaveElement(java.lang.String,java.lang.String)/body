@@ -1,0 +1,15 @@
+{
+switch (state) {
+case 3:
+    revertToParentFromLeaveElement(___uri,___local);
+  return;
+case 2:
+if (("" == ___uri) && ("worker" == ___local)) {
+  context.popAttributes();
+  state=3;
+  return;
+}
+break;
+}
+super.leaveElement(___uri,___local);
+}

@@ -1,0 +1,9 @@
+{
+  int idx;
+  state=4;
+  idx=context.getAttribute("","name");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+}

@@ -1,0 +1,28 @@
+{
+switch (state) {
+case 0:
+    if (("" == ___uri) && ("maxSpareThreads" == ___local)) {
+      state=5;
+      return;
+    }
+  if (("" == ___uri) && ("minSpareThreads" == ___local)) {
+    state=7;
+    return;
+  }
+if (("" == ___uri) && ("currentThreadsBusy" == ___local)) {
+  state=9;
+  return;
+}
+if (("" == ___uri) && ("currentThreadCount" == ___local)) {
+state=1;
+return;
+}
+if (("" == ___uri) && ("maxThreads" == ___local)) {
+state=3;
+return;
+}
+revertToParentFromEnterAttribute(___uri,___local);
+return;
+}
+super.enterAttribute(___uri,___local);
+}

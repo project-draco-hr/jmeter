@@ -1,0 +1,14 @@
+{
+switch (state) {
+case 4:
+    if (("" == ___uri) && ("name" == ___local)) {
+      _Connector.add(((org.apache.jorphan.tomcat.manager.impl.ConnectorImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.ConnectorImpl.class),5,___uri,___local)));
+      return;
+    }
+  break;
+case 6:
+revertToParentFromEnterAttribute(___uri,___local);
+return;
+}
+super.enterAttribute(___uri,___local);
+}

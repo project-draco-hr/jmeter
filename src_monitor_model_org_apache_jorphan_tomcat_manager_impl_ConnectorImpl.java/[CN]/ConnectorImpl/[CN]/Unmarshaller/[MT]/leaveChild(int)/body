@@ -1,0 +1,14 @@
+{
+switch (nextState) {
+case 2:
+    state=2;
+  return;
+case 5:
+state=5;
+return;
+case 7:
+state=7;
+return;
+}
+super.leaveChild(nextState);
+}

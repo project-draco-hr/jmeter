@@ -1,0 +1,50 @@
+{
+switch (state) {
+case 3:
+    revertToParentFromEnterAttribute(___uri,___local);
+  return;
+case 1:
+if (("" == ___uri) && ("stage" == ___local)) {
+  _Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+  return;
+}
+if (("" == ___uri) && ("requestBytesSent" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("protocol" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("requestProcessingTime" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("requestBytesReceived" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("method" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("currentQueryString" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("remoteAddr" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("virtualHost" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+if (("" == ___uri) && ("currentUri" == ___local)) {
+_Worker.add(((org.apache.jorphan.tomcat.manager.impl.WorkerImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.WorkerImpl.class),2,___uri,___local)));
+return;
+}
+break;
+}
+super.enterAttribute(___uri,___local);
+}

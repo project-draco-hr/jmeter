@@ -1,0 +1,36 @@
+{
+  if (_ThreadInfo instanceof javax.xml.bind.Element) {
+    context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_ThreadInfo));
+  }
+ else {
+    context.startElement("","threadInfo");
+    context.childAsAttributes(((com.sun.xml.bind.serializer.XMLSerializable)_ThreadInfo));
+    context.endAttributes();
+    context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_ThreadInfo));
+    context.endElement();
+  }
+  if (_RequestInfo != null) {
+    if (_RequestInfo instanceof javax.xml.bind.Element) {
+      context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_RequestInfo));
+    }
+ else {
+      context.startElement("","requestInfo");
+      context.childAsAttributes(((com.sun.xml.bind.serializer.XMLSerializable)_RequestInfo));
+      context.endAttributes();
+      context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_RequestInfo));
+      context.endElement();
+    }
+  }
+  if (_Workers != null) {
+    if (_Workers instanceof javax.xml.bind.Element) {
+      context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_Workers));
+    }
+ else {
+      context.startElement("","workers");
+      context.childAsAttributes(((com.sun.xml.bind.serializer.XMLSerializable)_Workers));
+      context.endAttributes();
+      context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_Workers));
+      context.endElement();
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  try {
+switch (state) {
+case 6:
+      revertToParentFromText(value);
+    return;
+}
+}
+ catch (java.lang.RuntimeException e) {
+handleUnexpectedTextException(value,e);
+}
+}

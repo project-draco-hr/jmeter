@@ -1,0 +1,13 @@
+{
+  super();
+  FACTORY=factory;
+  try {
+    PARSERFACTORY=SAXParserFactory.newInstance();
+    PARSER=PARSERFACTORY.newSAXParser();
+    DOCHANDLER=new MonitorHandler();
+  }
+ catch (  SAXException e) {
+  }
+catch (  ParserConfigurationException e) {
+  }
+}

@@ -1,0 +1,32 @@
+{
+switch (state) {
+case 0:
+    if (("" == ___uri) && ("processingTime" == ___local)) {
+      state=3;
+      return;
+    }
+  if (("" == ___uri) && ("bytesSent" == ___local)) {
+    state=7;
+    return;
+  }
+if (("" == ___uri) && ("requestCount" == ___local)) {
+  state=1;
+  return;
+}
+if (("" == ___uri) && ("errorCount" == ___local)) {
+state=11;
+return;
+}
+if (("" == ___uri) && ("maxTime" == ___local)) {
+state=9;
+return;
+}
+if (("" == ___uri) && ("bytesReceived" == ___local)) {
+state=5;
+return;
+}
+revertToParentFromEnterAttribute(___uri,___local);
+return;
+}
+super.enterAttribute(___uri,___local);
+}

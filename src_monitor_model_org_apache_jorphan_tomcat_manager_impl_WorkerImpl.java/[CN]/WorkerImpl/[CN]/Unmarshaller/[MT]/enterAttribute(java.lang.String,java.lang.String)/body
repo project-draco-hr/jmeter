@@ -1,0 +1,48 @@
+{
+switch (state) {
+case 0:
+    if (("" == ___uri) && ("stage" == ___local)) {
+      state=11;
+      return;
+    }
+  if (("" == ___uri) && ("requestBytesSent" == ___local)) {
+    state=13;
+    return;
+  }
+if (("" == ___uri) && ("protocol" == ___local)) {
+  state=1;
+  return;
+}
+if (("" == ___uri) && ("requestProcessingTime" == ___local)) {
+state=9;
+return;
+}
+if (("" == ___uri) && ("requestBytesReceived" == ___local)) {
+state=5;
+return;
+}
+if (("" == ___uri) && ("currentQueryString" == ___local)) {
+state=19;
+return;
+}
+if (("" == ___uri) && ("method" == ___local)) {
+state=3;
+return;
+}
+if (("" == ___uri) && ("virtualHost" == ___local)) {
+state=15;
+return;
+}
+if (("" == ___uri) && ("remoteAddr" == ___local)) {
+state=7;
+return;
+}
+if (("" == ___uri) && ("currentUri" == ___local)) {
+state=17;
+return;
+}
+revertToParentFromEnterAttribute(___uri,___local);
+return;
+}
+super.enterAttribute(___uri,___local);
+}

@@ -1,0 +1,62 @@
+{
+  try {
+switch (state) {
+case 0:
+      revertToParentFromText(value);
+    return;
+case 5:
+  try {
+    _MaxSpareThreads=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+    has_MaxSpareThreads=true;
+  }
+ catch (  java.lang.Exception e) {
+    handleParseConversionException(e);
+  }
+state=6;
+return;
+case 9:
+try {
+_CurrentThreadsBusy=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_CurrentThreadsBusy=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=10;
+return;
+case 7:
+try {
+_MinSpareThreads=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_MinSpareThreads=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=8;
+return;
+case 3:
+try {
+_MaxThreads=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_MaxThreads=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=4;
+return;
+case 1:
+try {
+_CurrentThreadCount=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_CurrentThreadCount=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=2;
+return;
+}
+}
+ catch (java.lang.RuntimeException e) {
+handleUnexpectedTextException(value,e);
+}
+}

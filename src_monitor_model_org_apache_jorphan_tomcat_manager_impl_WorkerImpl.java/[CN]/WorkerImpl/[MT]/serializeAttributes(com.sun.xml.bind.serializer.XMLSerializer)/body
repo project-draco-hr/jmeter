@@ -1,0 +1,82 @@
+{
+  context.startAttribute("","requestBytesSent");
+  try {
+    context.text(javax.xml.bind.DatatypeConverter.printLong(((long)_RequestBytesSent)));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","stage");
+  try {
+    context.text(((java.lang.String)_Stage));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","requestBytesReceived");
+  try {
+    context.text(javax.xml.bind.DatatypeConverter.printLong(((long)_RequestBytesReceived)));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","requestProcessingTime");
+  try {
+    context.text(javax.xml.bind.DatatypeConverter.printInt(((int)_RequestProcessingTime)));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","currentQueryString");
+  try {
+    context.text(((java.lang.String)_CurrentQueryString));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","virtualHost");
+  try {
+    context.text(((java.lang.String)_VirtualHost));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","protocol");
+  try {
+    context.text(((java.lang.String)_Protocol));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","currentUri");
+  try {
+    context.text(((java.lang.String)_CurrentUri));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","method");
+  try {
+    context.text(((java.lang.String)_Method));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+  context.startAttribute("","remoteAddr");
+  try {
+    context.text(((java.lang.String)_RemoteAddr));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+}

@@ -1,0 +1,22 @@
+{
+switch (state) {
+case 6:
+    revertToParentFromLeaveElement(___uri,___local);
+  return;
+case 5:
+if (("" == ___uri) && ("connector" == ___local)) {
+  context.popAttributes();
+  state=6;
+  return;
+}
+break;
+case 2:
+if (("" == ___uri) && ("jvm" == ___local)) {
+context.popAttributes();
+state=3;
+return;
+}
+break;
+}
+super.leaveElement(___uri,___local);
+}

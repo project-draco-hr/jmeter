@@ -1,0 +1,34 @@
+{
+  int idx;
+  state=0;
+  idx=context.getAttribute("","errorCount");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","processingTime");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","requestCount");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","bytesSent");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","maxTime");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","bytesReceived");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+}

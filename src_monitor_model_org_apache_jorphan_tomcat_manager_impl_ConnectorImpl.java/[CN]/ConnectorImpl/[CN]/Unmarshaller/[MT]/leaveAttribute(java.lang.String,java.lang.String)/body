@@ -1,0 +1,14 @@
+{
+switch (state) {
+case 9:
+    if (("" == ___uri) && ("name" == ___local)) {
+      goto0();
+      return;
+    }
+  break;
+case 3:
+revertToParentFromLeaveAttribute(___uri,___local);
+return;
+}
+super.leaveAttribute(___uri,___local);
+}

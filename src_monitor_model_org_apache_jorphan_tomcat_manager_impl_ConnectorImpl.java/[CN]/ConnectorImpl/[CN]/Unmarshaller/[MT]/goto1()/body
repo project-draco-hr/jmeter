@@ -1,0 +1,29 @@
+{
+  int idx;
+  state=1;
+  idx=context.getAttribute("","minSpareThreads");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","currentThreadCount");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","maxThreads");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","currentThreadsBusy");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+  idx=context.getAttribute("","maxSpareThreads");
+  if (idx >= 0) {
+    context.consumeAttribute(idx);
+    return;
+  }
+}

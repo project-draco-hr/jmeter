@@ -1,0 +1,72 @@
+{
+  try {
+switch (state) {
+case 9:
+      try {
+        _MaxTime=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+        has_MaxTime=true;
+      }
+ catch (      java.lang.Exception e) {
+        handleParseConversionException(e);
+      }
+    state=10;
+  return;
+case 7:
+try {
+  _BytesSent=javax.xml.bind.DatatypeConverter.parseLong(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+  has_BytesSent=true;
+}
+ catch (java.lang.Exception e) {
+  handleParseConversionException(e);
+}
+state=8;
+return;
+case 3:
+try {
+_ProcessingTime=javax.xml.bind.DatatypeConverter.parseInt(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_ProcessingTime=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=4;
+return;
+case 11:
+try {
+_ErrorCount=javax.xml.bind.DatatypeConverter.parseLong(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_ErrorCount=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=12;
+return;
+case 5:
+try {
+_BytesReceived=javax.xml.bind.DatatypeConverter.parseLong(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_BytesReceived=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=6;
+return;
+case 1:
+try {
+_RequestCount=javax.xml.bind.DatatypeConverter.parseLong(com.sun.xml.bind.WhiteSpaceProcessor.collapse(value));
+has_RequestCount=true;
+}
+ catch (java.lang.Exception e) {
+handleParseConversionException(e);
+}
+state=2;
+return;
+case 0:
+revertToParentFromText(value);
+return;
+}
+}
+ catch (java.lang.RuntimeException e) {
+handleUnexpectedTextException(value,e);
+}
+}

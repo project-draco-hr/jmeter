@@ -1,0 +1,17 @@
+{
+  int idx1=0;
+  final int len1=_Worker.size();
+  while (idx1 != len1) {
+    if (_Worker.get(idx1) instanceof javax.xml.bind.Element) {
+      context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_Worker.get(idx1++)));
+    }
+ else {
+      context.startElement("","worker");
+      int idx_0=idx1;
+      context.childAsAttributes(((com.sun.xml.bind.serializer.XMLSerializable)_Worker.get(idx_0++)));
+      context.endAttributes();
+      context.childAsElements(((com.sun.xml.bind.serializer.XMLSerializable)_Worker.get(idx1++)));
+      context.endElement();
+    }
+  }
+}

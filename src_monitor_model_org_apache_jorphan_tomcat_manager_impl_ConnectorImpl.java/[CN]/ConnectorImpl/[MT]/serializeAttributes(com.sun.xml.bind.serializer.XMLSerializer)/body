@@ -1,0 +1,10 @@
+{
+  context.startAttribute("","name");
+  try {
+    context.text(((java.lang.String)_Name));
+  }
+ catch (  java.lang.Exception e) {
+    com.sun.xml.bind.marshaller.Util.handlePrintConversionException(this,e,context);
+  }
+  context.endAttribute();
+}

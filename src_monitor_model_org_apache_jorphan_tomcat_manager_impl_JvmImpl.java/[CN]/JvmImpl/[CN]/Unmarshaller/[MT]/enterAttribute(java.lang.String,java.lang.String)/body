@@ -1,0 +1,22 @@
+{
+switch (state) {
+case 1:
+    if (("" == ___uri) && ("max" == ___local)) {
+      _Memory=((org.apache.jorphan.tomcat.manager.impl.MemoryImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.MemoryImpl.class),2,___uri,___local));
+      return;
+    }
+  if (("" == ___uri) && ("free" == ___local)) {
+    _Memory=((org.apache.jorphan.tomcat.manager.impl.MemoryImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.MemoryImpl.class),2,___uri,___local));
+    return;
+  }
+if (("" == ___uri) && ("total" == ___local)) {
+  _Memory=((org.apache.jorphan.tomcat.manager.impl.MemoryImpl)spawnChildFromEnterAttribute((org.apache.jorphan.tomcat.manager.impl.MemoryImpl.class),2,___uri,___local));
+  return;
+}
+break;
+case 3:
+revertToParentFromEnterAttribute(___uri,___local);
+return;
+}
+super.enterAttribute(___uri,___local);
+}

@@ -1,0 +1,38 @@
+{
+switch (state) {
+case 4:
+    if (("" == ___uri) && ("maxThreads" == ___local)) {
+      goto0();
+      return;
+    }
+  break;
+case 0:
+revertToParentFromLeaveAttribute(___uri,___local);
+return;
+case 10:
+if (("" == ___uri) && ("currentThreadsBusy" == ___local)) {
+goto0();
+return;
+}
+break;
+case 8:
+if (("" == ___uri) && ("minSpareThreads" == ___local)) {
+goto0();
+return;
+}
+break;
+case 2:
+if (("" == ___uri) && ("currentThreadCount" == ___local)) {
+goto0();
+return;
+}
+break;
+case 6:
+if (("" == ___uri) && ("maxSpareThreads" == ___local)) {
+goto0();
+return;
+}
+break;
+}
+super.leaveAttribute(___uri,___local);
+}
