@@ -1,0 +1,7 @@
+{
+  Collection params=this.parseArguments2(parameters);
+  values=params.toArray();
+  if (values.length < 1) {
+    throw new InvalidVariableException();
+  }
+}
