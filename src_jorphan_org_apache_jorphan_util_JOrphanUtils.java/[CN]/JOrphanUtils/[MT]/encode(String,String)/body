@@ -1,3 +1,15 @@
 {
-  return URLEncoder.encode(string);
+  if (encodeMethod != null) {
+    Object args[]={string,encoding};
+    try {
+      return (String)encodeMethod.invoke(null,args);
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+      return string;
+    }
+  }
+ else {
+    return URLEncoder.encode(string);
+  }
 }
