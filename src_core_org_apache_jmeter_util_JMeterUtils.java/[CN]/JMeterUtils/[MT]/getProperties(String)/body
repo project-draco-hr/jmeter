@@ -13,7 +13,7 @@
   }
   appProperties=p;
   LoggingManager.initializeLogging(appProperties);
-  log=LoggingManager.getLoggerFor(UTIL);
+  log=LoggingManager.getLoggerForClass();
   String loc=appProperties.getProperty("language");
   if (loc != null) {
     setLocale(new Locale(loc,""));
