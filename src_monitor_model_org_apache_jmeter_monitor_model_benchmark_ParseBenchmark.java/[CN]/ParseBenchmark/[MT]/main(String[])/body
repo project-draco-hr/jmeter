@@ -43,7 +43,7 @@
       org.apache.jmeter.monitor.model.ObjectFactory of=org.apache.jmeter.monitor.model.ObjectFactory.getInstance();
       start=System.currentTimeMillis();
       for (int idx=0; idx < loops; idx++) {
-        org.apache.jmeter.monitor.model.Status st=of.parseBytes(contents.getBytes());
+        of.parseBytes(contents.getBytes());
       }
       end=System.currentTimeMillis();
       System.out.println("elapsed Time: " + (end - start));
