@@ -1,8 +1,25 @@
 {
   Sample s=null;
 synchronized (calculator) {
-    calculator.addValue(res.getTime());
-    calculator.addBytes((long)res.getResponseData().length);
+    long byteslength=0;
+    if (res.getResponseData() == null || res.getResponseData().length == 0) {
+      byteslength=(long)res.getBytes();
+    }
+ else {
+      byteslength=(long)res.getResponseData().length;
+    }
+    if (res.getSampleCount() > 1) {
+      long time=res.getTime() / res.getSampleCount();
+      long resbytes=byteslength / (long)res.getSampleCount();
+      for (int idx=0; idx < res.getSampleCount(); idx++) {
+        calculator.addValue(time);
+        calculator.addBytes(resbytes);
+      }
+    }
+ else {
+      calculator.addValue(res.getTime());
+      calculator.addBytes(byteslength);
+    }
     setStartTime(res);
     long eCount=getCurrentSample().errorCount;
     if (!res.isSuccessful()) {
