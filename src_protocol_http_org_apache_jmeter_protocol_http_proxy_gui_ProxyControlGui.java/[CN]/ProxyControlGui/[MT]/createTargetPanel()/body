@@ -1,0 +1,28 @@
+{
+  targetNodesModel=new DefaultComboBoxModel();
+  targetNodes=new JComboBox(targetNodesModel);
+  targetNodes.addActionListener(this);
+  targetNodes.setActionCommand(CHANGE_TARGET);
+  JLabel label=new JLabel(JMeterUtils.getResString("proxy_target"));
+  label.setLabelFor(targetNodes);
+  HorizontalPanel panel=new HorizontalPanel();
+  panel.add(label);
+  panel.add(targetNodes);
+  try {
+    Class addToTree=Class.forName("org.apache.jmeter.gui.action.AddToTree");
+    Class remove=Class.forName("org.apache.jmeter.gui.action.Remove");
+    ActionListener listener=new ActionListener(){
+      public void actionPerformed(      ActionEvent e){
+        reinitializeTargetCombo();
+      }
+    }
+;
+    ActionRouter ar=ActionRouter.getInstance();
+    ar.addPostActionListener(addToTree,listener);
+    ar.addPostActionListener(remove,listener);
+  }
+ catch (  ClassNotFoundException e) {
+    throw new Error(e);
+  }
+  return panel;
+}

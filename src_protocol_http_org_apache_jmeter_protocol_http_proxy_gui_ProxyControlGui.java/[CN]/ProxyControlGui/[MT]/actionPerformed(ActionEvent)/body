@@ -4,6 +4,7 @@
     model.stopProxy();
     stop.setEnabled(false);
     start.setEnabled(true);
+    restart.setEnabled(false);
   }
  else   if (command.equals(START)) {
     model=(ProxyControl)createTestElement();
@@ -36,5 +37,16 @@
     includeModel.removeRow(includeTable.getSelectedRow());
     includeModel.fireTableDataChanged();
     enableRestart();
+  }
+ else   if (command.equals(CHANGE_TARGET)) {
+    log.debug("Change target " + targetNodes.getSelectedItem());
+    log.debug("In model " + model);
+    TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
+    if (nw == null) {
+      model.setTarget(null);
+    }
+ else {
+      model.setTarget(nw.getTreeNode());
+    }
   }
 }

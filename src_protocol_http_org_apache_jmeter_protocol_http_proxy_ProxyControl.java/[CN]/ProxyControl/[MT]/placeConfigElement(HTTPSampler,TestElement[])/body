@@ -1,61 +1,70 @@
 {
   TestElement urlConfig=null;
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
-  List nodes=treeModel.getNodesOfType(RecordingController.class);
-  if (nodes.size() == 0) {
-    nodes=treeModel.getNodesOfType(ThreadGroup.class);
-  }
-  Iterator iter=nodes.iterator();
-  while (iter.hasNext()) {
-    JMeterTreeNode node=(JMeterTreeNode)iter.next();
-    if (!node.isEnabled()) {
-      continue;
+  if (target == null) {
+    List nodes=treeModel.getNodesOfType(RecordingController.class);
+    Iterator iter=nodes.iterator();
+    while (iter.hasNext()) {
+      JMeterTreeNode node=(JMeterTreeNode)iter.next();
+      if (node.isEnabled()) {
+        target=node;
+        break;
+      }
     }
- else {
-      Enumeration enum=node.children();
-      String guiClassName=null;
-      while (enum.hasMoreElements()) {
-        JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
-        TestElement sample=(TestElement)subNode.createTestElement();
-        guiClassName=sample.getPropertyAsString(TestElement.GUI_CLASS);
-        if (guiClassName.equals(UrlConfigGui.class.getName()) || guiClassName.equals(HttpDefaultsGui.class.getName())) {
-          urlConfig=sample;
-          break;
+  }
+  if (target == null) {
+    List nodes=treeModel.getNodesOfType(ThreadGroup.class);
+    Iterator iter=nodes.iterator();
+    while (iter.hasNext()) {
+      JMeterTreeNode node=(JMeterTreeNode)iter.next();
+      if (node.isEnabled()) {
+        target=node;
+        break;
+      }
+    }
+  }
+  Enumeration enum=target.children();
+  String guiClassName=null;
+  while (enum.hasMoreElements()) {
+    JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
+    TestElement sample=(TestElement)subNode.createTestElement();
+    guiClassName=sample.getPropertyAsString(TestElement.GUI_CLASS);
+    if (guiClassName.equals(UrlConfigGui.class.getName()) || guiClassName.equals(HttpDefaultsGui.class.getName())) {
+      urlConfig=sample;
+      break;
+    }
+  }
+  if (areMatched(sampler,urlConfig)) {
+    removeValuesFromSampler(sampler,urlConfig);
+    replaceValues(sampler,subConfigs);
+    sampler.setUseKeepAlive(useKeepAlive);
+    sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
+    try {
+      boolean firstInBatch=false;
+      if (lastTime == 0) {
+        lastTime=System.currentTimeMillis();
+        firstInBatch=true;
+      }
+      long now=System.currentTimeMillis();
+      if (now - lastTime > sampleGap) {
+        addDivider(treeModel,target);
+        firstInBatch=true;
+      }
+      lastTime=System.currentTimeMillis();
+      JMeterTreeNode newNode=treeModel.addComponent(sampler,target);
+      if (firstInBatch) {
+        addAssertion(treeModel,newNode);
+        firstInBatch=false;
+      }
+      for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
+        if (subConfigs[i] instanceof HeaderManager) {
+          subConfigs[i].setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.gui.HeaderPanel");
+          treeModel.addComponent(subConfigs[i],newNode);
         }
       }
-      if (areMatched(sampler,urlConfig)) {
-        removeValuesFromSampler(sampler,urlConfig);
-        replaceValues(sampler,subConfigs);
-        sampler.setUseKeepAlive(useKeepAlive);
-        sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
-        try {
-          boolean firstInBatch=false;
-          if (lastTime == 0) {
-            lastTime=System.currentTimeMillis();
-            firstInBatch=true;
-          }
-          long now=System.currentTimeMillis();
-          if (now - lastTime > sampleGap) {
-            addDivider(treeModel,node);
-            firstInBatch=true;
-          }
-          lastTime=System.currentTimeMillis();
-          JMeterTreeNode newNode=treeModel.addComponent(sampler,node);
-          if (firstInBatch) {
-            addAssertion(treeModel,newNode);
-            firstInBatch=false;
-          }
-          for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
-            if (subConfigs[i] instanceof HeaderManager) {
-              subConfigs[i].setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.gui.HeaderPanel");
-              treeModel.addComponent(subConfigs[i],newNode);
-            }
-          }
-        }
- catch (        IllegalUserActionException e) {
-          JMeterUtils.reportErrorToUser(e.getMessage());
-        }
-      }
+    }
+ catch (    IllegalUserActionException e) {
+      JMeterUtils.reportErrorToUser(e.getMessage());
     }
   }
 }

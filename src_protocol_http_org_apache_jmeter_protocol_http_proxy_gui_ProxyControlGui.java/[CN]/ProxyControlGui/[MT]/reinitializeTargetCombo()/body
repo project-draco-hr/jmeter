@@ -1,0 +1,20 @@
+{
+  log.debug("Reinitializing target combo");
+  targetNodesModel.removeAllElements();
+  GuiPackage gp=GuiPackage.getInstance();
+  JMeterTreeNode root;
+  if (gp != null) {
+    root=(JMeterTreeNode)GuiPackage.getInstance().getTreeModel().getRoot();
+    targetNodesModel.addElement(new TreeNodeWrapper(null,"Use Recording Controller"));
+    buildNodesModel(root,"",0);
+  }
+  for (int i=0; i < targetNodesModel.getSize(); i++) {
+    TreeNodeWrapper choice=(TreeNodeWrapper)targetNodesModel.getElementAt(i);
+    if (choice.getTreeNode() == model.getTarget()) {
+      log.debug("Selecting item " + choice);
+      targetNodesModel.setSelectedItem(choice);
+      break;
+    }
+  }
+  log.debug("Reinitialization complete");
+}

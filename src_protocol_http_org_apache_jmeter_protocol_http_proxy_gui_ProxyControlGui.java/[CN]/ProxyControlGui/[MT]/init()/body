@@ -3,7 +3,12 @@
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
   JPanel mainPanel=new JPanel(new BorderLayout());
-  mainPanel.add(createPortPanel(),BorderLayout.NORTH);
+  Box portTargetPanel=Box.createVerticalBox();
+  portTargetPanel.add(createPortPanel());
+  portTargetPanel.add(Box.createVerticalStrut(5));
+  portTargetPanel.add(createTargetPanel());
+  portTargetPanel.add(Box.createVerticalStrut(5));
+  mainPanel.add(portTargetPanel,BorderLayout.NORTH);
   Box includeExcludePanel=Box.createVerticalBox();
   includeExcludePanel.add(createIncludePanel());
   includeExcludePanel.add(createExcludePanel());

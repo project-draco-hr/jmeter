@@ -9,5 +9,12 @@
     model.setSeparators(addSeparators.isSelected());
     model.setAssertions(addAssertions.isSelected());
     model.setUseKeepAlive(useKeepAlive.isSelected());
+    TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
+    if (nw == null) {
+      model.setTarget(null);
+    }
+ else {
+      model.setTarget(nw.getTreeNode());
+    }
   }
 }

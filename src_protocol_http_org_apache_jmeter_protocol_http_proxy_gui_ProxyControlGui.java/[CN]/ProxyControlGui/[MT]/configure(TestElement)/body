@@ -7,6 +7,7 @@
   addSeparators.setSelected(model.getPropertyAsBoolean(ProxyControl.ADD_SEPARATORS));
   addAssertions.setSelected(model.getPropertyAsBoolean(ProxyControl.ADD_ASSERTIONS));
   useKeepAlive.setSelected(model.getPropertyAsBoolean(ProxyControl.USE_KEEPALIVE,true));
+  reinitializeTargetCombo();
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());
   repaint();
