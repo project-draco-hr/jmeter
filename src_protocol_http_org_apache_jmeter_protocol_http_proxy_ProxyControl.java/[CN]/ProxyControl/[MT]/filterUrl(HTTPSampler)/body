@@ -1,24 +1,20 @@
 {
-  boolean ok=false;
-  if (sampler.getDomain() == null || sampler.getDomain().equals("")) {
+  String domain=sampler.getDomain();
+  if (domain == null || domain.length() == 0) {
     return false;
   }
-  if (getIncludePatterns().size() == 0) {
-    ok=true;
-  }
- else {
-    ok=checkIncludes(sampler);
-  }
-  if (!ok) {
-    return ok;
-  }
- else {
-    if (getExcludePatterns().size() == 0) {
-      return ok;
-    }
- else {
-      ok=checkExcludes(sampler);
+  String url=generateMatchUrl(sampler);
+  CollectionProperty includePatterns=getIncludePatterns();
+  if (includePatterns.size() > 0) {
+    if (!matchesPatterns(url,includePatterns)) {
+      return false;
     }
   }
-  return ok;
+  CollectionProperty excludePatterns=getExcludePatterns();
+  if (excludePatterns.size() > 0) {
+    if (matchesPatterns(url,excludePatterns)) {
+      return false;
+    }
+  }
+  return true;
 }

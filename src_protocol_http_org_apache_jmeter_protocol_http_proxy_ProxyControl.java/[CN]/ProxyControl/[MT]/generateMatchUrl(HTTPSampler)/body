@@ -1,0 +1,11 @@
+{
+  StringBuffer buf=new StringBuffer(sampler.getDomain());
+  buf.append(':');
+  buf.append(sampler.getPort());
+  buf.append(sampler.getPath());
+  if (sampler.getQueryString().length() > 0) {
+    buf.append('?');
+    buf.append(sampler.getQueryString());
+  }
+  return buf.toString();
+}
