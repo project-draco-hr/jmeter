@@ -1,7 +1,10 @@
 {
-  JPanel serverPanel=new JPanel();
-  serverPanel.add(new JLabel(JMeterUtils.getResString("server")));
+  JLabel label=new JLabel(JMeterUtils.getResString("server"));
+  server=new JTextField(10);
   server.setName(SERVER);
-  serverPanel.add(server);
+  label.setLabelFor(server);
+  JPanel serverPanel=new JPanel(new BorderLayout(5,0));
+  serverPanel.add(label,BorderLayout.WEST);
+  serverPanel.add(server,BorderLayout.CENTER);
   return serverPanel;
 }

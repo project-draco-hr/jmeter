@@ -1,7 +1,10 @@
 {
-  JPanel filenamePanel=new JPanel();
-  filenamePanel.add(new JLabel(JMeterUtils.getResString("file_to_retrieve")));
+  JLabel label=new JLabel(JMeterUtils.getResString("file_to_retrieve"));
+  filename=new JTextField(10);
   filename.setName(FILENAME);
-  filenamePanel.add(filename);
+  label.setLabelFor(filename);
+  JPanel filenamePanel=new JPanel(new BorderLayout(5,0));
+  filenamePanel.add(label,BorderLayout.WEST);
+  filenamePanel.add(filename,BorderLayout.CENTER);
   return filenamePanel;
 }

@@ -1,18 +1,11 @@
 {
-  this.setLayout(new VerticalLayout(1,VerticalLayout.LEFT));
+  setLayout(new BorderLayout(0,5));
   if (displayName) {
-    this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-    JPanel mainPanel=new JPanel();
-    Border margin=new EmptyBorder(10,10,5,10);
-    mainPanel.setBorder(margin);
-    mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    mainPanel.add(makeTitlePanel());
-    mainPanel.add(createServerPanel());
-    mainPanel.add(createFilenamePanel());
-    this.add(mainPanel);
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
   }
- else {
-    this.add(createServerPanel());
-    this.add(createFilenamePanel());
-  }
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.add(createServerPanel());
+  mainPanel.add(createFilenamePanel());
+  add(mainPanel,BorderLayout.CENTER);
 }

@@ -1,15 +1,12 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  mainPanel.add(makeTitlePanel());
-  loginPanel=new LoginConfigGui(false);
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  VerticalPanel mainPanel=new VerticalPanel();
   ftpDefaultPanel=new FtpConfigGui(false);
-  loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
-  mainPanel.add(getNamePanel());
   mainPanel.add(ftpDefaultPanel);
+  loginPanel=new LoginConfigGui(false);
+  loginPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("login_config")));
   mainPanel.add(loginPanel);
-  this.add(mainPanel);
+  add(mainPanel,BorderLayout.CENTER);
 }
