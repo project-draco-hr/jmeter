@@ -54,7 +54,6 @@ gridBag.setConstraints(httpResponseMsg,gbc);
 resultPanel.add(httpResponseMsg);
 gbc.gridy++;
 byte[] responseBytes=(byte[])res.getResponseData();
-String response=null;
 ImageIcon icon=null;
 if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
   try {
@@ -68,15 +67,16 @@ if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
   icon=new ImageIcon(responseBytes);
 }
 if (response != null) {
-  JTextArea textArea=new JTextArea();
-  textArea.setText(response);
-  textArea.setColumns(70);
-  textArea.setLineWrap(true);
-  textArea.setWrapStyleWord(true);
-  textArea.setTabSize(4);
   gbc.gridx=0;
-  gridBag.setConstraints(textArea,gbc);
-  resultPanel.add(textArea);
+  gbc.gridy++;
+  gridBag.setConstraints(htmlOrTextButton,gbc);
+  resultPanel.add(htmlOrTextButton);
+  if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
+    showTextResponse(response);
+  }
+ else {
+    showRenderedResponse(response);
+  }
 }
  else if (icon != null) {
   JLabel image=new JLabel();

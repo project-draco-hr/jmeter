@@ -14,6 +14,9 @@
   gbc=new GridBagConstraints();
   resultPanel=new JPanel(gridBag);
   resultPane=new JScrollPane(resultPanel);
+  initHtmlOrTextButton();
+  initTextArea();
+  initHtmlEditPane();
   treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,resultPane);
   getFilePanel().add(getErrorLoggingCheckbox());
   add(getFilePanel(),BorderLayout.NORTH);

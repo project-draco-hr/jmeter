@@ -1,0 +1,9 @@
+{
+  resultPanel.remove(htmlEditPane);
+  gbc.gridx=0;
+  gbc.gridy++;
+  gridBag.setConstraints(textArea,gbc);
+  textArea.setText(response);
+  textArea.setCaretPosition(0);
+  resultPanel.add(textArea);
+}

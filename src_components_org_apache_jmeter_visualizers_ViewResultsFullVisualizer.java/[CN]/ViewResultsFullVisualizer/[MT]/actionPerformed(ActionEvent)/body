@@ -1,0 +1,12 @@
+{
+  if (htmlOrTextButton.equals(e.getSource())) {
+    if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
+      showRenderedResponse(response);
+      htmlOrTextButton.setText(TEXT_BUTTON_LABEL);
+    }
+ else {
+      showTextResponse(response);
+      htmlOrTextButton.setText(HTML_BUTTON_LABEL);
+    }
+  }
+}

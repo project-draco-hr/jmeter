@@ -1,0 +1,10 @@
+{
+  textArea=new JTextArea();
+  textArea.setColumns(70);
+  textArea.setLineWrap(true);
+  textArea.setWrapStyleWord(true);
+  textArea.setTabSize(4);
+  gridBag.setConstraints(textArea,gbc);
+  resultPanel.add(textArea);
+  gbc.gridy++;
+}
