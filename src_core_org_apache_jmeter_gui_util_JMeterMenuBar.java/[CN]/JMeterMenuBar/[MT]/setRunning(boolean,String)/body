@@ -2,9 +2,11 @@
   log.info("setRunning(" + running + ","+ host+ ")");
   Iterator iter=remote_engine_start.iterator();
   Iterator iter2=remote_engine_stop.iterator();
-  while (iter.hasNext() && iter2.hasNext()) {
+  Iterator iter3=remote_engine_exit.iterator();
+  while (iter.hasNext() && iter2.hasNext() && iter3.hasNext()) {
     JMenuItem start=(JMenuItem)iter.next();
     JMenuItem stop=(JMenuItem)iter2.next();
+    JMenuItem exit=(JMenuItem)iter3.next();
     if (start.getText().equals(host)) {
       log.info("Found start host: " + start.getText());
       start.setEnabled(!running);
@@ -12,6 +14,10 @@
     if (stop.getText().equals(host)) {
       log.info("Found stop  host: " + stop.getText());
       stop.setEnabled(running);
+    }
+    if (exit.getText().equals(host)) {
+      log.info("Found exit  host: " + exit.getText());
+      exit.setEnabled(true);
     }
   }
 }

@@ -2,6 +2,7 @@
   if (remoteHosts.length > 0) {
     remote_start=new JMenu(JMeterUtils.getResString("remote_start"));
     remote_stop=new JMenu(JMeterUtils.getResString("remote_stop"));
+    remote_exit=new JMenu(JMeterUtils.getResString("remote_exit"));
     for (int i=0; i < remoteHosts.length; i++) {
       remoteHosts[i]=remoteHosts[i].trim();
       JMenuItem item=new JMenuItem(remoteHosts[i]);
@@ -17,6 +18,13 @@
       item.setEnabled(false);
       remote_engine_stop.add(item);
       remote_stop.add(item);
+      item=new JMenuItem(remoteHosts[i]);
+      item.setActionCommand("remote_exit");
+      item.setName(remoteHosts[i]);
+      item.addActionListener(ActionRouter.getInstance());
+      item.setEnabled(false);
+      remote_engine_exit.add(item);
+      remote_exit.add(item);
     }
   }
 }

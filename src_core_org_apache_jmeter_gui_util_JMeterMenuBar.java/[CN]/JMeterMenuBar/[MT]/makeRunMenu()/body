@@ -42,6 +42,13 @@
   remote_stop_all.addActionListener(ActionRouter.getInstance());
   remote_stop_all.setActionCommand("remote_stop_all");
   runMenu.add(remote_stop_all);
+  if (remote_exit != null) {
+    runMenu.add(remote_exit);
+  }
+  remote_exit_all=new JMenuItem(JMeterUtils.getResString("remote_exit_all"));
+  remote_exit_all.addActionListener(ActionRouter.getInstance());
+  remote_exit_all.setActionCommand("remote_exit_all");
+  runMenu.add(remote_exit_all);
   runMenu.addSeparator();
   runMenu.add(run_clear);
   runMenu.add(run_clearAll);
