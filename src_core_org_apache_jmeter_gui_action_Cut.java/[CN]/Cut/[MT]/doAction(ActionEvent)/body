@@ -1,7 +1,7 @@
 {
-  Copy.setCopiedNode(GuiPackage.getInstance().getTreeListener().getCurrentNode());
-  JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
-  JMeterTreeNode currentNode=treeListener.getCurrentNode();
-  GuiPackage.getInstance().getTreeModel().removeNodeFromParent(GuiPackage.getInstance().getTreeListener().getCurrentNode());
-  GuiPackage.getInstance().getMainFrame().repaint();
+  GuiPackage guiPack=GuiPackage.getInstance();
+  JMeterTreeNode currentNode=guiPack.getTreeListener().getCurrentNode();
+  Copy.setCopiedNode(currentNode);
+  guiPack.getTreeModel().removeNodeFromParent(currentNode);
+  guiPack.getMainFrame().repaint();
 }
