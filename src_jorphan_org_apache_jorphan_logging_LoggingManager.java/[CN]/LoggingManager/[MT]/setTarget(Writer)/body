@@ -1,12 +1,14 @@
 {
   if (target == null) {
     target=new WriterTarget(targetFile,format);
+    isTargetSystemOut=isWriterSystemOut;
   }
  else {
-    if (target instanceof WriterTarget) {
+    if (!isTargetSystemOut && target instanceof WriterTarget) {
       ((WriterTarget)target).close();
     }
     target=new WriterTarget(targetFile,format);
+    isTargetSystemOut=isWriterSystemOut;
   }
   Hierarchy.getDefaultHierarchy().setDefaultLogTarget(target);
 }
