@@ -1,7 +1,8 @@
 {
+  BufferedReader fileReader=null;
   try {
     String lineEnd=System.getProperty("line.separator");
-    BufferedReader fileReader=new BufferedReader(new InputStreamReader(JMeterUtils.class.getClassLoader().getResourceAsStream(name)));
+    fileReader=new BufferedReader(new InputStreamReader(JMeterUtils.class.getClassLoader().getResourceAsStream(name)));
     StringBuffer text=new StringBuffer();
     String line="NOTNULL";
     while (line != null) {
@@ -11,7 +12,6 @@
         text.append(lineEnd);
       }
     }
-    fileReader.close();
     return text.toString();
   }
  catch (  NullPointerException e) {
@@ -19,5 +19,12 @@
   }
 catch (  IOException e) {
     return "";
+  }
+ finally {
+    if (fileReader != null)     try {
+      fileReader.close();
+    }
+ catch (    IOException e1) {
+    }
   }
 }
