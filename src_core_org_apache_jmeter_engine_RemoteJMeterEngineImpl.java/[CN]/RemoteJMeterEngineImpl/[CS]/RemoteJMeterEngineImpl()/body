@@ -1,4 +1,6 @@
 {
+  log.info("Starting backing engine");
+  log.debug("This = " + this);
   try {
     backingEngine=new StandardJMeterEngine(InetAddress.getLocalHost().getHostName());
     Naming.rebind("JMeterEngine",this);
