@@ -1,0 +1,5 @@
+{
+  super();
+  setProperty(SUCCESS_LIMIT_KEY,JMeterUtils.getPropDefault("mailer.successlimit","2"));
+  setProperty(FAILURE_LIMIT_KEY,JMeterUtils.getPropDefault("mailer.failurelimit","2"));
+}
