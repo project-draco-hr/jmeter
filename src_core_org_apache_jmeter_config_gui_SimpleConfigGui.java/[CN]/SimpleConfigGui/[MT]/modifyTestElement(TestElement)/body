@@ -2,7 +2,7 @@
   Data model=tableModel.getData();
   model.reset();
   while (model.next()) {
-    el.setProperty(new StringProperty((String)model.getColumnValue(COLUMN_NAMES[0]),(String)model.getColumnValue(COLUMN_NAMES[1])));
+    el.setProperty(new StringProperty((String)model.getColumnValue(COLUMN_NAMES_0),(String)model.getColumnValue(COLUMN_NAMES_1)));
   }
   super.configureTestElement(el);
 }
