@@ -1,6 +1,6 @@
 {
-  if (fileData == null) {
-    fileData=load(fileName);
+  if (CSVRead.fileData == null) {
+    CSVRead.fileData=load(fileName);
   }
-  return fileData;
+  return CSVRead.fileData;
 }

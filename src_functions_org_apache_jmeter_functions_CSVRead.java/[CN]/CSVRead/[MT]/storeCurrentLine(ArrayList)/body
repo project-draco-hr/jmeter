@@ -1,6 +1,8 @@
 {
   String id=getId();
-  log.debug(id + "storing " + currentLine);
+  if (log.isDebugEnabled()) {
+    log.debug(Thread.currentThread().getName() + " " + id+ " storing "+ currentLine);
+  }
   if (currentLine == null) {
     getThreadData().remove(id);
   }

@@ -1,30 +1,37 @@
 {
+  String columnOrNext="";
+  String myValue="";
   try {
     ArrayList processedLines=null;
     String fileName=null;
     fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();
-    myName=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
-    FileDataContainer fileData=getFileData(fileName);
-    if (myName.equals("next()") || myName.equals("next")) {
-      fileData.incrementRowPosition();
+    columnOrNext=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
+    FileDataContainer myfileData=getFileData(fileName);
+    if (columnOrNext.equals("next()") || columnOrNext.equals("next")) {
+      myfileData.incrementRowPosition();
       storeCurrentLine(null);
+      return "";
     }
     processedLines=reloadCurrentLine();
-    if (fileData != null && processedLines == null) {
-      processedLines=(ArrayList)fileData.getNextLine();
+    if (myfileData != null && processedLines == null) {
+      processedLines=(ArrayList)myfileData.getNextLine();
       this.storeCurrentLine(processedLines);
     }
-    int columnIndex=0;
     try {
-      columnIndex=Integer.parseInt(myName);
+      int columnIndex=Integer.parseInt(columnOrNext);
       myValue=(String)processedLines.get(columnIndex);
     }
- catch (    Exception e) {
-      myValue="";
+ catch (    NumberFormatException e) {
+      log.warn("Column number error: " + columnOrNext + " "+ e.toString());
     }
-    log.debug(Thread.currentThread().getName() + ">>>> execute (" + fileName+ " , "+ myName+ ")   "+ this.hashCode());
+catch (    IndexOutOfBoundsException e) {
+      log.warn("Invalid column number: " + columnOrNext + " "+ e.toString());
+    }
+    if (log.isDebugEnabled()) {
+      log.debug(Thread.currentThread().getName() + " " + getId()+ ">>>> execute ("+ fileName+ " , "+ columnOrNext+ ")   "+ this.hashCode());
+    }
   }
- catch (  Exception e) {
+ catch (  IOException e) {
     log.error("execute",e);
   }
   return myValue;
