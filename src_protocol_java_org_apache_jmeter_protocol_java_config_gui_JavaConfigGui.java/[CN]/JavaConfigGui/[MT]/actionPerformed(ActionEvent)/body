@@ -1,13 +1,19 @@
 {
   if (evt.getSource() == classnameCombo) {
-    String className=(String)classnameCombo.getSelectedItem();
+    String className=((String)classnameCombo.getSelectedItem()).trim();
     try {
-      JavaSamplerClient client=(JavaSamplerClient)Class.forName(className.trim(),true,Thread.currentThread().getContextClassLoader()).newInstance();
+      JavaSamplerClient client=(JavaSamplerClient)Class.forName(className,true,Thread.currentThread().getContextClassLoader()).newInstance();
       Arguments currArgs=new Arguments();
       argsPanel.modifyTestElement(currArgs);
       Map currArgsMap=currArgs.getArgumentsAsMap();
       Arguments newArgs=new Arguments();
-      Arguments testParams=client.getDefaultParameters();
+      Arguments testParams=null;
+      try {
+        testParams=client.getDefaultParameters();
+      }
+ catch (      AbstractMethodError e) {
+        log.warn("JavaSamplerClient doesn't implement " + "getDefaultParameters.  Default parameters won't " + "be shown.  Please update your client class: "+ className);
+      }
       if (testParams != null) {
         PropertyIterator i=testParams.getArguments().iterator();
         while (i.hasNext()) {
