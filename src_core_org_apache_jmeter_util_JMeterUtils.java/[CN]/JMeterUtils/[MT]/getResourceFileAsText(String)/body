@@ -13,7 +13,10 @@
     }
     return text.toString();
   }
- catch (  IOException e) {
+ catch (  NullPointerException e) {
+    return "";
+  }
+catch (  IOException e) {
     return "";
   }
 }
