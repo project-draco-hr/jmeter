@@ -30,6 +30,9 @@
     }
     binRes=new SampleResult();
     namedItem=nnm.getNamedItem(srcTag);
+    if (namedItem == null) {
+      continue;
+    }
     String binUrlStr=namedItem.getNodeValue();
     binRes.setSampleLabel(baseUrl + "," + binUrlStr);
     URL binUrl=null;
