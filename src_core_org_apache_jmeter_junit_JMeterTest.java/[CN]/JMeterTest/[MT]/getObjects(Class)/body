@@ -21,7 +21,7 @@
             objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{myThis}));
           }
  catch (          NoSuchMethodException f) {
-            System.out.println(exName + ": can't create " + n);
+            System.out.println(exName + ": could not construct " + n);
           }
         }
       }
