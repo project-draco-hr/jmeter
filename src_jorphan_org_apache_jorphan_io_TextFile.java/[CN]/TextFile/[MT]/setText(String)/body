@@ -1,6 +1,6 @@
 {
+  Writer writer=null;
   try {
-    Writer writer;
     if (encoding == null) {
       writer=new FileWriter(this);
     }
@@ -12,6 +12,13 @@
     writer.close();
   }
  catch (  IOException ioe) {
+    try {
+      if (writer != null) {
+        writer.close();
+      }
+    }
+ catch (    IOException e) {
+    }
     log.error("",ioe);
   }
 }

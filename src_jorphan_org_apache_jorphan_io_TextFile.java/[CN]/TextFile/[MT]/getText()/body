@@ -1,8 +1,8 @@
 {
   String lineEnd=System.getProperty("line.separator");
   StringBuffer sb=new StringBuffer();
+  Reader reader=null;
   try {
-    Reader reader;
     if (encoding == null) {
       reader=new FileReader(this);
     }
@@ -20,6 +20,11 @@
   }
  catch (  IOException ioe) {
     log.error("",ioe);
+  }
+  if (reader != null)   try {
+    reader.close();
+  }
+ catch (  IOException e) {
   }
   return sb.toString();
 }
