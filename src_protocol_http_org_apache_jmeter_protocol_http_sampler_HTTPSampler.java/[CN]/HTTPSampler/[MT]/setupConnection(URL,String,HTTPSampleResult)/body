@@ -21,7 +21,7 @@
   String cookies=setConnectionCookie(conn,u,getCookieManager());
   if (res != null) {
     StringBuffer sb=new StringBuffer();
-    if (method.equals(HTTPSampler.POST)) {
+    if (method.equals(POST)) {
       String q=this.getQueryString();
       res.setQueryString(q);
       sb.append("Query data:\n");
@@ -40,7 +40,7 @@
     res.setRequestHeaders(hdrs);
   }
   setConnectionAuthorization(conn,u,getAuthManager());
-  if (method.equals(HTTPSampler.POST)) {
+  if (method.equals(POST)) {
     setPostHeaders(conn);
   }
   return conn;
