@@ -2,7 +2,7 @@
   try {
     getParser("java.lang.String");
   }
- catch (  Error e) {
+ catch (  HTMLParseError e) {
     if (e.getCause() instanceof ClassCastException)     return;
     throw e;
   }

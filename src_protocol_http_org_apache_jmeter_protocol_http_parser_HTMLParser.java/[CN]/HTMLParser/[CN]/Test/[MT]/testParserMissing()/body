@@ -2,7 +2,7 @@
   try {
     getParser("no.such.parser");
   }
- catch (  Error e) {
+ catch (  HTMLParseError e) {
     if (e.getCause() instanceof ClassNotFoundException) {
     }
  else {

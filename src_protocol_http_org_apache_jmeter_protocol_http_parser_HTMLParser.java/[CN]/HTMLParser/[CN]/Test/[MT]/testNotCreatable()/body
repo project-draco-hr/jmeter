@@ -2,7 +2,7 @@
   try {
     getParser(TestClass.class.getName());
   }
- catch (  Error e) {
+ catch (  HTMLParseError e) {
     if (e.getCause() instanceof InstantiationException)     return;
     throw e;
   }

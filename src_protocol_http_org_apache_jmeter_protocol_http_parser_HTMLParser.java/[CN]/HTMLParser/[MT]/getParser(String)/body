@@ -10,17 +10,17 @@
       pars=(HTMLParser)clazz;
     }
  else {
-      throw new Error(new ClassCastException(htmlParserClassName));
+      throw new HTMLParseError(new ClassCastException(htmlParserClassName));
     }
   }
  catch (  InstantiationException e) {
-    throw new Error(e);
+    throw new HTMLParseError(e);
   }
 catch (  IllegalAccessException e) {
-    throw new Error(e);
+    throw new HTMLParseError(e);
   }
 catch (  ClassNotFoundException e) {
-    throw new Error(e);
+    throw new HTMLParseError(e);
   }
   log.info("Created " + htmlParserClassName);
   if (pars.isReusable()) {
