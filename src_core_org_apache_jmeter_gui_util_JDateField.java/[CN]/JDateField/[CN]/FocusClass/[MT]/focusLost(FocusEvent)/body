@@ -1,9 +1,8 @@
 {
   try {
-    if (new Date(getText()) instanceof Date) {
-    }
+    dateFormat.parse(getText());
   }
- catch (  Exception ex) {
+ catch (  ParseException e1) {
     requestFocus();
   }
 }

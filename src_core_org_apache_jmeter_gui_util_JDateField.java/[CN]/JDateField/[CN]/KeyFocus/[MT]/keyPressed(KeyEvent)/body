@@ -1,52 +1,8 @@
 {
   if (e.getKeyCode() == KeyEvent.VK_UP) {
-    String datetime=getText();
-    parseDate(datetime);
-    int pos=getCaretPosition();
-    if (pos < 3) {
-      incrementMonth();
-    }
- else     if (pos < 6) {
-      incrementDay();
-    }
- else     if (pos < 11) {
-      incrementYear();
-    }
- else     if (pos < 14) {
-      incrementHour();
-    }
- else     if (pos < 17) {
-      incrementMinute();
-    }
- else     if (pos < 20) {
-      incrementSecond();
-    }
-    setText(concate(mon) + "/" + concate(day)+ "/"+ concate(year)+ " "+ concate(hour)+ ":"+ concate(minute)+ ":"+ concate(second));
-    setCaretPosition(pos);
+    update(1,e.isShiftDown());
   }
  else   if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-    String datetime=getText();
-    parseDate(datetime);
-    int pos=getCaretPosition();
-    if (pos < 3) {
-      decrementMonth();
-    }
- else     if (pos < 6) {
-      decrementDay();
-    }
- else     if (pos < 11) {
-      decrementYear();
-    }
- else     if (pos < 14) {
-      decrementHour();
-    }
- else     if (pos < 17) {
-      decrementMinute();
-    }
- else     if (pos < 20) {
-      decrementSecond();
-    }
-    setText(concate(mon) + "/" + concate(day)+ "/"+ concate(year)+ " "+ concate(hour)+ ":"+ concate(minute)+ ":"+ concate(second));
-    setCaretPosition(pos);
+    update(-1,e.isShiftDown());
   }
 }
