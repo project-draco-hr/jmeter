@@ -1,8 +1,9 @@
 {
-  JPanel fileLocator=new JPanel();
-  JLabel fileName=new JLabel(JMeterUtils.getResString("filename"));
-  fileLocator.add(fileName);
   fileNameField=new JTextField("users.xml",15);
-  fileLocator.add(fileNameField);
+  JLabel label=new JLabel(JMeterUtils.getResString("filename"));
+  label.setLabelFor(fileNameField);
+  JPanel fileLocator=new JPanel(new BorderLayout());
+  fileLocator.add(label,BorderLayout.WEST);
+  fileLocator.add(fileNameField,BorderLayout.CENTER);
   return fileLocator;
 }

@@ -1,13 +1,11 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  mainPanel.add(makeTitlePanel());
-  argumentName=new JLabeledTextField(JMeterUtils.getResString("session_argument_name"));
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  VerticalPanel mainPanel=new VerticalPanel();
+  argumentName=new JLabeledTextField(JMeterUtils.getResString("session_argument_name"),10);
   mainPanel.add(argumentName);
   pathExt=new JCheckBox(JMeterUtils.getResString("Path_Extension_choice"));
   mainPanel.add(pathExt);
-  this.add(mainPanel);
+  add(mainPanel,BorderLayout.CENTER);
 }

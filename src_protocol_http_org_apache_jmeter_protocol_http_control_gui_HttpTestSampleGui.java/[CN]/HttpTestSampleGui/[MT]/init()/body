@@ -1,14 +1,8 @@
 {
-  this.setLayout(new GridLayout(1,1));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new BorderLayout());
-  mainPanel.add(makeTitlePanel(),BorderLayout.NORTH);
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
   urlConfigGui=new MultipartUrlConfigGui();
-  mainPanel.add(urlConfigGui,BorderLayout.CENTER);
-  mainPanel.add(createOptionalTasksPanel(),BorderLayout.SOUTH);
-  this.add(mainPanel);
-  revalidate();
-  setMinimumSize(this.getPreferredSize());
+  add(urlConfigGui,BorderLayout.CENTER);
+  add(createOptionalTasksPanel(),BorderLayout.SOUTH);
 }

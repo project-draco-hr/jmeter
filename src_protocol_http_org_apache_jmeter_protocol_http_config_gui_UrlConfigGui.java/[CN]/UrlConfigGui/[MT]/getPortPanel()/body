@@ -1,9 +1,10 @@
 {
-  JPanel portP=new JPanel(new FlowLayout(FlowLayout.LEFT));
-  portP.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
-  portP.add(new JLabel(JMeterUtils.getResString("web_server_port")));
   port=new JTextField(6);
   port.setName(PORT);
-  portP.add(port);
-  return portP;
+  JLabel label=new JLabel(JMeterUtils.getResString("web_server_port"));
+  label.setLabelFor(port);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  panel.add(label,BorderLayout.WEST);
+  panel.add(port,BorderLayout.CENTER);
+  return panel;
 }

@@ -1,10 +1,7 @@
 {
-  JPanel optionalTasksPanel=new JPanel();
-  optionalTasksPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  VerticalPanel optionalTasksPanel=new VerticalPanel();
   optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
   JPanel retrieveImagesPanel=new JPanel();
-  retrieveImagesPanel.setLayout(new BoxLayout(retrieveImagesPanel,BoxLayout.X_AXIS));
-  retrieveImagesPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
   retrieveImagesPanel.add(getImages);
   optionalTasksPanel.add(retrieveImagesPanel);

@@ -1,11 +1,11 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  mainPanel.add(makeTitlePanel());
-  mainPanel.add(urlField);
-  mainPanel.add(soapXml);
-  this.add(mainPanel);
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  urlField=new JLabeledTextField(JMeterUtils.getResString("url"),10);
+  soapXml=new JLabeledTextArea(JMeterUtils.getResString("soap_data_title"),null);
+  JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.add(urlField,BorderLayout.NORTH);
+  mainPanel.add(soapXml,BorderLayout.CENTER);
+  add(mainPanel,BorderLayout.CENTER);
 }

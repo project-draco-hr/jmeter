@@ -1,8 +1,6 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  Border margin=new EmptyBorder(10,10,5,10);
-  this.setBorder(margin);
-  this.add(makeTitlePanel());
-  JPanel cookieTablePanel=createCookieTablePanel();
-  this.add(cookieTablePanel);
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(createCookieTablePanel(),BorderLayout.CENTER);
 }

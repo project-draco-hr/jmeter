@@ -1,18 +1,19 @@
 {
-  Border margin=new EmptyBorder(10,10,5,10);
-  this.setBorder(margin);
-  this.setLayout(new BorderLayout());
-  argPanel=new HTTPArgumentsPanel();
-  this.add(argPanel,BorderLayout.CENTER);
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  Box mainPanel=Box.createVerticalBox();
+  VerticalPanel urlPanel=new VerticalPanel();
   protocol=new JLabeledTextField(JMeterUtils.getResString("url_config_protocol"));
+  urlPanel.add(protocol);
   domain=new JLabeledTextField(JMeterUtils.getResString("web_server_domain"));
+  urlPanel.add(domain);
   path=new JLabeledTextField(JMeterUtils.getResString("path"));
+  urlPanel.add(path);
   port=new JLabeledTextField(JMeterUtils.getResString("web_server_port"));
-  JPanel topPanel=new JPanel(new VerticalLayout(5,VerticalLayout.LEFT));
-  topPanel.add(makeTitlePanel());
-  topPanel.add(protocol);
-  topPanel.add(domain);
-  topPanel.add(path);
-  topPanel.add(port);
-  this.add(topPanel,BorderLayout.NORTH);
+  urlPanel.add(port);
+  mainPanel.add(urlPanel);
+  argPanel=new HTTPArgumentsPanel();
+  mainPanel.add(argPanel);
+  add(mainPanel,BorderLayout.CENTER);
 }

@@ -1,9 +1,10 @@
 {
-  JPanel domainP=new JPanel(new FlowLayout(FlowLayout.LEFT));
-  domainP.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
-  domainP.add(new JLabel(JMeterUtils.getResString("web_server_domain")));
   domain=new JTextField(20);
   domain.setName(DOMAIN);
-  domainP.add(domain);
-  return domainP;
+  JLabel label=new JLabel(JMeterUtils.getResString("web_server_domain"));
+  label.setLabelFor(domain);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  panel.add(label,BorderLayout.WEST);
+  panel.add(domain,BorderLayout.CENTER);
+  return panel;
 }

@@ -1,4 +1,4 @@
 {
-  tableModel=new PowerTableModel(columnNames,new Class[]{String.class,String.class,String.class,String.class,Boolean.class,Long.class});
+  tableModel=new PowerTableModel(columnNames,columnClasses);
   init();
 }

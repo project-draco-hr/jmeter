@@ -1,11 +1,6 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  headerManagerPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  headerManagerPanel.setBorder(margin);
-  headerManagerPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  headerManagerPanel.add(makeTitlePanel());
-  JPanel headerTablePanel=createHeaderTablePanel();
-  headerManagerPanel.add(headerTablePanel);
-  this.add(headerManagerPanel);
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(createHeaderTablePanel(),BorderLayout.CENTER);
 }

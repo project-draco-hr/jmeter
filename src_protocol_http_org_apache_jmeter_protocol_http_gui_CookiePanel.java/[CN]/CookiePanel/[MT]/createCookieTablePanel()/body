@@ -1,52 +1,11 @@
 {
-  Border margin=new EmptyBorder(5,10,10,10);
-  JPanel tempPanel=new JPanel();
-  tempPanel.setLayout(new VerticalLayout(0,VerticalLayout.CENTER));
-  tempPanel.setBorder(new CompoundBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("cookies_stored")),margin));
   cookieTable=new JTable(tableModel);
-  cookieTable.setCellSelectionEnabled(true);
-  cookieTable.setRowSelectionAllowed(true);
-  cookieTable.setColumnSelectionAllowed(false);
   cookieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-  JScrollPane scroller=new JScrollPane(cookieTable);
-  cookieTable.setPreferredScrollableViewportSize(new Dimension(520,150));
-  JTableHeader tableHeader=cookieTable.getTableHeader();
-  scroller.setColumnHeaderView(tableHeader);
-  tempPanel.add(scroller);
-  addButton=new JButton(JMeterUtils.getResString("add"));
-  addButton.setMnemonic('A');
-  addButton.setActionCommand("Add");
-  addButton.addActionListener(this);
-  deleteButton=new JButton(JMeterUtils.getResString("delete"));
-  if (tableModel.getRowCount() == 0) {
-    deleteButton.setEnabled(false);
-  }
- else {
-    deleteButton.setEnabled(true);
-  }
-  deleteButton.setMnemonic('D');
-  deleteButton.setActionCommand("Delete");
-  deleteButton.addActionListener(this);
-  loadButton=new JButton(JMeterUtils.getResString("load"));
-  loadButton.setMnemonic('L');
-  loadButton.setActionCommand("Load");
-  loadButton.addActionListener(this);
-  saveButton=new JButton(JMeterUtils.getResString("save"));
-  if (tableModel.getRowCount() == 0) {
-    saveButton.setEnabled(false);
-  }
- else {
-    saveButton.setEnabled(true);
-  }
-  saveButton.setMnemonic('S');
-  saveButton.setActionCommand("Save");
-  saveButton.addActionListener(this);
-  JPanel buttonPanel=new JPanel();
-  buttonPanel.add(addButton);
-  buttonPanel.add(deleteButton);
-  buttonPanel.add(loadButton);
-  buttonPanel.add(saveButton);
-  tempPanel.add(Box.createRigidArea(new Dimension(0,10)));
-  tempPanel.add(buttonPanel);
-  return tempPanel;
+  cookieTable.setPreferredScrollableViewportSize(new Dimension(100,70));
+  JPanel buttonPanel=createButtonPanel();
+  JPanel panel=new JPanel(new BorderLayout(0,5));
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("cookies_stored")));
+  panel.add(new JScrollPane(cookieTable),BorderLayout.CENTER);
+  panel.add(buttonPanel,BorderLayout.SOUTH);
+  return panel;
 }

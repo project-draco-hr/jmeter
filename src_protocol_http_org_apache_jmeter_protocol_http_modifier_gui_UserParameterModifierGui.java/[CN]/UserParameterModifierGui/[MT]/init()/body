@@ -1,11 +1,19 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
-  Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  mainPanel.add(makeTitlePanel());
-  mainPanel.add(getFileLocator());
-  mainPanel.add(new JLabel(JMeterUtils.getResString("user_param_mod_help_note")));
-  this.add(mainPanel);
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel mainPanel=new JPanel(new BorderLayout(0,5));
+  mainPanel.add(getFileLocator(),BorderLayout.NORTH);
+  JTextArea helpText=new JTextArea(JMeterUtils.getResString("user_param_mod_help_note"));
+  helpText.setLineWrap(true);
+  helpText.setWrapStyleWord(true);
+  helpText.setBackground(getBackground());
+  helpText.setEditable(false);
+  JLabel dummyLabel=new JLabel();
+  helpText.setFont(dummyLabel.getFont());
+  helpText.setForeground(dummyLabel.getForeground());
+  JScrollPane scroller=new JScrollPane(helpText);
+  scroller.setBorder(BorderFactory.createEmptyBorder());
+  mainPanel.add(scroller,BorderLayout.CENTER);
+  add(mainPanel,BorderLayout.CENTER);
 }

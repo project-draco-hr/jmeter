@@ -1,55 +1,13 @@
 {
-  Border margin=new EmptyBorder(5,10,10,10);
-  JPanel tempPanel=new JPanel();
-  tempPanel.setLayout(new VerticalLayout(0,VerticalLayout.CENTER));
-  tempPanel.setBorder(new CompoundBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("auths_stored")),margin));
   authTable=new JTable(tableModel);
-  authTable.setCellSelectionEnabled(true);
-  authTable.setRowSelectionAllowed(true);
-  authTable.setColumnSelectionAllowed(false);
   authTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  authTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   TableColumn passwordColumn=authTable.getColumnModel().getColumn(2);
   passwordColumn.setCellEditor(new DefaultCellEditor(new JPasswordField()));
   passwordColumn.setCellRenderer(new PasswordCellRenderer());
-  JScrollPane scroller=new JScrollPane(authTable);
-  authTable.setPreferredScrollableViewportSize(new Dimension(520,150));
-  JTableHeader tableHeader=authTable.getTableHeader();
-  scroller.setColumnHeaderView(tableHeader);
-  tempPanel.add(scroller);
-  addButton=new JButton(JMeterUtils.getResString("add"));
-  addButton.setMnemonic('A');
-  addButton.setActionCommand("Add");
-  addButton.addActionListener(this);
-  deleteButton=new JButton(JMeterUtils.getResString("delete"));
-  if (tableModel.getRowCount() == 0) {
-    deleteButton.setEnabled(false);
-  }
- else {
-    deleteButton.setEnabled(true);
-  }
-  deleteButton.setMnemonic('D');
-  deleteButton.setActionCommand("Delete");
-  deleteButton.addActionListener(this);
-  loadButton=new JButton(JMeterUtils.getResString("load"));
-  loadButton.setMnemonic('L');
-  loadButton.setActionCommand("Load");
-  loadButton.addActionListener(this);
-  saveButton=new JButton(JMeterUtils.getResString("save"));
-  if (tableModel.getRowCount() == 0) {
-    saveButton.setEnabled(false);
-  }
- else {
-    saveButton.setEnabled(true);
-  }
-  saveButton.setMnemonic('S');
-  saveButton.setActionCommand("Save");
-  saveButton.addActionListener(this);
-  JPanel buttonPanel=new JPanel();
-  buttonPanel.add(addButton);
-  buttonPanel.add(deleteButton);
-  buttonPanel.add(loadButton);
-  buttonPanel.add(saveButton);
-  tempPanel.add(Box.createRigidArea(new Dimension(0,10)));
-  tempPanel.add(buttonPanel);
-  return tempPanel;
+  JPanel panel=new JPanel(new BorderLayout(0,5));
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("auths_stored")));
+  panel.add(new JScrollPane(authTable));
+  panel.add(createButtonPanel(),BorderLayout.SOUTH);
+  return panel;
 }

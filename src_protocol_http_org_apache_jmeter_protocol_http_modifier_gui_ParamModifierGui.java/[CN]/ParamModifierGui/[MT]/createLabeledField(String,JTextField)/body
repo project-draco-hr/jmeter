@@ -1,0 +1,8 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString(labelResName));
+  label.setLabelFor(field);
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.add(label,BorderLayout.NORTH);
+  panel.add(field,BorderLayout.CENTER);
+  return panel;
+}

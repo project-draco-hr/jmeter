@@ -1,17 +1,21 @@
 {
-  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
-  panel.setBorder(BorderFactory.createEmptyBorder(0,5,0,10));
-  panel.add(new JLabel(JMeterUtils.getResString("path")));
   path=new JTextField(15);
   path.setName(PATH);
-  panel.add(path);
+  JLabel label=new JLabel(JMeterUtils.getResString("path"));
+  label.setLabelFor(path);
   followRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects"));
   followRedirects.setName(FOLLOW_REDIRECTS);
   followRedirects.setSelected(true);
-  panel.add(followRedirects);
   useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
   useKeepAlive.setName(USE_KEEPALIVE);
   useKeepAlive.setSelected(true);
+  Box panel=Box.createHorizontalBox();
+  panel.add(label);
+  panel.add(Box.createHorizontalStrut(5));
+  panel.add(path);
+  panel.add(Box.createHorizontalStrut(10));
+  panel.add(followRedirects);
+  panel.add(Box.createHorizontalStrut(5));
   panel.add(useKeepAlive);
   return panel;
 }
