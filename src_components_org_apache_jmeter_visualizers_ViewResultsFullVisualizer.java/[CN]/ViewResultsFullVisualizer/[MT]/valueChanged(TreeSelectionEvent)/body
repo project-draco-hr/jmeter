@@ -70,6 +70,10 @@ if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
 if (response != null) {
   JTextArea textArea=new JTextArea();
   textArea.setText(response);
+  textArea.setColumns(70);
+  textArea.setLineWrap(true);
+  textArea.setWrapStyleWord(true);
+  textArea.setTabSize(4);
   gbc.gridx=0;
   gridBag.setConstraints(textArea,gbc);
   resultPanel.add(textArea);
