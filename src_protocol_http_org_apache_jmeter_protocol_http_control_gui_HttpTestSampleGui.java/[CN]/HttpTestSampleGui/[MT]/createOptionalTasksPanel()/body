@@ -1,5 +1,5 @@
 {
-  VerticalPanel optionalTasksPanel=new VerticalPanel();
+  HorizontalPanel optionalTasksPanel=new HorizontalPanel();
   optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
   JPanel retrieveImagesPanel=new JPanel();
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
