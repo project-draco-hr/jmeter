@@ -17,14 +17,14 @@
       }
  else       if (equals > -1) {
         String key=line[0].substring(0,equals);
-        if ((equals + 1) < line[0].length())         tree.add(key,line[0].substring(equals + 1));
- else         tree.add(key);
+        if ((equals + 1) < line[0].length())         tree.addRaw(key,line[0].substring(equals + 1));
+ else         tree.addRaw(key);
       }
  else       if (line[0].equals("}")) {
         return false;
       }
  else       if (line[0].length() > 0) {
-        tree.add(line[0]);
+        tree.addRaw(line[0]);
       }
     }
   }

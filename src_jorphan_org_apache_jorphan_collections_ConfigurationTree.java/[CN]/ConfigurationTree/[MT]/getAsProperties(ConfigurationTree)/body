@@ -1,0 +1,10 @@
+{
+  Properties props=new Properties();
+  if (tree == null)   return props;
+  String[] propNames=tree.getPropertyNames();
+  if (propNames == null)   return props;
+  for (int i=0; i < propNames.length; i++) {
+    if (tree.getProperty(propNames[i]) != null)     props.setProperty(propNames[i],tree.getProperty(propNames[i]));
+  }
+  return props;
+}
