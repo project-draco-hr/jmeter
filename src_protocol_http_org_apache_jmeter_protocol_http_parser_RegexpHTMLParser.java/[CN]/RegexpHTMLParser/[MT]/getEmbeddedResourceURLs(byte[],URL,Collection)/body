@@ -29,7 +29,6 @@
       }
       if (s != null) {
         try {
-          if (s.endsWith("/p.gif"))           continue;
           urls.add(new URL(baseUrl,s));
         }
  catch (        MalformedURLException e) {
