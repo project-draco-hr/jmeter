@@ -1,0 +1,14 @@
+{
+  if (value == null) {
+    return new LinkedList();
+  }
+  if (value instanceof Collection) {
+    return (Collection)value;
+  }
+  if (value instanceof Object[]) {
+    return Arrays.asList((Object[])value);
+  }
+  List newList=new LinkedList();
+  newList.add(value);
+  return newList;
+}
