@@ -1,11 +1,11 @@
 {
   String action=e.getActionCommand();
   if (action.equals(SUB_TREE_SAVED) || action.equals(SAVE)) {
-    ListedHashTree subTree=GuiPackage.getInstance().getCurrentSubTree();
+    HashTree subTree=GuiPackage.getInstance().getCurrentSubTree();
     subTree.traverse(this);
   }
  else   if (action.equals(SAVE_ALL) || action.equals(SAVE_TO_PREVIOUS)) {
-    ListedHashTree subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
+    HashTree subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
     subTree.traverse(this);
   }
  else   if (action.equals(SUB_TREE_LOADED)) {
@@ -28,7 +28,7 @@
  else   if (action.equals(CHECK_DIRTY)) {
     checkMode=true;
     dirty=false;
-    ListedHashTree wholeTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
+    HashTree wholeTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
     wholeTree.traverse(this);
     GuiPackage.getInstance().setDirty(dirty);
     checkMode=false;

@@ -5,7 +5,10 @@
   List listeners=new LinkedList();
   List timers=new LinkedList();
   List assertions=new LinkedList();
+  log.debug("Full stack = " + stack);
   for (int i=stack.size(); i > 0; i--) {
+    log.debug("looping, i = " + i);
+    log.debug("sub-stack = " + stack.subList(0,i));
     Iterator iter=testTree.list(stack.subList(0,i)).iterator();
     while (iter.hasNext()) {
       TestElement item=(TestElement)iter.next();

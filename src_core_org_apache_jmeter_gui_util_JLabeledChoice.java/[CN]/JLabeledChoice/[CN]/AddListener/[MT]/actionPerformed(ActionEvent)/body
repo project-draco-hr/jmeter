@@ -1,9 +1,0 @@
-{
-  Object item=choiceList.getSelectedItem();
-  int index=choiceList.getSelectedIndex();
-  if (!item.equals(choiceList.getItemAt(index))) {
-    choiceList.addItem(item);
-  }
-  choiceList.setSelectedItem(item);
-  notifyChangeListeners();
-}

@@ -1,9 +1,0 @@
-{
-  if (keys.size() == 1) {
-    return get(keys.get(0));
-  }
- else   if (keys.size() > 1) {
-    return get(keys.get(0)).get(keys.subList(1,keys.size()));
-  }
-  return new ListedHashTree();
-}

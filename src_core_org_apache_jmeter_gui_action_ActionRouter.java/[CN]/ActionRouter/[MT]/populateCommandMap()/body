@@ -4,7 +4,7 @@
   Iterator iterClasses;
   Class commandClass;
   try {
-    listClasses=ClassFinder.findClassesThatExtend(new Class[]{Class.forName("org.apache.jmeter.gui.action.Command")});
+    listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Class.forName("org.apache.jmeter.gui.action.Command")});
     commands=new HashMap(listClasses.size());
     if (listClasses.size() == 0) {
       log.warn("!!!!!Uh-oh, didn't find any action handlers!!!!!");

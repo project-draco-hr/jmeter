@@ -13,7 +13,7 @@
     try {
       File f=new File(testFile.getArgument());
       FileInputStream reader=new FileInputStream(f);
-      ListedHashTree tree=SaveService.loadSubTree(reader);
+      HashTree tree=SaveService.loadSubTree(reader);
       new Load().insertLoadedTree(1,tree);
     }
  catch (    Exception e) {

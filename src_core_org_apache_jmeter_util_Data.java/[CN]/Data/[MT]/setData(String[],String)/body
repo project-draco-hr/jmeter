@@ -1,7 +1,0 @@
-{
-  setHeaders(JMeterUtils.split(contents[0],delimiter));
-  int x=1;
-  while (x < contents.length) {
-    setLine(JMeterUtils.split(contents[x++],delimiter));
-  }
-}

@@ -10,7 +10,7 @@
     f=chooser.getSelectedFile();
     if (f != null) {
       reader=new FileInputStream(f);
-      ListedHashTree tree=SaveService.loadSubTree(reader);
+      HashTree tree=SaveService.loadSubTree(reader);
       isTestPlan=insertLoadedTree(e.getID(),tree);
     }
   }

@@ -8,7 +8,7 @@
       break;
     }
   }
-  ListedHashTree subTree=objectHierarchy.get(stack);
+  HashTree subTree=objectHierarchy.getTree(stack);
   if (subTree == null) {
     return new LinkedList();
   }

@@ -1,6 +1,0 @@
-{
-  Dimension dimension=component.getToolkit().getScreenSize();
-  component.setLocation((int)((dimension.getWidth() - component.getWidth()) / 2),(int)((dimension.getHeight() - component.getHeight()) / 2));
-  component.validate();
-  component.repaint();
-}

@@ -1,7 +1,7 @@
 {
   try {
     Configuration config=builder.build(in);
-    ListedHashTree loadedTree=generateNode(config);
+    HashTree loadedTree=generateNode(config);
     return loadedTree;
   }
  catch (  ConfigurationException e) {

@@ -1,8 +1,0 @@
-{
-  if (path != null && path.equals(".")) {
-    return System.getProperty("user.dir");
-  }
- else {
-    return path.trim();
-  }
-}

@@ -1,11 +1,11 @@
 {
-  ListedHashTree tree=new ListedHashTree();
+  HashTree tree=new ListedHashTree();
   JMeterGUIComponent root=new org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui();
   tree.add(root,root);
-  tree.get(root).add(root,root);
+  tree.getTree(root).add(root,root);
   save.convertSubTree(tree);
   assertEquals(tree.getArray()[0].getClass().getName(),root.createTestElement().getClass().getName());
-  tree=tree.get(tree.getArray()[0]);
+  tree=tree.getTree(tree.getArray()[0]);
   assertEquals(tree.getArray()[0].getClass().getName(),root.createTestElement().getClass().getName());
-  assertEquals(tree.get(tree.getArray()[0]).getArray()[0].getClass().getName(),root.createTestElement().getClass().getName());
+  assertEquals(tree.getTree(tree.getArray()[0]).getArray()[0].getClass().getName(),root.createTestElement().getClass().getName());
 }

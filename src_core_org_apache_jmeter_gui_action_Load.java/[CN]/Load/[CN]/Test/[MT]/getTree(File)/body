@@ -5,6 +5,6 @@
   parser.setContentHandler(handler);
   parser.setErrorHandler(handler);
   parser.parse(new InputSource(reader));
-  ListedHashTree tree=handler.getDataTree();
+  HashTree tree=handler.getDataTree();
   return tree;
 }

@@ -4,7 +4,7 @@
   panel.add(new JLabel(JMeterUtils.getResString("protocol_java_classname")));
   List possibleClasses=null;
   try {
-    possibleClasses=ClassFinder.findClassesThatExtend(new Class[]{JavaSamplerClient.class});
+    possibleClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JavaSamplerClient.class});
     possibleClasses.remove("org.apache.jmeter.protocol.java.sampler.JavaSampler");
   }
  catch (  Exception e) {

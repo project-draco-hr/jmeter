@@ -7,10 +7,10 @@
     log.error("Problem loading part of file",e);
     return null;
   }
-  ListedHashTree subTree=new ListedHashTree(element);
+  HashTree subTree=new ListedHashTree(element);
   Configuration[] subNodes=config.getChildren("node");
   for (int i=0; i < subNodes.length; i++) {
-    ListedHashTree t=generateNode(subNodes[i]);
+    HashTree t=generateNode(subNodes[i]);
     if (t != null) {
       subTree.add(element,t);
     }

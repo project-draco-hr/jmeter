@@ -1,0 +1,16 @@
+{
+  Iterator iter=subTree.list().iterator();
+  List configs=new LinkedList();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    DefaultConfiguration config=new DefaultConfiguration("node","node");
+    config.addChild(getConfigForTestElement(null,item));
+    List configList=getConfigsFromTree(subTree.getTree(item));
+    Iterator iter2=configList.iterator();
+    while (iter2.hasNext()) {
+      config.addChild((Configuration)iter2.next());
+    }
+    configs.add(config);
+  }
+  return configs;
+}

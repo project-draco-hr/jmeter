@@ -10,8 +10,8 @@
   ListedHashTree newTree=cloner.getClonedTree();
   this.assertTrue(original != newTree);
   assertEquals(original.size(),newTree.size());
-  assertEquals(original.get(original.getArray()[0]).size(),newTree.get(newTree.getArray()[0]).size());
+  assertEquals(original.getTree(original.getArray()[0]).size(),newTree.getTree(newTree.getArray()[0]).size());
   assertTrue(original.getArray()[0] != newTree.getArray()[0]);
   assertEquals(((GenericController)original.getArray()[0]).getName(),((GenericController)newTree.getArray()[0]).getName());
-  assertSame(original.get(original.getArray()[0]).getArray()[0],newTree.get(newTree.getArray()[0]).getArray()[0]);
+  assertSame(original.getTree(original.getArray()[0]).getArray()[0],newTree.getTree(newTree.getArray()[0]).getArray()[0]);
 }

@@ -16,7 +16,7 @@
   testing.add(controller,config1);
   testing.add(controller,sampler);
   testing.add(controller,sampler2);
-  testing.get(controller).add(sampler,args);
+  testing.getTree(controller).add(sampler,args);
   TestCompiler.initialize();
   TestCompiler compiler=new TestCompiler(testing,new JMeterVariables());
   testing.traverse(compiler);

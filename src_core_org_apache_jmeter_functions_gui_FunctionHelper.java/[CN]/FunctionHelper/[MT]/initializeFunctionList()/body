@@ -1,6 +1,6 @@
 {
   try {
-    List functionClasses=ClassFinder.findClassesThatExtend(new Class[]{Function.class},true);
+    List functionClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Function.class},true);
     Iterator iter=functionClasses.iterator();
     String[] functionNames=new String[functionClasses.size()];
     int count=0;

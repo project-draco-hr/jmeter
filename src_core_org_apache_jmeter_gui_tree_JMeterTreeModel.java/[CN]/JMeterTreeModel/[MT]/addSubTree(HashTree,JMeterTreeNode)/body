@@ -1,0 +1,17 @@
+{
+  boolean ret=false;
+  Iterator iter=subTree.list().iterator();
+  while (iter.hasNext()) {
+    JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
+    if (item instanceof TestPlanGui) {
+      current=(JMeterTreeNode)((JMeterTreeNode)getRoot()).getChildAt(0);
+      current.configure(item.createTestElement());
+      addSubTree(subTree.getTree(item),current);
+      ret=true;
+    }
+ else {
+      addSubTree(subTree.getTree(item),addComponent(item,current));
+    }
+  }
+  return ret;
+}

@@ -7,7 +7,7 @@
       return;
     }
     reader=new FileInputStream(f);
-    ListedHashTree tree=SaveService.loadSubTree(reader);
+    HashTree tree=SaveService.loadSubTree(reader);
     if (logFile != null) {
       ResultCollector logger=new ResultCollector();
       logger.setFilename(logFile);

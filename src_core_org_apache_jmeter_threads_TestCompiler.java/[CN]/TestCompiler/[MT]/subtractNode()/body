@@ -1,6 +1,8 @@
 {
+  log.debug("Subtracting node, stack size = " + stack.size());
   TestElement child=(TestElement)stack.getLast();
   if (child instanceof Sampler) {
+    log.debug("Saving configs for sampler: " + child);
     saveSamplerConfigs((Sampler)child);
   }
   stack.removeLast();

@@ -1,6 +1,6 @@
 {
   GuiPackage gui=GuiPackage.getInstance();
-  ListedHashTree testTree=gui.getTreeModel().getTestPlan();
+  HashTree testTree=gui.getTreeModel().getTestPlan();
   convertSubTree(testTree);
   testTree.add(testTree.getArray()[0],gui.getMainFrame());
   engine.configure(testTree);

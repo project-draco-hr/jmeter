@@ -1,5 +1,5 @@
 {
-  Iterator classes=ClassFinder.findClassesThatExtend(new Class[]{extendsClass}).iterator();
+  Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
   while (classes.hasNext()) {
     String className=(String)classes.next();

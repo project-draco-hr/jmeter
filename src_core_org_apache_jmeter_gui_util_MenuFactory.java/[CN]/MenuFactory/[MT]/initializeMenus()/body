@@ -1,6 +1,6 @@
 {
   try {
-    List guiClasses=ClassFinder.findClassesThatExtend(new Class[]{JMeterGUIComponent.class});
+    List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class});
     timers=new LinkedList();
     controllers=new LinkedList();
     samplers=new LinkedList();

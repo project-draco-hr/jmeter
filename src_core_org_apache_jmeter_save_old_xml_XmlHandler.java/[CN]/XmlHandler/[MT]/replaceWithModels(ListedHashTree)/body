@@ -1,8 +1,0 @@
-{
-  Iterator iter=new LinkedList(tree.list()).iterator();
-  while (iter.hasNext()) {
-    TagHandler item=(TagHandler)iter.next();
-    tree.replace(item,item.getModel());
-    replaceWithModels(tree.get(item.getModel()));
-  }
-}

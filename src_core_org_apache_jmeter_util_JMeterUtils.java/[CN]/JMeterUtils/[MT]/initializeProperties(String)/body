@@ -1,0 +1,8 @@
+{
+  System.out.println("Initializing Properties: " + file);
+  getProperties(file);
+  String home=file.substring(0,file.lastIndexOf("/"));
+  home=new File(home + "/..").getAbsolutePath();
+  System.out.println("Setting JMeter home: " + home);
+  setJMeterHome(home);
+}
