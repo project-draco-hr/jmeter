@@ -1,8 +1,8 @@
 {
   man.add(new Cookie("id","value",".apache.org","/",false,9999999999L));
-  HTTPSampler sampler=new HTTPSampler();
+  HTTPSamplerBase sampler=new HTTPNullSampler();
   sampler.setDomain("jakarta.apache.org");
   sampler.setPath("/index.html");
-  sampler.setMethod(HTTPSampler.GET);
+  sampler.setMethod(HTTPSamplerBase.GET);
   assertNotNull(man.getCookieHeaderForURL(sampler.getUrl()));
 }
