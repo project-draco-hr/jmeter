@@ -19,6 +19,7 @@
     }
     byte[] responseData=httpMethod.getResponseBody();
     res.sampleEnd();
+    res.setSampleLabel(httpMethod.getPath());
     res.setResponseData(responseData);
     int errorLevel=httpMethod.getStatusCode();
     res.setResponseCode(Integer.toString(errorLevel));

@@ -29,7 +29,7 @@
   if (httpConn.isProxied() && httpConn.isSecure()) {
     httpMethod=new ConnectMethod(httpMethod);
   }
-  httpMethod.setFollowRedirects(delegateRedirects && res.isRedirect());
+  httpMethod.setFollowRedirects(delegateRedirects && getFollowRedirects());
   if (getUseKeepAlive()) {
     httpMethod.setRequestHeader("Connection","keep-alive");
   }

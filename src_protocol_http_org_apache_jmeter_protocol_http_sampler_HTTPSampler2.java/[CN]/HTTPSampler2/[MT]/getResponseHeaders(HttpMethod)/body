@@ -1,9 +1,9 @@
 {
   StringBuffer headerBuf=new StringBuffer();
-  Header rh[]=conn.getResponseHeaders();
-  headerBuf.append(rh[0].toString());
+  Header rh[]=method.getResponseHeaders();
+  headerBuf.append(method.getStatusLine());
   headerBuf.append("\n");
-  for (int i=1; i < rh.length; i++) {
+  for (int i=0; i < rh.length; i++) {
     String key=rh[i].getName();
     if (!key.equalsIgnoreCase("transfer-encoding")) {
       headerBuf.append(key);
