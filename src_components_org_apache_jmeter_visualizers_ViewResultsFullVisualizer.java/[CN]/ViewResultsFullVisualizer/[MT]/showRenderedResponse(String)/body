@@ -12,6 +12,7 @@
   }
   String html=response.substring(htmlIndex);
   results.setContentType("text/html");
+  results.getDocument().putProperty("IgnoreCharsetDirective",Boolean.TRUE);
   results.setText(html);
   results.setCaretPosition(0);
   resultsScrollPane.setViewportView(results);
