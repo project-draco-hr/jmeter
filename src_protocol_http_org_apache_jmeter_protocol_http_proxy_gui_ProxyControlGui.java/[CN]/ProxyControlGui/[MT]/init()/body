@@ -1,9 +1,13 @@
 {
-  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
-  setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-  add(makeTitlePanel());
-  add(createPortPanel());
-  add(createIncludePanel());
-  add(createExcludePanel());
-  add(createControls());
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel mainPanel=new JPanel(new BorderLayout());
+  mainPanel.add(createPortPanel(),BorderLayout.NORTH);
+  Box includeExcludePanel=Box.createVerticalBox();
+  includeExcludePanel.add(createIncludePanel());
+  includeExcludePanel.add(createExcludePanel());
+  mainPanel.add(includeExcludePanel,BorderLayout.CENTER);
+  mainPanel.add(createControls(),BorderLayout.SOUTH);
+  add(mainPanel,BorderLayout.CENTER);
 }
