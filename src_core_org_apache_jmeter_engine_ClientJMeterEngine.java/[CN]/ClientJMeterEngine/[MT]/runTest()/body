@@ -1,5 +1,5 @@
 {
-  log.warn("about to run remote test");
+  log.info("about to run remote test");
   new Thread(this).start();
-  log.warn("done initiating run command");
+  log.info("done initiating run command");
 }
