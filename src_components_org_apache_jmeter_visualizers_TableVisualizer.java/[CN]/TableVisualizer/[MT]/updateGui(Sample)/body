@@ -2,8 +2,5 @@
   table.tableChanged(new TableModelEvent(model));
   tableScrollPanel.revalidate();
   tableScrollPanel.repaint();
-  noSamplesField.setText(Long.toString(model.getSampleCount()));
-  dataField.setText(Long.toString(model.getCurrentData()));
-  averageField.setText(Long.toString(model.getCurrentAverage()));
-  deviationField.setText(Long.toString(model.getCurrentDeviation()));
+  updateTextFields();
 }

@@ -17,7 +17,6 @@
       notifyTestListenersOfStart();
     }
     notifier=new ListenerNotifier();
-    notifier.start();
     while (iter.hasNext()) {
       ThreadGroup group=(ThreadGroup)iter.next();
       threads=new JMeterThread[group.getNumThreads()];
