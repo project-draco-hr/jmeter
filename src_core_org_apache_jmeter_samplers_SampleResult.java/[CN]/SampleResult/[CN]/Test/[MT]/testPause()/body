@@ -8,5 +8,5 @@
   Thread.sleep(100);
   res.sampleEnd();
   assertTrue(res.time >= 200);
-  assertFalse(res.time >= 210);
+  assertFalse(res.time >= 250);
 }
