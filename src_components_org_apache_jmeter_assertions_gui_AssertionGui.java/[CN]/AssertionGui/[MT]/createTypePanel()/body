@@ -1,15 +1,15 @@
 {
   JPanel panel=new JPanel();
-  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("assertion_pattern_match_rules")));
-  containsBox=new JRadioButton(JMeterUtils.getResString("assertion_contains"));
-  matchesBox=new JRadioButton(JMeterUtils.getResString("assertion_matches"));
-  notBox=new JCheckBox(JMeterUtils.getResString("assertion_not"));
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("assertion_pattern_match_rules")));
   ButtonGroup group=new ButtonGroup();
-  group.add(matchesBox);
+  containsBox=new JRadioButton(JMeterUtils.getResString("assertion_contains"));
   group.add(containsBox);
-  panel.add(containsBox);
-  panel.add(matchesBox);
-  panel.add(notBox);
   containsBox.setSelected(true);
+  panel.add(containsBox);
+  matchesBox=new JRadioButton(JMeterUtils.getResString("assertion_matches"));
+  group.add(matchesBox);
+  panel.add(matchesBox);
+  notBox=new JCheckBox(JMeterUtils.getResString("assertion_not"));
+  panel.add(notBox);
   return panel;
 }

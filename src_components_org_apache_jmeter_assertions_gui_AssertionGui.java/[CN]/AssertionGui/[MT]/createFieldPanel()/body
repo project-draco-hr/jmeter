@@ -1,6 +1,6 @@
 {
   JPanel panel=new JPanel();
-  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("assertion_resp_field")));
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("assertion_resp_field")));
   responseStringButton=new JRadioButton(JMeterUtils.getResString("assertion_text_resp"));
   labelButton=new JRadioButton(JMeterUtils.getResString("assertion_url_samp"));
   ButtonGroup group=new ButtonGroup();

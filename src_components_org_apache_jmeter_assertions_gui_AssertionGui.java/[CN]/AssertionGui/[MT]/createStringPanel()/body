@@ -8,7 +8,7 @@
   stringTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   JPanel panel=new JPanel();
   panel.setLayout(new BorderLayout());
-  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("assertion_patterns_to_test")));
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("assertion_patterns_to_test")));
   panel.add(new JScrollPane(stringTable),BorderLayout.CENTER);
   panel.add(createButtonPanel(),BorderLayout.SOUTH);
   return panel;
