@@ -25,6 +25,7 @@
     MatchResult match=getCorrectMatch(matches);
     if (match != null) {
       context.getVariables().put(getRefName(),generateResult(match));
+      saveGroups(context.getVariables(),getRefName(),match);
     }
   }
  catch (  RuntimeException e) {
