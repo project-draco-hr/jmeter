@@ -12,4 +12,5 @@ catch (  IllegalAccessException e) {
 catch (  ClassNotFoundException e) {
     throw new Error(e);
   }
+  log.info("Using " + htmlParserClassName);
 }
