@@ -5,7 +5,15 @@
   String varName=((CompoundVariable)variables[variables.length - 1]).execute();
   String counterString="";
   if (perThread) {
-    counterString=Integer.toString(vars.getIteration());
+    int counterInt;
+    try {
+      counterInt=((Integer)vars.getObject(perThreadCounter)).intValue() + 1;
+    }
+ catch (    NullPointerException e) {
+      counterInt=1;
+    }
+    vars.putObject(perThreadCounter,new Integer(counterInt));
+    counterString=Integer.toString(counterInt);
   }
  else {
     counterString=String.valueOf(counter[0]);
