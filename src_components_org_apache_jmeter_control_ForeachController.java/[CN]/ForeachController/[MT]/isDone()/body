@@ -1,0 +1,10 @@
+{
+  JMeterContext context=JMeterContextService.getContext();
+  String inputVariable=getInputValString() + "_" + (loopCount + 1);
+  if (context.getVariables().get(inputVariable) != null) {
+    context.getVariables().put(getReturnValString(),context.getVariables().get(inputVariable));
+    log.debug("ForEach resultstring isDone=" + context.getVariables().get(getReturnValString()));
+    return false;
+  }
+  return super.isDone();
+}

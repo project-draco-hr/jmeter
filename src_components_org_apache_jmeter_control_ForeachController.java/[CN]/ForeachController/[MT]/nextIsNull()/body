@@ -1,0 +1,10 @@
+{
+  reInitialize();
+  if (endOfArguments()) {
+    resetLoopCount();
+    return null;
+  }
+ else {
+    return next();
+  }
+}

@@ -1,0 +1,12 @@
+{
+  JMeterContext context=JMeterContextService.getContext();
+  String inputVariable=getInputValString() + "_" + (loopCount + 1);
+  if (context.getVariables().get(inputVariable) != null) {
+    log.debug("ForEach resultstring eofArgs= false");
+    return false;
+  }
+ else {
+    log.debug("ForEach resultstring eofArgs= true");
+    return true;
+  }
+}
