@@ -1,7 +1,7 @@
 {
   remote_engine_start=new LinkedList();
   remote_engine_stop=new LinkedList();
-  remoteHosts=JMeterUtils.split(JMeterUtils.getPropDefault("remote_hosts",""),",");
+  remoteHosts=JOrphanUtils.split(JMeterUtils.getPropDefault("remote_hosts",""),",");
   if (remoteHosts.length == 1 && remoteHosts[0].equals("")) {
     remoteHosts=new String[0];
   }

@@ -43,7 +43,7 @@ synchronized (this) {
       }
     }
  catch (    Exception e) {
-      throw new RuntimeException("Can't load KeyStore",e);
+      throw new RuntimeException("Can't load KeyStore: " + e.toString());
     }
     log.info("JmeterKeyStore Location: " + fileName);
     log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());

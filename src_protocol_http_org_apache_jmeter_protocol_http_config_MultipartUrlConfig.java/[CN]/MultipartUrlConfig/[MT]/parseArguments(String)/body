@@ -1,5 +1,5 @@
 {
-  String[] parts=JMeterUtils.split(queryString,"--" + getBoundary());
+  String[] parts=JOrphanUtils.split(queryString,"--" + getBoundary());
   for (int i=0; i < parts.length; i++) {
     if (parts[i].indexOf("filename=") > -1) {
       int index=parts[i].indexOf("name=\"") + 6;

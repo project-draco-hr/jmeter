@@ -1,5 +1,5 @@
 {
-  String[] args=JMeterUtils.split(queryString,"&");
+  String[] args=JOrphanUtils.split(queryString,"&");
   for (int i=0; i < args.length; i++) {
     int endOfNameIndex=0;
     String metaData="";
