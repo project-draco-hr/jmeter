@@ -1,0 +1,8 @@
+{
+  Node node;
+  for (NodeIterator e=elements(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    node.accept(visitor);
+  }
+  visitor.finishedParsing();
+}

@@ -1,0 +1,19 @@
+{
+  Node node;
+  for (NodeIterator e=elements(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    if (node != null) {
+      if (filter == null)       System.out.println(node.toString());
+ else {
+        if (!(node instanceof Tag))         continue;
+        Tag tag=(Tag)node;
+        TagScanner scanner=tag.getThisScanner();
+        if (scanner == null)         continue;
+        String tagFilter=scanner.getFilter();
+        if (tagFilter == null)         continue;
+        if (tagFilter.equals(filter))         System.out.println(node.toString());
+      }
+    }
+ else     System.out.println("Node is null");
+  }
+}

@@ -1,0 +1,5 @@
+{
+  Parser parser=createParser(inputHTML);
+  parser.addScanner(new LinkScanner(LinkTag.LINK_TAG_FILTER));
+  return parser;
+}

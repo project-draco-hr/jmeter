@@ -1,0 +1,10 @@
+{
+  InputStream stream;
+  InputStreamReader in;
+  stream=url_conn.getInputStream();
+  input=new BufferedInputStream(stream);
+  input.mark(Integer.MAX_VALUE);
+  in=createInputStreamReader();
+  reader=new NodeReader(in,resourceLocn);
+  reader.setParser(this);
+}

@@ -1,0 +1,15 @@
+{
+  boolean remove_scanner;
+  Node node;
+  MetaTag meta;
+  String httpEquiv;
+  String charset;
+  boolean restart;
+  EndTag end;
+  IteratorImpl ret;
+  remove_scanner=false;
+  restart=false;
+  ret=new IteratorImpl(reader,resourceLocn,feedback);
+  ret=createIteratorImpl(remove_scanner,ret);
+  return (ret);
+}
