@@ -1,5 +1,5 @@
 {
-  guiTitles=new HashSet(90);
+  guiTitles=new HashMap(90);
   String compref="../xdocs/usermanual/component_reference.xml";
   SAXBuilder bldr=new SAXBuilder();
   Document doc;
@@ -11,9 +11,9 @@
     List components=((Element)sections.get(i)).getChildren("component");
     for (int j=0; j < components.size(); j++) {
       Element comp=(Element)components.get(j);
-      guiTitles.add(comp.getAttributeValue("name"));
+      guiTitles.put(comp.getAttributeValue("name"),Boolean.FALSE);
     }
   }
-  guiTitles.add("Root");
-  guiTitles.add("Example Sampler");
+  guiTitles.put("Root",Boolean.FALSE);
+  guiTitles.put("Example Sampler",Boolean.FALSE);
 }

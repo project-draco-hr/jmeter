@@ -1,7 +1,8 @@
 {
   if (guiTitles.size() > 0) {
     String title=guiItem.getStaticLabel();
-    boolean ct=guiTitles.contains(title);
+    boolean ct=guiTitles.containsKey(title);
+    if (ct)     guiTitles.put(title,Boolean.TRUE);
     if ((title.indexOf("(ALPHA") == -1) && (title.indexOf("(BETA") == -1)) {
       assertTrue("component_reference.xml needs '" + title + "' anchor for "+ guiItem.getClass().getName(),ct);
     }

@@ -10,5 +10,7 @@
   suite.addTest(suiteBeanComponents());
   suite.addTest(new JMeterTest("createFunctionSet"));
   suite.addTest(suiteFunctions());
+  suite.addTest(new JMeterTest("checkGuiSet"));
+  suite.addTest(new JMeterTest("checkFunctionSet"));
   return suite;
 }

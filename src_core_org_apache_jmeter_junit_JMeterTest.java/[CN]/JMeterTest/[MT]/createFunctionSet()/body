@@ -1,5 +1,5 @@
 {
-  funcTitles=new HashSet(20);
+  funcTitles=new HashMap(20);
   String compref="../xdocs/usermanual/functions.xml";
   SAXBuilder bldr=new SAXBuilder();
   Document doc;
@@ -12,7 +12,7 @@
     List components=((Element)sections.get(i)).getChildren("component");
     for (int j=0; j < components.size(); j++) {
       Element comp=(Element)components.get(j);
-      funcTitles.add(comp.getAttributeValue("name"));
+      funcTitles.put(comp.getAttributeValue("name"),Boolean.FALSE);
     }
   }
 }

@@ -1,7 +1,8 @@
 {
   if (funcTitles.size() > 0) {
     String title=funcItem.getReferenceKey();
-    boolean ct=funcTitles.contains(title);
+    boolean ct=funcTitles.containsKey(title);
+    if (ct)     funcTitles.put(title,Boolean.TRUE);
     if ((title.indexOf("(ALPHA") == -1) && (title.indexOf("(BETA") == -1)) {
       assertTrue("function.xml needs '" + title + "' entry for "+ funcItem.getClass().getName(),ct);
     }
