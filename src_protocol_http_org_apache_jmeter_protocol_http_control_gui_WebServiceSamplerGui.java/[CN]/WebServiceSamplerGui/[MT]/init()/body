@@ -47,5 +47,9 @@
   mainPanel.add(readMessage);
   mainPanel.add(readMessage2);
   mainPanel.add(readMessage3);
+  mainPanel.add(useProxy);
+  useProxy.addActionListener(this);
+  mainPanel.add(proxyHost);
+  mainPanel.add(proxyPort);
   this.add(mainPanel);
 }

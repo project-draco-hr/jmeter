@@ -2,6 +2,17 @@
   if (event.getSource() == selectButton) {
     this.configureFromWSDL();
   }
+ else   if (event.getSource() == useProxy) {
+    boolean use=useProxy.isSelected();
+    if (use) {
+      proxyHost.setEnabled(true);
+      proxyPort.setEnabled(true);
+    }
+ else {
+      proxyHost.setEnabled(false);
+      proxyPort.setEnabled(false);
+    }
+  }
  else {
     if (this.urlField.getText() != null) {
       String[] wsdlData=browseWSDL(wsdlField.getText());
