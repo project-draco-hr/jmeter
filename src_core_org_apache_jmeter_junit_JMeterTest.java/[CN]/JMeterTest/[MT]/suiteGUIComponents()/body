@@ -7,7 +7,8 @@
       continue;
     }
     TestSuite ts=new TestSuite(item.getClass().getName());
-    ts.addTest(new JMeterTest("runGUIComponents",item));
+    ts.addTest(new JMeterTest("GUIComponents1",item));
+    ts.addTest(new JMeterTest("GUIComponents2",item));
     ts.addTest(new JMeterTest("runGUITitle",item));
     suite.addTest(ts);
   }

@@ -4,7 +4,8 @@
   while (iter.hasNext()) {
     JMeterGUIComponent item=new TestBeanGUI(iter.next().getClass());
     TestSuite ts=new TestSuite(item.getClass().getName());
-    ts.addTest(new JMeterTest("runGUIComponents",item));
+    ts.addTest(new JMeterTest("GUIComponents1",item));
+    ts.addTest(new JMeterTest("GUIComponents2",item));
     suite.addTest(ts);
   }
   return suite;

@@ -1,6 +1,5 @@
 {
   String name=guiItem.getClass().getName();
-  assertEquals("Name should be same as static label for " + name,guiItem.getStaticLabel(),guiItem.getName());
   TestElement el=guiItem.createTestElement();
   assertNotNull(name + ".createTestElement should be non-null ",el);
   assertEquals("GUI-CLASS: Failed on " + name,name,el.getPropertyAsString(TestElement.GUI_CLASS));
