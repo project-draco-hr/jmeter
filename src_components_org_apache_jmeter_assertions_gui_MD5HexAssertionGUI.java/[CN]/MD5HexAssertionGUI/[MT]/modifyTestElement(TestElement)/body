@@ -1,0 +1,8 @@
+{
+  configureTestElement(element);
+  String md5HexString=this.md5HexInput.getText();
+  if (md5HexString == null || md5HexString.length() == 0) {
+    md5HexString="";
+  }
+  ((MD5HexAssertion)element).setAllowedMD5Hex(md5HexString);
+}

@@ -1,0 +1,12 @@
+{
+  byte[] md5Result={};
+  try {
+    MessageDigest md;
+    md=MessageDigest.getInstance("MD5");
+    md5Result=md.digest(ba);
+  }
+ catch (  NoSuchAlgorithmException e) {
+    log.error("",e);
+  }
+  return baToHex(md5Result);
+}
