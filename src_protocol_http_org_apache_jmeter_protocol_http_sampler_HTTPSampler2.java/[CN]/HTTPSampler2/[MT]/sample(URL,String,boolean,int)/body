@@ -69,9 +69,17 @@
     if (httpMethod != null)     httpMethod.releaseConnection();
     return res;
   }
- catch (  IOException e) {
+ catch (  IllegalArgumentException e) {
     res.sampleEnd();
-    return errorResult(e,url.toString(),res.getTime());
+    HTTPSampleResult err=errorResult(e,url.toString(),res.getTime());
+    err.setSampleLabel("Error: " + url.toString());
+    return err;
+  }
+catch (  IOException e) {
+    res.sampleEnd();
+    HTTPSampleResult err=errorResult(e,url.toString(),res.getTime());
+    err.setSampleLabel("Error: " + url.toString());
+    return err;
   }
  finally {
     if (httpMethod != null)     httpMethod.releaseConnection();
