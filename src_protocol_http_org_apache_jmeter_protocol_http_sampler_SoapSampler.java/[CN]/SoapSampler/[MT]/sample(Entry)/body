@@ -5,7 +5,12 @@
     setPort(url.getPort());
     setProtocol(url.getProtocol());
     setMethod(POST);
-    setPath(url.getPath());
+    if (url.getQuery() != null && url.getQuery().compareTo("") != 0) {
+      setPath(url.getPath() + "?" + url.getQuery());
+    }
+ else {
+      setPath(url.getPath());
+    }
   }
  catch (  MalformedURLException e1) {
     log.error("Bad url: " + getURLData(),e1);

@@ -1,0 +1,12 @@
+{
+  try {
+    String xml=getXmlData();
+    if (xml.length() > 100) {
+      xml=xml.substring(0,100);
+    }
+    return this.getUrl().toString() + "\nXML Data: " + xml;
+  }
+ catch (  MalformedURLException e) {
+    return "";
+  }
+}

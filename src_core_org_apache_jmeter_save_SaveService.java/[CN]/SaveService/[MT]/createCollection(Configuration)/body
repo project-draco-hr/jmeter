@@ -6,16 +6,16 @@
       coll.add(createProperty(items[i]));
     }
  else     if (items[i].getName().equals("testelement")) {
-      coll.add(createTestElement(items[i]));
+      coll.add(new TestElementProperty(items[i].getAttribute("name"),createTestElement(items[i])));
     }
  else     if (items[i].getName().equals("collection")) {
-      coll.add(createCollection(items[i]));
+      coll.add(new CollectionProperty(items[i].getAttribute("name"),createCollection(items[i])));
     }
  else     if (items[i].getName().equals("string")) {
       coll.add(createProperty(items[i]));
     }
  else     if (items[i].getName().equals("map")) {
-      coll.add(createMap(items[i]));
+      coll.add(new MapProperty(items[i].getAttribute("name"),createMap(items[i])));
     }
   }
   return coll;

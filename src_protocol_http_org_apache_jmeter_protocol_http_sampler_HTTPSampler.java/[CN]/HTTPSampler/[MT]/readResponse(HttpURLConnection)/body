@@ -1,16 +1,21 @@
 {
-  byte[] buffer=new byte[4096];
+  byte[] readBuffer=JMeterContextService.getContext().getReadBuffer();
   BufferedInputStream in;
   try {
-    in=new BufferedInputStream(conn.getInputStream());
+    if (conn.getContentEncoding() != null && conn.getContentEncoding().equals("gzip")) {
+      in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
+    }
+ else {
+      in=new BufferedInputStream(conn.getInputStream());
+    }
   }
  catch (  Exception e) {
     in=new BufferedInputStream(conn.getErrorStream());
   }
   java.io.ByteArrayOutputStream w=new ByteArrayOutputStream();
   int x=0;
-  while ((x=in.read(buffer)) > -1) {
-    w.write(buffer,0,x);
+  while ((x=in.read(readBuffer)) > -1) {
+    w.write(readBuffer,0,x);
   }
   in.close();
   w.flush();
