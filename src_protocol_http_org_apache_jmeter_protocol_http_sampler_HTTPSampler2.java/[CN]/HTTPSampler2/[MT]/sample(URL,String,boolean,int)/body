@@ -4,6 +4,12 @@
   log.debug("method" + method);
   httpMethod=null;
   HTTPSampleResult res=new HTTPSampleResult();
+  if (this.getPropertyAsBoolean(MONITOR)) {
+    res.setMonitor(true);
+  }
+ else {
+    res.setMonitor(false);
+  }
   res.setSampleLabel(urlStr);
   res.sampleStart();
   try {
