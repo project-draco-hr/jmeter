@@ -1,4 +1,5 @@
 {
+  getVariables().put(name,defaultValue);
   if (previousResult == null || previousResult.getResponseData() == null) {
     return defaultValue;
   }
@@ -14,6 +15,10 @@
   }
  catch (  NumberFormatException e) {
     log.error("",e);
+    return defaultValue;
+  }
+catch (  Exception e) {
+    return defaultValue;
   }
   if (collectAllMatches.size() == 0) {
     return defaultValue;
