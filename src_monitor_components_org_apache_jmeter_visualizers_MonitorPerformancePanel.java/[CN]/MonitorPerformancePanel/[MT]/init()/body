@@ -19,7 +19,7 @@
   GRAPHPANEL=new JPanel();
   GRAPHPANEL.setLayout(new BorderLayout());
   GRAPHPANEL.setMaximumSize(new Dimension(MODEL.getBufferSize(),MODEL.getBufferSize()));
-  GRAPHPANEL.setBackground(JMeterColor.WHITE);
+  GRAPHPANEL.setBackground(Color.white);
   GRAPHPANEL.add(GRAPH,BorderLayout.CENTER);
   right.add(GRAPHPANEL,BorderLayout.CENTER);
   right.add(title,BorderLayout.NORTH);
