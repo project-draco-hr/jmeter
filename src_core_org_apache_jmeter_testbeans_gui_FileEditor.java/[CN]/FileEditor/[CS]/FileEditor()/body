@@ -1,7 +1,7 @@
 {
   JButton button=new JButton("Browse...");
   button.addActionListener(this);
-  editor=new WrapperEditor(new SimpleFileEditor(),new ComboStringEditor(),true,true);
+  editor=new WrapperEditor(new SimpleFileEditor(),new ComboStringEditor(),true,true,true);
   panel=new JPanel(new BorderLayout(5,0));
   panel.add(editor.getCustomEditor(),BorderLayout.CENTER);
   panel.add(button,BorderLayout.EAST);

@@ -4,7 +4,7 @@
   }
   String value;
   if (text == null) {
-    if (!acceptsNull)     shouldNeverHappen();
+    if (!acceptsNull)     throw new IllegalArgumentException();
     value=null;
   }
  else {
@@ -14,6 +14,7 @@
  else {
       typeEditor.setAsText(text);
       value=typeEditor.getAsText();
+      if (!acceptsOther && !isATag(text))       throw new IllegalArgumentException();
     }
   }
   guiEditor.setValue(value);

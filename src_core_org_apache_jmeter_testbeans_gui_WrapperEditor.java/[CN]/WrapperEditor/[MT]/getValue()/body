@@ -10,6 +10,7 @@
       value=text;
     }
  else {
+      if (!acceptsOther && !isATag(text))       shouldNeverHappen();
       try {
         typeEditor.setAsText(text);
       }

@@ -9,7 +9,7 @@
   }
   try {
     ResourceBundle resourceBundle=ResourceBundle.getBundle(beanClass.getName() + "Resources",JMeterUtils.getLocale());
-    getBeanDescriptor().setValue("resourceBundle",resourceBundle);
+    getBeanDescriptor().setValue(RESOURCE_BUNDLE,resourceBundle);
     try {
       getBeanDescriptor().setDisplayName(resourceBundle.getString("displayName"));
     }
@@ -34,6 +34,6 @@
     }
   }
  catch (  MissingResourceException e) {
-    log.warn("Localized strings not available for bean " + beanClass + " on locale "+ JMeterUtils.getLocale());
+    log.warn("Localized strings not available for bean " + beanClass);
   }
 }

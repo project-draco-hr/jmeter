@@ -1,9 +1,9 @@
 {
   for (int i=0; i < names.length; i++) {
     PropertyDescriptor p=property(names[i]);
-    p.setValue("group",group);
-    p.setValue("order",new Integer(i));
+    p.setValue(TestBeanGUI.GROUP,group);
+    p.setValue(TestBeanGUI.ORDER,new Integer(i));
   }
   numCreatedGroups++;
-  getBeanDescriptor().setValue("group." + group + ".order",new Integer(numCreatedGroups));
+  getBeanDescriptor().setValue(TestBeanGUI.ORDER(group),new Integer(numCreatedGroups));
 }

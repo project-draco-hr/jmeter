@@ -11,6 +11,7 @@
       shouldNeverHappen(e);
     }
     text=typeEditor.getAsText();
+    if (!acceptsOther && !isATag(text))     shouldNeverHappen();
   }
   if (log.isDebugEnabled()) {
     log.debug("->\"" + text + "\"");

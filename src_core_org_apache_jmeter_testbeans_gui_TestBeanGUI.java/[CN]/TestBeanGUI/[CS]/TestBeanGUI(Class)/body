@@ -60,7 +60,7 @@ catch (      IllegalAccessException e) {
       }
     }
     editors[i]=propertyEditor;
-    setEditorValue(i,descriptors[i].getValue("default"));
+    setEditorValue(i,descriptors[i].getValue(DEFAULT));
   }
   propertyFieldLabelMessage=new MessageFormat(JMeterUtils.getResString("property_as_field_label"));
   propertyToolTipMessage=new MessageFormat(JMeterUtils.getResString("property_tool_tip"));

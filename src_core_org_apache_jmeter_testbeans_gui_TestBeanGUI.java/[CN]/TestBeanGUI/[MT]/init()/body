@@ -19,7 +19,7 @@
   cp.gridwidth=2;
   cp.weightx=1.0;
   JPanel currentPanel=mainPanel;
-  String currentGroup="";
+  String currentGroup=DEFAULT_GROUP;
   int y=0;
   for (int i=0; i < editors.length; i++) {
     if (editors[i] == null)     continue;

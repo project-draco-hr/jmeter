@@ -1,6 +1,6 @@
 {
   String[] editorTags=typeEditor.getTags();
-  String[] additionalTags=(String[])descriptor.getValue("tags");
+  String[] additionalTags=(String[])descriptor.getValue(TAGS);
   String[] tags=null;
   if (editorTags == null)   tags=additionalTags;
  else   if (additionalTags == null)   tags=editorTags;
@@ -10,29 +10,38 @@
     for (int i=0; i < editorTags.length; i++)     tags[j++]=editorTags[i];
     for (int i=0; i < additionalTags.length; i++)     tags[j++]=additionalTags[i];
   }
-  boolean noUndefined=Boolean.TRUE.equals(descriptor.getValue("noUndefined"));
-  boolean noEdit=Boolean.TRUE.equals(descriptor.getValue("noEdit"));
+  boolean notNull=Boolean.TRUE.equals(descriptor.getValue(NOT_UNDEFINED));
+  boolean notExpression=Boolean.TRUE.equals(descriptor.getValue(NOT_EXPRESSION));
+  boolean notOther=Boolean.TRUE.equals(descriptor.getValue(NOT_OTHER));
   PropertyEditor guiEditor;
-  if (noUndefined && tags == null) {
+  if (notNull && tags == null) {
     guiEditor=new FieldStringEditor();
   }
  else {
     ComboStringEditor e=new ComboStringEditor();
-    e.setNoUndefined(noUndefined);
-    e.setNoEdit(noEdit);
+    e.setNoUndefined(notNull);
+    e.setNoEdit(notExpression && notOther);
     e.setTags(tags);
     guiEditor=e;
   }
-  WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!noUndefined,!noEdit);
-  Object defaultValue=descriptor.getValue("default");
-  if (guiEditor instanceof ComboStringEditor && !noEdit) {
-    if (tags != null) {
-      ((ComboStringEditor)guiEditor).setInitialEditValue(tags[0]);
-    }
- else {
-      ((ComboStringEditor)guiEditor).setInitialEditValue("${}");
-    }
+  WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!notNull,!notExpression,!notOther);
+  Object defaultValue=descriptor.getValue(DEFAULT);
+  try {
+    wrapper.setValue(defaultValue);
   }
-  wrapper.setValue(defaultValue);
+ catch (  IllegalArgumentException e) {
+    log.error("The default value for property " + descriptor.getName() + " is not valid. Or a default value was not provided and "+ " property attribute notUndefined is set to true.");
+    throw new Error(e.toString());
+  }
+  if (guiEditor instanceof ComboStringEditor) {
+    String v;
+    if (notOther)     v="${}";
+ else     if (notNull)     v="";
+ else     if (defaultValue != null)     v=wrapper.getAsText();
+ else     if (tags != null)     v=tags[1];
+ else     if (notExpression)     v="";
+ else     v="${}";
+    ((ComboStringEditor)guiEditor).setInitialEditValue(v);
+  }
   return wrapper;
 }
