@@ -1,0 +1,11 @@
+{
+  Argument arg=new Argument();
+  Argument argp=new Argument();
+  assertTrue(isArgumentMatched(arg,argp));
+  arg=new Argument("test","abcd");
+  argp=new Argument("test","a.*d");
+  assertTrue(isArgumentMatched(arg,argp));
+  arg=new Argument("test","abcd");
+  argp=new Argument("test","a.*e");
+  assertFalse(isArgumentMatched(arg,argp));
+}
