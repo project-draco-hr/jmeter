@@ -1,0 +1,8 @@
+{
+  super(tagData,compositeTagData);
+  this.formURL=compositeTagData.getStartTag().getAttribute("ACTION");
+  this.formName=compositeTagData.getStartTag().getAttribute("NAME");
+  this.formMethod=compositeTagData.getStartTag().getAttribute("METHOD");
+  this.formInputList=compositeTagData.getChildren().searchFor(InputTag.class);
+  this.textAreaList=compositeTagData.getChildren().searchFor(TextareaTag.class);
+}

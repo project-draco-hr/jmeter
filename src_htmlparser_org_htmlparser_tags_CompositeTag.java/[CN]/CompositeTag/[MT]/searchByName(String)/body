@@ -1,0 +1,15 @@
+{
+  Node node;
+  Tag tag=null;
+  boolean found=false;
+  for (SimpleNodeIterator e=children(); e.hasMoreNodes() && !found; ) {
+    node=(Node)e.nextNode();
+    if (node instanceof Tag) {
+      tag=(Tag)node;
+      String nameAttribute=tag.getAttribute("NAME");
+      if (nameAttribute != null && nameAttribute.equals(name))       found=true;
+    }
+  }
+  if (found)   return tag;
+ else   return null;
+}

@@ -1,0 +1,6 @@
+{
+  super(tagData,compositeTagData);
+  this.scriptCode=getChildrenHTML();
+  this.language=getAttribute("LANGUAGE");
+  this.type=getAttribute("TYPE");
+}

@@ -1,0 +1,12 @@
+{
+  if (visitor.shouldRecurseChildren()) {
+    startTag.accept(visitor);
+    SimpleNodeIterator children=children();
+    while (children.hasMoreNodes()) {
+      Node child=(Node)children.nextNode();
+      child.accept(visitor);
+    }
+    endTag.accept(visitor);
+  }
+  if (visitor.shouldRecurseSelf())   visitor.visitTag(this);
+}

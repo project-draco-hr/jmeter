@@ -1,0 +1,7 @@
+{
+  StringBuffer stringRepresentation=new StringBuffer();
+  for (SimpleNodeIterator e=children(); e.hasMoreNodes(); ) {
+    stringRepresentation.append(e.nextNode().toPlainTextString());
+  }
+  return stringRepresentation.toString();
+}

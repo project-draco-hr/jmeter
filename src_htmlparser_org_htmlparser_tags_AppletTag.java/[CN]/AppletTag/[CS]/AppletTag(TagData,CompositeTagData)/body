@@ -1,0 +1,9 @@
+{
+  super(tagData,compositeTagData);
+  this.appletClass=compositeTagData.getStartTag().getAttribute("CODE");
+  this.codeBase=compositeTagData.getStartTag().getAttribute("CODEBASE");
+  this.archive=compositeTagData.getStartTag().getAttribute("ARCHIVE");
+  NodeList children=compositeTagData.getChildren();
+  appletParams=new Hashtable();
+  createAppletParamsTable(children);
+}

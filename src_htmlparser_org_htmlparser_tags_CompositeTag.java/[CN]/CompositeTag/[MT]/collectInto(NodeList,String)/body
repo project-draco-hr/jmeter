@@ -1,0 +1,8 @@
+{
+  super.collectInto(collectionList,filter);
+  Node node;
+  for (SimpleNodeIterator e=children(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    node.collectInto(collectionList,filter);
+  }
+}

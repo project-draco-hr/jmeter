@@ -1,0 +1,14 @@
+{
+  NodeList foundList=new NodeList();
+  Node node;
+  if (!caseSensitive)   searchString=searchString.toUpperCase();
+  for (SimpleNodeIterator e=children(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    String nodeTextString=node.toPlainTextString();
+    if (!caseSensitive)     nodeTextString=nodeTextString.toUpperCase();
+    if (nodeTextString.indexOf(searchString) != -1) {
+      foundList.add(node);
+    }
+  }
+  return foundList;
+}

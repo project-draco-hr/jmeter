@@ -1,0 +1,12 @@
+{
+  Node node;
+  int loc=0;
+  for (SimpleNodeIterator e=children(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    if (node.toPlainTextString().toUpperCase().indexOf(text.toUpperCase()) != -1) {
+      return loc;
+    }
+    loc++;
+  }
+  return -1;
+}

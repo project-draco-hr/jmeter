@@ -1,0 +1,13 @@
+{
+  TextareaTag textareaTag=null;
+  boolean found=false;
+  for (SimpleNodeIterator e=textAreaList.elements(); e.hasMoreNodes() && !found; ) {
+    textareaTag=(TextareaTag)e.nextNode();
+    String textAreaName=textareaTag.getAttribute("NAME");
+    if (textAreaName != null && textAreaName.equals(name)) {
+      found=true;
+    }
+  }
+  if (found)   return textareaTag;
+ else   return null;
+}

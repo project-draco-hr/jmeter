@@ -1,0 +1,28 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append("Applet Tag\n");
+  sb.append("**********\n");
+  sb.append("Class Name = " + appletClass + "\n");
+  sb.append("Archive = " + archive + "\n");
+  sb.append("Codebase = " + codeBase + "\n");
+  Enumeration params=appletParams.keys();
+  if (params == null)   sb.append("No Params found.\n");
+ else {
+    int cnt=0;
+    for (; params.hasMoreElements(); ) {
+      String paramName=(String)params.nextElement();
+      String paramValue=(String)appletParams.get(paramName);
+      sb.append((cnt++) + ": Parameter name = " + paramName+ ", Parameter value = "+ paramValue+ "\n");
+    }
+  }
+  if (children() == null)   sb.append("No Miscellaneous items\n");
+ else {
+    sb.append("Miscellaneous items :\n");
+    for (SimpleNodeIterator e=children(); e.hasMoreNodes(); ) {
+      sb.append(((Tag)e.nextNode()).toString());
+    }
+  }
+  sb.append("End of Applet Tag\n");
+  sb.append("*****************\n");
+  return sb.toString();
+}
