@@ -2,7 +2,9 @@
   log.debug("Sample occurred");
   try {
     if (holdSamples) {
-      sampleStore.add(e);
+synchronized (sampleStore) {
+        sampleStore.add(e);
+      }
     }
  else {
       listener.sampleOccurred(e);
