@@ -1,4 +1,7 @@
 {
+  if (case1 == null) {
+    initRegex(getArgumentName());
+  }
   String text=new String(responseText.getResponseData());
   Perl5Matcher matcher=new Perl5Matcher();
   String value="";

@@ -1,0 +1,10 @@
+{
+  try {
+    case1=compiler.compile(argName + "=([^\">& \n\r]*)[& \\n\\r\">]?$?");
+    case2=compiler.compile("[Nn][Aa][Mm][Ee]=\"" + argName + "\"[^>]+[vV][Aa][Ll][Uu][Ee]=\"(.*)\"");
+    case3=compiler.compile("[vV][Aa][Ll][Uu][Ee]=\"(.*)\"[^>]+[Nn][Aa][Mm][Ee]=\"" + argName + "\"");
+  }
+ catch (  MalformedPatternException e) {
+    log.error("",e);
+  }
+}
