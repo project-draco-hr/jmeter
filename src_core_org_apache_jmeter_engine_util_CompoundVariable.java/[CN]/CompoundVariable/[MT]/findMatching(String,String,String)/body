@@ -1,0 +1,34 @@
+{
+  int count, openIndex, closeIndex, previousMatch;
+  boolean found=false;
+  openIndex=closeIndex=previousMatch=-1;
+  while (!found) {
+    openIndex=searchString.indexOf(openStr,previousMatch + 1);
+    if (openIndex == -1)     break;
+ else     if (openIndex == 0 || searchString.charAt(openIndex - 1) != '\\')     found=true;
+ else {
+      previousMatch=openIndex;
+      openIndex=-1;
+    }
+  }
+  if (openIndex < searchString.indexOf(closeStr)) {
+    if (openIndex != -1) {
+      String subSearch;
+      subSearch=searchString.substring(openIndex + 1,searchString.length());
+      int subMatch=findMatching(openStr,closeStr,subSearch);
+      while (subMatch != -1) {
+        previousMatch+=subMatch + 1;
+        subSearch=searchString.substring(previousMatch + 1,searchString.length());
+        subMatch=findMatching(openStr,closeStr,subSearch);
+      }
+      found=false;
+      while (!found) {
+        closeIndex=searchString.indexOf(closeStr,previousMatch + 1);
+        if (closeIndex == -1)         break;
+ else         if (searchString.charAt(closeIndex - 1) != '\\')         found=true;
+ else         previousMatch=closeIndex;
+      }
+    }
+  }
+  return closeIndex;
+}

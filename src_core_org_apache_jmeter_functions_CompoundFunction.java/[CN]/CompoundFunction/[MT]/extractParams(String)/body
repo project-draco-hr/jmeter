@@ -1,8 +1,0 @@
-{
-  if (function.indexOf("(") > -1) {
-    return function.substring(function.indexOf("(") + 1,function.lastIndexOf(")"));
-  }
- else {
-    return "";
-  }
-}

@@ -1,0 +1,6 @@
+{
+  values=parameters.toArray();
+  if (values.length < 3) {
+    throw new InvalidVariableException();
+  }
+}

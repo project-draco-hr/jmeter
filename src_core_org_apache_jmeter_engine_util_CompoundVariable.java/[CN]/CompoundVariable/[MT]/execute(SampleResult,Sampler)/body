@@ -1,0 +1,24 @@
+{
+  if (compiledComponents == null || compiledComponents.size() == 0) {
+    return "";
+  }
+  StringBuffer results=new StringBuffer();
+  Iterator iter=compiledComponents.iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    if (item instanceof Function) {
+      try {
+        results.append(((Function)item).execute(previousResult,currentSampler));
+      }
+ catch (      InvalidVariableException e) {
+      }
+    }
+ else     if (item instanceof SimpleVariable) {
+      results.append(((SimpleVariable)item).toString());
+    }
+ else {
+      results.append(item);
+    }
+  }
+  return results.toString();
+}

@@ -1,6 +1,0 @@
-{
-  variable.setParameters(URLEncoder.encode("<value field=\"(pinposition\\d+)\">(\\d+)</value>") + ",_$1$,.5");
-  variable.setJMeterVariables(new JMeterVariables());
-  String match=variable.execute(result,null);
-  assertEquals("_pinposition2",match);
-}

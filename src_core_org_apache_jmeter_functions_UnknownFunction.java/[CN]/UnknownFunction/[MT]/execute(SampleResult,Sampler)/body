@@ -1,7 +1,0 @@
-{
-  String ret=getVariables().get(name);
-  if (ret == null || ret.length() == 0) {
-    return "${" + name + "}";
-  }
-  return ret;
-}

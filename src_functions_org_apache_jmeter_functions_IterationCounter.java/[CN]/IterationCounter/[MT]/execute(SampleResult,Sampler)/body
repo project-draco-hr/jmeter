@@ -1,8 +1,8 @@
 {
   counter++;
   JMeterVariables vars=getVariables();
-  boolean perThread=new Boolean(((CompoundFunction)variables[0]).execute()).booleanValue();
-  String varName=((CompoundFunction)variables[variables.length - 1]).execute();
+  boolean perThread=new Boolean(((CompoundVariable)variables[0]).execute()).booleanValue();
+  String varName=((CompoundVariable)variables[variables.length - 1]).execute();
   String counterString="";
   if (perThread) {
     counterString=Integer.toString(vars.getIteration());

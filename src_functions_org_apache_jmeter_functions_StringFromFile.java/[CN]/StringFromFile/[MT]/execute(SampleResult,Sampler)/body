@@ -1,7 +1,7 @@
 {
   JMeterVariables vars=getVariables();
-  String fileName=((CompoundFunction)values[0]).execute();
-  myName=((CompoundFunction)values[1]).execute();
+  String fileName=((CompoundVariable)values[0]).execute();
+  myName=((CompoundVariable)values[1]).execute();
   openFile(fileName);
   myValue="**ERR**";
   if (null != myBread) {

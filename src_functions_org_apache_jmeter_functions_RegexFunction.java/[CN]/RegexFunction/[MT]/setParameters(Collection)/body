@@ -1,0 +1,7 @@
+{
+  values=parameters.toArray();
+  if (values.length < 2) {
+    throw new InvalidVariableException();
+  }
+  defaultValue="";
+}

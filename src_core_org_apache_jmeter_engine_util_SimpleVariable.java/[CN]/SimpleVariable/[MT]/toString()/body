@@ -1,0 +1,7 @@
+{
+  String ret=null;
+  JMeterVariables vars=getVariables();
+  if (vars != null)   ret=vars.get(name);
+  if (ret == null || ret.length() == 0)   return "${" + name + "}";
+  return ret;
+}

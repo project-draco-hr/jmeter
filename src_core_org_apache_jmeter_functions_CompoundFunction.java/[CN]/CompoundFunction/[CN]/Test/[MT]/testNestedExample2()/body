@@ -1,9 +1,0 @@
-{
-  function.setParameters("${__regexFunction(<html>(${my_regex})</html>,$1$)}");
-  function.setJMeterVariables(new JMeterVariables());
-  assertEquals(1,function.compiledComponents.size());
-  assertEquals("org.apache.jmeter.functions.RegexFunction",function.compiledComponents.getFirst().getClass().getName());
-  assertTrue(function.hasFunction());
-  assertEquals("hello world",((Function)function.compiledComponents.getFirst()).execute(result,null));
-  assertEquals("hello world",function.execute(result,null));
-}

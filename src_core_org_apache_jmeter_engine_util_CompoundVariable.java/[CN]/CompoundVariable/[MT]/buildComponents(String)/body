@@ -1,0 +1,29 @@
+{
+  LinkedList components=new LinkedList();
+  String current, pre, functionStr;
+  int funcStartIndex, funcEndIndex;
+  current=parameters;
+  funcStartIndex=current.indexOf("${");
+  while (funcStartIndex > -1) {
+    pre=current.substring(0,funcStartIndex);
+    if (!pre.equals("")) {
+      components.addLast(pre);
+    }
+    funcEndIndex=findMatching("${","}",current);
+    functionStr=current.substring(funcStartIndex + 2,funcEndIndex);
+    Function newFunction=buildFunction(functionStr);
+    if (newFunction == null) {
+      components.addLast(new SimpleVariable(functionStr));
+    }
+ else {
+      components.addLast(newFunction);
+    }
+    hasFunction=true;
+    current=current.substring(funcEndIndex + 1);
+    funcStartIndex=current.indexOf("${");
+  }
+  if (!current.equals("")) {
+    components.addLast(current);
+  }
+  return components;
+}
