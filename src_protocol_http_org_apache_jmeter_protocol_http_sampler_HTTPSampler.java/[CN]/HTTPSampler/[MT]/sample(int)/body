@@ -75,8 +75,7 @@
   }
  finally {
     try {
-      String connection=conn.getHeaderField("Connection");
-      if (connection == null || connection.equalsIgnoreCase("close"))       conn.disconnect();
+      disconnect(conn);
     }
  catch (    Exception e) {
     }
