@@ -16,7 +16,7 @@
       res.setResponseData(((String)subItem).getBytes(res.getDataEncoding()));
     }
  catch (    UnsupportedEncodingException e) {
-      res.setResponseData(new String("Can't support the char set: " + res.getDataEncoding()).getBytes());
+      res.setResponseData(("Can't support the char set: " + res.getDataEncoding()).getBytes());
     }
   }
  else   if (reader.getNodeName().equals("samplerData")) {
