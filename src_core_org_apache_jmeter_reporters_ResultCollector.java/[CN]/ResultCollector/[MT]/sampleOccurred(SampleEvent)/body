@@ -1,6 +1,5 @@
 {
   SampleResult result=e.getResult();
-  result.setTimeStamp(System.currentTimeMillis());
   if (!isErrorLogging() || !result.isSuccessful()) {
     sendToVisualizer(result);
     try {
