@@ -55,12 +55,20 @@ String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
 statsDoc.insertString(statsDoc.getLength(),"HTTP response message: " + responseMsgStr + "\n",null);
 statsDoc.insertString(statsDoc.getLength(),"\nHTTP response headers:\n" + res.getResponseHeaders() + "\n",null);
+if ((SampleResult.TEXT).equals(res.getDataType())) {
 String response=getResponseAsString(res);
 if (textMode) {
 showTextResponse(response);
 }
  else {
 showRenderedResponse(response);
+}
+}
+ else {
+byte[] responseBytes=res.getResponseData();
+if (responseBytes != null) {
+showImage(new ImageIcon(responseBytes));
+}
 }
 }
 }
