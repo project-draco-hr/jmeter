@@ -1,0 +1,16 @@
+{
+  LinkedHashSet uniqueURLs=new LinkedHashSet();
+  Document dom=null;
+  try {
+    dom=(Document)getDOM(html);
+  }
+ catch (  SAXException se) {
+    throw new HTMLParseException(se);
+  }
+  parseNodes(dom,"img",false,"src",uniqueURLs,baseUrl);
+  parseNodes(dom,"applet",false,"code",uniqueURLs,baseUrl);
+  parseNodes(dom,"input",true,"src",uniqueURLs,baseUrl);
+  parseNodes(dom,"body",false,"background",uniqueURLs,baseUrl);
+  parseNodes(dom,"table",false,"background",uniqueURLs,baseUrl);
+  return uniqueURLs.iterator();
+}

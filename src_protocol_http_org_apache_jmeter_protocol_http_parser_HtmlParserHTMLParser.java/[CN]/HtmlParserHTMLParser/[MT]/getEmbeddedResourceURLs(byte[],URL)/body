@@ -1,0 +1,56 @@
+{
+  Parser htmlParser=null;
+  try {
+    String contents=new String(html);
+    StringReader reader=new StringReader(contents);
+    NodeReader nreader=new NodeReader(reader,contents.length());
+    htmlParser=new Parser(nreader,new DefaultParserFeedback());
+    addTagListeners(htmlParser);
+  }
+ catch (  Exception e) {
+    throw new HTMLParseException(e);
+  }
+  Set uniqueURLs=new LinkedHashSet();
+  boolean uniqueBinary;
+  SampleResult binRes=null;
+  try {
+    for (NodeIterator e=htmlParser.elements(); e.hasMoreNodes(); ) {
+      uniqueBinary=true;
+      Node node=e.nextNode();
+      String binUrlStr=null;
+      if (node instanceof BodyTag) {
+        BodyTag body=(BodyTag)node;
+        binUrlStr=body.getAttribute("background");
+        e=body.elements();
+      }
+ else       if (node instanceof ImageTag) {
+        ImageTag image=(ImageTag)node;
+        binUrlStr=image.getImageURL();
+      }
+ else       if (node instanceof AppletTag) {
+        AppletTag applet=(AppletTag)node;
+        binUrlStr=applet.getAppletClass();
+      }
+ else       if (node instanceof InputTag) {
+        InputTag input=(InputTag)node;
+        String strType=input.getAttribute("type");
+        if (strType != null && strType.equalsIgnoreCase("image")) {
+          binUrlStr=input.getAttribute("src");
+        }
+      }
+      if (binUrlStr == null) {
+        continue;
+      }
+      try {
+        uniqueURLs.add(new URL(baseUrl,binUrlStr));
+      }
+ catch (      MalformedURLException mfue) {
+        uniqueURLs.add(binUrlStr);
+      }
+    }
+    log.debug("End   : NewHTTPSamplerFull parseNodes");
+  }
+ catch (  ParserException e) {
+  }
+  return uniqueURLs.iterator();
+}

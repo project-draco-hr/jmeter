@@ -1,0 +1,46 @@
+{
+  Iterator urls;
+  try {
+    urls=HTMLParser.getParser().getEmbeddedResourceURLs(res.getResponseData(),sampler.getUrl());
+  }
+ catch (  MalformedURLException e) {
+    log.error("Program error: can't get sampler URL",e);
+    throw new Error(e);
+  }
+catch (  HTMLParseException e) {
+    res.setResponseData(e.toString().getBytes());
+    res.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+    res.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
+    res.setSuccessful(false);
+    return res;
+  }
+  while (urls.hasNext()) {
+    SampleResult binRes=new SampleResult();
+    Object url=urls.next();
+    binRes.setSampleLabel(url.toString());
+    try {
+      HTTPSamplerFull.loadBinary((URL)url,binRes,sampler);
+    }
+ catch (    ClassCastException e) {
+      binRes.setResponseData(e.toString().getBytes());
+      binRes.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+      binRes.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
+      binRes.setSuccessful(false);
+      continue;
+    }
+catch (    Exception ioe) {
+      log.error("Error reading from URL - " + ioe);
+      binRes.setResponseData(ioe.toString().getBytes());
+      binRes.setResponseCode(HTTPSampler.NON_HTTP_RESPONSE_CODE);
+      binRes.setResponseMessage(HTTPSampler.NON_HTTP_RESPONSE_MESSAGE);
+      binRes.setSuccessful(false);
+    }
+    log.debug("Adding result");
+    res.addSubResult(binRes);
+    res.setTime(res.getTime() + binRes.getTime());
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Total time - " + res.getTime());
+  }
+  return res;
+}
