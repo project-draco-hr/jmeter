@@ -5,4 +5,6 @@
   labelPanel.add(tableLabel);
   this.add(labelPanel,BorderLayout.NORTH);
   this.addInnerPanel();
+  table.revalidate();
+  sizeColumns(table);
 }

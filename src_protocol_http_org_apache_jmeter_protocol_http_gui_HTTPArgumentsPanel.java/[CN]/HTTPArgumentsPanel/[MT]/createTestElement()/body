@@ -4,13 +4,16 @@
   model.reset();
   while (model.next()) {
     if (((Boolean)model.getColumnValue(ENCODE_OR_NOT)).booleanValue()) {
-      args.addArgument(new HTTPArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1])));
+      HTTPArgument arg=new HTTPArgument((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]),model.getColumnValue(Arguments.COLUMN_NAMES[1]));
+      setMetaData(arg);
+      args.addArgument(arg);
     }
  else {
       HTTPArgument arg=new HTTPArgument();
       arg.setAlwaysEncode(false);
       arg.setName((String)model.getColumnValue(Arguments.COLUMN_NAMES[0]));
       arg.setValue(model.getColumnValue(Arguments.COLUMN_NAMES[1]));
+      setMetaData(arg);
       args.addArgument(arg);
     }
   }
