@@ -5,7 +5,10 @@
       currentPage=source;
     }
  catch (    IOException err) {
-      log.error("Couldn't load page: " + source,err);
+      String msg="Couldn't load page " + source + " "+ err.toString();
+      log.error(msg);
+      helpDoc.setText(msg);
+      currentPage="";
     }
   }
 }
