@@ -1,7 +1,5 @@
 {
-  if (case1 == null) {
-    initRegex(getArgumentName());
-  }
+  initRegex(getArgumentName());
   String text=new String(responseText.getResponseData());
   Perl5Matcher matcher=JMeterUtils.getMatcher();
   String value="";
