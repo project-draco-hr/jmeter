@@ -1,0 +1,19 @@
+{
+  this.instantiateParser();
+  this.instantiateGenerator();
+  HTTPSampler samp=null;
+  SampleResult res=null;
+  try {
+    samp=(HTTPSampler)GENERATOR.generateRequest();
+    samp.setDomain(this.getDomain());
+    samp.setPort(this.getPort());
+    samp.setImageParser(this.isImageParser());
+    PARSER.parse(1);
+    res=samp.sample();
+    res.setSampleLabel(samp.toString());
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  return res;
+}

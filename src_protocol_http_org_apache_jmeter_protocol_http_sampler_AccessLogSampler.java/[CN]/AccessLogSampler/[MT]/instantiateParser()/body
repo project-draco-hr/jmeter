@@ -1,0 +1,24 @@
+{
+  if (this.getParserClassName() != null && this.getParserClassName().length() > 0) {
+    try {
+      if (PARSERCLASS == null) {
+        PARSERCLASS=Class.forName(this.getParserClassName());
+      }
+      if (PARSER == null) {
+        if (this.getLogFile() != null && this.getLogFile().length() > 0) {
+          PARSER=(LogParser)PARSERCLASS.newInstance();
+          PARSER.setSourceFile(this.getLogFile());
+        }
+      }
+    }
+ catch (    ClassNotFoundException e) {
+      JOptionPane.showConfirmDialog(GUI,JMeterUtils.getResString("log_parser_cnf_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+    }
+catch (    InstantiationException e) {
+      JOptionPane.showConfirmDialog(GUI,JMeterUtils.getResString("log_parser_instantiate_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+    }
+catch (    IllegalAccessException e) {
+      JOptionPane.showConfirmDialog(GUI,JMeterUtils.getResString("log_parser_illegal_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+    }
+  }
+}
