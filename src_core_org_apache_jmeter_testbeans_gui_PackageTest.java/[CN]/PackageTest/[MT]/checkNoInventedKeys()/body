@@ -1,0 +1,6 @@
+{
+  for (Enumeration keys=bundle.getKeys(); keys.hasMoreElements(); ) {
+    String key=(String)keys.nextElement();
+    defaultBundle.getString(key);
+  }
+}

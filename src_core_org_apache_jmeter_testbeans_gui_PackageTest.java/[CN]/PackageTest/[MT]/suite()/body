@@ -1,0 +1,26 @@
+{
+  TestSuite suite=new TestSuite("Bean Resource Test Suite");
+  String[] languages=new String[]{"de","ja","no"};
+  String defaultLanguage="en";
+  Iterator iter=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestBean.class}).iterator();
+  while (iter.hasNext()) {
+    Class testBeanClass=Class.forName((String)iter.next());
+    JMeterUtils.setLocale(new Locale(defaultLanguage));
+    ResourceBundle defaultBundle;
+    try {
+      defaultBundle=(ResourceBundle)Introspector.getBeanInfo(testBeanClass,TestBean.class).getBeanDescriptor().getValue(TestBeanGUI.RESOURCE_BUNDLE);
+    }
+ catch (    IntrospectionException e) {
+      log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
+      throw new Error(e.toString());
+    }
+    if (defaultBundle == null) {
+      throw new Error("No default bundle for class " + testBeanClass.getName());
+    }
+    suite.addTest(new PackageTest(testBeanClass,defaultLanguage,defaultBundle));
+    for (int i=0; i < languages.length; i++) {
+      suite.addTest(new PackageTest(testBeanClass,languages[i],defaultBundle));
+    }
+  }
+  return suite;
+}

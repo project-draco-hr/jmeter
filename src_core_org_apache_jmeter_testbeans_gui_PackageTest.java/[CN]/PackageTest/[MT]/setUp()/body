@@ -1,0 +1,12 @@
+{
+  JMeterUtils.setLocale(new Locale(language));
+  try {
+    beanInfo=Introspector.getBeanInfo(testBeanClass,TestBean.class);
+    bundle=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(TestBeanGUI.RESOURCE_BUNDLE);
+  }
+ catch (  IntrospectionException e) {
+    log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
+    throw new Error(e.toString());
+  }
+  if (bundle == null)   throw new Error("This can't happen!");
+}
