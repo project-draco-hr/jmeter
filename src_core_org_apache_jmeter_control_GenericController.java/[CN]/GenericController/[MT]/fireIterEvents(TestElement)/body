@@ -3,7 +3,4 @@
     fireIterationStart();
     first=false;
   }
-  if (current instanceof GenericController && ((GenericController)current).isFirst()) {
-    fireIteration(current);
-  }
 }
