@@ -45,9 +45,9 @@
   }
   for (Enumeration e=removeIndices.elements(); e.hasMoreElements(); ) {
     index=((Integer)e.nextElement()).intValue();
-    getCookies().remove(index);
+    remove(index);
   }
   if (newCookie.getExpires() >= System.currentTimeMillis()) {
-    getCookies().addItem(newCookie);
+    add(newCookie);
   }
 }

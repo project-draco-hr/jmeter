@@ -1,3 +1,4 @@
 {
   getCookies().addItem(c);
+  JMeterContextService.getContext().getVariables().put(c.getName(),c.getValue());
 }
