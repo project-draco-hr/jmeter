@@ -1,3 +1,10 @@
 {
+  String host=this.getPropertyAsString(PROXY_HOST);
+  if (host == null || host.length() == 0) {
+    if (System.getProperty("http.proxyHost") != null) {
+      host=System.getProperty("http.proxyHost");
+      this.setProxyHost(host);
+    }
+  }
   return this.getPropertyAsString(PROXY_HOST);
 }
