@@ -1,18 +1,24 @@
 {
   boolean ok=false;
+  StringBuffer url=new StringBuffer(sampler.getDomain());
+  url.append(":");
+  url.append(sampler.getPort());
+  url.append(sampler.getPath());
+  if (sampler.getQueryString().length() > 0) {
+    url.append("?");
+    url.append(sampler.getQueryString());
+  }
   PropertyIterator iter=getIncludePatterns().iterator();
   while (iter.hasNext()) {
     String item=iter.next().getStringValue();
-    Pattern pattern=patternCache.getPattern(item,Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
-    StringBuffer url=new StringBuffer(sampler.getDomain());
-    url.append(":");
-    url.append(sampler.getPort());
-    url.append(sampler.getPath());
-    if (sampler.getQueryString().length() > 0) {
-      url.append("?");
-      url.append(sampler.getQueryString());
+    Pattern pattern;
+    try {
+      pattern=patternCache.getPattern(item,Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
+      ok=matcher.matches(url.toString(),pattern);
     }
-    ok=matcher.matches(url.toString(),pattern);
+ catch (    MalformedCachePatternException e) {
+      log.warn("Skipped invalid Include pattern " + item,e);
+    }
     if (ok) {
       break;
     }
