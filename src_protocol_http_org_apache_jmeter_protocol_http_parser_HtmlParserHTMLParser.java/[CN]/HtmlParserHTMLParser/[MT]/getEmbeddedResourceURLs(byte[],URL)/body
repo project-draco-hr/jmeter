@@ -11,11 +11,8 @@
     throw new HTMLParseException(e);
   }
   Set uniqueURLs=new LinkedHashSet();
-  boolean uniqueBinary;
-  SampleResult binRes=null;
   try {
     for (NodeIterator e=htmlParser.elements(); e.hasMoreNodes(); ) {
-      uniqueBinary=true;
       Node node=e.nextNode();
       String binUrlStr=null;
       if (node instanceof BodyTag) {
