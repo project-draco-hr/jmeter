@@ -1,0 +1,9 @@
+{
+  Sampler currentElement=super.next();
+  if (!isDone()) {
+    return currentElement;
+  }
+ else {
+    return null;
+  }
+}

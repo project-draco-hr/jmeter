@@ -1,0 +1,11 @@
+{
+  GenericController controller=new GenericController();
+  controller.addTestElement(new IfController("false==false"));
+  controller.addTestElement(new IfController(" \"a\".equals(\"a\")"));
+  controller.addTestElement(new IfController("2<100"));
+  logger.debug(">>>>>   testProcessing : Starting the iteration  ");
+  TestElement sampler=null;
+  while ((sampler=controller.next()) != null) {
+    logger.debug("    ->>>  Gonna assertTrue :" + sampler.getClass().getName() + " Property is   ---->>>"+ sampler.getPropertyAsString(TestElement.NAME));
+  }
+}

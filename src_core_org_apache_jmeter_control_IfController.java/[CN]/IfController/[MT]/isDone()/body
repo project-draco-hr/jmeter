@@ -1,0 +1,11 @@
+{
+  boolean result=true;
+  try {
+    result=!evaluateCondition();
+  }
+ catch (  Exception e) {
+    logger.error(e.getMessage(),e);
+  }
+  setDone(true);
+  return result;
+}

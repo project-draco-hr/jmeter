@@ -1,0 +1,25 @@
+{
+  logger.debug("    getCondition() : [" + getCondition() + "]");
+  String resultStr="";
+  boolean result=false;
+  Context cx=Context.enter();
+  try {
+    Scriptable scope=cx.initStandardObjects(null);
+    Object cxResultObject=cx.evaluateString(scope,getCondition(),"<cmd>",1,null);
+    resultStr=Context.toString(cxResultObject);
+    if (resultStr.equals("false")) {
+      result=false;
+    }
+ else     if (resultStr.equals("true")) {
+      result=true;
+    }
+ else {
+      throw new Exception(" BAD CONDITION :: " + getCondition());
+    }
+    logger.debug("    >> evaluate Condition -  [ " + getCondition() + "] results is  ["+ result+ "]");
+  }
+  finally {
+    Context.exit();
+  }
+  return result;
+}
