@@ -1,9 +1,9 @@
 {
   log.debug("Node is class:" + node.getClass());
-  JMeterGUIComponent treeNode=(JMeterGUIComponent)node;
+  JMeterTreeNode treeNode=(JMeterTreeNode)node;
   if (checkMode) {
     if (previousGuiItems.containsKey(treeNode)) {
-      if (!previousGuiItems.get(treeNode).equals(treeNode.createTestElement())) {
+      if (!previousGuiItems.get(treeNode).equals(treeNode.getTestElement())) {
         dirty=true;
       }
     }
@@ -15,6 +15,6 @@
     previousGuiItems.remove(treeNode);
   }
  else {
-    previousGuiItems.put(treeNode,treeNode.createTestElement().clone());
+    previousGuiItems.put(treeNode,treeNode.getTestElement().clone());
   }
 }

@@ -5,5 +5,5 @@
   testBeanGUIs=new HashMap();
   Introspector.flushCaches();
   getMainFrame().setMainPanel((javax.swing.JComponent)getCurrentGui());
-  getMainFrame().setEditMenu(((JMeterGUIComponent)getTreeListener().getCurrentNode()).createPopupMenu());
+  getMainFrame().setEditMenu(getTreeListener().getCurrentNode().createPopupMenu());
 }
