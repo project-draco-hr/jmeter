@@ -2,7 +2,7 @@
   Iterator iter=assertions.iterator();
   while (iter.hasNext()) {
     Assertion assertion=(Assertion)iter.next();
-    if (assertion instanceof TestBean)     ((TestBean)assertion).prepare();
+    TestBeanHelper.prepare((TestElement)assertion);
     AssertionResult assertionResult=assertion.getResult(result);
     result.setSuccessful(result.isSuccessful() && !(assertionResult.isError() || assertionResult.isFailure()));
     result.addAssertionResult(assertionResult);

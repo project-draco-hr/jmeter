@@ -26,7 +26,7 @@
           Sampler sampler=pack.getSampler();
           sampler.setThreadContext(threadContext);
           sampler.setThreadName(threadName);
-          if (sampler instanceof TestBean)           ((TestBean)sampler).prepare();
+          TestBeanHelper.prepare(sampler);
           SampleResult result=sampler.sample(null);
           if (result != null) {
             result.setThreadName(threadName);
@@ -55,7 +55,10 @@
       }
     }
   }
-  finally {
+ catch (  Exception e) {
+    log.error("Test failed!",e);
+  }
+ finally {
     threadContext.clear();
     log.info("Thread " + threadName + " is done");
     monitor.threadFinished(this);

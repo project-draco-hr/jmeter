@@ -3,7 +3,7 @@
   Iterator iter=timers.iterator();
   while (iter.hasNext()) {
     Timer timer=(Timer)iter.next();
-    if (timer instanceof TestBean)     ((TestBean)timer).prepare();
+    TestBeanHelper.prepare((TestElement)timer);
     sum+=timer.delay();
   }
   if (sum > 0) {

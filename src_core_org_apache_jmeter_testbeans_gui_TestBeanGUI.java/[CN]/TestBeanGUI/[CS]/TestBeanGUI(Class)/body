@@ -1,5 +1,6 @@
 {
   super();
+  log.warn("testing class: " + testBeanClass.getName());
   if (!TestBean.class.isAssignableFrom(testBeanClass)) {
     Error e=new Error();
     log.error("This should never happen!",e);

@@ -2,7 +2,7 @@
   ListIterator iter=extractors.listIterator(extractors.size());
   while (iter.hasPrevious()) {
     PostProcessor ex=(PostProcessor)iter.previous();
-    if (ex instanceof TestBean)     ((TestBean)ex).prepare();
+    TestBeanHelper.prepare((TestElement)ex);
     ex.process();
   }
 }

@@ -5,7 +5,7 @@
     if (log.isDebugEnabled()) {
       log.debug("Running preprocessor: " + ((AbstractTestElement)ex).getName());
     }
-    if (ex instanceof TestBean)     ((TestBean)ex).prepare();
+    TestBeanHelper.prepare((TestElement)ex);
     ex.process();
   }
 }

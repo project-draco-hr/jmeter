@@ -2,7 +2,7 @@
   Iterator iter=testListeners.getSearchResults().iterator();
   while (iter.hasNext()) {
     TestListener tl=(TestListener)iter.next();
-    if (tl instanceof TestBean)     ((TestBean)tl).prepare();
+    if (tl instanceof TestBean)     TestBeanHelper.prepare((TestElement)tl);
     if (host == null) {
       tl.testEnded();
     }

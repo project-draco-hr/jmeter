@@ -1,0 +1,8 @@
+{
+  try {
+    return createMethod(types).invoke(invokee,getArgs());
+  }
+ catch (  Exception e) {
+    throw new RuntimeException(e);
+  }
+}

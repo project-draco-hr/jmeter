@@ -1,0 +1,24 @@
+{
+  if (!(el instanceof TestBean)) {
+    return;
+  }
+  try {
+    BeanInfo beanInfo=Introspector.getBeanInfo(el.getClass());
+    PropertyDescriptor[] desc=beanInfo.getPropertyDescriptors();
+    Object[] param=new Object[1];
+    if (log.isDebugEnabled())     log.debug("Preparing " + el.getClass());
+    for (int x=0; x < desc.length; x++) {
+      JMeterProperty jprop=el.getProperty(desc[x].getName());
+      Class type=desc[x].getPropertyType();
+      Object value=Converter.convert(jprop.getStringValue(),type);
+      if (log.isDebugEnabled())       log.debug("Setting " + jprop.getName() + "="+ value);
+      if (value != null || !type.isPrimitive()) {
+        param[0]=value;
+        invokeOrBailOut(el,desc[x].getWriteMethod(),param);
+      }
+    }
+  }
+ catch (  IntrospectionException e) {
+    log.error("Couldn't set properties for " + el.getClass().getName(),e);
+  }
+}

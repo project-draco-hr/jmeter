@@ -1,0 +1,24 @@
+{
+  if (methodToInvoke == null) {
+    try {
+      methodToInvoke=invokee.getClass().getMethod(methodName,types);
+    }
+ catch (    Exception e) {
+      for (int i=0; i < types.length; i++) {
+        Class[] interfaces=types[i].getInterfaces();
+        for (int j=0; j < interfaces.length; j++) {
+          methodToInvoke=createMethod(getNewArray(i,interfaces[j],types));
+          if (methodToInvoke != null) {
+            return methodToInvoke;
+          }
+        }
+        Class parent=types[i].getSuperclass();
+        methodToInvoke=createMethod(getNewArray(i,parent,types));
+        if (methodToInvoke != null) {
+          return methodToInvoke;
+        }
+      }
+    }
+  }
+  return methodToInvoke;
+}

@@ -1,0 +1,7 @@
+{
+  JMeterProperty prop=makeProperty(item);
+  if (prop == null) {
+    prop=getBlankProperty(item);
+  }
+  return prop;
+}

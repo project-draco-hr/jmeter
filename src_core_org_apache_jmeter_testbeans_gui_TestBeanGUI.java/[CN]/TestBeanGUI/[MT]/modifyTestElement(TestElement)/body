@@ -9,7 +9,7 @@
       element.removeProperty(name);
     }
  else {
-      JMeterProperty jprop=wrapInProperty(propertyMap.get(name));
+      JMeterProperty jprop=AbstractProperty.createProperty(propertyMap.get(name));
       jprop.setName(name);
       element.setProperty(jprop);
     }
