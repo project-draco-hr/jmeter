@@ -3,7 +3,6 @@
     threadContext=JMeterContextService.getContext();
     threadContext.setVariables(threadVars);
     threadContext.setThreadNum(getThreadNum());
-    initializeThreadListeners();
     testTree.traverse(compiler);
     running=true;
     Sampler entry=null;
@@ -13,10 +12,11 @@
       while (controller.hasNext() && running) {
         try {
           if (controller.isNextFirst()) {
-            notifyThreadListeners();
+            notifyTestListeners();
           }
-          SamplePackage pack=compiler.configureSampler(controller.next());
-          threadContext.setCurrentSampler(pack.getSampler());
+          Sampler sam=controller.next();
+          threadContext.setCurrentSampler(sam);
+          SamplePackage pack=compiler.configureSampler(sam);
           delay(pack.getTimers());
           SampleResult result=pack.getSampler().sample(null);
           result.setThreadName(threadName);

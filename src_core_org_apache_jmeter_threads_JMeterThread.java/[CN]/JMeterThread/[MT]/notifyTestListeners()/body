@@ -1,0 +1,14 @@
+{
+  threadVars.incIteration();
+  Iterator iter=testListeners.iterator();
+  while (iter.hasNext()) {
+    TestListener listener=(TestListener)iter.next();
+    if (listener instanceof TestElement) {
+      listener.testIterationStart(new IterationEvent(controller,threadVars.getIteration()));
+      ((TestElement)listener).recoverRunningVersion();
+    }
+ else {
+      listener.testIterationStart(new IterationEvent(controller,threadVars.getIteration()));
+    }
+  }
+}

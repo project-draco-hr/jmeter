@@ -1,7 +1,6 @@
 {
   currentSampler=sampler;
   SamplePackage pack=(SamplePackage)samplerConfigMap.get(sampler);
-  pack.setRunningVersion(true);
   pack.setSampler(sampler);
   runPreProcessors(pack.getPreProcessors());
   configureWithConfigElements(sampler,pack.getConfigs());

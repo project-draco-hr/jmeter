@@ -1,0 +1,15 @@
+{
+  Sampler entry=JMeterContextService.getContext().getCurrentSampler();
+  if (!(entry instanceof HTTPSampler)) {
+    return;
+  }
+  HTTPSampler config=(HTTPSampler)entry;
+  Map currentUser=allAvailableUsers.getNextUserMods();
+  PropertyIterator iter=config.getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next().getObjectValue();
+    if (currentUser.containsKey(arg.getName())) {
+      arg.setValue((String)currentUser.get(arg.getName()));
+    }
+  }
+}

@@ -1,6 +1,0 @@
-{
-  Iterator iter=threadListeners.iterator();
-  while (iter.hasNext()) {
-    ((ThreadListener)iter.next()).setJMeterVariables(threadVars);
-  }
-}

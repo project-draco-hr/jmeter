@@ -1,0 +1,19 @@
+{
+  Sampler sam=JMeterContextService.getContext().getCurrentSampler();
+  HTTPSampler sampler=null;
+  if (!(sam instanceof HTTPSampler)) {
+    return;
+  }
+ else {
+    sampler=(HTTPSampler)sam;
+  }
+  boolean modified=false;
+  PropertyIterator iter=sampler.getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next().getObjectValue();
+    modified=modifyArgument(arg);
+    if (modified) {
+      break;
+    }
+  }
+}

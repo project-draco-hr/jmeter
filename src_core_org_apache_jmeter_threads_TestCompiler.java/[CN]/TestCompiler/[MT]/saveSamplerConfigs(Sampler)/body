@@ -39,5 +39,6 @@
   }
   SamplePackage pack=new SamplePackage(configs,modifiers,responseModifiers,listeners,timers,assertions,extractors,pres);
   pack.setSampler(sam);
+  pack.setRunningVersion(true);
   samplerConfigMap.put(sam,pack);
 }
