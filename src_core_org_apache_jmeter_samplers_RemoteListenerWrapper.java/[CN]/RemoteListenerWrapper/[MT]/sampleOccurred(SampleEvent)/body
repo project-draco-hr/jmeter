@@ -1,16 +1,3 @@
 {
-  log.debug("Sample occurred");
-  try {
-    if (holdSamples) {
-synchronized (sampleStore) {
-        sampleStore.add(e);
-      }
-    }
- else {
-      listener.sampleOccurred(e);
-    }
-  }
- catch (  RemoteException err) {
-    log.error("sampleOccurred",err);
-  }
+  mode.SampleOccurred(e);
 }

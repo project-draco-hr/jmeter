@@ -1,0 +1,16 @@
+{
+  boolean holdSamples=JMeterUtils.getPropDefault("hold_samples",false);
+  String type=JMeterUtils.getPropDefault("mode","Standard");
+  if (holdSamples || type.equalsIgnoreCase("Hold")) {
+    HoldSampleSender h=new HoldSampleSender(listener);
+    return h;
+  }
+ else   if (type.equalsIgnoreCase("Batch")) {
+    BatchSampleSender b=new BatchSampleSender(listener);
+    return b;
+  }
+ else {
+    StandardSampleSender s=new StandardSampleSender(listener);
+    return s;
+  }
+}

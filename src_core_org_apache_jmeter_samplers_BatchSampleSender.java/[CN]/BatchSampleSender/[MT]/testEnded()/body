@@ -1,0 +1,12 @@
+{
+  try {
+    if (sampleStore.size() != 0) {
+      listener.processBatch(sampleStore);
+      sampleStore.clear();
+    }
+    listener.testEnded();
+  }
+ catch (  RemoteException err) {
+    log.error("testEnded()",err);
+  }
+}
