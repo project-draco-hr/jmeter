@@ -5,4 +5,14 @@
  else   if (event.getSource() == this.msgChoice) {
     updateMessageType(this.msgChoice.getText());
   }
+ else   if (event.getSource() == useProperties) {
+    if (useProperties.isSelected()) {
+      this.jndiICF.setEnabled(false);
+      this.urlField.setEnabled(false);
+    }
+ else {
+      this.jndiICF.setEnabled(true);
+      this.urlField.setEnabled(true);
+    }
+  }
 }

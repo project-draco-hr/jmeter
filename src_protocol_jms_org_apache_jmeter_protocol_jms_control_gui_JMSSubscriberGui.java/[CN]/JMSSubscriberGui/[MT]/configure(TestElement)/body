@@ -1,6 +1,7 @@
 {
   super.configure(el);
   SubscriberSampler sampler=(SubscriberSampler)el;
+  useProperties.setSelected(sampler.getUseJNDIPropertiesAsBoolean());
   jndiICF.setText(sampler.getJNDIInitialContextFactory());
   urlField.setText(sampler.getProviderUrl());
   jndiConnFac.setText(sampler.getConnectionFactory());

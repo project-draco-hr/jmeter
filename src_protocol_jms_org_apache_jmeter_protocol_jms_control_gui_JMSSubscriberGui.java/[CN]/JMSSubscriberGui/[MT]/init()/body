@@ -14,6 +14,8 @@
   lookup=new JPanel();
   lookup.setLayout(new VerticalLayout(6,VerticalLayout.LEFT));
   mainPanel.add(lookup);
+  lookup.add(useProperties);
+  useProperties.addChangeListener(this);
   lookup.add(jndiICF);
   lookup.add(urlField);
   lookup.add(jndiConnFac);
