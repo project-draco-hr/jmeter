@@ -10,7 +10,10 @@
         c.doAction(e);
         postActionPerformed(c.getClass(),e);
       }
- catch (      Exception err) {
+ catch (      IllegalUserActionException err) {
+        JMeterUtils.reportErrorToUser(err.toString());
+      }
+catch (      Exception err) {
         log.error("",err);
       }
     }
