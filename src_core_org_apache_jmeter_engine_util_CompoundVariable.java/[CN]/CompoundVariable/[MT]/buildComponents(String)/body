@@ -11,7 +11,12 @@
     }
     funcEndIndex=findMatching("${","}",current);
     functionStr=current.substring(funcStartIndex + 2,funcEndIndex);
-    Function newFunction=buildFunction(functionStr);
+    Function newFunction=null;
+    try {
+      newFunction=buildFunction(functionStr);
+    }
+ catch (    InvalidVariableException e) {
+    }
     if (newFunction == null) {
       components.addLast(new SimpleVariable(functionStr));
     }
