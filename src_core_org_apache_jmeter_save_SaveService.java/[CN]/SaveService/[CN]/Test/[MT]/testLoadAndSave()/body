@@ -1,5 +1,6 @@
 {
   byte[] original=new byte[1000000];
+  boolean failed=false;
   for (int i=0; i < FILES.length; i++) {
     InputStream in=new FileInputStream(new File("testfiles/" + FILES[i]));
     int len=in.read(original);
@@ -11,7 +12,12 @@
     saveSubTree(tree,out);
     out.close();
     if (len != out.size()) {
-      fail("Loading file bin/testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ out.size()+ ".");
+      failed=true;
+      System.out.println();
+      System.out.println("Loading file bin/testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ out.size()+ ".");
     }
+  }
+  if (failed) {
+    fail("One or more failures detected");
   }
 }
