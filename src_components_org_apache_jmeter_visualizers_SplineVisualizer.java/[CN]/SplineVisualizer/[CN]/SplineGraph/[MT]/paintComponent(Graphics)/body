@@ -10,12 +10,9 @@
     g.drawString(JMeterUtils.getResString("spline_visualizer_waitingmessage"),(width - 120) / 2,height - (height - 12) / 2);
     return;
   }
-  boolean resized=true;
   if (width == lastWidth && height == lastHeight) {
-    resized=false;
   }
  else {
-    resized=true;
     lastWidth=width;
     lastHeight=height;
   }
