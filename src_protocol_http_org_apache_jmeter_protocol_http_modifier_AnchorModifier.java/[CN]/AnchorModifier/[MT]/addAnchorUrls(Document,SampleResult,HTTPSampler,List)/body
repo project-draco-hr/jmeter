@@ -11,7 +11,9 @@
     try {
       HTTPSampler newUrl=HtmlParser.createUrlFromAnchor(hrefStr,(HTTPSampler)JMeterContextService.getContext().getPreviousSampler());
       newUrl.setMethod(HTTPSampler.GET);
+      log.debug("possible match: " + newUrl);
       if (HtmlParser.isAnchorMatched(newUrl,config)) {
+        log.debug("Is a match! " + newUrl);
         potentialLinks.add(newUrl);
       }
     }

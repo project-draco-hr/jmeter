@@ -1,5 +1,8 @@
 {
   if (v instanceof Collection) {
+    if (isRunningVersion()) {
+      savedValue=this.value;
+    }
     value=normalizeList((Collection)v);
   }
 }

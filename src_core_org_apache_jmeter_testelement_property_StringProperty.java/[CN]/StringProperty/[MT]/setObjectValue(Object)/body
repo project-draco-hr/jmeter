@@ -1,3 +1,6 @@
 {
+  if (isRunningVersion()) {
+    savedValue=this.value;
+  }
   value=v.toString();
 }

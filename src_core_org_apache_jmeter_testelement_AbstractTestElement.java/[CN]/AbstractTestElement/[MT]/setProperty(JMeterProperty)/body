@@ -3,7 +3,9 @@
     if (getProperty(property.getName()) instanceof NullProperty) {
       addProperty(property);
     }
-    return;
+ else {
+      getProperty(property.getName()).setObjectValue(property.getObjectValue());
+    }
   }
  else {
     propMap.put(property.getName(),property);

@@ -1,4 +1,5 @@
 {
+  log.debug("Modifying argument: " + arg);
   List possibleReplacements=new ArrayList();
   PropertyIterator iter=args.iterator();
   Argument replacementArg;
@@ -17,6 +18,7 @@
     replacementArg=(Argument)possibleReplacements.get(rand.nextInt(possibleReplacements.size()));
     arg.setName(replacementArg.getName());
     arg.setValue(replacementArg.getValue());
+    log.debug("Just set argument to values: " + arg.getName() + " = "+ arg.getValue());
     args.removeArgument(replacementArg);
   }
 }

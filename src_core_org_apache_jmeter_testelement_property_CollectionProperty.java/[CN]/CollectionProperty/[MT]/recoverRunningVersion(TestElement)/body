@@ -1,4 +1,8 @@
 {
+  if (savedValue != null) {
+    value=savedValue;
+    savedValue=null;
+  }
   PropertyIterator iter=iterator();
   while (iter.hasNext()) {
     JMeterProperty prop=iter.next();

@@ -1,5 +1,8 @@
 {
   if (v instanceof TestElement) {
+    if (isRunningVersion()) {
+      savedValue=this.value;
+    }
     value=(TestElement)v;
   }
 }

@@ -1,4 +1,8 @@
 {
+  if (savedValue != null) {
+    value=savedValue;
+    savedValue=null;
+  }
   Iterator iter=value.keySet().iterator();
   while (iter.hasNext()) {
     String name=(String)iter.next();

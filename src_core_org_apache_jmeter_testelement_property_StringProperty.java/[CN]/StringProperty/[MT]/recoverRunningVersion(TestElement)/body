@@ -3,6 +3,5 @@
     value=savedValue;
     savedValue=null;
   }
-  super.recoverRunningVersion(null);
-  value.recoverRunningVersion();
+  super.recoverRunningVersion(owner);
 }
