@@ -6,19 +6,13 @@
       String name=(String)classes.next();
       try {
         Class clazz=Class.forName(name);
-        TestSuite ts=new TestSuite(clazz);
-        if ((ts.testCount() == 1) && (ts.testAt(0).toString().startsWith("warning"))) {
-          Method m;
-          try {
-            m=clazz.getMethod("makeSuite",new Class[0]);
-            TestSuite t=(TestSuite)m.invoke(clazz,null);
-            suite.addTest(t);
-          }
- catch (          Exception e) {
-            suite.addTest(ts);
-          }
+        try {
+          Method m=clazz.getMethod("suite",new Class[0]);
+          TestSuite t=(TestSuite)m.invoke(clazz,null);
+          suite.addTest(t);
         }
- else {
+ catch (        Exception e) {
+          TestSuite ts=new TestSuite(clazz);
           suite.addTest(ts);
         }
       }
