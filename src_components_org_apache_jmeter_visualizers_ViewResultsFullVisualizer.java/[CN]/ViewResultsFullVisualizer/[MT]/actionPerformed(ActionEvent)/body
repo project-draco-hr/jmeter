@@ -1,7 +1,7 @@
 {
   String command=e.getActionCommand();
   if (command != null && (command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND))) {
-    textMode=!textMode;
+    textMode=command.equals(TEXT_COMMAND);
     DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
     if (node == null) {
       results.setText("");
