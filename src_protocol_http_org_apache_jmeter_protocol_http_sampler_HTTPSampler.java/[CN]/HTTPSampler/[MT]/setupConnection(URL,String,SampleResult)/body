@@ -1,6 +1,6 @@
 {
   HttpURLConnection conn;
-  HttpURLConnection.setFollowRedirects(false);
+  HttpURLConnection.setFollowRedirects(delegateRedirects);
   conn=(HttpURLConnection)u.openConnection();
   if ("https".equals(u.getProtocol())) {
     try {
