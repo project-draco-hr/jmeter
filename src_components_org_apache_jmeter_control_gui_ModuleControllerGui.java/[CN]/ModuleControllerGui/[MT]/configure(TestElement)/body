@@ -1,3 +1,5 @@
 {
   super.configure(el);
+  this.selected=((ModuleController)el).getSelectedNode();
+  reinitialize();
 }

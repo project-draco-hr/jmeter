@@ -19,12 +19,6 @@
   nodesModel=new DefaultComboBoxModel();
   nodes=new JComboBox(nodesModel);
   reinitialize();
-  nodes.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
-      selected=((TreeNodeWrapper)nodesModel.getSelectedItem()).getTreeNode();
-    }
-  }
-);
   try {
     Class addToTree=Class.forName("org.apache.jmeter.gui.action.AddToTree");
     Class remove=Class.forName("org.apache.jmeter.gui.action.Remove");

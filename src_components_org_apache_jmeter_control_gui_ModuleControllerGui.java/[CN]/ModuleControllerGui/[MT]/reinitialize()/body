@@ -1,14 +1,14 @@
 {
-  TreeNodeWrapper selected, current;
-  selected=(TreeNodeWrapper)nodesModel.getSelectedItem();
+  TreeNodeWrapper current;
   nodesModel.removeAllElements();
   JMeterTreeNode wb=getWorkBench();
   buildNodesModel(wb,"");
   if (selected != null) {
     for (int i=0; i < nodesModel.getSize(); i++) {
       current=(TreeNodeWrapper)nodesModel.getElementAt(i);
-      if (current.getTreeNode().equals(selected.getTreeNode())) {
+      if (current.getTreeNode().equals(selected)) {
         nodesModel.setSelectedItem(current);
+        break;
       }
     }
   }

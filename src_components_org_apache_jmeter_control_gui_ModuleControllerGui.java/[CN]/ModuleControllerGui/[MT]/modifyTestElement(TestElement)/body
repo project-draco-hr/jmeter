@@ -1,5 +1,6 @@
 {
   configureTestElement(element);
+  selected=((TreeNodeWrapper)nodesModel.getSelectedItem()).getTreeNode();
   if (selected != null) {
     ((ModuleController)element).setSelectedNode(selected);
   }
