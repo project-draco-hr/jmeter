@@ -5,7 +5,7 @@
   Iterator iter=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestBean.class}).iterator();
   while (iter.hasNext()) {
     Class testBeanClass=Class.forName((String)iter.next());
-    JMeterUtils.setLocale(new Locale(defaultLanguage));
+    JMeterUtils.setLocale(new Locale(defaultLanguage,""));
     ResourceBundle defaultBundle;
     try {
       defaultBundle=(ResourceBundle)Introspector.getBeanInfo(testBeanClass,TestBean.class).getBeanDescriptor().getValue(TestBeanGUI.RESOURCE_BUNDLE);

@@ -1,5 +1,5 @@
 {
-  JMeterUtils.setLocale(new Locale(language));
+  JMeterUtils.setLocale(new Locale(language,""));
   try {
     beanInfo=Introspector.getBeanInfo(testBeanClass,TestBean.class);
     bundle=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(TestBeanGUI.RESOURCE_BUNDLE);
