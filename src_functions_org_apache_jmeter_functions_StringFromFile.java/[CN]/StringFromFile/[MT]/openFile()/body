@@ -6,6 +6,6 @@
     log.info("Opened " + fileName);
   }
  catch (  Exception e) {
-    log.error("Error in openFile " + fileName,e);
+    log.error("openFile() error: " + e.toString());
   }
 }

@@ -4,6 +4,10 @@
     myName=((CompoundVariable)values[1]).execute();
   }
   myValue="**ERR**";
+  if (firstTime) {
+    openFile();
+    firstTime=false;
+  }
   if (null != myBread) {
     try {
       String line=myBread.readLine();
@@ -16,10 +20,10 @@
       myValue=line;
     }
  catch (    Exception e) {
-      log.error("Error reading file " + fileName,e);
+      log.error("Error reading file " + e.toString());
     }
   }
   vars.put(myName,myValue);
-  log.debug(this + "::StringFromFile.execute() value " + myValue);
+  log.debug(this + "::StringFromFile.execute() name:" + myName+ " value:"+ myValue);
   return myValue;
 }
