@@ -4,17 +4,11 @@
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new BorderLayout());
-  JPanel titlePanel=new JPanel(new BorderLayout());
-  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("web_testing_title"));
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  titlePanel.add(panelTitleLabel,BorderLayout.NORTH);
-  titlePanel.add(getNamePanel(),BorderLayout.SOUTH);
-  mainPanel.add(titlePanel,BorderLayout.NORTH);
+  mainPanel.add(makeTitlePanel(),BorderLayout.NORTH);
   urlConfigGui=new MultipartUrlConfigGui();
   mainPanel.add(urlConfigGui,BorderLayout.CENTER);
   mainPanel.add(createOptionalTasksPanel(),BorderLayout.SOUTH);
   this.add(mainPanel);
+  revalidate();
+  setMinimumSize(this.getPreferredSize());
 }

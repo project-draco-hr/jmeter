@@ -1,6 +1,6 @@
 {
-  mainPanelView.removeAll();
-  mainPanelView.add(comp);
-  comp.revalidate();
+  mainPanel.removeAll();
+  mainPanel.add(comp);
+  mainPanel.validate();
   mainPanel.repaint();
 }

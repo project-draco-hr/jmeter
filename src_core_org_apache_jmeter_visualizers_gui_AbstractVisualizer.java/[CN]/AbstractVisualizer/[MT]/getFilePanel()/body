@@ -1,6 +1,7 @@
 {
-  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  Box panel=Box.createHorizontalBox();
   panel.add(filePanel);
   panel.add(getErrorLoggingCheckbox());
+  panel.add(Box.createHorizontalGlue());
   return panel;
 }
