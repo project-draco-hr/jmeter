@@ -3,7 +3,7 @@
     StringTokenizer tokens=this.tokenize(url,"?");
     this.URL_PATH=tokens.nextToken();
     el.setProperty(HTTPSamplerBase.PATH,URL_PATH);
-    return tokens.nextToken();
+    return tokens.hasMoreTokens() ? tokens.nextToken() : null;
   }
  else {
     el.setProperty(HTTPSamplerBase.PATH,url);

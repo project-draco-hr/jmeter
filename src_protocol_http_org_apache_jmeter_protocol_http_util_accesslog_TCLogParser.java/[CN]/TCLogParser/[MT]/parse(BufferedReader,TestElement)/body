@@ -2,10 +2,6 @@
   String line=null;
   try {
     line=breader.readLine();
-    if (line == null && COUNT >= this.PARSECOUNT) {
-      this.READER.close();
-      this.READER=null;
-    }
     while (line != null) {
       if (line.length() > 0) {
         this.parseLine(line,el);
@@ -14,6 +10,11 @@
         break;
       }
       line=breader.readLine();
+    }
+    if (line == null) {
+      breader.close();
+      breader=null;
+      this.READER=null;
     }
   }
  catch (  IOException ioe) {
