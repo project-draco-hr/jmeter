@@ -19,18 +19,14 @@
     try {
       File initStore=new File(fileName);
       if (initStore.exists()) {
-        try {
-          this.trustStore.load(new FileInputStream(initStore),null);
-        }
- catch (        Exception e) {
-          throw new RuntimeException("Can't load KeyStore!!!  " + e.getMessage());
-        }
+        this.trustStore.load(new FileInputStream(initStore),null);
       }
  else {
         this.trustStore.load(null,null);
       }
     }
  catch (    Exception e) {
+      throw new RuntimeException("Can't load TrustStore",e);
     }
     log.info("TrustStore Location: " + fileName);
     log.info("TrustStore type: " + this.keyStore.getClass().toString());
