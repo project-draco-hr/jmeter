@@ -11,5 +11,5 @@
   JMeterContextService.getContext().setPreviousResult(result);
   parser.process();
   String newUrl=config.getUrl().toString();
-  assertEquals("http://www.apache.org:80/home/index.html?param1=value1",newUrl);
+  assertEquals("http://www.apache.org/home/index.html?param1=value1",newUrl);
 }

@@ -11,6 +11,6 @@
   JMeterContextService.getContext().setCurrentSampler(config);
   JMeterContextService.getContext().setPreviousResult(result);
   parser.process();
-  assertEquals("http://www.apache.org:80/subdir/index.html",config.getUrl().toString());
+  assertEquals("http://www.apache.org/subdir/index.html",config.getUrl().toString());
   assertEquals("te%24st=goto",config.getQueryString());
 }

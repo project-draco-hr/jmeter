@@ -1,0 +1,17 @@
+{
+  String xmlData=retrieveRuntimeXmlData();
+  if (xmlData != null && xmlData.length() > 0) {
+    try {
+      DocumentBuilder xdb=XMLParserUtils.getXMLDocBuilder();
+      Document doc=xdb.parse(new InputSource(new StringReader(xmlData)));
+      return doc.getDocumentElement();
+    }
+ catch (    Exception ex) {
+      ex.printStackTrace();
+      return null;
+    }
+  }
+ else {
+    return null;
+  }
+}

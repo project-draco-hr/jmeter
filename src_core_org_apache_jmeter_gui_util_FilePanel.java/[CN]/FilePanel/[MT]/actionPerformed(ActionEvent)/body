@@ -1,6 +1,6 @@
 {
   if (e.getActionCommand().equals("browse")) {
-    JFileChooser chooser=FileDialoger.promptToOpenFile(new String[]{".jtl"});
+    JFileChooser chooser=FileDialoger.promptToOpenFile(new String[]{filetype});
     if (chooser != null && chooser.getSelectedFile() != null) {
       filename.setText(chooser.getSelectedFile().getPath());
       fireFileChanged();

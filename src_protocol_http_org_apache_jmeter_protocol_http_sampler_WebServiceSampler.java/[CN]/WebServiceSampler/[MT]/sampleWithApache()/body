@@ -1,0 +1,21 @@
+{
+  try {
+    Envelope msgEnv=Envelope.unmarshall(createDocument());
+    Message msg=new Message();
+    long start=System.currentTimeMillis();
+    msg.send(this.getUrl(),"http://tempuri.org/doInference",msgEnv);
+    RESULT.setTime(System.currentTimeMillis() - start);
+    SOAPTransport st=msg.getSOAPTransport();
+    BufferedReader br=st.receive();
+    StringBuffer buf=new StringBuffer();
+    String line;
+    while ((line=br.readLine()) != null) {
+      buf.append(line);
+    }
+    RESULT.setResponseMessage(buf.toString());
+    RESULT.setSuccessful(true);
+  }
+ catch (  Exception exception) {
+    RESULT.setSuccessful(false);
+  }
+}

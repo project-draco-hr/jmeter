@@ -1,0 +1,12 @@
+{
+  super.configure(el);
+  WebServiceSampler sampler=(WebServiceSampler)el;
+  try {
+    urlField.setText(sampler.getUrl().toString());
+    soapAction.setText(sampler.getSoapAction());
+  }
+ catch (  MalformedURLException e) {
+  }
+  soapXml.setText(sampler.getXmlData());
+  soapXmlFile.setFilename(sampler.getXmlFile());
+}

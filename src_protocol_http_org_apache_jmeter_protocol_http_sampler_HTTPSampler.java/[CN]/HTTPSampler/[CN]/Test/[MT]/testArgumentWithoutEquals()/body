@@ -4,5 +4,5 @@
   sampler.setMethod(HTTPSampler.GET);
   sampler.setPath("/index.html?pear");
   sampler.setDomain("www.apache.org");
-  assertEquals("http://www.apache.org:80/index.html?pear",sampler.getUrl().toString());
+  assertEquals("http://www.apache.org/index.html?pear",sampler.getUrl().toString());
 }
