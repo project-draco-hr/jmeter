@@ -1,3 +1,4 @@
 {
-  return (arg.getName().equals(patternArg.getName()) || matcher.matches(arg.getName(),compiler.compile(patternArg.getName()))) && (arg.getValue().equals(patternArg.getValue()) || matcher.matches((String)arg.getValue(),compiler.compile((String)patternArg.getValue())));
+  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
+  return (arg.getName().equals(patternArg.getName()) || matcher.matches(arg.getName(),patternCache.getPattern(patternArg.getName(),Perl5Compiler.READ_ONLY_MASK))) && (arg.getValue().equals(patternArg.getValue()) || matcher.matches((String)arg.getValue(),patternCache.getPattern((String)patternArg.getValue(),Perl5Compiler.READ_ONLY_MASK)));
 }

@@ -5,7 +5,7 @@
   }
   List collectAllMatches=new ArrayList();
   try {
-    PatternMatcher matcher=new Perl5Matcher();
+    PatternMatcher matcher=(PatternMatcher)localMatcher.get();
     String responseText=new String(previousResult.getResponseData());
     PatternMatcherInput input=new PatternMatcherInput(responseText);
     while (matcher.contains(input,searchPattern)) {
