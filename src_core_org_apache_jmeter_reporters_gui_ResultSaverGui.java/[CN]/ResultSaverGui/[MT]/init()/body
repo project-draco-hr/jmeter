@@ -1,0 +1,8 @@
+{
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  Box box=Box.createVerticalBox();
+  box.add(makeTitlePanel());
+  box.add(createFilenamePanel());
+  add(box,BorderLayout.NORTH);
+}
