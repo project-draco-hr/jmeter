@@ -1,5 +1,10 @@
 {
   Object[] temp;
+  if (col == 0) {
+    if (!rowValues.containsKey(value)) {
+      rowValues.put(value,new Integer(row));
+    }
+  }
   if (row >= data.size()) {
     data.setSize(row + 1);
   }

@@ -10,5 +10,5 @@
     labelMap.put(aLabel,myRS);
   }
   myRS.addSample(res);
-  this.fireDataChanged();
+  this.fireDataChanged(myRS);
 }

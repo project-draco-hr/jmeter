@@ -3,6 +3,7 @@
   long aTimeInMillis=res.getTime();
   boolean aSuccessFlag=res.isSuccessful();
   lastTime=res.getTimeStamp();
+  label=res.getSampleLabel();
   counter++;
   if (firstTime == 0L) {
     firstTime=lastTime;
