@@ -1,6 +1,6 @@
 {
-  setLayout(new BorderLayout());
-  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
-  add(makeTitlePanel(),BorderLayout.NORTH);
-  add(makeParameterPanel(),BorderLayout.CENTER);
+  setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  add(makeParameterPanel());
 }

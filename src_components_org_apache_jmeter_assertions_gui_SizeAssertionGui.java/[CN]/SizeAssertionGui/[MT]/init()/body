@@ -1,8 +1,7 @@
 {
   setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
-  add(createTitleLabel());
-  add(getNamePanel());
+  setBorder(makeBorder());
+  add(makeTitlePanel());
   JPanel sizePanel=new JPanel();
   sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getSizeAttributesTitle()));
   sizePanel.add(new JLabel(JMeterUtils.getResString("size_assertion_label")));

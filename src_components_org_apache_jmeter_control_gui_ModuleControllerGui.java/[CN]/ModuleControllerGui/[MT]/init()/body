@@ -1,8 +1,7 @@
 {
   setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
-  add(createTitleLabel());
-  add(getNamePanel());
+  setBorder(makeBorder());
+  add(makeTitlePanel());
   JPanel modulesPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   modulesPanel.add(new JLabel(CONTROLLER));
   nodesModel=new DefaultComboBoxModel();

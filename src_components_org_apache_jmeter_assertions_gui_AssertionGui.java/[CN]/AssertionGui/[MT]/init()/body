@@ -1,8 +1,7 @@
 {
   setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-  setBorder(BorderFactory.createEmptyBorder(10,10,5,10));
-  add(createTitleLabel());
-  add(getNamePanel());
+  setBorder(makeBorder());
+  add(makeTitlePanel());
   add(createFieldPanel());
   add(createTypePanel());
   add(createStringPanel());
