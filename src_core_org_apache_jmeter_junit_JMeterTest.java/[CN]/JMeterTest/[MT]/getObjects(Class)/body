@@ -2,9 +2,14 @@
   Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
   while (classes.hasNext()) {
-    String className=(String)classes.next();
+    Class c=Class.forName((String)classes.next());
     try {
-      objects.add(Class.forName(className).newInstance());
+      try {
+        objects.add(c.newInstance());
+      }
+ catch (      InstantiationException e) {
+        objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{this}));
+      }
     }
  catch (    IllegalAccessException e) {
     }
