@@ -1,0 +1,7 @@
+{
+  StringProperty prop=new StringProperty("html","${__regexFunction((\\\\$\\d+\\.\\d+),$1$)}");
+  JMeterProperty newProp=transformer.transformValue(prop);
+  newProp.setRunningVersion(true);
+  assertEquals("org.apache.jmeter.testelement.property.FunctionProperty",newProp.getClass().getName());
+  assertEquals("$3.47",newProp.getStringValue());
+}

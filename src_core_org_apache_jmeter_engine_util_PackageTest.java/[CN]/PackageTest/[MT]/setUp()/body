@@ -3,7 +3,7 @@
   variables.put("my_regex",".*");
   variables.put("server","jakarta.apache.org");
   result=new SampleResult();
-  result.setResponseData("<html>hello world</html>".getBytes());
+  result.setResponseData("<html>hello world</html> costs: $3.47,$5.67".getBytes());
   transformer=new ReplaceStringWithFunctions(new CompoundVariable(),variables);
   JMeterContextService.getContext().setSamplingStarted(true);
   JMeterContextService.getContext().setPreviousResult(result);

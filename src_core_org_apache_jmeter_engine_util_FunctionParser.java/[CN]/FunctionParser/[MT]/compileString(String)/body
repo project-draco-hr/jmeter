@@ -11,7 +11,7 @@
         if (reader.read(current) == 0) {
           break;
         }
-        if (current[0] != '$' && current[0] != ',') {
+        if (current[0] != '$' && current[0] != ',' && current[0] != '\\') {
           buffer.append(previous);
         }
         previous=' ';
