@@ -2,7 +2,7 @@
   HttpURLConnection conn;
   HttpURLConnection.setFollowRedirects(delegateRedirects);
   conn=(HttpURLConnection)u.openConnection();
-  if ("https".equals(u.getProtocol())) {
+  if ("https".equalsIgnoreCase(u.getProtocol())) {
     try {
       SSLManager.getInstance().setContext(conn);
     }
@@ -22,8 +22,10 @@
   if (res != null) {
     StringBuffer sb=new StringBuffer();
     if (method.equals(HTTPSampler.POST)) {
+      String q=this.getQueryString();
+      res.setQueryString(q);
       sb.append("Query data:\n");
-      sb.append(this.getQueryString());
+      sb.append(q);
       sb.append('\n');
     }
     if (cookies != null) {

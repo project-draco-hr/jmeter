@@ -1,5 +1,5 @@
 {
-  HTTPSampleResult res=new HTTPSampleResult();
+  HTTPSampleResult res=new HTTPSampleResult(time);
   res.setSampleLabel("Error");
   res.setSamplerData(data);
   res.setDataType(HTTPSampleResult.TEXT);
@@ -8,7 +8,6 @@
   res.setResponseData(text.toByteArray());
   res.setResponseCode(NON_HTTP_RESPONSE_CODE);
   res.setResponseMessage(NON_HTTP_RESPONSE_MESSAGE);
-  res.setTime(time);
   res.setSuccessful(false);
   return res;
 }

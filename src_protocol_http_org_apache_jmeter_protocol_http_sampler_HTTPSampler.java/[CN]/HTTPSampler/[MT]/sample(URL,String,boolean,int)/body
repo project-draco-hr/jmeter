@@ -1,23 +1,20 @@
 {
   HttpURLConnection conn=null;
-  long t0=System.currentTimeMillis();
+  String urlStr=url.toString();
+  log.debug("Start : sample" + urlStr);
   HTTPSampleResult res=new HTTPSampleResult();
-  log.debug("Start : sample");
+  res.setSampleLabel(urlStr);
+  res.sampleStart();
   try {
-    res.setSampleLabel(url.toString());
-    if (log.isDebugEnabled()) {
-      log.debug("sample2 : sampling url - " + url);
-    }
     int retry;
-    for (retry=1; retry <= 10; retry++) {
+    for (retry=1; retry <= MAX_CONN_RETRIES; retry++) {
       try {
         conn=setupConnection(url,method,res);
-        t0=System.currentTimeMillis();
         conn.connect();
         break;
       }
  catch (      BindException e) {
-        if (retry == 10) {
+        if (retry >= MAX_CONN_RETRIES) {
           log.error("Can't connect",e);
           throw e;
         }
@@ -31,14 +28,14 @@ catch (      IOException e) {
         throw e;
       }
     }
-    if (retry > 10) {
+    if (retry > MAX_CONN_RETRIES) {
       throw new BindException();
     }
     if (method.equals(HTTPSampler.POST)) {
       sendPostData(conn);
     }
     byte[] responseData=readResponse(conn);
-    long t1=System.currentTimeMillis();
+    res.sampleEnd();
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();
     res.setResponseCode(Integer.toString(errorLevel));
@@ -56,14 +53,11 @@ catch (      IOException e) {
     if (res.isRedirect()) {
       res.setRedirectLocation(conn.getHeaderField("Location"));
     }
-    res.setTime(t1 - t0);
     saveConnectionCookies(conn,url,getCookieManager());
     if (!areFollowingRedirect) {
       boolean didFollowRedirects=false;
       if (res.isRedirect()) {
-        if (log.isDebugEnabled()) {
-          log.debug("Location set to - " + res.getRedirectLocation());
-        }
+        log.debug("Location set to - " + res.getRedirectLocation());
         if (getFollowRedirects()) {
           res=followRedirects(res,frameDepth);
           didFollowRedirects=true;
@@ -83,7 +77,8 @@ catch (      IOException e) {
     return res;
   }
  catch (  IOException e) {
-    return errorResult(e,url.toString(),System.currentTimeMillis() - t0);
+    res.sampleEnd();
+    return errorResult(e,url.toString(),res.getTime());
   }
  finally {
     disconnect(conn);

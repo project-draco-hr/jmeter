@@ -25,13 +25,7 @@
       value=args[i].substring(endOfNameIndex + 1,args[i].length());
     }
     if (name.length() > 0) {
-      try {
-        addEncodedArgument(name,value,metaData);
-      }
- catch (      Exception e) {
-        log.error("UrlConfig:parseArguments(): Unable to parse argument=[" + value + "]");
-        log.error("UrlConfig:parseArguments(): queryString=[" + queryString + "]",e);
-      }
+      addEncodedArgument(name,value,metaData);
     }
   }
 }

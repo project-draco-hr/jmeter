@@ -14,7 +14,7 @@
   if (!pathAndQuery.startsWith("/")) {
     pathAndQuery="/" + pathAndQuery;
   }
-  if (getPort() == UNSPECIFIED_PORT || getPort() == 80) {
+  if (getPort() == UNSPECIFIED_PORT || getPort() == DEFAULT_HTTP_PORT) {
     return new URL(getProtocol(),getDomain(),pathAndQuery);
   }
  else {
