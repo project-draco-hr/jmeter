@@ -1,0 +1,12 @@
+{
+  Object newValue=propValue;
+  masterFunction.clear();
+  masterFunction.setParameters((String)propValue);
+  if (masterFunction.hasFunction()) {
+    newValue=masterFunction.getFunction();
+  }
+ else   if (masterFunction.hasStatics()) {
+    newValue=masterFunction.getStaticSubstitution();
+  }
+  return newValue;
+}

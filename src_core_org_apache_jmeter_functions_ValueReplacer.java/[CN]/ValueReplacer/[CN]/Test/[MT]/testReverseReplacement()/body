@@ -1,0 +1,11 @@
+{
+  ValueReplacer replacer=new ValueReplacer(variables);
+  TestElement element=new TestPlan();
+  element.setProperty("domain","jakarta.apache.org");
+  List args=new LinkedList();
+  args.add("username is jack");
+  args.add("jacks_password");
+  element.setProperty("args",args);
+  replacer.reverseReplace(element);
+  assertEquals("${server}",element.getProperty("domain"));
+}
