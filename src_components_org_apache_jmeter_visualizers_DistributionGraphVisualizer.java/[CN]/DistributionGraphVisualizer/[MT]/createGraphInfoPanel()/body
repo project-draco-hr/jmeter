@@ -2,6 +2,5 @@
   Box graphInfoPanel=Box.createHorizontalBox();
   this.noteField=new JTextField();
   graphInfoPanel.add(this.createInfoLabel("distribution_note1",this.noteField));
-  graphInfoPanel.add(createSaveButton());
   return graphInfoPanel;
 }

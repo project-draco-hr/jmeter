@@ -1,7 +1,0 @@
-{
-  Object src=event.getSource();
-  if (src == saveButton) {
-    SaveGraphicsService service=new SaveGraphicsService();
-    service.saveJComponent("distributionGraph",SaveGraphicsService.PNG,this.graphPanel);
-  }
-}
