@@ -1,37 +1,44 @@
 {
   Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
-  while (classes.hasNext()) {
-    String n=(String)classes.next();
-    if (n.endsWith("RemoteJMeterEngineImpl")) {
-      continue;
-    }
-    Class c=Class.forName(n);
-    try {
+  String n="";
+  try {
+    while (classes.hasNext()) {
+      n=(String)classes.next();
+      if (n.endsWith("RemoteJMeterEngineImpl")) {
+        continue;
+      }
+      Class c=Class.forName(n);
       try {
-        objects.add(c.newInstance());
-      }
- catch (      InstantiationException e) {
         try {
-          objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{this}));
+          objects.add(c.newInstance());
         }
- catch (        NoSuchMethodException f) {
+ catch (        InstantiationException e) {
+          try {
+            objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{this}));
+          }
+ catch (          NoSuchMethodException f) {
+          }
         }
       }
-    }
- catch (    IllegalAccessException e) {
-    }
-catch (    java.awt.HeadlessException e) {
-      System.out.println("\nError creating " + n + " "+ e.toString());
-    }
-catch (    Exception e) {
-      if (e instanceof RemoteException) {
-        log.warn(e.toString());
+ catch (      IllegalAccessException e) {
       }
+catch (      java.awt.HeadlessException e) {
+        System.out.println("\nError creating " + n + " "+ e.toString());
+      }
+catch (      Exception e) {
+        if (e instanceof RemoteException) {
+          System.out.println("\nError creating " + n + " "+ e.toString());
+        }
  else {
-        throw new Exception("Error creating " + n,e);
+          throw new Exception("Error creating " + n,e);
+        }
       }
     }
+  }
+  finally {
+    System.out.println("\nLast class=" + n);
+    System.out.println("objects.size=" + objects.size());
   }
   return objects;
 }
