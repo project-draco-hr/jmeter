@@ -1,3 +1,3 @@
 {
-  return urlConfig == null || (urlConfig.getProperty(HTTPSampler.DOMAIN) == null || urlConfig.getProperty(HTTPSampler.DOMAIN).equals("") || urlConfig.getProperty(HTTPSampler.DOMAIN).equals(sampler.getDomain())) && (urlConfig.getProperty(HTTPSampler.PATH) == null || urlConfig.getProperty(HTTPSampler.PATH).equals("") || urlConfig.getProperty(HTTPSampler.PATH).equals(sampler.getPath()));
+  return urlConfig == null || (urlConfig.getPropertyAsString(HTTPSampler.DOMAIN).equals("") || urlConfig.getPropertyAsString(HTTPSampler.DOMAIN).equals(sampler.getDomain())) && (urlConfig.getPropertyAsString(HTTPSampler.PATH).equals("") || urlConfig.getPropertyAsString(HTTPSampler.PATH).equals(sampler.getPath()));
 }

@@ -1,5 +1,4 @@
 {
-  boolean ret=false;
   Iterator iter=subTree.list().iterator();
   while (iter.hasNext()) {
     TestElement item=(TestElement)iter.next();
@@ -7,11 +6,10 @@
       current=(JMeterTreeNode)((JMeterTreeNode)getRoot()).getChildAt(0);
       ((TestElement)current.getUserObject()).addTestElement(item);
       addSubTree(subTree.getTree(item),current);
-      ret=true;
     }
  else {
       addSubTree(subTree.getTree(item),addComponent(item,current));
     }
   }
-  return ret;
+  return getCurrentSubTree(current);
 }

@@ -14,6 +14,6 @@
     previousGuiItems.remove(treeNode);
   }
  else {
-    previousGuiItems.put(treeNode,treeNode.createTestElement());
+    previousGuiItems.put(treeNode,treeNode.createTestElement().clone());
   }
 }

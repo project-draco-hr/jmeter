@@ -20,8 +20,8 @@
     }
   }
  catch (  Exception e) {
-    log.error("",e);
-    maxConnections=1;
+    log.error("Couldn't open connections to database",e);
+    maxConnections=0;
   }
   connectionArray=new ConnectionObject[maxConnections];
   int count=-1;

@@ -1,12 +1,12 @@
 {
   if (urlConfig != null) {
-    if (sampler.getDomain().equals(urlConfig.getProperty(HTTPSampler.DOMAIN))) {
+    if (sampler.getDomain().equals(urlConfig.getPropertyAsString(HTTPSampler.DOMAIN))) {
       sampler.setDomain("");
     }
-    if (("" + sampler.getPort()).equals(urlConfig.getProperty(HTTPSampler.PORT))) {
+    if (sampler.getPort() == urlConfig.getPropertyAsInt(HTTPSampler.PORT)) {
       sampler.setPort(HTTPSampler.UNSPECIFIED_PORT);
     }
-    if (sampler.getPath().equals(urlConfig.getProperty(HTTPSampler.PATH))) {
+    if (sampler.getPath().equals(urlConfig.getPropertyAsString(HTTPSampler.PATH))) {
       sampler.setPath("");
     }
   }

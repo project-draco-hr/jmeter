@@ -1,5 +1,5 @@
 {
-  if (o instanceof TestElementProperty) {
+  if (o instanceof CollectionProperty) {
     if (value != null) {
       return value.equals(((JMeterProperty)o).getObjectValue());
     }

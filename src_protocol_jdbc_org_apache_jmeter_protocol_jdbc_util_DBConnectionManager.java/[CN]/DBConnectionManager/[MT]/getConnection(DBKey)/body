@@ -1,5 +1,8 @@
 {
   ConnectionObject[] connectionArray=(ConnectionObject[])connections.get(key);
+  if (connectionArray == null || connectionArray.length == 0) {
+    throw new NoConnectionsAvailableException();
+  }
   int maxConnections=key.getMaxConnections();
   Connection c=null;
   int index=(int)(100 * Math.random());
