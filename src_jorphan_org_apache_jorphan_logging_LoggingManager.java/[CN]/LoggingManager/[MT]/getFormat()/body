@@ -1,22 +1,6 @@
 {
-  if (savedFormat == null) {
-    String pattern=DEFAULT_PATTERN;
-    String type=JMeterUtils.getPropDefault("log_format_type","");
-    if (type.length() == 0) {
-      pattern=JMeterUtils.getPropDefault("log_format",DEFAULT_PATTERN);
-    }
- else {
-      if (type.equalsIgnoreCase("thread_suffix")) {
-        pattern=PATTERN_THREAD_SUFFIX;
-      }
- else       if (type.equalsIgnoreCase("thread_prefix")) {
-        pattern=PATTERN_THREAD_PREFIX;
-      }
- else {
-        pattern=DEFAULT_PATTERN;
-      }
-    }
-    savedFormat=new PatternFormatter(pattern + "\n");
+  if (format == null) {
+    format=new PatternFormatter(DEFAULT_PATTERN + "\n");
   }
-  return savedFormat;
+  return format;
 }
