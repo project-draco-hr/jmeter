@@ -15,7 +15,7 @@
     System.gc();
     Runtime.getRuntime().runFinalization();
     this.setUseKeepAlive(false);
-    conn=setupConnection(getUrl(),getMethod());
+    conn=setupConnection(getUrl(),getMethod(),null);
     if (getMethod().equals(HTTPSampler.POST)) {
       setPostHeaders(conn);
     }

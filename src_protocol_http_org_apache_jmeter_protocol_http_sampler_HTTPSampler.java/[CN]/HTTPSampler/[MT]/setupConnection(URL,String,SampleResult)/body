@@ -18,7 +18,14 @@
   }
   conn.setRequestMethod(method);
   setConnectionHeaders(conn,u,getHeaderManager());
-  setConnectionCookie(conn,u,getCookieManager());
+  String cookies=setConnectionCookie(conn,u,getCookieManager());
+  if (res != null) {
+    StringBuffer sb=new StringBuffer();
+    sb.append(this.toString());
+    sb.append("\nCookie Data:\n");
+    sb.append(cookies);
+    res.setSamplerData(sb.toString());
+  }
   setConnectionAuthorization(conn,u,getAuthManager());
   return conn;
 }

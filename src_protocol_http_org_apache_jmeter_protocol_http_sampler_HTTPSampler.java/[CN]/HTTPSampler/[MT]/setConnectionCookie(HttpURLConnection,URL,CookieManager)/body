@@ -1,8 +1,10 @@
 {
+  String cookieHeader=null;
   if (cookieManager != null) {
-    String cookieHeader=cookieManager.getCookieHeaderForURL(u);
+    cookieHeader=cookieManager.getCookieHeaderForURL(u);
     if (cookieHeader != null) {
       conn.setRequestProperty("Cookie",cookieHeader);
     }
   }
+  return cookieHeader;
 }
