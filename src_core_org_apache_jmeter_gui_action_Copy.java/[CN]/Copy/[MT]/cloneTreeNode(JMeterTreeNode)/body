@@ -1,0 +1,5 @@
+{
+  JMeterTreeNode treeNode=(JMeterTreeNode)node.clone();
+  cloneChildren(treeNode,node);
+  return treeNode;
+}

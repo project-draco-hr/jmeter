@@ -1,0 +1,8 @@
+{
+  Enumeration enum=from.children();
+  while (enum.hasMoreElements()) {
+    JMeterTreeNode child=(JMeterTreeNode)enum.nextElement();
+    to.add((JMeterTreeNode)child.clone());
+    cloneChildren((JMeterTreeNode)to.getLastChild(),child);
+  }
+}

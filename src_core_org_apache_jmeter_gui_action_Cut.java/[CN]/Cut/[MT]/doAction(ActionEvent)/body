@@ -1,0 +1,7 @@
+{
+  Copy.setCopiedNode(GuiPackage.getInstance().getTreeListener().getDraggedNode());
+  JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
+  JMeterTreeNode currentNode=treeListener.getCurrentNode();
+  GuiPackage.getInstance().getTreeModel().removeNodeFromParent(GuiPackage.getInstance().getTreeListener().getDraggedNode());
+  GuiPackage.getInstance().getMainFrame().repaint();
+}

@@ -1,0 +1,9 @@
+{
+  JMeterTreeNode draggedNode=Copy.getCopiedNode();
+  if (draggedNode != null) {
+    JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
+    JMeterTreeNode currentNode=treeListener.getCurrentNode();
+    GuiPackage.getInstance().getTreeModel().insertNodeInto(draggedNode,currentNode,currentNode.getChildCount());
+  }
+  GuiPackage.getInstance().getMainFrame().repaint();
+}
