@@ -1,3 +1,4 @@
 {
   testPlanFile=f;
+  GuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
 }

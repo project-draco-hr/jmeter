@@ -1,0 +1,8 @@
+{
+  if (fname == null) {
+    return "Apache JMeter";
+  }
+  String temp=fname.replace('\\','/');
+  String simpleName=temp.substring(temp.lastIndexOf("/") + 1);
+  return simpleName + " (" + fname+ ") - Apache JMeter";
+}

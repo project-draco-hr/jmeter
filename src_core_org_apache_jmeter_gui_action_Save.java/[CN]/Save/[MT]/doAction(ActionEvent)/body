@@ -1,26 +1,24 @@
 {
   HashTree subTree=null;
-  if (e.getActionCommand().equals(SAVE)) {
+  if (!commands.contains(e.getActionCommand())) {
+    throw new IllegalUserActionException("Invalid user command:" + e.getActionCommand());
+  }
+  if (e.getActionCommand().equals(SAVE_AS)) {
     subTree=GuiPackage.getInstance().getCurrentSubTree();
   }
- else   if (e.getActionCommand().equals(SAVE_ALL) || e.getActionCommand().equals(SAVE_TO_PREVIOUS)) {
+ else {
     subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
   }
-  if (!SAVE_TO_PREVIOUS.equals(e.getActionCommand()) || testPlanFile == null) {
+  String updateFile=testPlanFile;
+  if (!SAVE.equals(e.getActionCommand()) || testPlanFile == null) {
     JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmx");
     if (chooser == null) {
       return;
     }
-    if (e.getActionCommand().equals(SAVE_ALL) || e.getActionCommand().equals(SAVE_TO_PREVIOUS)) {
-      testPlanFile=chooser.getSelectedFile().getAbsolutePath();
-      chosenFile=testPlanFile;
+    updateFile=chooser.getSelectedFile().getAbsolutePath();
+    if (!e.getActionCommand().equals(SAVE_AS)) {
+      testPlanFile=updateFile;
     }
- else {
-      chosenFile=chooser.getSelectedFile().getAbsolutePath();
-    }
-  }
- else {
-    chosenFile=testPlanFile;
   }
   ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),CheckDirty.SUB_TREE_SAVED));
   try {
@@ -30,16 +28,19 @@
   }
   OutputStream writer=null;
   try {
-    writer=new FileOutputStream(chosenFile);
+    writer=new FileOutputStream(updateFile);
     SaveService.saveSubTree(subTree,writer);
   }
  catch (  Throwable ex) {
     testPlanFile=null;
     log.error("",ex);
-    throw new IllegalUserActionException("Couldn't save test plan to file: " + chosenFile);
+    throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
   }
  finally {
     closeWriter(writer);
+    if (testPlanFile != null) {
+      GuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
+    }
     GuiPackage.getInstance().getMainFrame().repaint();
   }
 }

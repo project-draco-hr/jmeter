@@ -6,7 +6,7 @@
       System.exit(0);
     }
  else     if (chosenOption == JOptionPane.YES_OPTION) {
-      ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),Save.SAVE_ALL));
+      ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),Save.SAVE_ALL_AS));
       if (!GuiPackage.getInstance().isDirty()) {
         System.exit(0);
       }
