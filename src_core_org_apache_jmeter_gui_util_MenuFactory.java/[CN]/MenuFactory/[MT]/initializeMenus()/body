@@ -23,6 +23,9 @@
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
       String name=(String)iter.next();
+      if (name.endsWith("JMeterTreeNode") || name.endsWith("TestBeanGUI")) {
+        continue;
+      }
       JMeterGUIComponent item;
       try {
         Class c=Class.forName(name);
@@ -34,11 +37,11 @@
         }
       }
  catch (      Throwable e) {
-        log.debug("Could not instantiate " + name,e);
+        log.info("Could not instantiate " + name,e);
         continue;
       }
       if (elementsToSkip.contains(name) || elementsToSkip.contains(item.getStaticLabel())) {
-        log.debug("Skipping " + name);
+        log.info("Skipping " + name);
         continue;
       }
  else {
