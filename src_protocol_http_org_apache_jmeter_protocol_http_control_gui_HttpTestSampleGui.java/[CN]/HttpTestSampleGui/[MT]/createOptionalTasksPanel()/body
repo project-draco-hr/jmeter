@@ -4,6 +4,10 @@
   JPanel retrieveImagesPanel=new JPanel();
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
   retrieveImagesPanel.add(getImages);
+  JPanel isMonitorPanel=new JPanel();
+  isMon=new JCheckBox(JMeterUtils.getResString("monitor_is_title"));
+  isMonitorPanel.add(isMon);
   optionalTasksPanel.add(retrieveImagesPanel);
+  optionalTasksPanel.add(isMonitorPanel);
   return optionalTasksPanel;
 }

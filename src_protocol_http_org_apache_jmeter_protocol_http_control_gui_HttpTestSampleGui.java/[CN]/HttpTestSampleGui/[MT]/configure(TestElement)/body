@@ -2,4 +2,5 @@
   super.configure(element);
   urlConfigGui.configure(element);
   getImages.setSelected(((HTTPSampler)element).isImageParser());
+  isMon.setSelected(((HTTPSampler)element).isMonitor());
 }

@@ -8,5 +8,11 @@
  else {
     ((HTTPSampler)sampler).setImageParser(false);
   }
+  if (isMon.isSelected()) {
+    ((HTTPSampler)sampler).setMonitor("true");
+  }
+ else {
+    ((HTTPSampler)sampler).setMonitor("false");
+  }
   this.configureTestElement(sampler);
 }

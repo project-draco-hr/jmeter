@@ -3,6 +3,12 @@
   String urlStr=url.toString();
   log.debug("Start : sample" + urlStr);
   HTTPSampleResult res=new HTTPSampleResult();
+  if (this.getPropertyAsBoolean(MONITOR)) {
+    res.setMonitor(true);
+  }
+ else {
+    res.setMonitor(false);
+  }
   res.setSampleLabel(urlStr);
   res.sampleStart();
   try {
@@ -86,7 +92,6 @@ catch (      IOException e) {
   }
  catch (  IOException e) {
     res.sampleEnd();
-    res.setURL(url);
     return errorResult(e,url.toString(),res.getTime());
   }
  finally {
