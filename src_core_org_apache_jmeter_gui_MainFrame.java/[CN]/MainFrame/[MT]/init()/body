@@ -6,4 +6,5 @@
   addThemAll();
   addWindowListener(new WindowHappenings());
   tree.setSelectionRow(1);
+  this.addMouseListener(new GlobalMouseListener());
 }

@@ -1,9 +1,4 @@
 {
   super();
-  if (listener instanceof TestListener) {
-    testListener=(TestListener)listener;
-  }
-  if (listener instanceof SampleListener) {
-    sampleListener=(SampleListener)listener;
-  }
+  setListener(listener);
 }

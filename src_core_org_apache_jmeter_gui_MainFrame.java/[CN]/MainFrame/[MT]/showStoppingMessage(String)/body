@@ -1,6 +1,6 @@
 {
   stoppingMessage=new JDialog(this,JMeterUtils.getResString("stopping_test_title"),true);
-  JLabel stopLabel=new JLabel(JMeterUtils.getResString("stopping_test"));
+  JLabel stopLabel=new JLabel(JMeterUtils.getResString("stopping_test") + ": " + host);
   stopLabel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
   stoppingMessage.getContentPane().add(stopLabel);
   stoppingMessage.pack();
