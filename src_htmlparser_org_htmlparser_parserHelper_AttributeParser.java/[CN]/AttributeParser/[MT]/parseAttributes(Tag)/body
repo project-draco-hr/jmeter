@@ -16,9 +16,9 @@
       putDataIntoTable(h,element,null,true);
     }
  else {
-      if (nextPart != null && (0 < nextPart.length())) {
+      if (nextPart != null) {
         if (name == null) {
-          if (!nextPart.substring(0,1).equals(" ")) {
+          if (0 < nextPart.length() && !nextPart.substring(0,1).equals(" ")) {
             name=nextPart;
             waitingForEqual=true;
           }
