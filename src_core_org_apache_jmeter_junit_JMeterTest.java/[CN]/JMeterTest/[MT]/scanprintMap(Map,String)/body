@@ -6,6 +6,9 @@
   while (i.hasNext()) {
     Object key=i.next();
     if (!m.get(key).equals(Boolean.TRUE)) {
+      if (key.equals("SSL Manager")) {
+        continue;
+      }
       if (unseen == 0) {
         System.out.println("\nNames remaining in " + t + " Map:");
       }

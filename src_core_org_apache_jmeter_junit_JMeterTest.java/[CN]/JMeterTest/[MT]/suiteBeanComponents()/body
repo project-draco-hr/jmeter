@@ -7,6 +7,7 @@
       JMeterGUIComponent item=new TestBeanGUI(c);
       TestSuite ts=new TestSuite(item.getClass().getName());
       ts.addTest(new JMeterTest("GUIComponents2",item));
+      ts.addTest(new JMeterTest("runGUITitle",item));
       suite.addTest(ts);
     }
  catch (    IllegalArgumentException e) {
