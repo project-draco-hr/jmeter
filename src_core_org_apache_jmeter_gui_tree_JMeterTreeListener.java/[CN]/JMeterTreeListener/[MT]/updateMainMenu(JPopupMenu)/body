@@ -1,6 +1,5 @@
 {
   try {
-    Object model=getCurrentNode().getUserObject();
     MainFrame mainFrame=GuiPackage.getInstance().getMainFrame();
     mainFrame.setEditMenu(menu);
   }

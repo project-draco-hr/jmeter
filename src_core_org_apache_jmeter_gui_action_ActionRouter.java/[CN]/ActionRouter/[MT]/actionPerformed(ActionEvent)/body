@@ -1,5 +1,6 @@
 {
   try {
+    GuiPackage.getInstance().updateCurrentNode();
     Set commandObjects=(Set)commands.get(e.getActionCommand());
     Iterator iter=commandObjects.iterator();
     while (iter.hasNext()) {

@@ -1,0 +1,22 @@
+{
+  log.debug("Getting gui for " + node);
+  try {
+    JMeterGUIComponent comp=(JMeterGUIComponent)nodesToGui.get(node);
+    log.debug("Gui retrieved = " + comp);
+    if (comp == null) {
+      comp=(JMeterGUIComponent)guis.get(guiClass);
+      if (comp == null || comp instanceof UnsharedComponent) {
+        comp=(JMeterGUIComponent)Class.forName(guiClass).newInstance();
+        if (!(comp instanceof UnsharedComponent)) {
+          guis.put(guiClass,comp);
+        }
+      }
+      nodesToGui.put(node,comp);
+    }
+    return comp;
+  }
+ catch (  Exception e) {
+    log.error("Problem retrieving gui",e);
+    return null;
+  }
+}

@@ -10,7 +10,7 @@
       if (tree.getSelectionCount() < 2) {
         tree.setSelectionPath(currentPath);
       }
-      if (getCurrentNode().getUserObject() instanceof JMeterGUIComponent) {
+      if (getCurrentNode() instanceof JMeterGUIComponent) {
         displayPopUp(e);
       }
     }

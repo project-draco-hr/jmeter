@@ -1,7 +1,7 @@
 {
   String name=((Component)e.getSource()).getName();
   try {
-    JMeterGUIComponent controller=(JMeterGUIComponent)Class.forName(name).newInstance();
+    TestElement controller=(TestElement)GuiPackage.getInstance().createTestElement(name);
     addParentToTree(controller);
   }
  catch (  Exception err) {

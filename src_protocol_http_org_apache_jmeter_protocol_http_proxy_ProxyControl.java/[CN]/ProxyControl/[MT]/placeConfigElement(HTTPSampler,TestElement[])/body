@@ -2,9 +2,9 @@
   ValueReplacer replacer=GuiPackage.getInstance().getReplacer();
   TestElement urlConfig=null;
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
-  List nodes=treeModel.getNodesOfType(RecordController.class);
+  List nodes=treeModel.getNodesOfType(RecordingController.class);
   if (nodes.size() == 0) {
-    nodes=treeModel.getNodesOfType(ThreadGroupGui.class);
+    nodes=treeModel.getNodesOfType(ThreadGroup.class);
   }
   Iterator iter=nodes.iterator();
   while (iter.hasNext()) {
@@ -16,9 +16,9 @@
       Enumeration enum=node.children();
       while (enum.hasMoreElements()) {
         JMeterTreeNode subNode=(JMeterTreeNode)enum.nextElement();
-        JMeterGUIComponent sample=(JMeterGUIComponent)subNode.getUserObject();
-        if (sample instanceof UrlConfigGui) {
-          urlConfig=sample.createTestElement();
+        TestElement sample=(TestElement)subNode.createTestElement();
+        if (sample.getPropertyAsString(TestElement.GUI_CLASS).equals("org.apache.jmeter.protocol.http.config.gui.UrlConfigGui")) {
+          urlConfig=sample;
           break;
         }
       }
@@ -27,14 +27,15 @@
         replacer.reverseReplace(sampler);
         HttpTestSampleGui test=new HttpTestSampleGui();
         test.configure(sampler);
+        sampler=(HTTPSampler)test.createTestElement();
         try {
-          JMeterTreeNode newNode=treeModel.addComponent(test,node);
+          JMeterTreeNode newNode=treeModel.addComponent(sampler,node);
           for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
             if (subConfigs[i] instanceof HeaderManager) {
               HeaderPanel comp=new HeaderPanel();
               replacer.reverseReplace(subConfigs[i]);
               comp.configure(subConfigs[i]);
-              treeModel.addComponent(comp,newNode);
+              treeModel.addComponent(comp.createTestElement(),newNode);
             }
           }
         }

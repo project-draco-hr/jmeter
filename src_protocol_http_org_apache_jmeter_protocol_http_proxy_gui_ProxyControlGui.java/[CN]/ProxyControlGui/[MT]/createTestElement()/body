@@ -1,10 +1,12 @@
 {
-  ProxyControl element=new ProxyControl();
-  element.setProperty(TestElement.NAME,getName());
-  element.setPort(Integer.parseInt(portField.getText()));
-  setIncludeListInProxyControl(element);
-  setExcludeListInProxyControl(element);
-  element.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
-  element.setProperty(TestElement.TEST_CLASS,element.getClass().getName());
-  return element;
+  if (model == null) {
+    model=new ProxyControl();
+    model.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+    model.setProperty(TestElement.TEST_CLASS,model.getClass().getName());
+  }
+  model.setProperty(TestElement.NAME,getName());
+  model.setPort(Integer.parseInt(portField.getText()));
+  setIncludeListInProxyControl(model);
+  setExcludeListInProxyControl(model);
+  return model;
 }

@@ -1,7 +1,7 @@
 {
   Iterator iter=new LinkedList(tree.list()).iterator();
   while (iter.hasNext()) {
-    JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
+    JMeterTreeNode item=(JMeterTreeNode)iter.next();
     if (item.isEnabled()) {
       convertSubTree(tree.getTree(item));
       TestElement testElement=item.createTestElement();

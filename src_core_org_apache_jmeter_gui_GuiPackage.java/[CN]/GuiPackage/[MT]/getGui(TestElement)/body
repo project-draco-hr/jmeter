@@ -1,0 +1,9 @@
+{
+  try {
+    return getGui(node,node.getPropertyAsString(TestElement.GUI_CLASS));
+  }
+ catch (  Exception e) {
+    log.error("Problem retrieving gui",e);
+    return null;
+  }
+}

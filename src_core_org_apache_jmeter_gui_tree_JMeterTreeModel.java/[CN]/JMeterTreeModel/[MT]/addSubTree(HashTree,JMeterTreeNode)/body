@@ -2,10 +2,10 @@
   boolean ret=false;
   Iterator iter=subTree.list().iterator();
   while (iter.hasNext()) {
-    JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
-    if (item instanceof TestPlanGui) {
+    TestElement item=(TestElement)iter.next();
+    if (item instanceof TestPlan) {
       current=(JMeterTreeNode)((JMeterTreeNode)getRoot()).getChildAt(0);
-      current.configure(item.createTestElement());
+      ((TestElement)current.getUserObject()).addTestElement(item);
       addSubTree(subTree.getTree(item),current);
       ret=true;
     }

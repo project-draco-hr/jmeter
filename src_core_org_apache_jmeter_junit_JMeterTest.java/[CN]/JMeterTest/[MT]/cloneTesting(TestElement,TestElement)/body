@@ -1,4 +1,4 @@
 {
-  this.assertTrue(item != clonedItem);
-  this.assertEquals("CLONE-SAME-CLASS: testing " + item.getClass().getName(),item.getClass().getName(),clonedItem.getClass().getName());
+  assertTrue(item != clonedItem);
+  assertEquals("CLONE-SAME-CLASS: testing " + item.getClass().getName(),item.getClass().getName(),clonedItem.getClass().getName());
 }

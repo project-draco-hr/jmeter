@@ -2,7 +2,7 @@
   if (node.getUserObject() instanceof AbstractConfigGui) {
     throw new IllegalUserActionException("This node cannot hold sub-elements");
   }
-  JMeterTreeNode newNode=new JMeterTreeNode((JMeterGUIComponent)component,this);
+  JMeterTreeNode newNode=new JMeterTreeNode((TestElement)component,this);
   this.insertNodeInto(newNode,node,node.getChildCount());
   return newNode;
 }

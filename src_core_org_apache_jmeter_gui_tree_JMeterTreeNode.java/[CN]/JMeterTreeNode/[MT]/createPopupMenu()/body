@@ -1,3 +1,9 @@
 {
-  return ((JMeterGUIComponent)getUserObject()).createPopupMenu();
+  try {
+    return GuiPackage.getInstance().getGui(createTestElement()).createPopupMenu();
+  }
+ catch (  Exception e) {
+    log.error("Can't get popup menu for gui",e);
+    return null;
+  }
 }

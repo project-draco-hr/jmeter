@@ -1,3 +1,9 @@
 {
-  return GUIFactory.getIcon(getUserObject().getClass());
+  try {
+    return GUIFactory.getIcon(Class.forName(createTestElement().getPropertyAsString(TestElement.GUI_CLASS)));
+  }
+ catch (  ClassNotFoundException e) {
+    log.warn("Can't get icon for class " + createTestElement(),e);
+    return null;
+  }
 }

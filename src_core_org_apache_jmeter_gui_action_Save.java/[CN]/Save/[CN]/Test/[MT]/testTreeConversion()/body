@@ -1,6 +1,6 @@
 {
   HashTree tree=new ListedHashTree();
-  JMeterGUIComponent root=new org.apache.jmeter.config.gui.ArgumentsPanel();
+  JMeterTreeNode root=new JMeterTreeNode(new Arguments(),null);
   tree.add(root,root);
   tree.getTree(root).add(root,root);
   save.convertSubTree(tree);

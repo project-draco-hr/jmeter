@@ -5,7 +5,7 @@
     if (item instanceof JMeterTreeNode) {
       continue;
     }
-    this.assertEquals("Failed on " + item.getClass().getName(),item.getStaticLabel(),item.getName());
+    assertEquals("Failed on " + item.getClass().getName(),item.getStaticLabel(),item.getName());
     TestElement el=item.createTestElement();
     assertEquals("GUI-CLASS: Failed on " + item.getClass().getName(),item.getClass().getName(),el.getProperty(TestElement.GUI_CLASS));
     assertEquals("NAME: Failed on " + item.getClass().getName(),item.getName(),el.getProperty(TestElement.NAME));
@@ -13,7 +13,9 @@
     el.setProperty(TestElement.NAME,"hey, new name!:");
     el.setProperty("NOT","Shouldn't be here");
     TestElement el2=item.createTestElement();
-    assertNull("GUI-CLASS: Failed on " + item.getClass().getName(),el2.getProperty("NOT"));
+    if (!(item instanceof UnsharedComponent)) {
+      assertNull("GUI-CLASS: Failed on " + item.getClass().getName(),el2.getProperty("NOT"));
+    }
     el=SaveService.createTestElement(SaveService.getConfigForTestElement(null,el));
     item.configure(el);
     assertEquals("CONFIGURE-TEST: Failed on " + item.getClass().getName(),el.getProperty(TestElement.NAME),item.getName());

@@ -1,7 +1,7 @@
 {
   try {
-    JMeterGUIComponent gui=(JMeterGUIComponent)Class.forName(((JComponent)e.getSource()).getName()).newInstance();
-    addObjectToTree(gui);
+    TestElement node=GuiPackage.getInstance().createTestElement(((JComponent)e.getSource()).getName());
+    addObjectToTree(node);
   }
  catch (  Exception err) {
     log.error("",err);

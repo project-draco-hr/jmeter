@@ -1,6 +1,6 @@
 {
   GuiPackage guiPackage=GuiPackage.getInstance();
-  JMeterTreeNode node=new JMeterTreeNode(guiObject,guiPackage.getTreeModel());
+  JMeterTreeNode node=new JMeterTreeNode(el,guiPackage.getTreeModel());
   guiPackage.getTreeModel().insertNodeInto(node,guiPackage.getTreeListener().getCurrentNode(),guiPackage.getTreeListener().getCurrentNode().getChildCount());
   guiPackage.getMainFrame().getTree().setSelectionPath(new TreePath(node.getPath()));
 }

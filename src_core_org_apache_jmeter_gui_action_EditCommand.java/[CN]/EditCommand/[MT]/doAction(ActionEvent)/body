@@ -1,8 +1,8 @@
 {
   GuiPackage guiPackage=GuiPackage.getInstance();
-  guiPackage.getMainFrame().setMainPanel((javax.swing.JComponent)guiPackage.getTreeListener().getCurrentNode().getUserObject());
-  guiPackage.getMainFrame().setEditMenu(((JMeterGUIComponent)guiPackage.getTreeListener().getCurrentNode().getUserObject()).createPopupMenu());
-  if (!(guiPackage.getTreeListener().getCurrentNode().getUserObject() instanceof NamePanel)) {
+  guiPackage.getMainFrame().setMainPanel((javax.swing.JComponent)guiPackage.getCurrentGui());
+  guiPackage.getMainFrame().setEditMenu(((JMeterGUIComponent)guiPackage.getTreeListener().getCurrentNode()).createPopupMenu());
+  if (!(guiPackage.getCurrentGui() instanceof NamePanel)) {
     guiPackage.getMainFrame().setFileLoadEnabled(true);
     guiPackage.getMainFrame().setFileSaveEnabled(true);
   }
