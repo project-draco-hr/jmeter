@@ -27,7 +27,10 @@
           }
         }
       }
- catch (      IllegalAccessException e) {
+ catch (      NoClassDefFoundError e) {
+        System.out.println(exName + ": could not construct " + n);
+      }
+catch (      IllegalAccessException e) {
         caught=e;
       }
 catch (      Exception e) {
