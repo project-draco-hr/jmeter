@@ -34,6 +34,8 @@
   selectButton.addActionListener(this);
   mainPanel.add(urlField);
   mainPanel.add(soapAction);
+  Dimension pref=new Dimension(400,200);
+  soapXml.setPreferredSize(pref);
   mainPanel.add(soapXml);
   mainPanel.add(soapXmlFile);
   mainPanel.add(wsdlMessage);
@@ -51,5 +53,7 @@
   useProxy.addActionListener(this);
   mainPanel.add(proxyHost);
   mainPanel.add(proxyPort);
+  proxyMessage.setFont(plainText);
+  mainPanel.add(proxyMessage);
   this.add(mainPanel);
 }
