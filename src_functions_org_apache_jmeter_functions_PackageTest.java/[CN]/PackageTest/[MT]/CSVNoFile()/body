@@ -1,0 +1,7 @@
+{
+  CSVRead c1, c2;
+  c1=setParams("xtestfiles/test.csv","1");
+  c1.execute(null,null);
+  c2=setParams("xtestfiles/test.csv","next");
+  c2.execute(null,null);
+}

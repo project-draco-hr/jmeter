@@ -1,5 +1,6 @@
 {
   TestSuite suite=new TestSuite("SingleThreaded");
+  suite.addTest(new PackageTest("CSVNoFile"));
   suite.addTest(new PackageTest("CSV2Setup"));
   suite.addTest(new PackageTest("CSV2Run"));
   suite.addTest(new PackageTest("CSV2Setup"));
