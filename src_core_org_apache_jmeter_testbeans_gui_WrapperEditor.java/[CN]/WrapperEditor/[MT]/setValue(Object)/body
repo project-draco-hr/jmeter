@@ -16,5 +16,4 @@
     if (!acceptsOther && !isATag(text))     throw new IllegalArgumentException();
   }
   guiEditor.setValue(text);
-  firePropertyChange();
 }

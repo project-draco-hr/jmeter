@@ -2,6 +2,7 @@
   String text=guiEditor.getAsText();
   if (isValidValue(text)) {
     lastValidValue=text;
+    firePropertyChange();
   }
  else {
     if (log.isDebugEnabled()) {
