@@ -28,7 +28,6 @@
       }
 catch (      IOException e) {
         log.debug("Connection failed, giving up");
-        conn.disconnect();
         throw e;
       }
     }
@@ -72,7 +71,7 @@ catch (      IOException e) {
       }
       if (isImageParser() && res.getDataType().equals(HTTPSampleResult.TEXT) && res.isSuccessful()) {
         if (frameDepth > MAX_FRAME_DEPTH) {
-          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),0));
+          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),null,0));
         }
  else {
           boolean createContainerResults=!didFollowRedirects;
@@ -83,11 +82,8 @@ catch (      IOException e) {
     log.debug("End : sample");
     return res;
   }
- catch (  MalformedURLException e) {
-    return errorResult(e,System.currentTimeMillis() - t0);
-  }
-catch (  IOException e) {
-    return errorResult(e,System.currentTimeMillis() - t0);
+ catch (  IOException e) {
+    return errorResult(e,url.toString(),System.currentTimeMillis() - t0);
   }
  finally {
     disconnect(conn);

@@ -1,5 +1,7 @@
 {
   HTTPSampleResult res=new HTTPSampleResult();
+  res.setSampleLabel("Error");
+  res.setSamplerData(data);
   res.setDataType(HTTPSampleResult.TEXT);
   res.setResponseData(e.toString().getBytes());
   res.setResponseCode(NON_HTTP_RESPONSE_CODE);

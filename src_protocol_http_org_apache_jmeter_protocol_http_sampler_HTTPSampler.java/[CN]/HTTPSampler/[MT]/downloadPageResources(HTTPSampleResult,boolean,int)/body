@@ -4,7 +4,7 @@
     urls=HTMLParser.getParser().getEmbeddedResourceURLs(res.getResponseData(),res.getURL());
   }
  catch (  HTMLParseException e) {
-    res.addSubResult(errorResult(e,0));
+    res.addSubResult(errorResult(e,null,0));
     res.setSuccessful(false);
   }
   if (urls != null && urls.hasNext()) {
@@ -20,7 +20,7 @@
         res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
       }
  catch (      ClassCastException e) {
-        res.addSubResult(errorResult(new Exception(binURL + " is not a correct URI"),0));
+        res.addSubResult(errorResult(new Exception(binURL + " is not a correct URI"),null,0));
         res.setSuccessful(false);
         continue;
       }

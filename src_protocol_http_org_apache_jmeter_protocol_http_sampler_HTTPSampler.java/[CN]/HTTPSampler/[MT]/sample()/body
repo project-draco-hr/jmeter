@@ -5,6 +5,6 @@
     return res;
   }
  catch (  MalformedURLException e) {
-    return errorResult(e,0);
+    return errorResult(e,getName(),0);
   }
 }
