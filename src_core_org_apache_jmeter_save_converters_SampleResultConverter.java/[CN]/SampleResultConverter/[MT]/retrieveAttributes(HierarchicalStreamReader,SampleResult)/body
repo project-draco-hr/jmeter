@@ -1,0 +1,12 @@
+{
+  res.setSampleLabel(ConversionHelp.decode(reader.getAttribute("lb")));
+  res.setDataEncoding(ConversionHelp.decode(reader.getAttribute("de")));
+  res.setDataType(ConversionHelp.decode(reader.getAttribute("dt")));
+  res.setResponseCode(ConversionHelp.decode(reader.getAttribute("rc")));
+  res.setResponseMessage(ConversionHelp.decode(reader.getAttribute("rm")));
+  res.setSuccessful(Converter.getBoolean(reader.getAttribute("s"),true));
+  res.setThreadName(ConversionHelp.decode(reader.getAttribute("tn")));
+  res.setTime(Converter.getLong(reader.getAttribute("t")));
+  res.setTimeStamp(Converter.getLong(reader.getAttribute("ts")));
+  res.setLatency(Converter.getLong(reader.getAttribute("lt")));
+}

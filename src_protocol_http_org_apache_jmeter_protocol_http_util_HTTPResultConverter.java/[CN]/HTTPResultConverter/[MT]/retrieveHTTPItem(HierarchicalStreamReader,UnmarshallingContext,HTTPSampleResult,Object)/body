@@ -1,0 +1,17 @@
+{
+  if (subItem instanceof URL) {
+    res.setURL((URL)subItem);
+  }
+ else   if (reader.getNodeName().equals("cookies")) {
+    res.setCookies((String)subItem);
+  }
+ else   if (reader.getNodeName().equals("method")) {
+    res.setHTTPMethod((String)subItem);
+  }
+ else   if (reader.getNodeName().equals("queryString")) {
+    res.setQueryString((String)subItem);
+  }
+ else   if (reader.getNodeName().equals("redirectLocation")) {
+    res.setRedirectLocation((String)subItem);
+  }
+}

@@ -1,4 +1,5 @@
 {
   serializer=new DefaultConfigurationSerializer();
   setErrorLogging(false);
+  setProperty(new ObjectProperty(SAVE_CONFIG,new SampleSaveConfiguration()));
 }

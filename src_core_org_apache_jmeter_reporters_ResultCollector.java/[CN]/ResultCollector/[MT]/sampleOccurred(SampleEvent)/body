@@ -3,9 +3,9 @@
   if (!isErrorLogging() || !result.isSuccessful()) {
     sendToVisualizer(result);
     try {
-      if (OldSaveService.getOutputFormat() == OldSaveService.SAVE_AS_CSV) {
+      if (!getSaveConfig().saveAsXml()) {
         if (out != null) {
-          String savee=OldSaveService.resultToDelimitedString(result);
+          String savee=OldSaveService.resultToDelimitedString(result,getSaveConfig());
           out.println(savee);
         }
       }

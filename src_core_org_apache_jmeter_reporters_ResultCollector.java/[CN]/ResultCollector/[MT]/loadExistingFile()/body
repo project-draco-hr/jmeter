@@ -4,22 +4,29 @@
     clearVisualizer();
     BufferedReader dataReader=null;
     try {
-      Configuration savedSamples=getConfiguration(getFilename());
-      readSamples(savedSamples);
+      readSamples(SaveService.loadTestResults(new BufferedInputStream(new FileInputStream(getFilename()))));
       parsedOK=true;
     }
- catch (    SAXException e) {
-      log.warn("Error parsing XML results " + e);
-      log.info("Assuming CSV format instead");
-      dataReader=new BufferedReader(new FileReader(getFilename()));
-      String line;
-      while ((line=dataReader.readLine()) != null) {
-        sendToVisualizer(OldSaveService.makeResultFromDelimitedString(line));
+ catch (    Exception e) {
+      log.warn("File load failure, trying old data format.",e);
+      try {
+        Configuration savedSamples=getConfiguration(getFilename());
+        Configuration[] samples=savedSamples.getChildren();
+        for (int i=0; i < samples.length; i++) {
+          SampleResult result=OldSaveService.getSampleResult(samples[i]);
+          sendToVisualizer(result);
+        }
       }
-      parsedOK=true;
-    }
-catch (    Exception e) {
-      log.error("Error parsing results file " + getFilename(),e);
+ catch (      Exception e1) {
+        log.warn("Error parsing XML results " + e);
+        log.info("Assuming CSV format instead");
+        dataReader=new BufferedReader(new FileReader(getFilename()));
+        String line;
+        while ((line=dataReader.readLine()) != null) {
+          sendToVisualizer(OldSaveService.makeResultFromDelimitedString(line));
+        }
+        parsedOK=true;
+      }
     }
  finally {
       if (dataReader != null)       dataReader.close();

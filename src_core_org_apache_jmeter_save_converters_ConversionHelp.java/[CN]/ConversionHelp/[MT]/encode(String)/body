@@ -1,4 +1,7 @@
 {
+  if (p == null) {
+    return "";
+  }
   try {
     String p1=JOrphanUtils.encode(p,CHAR_SET);
     return p1;

@@ -1,4 +1,7 @@
 {
+  if (p == null) {
+    return null;
+  }
   try {
     return JOrphanUtils.decode(p,CHAR_SET);
   }

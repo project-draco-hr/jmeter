@@ -1,0 +1,12 @@
+{
+  TestResultWrapper results=new TestResultWrapper();
+  Collection samples=new ArrayList();
+  while (reader.hasMoreChildren()) {
+    reader.moveDown();
+    SampleResult res=(SampleResult)readItem(reader,context,results);
+    samples.add(res);
+    reader.moveUp();
+  }
+  results.setSampleResults(samples);
+  return results;
+}

@@ -3,7 +3,7 @@
   if (out == null && filename != null) {
     if (out == null) {
       try {
-        out=getFileWriter(filename);
+        out=getFileWriter(filename,getSaveConfig());
       }
  catch (      FileNotFoundException e) {
         out=null;

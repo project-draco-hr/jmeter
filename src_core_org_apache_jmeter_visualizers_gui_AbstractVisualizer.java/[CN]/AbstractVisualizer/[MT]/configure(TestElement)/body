@@ -3,4 +3,8 @@
   setFile(el.getPropertyAsString(ResultCollector.FILENAME));
   ResultCollector rc=(ResultCollector)el;
   errorLogging.setSelected(rc.isErrorLogging());
+  if (collector == null) {
+    collector=new ResultCollector();
+  }
+  collector.setSaveConfig((SampleSaveConfiguration)rc.getSaveConfig().clone());
 }

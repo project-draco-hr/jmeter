@@ -1,0 +1,9 @@
+{
+  if (save.saveSamplerData()) {
+    writeString(writer,"cookies",res.getCookies());
+    writeString(writer,"method",res.getHTTPMethod());
+    writeString(writer,"queryString",res.getQueryString());
+    writeString(writer,"redirectLocation",res.getRedirectLocation());
+    writeItem(res.getURL(),context,writer);
+  }
+}

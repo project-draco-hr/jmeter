@@ -1,8 +1,0 @@
-{
-  Configuration[] samples=testResults.getChildren();
-  for (int i=0; i < samples.length; i++) {
-    SampleResult result=OldSaveService.getSampleResult(samples[i]);
-    sendToVisualizer(result);
-    recordResult(result);
-  }
-}

@@ -1,0 +1,6 @@
+{
+  StringBuffer buf=new StringBuffer("<![CDATA[");
+  buf.append(new String(chars,encoding));
+  buf.append("]]>");
+  return buf.toString();
+}

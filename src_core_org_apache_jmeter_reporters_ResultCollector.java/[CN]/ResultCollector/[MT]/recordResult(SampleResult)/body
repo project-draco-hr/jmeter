@@ -1,7 +1,8 @@
 {
   if (out != null) {
     if (!isResultMarked(result)) {
-      out.print(getSerializedSampleResult(result));
+      result.setSaveConfig(getSaveConfig());
+      SaveService.saveSampleResult(result,out);
     }
   }
 }

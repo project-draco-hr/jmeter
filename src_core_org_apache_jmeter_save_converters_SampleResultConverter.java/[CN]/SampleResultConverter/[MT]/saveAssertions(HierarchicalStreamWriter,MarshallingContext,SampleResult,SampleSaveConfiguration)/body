@@ -1,0 +1,8 @@
+{
+  if (save.saveAssertions()) {
+    AssertionResult[] assertionResults=res.getAssertionResults();
+    for (int i=0; i < assertionResults.length; i++) {
+      writeItem(assertionResults[i],context,writer);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  SampleSaveConfiguration s=new SampleSaveConfiguration();
+  s.time=time;
+  s.latency=latency;
+  s.timestamp=timestamp;
+  s.success=success;
+  s.label=label;
+  s.code=code;
+  s.message=message;
+  s.threadName=threadName;
+  s.dataType=dataType;
+  s.encoding=encoding;
+  s.assertions=assertions;
+  s.subresults=subresults;
+  s.responseData=responseData;
+  s.samplerData=samplerData;
+  s.xml=xml;
+  s.fieldNames=fieldNames;
+  s.responseHeaders=responseHeaders;
+  s.requestHeaders=requestHeaders;
+  return s;
+}

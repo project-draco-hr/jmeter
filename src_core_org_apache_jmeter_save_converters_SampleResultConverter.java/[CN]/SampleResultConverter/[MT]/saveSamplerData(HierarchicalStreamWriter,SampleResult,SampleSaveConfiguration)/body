@@ -1,0 +1,5 @@
+{
+  if (save.saveSamplerData()) {
+    writeString(writer,"samplerData",res.getSamplerData());
+  }
+}

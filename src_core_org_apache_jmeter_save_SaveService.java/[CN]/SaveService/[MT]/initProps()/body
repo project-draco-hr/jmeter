@@ -16,6 +16,23 @@
           log.info("Using SaveService properties file " + val);
           propertiesVersion=val;
         }
+ else {
+          key=key.substring(1);
+          try {
+            if (val.trim().equals("collection")) {
+              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class,String.class}).newInstance(new Object[]{saver.getClassMapper(),"class"}));
+            }
+ else             if (val.trim().equals("mapping")) {
+              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class}).newInstance(new Object[]{saver.getClassMapper()}));
+            }
+ else {
+              saver.registerConverter((Converter)Class.forName(key).newInstance());
+            }
+          }
+ catch (          Exception e1) {
+            log.warn("Can't register a converter: " + key,e1);
+          }
+        }
       }
     }
   }

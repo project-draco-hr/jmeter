@@ -1,0 +1,9 @@
+{
+  if (save.saveSubresults()) {
+    SampleResult[] subResults=res.getSubResults();
+    for (int i=0; i < subResults.length; i++) {
+      subResults[i].setSaveConfig(save);
+      writeItem(subResults[i],context,writer);
+    }
+  }
+}

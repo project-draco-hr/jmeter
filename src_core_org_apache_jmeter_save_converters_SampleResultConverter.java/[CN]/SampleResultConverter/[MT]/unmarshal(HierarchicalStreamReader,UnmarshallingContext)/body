@@ -1,3 +1,11 @@
 {
-  return null;
+  SampleResult res=(SampleResult)createCollection(context.getRequiredType());
+  retrieveAttributes(reader,res);
+  while (reader.hasMoreChildren()) {
+    reader.moveDown();
+    Object subItem=readItem(reader,context,res);
+    retrieveItem(reader,context,res,subItem);
+    reader.moveUp();
+  }
+  return res;
 }

@@ -1,0 +1,13 @@
+{
+  if (save.saveResponseData()) {
+    writer.startNode("responseData");
+    try {
+      writer.addAttribute("class","java.lang.String");
+      writer.setValue(new String(res.getResponseData(),res.getDataEncoding()));
+    }
+ catch (    UnsupportedEncodingException e) {
+      writer.setValue("Unsupported encoding in response data, can't record.");
+    }
+    writer.endNode();
+  }
+}

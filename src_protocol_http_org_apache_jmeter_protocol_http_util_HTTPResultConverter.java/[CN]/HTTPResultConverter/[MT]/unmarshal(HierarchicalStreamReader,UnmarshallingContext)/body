@@ -1,0 +1,13 @@
+{
+  HTTPSampleResult res=(HTTPSampleResult)createCollection(context.getRequiredType());
+  retrieveAttributes(reader,res);
+  while (reader.hasMoreChildren()) {
+    reader.moveDown();
+    Object subItem=readItem(reader,context,res);
+    if (!retrieveItem(reader,context,res,subItem)) {
+      retrieveHTTPItem(reader,context,res,subItem);
+    }
+    reader.moveUp();
+  }
+  return res;
+}

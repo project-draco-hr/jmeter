@@ -1,0 +1,8 @@
+{
+  if (value != null) {
+    writer.startNode(tag);
+    writer.addAttribute("class","java.lang.String");
+    writer.setValue(value);
+    writer.endNode();
+  }
+}
