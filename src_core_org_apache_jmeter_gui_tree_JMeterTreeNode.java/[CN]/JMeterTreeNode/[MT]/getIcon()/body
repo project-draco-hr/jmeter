@@ -2,7 +2,9 @@
   try {
     if (createTestElement() instanceof TestBean) {
       try {
-        return new ImageIcon(Introspector.getBeanInfo(createTestElement().getClass()).getIcon(BeanInfo.ICON_COLOR_16x16));
+        Image img=Introspector.getBeanInfo(createTestElement().getClass()).getIcon(BeanInfo.ICON_COLOR_16x16);
+        if (img == null)         return null;
+        return new ImageIcon(img);
       }
  catch (      IntrospectionException e1) {
         log.error("Can't obtain icon",e1);
