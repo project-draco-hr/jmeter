@@ -1,6 +1,6 @@
 {
   try {
-    FileRowColContainer f=new FileRowColContainer("testfiles/xyzxyz");
+    new FileRowColContainer("testfiles/xyzxyz");
     fail("Should not find the file");
   }
  catch (  FileNotFoundException e) {
