@@ -3,7 +3,12 @@
   if (encodedValue != null) {
     return (String)encodedValue;
   }
-  encodedValue=URLEncoder.encode(k);
+  try {
+    encodedValue=URLEncoder.encode(k,"utf8");
+  }
+ catch (  UnsupportedEncodingException e) {
+    throw new Error(e);
+  }
   cache.addElement(k,encodedValue);
   return (String)encodedValue;
 }
