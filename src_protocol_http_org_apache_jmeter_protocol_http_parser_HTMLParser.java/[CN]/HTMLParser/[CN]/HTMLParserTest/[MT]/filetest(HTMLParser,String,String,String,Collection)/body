@@ -12,7 +12,7 @@
  else {
     result=p.getEmbeddedResourceURLs(buffer,new URL(url),c);
   }
-  Iterator expected=Arrays.asList(expected_result).iterator();
+  Iterator expected=getFile(resultFile).iterator();
   while (expected.hasNext()) {
     assertTrue(result.hasNext());
     assertEquals(expected.next(),result.next().toString());

@@ -1,0 +1,4 @@
+{
+  HTMLParser p=getParser(parserName);
+  filetest(p,TESTS[testNumber].fileName,TESTS[testNumber].baseURL,TESTS[testNumber].expectedList,new Vector());
+}

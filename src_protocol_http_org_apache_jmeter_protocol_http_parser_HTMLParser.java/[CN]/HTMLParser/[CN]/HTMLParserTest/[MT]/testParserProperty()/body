@@ -3,7 +3,6 @@
   if (p == null) {
     p=JMeterUtils.getProperties("jmeter.properties");
   }
-  p.setProperty(PARSER_CLASSNAME,s);
-  testParser(getParser());
-  testParser(getParser());
+  p.setProperty(PARSER_CLASSNAME,parserName);
+  getParser();
 }

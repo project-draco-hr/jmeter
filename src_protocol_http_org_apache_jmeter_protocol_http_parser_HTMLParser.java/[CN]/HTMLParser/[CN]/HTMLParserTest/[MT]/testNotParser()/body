@@ -1,0 +1,12 @@
+{
+  try {
+    getParser("java.lang.String");
+  }
+ catch (  Error e) {
+    if (e.getCause() instanceof NoSuchMethodException) {
+    }
+ else {
+      throw e;
+    }
+  }
+}

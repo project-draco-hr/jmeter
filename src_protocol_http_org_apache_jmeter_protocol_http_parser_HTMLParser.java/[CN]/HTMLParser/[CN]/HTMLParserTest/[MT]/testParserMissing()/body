@@ -1,0 +1,12 @@
+{
+  try {
+    getParser("no.such.parser");
+  }
+ catch (  Error e) {
+    if (e.getCause() instanceof ClassNotFoundException) {
+    }
+ else {
+      throw e;
+    }
+  }
+}
