@@ -5,6 +5,14 @@
     retVal=hasNextAtEnd();
   }
  else   if (controller instanceof Controller) {
+    if (start != null) {
+      if (((Controller)controller).equals(start)) {
+        return false;
+      }
+    }
+ else {
+      start=(Controller)controller;
+    }
     if (((Controller)controller).hasNext()) {
       retVal=true;
     }
