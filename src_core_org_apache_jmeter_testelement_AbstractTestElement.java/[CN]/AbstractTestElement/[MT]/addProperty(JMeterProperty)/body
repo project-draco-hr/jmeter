@@ -6,10 +6,10 @@
     property.clearTemporary(this);
   }
   JMeterProperty prop=getProperty(property.getName());
-  if (!(prop instanceof NullProperty) && !prop.getStringValue().equals("")) {
-    prop.mergeIn(property);
+  if (prop instanceof NullProperty || (prop instanceof StringProperty && prop.getStringValue().equals(""))) {
+    propMap.put(property.getName(),property);
   }
  else {
-    propMap.put(property.getName(),property);
+    prop.mergeIn(property);
   }
 }
