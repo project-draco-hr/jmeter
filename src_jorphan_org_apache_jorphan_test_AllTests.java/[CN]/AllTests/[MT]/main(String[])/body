@@ -5,7 +5,14 @@
   }
   initializeLogging(args);
   initializeManager(args);
+  String e="java.awt.headless";
+  String g="java.awt.graphicsenv";
+  System.out.println(e + "=" + System.getProperty(e));
+  System.out.println(g + "=" + System.getProperty(g));
   TestSuite suite=suite(args[0]);
   TestRunner.run(suite);
+  System.out.println(e + "=" + System.getProperty(e));
+  System.out.println(g + "=" + System.getProperty(g));
+  System.out.println("Headless? " + java.awt.GraphicsEnvironment.isHeadless());
   System.exit(0);
 }
