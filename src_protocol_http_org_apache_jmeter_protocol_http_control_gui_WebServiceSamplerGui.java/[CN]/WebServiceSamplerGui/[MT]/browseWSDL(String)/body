@@ -1,6 +1,8 @@
 {
   try {
-    HELPER=new WSDLHelper(url);
+    WebServiceSampler sampler=(WebServiceSampler)this.createTestElement();
+    AuthManager manager=sampler.getAuthManager();
+    HELPER=new WSDLHelper(url,manager);
     HELPER.parse();
     return HELPER.getWebMethods();
   }
