@@ -1,5 +1,6 @@
 {
   super();
+  log=LoggingManager.getLoggerForClass();
   try {
     Perl5Compiler c=new Perl5Compiler();
     pattern=c.compile(REGEXP,Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK | Perl5Compiler.READ_ONLY_MASK);

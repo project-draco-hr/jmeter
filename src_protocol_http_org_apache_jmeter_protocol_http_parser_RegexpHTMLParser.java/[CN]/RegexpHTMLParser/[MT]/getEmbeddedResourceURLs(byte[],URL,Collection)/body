@@ -6,21 +6,23 @@
     MatchResult match=matcher.getMatch();
     String s;
     if (log.isDebugEnabled())     log.debug("match groups " + match.groups());
-    s=match.group(1);
-    if (s != null) {
-      if (log.isDebugEnabled()) {
-        log.debug("new baseUrl: " + s + " - "+ baseUrl.toString());
-      }
-      try {
-        baseUrl=new URL(baseUrl,s);
-      }
- catch (      MalformedURLException e) {
+    for (int g=1; g <= NUM_BASE_GROUPS && g <= match.groups(); g++) {
+      s=match.group(g);
+      if (s != null) {
         if (log.isDebugEnabled()) {
-          log.debug("Can't build base URL from RL " + s + " in page "+ baseUrl,e);
+          log.debug("new baseUrl: " + s + " - "+ baseUrl.toString());
+        }
+        try {
+          baseUrl=new URL(baseUrl,s);
+        }
+ catch (        MalformedURLException e) {
+          if (log.isDebugEnabled()) {
+            log.debug("Can't build base URL from RL " + s + " in page "+ baseUrl,e);
+          }
         }
       }
     }
-    for (int g=2; g < match.groups(); g++) {
+    for (int g=NUM_BASE_GROUPS + 1; g <= match.groups(); g++) {
       s=match.group(g);
       if (log.isDebugEnabled()) {
         log.debug("group " + g + " - "+ match.group(g));
