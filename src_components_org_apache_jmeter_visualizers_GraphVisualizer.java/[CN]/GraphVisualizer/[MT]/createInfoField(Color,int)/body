@@ -1,0 +1,9 @@
+{
+  JTextField field=new JTextField(length);
+  field.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+  field.setEditable(false);
+  field.setForeground(color);
+  field.setBackground(getBackground());
+  field.setMaximumSize(new Dimension(field.getMaximumSize().width,field.getPreferredSize().height));
+  return field;
+}
