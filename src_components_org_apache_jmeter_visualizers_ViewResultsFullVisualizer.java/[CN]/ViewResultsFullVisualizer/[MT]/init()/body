@@ -15,14 +15,9 @@
   treePane.setPreferredSize(new Dimension(100,70));
   gridBag=new GridBagLayout();
   gbc=new GridBagConstraints();
-  resultPanel=new JPanel(gridBag);
-  JScrollPane resultPane=new JScrollPane(resultPanel);
-  resultPane.setMinimumSize(new Dimension(100,70));
-  resultPane.setPreferredSize(resultPane.getMinimumSize());
-  initHtmlOrTextButton();
   initTextArea();
   initHtmlEditPane();
-  treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,resultPane);
+  treeSplitPane=new JSplitPane(JSplitPane.VERTICAL_SPLIT,treePane,getBottomPane());
   Box titlePanel=makeTitlePanel();
   JCheckBox errorCheckBox=getErrorLoggingCheckbox();
   errorCheckBox.setAlignmentX(JCheckBox.CENTER_ALIGNMENT);

@@ -4,13 +4,7 @@
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("database_testing_title"));
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  mainPanel.add(getNamePanel());
+  mainPanel.add(makeTitlePanel());
   dbGui=new DbConfigGui(false);
   mainPanel.add(dbGui);
   poolGui=new PoolConfigGui(false);

@@ -1,7 +1,5 @@
 {
-  mainPanel.removeAll();
-  comp.validate();
-  mainPanel.add(comp);
-  mainPanel.revalidate();
+  mainPanel.setViewportView(comp);
+  mainPanel.validate();
   mainPanel.repaint();
 }

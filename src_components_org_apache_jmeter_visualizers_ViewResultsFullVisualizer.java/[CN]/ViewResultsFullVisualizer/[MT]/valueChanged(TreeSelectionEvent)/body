@@ -10,23 +10,16 @@
       log.debug("valueChanged1 : sample result - " + res);
     }
     if (res != null) {
-      resultPanel.removeAll();
-      JLabel loadTime=new JLabel();
       log.debug("valueChanged1 : load time - " + res.getTime());
-      loadTime.setText("Load time : " + res.getTime());
+      loadTimeLabel.setText("Load time : " + res.getTime());
       gbc.gridx=0;
       gbc.gridy=0;
       gbc.anchor=GridBagConstraints.WEST;
       gbc.weightx=1.0;
       gbc.insets=new Insets(0,10,0,0);
       if (res != null && res.getSamplerData() != null) {
-        JLabeledTextArea postData=new JLabeledTextArea(JMeterUtils.getResString("request_data"),null);
-        postData.setText(res.getSamplerData().toString());
-        resultPanel.add(postData,gbc.clone());
-        gbc.gridy++;
+        postDataField.setText(res.getSamplerData().toString());
       }
-      resultPanel.add(loadTime,gbc.clone());
-      JLabel httpResponseCode=new JLabel();
       String responseCode=res.getResponseCode();
       log.debug("valueChanged1 : response code - " + responseCode);
       int responseLevel=0;
@@ -37,26 +30,16 @@
       }
 switch (responseLevel) {
 case 3:
-        httpResponseCode.setForeground(REDIRECT_COLOR);
+        responseCodeLabel.setForeground(REDIRECT_COLOR);
 case 4:
-      httpResponseCode.setForeground(CLIENT_ERROR_COLOR);
+      responseCodeLabel.setForeground(CLIENT_ERROR_COLOR);
 case 5:
-    httpResponseCode.setForeground(SERVER_ERROR_COLOR);
+    responseCodeLabel.setForeground(SERVER_ERROR_COLOR);
 }
-httpResponseCode.setText(JMeterUtils.getResString("HTTP response code") + " : " + responseCode);
-gbc.gridx=0;
-gbc.gridy++;
-gridBag.setConstraints(httpResponseCode,gbc);
-resultPanel.add(httpResponseCode);
-JLabel httpResponseMsg=new JLabel();
+responseCodeLabel.setText(JMeterUtils.getResString("HTTP response code") + " : " + responseCode);
 String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
-httpResponseMsg.setText("HTTP response message : " + responseMsgStr);
-gbc.gridx=0;
-gbc.gridy++;
-gridBag.setConstraints(httpResponseMsg,gbc);
-resultPanel.add(httpResponseMsg);
-gbc.gridy++;
+responseMsgLabel.setText("HTTP response message : " + responseMsgStr);
 byte[] responseBytes=(byte[])res.getResponseData();
 ImageIcon icon=null;
 if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
@@ -71,10 +54,6 @@ if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
   icon=new ImageIcon(responseBytes);
 }
 if (response != null) {
-  gbc.gridx=0;
-  gbc.gridy++;
-  gridBag.setConstraints(htmlOrTextButton,gbc);
-  resultPanel.add(htmlOrTextButton);
   if (HTML_BUTTON_LABEL.equals(htmlOrTextButton.getText())) {
     showTextResponse(response);
   }
@@ -85,12 +64,10 @@ if (response != null) {
  else if (icon != null) {
   JLabel image=new JLabel();
   image.setIcon(icon);
-  gbc.gridx=0;
-  gridBag.setConstraints(image,gbc);
-  resultPanel.add(image);
+  showImage(image);
 }
-resultPanel.repaint();
-resultPanel.revalidate();
+treeSplitPane.revalidate();
+treeSplitPane.repaint();
 }
 }
 log.debug("End : valueChanged1");

@@ -4,13 +4,7 @@
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(getStaticLabel());
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  mainPanel.add(getNamePanel());
+  mainPanel.add(makeTitlePanel());
   JPanel mailerPanel=new JPanel();
   mailerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),model.getAttributesTitle()));
   GridBagLayout g=new GridBagLayout();

@@ -4,7 +4,6 @@
     htmlIndex=response.indexOf("<html>");
   }
   if (htmlIndex > -1) {
-    resultPanel.remove(textArea);
     String html=response.substring(htmlIndex,response.length());
     htmlEditPane.setText(html);
   }
@@ -12,8 +11,5 @@
     htmlEditPane.setText(response);
   }
   htmlEditPane.setCaretPosition(0);
-  gbc.gridx=0;
-  gbc.gridy++;
-  gridBag.setConstraints(htmlEditPane,gbc);
-  resultPanel.add(htmlEditPane);
+  textScrollArea.setViewportView(htmlEditPane);
 }

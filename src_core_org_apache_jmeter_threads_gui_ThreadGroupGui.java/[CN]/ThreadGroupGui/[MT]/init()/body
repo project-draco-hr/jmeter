@@ -4,14 +4,7 @@
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("thread_group_title"));
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  namePanel=getNamePanel();
-  mainPanel.add(namePanel);
+  mainPanel.add(makeTitlePanel());
   JPanel threadPropsPanel=new JPanel();
   margin=new EmptyBorder(5,10,10,10);
   threadPropsPanel.setLayout(new VerticalLayout(0,VerticalLayout.LEFT));

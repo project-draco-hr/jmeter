@@ -8,14 +8,7 @@
     Border margin=new EmptyBorder(10,10,5,10);
     mainPanel.setBorder(margin);
     mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-    JLabel panelTitleLabel=new JLabel(JMeterUtils.getResString("jndi_config_title"));
-    Font curFont=panelTitleLabel.getFont();
-    int curFontSize=curFont.getSize();
-    curFontSize+=4;
-    panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-    mainPanel.add(panelTitleLabel);
-    namePanel=new NamePanel(model);
-    mainPanel.add(namePanel);
+    mainPanel.add(makeTitlePanel());
     JPanel urlJNDIPanel=new JPanel();
     urlJNDIPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
     urlJNDIPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("jndi_url_jndi_props")));

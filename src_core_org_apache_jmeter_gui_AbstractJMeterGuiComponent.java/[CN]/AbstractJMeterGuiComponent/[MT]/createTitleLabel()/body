@@ -2,6 +2,7 @@
   JLabel titleLabel=new JLabel(getStaticLabel());
   Font curFont=titleLabel.getFont();
   titleLabel.setFont(curFont.deriveFont((float)curFont.getSize() + 4));
-  titleLabel.setAlignmentX(0.5f);
-  return titleLabel;
+  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  panel.add(titleLabel);
+  return panel;
 }
