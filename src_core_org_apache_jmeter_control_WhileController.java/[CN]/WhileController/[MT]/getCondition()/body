@@ -1,3 +1,6 @@
 {
-  return getPropertyAsString(CONDITION);
+  String cnd;
+  cnd=getPropertyAsString(CONDITION);
+  log.debug("getCondition() => " + cnd);
+  return cnd;
 }

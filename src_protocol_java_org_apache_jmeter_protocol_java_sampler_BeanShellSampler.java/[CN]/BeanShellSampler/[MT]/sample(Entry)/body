@@ -12,6 +12,7 @@
  else {
       res.setSamplerData(fileName);
     }
+    bshInterpreter.set("log",log);
     bshInterpreter.set("Label",getLabel());
     bshInterpreter.set("FileName",getFilename());
     bshInterpreter.set("SampleResult",res);

@@ -3,6 +3,7 @@
     threadContext=JMeterContextService.getContext();
     threadContext.setVariables(threadVars);
     threadContext.setThreadNum(getThreadNum());
+    threadContext.getVariables().put(LAST_SAMPLE_OK,"true");
     threadContext.setThread(this);
     testTree.traverse(compiler);
     if (scheduler) {

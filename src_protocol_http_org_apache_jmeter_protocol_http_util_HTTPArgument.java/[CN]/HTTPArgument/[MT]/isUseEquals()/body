@@ -1,6 +1,6 @@
 {
   boolean eq=getPropertyAsBoolean(USE_EQUALS);
-  if (getMetaData().equals("=") || (getValue() != null && getValue().toString().length() > 0)) {
+  if (getMetaData().equals("=") || (getValue() != null && getValue().length() > 0)) {
     setUseEquals(true);
     return true;
   }

@@ -5,8 +5,7 @@
     init=JMeterUtils.getPropDefault(INIT_FILE,null);
     if (init != null) {
       try {
-        bshInterpreter.source(null);
-        bshInterpreter.set("log",log);
+        bshInterpreter.source(init);
       }
  catch (      IOException e) {
         log.warn("Error processing init file " + init + " "+ e);

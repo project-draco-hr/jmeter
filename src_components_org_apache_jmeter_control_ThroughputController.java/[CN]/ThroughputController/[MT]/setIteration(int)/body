@@ -1,6 +1,6 @@
 {
   if (!isPerThread()) {
-    globalIteration.setInteger(new Integer(iteration));
+    globalIteration=iteration;
   }
   this.iteration=iteration;
 }

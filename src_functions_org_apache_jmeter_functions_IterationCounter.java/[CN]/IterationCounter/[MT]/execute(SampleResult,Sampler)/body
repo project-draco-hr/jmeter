@@ -18,6 +18,6 @@
  else {
     counterString=String.valueOf(counter[0]);
   }
-  vars.put(varName,counterString);
+  if (varName.length() > 0)   vars.put(varName,counterString);
   return counterString;
 }

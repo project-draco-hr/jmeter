@@ -39,7 +39,7 @@
       }
  else {
         int prevCount=0;
-        String prevString=(String)vars.get(refName + "_matchNr");
+        String prevString=vars.get(refName + "_matchNr");
         if (prevString != null) {
           try {
             prevCount=Integer.parseInt(prevString);

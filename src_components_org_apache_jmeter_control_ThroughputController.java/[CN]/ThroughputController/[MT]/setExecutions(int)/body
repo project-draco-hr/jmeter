@@ -1,6 +1,6 @@
 {
   if (!isPerThread()) {
-    globalNumExecutions.setInteger(new Integer(executions));
+    globalNumExecutions=executions;
   }
   this.numExecutions=executions;
 }

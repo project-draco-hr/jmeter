@@ -1,8 +1,3 @@
 {
-  Iterator iter=new HashSet(allThreads.keySet()).iterator();
-  while (iter.hasNext()) {
-    JMeterThread item=(JMeterThread)iter.next();
-    item.stop();
-  }
-  verifyThreadsStopped();
+  engine.stopTest(false);
 }

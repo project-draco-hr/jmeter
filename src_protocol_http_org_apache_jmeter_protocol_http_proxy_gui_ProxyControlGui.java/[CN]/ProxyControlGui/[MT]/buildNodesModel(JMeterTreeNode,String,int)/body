@@ -5,13 +5,7 @@
       StringBuffer name=new StringBuffer();
       JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
       TestElement te=cur.getTestElement();
-      if (te instanceof ThreadGroup) {
-        name.append(parent_name);
-        name.append(cur.getName());
-        name.append(seperator);
-        buildNodesModel(cur,name.toString(),level);
-      }
- else       if (te instanceof Controller) {
+      if (te instanceof Controller) {
         name.append(spaces(level));
         name.append(parent_name);
         name.append(cur.getName());
@@ -26,6 +20,9 @@
         name.append(cur.getName());
         name.append(seperator);
         buildNodesModel(cur,name.toString(),0);
+      }
+ else {
+        log.error("Cannot process " + te);
       }
     }
   }

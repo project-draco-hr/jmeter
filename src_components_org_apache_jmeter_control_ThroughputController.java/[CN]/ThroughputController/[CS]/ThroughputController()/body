@@ -1,6 +1,6 @@
 {
-  globalNumExecutions=new IntegerWrapper(new Integer(0));
-  globalIteration=new IntegerWrapper(new Integer(-1));
+  globalNumExecutions=0;
+  globalIteration=-1;
   counterLock=new Object();
   setStyle(BYNUMBER);
   setPerThread(true);

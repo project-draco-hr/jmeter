@@ -1,0 +1,9 @@
+{
+  if (conditionTrue(false)) {
+    return super.next();
+  }
+ else {
+    reInitialize();
+    return null;
+  }
+}

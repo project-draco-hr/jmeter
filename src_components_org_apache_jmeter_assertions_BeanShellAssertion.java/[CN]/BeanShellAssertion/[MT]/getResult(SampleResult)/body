@@ -3,6 +3,7 @@
   try {
     String request=getScript();
     String fileName=getFilename();
+    bshInterpreter.set("log",log);
     bshInterpreter.set("FileName",getFilename());
     bshInterpreter.set("Parameters",getParameters());
     bshInterpreter.set("bsh.args",JOrphanUtils.split(getParameters()," "));

@@ -1,16 +1,11 @@
 {
   Iterator iter=assertions.iterator();
-  boolean last_sample_ok=true;
-  boolean all_samples_ok=true;
   while (iter.hasNext()) {
     Assertion assertion=(Assertion)iter.next();
     TestBeanHelper.prepare((TestElement)assertion);
     AssertionResult assertionResult=assertion.getResult(result);
     result.setSuccessful(result.isSuccessful() && !(assertionResult.isError() || assertionResult.isFailure()));
     result.addAssertionResult(assertionResult);
-    last_sample_ok=result.isSuccessful();
-    all_samples_ok&=last_sample_ok;
   }
-  threadContext.getVariables().put(LAST_SAMPLE_OK,JOrphanUtils.booleanToString(last_sample_ok));
-  threadContext.getVariables().put(ALL_SAMPLES_OK,JOrphanUtils.booleanToString(all_samples_ok));
+  threadContext.getVariables().put(LAST_SAMPLE_OK,JOrphanUtils.booleanToString(result.isSuccessful()));
 }

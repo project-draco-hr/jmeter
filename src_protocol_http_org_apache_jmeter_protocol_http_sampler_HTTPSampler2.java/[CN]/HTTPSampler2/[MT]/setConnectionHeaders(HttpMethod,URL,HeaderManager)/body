@@ -5,7 +5,7 @@
     if (headers != null) {
       PropertyIterator i=headers.iterator();
       while (i.hasNext()) {
-        Header header=(Header)i.next().getObjectValue();
+        org.apache.jmeter.protocol.http.control.Header header=(org.apache.jmeter.protocol.http.control.Header)i.next().getObjectValue();
         String n=header.getName();
         String v=header.getValue();
         method.setRequestHeader(n,v);
