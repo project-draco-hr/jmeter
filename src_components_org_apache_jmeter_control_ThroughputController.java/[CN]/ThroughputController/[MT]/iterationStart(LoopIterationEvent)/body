@@ -1,11 +1,17 @@
 {
   if (!isPerThread()) {
-synchronized (iterationLock) {
+synchronized (counterLock) {
       increaseIteration();
+      if (runThisTime) {
+        increaseExecutions();
+      }
     }
   }
  else {
     increaseIteration();
+    if (runThisTime) {
+      increaseExecutions();
+    }
   }
   reInitialize();
 }

@@ -1,4 +1,21 @@
 {
-  returnTrue=false;
+  runThisTime=false;
   super.reInitialize();
+  int executions, iterations;
+  boolean retval=false;
+  executions=getExecutions();
+  iterations=getIteration();
+  if (getStyle() == BYNUMBER) {
+    if (executions < getMaxThroughputAsInt()) {
+      runThisTime=true;
+    }
+  }
+ else {
+    if (iterations == 0 && getPercentThroughputAsFloat() > 0) {
+      runThisTime=true;
+    }
+ else     if (((float)executions / iterations) * 100 <= getPercentThroughputAsFloat()) {
+      runThisTime=true;
+    }
+  }
 }
