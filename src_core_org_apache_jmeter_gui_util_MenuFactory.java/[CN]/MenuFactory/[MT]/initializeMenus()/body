@@ -22,7 +22,13 @@
     Collections.sort(guiClasses);
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
-      JMeterGUIComponent item=(JMeterGUIComponent)Class.forName((String)iter.next()).newInstance();
+      JMeterGUIComponent item;
+      try {
+        item=(JMeterGUIComponent)Class.forName((String)iter.next()).newInstance();
+      }
+ catch (      Throwable e) {
+        continue;
+      }
       if (elementsToSkip.contains(item.getClass().getName()) || elementsToSkip.contains(item.getStaticLabel())) {
         continue;
       }
