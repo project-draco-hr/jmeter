@@ -1,5 +1,5 @@
 {
-  portField=new JTextField("8080",8);
+  portField=new JTextField(ProxyControl.DEFAULT_PORT_S,8);
   portField.setName(ProxyControl.PORT);
   portField.addKeyListener(this);
   JLabel label=new JLabel(JMeterUtils.getResString("port"));
@@ -9,10 +9,24 @@
   httpHeaders.setSelected(true);
   httpHeaders.addActionListener(this);
   httpHeaders.setActionCommand(ProxyControl.CAPTURE_HTTP_HEADERS);
+  addSeparators=new JCheckBox(JMeterUtils.getResString("proxy_separators"));
+  addSeparators.setName(ProxyControl.ADD_SEPARATORS);
+  addSeparators.setSelected(false);
+  addSeparators.addActionListener(this);
+  addSeparators.setActionCommand(ProxyControl.ADD_SEPARATORS);
+  addAssertions=new JCheckBox(JMeterUtils.getResString("proxy_assertions"));
+  addAssertions.setName(ProxyControl.ADD_ASSERTIONS);
+  addAssertions.setSelected(false);
+  addAssertions.addActionListener(this);
+  addAssertions.setActionCommand(ProxyControl.ADD_ASSERTIONS);
   HorizontalPanel panel=new HorizontalPanel();
   panel.add(label);
   panel.add(portField);
   panel.add(Box.createHorizontalStrut(10));
   panel.add(httpHeaders);
+  panel.add(Box.createHorizontalStrut(10));
+  panel.add(addSeparators);
+  panel.add(Box.createHorizontalStrut(10));
+  panel.add(addAssertions);
   return panel;
 }

@@ -17,6 +17,12 @@
  else   if (command.equals(ProxyControl.CAPTURE_HTTP_HEADERS)) {
     enableRestart();
   }
+ else   if (command.equals(ProxyControl.ADD_ASSERTIONS)) {
+    enableRestart();
+  }
+ else   if (command.equals(ProxyControl.ADD_SEPARATORS)) {
+    enableRestart();
+  }
  else   if (command.equals(ADD_EXCLUDE)) {
     excludeModel.addNewRow();
     excludeModel.fireTableDataChanged();

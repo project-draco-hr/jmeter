@@ -9,5 +9,8 @@
     if (sampler.getPath().equals(urlConfig.getPropertyAsString(HTTPSampler.PATH))) {
       sampler.setPath("");
     }
+    if (sampler.getProtocol().equalsIgnoreCase(urlConfig.getPropertyAsString(HTTPSampler.PROTOCOL))) {
+      sampler.setProtocol("");
+    }
   }
 }

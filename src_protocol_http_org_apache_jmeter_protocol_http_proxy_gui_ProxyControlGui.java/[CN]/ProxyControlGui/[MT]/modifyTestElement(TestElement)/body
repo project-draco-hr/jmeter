@@ -6,5 +6,7 @@
     setIncludeListInProxyControl(model);
     setExcludeListInProxyControl(model);
     model.setCaptureHttpHeaders(httpHeaders.isSelected());
+    model.setSeparators(addSeparators.isSelected());
+    model.setAssertions(addAssertions.isSelected());
   }
 }
