@@ -20,5 +20,5 @@
       results.append(item);
     }
   }
-  return results.toString();
+  return ArgumentDecoder.decode(results.toString());
 }

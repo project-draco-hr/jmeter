@@ -8,7 +8,14 @@
   while (st.hasMoreElements()) {
     buffer.append(st.nextElement());
     token=buffer.toString();
-    if (token.indexOf("(") != -1) {
+    boolean foundOpen=false;
+    int searchIndex=-1;
+    while (!foundOpen) {
+      searchIndex=token.indexOf("(",searchIndex + 1);
+      if (searchIndex == -1)       break;
+ else       if (searchIndex == 0 || token.charAt(searchIndex - 1) != '\\')       foundOpen=true;
+    }
+    if (foundOpen) {
       if (findMatching("(",")",token) != -1) {
         uncompiled.add(token);
         previous=token;
