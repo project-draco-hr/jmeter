@@ -6,7 +6,7 @@
     PropertyIterator args=sampler.getArguments().iterator();
     while (args.hasNext()) {
       Argument arg=(Argument)args.next().getObjectValue();
-      writeFormMultipartStyle(out,arg.getName(),(String)arg.getValue());
+      writeFormMultipartStyle(out,arg.getName(),arg.getValue());
       writeln(out,"--" + BOUNDARY);
     }
     writeFileToURL(out,filename,sampler.getFileField(),getFileStream(filename),sampler.getMimetype());

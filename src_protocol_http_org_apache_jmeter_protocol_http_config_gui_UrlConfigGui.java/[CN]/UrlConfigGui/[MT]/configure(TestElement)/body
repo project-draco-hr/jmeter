@@ -2,7 +2,7 @@
   setName(el.getPropertyAsString(TestElement.NAME));
   argsPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
   domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
-  String portString=(String)el.getPropertyAsString(HTTPSamplerBase.PORT);
+  String portString=el.getPropertyAsString(HTTPSamplerBase.PORT);
   if (portString.equals("" + HTTPSamplerBase.UNSPECIFIED_PORT)) {
     port.setText("");
   }

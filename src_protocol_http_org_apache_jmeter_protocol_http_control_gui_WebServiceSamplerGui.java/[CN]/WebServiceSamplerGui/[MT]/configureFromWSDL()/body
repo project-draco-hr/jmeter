@@ -14,5 +14,5 @@
     buf.append(HELPER.getURL().getPath());
     this.urlField.setText(buf.toString());
   }
-  this.soapAction.setText(HELPER.getSoapAction((String)this.wsdlMethods.getText()));
+  this.soapAction.setText(HELPER.getSoapAction(this.wsdlMethods.getText()));
 }

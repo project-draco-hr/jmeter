@@ -4,7 +4,7 @@
     StringTokenizer tokens=null;
     tokens=this.tokenize(entry,"\"");
     while (tokens.hasMoreTokens()) {
-      String toke=(String)tokens.nextToken();
+      String toke=tokens.nextToken();
       if (checkMethod(toke)) {
         StringTokenizer token2=this.tokenize(toke," ");
         while (token2.hasMoreTokens()) {
