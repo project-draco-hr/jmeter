@@ -1,9 +1,0 @@
-{
-  JPanel panel=new JPanel(new BorderLayout(5,0));
-  JLabel label=new JLabel(JMeterUtils.getResString("database_driver_class"));
-  label.setLabelFor(driverField);
-  driverField.setName(DRIVER);
-  panel.add(label,BorderLayout.WEST);
-  panel.add(driverField,BorderLayout.CENTER);
-  return panel;
-}

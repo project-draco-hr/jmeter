@@ -1,0 +1,11 @@
+{
+  if (!started[0]) {
+    try {
+      initPool();
+    }
+ catch (    Exception e) {
+      log.error("Unable to start database connection pool.",e);
+    }
+  }
+  getThreadContext().getVariables().putObject(getDataSource(),excaliburSource);
+}

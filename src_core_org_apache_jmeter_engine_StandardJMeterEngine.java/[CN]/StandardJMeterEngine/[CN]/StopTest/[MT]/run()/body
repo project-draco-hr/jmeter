@@ -1,4 +1,5 @@
 {
+  log.debug("Stopping test");
   if (running) {
     running=false;
     tellThreadsToStop();

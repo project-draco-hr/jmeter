@@ -1,11 +1,13 @@
 {
   Iterator iter=testListeners.getSearchResults().iterator();
   while (iter.hasNext()) {
+    TestListener tl=(TestListener)iter.next();
+    if (tl instanceof TestBean)     ((TestBean)tl).prepare();
     if (host == null) {
-      ((TestListener)iter.next()).testStarted();
+      tl.testStarted();
     }
  else {
-      ((TestListener)iter.next()).testStarted(host);
+      tl.testStarted(host);
     }
   }
 }

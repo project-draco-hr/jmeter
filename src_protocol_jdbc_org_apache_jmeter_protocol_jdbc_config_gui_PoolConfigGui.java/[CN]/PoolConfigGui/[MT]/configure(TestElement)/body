@@ -1,5 +1,0 @@
-{
-  super.configure(element);
-  connField.setText(element.getPropertyAsString(JMeter19ConnectionPool.CONNECTIONS));
-  maxUseField.setText(element.getPropertyAsString(JMeter19ConnectionPool.MAXUSE));
-}

@@ -1,0 +1,34 @@
+{
+  excaliburSource=new ResourceLimitingJdbcDataSource();
+  DefaultConfiguration config=new DefaultConfiguration("rl-jdbc");
+  DefaultConfiguration poolController=new DefaultConfiguration("pool-controller");
+  poolController.setAttribute("max",getPoolMax());
+  poolController.setAttribute("max-strict","true");
+  poolController.setAttribute("blocking","true");
+  poolController.setAttribute("timeout",getTimeout());
+  poolController.setAttribute("trim-interval",getTrimInterval());
+  poolController.setAttribute("auto-commit",String.valueOf(isAutocommit()));
+  config.addChild(poolController);
+  DefaultConfiguration keepAlive=new DefaultConfiguration("keep-alive");
+  keepAlive.setAttribute("disable",String.valueOf(!isKeepAlive()));
+  keepAlive.setAttribute("age",getConnectionAge());
+  keepAlive.setValue(getCheckQuery());
+  poolController.addChild(keepAlive);
+  DefaultConfiguration driver=new DefaultConfiguration("driver");
+  driver.setValue(getDriver());
+  config.addChild(driver);
+  DefaultConfiguration dbUrl=new DefaultConfiguration("dburl");
+  dbUrl.setValue(getDbUrl());
+  config.addChild(dbUrl);
+  DefaultConfiguration username=new DefaultConfiguration("user");
+  username.setValue(getUsername());
+  config.addChild(username);
+  DefaultConfiguration password=new DefaultConfiguration("password");
+  password.setValue(getPassword());
+  config.addChild(password);
+  excaliburSource.enableLogging(new LogKitLogger(log));
+  excaliburSource.configure(config);
+  excaliburSource.setInstrumentableName(getDataSource());
+  started[0]=true;
+  return excaliburSource;
+}

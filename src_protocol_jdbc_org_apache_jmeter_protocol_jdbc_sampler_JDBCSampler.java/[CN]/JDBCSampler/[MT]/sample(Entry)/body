@@ -1,14 +1,15 @@
 {
-  DBKey key=null;
+  log.debug("sampling jdbc");
   SampleResult res=new SampleResult();
   res.setSampleLabel(getName());
-  res.setSamplerData(this.toString());
+  res.setSamplerData(toString());
   res.sampleStart();
+  DataSourceComponent pool=(DataSourceComponent)getThreadContext().getVariables().getObject(getDataSource());
+  log.debug("DataSourceComponent: " + pool);
   Connection conn=null;
   Statement stmt=null;
   try {
-    key=getKey();
-    conn=manager.getConnection(key);
+    conn=pool.getConnection();
     stmt=conn.createStatement();
     if (stmt.execute(getQuery())) {
       ResultSet rs=null;
@@ -38,7 +39,7 @@
   }
  catch (  Exception ex) {
     log.error("Error in JDBC sampling",ex);
-    res.setResponseData(new byte[0]);
+    res.setResponseData(ex.toString().getBytes());
     res.setSuccessful(false);
   }
  finally {
@@ -47,11 +48,20 @@
         stmt.close();
       }
  catch (      SQLException err) {
-        stmt=null;
+        log.error("Error in JDBC sampling",err);
+        res.setResponseData(err.toString().getBytes());
+        res.setSuccessful(false);
       }
     }
     if (conn != null) {
-      manager.releaseConnection(key,conn);
+      try {
+        conn.close();
+      }
+ catch (      SQLException e1) {
+        log.error("Error in JDBC sampling",e1);
+        res.setResponseData(e1.toString().getBytes());
+        res.setSuccessful(false);
+      }
     }
   }
   res.sampleEnd();

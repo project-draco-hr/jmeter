@@ -1,9 +1,0 @@
-{
-  StringBuffer ret=new StringBuffer();
-  ret.append("Class=DBKey(" + "\n");
-  ret.append("driver=" + driver + "\n");
-  ret.append("url=" + url + "\n");
-  ret.append("username=" + username + "\n");
-  ret.append(")");
-  return ret.toString();
-}

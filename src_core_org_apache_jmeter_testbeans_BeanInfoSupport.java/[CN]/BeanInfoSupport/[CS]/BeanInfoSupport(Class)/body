@@ -34,6 +34,9 @@
     }
   }
  catch (  MissingResourceException e) {
-    log.warn("Localized strings not available for bean " + beanClass);
+    log.warn("Localized strings not available for bean " + beanClass,e);
+  }
+catch (  Exception e) {
+    log.warn("Something bad happened when loading bean info",e);
   }
 }

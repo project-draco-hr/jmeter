@@ -1,9 +1,0 @@
-{
-  JPanel panel=new JPanel(new BorderLayout(5,0));
-  JLabel label=new JLabel(JMeterUtils.getResString("database_url"));
-  label.setLabelFor(urlField);
-  urlField.setName(URL);
-  panel.add(label,BorderLayout.WEST);
-  panel.add(urlField,BorderLayout.CENTER);
-  return panel;
-}

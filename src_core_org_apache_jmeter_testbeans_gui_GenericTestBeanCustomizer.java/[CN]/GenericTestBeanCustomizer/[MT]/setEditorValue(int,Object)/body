@@ -4,6 +4,5 @@
   }
  catch (  IllegalArgumentException e) {
     log.error("Could not set value " + (value == null ? "NULL" : value.getClass().getName()) + ":"+ value+ " for property "+ descriptors[i].getName());
-    throw e;
   }
 }

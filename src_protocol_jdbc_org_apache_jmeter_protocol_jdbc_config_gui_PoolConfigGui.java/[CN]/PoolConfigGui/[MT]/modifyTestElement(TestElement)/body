@@ -1,6 +1,0 @@
-{
-  configureTestElement(element);
-  element.setProperty(JDBCSampler.CONNECTION_POOL_IMPL,JMeter19ConnectionPool.class.getName());
-  element.setProperty(JMeter19ConnectionPool.CONNECTIONS,connField.getText());
-  element.setProperty(JMeter19ConnectionPool.MAXUSE,maxUseField.getText());
-}

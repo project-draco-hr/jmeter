@@ -1,11 +1,13 @@
 {
   Iterator iter=testListeners.getSearchResults().iterator();
   while (iter.hasNext()) {
+    TestListener tl=(TestListener)iter.next();
+    if (tl instanceof TestBean)     ((TestBean)tl).prepare();
     if (host == null) {
-      ((TestListener)iter.next()).testEnded();
+      tl.testEnded();
     }
  else {
-      ((TestListener)iter.next()).testEnded(host);
+      tl.testEnded(host);
     }
   }
   log.info("Test has ended");
