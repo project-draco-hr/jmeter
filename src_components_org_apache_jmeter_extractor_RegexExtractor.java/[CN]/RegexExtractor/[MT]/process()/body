@@ -38,6 +38,16 @@
         }
       }
  else {
+        int prevCount=0;
+        String prevString=(String)vars.get(refName + "_matchNr");
+        if (prevString != null) {
+          try {
+            prevCount=Integer.parseInt(prevString);
+          }
+ catch (          NumberFormatException e1) {
+            e1.printStackTrace();
+          }
+        }
         vars.put(refName + "_matchNr","" + matches.size());
         for (int i=1; i <= matches.size(); i++) {
           match=getCorrectMatch(matches,i);
@@ -45,6 +55,11 @@
             vars.put(refName + "_" + i,generateResult(match));
             saveGroups(vars,refName + "_" + i,match);
           }
+        }
+        for (int i=matches.size() + 1; i <= prevCount; i++) {
+          vars.remove(refName + "_" + i);
+          vars.remove(refName + "_" + i+ "_g0");
+          vars.remove(refName + "_" + i+ "_g1");
         }
       }
     }
