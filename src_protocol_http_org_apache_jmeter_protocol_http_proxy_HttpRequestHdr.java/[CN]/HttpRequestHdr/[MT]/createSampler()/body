@@ -7,7 +7,13 @@
   log.debug("Proxy: method server: " + sampler.getMethod());
   sampler.setPath(serverUrl());
   log.debug("Proxy: setting path: " + sampler.getEncodedPath());
-  sampler.setName(sampler.getPath());
+  if (numberRequests) {
+    requestNumber++;
+    sampler.setName(requestNumber + " " + sampler.getPath());
+  }
+ else {
+    sampler.setName(sampler.getPath());
+  }
   sampler.setPort(serverPort());
   log.debug("Proxy: setting port: " + sampler.getPort());
   if (url.indexOf("//") > -1) {
