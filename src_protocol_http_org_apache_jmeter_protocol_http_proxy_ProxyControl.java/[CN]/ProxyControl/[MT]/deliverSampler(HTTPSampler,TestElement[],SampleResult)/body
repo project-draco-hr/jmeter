@@ -1,5 +1,6 @@
 {
   if (filterUrl(sampler)) {
     placeConfigElement(sampler,subConfigs);
+    notifyListeners(new SampleEvent(result,sampler.getName()));
   }
 }
