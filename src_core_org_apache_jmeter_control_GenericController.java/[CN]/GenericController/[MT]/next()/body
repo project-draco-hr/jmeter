@@ -4,7 +4,6 @@
   TestElement currentElement=null;
   try {
     currentElement=getCurrentElement();
-    log.debug("next element = " + currentElement);
     setCurrentElement(currentElement);
     if (currentElement == null) {
       returnValue=nextIsNull();
