@@ -20,7 +20,7 @@
       int name=0;
       int value=1;
       Header header=new Header(st[name],st[value]);
-      getHeaders().add(header);
+      getHeaders().addItem(header);
     }
  catch (    Exception e) {
       throw new IOException("Error parsing header line\n\t'" + line + "'\n\t"+ e);

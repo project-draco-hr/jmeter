@@ -1,6 +1,6 @@
 {
-  this.assertNull(partialConfig.getProperty(HTTPSampler.DOMAIN));
+  assertTrue(new NullProperty().equals(partialConfig.getProperty(HTTPSampler.DOMAIN)));
   partialConfig.addTestElement(defaultConfig);
-  assertEquals(partialConfig.getProperty(HTTPSampler.DOMAIN),"www.xerox.com");
-  assertEquals(partialConfig.getProperty(HTTPSampler.PATH),"main.jsp");
+  assertEquals(partialConfig.getPropertyAsString(HTTPSampler.DOMAIN),"www.xerox.com");
+  assertEquals(partialConfig.getPropertyAsString(HTTPSampler.PATH),"main.jsp");
 }

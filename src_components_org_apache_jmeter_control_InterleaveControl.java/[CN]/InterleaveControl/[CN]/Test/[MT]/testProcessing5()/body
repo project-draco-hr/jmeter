@@ -16,7 +16,7 @@
   while (counter < order.length) {
     while (controller.hasNext()) {
       TestElement sampler=controller.next();
-      assertEquals("failed on " + counter,order[counter],sampler.getProperty(TestElement.NAME));
+      assertEquals("failed on " + counter,order[counter],sampler.getPropertyAsString(TestElement.NAME));
       counter++;
     }
   }

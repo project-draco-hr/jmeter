@@ -12,5 +12,5 @@
   TestCompiler compiler=new TestCompiler(testing,new JMeterVariables());
   testing.traverse(compiler);
   sampler=(TestSampler)compiler.configureSampler(sampler).getSampler();
-  assertEquals("A test value",sampler.getProperty("test.property"));
+  assertEquals("A test value",sampler.getPropertyAsString("test.property"));
 }

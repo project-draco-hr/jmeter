@@ -1,0 +1,7 @@
+{
+  String value=config.getValue("");
+  JMeterProperty prop=(JMeterProperty)Class.forName(config.getAttribute("propType","org.apache.jmeter.testelement.property.StringProperty")).newInstance();
+  prop.setName(config.getAttribute("name",value));
+  prop.setObjectValue(value);
+  return prop;
+}

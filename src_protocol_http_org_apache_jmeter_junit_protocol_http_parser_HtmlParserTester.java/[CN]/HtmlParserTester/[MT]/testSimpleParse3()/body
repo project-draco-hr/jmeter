@@ -6,8 +6,10 @@
   SampleResult result=new SampleResult();
   result.setResponseData(responseText.getBytes());
   result.setSampleLabel(context.toString());
-  result.setSamplerData(context);
-  parser.modifyEntry(config,result);
+  JMeterContextService.getContext().setCurrentSampler(context);
+  JMeterContextService.getContext().setCurrentSampler(config);
+  JMeterContextService.getContext().setPreviousResult(result);
+  parser.process();
   String newUrl=config.getUrl().toString();
   assertEquals("http://www.apache.org:80/home/index.html?param1=value1",newUrl);
 }

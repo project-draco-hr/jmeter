@@ -1,17 +1,18 @@
 {
-  Iterator iter=el.getPropertyNames().iterator();
+  PropertyIterator iter=el.propertyIterator();
   while (iter.hasNext()) {
-    String propName=(String)iter.next();
-    Object propValue=el.getProperty(propName);
-    if (propValue instanceof String) {
-      Object newValue=substituteReferences((String)propValue);
-      el.setProperty(propName,newValue);
+    JMeterProperty prop=iter.next();
+    if (prop instanceof StringProperty) {
+      el.setProperty(substituteReferences((StringProperty)prop));
     }
- else     if (propValue instanceof TestElement) {
-      undoReverseReplace((TestElement)propValue);
+ else     if (prop instanceof TestElementProperty) {
+      undoReverseReplace((TestElement)prop.getObjectValue());
     }
- else     if (propValue instanceof Collection) {
-      el.setProperty(propName,undoReverseReplace((Collection)propValue));
+ else     if (prop instanceof CollectionProperty) {
+      undoReverseReplace((CollectionProperty)prop);
+    }
+ else     if (prop instanceof MapProperty) {
+      undoReverseReplace((MapProperty)prop);
     }
   }
 }

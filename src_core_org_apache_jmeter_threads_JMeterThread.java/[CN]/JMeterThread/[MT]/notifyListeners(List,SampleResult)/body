@@ -1,5 +1,5 @@
 {
-  SampleEvent event=new SampleEvent(result,(String)controller.getProperty(TestElement.NAME));
+  SampleEvent event=new SampleEvent(result,controller.getPropertyAsString(TestElement.NAME));
   compiler.sampleOccurred(event);
   notifier.notifyListeners(event,listeners);
 }

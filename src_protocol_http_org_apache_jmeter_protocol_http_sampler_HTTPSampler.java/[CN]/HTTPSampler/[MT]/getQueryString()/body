@@ -1,9 +1,9 @@
 {
   StringBuffer buf=new StringBuffer();
-  Iterator iter=getArguments().iterator();
+  PropertyIterator iter=getArguments().iterator();
   boolean first=true;
   while (iter.hasNext()) {
-    HTTPArgument item=(HTTPArgument)iter.next();
+    HTTPArgument item=(HTTPArgument)iter.next().getObjectValue();
     if (!first) {
       buf.append("&");
     }

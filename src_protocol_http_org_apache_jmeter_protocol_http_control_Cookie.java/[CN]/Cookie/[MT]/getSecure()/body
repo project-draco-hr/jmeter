@@ -1,4 +1,3 @@
 {
-  log.info("Secure = " + getProperty(SECURE));
-  return this.getPropertyAsBoolean(SECURE);
+  return getPropertyAsBoolean(SECURE);
 }

@@ -5,7 +5,7 @@
   for (int i=0; i < children.length; i++) {
     if (children[i].getName().equals("property")) {
       try {
-        element.setProperty(children[i].getAttribute("name"),children[i].getValue());
+        element.setProperty(createProperty(children[i]));
       }
  catch (      Exception ex) {
         log.error("Problem loading property",ex);
@@ -13,13 +13,13 @@
       }
     }
  else     if (children[i].getName().equals("testelement")) {
-      element.setProperty(children[i].getAttribute("name"),createTestElement(children[i]));
+      element.setProperty(new TestElementProperty(children[i].getAttribute("name"),createTestElement(children[i])));
     }
  else     if (children[i].getName().equals("collection")) {
-      element.setProperty(children[i].getAttribute("name"),createCollection(children[i]));
+      element.setProperty(new CollectionProperty(children[i].getAttribute("name"),createCollection(children[i])));
     }
  else     if (children[i].getName().equals("map")) {
-      element.setProperty(children[i].getAttribute("name"),createMap(children[i]));
+      element.setProperty(new MapProperty(children[i].getAttribute("name"),createMap(children[i])));
     }
   }
   return element;

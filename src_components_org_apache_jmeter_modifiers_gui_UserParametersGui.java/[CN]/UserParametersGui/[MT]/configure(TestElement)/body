@@ -2,12 +2,12 @@
   initTableModel();
   paramTable.setModel(tableModel);
   UserParameters params=(UserParameters)el;
-  List names=params.getNames();
-  List threadValues=params.getThreadLists();
-  tableModel.setColumnData(0,names);
-  Iterator iter=threadValues.iterator();
+  CollectionProperty names=params.getNames();
+  CollectionProperty threadValues=params.getThreadLists();
+  tableModel.setColumnData(0,(List)names.getObjectValue());
+  PropertyIterator iter=threadValues.iterator();
   if (iter.hasNext()) {
-    tableModel.setColumnData(1,(List)iter.next());
+    tableModel.setColumnData(1,(List)iter.next().getObjectValue());
   }
   int count=2;
   while (iter.hasNext()) {

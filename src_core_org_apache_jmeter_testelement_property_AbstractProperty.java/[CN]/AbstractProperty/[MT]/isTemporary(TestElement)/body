@@ -3,6 +3,10 @@
     return false;
   }
  else {
-    return ((boolean[])ownerMap.get(owner))[0];
+    boolean[] temp=(boolean[])ownerMap.get(owner);
+    if (temp == null) {
+      return false;
+    }
+    return temp[0];
   }
 }

@@ -5,11 +5,11 @@
   HTTPSampler config=(HTTPSampler)entry;
   Map currentUser=allAvailableUsers.getNextUserMods();
   boolean changeValue=false;
-  Iterator iter=config.getArguments().iterator();
+  PropertyIterator iter=config.getArguments().iterator();
   while (iter.hasNext()) {
-    Argument arg=(Argument)iter.next();
+    Argument arg=(Argument)iter.next().getObjectValue();
     if (currentUser.containsKey(arg.getName())) {
-      arg.setValue(currentUser.get(arg.getName()));
+      arg.setValue((String)currentUser.get(arg.getName()));
     }
   }
   return changeValue;

@@ -1,8 +1,8 @@
 {
-  ((UserParameters)params).setNames(tableModel.getColumnData(JMeterUtils.getResString("name")));
-  List threadLists=new LinkedList();
+  ((UserParameters)params).setNames(new CollectionProperty(UserParameters.NAMES,tableModel.getColumnData(JMeterUtils.getResString("name"))));
+  CollectionProperty threadLists=new CollectionProperty(UserParameters.THREAD_VALUES,new ArrayList());
   for (int x=1; x < tableModel.getColumnCount(); x++) {
-    threadLists.add(tableModel.getColumnData(THREAD_COLUMNS + "_" + x));
+    threadLists.addItem(tableModel.getColumnData(THREAD_COLUMNS + "_" + x));
   }
   ((UserParameters)params).setThreadLists(threadLists);
   super.configureTestElement(params);

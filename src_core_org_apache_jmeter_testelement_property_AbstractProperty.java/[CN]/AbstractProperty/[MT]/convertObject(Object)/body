@@ -1,0 +1,20 @@
+{
+  if (item instanceof JMeterProperty) {
+    return (JMeterProperty)item;
+  }
+ else   if (item instanceof TestElement) {
+    return new TestElementProperty(((TestElement)item).getPropertyAsString(TestElement.NAME),(TestElement)item);
+  }
+ else   if (item instanceof Collection) {
+    return new CollectionProperty("" + item.hashCode(),normalizeList((Collection)item));
+  }
+ else   if (item instanceof Map) {
+    return new MapProperty("" + item.hashCode(),normalizeMap((Map)item));
+  }
+ else {
+    JMeterProperty prop=getBlankProperty();
+    prop.setName(item.toString());
+    prop.setObjectValue(item);
+    return prop;
+  }
+}

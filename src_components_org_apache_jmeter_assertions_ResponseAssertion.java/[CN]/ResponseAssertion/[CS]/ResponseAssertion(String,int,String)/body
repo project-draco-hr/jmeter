@@ -2,5 +2,5 @@
   this();
   setTestField(field);
   setTestType(type);
-  getTestStrings().add(string);
+  getTestStrings().addProperty(new StringProperty(string,string));
 }

@@ -1,8 +1,8 @@
 {
   if (isAlwaysEncoded()) {
-    return cache.getEncoded(getValue().toString());
+    return cache.getEncoded(getValue());
   }
  else {
-    return getValue().toString();
+    return getValue();
   }
 }

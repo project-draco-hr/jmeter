@@ -3,9 +3,9 @@
   if ((filename != null) && (filename.trim().length() > 0)) {
     OutputStream out=connection.getOutputStream();
     writeln(out,"--" + BOUNDARY);
-    Iterator args=sampler.getArguments().iterator();
+    PropertyIterator args=sampler.getArguments().iterator();
     while (args.hasNext()) {
-      Argument arg=(Argument)args.next();
+      Argument arg=(Argument)args.next().getObjectValue();
       writeFormMultipartStyle(out,arg.getName(),(String)arg.getValue());
       writeln(out,"--" + BOUNDARY);
     }

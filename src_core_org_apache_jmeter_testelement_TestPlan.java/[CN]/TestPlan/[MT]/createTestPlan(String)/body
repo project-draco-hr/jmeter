@@ -6,7 +6,7 @@
  else {
       plan=new TestPlan(name);
     }
-    plan.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.control.gui.TestPlanGui");
+    plan.setProperty(new StringProperty(TestElement.GUI_CLASS,"org.apache.jmeter.control.gui.TestPlanGui"));
   }
   return plan;
 }

@@ -1,0 +1,12 @@
+{
+  if (v instanceof Number) {
+    value=((Number)v).intValue();
+  }
+ else {
+    try {
+      value=Integer.parseInt(v.toString());
+    }
+ catch (    RuntimeException e) {
+    }
+  }
+}

@@ -17,5 +17,9 @@
   for (int i=0; i < assResults.length; i++) {
     result.addAssertionResult(getAssertionResult(assResults[i]));
   }
+  Configuration[] samplerData=config.getChildren("property");
+  for (int i=0; i < samplerData.length; i++) {
+    result.setSamplerData(samplerData[i].getValue(""));
+  }
   return result;
 }

@@ -1,7 +1,7 @@
 {
   boolean ok=true;
   Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
-  Iterator iter=config.getArguments().iterator();
+  PropertyIterator iter=config.getArguments().iterator();
   String query=null;
   try {
     query=URLDecoder.decode(newLink.getQueryString());
@@ -10,7 +10,7 @@
   }
   if (query == null && config.getArguments().getArgumentCount() > 0)   return false;
   while (iter.hasNext()) {
-    Argument item=(Argument)iter.next();
+    Argument item=(Argument)iter.next().getObjectValue();
     if (query.indexOf(item.getName() + "=") == -1) {
       if (!(ok=ok && matcher.contains(query,patternCache.getPattern(item.getName(),Perl5Compiler.READ_ONLY_MASK)))) {
         return false;

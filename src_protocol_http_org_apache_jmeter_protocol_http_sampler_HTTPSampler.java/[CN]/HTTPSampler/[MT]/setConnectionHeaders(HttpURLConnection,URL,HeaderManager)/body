@@ -1,10 +1,10 @@
 {
   if (headerManager != null) {
-    Collection headers=headerManager.getHeaders();
+    CollectionProperty headers=headerManager.getHeaders();
     if (headers != null) {
-      Iterator i=headers.iterator();
+      PropertyIterator i=headers.iterator();
       while (i.hasNext()) {
-        Header header=(Header)i.next();
+        Header header=(Header)i.next().getObjectValue();
         conn.setRequestProperty(header.getName(),header.getValue());
       }
     }

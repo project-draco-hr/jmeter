@@ -1,0 +1,11 @@
+{
+  if (isRunningVersion()) {
+    if (getProperty(property.getName()) instanceof NullProperty) {
+      addProperty(property);
+    }
+    return;
+  }
+ else {
+    propMap.put(property.getName(),property);
+  }
+}

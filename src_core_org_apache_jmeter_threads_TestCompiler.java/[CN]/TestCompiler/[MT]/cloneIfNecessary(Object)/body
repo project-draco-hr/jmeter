@@ -1,8 +1,0 @@
-{
-  if (el instanceof PerSampleClonable || objectsWithFunctions.contains(el)) {
-    return ((TestElement)el).clone();
-  }
- else {
-    return el;
-  }
-}

@@ -3,9 +3,9 @@
     throw new IllegalArgumentException(JMeterUtils.getResString("argument_must_not_be_negative"));
   }
   if (duration == Long.MAX_VALUE) {
-    setProperty(DURATION_KEY,new Long(0));
+    setProperty(new LongProperty(DURATION_KEY,0));
   }
  else {
-    setProperty(DURATION_KEY,new Long(duration));
+    setProperty(new LongProperty(DURATION_KEY,duration));
   }
 }

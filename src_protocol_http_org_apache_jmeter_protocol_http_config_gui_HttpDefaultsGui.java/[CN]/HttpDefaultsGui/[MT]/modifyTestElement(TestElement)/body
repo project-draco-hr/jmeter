@@ -3,6 +3,6 @@
   config.setProperty(HTTPSampler.PROTOCOL,protocol.getText());
   config.setProperty(HTTPSampler.DOMAIN,domain.getText());
   config.setProperty(HTTPSampler.PATH,path.getText());
-  config.setProperty(HTTPSampler.ARGUMENTS,argPanel.createTestElement());
+  config.setProperty(new TestElementProperty(HTTPSampler.ARGUMENTS,argPanel.createTestElement()));
   config.setProperty(HTTPSampler.PORT,port.getText());
 }

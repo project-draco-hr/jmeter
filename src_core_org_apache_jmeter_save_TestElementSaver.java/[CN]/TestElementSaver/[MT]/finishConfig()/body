@@ -1,0 +1,6 @@
+{
+  if (stack.size() > 1) {
+    Configuration config=(Configuration)stack.removeLast();
+    ((DefaultConfiguration)stack.getLast()).addChild(config);
+  }
+}

@@ -1,7 +1,7 @@
 {
-  setName((String)el.getProperty(TestElement.NAME));
-  argsPanel.configure((TestElement)el.getProperty(HTTPSampler.ARGUMENTS));
-  domain.setText((String)el.getProperty(HTTPSampler.DOMAIN));
+  setName(el.getPropertyAsString(TestElement.NAME));
+  argsPanel.configure((TestElement)el.getProperty(HTTPSampler.ARGUMENTS).getObjectValue());
+  domain.setText(el.getPropertyAsString(HTTPSampler.DOMAIN));
   String portString=(String)el.getPropertyAsString(HTTPSampler.PORT);
   if (portString.equals("" + HTTPSampler.UNSPECIFIED_PORT)) {
     port.setText("");
@@ -9,7 +9,7 @@
  else {
     port.setText(portString);
   }
-  protocol.setText((String)el.getProperty(HTTPSampler.PROTOCOL));
+  protocol.setText(el.getPropertyAsString(HTTPSampler.PROTOCOL));
   if ("POST".equals(el.getProperty(HTTPSampler.METHOD))) {
     post.setSelected(true);
     get.setSelected(false);
@@ -18,7 +18,7 @@
     get.setSelected(true);
     post.setSelected(false);
   }
-  path.setText((String)el.getProperty(HTTPSampler.PATH));
+  path.setText(el.getPropertyAsString(HTTPSampler.PATH));
   followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.FOLLOW_REDIRECTS));
   useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.USE_KEEPALIVE));
 }

@@ -1,9 +1,9 @@
 {
   List possibleReplacements=new ArrayList();
-  Iterator iter=args.iterator();
+  PropertyIterator iter=args.iterator();
   Argument replacementArg;
   while (iter.hasNext()) {
-    replacementArg=(Argument)iter.next();
+    replacementArg=(Argument)iter.next().getObjectValue();
     try {
       if (HtmlParser.isArgumentMatched(replacementArg,arg)) {
         possibleReplacements.add(replacementArg);

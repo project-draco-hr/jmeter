@@ -1,3 +1,7 @@
 {
-  return testInfo.get(key);
+  JMeterProperty prop=(JMeterProperty)propMap.get(key);
+  if (prop == null) {
+    prop=new NullProperty(key);
+  }
+  return prop;
 }

@@ -1,5 +1,5 @@
 {
   CollectionProperty prop=(CollectionProperty)super.clone();
-  prop.value=value;
+  prop.value=cloneCollection();
   return prop;
 }

@@ -1,0 +1,19 @@
+{
+  if (key instanceof CollectionProperty) {
+    startCollection((CollectionProperty)key);
+  }
+ else   if (key instanceof MapProperty) {
+    startMap((MapProperty)key);
+  }
+ else   if (key instanceof TestElementProperty) {
+    stack.addLast(key.getName());
+  }
+ else {
+    DefaultConfiguration config=new DefaultConfiguration("property","property");
+    config.setValue(key.getStringValue());
+    config.setAttribute("name",key.getName());
+    config.setAttribute("propType",key.getClass().getName());
+    config.setAttribute(XML_SPACE,PRESERVE);
+    stack.addLast(config);
+  }
+}

@@ -4,7 +4,10 @@
   }
   JMeterTreeNode newNode=new JMeterTreeNode((TestElement)component,this);
   try {
-    if (((String)component.getProperty(TestElement.ENABLED)).equals("false")) {
+    if (component.getProperty(TestElement.ENABLED) instanceof NullProperty || component.getPropertyAsBoolean(TestElement.ENABLED)) {
+      newNode.setEnabled(true);
+    }
+ else {
       newNode.setEnabled(false);
     }
   }

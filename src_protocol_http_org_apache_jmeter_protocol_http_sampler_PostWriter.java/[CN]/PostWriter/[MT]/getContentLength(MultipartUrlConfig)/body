@@ -1,9 +1,9 @@
 {
   long size=0;
   size+=BOUNDARY.length() + 2;
-  Iterator iter=config.getArguments().iterator();
+  PropertyIterator iter=config.getArguments().iterator();
   while (iter.hasNext()) {
-    Argument item=(Argument)iter.next();
+    Argument item=(Argument)iter.next().getObjectValue();
     size+=item.getName().length() + item.getValue().toString().length();
     size+=CRLF.length * 4;
     size+=BOUNDARY.length() + 2;

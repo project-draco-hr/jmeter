@@ -8,7 +8,7 @@
   config.setProperty(HTTPSampler.DOMAIN,"www.lazer.com");
   config.setProperty(HTTPSampler.PATH,"login.jsp");
   config.setProperty(HTTPSampler.METHOD,HTTPSampler.POST);
-  config.setProperty(HTTPSampler.ARGUMENTS,args);
+  config.setProperty(new TestElementProperty(HTTPSampler.ARGUMENTS,args));
   defaultConfig=new HTTPSampler();
   defaultConfig.setName("default");
   defaultConfig.setProperty(HTTPSampler.DOMAIN,"www.xerox.com");

@@ -11,5 +11,5 @@
   sampler.setProtocol("http");
   mod.modifyEntry(sampler,response);
   Arguments args=sampler.getArguments();
-  assertEquals("jfdkjdkfjddkfdfjkdjfdf",((Argument)args.getArguments().get(0)).getValue());
+  assertEquals("jfdkjdkfjddkfdfjkdjfdf",((Argument)args.getArguments().get(0).getObjectValue()).getValue());
 }

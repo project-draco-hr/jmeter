@@ -21,7 +21,7 @@
     counter=0;
     while (controller.hasNext()) {
       TestElement sampler=controller.next();
-      assertEquals(order[counter++],sampler.getProperty(TestElement.NAME));
+      assertEquals(order[counter++],sampler.getPropertyAsString(TestElement.NAME));
     }
   }
 }

@@ -1,11 +1,10 @@
 {
   TestElement clonedItem=(TestElement)item.clone();
   cloneTesting(item,clonedItem);
-  Iterator iter2=item.getPropertyNames().iterator();
+  PropertyIterator iter2=item.propertyIterator();
   while (iter2.hasNext()) {
-    Object item2=iter2.next();
-    if (item2 instanceof TestElement) {
-      checkElementCloning((TestElement)item2);
-    }
+    JMeterProperty item2=iter2.next();
+    assertEquals(item2,clonedItem.getProperty(item2.getName()));
+    assertTrue(item2 != clonedItem.getProperty(item2.getName()));
   }
 }

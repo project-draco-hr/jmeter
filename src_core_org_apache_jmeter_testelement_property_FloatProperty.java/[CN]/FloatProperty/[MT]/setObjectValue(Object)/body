@@ -1,0 +1,12 @@
+{
+  if (v instanceof Number) {
+    value=((Number)v).floatValue();
+  }
+ else {
+    try {
+      value=Float.parseFloat(v.toString());
+    }
+ catch (    RuntimeException e) {
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
   super.configure(config);
-  argsPanel.configure((Arguments)config.getProperty(JavaSampler.ARGUMENTS));
+  argsPanel.configure((Arguments)config.getProperty(JavaSampler.ARGUMENTS).getObjectValue());
   classnameCombo.setSelectedItem(config.getPropertyAsString(JavaSampler.CLASSNAME));
 }

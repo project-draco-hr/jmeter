@@ -7,18 +7,10 @@
   List assertions=new LinkedList();
   List extractors=new LinkedList();
   List pres=new LinkedList();
-  log.debug("Full stack = " + stack);
   for (int i=stack.size(); i > 0; i--) {
-    log.debug("looping, i = " + i);
-    log.debug("sub-stack = " + stack.subList(0,i));
     Iterator iter=testTree.list(stack.subList(0,i)).iterator();
     while (iter.hasNext()) {
       TestElement item=(TestElement)iter.next();
-synchronized (item) {
-        if (hasFunctions(item)) {
-          objectsWithFunctions.add(item);
-        }
-      }
       if ((item instanceof ConfigTestElement)) {
         configs.add(item);
       }
@@ -45,11 +37,7 @@ synchronized (item) {
       }
     }
   }
-synchronized (sam) {
-    if (hasFunctions(sam)) {
-      objectsWithFunctions.add(sam);
-    }
-  }
-  SamplerConfigs samplerConfigs=new SamplerConfigs(configs,modifiers,responseModifiers,listeners,timers,assertions,extractors,pres);
-  samplerConfigMap.put(sam,samplerConfigs);
+  SamplePackage pack=new SamplePackage(configs,modifiers,responseModifiers,listeners,timers,assertions,extractors,pres);
+  pack.setSampler(sam);
+  samplerConfigMap.put(sam,pack);
 }

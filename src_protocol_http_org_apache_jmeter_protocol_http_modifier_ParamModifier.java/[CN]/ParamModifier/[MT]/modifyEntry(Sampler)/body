@@ -7,9 +7,9 @@
     sampler=(HTTPSampler)sam;
   }
   boolean modified=false;
-  Iterator iter=sampler.getArguments().iterator();
+  PropertyIterator iter=sampler.getArguments().iterator();
   while (iter.hasNext()) {
-    Argument arg=(Argument)iter.next();
+    Argument arg=(Argument)iter.next().getObjectValue();
     modified=modifyArgument(arg);
     if (modified) {
       break;

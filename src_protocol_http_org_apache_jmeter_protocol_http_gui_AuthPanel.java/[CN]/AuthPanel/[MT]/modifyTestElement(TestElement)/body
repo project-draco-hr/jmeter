@@ -1,5 +1,5 @@
 {
   el.clear();
-  el.addTestElement(tableModel.manager);
+  el.addTestElement((TestElement)tableModel.manager.clone());
   configureTestElement(el);
 }

@@ -1,6 +1,6 @@
 {
   if (arg0 instanceof JMeterProperty) {
-    int argValue=((JMeterProperty)arg0).getIntValue();
+    float argValue=((JMeterProperty)arg0).getFloatValue();
     if (value < argValue) {
       return -1;
     }

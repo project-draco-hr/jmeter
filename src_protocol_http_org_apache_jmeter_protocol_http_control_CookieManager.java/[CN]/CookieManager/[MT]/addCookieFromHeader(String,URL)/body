@@ -48,6 +48,6 @@
     getCookies().remove(index);
   }
   if (newCookie.getExpires() >= System.currentTimeMillis()) {
-    getCookies().add(newCookie);
+    getCookies().addItem(newCookie);
   }
 }

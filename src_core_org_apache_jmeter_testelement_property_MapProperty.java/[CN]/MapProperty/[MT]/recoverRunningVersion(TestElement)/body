@@ -5,7 +5,9 @@
     JMeterProperty prop=(JMeterProperty)value.get(name);
     if (prop.isTemporary(owner)) {
       iter.remove();
-      value.remove(name);
+    }
+ else {
+      prop.recoverRunningVersion(owner);
     }
   }
 }

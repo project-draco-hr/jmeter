@@ -1,4 +1,7 @@
 {
+  if (((MapProperty)prop).value == value) {
+    return;
+  }
   if (prop instanceof MapProperty) {
     PropertyIterator iter=((MapProperty)prop).valueIterator();
     while (iter.hasNext()) {
@@ -7,5 +10,8 @@
         value.put(subProp.getName(),subProp);
       }
     }
+  }
+ else {
+    addProperty(prop.getName(),prop);
   }
 }

@@ -3,9 +3,9 @@
     throw new IllegalArgumentException(JMeterUtils.getResString("argument_must_not_be_negative"));
   }
   if (size == Long.MAX_VALUE) {
-    setProperty(SIZE_KEY,new Long(0));
+    setProperty(new LongProperty(SIZE_KEY,0));
   }
  else {
-    setProperty(SIZE_KEY,new Long(size));
+    setProperty(new LongProperty(SIZE_KEY,size));
   }
 }

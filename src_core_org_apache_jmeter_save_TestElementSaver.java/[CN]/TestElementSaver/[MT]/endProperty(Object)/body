@@ -1,7 +1,0 @@
-{
-  DefaultConfiguration config=(DefaultConfiguration)stack.getLast();
-  if (config.getName().equals("property")) {
-    stack.removeLast();
-    ((DefaultConfiguration)stack.getLast()).addChild(config);
-  }
-}

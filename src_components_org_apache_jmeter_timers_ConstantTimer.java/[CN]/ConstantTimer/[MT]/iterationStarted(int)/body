@@ -1,8 +1,7 @@
 {
   variables=vars.getVariables();
   try {
-    String delayString=(String)getProperty(DELAY);
-    delay=Long.parseLong(delayString);
+    delay=getPropertyAsLong(DELAY);
   }
  catch (  ClassCastException ex) {
     log.error("Unable to determine delay - you may have used an undefined " + "variable in the test element with the name: " + getName(),ex);

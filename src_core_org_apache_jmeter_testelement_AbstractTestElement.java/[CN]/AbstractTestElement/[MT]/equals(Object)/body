@@ -1,6 +1,6 @@
 {
   if (o instanceof AbstractTestElement) {
-    return ((AbstractTestElement)o).testInfo.equals(testInfo);
+    return ((AbstractTestElement)o).propMap.equals(propMap);
   }
  else {
     return false;

@@ -1,5 +1,5 @@
 {
-  setProperty(TEST_TYPE,new Integer(testType));
+  setProperty(new IntegerProperty(TEST_TYPE,testType));
   if ((testType & NOT) > 0) {
     notMessage="not ";
   }

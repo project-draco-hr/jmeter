@@ -1,4 +1,4 @@
 {
-  setProperty(THROUGHPUT,new Long(throughput));
+  setProperty(new LongProperty(THROUGHPUT,throughput));
   delay=60000 / throughput;
 }

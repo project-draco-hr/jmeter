@@ -1,8 +1,10 @@
 {
   if (!isRunningVersion()) {
+    log.debug("Not running version, return raw function string");
     return function.getRawParameters();
   }
  else {
+    log.debug("Running version, executing function");
     int iter=JMeterContextService.getContext().getVariables().getIteration();
     if (iter < testIteration) {
       testIteration=-1;
@@ -10,6 +12,7 @@
     if (iter > testIteration || cacheValue == null) {
       testIteration=iter;
       cacheValue=function.execute();
+      log.debug("cache value set to: '" + cacheValue + "'",new Exception());
     }
     return cacheValue;
   }

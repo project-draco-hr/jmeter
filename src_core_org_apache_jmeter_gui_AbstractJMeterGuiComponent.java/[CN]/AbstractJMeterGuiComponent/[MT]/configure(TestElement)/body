@@ -1,6 +1,6 @@
 {
-  setName((String)element.getProperty(TestElement.NAME));
-  if (element.getProperty(TestElement.ENABLED) == null) {
+  setName(element.getPropertyAsString(TestElement.NAME));
+  if (element.getProperty(TestElement.ENABLED) instanceof NullProperty) {
     enabled=true;
   }
  else {

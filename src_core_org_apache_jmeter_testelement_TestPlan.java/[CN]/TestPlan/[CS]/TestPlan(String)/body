@@ -1,4 +1,4 @@
 {
   setName(name);
-  setProperty(THREAD_GROUPS,threadGroups);
+  setProperty(new CollectionProperty(THREAD_GROUPS,threadGroups));
 }

@@ -1,12 +1,9 @@
 {
-  Object type=getProperty(TEST_TYPE);
-  if (type == null) {
+  JMeterProperty type=getProperty(TEST_TYPE);
+  if (type instanceof NullProperty) {
     return CONTAINS;
   }
- else   if (type instanceof Integer) {
-    return ((Integer)type).intValue();
-  }
  else {
-    return Integer.parseInt((String)type);
+    return type.getIntValue();
   }
 }

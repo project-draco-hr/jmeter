@@ -1,3 +1,13 @@
 {
-  temporaryMembers.clear();
+  PropertyIterator iter=propertyIterator();
+  while (iter.hasNext()) {
+    JMeterProperty prop=iter.next();
+    if (prop.isTemporary(this)) {
+      iter.remove();
+      prop.clearTemporary(this);
+    }
+ else {
+      prop.recoverRunningVersion(this);
+    }
+  }
 }

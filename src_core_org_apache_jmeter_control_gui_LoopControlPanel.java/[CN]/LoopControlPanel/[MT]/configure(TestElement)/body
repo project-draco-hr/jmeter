@@ -1,5 +1,5 @@
 {
-  setName((String)element.getProperty(TestElement.NAME));
+  super.configure(element);
   if (element instanceof LoopController) {
     setState(((LoopController)element).getLoops());
   }

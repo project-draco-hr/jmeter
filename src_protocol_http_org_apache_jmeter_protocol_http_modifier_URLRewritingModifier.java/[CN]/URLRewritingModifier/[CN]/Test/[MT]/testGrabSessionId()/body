@@ -12,6 +12,6 @@
   sampler.addArgument("session_id","adfasdfdsafasdfasd");
   mod.modifyEntry(sampler,response);
   Arguments args=sampler.getArguments();
-  assertEquals("jfdkjdkf jddkfdfjkdjfdf\"",((Argument)args.getArguments().get(0)).getValue());
+  assertEquals("jfdkjdkf jddkfdfjkdjfdf\"",((Argument)args.getArguments().get(0).getObjectValue()).getValue());
   assertEquals("http://server.com:80/index.html?session_id=jfdkjdkf+jddkfdfjkdjfdf%22",sampler.toString());
 }

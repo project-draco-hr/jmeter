@@ -4,6 +4,6 @@
   element.setProperty(HOST_KEY,getSmtpHost());
   element.setProperty(SUCCESS_KEY,getSuccessSubject());
   element.setProperty(FAILURE_KEY,getFailureSubject());
-  element.setProperty(FAILURE_LIMIT_KEY,new Long(getFailureLimit()));
-  element.setProperty(SUCCESS_LIMIT_KEY,new Long(getSuccessLimit()));
+  element.setProperty(new LongProperty(FAILURE_LIMIT_KEY,getFailureLimit()));
+  element.setProperty(new LongProperty(SUCCESS_LIMIT_KEY,getSuccessLimit()));
 }

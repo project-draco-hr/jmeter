@@ -1,11 +1,9 @@
 {
-  if (threadValues == null || !threadValues.hasNext()) {
-    threadValues=((List)getProperty(THREAD_VALUES)).iterator();
-  }
-  if (threadValues.hasNext()) {
-    return (List)threadValues.next();
+  CollectionProperty threadValues=(CollectionProperty)getProperty(THREAD_VALUES);
+  if (threadValues.size() > 0) {
+    return (CollectionProperty)threadValues.get(counter % threadValues.size());
   }
  else {
-    return new LinkedList();
+    return new CollectionProperty("noname",new LinkedList());
   }
 }

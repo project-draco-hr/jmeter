@@ -24,10 +24,10 @@
     while (controller.hasNext()) {
       TestElement sampler=controller.next();
       if (counter == 0) {
-        assertEquals(interleaveOrder[i % 2],sampler.getProperty(TestElement.NAME));
+        assertEquals(interleaveOrder[i % 2],sampler.getPropertyAsString(TestElement.NAME));
       }
  else {
-        assertEquals(order[counter],sampler.getProperty(TestElement.NAME));
+        assertEquals(order[counter],sampler.getPropertyAsString(TestElement.NAME));
       }
       counter++;
     }

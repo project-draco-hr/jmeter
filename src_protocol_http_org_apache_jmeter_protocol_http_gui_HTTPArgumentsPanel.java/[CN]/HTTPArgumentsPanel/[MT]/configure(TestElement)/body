@@ -3,9 +3,9 @@
   if (el instanceof Arguments) {
     tableModel.clearData();
     HTTPArgument.convertArgumentsToHTTP((Arguments)el);
-    Iterator iter=((Arguments)el).getArguments().iterator();
+    PropertyIterator iter=((Arguments)el).getArguments().iterator();
     while (iter.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)iter.next();
+      HTTPArgument arg=(HTTPArgument)iter.next().getObjectValue();
       tableModel.addRow(arg);
     }
   }

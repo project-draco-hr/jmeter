@@ -1,38 +1,7 @@
 {
-  Iterator iter=element.getPropertyNames().iterator();
+  PropertyIterator iter=element.propertyIterator();
   while (iter.hasNext()) {
-    String key=(String)iter.next();
-    Object value=element.getProperty(key);
-    if (getProperty(key) == null || getProperty(key).equals("")) {
-      setProperty(key,value);
-      continue;
-    }
-    if (value instanceof TestElement) {
-      if (getProperty(key) == null) {
-        setProperty(key,value);
-      }
- else       if (getProperty(key) instanceof TestElement) {
-        ((TestElement)getProperty(key)).addTestElement((TestElement)value);
-      }
-    }
- else     if (value instanceof Collection) {
-      Collection localCollection=(Collection)getProperty(key);
-      if (localCollection == null) {
-        setProperty(key,value);
-      }
- else {
-        Iterator iter2=((Collection)value).iterator();
-        while (iter2.hasNext()) {
-          Object item=iter2.next();
-          if (!localCollection.contains(item)) {
-            localCollection.remove(item);
-          }
-        }
-        iter2=((Collection)value).iterator();
-        while (iter2.hasNext()) {
-          localCollection.add(iter2.next());
-        }
-      }
-    }
+    JMeterProperty prop=iter.next();
+    addProperty(prop);
   }
 }

@@ -1,9 +1,7 @@
 {
-  if (runningVersion) {
-    temporaryMembers=new LinkedList();
-  }
- else {
-    temporaryMembers=null;
-  }
   this.runningVersion=runningVersion;
+  PropertyIterator iter=propertyIterator();
+  while (iter.hasNext()) {
+    iter.next().setRunningVersion(true);
+  }
 }

@@ -1,18 +1,11 @@
 {
   currentSampler=sampler;
-  SamplePackage ret=new SamplePackage();
-  Sampler clonedSampler=sampler;
-  SamplerConfigs configs=(SamplerConfigs)samplerConfigMap.get(sampler);
-  if (sampler instanceof PerSampleClonable) {
-    clonedSampler=(Sampler)sampler.clone();
-  }
-  if (objectsWithFunctions.contains(sampler)) {
-    replaceValues(clonedSampler);
-  }
-  ret.setSampler(clonedSampler);
-  configureWithConfigElements(clonedSampler,configs.getConfigs());
-  configureWithResponseModifiers(clonedSampler,configs.getResponseModifiers());
-  configureWithModifiers(clonedSampler,configs.getModifiers());
-  configureSamplerPackage(ret,configs);
-  return ret;
+  SamplePackage pack=(SamplePackage)samplerConfigMap.get(sampler);
+  pack.setRunningVersion(true);
+  pack.setSampler(sampler);
+  runPreProcessors(pack.getPreProcessors());
+  configureWithConfigElements(sampler,pack.getConfigs());
+  configureWithResponseModifiers(sampler,pack.getResponseModifiers());
+  configureWithModifiers(sampler,pack.getModifiers());
+  return pack;
 }

@@ -1,8 +1,8 @@
 {
   List newArguments=new LinkedList();
-  Iterator iter=args.getArguments().iterator();
+  PropertyIterator iter=args.getArguments().iterator();
   while (iter.hasNext()) {
-    Argument arg=(Argument)iter.next();
+    Argument arg=(Argument)iter.next().getObjectValue();
     if (!(arg instanceof HTTPArgument)) {
       newArguments.add(new HTTPArgument(arg));
     }

@@ -1,0 +1,10 @@
+{
+  setAlwaysEncoded(true);
+  if (alreadyEncoded) {
+    name=URLDecoder.decode(name);
+    value=URLDecoder.decode(value.toString());
+  }
+  setName(name);
+  setValue(value);
+  setMetaData("=");
+}

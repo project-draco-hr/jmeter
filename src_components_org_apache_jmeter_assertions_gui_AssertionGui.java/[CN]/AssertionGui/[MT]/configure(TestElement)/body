@@ -24,9 +24,9 @@
     labelButton.setSelected(true);
   }
   tableModel.clearData();
-  Iterator tests=model.getTestStrings().iterator();
+  PropertyIterator tests=model.getTestStrings().iterator();
   while (tests.hasNext()) {
-    tableModel.addRow(new Object[]{tests.next()});
+    tableModel.addRow(new Object[]{tests.next().getStringValue()});
   }
   if (model.getTestStrings().size() == 0) {
     deletePattern.setEnabled(false);

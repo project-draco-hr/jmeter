@@ -1,0 +1,49 @@
+{
+  SampleResult result=JMeterContextService.getContext().getPreviousResult();
+  Sampler sam=JMeterContextService.getContext().getCurrentSampler();
+  HTTPSampler sampler=null;
+  if (result == null || !(sam instanceof HTTPSampler)) {
+    return;
+  }
+ else {
+    sampler=(HTTPSampler)sam;
+  }
+  List potentialLinks=new ArrayList();
+  String responseText="";
+  try {
+    responseText=new String(result.getResponseData(),"8859_1");
+  }
+ catch (  UnsupportedEncodingException e) {
+  }
+  Document html;
+  try {
+    int index=responseText.indexOf("<");
+    if (index == -1) {
+      index=0;
+    }
+    html=(Document)HtmlParser.getDOM(responseText.substring(index));
+  }
+ catch (  SAXException e) {
+    return;
+  }
+  addAnchorUrls(html,result,sampler,potentialLinks);
+  addFormUrls(html,result,sampler,potentialLinks);
+  if (potentialLinks.size() > 0) {
+    HTTPSampler url=(HTTPSampler)potentialLinks.get(rand.nextInt(potentialLinks.size()));
+    sampler.setDomain(url.getDomain());
+    sampler.setPath(url.getPath());
+    if (url.getMethod().equals(HTTPSampler.POST)) {
+      PropertyIterator iter=sampler.getArguments().iterator();
+      while (iter.hasNext()) {
+        Argument arg=(Argument)iter.next().getObjectValue();
+        modifyArgument(arg,url.getArguments());
+      }
+    }
+ else {
+      sampler.setArguments(url.getArguments());
+    }
+    sampler.setProtocol(url.getProtocol());
+    return;
+  }
+  return;
+}

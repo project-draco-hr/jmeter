@@ -1,0 +1,5 @@
+{
+  if (parent instanceof Controller && child instanceof Sampler) {
+    parent.addTestElement(child);
+  }
+}

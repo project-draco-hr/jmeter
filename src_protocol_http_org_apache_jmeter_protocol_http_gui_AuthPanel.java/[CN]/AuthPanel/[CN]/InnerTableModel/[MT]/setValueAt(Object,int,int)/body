@@ -1,5 +1,6 @@
 {
   Authorization auth=manager.getAuthObjectAt(row);
+  log.debug("Setting auth value: " + value);
   if (column == 0) {
     auth.setURL((String)value);
   }

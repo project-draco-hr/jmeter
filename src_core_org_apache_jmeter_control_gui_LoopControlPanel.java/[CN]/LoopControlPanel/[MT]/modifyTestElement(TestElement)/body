@@ -2,7 +2,7 @@
   configureTestElement(lc);
   if (lc instanceof LoopController) {
     if (loops.getText().length() > 0) {
-      ((LoopController)lc).setLoops(Integer.parseInt(loops.getText()));
+      ((LoopController)lc).setLoops(loops.getText());
     }
  else {
       ((LoopController)lc).setLoops(-1);

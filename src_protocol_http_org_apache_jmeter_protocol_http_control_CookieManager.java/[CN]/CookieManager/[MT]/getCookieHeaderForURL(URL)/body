@@ -1,8 +1,8 @@
 {
   if (!url.getProtocol().toUpperCase().trim().equals("HTTP") && !url.getProtocol().toUpperCase().trim().equals("HTTPS"))   return null;
   StringBuffer header=new StringBuffer();
-  for (Iterator enum=getCookies().iterator(); enum.hasNext(); ) {
-    Cookie cookie=(Cookie)enum.next();
+  for (PropertyIterator enum=getCookies().iterator(); enum.hasNext(); ) {
+    Cookie cookie=(Cookie)enum.next().getObjectValue();
     if (url.getHost().endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && (System.currentTimeMillis() / 1000) <= cookie.getExpires()) {
       if (header.length() > 0) {
         header.append("; ");

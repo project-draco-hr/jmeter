@@ -1,5 +1,13 @@
 {
-  TestElementCloner cloner=new TestElementCloner();
-  this.traverse(cloner);
-  return cloner.getClonedElement();
+  TestElement clonedElement=null;
+  try {
+    clonedElement=(TestElement)this.getClass().newInstance();
+  }
+ catch (  Exception e) {
+  }
+  PropertyIterator iter=propertyIterator();
+  while (iter.hasNext()) {
+    clonedElement.addProperty((JMeterProperty)iter.next().clone());
+  }
+  return clonedElement;
 }

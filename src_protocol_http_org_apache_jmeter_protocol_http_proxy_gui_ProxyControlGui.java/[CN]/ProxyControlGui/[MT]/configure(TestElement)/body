@@ -2,7 +2,7 @@
   log.debug("Configuring gui with " + element);
   super.configure(element);
   model=(ProxyControl)element;
-  portField.setText(model.getProperty(ProxyControl.PORT).toString());
+  portField.setText(model.getPropertyAsString(ProxyControl.PORT));
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());
   repaint();

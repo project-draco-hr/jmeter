@@ -1,8 +1,0 @@
-{
-  traverser.startCollection(col);
-  Iterator iter=col.iterator();
-  while (iter.hasNext()) {
-    traverseObject(traverser,iter.next());
-  }
-  traverser.endCollection(col);
-}

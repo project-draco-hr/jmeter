@@ -9,7 +9,7 @@
     }
     String hrefStr=namedItem.getNodeValue();
     try {
-      HTTPSampler newUrl=HtmlParser.createUrlFromAnchor(hrefStr,(HTTPSampler)result.getSamplerData());
+      HTTPSampler newUrl=HtmlParser.createUrlFromAnchor(hrefStr,(HTTPSampler)JMeterContextService.getContext().getPreviousSampler());
       newUrl.setMethod(HTTPSampler.GET);
       if (HtmlParser.isAnchorMatched(newUrl,config)) {
         potentialLinks.add(newUrl);

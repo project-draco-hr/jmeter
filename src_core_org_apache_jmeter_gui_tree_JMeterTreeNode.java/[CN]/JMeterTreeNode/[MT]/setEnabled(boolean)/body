@@ -1,3 +1,3 @@
 {
-  createTestElement().setProperty(TestElement.ENABLED,new Boolean(enabled));
+  createTestElement().setProperty(new BooleanProperty(TestElement.ENABLED,enabled));
 }

@@ -1,7 +1,7 @@
 {
   configureTestElement(el);
   if (el instanceof ProxyControl) {
-    ((ProxyControl)el).setPort(Integer.parseInt(portField.getText()));
+    ((ProxyControl)el).setPort(portField.getText());
     setIncludeListInProxyControl((ProxyControl)el);
     setExcludeListInProxyControl((ProxyControl)el);
     model=(ProxyControl)el;

@@ -1,0 +1,12 @@
+{
+  try {
+    JMeterProperty prop=(JMeterProperty)getPropertyType().newInstance();
+    if (prop instanceof NullProperty) {
+      return new StringProperty();
+    }
+    return prop;
+  }
+ catch (  Exception e) {
+    return new StringProperty();
+  }
+}

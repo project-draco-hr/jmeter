@@ -3,8 +3,8 @@
     return null;
   }
   StringBuffer header=new StringBuffer();
-  for (Iterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
-    Authorization auth=(Authorization)enum.next();
+  for (PropertyIterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
+    Authorization auth=(Authorization)enum.next().getObjectValue();
     if (url.toString().startsWith(auth.getURL())) {
       header.append("Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass()));
       break;

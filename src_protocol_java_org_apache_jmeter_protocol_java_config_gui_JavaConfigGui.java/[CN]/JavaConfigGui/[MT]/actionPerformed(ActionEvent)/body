@@ -9,13 +9,13 @@
       Arguments newArgs=new Arguments();
       Arguments testParams=client.getDefaultParameters();
       if (testParams != null) {
-        Iterator i=testParams.getArguments().iterator();
+        PropertyIterator i=testParams.getArguments().iterator();
         while (i.hasNext()) {
-          Argument arg=(Argument)i.next();
+          Argument arg=(Argument)i.next().getObjectValue();
           String name=arg.getName();
-          Object value=arg.getValue();
+          String value=arg.getValue();
           if (currArgsMap.containsKey(name)) {
-            Object newVal=currArgsMap.get(name);
+            String newVal=(String)currArgsMap.get(name);
             if (newVal != null && newVal.toString().length() > 0) {
               value=newVal;
             }

@@ -1,7 +1,7 @@
 {
   log.debug("Start : loadBinary");
   byte[] ret=new byte[0];
-  res.setSamplerData(new HTTPSampler(url));
+  res.setSamplerData(new HTTPSampler(url).toString());
   try {
     conn=setupConnection(url,GET);
     connect();

@@ -1,5 +1,5 @@
 {
-  Arguments args=(Arguments)getProperty(USER_DEFINED_VARIABLES);
+  Arguments args=(Arguments)getProperty(USER_DEFINED_VARIABLES).getObjectValue();
   if (args == null) {
     args=new Arguments();
     setUserDefinedVariables(args);

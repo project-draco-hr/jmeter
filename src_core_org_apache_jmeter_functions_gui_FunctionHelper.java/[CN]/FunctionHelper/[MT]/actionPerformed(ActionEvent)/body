@@ -4,10 +4,10 @@
   Arguments args=(Arguments)parameterPanel.createTestElement();
   if (args.getArguments().size() > 0) {
     functionCall.append("(");
-    Iterator iter=args.getArguments().iterator();
+    PropertyIterator iter=args.iterator();
     boolean first=true;
     while (iter.hasNext()) {
-      Argument arg=(Argument)iter.next();
+      Argument arg=(Argument)iter.next().getObjectValue();
       if (!first) {
         functionCall.append(",");
       }

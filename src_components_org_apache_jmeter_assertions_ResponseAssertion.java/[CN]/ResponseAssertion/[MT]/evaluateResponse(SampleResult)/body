@@ -5,9 +5,9 @@
   String responseString=new String(response.getResponseData());
   try {
     Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
-    Iterator iter=getTestStrings().iterator();
+    PropertyIterator iter=getTestStrings().iterator();
     while (iter.hasNext()) {
-      String stringPattern=(String)iter.next();
+      String stringPattern=iter.next().getStringValue();
       Pattern pattern=patternCache.getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
       boolean found;
       if ((CONTAINS & getTestType()) > 0) {

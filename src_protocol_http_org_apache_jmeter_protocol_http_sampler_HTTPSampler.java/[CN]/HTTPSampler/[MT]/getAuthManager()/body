@@ -1,3 +1,3 @@
 {
-  return (AuthManager)getProperty(AUTH_MANAGER);
+  return (AuthManager)getProperty(AUTH_MANAGER).getObjectValue();
 }

@@ -2,10 +2,6 @@
   Iterator iter=modifiers.iterator();
   while (iter.hasNext()) {
     Modifier mod=(Modifier)iter.next();
-    TestElement cloned=(TestElement)cloneIfNecessary(mod);
-    if (objectsWithFunctions.contains(mod)) {
-      replaceValues(cloned);
-    }
-    ((Modifier)cloned).modifyEntry(sam);
+    mod.modifyEntry(sam);
   }
 }

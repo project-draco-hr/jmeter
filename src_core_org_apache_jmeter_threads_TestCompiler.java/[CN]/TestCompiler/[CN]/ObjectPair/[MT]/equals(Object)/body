@@ -1,6 +1,6 @@
 {
   if (o instanceof ObjectPair) {
-    return one == ((ObjectPair)o).one && two == ((ObjectPair)o).two;
+    return child == ((ObjectPair)o).child && parent == ((ObjectPair)o).parent;
   }
   return false;
 }
