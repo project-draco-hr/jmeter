@@ -22,7 +22,7 @@
     }
     if (null == password) {
       if (null == defaultpw) {
-        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword");
+        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword","password");
         if (null == defaultpw) {
 synchronized (this) {
             this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
@@ -43,7 +43,7 @@ synchronized (this) {
       }
     }
  catch (    Exception e) {
-      throw new RuntimeException("Can't load KeyStore: " + e.toString());
+      log.error("Couldn't load keystore",e);
     }
     log.info("JmeterKeyStore Location: " + fileName);
     log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());

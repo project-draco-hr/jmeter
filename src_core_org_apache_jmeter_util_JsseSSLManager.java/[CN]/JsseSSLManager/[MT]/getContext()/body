@@ -1,14 +1,16 @@
 {
   if (null == this.context) {
     try {
-      this.context=SSLContext.getInstance("TLS",this.pro);
-    }
- catch (    Exception e) {
-      try {
+      if (pro != null) {
+        this.context=SSLContext.getInstance("TLS",pro);
+      }
+ else {
         this.context=SSLContext.getInstance("TLS");
       }
- catch (      Exception ee) {
-      }
+      log.debug("SSL context = " + context);
+    }
+ catch (    Exception ee) {
+      log.error("Exception occurred",ee);
     }
     try {
       KeyManagerFactory managerFactory=KeyManagerFactory.getInstance("SunX509");
@@ -25,8 +27,16 @@
       TrustManager[] trusts=new TrustManager[]{new AlwaysTrustManager(this.getTrustStore())};
       context.init(managers,trusts,this.rand);
       HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+      HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+        public boolean verify(        String urlHostname,        String certHostname){
+          return true;
+        }
+      }
+);
+      log.debug("SSL stuff all set");
     }
  catch (    Exception e) {
+      log.error("Exception occurred",e);
     }
     String[] dCiphers=this.context.getSocketFactory().getDefaultCipherSuites();
     String[] sCiphers=this.context.getSocketFactory().getSupportedCipherSuites();
