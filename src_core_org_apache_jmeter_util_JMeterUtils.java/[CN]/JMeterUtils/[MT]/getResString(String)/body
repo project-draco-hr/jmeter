@@ -10,7 +10,7 @@
   }
  catch (  MissingResourceException mre) {
     log.warn("ERROR! Resource string not found: [" + key + "]");
-    resString="";
+    resString="[res_key=" + key + "]";
   }
   return resString;
 }
