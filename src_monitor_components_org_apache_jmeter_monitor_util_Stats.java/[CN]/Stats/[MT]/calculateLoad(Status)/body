@@ -1,8 +1,8 @@
 {
   if (stat != null) {
     long totMem=stat.getJvm().getMemory().getTotal();
-    long usedMem=stat.getJvm().getMemory().getFree();
-    double memdiv=(double)usedMem / (double)totMem;
+    long freeMem=stat.getJvm().getMemory().getFree();
+    double memdiv=(double)freeMem / (double)totMem;
     double memWeight=DEFAULT_MEMORY_FACTOR * memdiv;
     Connector cntr=(Connector)stat.getConnector().get(0);
     int maxThread=cntr.getThreadInfo().getMaxThreads();
