@@ -43,7 +43,8 @@
     try {
       boolean firstInBatch=false;
       long now=System.currentTimeMillis();
-      if (now - lastTime > sampleGap) {
+      long deltaT=now - lastTime;
+      if (deltaT > sampleGap) {
         if (!myTarget.isLeaf() && groupingMode == GROUPING_ADD_SEPARATORS) {
           addDivider(treeModel,myTarget);
         }
@@ -52,6 +53,7 @@
         }
         firstInBatch=true;
       }
+      if (lastTime == 0)       deltaT=0;
       lastTime=now;
       if (groupingMode == GROUPING_STORE_FIRST_ONLY) {
         if (!firstInBatch)         return;
@@ -70,6 +72,7 @@
       JMeterTreeNode newNode=treeModel.addComponent(sampler,myTarget);
       if (firstInBatch) {
         addAssertion(treeModel,newNode);
+        addTimers(treeModel,newNode,deltaT);
         firstInBatch=false;
       }
       for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
