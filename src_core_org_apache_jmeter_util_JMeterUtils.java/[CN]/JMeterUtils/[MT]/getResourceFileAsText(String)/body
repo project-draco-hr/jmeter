@@ -11,6 +11,7 @@
         text.append(lineEnd);
       }
     }
+    fileReader.close();
     return text.toString();
   }
  catch (  NullPointerException e) {
