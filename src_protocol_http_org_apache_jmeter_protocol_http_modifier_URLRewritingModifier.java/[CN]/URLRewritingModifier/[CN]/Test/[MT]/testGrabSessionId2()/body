@@ -3,7 +3,7 @@
   response=new SampleResult();
   response.setResponseData(html.getBytes());
   mod.setArgumentName("session_id");
-  HTTPSampler sampler=createSampler();
+  HTTPSamplerBase sampler=createSampler();
   context.setCurrentSampler(sampler);
   context.setPreviousResult(response);
   mod.process();

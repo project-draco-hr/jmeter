@@ -5,7 +5,7 @@
   mod.setArgumentName("%24sid%24");
   mod.setPathExtension(true);
   mod.setPathExtensionNoEquals(true);
-  HTTPSampler sampler=createSampler();
+  HTTPSamplerBase sampler=createSampler();
   context.setCurrentSampler(sampler);
   context.setPreviousResult(response);
   mod.process();

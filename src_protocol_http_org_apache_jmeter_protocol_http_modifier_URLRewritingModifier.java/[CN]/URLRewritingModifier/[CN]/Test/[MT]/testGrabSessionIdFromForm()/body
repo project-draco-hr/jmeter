@@ -7,7 +7,7 @@
     mod.setThreadContext(context);
     mod.setArgumentName("sid");
     mod.setPathExtension(false);
-    HTTPSampler sampler=createSampler();
+    HTTPSamplerBase sampler=createSampler();
     context.setCurrentSampler(sampler);
     context.setPreviousResult(response);
     mod.process();
