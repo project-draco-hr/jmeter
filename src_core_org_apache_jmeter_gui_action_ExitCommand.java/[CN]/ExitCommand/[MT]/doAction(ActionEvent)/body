@@ -1,5 +1,5 @@
 {
-  ActionRouter.getInstance().actionPerformed(new ActionEvent(e.getSource(),e.getID(),CheckDirty.CHECK_DIRTY));
+  ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),CheckDirty.CHECK_DIRTY));
   if (GuiPackage.getInstance().isDirty()) {
     int chosenOption=JOptionPane.showConfirmDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("cancel_exit_to_save"),JMeterUtils.getResString("Save?"),JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
     if (chosenOption == JOptionPane.NO_OPTION) {
