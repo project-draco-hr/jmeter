@@ -5,6 +5,6 @@
   box.add(makeTitlePanel());
   box.add(createFieldPanel());
   box.add(createTypePanel());
-  box.add(createStringPanel());
   add(box,BorderLayout.NORTH);
+  add(createStringPanel(),BorderLayout.CENTER);
 }

@@ -1,7 +1,3 @@
 {
-  Iterator iter=((List)listeners.clone()).iterator();
-  while (iter.hasNext()) {
-    ((CellEditorListener)iter.next()).editingStopped(new ChangeEvent(this));
-  }
-  return true;
+  return delegate.stopCellEditing();
 }

@@ -1,12 +1,4 @@
 {
-  editor=new JTextArea(value.toString());
-  editor.addFocusListener(this);
-  editor.setEnabled(true);
-  editor.setRows(editor.getRows());
-  editor.revalidate();
-  pane=new JScrollPane(editor,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-  pane.validate();
-  this.row=row;
-  this.col=column;
-  return pane;
+  delegate.setValue(value);
+  return new JScrollPane(editorComponent);
 }

@@ -1,7 +1,6 @@
 {
   tableModel=new PowerTableModel(new String[]{COL_NAME},new Class[]{String.class});
   stringTable=new JTable(tableModel);
-  stringTable.addFocusListener(this);
   TextAreaCellRenderer renderer=new TextAreaCellRenderer();
   stringTable.setRowHeight(renderer.getPreferredHeight());
   stringTable.setDefaultRenderer(String.class,renderer);
