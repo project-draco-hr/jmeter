@@ -1,0 +1,8 @@
+{
+  TCLogParser tcp;
+  tcp=new TCLogParser();
+  assertNull("Should not have set the filename",tcp.FILENAME);
+  String file="testfiles/access.log";
+  tcp=new TCLogParser(file);
+  assertEquals("Filename should have been saved",file,tcp.FILENAME);
+}
