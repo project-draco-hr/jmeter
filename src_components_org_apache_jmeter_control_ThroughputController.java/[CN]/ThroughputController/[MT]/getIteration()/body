@@ -1,0 +1,10 @@
+{
+  if (getPerThread()) {
+    int retValue;
+synchronized (iterationLock) {
+      retValue=globalIteration.getInteger().intValue();
+    }
+    return retValue;
+  }
+  return iteration;
+}

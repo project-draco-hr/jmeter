@@ -1,0 +1,21 @@
+{
+  Sampler retVal=null;
+  if (getSubControllers().size() > 0 && current <= getSubControllers().size()) {
+    if (current == getSubControllers().size()) {
+      increaseExecutions();
+    }
+ else {
+      if (getStyle() == BYNUMBER) {
+        if (getExecutions() < getMaxThroughput())         retVal=super.next();
+      }
+ else {
+        if (getCurrentPercentThroughput() <= getPercentThroughput())         retVal=super.next();
+      }
+    }
+  }
+  if (retVal == null) {
+    increaseIteration();
+    reInitialize();
+  }
+  return retVal;
+}

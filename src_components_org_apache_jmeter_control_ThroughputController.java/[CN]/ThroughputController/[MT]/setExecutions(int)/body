@@ -1,0 +1,8 @@
+{
+  if (getPerThread()) {
+synchronized (numExecutionsLock) {
+      globalNumExecutions.setInteger(new Integer(executions));
+    }
+  }
+  this.numExecutions=executions;
+}

@@ -1,0 +1,21 @@
+{
+  configureTestElement(tc);
+  if (((String)style.getSelectedItem()).equals(BYNUMBER_LABEL)) {
+    ((ThroughputController)tc).setStyle(ThroughputController.BYNUMBER);
+    try {
+      ((ThroughputController)tc).setMaxThroughput(Integer.parseInt(throughput.getText().trim()));
+    }
+ catch (    NumberFormatException e) {
+      ((ThroughputController)tc).setMaxThroughput(1);
+    }
+  }
+ else {
+    ((ThroughputController)tc).setStyle(ThroughputController.BYPERCENT);
+    try {
+      ((ThroughputController)tc).setPercentThroughput(Float.parseFloat(throughput.getText().trim()));
+    }
+ catch (    NumberFormatException e) {
+      ((ThroughputController)tc).setMaxThroughput(100);
+    }
+  }
+}

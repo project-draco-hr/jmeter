@@ -1,0 +1,16 @@
+{
+  if (((String)style.getSelectedItem()).equals(BYNUMBER_LABEL)) {
+    try {
+      Integer.parseInt(throughput.getText().trim());
+    }
+ catch (    NumberFormatException e) {
+    }
+  }
+ else {
+    try {
+      Float.parseFloat(throughput.getText().trim());
+    }
+ catch (    NumberFormatException e) {
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  if (subControllersAndSamplers.size() == 0)   return true;
+ else   if (getStyle() == BYNUMBER && getExecutions() >= getMaxThroughput())   return true;
+ else   return false;
+}

@@ -1,0 +1,8 @@
+{
+  if (getPerThread()) {
+synchronized (iterationLock) {
+      globalIteration.setInteger(new Integer(iteration));
+    }
+  }
+  this.iteration=iteration;
+}

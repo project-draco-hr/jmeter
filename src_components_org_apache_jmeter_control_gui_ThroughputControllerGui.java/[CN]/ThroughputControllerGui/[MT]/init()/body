@@ -1,0 +1,20 @@
+{
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  DefaultComboBoxModel styleModel=new DefaultComboBoxModel();
+  styleModel.addElement(BYNUMBER_LABEL);
+  styleModel.addElement(BYPERCENT_LABEL);
+  style=new JComboBox(styleModel);
+  add(style);
+  JPanel tpPanel=new JPanel();
+  JLabel tpLabel=new JLabel(JMeterUtils.getResString("throughput_control_tplabel"));
+  tpPanel.add(tpLabel);
+  throughput=new JTextField(5);
+  tpPanel.add(throughput);
+  throughput.setName(THROUGHPUT);
+  throughput.setText("1");
+  throughput.addActionListener(this);
+  tpPanel.add(throughput);
+  add(tpPanel);
+}
