@@ -1,7 +1,14 @@
 {
-  stats=new JTextArea();
+  stats=new JTextPane();
   stats.setEditable(false);
   stats.setBackground(getBackground());
+  StyledDocument doc=(StyledDocument)stats.getDocument();
+  Style style=doc.addStyle("Redirect",null);
+  StyleConstants.setForeground(style,REDIRECT_COLOR);
+  style=doc.addStyle("ClientError",null);
+  StyleConstants.setForeground(style,CLIENT_ERROR_COLOR);
+  style=doc.addStyle("ServerError",null);
+  StyleConstants.setForeground(style,SERVER_ERROR_COLOR);
   JScrollPane pane=makeScrollPane(stats);
   pane.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
   return pane;

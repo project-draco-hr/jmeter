@@ -14,4 +14,7 @@
   results.setContentType("text/html");
   results.setText(html);
   results.setCaretPosition(0);
+  resultsScrollPane.setViewportView(results);
+  textButton.setEnabled(true);
+  htmlButton.setEnabled(true);
 }

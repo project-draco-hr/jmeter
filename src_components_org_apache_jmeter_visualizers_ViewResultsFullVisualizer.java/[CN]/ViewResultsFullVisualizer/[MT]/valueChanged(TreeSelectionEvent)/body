@@ -4,63 +4,73 @@
   if (log.isDebugEnabled()) {
     log.debug("valueChanged : selected node - " + node);
   }
-  stats.setText("");
-  if (node != null) {
-    SampleResult res=(SampleResult)node.getUserObject();
-    if (log.isDebugEnabled()) {
-      log.debug("valueChanged1 : sample result - " + res);
-    }
-    if (res != null) {
-      log.debug("valueChanged1 : load time - " + res.getTime());
-      if (res != null && res.getSamplerData() != null) {
-        sampleDataField.setText(res.getSamplerData().trim());
+  StyledDocument statsDoc=stats.getStyledDocument();
+  try {
+    statsDoc.remove(0,statsDoc.getLength());
+    if (node != null) {
+      SampleResult res=(SampleResult)node.getUserObject();
+      if (log.isDebugEnabled()) {
+        log.debug("valueChanged1 : sample result - " + res);
       }
-      stats.append("Load time: " + res.getTime() + "\n");
-      String responseCode=res.getResponseCode();
-      log.debug("valueChanged1 : response code - " + responseCode);
-      int responseLevel=0;
-      if (responseCode != null) {
-        try {
-          responseLevel=Integer.parseInt(responseCode) / 100;
+      if (res != null) {
+        log.debug("valueChanged1 : load time - " + res.getTime());
+        if (res != null && res.getSamplerData() != null) {
+          sampleDataField.setText(res.getSamplerData().trim());
         }
- catch (        NumberFormatException numberFormatException) {
+        statsDoc.insertString(statsDoc.getLength(),"Load time: " + res.getTime() + "\n",null);
+        String responseCode=res.getResponseCode();
+        log.debug("valueChanged1 : response code - " + responseCode);
+        int responseLevel=0;
+        if (responseCode != null) {
+          try {
+            responseLevel=Integer.parseInt(responseCode) / 100;
+          }
+ catch (          NumberFormatException numberFormatException) {
+          }
         }
-      }
+        Style style=null;
 switch (responseLevel) {
 case 3:
+          style=statsDoc.getStyle("Redirect");
         break;
 case 4:
-      break;
-case 5:
+      style=statsDoc.getStyle("ClientError");
     break;
+case 5:
+  style=statsDoc.getStyle("ServerError");
+break;
 }
-stats.append("HTTP response code: " + responseCode + "\n");
+statsDoc.insertString(statsDoc.getLength(),"HTTP response code: " + responseCode + "\n",style);
 String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
-stats.append("HTTP response message: " + responseMsgStr);
+statsDoc.insertString(statsDoc.getLength(),"HTTP response message: " + responseMsgStr + "\n",null);
 byte[] responseBytes=(byte[])res.getResponseData();
-ImageIcon icon=null;
-String response=null;
 if (res.getDataType() != null && res.getDataType().equals(SampleResult.TEXT)) {
-  try {
-    response=new String(responseBytes,"utf-8");
-  }
- catch (  UnsupportedEncodingException err) {
-    response=new String(responseBytes);
-  }
+String response=null;
+try {
+response=new String(responseBytes,"utf-8");
 }
- else if (responseBytes != null) {
-  icon=new ImageIcon(responseBytes);
+ catch (UnsupportedEncodingException err) {
+response=new String(responseBytes);
 }
 if (response != null) {
-  if (textMode) {
-    showTextResponse(response);
-  }
+if (textMode) {
+  showTextResponse(response);
+}
  else {
-    showRenderedResponse(response);
-  }
+  showRenderedResponse(response);
 }
 }
+}
+ else if (responseBytes != null) {
+showImage(new ImageIcon(responseBytes));
+}
+}
+}
+}
+ catch (BadLocationException exc) {
+log.error("Error setting statistics text",exc);
+stats.setText("");
 }
 log.debug("End : valueChanged1");
 }

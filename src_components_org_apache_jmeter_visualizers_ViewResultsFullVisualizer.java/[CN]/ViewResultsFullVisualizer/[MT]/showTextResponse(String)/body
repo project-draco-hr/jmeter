@@ -2,4 +2,7 @@
   results.setContentType("text/plain");
   results.setText(response == null ? "" : response);
   results.setCaretPosition(0);
+  resultsScrollPane.setViewportView(results);
+  textButton.setEnabled(true);
+  htmlButton.setEnabled(true);
 }
