@@ -5,7 +5,10 @@
     return;
   }
   log.debug("RegexExtractor processing result");
-  context.getVariables().put(getRefName(),getDefaultValue());
+  JMeterVariables vars=context.getVariables();
+  String refName=getRefName();
+  int matchNumber=getMatchNumber();
+  vars.put(refName,getDefaultValue());
   Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
   PatternMatcherInput input=new PatternMatcherInput(new String(context.getPreviousResult().getResponseData()));
   log.debug("Regex = " + getRegex());
@@ -24,12 +27,25 @@
       }
       x++;
     }
- while (x != getMatchNumber() && !done);
+ while (x != matchNumber && !done);
     try {
-      MatchResult match=getCorrectMatch(matches);
-      if (match != null) {
-        context.getVariables().put(getRefName(),generateResult(match));
-        saveGroups(context.getVariables(),getRefName(),match);
+      MatchResult match;
+      if (matchNumber >= 0) {
+        match=getCorrectMatch(matches,matchNumber);
+        if (match != null) {
+          vars.put(refName,generateResult(match));
+          saveGroups(vars,refName,match);
+        }
+      }
+ else {
+        vars.put(refName + "_matchNr","" + matches.size());
+        for (int i=1; i <= matches.size(); i++) {
+          match=getCorrectMatch(matches,i);
+          if (match != null) {
+            vars.put(refName + "_" + i,generateResult(match));
+            saveGroups(vars,refName + "_" + i,match);
+          }
+        }
       }
     }
  catch (    RuntimeException e) {

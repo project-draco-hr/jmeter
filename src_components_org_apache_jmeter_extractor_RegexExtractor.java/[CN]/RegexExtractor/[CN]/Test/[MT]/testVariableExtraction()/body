@@ -4,4 +4,7 @@
   extractor.setMatchNumber(2);
   extractor.process();
   assertEquals("5",vars.get("regVal"));
+  assertEquals("pinposition2",vars.get("regVal_g1"));
+  assertEquals("5",vars.get("regVal_g2"));
+  assertEquals("<value field=\"pinposition2\">5</value>",vars.get("regVal_g0"));
 }
