@@ -16,7 +16,6 @@
       try {
         HTTPSampleResult binRes=sample((URL)binURL,HTTPSampler.GET,false,frameDepth + 1);
         res.addSubResult(binRes);
-        res.sampleEnd();
         res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
       }
  catch (      ClassCastException e) {

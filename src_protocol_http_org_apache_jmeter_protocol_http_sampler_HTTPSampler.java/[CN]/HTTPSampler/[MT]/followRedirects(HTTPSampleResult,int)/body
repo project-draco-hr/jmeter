@@ -19,7 +19,6 @@
     lastRes=errorResult(new IOException("Exceeeded maximum number of redirects: " + MAX_REDIRECTS),null,0);
     totalRes.addSubResult(lastRes);
   }
-  totalRes.sampleEnd();
   totalRes.setSampleLabel(totalRes.getSampleLabel() + "->" + lastRes.getSampleLabel());
   totalRes.setURL(lastRes.getURL());
   totalRes.setHTTPMethod(lastRes.getHTTPMethod());
