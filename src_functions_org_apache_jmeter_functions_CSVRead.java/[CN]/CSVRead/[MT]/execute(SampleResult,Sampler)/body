@@ -19,7 +19,12 @@
     }
     try {
       int columnIndex=Integer.parseInt(columnOrNext);
-      myValue=(String)processedLines.get(columnIndex);
+      if (processedLines != null) {
+        myValue=(String)processedLines.get(columnIndex);
+      }
+ else {
+        log.error("No file data found");
+      }
     }
  catch (    NumberFormatException e) {
       log.warn("Column number error: " + columnOrNext + " "+ e.toString());
