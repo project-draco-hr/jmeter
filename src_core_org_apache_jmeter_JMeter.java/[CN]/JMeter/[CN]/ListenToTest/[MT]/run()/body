@@ -6,5 +6,5 @@
  catch (  InterruptedException e) {
   }
   println("... end of run");
-  System.exit(0);
+  _parent.testEnded=true;
 }

@@ -1,6 +1,7 @@
 {
   System.setProperty("JMeter.NonGui","true");
   JMeter driver=new JMeter();
+  driver.parent=this;
   PluginManager.install(this,false);
   if (testFile == null) {
     throw new IllegalUserActionException();

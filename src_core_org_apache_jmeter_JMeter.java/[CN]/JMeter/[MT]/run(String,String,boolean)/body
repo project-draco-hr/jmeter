@@ -22,7 +22,7 @@
       Summariser summer=new Summariser(summariserName);
       tree.add(tree.getArray()[0],summer);
     }
-    tree.add(tree.getArray()[0],new ListenToTest());
+    tree.add(tree.getArray()[0],new ListenToTest(parent));
     println("Created the tree successfully");
     JMeterEngine engine=null;
     if (!remoteStart) {
