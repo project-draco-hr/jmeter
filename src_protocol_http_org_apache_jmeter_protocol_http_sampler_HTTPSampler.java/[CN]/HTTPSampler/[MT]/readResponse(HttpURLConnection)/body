@@ -11,25 +11,14 @@
     }
   }
  catch (  IOException e) {
-    if (e.getCause() instanceof FileNotFoundException) {
-      log.warn(e.getCause().toString());
-    }
- else {
+{
       log.error(e.toString());
-      Throwable cause=e.getCause();
-      if (cause != null) {
-        log.error("Cause: " + cause);
-      }
       logError=true;
     }
     in=new BufferedInputStream(conn.getErrorStream());
   }
 catch (  Exception e) {
     log.error(e.toString());
-    Throwable cause=e.getCause();
-    if (cause != null) {
-      log.error("Cause: " + cause);
-    }
     in=new BufferedInputStream(conn.getErrorStream());
     logError=true;
   }
