@@ -1,6 +1,6 @@
 {
   super.addProperty(prop);
   if (PATH.equals(prop.getName())) {
-    super.addProperty(new StringProperty(ENCODED_PATH,encodePath(prop.getStringValue())));
+    super.addProperty(new StringProperty(ENCODED_PATH,encodeSpaces(prop.getStringValue())));
   }
 }

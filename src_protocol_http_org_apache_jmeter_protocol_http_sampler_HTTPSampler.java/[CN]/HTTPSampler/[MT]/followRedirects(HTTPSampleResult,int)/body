@@ -3,7 +3,7 @@
   HTTPSampleResult lastRes=res;
   int redirect;
   for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {
-    String location=lastRes.getRedirectLocation();
+    String location=encodeSpaces(lastRes.getRedirectLocation());
     try {
       lastRes=sample(new URL(lastRes.getURL(),location),HTTPSampler.GET,true,frameDepth);
     }
