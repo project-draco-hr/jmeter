@@ -1,9 +1,8 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  JPanel mainPanel=new JPanel();
+  this.setLayout(new BorderLayout());
+  JPanel mainPanel=new VerticalPanel();
   Border margin=new EmptyBorder(10,10,5,10);
-  mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  this.setBorder(margin);
   mainPanel.add(makeTitlePanel());
   JPanel mailerPanel=new JPanel();
   mailerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),model.getAttributesTitle()));
@@ -91,6 +90,6 @@
   c.gridwidth=GridBagConstraints.REMAINDER;
   g.setConstraints(failureField,c);
   mailerPanel.add(failureField);
-  mainPanel.add(mailerPanel,BorderLayout.CENTER);
-  this.add(mainPanel);
+  mainPanel.add(mailerPanel);
+  this.add(mainPanel,BorderLayout.WEST);
 }
