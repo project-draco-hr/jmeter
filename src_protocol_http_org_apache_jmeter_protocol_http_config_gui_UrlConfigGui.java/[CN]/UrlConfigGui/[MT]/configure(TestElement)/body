@@ -20,5 +20,6 @@
   }
   path.setText(el.getPropertyAsString(HTTPSampler.PATH));
   followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.FOLLOW_REDIRECTS));
+  autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.AUTO_REDIRECTS));
   useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSampler.USE_KEEPALIVE));
 }
