@@ -1,19 +1,28 @@
 {
-  if (isUnsupportedProtocol(url)) {
+  if (!isSupportedProtocol(url)) {
     return null;
   }
-  StringBuffer header=new StringBuffer();
-  for (PropertyIterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
-    Authorization auth=(Authorization)enum.next().getObjectValue();
-    if (url.toString().startsWith(auth.getURL())) {
-      header.append("Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass()));
-      break;
+  URL url2=null;
+  try {
+    if (url.getPort() == -1) {
+      int port=url.getProtocol().equalsIgnoreCase("http") ? 80 : 443;
+      url2=new URL(url.getProtocol(),url.getHost(),port,url.getPath());
+    }
+ else     if ((url.getPort() == 80 && url.getProtocol().equalsIgnoreCase("http")) || (url.getPort() == 443 && url.getProtocol().equalsIgnoreCase("https"))) {
+      url2=new URL(url.getProtocol(),url.getHost(),url.getPath());
     }
   }
-  if (header.length() != 0) {
-    return header.toString();
+ catch (  MalformedURLException e) {
+    log.error("Internal error!",e);
   }
- else {
-    return null;
+  String s1=url.toString();
+  String s2=null;
+  if (url2 != null)   s2=url2.toString();
+  for (PropertyIterator enum=getAuthObjects().iterator(); enum.hasNext(); ) {
+    Authorization auth=(Authorization)enum.next().getObjectValue();
+    if (s1.startsWith(auth.getURL()) || s2 != null && s2.startsWith(auth.getURL())) {
+      return "Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass());
+    }
   }
+  return null;
 }
