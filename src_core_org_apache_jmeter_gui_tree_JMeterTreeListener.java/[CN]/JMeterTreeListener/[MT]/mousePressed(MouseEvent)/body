@@ -3,6 +3,7 @@
   mainFrame.closeMenu();
   int selRow=tree.getRowForLocation(e.getX(),e.getY());
   if (tree.getPathForLocation(e.getX(),e.getY()) != null) {
+    log.debug("mouse pressed, updating currentPath");
     currentPath=tree.getPathForLocation(e.getX(),e.getY());
   }
   if (selRow != -1) {

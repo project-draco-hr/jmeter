@@ -1,4 +1,5 @@
 {
+  log.debug("value changed, updating currentPath");
   currentPath=e.getNewLeadSelectionPath();
   actionHandler.actionPerformed(new ActionEvent(this,3333,"edit"));
 }

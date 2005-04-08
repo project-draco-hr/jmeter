@@ -1,10 +1,13 @@
 {
   try {
-    if (currentNode != null) {
+    if (currentNode != null && !currentNodeUpdated) {
       log.debug("Updating current node " + currentNode.getName());
       JMeterGUIComponent comp=getGui(currentNode.getTestElement());
       TestElement el=currentNode.getTestElement();
       comp.modifyTestElement(el);
+    }
+    if (currentNode != treeListener.getCurrentNode()) {
+      currentNodeUpdated=true;
     }
     currentNode=treeListener.getCurrentNode();
   }
