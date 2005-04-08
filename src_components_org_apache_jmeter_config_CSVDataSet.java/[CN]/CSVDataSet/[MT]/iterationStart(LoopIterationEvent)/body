@@ -5,7 +5,9 @@
     vars=JOrphanUtils.split(getVariableNames(),",");
   }
   try {
-    String[] lineValues=JOrphanUtils.split(server.readLine(getFilename()),",");
+    String delim=getDelimiter();
+    if (delim.equals("\\t"))     delim="\t";
+    String[] lineValues=JOrphanUtils.split(server.readLine(getFilename()),delim);
     for (int a=0; a < vars.length && a < lineValues.length; a++) {
       this.getThreadContext().getVariables().put(vars[a],lineValues[a]);
     }
