@@ -1,11 +1,11 @@
 {
-  HTTPSampleResult res=new HTTPSampleResult();
+  SampleResult res=null;
   try {
     res=sample(getUrl(),getMethod(),false,0);
     res.setSampleLabel(getName());
     return res;
   }
  catch (  MalformedURLException e) {
-    return errorResult(e,res);
+    return errorResult(e,new HTTPSampleResult());
   }
 }
