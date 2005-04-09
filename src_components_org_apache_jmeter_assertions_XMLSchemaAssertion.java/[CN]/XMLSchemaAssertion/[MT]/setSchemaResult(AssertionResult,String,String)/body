@@ -1,0 +1,21 @@
+{
+  try {
+    DocumentBuilderFactory parserFactory=DocumentBuilderFactory.newInstance();
+    parserFactory.setValidating(true);
+    parserFactory.setNamespaceAware(true);
+    parserFactory.setAttribute(JAXP_SCHEMA_LANGUAGE,W3C_XML_SCHEMA);
+    parserFactory.setAttribute(JAXP_SCHEMA_SOURCE,xsdFileName);
+    DocumentBuilder parser=parserFactory.newDocumentBuilder();
+    parser.setErrorHandler(new SAXErrorHandler(result));
+    parser.parse(new InputSource(new StringReader(xmlStr)));
+  }
+ catch (  SAXException e) {
+    result.setResultForFailure(e.getMessage());
+  }
+catch (  IOException e) {
+    result.setResultForFailure(e.getMessage());
+  }
+catch (  ParserConfigurationException e) {
+    result.setResultForFailure(e.getMessage());
+  }
+}

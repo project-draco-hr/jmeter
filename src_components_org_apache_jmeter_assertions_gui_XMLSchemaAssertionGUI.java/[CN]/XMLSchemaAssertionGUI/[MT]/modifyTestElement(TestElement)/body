@@ -1,0 +1,5 @@
+{
+  log.debug("XMLSchemaAssertionGui.modifyTestElement() called");
+  configureTestElement(inElement);
+  ((XMLSchemaAssertion)inElement).setXsdFileName(xmlSchema.getText());
+}
