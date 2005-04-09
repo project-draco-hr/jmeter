@@ -2,7 +2,7 @@
   AssertionResult result=new AssertionResult();
   result.setFailure(false);
   if (response.getResponseData() == null) {
-    return setResultForNull(result);
+    return result.setResultForNull();
   }
   resultData=response.getResponseData();
   long resultSize=resultData.length;

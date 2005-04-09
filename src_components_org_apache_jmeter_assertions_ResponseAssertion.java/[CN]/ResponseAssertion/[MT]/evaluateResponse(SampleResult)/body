@@ -20,7 +20,7 @@
     if (toCheck == null)     toCheck="";
   }
   if (toCheck.length() == 0) {
-    return setResultForNull(result);
+    return result.setResultForNull();
   }
   try {
     Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
