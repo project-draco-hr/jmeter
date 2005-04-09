@@ -2,7 +2,7 @@
   if (getPropertyAsBoolean(MEMORY_CACHE)) {
     String next=this.getRandomFileName();
     if (DOMPool.getDocument(next) != null) {
-      return ((Document)DOMPool.getDocument(next)).getDocumentElement();
+      return DOMPool.getDocument(next).getDocumentElement();
     }
  else {
       return openDocument(next).getDocumentElement();

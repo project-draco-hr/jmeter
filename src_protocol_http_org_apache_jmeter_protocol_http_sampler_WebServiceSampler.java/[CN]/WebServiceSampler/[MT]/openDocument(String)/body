@@ -1,5 +1,5 @@
 {
-  XDB=XMLParserUtils.getXMLDocBuilder();
+  DocumentBuilder XDB=XMLParserUtils.getXMLDocBuilder();
   Document doc=null;
   if (getXmlFile().length() > 0 || getXmlPathLoc().length() > 0) {
     try {
