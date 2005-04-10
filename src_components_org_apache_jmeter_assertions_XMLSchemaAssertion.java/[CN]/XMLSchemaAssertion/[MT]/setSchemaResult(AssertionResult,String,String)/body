@@ -9,13 +9,22 @@
     parser.setErrorHandler(new SAXErrorHandler(result));
     parser.parse(new InputSource(new StringReader(xmlStr)));
   }
- catch (  SAXException e) {
+ catch (  SAXParseException e) {
+    if (!result.isError() && !result.isFailure()) {
+      result.setError(true);
+      result.setFailureMessage(errorDetails(e));
+    }
+  }
+catch (  SAXException e) {
+    log.warn(e.toString());
     result.setResultForFailure(e.getMessage());
   }
 catch (  IOException e) {
+    log.warn("IO error",e);
     result.setResultForFailure(e.getMessage());
   }
 catch (  ParserConfigurationException e) {
+    log.warn("Problem with Parser Config",e);
     result.setResultForFailure(e.getMessage());
   }
 }

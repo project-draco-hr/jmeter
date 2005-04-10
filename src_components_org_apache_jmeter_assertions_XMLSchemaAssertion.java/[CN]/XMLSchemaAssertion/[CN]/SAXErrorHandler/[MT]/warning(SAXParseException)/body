@@ -1,3 +1,5 @@
 {
-  throw exception;
+  String msg="warning: " + errorDetails(exception);
+  log.debug(msg);
+  result.setFailureMessage(msg);
 }
