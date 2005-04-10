@@ -1,0 +1,11 @@
+{
+  ByteArrayOutputStream baos=readBA("testfiles/XMLSchematest.xml");
+  baos.write(" \t\n".getBytes());
+  result.setResponseData(baos.toByteArray());
+  assertion.setXsdFileName("testfiles/XMLSchema-pass.xsd");
+  AssertionResult res=assertion.getResult(jmctx.getPreviousResult());
+  testLog.debug("xisError() " + res.isError() + " isFailure() "+ res.isFailure());
+  testLog.debug("failure " + res.getFailureMessage());
+  assertFalse(res.isError());
+  assertFalse(res.isFailure());
+}

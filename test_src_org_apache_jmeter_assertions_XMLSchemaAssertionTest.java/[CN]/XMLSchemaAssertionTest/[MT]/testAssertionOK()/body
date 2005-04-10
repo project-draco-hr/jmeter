@@ -1,0 +1,9 @@
+{
+  result.setResponseData(readFile("testfiles/XMLSchematest.xml"));
+  assertion.setXsdFileName("testfiles/XMLSchema-pass.xsd");
+  AssertionResult res=assertion.getResult(jmctx.getPreviousResult());
+  testLog.debug("isError() " + res.isError() + " isFailure() "+ res.isFailure());
+  testLog.debug("failure " + res.getFailureMessage());
+  assertFalse("Should not be an error",res.isError());
+  assertFalse("Should not be a failure",res.isFailure());
+}
