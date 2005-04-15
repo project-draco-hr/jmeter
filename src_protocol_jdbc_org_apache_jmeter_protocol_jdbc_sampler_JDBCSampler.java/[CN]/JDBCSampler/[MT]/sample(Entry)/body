@@ -11,10 +11,10 @@
   try {
     conn=pool.getConnection();
     stmt=conn.createStatement();
-    if (stmt.execute(getQuery())) {
+    if (isQueryOnly()) {
       ResultSet rs=null;
       try {
-        rs=stmt.getResultSet();
+        rs=stmt.executeQuery(getQuery());
         Data data=getDataFromResultSet(rs);
         res.setResponseData(data.toString().getBytes());
       }
@@ -30,6 +30,7 @@
       }
     }
  else {
+      stmt.execute(getQuery());
       int updateCount=stmt.getUpdateCount();
       String results=updateCount + " updates";
       res.setResponseData(results.getBytes());
