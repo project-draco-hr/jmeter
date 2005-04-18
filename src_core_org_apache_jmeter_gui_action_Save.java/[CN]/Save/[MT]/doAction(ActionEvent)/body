@@ -28,8 +28,13 @@
   }
   Writer writer=null;
   try {
-    writer=new FileWriter(updateFile);
-    SaveService.saveTree(subTree,writer);
+    if (JMeterUtils.getPropDefault("file_format","2.1").equals("2.0")) {
+      OldSaveService.saveSubTree(subTree,new FileOutputStream(updateFile));
+    }
+ else {
+      writer=new FileWriter(updateFile);
+      SaveService.saveTree(subTree,writer);
+    }
   }
  catch (  Throwable ex) {
     testPlanFile=null;
