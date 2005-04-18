@@ -1,0 +1,18 @@
+{
+synchronized (sync) {
+    timerCounter[0]++;
+    if ((getGroupSize() == 0 && timerCounter[0] >= JMeterContextService.getNumberOfThreads()) || (getGroupSize() > 0 && timerCounter[0] >= getGroupSize())) {
+      timerCounter[0]=0;
+      sync.notifyAll();
+    }
+ else {
+      try {
+        sync.wait();
+      }
+ catch (      InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
+  }
+  return 0;
+}

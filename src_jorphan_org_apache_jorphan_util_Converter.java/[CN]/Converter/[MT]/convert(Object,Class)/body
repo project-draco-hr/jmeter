@@ -8,6 +8,9 @@
  else   if (toType.equals(float.class) || toType.equals(Float.class)) {
     return new Float(getFloat(value));
   }
+ else   if (toType.equals(double.class) || toType.equals(Double.class)) {
+    return new Double(getDouble(value));
+  }
  else   if (toType.equals(String.class)) {
     return getString(value);
   }
