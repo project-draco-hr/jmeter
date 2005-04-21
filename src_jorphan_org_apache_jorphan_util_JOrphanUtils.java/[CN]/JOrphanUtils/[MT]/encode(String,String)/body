@@ -5,7 +5,7 @@
       return (String)encodeMethod.invoke(null,args);
     }
  catch (    Exception e) {
-      e.printStackTrace();
+      log.warn("Error trying to encode",e);
       return string;
     }
   }
