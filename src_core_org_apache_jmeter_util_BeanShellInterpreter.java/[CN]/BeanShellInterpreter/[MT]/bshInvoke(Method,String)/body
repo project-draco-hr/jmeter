@@ -1,7 +1,7 @@
 {
   Object r=null;
   try {
-    r=m.invoke(bshInstance,new Object[]{s,o});
+    r=m.invoke(bshInstance,new Object[]{s});
   }
  catch (  IllegalArgumentException e) {
     log.error("Error invoking bsh method " + m.getName() + "\n",e);
