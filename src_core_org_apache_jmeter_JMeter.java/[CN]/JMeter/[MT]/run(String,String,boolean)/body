@@ -6,6 +6,7 @@
       println("Could not open " + testFile);
       return;
     }
+    FileServer.getFileServer().setBasedir(f.getAbsolutePath());
     reader=new FileInputStream(f);
     log.info("Loading file: " + f);
     HashTree tree=SaveService.loadTree(reader);
