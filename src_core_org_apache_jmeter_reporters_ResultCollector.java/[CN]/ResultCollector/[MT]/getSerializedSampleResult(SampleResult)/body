@@ -1,0 +1,12 @@
+{
+  ByteArrayOutputStream tempOut=new ByteArrayOutputStream();
+  serializer.serialize(tempOut,OldSaveService.getConfiguration(result,getSaveConfig()));
+  String serVer=tempOut.toString();
+  int index=serVer.indexOf(System.getProperty("line.separator"));
+  if (index > -1) {
+    return serVer.substring(index);
+  }
+ else {
+    return serVer;
+  }
+}

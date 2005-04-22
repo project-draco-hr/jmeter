@@ -1,7 +1,13 @@
 {
   if (out != null) {
     if (!isResultMarked(result) && !this.isStats) {
-      SaveService.saveSampleResult(result,out);
+      if (JMeterUtils.getPropDefault("file_format","2.1").equals("2.0")) {
+        if (serializer == null)         serializer=new DefaultConfigurationSerializer();
+        out.write(getSerializedSampleResult(result));
+      }
+ else {
+        SaveService.saveSampleResult(result,out);
+      }
     }
   }
 }
