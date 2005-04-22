@@ -8,7 +8,6 @@
   xpath=new XPathPanel();
   sizePanel.add(xpath);
   xml=new XMLConfPanel();
-  xpath=new XPathPanel();
   xml.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("xpath_assertion_option")));
   add(xml);
   add(sizePanel);
