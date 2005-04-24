@@ -7,7 +7,7 @@
   JPanel providerPanel=new JPanel(new BorderLayout(10,0));
   providerPanel.add(providerUrl);
   jndiPanel.add(providerPanel,BorderLayout.SOUTH);
-  jndiPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jndi_props"));
+  jndiPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_jndi_props"));
   jndiPanel.add(jndiPropertiesPanel);
   return jndiPanel;
 }
