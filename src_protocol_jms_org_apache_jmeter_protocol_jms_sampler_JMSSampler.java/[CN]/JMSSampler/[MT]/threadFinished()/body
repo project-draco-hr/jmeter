@@ -5,12 +5,12 @@
     session.close();
   }
  catch (  JMSException e) {
-    LOGGER.info(e);
+    LOGGER.info(e.getLocalizedMessage());
   }
   if (connection != null)   try {
     connection.close();
   }
  catch (  JMSException e) {
-    LOGGER.info(e);
+    LOGGER.info(e.getLocalizedMessage());
   }
 }

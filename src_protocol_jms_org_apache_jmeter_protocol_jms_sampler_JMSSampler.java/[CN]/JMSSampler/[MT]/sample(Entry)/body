@@ -32,7 +32,7 @@
     }
   }
  catch (  Exception e) {
-    LOGGER.warn(e);
+    LOGGER.warn(e.getLocalizedMessage());
     res.setResponseData(new byte[0]);
     res.setSuccessful(false);
   }

@@ -34,10 +34,10 @@
     connection.start();
   }
  catch (  JMSException e) {
-    LOGGER.warn(e);
+    LOGGER.warn(e.getLocalizedMessage());
   }
 catch (  NamingException e) {
-    LOGGER.warn(e);
+    LOGGER.warn(e.getLocalizedMessage());
   }
  finally {
     if (context != null) {
