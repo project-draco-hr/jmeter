@@ -1,6 +1,10 @@
 {
   log.info("Subscriber2.listen() called");
   while (RUN) {
+    if (SUBSCRIBER == null) {
+      log.error("Subscriber has not been set up");
+      break;
+    }
     try {
       Message message=this.SUBSCRIBER.receive();
       if (message != null && message instanceof TextMessage) {

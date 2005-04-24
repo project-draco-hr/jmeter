@@ -1,4 +1,8 @@
 {
+  if (this.CONN == null) {
+    log.error("Connection not set up");
+    return;
+  }
   try {
     this.CONN.start();
   }
