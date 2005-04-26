@@ -1,0 +1,38 @@
+{
+  results.setContentType("text/xml");
+  results.setText(response == null ? "" : response);
+  results.setCaretPosition(0);
+  Component view=results;
+  org.w3c.dom.Document document=null;
+  try {
+    DocumentBuilderFactory parserFactory=DocumentBuilderFactory.newInstance();
+    parserFactory.setValidating(false);
+    parserFactory.setNamespaceAware(false);
+    DocumentBuilder parser=parserFactory.newDocumentBuilder();
+    parser.setErrorHandler(saxErrorHandler);
+    document=parser.parse(new InputSource(new StringReader(response)));
+    JPanel domTreePanel=new DOMTreePanel(document);
+    document.normalize();
+    view=domTreePanel;
+  }
+ catch (  SAXParseException e) {
+    showErrorMessageDialog(saxErrorHandler.getErrorMessage(),saxErrorHandler.getMessageType());
+    log.debug(e.getMessage());
+  }
+catch (  SAXException e) {
+    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
+    log.debug(e.getMessage());
+  }
+catch (  IOException e) {
+    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
+    log.debug(e.getMessage());
+  }
+catch (  ParserConfigurationException e) {
+    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
+    log.debug(e.getMessage());
+  }
+  resultsScrollPane.setViewportView(view);
+  textButton.setEnabled(true);
+  htmlButton.setEnabled(true);
+  xmlButton.setEnabled(true);
+}

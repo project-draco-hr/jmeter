@@ -1,6 +1,6 @@
 {
-  String command=e.getActionCommand();
-  if (command != null && (command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND))) {
+  command=e.getActionCommand();
+  if (command != null && (command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND) || command.equals(XML_COMMAND))) {
     textMode=command.equals(TEXT_COMMAND);
     DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
     if (node == null) {
@@ -9,11 +9,14 @@
     }
     SampleResult res=(SampleResult)node.getUserObject();
     String response=getResponseAsString(res);
-    if (textMode) {
+    if (command.equals(TEXT_COMMAND)) {
       showTextResponse(response);
     }
- else {
+ else     if (command.equals(HTML_COMMAND)) {
       showRenderedResponse(response,res);
+    }
+ else     if (command.equals(XML_COMMAND)) {
+      showRenderXMLResponse(response);
     }
   }
 }

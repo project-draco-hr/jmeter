@@ -1,5 +1,5 @@
 {
-  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,hasFocus);
+  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,focus);
   if (!((SampleResult)((DefaultMutableTreeNode)value).getUserObject()).isSuccessful()) {
     this.setForeground(Color.red);
   }

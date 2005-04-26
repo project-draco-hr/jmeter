@@ -10,10 +10,16 @@
   htmlButton.addActionListener(this);
   htmlButton.setSelected(!textMode);
   group.add(htmlButton);
+  xmlButton=new JRadioButton(XML_BUTTON_LABEL);
+  xmlButton.setActionCommand(XML_COMMAND);
+  xmlButton.addActionListener(this);
+  xmlButton.setSelected(!textMode);
+  group.add(xmlButton);
   downloadAll=new JCheckBox(DOWNLOAD_LABEL);
   JPanel pane=new JPanel();
   pane.add(textButton);
   pane.add(htmlButton);
+  pane.add(xmlButton);
   pane.add(downloadAll);
   return pane;
 }

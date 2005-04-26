@@ -1,0 +1,6 @@
+{
+  msg="fatal: " + errorDetails(exception);
+  messageType=JOptionPane.ERROR_MESSAGE;
+  log.debug(msg);
+  throw exception;
+}
