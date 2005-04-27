@@ -1,5 +1,8 @@
 {
   setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  Box mainPanel=Box.createVerticalBox();
   JPanel jmsQueueingPanel=new JPanel(new BorderLayout());
   jmsQueueingPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_queueing")));
   JPanel qcfPanel=new JPanel(new BorderLayout(5,0));
@@ -27,7 +30,8 @@
   messagePanel.add(soapXmlPanel,BorderLayout.CENTER);
   jmsPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_props"));
   messagePanel.add(jmsPropertiesPanel,BorderLayout.SOUTH);
-  add(jmsQueueingPanel,BorderLayout.NORTH);
-  add(messagePanel,BorderLayout.CENTER);
-  add(jndiPanel,BorderLayout.SOUTH);
+  mainPanel.add(jmsQueueingPanel,BorderLayout.NORTH);
+  mainPanel.add(messagePanel,BorderLayout.CENTER);
+  mainPanel.add(jndiPanel,BorderLayout.SOUTH);
+  add(mainPanel,BorderLayout.CENTER);
 }

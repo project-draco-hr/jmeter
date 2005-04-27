@@ -1,5 +1,5 @@
 {
-  setName(el.getPropertyAsString(TestElement.NAME));
+  super.configure(el);
   queueuConnectionFactory.setText(el.getPropertyAsString(JMSSampler.QUEUE_CONNECTION_FACTORY_JNDI));
   sendQueue.setText(el.getPropertyAsString(JMSSampler.SEND_QUEUE));
   receiveQueue.setText(el.getPropertyAsString(JMSSampler.RECEIVE_QUEUE));

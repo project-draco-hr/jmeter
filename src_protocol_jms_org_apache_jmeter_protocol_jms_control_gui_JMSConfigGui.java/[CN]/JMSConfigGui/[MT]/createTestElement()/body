@@ -1,18 +1,5 @@
 {
   ConfigTestElement element=new ConfigTestElement();
-  this.configureTestElement(element);
-  element.setProperty(JMSSampler.QUEUE_CONNECTION_FACTORY_JNDI,queueuConnectionFactory.getText());
-  element.setProperty(JMSSampler.SEND_QUEUE,sendQueue.getText());
-  element.setProperty(JMSSampler.RECEIVE_QUEUE,receiveQueue.getText());
-  boolean isOneway=oneWay.getText().equals(JMeterUtils.getResString("jms_request"));
-  element.setProperty(new BooleanProperty(JMSSampler.IS_ONE_WAY,isOneway));
-  element.setProperty(JMSSampler.TIMEOUT,timeout.getText());
-  element.setProperty(JMSSampler.XML_DATA,soapXml.getText());
-  element.setProperty(JMSSampler.JNDI_INITIAL_CONTEXT_FACTORY,initialContextFactory.getText());
-  element.setProperty(JMSSampler.JNDI_CONTEXT_PROVIDER_URL,providerUrl.getText());
-  Arguments jndiArgs=(Arguments)jndiPropertiesPanel.createTestElement();
-  element.setProperty(new TestElementProperty(JMSSampler.JNDI_PROPERTIES,jndiArgs));
-  Arguments args=(Arguments)jmsPropertiesPanel.createTestElement();
-  element.setProperty(new TestElementProperty(JMSSampler.JMS_PROPERTIES,args));
+  modifyTestElement(element);
   return element;
 }
