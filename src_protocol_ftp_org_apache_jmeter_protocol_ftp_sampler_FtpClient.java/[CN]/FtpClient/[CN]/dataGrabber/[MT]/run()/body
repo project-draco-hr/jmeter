@@ -1,22 +1,22 @@
 {
   try {
     if (passive) {
-      s=new Socket(host,port);
+      sock=new Socket(host,dgPort);
     }
  else {
-      log.info("creating socket on " + port);
-      ServerSocket server=new ServerSocket(port);
+      log.info("creating socket on " + dgPort);
+      ServerSocket server=new ServerSocket(dgPort);
       log.info("accepting...");
       portCreated=true;
-      s=server.accept();
+      sock=server.accept();
       log.info("accepted");
     }
   }
  catch (  Exception e) {
   }
   try {
-    InputStream in=s.getInputStream();
-    BufferedInputStream dataIn=new BufferedInputStream(in);
+    InputStream inStr=sock.getInputStream();
+    BufferedInputStream dataIn=new BufferedInputStream(inStr);
     int bufferSize=4096;
     byte[] inputBuffer=new byte[bufferSize];
     int i=0;
@@ -24,7 +24,7 @@
       buffer.append((char)i);
     }
     dataIn.close();
-    s.close();
+    sock.close();
   }
  catch (  Exception e) {
     log.error("FTP client: dataGrabber",e);
