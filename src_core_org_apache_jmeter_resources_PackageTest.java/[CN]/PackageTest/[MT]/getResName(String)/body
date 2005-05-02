@@ -3,6 +3,6 @@
     return "messages.properties";
   }
  else {
-    return "messages_" + lang.toLowerCase(Locale.ENGLISH) + ".properties";
+    return "messages_" + lang + ".properties";
   }
 }
