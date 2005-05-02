@@ -6,5 +6,8 @@
   DefaultMutableTreeNode currNode=new DefaultMutableTreeNode(res);
   treeModel.insertNodeInto(currNode,root,root.getChildCount());
   addSubResults(currNode,res);
+  if (root.getChildCount() == 1) {
+    jTree.expandPath(new TreePath(root));
+  }
   log.debug("End : updateGui1");
 }
