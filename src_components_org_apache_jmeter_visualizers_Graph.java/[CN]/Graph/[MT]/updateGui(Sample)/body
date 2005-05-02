@@ -13,7 +13,7 @@
     repaint();
     return;
   }
-  final int xPos=(int)model.getCount();
+  final int xPos=model.getCount();
   SwingUtilities.invokeLater(new Runnable(){
     public void run(){
       Graphics g=getGraphics();
