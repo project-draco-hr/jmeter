@@ -1,0 +1,6 @@
+{
+  String propertyName=((CompoundVariable)values[0]).execute();
+  String propertyValue=((CompoundVariable)values[1]).execute();
+  JMeterUtils.setProperty(propertyName,propertyValue);
+  return propertyValue;
+}
