@@ -1,8 +1,0 @@
-{
-  setLayout(new BorderLayout(0,5));
-  setBorder(makeBorder());
-  add(makeTitlePanel(),BorderLayout.NORTH);
-  urlConfigGui=new MultipartUrlConfigGui();
-  add(urlConfigGui,BorderLayout.CENTER);
-  add(createOptionalTasksPanel(),BorderLayout.SOUTH);
-}

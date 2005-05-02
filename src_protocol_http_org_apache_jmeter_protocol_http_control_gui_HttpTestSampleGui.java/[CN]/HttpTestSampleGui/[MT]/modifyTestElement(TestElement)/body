@@ -3,16 +3,16 @@
   sampler.clear();
   sampler.addTestElement(el);
   if (getImages.isSelected()) {
-    ((HTTPSampler)sampler).setImageParser(true);
+    ((HTTPSamplerBase)sampler).setImageParser(true);
   }
  else {
-    ((HTTPSampler)sampler).setImageParser(false);
+    ((HTTPSamplerBase)sampler).setImageParser(false);
   }
   if (isMon.isSelected()) {
-    ((HTTPSampler)sampler).setMonitor("true");
+    ((HTTPSamplerBase)sampler).setMonitor("true");
   }
  else {
-    ((HTTPSampler)sampler).setMonitor("false");
+    ((HTTPSamplerBase)sampler).setMonitor("false");
   }
   this.configureTestElement(sampler);
 }

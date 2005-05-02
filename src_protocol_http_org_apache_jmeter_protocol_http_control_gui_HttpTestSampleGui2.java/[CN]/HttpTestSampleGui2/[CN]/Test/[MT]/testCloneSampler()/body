@@ -1,8 +1,0 @@
-{
-  HTTPSampler2 sampler=(HTTPSampler2)gui.createTestElement();
-  sampler.addArgument("param","value");
-  HTTPSampler2 clonedSampler=(HTTPSampler2)sampler.clone();
-  clonedSampler.setRunningVersion(true);
-  sampler.getArguments().getArgument(0).setValue("new value");
-  assertEquals("Sampler didn't clone correctly","new value",sampler.getArguments().getArgument(0).getValue());
-}
