@@ -4,7 +4,13 @@
   Context context=null;
   try {
     context=getInitialContext();
-    QueueConnectionFactory factory=(QueueConnectionFactory)context.lookup(getQueueConnectionFactory());
+    Object obj=context.lookup(getQueueConnectionFactory());
+    if (!(obj instanceof QueueConnectionFactory)) {
+      String msg="QueueConnectionFactory expected, but got " + obj.getClass().getName();
+      LOGGER.fatalError(msg);
+      throw new IllegalStateException(msg);
+    }
+    QueueConnectionFactory factory=(QueueConnectionFactory)obj;
     Queue queue=(Queue)context.lookup(getSendQueue());
     sendQueue=queue;
     if (!useTemporyQueue()) {
@@ -32,12 +38,15 @@
       LOGGER.debug("Starting connection");
     }
     connection.start();
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("Connection started");
+    }
   }
  catch (  JMSException e) {
-    LOGGER.warn(e.getLocalizedMessage());
+    LOGGER.warn(e.getLocalizedMessage(),e);
   }
 catch (  NamingException e) {
-    LOGGER.warn(e.getLocalizedMessage());
+    LOGGER.warn(e.getLocalizedMessage(),e);
   }
  finally {
     if (context != null) {
