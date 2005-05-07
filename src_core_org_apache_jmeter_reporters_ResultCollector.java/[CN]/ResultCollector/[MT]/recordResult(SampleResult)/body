@@ -1,7 +1,7 @@
 {
   if (out != null) {
     if (!isResultMarked(result) && !this.isStats) {
-      if (JMeterUtils.getPropDefault("file_format","2.1").equals("2.0")) {
+      if (SaveService.isSaveTestLogFormat20()) {
         if (serializer == null)         serializer=new DefaultConfigurationSerializer();
         out.write(getSerializedSampleResult(result));
       }
