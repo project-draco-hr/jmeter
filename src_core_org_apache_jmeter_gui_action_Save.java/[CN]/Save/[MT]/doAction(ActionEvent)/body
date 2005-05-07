@@ -27,9 +27,11 @@
  catch (  Exception err) {
   }
   Writer writer=null;
+  FileOutputStream ostream=null;
   try {
     if (JMeterUtils.getPropDefault("file_format","2.1").equals("2.0")) {
-      OldSaveService.saveSubTree(subTree,new FileOutputStream(updateFile));
+      ostream=new FileOutputStream(updateFile);
+      OldSaveService.saveSubTree(subTree,ostream);
     }
  else {
       writer=new FileWriter(updateFile);
@@ -43,6 +45,7 @@
   }
  finally {
     closeWriter(writer);
+    closeStream(ostream);
     if (testPlanFile != null) {
       GuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
     }

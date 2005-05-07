@@ -1,0 +1,10 @@
+{
+  if (fos != null) {
+    try {
+      fos.close();
+    }
+ catch (    Exception ex) {
+      log.error("",ex);
+    }
+  }
+}
