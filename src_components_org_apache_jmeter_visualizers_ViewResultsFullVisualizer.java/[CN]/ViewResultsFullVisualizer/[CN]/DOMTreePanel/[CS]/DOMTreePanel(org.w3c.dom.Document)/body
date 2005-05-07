@@ -9,7 +9,8 @@
     JScrollPane domJScrollPane=new JScrollPane(domJTree);
     domJTree.setAutoscrolls(true);
     this.add(domJScrollPane);
-    this.setSize(800,600);
+    ToolTipManager.sharedInstance().registerComponent(domJTree);
+    domJTree.setCellRenderer(new DomTreeRenderer());
     this.setPreferredSize(new Dimension(800,600));
   }
  catch (  SAXException e) {
