@@ -8,6 +8,9 @@
     if (saveConfig.saveAsXml()) {
       trimmed=trimLastLine(filename);
     }
+ else {
+      trimmed=new File(filename).exists();
+    }
     File pdir=new File(filename).getParentFile();
     if (pdir != null)     pdir.mkdirs();
     writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),"UTF-8"),true);
