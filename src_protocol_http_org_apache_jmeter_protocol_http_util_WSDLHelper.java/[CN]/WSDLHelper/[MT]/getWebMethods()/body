@@ -8,8 +8,17 @@
     if (opers.getLength() == 0) {
       opers=((Element)act).getElementsByTagName("wsdl:operation");
     }
+    if (opers.getLength() == 0) {
+      opers=((Element)act).getElementsByTagName("operation");
+    }
     Element op=(Element)opers.item(0);
-    String value=op.getAttribute("soapAction");
+    String value;
+    if (op != null) {
+      value=op.getAttribute("soapAction");
+    }
+ else {
+      value="";
+    }
     String key=((Element)act).getAttribute("name");
     this.ACTIONS.put(key,value);
   }

@@ -8,6 +8,9 @@
   if (WSDLDOC.getElementsByTagName(soapBind).getLength() == 0) {
     soapBind="wsdlsoap:binding";
   }
+  if (WSDLDOC.getElementsByTagName(soapBind).getLength() == 0) {
+    soapBind="SOAP:binding";
+  }
   for (int idx=0; idx < bindings.getLength(); idx++) {
     Element nd=(Element)bindings.item(idx);
     NodeList slist=nd.getElementsByTagName(soapBind);

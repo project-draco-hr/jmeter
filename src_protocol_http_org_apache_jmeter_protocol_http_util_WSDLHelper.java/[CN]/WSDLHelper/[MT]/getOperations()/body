@@ -17,6 +17,9 @@
       if (soapnode.getLength() > 0) {
         ops.add(child);
       }
+ else {
+        ops.add(child);
+      }
     }
   }
   return ops.toArray();

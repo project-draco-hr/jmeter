@@ -17,6 +17,9 @@
         if (servlist.getLength() == 0) {
           servlist=pnode.getElementsByTagName("wsdlsoap:address");
         }
+        if (servlist.getLength() == 0) {
+          servlist=pnode.getElementsByTagName("SOAP:address");
+        }
         Element addr=(Element)servlist.item(0);
         this.SOAPBINDING=addr.getAttribute("location");
         return this.SOAPBINDING;

@@ -1,6 +1,6 @@
 {
   try {
-    WSDLHelper help=new WSDLHelper("http://localhost/test-setup.xml");
+    WSDLHelper help=new WSDLHelper("http://localhost:8080/gsoap.wsdl");
     long start=System.currentTimeMillis();
     help.parse();
     String[] methods=help.getWebMethods();
