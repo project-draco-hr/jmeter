@@ -79,9 +79,14 @@
     log.debug(exception.getMessage());
     RESULT.setSuccessful(false);
   }
-catch (  Exception exception) {
+catch (  MalformedURLException exception) {
     log.debug(exception.getMessage());
-    RESULT.setSuccessful(false);
+  }
+catch (  IOException exception) {
+    log.debug(exception.getMessage());
+  }
+catch (  MessagingException exception) {
+    log.debug(exception.getMessage());
   }
   return RESULT;
 }
