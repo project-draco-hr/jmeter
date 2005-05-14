@@ -25,7 +25,6 @@
   List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));
   removeThreadGroups(testLevelElements);
   SearchByClass searcher=new SearchByClass(ThreadGroup.class);
-  setMode();
   getTestTree().traverse(searcher);
   TestCompiler.initialize();
   JMeterThread[] threads;
