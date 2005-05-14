@@ -6,7 +6,7 @@
     text.append(delimiter);
   }
  else   if (saveConfig.formatter() != null) {
-    String stamp=_saveConfig.formatter().format(new Date(sample.getTimeStamp()));
+    String stamp=saveConfig.formatter().format(new Date(sample.getTimeStamp()));
     text.append(stamp);
     text.append(delimiter);
   }
