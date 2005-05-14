@@ -5,6 +5,7 @@
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
     RESULT.setURL(this.getUrl());
+    RESULT.setSampleLabel(this.getUrl().toString());
     RESULT.sampleStart();
     SOAPHTTPConnection spconn=null;
     if (this.getHeaderManager() != null && this.getHeaderManager().getSOAPHeader() != null) {
@@ -38,33 +39,47 @@
       this.getHeaderManager().setSOAPHeader(spconn);
     }
     SOAPTransport st=msg.getSOAPTransport();
-    BufferedReader br=st.receive();
     RESULT.setDataType(SampleResult.TEXT);
-    if (this.getPropertyAsBoolean(READ_RESPONSE)) {
-      StringBuffer buf=new StringBuffer();
-      String line;
-      while ((line=br.readLine()) != null) {
-        buf.append(line);
+    BufferedReader br=null;
+    if (st != null && st.receive() != null) {
+      br=st.receive();
+      if (this.getPropertyAsBoolean(READ_RESPONSE)) {
+        StringBuffer buf=new StringBuffer();
+        String line;
+        while ((line=br.readLine()) != null) {
+          buf.append(line);
+        }
+        RESULT.sampleEnd();
+        RESULT.setResponseData(buf.toString().getBytes());
       }
-      RESULT.sampleEnd();
-      RESULT.setResponseData(buf.toString().getBytes());
+ else {
+        br.read();
+        RESULT.sampleEnd();
+        RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
+      }
+      RESULT.setSuccessful(true);
+      RESULT.setResponseCode("200");
+      RESULT.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
     }
  else {
-      br.read();
-      RESULT.sampleEnd();
-      RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
+      RESULT.setSuccessful(false);
+      RESULT.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
+      RESULT.setResponseCode("000");
+      RESULT.setResponseHeaders("error");
     }
-    RESULT.setSuccessful(true);
     RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile()+ "\n"+ FILE_CONTENTS);
     RESULT.setDataEncoding(st.getResponseSOAPContext().getContentType());
-    RESULT.setResponseCode("200");
-    RESULT.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
-    RESULT.setSampleLabel(this.getUrl().toString());
-    br.close();
+    if (br != null) {
+      br.close();
+    }
     msg=null;
     st=null;
   }
- catch (  Exception exception) {
+ catch (  SOAPException exception) {
+    log.debug(exception.getMessage());
+    RESULT.setSuccessful(false);
+  }
+catch (  Exception exception) {
     log.debug(exception.getMessage());
     RESULT.setSuccessful(false);
   }

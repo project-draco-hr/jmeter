@@ -6,6 +6,7 @@
       doc=XDB.parse(new FileInputStream(retrieveRuntimeXmlData()));
     }
  catch (    Exception e) {
+      log.debug(e.getMessage());
     }
   }
  else {
