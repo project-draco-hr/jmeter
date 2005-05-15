@@ -80,13 +80,13 @@
     RESULT.setSuccessful(false);
   }
 catch (  MalformedURLException exception) {
-    log.debug(exception.getMessage());
+    log.warn(exception.getMessage());
   }
 catch (  IOException exception) {
     log.warn(exception.getMessage());
   }
 catch (  MessagingException exception) {
-    log.debug(exception.getMessage());
+    log.warn(exception.getMessage());
   }
   return RESULT;
 }
