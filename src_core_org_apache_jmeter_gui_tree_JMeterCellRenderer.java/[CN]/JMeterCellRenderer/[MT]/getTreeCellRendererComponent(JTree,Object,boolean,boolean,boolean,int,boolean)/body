@@ -1,5 +1,5 @@
 {
-  super.getTreeCellRendererComponent(tree,((JMeterTreeNode)value).getName(),sel,expanded,leaf,row,hasFocus);
+  super.getTreeCellRendererComponent(tree,((JMeterTreeNode)value).getName(),sel,expanded,leaf,row,p_hasFocus);
   this.setEnabled(((JMeterTreeNode)value).isEnabled());
   ImageIcon ic=((JMeterTreeNode)value).getIcon();
   if (ic != null) {
