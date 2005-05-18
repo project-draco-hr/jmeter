@@ -25,7 +25,15 @@
       isTestPlan=insertLoadedTree(e.getID(),tree);
     }
   }
- catch (  Exception ex) {
+ catch (  NoClassDefFoundError ex) {
+    String msg=ex.getMessage();
+    if (msg == null) {
+      msg="Missing jar file - see log for details";
+      log.warn("Missing jar file",ex);
+    }
+    JMeterUtils.reportErrorToUser(msg);
+  }
+catch (  Exception ex) {
     String msg=ex.getMessage();
     if (msg == null) {
       msg="Unexpected error - see log for details";
