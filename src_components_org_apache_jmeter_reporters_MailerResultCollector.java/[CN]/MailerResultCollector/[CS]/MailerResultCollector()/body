@@ -1,9 +1,4 @@
 {
   super();
-  try {
-    setProperty(new TestElementProperty(MAILER_MODEL,new MailerModel()));
-  }
- catch (  NoClassDefFoundError e) {
-    log.warn("Missing mail jar " + e);
-  }
+  setProperty(new TestElementProperty(MAILER_MODEL,new MailerModel()));
 }
