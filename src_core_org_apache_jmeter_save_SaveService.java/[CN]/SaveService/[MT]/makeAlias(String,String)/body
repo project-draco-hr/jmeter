@@ -5,4 +5,7 @@
  catch (  ClassNotFoundException e) {
     log.warn("Could not set up alias " + alias + " "+ e.toString());
   }
+catch (  NoClassDefFoundError e) {
+    log.warn("Could not set up alias " + alias + " "+ e.toString());
+  }
 }

@@ -13,4 +13,8 @@
     reader.reset();
     return OldSaveService.loadSubTree(reader);
   }
+catch (  NoClassDefFoundError e) {
+    log.warn("Missing class ",e);
+    return null;
+  }
 }
