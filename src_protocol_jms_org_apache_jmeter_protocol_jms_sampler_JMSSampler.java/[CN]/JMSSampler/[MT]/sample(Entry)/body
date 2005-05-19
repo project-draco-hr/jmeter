@@ -18,7 +18,9 @@
       Message replyMsg=executor.sendAndReceive(msg);
       if (replyMsg == null) {
         res.setSuccessful(false);
-        LOGGER.debug("No reply message received");
+        if (LOGGER.isDebugEnabled()) {
+          LOGGER.debug("No reply message received");
+        }
       }
  else {
         if (replyMsg instanceof TextMessage) {
