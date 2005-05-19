@@ -1,8 +1,7 @@
 {
   SampleResult res=new SampleResult();
   boolean isOK=false;
-  String response=null;
-  res.setSampleLabel(getTitle());
+  res.setSampleLabel(getName());
   res.sampleStart();
   try {
     Properties props=new Properties();
@@ -44,7 +43,6 @@
     }
     folder.close(true);
     store.close();
-    response=Thread.currentThread().getName();
     res.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
     res.setResponseData(data.toString().getBytes());
     res.setDataType(SampleResult.TEXT);
