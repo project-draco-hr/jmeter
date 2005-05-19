@@ -1,7 +1,7 @@
 {
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
-  res.setSampleLabel(getLabel());
+  res.setSampleLabel(getName());
   res.sampleStart();
   try {
     FtpClient ftp=new FtpClient();
