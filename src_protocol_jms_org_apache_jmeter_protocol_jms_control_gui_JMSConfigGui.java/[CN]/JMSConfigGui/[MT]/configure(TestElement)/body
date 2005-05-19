@@ -1,21 +1,22 @@
 {
   super.configure(el);
-  queueuConnectionFactory.setText(el.getPropertyAsString(JMSSampler.QUEUE_CONNECTION_FACTORY_JNDI));
-  sendQueue.setText(el.getPropertyAsString(JMSSampler.SEND_QUEUE));
-  receiveQueue.setText(el.getPropertyAsString(JMSSampler.RECEIVE_QUEUE));
+  JMSSampler sampler=(JMSSampler)el;
+  queueuConnectionFactory.setText(sampler.getQueueConnectionFactory());
+  sendQueue.setText(sampler.getSendQueue());
+  receiveQueue.setText(sampler.getReceiveQueue());
   JComboBox box=(JComboBox)oneWay.getComponentList().get(1);
   String selected=null;
-  if (el.getPropertyAsBoolean(JMSSampler.IS_ONE_WAY)) {
+  if (sampler.isOneway()) {
     selected=JMeterUtils.getResString("jms_request");
   }
  else {
     selected=JMeterUtils.getResString("jms_requestreply");
   }
   box.setSelectedItem(selected);
-  timeout.setText(el.getPropertyAsString(JMSSampler.TIMEOUT));
-  soapXml.setText(el.getPropertyAsString(JMSSampler.XML_DATA));
-  initialContextFactory.setText(el.getPropertyAsString(JMSSampler.JNDI_INITIAL_CONTEXT_FACTORY));
-  providerUrl.setText(el.getPropertyAsString(JMSSampler.JNDI_CONTEXT_PROVIDER_URL));
-  jmsPropertiesPanel.configure((TestElement)el.getProperty(JMSSampler.JMS_PROPERTIES).getObjectValue());
-  jndiPropertiesPanel.configure((TestElement)el.getProperty(JMSSampler.JNDI_PROPERTIES).getObjectValue());
+  timeout.setText(String.valueOf(sampler.getTimeout()));
+  soapXml.setText(sampler.getContent());
+  initialContextFactory.setText(sampler.getInitialContextFactory());
+  providerUrl.setText(sampler.getContextProvider());
+  jmsPropertiesPanel.configure(sampler.getJMSProperties());
+  jndiPropertiesPanel.configure(sampler.getJNDIProperties());
 }

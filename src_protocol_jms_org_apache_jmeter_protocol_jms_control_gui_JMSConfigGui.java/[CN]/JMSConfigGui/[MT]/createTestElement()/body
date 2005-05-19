@@ -1,5 +1,6 @@
 {
-  ConfigTestElement element=new ConfigTestElement();
-  modifyTestElement(element);
-  return element;
+  JMSSampler sampler=new JMSSampler();
+  this.configureTestElement(sampler);
+  transfer(sampler);
+  return sampler;
 }
