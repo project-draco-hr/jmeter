@@ -1,12 +1,13 @@
 {
   PlaceHolder holder=(PlaceHolder)table.get(id);
   if (log.isDebugEnabled()) {
-    log.debug("put reply id " + id + " for holder "+ holder);
+    log.debug("Reply id: " + id + " for holder "+ holder);
   }
   if (holder != null) {
     holder.setReply(reply);
-synchronized (holder.getRequest()) {
-      holder.getRequest().notify();
+    Object obj=holder.getRequest();
+synchronized (obj) {
+      obj.notify();
     }
   }
 }

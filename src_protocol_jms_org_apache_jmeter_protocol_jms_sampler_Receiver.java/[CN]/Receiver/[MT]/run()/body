@@ -5,9 +5,11 @@
     reply=null;
     try {
       reply=consumer.receive();
-      log.debug("CorrId:" + reply.getJMSCorrelationID());
+      if (log.isDebugEnabled()) {
+        log.debug("Received message, correlation id:" + reply.getJMSCorrelationID());
+      }
       if (reply.getJMSCorrelationID() == null) {
-        log.debug("Received message with correlation id null, will discard message");
+        log.warn("Received message with correlation id null. Discarding message ...");
       }
  else {
         MessageAdmin.getAdmin().putReply(reply.getJMSCorrelationID(),reply);

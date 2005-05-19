@@ -4,7 +4,7 @@
     log.debug("get reply for " + id + " for "+ holder);
   }
   if (!holder.hasReply()) {
-    log.debug("Message " + id + " not found.");
+    log.info("Message with " + id + " not found.");
   }
   return (Message)holder.getReply();
 }
