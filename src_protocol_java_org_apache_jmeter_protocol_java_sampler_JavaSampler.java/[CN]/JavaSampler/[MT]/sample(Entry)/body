@@ -1,5 +1,7 @@
 {
-  context=new JavaSamplerContext(getArguments());
+  Arguments args=getArguments();
+  args.addArgument(TestElement.NAME,getName());
+  context=new JavaSamplerContext(args);
   if (javaClient == null) {
     log.debug(whoAmI() + "Creating Java Client");
     createJavaClient();
