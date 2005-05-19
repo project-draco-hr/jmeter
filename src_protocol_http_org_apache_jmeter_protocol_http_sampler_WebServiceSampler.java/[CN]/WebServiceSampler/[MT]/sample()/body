@@ -1,11 +1,12 @@
 {
   SampleResult RESULT=new SampleResult();
   try {
+    RESULT.setURL(this.getUrl());
+    RESULT.setSampleLabel(getName());
     org.w3c.dom.Element rdoc=createDocument();
+    if (rdoc == null)     throw new SOAPException("Could not create document",null);
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
-    RESULT.setURL(this.getUrl());
-    RESULT.setSampleLabel(this.getUrl().toString());
     RESULT.sampleStart();
     SOAPHTTPConnection spconn=null;
     if (this.getHeaderManager() != null && this.getHeaderManager().getSOAPHeader() != null) {
@@ -76,7 +77,7 @@
     st=null;
   }
  catch (  SOAPException exception) {
-    log.debug(exception.getMessage());
+    log.warn(exception.getMessage());
     RESULT.setSuccessful(false);
   }
 catch (  MalformedURLException exception) {

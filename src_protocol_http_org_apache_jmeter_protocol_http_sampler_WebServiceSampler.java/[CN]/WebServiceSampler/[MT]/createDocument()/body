@@ -9,6 +9,8 @@
     }
   }
  else {
-    return openDocument(null).getDocumentElement();
+    Document doc=openDocument(null);
+    if (doc == null)     return null;
+    return doc.getDocumentElement();
   }
 }
