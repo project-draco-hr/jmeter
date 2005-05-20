@@ -9,6 +9,7 @@
   Connection conn=null;
   Statement stmt=null;
   try {
+    if (pool == null)     throw new Exception("No pool created");
     conn=pool.getConnection();
     stmt=conn.createStatement();
     if (isQueryOnly()) {

@@ -7,9 +7,19 @@
           PARSER.setSourceFile(this.getLogFile());
           PARSER.setFilter(filter);
         }
+ else {
+          log.error("No log file specified");
+        }
       }
     }
- catch (    Exception e) {
+ catch (    InstantiationException e) {
+      log.error("",e);
+    }
+catch (    IllegalAccessException e) {
+      log.error("",e);
+    }
+catch (    ClassNotFoundException e) {
+      log.error("",e);
     }
   }
 }

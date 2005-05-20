@@ -3,15 +3,20 @@
   instantiateParser();
   SampleResult res=null;
   try {
+    if (PARSER == null)     throw new JMeterException("No Parser available");
     int thisCount=PARSER.parseAndConfigure(1,this);
+    if (thisCount < 0) {
+      return errorResult(new Error("Problem parsing the log file"),new HTTPSampleResult());
+    }
     if (thisCount == 0) {
       if (count == 0 || filter == null) {
         JMeterContextService.getContext().getThread().stop();
       }
       if (filter != null)       filter.reset();
-      getCookieManager().clear();
+      CookieManager cm=getCookieManager();
+      if (cm != null)       cm.clear();
       count=0;
-      return null;
+      return errorResult(new Error("No entries found"),new HTTPSampleResult());
     }
     count=thisCount;
     res=sample();
@@ -19,6 +24,7 @@
   }
  catch (  Exception e) {
     log.warn("Sampling failure",e);
+    return errorResult(e,new HTTPSampleResult());
   }
   return res;
 }
