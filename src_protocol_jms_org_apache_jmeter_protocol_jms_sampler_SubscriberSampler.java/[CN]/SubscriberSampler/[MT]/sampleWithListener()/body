@@ -1,6 +1,6 @@
 {
   SampleResult result=new SampleResult();
-  result.setSampleLabel("SubscriberSampler:" + this.getTopic());
+  result.setSampleLabel(getName());
   OnMessageSubscriber sub=initListenerClient();
   this.loop=this.getIterationCount();
   result.sampleStart();
