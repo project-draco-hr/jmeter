@@ -14,7 +14,15 @@
     if (len != out.size()) {
       failed=true;
       System.out.println();
-      System.out.println("Loading file bin/testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ out.size()+ ".");
+      System.out.println("Loading file testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ out.size()+ ".");
+      if (saveOut) {
+        String outfile="testfiles/" + FILES[i] + ".out";
+        System.out.println("Write " + outfile);
+        FileOutputStream outf=new FileOutputStream(new File(outfile));
+        outf.write(out.toByteArray());
+        outf.close();
+        System.out.println("Wrote " + outfile);
+      }
     }
   }
   if (failed) {
