@@ -5,4 +5,5 @@
   }
   subResults.add(subResult);
   setTime(getTime() + subResult.getTime());
+  subResult.setParent(this);
 }

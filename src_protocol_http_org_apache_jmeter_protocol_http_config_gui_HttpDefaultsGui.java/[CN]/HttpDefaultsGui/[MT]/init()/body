@@ -16,4 +16,6 @@
   argPanel=new HTTPArgumentsPanel();
   mainPanel.add(argPanel);
   add(mainPanel,BorderLayout.CENTER);
+  imageParser=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
+  add(imageParser,BorderLayout.SOUTH);
 }

@@ -1,0 +1,21 @@
+{
+  if (!areFollowingRedirect) {
+    if (res.isRedirect()) {
+      log.debug("Location set to - " + res.getRedirectLocation());
+      if (getFollowRedirects()) {
+        res=followRedirects(res,frameDepth);
+        areFollowingRedirect=true;
+      }
+    }
+  }
+  if (isImageParser() && (HTTPSampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
+    if (frameDepth > MAX_FRAME_DEPTH) {
+      res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),res));
+    }
+ else {
+      HTTPSampleResult container=(HTTPSampleResult)(areFollowingRedirect ? res.getParent() : res);
+      res=downloadPageResources(res,container,frameDepth);
+    }
+  }
+  return res;
+}

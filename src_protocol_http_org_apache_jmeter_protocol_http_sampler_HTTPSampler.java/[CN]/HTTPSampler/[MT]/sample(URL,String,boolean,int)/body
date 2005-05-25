@@ -68,25 +68,7 @@ catch (      IOException e) {
       res.setRedirectLocation(conn.getHeaderField("Location"));
     }
     saveConnectionCookies(conn,url,getCookieManager());
-    if (!areFollowingRedirect) {
-      boolean didFollowRedirects=false;
-      if (res.isRedirect()) {
-        log.debug("Location set to - " + res.getRedirectLocation());
-        if (getFollowRedirects()) {
-          res=followRedirects(res,frameDepth);
-          didFollowRedirects=true;
-        }
-      }
-      if (isImageParser() && (HTTPSampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
-        if (frameDepth > MAX_FRAME_DEPTH) {
-          res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),res));
-        }
- else {
-          boolean createContainerResults=!didFollowRedirects;
-          res=downloadPageResources(res,createContainerResults,frameDepth);
-        }
-      }
-    }
+    res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
     return res;
   }

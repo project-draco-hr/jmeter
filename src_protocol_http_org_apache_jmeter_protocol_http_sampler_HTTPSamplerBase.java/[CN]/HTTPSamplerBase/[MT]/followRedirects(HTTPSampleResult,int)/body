@@ -10,7 +10,13 @@
  catch (    MalformedURLException e) {
       lastRes=errorResult(e,lastRes);
     }
-    totalRes.addSubResult(lastRes);
+    if (lastRes.getSubResults() != null && lastRes.getSubResults().length > 0) {
+      SampleResult[] subs=lastRes.getSubResults();
+      for (int i=0; i < subs.length; i++) {
+        totalRes.addSubResult(subs[i]);
+      }
+    }
+ else     totalRes.addSubResult(lastRes);
     if (!lastRes.isRedirect()) {
       break;
     }

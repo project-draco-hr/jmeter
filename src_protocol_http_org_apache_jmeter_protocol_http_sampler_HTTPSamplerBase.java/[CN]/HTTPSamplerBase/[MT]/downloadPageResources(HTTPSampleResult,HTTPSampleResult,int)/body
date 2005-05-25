@@ -10,8 +10,11 @@
     res.setSuccessful(false);
   }
   if (urls != null && urls.hasNext()) {
-    if (createContainerResult) {
+    if (container == null) {
       res=new HTTPSampleResult(res);
+    }
+ else {
+      res=container;
     }
     while (urls.hasNext()) {
       Object binURL=urls.next();
