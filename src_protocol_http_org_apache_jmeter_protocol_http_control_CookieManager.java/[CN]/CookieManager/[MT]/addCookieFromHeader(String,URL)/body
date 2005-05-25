@@ -7,7 +7,7 @@
   String value=nvp.substring(index + 1);
   String domain="." + url.getHost();
   String path="/";
-  Cookie newCookie=new Cookie(name,value,domain,path,false,System.currentTimeMillis() + 1000 * 60 * 60* 24);
+  Cookie newCookie=new Cookie(name,value,domain,path,false,0);
   while (st.hasMoreTokens()) {
     nvp=st.nextToken();
     nvp=nvp.trim();
@@ -20,7 +20,7 @@
       try {
         String expires=nvp.substring(index + 1);
         Date date=dateFormat.parse(expires);
-        newCookie.setExpires(date.getTime());
+        newCookie.setExpires(date.getTime() / 1000);
       }
  catch (      ParseException pe) {
         log.error("Couldn't parse Cookie expiration time.",pe);
@@ -55,7 +55,8 @@ catch (      Exception e) {
     index=((Integer)e.nextElement()).intValue();
     remove(index);
   }
-  if (newCookie.getExpires() >= System.currentTimeMillis()) {
+  long exp=newCookie.getExpires();
+  if (exp == 0 || exp >= System.currentTimeMillis() / 1000) {
     add(newCookie);
   }
 }

@@ -4,9 +4,12 @@
   PrintWriter writer=new PrintWriter(new FileWriter(file));
   writer.println("# JMeter generated Cookie file");
   PropertyIterator cookies=getCookies().iterator();
+  long now=System.currentTimeMillis() / 1000;
   while (cookies.hasNext()) {
     Cookie cook=(Cookie)cookies.next().getObjectValue();
-    writer.println(cook.toString());
+    if (cook.getExpires() > now) {
+      writer.println(cook.toString());
+    }
   }
   writer.flush();
   writer.close();

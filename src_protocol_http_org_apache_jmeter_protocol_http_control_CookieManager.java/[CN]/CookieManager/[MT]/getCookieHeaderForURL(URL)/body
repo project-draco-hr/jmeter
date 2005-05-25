@@ -9,13 +9,13 @@
   for (PropertyIterator iter=getCookies().iterator(); iter.hasNext(); ) {
     Cookie cookie=(Cookie)iter.next().getObjectValue();
     if (debugEnabled) {
-      log.debug("Cookie domain=" + cookie.getDomain() + " path="+ cookie.getPath()+ " expires="+ cookie.getExpires());
+      log.debug("Cookie name=" + cookie.getName() + " domain="+ cookie.getDomain()+ " path="+ cookie.getPath()+ " expires="+ cookie.getExpires());
     }
     if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && ((cookie.getExpires() == 0) || (System.currentTimeMillis() / 1000) <= cookie.getExpires())) {
       if (header.length() > 0) {
         header.append("; ");
       }
-      if (debugEnabled)       log.debug("Cookie value = " + cookie.getValue());
+      if (debugEnabled)       log.debug("matched cookie, value = " + cookie.getValue());
       header.append(cookie.getName()).append("=").append(cookie.getValue());
     }
   }
