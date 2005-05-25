@@ -1,4 +1,5 @@
 {
+  if (log.isDebugEnabled())   log.debug("Add cookie " + c.toString());
   String cv=c.getValue();
   if (DELETE_NULL_COOKIES && (null == cv || "".equals(cv))) {
     removeCookieNamed(c.getName());
