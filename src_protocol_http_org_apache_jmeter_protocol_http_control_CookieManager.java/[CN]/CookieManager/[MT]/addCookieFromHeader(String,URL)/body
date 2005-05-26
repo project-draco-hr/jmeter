@@ -1,4 +1,7 @@
 {
+  if (log.isDebugEnabled()) {
+    log.debug("addCookieFromHeader(" + cookieHeader + ","+ url.toExternalForm()+ ")");
+  }
   StringTokenizer st=new StringTokenizer(cookieHeader,";");
   String nvp;
   nvp=st.nextToken();
@@ -6,7 +9,8 @@
   String name=nvp.substring(0,index);
   String value=nvp.substring(index + 1);
   String domain="." + url.getHost();
-  String path="/";
+  String path=url.getPath();
+  if (path.length() == 0)   path="/";
   Cookie newCookie=new Cookie(name,value,domain,path,false,0);
   while (st.hasMoreTokens()) {
     nvp=st.nextToken();
