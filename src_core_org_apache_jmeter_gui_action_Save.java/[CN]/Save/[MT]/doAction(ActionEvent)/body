@@ -9,15 +9,15 @@
  else {
     subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
   }
-  String updateFile=testPlanFile;
-  if (!SAVE.equals(e.getActionCommand()) || testPlanFile == null) {
+  String updateFile=GuiPackage.getInstance().getTestPlanFile();
+  if (!SAVE.equals(e.getActionCommand()) || updateFile == null) {
     JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmx");
     if (chooser == null) {
       return;
     }
     updateFile=chooser.getSelectedFile().getAbsolutePath();
     if (!e.getActionCommand().equals(SAVE_AS)) {
-      setTestPlanFile(updateFile);
+      GuiPackage.getInstance().setTestPlanFile(updateFile);
     }
   }
   ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),CheckDirty.SUB_TREE_SAVED));
@@ -39,16 +39,12 @@
     }
   }
  catch (  Throwable ex) {
-    testPlanFile=null;
+    GuiPackage.getInstance().setTestPlanFile(null);
     log.error("",ex);
     throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
   }
  finally {
     closeWriter(writer);
     closeStream(ostream);
-    if (testPlanFile != null) {
-      GuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
-    }
-    GuiPackage.getInstance().getMainFrame().repaint();
   }
 }

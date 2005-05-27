@@ -1,5 +1,6 @@
 {
-  if (!(((Save)ActionRouter.getInstance().getAction("save","org.apache.jmeter.gui.action.Save")).hasTestPlanFile())) {
+  log.debug("popupShouldSave");
+  if (GuiPackage.getInstance().getTestPlanFile() == null) {
     if (JOptionPane.showConfirmDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("should_save"),JMeterUtils.getResString("warning"),JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
       ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),Save.SAVE));
     }
