@@ -15,6 +15,12 @@
  else {
       spconn=new SOAPHTTPConnection();
     }
+    if (getAuthManager() != null) {
+      AuthManager authmanager=getAuthManager();
+      Authorization auth=authmanager.getAuthForURL(getUrl());
+      spconn.setUserName(auth.getUser());
+      spconn.setPassword(auth.getPass());
+    }
     String phost="";
     int pport=0;
     if (this.getUseProxy()) {
