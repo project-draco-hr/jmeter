@@ -2,11 +2,12 @@
   log.debug("Configuring gui with " + element);
   super.configure(element);
   model=(ProxyControl)element;
-  portField.setText(model.getPropertyAsString(ProxyControl.PORT));
-  httpHeaders.setSelected(model.getPropertyAsBoolean(ProxyControl.CAPTURE_HTTP_HEADERS));
-  groupingMode.setSelectedIndex(model.getPropertyAsInt(ProxyControl.GROUPING_MODE));
-  addAssertions.setSelected(model.getPropertyAsBoolean(ProxyControl.ADD_ASSERTIONS));
-  useKeepAlive.setSelected(model.getPropertyAsBoolean(ProxyControl.USE_KEEPALIVE,true));
+  portField.setText(model.getPortString());
+  httpHeaders.setSelected(model.getCaptureHttpHeaders());
+  groupingMode.setSelectedIndex(model.getGroupingMode());
+  addAssertions.setSelected(model.getAssertions());
+  useKeepAlive.setSelected(model.getUseKeepalive());
+  regexMatch.setSelected(model.getRegexMatch());
   reinitializeTargetCombo();
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());

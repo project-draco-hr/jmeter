@@ -9,6 +9,7 @@
     model.setGroupingMode(groupingMode.getSelectedIndex());
     model.setAssertions(addAssertions.isSelected());
     model.setUseKeepAlive(useKeepAlive.isSelected());
+    model.setRegexMatch(regexMatch.isSelected());
     TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
     if (nw == null) {
       model.setTarget(null);

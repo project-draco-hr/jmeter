@@ -4,10 +4,10 @@
     replacer.addVariables(((Arguments)vars.next()).getArgumentsAsMap());
   }
   try {
-    replacer.reverseReplace(sampler);
+    replacer.reverseReplace(sampler,regexMatch);
     for (int i=0; i < configs.length; i++) {
       if (configs[i] != null) {
-        replacer.reverseReplace(configs[i]);
+        replacer.reverseReplace(configs[i],regexMatch);
       }
     }
   }
