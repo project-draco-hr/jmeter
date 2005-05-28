@@ -1,5 +1,6 @@
 {
   JMeterContextService.incrNumberOfThreads();
+  threadGroup.incrNumberOfThreads();
   threadContext=JMeterContextService.getContext();
   threadContext.setVariables(threadVars);
   threadContext.setThreadNum(getThreadNum());

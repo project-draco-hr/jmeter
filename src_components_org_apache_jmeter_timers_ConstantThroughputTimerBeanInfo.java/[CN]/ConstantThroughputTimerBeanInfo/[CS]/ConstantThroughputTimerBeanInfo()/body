@@ -1,12 +1,17 @@
 {
   super(ConstantThroughputTimer.class);
-  createPropertyGroup("delay",new String[]{"throughput","legacyMode"});
+  ResourceBundle rb=(ResourceBundle)getBeanDescriptor().getValue(RESOURCE_BUNDLE);
+  tags[0]=rb.getString("calcMode.1");
+  tags[1]=rb.getString("calcMode.2");
+  tags[2]=rb.getString("calcMode.3");
+  createPropertyGroup("delay",new String[]{"throughput","calcMode"});
   PropertyDescriptor p=property("throughput");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,new Double(0.0));
-  p=property("legacyMode");
+  p=property("calcMode");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
-  p.setValue(DEFAULT,Boolean.FALSE);
+  p.setValue(DEFAULT,tags[0]);
   p.setValue(NOT_OTHER,Boolean.TRUE);
   p.setValue(NOT_EXPRESSION,Boolean.TRUE);
+  p.setValue(TAGS,tags);
 }

@@ -1,7 +1,7 @@
 {
   long currentTime=System.currentTimeMillis();
-  long currentTarget=calculateCurrentTarget(currentTime);
-  previousTime=currentTarget;
+  long currentTarget=previousTime == 0 ? currentTime : previousTime;
+  previousTime=currentTarget + calculateDelay();
   if (currentTime > currentTarget) {
     return 0;
   }
