@@ -1,5 +1,32 @@
 {
-  extensions=filters;
-  JFileChooser chooser=promptToSaveFile(filename);
-  return chooser;
+  if (lastJFCDirectory == null) {
+    String start=JMeterUtils.getPropDefault("user.dir","");
+    if (!start.equals("")) {
+      jfc=new JFileChooser(new File(start));
+    }
+    lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
+  }
+  String ext=".jmx";
+  if (filename != null) {
+    jfc.setSelectedFile(new File(lastJFCDirectory,filename));
+    int i=-1;
+    if ((i=filename.lastIndexOf(".")) > -1) {
+      ext=filename.substring(i);
+    }
+  }
+  clearFileFilters();
+  if (extensions != null) {
+    jfc.addChoosableFileFilter(new JMeterFileFilter(extensions));
+  }
+ else {
+    jfc.addChoosableFileFilter(new JMeterFileFilter(new String[]{ext}));
+  }
+  int retVal=jfc.showSaveDialog(GuiPackage.getInstance().getMainFrame());
+  lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
+  if (retVal == JFileChooser.APPROVE_OPTION) {
+    return jfc;
+  }
+ else {
+    return null;
+  }
 }
