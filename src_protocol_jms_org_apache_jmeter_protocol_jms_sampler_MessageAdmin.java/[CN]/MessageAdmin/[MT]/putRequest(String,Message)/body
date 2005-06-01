@@ -1,6 +1,6 @@
 {
   if (log.isDebugEnabled()) {
-    log.debug("put request id " + id);
+    log.debug("REQ_ID [" + id + "]");
   }
   table.put(id,new PlaceHolder(request));
 }

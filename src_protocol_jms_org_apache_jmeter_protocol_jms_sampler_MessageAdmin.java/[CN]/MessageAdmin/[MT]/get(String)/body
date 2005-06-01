@@ -1,7 +1,7 @@
 {
   PlaceHolder holder=(PlaceHolder)table.remove(id);
   if (log.isDebugEnabled()) {
-    log.debug("get reply for " + id + " for "+ holder);
+    log.debug("GET_ID [" + id + "] for "+ holder);
   }
   if (!holder.hasReply()) {
     log.info("Message with " + id + " not found.");
