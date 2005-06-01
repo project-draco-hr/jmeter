@@ -1,8 +1,6 @@
 {
-  if (receiver == null) {
-    receiver=new Receiver(factory,receiveQueue);
-    Thread thread=new Thread(receiver);
-    thread.start();
-  }
+  Receiver receiver=new Receiver(factory,receiveQueue);
+  Thread thread=new Thread(receiver);
+  thread.start();
   return receiver;
 }
