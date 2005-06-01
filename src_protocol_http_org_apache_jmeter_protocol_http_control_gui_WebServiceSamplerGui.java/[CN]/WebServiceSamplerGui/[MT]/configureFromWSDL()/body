@@ -1,18 +1,13 @@
 {
   if (HELPER.getBinding() != null) {
-    this.urlField.setText(HELPER.getBinding());
-  }
- else {
-    StringBuffer buf=new StringBuffer();
-    buf.append("http://" + HELPER.getURL().getHost());
-    if (HELPER.getURL().getPort() != -1) {
-      buf.append(":" + HELPER.getURL().getPort());
+    this.domain.setText(HELPER.getURL().getHost());
+    if (HELPER.getURL().getPort() > 0) {
+      this.port.setText(String.valueOf(HELPER.getURL().getPort()));
     }
  else {
-      buf.append(":" + 80);
+      this.port.setText("80");
     }
-    buf.append(HELPER.getURL().getPath());
-    this.urlField.setText(buf.toString());
+    this.path.setText(HELPER.getURL().getPath());
   }
   this.soapAction.setText(HELPER.getSoapAction(this.wsdlMethods.getText()));
 }

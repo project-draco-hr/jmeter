@@ -32,7 +32,9 @@
   listPanel.add(wsdlMethods);
   listPanel.add(selectButton);
   selectButton.addActionListener(this);
-  mainPanel.add(urlField);
+  mainPanel.add(domain);
+  mainPanel.add(port);
+  mainPanel.add(path);
   mainPanel.add(soapAction);
   Dimension pref=new Dimension(400,200);
   soapXml.setPreferredSize(pref);

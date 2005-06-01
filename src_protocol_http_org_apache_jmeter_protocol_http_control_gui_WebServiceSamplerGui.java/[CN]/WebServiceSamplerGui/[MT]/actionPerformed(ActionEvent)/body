@@ -14,7 +14,7 @@
     }
   }
  else {
-    if (this.urlField.getText() != null) {
+    if (this.domain.getText() != null) {
       String[] wsdlData=browseWSDL(wsdlField.getText());
       if (wsdlData != null) {
         wsdlMethods.setValues(wsdlData);
