@@ -15,7 +15,7 @@
     sendQueue=queue;
     if (!useTemporyQueue()) {
       receiveQueue=(Queue)context.lookup(getReceiveQueue());
-      Receiver.createReceiver(factory,receiveQueue);
+      receiverThread=Receiver.createReceiver(factory,receiveQueue);
     }
     connection=factory.createQueueConnection();
     session=connection.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);

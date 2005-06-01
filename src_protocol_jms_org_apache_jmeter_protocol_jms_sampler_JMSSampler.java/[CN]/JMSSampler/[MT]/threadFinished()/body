@@ -13,4 +13,5 @@
  catch (  JMSException e) {
     LOGGER.info(e.getLocalizedMessage());
   }
+  if (receiverThread != null)   receiverThread.deactivate();
 }
