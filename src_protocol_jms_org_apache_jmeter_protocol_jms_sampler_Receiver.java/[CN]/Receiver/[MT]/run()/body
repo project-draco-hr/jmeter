@@ -4,26 +4,30 @@
   while (isActive()) {
     reply=null;
     try {
-      reply=consumer.receive();
-      if (log.isDebugEnabled()) {
-        log.debug("Received message, correlation id:" + reply.getJMSCorrelationID());
-      }
-      if (reply.getJMSCorrelationID() == null) {
-        log.warn("Received message with correlation id null. Discarding message ...");
-      }
+      reply=consumer.receive(5000);
+      if (reply != null) {
+        if (log.isDebugEnabled()) {
+          log.debug("Received message, correlation id:" + reply.getJMSCorrelationID());
+        }
+        if (reply.getJMSCorrelationID() == null) {
+          log.warn("Received message with correlation id null. Discarding message ...");
+        }
  else {
-        MessageAdmin.getAdmin().putReply(reply.getJMSCorrelationID(),reply);
+          MessageAdmin.getAdmin().putReply(reply.getJMSCorrelationID(),reply);
+        }
       }
     }
  catch (    JMSException e1) {
       e1.printStackTrace();
     }
   }
-  if (session != null)   try {
-    session.close();
-    if (conn != null)     conn.close();
-  }
- catch (  JMSException e) {
-    e.printStackTrace();
+  if (session != null) {
+    try {
+      session.close();
+      if (conn != null)       conn.close();
+    }
+ catch (    JMSException e) {
+      e.printStackTrace();
+    }
   }
 }
