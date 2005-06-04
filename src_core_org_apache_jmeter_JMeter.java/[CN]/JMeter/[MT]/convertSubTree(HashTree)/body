@@ -3,6 +3,11 @@
   while (iter.hasNext()) {
     TestElement item=(TestElement)iter.next();
     if (item.isEnabled()) {
+      if (item instanceof TestPlan) {
+        TestPlan tp=(TestPlan)item;
+        tp.setFunctionalMode(tp.isFunctionalMode());
+        tp.setSerialized(tp.isSerialized());
+      }
 {
         convertSubTree(tree.getTree(item));
       }
