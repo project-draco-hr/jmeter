@@ -9,7 +9,7 @@
   Connection conn=null;
   Statement stmt=null;
   try {
-    if (pool == null)     throw new Exception("No pool created");
+    if (pool == null)     throw new SQLException("No pool created");
     conn=pool.getConnection();
     stmt=conn.createStatement();
     if (isQueryOnly()) {
@@ -39,9 +39,9 @@
     res.setDataType(SampleResult.TEXT);
     res.setSuccessful(true);
   }
- catch (  Exception ex) {
+ catch (  SQLException ex) {
     log.error("Error in JDBC sampling",ex);
-    res.setResponseData(ex.toString().getBytes());
+    res.setResponseMessage(ex.toString());
     res.setSuccessful(false);
   }
  finally {
@@ -49,20 +49,16 @@
       try {
         stmt.close();
       }
- catch (      SQLException err) {
-        log.error("Error in JDBC sampling",err);
-        res.setResponseData(err.toString().getBytes());
-        res.setSuccessful(false);
+ catch (      SQLException ex) {
+        log.warn("Error closing statement",ex);
       }
     }
     if (conn != null) {
       try {
         conn.close();
       }
- catch (      SQLException e1) {
-        log.error("Error in JDBC sampling",e1);
-        res.setResponseData(e1.toString().getBytes());
-        res.setSuccessful(false);
+ catch (      SQLException ex) {
+        log.warn("Error closing connection",ex);
       }
     }
   }
