@@ -12,15 +12,18 @@
   useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
   useKeepAlive.setName(USE_KEEPALIVE);
   useKeepAlive.setSelected(true);
-  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
-  panel.add(label);
-  panel.add(Box.createHorizontalStrut(5));
-  panel.add(path);
-  panel.add(Box.createHorizontalStrut(10));
-  panel.add(autoRedirects);
-  panel.add(followRedirects);
-  panel.add(Box.createHorizontalStrut(5));
-  panel.add(useKeepAlive);
-  panel.setMinimumSize(panel.getPreferredSize());
+  JPanel pathPanel=new JPanel(new BorderLayout(5,0));
+  pathPanel.add(label,BorderLayout.WEST);
+  pathPanel.add(path,BorderLayout.CENTER);
+  pathPanel.setMinimumSize(pathPanel.getPreferredSize());
+  JPanel optionPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPanel.add(autoRedirects);
+  optionPanel.add(followRedirects);
+  optionPanel.add(useKeepAlive);
+  optionPanel.setMinimumSize(optionPanel.getPreferredSize());
+  JPanel panel=new JPanel();
+  panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+  panel.add(pathPanel);
+  panel.add(optionPanel);
   return panel;
 }
