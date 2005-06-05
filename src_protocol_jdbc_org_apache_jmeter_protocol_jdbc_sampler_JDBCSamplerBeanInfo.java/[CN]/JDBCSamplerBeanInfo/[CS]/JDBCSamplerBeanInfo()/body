@@ -1,7 +1,7 @@
 {
   super(JDBCSampler.class);
-  createPropertyGroup("varName",new String[]{"dataSource","queryOnly"});
-  createPropertyGroup("sql",new String[]{"query"});
+  createPropertyGroup("varName",new String[]{"dataSource"});
+  createPropertyGroup("sql",new String[]{"queryOnly","query"});
   PropertyDescriptor p=property("dataSource");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
