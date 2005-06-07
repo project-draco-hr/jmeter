@@ -3,7 +3,13 @@
   WebServiceSampler sampler=(WebServiceSampler)el;
   wsdlField.setText(sampler.getWsdlURL());
   domain.setText(sampler.getDomain());
-  port.setText(String.valueOf(sampler.getPort()));
+  String portstring=sampler.getPropertyAsString(HTTPSamplerBase.PORT);
+  if (portstring.equals("" + HTTPSamplerBase.UNSPECIFIED_PORT)) {
+    port.setText("");
+  }
+ else {
+    port.setText(portstring);
+  }
   path.setText(sampler.getPath());
   soapAction.setText(sampler.getSoapAction());
   soapXml.setText(sampler.getXmlData());
