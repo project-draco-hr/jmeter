@@ -1,12 +1,10 @@
 {
   TestSuite suite=new TestSuite("Bean Resource Test Suite");
-  String[] languages=new String[]{"de","ja","no"};
-  String defaultLanguage="en";
   Iterator iter=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestBean.class}).iterator();
   while (iter.hasNext()) {
     String className=(String)iter.next();
     Class testBeanClass=Class.forName(className);
-    JMeterUtils.setLocale(new Locale(defaultLanguage,""));
+    JMeterUtils.setLocale(defaultLocale);
     ResourceBundle defaultBundle;
     try {
       defaultBundle=(ResourceBundle)Introspector.getBeanInfo(testBeanClass).getBeanDescriptor().getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);
@@ -22,9 +20,9 @@
       }
       throw new Error("No default bundle for class " + className);
     }
-    suite.addTest(new PackageTest(testBeanClass,defaultLanguage,defaultBundle));
-    for (int i=0; i < languages.length; i++) {
-      suite.addTest(new PackageTest(testBeanClass,languages[i],defaultBundle));
+    suite.addTest(new PackageTest(testBeanClass,defaultLocale,defaultBundle));
+    for (int i=0; i < locales.length; i++) {
+      suite.addTest(new PackageTest(testBeanClass,locales[i],defaultBundle));
     }
   }
   return suite;

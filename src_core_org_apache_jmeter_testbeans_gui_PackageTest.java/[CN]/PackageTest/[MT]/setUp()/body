@@ -1,5 +1,5 @@
 {
-  JMeterUtils.setLocale(new Locale(language,""));
+  JMeterUtils.setLocale(testLocale);
   Introspector.flushFromCaches(testBeanClass);
   try {
     beanInfo=Introspector.getBeanInfo(testBeanClass);
