@@ -7,7 +7,15 @@
     response.setSuccessful(true);
   }
   if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
-    toCheck=new StringBuffer(response.getResponseHeaders()).append(new String(response.responseDataAsBA())).toString();
+    String data;
+    try {
+      data=new String(response.responseDataAsBA(),response.getDataEncoding());
+    }
+ catch (    UnsupportedEncodingException e) {
+      log.warn("Problem with response encoding: " + e);
+      data=new String(response.responseDataAsBA());
+    }
+    toCheck=new StringBuffer(response.getResponseHeaders()).append(data).toString();
   }
  else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
     toCheck=response.getResponseCode();
