@@ -7,8 +7,7 @@
   groupingMode=new JComboBox(m);
   groupingMode.setName(ProxyControl.GROUPING_MODE);
   groupingMode.setSelectedIndex(0);
-  groupingMode.addActionListener(this);
-  groupingMode.setActionCommand(ProxyControl.GROUPING_MODE);
+  groupingMode.addItemListener(this);
   JLabel label2=new JLabel(JMeterUtils.getResString("grouping_mode"));
   label2.setLabelFor(groupingMode);
   HorizontalPanel panel=new HorizontalPanel();
