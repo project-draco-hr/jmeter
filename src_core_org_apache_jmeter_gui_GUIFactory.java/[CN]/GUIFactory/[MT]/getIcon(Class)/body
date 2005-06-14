@@ -1,11 +1,3 @@
 {
-  String key=elementClass.getName();
-  ImageIcon icon=(ImageIcon)ICON_MAP.get(key);
-  if (icon != null) {
-    return icon;
-  }
-  if (elementClass.getSuperclass() != null) {
-    return getIcon(elementClass.getSuperclass());
-  }
-  return null;
+  return getIcon(elementClass,true);
 }
