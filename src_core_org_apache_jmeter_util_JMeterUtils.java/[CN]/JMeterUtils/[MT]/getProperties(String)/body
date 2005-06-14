@@ -4,7 +4,7 @@
     File f=new File(file);
     p.load(new FileInputStream(f));
   }
- catch (  Exception e) {
+ catch (  IOException e) {
     try {
       InputStream is=ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties");
       if (is == null)       throw new RuntimeException("Could not read JMeter properties file");

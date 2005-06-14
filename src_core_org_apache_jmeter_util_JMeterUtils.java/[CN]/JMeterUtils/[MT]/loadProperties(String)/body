@@ -1,0 +1,22 @@
+{
+  Properties p=new Properties();
+  try {
+    File f=new File(file);
+    p.load(new FileInputStream(f));
+  }
+ catch (  IOException e) {
+    try {
+      InputStream is=JMeterUtils.class.getClassLoader().getResource(file).openStream();
+      if (is == null) {
+        log.warn("Cannot find " + file);
+        return null;
+      }
+      p.load(is);
+    }
+ catch (    IOException ex) {
+      log.warn("Error reading " + file + " "+ ex.toString());
+      return null;
+    }
+  }
+  return p;
+}
