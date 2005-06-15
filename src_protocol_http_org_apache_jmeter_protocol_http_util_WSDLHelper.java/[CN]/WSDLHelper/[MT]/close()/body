@@ -1,7 +1,7 @@
 {
   try {
-    CONN.getInputStream().close();
+    if (CONN != null)     CONN.getInputStream().close();
   }
- catch (  Exception exception) {
+ catch (  IOException exception) {
   }
 }

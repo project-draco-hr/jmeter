@@ -3,12 +3,17 @@
     this.connect();
     this.buildDocument();
     SOAPOPS=this.getOperations();
-    this.close();
   }
  catch (  IOException exception) {
     throw (new WSDLException(exception));
   }
-catch (  Exception exception) {
+catch (  SAXException exception) {
     throw (new WSDLException(exception));
+  }
+catch (  ParserConfigurationException exception) {
+    throw (new WSDLException(exception));
+  }
+ finally {
+    this.close();
   }
 }
