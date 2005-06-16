@@ -1,3 +1,10 @@
 {
+  if (wait > 0) {
+    try {
+      Thread.sleep(wait);
+    }
+ catch (    InterruptedException e1) {
+    }
+  }
   return null;
 }
