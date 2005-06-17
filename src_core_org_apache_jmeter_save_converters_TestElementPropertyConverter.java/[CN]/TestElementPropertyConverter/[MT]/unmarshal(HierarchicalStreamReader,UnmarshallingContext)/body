@@ -11,7 +11,7 @@
       if (isHeader) {
         String name=subProp.getName();
         if (TestElement.NAME.equals(name)) {
-          subProp.setName(Header.HNAME);
+          subProp.setName("Header.name");
         }
       }
       prop.addProperty(subProp);
