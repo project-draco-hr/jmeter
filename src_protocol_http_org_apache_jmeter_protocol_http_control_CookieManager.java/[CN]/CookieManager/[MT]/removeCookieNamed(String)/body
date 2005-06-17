@@ -1,4 +1,5 @@
 {
+  if (log.isDebugEnabled())   log.debug("Remove cookie named " + name);
   PropertyIterator iter=getCookies().iterator();
   while (iter.hasNext()) {
     Cookie cookie=(Cookie)iter.next().getObjectValue();
