@@ -1,5 +1,9 @@
 {
+  log.info("Setting Locale to " + loc.toString());
   locale=loc;
+  if (loc.getLanguage() == Locale.ENGLISH.getLanguage() && Locale.getDefault().getLanguage() != Locale.ENGLISH.getLanguage()) {
+    Locale.setDefault(Locale.ENGLISH);
+  }
   resources=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",locale);
   notifyLocaleChangeListeners();
 }
