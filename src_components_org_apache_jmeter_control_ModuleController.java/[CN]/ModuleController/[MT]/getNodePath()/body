@@ -1,7 +1,7 @@
 {
   JMeterProperty prop=getProperty(NODE_PATH);
   if (!(prop instanceof NullProperty)) {
-    return (Vector)((CollectionProperty)prop).getObjectValue();
+    return (List)((CollectionProperty)prop).getObjectValue();
   }
  else {
     return null;

@@ -1,4 +1,7 @@
 {
+  if (level == 0 && (parent_name == null || parent_name.length() == 0)) {
+    nodesModel.addElement(new TreeNodeWrapper(null,""));
+  }
   String seperator=" > ";
   if (node != null) {
     for (int i=0; i < node.getChildCount(); i++) {

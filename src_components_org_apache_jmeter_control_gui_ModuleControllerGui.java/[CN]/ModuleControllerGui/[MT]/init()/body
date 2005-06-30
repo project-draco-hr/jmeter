@@ -2,11 +2,13 @@
   setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
-  JPanel modulesPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  JPanel modulesPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,20,5));
   modulesPanel.add(new JLabel(CONTROLLER));
   nodesModel=new DefaultComboBoxModel();
   nodes=new JComboBox(nodesModel);
   reinitialize();
   modulesPanel.add(nodes);
+  warningLabel=new JLabel("");
+  modulesPanel.add(warningLabel);
   add(modulesPanel);
 }
