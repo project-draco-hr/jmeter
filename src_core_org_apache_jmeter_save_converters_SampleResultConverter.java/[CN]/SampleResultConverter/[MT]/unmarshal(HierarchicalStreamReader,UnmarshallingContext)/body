@@ -1,6 +1,6 @@
 {
   SampleResult res=(SampleResult)createCollection(context.getRequiredType());
-  retrieveAttributes(reader,res);
+  retrieveAttributes(reader,context,res);
   while (reader.hasMoreChildren()) {
     reader.moveDown();
     Object subItem=readItem(reader,context,res);
