@@ -9,8 +9,8 @@
   String iets;
   NamingEnumeration attrlist;
   res.setSampleLabel(getName());
-  LdapExtClient temp_client=(LdapExtClient)ldapConnections.get(Thread.currentThread().getName());
-  DirContext dirContext=(DirContext)ldapContexts.get(Thread.currentThread().getName());
+  LdapExtClient temp_client=(LdapExtClient)ldapConnections.get(getThreadName());
+  DirContext dirContext=(DirContext)ldapContexts.get(getThreadName());
   if (temp_client == null) {
     temp_client=new LdapExtClient();
     try {
@@ -19,9 +19,10 @@
  catch (    NamingException err) {
       log.error("Ldap client context creation - ",err);
     }
-    ldapConnections.put(Thread.currentThread().getName(),temp_client);
+    ldapConnections.put(getThreadName(),temp_client);
   }
   try {
+    log.debug("performing test: " + getPropertyAsString(TEST));
     if (getPropertyAsString(TEST).equals("unbind")) {
       res.setSamplerData("Unbind");
       responseData=responseData + "<operation><opertype>unbind</opertype>";
@@ -124,7 +125,6 @@
     responseData=responseData + "<responsemessage>" + res.getResponseMessage()+ "</responsemessage>";
     responseData=responseData + "</ldapanswer>";
     res.setResponseData(responseData.getBytes());
-    res.setThreadName(Thread.currentThread().getName());
     res.setDataType(SampleResult.TEXT);
     res.setSuccessful(isSuccessful);
   }
