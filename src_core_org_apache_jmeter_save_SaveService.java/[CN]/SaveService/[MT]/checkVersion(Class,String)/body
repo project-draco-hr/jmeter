@@ -4,7 +4,7 @@
     actual=(String)clazz.getMethod("getVersion",null).invoke(null,null);
     actual=extractVersion(actual);
   }
- catch (  Exception e) {
+ catch (  Exception ignored) {
   }
   if (0 != actual.compareTo(expected)) {
     versionsOK=false;
