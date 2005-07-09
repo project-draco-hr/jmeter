@@ -5,13 +5,13 @@
       int index=parts[i].indexOf("name=\"") + 6;
       String name=parts[i].substring(index,parts[i].indexOf("\"",index));
       index=parts[i].indexOf("filename=\"") + 10;
-      String filename=parts[i].substring(index,parts[i].indexOf("\"",index));
+      String fn=parts[i].substring(index,parts[i].indexOf("\"",index));
       index=parts[i].indexOf("\n",index);
       index=parts[i].indexOf(":",index) + 1;
-      String mimetype=parts[i].substring(index,parts[i].indexOf("\n",index)).trim();
+      String mt=parts[i].substring(index,parts[i].indexOf("\n",index)).trim();
       this.setFileFieldName(name);
-      this.setFilename(filename);
-      this.setMimeType(mimetype);
+      this.setFilename(fn);
+      this.setMimeType(mt);
     }
  else     if (parts[i].indexOf("name=") > -1) {
       int index=parts[i].indexOf("name=\"") + 6;

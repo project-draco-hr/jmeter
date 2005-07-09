@@ -1,4 +1,4 @@
 {
-  Arguments args=this.getArguments();
-  args.addArgument(new HTTPArgument(name,value));
+  Arguments myArgs=this.getArguments();
+  myArgs.addArgument(new HTTPArgument(name,value));
 }

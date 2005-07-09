@@ -1,8 +1,8 @@
 {
-  Arguments args=getArguments();
+  Arguments myArgs=getArguments();
   HTTPArgument arg=new HTTPArgument(name,value,true);
   if (arg.getName().equals(arg.getEncodedName()) && arg.getValue().equals(arg.getEncodedValue())) {
     arg.setAlwaysEncoded(false);
   }
-  args.addArgument(arg);
+  myArgs.addArgument(arg);
 }
