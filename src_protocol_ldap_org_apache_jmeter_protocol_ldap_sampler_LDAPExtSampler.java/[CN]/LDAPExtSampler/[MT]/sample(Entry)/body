@@ -16,7 +16,7 @@
     try {
       dirContext=new InitialDirContext();
     }
- catch (    Exception err) {
+ catch (    NamingException err) {
       log.error("Ldap client context creation - ",err);
     }
     ldapConnections.put(Thread.currentThread().getName(),temp_client);
@@ -113,14 +113,11 @@
       res.setResponseMessage(returnData.substring(returnData.indexOf("LDAP: error code") + 22,returnData.indexOf("]")));
       res.setResponseCode(returnData.substring(returnData.indexOf("LDAP: error code") + 17,returnData.indexOf("LDAP: error code") + 19));
     }
+ else {
+      res.setResponseMessage(returnData);
+      res.setResponseCode("800");
+    }
     isSuccessful=false;
-  }
-catch (  Exception ex) {
-    res.setResponseData(ex.toString().getBytes());
-    log.error("Ldap client - ",ex);
-    isSuccessful=false;
-    res.setResponseMessage("internal error");
-    res.setResponseCode("800");
   }
  finally {
     responseData=responseData + "<responsecode>" + res.getResponseCode()+ "</responsecode>";
