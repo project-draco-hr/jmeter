@@ -1,6 +1,7 @@
 {
   ScriptWrapper wrap=new ScriptWrapper();
   wrap.version=reader.getAttribute("version");
+  ConversionHelp.setInVersion(wrap.version);
   reader.moveDown();
   wrap.testPlan=(HashTree)context.convertAnother(wrap,getNextType(reader));
   return wrap;

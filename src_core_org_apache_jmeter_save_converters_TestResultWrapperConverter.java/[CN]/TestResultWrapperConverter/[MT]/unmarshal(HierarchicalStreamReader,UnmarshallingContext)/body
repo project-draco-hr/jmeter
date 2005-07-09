@@ -1,6 +1,10 @@
 {
   TestResultWrapper results=new TestResultWrapper();
   Collection samples=new ArrayList();
+  String ver=reader.getAttribute("version");
+  if (ver == null || ver.length() == 0)   ver="1.0";
+  results.setVersion(ver);
+  ConversionHelp.setInVersion(ver);
   while (reader.hasMoreChildren()) {
     reader.moveDown();
     SampleResult res=(SampleResult)readItem(reader,context,results);
