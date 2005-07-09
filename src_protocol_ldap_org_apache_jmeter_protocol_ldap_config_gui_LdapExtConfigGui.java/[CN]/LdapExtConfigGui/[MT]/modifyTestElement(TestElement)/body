@@ -40,8 +40,8 @@
   if (bind.isSelected()) {
     element.setProperty(new StringProperty(LDAPExtSampler.TEST,LDAPExtSampler.BIND));
   }
-  if (bind.isSelected()) {
-    element.setProperty(new StringProperty(LDAPExtSampler.TEST,LDAPExtSampler.BIND));
+  if (sbind.isSelected()) {
+    element.setProperty(new StringProperty(LDAPExtSampler.TEST,LDAPExtSampler.SBIND));
   }
   if (compare.isSelected()) {
     element.setProperty(new StringProperty(LDAPExtSampler.TEST,LDAPExtSampler.COMPARE));
