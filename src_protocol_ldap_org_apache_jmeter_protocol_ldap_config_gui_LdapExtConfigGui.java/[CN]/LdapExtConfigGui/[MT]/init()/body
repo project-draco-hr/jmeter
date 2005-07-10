@@ -1,4 +1,13 @@
 {
+  setLayout(new BorderLayout(0,5));
+  if (displayName) {
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
+  }
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.add(createTestPanel());
+  mainPanel.add(testPanel());
+  add(mainPanel,BorderLayout.CENTER);
   bind.addItemListener(this);
   sbind.addItemListener(this);
   unbind.addItemListener(this);
@@ -8,13 +17,4 @@
   rename.addItemListener(this);
   deleteTest.addItemListener(this);
   searchTest.addItemListener(this);
-  setLayout(new BorderLayout(0,5));
-  VerticalPanel mainPanel=new VerticalPanel();
-  if (displayName) {
-    mainPanel.setBorder(makeBorder());
-    add(makeTitlePanel(),BorderLayout.NORTH);
-  }
-  mainPanel.add(createTestPanel());
-  mainPanel.add(testPanel());
-  add(mainPanel,BorderLayout.CENTER);
 }
