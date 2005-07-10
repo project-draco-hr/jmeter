@@ -37,6 +37,7 @@
       res.setResponseData(results.getBytes());
     }
     res.setDataType(SampleResult.TEXT);
+    res.setDataEncoding(System.getProperty("file.encoding"));
     res.setSuccessful(true);
   }
  catch (  SQLException ex) {
