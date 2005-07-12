@@ -2,9 +2,9 @@
   choiceList.setBorder(BorderFactory.createLoweredBevelBorder());
   choiceList.addItemListener(new ItemListener(){
     /** 
- * Callback method when the focus to the Text Field component
- * is lost.
- * @param pFocusEvent The focus event that occured.
+ * Callback method when the focus to the Text Field component is
+ * lost.
+ * @param pFocusEventThe focus event that occured.
  */
     public void itemStateChanged(    ItemEvent e){
       if (e.getStateChange() == ItemEvent.SELECTED) {
