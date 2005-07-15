@@ -12,7 +12,7 @@
     if (pool == null)     throw new SQLException("No pool created");
     conn=pool.getConnection();
     stmt=conn.createStatement();
-    if (isQueryOnly()) {
+    if (SELECT.equals(getQueryType())) {
       ResultSet rs=null;
       try {
         rs=stmt.executeQuery(getQuery());
