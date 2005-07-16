@@ -1,0 +1,16 @@
+{
+  JUnitSampler sampler=(JUnitSampler)el;
+  configureTestElement(sampler);
+  if (classnameCombo.getSelectedItem() != null && classnameCombo.getSelectedItem() instanceof String) {
+    sampler.setClassname((String)classnameCombo.getSelectedItem());
+  }
+  if (methodName.getSelectedItem() != null) {
+    Object mobj=methodName.getSelectedItem();
+    sampler.setMethod((String)mobj);
+  }
+  sampler.setFilterString(filterpkg.getText());
+  sampler.setSuccess(successMsg.getText());
+  sampler.setSuccessCode(successCode.getText());
+  sampler.setFailure(failureMsg.getText());
+  sampler.setFailureCode(failureCode.getText());
+}

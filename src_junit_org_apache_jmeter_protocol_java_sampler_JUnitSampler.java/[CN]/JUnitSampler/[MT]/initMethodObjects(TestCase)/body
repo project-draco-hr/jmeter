@@ -1,0 +1,11 @@
+{
+  if (!this.checkStartUpTearDown) {
+    if (SETUP_METHOD == null) {
+      SETUP_METHOD=getMethod(tc,SETUP);
+    }
+    if (TDOWN_METHOD == null) {
+      TDOWN_METHOD=getMethod(tc,TEARDOWN);
+    }
+    this.checkStartUpTearDown=true;
+  }
+}

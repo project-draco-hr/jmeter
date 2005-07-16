@@ -1,0 +1,12 @@
+{
+  super.configure(el);
+  JUnitSampler sampler=(JUnitSampler)el;
+  classnameCombo.setSelectedItem(sampler.getClassname());
+  instantiateClass();
+  methodName.setSelectedItem(sampler.getMethod());
+  filterpkg.setText(sampler.getFilterString());
+  successCode.setText(sampler.getSuccessCode());
+  successMsg.setText(sampler.getSuccess());
+  failureCode.setText(sampler.getFailureCode());
+  failureMsg.setText(sampler.getFailure());
+}

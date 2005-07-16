@@ -1,0 +1,54 @@
+{
+  SampleResult sresult=new SampleResult();
+  sresult.setSampleLabel(getClassname() + "." + getMethod());
+  Object ins=getClassInstance();
+  if (ins != null) {
+    TestResult tr=new TestResult();
+    tr.addListener(this);
+    TestCase tc=(TestCase)ins;
+    initMethodObjects(tc);
+    sresult.sampleStart();
+    log.info("got instance and TestResult");
+    try {
+      if (SETUP_METHOD != null) {
+        SETUP_METHOD.invoke(tc,new Class[0]);
+        log.info("called setUp");
+      }
+      Method m=getMethod(tc,getMethod());
+      m.invoke(tc,null);
+      log.info("invoked " + getMethod());
+      if (TDOWN_METHOD != null) {
+        TDOWN_METHOD.invoke(tc,new Class[0]);
+        log.info("called tearDown");
+      }
+    }
+ catch (    InvocationTargetException e) {
+      log.warn(e.getMessage());
+    }
+catch (    IllegalAccessException e) {
+      log.warn(e.getMessage());
+    }
+    sresult.sampleEnd();
+    if (!tr.wasSuccessful()) {
+      sresult.setSuccessful(false);
+      StringBuffer buf=new StringBuffer();
+      buf.append(getFailure());
+      Enumeration en=tr.errors();
+      while (en.hasMoreElements()) {
+        buf.append((String)en.nextElement());
+      }
+      sresult.setResponseMessage(buf.toString());
+      sresult.setResponseCode(getFailureCode());
+    }
+ else {
+      sresult.setSuccessful(true);
+      sresult.setResponseMessage(getSuccess());
+      sresult.setResponseCode(getSuccessCode());
+    }
+  }
+ else {
+    sresult.setSuccessful(false);
+    sresult.setResponseMessage("failed to create an instance of the class");
+  }
+  return sresult;
+}

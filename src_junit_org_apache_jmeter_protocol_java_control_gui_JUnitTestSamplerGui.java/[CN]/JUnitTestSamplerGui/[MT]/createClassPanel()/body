@@ -1,0 +1,43 @@
+{
+  METHODLIST=new java.util.ArrayList();
+  SPATHS=new String[2];
+  SPATHS[0]=JMeterUtils.getSearchPaths()[0];
+  SPATHS[1]=JMeterUtils.getJMeterHome() + "/lib/junit/";
+  try {
+    CLASSLIST=ClassFinder.findClassesThatExtend(SPATHS,new Class[]{TestCase.class});
+  }
+ catch (  Exception e) {
+    log.debug("Exception getting interfaces.",e);
+  }
+  JLabel label=new JLabel(JMeterUtils.getResString("protocol_java_classname"));
+  classnameCombo=new JComboBox(CLASSLIST.toArray());
+  classnameCombo.addActionListener(this);
+  classnameCombo.setName(CLASSNAMECOMBO);
+  classnameCombo.setEditable(false);
+  label.setLabelFor(classnameCombo);
+  if (FILTER != null && FILTER.size() > 0) {
+    methodName=new JComboBox(FILTER.filterArray(METHODLIST));
+  }
+ else {
+    methodName=new JComboBox(METHODLIST.toArray());
+  }
+  methodName.addActionListener(this);
+  methodName.setName(METHODCOMBO);
+  methodLabel.setLabelFor(methodName);
+  VerticalPanel panel=new VerticalPanel();
+  panel.add(label);
+  if (classnameCombo != null) {
+    panel.add(classnameCombo);
+  }
+  panel.add(methodLabel);
+  if (methodName != null) {
+    panel.add(methodName);
+  }
+  filterpkg.addChangeListener(this);
+  panel.add(filterpkg);
+  panel.add(successMsg);
+  panel.add(successCode);
+  panel.add(failureMsg);
+  panel.add(failureCode);
+  return panel;
+}

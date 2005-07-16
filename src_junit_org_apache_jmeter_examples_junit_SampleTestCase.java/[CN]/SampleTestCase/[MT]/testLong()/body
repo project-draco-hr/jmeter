@@ -1,0 +1,9 @@
+{
+  long time=nextLong();
+  try {
+    Thread.sleep(time);
+  }
+ catch (  InterruptedException e) {
+    fail(e.getMessage());
+  }
+}
