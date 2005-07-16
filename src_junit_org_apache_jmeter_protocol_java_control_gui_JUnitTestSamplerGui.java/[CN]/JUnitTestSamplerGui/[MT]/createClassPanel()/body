@@ -26,6 +26,8 @@
   methodLabel.setLabelFor(methodName);
   VerticalPanel panel=new VerticalPanel();
   panel.add(label);
+  filterpkg.addChangeListener(this);
+  panel.add(filterpkg);
   if (classnameCombo != null) {
     panel.add(classnameCombo);
   }
@@ -33,8 +35,6 @@
   if (methodName != null) {
     panel.add(methodName);
   }
-  filterpkg.addChangeListener(this);
-  panel.add(filterpkg);
   panel.add(successMsg);
   panel.add(successCode);
   panel.add(failureMsg);
