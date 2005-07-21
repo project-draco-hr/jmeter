@@ -7,7 +7,6 @@
     tr.addListener(this);
     TestCase tc=(TestCase)ins;
     initMethodObjects(tc);
-    sresult.sampleStart();
     log.info("got instance and TestResult");
     try {
       if (SETUP_METHOD != null) {
@@ -15,7 +14,9 @@
         log.info("called setUp");
       }
       Method m=getMethod(tc,getMethod());
+      sresult.sampleStart();
       m.invoke(tc,null);
+      sresult.sampleEnd();
       log.info("invoked " + getMethod());
       if (TDOWN_METHOD != null) {
         TDOWN_METHOD.invoke(tc,new Class[0]);
@@ -28,7 +29,6 @@
 catch (    IllegalAccessException e) {
       log.warn(e.getMessage());
     }
-    sresult.sampleEnd();
     if (!tr.wasSuccessful()) {
       sresult.setSuccessful(false);
       StringBuffer buf=new StringBuffer();
