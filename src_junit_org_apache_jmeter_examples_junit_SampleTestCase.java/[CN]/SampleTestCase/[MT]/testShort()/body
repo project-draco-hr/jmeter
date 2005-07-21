@@ -1,9 +1,0 @@
-{
-  long time=100;
-  try {
-    Thread.sleep(time);
-  }
- catch (  InterruptedException e) {
-    fail(e.getMessage());
-  }
-}

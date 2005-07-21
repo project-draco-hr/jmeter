@@ -1,9 +1,0 @@
-{
-  long time=Math.abs(nextLong());
-  try {
-    Thread.sleep(time > 1000 ? 1000 : time);
-  }
- catch (  InterruptedException e) {
-    fail(e.getMessage());
-  }
-}
