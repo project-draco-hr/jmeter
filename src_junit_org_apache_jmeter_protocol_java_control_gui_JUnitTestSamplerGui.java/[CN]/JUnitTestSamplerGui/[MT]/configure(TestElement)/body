@@ -9,4 +9,5 @@
   successMsg.setText(sampler.getSuccess());
   failureCode.setText(sampler.getFailureCode());
   failureMsg.setText(sampler.getFailure());
+  doSetup.setSelected(sampler.getDoNotSetUpTearDown());
 }

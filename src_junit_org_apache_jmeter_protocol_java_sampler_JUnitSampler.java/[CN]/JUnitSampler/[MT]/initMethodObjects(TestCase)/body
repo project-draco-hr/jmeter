@@ -1,5 +1,5 @@
 {
-  if (!this.checkStartUpTearDown) {
+  if (!this.checkStartUpTearDown && !getDoNotSetUpTearDown()) {
     if (SETUP_METHOD == null) {
       SETUP_METHOD=getMethod(tc,SETUP);
     }

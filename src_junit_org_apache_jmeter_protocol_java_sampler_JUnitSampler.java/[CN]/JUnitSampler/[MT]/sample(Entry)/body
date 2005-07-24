@@ -1,6 +1,7 @@
 {
   SampleResult sresult=new SampleResult();
-  sresult.setSampleLabel(getClassname() + "." + getMethod());
+  sresult.setSampleLabel(JUnitSampler.class.getName());
+  sresult.setSamplerData(getClassname() + "." + getMethod());
   Object ins=getClassInstance();
   if (ins != null) {
     TestResult tr=new TestResult();
@@ -9,7 +10,7 @@
     initMethodObjects(tc);
     log.info("got instance and TestResult");
     try {
-      if (SETUP_METHOD != null) {
+      if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
         SETUP_METHOD.invoke(tc,new Class[0]);
         log.info("called setUp");
       }
@@ -18,7 +19,7 @@
       m.invoke(tc,null);
       sresult.sampleEnd();
       log.info("invoked " + getMethod());
-      if (TDOWN_METHOD != null) {
+      if (!getDoNotSetUpTearDown() && TDOWN_METHOD != null) {
         TDOWN_METHOD.invoke(tc,new Class[0]);
         log.info("called tearDown");
       }
