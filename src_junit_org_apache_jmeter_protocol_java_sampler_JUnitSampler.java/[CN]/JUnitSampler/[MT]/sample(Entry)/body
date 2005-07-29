@@ -2,25 +2,21 @@
   SampleResult sresult=new SampleResult();
   sresult.setSampleLabel(JUnitSampler.class.getName());
   sresult.setSamplerData(getClassname() + "." + getMethod());
-  Object ins=getClassInstance();
-  if (ins != null) {
+  this.testStarted("");
+  if (this.TEST_INSTANCE != null) {
+    initMethodObjects(this.TEST_INSTANCE);
     TestResult tr=new TestResult();
-    tr.addListener(this);
-    TestCase tc=(TestCase)ins;
-    initMethodObjects(tc);
-    log.info("got instance and TestResult");
     try {
       if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
-        SETUP_METHOD.invoke(tc,new Class[0]);
+        SETUP_METHOD.invoke(TEST_INSTANCE,new Class[0]);
         log.info("called setUp");
       }
-      Method m=getMethod(tc,getMethod());
+      Method m=getMethod(TEST_INSTANCE,getMethod());
       sresult.sampleStart();
-      m.invoke(tc,null);
+      m.invoke(TEST_INSTANCE,null);
       sresult.sampleEnd();
-      log.info("invoked " + getMethod());
       if (!getDoNotSetUpTearDown() && TDOWN_METHOD != null) {
-        TDOWN_METHOD.invoke(tc,new Class[0]);
+        TDOWN_METHOD.invoke(TEST_INSTANCE,new Class[0]);
         log.info("called tearDown");
       }
     }

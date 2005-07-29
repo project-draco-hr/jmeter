@@ -1,6 +1,6 @@
 {
   if (clazz != null && method != null) {
-    log.info("class " + clazz.getClass().getName() + "method name is "+ method);
+    log.info("class " + clazz.getClass().getName() + " method name is "+ method);
     try {
       return clazz.getClass().getMethod(method,new Class[0]);
     }
