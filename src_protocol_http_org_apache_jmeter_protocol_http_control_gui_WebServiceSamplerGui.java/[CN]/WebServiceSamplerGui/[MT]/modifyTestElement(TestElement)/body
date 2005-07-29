@@ -2,7 +2,7 @@
   WebServiceSampler sampler=(WebServiceSampler)s;
   this.configureTestElement(sampler);
   sampler.setDomain(domain.getText());
-  sampler.setPort(80);
+  sampler.setProperty(HTTPSamplerBase.PORT,port.getText());
   sampler.setPath(path.getText());
   sampler.setWsdlURL(wsdlField.getText());
   sampler.setMethod(HTTPSamplerBase.POST);
