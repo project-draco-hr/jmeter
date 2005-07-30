@@ -2,7 +2,9 @@
   SampleResult sresult=new SampleResult();
   sresult.setSampleLabel(JUnitSampler.class.getName());
   sresult.setSamplerData(getClassname() + "." + getMethod());
-  this.testStarted("");
+  if (this.TEST_INSTANCE == null) {
+    this.TEST_INSTANCE=(TestCase)getClassInstance();
+  }
   if (this.TEST_INSTANCE != null) {
     initMethodObjects(this.TEST_INSTANCE);
     TestResult tr=new TestResult();

@@ -1,18 +1,10 @@
 {
-  if (!this.checkStartUpTearDown) {
-    if (ONETIME_SETUP_METHOD == null) {
-      ONETIME_SETUP_METHOD=getMethod(tc,ONETIMESETUP);
+  if (!this.checkStartUpTearDown && !getDoNotSetUpTearDown()) {
+    if (SETUP_METHOD == null) {
+      SETUP_METHOD=getMethod(tc,SETUP);
     }
-    if (ONETIME_TDOWN_METHOD == null) {
-      ONETIME_TDOWN_METHOD=getMethod(tc,ONETIMETEARDOWN);
-    }
-    if (!getDoNotSetUpTearDown()) {
-      if (SETUP_METHOD == null) {
-        SETUP_METHOD=getMethod(tc,SETUP);
-      }
-      if (TDOWN_METHOD == null) {
-        TDOWN_METHOD=getMethod(tc,TEARDOWN);
-      }
+    if (TDOWN_METHOD == null) {
+      TDOWN_METHOD=getMethod(tc,TEARDOWN);
     }
     this.checkStartUpTearDown=true;
   }
