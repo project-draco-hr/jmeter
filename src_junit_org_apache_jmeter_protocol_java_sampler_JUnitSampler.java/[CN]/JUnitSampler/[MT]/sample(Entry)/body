@@ -3,7 +3,7 @@
   sresult.setSampleLabel(JUnitSampler.class.getName());
   sresult.setSamplerData(getClassname() + "." + getMethod());
   if (this.TEST_INSTANCE == null) {
-    this.TEST_INSTANCE=(TestCase)getClassInstance();
+    this.TEST_INSTANCE=(TestCase)getClassInstance(this.getClassname());
   }
   if (this.TEST_INSTANCE != null) {
     initMethodObjects(this.TEST_INSTANCE);
