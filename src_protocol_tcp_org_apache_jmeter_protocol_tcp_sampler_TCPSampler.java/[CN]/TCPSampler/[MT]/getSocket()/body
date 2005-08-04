@@ -12,7 +12,6 @@
     log.debug(this + "  Timeout " + getTimeout()+ " NoDelay "+ getNoDelay());
     log.debug("Created new connection " + con);
     cp.put(TCPKEY,con);
-    allSockets.add(con);
   }
  catch (  UnknownHostException e) {
     log.warn("Unknown host for " + getLabel(),e);

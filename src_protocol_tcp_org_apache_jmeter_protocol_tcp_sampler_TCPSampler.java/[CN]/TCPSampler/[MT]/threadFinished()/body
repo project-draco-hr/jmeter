@@ -1,0 +1,14 @@
+{
+  log.debug("Thread Finished");
+  Map cp=(Map)tp.get();
+  Socket con=(Socket)cp.remove(TCPKEY);
+  if (con != null) {
+    log.debug(this + " Closing connection " + con);
+    try {
+      con.close();
+    }
+ catch (    IOException e) {
+      log.warn("Error closing socket " + e);
+    }
+  }
+}
