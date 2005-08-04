@@ -11,7 +11,6 @@
     try {
       if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
         SETUP_METHOD.invoke(TEST_INSTANCE,new Class[0]);
-        log.info("called setUp");
       }
       Method m=getMethod(TEST_INSTANCE,getMethod());
       sresult.sampleStart();
@@ -19,14 +18,21 @@
       sresult.sampleEnd();
       if (!getDoNotSetUpTearDown() && TDOWN_METHOD != null) {
         TDOWN_METHOD.invoke(TEST_INSTANCE,new Class[0]);
-        log.info("called tearDown");
       }
     }
  catch (    InvocationTargetException e) {
       log.warn(e.getMessage());
+      sresult.setResponseCode(getErrorCode());
+      sresult.setResponseMessage(getError());
     }
 catch (    IllegalAccessException e) {
       log.warn(e.getMessage());
+      sresult.setResponseCode(getErrorCode());
+      sresult.setResponseMessage(getError());
+    }
+catch (    Exception e) {
+      sresult.setResponseCode(getErrorCode());
+      sresult.setResponseMessage(getError());
     }
     if (!tr.wasSuccessful()) {
       sresult.setSuccessful(false);
