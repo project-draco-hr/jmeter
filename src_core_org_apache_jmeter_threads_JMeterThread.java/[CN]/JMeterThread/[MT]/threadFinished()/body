@@ -1,6 +1,5 @@
 {
-  Traverser shut=new Traverser(false);
-  testTree.traverse(shut);
+  processThreadListeners(false);
   JMeterContextService.decrNumberOfThreads();
   threadGroup.decrNumberOfThreads();
 }

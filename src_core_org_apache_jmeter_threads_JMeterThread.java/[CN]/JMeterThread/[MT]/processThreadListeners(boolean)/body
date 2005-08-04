@@ -1,0 +1,12 @@
+{
+  Iterator it=threadListeners.iterator();
+  while (it.hasNext()) {
+    ThreadListener tl=(ThreadListener)it.next();
+    if (begin) {
+      tl.threadStarted();
+    }
+ else {
+      tl.threadFinished();
+    }
+  }
+}
