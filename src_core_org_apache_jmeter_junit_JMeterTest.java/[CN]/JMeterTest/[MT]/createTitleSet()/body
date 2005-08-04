@@ -11,9 +11,11 @@
     List components=((Element)sections.get(i)).getChildren("component");
     for (int j=0; j < components.size(); j++) {
       Element comp=(Element)components.get(j);
-      guiTitles.put(comp.getAttributeValue("name"),Boolean.FALSE);
+      String nm=comp.getAttributeValue("name");
+      if (!nm.equals("SSL Manager")) {
+        guiTitles.put(nm.replace(' ','_'),Boolean.FALSE);
+      }
     }
   }
-  guiTitles.put("Root",Boolean.FALSE);
   guiTitles.put("Example Sampler",Boolean.FALSE);
 }
