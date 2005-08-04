@@ -1,4 +1,4 @@
 {
-  log.info("Thread Finished");
+  log.debug("Thread Finished");
   if (httpConn != null)   httpConn.close();
 }
