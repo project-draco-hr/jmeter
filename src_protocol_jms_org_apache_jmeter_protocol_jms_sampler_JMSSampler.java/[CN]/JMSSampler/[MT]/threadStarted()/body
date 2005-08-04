@@ -1,6 +1,5 @@
 {
   logThreadStart();
-  super.threadStarted();
   Context context=null;
   try {
     context=getInitialContext();
