@@ -1,8 +1,8 @@
 {
   HTTPSampler config=new HTTPSampler();
   config.setProtocol("http");
-  config.setMethod(GET);
-  config.parseArguments("param1");
+  config.setMethod(HTTPSampler.GET);
+  config.addArgument("param1","","");
   config.setPath("/index.html");
   config.setDomain("www.apache.org");
   assertEquals("http://www.apache.org/index.html?param1",config.getUrl().toString());

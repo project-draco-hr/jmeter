@@ -1,7 +1,7 @@
 {
   HTTPSampler config=new HTTPSampler();
   config.setProtocol("http");
-  config.setMethod(GET);
+  config.setMethod(HTTPSampler.GET);
   config.parseArguments("param1=");
   config.setPath("/index.html");
   config.setDomain("www.apache.org");
