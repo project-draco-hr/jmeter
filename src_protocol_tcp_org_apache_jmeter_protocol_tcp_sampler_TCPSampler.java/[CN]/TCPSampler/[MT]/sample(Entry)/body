@@ -9,7 +9,7 @@
     Socket sock=getSocket();
     if (sock == null) {
       res.setResponseCode("500");
-      res.setResponseMessage(getError());
+      res.setResponseMessage(except.toString());
     }
  else {
       InputStream is=sock.getInputStream();
@@ -46,7 +46,7 @@
     }
   }
  catch (  IOException ex) {
-    log.debug("",ex);
+    log.debug(getName(),ex);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
     closeSocket();

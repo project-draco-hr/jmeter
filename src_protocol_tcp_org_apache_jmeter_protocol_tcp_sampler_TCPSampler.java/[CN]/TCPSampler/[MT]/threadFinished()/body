@@ -1,4 +1,4 @@
 {
-  log.debug("Thread Finished");
+  log.debug(getName() + " Thread Finished");
   closeSocket();
 }

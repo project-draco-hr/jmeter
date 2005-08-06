@@ -1,13 +1,14 @@
 {
   Map cp=(Map)tp.get();
-  Socket con=(Socket)cp.remove(TCPKEY);
+  if (hashKey == null)   return;
+  Socket con=(Socket)cp.remove(hashKey);
   if (con != null) {
-    log.debug(this + " Closing connection " + con);
+    log.debug(getName() + " Closing socket for " + hashKey);
     try {
       con.close();
     }
  catch (    IOException e) {
-      log.warn("Error closing socket " + e);
+      log.warn(getName() + " Error closing socket for " + hashKey+ " "+ e);
     }
   }
 }
