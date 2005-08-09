@@ -1,9 +1,16 @@
 {
   SampleResult sresult=new SampleResult();
-  sresult.setSampleLabel(JUnitSampler.class.getName());
+  String rlabel=null;
+  if (getConstructorString().length() > 0) {
+    rlabel=getConstructorString();
+  }
+ else {
+    rlabel=JUnitSampler.class.getName();
+  }
+  sresult.setSampleLabel(rlabel);
   sresult.setSamplerData(getClassname() + "." + getMethod());
   if (this.TEST_INSTANCE == null) {
-    this.TEST_INSTANCE=(TestCase)getClassInstance(this.getClassname());
+    this.TEST_INSTANCE=(TestCase)getClassInstance(getClassname(),rlabel);
   }
   if (this.TEST_INSTANCE != null) {
     initMethodObjects(this.TEST_INSTANCE);
@@ -21,12 +28,10 @@
       }
     }
  catch (    InvocationTargetException e) {
-      log.warn(e.getMessage());
       sresult.setResponseCode(getErrorCode());
       sresult.setResponseMessage(getError());
     }
 catch (    IllegalAccessException e) {
-      log.warn(e.getMessage());
       sresult.setResponseCode(getErrorCode());
       sresult.setResponseMessage(getError());
     }

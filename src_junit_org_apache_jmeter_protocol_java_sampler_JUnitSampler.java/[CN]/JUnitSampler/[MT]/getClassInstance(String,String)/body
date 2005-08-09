@@ -1,0 +1,49 @@
+{
+  Object testclass=null;
+  if (className != null) {
+    Constructor con=null;
+    Class theclazz=null;
+    Object[] params=null;
+    try {
+      theclazz=Class.forName(className.trim(),true,Thread.currentThread().getContextClassLoader());
+    }
+ catch (    ClassNotFoundException e) {
+      log.warn("ClassNotFoundException:: " + e.getMessage());
+    }
+    if (theclazz != null) {
+      try {
+        con=theclazz.getDeclaredConstructor(new Class[]{String.class});
+        params=new Object[]{label};
+      }
+ catch (      NoSuchMethodException e) {
+        log.info("String constructor:: " + e.getMessage());
+      }
+      if (con == null) {
+        try {
+          con=theclazz.getDeclaredConstructor(new Class[0]);
+          if (con != null) {
+            params=new Object[]{};
+          }
+        }
+ catch (        NoSuchMethodException e) {
+          log.info("Empty constructor:: " + e.getMessage());
+        }
+      }
+      try {
+        if (con != null) {
+          testclass=(TestCase)con.newInstance(params);
+        }
+      }
+ catch (      InvocationTargetException e) {
+        log.warn(e.getMessage());
+      }
+catch (      InstantiationException e) {
+        log.info(e.getMessage());
+      }
+catch (      IllegalAccessException e) {
+        log.info(e.getMessage());
+      }
+    }
+  }
+  return testclass;
+}

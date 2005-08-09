@@ -4,6 +4,7 @@
   if (classnameCombo.getSelectedItem() != null && classnameCombo.getSelectedItem() instanceof String) {
     sampler.setClassname((String)classnameCombo.getSelectedItem());
   }
+  sampler.setConstructorString(constructorLabel.getText());
   if (methodName.getSelectedItem() != null) {
     Object mobj=methodName.getSelectedItem();
     sampler.setMethod((String)mobj);

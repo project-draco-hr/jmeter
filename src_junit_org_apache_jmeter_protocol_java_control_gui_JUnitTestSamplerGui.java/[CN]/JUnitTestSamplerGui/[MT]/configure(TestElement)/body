@@ -5,6 +5,7 @@
   instantiateClass();
   methodName.setSelectedItem(sampler.getMethod());
   filterpkg.setText(sampler.getFilterString());
+  constructorLabel.setText(sampler.getConstructorString());
   if (sampler.getSuccessCode().length() > 0) {
     successCode.setText(sampler.getSuccessCode());
   }
