@@ -1,0 +1,10 @@
+{
+  CSVRead cr=new CSVRead();
+  Collection parms=new LinkedList();
+  parms.add(new CompoundVariable(p1));
+  parms.add(new CompoundVariable(p2));
+  parms.add(new CompoundVariable(p3));
+  if (p4 != null)   parms.add(new CompoundVariable(p4));
+  cr.setParameters(parms);
+  return cr;
+}
