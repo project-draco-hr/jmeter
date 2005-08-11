@@ -75,6 +75,13 @@
         BgSoundTag script=(BgSoundTag)node;
         binUrlStr=script.getAttribute("src");
       }
+ else       if (node instanceof Tag) {
+        Tag tag=(Tag)node;
+        String tagname=tag.getTagName();
+        if (tagname.equalsIgnoreCase("EMBED")) {
+          binUrlStr=tag.getAttribute("src");
+        }
+      }
       if (binUrlStr == null) {
         continue;
       }
