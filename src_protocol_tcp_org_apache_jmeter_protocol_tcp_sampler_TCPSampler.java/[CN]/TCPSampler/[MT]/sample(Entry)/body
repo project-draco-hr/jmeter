@@ -45,12 +45,15 @@
       }
     }
   }
- catch (  Exception ex) {
+ catch (  IOException ex) {
     log.debug("",ex);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
+    closeSocket();
   }
-  res.sampleEnd();
-  res.setSuccessful(isSuccessful);
+ finally {
+    res.sampleEnd();
+    res.setSuccessful(isSuccessful);
+  }
   return res;
 }
