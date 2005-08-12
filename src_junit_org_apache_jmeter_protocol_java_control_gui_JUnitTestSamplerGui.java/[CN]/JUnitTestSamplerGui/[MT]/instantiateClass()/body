@@ -1,7 +1,7 @@
 {
   String className=((String)classnameCombo.getSelectedItem());
   if (className != null) {
-    TESTCLASS=(TestCase)JUnitSampler.getClassInstance(className,"");
+    TESTCLASS=(TestCase)JUnitSampler.getClassInstance(className,constructorLabel.getText());
     if (TESTCLASS == null) {
       clearMethodCombo();
     }
