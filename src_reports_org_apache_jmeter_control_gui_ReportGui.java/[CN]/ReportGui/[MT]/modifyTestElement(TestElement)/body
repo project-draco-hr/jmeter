@@ -1,0 +1,9 @@
+{
+  super.configureTestElement(plan);
+  if (plan instanceof ReportPlan) {
+    ReportPlan tp=(ReportPlan)plan;
+    tp.setSerialized(serializedMode.isSelected());
+    tp.setUserDefinedVariables((Arguments)argsPanel.createTestElement());
+    tp.setProperty(ReportPlan.COMMENTS,commentPanel.getText());
+  }
+}

@@ -1,0 +1,11 @@
+{
+  TestElement tp=new TestPlanGui().createTestElement();
+  TestElement wb=new ReportGui().createTestElement();
+  this.insertNodeInto(new ReportTreeNode(tp,this),(ReportTreeNode)getRoot(),0);
+  try {
+    super.removeNodeFromParent((ReportTreeNode)getChild(getRoot(),1));
+  }
+ catch (  RuntimeException e) {
+  }
+  this.insertNodeInto(new ReportTreeNode(wb,this),(ReportTreeNode)getRoot(),1);
+}

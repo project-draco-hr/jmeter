@@ -1,0 +1,10 @@
+{
+  JPopupMenu pop=new JPopupMenu();
+  JMenu addMenu=new JMenu(JMeterUtils.getResString("Add"));
+  addMenu.add(MenuFactory.makeMenuItem(new ThreadGroupGui().getStaticLabel(),ThreadGroupGui.class.getName(),"Add"));
+  addMenu.add(MenuFactory.makeMenu(MenuFactory.LISTENERS,"Add"));
+  addMenu.add(MenuFactory.makeMenu(MenuFactory.CONFIG_ELEMENTS,"Add"));
+  pop.add(addMenu);
+  MenuFactory.addFileMenu(pop);
+  return pop;
+}

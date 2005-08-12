@@ -1,0 +1,66 @@
+{
+  if (parser.getArgumentById(PROPFILE_OPT) != null) {
+    JMeterUtils.getProperties(parser.getArgumentById(PROPFILE_OPT).getArgument());
+  }
+ else {
+    JMeterUtils.getProperties(NewDriver.getJMeterDir() + File.separator + "bin"+ File.separator+ "jmeter.properties");
+  }
+  if (parser.getArgumentById(JMETER_HOME_OPT) == null) {
+    JMeterUtils.setJMeterHome(NewDriver.getJMeterDir());
+  }
+ else {
+    JMeterUtils.setJMeterHome(parser.getArgumentById(JMETER_HOME_OPT).getArgument());
+  }
+  Properties jmeterProps=JMeterUtils.getJMeterProperties();
+  List clOptions=parser.getArguments();
+  int size=clOptions.size();
+  for (int i=0; i < size; i++) {
+    CLOption option=(CLOption)clOptions.get(i);
+    String name=option.getArgument(0);
+    String value=option.getArgument(1);
+switch (option.getDescriptor().getId()) {
+case PROPFILE2_OPT:
+      File f=new File(name);
+    try {
+      jmeterProps.load(new FileInputStream(f));
+    }
+ catch (    FileNotFoundException e) {
+      log.warn("Can't find additional property file: " + name,e);
+    }
+catch (    IOException e) {
+      log.warn("Error loading additional property file: " + name,e);
+    }
+  break;
+case SYSTEM_PROPERTY:
+if (value.length() > 0) {
+  log.info("Setting System property: " + name + "="+ value);
+  System.getProperties().setProperty(name,value);
+}
+ else {
+  log.warn("Removing System property: " + name);
+  System.getProperties().remove(name);
+}
+break;
+case JMETER_PROPERTY:
+if (value.length() > 0) {
+log.info("Setting JMeter property: " + name + "="+ value);
+jmeterProps.setProperty(name,value);
+}
+ else {
+log.warn("Removing JMeter property: " + name);
+jmeterProps.remove(name);
+}
+break;
+case LOGLEVEL:
+if (value.length() > 0) {
+log.info("LogLevel: " + name + "="+ value);
+LoggingManager.setPriority(value,name);
+}
+ else {
+log.warn("LogLevel: " + name);
+LoggingManager.setPriority(name);
+}
+break;
+}
+}
+}
