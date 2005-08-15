@@ -2,7 +2,7 @@
   Sampler sampler=controller.next();
   if (sampler == null) {
     currentReturnedNull(controller);
-    return next();
+    return doNext();
   }
  else {
     currentReturnedAtLeastOne=true;

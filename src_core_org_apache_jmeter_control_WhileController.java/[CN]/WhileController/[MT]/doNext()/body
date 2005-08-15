@@ -1,0 +1,12 @@
+{
+  if (current != 0) {
+    return super.doNext();
+  }
+  if (!endOfLoop(false)) {
+    return super.doNext();
+  }
+ else {
+    reInitialize();
+    return null;
+  }
+}

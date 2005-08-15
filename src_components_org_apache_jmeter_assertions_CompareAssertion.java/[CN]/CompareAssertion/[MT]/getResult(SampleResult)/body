@@ -1,0 +1,11 @@
+{
+  log.info("get assertion result for sample");
+  responses.add(response);
+  if (responses.size() > 1) {
+    AssertionResult result=new AssertionResult(false,false,null);
+    compareContent(result);
+    compareTime(result);
+    return result;
+  }
+ else   return new AssertionResult(false,false,null);
+}

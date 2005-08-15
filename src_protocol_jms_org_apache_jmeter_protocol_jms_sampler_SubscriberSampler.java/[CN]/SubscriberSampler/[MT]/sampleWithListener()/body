@@ -18,7 +18,7 @@
     result.setResponseData(this.BUFFER.toString().getBytes());
   }
  else {
-    result.setBytes(this.BUFFER.toString().getBytes().length);
+    result.setContentLength(this.BUFFER.toString().getBytes().length);
   }
   result.setSuccessful(true);
   result.setResponseCode(loop + " message(s) recieved successfully");

@@ -22,7 +22,7 @@
     result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
   }
  else {
-    result.setBytes(this.SUBSCRIBER.getMessage().getBytes().length);
+    result.setContentLength(this.SUBSCRIBER.getMessage().getBytes().length);
   }
   result.setSuccessful(true);
   result.setResponseCode(loop + " message(s) recieved successfully");

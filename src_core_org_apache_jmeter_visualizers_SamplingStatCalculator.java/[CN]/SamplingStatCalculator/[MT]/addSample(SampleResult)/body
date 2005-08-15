@@ -3,7 +3,7 @@
 synchronized (calculator) {
     long byteslength=0;
     if (res.getResponseData() == null || res.getResponseData().length == 0) {
-      byteslength=res.getBytes();
+      byteslength=res.getContentLength();
     }
  else {
       byteslength=res.getResponseData().length;

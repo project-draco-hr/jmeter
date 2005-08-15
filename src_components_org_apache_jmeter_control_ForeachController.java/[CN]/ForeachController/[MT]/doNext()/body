@@ -1,0 +1,7 @@
+{
+  if (emptyList()) {
+    reInitialize();
+    return null;
+  }
+  return super.doNext();
+}

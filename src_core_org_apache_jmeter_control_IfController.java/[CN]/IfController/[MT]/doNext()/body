@@ -1,0 +1,10 @@
+{
+  boolean result=evaluateCondition(getCondition());
+  if (result)   return super.doNext();
+ else   try {
+    return nextIsNull();
+  }
+ catch (  NextIsNullException e1) {
+    return null;
+  }
+}
