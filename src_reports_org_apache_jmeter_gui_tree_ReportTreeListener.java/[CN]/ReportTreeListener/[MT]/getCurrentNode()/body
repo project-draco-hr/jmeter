@@ -1,0 +1,13 @@
+{
+  if (currentPath != null) {
+    if (currentPath.getLastPathComponent() != null) {
+      return (ReportTreeNode)currentPath.getLastPathComponent();
+    }
+ else {
+      return (ReportTreeNode)currentPath.getParentPath().getLastPathComponent();
+    }
+  }
+ else {
+    return (ReportTreeNode)model.getRoot();
+  }
+}
