@@ -1,5 +1,5 @@
 {
   if (getNode() != null) {
-    getNode().nameChanged();
+    ((NamedTreeNode)getNode()).nameChanged();
   }
 }
