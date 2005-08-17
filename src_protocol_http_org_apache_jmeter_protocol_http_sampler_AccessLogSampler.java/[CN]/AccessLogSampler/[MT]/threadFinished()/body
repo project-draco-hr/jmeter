@@ -1,0 +1,4 @@
+{
+  if (PARSER instanceof ThreadListener)   ((ThreadListener)PARSER).threadFinished();
+  if (filter instanceof ThreadListener)   ((ThreadListener)filter).threadFinished();
+}

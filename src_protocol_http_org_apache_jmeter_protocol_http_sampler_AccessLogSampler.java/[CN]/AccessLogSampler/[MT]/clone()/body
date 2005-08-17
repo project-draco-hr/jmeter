@@ -6,7 +6,13 @@
         if (TestCloneable.class.isAssignableFrom(Class.forName(filterClassName))) {
           initFilter();
           s.filter=(Filter)((TestCloneable)filter).clone();
+        }
+        if (TestCloneable.class.isAssignableFrom(Class.forName(parserClassName))) {
           instantiateParser();
+          s.PARSER=(LogParser)((TestCloneable)PARSER).clone();
+          if (filter != null) {
+            s.PARSER.setFilter(s.filter);
+          }
         }
       }
  catch (      Exception e) {

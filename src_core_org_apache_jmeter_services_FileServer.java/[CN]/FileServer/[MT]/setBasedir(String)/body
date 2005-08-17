@@ -1,5 +1,4 @@
 {
-  log.info("Setting basedir to: " + basedir);
   if (filesOpen()) {
     throw new IOException("Files are still open, cannot change base directory");
   }
