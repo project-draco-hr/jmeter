@@ -1,6 +1,6 @@
 {
   Object[] file=(Object[])files.get(name);
-  if (file[1] != null) {
+  if (file != null && file.length == 2 && file[1] != null) {
     ((Reader)file[1]).close();
     file[1]=null;
   }

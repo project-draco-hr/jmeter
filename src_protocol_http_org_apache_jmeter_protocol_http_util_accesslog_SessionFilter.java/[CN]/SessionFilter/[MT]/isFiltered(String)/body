@@ -1,7 +1,0 @@
-{
-  if (ipAddress != null) {
-    log.debug("looking for ip address: " + ipAddress + " in line: "+ path);
-    return !(path.indexOf(ipAddress) > -1);
-  }
- else   return hasExcPattern(path);
-}

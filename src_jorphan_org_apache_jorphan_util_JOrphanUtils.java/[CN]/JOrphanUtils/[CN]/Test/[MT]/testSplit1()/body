@@ -1,7 +1,0 @@
-{
-  String in="a,bc,,";
-  String out[]=split(in,",");
-  assertEquals(2,out.length);
-  assertEquals("a",out[0]);
-  assertEquals("bc",out[1]);
-}

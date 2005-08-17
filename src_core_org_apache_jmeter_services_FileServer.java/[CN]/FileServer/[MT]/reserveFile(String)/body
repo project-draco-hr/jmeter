@@ -1,5 +1,4 @@
 {
-  log.info("filename = " + filename + " base = "+ base);
   if (!files.containsKey(filename)) {
     Object[] file=new Object[]{new File(base,filename),null};
     files.put(filename,file);

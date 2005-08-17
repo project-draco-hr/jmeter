@@ -5,7 +5,7 @@
   el.setProperty(HTTPSamplerBase.METHOD,RMETHOD);
   if (FILTER != null) {
     log.debug("filter is not null");
-    if (!FILTER.isFiltered(line)) {
+    if (!FILTER.isFiltered(line,el)) {
       log.debug("line was not filtered");
       count++;
       line=FILTER.filter(cleanedLine);
