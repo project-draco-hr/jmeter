@@ -1,0 +1,6 @@
+{
+  ReportGuiPackage guiPackage=ReportGuiPackage.getInstance();
+  ReportTreeNode node=new ReportTreeNode(el,guiPackage.getTreeModel());
+  guiPackage.getTreeModel().insertNodeInto(node,guiPackage.getTreeListener().getCurrentNode(),guiPackage.getTreeListener().getCurrentNode().getChildCount());
+  guiPackage.getMainFrame().getTree().setSelectionPath(new TreePath(node.getPath()));
+}

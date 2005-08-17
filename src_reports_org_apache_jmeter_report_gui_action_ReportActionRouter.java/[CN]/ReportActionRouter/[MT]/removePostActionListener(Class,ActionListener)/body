@@ -1,0 +1,9 @@
+{
+  if (action != null) {
+    HashSet set=(HashSet)postActionListeners.get(action.getName());
+    if (set != null) {
+      set.remove(listener);
+      postActionListeners.put(action.getName(),set);
+    }
+  }
+}

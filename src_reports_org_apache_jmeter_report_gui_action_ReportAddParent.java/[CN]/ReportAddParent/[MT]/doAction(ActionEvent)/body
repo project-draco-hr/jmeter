@@ -1,0 +1,10 @@
+{
+  String name=((Component)e.getSource()).getName();
+  try {
+    TestElement controller=ReportGuiPackage.getInstance().createTestElement(name);
+    addParentToTree(controller);
+  }
+ catch (  Exception err) {
+    log.error("",err);
+  }
+}

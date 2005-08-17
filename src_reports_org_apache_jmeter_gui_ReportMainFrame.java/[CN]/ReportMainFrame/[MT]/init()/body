@@ -1,3 +1,19 @@
 {
   super.init();
+  menuBar=new JMeterMenuBar();
+  setJMenuBar(menuBar);
+  JPanel all=new JPanel(new BorderLayout());
+  all.add(createToolBar(),BorderLayout.NORTH);
+  JSplitPane treeAndMain=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+  treePanel=createTreePanel();
+  treeAndMain.setLeftComponent(treePanel);
+  mainPanel=createMainPanel();
+  treeAndMain.setRightComponent(mainPanel);
+  treeAndMain.setResizeWeight(.2);
+  treeAndMain.setContinuousLayout(true);
+  all.add(treeAndMain,BorderLayout.CENTER);
+  getContentPane().add(all);
+  tree.setSelectionRow(1);
+  addWindowListener(new WindowHappenings());
+  addMouseListener(new GlobalMouseListener());
 }

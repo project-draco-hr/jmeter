@@ -1,0 +1,12 @@
+{
+  if (tree == null) {
+    throw new Exception("Error in TestPlan - see log file");
+  }
+  boolean isTestPlan=tree.getArray()[0] instanceof ReportPlan;
+  HashTree newTree=ReportGuiPackage.getInstance().addSubTree(tree);
+  ReportGuiPackage.getInstance().updateCurrentGui();
+  ReportGuiPackage.getInstance().getMainFrame().getTree().setSelectionPath(new TreePath(((ReportTreeNode)newTree.getArray()[0]).getPath()));
+  tree=ReportGuiPackage.getInstance().getCurrentSubTree();
+  ReportActionRouter.getInstance().actionPerformed(new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,ReportCheckDirty.SUB_TREE_LOADED));
+  return isTestPlan;
+}

@@ -1,0 +1,30 @@
+{
+  String action=e.getActionCommand();
+  if (action.equals(SUB_TREE_SAVED)) {
+    HashTree subTree=(HashTree)e.getSource();
+    subTree.traverse(this);
+  }
+ else   if (action.equals(SUB_TREE_LOADED)) {
+    ListedHashTree addTree=(ListedHashTree)e.getSource();
+    addTree.traverse(this);
+  }
+ else   if (action.equals(ADD_ALL)) {
+    previousGuiItems.clear();
+    ReportGuiPackage.getInstance().getTreeModel().getTestPlan().traverse(this);
+  }
+ else   if (action.equals(REMOVE)) {
+    ReportGuiPackage guiPackage=ReportGuiPackage.getInstance();
+    ReportTreeNode[] nodes=guiPackage.getTreeListener().getSelectedNodes();
+    removeMode=true;
+    for (int i=nodes.length - 1; i >= 0; i--) {
+      guiPackage.getTreeModel().getCurrentSubTree(nodes[i]).traverse(this);
+    }
+    removeMode=false;
+  }
+  checkMode=true;
+  dirty=false;
+  HashTree wholeTree=ReportGuiPackage.getInstance().getTreeModel().getTestPlan();
+  wholeTree.traverse(this);
+  ReportGuiPackage.getInstance().setDirty(dirty);
+  checkMode=false;
+}
