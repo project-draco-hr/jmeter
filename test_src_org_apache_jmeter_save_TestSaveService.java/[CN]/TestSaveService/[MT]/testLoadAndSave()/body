@@ -13,10 +13,19 @@
     SaveService.saveTree(tree,outs);
     outs.close();
     out.close();
-    if (len != out.size()) {
+    int outsz=out.size();
+    int lines=0;
+    byte ba[]=out.toByteArray();
+    for (int j=0; j < ba.length; j++) {
+      if (ba[j] == '\n') {
+        lines++;
+      }
+    }
+    if (len != outsz && len != outsz + lines) {
       failed=true;
       System.out.println();
-      System.out.println("Loading file testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ out.size()+ ".");
+      System.out.println("Loading file testfiles/" + FILES[i] + " and "+ "saving it back changes its size from "+ len+ " to "+ outsz+ ".");
+      System.out.println("Diff " + (len - outsz) + " lines "+ lines);
       if (saveOut) {
         String outfile="testfiles/" + FILES[i] + ".out";
         System.out.println("Write " + outfile);
