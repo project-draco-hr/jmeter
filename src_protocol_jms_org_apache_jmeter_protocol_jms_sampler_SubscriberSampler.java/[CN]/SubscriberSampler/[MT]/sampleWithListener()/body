@@ -13,6 +13,7 @@
     }
   }
   result.sampleEnd();
+  result.setSamplerData(this.BUFFER.toString());
   result.setResponseMessage(loop + " samples messages recieved");
   if (this.getReadResponseAsBoolean()) {
     result.setResponseData(this.BUFFER.toString().getBytes());
