@@ -6,7 +6,7 @@
       log.debug("About to replace in property of type: " + val.getClass() + ": "+ val);
     }
     if (val instanceof StringProperty) {
-      if (!val.getName().startsWith("TestElement.")) {
+      if (!val.getName().equals(TestElement.GUI_CLASS) && !val.getName().equals(TestElement.TEST_CLASS)) {
         val=transform.transformValue(val);
         if (log.isDebugEnabled()) {
           log.debug("Replacement result: " + val);
