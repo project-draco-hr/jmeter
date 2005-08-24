@@ -1,8 +1,6 @@
 {
-  try {
-    GuiPackage.getInstance().addSubTree(loadIncludedElements());
-  }
- catch (  IllegalUserActionException e) {
-    log.warn(e.getMessage());
-  }
+  log.info("----- replace(HashTree) ------");
+  ListedHashTree col=(ListedHashTree)this.SUBTREE.get(this.SUB);
+  JMeterTreeNode newnode=new JMeterTreeNode(this.SUB,GuiPackage.getInstance().getTreeModel());
+  tree.add(newnode,new HashTree(col));
 }

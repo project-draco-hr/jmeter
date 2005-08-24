@@ -1,6 +1,0 @@
-{
-  log.info("search the tree ---- " + tree.size() + " --- "+ tree.hashCode());
-  SearchByClass search=new SearchByClass(IncludeController.class);
-  tree.traverse(search);
-  return search.getSubTree(this);
-}
