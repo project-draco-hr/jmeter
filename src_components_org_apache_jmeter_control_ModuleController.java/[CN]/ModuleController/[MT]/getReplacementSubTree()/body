@@ -3,5 +3,8 @@
     selectedNode=cloneTreeNode(selectedNode);
     selectedNode.setEnabled(true);
   }
+  HashTree tree=new ListedHashTree();
+  tree.add(selectedNode);
   createSubTree(tree,selectedNode);
+  return tree;
 }
