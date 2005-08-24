@@ -1,0 +1,8 @@
+{
+  try {
+    GuiPackage.getInstance().addSubTree(loadIncludedElements());
+  }
+ catch (  IllegalUserActionException e) {
+    log.warn(e.getMessage());
+  }
+}
