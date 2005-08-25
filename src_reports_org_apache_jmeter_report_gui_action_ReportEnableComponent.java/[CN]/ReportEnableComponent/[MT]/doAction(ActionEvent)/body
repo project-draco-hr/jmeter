@@ -1,0 +1,11 @@
+{
+  ReportTreeNode[] nodes=ReportGuiPackage.getInstance().getTreeListener().getSelectedNodes();
+  if (e.getActionCommand().equals(ENABLE)) {
+    log.debug("enabling currently selected gui objects");
+    enableComponents(nodes,true);
+  }
+ else   if (e.getActionCommand().equals(DISABLE)) {
+    log.debug("disabling currently selected gui objects");
+    enableComponents(nodes,false);
+  }
+}

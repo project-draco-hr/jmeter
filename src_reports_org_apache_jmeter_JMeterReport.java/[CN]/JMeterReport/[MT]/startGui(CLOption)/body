@@ -9,19 +9,4 @@
   main.setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
-  ReportActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ReportCheckDirty.ADD_ALL));
-  if (testFile != null) {
-    try {
-      File f=new File(testFile.getArgument());
-      log.info("Loading file: " + f);
-      FileInputStream reader=new FileInputStream(f);
-      HashTree tree=SaveService.loadTree(reader);
-      ReportGuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
-      new LoadReport().insertLoadedTree(1,tree);
-    }
- catch (    Exception e) {
-      log.error("Failure loading test file",e);
-      JMeterUtils.reportErrorToUser(e.toString());
-    }
-  }
 }
