@@ -19,6 +19,10 @@
       elapsed=Long.parseLong(text);
     }
     result=new SampleResult(timeStamp,elapsed);
+    if (_saveConfig.saveContentLength()) {
+      text=splitter.nextToken();
+      result.setContentLength(Converter.getInt(text));
+    }
     if (_saveConfig.saveLabel()) {
       text=splitter.nextToken();
       result.setSampleLabel(text);

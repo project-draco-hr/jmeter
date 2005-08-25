@@ -14,6 +14,10 @@
     text.append(sample.getTime());
     text.append(delimiter);
   }
+  if (saveConfig.saveContentLength()) {
+    text.append(sample.getContentLength());
+    text.append(delimiter);
+  }
   if (saveConfig.saveLabel()) {
     text.append(sample.getSampleLabel());
     text.append(delimiter);

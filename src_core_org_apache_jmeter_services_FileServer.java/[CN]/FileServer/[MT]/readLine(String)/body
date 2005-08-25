@@ -1,19 +1,21 @@
 {
-  Object[] file=(Object[])files.get(filename);
-  if (file != null) {
-    if (file[1] == null) {
-      BufferedReader r=new BufferedReader(new FileReader((File)file[0]));
-      file[1]=r;
+  Object[] file=getFileObjects(filename);
+synchronized (file) {
+    if (file != null) {
+      if (file[1] == null) {
+        BufferedReader r=new BufferedReader(new FileReader((File)file[0]));
+        file[1]=r;
+      }
+      BufferedReader reader=(BufferedReader)file[1];
+      String line=reader.readLine();
+      if (line == null) {
+        reader.close();
+        reader=new BufferedReader(new FileReader((File)file[0]));
+        file[1]=reader;
+        line=reader.readLine();
+      }
+      return line;
     }
-    BufferedReader reader=(BufferedReader)file[1];
-    String line=reader.readLine();
-    if (line == null) {
-      reader.close();
-      reader=new BufferedReader(new FileReader((File)file[0]));
-      file[1]=reader;
-      line=reader.readLine();
-    }
-    return line;
   }
   throw new IOException("File never reserved");
 }

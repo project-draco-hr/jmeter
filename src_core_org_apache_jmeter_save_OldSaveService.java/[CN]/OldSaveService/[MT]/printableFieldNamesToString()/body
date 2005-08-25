@@ -9,6 +9,10 @@
     text.append(SaveServiceConstants.TIME);
     text.append(delim);
   }
+  if (_saveConfig.saveContentLength()) {
+    text.append(SaveServiceConstants.CONTENT_LENGTH);
+    text.append(delim);
+  }
   if (_saveConfig.saveLabel()) {
     text.append(SaveServiceConstants.LABEL);
     text.append(delim);

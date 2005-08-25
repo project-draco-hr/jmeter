@@ -2,12 +2,7 @@
   Sample s=null;
 synchronized (calculator) {
     long byteslength=0;
-    if (res.getResponseData() == null || res.getResponseData().length == 0) {
-      byteslength=res.getContentLength();
-    }
- else {
-      byteslength=res.getResponseData().length;
-    }
+    byteslength=res.getContentLength();
     if (res.getSampleCount() > 1) {
       long time=res.getTime() / res.getSampleCount();
       long resbytes=byteslength / res.getSampleCount();

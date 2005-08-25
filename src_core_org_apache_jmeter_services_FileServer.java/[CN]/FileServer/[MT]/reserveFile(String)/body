@@ -1,6 +1,10 @@
 {
   if (!files.containsKey(filename)) {
-    Object[] file=new Object[]{new File(base,filename),null};
+    Object[] file=new Object[2];
+    file[0]=new File(base,filename);
+    if (!((File)file[0]).exists() && !((File)file[0]).getParentFile().exists()) {
+      file[0]=new File(filename);
+    }
     files.put(filename,file);
   }
 }

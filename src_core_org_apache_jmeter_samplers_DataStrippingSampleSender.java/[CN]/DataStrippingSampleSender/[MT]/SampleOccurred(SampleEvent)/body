@@ -1,0 +1,9 @@
+{
+  if (e.getResult().isSuccessful())   e.getResult().setResponseData(new byte[0]);
+  try {
+    listener.sampleOccurred(e);
+  }
+ catch (  RemoteException e1) {
+    log.error("Error sending sample result over network ",e1);
+  }
+}

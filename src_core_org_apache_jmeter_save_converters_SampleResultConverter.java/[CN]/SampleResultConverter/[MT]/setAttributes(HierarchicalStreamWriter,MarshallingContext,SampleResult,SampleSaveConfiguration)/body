@@ -9,4 +9,7 @@
   if (save.saveThreadName())   writer.addAttribute("tn",ConversionHelp.encode(res.getThreadName()));
   if (save.saveDataType())   writer.addAttribute("dt",ConversionHelp.encode(res.getDataType()));
   if (save.saveEncoding())   writer.addAttribute("de",ConversionHelp.encode(res.getDataEncoding()));
+  if (save.saveContentLength()) {
+    writer.addAttribute("len",Integer.toString(res.getContentLength()));
+  }
 }
