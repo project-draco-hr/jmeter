@@ -1,0 +1,55 @@
+{
+  runMenu=new JMenu(JMeterUtils.getResString("run"));
+  runMenu.setMnemonic('R');
+  run_start=new JMenuItem(JMeterUtils.getResString("start"),'S');
+  run_start.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,KeyEvent.CTRL_MASK));
+  run_start.addActionListener(ReportActionRouter.getInstance());
+  run_start.setActionCommand(ACTION_START);
+  run_stop=new JMenuItem(JMeterUtils.getResString("stop"),'T');
+  run_stop.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PERIOD,KeyEvent.CTRL_MASK));
+  run_stop.setEnabled(false);
+  run_stop.addActionListener(ReportActionRouter.getInstance());
+  run_stop.setActionCommand(ACTION_STOP);
+  run_shut=new JMenuItem(JMeterUtils.getResString("shutdown"),'Y');
+  run_shut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_COMMA,KeyEvent.CTRL_MASK));
+  run_shut.setEnabled(false);
+  run_shut.addActionListener(ReportActionRouter.getInstance());
+  run_shut.setActionCommand(ACTION_SHUTDOWN);
+  run_clear=new JMenuItem(JMeterUtils.getResString("clear"),'C');
+  run_clear.addActionListener(ReportActionRouter.getInstance());
+  run_clear.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR);
+  run_clearAll=new JMenuItem(JMeterUtils.getResString("clear_all"),'a');
+  run_clearAll.addActionListener(ReportActionRouter.getInstance());
+  run_clearAll.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR_ALL);
+  run_clearAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,KeyEvent.CTRL_MASK));
+  runMenu.add(run_start);
+  if (remote_start != null) {
+    runMenu.add(remote_start);
+  }
+  remote_start_all=new JMenuItem(JMeterUtils.getResString("remote_start_all"),'Z');
+  remote_start_all.setName("remote_start_all");
+  remote_start_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,KeyEvent.CTRL_MASK));
+  remote_start_all.addActionListener(ReportActionRouter.getInstance());
+  remote_start_all.setActionCommand("remote_start_all");
+  runMenu.add(remote_start_all);
+  runMenu.add(run_stop);
+  runMenu.add(run_shut);
+  if (remote_stop != null) {
+    runMenu.add(remote_stop);
+  }
+  remote_stop_all=new JMenuItem(JMeterUtils.getResString("remote_stop_all"),'X');
+  remote_stop_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,KeyEvent.ALT_MASK));
+  remote_stop_all.addActionListener(ReportActionRouter.getInstance());
+  remote_stop_all.setActionCommand("remote_stop_all");
+  runMenu.add(remote_stop_all);
+  if (remote_exit != null) {
+    runMenu.add(remote_exit);
+  }
+  remote_exit_all=new JMenuItem(JMeterUtils.getResString("remote_exit_all"));
+  remote_exit_all.addActionListener(ReportActionRouter.getInstance());
+  remote_exit_all.setActionCommand("remote_exit_all");
+  runMenu.add(remote_exit_all);
+  runMenu.addSeparator();
+  runMenu.add(run_clear);
+  runMenu.add(run_clearAll);
+}

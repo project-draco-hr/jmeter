@@ -4,7 +4,7 @@
   nodesToGui=new HashMap();
   testBeanGUIs=new HashMap();
   Introspector.flushCaches();
-  MainFrame mf=getMainFrame();
+  ReportMainFrame mf=getMainFrame();
   if (mf == null) {
     log.warn("Mainframe is null");
   }

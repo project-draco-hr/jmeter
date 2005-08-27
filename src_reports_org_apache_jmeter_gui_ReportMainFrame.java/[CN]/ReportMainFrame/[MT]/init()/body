@@ -1,6 +1,5 @@
 {
-  super.init();
-  menuBar=new JMeterMenuBar();
+  menuBar=new ReportMenuBar();
   setJMenuBar(menuBar);
   JPanel all=new JPanel(new BorderLayout());
   all.add(createToolBar(),BorderLayout.NORTH);

@@ -1,5 +1,5 @@
 {
-  MainFrame mainFrame=GuiPackage.getInstance().getMainFrame();
+  ReportMainFrame mainFrame=ReportGuiPackage.getInstance().getMainFrame();
   mainFrame.closeMenu();
   int selRow=tree.getRowForLocation(e.getX(),e.getY());
   if (tree.getPathForLocation(e.getX(),e.getY()) != null) {

@@ -2,7 +2,7 @@
   if (!dragging) {
     dragging=true;
     draggedNodes=getSelectedNodes();
-    if (draggedNodes[0].getUserObject() instanceof TestPlanGui || draggedNodes[0].getUserObject() instanceof WorkBenchGui) {
+    if (draggedNodes[0].getUserObject() instanceof ReportGui) {
       dragging=false;
     }
   }

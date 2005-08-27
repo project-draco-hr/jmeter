@@ -1,6 +1,6 @@
 {
   try {
-    return GuiPackage.getInstance().getGui(getTestElement()).getMenuCategories();
+    return ReportGuiPackage.getInstance().getGui(getTestElement()).getMenuCategories();
   }
  catch (  Exception e) {
     log.error("Can't get popup menu for gui",e);

@@ -1,6 +1,6 @@
 {
   if (dragging) {
-    GuiPackage.getInstance().getMainFrame().drawDraggedComponent(dragIcon,e.getX(),e.getY());
+    ReportGuiPackage.getInstance().getMainFrame().drawDraggedComponent(dragIcon,e.getX(),e.getY());
     if (tree.getPathForLocation(e.getX(),e.getY()) != null) {
       currentPath=tree.getPathForLocation(e.getX(),e.getY());
       if (!contains(draggedNodes,getCurrentNode())) {

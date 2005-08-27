@@ -1,5 +1,5 @@
 {
-  ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ReportCheckDirty.CHECK_DIRTY));
+  ReportActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ReportCheckDirty.CHECK_DIRTY));
   ReportGuiPackage guiPackage=ReportGuiPackage.getInstance();
   if (guiPackage.isDirty()) {
     if (JOptionPane.showConfirmDialog(ReportGuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("cancel_new_to_save"),JMeterUtils.getResString("Save?"),JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {

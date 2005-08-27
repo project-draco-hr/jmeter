@@ -20,7 +20,7 @@
     displayPopUp(e,dragNdrop);
   }
  else {
-    GuiPackage.getInstance().getMainFrame().repaint();
+    ReportGuiPackage.getInstance().getMainFrame().repaint();
   }
   dragging=false;
 }

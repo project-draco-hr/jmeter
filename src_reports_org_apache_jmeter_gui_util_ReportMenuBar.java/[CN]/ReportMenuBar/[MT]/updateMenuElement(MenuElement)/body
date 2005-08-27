@@ -1,0 +1,15 @@
+{
+  Component component=menu.getComponent();
+  if (component.getName() != null) {
+    if (component instanceof JMenu) {
+      ((JMenu)component).setText(JMeterUtils.getResString(component.getName()));
+    }
+ else {
+      ((JMenuItem)component).setText(JMeterUtils.getResString(component.getName()));
+    }
+  }
+  MenuElement[] subelements=menu.getSubElements();
+  for (int i=0; i < subelements.length; i++) {
+    updateMenuElement(subelements[i]);
+  }
+}
