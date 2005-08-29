@@ -1,0 +1,12 @@
+{
+  JPanel p=new JPanel(new BorderLayout());
+  JScrollPane scroller=new JScrollPane(table);
+  scroller.setPreferredSize(scroller.getMinimumSize());
+  p.add(scroller,BorderLayout.CENTER);
+  JPanel south=new JPanel();
+  south.add(addButton);
+  south.add(removeButton);
+  south.add(clearButton);
+  p.add(south,BorderLayout.SOUTH);
+  return p;
+}

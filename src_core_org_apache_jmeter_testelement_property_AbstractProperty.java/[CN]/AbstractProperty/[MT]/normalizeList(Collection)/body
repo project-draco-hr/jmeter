@@ -8,7 +8,8 @@
         newColl=(Collection)coll.getClass().newInstance();
       }
  catch (      Exception e) {
-        log.error("Bad collection",e);
+        newColl=new ArrayList();
+        log.warn("Bad collection",e);
       }
     }
     newColl.add(convertObject(item));

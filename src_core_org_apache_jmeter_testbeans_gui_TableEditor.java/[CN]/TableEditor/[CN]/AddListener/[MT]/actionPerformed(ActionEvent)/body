@@ -1,0 +1,8 @@
+{
+  try {
+    model.addRow(clazz.newInstance());
+  }
+ catch (  Exception err) {
+    log.error("The class type given to TableEditor was not instantiable. ",err);
+  }
+}

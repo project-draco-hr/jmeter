@@ -1,0 +1,10 @@
+{
+  String getter="get" + propName;
+  try {
+    c.getMethod(getter,new Class[0]);
+    return new Functor(getter);
+  }
+ catch (  Exception e) {
+    return new Functor("is" + propName);
+  }
+}

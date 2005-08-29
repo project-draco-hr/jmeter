@@ -1,0 +1,8 @@
+{
+  Object value;
+  if (jprop instanceof MultiProperty) {
+    value=unwrapCollection((MultiProperty)jprop,(String)desc.getValue(TableEditor.CLASSNAME));
+  }
+ else   value=Converter.convert(jprop.getStringValue(),type);
+  return value;
+}

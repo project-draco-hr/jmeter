@@ -1,0 +1,7 @@
+{
+  if (value != null) {
+    model.setRows((Iterable)value);
+  }
+ else   model.clearData();
+  this.firePropertyChange();
+}

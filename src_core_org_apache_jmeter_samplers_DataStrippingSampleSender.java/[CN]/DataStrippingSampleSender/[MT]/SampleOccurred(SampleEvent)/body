@@ -1,9 +1,14 @@
 {
   if (e.getResult().isSuccessful())   e.getResult().setResponseData(new byte[0]);
-  try {
-    listener.sampleOccurred(e);
+  if (decoratedSender == null) {
+    try {
+      listener.sampleOccurred(e);
+    }
+ catch (    RemoteException e1) {
+      log.error("Error sending sample result over network ",e1);
+    }
   }
- catch (  RemoteException e1) {
-    log.error("Error sending sample result over network ",e1);
+ else {
+    decoratedSender.SampleOccurred(e);
   }
 }

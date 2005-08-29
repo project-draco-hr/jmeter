@@ -1,0 +1,25 @@
+{
+  if (clazz == String.class) {
+    model=new ObjectTableModel((String[])descriptor.getValue(HEADERS),new Functor[0],new Functor[0],new Class[]{String.class});
+    model.addTableModelListener(this);
+  }
+ else {
+    String[] props=(String[])descriptor.getValue(OBJECT_PROPERTIES);
+    Functor[] writers=new Functor[props.length];
+    Functor[] readers=new Functor[props.length];
+    Class[] editors=new Class[props.length];
+    int count=0;
+    for (    String propName : props) {
+      propName=propName.substring(0,1).toUpperCase() + propName.substring(1);
+      writers[count]=createWriter(clazz,propName);
+      readers[count]=createReader(clazz,propName);
+      editors[count]=getArgForWriter(clazz,propName);
+      count++;
+    }
+    model=new ObjectTableModel((String[])descriptor.getValue(HEADERS),readers,writers,editors);
+    model.addTableModelListener(this);
+  }
+  table=new JTable(model);
+  table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  table.addFocusListener(this);
+}
