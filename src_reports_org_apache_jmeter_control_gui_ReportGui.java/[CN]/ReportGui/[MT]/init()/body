@@ -6,9 +6,5 @@
   VerticalPanel southPanel=new VerticalPanel();
   serializedMode=new JCheckBox(JMeterUtils.getResString("testplan.serialized"));
   southPanel.add(serializedMode);
-  JTextArea explain=new JTextArea(JMeterUtils.getResString("functional_mode_explanation"));
-  explain.setEditable(false);
-  explain.setBackground(this.getBackground());
-  southPanel.add(explain);
   add(southPanel,BorderLayout.SOUTH);
 }
