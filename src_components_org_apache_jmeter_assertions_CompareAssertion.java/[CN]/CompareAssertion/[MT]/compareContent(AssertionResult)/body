@@ -15,6 +15,7 @@
         result.setFailureMessage("Unsupported Encoding Exception: " + sResult.getDataEncoding());
         return;
       }
+      currentContent=filterString(currentContent);
       if (prevContent != null) {
         success=prevContent.equals(currentContent);
       }
@@ -31,7 +32,7 @@
         message.append(sResult.toString());
         message.append("\n\n");
         message.append(currentContent);
-        message.append("/n/n");
+        message.append("\n\n");
         message.append("==============================\n\n");
         result.setFailureMessage(message.toString());
         break;
