@@ -11,7 +11,7 @@
     if (debugEnabled) {
       log.debug("Cookie name=" + cookie.getName() + " domain="+ cookie.getDomain()+ " path="+ cookie.getPath()+ " expires="+ cookie.getExpires());
     }
-    if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && ((cookie.getExpires() == 0) || (System.currentTimeMillis() / 1000) <= cookie.getExpires())) {
+    if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && ((cookie.getExpires() == 0 && (cookie.getPort() == 0 || cookie.getPort() == url.getPort())) || (System.currentTimeMillis() / 1000) <= cookie.getExpires())) {
       if (header.length() > 0) {
         header.append("; ");
       }

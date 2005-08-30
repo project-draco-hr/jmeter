@@ -1,0 +1,35 @@
+{
+  if (compareContent) {
+    Iterator iter=responses.iterator();
+    String prevContent=null;
+    SampleResult prevResult=null;
+    boolean success=true;
+    while (iter.hasNext()) {
+      SampleResult sResult=(SampleResult)iter.next();
+      String currentContent;
+      try {
+        currentContent=new String(sResult.getResponseData(),sResult.getDataEncoding());
+      }
+ catch (      UnsupportedEncodingException e) {
+        result.setError(true);
+        result.setFailureMessage("Unsupported Encoding Exception: " + sResult.getDataEncoding());
+        return;
+      }
+      currentContent=filterString(currentContent);
+      if (prevContent != null) {
+        success=prevContent.equals(currentContent);
+      }
+      if (!success) {
+        result.setFailure(true);
+        StringBuffer buf=new StringBuffer(prevResult.getSamplerData().trim()).append("\n").append(prevResult.getRequestHeaders()).append("\n\n").append(prevContent);
+        result.addToBaseResult(buf.toString());
+        buf=new StringBuffer(sResult.getSamplerData().trim()).append("\n").append(sResult.getRequestHeaders()).append("\n\n").append(currentContent);
+        result.addToSecondaryResult(buf.toString());
+        result.setFailureMessage("Responses differ in content");
+        break;
+      }
+      prevResult=sResult;
+      prevContent=currentContent;
+    }
+  }
+}

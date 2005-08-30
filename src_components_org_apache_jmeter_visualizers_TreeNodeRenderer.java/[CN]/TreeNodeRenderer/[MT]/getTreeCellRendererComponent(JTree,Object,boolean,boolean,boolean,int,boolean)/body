@@ -1,0 +1,10 @@
+{
+  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,focus);
+  Object obj=((DefaultMutableTreeNode)value).getUserObject();
+  if (obj instanceof SampleResult) {
+    if (!((SampleResult)obj).isSuccessful()) {
+      this.setForeground(Color.red);
+    }
+  }
+  return this;
+}

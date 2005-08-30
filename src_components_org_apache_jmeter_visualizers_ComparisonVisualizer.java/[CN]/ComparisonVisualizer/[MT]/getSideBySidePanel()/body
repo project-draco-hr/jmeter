@@ -1,0 +1,11 @@
+{
+  JPanel main=new JPanel(new GridLayout(1,2));
+  JScrollPane base=new JScrollPane(getBaseTextPane());
+  base.setPreferredSize(base.getMinimumSize());
+  JScrollPane secondary=new JScrollPane(getSecondaryTextPane());
+  secondary.setPreferredSize(secondary.getMinimumSize());
+  main.add(base);
+  main.add(secondary);
+  main.setPreferredSize(main.getMinimumSize());
+  return main;
+}

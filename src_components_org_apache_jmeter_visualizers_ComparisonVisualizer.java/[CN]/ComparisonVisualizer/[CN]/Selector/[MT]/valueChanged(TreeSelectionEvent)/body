@@ -1,0 +1,23 @@
+{
+  try {
+    DefaultMutableTreeNode node=(DefaultMutableTreeNode)resultsTree.getLastSelectedPathComponent();
+    SampleResult sr=(SampleResult)node.getUserObject();
+    AssertionResult[] results=sr.getAssertionResults();
+    CompareAssertionResult result=null;
+    for (    AssertionResult r : results) {
+      if (r instanceof CompareAssertionResult) {
+        result=(CompareAssertionResult)r;
+        break;
+      }
+    }
+    if (result == null)     result=new CompareAssertionResult();
+    base.setText(result.getBaseResult());
+    secondary.setText(result.getSecondaryResult());
+  }
+ catch (  Exception err) {
+    base.setText("Invalid Node " + err);
+    secondary.setText("Invalid Node " + err);
+  }
+  base.setCaretPosition(0);
+  secondary.setCaretPosition(0);
+}

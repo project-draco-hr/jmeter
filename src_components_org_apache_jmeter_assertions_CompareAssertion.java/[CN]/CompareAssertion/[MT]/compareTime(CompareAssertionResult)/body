@@ -1,0 +1,27 @@
+{
+  if (compareTime > -1) {
+    Iterator iter=responses.iterator();
+    long prevTime=-1;
+    SampleResult prevResult=null;
+    boolean success=true;
+    while (iter.hasNext()) {
+      SampleResult sResult=(SampleResult)iter.next();
+      long currentTime=sResult.getTime();
+      if (prevTime != -1) {
+        success=Math.abs(prevTime - currentTime) < compareTime;
+        prevResult=sResult;
+      }
+      if (!success) {
+        result.setFailure(true);
+        StringBuffer buf=new StringBuffer(prevResult.getSamplerData().trim()).append("\n").append(prevResult.getRequestHeaders()).append("\n\n").append("Response Time: ").append(prevTime);
+        result.addToBaseResult(buf.toString());
+        buf=new StringBuffer(sResult.getSamplerData().trim()).append("\n").append(sResult.getRequestHeaders()).append("\n\n").append("Response Time: ").append(currentTime);
+        result.addToSecondaryResult(buf.toString());
+        result.setFailureMessage("Responses differ in response time");
+        break;
+      }
+      prevResult=sResult;
+      prevTime=currentTime;
+    }
+  }
+}

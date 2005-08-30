@@ -12,6 +12,7 @@
   String path=url.getPath();
   if (path.length() == 0)   path="/";
   Cookie newCookie=new Cookie(name,value,domain,path,false,0);
+  newCookie.setPort(url.getPort());
   while (st.hasMoreTokens()) {
     nvp=st.nextToken();
     nvp=nvp.trim();
