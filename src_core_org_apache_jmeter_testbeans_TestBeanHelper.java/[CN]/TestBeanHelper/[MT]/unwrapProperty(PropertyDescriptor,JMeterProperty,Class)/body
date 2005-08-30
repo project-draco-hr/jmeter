@@ -1,6 +1,13 @@
 {
   Object value;
-  if (jprop instanceof MultiProperty) {
+  if (jprop instanceof TestElementProperty) {
+    TestElement te=((TestElementProperty)jprop).getElement();
+    if (te instanceof TestBean) {
+      prepare(te);
+    }
+    value=te;
+  }
+ else   if (jprop instanceof MultiProperty) {
     value=unwrapCollection((MultiProperty)jprop,(String)desc.getValue(TableEditor.CLASSNAME));
   }
  else   value=Converter.convert(jprop.getStringValue(),type);

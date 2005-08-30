@@ -1,0 +1,12 @@
+{
+  List l=new LinkedList();
+  for (  Object obj : values) {
+    if (obj instanceof TestElementProperty) {
+      l.add(((TestElementProperty)obj).getElement());
+    }
+ else {
+      l.add(obj);
+    }
+  }
+  return l;
+}

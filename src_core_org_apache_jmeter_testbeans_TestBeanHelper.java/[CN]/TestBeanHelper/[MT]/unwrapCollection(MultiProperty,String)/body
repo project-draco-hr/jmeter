@@ -3,12 +3,11 @@
     Collection values=new LinkedList();
     PropertyIterator iter=prop.iterator();
     while (iter.hasNext()) {
-      JMeterProperty propVal=iter.next();
       try {
-        values.add(Converter.convert(propVal.getStringValue(),Class.forName(type)));
+        values.add(unwrapProperty(null,iter.next(),Class.forName(type)));
       }
  catch (      Exception e) {
-        log.error("Couldn't convert object: " + propVal.getObjectValue() + " to "+ type);
+        log.error("Couldn't convert object: " + prop.getObjectValue() + " to "+ type,e);
       }
     }
     return values;

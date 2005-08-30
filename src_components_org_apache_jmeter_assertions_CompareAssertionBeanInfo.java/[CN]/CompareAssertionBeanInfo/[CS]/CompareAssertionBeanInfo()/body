@@ -12,9 +12,10 @@
   p.setValue(NOT_EXPRESSION,Boolean.FALSE);
   p=property("stringsToSkip");
   p.setPropertyEditorClass(TableEditor.class);
-  p.setValue(TableEditor.CLASSNAME,"java.lang.String");
-  p.setValue(TableEditor.HEADERS,new String[]{"Regex String"});
+  p.setValue(TableEditor.CLASSNAME,"org.apache.jmeter.assertions.SubstitutionElement");
+  p.setValue(TableEditor.HEADERS,new String[]{"Regex String","Substitution"});
+  p.setValue(TableEditor.OBJECT_PROPERTIES,new String[]{"regex","substitute"});
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
-  p.setValue(DEFAULT,Arrays.asList(new String[]{"One","Two"}));
+  p.setValue(DEFAULT,new ArrayList());
   p.setValue(MULTILINE,Boolean.TRUE);
 }

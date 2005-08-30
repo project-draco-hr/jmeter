@@ -3,9 +3,10 @@
     return content;
   }
  else {
-    for (    String regex : stringsToSkip) {
+    for (    SubstitutionElement regex : stringsToSkip) {
       log.info("replacing regex: " + regex);
-      content=Util.substitute(JMeterUtils.getMatcher(),JMeterUtils.getPatternCache().getPattern(regex),emptySub,content,Util.SUBSTITUTE_ALL);
+      emptySub.setSubstitution(regex.getSubstitute());
+      content=Util.substitute(JMeterUtils.getMatcher(),JMeterUtils.getPatternCache().getPattern(regex.getRegex()),emptySub,content,Util.SUBSTITUTE_ALL);
     }
   }
   return content;
