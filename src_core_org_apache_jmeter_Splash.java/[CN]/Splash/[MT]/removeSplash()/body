@@ -1,0 +1,10 @@
+{
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      splash.setVisible(false);
+      splash.dispose();
+      splash=null;
+    }
+  }
+);
+}

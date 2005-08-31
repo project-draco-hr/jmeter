@@ -24,8 +24,11 @@
       startBSH();
     }
  else     if (parser.getArgumentById(NONGUI_OPT) == null) {
+      Splash splash=new Splash();
+      splash.showSplash();
       startGui(parser.getArgumentById(TESTFILE_OPT));
       startBSH();
+      splash.removeSplash();
     }
  else {
       startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),parser.getArgumentById(REMOTE_OPT));

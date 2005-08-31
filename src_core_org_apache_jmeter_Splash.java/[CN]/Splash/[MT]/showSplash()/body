@@ -1,0 +1,15 @@
+{
+  splash=new JFrame();
+  JPanel borderedPanel=new JPanel();
+  BevelBorder b=new SoftBevelBorder(BevelBorder.RAISED,Color.LIGHT_GRAY,Color.DARK_GRAY);
+  borderedPanel.setBorder(b);
+  SplashCanvas image=new SplashCanvas(borderedPanel.getFont().deriveFont(Font.BOLD));
+  borderedPanel.add(image);
+  splash.getContentPane().add(borderedPanel);
+  splash.setResizable(false);
+  splash.setUndecorated(true);
+  splash.pack();
+  ComponentUtil.centerComponentInWindow(splash);
+  splash.setVisible(true);
+  splash.setAlwaysOnTop(true);
+}
