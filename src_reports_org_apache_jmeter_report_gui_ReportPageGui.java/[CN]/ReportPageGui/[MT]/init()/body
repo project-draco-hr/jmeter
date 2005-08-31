@@ -12,11 +12,13 @@
   cssURL.setBackground(Color.white);
   headerURL.setBackground(Color.white);
   footerURL.setBackground(Color.white);
+  introduction.setBackground(Color.white);
   options.add(pageTitle);
   options.add(makeIndex);
   options.add(cssURL);
   options.add(headerURL);
   options.add(footerURL);
+  options.add(introduction);
   add(pane,BorderLayout.NORTH);
   add(options,BorderLayout.CENTER);
 }

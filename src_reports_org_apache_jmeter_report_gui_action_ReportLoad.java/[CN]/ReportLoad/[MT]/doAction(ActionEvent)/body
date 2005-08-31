@@ -3,7 +3,7 @@
   if (!merging) {
     ReportActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),"close"));
   }
-  JFileChooser chooser=FileDialoger.promptToOpenFile(new String[]{".jmx"});
+  JFileChooser chooser=ReportFileDialoger.promptToOpenFile(new String[]{".jmr"});
   if (chooser == null) {
     return;
   }
