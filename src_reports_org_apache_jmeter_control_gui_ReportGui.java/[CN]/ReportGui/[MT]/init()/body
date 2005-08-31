@@ -1,10 +1,7 @@
 {
   setLayout(new BorderLayout(10,10));
   setBorder(makeBorder());
+  setBackground(Color.white);
   add(createCommentPanel(),BorderLayout.NORTH);
   add(createVariablePanel(),BorderLayout.CENTER);
-  VerticalPanel southPanel=new VerticalPanel();
-  serializedMode=new JCheckBox(JMeterUtils.getResString("testplan.serialized"));
-  southPanel.add(serializedMode);
-  add(southPanel,BorderLayout.SOUTH);
 }

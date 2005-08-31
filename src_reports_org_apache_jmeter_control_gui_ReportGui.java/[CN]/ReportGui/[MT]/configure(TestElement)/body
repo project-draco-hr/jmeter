@@ -1,6 +1,5 @@
 {
   super.configure(el);
-  serializedMode.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(ReportPlan.SERIALIZE_THREADGROUPS));
   if (el.getProperty(ReportPlan.USER_DEFINED_VARIABLES) != null) {
     argsPanel.configure((Arguments)el.getProperty(ReportPlan.USER_DEFINED_VARIABLES).getObjectValue());
   }

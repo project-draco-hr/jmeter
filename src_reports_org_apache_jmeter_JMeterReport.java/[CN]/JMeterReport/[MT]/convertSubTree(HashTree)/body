@@ -5,7 +5,6 @@
     if (item.isEnabled()) {
       if (item instanceof ReportPlan) {
         ReportPlan tp=(ReportPlan)item;
-        tp.setSerialized(tp.isSerialized());
       }
 {
         convertSubTree(tree.getTree(item));

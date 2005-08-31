@@ -1,7 +1,9 @@
 {
   Container panel=makeTitlePanel();
-  commentPanel=new JTextArea();
+  commentPanel=new JTextField();
+  commentPanel.setBackground(Color.white);
   JLabel label=new JLabel(JMeterUtils.getResString("testplan_comments"));
+  label.setBackground(Color.white);
   label.setLabelFor(commentPanel);
   panel.add(label);
   panel.add(commentPanel);
