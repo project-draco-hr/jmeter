@@ -1,4 +1,4 @@
 {
-  TestElement wb=new ReportGui().createTestElement();
-  this.insertNodeInto(new ReportTreeNode(wb,this),(ReportTreeNode)getRoot(),0);
+  TestElement rp=new ReportGui().createTestElement();
+  this.insertNodeInto(new ReportTreeNode(rp,this),(ReportTreeNode)getRoot(),0);
 }

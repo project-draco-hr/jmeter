@@ -9,7 +9,9 @@
       addSubTree(subTree.getTree(item),current);
     }
  else {
-      addSubTree(subTree.getTree(item),addComponent(item,current));
+      if (subTree.getTree(item) != null) {
+        addSubTree(subTree.getTree(item),addComponent(item,current));
+      }
     }
   }
   return getCurrentSubTree(current);
