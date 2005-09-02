@@ -1,0 +1,10 @@
+{
+  if (!dragging) {
+    dragging=true;
+    draggedNodes=getSelectedNodes();
+    if (draggedNodes[0].getUserObject() instanceof ReportGui) {
+      dragging=false;
+    }
+  }
+  changeSelectionIfDragging(e);
+}

@@ -1,0 +1,19 @@
+{
+  if (helpWindow == null) {
+    helpWindow=new JDialog(new Frame(),JMeterUtils.getResString("help"),false);
+    helpWindow.getContentPane().setLayout(new GridLayout(1,1));
+    ComponentUtil.centerComponentInWindow(helpWindow,60);
+  }
+  helpWindow.getContentPane().removeAll();
+  helpWindow.getContentPane().add(scroller);
+  helpWindow.show();
+  if (e.getSource() instanceof String[]) {
+    String[] source=(String[])e.getSource();
+    resetPage(source[0]);
+    helpDoc.scrollToReference(source[1]);
+  }
+ else {
+    resetPage(HELP_PAGE);
+    helpDoc.scrollToReference(ReportGuiPackage.getInstance().getTreeListener().getCurrentNode().getDocAnchor());
+  }
+}

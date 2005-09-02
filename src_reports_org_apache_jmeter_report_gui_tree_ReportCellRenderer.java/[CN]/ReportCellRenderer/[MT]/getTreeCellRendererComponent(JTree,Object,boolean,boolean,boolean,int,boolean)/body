@@ -1,0 +1,21 @@
+{
+  super.getTreeCellRendererComponent(tree,((ReportTreeNode)value).getName(),sel,expanded,leaf,row,p_hasFocus);
+  boolean enabled=((ReportTreeNode)value).isEnabled();
+  ImageIcon ic=((ReportTreeNode)value).getIcon(enabled);
+  if (ic != null) {
+    if (enabled) {
+      setIcon(ic);
+    }
+ else {
+      setDisabledIcon(ic);
+    }
+  }
+ else {
+    if (!enabled) {
+      ic=((ReportTreeNode)value).getIcon();
+      if (ic != null)       setIcon(ic);
+    }
+  }
+  this.setEnabled(enabled);
+  return this;
+}

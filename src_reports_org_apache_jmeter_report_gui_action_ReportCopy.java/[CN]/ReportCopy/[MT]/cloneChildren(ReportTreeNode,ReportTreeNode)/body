@@ -1,0 +1,10 @@
+{
+  Enumeration enumFrom=from.children();
+  while (enumFrom.hasMoreElements()) {
+    ReportTreeNode child=(ReportTreeNode)enumFrom.nextElement();
+    ReportTreeNode childClone=(ReportTreeNode)child.clone();
+    childClone.setUserObject(((TestElement)child.getUserObject()).clone());
+    to.add(childClone);
+    cloneChildren((ReportTreeNode)to.getLastChild(),child);
+  }
+}

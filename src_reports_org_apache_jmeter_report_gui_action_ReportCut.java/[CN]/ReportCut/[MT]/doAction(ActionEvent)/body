@@ -1,0 +1,9 @@
+{
+  ReportGuiPackage guiPack=ReportGuiPackage.getInstance();
+  ReportTreeNode[] currentNodes=guiPack.getTreeListener().getSelectedNodes();
+  ReportCopy.setCopiedNodes(currentNodes);
+  for (int i=0; i < currentNodes.length; i++) {
+    guiPack.getTreeModel().removeNodeFromParent(currentNodes[i]);
+  }
+  guiPack.getMainFrame().repaint();
+}

@@ -1,0 +1,13 @@
+{
+  ReportGuiPackage guiPackage=ReportGuiPackage.getInstance();
+  guiPackage.getMainFrame().setMainPanel((javax.swing.JComponent)guiPackage.getCurrentGui());
+  guiPackage.getMainFrame().setEditMenu(guiPackage.getTreeListener().getCurrentNode().createPopupMenu());
+  if (!(guiPackage.getCurrentGui() instanceof NamePanel)) {
+    guiPackage.getMainFrame().setFileLoadEnabled(true);
+    guiPackage.getMainFrame().setFileSaveEnabled(true);
+  }
+ else {
+    guiPackage.getMainFrame().setFileLoadEnabled(false);
+    guiPackage.getMainFrame().setFileSaveEnabled(false);
+  }
+}
