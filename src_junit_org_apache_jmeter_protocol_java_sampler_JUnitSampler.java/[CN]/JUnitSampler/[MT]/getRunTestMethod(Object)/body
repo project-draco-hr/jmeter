@@ -1,0 +1,13 @@
+{
+  if (clazz != null) {
+    log.info("class " + clazz.getClass().getName() + " method name is "+ RUNTEST);
+    try {
+      Class[] param={TestResult.class};
+      return clazz.getClass().getMethod(RUNTEST,param);
+    }
+ catch (    NoSuchMethodException e) {
+      log.warn(e.getMessage());
+    }
+  }
+  return null;
+}

@@ -13,7 +13,12 @@
     if (theclazz != null) {
       try {
         con=theclazz.getDeclaredConstructor(new Class[]{String.class});
-        params=new Object[]{label};
+        if (con.isAccessible()) {
+          params=new Object[]{label};
+        }
+ else {
+          con=null;
+        }
       }
  catch (      NoSuchMethodException e) {
         log.info("String constructor:: " + e.getMessage());

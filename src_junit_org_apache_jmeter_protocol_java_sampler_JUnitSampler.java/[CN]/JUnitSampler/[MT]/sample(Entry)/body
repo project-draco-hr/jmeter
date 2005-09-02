@@ -15,13 +15,23 @@
   if (this.TEST_INSTANCE != null) {
     initMethodObjects(this.TEST_INSTANCE);
     TestResult tr=new TestResult();
+    this.TEST_INSTANCE.setName(getMethod());
     try {
       if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
-        SETUP_METHOD.invoke(TEST_INSTANCE,new Class[0]);
+        SETUP_METHOD.invoke(this.TEST_INSTANCE,new Class[0]);
       }
-      Method m=getMethod(TEST_INSTANCE,getMethod());
+      if (RUN_METHOD == null) {
+        RUN_METHOD=getRunTestMethod(this.TEST_INSTANCE);
+      }
+      Method m=getMethod(this.TEST_INSTANCE,getMethod());
       sresult.sampleStart();
-      m.invoke(TEST_INSTANCE,null);
+      if (RUN_METHOD != null) {
+        Object[] p={tr};
+        RUN_METHOD.invoke(this.TEST_INSTANCE,p);
+      }
+ else {
+        m.invoke(this.TEST_INSTANCE,new Class[0]);
+      }
       sresult.sampleEnd();
       if (!getDoNotSetUpTearDown() && TDOWN_METHOD != null) {
         TDOWN_METHOD.invoke(TEST_INSTANCE,new Class[0]);
@@ -34,6 +44,12 @@
       sresult.setSuccessful(false);
     }
 catch (    IllegalAccessException e) {
+      sresult.setResponseCode(getErrorCode());
+      sresult.setResponseMessage(getError());
+      sresult.setResponseData(e.getMessage().getBytes());
+      sresult.setSuccessful(false);
+    }
+catch (    ComparisonFailure e) {
       sresult.setResponseCode(getErrorCode());
       sresult.setResponseMessage(getError());
       sresult.setResponseData(e.getMessage().getBytes());
