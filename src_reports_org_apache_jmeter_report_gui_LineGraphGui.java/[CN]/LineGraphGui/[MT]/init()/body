@@ -1,0 +1,20 @@
+{
+  setLayout(new BorderLayout(10,10));
+  setBorder(makeBorder());
+  setBackground(Color.white);
+  JPanel pane=new JPanel();
+  pane.setLayout(new BorderLayout(10,10));
+  pane.setBackground(Color.white);
+  pane.add(this.getNamePanel(),BorderLayout.NORTH);
+  VerticalPanel options=new VerticalPanel(Color.white);
+  xAxis.setBackground(Color.white);
+  yAxis.setBackground(Color.white);
+  xAxisLabel.setBackground(Color.white);
+  yAxisLabel.setBackground(Color.white);
+  options.add(xAxis);
+  options.add(yAxis);
+  options.add(xAxisLabel);
+  options.add(yAxisLabel);
+  add(pane,BorderLayout.NORTH);
+  add(options,BorderLayout.CENTER);
+}

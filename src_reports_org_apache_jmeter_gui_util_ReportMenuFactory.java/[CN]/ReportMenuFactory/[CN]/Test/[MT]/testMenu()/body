@@ -1,13 +1,10 @@
 {
   check("menumap",menuMap.size());
-  check("assertions",assertions.size());
   check("configElements",configElements.size());
   check("controllers",controllers.size());
   check("listeners",listeners.size());
   check("nonTestElements",nonTestElements.size());
   check("postProcessors",postProcessors.size());
   check("preProcessors",preProcessors.size());
-  check("samplers",samplers.size());
-  check("timers",timers.size());
   check("elementstoskip",elementsToSkip.size());
 }

@@ -1,0 +1,8 @@
+{
+  super.configure(element);
+  BarChart bc=(BarChart)element;
+  xAxis.setText(bc.getXAxis());
+  yAxis.setText(bc.getYAxis());
+  xAxisLabel.setText(bc.getXLabel());
+  yAxisLabel.setText(bc.getYLabel());
+}

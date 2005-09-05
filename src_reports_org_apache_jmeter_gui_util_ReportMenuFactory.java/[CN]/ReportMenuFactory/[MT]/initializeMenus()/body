@@ -1,24 +1,22 @@
 {
   try {
     List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
-    timers=new LinkedList();
     controllers=new LinkedList();
-    samplers=new LinkedList();
     configElements=new LinkedList();
-    assertions=new LinkedList();
     listeners=new LinkedList();
     postProcessors=new LinkedList();
     preProcessors=new LinkedList();
+    tables=new LinkedList();
+    reportPage=new LinkedList();
     nonTestElements=new LinkedList();
-    menuMap.put(TIMERS,timers);
-    menuMap.put(ASSERTIONS,assertions);
     menuMap.put(CONFIG_ELEMENTS,configElements);
     menuMap.put(CONTROLLERS,controllers);
     menuMap.put(LISTENERS,listeners);
     menuMap.put(NON_TEST_ELEMENTS,nonTestElements);
-    menuMap.put(SAMPLERS,samplers);
     menuMap.put(POST_PROCESSORS,postProcessors);
     menuMap.put(PRE_PROCESSORS,preProcessors);
+    menuMap.put(REPORT_PAGE,reportPage);
+    menuMap.put(TABLES,tables);
     Collections.sort(guiClasses);
     Iterator iter=guiClasses.iterator();
     while (iter.hasNext()) {
@@ -56,9 +54,6 @@ catch (      Throwable e) {
         log.debug(name + " participates in no menus.");
         continue;
       }
-      if (categories.contains(TIMERS)) {
-        timers.add(new MenuInfo(item.getStaticLabel(),name));
-      }
       if (categories.contains(POST_PROCESSORS)) {
         postProcessors.add(new MenuInfo(item.getStaticLabel(),name));
       }
@@ -67,9 +62,6 @@ catch (      Throwable e) {
       }
       if (categories.contains(CONTROLLERS)) {
         controllers.add(new MenuInfo(item.getStaticLabel(),name));
-      }
-      if (categories.contains(SAMPLERS)) {
-        samplers.add(new MenuInfo(item.getStaticLabel(),name));
       }
       if (categories.contains(NON_TEST_ELEMENTS)) {
         nonTestElements.add(new MenuInfo(item.getStaticLabel(),name));
@@ -80,8 +72,11 @@ catch (      Throwable e) {
       if (categories.contains(CONFIG_ELEMENTS)) {
         configElements.add(new MenuInfo(item.getStaticLabel(),name));
       }
-      if (categories.contains(ASSERTIONS)) {
-        assertions.add(new MenuInfo(item.getStaticLabel(),name));
+      if (categories.contains(TABLES)) {
+        tables.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(REPORT_PAGE)) {
+        reportPage.add(new MenuInfo(item.getStaticLabel(),name));
       }
     }
   }

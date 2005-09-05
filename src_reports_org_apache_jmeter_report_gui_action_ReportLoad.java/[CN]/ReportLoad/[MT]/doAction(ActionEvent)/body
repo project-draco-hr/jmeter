@@ -51,6 +51,6 @@ catch (  Exception ex) {
     ReportGuiPackage.getInstance().getMainFrame().repaint();
   }
   if (!merging && isTestPlan && f != null) {
-    ReportGuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
+    ReportGuiPackage.getInstance().setReportPlanFile(f.getAbsolutePath());
   }
 }

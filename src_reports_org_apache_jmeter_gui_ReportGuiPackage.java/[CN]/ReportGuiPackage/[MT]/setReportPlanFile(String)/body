@@ -1,0 +1,10 @@
+{
+  reportPlanFile=f;
+  ReportGuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(reportPlanFile));
+  try {
+    FileServer.getFileServer().setBasedir(reportPlanFile);
+  }
+ catch (  IOException e1) {
+    log.error("Failure setting file server's base dir",e1);
+  }
+}

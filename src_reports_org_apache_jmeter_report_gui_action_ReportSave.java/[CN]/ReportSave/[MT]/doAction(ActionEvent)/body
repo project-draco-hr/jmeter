@@ -7,9 +7,9 @@
     subTree=ReportGuiPackage.getInstance().getCurrentSubTree();
   }
  else {
-    subTree=ReportGuiPackage.getInstance().getTreeModel().getTestPlan();
+    subTree=ReportGuiPackage.getInstance().getTreeModel().getReportPlan();
   }
-  String updateFile=ReportGuiPackage.getInstance().getTestPlanFile();
+  String updateFile=ReportGuiPackage.getInstance().getReportPlanFile();
   if (!SAVE.equals(e.getActionCommand()) || updateFile == null) {
     JFileChooser chooser=ReportFileDialoger.promptToSaveFile(ReportGuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmr");
     if (chooser == null) {
@@ -17,7 +17,7 @@
     }
     updateFile=chooser.getSelectedFile().getAbsolutePath();
     if (!e.getActionCommand().equals(SAVE_AS)) {
-      ReportGuiPackage.getInstance().setTestPlanFile(updateFile);
+      ReportGuiPackage.getInstance().setReportPlanFile(updateFile);
     }
   }
   ReportActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),ReportCheckDirty.SUB_TREE_SAVED));
@@ -41,7 +41,7 @@
     }
   }
  catch (  Throwable ex) {
-    ReportGuiPackage.getInstance().setTestPlanFile(null);
+    ReportGuiPackage.getInstance().setReportPlanFile(null);
     log.error("",ex);
     throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
   }
