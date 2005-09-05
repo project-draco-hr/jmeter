@@ -2,6 +2,7 @@
   Object testclass=null;
   if (className != null) {
     Constructor con=null;
+    Constructor strCon=null;
     Class theclazz=null;
     Object[] params=null;
     try {
@@ -12,13 +13,11 @@
     }
     if (theclazz != null) {
       try {
-        con=theclazz.getDeclaredConstructor(new Class[]{String.class});
-        if (con.isAccessible()) {
-          params=new Object[]{label};
+        strCon=theclazz.getDeclaredConstructor(new Class[]{String.class});
+        if (label == null || label.length() == 0) {
+          label=className;
         }
- else {
-          con=null;
-        }
+        params=new Object[]{label};
       }
  catch (      NoSuchMethodException e) {
         log.info("String constructor:: " + e.getMessage());
@@ -35,7 +34,10 @@
         }
       }
       try {
-        if (con != null) {
+        if (strCon != null) {
+          testclass=(TestCase)strCon.newInstance(params);
+        }
+ else         if (con != null) {
           testclass=(TestCase)con.newInstance(params);
         }
       }
