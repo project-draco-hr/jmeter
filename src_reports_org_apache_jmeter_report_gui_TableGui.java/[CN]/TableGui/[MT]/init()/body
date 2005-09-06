@@ -6,6 +6,7 @@
   pane.setLayout(new BorderLayout(10,10));
   pane.setBackground(Color.white);
   pane.add(this.getNamePanel(),BorderLayout.NORTH);
+  meanCheck.addChangeListener(this);
   VerticalPanel options=new VerticalPanel(Color.white);
   meanCheck.setBackground(Color.white);
   medianCheck.setBackground(Color.white);

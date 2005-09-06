@@ -1,8 +1,10 @@
 {
   super.configure(element);
   BarChart bc=(BarChart)element;
-  xAxis.setText(bc.getXAxis());
-  yAxis.setText(bc.getYAxis());
   xAxisLabel.setText(bc.getXLabel());
   yAxisLabel.setText(bc.getYLabel());
+  if (bc.getCheckedItems().size() > 0) {
+    String[] its=new String[bc.getCheckedItems().size()];
+    checkItems.setValues((String[])bc.getCheckedItems().toArray(its));
+  }
 }
