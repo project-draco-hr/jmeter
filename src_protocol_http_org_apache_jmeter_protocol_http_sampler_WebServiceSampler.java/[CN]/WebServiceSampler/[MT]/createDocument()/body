@@ -5,7 +5,8 @@
       return DOMPool.getDocument(next).getDocumentElement();
     }
  else {
-      return openDocument(next).getDocumentElement();
+      Document doc=openDocument(next);
+      return doc == null ? null : doc.getDocumentElement();
     }
   }
  else {

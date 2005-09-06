@@ -5,8 +5,14 @@
     try {
       doc=XDB.parse(new FileInputStream(retrieveRuntimeXmlData()));
     }
- catch (    Exception e) {
-      log.debug(e.getMessage());
+ catch (    SAXException e) {
+      log.warn("Error processing file data: " + e.getMessage());
+    }
+catch (    FileNotFoundException e) {
+      log.warn(e.getMessage());
+    }
+catch (    IOException e) {
+      log.warn(e.getMessage());
     }
   }
  else {
@@ -15,12 +21,18 @@
       try {
         doc=XDB.parse(new InputSource(new StringReader(FILE_CONTENTS)));
       }
- catch (      Exception ex) {
-        log.debug(ex.getMessage());
+ catch (      SAXException ex) {
+        log.warn("Error processing data: " + ex.getMessage());
+      }
+catch (      IOException ex) {
+        log.warn(ex.getMessage());
       }
     }
+ else {
+      log.warn("No post data provided!");
+    }
   }
-  if (this.getPropertyAsBoolean(MEMORY_CACHE)) {
+  if (doc != null && this.getPropertyAsBoolean(MEMORY_CACHE)) {
     DOMPool.putDocument(key,doc);
   }
   return doc;
