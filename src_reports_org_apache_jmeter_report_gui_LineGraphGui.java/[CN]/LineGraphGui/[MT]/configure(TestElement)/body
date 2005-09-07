@@ -1,8 +1,12 @@
 {
   super.configure(element);
   LineGraph bc=(LineGraph)element;
-  xAxis.setText(bc.getXAxis());
-  yAxis.setText(bc.getYAxis());
+  xItems.setText(bc.getXAxis());
+  checkItems.setText(bc.getYAxis());
   xAxisLabel.setText(bc.getXLabel());
   yAxisLabel.setText(bc.getYLabel());
+  if (bc.getCheckedItems() != null && bc.getCheckedItems().size() > 0) {
+    String[] its=new String[bc.getCheckedItems().size()];
+    checkItems.setValues((String[])bc.getCheckedItems().toArray(its));
+  }
 }

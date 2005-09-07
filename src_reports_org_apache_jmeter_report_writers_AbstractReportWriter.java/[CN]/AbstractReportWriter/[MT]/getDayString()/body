@@ -1,0 +1,10 @@
+{
+  Date today=new Date();
+  String year=String.valueOf(today.getYear());
+  String month=String.valueOf(today.getMonth() + 1);
+  String day=String.valueOf(today.getDate());
+  if (month.length() == 1) {
+    month="0" + month;
+  }
+  return year + month + day;
+}

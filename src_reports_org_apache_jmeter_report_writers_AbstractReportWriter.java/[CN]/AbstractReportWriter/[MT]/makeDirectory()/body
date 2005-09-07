@@ -1,0 +1,6 @@
+{
+  File output=new File(getTargetDirectory());
+  if (!output.exists() || !output.isDirectory()) {
+    output.mkdir();
+  }
+}
