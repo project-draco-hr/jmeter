@@ -1,0 +1,6 @@
+{
+  System.setProperty("JMeter.NonGui","true");
+  JMeterReport driver=new JMeterReport();
+  driver.parent=this;
+  PluginManager.install(this,false);
+}

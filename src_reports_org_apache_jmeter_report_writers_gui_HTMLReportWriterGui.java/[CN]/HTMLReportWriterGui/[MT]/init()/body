@@ -1,0 +1,12 @@
+{
+  setLayout(new BorderLayout(10,10));
+  setBorder(makeBorder());
+  setBackground(Color.white);
+  JPanel pane=new JPanel();
+  pane.setLayout(new BorderLayout(10,10));
+  pane.setBackground(Color.white);
+  pane.add(this.getNamePanel(),BorderLayout.NORTH);
+  outputDirectory.setBackground(Color.white);
+  pane.add(outputDirectory,BorderLayout.SOUTH);
+  add(pane,BorderLayout.NORTH);
+}

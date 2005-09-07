@@ -1,0 +1,52 @@
+{
+  HashTree subTree=null;
+  if (!commands.contains(e.getActionCommand())) {
+    throw new IllegalUserActionException("Invalid user command:" + e.getActionCommand());
+  }
+  if (e.getActionCommand().equals(SAVE_AS)) {
+    subTree=ReportGuiPackage.getInstance().getCurrentSubTree();
+  }
+ else {
+    subTree=ReportGuiPackage.getInstance().getTreeModel().getReportPlan();
+  }
+  String updateFile=ReportGuiPackage.getInstance().getReportPlanFile();
+  if (!SAVE.equals(e.getActionCommand()) || updateFile == null) {
+    JFileChooser chooser=ReportFileDialoger.promptToSaveFile(ReportGuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmr");
+    if (chooser == null) {
+      return;
+    }
+    updateFile=chooser.getSelectedFile().getAbsolutePath();
+    if (!e.getActionCommand().equals(SAVE_AS)) {
+      ReportGuiPackage.getInstance().setReportPlanFile(updateFile);
+    }
+  }
+  ReportActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),ReportCheckDirty.SUB_TREE_SAVED));
+  try {
+    convertSubTree(subTree);
+  }
+ catch (  Exception err) {
+  }
+  Writer writer=null;
+  FileOutputStream ostream=null;
+  try {
+    if (SaveService.isSaveTestPlanFormat20()) {
+      ostream=new FileOutputStream(updateFile);
+      OldSaveService.saveSubTree(subTree,ostream);
+      log.info("saveSubTree");
+    }
+ else {
+      writer=new FileWriter(updateFile);
+      SaveService.saveTree(subTree,writer);
+      log.info("saveTree");
+    }
+  }
+ catch (  Throwable ex) {
+    ReportGuiPackage.getInstance().setReportPlanFile(null);
+    log.error("",ex);
+    throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
+  }
+ finally {
+    closeWriter(writer);
+    closeStream(ostream);
+  }
+}

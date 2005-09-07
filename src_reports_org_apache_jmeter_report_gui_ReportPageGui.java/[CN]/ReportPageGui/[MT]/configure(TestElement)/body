@@ -1,0 +1,10 @@
+{
+  super.configure(element);
+  ReportPage page=(ReportPage)element;
+  cssURL.setText(page.getCSS());
+  footerURL.setText(page.getFooterURL());
+  headerURL.setText(page.getHeaderURL());
+  makeIndex.setSelected(page.getIndex());
+  introduction.setText(page.getIntroduction());
+  pageTitle.setText(page.getTitle());
+}

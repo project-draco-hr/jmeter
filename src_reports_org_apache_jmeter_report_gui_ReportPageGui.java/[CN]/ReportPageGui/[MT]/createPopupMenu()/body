@@ -1,0 +1,9 @@
+{
+  JPopupMenu pop=new JPopupMenu();
+  JMenu addMenu=new JMenu(JMeterUtils.getResString("Add"));
+  addMenu.add(ReportMenuFactory.makeMenuItem(new TableGui().getStaticLabel(),TableGui.class.getName(),"Add"));
+  pop.add(addMenu);
+  ReportMenuFactory.addFileMenu(pop);
+  ReportMenuFactory.addEditMenu(pop,true);
+  return pop;
+}

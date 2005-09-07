@@ -1,0 +1,33 @@
+{
+  setLayout(new BorderLayout(10,10));
+  setBorder(makeBorder());
+  setBackground(Color.white);
+  JPanel pane=new JPanel();
+  pane.setLayout(new BorderLayout(10,10));
+  pane.setBackground(Color.white);
+  pane.add(this.getNamePanel(),BorderLayout.NORTH);
+  VerticalPanel options=new VerticalPanel(Color.white);
+  xAxisLabel.setBackground(Color.white);
+  yAxisLabel.setBackground(Color.white);
+  JLabel xLabel=new JLabel(JMeterUtils.getResString("report_chart_x_axis"));
+  HorizontalPanel xpanel=new HorizontalPanel(Color.white);
+  xLabel.setBorder(new EmptyBorder(5,2,5,2));
+  xItems=new JLabeledChoice();
+  xItems.setBackground(Color.white);
+  xItems.setValues(AbstractTable.xitems);
+  xpanel.add(xLabel);
+  xpanel.add(xItems);
+  options.add(xpanel);
+  options.add(xAxisLabel);
+  JLabel yLabel=new JLabel(JMeterUtils.getResString("report_chart_y_axis"));
+  HorizontalPanel ypanel=new HorizontalPanel(Color.white);
+  yLabel.setBorder(new EmptyBorder(5,2,5,2));
+  checkItems=new JLabeledChoice();
+  checkItems.setBackground(Color.white);
+  ypanel.add(yLabel);
+  ypanel.add(checkItems);
+  options.add(ypanel);
+  options.add(yAxisLabel);
+  add(pane,BorderLayout.NORTH);
+  add(options,BorderLayout.CENTER);
+}

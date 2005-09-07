@@ -1,0 +1,8 @@
+{
+  if (guiPack == null) {
+    guiPack=new ReportGuiPackage();
+    guiPack.setTreeListener(listener);
+    guiPack.setTreeModel(treeModel);
+  }
+  return guiPack;
+}

@@ -1,0 +1,9 @@
+{
+  Iterator iter=menuInfo.iterator();
+  JMenu menu=new JMenu(menuName);
+  while (iter.hasNext()) {
+    MenuInfo info=(MenuInfo)iter.next();
+    menu.add(makeMenuItem(info.label,info.className,actionCommand));
+  }
+  return menu;
+}

@@ -1,0 +1,8 @@
+{
+  this.configureTestElement(element);
+  BarChart bc=(BarChart)element;
+  bc.setXAxis(xItems.getText());
+  bc.setYAxis(checkItems.getText());
+  bc.setXLabel(xAxisLabel.getText());
+  bc.setYLabel(yAxisLabel.getText());
+}

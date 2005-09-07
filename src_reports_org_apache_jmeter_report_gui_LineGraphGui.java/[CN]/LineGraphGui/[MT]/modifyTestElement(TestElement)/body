@@ -1,0 +1,8 @@
+{
+  this.configureTestElement(element);
+  LineGraph bc=(LineGraph)element;
+  bc.setXAxis(xItems.getText());
+  bc.setYAxis(checkItems.getText());
+  bc.setXLabel(xAxisLabel.getText());
+  bc.setYLabel(yAxisLabel.getText());
+}
