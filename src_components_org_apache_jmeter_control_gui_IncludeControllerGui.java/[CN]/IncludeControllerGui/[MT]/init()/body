@@ -2,10 +2,5 @@
   setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
-  JPanel modulesPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,20,5));
-  modulesPanel.add(new JLabel(CONTROLLER));
-  warningLabel=new JLabel("");
-  modulesPanel.add(warningLabel);
-  add(modulesPanel);
   add(includePanel);
 }
