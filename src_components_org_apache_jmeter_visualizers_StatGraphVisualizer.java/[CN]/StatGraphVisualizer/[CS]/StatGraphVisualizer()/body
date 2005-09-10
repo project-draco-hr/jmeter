@@ -1,0 +1,6 @@
+{
+  super();
+  model=new ObjectTableModel(COLUMNS,new Functor[]{new Functor("getLabel"),new Functor("getCount"),new Functor("getMeanAsNumber"),new Functor("getMedian"),new Functor("getPercentPoint",new Object[]{new Float(.900)}),new Functor("getMin"),new Functor("getMax"),new Functor("getErrorPercentageString"),new Functor("getRateString"),new Functor("getPageSizeString")},new Functor[]{null,null,null,null,null,null,null,null,null,null},new Class[]{String.class,Long.class,Long.class,Long.class,Long.class,Long.class,Long.class,String.class,String.class,String.class});
+  clear();
+  init();
+}

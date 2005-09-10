@@ -1,0 +1,10 @@
+{
+  if (saveGraphToFile == true) {
+    saveGraphToFile=false;
+    graphPanel.setBounds(graphPanel.getLocation().x,graphPanel.getLocation().y,graphPanel.width,graphPanel.height);
+    return graphPanel;
+  }
+ else {
+    return this;
+  }
+}

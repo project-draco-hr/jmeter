@@ -1,0 +1,14 @@
+{
+  if (event.getSource() == displayButton) {
+    makeGraph();
+  }
+ else   if (event.getSource() == saveGraph) {
+    saveGraphToFile=true;
+    try {
+      ActionRouter.getInstance().getAction(SaveGraphics.SAVE_GRAPHICS,SaveGraphics.class.getName()).doAction(new ActionEvent(this,1,SaveGraphics.SAVE_GRAPHICS));
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+}
