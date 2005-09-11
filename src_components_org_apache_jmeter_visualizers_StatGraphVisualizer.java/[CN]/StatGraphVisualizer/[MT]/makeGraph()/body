@@ -9,7 +9,6 @@
   }
   int width=Integer.parseInt(wstr);
   int height=Integer.parseInt(hstr);
-  graphPanel.setPreferredSize(new Dimension(width,height));
   graphPanel.setData(this.getData());
   graphPanel.setHeight(height);
   graphPanel.setWidth(width);
@@ -18,5 +17,7 @@
   graphPanel.setXAxisTitle(columns.getText());
   graphPanel.setYAxisLabels(this.yAxisLabel);
   graphPanel.setYAxisTitle(this.yAxisTitle);
+  graphPanel.setPreferredSize(new Dimension(width,height));
+  graph.resize(new Dimension(graph.getWidth(),height + 120));
   spane.repaint();
 }
