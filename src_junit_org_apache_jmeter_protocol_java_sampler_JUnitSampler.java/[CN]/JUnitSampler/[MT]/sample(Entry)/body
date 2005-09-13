@@ -88,11 +88,16 @@ catch (    Throwable e) {
       sresult.setSuccessful(true);
       sresult.setResponseMessage(getSuccess());
       sresult.setResponseCode(getSuccessCode());
+      sresult.setResponseData("Not Applicable".getBytes());
     }
   }
  else {
     sresult.setSuccessful(false);
     sresult.setResponseMessage("failed to create an instance of the class");
   }
+  sresult.setBytes(0);
+  sresult.setContentType("text");
+  sresult.setDataType("Not Applicable");
+  sresult.setRequestHeaders("Not Applicable");
   return sresult;
 }
