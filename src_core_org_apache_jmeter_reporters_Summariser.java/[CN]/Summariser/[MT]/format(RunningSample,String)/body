@@ -5,7 +5,7 @@
   sb.append(" ");
   sb.append(type);
   sb.append(" ");
-  sb.append(longToSb(tmp,s.getCount(),5));
+  sb.append(longToSb(tmp,s.getNumSamples(),5));
   sb.append(" in ");
   long elapsed=s.getElapsed();
   sb.append(doubleToSb(tmp,elapsed / 1000.0,5,1));
@@ -17,11 +17,11 @@
     sb.append("******");
   }
   sb.append("/s Avg: ");
-  sb.append(longToSb(tmp,(long)s.getMean(),5));
+  sb.append(longToSb(tmp,s.getAverage(),5));
   sb.append(" Min: ");
-  sb.append(longToSb(tmp,s.getMin().longValue(),5));
+  sb.append(longToSb(tmp,s.getMin(),5));
   sb.append(" Max: ");
-  sb.append(longToSb(tmp,s.getMax().longValue(),5));
+  sb.append(longToSb(tmp,s.getMax(),5));
   sb.append(" Err: ");
   sb.append(longToSb(tmp,s.getErrorCount(),5));
   sb.append(" (");
