@@ -1,6 +1,6 @@
 {
   if (key != null) {
-    String[] keys=key.split("/");
+    String[] keys=JOrphanUtils.split(key,"/");
     return keys;
   }
   return new String[0];

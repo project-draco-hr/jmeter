@@ -1,6 +1,6 @@
 {
   if (event.getSource() == filterpkg) {
-    FILTER.setPackges(filterpkg.getText().split(","));
+    FILTER.setPackges(JOrphanUtils.split(filterpkg.getText(),","));
     classnameCombo.removeAllItems();
     Object[] clist=FILTER.filterArray(CLASSLIST);
     for (int idx=0; idx < clist.length; idx++) {
