@@ -20,18 +20,18 @@
       if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
         SETUP_METHOD.invoke(this.TEST_INSTANCE,new Class[0]);
       }
-      if (RUN_METHOD == null) {
-        RUN_METHOD=getRunTestMethod(this.TEST_INSTANCE);
-      }
-      Method m=getMethod(this.TEST_INSTANCE,getMethod());
+      final Method m=getMethod(this.TEST_INSTANCE,getMethod());
+      final TestCase theClazz=this.TEST_INSTANCE;
+      tr.startTest(this.TEST_INSTANCE);
       sresult.sampleStart();
-      if (RUN_METHOD != null) {
-        Object[] p={tr};
-        RUN_METHOD.invoke(this.TEST_INSTANCE,p);
+      Protectable p=new Protectable(){
+        public void protect() throws Throwable {
+          m.invoke(theClazz,new Class[0]);
+        }
       }
- else {
-        m.invoke(this.TEST_INSTANCE,new Class[0]);
-      }
+;
+      tr.runProtected(theClazz,p);
+      tr.endTest(this.TEST_INSTANCE);
       sresult.sampleEnd();
       if (!getDoNotSetUpTearDown() && TDOWN_METHOD != null) {
         TDOWN_METHOD.invoke(TEST_INSTANCE,new Class[0]);
@@ -79,7 +79,13 @@ catch (    Throwable e) {
       buf.append(getFailure());
       Enumeration en=tr.errors();
       while (en.hasMoreElements()) {
-        buf.append((String)en.nextElement());
+        Object item=en.nextElement();
+        if (item instanceof String) {
+          buf.append((String)en.nextElement());
+        }
+ else         if (item instanceof Throwable) {
+          buf.append(((Throwable)item).getMessage());
+        }
       }
       sresult.setResponseMessage(buf.toString());
       sresult.setResponseCode(getFailureCode());
