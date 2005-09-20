@@ -8,5 +8,8 @@
         super.fireTableDataChanged();
       }
     }
+ else     if (headers.size() == 1) {
+      objects.set(row,cellValue);
+    }
   }
 }
