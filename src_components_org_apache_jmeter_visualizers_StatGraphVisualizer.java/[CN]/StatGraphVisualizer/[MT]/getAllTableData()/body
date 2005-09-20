@@ -1,0 +1,15 @@
+{
+  Vector data=new Vector();
+  if (model.getRowCount() > 0) {
+    for (int rw=0; rw < model.getRowCount(); rw++) {
+      int cols=model.getColumnCount();
+      Vector column=new Vector();
+      data.add(column);
+      for (int idx=0; idx < cols; idx++) {
+        Object val=model.getValueAt(rw,idx);
+        column.add(val);
+      }
+    }
+  }
+  return data;
+}

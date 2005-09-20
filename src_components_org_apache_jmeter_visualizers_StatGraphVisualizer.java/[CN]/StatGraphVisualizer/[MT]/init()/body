@@ -18,6 +18,7 @@
   buttonpanel.add(columns);
   buttonpanel.add(displayButton);
   buttonpanel.add(saveGraph);
+  buttonpanel.add(saveTable);
   graph.add(graphLabel);
   graph.add(graphTitle);
   graph.add(graphWidth);
@@ -26,6 +27,7 @@
   graph.add(graphPanel);
   displayButton.addActionListener(this);
   saveGraph.addActionListener(this);
+  saveTable.addActionListener(this);
   graphScroll=new JScrollPane(graph);
   graphScroll.setAutoscrolls(true);
   spane=new JSplitPane(JSplitPane.VERTICAL_SPLIT);

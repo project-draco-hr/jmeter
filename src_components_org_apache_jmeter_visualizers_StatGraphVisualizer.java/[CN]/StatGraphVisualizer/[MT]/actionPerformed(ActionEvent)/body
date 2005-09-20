@@ -11,4 +11,21 @@
       e.printStackTrace();
     }
   }
+ else   if (event.getSource() == saveTable) {
+    JFileChooser chooser=FileDialoger.promptToSaveFile("statistics.csv");
+    File output=chooser.getSelectedFile();
+    FileWriter writer=null;
+    try {
+      writer=new FileWriter(output);
+      Vector data=this.getAllTableData();
+      OldSaveService.saveCSVStats(data,writer);
+      writer.close();
+    }
+ catch (    FileNotFoundException e) {
+      log.warn(e.getMessage());
+    }
+catch (    IOException e) {
+      log.warn(e.getMessage());
+    }
+  }
 }
