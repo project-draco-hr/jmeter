@@ -7,7 +7,7 @@
     Object[] strParams=null;
     Object[] params=null;
     try {
-      theclazz=Class.forName(className.trim(),true,Thread.currentThread().getContextClassLoader());
+      theclazz=Thread.currentThread().getContextClassLoader().loadClass(className.trim());
     }
  catch (    ClassNotFoundException e) {
       log.warn("ClassNotFoundException:: " + e.getMessage());
