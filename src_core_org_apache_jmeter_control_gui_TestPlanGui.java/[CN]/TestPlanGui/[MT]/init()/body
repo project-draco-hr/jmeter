@@ -12,5 +12,6 @@
   explain.setEditable(false);
   explain.setBackground(this.getBackground());
   southPanel.add(explain);
+  southPanel.add(createClassPathPanel());
   add(southPanel,BorderLayout.SOUTH);
 }

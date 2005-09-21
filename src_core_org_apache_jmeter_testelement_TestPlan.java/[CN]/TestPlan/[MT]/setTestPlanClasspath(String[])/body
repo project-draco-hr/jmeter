@@ -1,0 +1,20 @@
+{
+  for (int idx=0; idx < text.length; idx++) {
+    NewDriver.addURL(text[idx]);
+  }
+  String cat="";
+  if (text.length > 1) {
+    for (int idx=0; idx < text.length; idx++) {
+      if (idx > 0) {
+        cat+="," + text[idx];
+      }
+ else {
+        cat+=text[idx];
+      }
+    }
+  }
+ else   if (text != null && text.length == 1) {
+    cat=text[0];
+  }
+  this.setTestPlanClasspath(cat);
+}
