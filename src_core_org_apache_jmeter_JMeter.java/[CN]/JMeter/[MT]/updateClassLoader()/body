@@ -1,0 +1,24 @@
+{
+  String userpath=JMeterUtils.getPropDefault("user.classpath","");
+  if (userpath.length() > 0) {
+    log.info("user.classpath=" + userpath);
+    StringTokenizer tok=new StringTokenizer(userpath,File.pathSeparator);
+    while (tok.hasMoreTokens()) {
+      String path=tok.nextToken();
+      File f=new File(path);
+      if (!f.canRead() && !f.isDirectory()) {
+        log.warn("Can't read " + path);
+      }
+ else {
+        URL url;
+        try {
+          url=new URL("file","",path);
+          NewDriver.addURL(url);
+        }
+ catch (        MalformedURLException e) {
+          log.warn("Can't create URL for " + path + " "+ e);
+        }
+      }
+    }
+  }
+}

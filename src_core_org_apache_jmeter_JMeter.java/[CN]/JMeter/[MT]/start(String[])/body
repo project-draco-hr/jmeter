@@ -13,6 +13,7 @@
     log.info("java.version=" + System.getProperty("java.version"));
     log.info("Locale=" + Locale.getDefault().getDisplayName());
     log.info(JMeterUtils.getJMeterCopyright());
+    updateClassLoader();
     if (parser.getArgumentById(VERSION_OPT) != null) {
       System.out.println(JMeterUtils.getJMeterCopyright());
       System.out.println("Version " + JMeterUtils.getJMeterVersion());
