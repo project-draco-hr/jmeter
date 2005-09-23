@@ -1,0 +1,10 @@
+{
+  StringBuffer cat=new StringBuffer();
+  for (int idx=0; idx < text.length; idx++) {
+    if (idx > 0) {
+      cat.append(CLASSPATH_SEPARATOR);
+    }
+    cat.append(text[idx]);
+  }
+  this.setTestPlanClasspath(cat.toString());
+}

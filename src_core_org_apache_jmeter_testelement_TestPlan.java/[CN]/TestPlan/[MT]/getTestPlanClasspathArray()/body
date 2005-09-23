@@ -1,3 +1,3 @@
 {
-  return JOrphanUtils.split(this.getTestPlanClasspath(),",");
+  return JOrphanUtils.split(this.getTestPlanClasspath(),CLASSPATH_SEPARATOR);
 }
