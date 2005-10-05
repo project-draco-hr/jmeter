@@ -2,5 +2,8 @@
   initializeTableModel();
   table=new JTable(tableModel);
   table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  if (this.background != null) {
+    table.setBackground(this.background);
+  }
   return makeScrollPane(table);
 }

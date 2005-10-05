@@ -7,6 +7,9 @@
   checkDeleteStatus();
   JPanel buttonPanel=new JPanel();
   buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+  if (this.background != null) {
+    buttonPanel.setBackground(this.background);
+  }
   add.addActionListener(this);
   delete.addActionListener(this);
   buttonPanel.add(add);
