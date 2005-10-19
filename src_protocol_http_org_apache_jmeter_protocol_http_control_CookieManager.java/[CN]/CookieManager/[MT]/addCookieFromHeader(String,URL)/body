@@ -1,5 +1,6 @@
 {
-  if (log.isDebugEnabled()) {
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
     log.debug("addCookieFromHeader(" + cookieHeader + ","+ url.toExternalForm()+ ")");
   }
   StringTokenizer st=new StringTokenizer(cookieHeader,";");
@@ -52,7 +53,7 @@ catch (      Exception e) {
     Cookie cookie=(Cookie)getCookies().get(i).getObjectValue();
     if (cookie == null)     continue;
     if (cookie.getPath().equals(newCookie.getPath()) && cookie.getDomain().equals(newCookie.getDomain()) && cookie.getName().equals(newCookie.getName())) {
-      if (log.isDebugEnabled()) {
+      if (debugEnabled) {
         log.debug("New Cookie = " + newCookie.toString() + " removing matching Cookie "+ cookie.toString());
       }
       removeIndices.addElement(new Integer(i));
@@ -65,5 +66,10 @@ catch (      Exception e) {
   long exp=newCookie.getExpires();
   if (exp == 0 || exp >= System.currentTimeMillis() / 1000) {
     add(newCookie);
+  }
+ else {
+    if (debugEnabled) {
+      log.debug("Dropping expired Cookie: " + newCookie.toString());
+    }
   }
 }

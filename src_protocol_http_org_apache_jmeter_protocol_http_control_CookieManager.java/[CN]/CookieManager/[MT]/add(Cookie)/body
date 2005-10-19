@@ -1,10 +1,15 @@
 {
-  if (log.isDebugEnabled())   log.debug("Add cookie " + c.toString());
   String cv=c.getValue();
   if (DELETE_NULL_COOKIES && (null == cv || "".equals(cv))) {
+    if (log.isDebugEnabled()) {
+      log.debug("Removing cookie with null value " + c.toString());
+    }
     removeCookieNamed(c.getName());
   }
  else {
+    if (log.isDebugEnabled()) {
+      log.debug("Add cookie " + c.toString());
+    }
     JMeterContext context=getThreadContext();
     getCookies().addItem(c);
     if (context.isSamplingStarted()) {
