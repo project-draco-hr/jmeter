@@ -11,7 +11,15 @@
   String value=nvp.substring(index + 1);
   String domain="." + url.getHost();
   String path=url.getPath();
-  if (path.length() == 0)   path="/";
+  if (path.length() == 0) {
+    path="/";
+  }
+ else {
+    int lastSlash=path.lastIndexOf("/");
+    if (lastSlash > -1) {
+      path=path.substring(0,lastSlash + 1);
+    }
+  }
   Cookie newCookie=new Cookie(name,value,domain,path,false,0);
   while (st.hasMoreTokens()) {
     nvp=st.nextToken();
