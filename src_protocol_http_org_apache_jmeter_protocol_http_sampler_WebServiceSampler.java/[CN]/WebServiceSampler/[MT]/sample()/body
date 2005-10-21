@@ -1,13 +1,13 @@
 {
-  SampleResult RESULT=new SampleResult();
+  SampleResult result=new SampleResult();
   try {
-    RESULT.setURL(this.getUrl());
-    RESULT.setSampleLabel(getName());
+    result.setURL(this.getUrl());
+    result.setSampleLabel(getName());
     org.w3c.dom.Element rdoc=createDocument();
     if (rdoc == null)     throw new SOAPException("Could not create document",null);
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
-    RESULT.sampleStart();
+    result.sampleStart();
     SOAPHTTPConnection spconn=null;
     if (this.getHeaderManager() != null && this.getHeaderManager().getSOAPHeader() != null) {
       spconn=(SOAPHTTPConnection)this.getHeaderManager().getSOAPHeader();
@@ -51,7 +51,7 @@
       this.getHeaderManager().setSOAPHeader(spconn);
     }
     SOAPTransport st=msg.getSOAPTransport();
-    RESULT.setDataType(SampleResult.TEXT);
+    result.setDataType(SampleResult.TEXT);
     BufferedReader br=null;
     if (st != null && st.receive() != null) {
       br=st.receive();
@@ -61,26 +61,26 @@
         while ((line=br.readLine()) != null) {
           buf.append(line);
         }
-        RESULT.sampleEnd();
-        RESULT.setResponseData(buf.toString().getBytes());
+        result.sampleEnd();
+        result.setResponseData(buf.toString().getBytes());
       }
  else {
         br.read();
-        RESULT.sampleEnd();
-        RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
+        result.sampleEnd();
+        result.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
       }
-      RESULT.setSuccessful(true);
-      RESULT.setResponseCode("200");
-      RESULT.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
+      result.setSuccessful(true);
+      result.setResponseCode("200");
+      result.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
     }
  else {
-      RESULT.setSuccessful(false);
-      RESULT.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
-      RESULT.setResponseCode("000");
-      RESULT.setResponseHeaders("error");
+      result.setSuccessful(false);
+      result.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
+      result.setResponseCode("000");
+      result.setResponseHeaders("error");
     }
-    RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile()+ "\n"+ FILE_CONTENTS);
-    RESULT.setDataEncoding(st.getResponseSOAPContext().getContentType());
+    result.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile()+ "\n"+ fileContents);
+    result.setDataEncoding(st.getResponseSOAPContext().getContentType());
     if (br != null) {
       br.close();
     }
@@ -89,7 +89,7 @@
   }
  catch (  SOAPException exception) {
     log.warn(exception.getMessage());
-    RESULT.setSuccessful(false);
+    result.setSuccessful(false);
   }
 catch (  MalformedURLException exception) {
     log.warn(exception.getMessage());
@@ -100,5 +100,5 @@ catch (  IOException exception) {
 catch (  MessagingException exception) {
     log.warn(exception.getMessage());
   }
-  return RESULT;
+  return result;
 }

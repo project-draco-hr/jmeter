@@ -3,7 +3,7 @@
   if (file.length() > 0) {
     if (this.getReadResponse()) {
       TextFile tfile=new TextFile(file);
-      FILE_CONTENTS=tfile.getText();
+      fileContents=tfile.getText();
     }
     return new File(file);
   }

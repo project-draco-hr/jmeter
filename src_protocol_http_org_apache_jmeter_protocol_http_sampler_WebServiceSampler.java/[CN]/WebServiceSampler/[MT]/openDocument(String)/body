@@ -16,10 +16,10 @@ catch (    IOException e) {
     }
   }
  else {
-    FILE_CONTENTS=getXmlData();
-    if (FILE_CONTENTS != null && FILE_CONTENTS.length() > 0) {
+    fileContents=getXmlData();
+    if (fileContents != null && fileContents.length() > 0) {
       try {
-        doc=XDB.parse(new InputSource(new StringReader(FILE_CONTENTS)));
+        doc=XDB.parse(new InputSource(new StringReader(fileContents)));
       }
  catch (      SAXException ex) {
         log.warn("Error processing data: " + ex.getMessage());
