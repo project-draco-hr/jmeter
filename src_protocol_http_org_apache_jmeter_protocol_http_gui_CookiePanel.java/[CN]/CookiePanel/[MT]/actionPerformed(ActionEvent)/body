@@ -46,8 +46,9 @@
       if (tmp != null) {
         CookieManager manager=new CookieManager();
         manager.addFile(tmp.getAbsolutePath());
-        Cookie cookie=manager.get(0);
-        addCookieToTable(cookie);
+        for (int i=0; i < manager.getCookieCount(); i++) {
+          addCookieToTable(manager.get(i));
+        }
         tableModel.fireTableDataChanged();
         if (tableModel.getRowCount() > 0) {
           deleteButton.setEnabled(true);
