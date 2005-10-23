@@ -9,7 +9,26 @@
  else {
       Authorization auth=authManager.getAuthForURL(u);
       if (auth != null) {
-        httpState.setCredentials(null,auth.getURL(),new NTCredentials(auth.getUser(),auth.getPass(),null,null));
+        String user=auth.getUser();
+        String realm=null;
+        String domain=null;
+        String username;
+        int bs=user.indexOf('\\');
+        int at=user.indexOf('@');
+        if (bs > 0) {
+          domain=user.substring(0,bs);
+        }
+        if (at > 0 && at > bs + 1) {
+          realm=user.substring(at + 1);
+        }
+ else {
+          at=user.length();
+        }
+        username=user.substring(bs + 1,at);
+        if (log.isDebugEnabled()) {
+          log.debug(user + " >  D=" + username+ " D="+ domain+ " R="+ realm);
+        }
+        httpState.setCredentials(realm,auth.getURL(),new NTCredentials(username,auth.getPass(),null,domain));
       }
     }
   }

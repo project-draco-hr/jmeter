@@ -1,3 +1,10 @@
 {
   log.debug("Thread Started");
+  System.setProperty("apache.commons.httpclient.cookiespec","COMPATIBILITY");
+synchronized (this.getClass()) {
+    if (httpClients == null) {
+      httpClients=new ThreadLocal();
+    }
+    httpClients.set(new HashMap());
+  }
 }

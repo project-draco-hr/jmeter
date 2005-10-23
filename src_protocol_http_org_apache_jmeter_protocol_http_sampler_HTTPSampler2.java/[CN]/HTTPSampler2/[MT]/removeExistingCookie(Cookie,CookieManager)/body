@@ -1,0 +1,17 @@
+{
+  Vector removeIndices=new Vector();
+  for (int i=cookieManager.getCookies().size() - 1; i >= 0; i--) {
+    Cookie cookie=(Cookie)cookieManager.getCookies().get(i).getObjectValue();
+    if (cookie == null)     continue;
+    if (cookie.getPath().equals(newCookie.getPath()) && cookie.getDomain().equals(newCookie.getDomain()) && cookie.getName().equals(newCookie.getName())) {
+      if (log.isDebugEnabled()) {
+      }
+      removeIndices.addElement(new Integer(i));
+    }
+  }
+  int index=0;
+  for (Enumeration e=removeIndices.elements(); e.hasMoreElements(); ) {
+    index=((Integer)e.nextElement()).intValue();
+    cookieManager.remove(index);
+  }
+}

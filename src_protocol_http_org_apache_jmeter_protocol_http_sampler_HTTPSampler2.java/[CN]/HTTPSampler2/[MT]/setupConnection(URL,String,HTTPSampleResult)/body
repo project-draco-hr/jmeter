@@ -10,12 +10,16 @@
   int port=uri.getPort();
   HostConfiguration hc=new HostConfiguration();
   hc.setHost(host,port,protocol);
-  if (httpConn != null && hc.hostEquals(httpConn)) {
-  }
- else {
-    httpConn=new HttpConnection(hc);
-    httpConn.setProxyHost(System.getProperty("http.proxyHost"));
-    httpConn.setProxyPort(Integer.parseInt(System.getProperty("http.proxyPort","80")));
+  HttpConnection httpConn=null;
+  Map map=(Map)httpClients.get();
+synchronized (map) {
+    httpConn=(HttpConnection)map.get(hc);
+    if (httpConn == null) {
+      httpConn=new HttpConnection(hc);
+      httpConn.setProxyHost(System.getProperty("http.proxyHost"));
+      httpConn.setProxyPort(Integer.parseInt(System.getProperty("http.proxyPort","80")));
+      map.put(hc,httpConn);
+    }
   }
   if (method.equals(POST)) {
     httpMethod=new PostMethod(urlStr);

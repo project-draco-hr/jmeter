@@ -18,7 +18,15 @@
       sendPostData(httpMethod);
     }
     int statusCode=httpMethod.execute(httpState,connection);
-    byte[] responseData=httpMethod.getResponseBody();
+    InputStream instream=httpMethod.getResponseBodyAsStream();
+    ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
+    byte[] buffer=new byte[4096];
+    int len;
+    while ((len=instream.read(buffer)) > 0) {
+      outstream.write(buffer,0,len);
+    }
+    outstream.close();
+    byte[] responseData=outstream.toByteArray();
     res.sampleEnd();
     res.setSampleLabel(httpMethod.getURI().toString());
     res.setResponseData(responseData);
