@@ -3,8 +3,10 @@
     return new String[0];
   }
   int spot;
-  while ((spot=splittee.indexOf(splitChar + splitChar)) != -1) {
-    splittee=splittee.substring(0,spot + splitChar.length()) + def + splittee.substring(spot + 1 * splitChar.length(),splittee.length());
+  if (def.length() > 0) {
+    while ((spot=splittee.indexOf(splitChar + splitChar)) != -1) {
+      splittee=splittee.substring(0,spot + splitChar.length()) + def + splittee.substring(spot + 1 * splitChar.length(),splittee.length());
+    }
   }
   Vector returns=new Vector();
   int start=0;
