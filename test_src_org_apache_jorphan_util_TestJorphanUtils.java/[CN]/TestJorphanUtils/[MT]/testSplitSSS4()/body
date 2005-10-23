@@ -1,0 +1,14 @@
+{
+  String in="a,b;c,,";
+  String out[];
+  out=JOrphanUtils.split(in,",;","?");
+  assertEquals(5,out.length);
+  assertEquals("a",out[0]);
+  assertEquals("b",out[1]);
+  assertEquals("?",out[4]);
+  out=JOrphanUtils.split(in,",;","");
+  assertEquals(5,out.length);
+  assertEquals("a",out[0]);
+  assertEquals("b",out[1]);
+  assertEquals("",out[4]);
+}

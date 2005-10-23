@@ -1,7 +1,11 @@
 {
   String in="a,b,,,d,e,,f";
   String[] out=JOrphanUtils.split(in,",",true);
+  assertEquals(5,out.length);
   assertEquals("d",out[2]);
+  assertEquals("f",out[4]);
   out=JOrphanUtils.split(in,",",false);
+  assertEquals(8,out.length);
   assertEquals("",out[2]);
+  assertEquals("f",out[7]);
 }

@@ -1,0 +1,19 @@
+{
+  String in="a,bc,,";
+  String out[];
+  try {
+    out=JOrphanUtils.split(null,",","?");
+    assertEquals(0,out.length);
+    fail("Expecting NullPointerException");
+  }
+ catch (  NullPointerException ignored) {
+  }
+  try {
+    out=JOrphanUtils.split(in,null,"?");
+    assertEquals(0,out.length);
+    assertEquals(0,out.length);
+    fail("Expecting NullPointerException");
+  }
+ catch (  NullPointerException ignored) {
+  }
+}
