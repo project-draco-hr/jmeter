@@ -12,7 +12,7 @@
   while ((line=reader.readLine()) != null) {
     try {
       if (line.startsWith("#") || line.trim().length() == 0)       continue;
-      String[] st=split(line,"\t"," ");
+      String[] st=JOrphanUtils.split(line,"\t"," ");
       int domain=0;
       int path=2;
       if (st[path].equals(" "))       st[path]="/";
