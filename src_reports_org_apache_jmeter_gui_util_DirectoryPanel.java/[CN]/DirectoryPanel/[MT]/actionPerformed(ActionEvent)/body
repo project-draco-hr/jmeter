@@ -1,0 +1,12 @@
+{
+  if (e.getActionCommand().equals("browse")) {
+    JFileChooser chooser=DirectoryDialoger.promptToOpenFile();
+    if (chooser.getSelectedFile() != null) {
+      filename.setText(chooser.getSelectedFile().getPath());
+      fireFileChanged();
+    }
+  }
+ else {
+    fireFileChanged();
+  }
+}
