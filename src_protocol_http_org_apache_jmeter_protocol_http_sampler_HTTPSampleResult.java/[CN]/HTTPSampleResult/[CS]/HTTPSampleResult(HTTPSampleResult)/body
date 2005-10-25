@@ -1,6 +1,8 @@
 {
   super(res);
-  setHTTPMethod(res.getHTTPMethod());
+  method=res.method;
   setURL(res.getURL());
-  setCookies(res.getCookies());
+  cookies=res.cookies;
+  queryString=res.queryString;
+  redirectLocation=res.redirectLocation;
 }

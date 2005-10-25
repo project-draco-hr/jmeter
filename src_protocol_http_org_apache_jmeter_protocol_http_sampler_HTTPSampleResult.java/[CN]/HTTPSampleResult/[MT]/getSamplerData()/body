@@ -1,16 +1,19 @@
 {
   StringBuffer sb=new StringBuffer();
-  sb.append(getHTTPMethod());
+  sb.append(method);
   URL u=super.getURL();
   if (u != null) {
     sb.append(' ');
     sb.append(u.toString());
-    if ("POST".equals(getHTTPMethod())) {
-      sb.append(getQueryString());
+    if ("POST".equals(method)) {
+      sb.append(queryString);
     }
     sb.append("\n");
-    sb.append(getRequestHeaders());
-    sb.append(getCookies());
+    if (cookies.length() > 0) {
+      sb.append("\nCookie Data:\n");
+      sb.append(cookies);
+      sb.append("\n");
+    }
   }
   return sb.toString();
 }

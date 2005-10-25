@@ -1,3 +1,8 @@
 {
-  queryString=string;
+  if (string == null) {
+    queryString="";
+  }
+ else {
+    queryString=string;
+  }
 }
