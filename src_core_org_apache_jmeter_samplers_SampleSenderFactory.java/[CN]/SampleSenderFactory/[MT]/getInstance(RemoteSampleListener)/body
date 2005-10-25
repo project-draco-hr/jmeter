@@ -9,6 +9,10 @@
     BatchSampleSender b=new BatchSampleSender(listener);
     return b;
   }
+ else   if (type.equalsIgnoreCase("Statistical")) {
+    StatisticalSampleSender s=new StatisticalSampleSender(listener);
+    return s;
+  }
  else {
     StandardSampleSender s=new StandardSampleSender(listener);
     return s;

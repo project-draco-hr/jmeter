@@ -1,0 +1,8 @@
+{
+  if (sampleStore.size() > 0) {
+    listener.processBatch(sampleStore);
+    sampleStore.clear();
+    sampleTable.clear();
+    sampleCount=0;
+  }
+}

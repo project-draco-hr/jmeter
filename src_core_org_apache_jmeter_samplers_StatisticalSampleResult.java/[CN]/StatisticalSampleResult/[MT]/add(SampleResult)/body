@@ -1,0 +1,16 @@
+{
+  setSampleCount(getSampleCount() + res.getSampleCount());
+  int bytesLength=0;
+  if (res.getResponseData() == null || res.getResponseData().length == 0) {
+    bytesLength=res.getBytes();
+  }
+ else {
+    bytesLength=res.getResponseData().length;
+  }
+  setBytes(getBytes() + bytesLength);
+  if (!res.isSuccessful()) {
+    errorCount++;
+  }
+  this.setStartTime(Math.min(getStartTime(),res.getStartTime()));
+  this.setEndTime(Math.max(getEndTime(),res.getEndTime()));
+}
