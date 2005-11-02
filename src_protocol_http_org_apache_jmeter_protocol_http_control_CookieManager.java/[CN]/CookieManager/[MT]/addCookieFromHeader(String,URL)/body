@@ -1,7 +1,7 @@
 {
   boolean debugEnabled=log.isDebugEnabled();
   if (debugEnabled) {
-    log.debug("addCookieFromHeader(" + cookieHeader + ","+ url.toExternalForm()+ ")");
+    log.debug("Received Cookie: " + cookieHeader + " From:"+ url.toExternalForm());
   }
   StringTokenizer st=new StringTokenizer(cookieHeader,";");
   String nvp;
@@ -36,10 +36,10 @@
         newCookie.setExpires(date.getTime() / 1000);
       }
  catch (      ParseException pe) {
-        log.error("Couldn't parse Cookie expiration time.",pe);
+        log.error("Couldn't parse Cookie expiration time: " + cookieHeader,pe);
       }
 catch (      Exception e) {
-        log.error("Couln't parse Cookie expiration time: likely JDK bug.",e);
+        log.error("Couln't parse Cookie expiration time: likely JDK bug: " + cookieHeader,e);
       }
     }
  else     if (key.equalsIgnoreCase("domain")) {

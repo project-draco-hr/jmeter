@@ -1,26 +1,24 @@
 {
   boolean debugEnabled=log.isDebugEnabled();
-  if (debugEnabled) {
-    log.debug("Get cookie for URL= " + url);
-  }
   if (!url.getProtocol().toUpperCase().trim().equals("HTTP") && !url.getProtocol().toUpperCase().trim().equals("HTTPS"))   return null;
   StringBuffer header=new StringBuffer();
   String host="." + url.getHost();
   if (debugEnabled) {
+    log.debug("Get cookie for URL= " + url);
     log.debug("URL Host=" + host);
     log.debug("Time now (secs)" + (System.currentTimeMillis() / 1000));
   }
   for (PropertyIterator iter=getCookies().iterator(); iter.hasNext(); ) {
     Cookie cookie=(Cookie)iter.next().getObjectValue();
     if (debugEnabled) {
-      log.debug("Cookie name=" + cookie.getName() + " domain="+ cookie.getDomain()+ " path="+ cookie.getPath()+ " expires="+ cookie.getExpires());
+      log.debug("Possible Cookie. Name=" + cookie.getName() + " domain="+ cookie.getDomain()+ " path="+ cookie.getPath()+ " expires="+ cookie.getExpires());
     }
     if (host.endsWith(cookie.getDomain()) && url.getFile().startsWith(cookie.getPath()) && ((cookie.getExpires() == 0) || (System.currentTimeMillis() / 1000) <= cookie.getExpires())) {
       if (header.length() > 0) {
         header.append("; ");
       }
       if (debugEnabled) {
-        log.debug("matched cookie, value = " + cookie.getValue());
+        log.debug("Matched cookie:" + " name=" + cookie.getName() + " value="+ cookie.getValue());
       }
       header.append(cookie.getName()).append("=").append(cookie.getValue());
     }

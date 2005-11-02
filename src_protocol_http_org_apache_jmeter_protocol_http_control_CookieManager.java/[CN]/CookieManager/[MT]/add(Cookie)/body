@@ -9,7 +9,7 @@
   }
  else {
     if (log.isDebugEnabled()) {
-      log.debug("Add cookie " + c.toString());
+      log.debug("Add cookie to store " + c.toString());
     }
     getCookies().addItem(c);
     JMeterContext context=getThreadContext();
