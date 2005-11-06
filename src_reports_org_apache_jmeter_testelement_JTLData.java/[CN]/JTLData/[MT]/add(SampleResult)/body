@@ -1,2 +1,14 @@
 {
+  if (data.size() == 0) {
+    this.startTimestamp=sample.getStartTime();
+  }
+ else {
+    this.endTimestamp=sample.getEndTime();
+  }
+  SamplingStatCalculator row=(SamplingStatCalculator)data.get(sample.getSampleLabel());
+  if (row == null) {
+    row=new SamplingStatCalculator();
+    this.data.put(sample.getSampleLabel(),row);
+  }
+  row.addSample(sample);
 }

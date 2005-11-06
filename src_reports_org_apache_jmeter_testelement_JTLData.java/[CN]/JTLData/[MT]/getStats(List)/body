@@ -1,4 +1,11 @@
 {
   ArrayList items=new ArrayList();
+  Iterator itr=urls.iterator();
+  if (itr.hasNext()) {
+    SamplingStatCalculator row=(SamplingStatCalculator)itr.next();
+    if (row != null) {
+      items.add(items);
+    }
+  }
   return items;
 }
