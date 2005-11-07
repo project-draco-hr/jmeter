@@ -1,5 +1,6 @@
 {
   super.addTestElement(el);
+  log.info("TestElement: " + el.getClass().getName());
   if (el instanceof AbstractChart) {
     ((AbstractChart)el).setParentTable(this);
   }

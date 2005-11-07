@@ -28,6 +28,8 @@
   ypanel.add(checkItems);
   options.add(ypanel);
   options.add(yAxisLabel);
+  options.add(caption);
+  options.add(urls);
   add(pane,BorderLayout.NORTH);
   add(options,BorderLayout.CENTER);
 }
