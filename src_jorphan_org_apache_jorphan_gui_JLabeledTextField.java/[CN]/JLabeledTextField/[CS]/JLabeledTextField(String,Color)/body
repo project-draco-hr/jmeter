@@ -1,0 +1,9 @@
+{
+  super();
+  mTextField=createTextField(20);
+  mLabel=new JLabel(pLabel);
+  mLabel.setBackground(bk);
+  mLabel.setLabelFor(mTextField);
+  this.setBackground(bk);
+  init();
+}
