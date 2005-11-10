@@ -31,6 +31,7 @@
     JMeterVariables vars=jmctx.getVariables();
     bshInterpreter.set("ctx",jmctx);
     bshInterpreter.set("vars",vars);
+    res.setDataType(SampleResult.TEXT);
     Object bshOut;
     if (fileName.length() == 0) {
       bshOut=bshInterpreter.eval(request);
@@ -38,15 +39,10 @@
  else {
       bshOut=bshInterpreter.source(fileName);
     }
-    String out;
-    if (bshOut == null) {
-      out="";
+    if (bshOut != null) {
+      String out=bshOut.toString();
+      res.setResponseData(out.getBytes());
     }
- else {
-      out=bshOut.toString();
-    }
-    res.setResponseData(out.getBytes());
-    res.setDataType(SampleResult.TEXT);
     res.setResponseCode(bshInterpreter.get("ResponseCode").toString());
     res.setResponseMessage(bshInterpreter.get("ResponseMessage").toString());
     isSuccessful=Boolean.valueOf(bshInterpreter.get("IsSuccess").toString()).booleanValue();
