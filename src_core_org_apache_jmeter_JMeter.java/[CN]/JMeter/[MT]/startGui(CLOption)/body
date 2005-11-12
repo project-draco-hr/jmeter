@@ -19,7 +19,11 @@
       GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
       new Load().insertLoadedTree(1,tree);
     }
- catch (    Exception e) {
+ catch (    ConversionException e) {
+      log.error("Failure loading test file",e);
+      JMeterUtils.reportErrorToUser(SaveService.CEtoString(e));
+    }
+catch (    Exception e) {
       log.error("Failure loading test file",e);
       JMeterUtils.reportErrorToUser(e.toString());
     }
