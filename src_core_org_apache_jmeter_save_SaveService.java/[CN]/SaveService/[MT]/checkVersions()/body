@@ -1,16 +1,16 @@
 {
   versionsOK=true;
-  checkVersion(BooleanPropertyConverter.class,"325542");
-  checkVersion(HashTreeConverter.class,"325542");
-  checkVersion(IntegerPropertyConverter.class,"325542");
-  checkVersion(LongPropertyConverter.class,"325542");
-  checkVersion(MultiPropertyConverter.class,"325542");
-  checkVersion(SampleResultConverter.class,"325542");
-  checkVersion(StringPropertyConverter.class,"325542");
-  checkVersion(TestElementConverter.class,"325542");
-  checkVersion(TestElementPropertyConverter.class,"325542");
-  checkVersion(ScriptWrapperConverter.class,"325542");
-  checkVersion(TestResultWrapperConverter.class,"325542");
+  checkVersion(BooleanPropertyConverter.class,"332820");
+  checkVersion(HashTreeConverter.class,"332820");
+  checkVersion(IntegerPropertyConverter.class,"332820");
+  checkVersion(LongPropertyConverter.class,"332820");
+  checkVersion(MultiPropertyConverter.class,"332820");
+  checkVersion(SampleResultConverter.class,"332820");
+  checkVersion(StringPropertyConverter.class,"332820");
+  checkVersion(TestElementConverter.class,"332820");
+  checkVersion(TestElementPropertyConverter.class,"332820");
+  checkVersion(ScriptWrapperConverter.class,"332820");
+  checkVersion(TestResultWrapperConverter.class,"332820");
   if (!PROPVERSION.equalsIgnoreCase(propertiesVersion)) {
     log.warn("Bad _version - expected " + PROPVERSION + ", found "+ propertiesVersion+ ".");
   }
