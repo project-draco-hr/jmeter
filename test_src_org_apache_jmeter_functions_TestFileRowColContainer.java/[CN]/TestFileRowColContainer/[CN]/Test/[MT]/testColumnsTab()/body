@@ -1,7 +1,7 @@
 {
-  FileRowColContainer f=new FileRowColContainer("testfiles/test.csv");
+  FileRowColContainer f=new FileRowColContainer("testfiles/test.tsv","\t");
   assertNotNull(f);
-  assertTrue("Not empty",f.fileData.size() > 0);
+  assertTrue("Not empty",f.getSize() > 0);
   int myRow=f.nextRow();
   assertEquals(0,myRow);
   assertEquals("a1",f.getColumn(myRow,0));

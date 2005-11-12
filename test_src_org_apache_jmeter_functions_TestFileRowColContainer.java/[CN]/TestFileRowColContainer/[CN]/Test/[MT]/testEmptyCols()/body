@@ -1,7 +1,7 @@
 {
   FileRowColContainer f=new FileRowColContainer("testfiles/testempty.csv");
   assertNotNull(f);
-  assertEquals("Expected 4 lines",4,f.fileData.size());
+  assertEquals("Expected 4 lines",4,f.getSize());
   int myRow=f.nextRow();
   assertEquals(0,myRow);
   assertEquals("",f.getColumn(myRow,0));
