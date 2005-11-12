@@ -12,13 +12,13 @@
   }
  catch (  IOException e) {
 {
-      log.error(e.toString());
+      log.error("readResponse: " + e.toString());
       logError=true;
     }
     in=new BufferedInputStream(conn.getErrorStream());
   }
 catch (  Exception e) {
-    log.error(e.toString());
+    log.error("readResponse: " + e.toString());
     in=new BufferedInputStream(conn.getErrorStream());
     logError=true;
   }
@@ -43,7 +43,7 @@ catch (  Exception e) {
  else {
       s="\n" + w.toString();
     }
-    log.error(s);
+    log.error("readResponse: errorStream:" + s);
   }
   return w.toByteArray();
 }
