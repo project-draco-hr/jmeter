@@ -1,12 +1,12 @@
 {
-  if (save.saveTime())   writer.addAttribute("t",Long.toString(res.getTime()));
-  if (save.saveLatency())   writer.addAttribute("lt",Long.toString(res.getLatency()));
-  if (save.saveTimestamp())   writer.addAttribute("ts",Long.toString(res.getTimeStamp()));
-  if (save.saveSuccess())   writer.addAttribute("s",JOrphanUtils.booleanToString(res.isSuccessful()));
-  if (save.saveLabel())   writer.addAttribute("lb",ConversionHelp.encode(res.getSampleLabel()));
-  if (save.saveCode())   writer.addAttribute("rs",ConversionHelp.encode(res.getResponseCode()));
-  if (save.saveMessage())   writer.addAttribute("rm",ConversionHelp.encode(res.getResponseMessage()));
-  if (save.saveThreadName())   writer.addAttribute("tn",ConversionHelp.encode(res.getThreadName()));
-  if (save.saveDataType())   writer.addAttribute("dt",ConversionHelp.encode(res.getDataType()));
-  if (save.saveEncoding())   writer.addAttribute("de",ConversionHelp.encode(res.getDataEncoding()));
+  if (save.saveTime())   writer.addAttribute(ATT_TIME,Long.toString(res.getTime()));
+  if (save.saveLatency())   writer.addAttribute(ATT_LATENCY,Long.toString(res.getLatency()));
+  if (save.saveTimestamp())   writer.addAttribute(ATT_TIME_STAMP,Long.toString(res.getTimeStamp()));
+  if (save.saveSuccess())   writer.addAttribute(ATT_SUCCESS,JOrphanUtils.booleanToString(res.isSuccessful()));
+  if (save.saveLabel())   writer.addAttribute(ATT_LABEL,ConversionHelp.encode(res.getSampleLabel()));
+  if (save.saveCode())   writer.addAttribute(ATT_RESPONSE_CODE,ConversionHelp.encode(res.getResponseCode()));
+  if (save.saveMessage())   writer.addAttribute(ATT_RESPONSE_MESSAGE,ConversionHelp.encode(res.getResponseMessage()));
+  if (save.saveThreadName())   writer.addAttribute(ATT_THREADNAME,ConversionHelp.encode(res.getThreadName()));
+  if (save.saveDataType())   writer.addAttribute(ATT_DATA_TYPE,ConversionHelp.encode(res.getDataType()));
+  if (save.saveEncoding())   writer.addAttribute(ATT_DATA_ENCODING,ConversionHelp.encode(res.getDataEncoding()));
 }

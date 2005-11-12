@@ -1,5 +1,5 @@
 {
   IntegerProperty prop=(IntegerProperty)obj;
-  writer.addAttribute("name",ConversionHelp.encode(prop.getName()));
+  writer.addAttribute(ATT_NAME,ConversionHelp.encode(prop.getName()));
   writer.setValue(prop.getStringValue());
 }

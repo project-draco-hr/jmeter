@@ -1,5 +1,5 @@
 {
-  String classAttribute=reader.getAttribute("class");
+  String classAttribute=reader.getAttribute(ConversionHelp.ATT_CLASS);
   Class type;
   if (classAttribute == null) {
     type=classMapper.realClass(reader.getNodeName());

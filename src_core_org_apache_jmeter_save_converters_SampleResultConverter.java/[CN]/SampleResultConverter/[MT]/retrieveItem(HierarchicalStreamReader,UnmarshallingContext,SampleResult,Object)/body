@@ -5,13 +5,13 @@
  else   if (subItem instanceof SampleResult) {
     res.addSubResult((SampleResult)subItem);
   }
- else   if (reader.getNodeName().equals("responseHeader")) {
+ else   if (reader.getNodeName().equals(TAG_RESPONSE_HEADER)) {
     res.setResponseHeaders((String)subItem);
   }
- else   if (reader.getNodeName().equals("requestHeader")) {
+ else   if (reader.getNodeName().equals(TAG_REQUEST_HEADER)) {
     res.setRequestHeaders((String)subItem);
   }
- else   if (reader.getNodeName().equals("responseData")) {
+ else   if (reader.getNodeName().equals(TAG_RESPONSE_DATA)) {
     try {
       res.setResponseData(((String)subItem).getBytes(res.getDataEncoding()));
     }
@@ -19,7 +19,7 @@
       res.setResponseData(("Can't support the char set: " + res.getDataEncoding()).getBytes());
     }
   }
- else   if (reader.getNodeName().equals("samplerData")) {
+ else   if (reader.getNodeName().equals(TAG_SAMPLER_DATA)) {
     res.setSamplerData((String)subItem);
   }
  else {

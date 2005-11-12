@@ -1,8 +1,8 @@
 {
   if (save.saveResponseData(res)) {
-    writer.startNode("responseData");
+    writer.startNode(TAG_RESPONSE_DATA);
     try {
-      writer.addAttribute("class","java.lang.String");
+      writer.addAttribute(ATT_CLASS,JAVA_LANG_STRING);
       writer.setValue(new String(res.getResponseData(),res.getDataEncoding()));
     }
  catch (    UnsupportedEncodingException e) {

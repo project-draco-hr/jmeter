@@ -23,7 +23,7 @@
           key=key.substring(1);
           try {
             if (val.trim().equals("collection")) {
-              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class,String.class}).newInstance(new Object[]{saver.getClassMapper(),"class"}));
+              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class}).newInstance(new Object[]{saver.getClassMapper()}));
             }
  else             if (val.trim().equals("mapping")) {
               saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class}).newInstance(new Object[]{saver.getClassMapper()}));

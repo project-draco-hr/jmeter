@@ -1,4 +1,4 @@
 {
-  BooleanProperty prop=new BooleanProperty(ConversionHelp.decode(reader.getAttribute("name")),Boolean.valueOf(reader.getValue()).booleanValue());
+  BooleanProperty prop=new BooleanProperty(ConversionHelp.decode(reader.getAttribute(ATT_NAME)),Boolean.valueOf(reader.getValue()).booleanValue());
   return prop;
 }
