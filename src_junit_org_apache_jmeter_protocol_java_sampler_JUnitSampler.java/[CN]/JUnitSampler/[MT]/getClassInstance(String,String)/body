@@ -41,10 +41,10 @@
       }
       try {
         if (strCon != null) {
-          testclass=(TestCase)strCon.newInstance(strParams);
+          testclass=strCon.newInstance(strParams);
         }
  else         if (con != null) {
-          testclass=(TestCase)con.newInstance(params);
+          testclass=con.newInstance(params);
         }
       }
  catch (      InvocationTargetException e) {
