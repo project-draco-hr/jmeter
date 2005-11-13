@@ -1,11 +1,11 @@
 {
-  String[] args=JOrphanUtils.split(queryString,"&");
+  String[] args=JOrphanUtils.split(queryString,QRY_SEP);
   for (int i=0; i < args.length; i++) {
     int endOfNameIndex=0;
     String metaData="";
-    if (args[i].indexOf("=") != -1) {
-      endOfNameIndex=args[i].indexOf("=");
-      metaData="=";
+    if (args[i].indexOf(ARG_VAL_SEP) != -1) {
+      endOfNameIndex=args[i].indexOf(ARG_VAL_SEP);
+      metaData=ARG_VAL_SEP;
     }
  else {
       metaData="";

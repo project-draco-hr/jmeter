@@ -11,14 +11,14 @@
       item=new HTTPArgument((Argument)iter.next().getObjectValue());
     }
     if (!first) {
-      buf.append("&");
+      buf.append(QRY_SEP);
     }
  else {
       first=false;
     }
     buf.append(item.getEncodedName());
     if (item.getMetaData() == null) {
-      buf.append("=");
+      buf.append(ARG_VAL_SEP);
     }
  else {
       buf.append(item.getMetaData());

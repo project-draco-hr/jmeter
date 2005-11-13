@@ -1,7 +1,7 @@
 {
   int port=getPropertyAsInt(PORT);
   if (port == UNSPECIFIED_PORT) {
-    if ("https".equalsIgnoreCase(getProtocol())) {
+    if (PROTOCOL_HTTPS.equalsIgnoreCase(getProtocol())) {
       return DEFAULT_HTTPS_PORT;
     }
     return DEFAULT_HTTP_PORT;

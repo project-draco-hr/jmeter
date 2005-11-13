@@ -1,11 +1,11 @@
 {
   String pathAndQuery=null;
   if (this.getMethod().equals(GET) && getQueryString().length() > 0) {
-    if (this.getPath().indexOf("?") > -1) {
-      pathAndQuery=this.getPath() + "&" + getQueryString();
+    if (this.getPath().indexOf(QRY_PFX) > -1) {
+      pathAndQuery=this.getPath() + QRY_SEP + getQueryString();
     }
  else {
-      pathAndQuery=this.getPath() + "?" + getQueryString();
+      pathAndQuery=this.getPath() + QRY_PFX + getQueryString();
     }
   }
  else {
