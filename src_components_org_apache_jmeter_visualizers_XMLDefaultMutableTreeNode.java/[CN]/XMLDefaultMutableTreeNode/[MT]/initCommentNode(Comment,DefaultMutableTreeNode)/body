@@ -1,6 +1,6 @@
 {
   String data=node.getData();
-  if (data != null || data.length() > 0) {
+  if (data != null && data.length() > 0) {
     String value="<!--" + node.getData() + "-->";
     XMLDefaultMutableTreeNode commentNode=new XMLDefaultMutableTreeNode(value,node);
     mTreeNode.add(commentNode);
