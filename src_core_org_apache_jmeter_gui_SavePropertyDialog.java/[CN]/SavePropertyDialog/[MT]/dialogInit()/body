@@ -4,14 +4,14 @@
     this.getContentPane().setLayout(new BorderLayout());
     Method[] methods=SampleSaveConfiguration.class.getMethods();
     int x=(countMethods(methods) / 3) + 1;
-    log.info("grid panel is " + 3 + " by "+ x);
+    log.debug("grid panel is " + 3 + " by "+ x);
     JPanel checkPanel=new JPanel(new GridLayout(x,3));
     for (int i=0; i < methods.length; i++) {
       String name=methods[i].getName();
-      if (name.startsWith("save") && methods[i].getParameterTypes().length == 0) {
+      if (name.startsWith(NAME_SAVE_PFX) && methods[i].getParameterTypes().length == 0) {
         try {
           name=name.substring(4);
-          JCheckBox check=new JCheckBox(JMeterUtils.getResString("save " + name),((Boolean)methods[i].invoke(saveConfig,new Object[0])).booleanValue());
+          JCheckBox check=new JCheckBox(JMeterUtils.getResString("save_" + name),((Boolean)methods[i].invoke(saveConfig,new Object[0])).booleanValue());
           checkPanel.add(check,BorderLayout.NORTH);
           check.addActionListener(this);
           check.setActionCommand("set" + name);

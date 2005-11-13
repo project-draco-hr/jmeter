@@ -1,7 +1,9 @@
 {
   int count=0;
   for (int i=0; i < m.length; i++) {
-    if (m[i].getName().startsWith("save"))     count++;
+    if (m[i].getName().startsWith(NAME_SAVE_PFX)) {
+      count++;
+    }
   }
   return count;
 }
