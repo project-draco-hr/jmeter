@@ -5,6 +5,6 @@
     initConnection(ctx,connfactory,topic);
   }
  else {
-    log.equals("Could not initialize JNDI Initial Context Factory");
+    log.error("Could not initialize JNDI Initial Context Factory");
   }
 }
