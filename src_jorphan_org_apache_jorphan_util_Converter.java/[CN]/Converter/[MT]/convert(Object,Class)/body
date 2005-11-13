@@ -24,7 +24,7 @@
     return new Long(getLong(value));
   }
  else   if (toType.equals(boolean.class) || toType.equals(Boolean.class)) {
-    return new Boolean(getBoolean(value));
+    return Boolean.valueOf(getBoolean(value));
   }
  else   if (toType.equals(java.util.Date.class)) {
     return getDate(value);
