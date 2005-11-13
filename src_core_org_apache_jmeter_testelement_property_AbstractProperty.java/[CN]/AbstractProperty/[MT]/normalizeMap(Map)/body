@@ -1,9 +1,10 @@
 {
-  Iterator iter=coll.keySet().iterator();
+  Iterator iter=coll.entrySet().iterator();
   Map newColl=null;
   while (iter.hasNext()) {
-    Object item=iter.next();
-    Object prop=coll.get(item);
+    Map.Entry entry=(Map.Entry)iter.next();
+    Object item=entry.getKey();
+    Object prop=entry.getValue();
     if (newColl == null) {
       try {
         newColl=(Map)coll.getClass().newInstance();
