@@ -21,7 +21,7 @@
       }
  else       if (node instanceof BaseHrefTag) {
         BaseHrefTag baseHref=(BaseHrefTag)node;
-        String baseref=baseHref.getBaseUrl().toString();
+        String baseref=baseHref.getBaseUrl();
         try {
           if (!baseref.equals("")) {
             baseUrl=new URL(baseUrl,baseHref.getBaseUrl() + "/");
@@ -41,9 +41,9 @@
       }
  else       if (node instanceof InputTag) {
         InputTag input=(InputTag)node;
-        String strType=input.getAttribute("type");
-        if (strType != null && strType.equalsIgnoreCase("image")) {
-          binUrlStr=input.getAttribute("src");
+        String strType=input.getAttribute(ATT_TYPE);
+        if (strType != null && strType.equalsIgnoreCase(ATT_IS_IMAGE)) {
+          binUrlStr=input.getAttribute(ATT_SRC);
         }
       }
  else       if (node instanceof LinkTag) {
@@ -55,31 +55,31 @@
       }
  else       if (node instanceof ScriptTag) {
         ScriptTag script=(ScriptTag)node;
-        binUrlStr=script.getAttribute("src");
+        binUrlStr=script.getAttribute(ATT_SRC);
       }
  else       if (node instanceof FrameTag) {
         FrameTag tag=(FrameTag)node;
-        binUrlStr=tag.getAttribute("src");
+        binUrlStr=tag.getAttribute(ATT_SRC);
       }
  else       if (node instanceof LinkTagTag) {
         LinkTagTag script=(LinkTagTag)node;
-        if (script.getAttribute("rel").equalsIgnoreCase("stylesheet")) {
-          binUrlStr=script.getAttribute("href");
+        if (script.getAttribute(ATT_REL).equalsIgnoreCase(STYLESHEET)) {
+          binUrlStr=script.getAttribute(ATT_HREF);
         }
       }
  else       if (node instanceof FrameTag) {
         FrameTag script=(FrameTag)node;
-        binUrlStr=script.getAttribute("src");
+        binUrlStr=script.getAttribute(ATT_SRC);
       }
  else       if (node instanceof BgSoundTag) {
         BgSoundTag script=(BgSoundTag)node;
-        binUrlStr=script.getAttribute("src");
+        binUrlStr=script.getAttribute(ATT_SRC);
       }
  else       if (node instanceof Tag) {
         Tag tag=(Tag)node;
         String tagname=tag.getTagName();
         if (tagname.equalsIgnoreCase("EMBED")) {
-          binUrlStr=tag.getAttribute("src");
+          binUrlStr=tag.getAttribute(ATT_SRC);
         }
       }
       if (binUrlStr == null) {
