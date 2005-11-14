@@ -47,7 +47,9 @@ catch (  Exception ex) {
   }
  finally {
     try {
-      reader.close();
+      if (reader != null) {
+        reader.close();
+      }
     }
  catch (    IOException e1) {
     }
