@@ -5,12 +5,14 @@
     rc.setListener(this);
     rc.clear();
     rc.setListener(null);
-    rc=null;
     try {
       rc.loadExistingFile();
     }
  catch (    IOException e) {
       log.warn(e.getMessage());
+    }
+ finally {
+      rc=null;
     }
   }
 }

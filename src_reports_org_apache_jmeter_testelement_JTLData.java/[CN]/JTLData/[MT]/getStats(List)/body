@@ -4,7 +4,7 @@
   if (itr.hasNext()) {
     SamplingStatCalculator row=(SamplingStatCalculator)itr.next();
     if (row != null) {
-      items.add(items);
+      items.add(row);
     }
   }
   return items;
