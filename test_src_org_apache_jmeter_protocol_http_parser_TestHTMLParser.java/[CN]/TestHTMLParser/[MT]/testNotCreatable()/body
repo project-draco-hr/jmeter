@@ -1,6 +1,6 @@
 {
   try {
-    getParser(TestClass.class.getName());
+    HTMLParser.getParser(TestClass.class.getName());
   }
  catch (  HTMLParseError e) {
     if (e.getCause() instanceof InstantiationException)     return;

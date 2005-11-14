@@ -2,7 +2,7 @@
   Collection col;
   if (hasLinkedHashSet) {
     try {
-      col=(Collection)Class.forName("java.util.LinkedHashSet").newInstance();
+      col=(Collection)Class.forName(JAVA_UTIL_LINKED_HASH_SET).newInstance();
     }
  catch (    Exception e) {
       throw new Error("Should not happen:" + e.toString());
