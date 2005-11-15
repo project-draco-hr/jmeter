@@ -3,8 +3,6 @@
     ResultCollector rc=new ResultCollector();
     rc.setFilename(this.getDataSource());
     rc.setListener(this);
-    rc.clear();
-    rc.setListener(null);
     try {
       rc.loadExistingFile();
     }
@@ -12,6 +10,8 @@
       log.warn(e.getMessage());
     }
  finally {
+      rc.clear();
+      rc.setListener(null);
       rc=null;
     }
   }

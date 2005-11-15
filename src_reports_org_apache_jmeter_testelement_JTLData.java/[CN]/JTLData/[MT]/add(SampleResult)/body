@@ -5,10 +5,17 @@
  else {
     this.endTimestamp=sample.getEndTime();
   }
-  SamplingStatCalculator row=(SamplingStatCalculator)data.get(sample.getSampleLabel());
+  System.out.println("label=" + sample.getSampleLabel());
+  System.out.println("url=" + sample.getURL());
+  String url=sample.getSampleLabel();
+  if (url == null) {
+    url=sample.getURL().toString();
+  }
+  SamplingStatCalculator row=(SamplingStatCalculator)data.get(url);
   if (row == null) {
     row=new SamplingStatCalculator();
-    this.data.put(sample.getSampleLabel(),row);
+    this.data.put(url,row);
   }
   row.addSample(sample);
+  System.out.println(" count=" + row.getCount());
 }
