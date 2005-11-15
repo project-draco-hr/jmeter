@@ -1,0 +1,15 @@
+{
+  ArrayList dset=new ArrayList();
+  ArrayList xlabels=new ArrayList();
+  Iterator itr=data.iterator();
+  while (itr.hasNext()) {
+    DataSet ds=(DataSet)itr.next();
+    SamplingStatCalculator ss=ds.getStatistics(this.getURL());
+    if (ss != null) {
+      dset.add(ss);
+      xlabels.add(ds.getDataSource());
+    }
+  }
+  double[][] dbset=convertToDouble(dset);
+  return renderGraphics(dbset,(String[])xlabels.toArray(new String[xlabels.size()]));
+}
