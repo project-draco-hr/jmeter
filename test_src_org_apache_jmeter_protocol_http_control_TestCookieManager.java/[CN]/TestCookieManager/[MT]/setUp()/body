@@ -1,4 +1,5 @@
 {
+  super.setUp();
   jmctx=JMeterContextService.getContext();
   man=new CookieManager();
   man.setThreadContext(jmctx);
