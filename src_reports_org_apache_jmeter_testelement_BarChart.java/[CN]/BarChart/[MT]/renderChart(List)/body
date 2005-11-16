@@ -3,11 +3,11 @@
   ArrayList xlabels=new ArrayList();
   Iterator itr=data.iterator();
   while (itr.hasNext()) {
-    DataSet ds=(DataSet)itr.next();
-    SamplingStatCalculator ss=ds.getStatistics(this.getURL());
+    DataSet item=(DataSet)itr.next();
+    SamplingStatCalculator ss=item.getStatistics(this.getURL());
     if (ss != null) {
       dset.add(ss);
-      xlabels.add(ds.getDataSource());
+      xlabels.add(item.getDataSource());
     }
   }
   double[][] dbset=convertToDouble(dset);

@@ -1,0 +1,26 @@
+{
+  String title=this.getTitle();
+  String xAxisTitle=this.getXAxis();
+  String yAxisTitle=this.getYAxis();
+  String yAxisLabel=this.getYLabel();
+  String[] xAxisLabels={this.getXLabel()};
+  Graphics g;
+  JPanel panel=new JPanel();
+  DataSeries dataSeries=new DataSeries(xAxisLabels,xAxisTitle,yAxisTitle,title);
+  String[] legendLabels={yAxisLabel};
+  Paint[] paints=new Paint[]{Color.blue.darker()};
+  Shape[] shapes=createShapes(data.length);
+  Stroke[] lstrokes=createStrokes(data.length);
+  LineChartProperties lineChartProperties=new LineChartProperties(lstrokes,shapes);
+  try {
+    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(data,legendLabels,paints,ChartType.LINE,lineChartProperties);
+    dataSeries.addIAxisPlotDataSet(axisChartDataSet);
+    ChartProperties chartProperties=new ChartProperties();
+    AxisProperties axisProperties=new AxisProperties();
+    LegendProperties legendProperties=new LegendProperties();
+    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);
+  }
+ catch (  Exception e) {
+  }
+  return panel;
+}

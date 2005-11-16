@@ -1,0 +1,6 @@
+{
+  if (shape_counter >= (SHAPE_ARRAY.length - 1)) {
+    shape_counter=0;
+  }
+  return SHAPE_ARRAY[shape_counter];
+}

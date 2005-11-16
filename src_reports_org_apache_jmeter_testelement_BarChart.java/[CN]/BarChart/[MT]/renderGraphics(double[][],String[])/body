@@ -1,29 +1,19 @@
 {
   String title=this.getTitle();
-  String xAxisTitle=this.getXAxis();
-  String yAxisTitle=this.getYAxis();
-  String yAxisLabel=this.getYLabel();
-  int width=350;
-  int height=300;
-  Graphics g;
-  JPanel panel=new JPanel();
-  try {
-    DataSeries dataSeries=new DataSeries(xAxisLabels,xAxisTitle,yAxisTitle,title);
-    String[] legendLabels={yAxisLabel};
-    Paint[] paints=new Paint[]{Color.blue.darker()};
-    BarChartProperties barChartProperties=new BarChartProperties();
-    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(data,legendLabels,paints,ChartType.BAR,barChartProperties);
-    dataSeries.addIAxisPlotDataSet(axisChartDataSet);
-    ChartProperties chartProperties=new ChartProperties();
-    AxisProperties axisProperties=new AxisProperties();
-    axisProperties.setXAxisLabelsAreVertical(true);
-    LegendProperties legendProperties=new LegendProperties();
-    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);
-    axisChart.setGraphics2D((Graphics2D)panel.getGraphics());
-    axisChart.render();
-  }
- catch (  Exception e) {
-    e.printStackTrace();
-  }
+  AxisGraph panel=new AxisGraph();
+  panel.setTitle(this.getTitle());
+  panel.setData(data);
+  panel.setXAxisLabels(xAxisLabels);
+  panel.setYAxisLabels(this.getYLabel());
+  panel.setXAxisTitle(this.getXAxis());
+  panel.setYAxisTitle(this.getYAxis());
+  int width=400;
+  int height=400;
+  panel.setPreferredSize(new Dimension(width,height));
+  panel.setSize(new Dimension(width,height));
+  panel.setWidth(width);
+  panel.setHeight(width);
+  setBufferedImage(new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB));
+  panel.paintComponent(this.getBufferedImage().createGraphics());
   return panel;
 }
