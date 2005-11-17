@@ -3,7 +3,7 @@
   org.apache.commons.httpclient.URI uri=new org.apache.commons.httpclient.URI(urlStr);
   String schema=uri.getScheme();
   if ((schema == null) || (schema.equals(""))) {
-    schema="http";
+    schema=PROTOCOL_HTTP;
   }
   Protocol protocol=Protocol.getProtocol(schema);
   String host=uri.getHost();
