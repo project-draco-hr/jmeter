@@ -1,0 +1,9 @@
+{
+  long sleepMS=(bytes * MS_PER_SEC) / cps;
+  int sleepNS=(int)(((bytes * MS_PER_SEC) / cps) % NS_PER_MS);
+  try {
+    Thread.sleep(sleepMS,sleepNS);
+  }
+ catch (  InterruptedException ignored) {
+  }
+}
