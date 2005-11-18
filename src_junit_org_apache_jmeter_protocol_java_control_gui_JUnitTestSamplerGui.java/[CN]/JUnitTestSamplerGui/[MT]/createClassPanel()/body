@@ -44,5 +44,7 @@ catch (  ClassNotFoundException e) {
   panel.add(errorMsg);
   panel.add(errorCode);
   panel.add(doSetup);
+  panel.add(appendError);
+  panel.add(appendExc);
   return panel;
 }

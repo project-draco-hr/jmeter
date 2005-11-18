@@ -76,17 +76,17 @@ catch (    Throwable e) {
     if (!tr.wasSuccessful()) {
       sresult.setSuccessful(false);
       StringBuffer buf=new StringBuffer();
-      buf.append(getFailure() + System.getProperty("line.separator"));
+      buf.append(getFailure());
       Enumeration en=tr.errors();
       while (en.hasMoreElements()) {
         Object item=en.nextElement();
-        if (item instanceof TestFailure) {
+        if (getAppendError() && item instanceof TestFailure) {
           buf.append("Trace -- ");
           buf.append(((TestFailure)item).trace());
           buf.append("Failure -- ");
           buf.append(((TestFailure)item).toString());
         }
- else         if (item instanceof Throwable) {
+ else         if (getAppendException() && item instanceof Throwable) {
           buf.append(((Throwable)item).getMessage());
         }
       }
