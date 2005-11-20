@@ -1,5 +1,5 @@
 {
   Authorization auth=getAuthForURL(url);
   if (auth == null)   return null;
-  return "Basic " + Base64Encoder.encode(auth.getUser() + ":" + auth.getPass());
+  return auth.toBasicHeader();
 }
