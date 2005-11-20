@@ -5,7 +5,7 @@
   if (u != null) {
     sb.append(' ');
     sb.append(u.toString());
-    if ("POST".equals(method)) {
+    if (HTTPSamplerBase.POST.equals(method)) {
       sb.append(queryString);
     }
     sb.append("\n");
