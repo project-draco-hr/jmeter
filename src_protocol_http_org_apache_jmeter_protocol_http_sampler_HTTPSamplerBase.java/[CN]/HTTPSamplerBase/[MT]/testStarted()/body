@@ -5,6 +5,7 @@
   if (pathP instanceof StringProperty && !"".equals(pathP.getStringValue())) {
     log.debug("Encoding spaces in path");
     pathP.setObjectValue(encodeSpaces(pathP.getStringValue()));
+    dynamicPath=false;
   }
  else {
     log.debug("setting dynamic path to true");
