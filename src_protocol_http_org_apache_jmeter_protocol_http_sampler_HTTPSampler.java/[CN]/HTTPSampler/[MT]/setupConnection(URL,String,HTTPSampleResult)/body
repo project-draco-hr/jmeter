@@ -2,7 +2,7 @@
   HttpURLConnection conn;
   HttpURLConnection.setFollowRedirects(getPropertyAsBoolean(AUTO_REDIRECTS));
   conn=(HttpURLConnection)u.openConnection();
-  if ("https".equalsIgnoreCase(u.getProtocol())) {
+  if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
       SSLManager.getInstance().setContext(conn);
     }
@@ -11,10 +11,10 @@
     }
   }
   if (getUseKeepAlive()) {
-    conn.setRequestProperty("Connection","keep-alive");
+    conn.setRequestProperty(HEADER_CONNECTION,KEEP_ALIVE);
   }
  else {
-    conn.setRequestProperty("Connection","close");
+    conn.setRequestProperty(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
   conn.setRequestMethod(method);
   String hdrs=setConnectionHeaders(conn,u,getHeaderManager());

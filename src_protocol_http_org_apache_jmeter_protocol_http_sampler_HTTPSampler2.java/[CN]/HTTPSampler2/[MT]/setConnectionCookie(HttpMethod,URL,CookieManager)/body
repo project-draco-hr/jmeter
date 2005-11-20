@@ -1,5 +1,5 @@
 {
-  String cookieHeader="";
+  StringBuffer cookieHeader=new StringBuffer(100);
   if (cookieManager != null) {
     String host="." + u.getHost();
     for (int i=cookieManager.getCookies().size() - 1; i >= 0; i--) {
@@ -10,9 +10,11 @@
       if (host.endsWith(cookie.getDomain()) && u.getFile().startsWith(cookie.getPath()) && (exp == 0 || exp > now)) {
         org.apache.commons.httpclient.Cookie newCookie=new org.apache.commons.httpclient.Cookie(cookie.getDomain(),cookie.getName(),cookie.getValue(),cookie.getPath(),null,false);
         httpState.addCookie(newCookie);
-        cookieHeader+=cookie.getName() + "=" + cookie.getValue();
+        cookieHeader.append(cookie.getName());
+        cookieHeader.append("=");
+        cookieHeader.append(cookie.getValue());
       }
     }
   }
-  return cookieHeader;
+  return cookieHeader.toString();
 }

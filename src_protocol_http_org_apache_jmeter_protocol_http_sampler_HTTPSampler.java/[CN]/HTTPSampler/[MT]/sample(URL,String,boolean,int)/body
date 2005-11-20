@@ -45,7 +45,7 @@ catch (      IOException e) {
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();
     res.setResponseCode(Integer.toString(errorLevel));
-    res.setSuccessful(200 <= errorLevel && errorLevel <= 399);
+    res.setSuccessful(isSuccessCode(errorLevel));
     res.setResponseMessage(conn.getResponseMessage());
     String ct=conn.getContentType();
     res.setContentType(ct);

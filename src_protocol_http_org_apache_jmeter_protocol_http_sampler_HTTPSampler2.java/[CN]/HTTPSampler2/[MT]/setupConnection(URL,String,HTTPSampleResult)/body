@@ -2,7 +2,7 @@
   String urlStr=u.toString();
   org.apache.commons.httpclient.URI uri=new org.apache.commons.httpclient.URI(urlStr);
   String schema=uri.getScheme();
-  if ((schema == null) || (schema.equals(""))) {
+  if ((schema == null) || (schema.length() == 0)) {
     schema=PROTOCOL_HTTP;
   }
   Protocol protocol=Protocol.getProtocol(schema);
@@ -36,10 +36,10 @@ synchronized (map) {
   }
   httpMethod.setFollowRedirects(getPropertyAsBoolean(AUTO_REDIRECTS));
   if (getUseKeepAlive()) {
-    httpMethod.setRequestHeader("Connection","keep-alive");
+    httpMethod.setRequestHeader(HEADER_CONNECTION,KEEP_ALIVE);
   }
  else {
-    httpMethod.setRequestHeader("Connection","close");
+    httpMethod.setRequestHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
   String hdrs=setConnectionHeaders(httpMethod,u,getHeaderManager());
   String cookies=setConnectionCookie(httpMethod,u,getCookieManager());

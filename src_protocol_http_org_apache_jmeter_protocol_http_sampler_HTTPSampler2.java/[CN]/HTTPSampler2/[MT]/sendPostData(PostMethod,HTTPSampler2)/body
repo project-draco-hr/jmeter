@@ -13,8 +13,8 @@
  else {
       post.setRequestContentLength(EntityEnclosingMethod.CONTENT_LENGTH_CHUNKED);
     }
-    post.setRequestHeader("Content-Disposition","form-data; name=\"" + encode(sampler.getFileField()) + "\"; filename=\""+ encode(filename)+ "\"");
-    post.setRequestHeader("Content-Type",sampler.getMimetype());
+    post.setRequestHeader(HEADER_CONTENT_DISPOSITION,"form-data; name=\"" + encode(sampler.getFileField()) + "\"; filename=\""+ encode(filename)+ "\"");
+    post.setRequestHeader(HEADER_CONTENT_TYPE,sampler.getMimetype());
     post.setRequestBody(new FileInputStream(input));
   }
 }

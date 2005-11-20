@@ -31,27 +31,14 @@
     res.setSampleLabel(httpMethod.getURI().toString());
     res.setResponseData(responseData);
     res.setResponseCode(Integer.toString(statusCode));
-    res.setSuccessful(200 <= statusCode && statusCode <= 399);
+    res.setSuccessful(isSuccessCode(statusCode));
     res.setResponseMessage(httpMethod.getStatusText());
     String ct=null;
-    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader("Content-Type");
+    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader(HEADER_CONTENT_TYPE);
     if (h != null) {
       ct=h.getValue();
       res.setContentType(ct);
-    }
-    if (ct != null) {
-      String de=ct.toLowerCase();
-      final String cs="charset=";
-      int cset=de.indexOf(cs);
-      if (cset >= 0) {
-        res.setDataEncoding(de.substring(cset + cs.length()));
-      }
-      if (ct.startsWith("image/")) {
-        res.setDataType(HTTPSampleResult.BINARY);
-      }
- else {
-        res.setDataType(HTTPSampleResult.TEXT);
-      }
+      res.setEncodingAndType(ct);
     }
     res.setResponseHeaders(getResponseHeaders(httpMethod));
     if (res.isRedirect()) {

@@ -1,14 +1,11 @@
 {
   if (authManager != null) {
-    if (basicAuth) {
-      String authHeader=authManager.getAuthHeaderForURL(u);
-      if (authHeader != null) {
-        method.setRequestHeader("Authorization",authHeader);
+    Authorization auth=authManager.getAuthForURL(u);
+    if (auth != null) {
+      if (basicAuth) {
+        method.setRequestHeader(HEADER_AUTHORIZATION,auth.toBasicHeader());
       }
-    }
  else {
-      Authorization auth=authManager.getAuthForURL(u);
-      if (auth != null) {
         String user=auth.getUser();
         String realm=null;
         String domain=null;

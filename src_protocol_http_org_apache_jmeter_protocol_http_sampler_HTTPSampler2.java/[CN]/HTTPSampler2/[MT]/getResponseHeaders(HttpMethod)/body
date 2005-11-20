@@ -5,7 +5,7 @@
   headerBuf.append("\n");
   for (int i=0; i < rh.length; i++) {
     String key=rh[i].getName();
-    if (!key.equalsIgnoreCase("transfer-encoding")) {
+    if (!key.equalsIgnoreCase(TRANSFER_ENCODING)) {
       headerBuf.append(key);
       headerBuf.append(": ");
       headerBuf.append(rh[i].getValue());

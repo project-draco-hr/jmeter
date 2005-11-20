@@ -3,7 +3,7 @@
   BufferedInputStream in;
   boolean logError=false;
   try {
-    if ("gzip".equals(conn.getContentEncoding())) {
+    if (ENCODING_GZIP.equals(conn.getContentEncoding())) {
       in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
     }
  else {
