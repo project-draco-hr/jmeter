@@ -49,20 +49,7 @@ catch (      IOException e) {
     res.setResponseMessage(conn.getResponseMessage());
     String ct=conn.getContentType();
     res.setContentType(ct);
-    if (ct != null) {
-      String de=ct.toLowerCase();
-      final String cs="charset=";
-      int cset=de.indexOf(cs);
-      if (cset >= 0) {
-        res.setDataEncoding(de.substring(cset + cs.length()));
-      }
-      if (ct.startsWith("image/")) {
-        res.setDataType(HTTPSampleResult.BINARY);
-      }
- else {
-        res.setDataType(HTTPSampleResult.TEXT);
-      }
-    }
+    res.setEncodingAndType(ct);
     res.setResponseHeaders(getResponseHeaders(conn));
     if (res.isRedirect()) {
       res.setRedirectLocation(conn.getHeaderField("Location"));

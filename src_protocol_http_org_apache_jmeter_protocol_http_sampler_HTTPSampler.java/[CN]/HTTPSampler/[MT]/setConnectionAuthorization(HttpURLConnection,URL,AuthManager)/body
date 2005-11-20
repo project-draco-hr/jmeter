@@ -1,8 +1,8 @@
 {
   if (authManager != null) {
-    String authHeader=authManager.getAuthHeaderForURL(u);
-    if (authHeader != null) {
-      conn.setRequestProperty("Authorization",authHeader);
+    Authorization auth=authManager.getAuthForURL(u);
+    if (auth != null) {
+      conn.setRequestProperty("Authorization",auth.toBasicHeader());
     }
   }
 }
