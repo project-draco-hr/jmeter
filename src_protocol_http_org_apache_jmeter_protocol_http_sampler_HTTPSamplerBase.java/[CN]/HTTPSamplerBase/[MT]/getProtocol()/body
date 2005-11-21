@@ -1,6 +1,6 @@
 {
   String protocol=getPropertyAsString(PROTOCOL);
-  if (protocol == null || protocol.equals("")) {
+  if (protocol == null || protocol.length() == 0) {
     return DEFAULT_PROTOCOL;
   }
  else {

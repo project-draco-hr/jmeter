@@ -4,11 +4,13 @@
   boolean first=true;
   while (iter.hasNext()) {
     HTTPArgument item=null;
+    Object objectValue=iter.next().getObjectValue();
     try {
-      item=(HTTPArgument)iter.next().getObjectValue();
+      item=(HTTPArgument)objectValue;
     }
  catch (    ClassCastException e) {
-      item=new HTTPArgument((Argument)iter.next().getObjectValue());
+      log.warn("Unexpected argument type: " + objectValue.getClass().getName());
+      item=new HTTPArgument((Argument)objectValue);
     }
     if (!first) {
       buf.append(QRY_SEP);
