@@ -56,26 +56,12 @@ catch (      Exception e) {
       newCookie.setSecure(true);
     }
   }
-  Vector removeIndices=new Vector();
-  for (int i=getCookies().size() - 1; i >= 0; i--) {
-    Cookie cookie=(Cookie)getCookies().get(i).getObjectValue();
-    if (cookie == null)     continue;
-    if (cookie.getPath().equals(newCookie.getPath()) && cookie.getDomain().equals(newCookie.getDomain()) && cookie.getName().equals(newCookie.getName())) {
-      if (debugEnabled) {
-        log.debug("New Cookie = " + newCookie.toString() + " removing matching Cookie "+ cookie.toString());
-      }
-      removeIndices.addElement(new Integer(i));
-    }
-  }
-  for (Enumeration e=removeIndices.elements(); e.hasMoreElements(); ) {
-    index=((Integer)e.nextElement()).intValue();
-    remove(index);
-  }
   long exp=newCookie.getExpires();
   if (exp == 0 || exp >= System.currentTimeMillis() / 1000) {
     add(newCookie);
   }
  else {
+    removeMatchingCookies(newCookie);
     if (debugEnabled) {
       log.debug("Dropping expired Cookie: " + newCookie.toString());
     }

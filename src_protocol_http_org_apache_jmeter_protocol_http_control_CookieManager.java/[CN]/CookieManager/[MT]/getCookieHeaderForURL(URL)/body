@@ -1,6 +1,9 @@
 {
   boolean debugEnabled=log.isDebugEnabled();
-  if (!url.getProtocol().toUpperCase().trim().equals("HTTP") && !url.getProtocol().toUpperCase().trim().equals("HTTPS"))   return null;
+  String protocol=url.getProtocol().trim();
+  if (!protocol.equalsIgnoreCase(HTTPSamplerBase.PROTOCOL_HTTP) && !protocol.equalsIgnoreCase(HTTPSamplerBase.PROTOCOL_HTTP)) {
+    return null;
+  }
   StringBuffer header=new StringBuffer();
   String host="." + url.getHost();
   if (debugEnabled) {

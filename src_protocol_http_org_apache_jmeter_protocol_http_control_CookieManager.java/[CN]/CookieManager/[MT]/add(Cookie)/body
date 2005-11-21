@@ -1,11 +1,11 @@
 {
   String cv=c.getValue();
   String cn=c.getName();
-  if (DELETE_NULL_COOKIES && (null == cv || "".equals(cv))) {
+  removeMatchingCookies(c);
+  if (DELETE_NULL_COOKIES && (null == cv || cv.length() == 0)) {
     if (log.isDebugEnabled()) {
-      log.debug("Removing cookie with null value " + c.toString());
+      log.debug("Dropping cookie with null value " + c.toString());
     }
-    removeCookieNamed(cn);
   }
  else {
     if (log.isDebugEnabled()) {
