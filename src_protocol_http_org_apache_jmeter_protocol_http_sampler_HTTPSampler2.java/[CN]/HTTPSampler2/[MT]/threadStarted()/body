@@ -1,9 +1,4 @@
 {
   log.debug("Thread Started");
-synchronized (this.getClass()) {
-    if (httpClients == null) {
-      httpClients=new ThreadLocal();
-    }
-    httpClients.set(new HashMap());
-  }
+  httpClients.set(new HashMap());
 }

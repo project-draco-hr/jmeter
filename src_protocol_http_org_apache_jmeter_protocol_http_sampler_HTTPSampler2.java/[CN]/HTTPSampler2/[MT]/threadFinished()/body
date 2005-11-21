@@ -1,16 +1,14 @@
 {
   log.debug("Thread Finished");
-synchronized (this.getClass()) {
-    Map map=(Map)httpClients.get();
-    HttpConnection conn=null;
-    if (map != null) {
-      for (Iterator it=map.entrySet().iterator(); it.hasNext(); ) {
-        Object obj=it.next();
-        conn=(HttpConnection)((Map.Entry)obj).getValue();
-        conn.close();
-      }
-      map.clear();
+  Map map=(Map)httpClients.get();
+  HttpConnection conn;
+  if (map != null) {
+    for (Iterator it=map.entrySet().iterator(); it.hasNext(); ) {
+      Object obj=it.next();
+      conn=(HttpConnection)((Map.Entry)obj).getValue();
+      conn.close();
     }
-    httpClients.set(null);
+    map.clear();
   }
+  httpClients.set(null);
 }
