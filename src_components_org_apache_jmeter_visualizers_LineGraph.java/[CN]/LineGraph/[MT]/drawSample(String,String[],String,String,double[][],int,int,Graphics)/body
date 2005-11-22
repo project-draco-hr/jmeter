@@ -1,0 +1,29 @@
+{
+  try {
+    if (width == 0) {
+      width=450;
+    }
+    if (height == 0) {
+      height=250;
+    }
+    this.setPreferredSize(new Dimension(width,height));
+    DataSeries dataSeries=new DataSeries(xAxisLabels,xAxisTitle,yAxisTitle,title);
+    String[] legendLabels=yAxisLabel;
+    Paint[] paints=this.createPaint(data.length);
+    Shape[] shapes=createShapes(data.length);
+    Stroke[] lstrokes=createStrokes(data.length);
+    LineChartProperties lineChartProperties=new LineChartProperties(lstrokes,shapes);
+    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(data,legendLabels,paints,ChartType.LINE,lineChartProperties);
+    dataSeries.addIAxisPlotDataSet(axisChartDataSet);
+    ChartProperties chartProperties=new ChartProperties();
+    AxisProperties axisProperties=new AxisProperties();
+    axisProperties.setXAxisLabelsAreVertical(true);
+    LegendProperties legendProperties=new LegendProperties();
+    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);
+    axisChart.setGraphics2D((Graphics2D)g);
+    axisChart.render();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}
