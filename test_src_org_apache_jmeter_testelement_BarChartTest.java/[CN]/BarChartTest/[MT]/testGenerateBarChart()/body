@@ -1,0 +1,33 @@
+{
+  System.out.println("jtl version=" + JMeterUtils.getProperty("file_format.testlog"));
+  String sampleLog="testfiles/sample_log1.jtl";
+  String sampleLog2="testfiles/sample_log1b.jtl";
+  JTLData input=new JTLData();
+  JTLData input2=new JTLData();
+  input.setDataSource(sampleLog);
+  input.loadData();
+  input2.setDataSource(sampleLog2);
+  input2.loadData();
+  assertTrue((input.getStartTimestamp() > 0));
+  assertTrue((input.getEndTimestamp() > input.getStartTimestamp()));
+  assertTrue((input.getURLs().size() > 0));
+  System.out.println("URL count=" + input.getURLs().size());
+  java.util.ArrayList list=new java.util.ArrayList();
+  list.add(input);
+  list.add(input2);
+  BarChart bchart=new BarChart();
+  bchart.setTitle("Sample Chart");
+  bchart.setCaption("Sample");
+  bchart.setName("Sample");
+  bchart.setYAxis("milliseconds");
+  bchart.setYLabel("Test Runs");
+  bchart.setXAxis(AbstractTable.REPORT_TABLE_MEAN);
+  bchart.setXLabel("x label");
+  bchart.setURL("jakarta_home");
+  JComponent gr=bchart.renderChart(list);
+  assertNotNull(gr);
+  SaveGraphicsService serv=new SaveGraphicsService();
+  String filename=bchart.getTitle();
+  filename=filename.replace(' ','_');
+  serv.saveJComponent(filename,SaveGraphicsService.PNG,gr);
+}
