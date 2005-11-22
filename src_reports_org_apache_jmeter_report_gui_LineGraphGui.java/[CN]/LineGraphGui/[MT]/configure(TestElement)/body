@@ -1,6 +1,6 @@
 {
   super.configure(element);
-  LineGraph bc=(LineGraph)element;
+  LineChart bc=(LineChart)element;
   xItems.setText(bc.getXAxis());
   yItems.setText(bc.getYAxis());
   xAxisLabel.setText(bc.getXLabel());
