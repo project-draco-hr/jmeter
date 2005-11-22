@@ -8,8 +8,9 @@
     String delim=getDelimiter();
     if (delim.equals("\\t"))     delim="\t";
     String[] lineValues=JOrphanUtils.split(server.readLine(getFilename()),delim,false);
+    JMeterVariables threadVars=this.getThreadContext().getVariables();
     for (int a=0; a < vars.length && a < lineValues.length; a++) {
-      this.getThreadContext().getVariables().put(vars[a],lineValues[a]);
+      threadVars.put(vars[a],lineValues[a]);
     }
   }
  catch (  IOException e) {
