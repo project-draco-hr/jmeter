@@ -3,7 +3,7 @@
   panel.setTitle(this.getTitle());
   panel.setData(data);
   panel.setXAxisLabels(xAxisLabels);
-  panel.setYAxisLabels(this.getURLs().split(","));
+  panel.setYAxisLabels(this.getURLs().split(URL_DELIM));
   panel.setXAxisTitle(this.getXAxis());
   panel.setYAxisTitle(this.getYAxis());
   int width=400;

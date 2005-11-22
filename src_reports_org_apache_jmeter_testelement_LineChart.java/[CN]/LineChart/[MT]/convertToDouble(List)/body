@@ -1,13 +1,11 @@
 {
-  SamplingStatCalculator stat;
-  String[] urls=this.getURLs().split(",");
+  String[] urls=this.getURLs().split(URL_DELIM);
   double[][] dataset=new double[urls.length][data.size()];
   for (int idx=0; idx < urls.length; idx++) {
     for (int idz=0; idz < data.size(); idz++) {
       DataSet dset=(DataSet)data.get(idz);
       SamplingStatCalculator ss=dset.getStatistics(urls[idx]);
       dataset[idx][idz]=getValue(ss);
-      System.out.println("value=" + dataset[idx][idz]);
     }
   }
   return dataset;
