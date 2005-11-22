@@ -23,6 +23,13 @@
   if (toCheck.length() == 0) {
     return result.setResultForNull();
   }
+  result.setFailure(false);
+  result.setError(false);
+  boolean contains=isContainsType();
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Type:" + (contains ? "Contains" : "Match") + (not ? "(not)" : ""));
+  }
   try {
     Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
     PropertyIterator iter=getTestStrings().iterator();
@@ -30,7 +37,7 @@
       String stringPattern=iter.next().getStringValue();
       Pattern pattern=patternCache.getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
       boolean found;
-      if ((CONTAINS & getTestType()) > 0) {
+      if (contains) {
         found=localMatcher.contains(toCheck,pattern);
       }
  else {
@@ -38,15 +45,17 @@
       }
       pass=not ? !found : found;
       if (!pass) {
+        if (debugEnabled) {
+          log.debug("Failed: " + pattern);
+        }
         result.setFailure(true);
         result.setFailureMessage(getFailText(stringPattern));
         break;
       }
+      if (debugEnabled) {
+        log.debug("Passed: " + pattern);
+      }
     }
-    if (pass) {
-      result.setFailure(false);
-    }
-    result.setError(false);
   }
  catch (  MalformedCachePatternException e) {
     result.setError(true);
