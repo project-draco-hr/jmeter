@@ -7,8 +7,10 @@
       LoggingManager.initializeLogging(props);
     }
  catch (    FileNotFoundException e) {
+      System.out.println(e.getLocalizedMessage());
     }
 catch (    IOException e) {
+      System.out.println(e.getLocalizedMessage());
     }
   }
 }
