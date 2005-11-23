@@ -1,4 +1,5 @@
 {
+  this.paint_counter=-1;
   if (data != null && this.title != null && this.xAxisLabels != null && this.xAxisTitle != null && this.yAxisLabel != null && this.yAxisTitle != null) {
     drawSample(this.title,this.xAxisLabels,this.xAxisTitle,this.yAxisTitle,this.data,this.width,this.height,g);
   }

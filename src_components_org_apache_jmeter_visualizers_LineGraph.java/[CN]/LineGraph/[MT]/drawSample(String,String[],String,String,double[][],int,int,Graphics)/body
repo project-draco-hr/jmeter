@@ -17,7 +17,10 @@
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();
     AxisProperties axisProperties=new AxisProperties();
+    axisProperties.getYAxisProperties().setShowGridLines(1);
     axisProperties.setXAxisLabelsAreVertical(true);
+    DataAxisProperties daxp=(DataAxisProperties)axisProperties.getYAxisProperties();
+    daxp.setRoundToNearest(1);
     LegendProperties legendProperties=new LegendProperties();
     AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);
     axisChart.setGraphics2D((Graphics2D)g);
