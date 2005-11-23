@@ -5,10 +5,10 @@
   panel.setData(data);
   panel.setXAxisLabels(xAxisLabels);
   panel.setYAxisLabels(this.getYLabel());
-  panel.setXAxisTitle(this.getXAxis());
+  panel.setXAxisTitle(this.getFormattedXAxis());
   panel.setYAxisTitle(this.getYAxis());
-  int width=400;
-  int height=400;
+  int width=getWidth();
+  int height=getHeight();
   panel.setPreferredSize(new Dimension(width,height));
   panel.setSize(new Dimension(width,height));
   panel.setWidth(width);

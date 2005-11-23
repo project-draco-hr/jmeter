@@ -7,7 +7,12 @@
     SamplingStatCalculator ss=item.getStatistics(this.getURL());
     if (ss != null) {
       dset.add(ss);
-      xlabels.add(item.getDataSource());
+      if (getXLabel().equals(X_DATA_FILENAME_LABEL)) {
+        xlabels.add(item.getDataSourceName());
+      }
+ else {
+        xlabels.add(item.getMonthDayYearDate());
+      }
     }
   }
   double[][] dbset=convertToDouble(dset);

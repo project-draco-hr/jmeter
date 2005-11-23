@@ -27,6 +27,6 @@
     return stat.getPageSize() / 1024;
   }
  else {
-    return -1;
+    return Double.NaN;
   }
 }
