@@ -9,8 +9,8 @@
       failed++;
     }
   }
-synchronized (this) {
+synchronized (PackageTest.this) {
     threadsRunning--;
-    this.notifyAll();
+    PackageTest.this.notifyAll();
   }
 }
