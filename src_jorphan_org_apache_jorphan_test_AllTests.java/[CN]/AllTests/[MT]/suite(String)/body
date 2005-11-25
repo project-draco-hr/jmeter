@@ -1,5 +1,6 @@
 {
   TestSuite suite=new TestSuite();
+  System.out.println("Scanning " + searchPaths + " for test cases");
   int tests=0;
   int suites=0;
   try {
