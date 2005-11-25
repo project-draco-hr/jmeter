@@ -14,7 +14,14 @@
     serialized=true;
   }
   JMeterContextService.startTest();
-  compileTree();
+  try {
+    compileTree();
+  }
+ catch (  RuntimeException e) {
+    log.error("Error occurred compiling the tree:",e);
+    JMeterUtils.reportErrorToUser("Error occurred compiling the tree: - see log file");
+    return;
+  }
   testListeners=new SearchByClass(TestListener.class);
   getTestTree().traverse(testListeners);
   Collection col=testListeners.getSearchResults();
