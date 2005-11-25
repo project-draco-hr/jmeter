@@ -3,8 +3,13 @@
     errorMsg="Unknown error - see log file";
     log.warn("Unknown error",new Throwable("errorMsg == null"));
   }
+  GuiPackage instance=GuiPackage.getInstance();
+  if (instance == null) {
+    System.out.println(errorMsg);
+    return;
+  }
   try {
-    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(instance.getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
   }
  catch (  RuntimeException e) {
     if (e.getClass().getName().equals("java.awt.HeadlessException")) {
