@@ -1,18 +1,14 @@
 {
-  File file=null;
-  ZipFile zipFile=null;
-  Enumeration entries=null;
-  String strEntry=null;
-  file=new File(strPath);
+  File file=new File(strPath);
   if (file.isDirectory()) {
     findClassesInPathsDir(strPath,file,listClasses);
   }
  else   if (file.exists()) {
-    zipFile=new ZipFile(file);
-    entries=zipFile.entries();
+    ZipFile zipFile=new ZipFile(file);
+    Enumeration entries=zipFile.entries();
     while (entries.hasMoreElements()) {
-      strEntry=entries.nextElement().toString();
-      if (strEntry.endsWith(".class")) {
+      String strEntry=entries.nextElement().toString();
+      if (strEntry.endsWith(DOT_CLASS)) {
         listClasses.add(fixClassName(strEntry));
       }
     }

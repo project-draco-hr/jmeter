@@ -1,6 +1,6 @@
 {
   strClassName=strClassName.replace('\\','.');
   strClassName=strClassName.replace('/','.');
-  strClassName=strClassName.substring(0,strClassName.length() - 6);
+  strClassName=strClassName.substring(0,strClassName.length() - DOT_CLASS_LEN);
   return strClassName;
 }
