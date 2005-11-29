@@ -5,6 +5,7 @@
   }
   initializeLogging(args);
   initializeManager(args);
+  log.info("JMeterVersion=" + JMeterUtils.getJMeterVersion());
   logprop("java.version",true);
   logprop("java.vendor");
   logprop("java.home",true);
