@@ -22,7 +22,12 @@
     ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
     byte[] buffer=new byte[4096];
     int len;
+    boolean first=true;
     while ((len=instream.read(buffer)) > 0) {
+      if (first) {
+        res.latencyEnd();
+        first=false;
+      }
       outstream.write(buffer,0,len);
     }
     outstream.close();
