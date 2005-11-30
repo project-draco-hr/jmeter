@@ -1,0 +1,6 @@
+{
+  setupNoFilename(sampler);
+  setupCommons(sampler);
+  postWriter.sendPostData(connection,sampler);
+  assertEquals("title=mytitle&description=mydescription",connection.getOutputStream().toString());
+}
