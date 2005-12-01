@@ -1,6 +1,6 @@
 {
   try {
-    HTMLParser.getParser("java.lang.String");
+    HTMLParser.getParser(StaticTestClass.class.getName());
     fail("Should not have been able to create the parser");
   }
  catch (  HTMLParseError e) {

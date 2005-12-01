@@ -1,6 +1,7 @@
 {
   try {
     HTMLParser.getParser("no.such.parser");
+    fail("Should not have been able to create the parser");
   }
  catch (  HTMLParseError e) {
     if (e.getCause() instanceof ClassNotFoundException) {

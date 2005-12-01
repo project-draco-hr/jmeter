@@ -5,6 +5,7 @@
   suite.addTest(new TestHTMLParser("testParserMissing"));
   suite.addTest(new TestHTMLParser("testNotParser"));
   suite.addTest(new TestHTMLParser("testNotCreatable"));
+  suite.addTest(new TestHTMLParser("testNotCreatableStatic"));
   for (int i=0; i < PARSERS.length; i++) {
     TestSuite ps=new TestSuite(PARSERS[i]);
     ps.addTest(new TestHTMLParser("testParserProperty",PARSERS[i],0));
