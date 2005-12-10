@@ -19,6 +19,9 @@
     }
     int statusCode=httpMethod.execute(httpState,connection);
     InputStream instream=httpMethod.getResponseBodyAsStream();
+    if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING))) {
+      instream=new GZIPInputStream(instream);
+    }
     ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
     byte[] buffer=new byte[4096];
     int len;
