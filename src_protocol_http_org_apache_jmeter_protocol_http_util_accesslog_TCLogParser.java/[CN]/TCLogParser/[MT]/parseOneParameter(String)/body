@@ -11,5 +11,15 @@
   if (value == null) {
     value="";
   }
+ else {
+    if (decode) {
+      try {
+        value=URLDecoder.decode(value,"UTF-8");
+      }
+ catch (      UnsupportedEncodingException e) {
+        log.warn(e.getMessage());
+      }
+    }
+  }
   return new NVPair(name.trim(),value.trim());
 }
