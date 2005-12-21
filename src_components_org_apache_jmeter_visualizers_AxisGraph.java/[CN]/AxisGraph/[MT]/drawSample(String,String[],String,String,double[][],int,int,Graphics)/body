@@ -1,4 +1,5 @@
 {
+  double max=findMax(data);
   try {
     if (width == 0) {
       width=450;
@@ -9,12 +10,29 @@
     this.setPreferredSize(new Dimension(width,height));
     DataSeries dataSeries=new DataSeries(xAxisLabels,xAxisTitle,yAxisTitle,title);
     String[] legendLabels={yAxisLabel};
-    Paint[] paints=new Paint[]{Color.blue.darker()};
+    Paint[] paints=new Paint[]{Color.yellow};
     BarChartProperties barChartProperties=new BarChartProperties();
+    ValueLabelRenderer valueLabelRenderer=new ValueLabelRenderer(false,false,true,0);
+    valueLabelRenderer.setValueLabelPosition(ValueLabelPosition.AT_TOP);
+    valueLabelRenderer.useVerticalLabels(true);
+    barChartProperties.addPostRenderEventListener(valueLabelRenderer);
     AxisChartDataSet axisChartDataSet=new AxisChartDataSet(data,legendLabels,paints,ChartType.BAR,barChartProperties);
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();
-    AxisProperties axisProperties=new AxisProperties();
+    LabelAxisProperties xaxis=new LabelAxisProperties();
+    DataAxisProperties yaxis=new DataAxisProperties();
+    try {
+      BigDecimal round=new BigDecimal(max / 1000d);
+      round=round.setScale(0,BigDecimal.ROUND_UP);
+      double topValue=round.doubleValue() * 1000;
+      yaxis.setUserDefinedScale(0,500);
+      yaxis.setNumItems((int)(topValue / 500) + 1);
+      yaxis.setShowGridLines(1);
+    }
+ catch (    PropertyException e) {
+      e.printStackTrace();
+    }
+    AxisProperties axisProperties=new AxisProperties(xaxis,yaxis);
     axisProperties.setXAxisLabelsAreVertical(true);
     LegendProperties legendProperties=new LegendProperties();
     AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);

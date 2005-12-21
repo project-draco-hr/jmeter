@@ -1,0 +1,12 @@
+{
+  double max=0;
+  max=data[0][0];
+  for (int i=0; i < data.length; i++) {
+    for (int j=0; j < data[i].length; j++) {
+      if (data[i][j] > max) {
+        max=data[i][j];
+      }
+    }
+  }
+  return max;
+}
