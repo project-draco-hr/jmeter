@@ -8,7 +8,10 @@
   JMeterVariables vars=context.getVariables();
   String refName=getRefName();
   int matchNumber=getMatchNumber();
-  vars.put(refName,getDefaultValue());
+  final String defaultValue=getDefaultValue();
+  if (defaultValue.length() > 0) {
+    vars.put(refName,defaultValue);
+  }
   Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
   PatternMatcherInput input=new PatternMatcherInput(useHeaders() ? context.getPreviousResult().getResponseHeaders() : context.getPreviousResult().getResponseDataAsString());
   log.debug("Regex = " + getRegex());
