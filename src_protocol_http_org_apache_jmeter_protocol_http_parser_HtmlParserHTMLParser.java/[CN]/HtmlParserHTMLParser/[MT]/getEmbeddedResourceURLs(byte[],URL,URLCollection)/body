@@ -24,7 +24,7 @@
         String baseref=baseHref.getBaseUrl();
         try {
           if (!baseref.equals("")) {
-            baseUrl=new URL(baseUrl,baseHref.getBaseUrl() + "/");
+            baseUrl=new URL(baseUrl,baseref);
           }
         }
  catch (        MalformedURLException e1) {
