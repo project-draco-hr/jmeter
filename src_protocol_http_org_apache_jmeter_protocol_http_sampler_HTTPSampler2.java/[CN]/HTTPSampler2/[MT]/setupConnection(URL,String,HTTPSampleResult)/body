@@ -1,6 +1,6 @@
 {
   String urlStr=u.toString();
-  org.apache.commons.httpclient.URI uri=new org.apache.commons.httpclient.URI(urlStr);
+  org.apache.commons.httpclient.URI uri=new org.apache.commons.httpclient.URI(urlStr,false);
   String schema=uri.getScheme();
   if ((schema == null) || (schema.length() == 0)) {
     schema=PROTOCOL_HTTP;
@@ -26,7 +26,7 @@ synchronized (map) {
   }
  else {
     httpMethod=new GetMethod(urlStr);
-    new DefaultMethodRetryHandler();
+    new DefaultHttpMethodRetryHandler();
   }
   httpMethod.setHttp11(!JMeterUtils.getPropDefault("httpclient.version","1.1").equals("1.0"));
   httpConn.setSoTimeout(JMeterUtils.getPropDefault("httpclient.timeout",0));
