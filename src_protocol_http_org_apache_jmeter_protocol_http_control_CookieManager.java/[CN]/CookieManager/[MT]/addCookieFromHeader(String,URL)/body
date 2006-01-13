@@ -10,16 +10,7 @@
   String name=nvp.substring(0,index);
   String value=nvp.substring(index + 1);
   String domain="." + url.getHost();
-  String path=url.getPath();
-  if (path.length() == 0) {
-    path="/";
-  }
- else {
-    int lastSlash=path.lastIndexOf("/");
-    if (lastSlash > 0) {
-      path=path.substring(0,lastSlash);
-    }
-  }
+  String path="/";
   Cookie newCookie=new Cookie(name,value,domain,path,false,0);
   while (st.hasMoreTokens()) {
     nvp=st.nextToken();
