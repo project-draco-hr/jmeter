@@ -4,7 +4,6 @@
   TestElement element=new ConfigTestElement();
   element.setProperty(new StringProperty("domain","${server}"));
   replacer.replaceValues(element);
-  log.debug("domain property = " + element.getProperty("domain"));
   element.setRunningVersion(true);
   assertEquals("jakarta.apache.org",element.getPropertyAsString("domain"));
 }
