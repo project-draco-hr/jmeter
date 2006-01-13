@@ -3,7 +3,7 @@
   extractor.setTemplate("$1$");
   extractor.setMatchNumber(1);
   assertFalse("useHdrs should be false",extractor.useHeaders());
-  extractor.setProperty(USEHEADERS,"true");
+  extractor.setProperty(RegexExtractor.USEHEADERS,"true");
   assertTrue("useHdrs should be true",extractor.useHeaders());
   extractor.process();
   assertEquals("Value1",vars.get("regVal"));
