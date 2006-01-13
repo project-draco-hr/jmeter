@@ -2,7 +2,13 @@
   String urlStr=url.toString();
   log.debug("Start : sample" + urlStr);
   log.debug("method" + method);
-  httpMethod=null;
+  HttpMethodBase httpMethod=null;
+  if (method.equals(POST)) {
+    httpMethod=new PostMethod(urlStr);
+  }
+ else {
+    httpMethod=new GetMethod(urlStr);
+  }
   HTTPSampleResult res=new HTTPSampleResult();
   if (this.getPropertyAsBoolean(MONITOR)) {
     res.setMonitor(true);
@@ -11,13 +17,17 @@
     res.setMonitor(false);
   }
   res.setSampleLabel(urlStr);
+  res.setHTTPMethod(method);
   res.sampleStart();
+  HttpClient client=null;
   try {
-    HttpConnection connection=setupConnection(url,method,res);
+    client=setupConnection(url,httpMethod,res);
     if (method.equals(POST)) {
+      res.setQueryString(getQueryString());
+      setPostHeaders((PostMethod)httpMethod);
       sendPostData(httpMethod);
     }
-    int statusCode=httpMethod.execute(httpState,connection);
+    int statusCode=client.executeMethod(httpMethod);
     InputStream instream=httpMethod.getResponseBodyAsStream();
     if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING))) {
       instream=new GZIPInputStream(instream);
@@ -52,7 +62,7 @@
     if (res.isRedirect()) {
       res.setRedirectLocation(httpMethod.getResponseHeader("Location").getValue());
     }
-    saveConnectionCookies(httpState,getCookieManager());
+    saveConnectionCookies(client,getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
     if (httpMethod != null)     httpMethod.releaseConnection();

@@ -1,14 +1,12 @@
 {
   log.debug("Thread Finished");
   Map map=(Map)httpClients.get();
-  HttpConnection conn;
   if (map != null) {
     for (Iterator it=map.entrySet().iterator(); it.hasNext(); ) {
-      Object obj=it.next();
-      conn=(HttpConnection)((Map.Entry)obj).getValue();
-      conn.close();
+      Map.Entry entry=(Map.Entry)it.next();
+      HttpClient cl=(HttpClient)entry.getValue();
+      cl.getHttpConnectionManager().closeIdleConnections(-1000);
     }
     map.clear();
   }
-  httpClients.set(null);
 }

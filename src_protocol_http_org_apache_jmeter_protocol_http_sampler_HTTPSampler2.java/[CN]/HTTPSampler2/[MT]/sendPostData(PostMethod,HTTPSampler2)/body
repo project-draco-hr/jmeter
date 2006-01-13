@@ -7,14 +7,8 @@
   String filename=sampler.getFilename();
   if ((filename != null) && (filename.trim().length() > 0)) {
     File input=new File(filename);
-    if (input.length() < Integer.MAX_VALUE) {
-      post.setRequestContentLength((int)input.length());
-    }
- else {
-      post.setRequestContentLength(EntityEnclosingMethod.CONTENT_LENGTH_CHUNKED);
-    }
     post.setRequestHeader(HEADER_CONTENT_DISPOSITION,"form-data; name=\"" + encode(sampler.getFileField()) + "\"; filename=\""+ encode(filename)+ "\"");
     post.setRequestHeader(HEADER_CONTENT_TYPE,sampler.getMimetype());
-    post.setRequestBody(new FileInputStream(input));
+    post.setRequestEntity(new InputStreamRequestEntity(new FileInputStream(input),input.length()));
   }
 }
