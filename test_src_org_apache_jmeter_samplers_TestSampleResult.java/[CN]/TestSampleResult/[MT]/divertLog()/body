@@ -1,5 +1,5 @@
 {
   wr=new StringWriter(1000);
   LogTarget[] lt={new WriterTarget(wr,fmt)};
-  log.setLogTargets(lt);
+  SampleResult.log.setLogTargets(lt);
 }
