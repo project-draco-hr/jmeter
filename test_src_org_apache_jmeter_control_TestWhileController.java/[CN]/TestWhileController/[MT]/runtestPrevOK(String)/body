@@ -1,0 +1,36 @@
+{
+  WhileController.testMode=true;
+  WhileController.testModeResult=true;
+  GenericController controller=new GenericController();
+  WhileController while_cont=new WhileController();
+  while_cont.setCondition(type);
+  while_cont.addTestElement(new TestSampler("one"));
+  while_cont.addTestElement(new TestSampler("two"));
+  while_cont.addTestElement(new TestSampler("three"));
+  controller.addTestElement(while_cont);
+  controller.addTestElement(new TestSampler("four"));
+  controller.initialize();
+  assertEquals("one",nextName(controller));
+  assertEquals("two",nextName(controller));
+  assertEquals("three",nextName(controller));
+  assertEquals("one",nextName(controller));
+  assertEquals("two",nextName(controller));
+  assertEquals("three",nextName(controller));
+  assertEquals("one",nextName(controller));
+  WhileController.testModeResult=false;
+  if (type.equals(OTHER))   while_cont.setCondition("false");
+  assertEquals("two",nextName(controller));
+  assertEquals("three",nextName(controller));
+  WhileController.testModeResult=true;
+  if (type.equals(OTHER))   while_cont.setCondition(OTHER);
+  assertEquals("one",nextName(controller));
+  assertEquals("two",nextName(controller));
+  assertEquals("three",nextName(controller));
+  WhileController.testModeResult=false;
+  if (type.equals(OTHER))   while_cont.setCondition("false");
+  assertEquals("four",nextName(controller));
+  assertNull(nextName(controller));
+  WhileController.testModeResult=true;
+  if (type.equals(OTHER))   while_cont.setCondition(OTHER);
+  assertEquals("one",nextName(controller));
+}
