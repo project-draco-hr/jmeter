@@ -26,5 +26,11 @@
   TestSuite split=new TestSuite("SplitFunction");
   split.addTest(new PackageTest("SplitTest1"));
   allsuites.addTest(split);
+  TestSuite xpath=new TestSuite("XPath");
+  xpath.addTest(new PackageTest("XPathtestColumns"));
+  xpath.addTest(new PackageTest("XPathtestDefault"));
+  xpath.addTest(new PackageTest("XPathtestNull"));
+  xpath.addTest(new PackageTest("XPathtestrowNum"));
+  allsuites.addTest(xpath);
   return allsuites;
 }

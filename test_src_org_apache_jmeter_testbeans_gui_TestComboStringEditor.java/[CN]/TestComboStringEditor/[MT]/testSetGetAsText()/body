@@ -4,6 +4,6 @@
   testSetGetAsText(e,"");
   testSetGetAsText(e,null);
   testSetGetAsText(e,"${var}");
-  e.setAsText(UNDEFINED.toString());
+  e.setAsText(ComboStringEditor.UNDEFINED.toString());
   assertNotNull(e.getAsText());
 }
