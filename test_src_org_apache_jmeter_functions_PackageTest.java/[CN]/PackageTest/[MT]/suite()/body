@@ -32,5 +32,8 @@
   xpath.addTest(new PackageTest("XPathtestNull"));
   xpath.addTest(new PackageTest("XPathtestrowNum"));
   allsuites.addTest(xpath);
+  TestSuite random=new TestSuite("Random");
+  random.addTest(new PackageTest("RandomTest1"));
+  allsuites.addTest(random);
   return allsuites;
 }
