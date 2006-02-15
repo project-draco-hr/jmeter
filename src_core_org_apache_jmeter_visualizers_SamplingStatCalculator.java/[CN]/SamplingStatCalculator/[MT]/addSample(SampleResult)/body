@@ -23,7 +23,7 @@ synchronized (calculator) {
       calculator.addBytes(byteslength);
     }
     setStartTime(res);
-    eCount=getCurrentSample().errorCount;
+    eCount=getCurrentSample().getErrorCount();
     if (!res.isSuccessful()) {
       eCount++;
     }

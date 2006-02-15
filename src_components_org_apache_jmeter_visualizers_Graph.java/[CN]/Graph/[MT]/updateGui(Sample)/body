@@ -1,7 +1,7 @@
 {
   long h=model.getPercentPoint((float)0.90).longValue();
   boolean repaint=false;
-  if ((oneSample.count % 20 == 0 || oneSample.count < 20) && h > (graphMax * 1.2) || graphMax > (h * 1.2)) {
+  if ((oneSample.getCount() % 20 == 0 || oneSample.getCount() < 20) && h > (graphMax * 1.2) || graphMax > (h * 1.2)) {
     graphMax=h;
     repaint=true;
   }

@@ -3,6 +3,6 @@
   if (calculator.getCount() == 0) {
     return (rval);
   }
-  rval=(double)getCurrentSample().errorCount / (double)calculator.getCount();
+  rval=(double)getCurrentSample().getErrorCount() / (double)calculator.getCount();
   return (rval);
 }
