@@ -1,11 +1,14 @@
 {
   if (getPropertyAsBoolean(MEMORY_CACHE)) {
     String next=this.getRandomFileName();
-    if (DOMPool.getDocument(next) != null) {
-      return DOMPool.getDocument(next).getDocumentElement();
+    Document document=DOMPool.getDocument(next);
+    if (document != null) {
+      log.info("Reusing document with key: " + next);
+      return document.getDocumentElement();
     }
  else {
       Document doc=openDocument(next);
+      log.info("Created document with key: " + next);
       return doc == null ? null : doc.getDocumentElement();
     }
   }
