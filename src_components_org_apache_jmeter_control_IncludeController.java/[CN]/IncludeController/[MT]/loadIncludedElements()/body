@@ -1,8 +1,9 @@
 {
-  if (getIncludePath() != null && getIncludePath().length() > 0) {
+  final String includePath=getIncludePath();
+  if (includePath != null && includePath.length() > 0) {
     try {
-      log.info("loadIncludedElements -- try to load included module");
-      InputStream reader=new FileInputStream(getIncludePath());
+      log.info("loadIncludedElements -- try to load included module: " + includePath);
+      InputStream reader=new FileInputStream(includePath);
       this.SUBTREE=SaveService.loadTree(reader);
       return this.SUBTREE;
     }
