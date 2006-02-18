@@ -1,20 +1,20 @@
 {
-  if (getPropertyAsBoolean(MEMORY_CACHE)) {
-    String next=this.getRandomFileName();
-    Document document=DOMPool.getDocument(next);
-    if (document != null) {
-      log.info("Reusing document with key: " + next);
-      return document.getDocumentElement();
-    }
- else {
-      Document doc=openDocument(next);
-      log.info("Created document with key: " + next);
-      return doc == null ? null : doc.getDocumentElement();
+  Document doc=null;
+  String next=this.getRandomFileName();
+  if (next.length() > 0 && getMemoryCache()) {
+    doc=DOMPool.getDocument(next);
+    if (doc == null) {
+      doc=openDocument(next);
+      if (doc != null) {
+        DOMPool.putDocument(next,doc);
+      }
     }
   }
  else {
-    Document doc=openDocument(null);
-    if (doc == null)     return null;
-    return doc.getDocumentElement();
+    doc=openDocument(next);
   }
+  if (doc == null) {
+    return null;
+  }
+  return doc.getDocumentElement();
 }

@@ -55,7 +55,7 @@
     BufferedReader br=null;
     if (st != null && st.receive() != null) {
       br=st.receive();
-      if (this.getPropertyAsBoolean(READ_RESPONSE)) {
+      if (getReadResponse()) {
         StringBuffer buf=new StringBuffer();
         String line;
         while ((line=br.readLine()) != null) {
@@ -80,7 +80,7 @@
       result.setResponseCode("000");
       result.setResponseHeaders("error");
     }
-    result.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile()+ "\n"+ fileContents);
+    result.setSamplerData(fileContents);
     result.setDataEncoding(st.getResponseSOAPContext().getContentType());
     if (br != null) {
       br.close();
