@@ -21,6 +21,7 @@
       }
       Element addr=(Element)servlist.item(0);
       this.SOAPBINDING=addr.getAttribute("location");
+      this.bindingURL=new URL(this.SOAPBINDING);
       return this.SOAPBINDING;
     }
     return null;

@@ -32,6 +32,7 @@
   listPanel.add(wsdlMethods);
   listPanel.add(selectButton);
   selectButton.addActionListener(this);
+  mainPanel.add(protocol);
   mainPanel.add(domain);
   mainPanel.add(port);
   mainPanel.add(path);
