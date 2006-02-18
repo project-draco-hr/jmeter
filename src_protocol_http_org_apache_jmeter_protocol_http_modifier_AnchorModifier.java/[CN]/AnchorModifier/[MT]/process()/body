@@ -32,6 +32,7 @@
   }
   addAnchorUrls(html,result,sampler,potentialLinks);
   addFormUrls(html,result,sampler,potentialLinks);
+  addFramesetUrls(html,result,sampler,potentialLinks);
   if (potentialLinks.size() > 0) {
     HTTPSamplerBase url=(HTTPSamplerBase)potentialLinks.get(rand.nextInt(potentialLinks.size()));
     sampler.setDomain(url.getDomain());
