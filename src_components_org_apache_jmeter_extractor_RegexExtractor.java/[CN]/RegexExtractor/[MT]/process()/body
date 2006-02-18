@@ -39,6 +39,11 @@
           vars.put(refName,generateResult(match));
           saveGroups(vars,refName,match);
         }
+ else {
+          vars.remove(refName + "_g");
+          vars.remove(refName + "_g0");
+          vars.remove(refName + "_g1");
+        }
       }
  else {
         int prevCount=0;

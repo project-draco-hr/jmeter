@@ -1,10 +1,12 @@
 {
   StringBuffer buf=new StringBuffer();
+  buf.append(basename);
+  buf.append("_g");
+  int pfxlen=buf.length();
   for (int x=0; x < match.groups(); x++) {
-    buf.append(basename);
-    buf.append("_g");
     buf.append(x);
     vars.put(buf.toString(),match.group(x));
-    buf.setLength(0);
+    buf.setLength(pfxlen);
   }
+  vars.put(buf.toString(),Integer.toString(match.groups() - 1));
 }
