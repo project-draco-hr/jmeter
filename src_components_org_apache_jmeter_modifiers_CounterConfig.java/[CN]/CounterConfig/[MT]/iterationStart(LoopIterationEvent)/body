@@ -1,26 +1,26 @@
 {
   JMeterVariables variables=JMeterContextService.getContext().getVariables();
-  int start=getStart(), end=getEnd(), increment=getIncrement();
+  long start=getStart(), end=getEnd(), increment=getIncrement();
   if (!isPerUser()) {
     if (globalCounter == -1 || globalCounter > end) {
       globalCounter=start;
     }
-    variables.put(getVarName(),Integer.toString(globalCounter));
+    variables.put(getVarName(),Long.toString(globalCounter));
     globalCounter+=increment;
   }
  else {
     String value=variables.get(getVarName());
     if (value == null) {
-      variables.put(getVarName(),Integer.toString(start));
+      variables.put(getVarName(),Long.toString(start));
     }
  else {
       try {
-        int current=Integer.parseInt(value);
+        long current=Long.parseLong(value);
         current+=increment;
         if (current > end) {
           current=start;
         }
-        variables.put(getVarName(),Integer.toString(current));
+        variables.put(getVarName(),Long.toString(current));
       }
  catch (      NumberFormatException e) {
         log.info("Bad number in Counter config",e);
