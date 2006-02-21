@@ -1,0 +1,6 @@
+{
+  XPath xp=setupXPath("testfiles/XPathTest.xml","//user/@username");
+  assertEquals("u1",xp.execute());
+  assertEquals("u2",xp.execute());
+  assertEquals("u1",xp.execute());
+}
