@@ -2,4 +2,7 @@
   log.debug("clearAll()");
   Map my=(Map)filePacks.get();
   my.clear();
+  String tname=Thread.currentThread().getName();
+  log.info(tname + ": clearing container");
+  fileContainers.clear();
 }

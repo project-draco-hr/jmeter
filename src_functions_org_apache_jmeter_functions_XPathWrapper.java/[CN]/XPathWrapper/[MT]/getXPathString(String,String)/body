@@ -3,7 +3,15 @@
   String key=file + xpathString;
   XPathFileContainer xpfc=(XPathFileContainer)my.get(key);
   if (xpfc == null) {
-    xpfc=open(file,xpathString);
+synchronized (fileContainers) {
+      xpfc=(XPathFileContainer)fileContainers.get(key);
+      if (xpfc == null) {
+        xpfc=open(file,xpathString);
+      }
+      if (xpfc != null) {
+        fileContainers.put(key,xpfc);
+      }
+    }
     if (xpfc == null) {
       log.error("XPathWrapper is null!");
       return "";

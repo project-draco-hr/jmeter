@@ -1,5 +1,6 @@
 {
-  log.info("Opening " + file);
+  String tname=Thread.currentThread().getName();
+  log.info(tname + ": Opening " + file);
   XPathFileContainer frcc=null;
   try {
     frcc=new XPathFileContainer(file,xpathString);
