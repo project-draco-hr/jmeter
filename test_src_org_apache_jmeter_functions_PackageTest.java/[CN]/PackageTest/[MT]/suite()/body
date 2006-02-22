@@ -31,9 +31,17 @@
   xpath.addTest(new PackageTest("XPathtestDefault"));
   xpath.addTest(new PackageTest("XPathtestNull"));
   xpath.addTest(new PackageTest("XPathtestrowNum"));
+  xpath.addTest(new PackageTest("XPathEmpty"));
+  xpath.addTest(new PackageTest("XPathFile1"));
+  xpath.addTest(new PackageTest("XPathFile2"));
+  xpath.addTest(new PackageTest("XPathNoFile"));
   allsuites.addTest(xpath);
   TestSuite random=new TestSuite("Random");
   random.addTest(new PackageTest("RandomTest1"));
   allsuites.addTest(random);
+  TestSuite par2=new ActiveTestSuite("ParallelXPath");
+  par2.addTest(new PackageTest("XPathThread1"));
+  par2.addTest(new PackageTest("XPathThread2"));
+  allsuites.addTest(par2);
   return allsuites;
 }

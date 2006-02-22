@@ -1,0 +1,13 @@
+{
+  Thread.currentThread().setName("XPathOne");
+  XPath xp1=setupXPath("testfiles/XPathTest.xml","//user/@username");
+synchronized (baton) {
+    assertEquals("u1",xp1.execute());
+    assertEquals("u2",xp1.execute());
+    baton.pass();
+    assertEquals("u5",xp1.execute());
+    baton.pass();
+    assertEquals("u2",xp1.execute());
+    baton.done();
+  }
+}
