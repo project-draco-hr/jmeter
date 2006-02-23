@@ -1,7 +1,7 @@
 {
   boolean debugEnabled=log.isDebugEnabled();
   String protocol=url.getProtocol().trim();
-  if (!protocol.equalsIgnoreCase(HTTPSamplerBase.PROTOCOL_HTTP) && !protocol.equalsIgnoreCase(HTTPSamplerBase.PROTOCOL_HTTP)) {
+  if (!protocol.equalsIgnoreCase(HTTPSamplerBase.PROTOCOL_HTTP) && !protocol.equalsIgnoreCase(HTTPSamplerBase.PROTOCOL_HTTPS)) {
     return null;
   }
   StringBuffer header=new StringBuffer();
