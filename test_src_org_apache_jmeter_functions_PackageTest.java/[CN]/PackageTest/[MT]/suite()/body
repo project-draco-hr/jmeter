@@ -39,9 +39,15 @@
   TestSuite random=new TestSuite("Random");
   random.addTest(new PackageTest("RandomTest1"));
   allsuites.addTest(random);
-  TestSuite par2=new ActiveTestSuite("ParallelXPath");
+  allsuites.addTest(new PackageTest("XPathSetup1"));
+  TestSuite par2=new ActiveTestSuite("ParallelXPath1");
   par2.addTest(new PackageTest("XPathThread1"));
   par2.addTest(new PackageTest("XPathThread2"));
   allsuites.addTest(par2);
+  allsuites.addTest(new PackageTest("XPathSetup2"));
+  TestSuite par3=new ActiveTestSuite("ParallelXPath2");
+  par3.addTest(new PackageTest("XPathThread1"));
+  par3.addTest(new PackageTest("XPathThread2"));
+  allsuites.addTest(par3);
   return allsuites;
 }
