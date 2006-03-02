@@ -9,7 +9,7 @@
   main.setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
-  ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,CheckDirty.ADD_ALL));
+  ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ActionNames.ADD_ALL));
   if (testFile != null) {
     try {
       File f=new File(testFile.getArgument());
