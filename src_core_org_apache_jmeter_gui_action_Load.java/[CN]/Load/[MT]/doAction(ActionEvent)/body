@@ -1,5 +1,5 @@
 {
-  boolean merging=e.getActionCommand().equals("merge");
+  boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
   if (!merging) {
     ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),"close"));
   }

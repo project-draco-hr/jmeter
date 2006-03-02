@@ -1,6 +1,6 @@
 {
   GuiPackage guiPackage=GuiPackage.getInstance();
-  if (e.getActionCommand().equals(CLEAR)) {
+  if (e.getActionCommand().equals(ActionNames.CLEAR)) {
     JMeterGUIComponent model=guiPackage.getCurrentGui();
     try {
       ((Clearable)model).clear();

@@ -1,18 +1,18 @@
 {
   String action=e.getActionCommand();
-  if (action.equals(SUB_TREE_SAVED)) {
+  if (action.equals(ActionNames.SUB_TREE_SAVED)) {
     HashTree subTree=(HashTree)e.getSource();
     subTree.traverse(this);
   }
- else   if (action.equals(SUB_TREE_LOADED)) {
+ else   if (action.equals(ActionNames.SUB_TREE_LOADED)) {
     ListedHashTree addTree=(ListedHashTree)e.getSource();
     addTree.traverse(this);
   }
- else   if (action.equals(ADD_ALL)) {
+ else   if (action.equals(ActionNames.ADD_ALL)) {
     previousGuiItems.clear();
     GuiPackage.getInstance().getTreeModel().getTestPlan().traverse(this);
   }
- else   if (action.equals(REMOVE)) {
+ else   if (action.equals(ActionNames.CHECK_REMOVE)) {
     GuiPackage guiPackage=GuiPackage.getInstance();
     JMeterTreeNode[] nodes=guiPackage.getTreeListener().getSelectedNodes();
     removeMode=true;

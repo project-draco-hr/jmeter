@@ -4,7 +4,7 @@
   if (!commands.contains(e.getActionCommand())) {
     throw new IllegalUserActionException("Invalid user command:" + e.getActionCommand());
   }
-  if (e.getActionCommand().equals(SAVE_GRAPHICS)) {
+  if (e.getActionCommand().equals(ActionNames.SAVE_GRAPHICS)) {
     component=GuiPackage.getInstance().getCurrentGui();
     if (component instanceof Printable) {
       comp=((Printable)component).getPrintableComponent();
