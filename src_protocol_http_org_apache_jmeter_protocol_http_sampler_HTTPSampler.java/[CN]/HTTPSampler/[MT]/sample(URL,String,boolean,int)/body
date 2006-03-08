@@ -44,9 +44,19 @@ catch (      IOException e) {
     res.sampleEnd();
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();
+    String respMsg=conn.getResponseMessage();
+    if (errorLevel == -1) {
+      try {
+        errorLevel=Integer.parseInt(respMsg.substring(0,3));
+        log.warn("ResponseCode==-1; parsed " + respMsg + " as "+ errorLevel);
+      }
+ catch (      NumberFormatException e) {
+        log.warn("ResponseCode==-1; could not parse " + respMsg);
+      }
+    }
     res.setResponseCode(Integer.toString(errorLevel));
     res.setSuccessful(isSuccessCode(errorLevel));
-    res.setResponseMessage(conn.getResponseMessage());
+    res.setResponseMessage(respMsg);
     String ct=conn.getContentType();
     res.setContentType(ct);
     res.setEncodingAndType(ct);
