@@ -4,5 +4,7 @@
     SoapSampler sampler=(SoapSampler)s;
     sampler.setURLData(urlField.getText());
     sampler.setXmlData(soapXml.getText());
+    sampler.setSOAPAction(soapAction.getText());
+    sampler.setSendSOAPAction(sendSoapAction.isSelected());
   }
 }

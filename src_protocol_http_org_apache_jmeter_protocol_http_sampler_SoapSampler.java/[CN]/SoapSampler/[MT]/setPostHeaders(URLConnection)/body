@@ -11,6 +11,7 @@
   }
  else {
     connection.setRequestProperty("Content-Type","text/xml");
+    if (getSendSOAPAction())     connection.setRequestProperty("SOAPAction","\"" + getSOAPAction() + "\"");
   }
   connection.setDoOutput(true);
 }

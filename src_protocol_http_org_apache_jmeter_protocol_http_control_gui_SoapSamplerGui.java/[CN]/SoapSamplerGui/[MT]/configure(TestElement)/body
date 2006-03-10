@@ -2,5 +2,7 @@
   super.configure(el);
   SoapSampler sampler=(SoapSampler)el;
   urlField.setText(sampler.getURLData());
+  sendSoapAction.setSelected(sampler.getSendSOAPAction());
+  soapAction.setText(sampler.getSOAPAction());
   soapXml.setText(sampler.getXmlData());
 }
