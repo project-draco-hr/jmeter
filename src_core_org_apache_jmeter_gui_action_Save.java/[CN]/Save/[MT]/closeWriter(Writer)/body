@@ -3,7 +3,7 @@
     try {
       writer.close();
     }
- catch (    Exception ex) {
+ catch (    IOException ex) {
       log.error("",ex);
     }
   }
