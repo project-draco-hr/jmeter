@@ -12,7 +12,9 @@
       log.info("accepted");
     }
   }
- catch (  Exception e) {
+ catch (  IOException e) {
+  }
+catch (  SecurityException e) {
   }
   try {
     InputStream inStr=sock.getInputStream();
@@ -26,7 +28,7 @@
     dataIn.close();
     sock.close();
   }
- catch (  Exception e) {
+ catch (  IOException e) {
     log.error("FTP client: dataGrabber",e);
   }
   done=true;

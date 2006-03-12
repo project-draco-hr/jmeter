@@ -15,7 +15,8 @@
     log.info("port:" + ports);
     send("PORT " + ports);
     getResponse();
-    dataGrabber grab=new dataGrabber(ip,dataPort);
+    DataGrabber grab=new DataGrabber(ip,dataPort);
+    grab.begin();
     while (!grab.isPortCreated()) {
     }
     send("RETR " + file);
@@ -47,7 +48,8 @@
     int upper=Integer.parseInt(portResp.substring(d + 1,e));
     int lower=Integer.parseInt(portResp.substring(e + 1));
     send("RETR " + file);
-    dataGrabber grab=new dataGrabber(ip,getPort(upper,lower));
+    DataGrabber grab=new DataGrabber(ip,getPort(upper,lower));
+    grab.begin();
     getResponse();
     while (!grab.isDone()) {
     }

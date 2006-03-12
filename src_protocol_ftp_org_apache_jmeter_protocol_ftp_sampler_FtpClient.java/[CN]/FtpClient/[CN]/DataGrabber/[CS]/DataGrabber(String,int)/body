@@ -1,5 +1,5 @@
 {
   this.host=host;
   this.dgPort=port;
-  new Thread(this).start();
+  this.thread=new Thread(this);
 }
