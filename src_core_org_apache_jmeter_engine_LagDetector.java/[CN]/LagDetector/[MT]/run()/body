@@ -8,7 +8,7 @@
     try {
       Thread.sleep(incr);
     }
- catch (    Exception e) {
+ catch (    InterruptedException e) {
     }
     time=System.currentTimeMillis() - time;
     totalLag+=time - incr;
