@@ -5,7 +5,7 @@
     ctx.close();
   }
   res.sampleStart();
-  dirContext=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw());
+  ctx=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw());
   res.sampleEnd();
-  ldapContexts.put(getThreadName(),dirContext);
+  ldapContexts.put(getThreadName(),ctx);
 }
