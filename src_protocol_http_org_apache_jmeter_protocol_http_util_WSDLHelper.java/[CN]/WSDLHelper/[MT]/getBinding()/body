@@ -11,7 +11,6 @@
     }
     for (int idx=0; idx < ports.getLength(); idx++) {
       Element pnode=(Element)ports.item(idx);
-      String portname=pnode.getAttribute("name");
       NodeList servlist=pnode.getElementsByTagName("soap:address");
       if (servlist.getLength() == 0) {
         servlist=pnode.getElementsByTagName("wsdlsoap:address");
