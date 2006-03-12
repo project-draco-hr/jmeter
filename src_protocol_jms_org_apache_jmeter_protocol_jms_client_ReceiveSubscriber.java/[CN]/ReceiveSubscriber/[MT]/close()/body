@@ -12,7 +12,6 @@
     this.CLIENTTHREAD=null;
     this.buffer.setLength(0);
     this.buffer=null;
-    this.finalize();
   }
  catch (  JMSException e) {
     log.error(e.getMessage());
