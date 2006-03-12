@@ -1,14 +1,11 @@
 {
-  String base64Fixture=Base64.encodeBase64("foo+bar=foobar".getBytes()).toString();
-  String htmlEncodedFixture=JOrphanUtils.encode(base64Fixture,"UTF-8");
-  testLog.info("base64Fixture= " + base64Fixture);
-  testLog.info("htmlEncodedFixture= " + htmlEncodedFixture);
+  String specialChars="-_.!~*'()%25";
+  String htmlEncodedFixture=JOrphanUtils.encode(specialChars,"UTF-8");
   HTTPSamplerBase config=makeUrlConfig(".*index.html");
   config.addArgument("test",".*");
   config.setMethod(HTTPSamplerBase.POST);
   HTTPSamplerBase context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<form action=\"index.html\" method=\"POST\">" + "<input type=\"hidden\" name=\"test\""+ " value=\"" + htmlEncodedFixture + "\">Goto index page</form></body></html>";
-  testLog.info("responseText= " + responseText);
   HTTPSampleResult result=new HTTPSampleResult();
   result.setResponseData(responseText.getBytes());
   result.setSampleLabel(context.toString());
@@ -18,7 +15,5 @@
   jmctx.setPreviousResult(result);
   parser.process();
   assertEquals("http://www.apache.org/subdir/index.html",config.getUrl().toString());
-  testLog.info("config.getQueryString() " + config.getQueryString());
-  testLog.info("double encoded base64Fixture=" + JOrphanUtils.encode(JOrphanUtils.encode(base64Fixture,"UTF-8"),"UTF-8"));
   assertEquals("test=" + htmlEncodedFixture,config.getQueryString());
 }
