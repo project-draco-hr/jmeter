@@ -13,11 +13,11 @@
         }
       }
  else       if (tag.equalsIgnoreCase("input")) {
-        url.addArgument(getAttributeValue(nodeAtts,"name"),getAttributeValue(nodeAtts,"value"));
+        url.addEncodedArgument(getAttributeValue(nodeAtts,"name"),getAttributeValue(nodeAtts,"value"));
       }
  else       if (tag.equalsIgnoreCase("textarea")) {
         try {
-          url.addArgument(getAttributeValue(nodeAtts,"name"),tempNode.getFirstChild().getNodeValue());
+          url.addEncodedArgument(getAttributeValue(nodeAtts,"name"),tempNode.getFirstChild().getNodeValue());
         }
  catch (        NullPointerException e) {
           url.addArgument(getAttributeValue(nodeAtts,"name"),"");
@@ -36,7 +36,7 @@
             value="";
           }
         }
-        url.addArgument(selectName,value);
+        url.addEncodedArgument(selectName,value);
       }
     }
  else     if (tag.equalsIgnoreCase("form")) {
