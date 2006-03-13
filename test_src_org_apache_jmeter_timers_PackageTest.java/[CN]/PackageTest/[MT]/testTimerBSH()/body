@@ -1,0 +1,13 @@
+{
+  BeanShellTimer timer=new BeanShellTimer();
+  long delay;
+  timer.setScript("\"60\"");
+  delay=timer.delay();
+  assertEquals(60,delay);
+  timer.setScript("60");
+  delay=timer.delay();
+  assertEquals(60,delay);
+  timer.setScript("5*3*4");
+  delay=timer.delay();
+  assertEquals(60,delay);
+}
