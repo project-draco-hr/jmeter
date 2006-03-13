@@ -1,0 +1,5 @@
+{
+  BeanShellModifier o=(BeanShellModifier)super.clone();
+  o.script=script;
+  return o;
+}

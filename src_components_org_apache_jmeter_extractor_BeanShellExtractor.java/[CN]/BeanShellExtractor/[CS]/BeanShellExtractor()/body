@@ -1,0 +1,4 @@
+{
+  super();
+  bshInterpreter=new BeanShellInterpreter(JMeterUtils.getProperty(INIT_FILE),log);
+}
