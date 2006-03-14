@@ -1,0 +1,5 @@
+{
+  BeanShellPostProcessor o=(BeanShellPostProcessor)super.clone();
+  o.script=script;
+  return o;
+}
