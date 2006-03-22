@@ -14,7 +14,8 @@
       if (log.isDebugEnabled())       log.debug("Setting " + jprop.getName() + "="+ value);
       if (value != null || !type.isPrimitive()) {
         param[0]=value;
-        invokeOrBailOut(el,desc[x].getWriteMethod(),param);
+        Method writeMethod=desc[x].getWriteMethod();
+        if (writeMethod != null)         invokeOrBailOut(el,writeMethod,param);
       }
     }
   }
