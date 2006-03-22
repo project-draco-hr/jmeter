@@ -1,0 +1,15 @@
+{
+  JMeterContext jmctx=JMeterContextService.getContext();
+  JMeterVariables vars=jmctx.getVariables();
+  SampleResult samp=se.getResult();
+  try {
+    bshInterpreter.set("ctx",jmctx);
+    bshInterpreter.set("vars",vars);
+    bshInterpreter.set("sampleEvent",se);
+    bshInterpreter.set("sampleResult",samp);
+    bshInterpreter.eval(script);
+  }
+ catch (  JMeterException e) {
+    log.warn("Problem in BeanShell script " + e);
+  }
+}
