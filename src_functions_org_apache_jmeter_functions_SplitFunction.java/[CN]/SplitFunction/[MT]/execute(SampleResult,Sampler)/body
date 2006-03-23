@@ -18,5 +18,6 @@
     }
     vars.put(varNamePrefix + "_" + i,parts[i - 1]);
   }
+  vars.remove(varNamePrefix + "_" + (parts.length + 1));
   return stringToSplit;
 }
