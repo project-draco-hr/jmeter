@@ -9,7 +9,7 @@
   Node[] dataNode=new Node[10];
   int i=0;
   for (SimpleNodeIterator e=linkTag.children(); e.hasMoreNodes(); ) {
-    dataNode[i++]=(Node)e.nextNode();
+    dataNode[i++]=e.nextNode();
   }
   assertEquals("Number of data nodes",new Integer(2),new Integer(i));
   assertTrue("First data node should be an Image Node",dataNode[0] instanceof ImageTag);

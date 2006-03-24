@@ -7,7 +7,7 @@
   Node insideNodes[]=new Node[10];
   int j=0;
   for (SimpleNodeIterator e=linkTag.children(); e.hasMoreNodes(); ) {
-    insideNodes[j++]=(Node)e.nextNode();
+    insideNodes[j++]=e.nextNode();
   }
   assertEquals("Number of contained internal nodes",1,j);
   assertTrue(insideNodes[0] instanceof ImageTag);
