@@ -65,7 +65,7 @@
     }
   }
 );
-  durationPanel.add(new JLabel("Duration"));
+  durationPanel.add(new JLabel(durationLabel));
   durationPanel.add(durationField);
   add(durationPanel);
 }

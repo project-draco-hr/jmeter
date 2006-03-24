@@ -1,14 +1,14 @@
 {
-  double max=findMax(data);
+  double max=findMax(_data);
   try {
-    if (width == 0) {
-      width=450;
+    if (_width == 0) {
+      _width=450;
     }
-    if (height == 0) {
-      height=250;
+    if (_height == 0) {
+      _height=250;
     }
-    this.setPreferredSize(new Dimension(width,height));
-    DataSeries dataSeries=new DataSeries(xAxisLabels,xAxisTitle,yAxisTitle,title);
+    this.setPreferredSize(new Dimension(_width,_height));
+    DataSeries dataSeries=new DataSeries(_xAxisLabels,_xAxisTitle,_yAxisTitle,_title);
     String[] legendLabels={yAxisLabel};
     Paint[] paints=new Paint[]{Color.yellow};
     BarChartProperties barChartProperties=new BarChartProperties();
@@ -16,7 +16,7 @@
     valueLabelRenderer.setValueLabelPosition(ValueLabelPosition.AT_TOP);
     valueLabelRenderer.useVerticalLabels(true);
     barChartProperties.addPostRenderEventListener(valueLabelRenderer);
-    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(data,legendLabels,paints,ChartType.BAR,barChartProperties);
+    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,legendLabels,paints,ChartType.BAR,barChartProperties);
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();
     LabelAxisProperties xaxis=new LabelAxisProperties();
@@ -30,12 +30,12 @@
       yaxis.setShowGridLines(1);
     }
  catch (    PropertyException e) {
-      e.printStackTrace();
+      log.warn("",e);
     }
     AxisProperties axisProperties=new AxisProperties(xaxis,yaxis);
     axisProperties.setXAxisLabelsAreVertical(true);
     LegendProperties legendProperties=new LegendProperties();
-    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);
+    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,_width,_height);
     axisChart.setGraphics2D((Graphics2D)g);
     axisChart.render();
   }

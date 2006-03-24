@@ -1,19 +1,19 @@
 {
   try {
-    if (width == 0) {
-      width=450;
+    if (_width == 0) {
+      _width=450;
     }
-    if (height == 0) {
-      height=250;
+    if (_height == 0) {
+      _height=250;
     }
-    this.setPreferredSize(new Dimension(width,height));
-    DataSeries dataSeries=new DataSeries(xAxisLabels,xAxisTitle,yAxisTitle,title);
+    this.setPreferredSize(new Dimension(_width,_height));
+    DataSeries dataSeries=new DataSeries(_xAxisLabels,_xAxisTitle,_yAxisTitle,_title);
     String[] legendLabels=yAxisLabel;
-    Paint[] paints=this.createPaint(data.length);
-    Shape[] shapes=createShapes(data.length);
-    Stroke[] lstrokes=createStrokes(data.length);
+    Paint[] paints=this.createPaint(_data.length);
+    Shape[] shapes=createShapes(_data.length);
+    Stroke[] lstrokes=createStrokes(_data.length);
     LineChartProperties lineChartProperties=new LineChartProperties(lstrokes,shapes);
-    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(data,legendLabels,paints,ChartType.LINE,lineChartProperties);
+    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,legendLabels,paints,ChartType.LINE,lineChartProperties);
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();
     AxisProperties axisProperties=new AxisProperties();
@@ -22,7 +22,7 @@
     DataAxisProperties daxp=(DataAxisProperties)axisProperties.getYAxisProperties();
     daxp.setRoundToNearest(1);
     LegendProperties legendProperties=new LegendProperties();
-    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,width,height);
+    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,_width,_height);
     axisChart.setGraphics2D((Graphics2D)g);
     axisChart.render();
   }
