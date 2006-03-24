@@ -2,6 +2,7 @@
   SampleResult res=new SampleResult();
   boolean isOK=false;
   res.setSampleLabel(getName());
+  res.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
   res.sampleStart();
   try {
     Properties props=new Properties();
@@ -43,14 +44,18 @@
     }
     folder.close(true);
     store.close();
-    res.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
     res.setResponseData(data.toString().getBytes());
     res.setDataType(SampleResult.TEXT);
     res.setResponseCodeOK();
     res.setResponseMessage("OK");
     isOK=true;
   }
- catch (  Exception ex) {
+ catch (  NoClassDefFoundError ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+catch (  Exception ex) {
     log.debug("",ex);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
