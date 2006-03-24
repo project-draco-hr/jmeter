@@ -4,7 +4,7 @@
     os.flush();
   }
  catch (  IOException e) {
-    log.debug("Write error",e);
+    log.warn("Write error",e);
   }
   log.debug("Wrote: " + s);
   return;
