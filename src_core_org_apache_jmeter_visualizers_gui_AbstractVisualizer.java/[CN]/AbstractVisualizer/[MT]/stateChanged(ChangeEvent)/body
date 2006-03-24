@@ -1,10 +1,10 @@
 {
-  log.info("getting new collector");
+  log.debug("getting new collector");
   collector=(ResultCollector)createTestElement();
   try {
     collector.loadExistingFile();
   }
  catch (  Exception err) {
-    log.debug("Error occurred while loading file",err);
+    log.warn("Error occurred while loading file",err);
   }
 }
