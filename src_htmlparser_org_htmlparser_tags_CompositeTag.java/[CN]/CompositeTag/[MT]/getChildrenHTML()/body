@@ -1,7 +1,7 @@
 {
   StringBuffer buff=new StringBuffer();
   for (SimpleNodeIterator e=children(); e.hasMoreNodes(); ) {
-    Node node=(Node)e.nextNode();
+    Node node=e.nextNode();
     buff.append(node.toHtml());
   }
   return buff.toString();

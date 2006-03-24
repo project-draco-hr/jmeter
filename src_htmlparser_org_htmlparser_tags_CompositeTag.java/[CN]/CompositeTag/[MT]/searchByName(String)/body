@@ -3,7 +3,7 @@
   Tag tag=null;
   boolean found=false;
   for (SimpleNodeIterator e=children(); e.hasMoreNodes() && !found; ) {
-    node=(Node)e.nextNode();
+    node=e.nextNode();
     if (node instanceof Tag) {
       tag=(Tag)node;
       String nameAttribute=tag.getAttribute("NAME");

@@ -3,7 +3,7 @@
     startTag.accept(visitor);
     SimpleNodeIterator children=children();
     while (children.hasMoreNodes()) {
-      Node child=(Node)children.nextNode();
+      Node child=children.nextNode();
       child.accept(visitor);
     }
     endTag.accept(visitor);
