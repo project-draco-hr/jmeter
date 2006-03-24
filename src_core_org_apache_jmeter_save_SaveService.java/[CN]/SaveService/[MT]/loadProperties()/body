@@ -1,0 +1,5 @@
+{
+  Properties nameMap=new Properties();
+  nameMap.load(new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE)));
+  return nameMap;
+}

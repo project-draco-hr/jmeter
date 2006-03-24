@@ -1,7 +1,7 @@
 {
   Properties nameMap=new Properties();
   try {
-    nameMap.load(new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE)));
+    nameMap=loadProperties();
     Iterator it=nameMap.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry me=(Map.Entry)it.next();
