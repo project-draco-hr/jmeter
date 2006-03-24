@@ -2,9 +2,9 @@
   createParser("<MESSAGE>\n" + "Abhi\n" + "Sri\n"+ "</MESSAGE>");
   Parser.setLineSeparator("\r\n");
   NodeIterator e=parser.elements();
-  Node node=e.nextNode();
+  Node _node=e.nextNode();
   try {
-    String result=TagScanner.extractXMLData(node,"MESSAGE",parser.getReader());
+    String result=TagScanner.extractXMLData(_node,"MESSAGE",parser.getReader());
     assertEquals("Result","Abhi\r\nSri\r\n",result);
   }
  catch (  ParserException ex) {

@@ -1,9 +1,9 @@
 {
   createParser("<MESSAGE>Test</MESSAGE>");
   NodeIterator e=parser.elements();
-  Node node=(Node)e.nextNode();
+  Node _node=e.nextNode();
   try {
-    String result=TagScanner.extractXMLData(node,"MESSAGE",parser.getReader());
+    String result=TagScanner.extractXMLData(_node,"MESSAGE",parser.getReader());
     assertEquals("Result","Test",result);
   }
  catch (  ParserException ex) {
