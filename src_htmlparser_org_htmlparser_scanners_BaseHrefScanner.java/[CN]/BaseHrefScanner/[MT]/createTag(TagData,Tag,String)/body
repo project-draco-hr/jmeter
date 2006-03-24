@@ -1,5 +1,5 @@
 {
-  String baseUrl=(String)tag.getAttribute("HREF");
+  String baseUrl=tag.getAttribute("HREF");
   String absoluteBaseUrl="";
   if (baseUrl != null && baseUrl.length() > 0) {
     absoluteBaseUrl=baseUrl.trim();
