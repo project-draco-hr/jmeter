@@ -10,6 +10,7 @@
     System.out.println("Cannot create MainFrame: " + e);
   }
   TestSuite suite=new TestSuite();
+  suite.addTest(new JMeterTest("readAliases"));
   suite.addTest(new JMeterTest("createTitleSet"));
   suite.addTest(new JMeterTest("createTagSet"));
   suite.addTest(suiteGUIComponents());
