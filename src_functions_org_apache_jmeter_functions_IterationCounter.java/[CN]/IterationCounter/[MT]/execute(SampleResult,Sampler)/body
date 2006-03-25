@@ -1,22 +1,21 @@
 {
-  counter[0]++;
+  new Integer(1);
+  globalCounter++;
   JMeterVariables vars=getVariables();
   boolean perThread=Boolean.valueOf(((CompoundVariable)variables[0]).execute()).booleanValue();
-  String varName=((CompoundVariable)variables[variables.length - 1]).execute();
+  String varName="";
+  if (variables.length >= 2) {
+    varName=((CompoundVariable)variables[1]).execute();
+  }
   String counterString="";
   if (perThread) {
-    int counterInt;
-    try {
-      counterInt=((Integer)vars.getObject(perThreadCounter)).intValue() + 1;
-    }
- catch (    NullPointerException e) {
-      counterInt=1;
-    }
-    vars.putObject(perThreadCounter,new Integer(counterInt));
-    counterString=Integer.toString(counterInt);
+    int threadCounter;
+    threadCounter=((Integer)perThreadInt.get()).intValue() + 1;
+    perThreadInt.set(new Integer(threadCounter));
+    counterString=String.valueOf(threadCounter);
   }
  else {
-    counterString=String.valueOf(counter[0]);
+    counterString=String.valueOf(globalCounter);
   }
   if (varName.length() > 0)   vars.put(varName,counterString);
   return counterString;
