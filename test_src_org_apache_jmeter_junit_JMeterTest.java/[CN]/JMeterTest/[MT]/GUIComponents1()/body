@@ -1,6 +1,9 @@
 {
   String name=guiItem.getClass().getName();
   assertEquals("Name should be same as static label for " + name,guiItem.getStaticLabel(),guiItem.getName());
+  if (name.startsWith("org.apache.jmeter.examples.")) {
+    return;
+  }
   if (!name.endsWith("TestBeanGUI")) {
     try {
       String label=guiItem.getLabelResource();
