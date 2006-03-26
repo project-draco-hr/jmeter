@@ -1,6 +1,0 @@
-{
-  configureTestElement(element);
-  String text=sqlField.getText();
-  text=text.replace('\n',' ');
-  element.setProperty(JDBCSampler.QUERY,text);
-}
