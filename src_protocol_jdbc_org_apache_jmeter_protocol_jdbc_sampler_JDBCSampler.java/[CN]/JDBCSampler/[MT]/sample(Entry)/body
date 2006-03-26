@@ -3,16 +3,21 @@
   SampleResult res=new SampleResult();
   res.setSampleLabel(getName());
   res.setSamplerData(toString());
+  res.setDataType(SampleResult.TEXT);
+  res.setDataEncoding(System.getProperty("file.encoding"));
+  res.setSuccessful(true);
   res.sampleStart();
   DataSourceComponent pool=(DataSourceComponent)getThreadContext().getVariables().getObject(getDataSource());
   log.debug("DataSourceComponent: " + pool);
   Connection conn=null;
   Statement stmt=null;
+  CallableStatement cs=null;
   try {
     if (pool == null)     throw new SQLException("No pool created");
     conn=pool.getConnection();
     stmt=conn.createStatement();
-    if (SELECT.equals(getQueryType())) {
+    String _queryType=getQueryType();
+    if (SELECT.equals(_queryType)) {
       ResultSet rs=null;
       try {
         rs=stmt.executeQuery(getQuery());
@@ -20,25 +25,31 @@
         res.setResponseData(data.toString().getBytes());
       }
   finally {
-        if (rs != null) {
-          try {
-            rs.close();
-          }
- catch (          SQLException exc) {
-            log.warn("Error closing ResultSet",exc);
-          }
-        }
+        close(rs);
       }
     }
- else {
+ else     if (CALLABLE.equals(_queryType)) {
+      try {
+        cs=conn.prepareCall(getQuery());
+        cs.execute();
+        String results="Executed";
+        res.setResponseData(results.getBytes());
+      }
+  finally {
+        close(cs);
+      }
+    }
+ else     if (UPDATE.equals(_queryType)) {
       stmt.execute(getQuery());
       int updateCount=stmt.getUpdateCount();
       String results=updateCount + " updates";
       res.setResponseData(results.getBytes());
     }
-    res.setDataType(SampleResult.TEXT);
-    res.setDataEncoding(System.getProperty("file.encoding"));
-    res.setSuccessful(true);
+ else {
+      String results="Unexpected query type: " + _queryType;
+      res.setResponseMessage(results);
+      res.setSuccessful(false);
+    }
   }
  catch (  SQLException ex) {
     log.error("Error in JDBC sampling",ex);
@@ -46,22 +57,8 @@
     res.setSuccessful(false);
   }
  finally {
-    if (stmt != null) {
-      try {
-        stmt.close();
-      }
- catch (      SQLException ex) {
-        log.warn("Error closing statement",ex);
-      }
-    }
-    if (conn != null) {
-      try {
-        conn.close();
-      }
- catch (      SQLException ex) {
-        log.warn("Error closing connection",ex);
-      }
-    }
+    close(stmt);
+    close(conn);
   }
   res.sampleEnd();
   return res;
