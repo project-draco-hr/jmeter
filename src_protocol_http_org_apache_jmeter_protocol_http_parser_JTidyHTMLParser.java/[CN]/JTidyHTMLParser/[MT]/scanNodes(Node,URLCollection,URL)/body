@@ -20,7 +20,7 @@ if (tmp != null) try {
 }
 break;
 }
-if (name.equalsIgnoreCase(ATT_IS_IMAGE) || name.equalsIgnoreCase(TAG_EMBED)) {
+if (name.equalsIgnoreCase(TAG_IMAGE) || name.equalsIgnoreCase(TAG_EMBED)) {
 urls.addURL(getValue(attrs,ATT_SRC),baseUrl);
 break;
 }
