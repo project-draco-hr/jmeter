@@ -1,4 +1,5 @@
 {
+  if (log.isDebugEnabled())   log.debug("Parsing html of: " + baseUrl);
   Parser htmlParser=null;
   try {
     String contents=new String(html);
@@ -16,7 +17,7 @@
       String binUrlStr=null;
       if (node instanceof BodyTag) {
         BodyTag body=(BodyTag)node;
-        binUrlStr=body.getAttribute("background");
+        binUrlStr=body.getAttribute(ATT_BACKGROUND);
         e=body.elements();
       }
  else       if (node instanceof BaseHrefTag) {
@@ -78,7 +79,7 @@
  else       if (node instanceof Tag) {
         Tag tag=(Tag)node;
         String tagname=tag.getTagName();
-        if (tagname.equalsIgnoreCase("EMBED")) {
+        if (tagname.equalsIgnoreCase(TAG_EMBED)) {
           binUrlStr=tag.getAttribute(ATT_SRC);
         }
       }
