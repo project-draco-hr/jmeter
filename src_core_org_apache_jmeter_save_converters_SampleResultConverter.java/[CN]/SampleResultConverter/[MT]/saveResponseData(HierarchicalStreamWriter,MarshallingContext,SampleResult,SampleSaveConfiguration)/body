@@ -2,14 +2,19 @@
   if (save.saveResponseData(res)) {
     writer.startNode(TAG_RESPONSE_DATA);
     try {
-      String ct=res.getContentType();
-      if (ct.startsWith("text/")) {
+      if (SampleResult.TEXT.equals(res.getDataType())) {
         writer.addAttribute(ATT_CLASS,JAVA_LANG_STRING);
         writer.setValue(new String(res.getResponseData(),res.getDataEncoding()));
       }
  else {
         writer.addAttribute(ATT_CLASS,JAVA_LANG_STRING);
-        writer.setValue(res.getURL().toExternalForm());
+        URL url=res.getURL();
+        if (url != null) {
+          writer.setValue(url.toExternalForm());
+        }
+ else {
+          writer.setValue("Non-text data, but URL is null");
+        }
       }
     }
  catch (    UnsupportedEncodingException e) {
