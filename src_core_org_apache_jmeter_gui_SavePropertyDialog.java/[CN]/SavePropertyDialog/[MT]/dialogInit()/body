@@ -11,12 +11,13 @@
       if (name.startsWith(NAME_SAVE_PFX) && methods[i].getParameterTypes().length == 0) {
         try {
           name=name.substring(4);
-          JCheckBox check=new JCheckBox(JMeterUtils.getResString("save_" + name),((Boolean)methods[i].invoke(saveConfig,new Object[0])).booleanValue());
+          JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),((Boolean)methods[i].invoke(saveConfig,new Object[0])).booleanValue());
           checkPanel.add(check,BorderLayout.NORTH);
           check.addActionListener(this);
-          check.setActionCommand("set" + name);
-          if (!functors.containsKey(check.getActionCommand())) {
-            functors.put(check.getActionCommand(),new Functor(check.getActionCommand()));
+          String actionCommand=NAME_SET_PREFIX + name;
+          check.setActionCommand(actionCommand);
+          if (!functors.containsKey(actionCommand)) {
+            functors.put(actionCommand,new Functor(actionCommand));
           }
         }
  catch (        Exception e) {
