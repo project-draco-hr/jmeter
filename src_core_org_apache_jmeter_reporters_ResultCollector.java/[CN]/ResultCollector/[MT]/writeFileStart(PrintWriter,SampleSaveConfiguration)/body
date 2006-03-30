@@ -1,6 +1,10 @@
 {
   if (saveConfig.saveAsXml()) {
     writer.println(XML_HEADER);
+    String pi=saveConfig.getXmlPi();
+    if (pi.length() > 0) {
+      writer.println(pi);
+    }
     writer.println(TESTRESULTS_START_V1_1);
   }
  else   if (saveConfig.saveFieldNames()) {
