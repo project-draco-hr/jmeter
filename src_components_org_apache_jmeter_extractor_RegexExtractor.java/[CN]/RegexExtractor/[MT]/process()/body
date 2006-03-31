@@ -1,7 +1,8 @@
 {
   initTemplate();
   JMeterContext context=getThreadContext();
-  if (context.getPreviousResult() == null || context.getPreviousResult().getResponseData() == null) {
+  SampleResult previousResult=context.getPreviousResult();
+  if (previousResult == null || previousResult.getResponseData().length == 0) {
     return;
   }
   log.debug("RegexExtractor processing result");
@@ -13,7 +14,7 @@
     vars.put(refName,defaultValue);
   }
   Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
-  PatternMatcherInput input=new PatternMatcherInput(useHeaders() ? context.getPreviousResult().getResponseHeaders() : context.getPreviousResult().getResponseDataAsString());
+  PatternMatcherInput input=new PatternMatcherInput(useHeaders() ? previousResult.getResponseHeaders() : previousResult.getResponseDataAsString());
   log.debug("Regex = " + getRegex());
   try {
     Pattern pattern=patternCache.getPattern(getRegex(),Perl5Compiler.READ_ONLY_MASK);

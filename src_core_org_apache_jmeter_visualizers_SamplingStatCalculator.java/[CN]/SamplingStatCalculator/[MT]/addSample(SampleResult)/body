@@ -3,13 +3,7 @@
   double throughput;
   boolean rbool;
 synchronized (calculator) {
-    long byteslength=0;
-    if (res.getResponseData() == null || res.getResponseData().length == 0) {
-      byteslength=res.getBytes();
-    }
- else {
-      byteslength=res.getResponseData().length;
-    }
+    long byteslength=res.getBytes();
     if (res.getSampleCount() > 1) {
       long time=res.getTime() / res.getSampleCount();
       long resbytes=byteslength / res.getSampleCount();

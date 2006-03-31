@@ -1,11 +1,11 @@
 {
   AssertionResult result=new AssertionResult();
   result.setFailure(false);
-  if (response.getResponseData() == null) {
-    return result.setResultForNull();
-  }
   resultData=response.getResponseData();
   long resultSize=resultData.length;
+  if (resultSize == 0) {
+    return result.setResultForNull();
+  }
   if ((!(compareSize(resultSize)) && (getAllowedSize() > 0))) {
     result.setFailure(true);
     Object[] arguments={new Long(resultSize),comparatorErrorMessage,new Long(getAllowedSize())};

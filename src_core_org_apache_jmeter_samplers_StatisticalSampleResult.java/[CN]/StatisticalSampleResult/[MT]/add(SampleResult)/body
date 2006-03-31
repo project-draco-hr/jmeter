@@ -1,13 +1,6 @@
 {
   setSampleCount(getSampleCount() + res.getSampleCount());
-  int bytesLength=0;
-  if (res.getResponseData() == null || res.getResponseData().length == 0) {
-    bytesLength=res.getBytes();
-  }
- else {
-    bytesLength=res.getResponseData().length;
-  }
-  setBytes(getBytes() + bytesLength);
+  setBytes(getBytes() + res.getBytes());
   if (!res.isSuccessful()) {
     errorCount++;
   }

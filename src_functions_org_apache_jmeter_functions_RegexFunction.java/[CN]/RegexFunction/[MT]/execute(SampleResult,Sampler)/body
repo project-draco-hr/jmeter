@@ -30,7 +30,7 @@
   }
   JMeterVariables vars=getVariables();
   vars.put(name,defaultValue);
-  if (previousResult == null || previousResult.getResponseData() == null) {
+  if (previousResult == null || previousResult.getResponseData().length == 0) {
     return defaultValue;
   }
   List collectAllMatches=new ArrayList();
