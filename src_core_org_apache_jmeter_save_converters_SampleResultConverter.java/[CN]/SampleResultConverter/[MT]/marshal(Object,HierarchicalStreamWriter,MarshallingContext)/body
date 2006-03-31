@@ -8,4 +8,7 @@
   saveRequestHeaders(writer,context,res,save);
   saveResponseData(writer,context,res,save);
   saveSamplerData(writer,context,res,save);
+  if (save.saveUrl()) {
+    writeString(writer,TAG_URL,res.getURL().toExternalForm());
+  }
 }
