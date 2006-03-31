@@ -15,4 +15,5 @@
   res.setTime(Converter.getLong(reader.getAttribute(ATT_TIME)));
   res.setTimeStamp(Converter.getLong(reader.getAttribute(ATT_TIME_STAMP)));
   res.setLatency(Converter.getLong(reader.getAttribute(ATT_LATENCY)));
+  res.setBytes(Converter.getInt(reader.getAttribute(ATT_BYTES)));
 }
