@@ -1,0 +1,14 @@
+{
+  super.marshal(obj,writer,context);
+  SampleSaveConfiguration prop=(SampleSaveConfiguration)obj;
+  if (prop.saveBytes()) {
+    writer.startNode("bytes");
+    writer.setValue("true");
+    writer.endNode();
+  }
+  if (prop.saveUrl()) {
+    writer.startNode("url");
+    writer.setValue("true");
+    writer.endNode();
+  }
+}

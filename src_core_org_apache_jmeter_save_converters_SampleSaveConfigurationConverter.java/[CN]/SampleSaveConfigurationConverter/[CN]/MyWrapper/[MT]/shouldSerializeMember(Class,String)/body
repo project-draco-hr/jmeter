@@ -1,0 +1,6 @@
+{
+  if (SampleSaveConfiguration.class != definedIn)   return true;
+  if (fieldName.equals("url"))   return false;
+  if (fieldName.equals("bytes"))   return false;
+  return true;
+}
