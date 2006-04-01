@@ -1,0 +1,7 @@
+{
+  result.setResponseData("<z>".getBytes());
+  extractor.setXPathQuery("<");
+  extractor.process();
+  assertEquals("Default",vars.get(VAL_NAME));
+  assertEquals("0",vars.get(VAL_NAME_NR));
+}

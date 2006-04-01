@@ -1,0 +1,22 @@
+{
+  String val=null;
+  NodeList matches=XPathAPI.selectNodeList(d,query);
+  int length=matches.getLength();
+  vars.put(concat(refName,MATCH_NR),String.valueOf(length));
+  for (int i=0; i < length; i++) {
+    Node match=matches.item(i);
+    if (match instanceof Element) {
+      val=match.getFirstChild().getNodeValue();
+    }
+ else {
+      val=match.getNodeValue();
+    }
+    if (val != null) {
+      if (i == 0) {
+        vars.put(refName,val);
+      }
+      vars.put(concat(refName,String.valueOf(i + 1)),val);
+    }
+  }
+  vars.remove(concat(refName,String.valueOf(length + 1)));
+}
