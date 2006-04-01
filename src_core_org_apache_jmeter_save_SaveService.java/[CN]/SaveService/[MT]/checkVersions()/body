@@ -5,7 +5,14 @@
   checkVersion(IntegerPropertyConverter.class,"332820");
   checkVersion(LongPropertyConverter.class,"332820");
   checkVersion(MultiPropertyConverter.class,"332820");
-  checkVersion(SampleResultConverter.class,"389871");
+  checkVersion(SampleResultConverter.class,"390622");
+  try {
+    checkVersion(Class.forName("org.apache.jmeter.protocol.http.util.HTTPResultConverter"),"332820");
+  }
+ catch (  ClassNotFoundException e) {
+    versionsOK=false;
+    log.warn(e.getLocalizedMessage());
+  }
   checkVersion(StringPropertyConverter.class,"332820");
   checkVersion(TestElementConverter.class,"332820");
   checkVersion(TestElementPropertyConverter.class,"332820");
