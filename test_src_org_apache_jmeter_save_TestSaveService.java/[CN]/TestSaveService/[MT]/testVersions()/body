@@ -1,4 +1,3 @@
 {
-  SaveService.checkVersions();
-  assertTrue("Unexpected version found",SaveService.versionsOK);
+  assertTrue("Unexpected version found",SaveService.checkVersions());
 }
