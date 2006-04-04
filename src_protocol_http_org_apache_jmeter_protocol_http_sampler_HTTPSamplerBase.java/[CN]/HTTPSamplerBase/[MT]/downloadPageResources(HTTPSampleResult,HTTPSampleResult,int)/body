@@ -1,7 +1,7 @@
 {
   Iterator urls=null;
   try {
-    if (res.getContentType().toLowerCase().indexOf("text/html") != -1) {
+    if (res.getContentType().toLowerCase().indexOf("text/html") != -1 && res.getResponseData().length > 0) {
       urls=HTMLParser.getParser().getEmbeddedResourceURLs(res.getResponseData(),res.getURL());
     }
   }
