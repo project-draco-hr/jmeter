@@ -3,11 +3,7 @@
     if (currentPath.getLastPathComponent() != null) {
       return (JMeterTreeNode)currentPath.getLastPathComponent();
     }
- else {
-      return (JMeterTreeNode)currentPath.getParentPath().getLastPathComponent();
-    }
+    return (JMeterTreeNode)currentPath.getParentPath().getLastPathComponent();
   }
- else {
-    return (JMeterTreeNode)model.getRoot();
-  }
+  return (JMeterTreeNode)model.getRoot();
 }
