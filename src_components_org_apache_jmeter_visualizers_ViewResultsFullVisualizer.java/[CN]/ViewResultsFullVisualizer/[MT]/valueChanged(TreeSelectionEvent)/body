@@ -42,13 +42,13 @@
         Style style=null;
 switch (responseLevel) {
 case 3:
-          style=statsDoc.getStyle("Redirect");
+          style=statsDoc.getStyle(STYLE_REDIRECT);
         break;
 case 4:
-      style=statsDoc.getStyle("ClientError");
+      style=statsDoc.getStyle(STYLE_CLIENT_ERROR);
     break;
 case 5:
-  style=statsDoc.getStyle("ServerError");
+  style=statsDoc.getStyle(STYLE_SERVER_ERROR);
 break;
 }
 statsDoc.insertString(statsDoc.getLength(),"HTTP response code: " + responseCode + "\n",style);
