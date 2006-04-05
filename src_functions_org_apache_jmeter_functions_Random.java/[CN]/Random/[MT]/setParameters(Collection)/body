@@ -3,9 +3,7 @@
   if (values.length < 3) {
     throw new InvalidVariableException();
   }
- else {
-    varName=(CompoundVariable)values[2];
-    minimum=(CompoundVariable)values[0];
-    maximum=(CompoundVariable)values[1];
-  }
+  varName=(CompoundVariable)values[2];
+  minimum=(CompoundVariable)values[0];
+  maximum=(CompoundVariable)values[1];
 }
