@@ -12,7 +12,6 @@
       isInvalid=true;
     }
     if (isInvalid) {
-      log.warn("SizeAssertionGui: Not a valid number!");
       JOptionPane.showMessageDialog(null,JMeterUtils.getResString("size_assertion_input_error"),"Error",JOptionPane.ERROR_MESSAGE);
     }
   }
