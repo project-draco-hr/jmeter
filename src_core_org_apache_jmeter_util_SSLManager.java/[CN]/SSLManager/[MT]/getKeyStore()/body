@@ -2,13 +2,13 @@
   String password=this.defaultpw;
   if (null == this.keyStore) {
     String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
-    String fileName=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStore",defaultName);
-    System.setProperty("javax.net.ssl.keyStore",fileName);
+    String fileName=JMeterUtils.getJMeterProperties().getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
+    System.setProperty(JAVAX_NET_SSL_KEY_STORE,fileName);
     try {
       if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
-        this.keyStore=JmeterKeyStore.getInstance("pkcs12");
+        this.keyStore=JmeterKeyStore.getInstance(PKCS12);
         log.info("KeyStore Type: PKCS 12");
-        System.setProperty("javax.net.ssl.keyStoreType","pkcs12");
+        System.setProperty("javax.net.ssl.keyStoreType",PKCS12);
       }
  else {
         this.keyStore=JmeterKeyStore.getInstance("JKS");
@@ -22,16 +22,16 @@
     }
     if (null == password) {
       if (null == defaultpw) {
-        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword");
+        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty(KEY_STORE_PASSWORD);
         if (null == defaultpw) {
 synchronized (this) {
             this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
-            JMeterUtils.getJMeterProperties().setProperty("javax.net.ssl.keyStorePassword",this.defaultpw);
+            JMeterUtils.getJMeterProperties().setProperty(KEY_STORE_PASSWORD,this.defaultpw);
           }
         }
       }
       password=this.defaultpw;
-      System.setProperty("javax.net.ssl.keyStorePassword",password);
+      System.setProperty(KEY_STORE_PASSWORD,password);
     }
     try {
       File initStore=new File(fileName);

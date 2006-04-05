@@ -1,7 +1,7 @@
 {
   if (null == this.trustStore) {
-    String fileName=JMeterUtils.getPropDefault("javax.net.ssl.trustStore","");
-    System.setProperty("javax.net.ssl.trustStore",fileName);
+    String fileName=JMeterUtils.getPropDefault(SSL_TRUST_STORE,"");
+    System.setProperty(SSL_TRUST_STORE,fileName);
     try {
       if (fileName.endsWith(".iaik")) {
         this.trustStore=KeyStore.getInstance("IAIKKeyStore","IAIK");
