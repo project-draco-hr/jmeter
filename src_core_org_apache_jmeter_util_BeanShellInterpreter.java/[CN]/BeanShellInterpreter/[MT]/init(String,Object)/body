@@ -16,8 +16,6 @@
     if (!in.canRead()) {
       throw new IOException("initFile");
     }
- else {
-      source(initFile);
-    }
+    source(initFile);
   }
 }
