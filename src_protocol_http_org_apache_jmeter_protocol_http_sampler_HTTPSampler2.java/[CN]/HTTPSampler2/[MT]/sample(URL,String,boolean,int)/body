@@ -24,7 +24,6 @@
     client=setupConnection(url,httpMethod,res);
     if (method.equals(POST)) {
       res.setQueryString(getQueryString());
-      setPostHeaders((PostMethod)httpMethod);
       sendPostData(httpMethod);
     }
     int statusCode=client.executeMethod(httpMethod);
