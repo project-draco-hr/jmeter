@@ -2,7 +2,5 @@
   if (value.size() > 0) {
     return valueIterator().next().getClass();
   }
- else {
-    return NullProperty.class;
-  }
+  return NullProperty.class;
 }
