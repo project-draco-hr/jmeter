@@ -7,11 +7,9 @@
   if (index > -1) {
     return serVer.substring(index);
   }
- else {
-    if (serVer.startsWith("<?xml")) {
-      index=serVer.indexOf("?>");
-      return lineSep + serVer.substring(index + 2);
-    }
-    return serVer;
+  if (serVer.startsWith("<?xml")) {
+    index=serVer.indexOf("?>");
+    return lineSep + serVer.substring(index + 2);
   }
+  return serVer;
 }
