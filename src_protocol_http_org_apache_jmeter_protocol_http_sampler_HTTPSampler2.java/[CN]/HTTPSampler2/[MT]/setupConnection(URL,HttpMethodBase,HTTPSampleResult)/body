@@ -10,14 +10,17 @@
   int port=uri.getPort();
   HostConfiguration hc=new HostConfiguration();
   hc.setHost(host,port,protocol);
-  if (PROXY_HOST.length() > 0) {
-    hc.setProxy(PROXY_HOST,PROXY_PORT);
-  }
   Map map=(Map)httpClients.get();
   HttpClient httpClient=(HttpClient)map.get(hc);
   if (httpClient == null) {
     httpClient=new HttpClient(new SimpleHttpConnectionManager());
     map.put(hc,httpClient);
+  }
+  if (PROXY_HOST.length() > 0) {
+    hc.setProxy(PROXY_HOST,PROXY_PORT);
+    if (PROXY_USER.length() > 0) {
+      httpClient.getState().setProxyCredentials(new AuthScope(PROXY_HOST,PROXY_PORT,null,AuthScope.ANY_SCHEME),new NTCredentials(PROXY_USER,PROXY_PASS,null,null));
+    }
   }
   HttpMethodParams params=httpMethod.getParams();
   params.setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);

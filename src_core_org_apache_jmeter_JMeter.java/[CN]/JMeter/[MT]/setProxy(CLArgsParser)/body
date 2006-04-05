@@ -1,14 +1,18 @@
 {
   if (parser.getArgumentById(PROXY_USERNAME) != null) {
+    Properties jmeterProps=JMeterUtils.getJMeterProperties();
     if (parser.getArgumentById(PROXY_PASSWORD) != null) {
       String u, p;
       Authenticator.setDefault(new ProxyAuthenticator(u=parser.getArgumentById(PROXY_USERNAME).getArgument(),p=parser.getArgumentById(PROXY_PASSWORD).getArgument()));
       log.info("Set Proxy login: " + u + "/"+ p);
+      jmeterProps.setProperty(HTTP_PROXY_USER,u);
+      jmeterProps.setProperty(HTTP_PROXY_PASS,p);
     }
  else {
       String u;
       Authenticator.setDefault(new ProxyAuthenticator(u=parser.getArgumentById(PROXY_USERNAME).getArgument(),""));
       log.info("Set Proxy login: " + u);
+      jmeterProps.setProperty(HTTP_PROXY_USER,u);
     }
   }
   if (parser.getArgumentById(PROXY_HOST) != null && parser.getArgumentById(PROXY_PORT) != null) {
