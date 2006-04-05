@@ -15,7 +15,7 @@
   JScrollPane scrollpane=new JScrollPane(files);
   scrollpane.setPreferredSize(new Dimension(400,140));
   add(scrollpane,BorderLayout.CENTER);
-  browse.setActionCommand("browse");
+  browse.setActionCommand(ACTION_BROWSE);
   browse.addActionListener(this);
   clear.addActionListener(this);
   delete.addActionListener(this);

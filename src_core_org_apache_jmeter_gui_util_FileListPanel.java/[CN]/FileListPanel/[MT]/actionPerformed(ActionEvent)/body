@@ -2,7 +2,7 @@
   if (e.getSource() == clear) {
     this.clearFiles();
   }
- else   if (e.getActionCommand().equals("browse")) {
+ else   if (e.getActionCommand().equals(ACTION_BROWSE)) {
     JFileChooser chooser=new JFileChooser();
     String start=JMeterUtils.getPropDefault("user.dir","");
     chooser.setCurrentDirectory(new File(start));
