@@ -8,7 +8,5 @@
       throw new InvalidVariableException();
     }
   }
- else {
-    return new SimpleVariable(functionName);
-  }
+  return new SimpleVariable(functionName);
 }
