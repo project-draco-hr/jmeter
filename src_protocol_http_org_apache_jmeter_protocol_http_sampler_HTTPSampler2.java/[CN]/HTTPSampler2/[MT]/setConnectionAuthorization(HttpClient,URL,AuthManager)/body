@@ -4,8 +4,8 @@
     if (auth != null) {
       String user=auth.getUser();
       String realm=null;
-      String domain=null;
-      String username;
+      String domain="";
+      String username="";
       int bs=user.indexOf('\\');
       int at=user.indexOf('@');
       if (bs > 0) {
