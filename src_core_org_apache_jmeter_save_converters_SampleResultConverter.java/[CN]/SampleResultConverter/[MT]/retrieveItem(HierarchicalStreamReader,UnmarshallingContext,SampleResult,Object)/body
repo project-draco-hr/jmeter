@@ -23,6 +23,9 @@
  else   if (nodeName.equals(TAG_SAMPLER_DATA)) {
     res.setSamplerData((String)subItem);
   }
+ else   if (nodeName.equals(TAG_RESPONSE_FILE)) {
+    res.setResultFileName((String)subItem);
+  }
  else {
     return false;
   }

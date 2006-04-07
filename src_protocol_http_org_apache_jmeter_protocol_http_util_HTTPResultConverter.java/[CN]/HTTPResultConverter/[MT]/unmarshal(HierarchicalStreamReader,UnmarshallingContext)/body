@@ -9,5 +9,9 @@
     }
     reader.moveUp();
   }
+  String resultFileName=res.getResultFileName();
+  if (resultFileName.length() > 0 && res.getResponseData().length == 0) {
+    readFile(resultFileName,res);
+  }
   return res;
 }

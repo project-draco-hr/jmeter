@@ -1,0 +1,27 @@
+{
+  File in=null;
+  FileInputStream fis=null;
+  try {
+    in=new File(resultFileName);
+    fis=new FileInputStream(in);
+    ByteArrayOutputStream outstream=new ByteArrayOutputStream(res.getBytes());
+    byte[] buffer=new byte[4096];
+    int len;
+    while ((len=fis.read(buffer)) > 0) {
+      outstream.write(buffer,0,len);
+    }
+    outstream.close();
+    res.setResponseData(outstream.toByteArray());
+  }
+ catch (  FileNotFoundException e) {
+  }
+catch (  IOException e) {
+  }
+ finally {
+    try {
+      if (fis != null)       fis.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+}
