@@ -45,6 +45,10 @@
     text.append(CSV_URL);
     text.append(delim);
   }
+  if (saveConfig.saveFileName()) {
+    text.append(CSV_FILENAME);
+    text.append(delim);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delim.length();

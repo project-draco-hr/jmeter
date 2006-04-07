@@ -22,4 +22,10 @@
     }
     writer.endNode();
   }
+  if (save.saveFileName()) {
+    writer.startNode(TAG_RESPONSE_FILE);
+    writer.addAttribute(ATT_CLASS,JAVA_LANG_STRING);
+    writer.setValue(res.getResultFileName());
+    writer.endNode();
+  }
 }
