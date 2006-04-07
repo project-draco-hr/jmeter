@@ -1,6 +1,7 @@
 {
   if (SampleSaveConfiguration.class != definedIn)   return true;
-  if (fieldName.equals("url"))   return false;
-  if (fieldName.equals("bytes"))   return false;
+  if (fieldName.equals(NODE_BYTES))   return false;
+  if (fieldName.equals(NODE_URL))   return false;
+  if (fieldName.equals(NODE_FILENAME))   return false;
   return true;
 }

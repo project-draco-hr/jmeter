@@ -2,13 +2,18 @@
   super.marshal(obj,writer,context);
   SampleSaveConfiguration prop=(SampleSaveConfiguration)obj;
   if (prop.saveBytes()) {
-    writer.startNode("bytes");
-    writer.setValue("true");
+    writer.startNode(NODE_BYTES);
+    writer.setValue(TRUE);
     writer.endNode();
   }
   if (prop.saveUrl()) {
-    writer.startNode("url");
-    writer.setValue("true");
+    writer.startNode(NODE_URL);
+    writer.setValue(TRUE);
+    writer.endNode();
+  }
+  if (prop.saveFileName()) {
+    writer.startNode(NODE_FILENAME);
+    writer.setValue(TRUE);
     writer.endNode();
   }
 }
