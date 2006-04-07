@@ -51,6 +51,14 @@
     }
     text.append(delimiter);
   }
+  if (saveConfig.saveBytes()) {
+    text.append(sample.getBytes());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveUrl()) {
+    text.append(sample.getURL());
+    text.append(delimiter);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delimiter.length();

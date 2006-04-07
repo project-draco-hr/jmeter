@@ -13,7 +13,7 @@
     config.setValue(key.getStringValue());
     config.setAttribute("name",key.getName());
     config.setAttribute("propType",key.getClass().getName());
-    config.setAttribute(XML_SPACE,PRESERVE);
+    config.setAttribute(OldSaveService.XML_SPACE,OldSaveService.PRESERVE);
     stack.addLast(config);
   }
 }
