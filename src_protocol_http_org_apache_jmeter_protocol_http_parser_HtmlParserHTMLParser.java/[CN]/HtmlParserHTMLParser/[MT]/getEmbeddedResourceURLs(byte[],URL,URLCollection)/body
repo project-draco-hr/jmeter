@@ -82,6 +82,9 @@
         if (tagname.equalsIgnoreCase(TAG_EMBED)) {
           binUrlStr=tag.getAttribute(ATT_SRC);
         }
+ else {
+          binUrlStr=tag.getAttribute(ATT_BACKGROUND);
+        }
       }
       if (binUrlStr == null) {
         continue;
