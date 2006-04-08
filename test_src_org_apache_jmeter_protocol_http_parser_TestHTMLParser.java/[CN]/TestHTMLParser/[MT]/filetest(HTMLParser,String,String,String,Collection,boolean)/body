@@ -1,5 +1,6 @@
 {
-  String parserName=p.getClass().getName().substring("org.apache.jmeter.protocol.http.parser".length());
+  String parserName=p.getClass().getName().substring("org.apache.jmeter.protocol.http.parser.".length());
+  String fname=file.substring(file.indexOf("/") + 1);
   log.debug("file   " + file);
   File f=findTestFile(file);
   byte[] buffer=new byte[(int)f.length()];
@@ -31,13 +32,13 @@
   }
   while (expected.hasNext()) {
     Object next=expected.next();
-    assertTrue(file + "::" + parserName+ "::Expecting another result "+ next,result.hasNext());
+    assertTrue(fname + "::" + parserName+ "::Expecting another result "+ next,result.hasNext());
     try {
-      assertEquals(file + "::" + parserName+ "("+ file+ ")",next,((URL)result.next()).toString());
+      assertEquals(fname + "::" + parserName+ "(next)",next,((URL)result.next()).toString());
     }
  catch (    ClassCastException e) {
-      fail(file + "::" + parserName+ "::Expected URL, but got "+ e.toString());
+      fail(fname + "::" + parserName+ "::Expected URL, but got "+ e.toString());
     }
   }
-  assertFalse(file + "::" + parserName+ "::Should have reached the end of the results",result.hasNext());
+  assertFalse(fname + "::" + parserName+ "::Should have reached the end of the results",result.hasNext());
 }
