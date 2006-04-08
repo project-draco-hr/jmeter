@@ -1,3 +1,3 @@
 {
-  return f.isDirectory() || accept(f.getName().toLowerCase());
+  return (allowDirs && f.isDirectory()) || accept(f.getName().toLowerCase());
 }
