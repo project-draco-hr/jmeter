@@ -20,5 +20,8 @@
 catch (  IOException e1) {
     log.error("Bad url: " + getURLData(),e1);
   }
-  return super.sample(e);
+  SampleResult sampleResult=super.sample(e);
+  sampleResult.setSamplerData(getXmlData());
+  sampleResult.setDataType(SampleResult.TEXT);
+  return sampleResult;
 }
