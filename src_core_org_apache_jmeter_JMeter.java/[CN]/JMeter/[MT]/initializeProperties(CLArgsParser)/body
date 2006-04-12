@@ -18,27 +18,56 @@
     CLOption option=(CLOption)clOptions.get(i);
     String name=option.getArgument(0);
     String value=option.getArgument(1);
+    FileInputStream fis=null;
 switch (option.getDescriptor().getId()) {
 case PROPFILE2_OPT:
-      File f=new File(name);
+      try {
+        fis=new FileInputStream(new File(name));
+        jmeterProps.load(fis);
+      }
+ catch (      FileNotFoundException e) {
+        log.warn("Can't find additional property file: " + name,e);
+      }
+catch (      IOException e) {
+        log.warn("Error loading additional property file: " + name,e);
+      }
+ finally {
+        if (fis != null) {
+          try {
+            fis.close();
+          }
+ catch (          IOException e) {
+          }
+        }
+      }
+    break;
+case SYSTEM_PROPFILE:
+  log.info("Setting System propertyies from file: " + name);
+try {
+  fis=new FileInputStream(new File(name));
+  System.getProperties().load(fis);
+}
+ catch (IOException e) {
+  log.warn("Cannot find system property file " + e.getLocalizedMessage());
+}
+ finally {
+  if (fis != null) {
     try {
-      jmeterProps.load(new FileInputStream(f));
+      fis.close();
     }
- catch (    FileNotFoundException e) {
-      log.warn("Can't find additional property file: " + name,e);
+ catch (    IOException e) {
     }
-catch (    IOException e) {
-      log.warn("Error loading additional property file: " + name,e);
-    }
-  break;
+  }
+}
+break;
 case SYSTEM_PROPERTY:
 if (value.length() > 0) {
-  log.info("Setting System property: " + name + "="+ value);
-  System.getProperties().setProperty(name,value);
+log.info("Setting System property: " + name + "="+ value);
+System.getProperties().setProperty(name,value);
 }
  else {
-  log.warn("Removing System property: " + name);
-  System.getProperties().remove(name);
+log.warn("Removing System property: " + name);
+System.getProperties().remove(name);
 }
 break;
 case JMETER_PROPERTY:
