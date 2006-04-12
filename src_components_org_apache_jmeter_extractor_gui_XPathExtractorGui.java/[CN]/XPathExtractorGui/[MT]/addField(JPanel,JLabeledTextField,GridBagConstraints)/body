@@ -3,5 +3,6 @@
   panel.add((Component)item.get(0),gbc.clone());
   gbc.gridx++;
   gbc.weightx=1;
+  gbc.fill=GridBagConstraints.HORIZONTAL;
   panel.add((Component)item.get(1),gbc.clone());
 }
