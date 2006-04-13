@@ -10,6 +10,9 @@
   int port=uri.getPort();
   HostConfiguration hc=new HostConfiguration();
   hc.setHost(host,port,protocol);
+  if (localAddress != null) {
+    hc.setLocalAddress(localAddress);
+  }
   Map map=(Map)httpClients.get();
   HttpClient httpClient=(HttpClient)map.get(hc);
   if (httpClient == null) {
