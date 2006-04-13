@@ -7,10 +7,10 @@
       setDataEncoding(de.substring(cset + cs.length()));
     }
     if (ct.startsWith("image/")) {
-      setDataType(HTTPSampleResult.BINARY);
+      setDataType(BINARY);
     }
  else {
-      setDataType(HTTPSampleResult.TEXT);
+      setDataType(TEXT);
     }
   }
 }
