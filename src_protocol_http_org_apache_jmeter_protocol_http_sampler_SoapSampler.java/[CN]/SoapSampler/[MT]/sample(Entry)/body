@@ -1,4 +1,6 @@
 {
+  HTTPSampleResult sampleResult=null;
+  Exception ex=null;
   try {
     URL url=new URL(getURLData());
     setDomain(url.getHost());
@@ -13,15 +15,25 @@
     }
     URLConnection conn=url.openConnection();
     setPostHeaders(conn);
+    sampleResult=(HTTPSampleResult)super.sample(e);
   }
  catch (  MalformedURLException e1) {
+    ex=e1;
     log.error("Bad url: " + getURLData(),e1);
   }
 catch (  IOException e1) {
+    ex=e1;
     log.error("Bad url: " + getURLData(),e1);
   }
-  SampleResult sampleResult=super.sample(e);
+  if (ex != null) {
+    if (sampleResult == null) {
+      sampleResult=new HTTPSampleResult();
+      sampleResult.setSampleLabel(getName());
+    }
+    sampleResult.setResponseCode("000");
+    sampleResult.setResponseMessage(ex.getLocalizedMessage());
+  }
   sampleResult.setSamplerData(getXmlData());
-  sampleResult.setDataType(SampleResult.TEXT);
+  sampleResult.setQueryString(getXmlData());
   return sampleResult;
 }
