@@ -82,7 +82,7 @@
       result.setResponseHeaders("error");
     }
     result.setSamplerData(fileContents);
-    result.setDataEncoding(st.getResponseSOAPContext().getContentType());
+    result.setEncodingAndType(st.getResponseSOAPContext().getContentType());
     if (br != null) {
       br.close();
     }
