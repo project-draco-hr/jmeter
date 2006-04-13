@@ -1,8 +1,10 @@
 {
   SampleResult result=new SampleResult();
+  result.setSuccessful(false);
+  result.setResponseCode("000");
+  result.setSampleLabel(getName());
   try {
     result.setURL(this.getUrl());
-    result.setSampleLabel(getName());
     org.w3c.dom.Element rdoc=createDocument();
     if (rdoc == null)     throw new SOAPException("Could not create document",null);
     Envelope msgEnv=Envelope.unmarshall(rdoc);
@@ -77,7 +79,6 @@
       result.sampleEnd();
       result.setSuccessful(false);
       result.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
-      result.setResponseCode("000");
       result.setResponseHeaders("error");
     }
     result.setSamplerData(fileContents);
@@ -85,21 +86,31 @@
     if (br != null) {
       br.close();
     }
-    msg=null;
-    st=null;
   }
- catch (  SOAPException exception) {
-    log.warn(exception.getMessage());
-    result.setSuccessful(false);
+ catch (  IllegalArgumentException exception) {
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
+  }
+catch (  SOAPException exception) {
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
   }
 catch (  MalformedURLException exception) {
-    log.warn(exception.getMessage());
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
   }
 catch (  IOException exception) {
-    log.warn(exception.getMessage());
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
   }
 catch (  MessagingException exception) {
-    log.warn(exception.getMessage());
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
   }
   return result;
 }
