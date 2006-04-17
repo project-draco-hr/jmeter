@@ -4,7 +4,7 @@
     System.setProperty(SSL_TRUST_STORE,fileName);
     try {
       this.trustStore=KeyStore.getInstance("JKS");
-      log.info("KeyStore Type: JKS");
+      log.info("TrustStore Type: JKS");
     }
  catch (    Exception e) {
       JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),e,JMeterUtils.getResString("ssl_error_title"),JOptionPane.ERROR_MESSAGE);
