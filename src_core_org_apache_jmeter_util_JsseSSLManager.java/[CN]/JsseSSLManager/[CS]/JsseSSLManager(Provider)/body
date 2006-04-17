@@ -1,12 +1,6 @@
 {
   log.debug("ssl Provider =  " + provider);
   setProvider(provider);
-  try {
-    Class iaikProvider=SSLManager.class.getClassLoader().loadClass("iaik.security.jsse.provider.IAIKJSSEProvider");
-    setProvider((Provider)iaikProvider.newInstance());
-  }
- catch (  Exception e) {
-  }
   if (null == this.rand) {
     this.rand=new SecureRandom();
   }
