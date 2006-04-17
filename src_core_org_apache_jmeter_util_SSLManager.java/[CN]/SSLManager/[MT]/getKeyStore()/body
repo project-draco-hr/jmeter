@@ -33,10 +33,12 @@ synchronized (this) {
       password=this.defaultpw;
       System.setProperty(KEY_STORE_PASSWORD,password);
     }
+    FileInputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
       if (initStore.exists()) {
-        this.keyStore.load(new FileInputStream(initStore),password);
+        fileInputStream=new FileInputStream(initStore);
+        this.keyStore.load(fileInputStream,password);
       }
  else {
         this.keyStore.load(null,password);
@@ -44,6 +46,9 @@ synchronized (this) {
     }
  catch (    Exception e) {
       log.error("Couldn't load keystore",e);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(fileInputStream);
     }
     log.info("JmeterKeyStore Location: " + fileName);
     log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());
