@@ -45,8 +45,10 @@
       responseData=responseData + "<operation><opertype>compare</opertype>";
       responseData=responseData + "<comparedn>" + getPropertyAsString(COMPAREDN)+ "</comparedn>";
       responseData=responseData + "<comparefilter>" + getPropertyAsString(COMPAREFILT)+ "</comparefilter></operation>";
-      compareOp(temp_client,dirContext,res);
-      if (temp_client.compareAnswer.hasMore()) {
+      res.sampleStart();
+      NamingEnumeration cmp=temp_client.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
+      res.sampleEnd();
+      if (cmp.hasMore()) {
       }
  else {
         res.setResponseCode("49");
@@ -90,9 +92,11 @@
       responseData=responseData + "<countlimit>" + getPropertyAsString(COUNTLIM)+ "</countlimit>";
       responseData=responseData + "<timelimit>" + getPropertyAsString(TIMELIM)+ "</timelimit>";
       responseData=responseData + "</operation><searchresult>";
-      searchTest(temp_client,dirContext,res);
-      while (temp_client.answer.hasMore()) {
-        SearchResult sr=(SearchResult)temp_client.answer.next();
+      res.sampleStart();
+      NamingEnumeration srch=temp_client.searchTest(dirContext,getPropertyAsString(SEARCHBASE),getPropertyAsString(SEARCHFILTER),getPropertyAsInt(SCOPE),getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),getPropertyAsBoolean(RETOBJ),getPropertyAsBoolean(DEREF));
+      res.sampleEnd();
+      while (srch.hasMore()) {
+        SearchResult sr=(SearchResult)srch.next();
         responseData=responseData + "<dn>" + sr.getName()+ ","+ getPropertyAsString(SEARCHBASE)+ ","+ getRootdn()+ "</dn>";
         responseData=responseData + "<returnedattr>" + sr.getAttributes().size()+ "</returnedattr>";
         NamingEnumeration attrlist=sr.getAttributes().getIDs();
