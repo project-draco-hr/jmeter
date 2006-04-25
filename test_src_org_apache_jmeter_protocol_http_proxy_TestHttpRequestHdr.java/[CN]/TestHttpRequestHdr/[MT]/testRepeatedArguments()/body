@@ -3,5 +3,5 @@
   HttpRequestHdr req=new HttpRequestHdr();
   req.parse(new java.io.ByteArrayInputStream(TEST_REQ.getBytes()));
   HTTPSamplerBase s=req.getSampler();
-  assertEquals(s.getArguments().getArguments().size(),13);
+  assertEquals(13,s.getArguments().getArguments().size());
 }
