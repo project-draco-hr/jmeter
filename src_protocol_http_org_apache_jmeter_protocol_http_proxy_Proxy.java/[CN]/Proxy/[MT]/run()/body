@@ -2,7 +2,7 @@
   HttpRequestHdr request=new HttpRequestHdr();
   SampleResult result=null;
   HeaderManager headers=null;
-  HTTPSamplerBase sampler=new HTTPSampler();
+  HTTPSamplerBase sampler=null;
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     sampler=request.getSampler();
@@ -21,6 +21,9 @@ catch (  Exception e) {
     writeErrorToClient(HttpReplyHdr.formTimeout());
   }
  finally {
+    if (sampler == null) {
+      sampler=new HTTPSampler();
+    }
     target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
     try {
       clientSocket.close();
