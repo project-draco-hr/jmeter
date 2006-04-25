@@ -1,6 +1,9 @@
 {
   JMeterContext ctx=getThreadContext();
   Sampler sampler=ctx.getCurrentSampler();
+  if (!(sampler instanceof HTTPSamplerBase)) {
+    return;
+  }
   SampleResult responseText=ctx.getPreviousResult();
   if (responseText == null) {
     return;
