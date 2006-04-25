@@ -2,11 +2,11 @@
   MultipartUrlConfig urlConfig=null;
   HTTPSamplerBase sampler=new HTTPSampler();
   sampler.setDomain(serverName());
-  log.debug("Proxy: setting server: " + sampler.getDomain());
+  if (log.isDebugEnabled())   log.debug("Proxy: setting server: " + sampler.getDomain());
   sampler.setMethod(method);
   log.debug("Proxy: method server: " + sampler.getMethod());
   sampler.setPath(serverUrl());
-  log.debug("Proxy: setting path: " + sampler.getPath());
+  if (log.isDebugEnabled())   log.debug("Proxy: setting path: " + sampler.getPath());
   if (numberRequests) {
     requestNumber++;
     sampler.setName(requestNumber + " " + sampler.getPath());
@@ -15,19 +15,19 @@
     sampler.setName(sampler.getPath());
   }
   sampler.setPort(serverPort());
-  log.debug("Proxy: setting port: " + sampler.getPort());
+  if (log.isDebugEnabled())   log.debug("Proxy: setting port: " + sampler.getPort());
   if (url.indexOf("//") > -1) {
     String protocol=url.substring(0,url.indexOf(":"));
-    log.debug("Proxy: setting protocol to : " + protocol);
+    if (log.isDebugEnabled())     log.debug("Proxy: setting protocol to : " + protocol);
     sampler.setProtocol(protocol);
   }
  else   if (sampler.getPort() == 443) {
-    sampler.setProtocol("https");
-    log.debug("Proxy: setting protocol to https");
+    sampler.setProtocol(HTTPS);
+    if (log.isDebugEnabled())     log.debug("Proxy: setting protocol to https");
   }
  else {
-    log.debug("Proxy setting default protocol to: http");
-    sampler.setProtocol("http");
+    if (log.isDebugEnabled())     log.debug("Proxy setting default protocol to: http");
+    sampler.setProtocol(HTTP);
   }
   if ((urlConfig=isMultipart(getContentType())) != null) {
     urlConfig.parseArguments(postData);
@@ -39,6 +39,6 @@
  else {
     sampler.parseArguments(postData);
   }
-  log.debug("sampler path = " + sampler.getPath());
+  if (log.isDebugEnabled())   log.debug("sampler path = " + sampler.getPath());
   return sampler;
 }

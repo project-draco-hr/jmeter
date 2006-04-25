@@ -6,10 +6,11 @@
     return 0;
   }
  else {
-    String name=token.trim().substring(0,token.trim().length() - 1);
+    String trimmed=token.trim();
+    String name=trimmed.substring(0,trimmed.length() - 1);
     String value=getRemainder(tz);
     headers.put(name.toLowerCase(),new Header(name,value));
-    if (name.equalsIgnoreCase("content-length")) {
+    if (name.equalsIgnoreCase(CONTENT_LENGTH)) {
       return Integer.parseInt(value);
     }
   }

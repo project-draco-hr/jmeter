@@ -20,7 +20,9 @@
  else {
         dataLength=Math.max(parseLine(line.toString()),dataLength);
       }
-      log.debug("Client Request Line: " + line.toString());
+      if (log.isDebugEnabled()) {
+        log.debug("Client Request Line: " + line.toString());
+      }
       line.reset();
     }
  else     if (!inHeaders) {
@@ -28,7 +30,9 @@
     }
   }
   postData=line.toString().trim();
-  log.debug("postData: " + postData);
-  log.debug("Request: " + clientRequest.toString());
+  if (log.isDebugEnabled()) {
+    log.debug("postData: " + postData);
+    log.debug("Request: " + clientRequest.toString());
+  }
   return clientRequest.toByteArray();
 }
