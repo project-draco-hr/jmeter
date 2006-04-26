@@ -11,7 +11,7 @@
     }
   }
  catch (  IOException e) {
-{
+    if (conn.getResponseCode() != 404) {
       log.error("readResponse: " + e.toString());
       logError=true;
     }
