@@ -17,7 +17,5 @@
   if (getPort() == UNSPECIFIED_PORT || getPort() == DEFAULT_HTTP_PORT) {
     return new URL(getProtocol(),getDomain(),pathAndQuery.toString());
   }
- else {
-    return new URL(getProtocol(),getPropertyAsString(DOMAIN),getPort(),pathAndQuery.toString());
-  }
+  return new URL(getProtocol(),getPropertyAsString(DOMAIN),getPort(),pathAndQuery.toString());
 }
