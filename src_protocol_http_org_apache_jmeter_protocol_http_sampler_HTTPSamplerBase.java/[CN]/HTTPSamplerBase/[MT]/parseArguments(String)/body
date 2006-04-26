@@ -17,7 +17,9 @@
       value="";
     }
     if (name.length() > 0) {
-      addEncodedArgument(name,value,metaData);
+      HTTPArgument arg=new HTTPArgument(name,value,metaData,false);
+      arg.setAlwaysEncoded(false);
+      this.getArguments().addArgument(arg);
     }
   }
 }
