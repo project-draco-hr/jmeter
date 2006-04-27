@@ -1,5 +1,5 @@
 {
-  TestSuite allsuites=new TestSuite();
+  TestSuite allsuites=new TestSuite("Function PackageTest");
   TestSuite bsh=new TestSuite("BeanShell");
   bsh.addTest(new PackageTest("BSH1"));
   allsuites.addTest(bsh);

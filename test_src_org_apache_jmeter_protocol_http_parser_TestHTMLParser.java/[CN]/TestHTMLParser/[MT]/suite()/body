@@ -1,5 +1,5 @@
 {
-  TestSuite suite=new TestSuite();
+  TestSuite suite=new TestSuite("TestHTMLParser");
   suite.addTest(new TestHTMLParser("testDefaultParser"));
   suite.addTest(new TestHTMLParser("testParserDefault"));
   suite.addTest(new TestHTMLParser("testParserMissing"));
