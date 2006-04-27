@@ -45,5 +45,13 @@
       }
     }
   }
+  if (shouldCache()) {
+    if (value == null || value.length() == 0) {
+      value=savedValue;
+    }
+ else {
+      savedValue=value;
+    }
+  }
   modify((HTTPSamplerBase)sampler,value);
 }

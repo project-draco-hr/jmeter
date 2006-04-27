@@ -1,10 +1,10 @@
 {
   if (isPathExtension()) {
     if (isPathExtensionNoEquals()) {
-      sampler.setPath(sampler.getPath() + ";" + getArgumentName()+ value);
+      sampler.setPath(sampler.getPath() + SEMI_COLON + getArgumentName()+ value);
     }
  else {
-      sampler.setPath(sampler.getPath() + ";" + getArgumentName()+ "="+ value);
+      sampler.setPath(sampler.getPath() + SEMI_COLON + getArgumentName()+ "="+ value);
     }
   }
  else {

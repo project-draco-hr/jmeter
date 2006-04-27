@@ -1,7 +1,9 @@
 {
-  argumentName.setText(((URLRewritingModifier)el).getArgumentName());
-  pathExt.setSelected(((URLRewritingModifier)el).isPathExtension());
-  pathExtNoEquals.setSelected(((URLRewritingModifier)el).isPathExtensionNoEquals());
-  pathExtNoQuestionmark.setSelected(((URLRewritingModifier)el).isPathExtensionNoQuestionmark());
+  URLRewritingModifier rewritingModifier=((URLRewritingModifier)el);
+  argumentName.setText(rewritingModifier.getArgumentName());
+  pathExt.setSelected(rewritingModifier.isPathExtension());
+  pathExtNoEquals.setSelected(rewritingModifier.isPathExtensionNoEquals());
+  pathExtNoQuestionmark.setSelected(rewritingModifier.isPathExtensionNoQuestionmark());
+  shouldCache.setSelected(rewritingModifier.shouldCache());
   super.configure(el);
 }

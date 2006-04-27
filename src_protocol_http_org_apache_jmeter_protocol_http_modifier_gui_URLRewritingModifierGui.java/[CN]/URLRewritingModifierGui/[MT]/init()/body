@@ -5,11 +5,14 @@
   VerticalPanel mainPanel=new VerticalPanel();
   argumentName=new JLabeledTextField(JMeterUtils.getResString("session_argument_name"),10);
   mainPanel.add(argumentName);
-  pathExt=new JCheckBox(JMeterUtils.getResString("Path_Extension_choice"));
+  pathExt=new JCheckBox(JMeterUtils.getResString("path_extension_choice"));
   mainPanel.add(pathExt);
   pathExtNoEquals=new JCheckBox(JMeterUtils.getResString("path_extension_dont_use_equals"));
   mainPanel.add(pathExtNoEquals);
   pathExtNoQuestionmark=new JCheckBox(JMeterUtils.getResString("path_extension_dont_use_questionmark"));
   mainPanel.add(pathExtNoQuestionmark);
+  shouldCache=new JCheckBox(JMeterUtils.getResString("cache_session_id"));
+  shouldCache.setSelected(true);
+  mainPanel.add(shouldCache);
   add(mainPanel,BorderLayout.CENTER);
 }
