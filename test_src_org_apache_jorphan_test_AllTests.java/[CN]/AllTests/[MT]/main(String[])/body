@@ -36,7 +36,8 @@
   System.out.println("------------");
   System.out.println("Creating test suite");
   TestSuite suite=suite(args[0]);
-  System.out.println("Starting test run");
+  int countTestCases=suite.countTestCases();
+  System.out.println("Starting test run, test count = " + countTestCases);
   TestRunner.run(suite);
   System.out.println("+++++++++++");
   System.out.println("------------");
