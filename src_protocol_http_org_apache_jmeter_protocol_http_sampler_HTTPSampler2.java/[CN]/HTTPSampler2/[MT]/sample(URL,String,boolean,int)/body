@@ -41,6 +41,9 @@
       res.setQueryString(getQueryString());
       sendPostData(httpMethod);
     }
+ else     if (method.equals(PUT)) {
+      setPutHeaders((PutMethod)httpMethod);
+    }
     int statusCode=client.executeMethod(httpMethod);
     InputStream instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {

@@ -1,0 +1,7 @@
+{
+  String filename=getFilename();
+  if ((filename != null) && (filename.trim().length() > 0)) {
+    RequestEntity requestEntity=new InputStreamRequestEntity(new FileInputStream(filename),getMimetype());
+    put.setRequestEntity(requestEntity);
+  }
+}
