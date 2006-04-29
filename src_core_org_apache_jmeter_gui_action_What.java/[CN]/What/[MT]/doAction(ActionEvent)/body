@@ -1,0 +1,7 @@
+{
+  JMeterTreeNode node=GuiPackage.getInstance().getTreeListener().getCurrentNode();
+  TestElement te=(TestElement)node.getUserObject();
+  String guiClassName=te.getPropertyAsString(TestElement.GUI_CLASS);
+  System.out.println(te.getClass().getName());
+  System.out.println(guiClassName);
+}
