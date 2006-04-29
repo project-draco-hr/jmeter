@@ -4,14 +4,14 @@
   add(makeTitlePanel(),BorderLayout.NORTH);
   Box mainPanel=Box.createVerticalBox();
   VerticalPanel urlPanel=new VerticalPanel();
-  protocol=new JLabeledTextField(JMeterUtils.getResString("url_config_protocol"));
-  urlPanel.add(protocol);
+  protocol=new JLabeledTextField(JMeterUtils.getResString("protocol"));
   domain=new JLabeledTextField(JMeterUtils.getResString("web_server_domain"));
-  urlPanel.add(domain);
   path=new JLabeledTextField(JMeterUtils.getResString("path"));
-  urlPanel.add(path);
   port=new JLabeledTextField(JMeterUtils.getResString("web_server_port"));
+  urlPanel.add(domain);
   urlPanel.add(port);
+  urlPanel.add(protocol);
+  urlPanel.add(path);
   mainPanel.add(urlPanel);
   argPanel=new HTTPArgumentsPanel();
   mainPanel.add(argPanel);
