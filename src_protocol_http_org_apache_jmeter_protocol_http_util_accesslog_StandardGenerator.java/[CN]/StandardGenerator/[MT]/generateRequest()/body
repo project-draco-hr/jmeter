@@ -1,6 +1,6 @@
 {
   try {
-    SAMPLE=new HTTPSampler();
+    SAMPLE=HTTPSamplerFactory.newInstance();
   }
  catch (  NullPointerException e) {
     e.printStackTrace();
