@@ -6,6 +6,12 @@
   if (method.equals(POST)) {
     httpMethod=new PostMethod(urlStr);
   }
+ else   if (method.equals(PUT)) {
+    httpMethod=new PutMethod(urlStr);
+  }
+ else   if (method.equals(HEAD)) {
+    httpMethod=new HeadMethod(urlStr);
+  }
  else {
     httpMethod=new GetMethod(urlStr);
   }
@@ -28,25 +34,26 @@
     }
     int statusCode=client.executeMethod(httpMethod);
     InputStream instream=httpMethod.getResponseBodyAsStream();
-    if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING))) {
-      instream=new GZIPInputStream(instream);
-    }
-    ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
-    byte[] buffer=new byte[4096];
-    int len;
-    boolean first=true;
-    while ((len=instream.read(buffer)) > 0) {
-      if (first) {
-        res.latencyEnd();
-        first=false;
+    if (instream != null) {
+      if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING))) {
+        instream=new GZIPInputStream(instream);
       }
-      outstream.write(buffer,0,len);
+      ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
+      byte[] buffer=new byte[4096];
+      int len;
+      boolean first=true;
+      while ((len=instream.read(buffer)) > 0) {
+        if (first) {
+          res.latencyEnd();
+          first=false;
+        }
+        outstream.write(buffer,0,len);
+      }
+      res.setResponseData(outstream.toByteArray());
+      outstream.close();
     }
-    outstream.close();
-    byte[] responseData=outstream.toByteArray();
     res.sampleEnd();
     res.setSampleLabel(httpMethod.getURI().toString());
-    res.setResponseData(responseData);
     res.setResponseCode(Integer.toString(statusCode));
     res.setSuccessful(isSuccessCode(statusCode));
     res.setResponseMessage(httpMethod.getStatusText());
