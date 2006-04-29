@@ -22,7 +22,7 @@ catch (  Exception e) {
   }
  finally {
     if (sampler == null) {
-      sampler=new HTTPSampler();
+      sampler=HTTPSamplerFactory.newInstance();
     }
     target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
     try {
