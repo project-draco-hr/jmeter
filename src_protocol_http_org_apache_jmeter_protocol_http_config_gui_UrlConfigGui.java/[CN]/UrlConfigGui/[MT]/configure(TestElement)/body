@@ -10,14 +10,7 @@
     port.setText(portString);
   }
   protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
-  if ("POST".equals(el.getPropertyAsString(HTTPSamplerBase.METHOD))) {
-    post.setSelected(true);
-    get.setSelected(false);
-  }
- else {
-    get.setSelected(true);
-    post.setSelected(false);
-  }
+  method.setText(el.getPropertyAsString(HTTPSamplerBase.METHOD));
   path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
   followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
   autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
