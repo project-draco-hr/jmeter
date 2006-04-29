@@ -7,6 +7,7 @@
     }
     config.setIncrement(incrField.getText());
     config.setVarName(varNameField.getText());
+    config.setFormat(formatField.getText());
     config.setIsPerUser(perUserField.isSelected());
   }
   super.configureTestElement(c);

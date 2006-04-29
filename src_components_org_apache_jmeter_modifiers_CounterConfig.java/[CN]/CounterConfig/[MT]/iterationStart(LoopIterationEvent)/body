@@ -2,29 +2,19 @@
   JMeterVariables variables=JMeterContextService.getContext().getVariables();
   long start=getStart(), end=getEnd(), increment=getIncrement();
   if (!isPerUser()) {
-    if (globalCounter == -1 || globalCounter > end) {
+    if (globalCounter == Long.MIN_VALUE || globalCounter > end) {
       globalCounter=start;
     }
-    variables.put(getVarName(),Long.toString(globalCounter));
+    variables.put(getVarName(),formatNumber(globalCounter));
     globalCounter+=increment;
   }
  else {
-    String value=variables.get(getVarName());
-    if (value == null) {
-      variables.put(getVarName(),Long.toString(start));
+    long current=((Long)perTheadNumber.get()).longValue();
+    variables.put(getVarName(),formatNumber(current));
+    current+=increment;
+    if (current > end) {
+      current=start;
     }
- else {
-      try {
-        long current=Long.parseLong(value);
-        current+=increment;
-        if (current > end) {
-          current=start;
-        }
-        variables.put(getVarName(),Long.toString(current));
-      }
- catch (      NumberFormatException e) {
-        log.info("Bad number in Counter config",e);
-      }
-    }
+    perTheadNumber.set(new Long(current));
   }
 }

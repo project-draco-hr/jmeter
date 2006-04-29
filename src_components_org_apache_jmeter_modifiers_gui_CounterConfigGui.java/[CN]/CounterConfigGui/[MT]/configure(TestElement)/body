@@ -4,6 +4,7 @@
   startField.setText(config.getPropertyAsString(CounterConfig.START));
   endField.setText(config.getPropertyAsString(CounterConfig.END));
   incrField.setText(config.getPropertyAsString(CounterConfig.INCREMENT));
+  formatField.setText(config.getFormat());
   varNameField.setText(config.getVarName());
   perUserField.setSelected(config.isPerUser());
 }

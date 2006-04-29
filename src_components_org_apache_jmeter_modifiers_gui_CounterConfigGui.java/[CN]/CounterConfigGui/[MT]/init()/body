@@ -5,11 +5,13 @@
   incrField=new JLabeledTextField(JMeterUtils.getResString("increment"));
   endField=new JLabeledTextField(JMeterUtils.getResString("max"));
   varNameField=new JLabeledTextField(JMeterUtils.getResString("var_name"));
+  formatField=new JLabeledTextField(JMeterUtils.getResString("format"));
   perUserField=new JCheckBox(JMeterUtils.getResString("counter_per_user"));
   add(makeTitlePanel());
   add(startField);
   add(incrField);
   add(endField);
+  add(formatField);
   add(varNameField);
   add(perUserField);
 }
