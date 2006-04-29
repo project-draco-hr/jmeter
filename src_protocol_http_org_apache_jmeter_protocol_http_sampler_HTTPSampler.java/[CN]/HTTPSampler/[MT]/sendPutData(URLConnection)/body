@@ -1,0 +1,15 @@
+{
+  String filename=getFilename();
+  if ((filename != null) && (filename.trim().length() > 0)) {
+    OutputStream out=conn.getOutputStream();
+    byte[] buf=new byte[1024];
+    int read;
+    InputStream in=new BufferedInputStream(new FileInputStream(filename));
+    while ((read=in.read(buf)) > 0) {
+      out.write(buf,0,read);
+    }
+    in.close();
+    out.flush();
+    out.close();
+  }
+}

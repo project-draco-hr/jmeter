@@ -41,5 +41,8 @@
   if (method.equals(POST)) {
     setPostHeaders(conn);
   }
+ else   if (method.equals(PUT)) {
+    setPutHeaders(conn);
+  }
   return conn;
 }
