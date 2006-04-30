@@ -10,4 +10,8 @@
   if (save.saveDataType())   writer.addAttribute(ATT_DATA_TYPE,ConversionHelp.encode(res.getDataType()));
   if (save.saveEncoding())   writer.addAttribute(ATT_DATA_ENCODING,ConversionHelp.encode(res.getDataEncoding()));
   if (save.saveBytes())   writer.addAttribute(ATT_BYTES,String.valueOf(res.getBytes()));
+  if (save.saveThreadCounts()) {
+    writer.addAttribute(ATT_GRP_THRDS,String.valueOf(JMeterContextService.getContext().getThreadGroup().getNumberOfThreads()));
+    writer.addAttribute(ATT_ALL_THRDS,String.valueOf(JMeterContextService.getNumberOfThreads()));
+  }
 }

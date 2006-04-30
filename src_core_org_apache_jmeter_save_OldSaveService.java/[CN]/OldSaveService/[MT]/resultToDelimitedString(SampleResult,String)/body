@@ -55,6 +55,12 @@
     text.append(sample.getBytes());
     text.append(delimiter);
   }
+  if (saveConfig.saveThreadCounts()) {
+    text.append(JMeterContextService.getContext().getThreadGroup().getNumberOfThreads());
+    text.append(delimiter);
+    text.append(JMeterContextService.getNumberOfThreads());
+    text.append(delimiter);
+  }
   if (saveConfig.saveUrl()) {
     text.append(sample.getURL());
     text.append(delimiter);

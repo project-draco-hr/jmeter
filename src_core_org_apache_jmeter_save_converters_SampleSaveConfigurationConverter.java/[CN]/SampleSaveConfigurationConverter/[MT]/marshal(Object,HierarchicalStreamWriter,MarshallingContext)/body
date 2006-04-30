@@ -1,19 +1,8 @@
 {
   super.marshal(obj,writer,context);
   SampleSaveConfiguration prop=(SampleSaveConfiguration)obj;
-  if (prop.saveBytes()) {
-    writer.startNode(NODE_BYTES);
-    writer.setValue(TRUE);
-    writer.endNode();
-  }
-  if (prop.saveUrl()) {
-    writer.startNode(NODE_URL);
-    writer.setValue(TRUE);
-    writer.endNode();
-  }
-  if (prop.saveFileName()) {
-    writer.startNode(NODE_FILENAME);
-    writer.setValue(TRUE);
-    writer.endNode();
-  }
+  createNode(writer,prop.saveBytes(),NODE_BYTES);
+  createNode(writer,prop.saveUrl(),NODE_URL);
+  createNode(writer,prop.saveFileName(),NODE_FILENAME);
+  createNode(writer,prop.saveThreadCounts(),NODE_THREAD_COUNT);
 }
