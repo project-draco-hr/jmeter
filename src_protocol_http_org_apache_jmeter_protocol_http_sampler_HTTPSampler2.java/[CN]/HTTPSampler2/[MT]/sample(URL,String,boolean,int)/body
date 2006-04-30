@@ -39,7 +39,7 @@
     client=setupConnection(url,httpMethod,res);
     if (method.equals(POST)) {
       res.setQueryString(getQueryString());
-      sendPostData(httpMethod);
+      sendPostData((PostMethod)httpMethod);
     }
  else     if (method.equals(PUT)) {
       setPutHeaders((PutMethod)httpMethod);
