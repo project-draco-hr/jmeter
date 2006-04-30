@@ -5,9 +5,9 @@
   checkVersion(IntegerPropertyConverter.class,"332820");
   checkVersion(LongPropertyConverter.class,"332820");
   checkVersion(MultiPropertyConverter.class,"332820");
-  checkVersion(SampleResultConverter.class,"392452");
+  checkVersion(SampleResultConverter.class,"398321");
   try {
-    checkVersion(Class.forName("org.apache.jmeter.protocol.http.util.HTTPResultConverter"),"392445");
+    checkVersion(Class.forName("org.apache.jmeter.protocol.http.util.HTTPResultConverter"),"398320");
   }
  catch (  ClassNotFoundException e) {
     versionsOK=false;
