@@ -4,6 +4,8 @@
     writeString(writer,TAG_METHOD,res.getHTTPMethod());
     writeString(writer,TAG_QUERY_STRING,res.getQueryString());
     writeString(writer,TAG_REDIRECT_LOCATION,res.getRedirectLocation());
+  }
+  if (save.saveUrl()) {
     writeItem(res.getURL(),context,writer);
   }
 }
