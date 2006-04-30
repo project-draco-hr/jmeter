@@ -14,7 +14,8 @@
     log.info("os.name=" + System.getProperty("os.name"));
     log.info("os.arch=" + System.getProperty("os.arch"));
     log.info("os.version=" + System.getProperty("os.version"));
-    log.info("Locale=" + Locale.getDefault().getDisplayName());
+    log.info("Default Locale=" + Locale.getDefault().getDisplayName());
+    log.info("JMeter  Locale=" + JMeterUtils.getLocale().getDisplayName());
     log.info(JMeterUtils.getJMeterCopyright());
     log.info("JMeterHome=" + JMeterUtils.getJMeterHome());
     updateClassLoader();
