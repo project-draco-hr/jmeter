@@ -2,21 +2,26 @@
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
   res.setSampleLabel(getName());
+  res.setSamplerData(getLabel());
   res.sampleStart();
+  FtpClient ftp=new FtpClient();
   try {
-    FtpClient ftp=new FtpClient();
     ftp.connect(getServer(),getUsername(),getPassword());
     ftp.setPassive(true);
     String s=ftp.get(getFilename());
     res.setResponseData(s.getBytes());
+    res.setResponseCodeOK();
+    res.setResponseMessageOK();
     ftp.disconnect();
     isSuccessful=true;
   }
- catch (  java.net.ConnectException cex) {
-    res.setResponseData(cex.toString().getBytes());
+ catch (  java.net.ConnectException ex) {
+    res.setResponseData(ex.toString().getBytes());
+    res.setResponseMessage(ex.getLocalizedMessage());
   }
 catch (  Exception ex) {
     res.setResponseData(ex.toString().getBytes());
+    res.setResponseMessage(ex.getLocalizedMessage());
   }
   res.sampleEnd();
   res.setSuccessful(isSuccessful);
