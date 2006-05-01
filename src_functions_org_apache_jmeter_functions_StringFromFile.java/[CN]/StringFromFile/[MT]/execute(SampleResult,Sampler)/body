@@ -1,5 +1,4 @@
 {
-  JMeterVariables vars=getVariables();
   if (values.length >= PARAM_NAME) {
     myName=((CompoundVariable)values[PARAM_NAME - 1]).execute();
   }
@@ -42,6 +41,7 @@
     }
   }
   if (myName.length() > 0) {
+    JMeterVariables vars=getVariables();
     vars.put(myName,myValue);
   }
   if (log.isDebugEnabled()) {
