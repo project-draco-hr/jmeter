@@ -23,6 +23,11 @@
       String jcp=System.getProperty("java.class.path");
       log.debug(jcp);
     }
+    long now=System.currentTimeMillis();
+    JMeterUtils.setProperty("START.MS",Long.toString(now));
+    Date today=new Date(now);
+    JMeterUtils.setProperty("START.YMD",new SimpleDateFormat("yyyyMMdd").format(today));
+    JMeterUtils.setProperty("START.HMS",new SimpleDateFormat("HHmmss").format(today));
     if (parser.getArgumentById(VERSION_OPT) != null) {
       System.out.println(JMeterUtils.getJMeterCopyright());
       System.out.println("Version " + JMeterUtils.getJMeterVersion());
