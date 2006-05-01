@@ -27,8 +27,9 @@
   Collection col=testListeners.getSearchResults();
   col.addAll(testList);
   testList=null;
-  notifyTestListenersOfStart();
+  if (!startListenersLater)   notifyTestListenersOfStart();
   getTestTree().traverse(new TurnElementsOn());
+  if (startListenersLater)   notifyTestListenersOfStart();
   List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));
   removeThreadGroups(testLevelElements);
   SearchByClass searcher=new SearchByClass(ThreadGroup.class);
