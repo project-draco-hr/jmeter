@@ -1,0 +1,6 @@
+{
+  params.add(new CompoundVariable("'Fixed text'"));
+  variable.setParameters(params);
+  value=variable.execute(result,null);
+  assertEquals("Fixed text",value);
+}
