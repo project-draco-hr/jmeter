@@ -32,7 +32,7 @@
   params.setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
   params.setVersion(JMeterUtils.getPropDefault("httpclient.version","1.1").equals("1.0") ? HttpVersion.HTTP_1_0 : HttpVersion.HTTP_1_1);
   params.setSoTimeout(JMeterUtils.getPropDefault("httpclient.timeout",0));
-  httpMethod.setFollowRedirects(getPropertyAsBoolean(AUTO_REDIRECTS));
+  httpMethod.setFollowRedirects(getFollowRedirects());
   if (getUseKeepAlive()) {
     httpMethod.setRequestHeader(HEADER_CONNECTION,KEEP_ALIVE);
   }
