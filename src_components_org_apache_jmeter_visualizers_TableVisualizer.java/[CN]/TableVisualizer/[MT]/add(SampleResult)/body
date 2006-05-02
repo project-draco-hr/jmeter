@@ -1,7 +1,8 @@
 {
 synchronized (calc) {
     calc.addValue(res.getTime());
-    Sample newS=new Sample(res.getSampleLabel(),res.getTime(),0,0,0,0,0,0,res.isSuccessful(),calc.getCount(),res.getTimeStamp(),res.getBytes());
+    int count=calc.getCount();
+    Sample newS=new Sample(res.getSampleLabel(),res.getTime(),0,0,0,0,0,0,res.isSuccessful(),count,res.getTimeStamp(),res.getBytes(),res.getThreadName());
     model.addRow(newS);
   }
   currentData=res.getTime();
