@@ -2,5 +2,6 @@
   Traverser shut=new Traverser(false);
   testTree.traverse(shut);
   JMeterContextService.decrNumberOfThreads();
+  GuiPackage.getInstance().getMainFrame().updateCounts();
   threadGroup.decrNumberOfThreads();
 }
