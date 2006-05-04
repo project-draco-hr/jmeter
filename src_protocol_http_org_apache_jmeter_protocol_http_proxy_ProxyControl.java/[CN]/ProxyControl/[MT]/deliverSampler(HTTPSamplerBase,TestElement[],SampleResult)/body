@@ -6,7 +6,7 @@
     removeValuesFromSampler(sampler,defaultConfigurations);
     replaceValues(sampler,subConfigs,userDefinedVariables);
     sampler.setUseKeepAlive(useKeepAlive);
-    sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
+    sampler.setProperty(TestElement.GUI_CLASS,HTTP_TEST_SAMPLE_GUI);
     placeSampler(sampler,subConfigs,myTarget);
     notifySampleListeners(new SampleEvent(result,sampler.getName()));
   }
