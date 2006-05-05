@@ -10,9 +10,10 @@
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
   ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ActionNames.ADD_ALL));
-  if (testFile != null) {
+  String arg;
+  if (testFile != null && (arg=testFile.getArgument()) != null) {
     try {
-      File f=new File(testFile.getArgument());
+      File f=new File(arg);
       log.info("Loading file: " + f);
       FileInputStream reader=new FileInputStream(f);
       HashTree tree=SaveService.loadTree(reader);

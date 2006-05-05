@@ -6,10 +6,14 @@
   if (testFile == null) {
     throw new IllegalUserActionException();
   }
+  String argument=testFile.getArgument();
+  if (argument == null) {
+    throw new IllegalUserActionException();
+  }
   if (logFile == null) {
-    driver.run(testFile.getArgument(),null,remoteStart != null);
+    driver.run(argument,null,remoteStart != null);
   }
  else {
-    driver.run(testFile.getArgument(),logFile.getArgument(),remoteStart != null);
+    driver.run(argument,logFile.getArgument(),remoteStart != null);
   }
 }
