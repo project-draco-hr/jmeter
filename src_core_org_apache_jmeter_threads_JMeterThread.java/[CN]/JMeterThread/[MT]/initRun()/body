@@ -12,7 +12,10 @@
   rampUpDelay();
   log.info("Thread " + Thread.currentThread().getName() + " started");
   JMeterContextService.incrNumberOfThreads();
-  GuiPackage.getInstance().getMainFrame().updateCounts();
+  GuiPackage gp=GuiPackage.getInstance();
+  if (gp != null) {
+    gp.getMainFrame().updateCounts();
+  }
   threadGroup.incrNumberOfThreads();
   if (startEarlier)   threadContext.setSamplingStarted(true);
   controller.initialize();
