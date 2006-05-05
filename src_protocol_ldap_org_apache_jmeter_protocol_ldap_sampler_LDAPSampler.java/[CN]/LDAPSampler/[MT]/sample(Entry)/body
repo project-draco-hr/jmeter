@@ -30,14 +30,15 @@
     }
     res.setDataType(SampleResult.TEXT);
     isSuccessful=true;
-    ldap.disconnect();
   }
  catch (  Exception ex) {
     log.error("Ldap client - ",ex);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
-    ldap.disconnect();
     isSuccessful=false;
+  }
+ finally {
+    ldap.disconnect();
   }
   res.setSuccessful(isSuccessful);
   return res;
