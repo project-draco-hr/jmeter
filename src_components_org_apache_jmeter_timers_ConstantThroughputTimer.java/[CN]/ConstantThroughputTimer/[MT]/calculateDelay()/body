@@ -3,7 +3,7 @@
   long rate=(long)(MILLISEC_PER_MIN / getThroughput());
 switch (modeInt) {
 case 1:
-    offset=(JMeterContextService.getNumberOfThreads()) * rate;
+    offset=JMeterContextService.getNumberOfThreads() * rate;
   break;
 case 2:
 offset=JMeterContextService.getContext().getThread().getThreadGroup().getNumberOfThreads() * rate;

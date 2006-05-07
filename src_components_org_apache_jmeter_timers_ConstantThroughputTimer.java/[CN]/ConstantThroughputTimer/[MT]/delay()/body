@@ -1,9 +1,10 @@
 {
   long currentTime=System.currentTimeMillis();
-  long currentTarget=previousTime == 0 ? currentTime : previousTime;
-  previousTime=currentTarget + calculateDelay();
+  long currentTarget=previousTime + calculateDelay();
   if (currentTime > currentTarget) {
+    previousTime=currentTime;
     return 0;
   }
+  previousTime=currentTarget;
   return currentTarget - currentTime;
 }
