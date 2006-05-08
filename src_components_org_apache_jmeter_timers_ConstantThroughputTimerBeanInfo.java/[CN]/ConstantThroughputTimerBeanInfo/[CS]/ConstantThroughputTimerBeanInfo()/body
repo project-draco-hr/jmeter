@@ -4,6 +4,8 @@
   tags[0]=rb.getString("calcMode.1");
   tags[1]=rb.getString("calcMode.2");
   tags[2]=rb.getString("calcMode.3");
+  tags[3]=rb.getString("calcMode.4");
+  tags[4]=rb.getString("calcMode.5");
   createPropertyGroup("delay",new String[]{"throughput","calcMode"});
   PropertyDescriptor p=property("throughput");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
