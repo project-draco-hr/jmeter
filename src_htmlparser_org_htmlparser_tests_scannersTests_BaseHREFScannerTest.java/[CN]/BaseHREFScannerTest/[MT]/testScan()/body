@@ -7,5 +7,5 @@
   parseAndAssertNodeCount(7);
   assertTrue(node[3] instanceof BaseHrefTag);
   BaseHrefTag baseRefTag=(BaseHrefTag)node[3];
-  assertEquals("Base HREF Url","http://www.abc.com",baseRefTag.getBaseUrl());
+  assertEquals("Base HREF Url","http://www.abc.com/",baseRefTag.getBaseUrl());
 }
