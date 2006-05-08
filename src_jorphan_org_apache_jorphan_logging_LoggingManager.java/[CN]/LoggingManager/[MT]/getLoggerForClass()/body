@@ -1,4 +1,4 @@
 {
   String className=getCallerClassName();
-  return Hierarchy.getDefaultHierarchy().getLoggerFor(className);
+  return Hierarchy.getDefaultHierarchy().getLoggerFor(removePrefix(className));
 }

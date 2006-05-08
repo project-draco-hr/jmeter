@@ -9,10 +9,22 @@
   whatClass.setActionCommand(ActionNames.WHAT_CLASS);
   whatClass.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,KeyEvent.CTRL_MASK));
   whatClass.addActionListener(ActionRouter.getInstance());
+  JMenuItem setDebug=new JMenuItem(JMeterUtils.getResString("debug_on"));
+  setDebug.setActionCommand(ActionNames.DEBUG_ON);
+  setDebug.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK));
+  setDebug.addActionListener(ActionRouter.getInstance());
+  JMenuItem resetDebug=new JMenuItem(JMeterUtils.getResString("debug_off"));
+  resetDebug.setActionCommand(ActionNames.DEBUG_OFF);
+  resetDebug.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,KeyEvent.CTRL_MASK));
+  resetDebug.addActionListener(ActionRouter.getInstance());
   help_about=new JMenuItem(JMeterUtils.getResString("about"),'A');
   help_about.setActionCommand(ActionNames.ABOUT);
   help_about.addActionListener(ActionRouter.getInstance());
   helpMenu.add(contextHelp);
+  helpMenu.addSeparator();
   helpMenu.add(whatClass);
+  helpMenu.add(setDebug);
+  helpMenu.add(resetDebug);
+  helpMenu.addSeparator();
   helpMenu.add(help_about);
 }
