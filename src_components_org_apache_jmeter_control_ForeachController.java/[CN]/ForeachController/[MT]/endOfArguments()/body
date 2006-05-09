@@ -5,8 +5,6 @@
     log.debug("ForEach resultstring eofArgs= false");
     return false;
   }
- else {
-    log.debug("ForEach resultstring eofArgs= true");
-    return true;
-  }
+  log.debug("ForEach resultstring eofArgs= true");
+  return true;
 }

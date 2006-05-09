@@ -1,7 +1,9 @@
 {
   boolean result=evaluateCondition(getCondition());
-  if (result)   return super.next();
- else   try {
+  if (result) {
+    return super.next();
+  }
+  try {
     return nextIsNull();
   }
  catch (  NextIsNullException e1) {

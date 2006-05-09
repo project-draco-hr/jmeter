@@ -3,8 +3,6 @@
   if (!endOfLoop(true)) {
     return super.next();
   }
- else {
-    setDone(true);
-    return null;
-  }
+  setDone(true);
+  return null;
 }

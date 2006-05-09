@@ -5,8 +5,6 @@
   if (!endOfLoop(false)) {
     return super.next();
   }
- else {
-    reInitialize();
-    return null;
-  }
+  reInitialize();
+  return null;
 }

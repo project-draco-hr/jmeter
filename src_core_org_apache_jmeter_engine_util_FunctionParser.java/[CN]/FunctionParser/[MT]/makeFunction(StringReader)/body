@@ -30,9 +30,7 @@
           }
           return function;
         }
- else {
-          continue;
-        }
+        continue;
       }
  else       if (current[0] == '}') {
         function=CompoundVariable.getNamedFunction(buffer.toString());
