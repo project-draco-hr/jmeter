@@ -1,0 +1,10 @@
+{
+  count++;
+  minimum=Math.min(newValue,minimum);
+  maximum=Math.max(newValue,maximum);
+  double currentVal=newValue;
+  sum+=currentVal;
+  sumOfSquares+=currentVal * currentVal;
+  mean=sum / count;
+  deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
+}
