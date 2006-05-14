@@ -1,7 +1,6 @@
 {
   byte[] readBuffer=getThreadContext().getReadBuffer();
   BufferedInputStream in;
-  boolean logError=false;
   try {
     if (ENCODING_GZIP.equals(conn.getContentEncoding())) {
       in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
@@ -13,14 +12,12 @@
  catch (  IOException e) {
     if (conn.getResponseCode() != 404) {
       log.error("readResponse: " + e.toString());
-      logError=true;
     }
     in=new BufferedInputStream(conn.getErrorStream());
   }
 catch (  Exception e) {
     log.error("readResponse: " + e.toString());
     in=new BufferedInputStream(conn.getErrorStream());
-    logError=true;
   }
   java.io.ByteArrayOutputStream w=new ByteArrayOutputStream();
   int x=0;
@@ -35,15 +32,5 @@ catch (  Exception e) {
   in.close();
   w.flush();
   w.close();
-  if (logError) {
-    String s;
-    if (w.size() > 1000) {
-      s="\n" + w.toString().substring(0,1000) + "\n\t...";
-    }
- else {
-      s="\n" + w.toString();
-    }
-    log.error("readResponse: errorStream:" + s);
-  }
   return w.toByteArray();
 }

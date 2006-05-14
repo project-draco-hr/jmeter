@@ -69,6 +69,8 @@ catch (      IOException e) {
   }
  catch (  IOException e) {
     res.sampleEnd();
+    conn.disconnect();
+    conn=null;
     return errorResult(e,res);
   }
  finally {
