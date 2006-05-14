@@ -1,0 +1,14 @@
+{
+  Calculator row=null;
+synchronized (tableRows) {
+    row=(Calculator)tableRows.get(res.getSampleLabel());
+    if (row == null) {
+      row=new Calculator(res.getSampleLabel());
+      tableRows.put(row.getLabel(),row);
+      model.insertRow(row,model.getRowCount() - 1);
+    }
+  }
+  row.addSample(res);
+  ((Calculator)tableRows.get(TOTAL_ROW_LABEL)).addSample(res);
+  model.fireTableDataChanged();
+}

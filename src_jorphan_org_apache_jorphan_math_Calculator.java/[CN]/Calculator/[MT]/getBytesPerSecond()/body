@@ -1,0 +1,6 @@
+{
+  if (elapsedTime > 0) {
+    return bytes / ((double)elapsedTime / 1000);
+  }
+  return 0.0;
+}
