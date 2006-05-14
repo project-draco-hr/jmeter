@@ -1,8 +1,5 @@
 {
-  long startTime=res.getTimeStamp();
-  if (!res.isStampedAtStart()) {
-    startTime-=res.getTime();
-  }
+  long startTime=res.getStartTime();
   if (firstTime > startTime) {
     firstTime=startTime;
   }
