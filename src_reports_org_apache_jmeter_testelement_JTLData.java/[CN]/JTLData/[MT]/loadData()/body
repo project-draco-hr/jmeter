@@ -3,16 +3,9 @@
     ResultCollector rc=new ResultCollector();
     rc.setFilename(this.getDataSource());
     rc.setListener(this);
-    try {
-      rc.loadExistingFile();
-    }
- catch (    IOException e) {
-      log.warn(e.getMessage());
-    }
- finally {
-      rc.clear();
-      rc.setListener(null);
-      rc=null;
-    }
+    rc.loadExistingFile();
+    rc.clear();
+    rc.setListener(null);
+    rc=null;
   }
 }
