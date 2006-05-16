@@ -1,5 +1,5 @@
 {
-  boolean parsedOK=false;
+  boolean parsedOK=false, errorDetected=false;
   String filename=getFilename();
   File file=new File(filename);
   if (file.exists()) {
@@ -15,7 +15,13 @@
  else {
         if (!line.startsWith("<?xml ")) {
           while (line != null) {
-            sendToVisualizer(OldSaveService.makeResultFromDelimitedString(line));
+            try {
+              SampleResult result=OldSaveService.makeResultFromDelimitedString(line);
+              if (result != null)               sendToVisualizer(result);
+            }
+ catch (            NumberFormatException ignored) {
+              errorDetected=true;
+            }
             line=dataReader.readLine();
           }
           parsedOK=true;
@@ -50,10 +56,8 @@
  finally {
       JOrphanUtils.closeQuietly(dataReader);
       JOrphanUtils.closeQuietly(bufferedInputStream);
-      if (!parsedOK) {
-        SampleResult sr=new SampleResult();
-        sr.setSampleLabel("Error loading results file - see log file");
-        sendToVisualizer(sr);
+      if (!parsedOK || errorDetected) {
+        GuiPackage.showErrorMessage("Error loading results file - see log file","CSV Result file loader");
       }
     }
   }
