@@ -8,8 +8,8 @@ synchronized (tableRows) {
       model.insertRow(row,model.getRowCount() - 1);
     }
   }
-  row.addSample(res.getBytes(),res.getTime(),res.isSuccessful(),res.getStartTime(),res.getEndTime());
+  row.addSample(res);
   Calculator tot=((Calculator)tableRows.get(TOTAL_ROW_LABEL));
-  tot.addSample(res.getBytes(),res.getTime(),res.isSuccessful(),res.getStartTime(),res.getEndTime());
+  tot.addSample(res);
   model.fireTableDataChanged();
 }
