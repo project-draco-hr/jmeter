@@ -1,0 +1,9 @@
+{
+  if (guiPack == null)   return;
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      JOptionPane.showMessageDialog(null,message,title,type);
+    }
+  }
+);
+}
