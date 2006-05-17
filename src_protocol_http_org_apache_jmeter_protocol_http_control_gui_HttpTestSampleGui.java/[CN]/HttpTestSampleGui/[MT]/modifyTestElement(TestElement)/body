@@ -8,11 +8,6 @@
  else {
     sampler.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
   }
-  if (isMon.isSelected()) {
-    ((HTTPSamplerBase)sampler).setMonitor("true");
-  }
- else {
-    ((HTTPSamplerBase)sampler).setMonitor("false");
-  }
+  ((HTTPSamplerBase)sampler).setMonitor(isMon.isSelected());
   this.configureTestElement(sampler);
 }
