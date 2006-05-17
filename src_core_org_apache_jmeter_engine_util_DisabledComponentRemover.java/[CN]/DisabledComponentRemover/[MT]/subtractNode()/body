@@ -1,5 +1,10 @@
 {
-  TestElement lastNode=(TestElement)stack.removeLast();
+  Object removeLast=stack.removeLast();
+  if (!(removeLast instanceof TestElement)) {
+    log.warn("Expected class TestElement, found " + removeLast.getClass().getName());
+    return;
+  }
+  TestElement lastNode=(TestElement)removeLast;
   if (!lastNode.getPropertyAsBoolean(TestElement.ENABLED)) {
     tree.getTree(stack).remove(lastNode);
   }
