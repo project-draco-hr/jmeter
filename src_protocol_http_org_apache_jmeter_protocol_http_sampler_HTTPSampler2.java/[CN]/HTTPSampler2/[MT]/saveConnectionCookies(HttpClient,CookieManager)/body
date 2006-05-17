@@ -5,6 +5,9 @@
       Date exp=c[i].getExpiryDate();
       Cookie cookie=new Cookie(c[i].getName(),c[i].getValue(),c[i].getDomain(),c[i].getPath(),c[i].getSecure(),exp == null ? 0 : exp.getTime() / 1000);
       cookieManager.add(cookie);
+      if (log.isDebugEnabled()) {
+        log.debug("Saved Cookie: " + cookie.toString());
+      }
     }
   }
 }
