@@ -6,6 +6,7 @@
   }
   TestElement lastNode=(TestElement)removeLast;
   if (!lastNode.getPropertyAsBoolean(TestElement.ENABLED)) {
+    log.info("*** Removing *** " + lastNode);
     tree.getTree(stack).remove(lastNode);
   }
 }
