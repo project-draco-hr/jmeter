@@ -8,6 +8,9 @@
   }
   try {
     initializeProperties(parser);
+    if (System.getProperty("org.apache.commons.logging.Log") == null) {
+      System.setProperty("org.apache.commons.logging.Log","org.apache.commons.logging.impl.LogKitLogger");
+    }
     log.info(JMeterUtils.getJMeterCopyright());
     log.info("Version " + JMeterUtils.getJMeterVersion());
     log.info("java.version=" + System.getProperty("java.version"));
