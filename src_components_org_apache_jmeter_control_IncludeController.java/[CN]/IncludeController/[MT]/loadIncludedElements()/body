@@ -1,13 +1,15 @@
 {
   final String includePath=getIncludePath();
   InputStream reader=null;
+  HashTree tree=null;
   if (includePath != null && includePath.length() > 0) {
     try {
       String file=prefix + includePath;
       log.info("loadIncludedElements -- try to load included module: " + file);
       reader=new FileInputStream(file);
-      this.SUBTREE=SaveService.loadTree(reader);
-      return this.SUBTREE;
+      tree=SaveService.loadTree(reader);
+      removeDisabledItems(tree);
+      return tree;
     }
  catch (    NoClassDefFoundError ex) {
       String msg=ex.getMessage();
@@ -31,14 +33,8 @@ catch (    Exception ex) {
       log.warn("Unexpected error",ex);
     }
  finally {
-      if (reader != null) {
-        try {
-          reader.close();
-        }
- catch (        IOException e) {
-        }
-      }
+      JOrphanUtils.closeQuietly(reader);
     }
   }
-  return this.SUBTREE;
+  return tree;
 }
