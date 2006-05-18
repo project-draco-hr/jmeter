@@ -8,7 +8,7 @@
   }
   try {
     initializeProperties(parser);
-    setProxy(parser);
+    log.info(JMeterUtils.getJMeterCopyright());
     log.info("Version " + JMeterUtils.getJMeterVersion());
     log.info("java.version=" + System.getProperty("java.version"));
     log.info("os.name=" + System.getProperty("os.name"));
@@ -16,8 +16,8 @@
     log.info("os.version=" + System.getProperty("os.version"));
     log.info("Default Locale=" + Locale.getDefault().getDisplayName());
     log.info("JMeter  Locale=" + JMeterUtils.getLocale().getDisplayName());
-    log.info(JMeterUtils.getJMeterCopyright());
     log.info("JMeterHome=" + JMeterUtils.getJMeterHome());
+    setProxy(parser);
     updateClassLoader();
     if (log.isDebugEnabled()) {
       String jcp=System.getProperty("java.class.path");
