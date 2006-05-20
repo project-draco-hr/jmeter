@@ -16,6 +16,7 @@
   OutputStream os=sock.getOutputStream();
   InputStreamReader fis=new FileReader(file);
   new SockRead(is).start();
+  sendLine("bsh.prompt=\"\";",os);
   sendLine("String [] args={",os);
   for (int i=MINARGS; i < args.length; i++) {
     sendLine("\"" + args[i] + "\",\n",os);
@@ -25,6 +26,7 @@
   while ((b=fis.read()) != -1) {
     os.write(b);
   }
+  sendLine("bsh.prompt=\"bsh % \";",os);
   os.flush();
   sock.shutdownOutput();
 }
