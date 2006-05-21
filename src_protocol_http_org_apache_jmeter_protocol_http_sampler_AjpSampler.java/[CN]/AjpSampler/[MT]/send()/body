@@ -1,0 +1,8 @@
+{
+  OutputStream os=channel.getOutputStream();
+  int len=outpos;
+  outpos=0;
+  setInt(0x1234);
+  setInt(len - 4);
+  os.write(outbuf,0,len);
+}
