@@ -43,7 +43,8 @@
     int statusCode=client.executeMethod(httpMethod);
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
-      if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING).getValue())) {
+      Header responseHeader=httpMethod.getResponseHeader(TRANSFER_ENCODING);
+      if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
         instream=new GZIPInputStream(instream);
       }
       ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
