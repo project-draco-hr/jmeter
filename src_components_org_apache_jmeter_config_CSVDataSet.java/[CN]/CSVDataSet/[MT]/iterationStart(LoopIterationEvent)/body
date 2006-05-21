@@ -7,10 +7,18 @@
   try {
     String delim=getDelimiter();
     if (delim.equals("\\t"))     delim="\t";
-    String[] lineValues=JOrphanUtils.split(server.readLine(getFilename()),delim,false);
     JMeterVariables threadVars=this.getThreadContext().getVariables();
-    for (int a=0; a < vars.length && a < lineValues.length; a++) {
-      threadVars.put(vars[a],lineValues[a]);
+    String line=server.readLine(getFilename(),getRecycle());
+    if (line != null) {
+      String[] lineValues=JOrphanUtils.split(line,delim,false);
+      for (int a=0; a < vars.length && a < lineValues.length; a++) {
+        threadVars.put(vars[a],lineValues[a]);
+      }
+    }
+ else {
+      for (int a=0; a < vars.length; a++) {
+        threadVars.put(vars[a],EOFVALUE);
+      }
     }
   }
  catch (  IOException e) {
