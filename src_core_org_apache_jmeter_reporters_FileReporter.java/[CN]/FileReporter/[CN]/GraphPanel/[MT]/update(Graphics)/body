@@ -8,7 +8,7 @@
   float minValue=getMin();
   g.setColor(Color.gray);
   int dataWidth=getDataWidth();
-  int increment=Math.round((width - 1) / (dataWidth - 1));
+  int increment=Math.round((float)(width - 1) / (dataWidth - 1));
   int yIncrement=Math.round(((float)height - (1 + base)) / (10 - 1));
   for (int t=1; t < dataWidth; t+=(dataWidth / 25 + 1)) {
     g.drawString((new Integer(t)).toString(),t * increment + 2,height - 2);
