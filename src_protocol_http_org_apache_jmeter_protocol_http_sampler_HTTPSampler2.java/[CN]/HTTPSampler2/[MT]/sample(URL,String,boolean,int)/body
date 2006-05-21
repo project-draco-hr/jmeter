@@ -30,6 +30,7 @@
   res.setHTTPMethod(method);
   res.sampleStart();
   HttpClient client=null;
+  InputStream instream=null;
   try {
     client=setupConnection(url,httpMethod,res);
     if (method.equals(POST)) {
@@ -40,9 +41,9 @@
       setPutHeaders((PutMethod)httpMethod);
     }
     int statusCode=client.executeMethod(httpMethod);
-    InputStream instream=httpMethod.getResponseBodyAsStream();
+    instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
-      if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING))) {
+      if (ENCODING_GZIP.equals(httpMethod.getResponseHeader(TRANSFER_ENCODING).getValue())) {
         instream=new GZIPInputStream(instream);
       }
       ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
@@ -94,6 +95,7 @@ catch (  IOException e) {
     return err;
   }
  finally {
+    JOrphanUtils.closeQuietly(instream);
     if (httpMethod != null)     httpMethod.releaseConnection();
   }
 }
