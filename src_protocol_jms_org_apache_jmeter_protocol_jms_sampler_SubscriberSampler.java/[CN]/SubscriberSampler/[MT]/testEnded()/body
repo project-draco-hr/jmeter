@@ -7,10 +7,4 @@
   if (this.SUBSCRIBER != null) {
     this.SUBSCRIBER=null;
   }
-  try {
-    this.finalize();
-  }
- catch (  Throwable e) {
-    log.error(e.getMessage());
-  }
 }
