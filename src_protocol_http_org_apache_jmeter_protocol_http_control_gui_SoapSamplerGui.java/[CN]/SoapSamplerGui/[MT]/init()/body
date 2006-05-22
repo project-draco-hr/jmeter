@@ -5,7 +5,7 @@
   urlField=new JLabeledTextField(JMeterUtils.getResString("url"),10);
   soapXml=new JLabeledTextArea(JMeterUtils.getResString("soap_data_title"),null);
   soapAction=new JLabeledTextField("",10);
-  sendSoapAction=new JCheckBox("Send SOAPAction: ",true);
+  sendSoapAction=new JCheckBox(JMeterUtils.getResString("soap_send_action"),true);
   JPanel mainPanel=new JPanel(new BorderLayout());
   JPanel soapActionPanel=new JPanel();
   soapActionPanel.setLayout(new GridBagLayout());
@@ -27,6 +27,7 @@
   soapActionPanel.add(soapAction,c);
   mainPanel.add(soapActionPanel,BorderLayout.NORTH);
   mainPanel.add(soapXml,BorderLayout.CENTER);
+  mainPanel.add(soapXmlFile,BorderLayout.SOUTH);
   sendSoapAction.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
       soapAction.setEnabled(sendSoapAction.isSelected());

@@ -1,6 +1,6 @@
 {
-  ((HttpURLConnection)connection).setRequestMethod("POST");
-  connection.setRequestProperty("Content-Length","" + getXmlData().length());
+  ((HttpURLConnection)connection).setRequestMethod(POST);
+  connection.setRequestProperty(HEADER_CONTENT_LENGTH,String.valueOf(getXmlData().length()));
   if (getHeaderManager() != null) {
     HeaderManager mngr=getHeaderManager();
     int headerSize=mngr.size();
@@ -10,8 +10,10 @@
     }
   }
  else {
-    connection.setRequestProperty("Content-Type","text/xml");
-    if (getSendSOAPAction())     connection.setRequestProperty("SOAPAction","\"" + getSOAPAction() + "\"");
+    connection.setRequestProperty(HEADER_CONTENT_TYPE,"text/xml");
+    if (getSendSOAPAction()) {
+      connection.setRequestProperty("SOAPAction","\"" + getSOAPAction() + "\"");
+    }
   }
   connection.setDoOutput(true);
 }

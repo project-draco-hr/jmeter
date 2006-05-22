@@ -7,7 +7,7 @@
     setPort(url.getPort());
     setProtocol(url.getProtocol());
     setMethod(POST);
-    if (url.getQuery() != null && url.getQuery().compareTo("") != 0) {
+    if (url.getQuery() != null && url.getQuery().length() > 0) {
       setPath(url.getPath() + "?" + url.getQuery());
     }
  else {

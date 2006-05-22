@@ -1,5 +1,20 @@
 {
-  PrintWriter out=new PrintWriter(connection.getOutputStream());
-  out.print(getXmlData());
-  out.close();
+  String xmlFile=getXmlFile();
+  if (xmlFile != null && getXmlFile().length() > 0) {
+    OutputStream out=connection.getOutputStream();
+    byte[] buf=new byte[1024];
+    int read;
+    InputStream in=new FileInputStream(xmlFile);
+    while ((read=in.read(buf)) > 0) {
+      out.write(buf,0,read);
+    }
+    in.close();
+    out.flush();
+    out.close();
+  }
+ else {
+    PrintWriter out=new PrintWriter(connection.getOutputStream());
+    out.print(getXmlData());
+    out.close();
+  }
 }

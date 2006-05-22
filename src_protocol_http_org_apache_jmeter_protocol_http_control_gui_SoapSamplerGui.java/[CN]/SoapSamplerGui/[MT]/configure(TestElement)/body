@@ -5,4 +5,5 @@
   sendSoapAction.setSelected(sampler.getSendSOAPAction());
   soapAction.setText(sampler.getSOAPAction());
   soapXml.setText(sampler.getXmlData());
+  soapXmlFile.setFilename(sampler.getXmlFile());
 }

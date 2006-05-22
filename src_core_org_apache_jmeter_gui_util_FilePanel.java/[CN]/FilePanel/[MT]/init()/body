@@ -6,6 +6,6 @@
   add(Box.createHorizontalStrut(5));
   filename.addActionListener(this);
   add(browse);
-  browse.setActionCommand("browse");
+  browse.setActionCommand(ACTION_BROWSE);
   browse.addActionListener(this);
 }
