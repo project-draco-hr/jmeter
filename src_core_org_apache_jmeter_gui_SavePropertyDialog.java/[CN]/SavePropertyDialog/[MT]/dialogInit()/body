@@ -10,7 +10,7 @@
       String name=methods[i].getName();
       if (name.startsWith(NAME_SAVE_PFX) && methods[i].getParameterTypes().length == 0) {
         try {
-          name=name.substring(4);
+          name=name.substring(NAME_SAVE_PFX_LEN);
           JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),((Boolean)methods[i].invoke(saveConfig,new Object[0])).booleanValue());
           checkPanel.add(check,BorderLayout.NORTH);
           check.addActionListener(this);
