@@ -1,18 +1,24 @@
 {
   String wstr=graphWidth.getText();
   String hstr=graphHeight.getText();
+  String lstr=maxLengthXAxisLabel.getText();
   if (wstr.length() == 0) {
     wstr="450";
   }
   if (hstr.length() == 0) {
     hstr="250";
   }
+  if (lstr.length() == 0) {
+    lstr="20";
+  }
   int width=Integer.parseInt(wstr);
   int height=Integer.parseInt(hstr);
+  int maxLength=Integer.parseInt(lstr);
   graphPanel.setData(this.getData());
   graphPanel.setHeight(height);
   graphPanel.setWidth(width);
   graphPanel.setTitle(graphTitle.getText());
+  graphPanel.setMaxLength(maxLength);
   graphPanel.setXAxisLabels(getAxisLabels());
   graphPanel.setXAxisTitle(columns.getText());
   graphPanel.setYAxisLabels(this.yAxisLabel);

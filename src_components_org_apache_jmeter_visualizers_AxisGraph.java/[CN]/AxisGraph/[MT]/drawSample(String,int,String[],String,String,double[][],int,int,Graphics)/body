@@ -1,11 +1,15 @@
 {
   double max=findMax(_data);
   try {
-    if (_width == 0) {
-      _width=450;
+    if (_maxLength < 3) {
+      _maxLength=3;
     }
-    if (_height == 0) {
-      _height=250;
+    if (_title.length() == 0) {
+      _title="Graph";
+    }
+    for (int i=0; i < _xAxisLabels.length; i++) {
+      String label=_xAxisLabels[i];
+      _xAxisLabels[i]=squeeze(label,_maxLength);
     }
     this.setPreferredSize(new Dimension(_width,_height));
     DataSeries dataSeries=new DataSeries(_xAxisLabels,_xAxisTitle,_yAxisTitle,_title);
