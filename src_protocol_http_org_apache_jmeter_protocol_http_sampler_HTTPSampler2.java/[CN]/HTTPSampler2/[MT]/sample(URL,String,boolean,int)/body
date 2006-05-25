@@ -77,6 +77,9 @@
     if (res.isRedirect()) {
       res.setRedirectLocation(httpMethod.getResponseHeader("Location").getValue());
     }
+    if (getAutoRedirects()) {
+      res.setURL(new URL(httpMethod.getURI().toString()));
+    }
     saveConnectionCookies(client,getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");

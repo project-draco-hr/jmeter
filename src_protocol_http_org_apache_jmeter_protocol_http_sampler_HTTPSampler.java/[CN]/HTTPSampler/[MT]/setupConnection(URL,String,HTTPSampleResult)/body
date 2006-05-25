@@ -1,6 +1,5 @@
 {
   HttpURLConnection conn;
-  HttpURLConnection.setFollowRedirects(getPropertyAsBoolean(AUTO_REDIRECTS));
   SSLManager sslmgr=null;
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
@@ -11,6 +10,7 @@
     }
   }
   conn=(HttpURLConnection)u.openConnection();
+  conn.setInstanceFollowRedirects(getAutoRedirects());
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
       sslmgr.setContext(conn);

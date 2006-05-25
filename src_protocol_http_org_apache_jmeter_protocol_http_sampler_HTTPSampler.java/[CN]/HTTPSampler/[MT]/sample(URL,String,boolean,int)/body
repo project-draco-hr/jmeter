@@ -62,6 +62,9 @@ catch (      IOException e) {
     if (res.isRedirect()) {
       res.setRedirectLocation(conn.getHeaderField("Location"));
     }
+    if (getAutoRedirects()) {
+      res.setURL(conn.getURL());
+    }
     saveConnectionCookies(conn,url,getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
