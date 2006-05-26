@@ -11,9 +11,9 @@
   }
  else {
     connection.setRequestProperty(HEADER_CONTENT_TYPE,"text/xml");
-    if (getSendSOAPAction()) {
-      connection.setRequestProperty("SOAPAction","\"" + getSOAPAction() + "\"");
-    }
+  }
+  if (getSendSOAPAction()) {
+    connection.setRequestProperty(SOAPACTION,getSOAPActionQuoted());
   }
   connection.setDoOutput(true);
 }
