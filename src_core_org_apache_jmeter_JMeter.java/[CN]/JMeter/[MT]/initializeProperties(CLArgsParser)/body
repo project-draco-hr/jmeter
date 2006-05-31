@@ -32,17 +32,11 @@ catch (      IOException e) {
         log.warn("Error loading additional property file: " + name,e);
       }
  finally {
-        if (fis != null) {
-          try {
-            fis.close();
-          }
- catch (          IOException e) {
-          }
-        }
+        JOrphanUtils.closeQuietly(fis);
       }
     break;
 case SYSTEM_PROPFILE:
-  log.info("Setting System propertyies from file: " + name);
+  log.info("Setting System properties from file: " + name);
 try {
   fis=new FileInputStream(new File(name));
   System.getProperties().load(fis);
@@ -51,13 +45,7 @@ try {
   log.warn("Cannot find system property file " + e.getLocalizedMessage());
 }
  finally {
-  if (fis != null) {
-    try {
-      fis.close();
-    }
- catch (    IOException e) {
-    }
-  }
+  JOrphanUtils.closeQuietly(fis);
 }
 break;
 case SYSTEM_PROPERTY:
@@ -90,6 +78,24 @@ log.warn("LogLevel: " + name);
 LoggingManager.setPriority(name);
 }
 break;
+}
+}
+if (JMeterUtils.getPropDefault("load.user_properties",true)) {
+final String name="user.properties";
+FileInputStream fis=null;
+try {
+File file=new File(name);
+if (file.canRead()) {
+log.info("Loading user properties from: " + name);
+fis=new FileInputStream(file);
+jmeterProps.load(fis);
+}
+}
+ catch (IOException e) {
+log.warn("Error loading user property file: " + name,e);
+}
+ finally {
+JOrphanUtils.closeQuietly(fis);
 }
 }
 }
