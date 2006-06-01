@@ -1,0 +1,8 @@
+{
+  URL url=new URL("file","",path);
+  loader.addURL(url);
+  StringBuffer sb=new StringBuffer(System.getProperty("java.class.path"));
+  sb.append(System.getProperty("path.separator"));
+  sb.append(path);
+  System.setProperty("java.class.path",sb.toString());
+}
