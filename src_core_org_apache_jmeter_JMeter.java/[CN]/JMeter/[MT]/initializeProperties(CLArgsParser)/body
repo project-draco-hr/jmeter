@@ -12,6 +12,45 @@
     JMeterUtils.setJMeterHome(parser.getArgumentById(JMETER_HOME_OPT).getArgument());
   }
   Properties jmeterProps=JMeterUtils.getJMeterProperties();
+  String userProp=JMeterUtils.getPropDefault("user.properties","");
+  if (userProp.length() > 0) {
+    FileInputStream fis=null;
+    try {
+      File file=new File(userProp);
+      if (file.canRead()) {
+        log.info("Loading user properties from: " + userProp);
+        fis=new FileInputStream(file);
+        Properties tmp=new Properties();
+        tmp.load(fis);
+        jmeterProps.putAll(tmp);
+        LoggingManager.setLoggingLevels(tmp);
+      }
+    }
+ catch (    IOException e) {
+      log.warn("Error loading user property file: " + userProp,e);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(fis);
+    }
+  }
+  String sysProp=JMeterUtils.getPropDefault("system.properties","");
+  if (sysProp.length() > 0) {
+    FileInputStream fis=null;
+    try {
+      File file=new File(sysProp);
+      if (file.canRead()) {
+        log.info("Loading system properties from: " + sysProp);
+        fis=new FileInputStream(file);
+        System.getProperties().load(fis);
+      }
+    }
+ catch (    IOException e) {
+      log.warn("Error loading system property file: " + sysProp,e);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(fis);
+    }
+  }
   List clOptions=parser.getArguments();
   int size=clOptions.size();
   for (int i=0; i < size; i++) {
@@ -23,7 +62,10 @@ switch (option.getDescriptor().getId()) {
 case PROPFILE2_OPT:
       try {
         fis=new FileInputStream(new File(name));
-        jmeterProps.load(fis);
+        Properties tmp=new Properties();
+        tmp.load(fis);
+        jmeterProps.putAll(tmp);
+        LoggingManager.setLoggingLevels(tmp);
       }
  catch (      FileNotFoundException e) {
         log.warn("Can't find additional property file: " + name,e);
@@ -78,24 +120,6 @@ log.warn("LogLevel: " + name);
 LoggingManager.setPriority(name);
 }
 break;
-}
-}
-if (JMeterUtils.getPropDefault("load.user_properties",true)) {
-final String name="user.properties";
-FileInputStream fis=null;
-try {
-File file=new File(name);
-if (file.canRead()) {
-log.info("Loading user properties from: " + name);
-fis=new FileInputStream(file);
-jmeterProps.load(fis);
-}
-}
- catch (IOException e) {
-log.warn("Error loading user property file: " + name,e);
-}
- finally {
-JOrphanUtils.closeQuietly(fis);
 }
 }
 }

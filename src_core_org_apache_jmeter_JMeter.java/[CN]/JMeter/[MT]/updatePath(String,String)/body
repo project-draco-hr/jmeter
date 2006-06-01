@@ -10,13 +10,12 @@
       log.warn("Can't read " + path);
     }
  else {
-      URL url;
+      log.info("Adding to classpath: " + path);
       try {
-        url=new URL("file","",path);
-        NewDriver.addURL(url);
+        NewDriver.addPath(path);
       }
  catch (      MalformedURLException e) {
-        log.warn("Can't create URL for " + path + " "+ e);
+        log.warn("Error adding: " + path + " "+ e.getLocalizedMessage());
       }
     }
   }
