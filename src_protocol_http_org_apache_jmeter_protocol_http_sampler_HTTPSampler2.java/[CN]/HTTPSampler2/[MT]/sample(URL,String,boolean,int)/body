@@ -75,7 +75,7 @@
     }
     res.setResponseHeaders(getResponseHeaders(httpMethod));
     if (res.isRedirect()) {
-      res.setRedirectLocation(httpMethod.getResponseHeader("Location").getValue());
+      res.setRedirectLocation(httpMethod.getResponseHeader(HEADER_LOCATION).getValue());
     }
     if (getAutoRedirects()) {
       res.setURL(new URL(httpMethod.getURI().toString()));

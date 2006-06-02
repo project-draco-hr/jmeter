@@ -29,7 +29,7 @@
     }
   }
   HttpMethodParams params=httpMethod.getParams();
-  params.setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
+  params.setCookiePolicy(CookiePolicy.IGNORE_COOKIES);
   params.setVersion(JMeterUtils.getPropDefault("httpclient.version","1.1").equals("1.0") ? HttpVersion.HTTP_1_0 : HttpVersion.HTTP_1_1);
   params.setSoTimeout(JMeterUtils.getPropDefault("httpclient.timeout",0));
   httpMethod.setFollowRedirects(getAutoRedirects());
@@ -40,7 +40,7 @@
     httpMethod.setRequestHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
   String hdrs=setConnectionHeaders(httpMethod,u,getHeaderManager());
-  String cookies=setConnectionCookie(httpClient,u,getCookieManager());
+  String cookies=setConnectionCookie(httpMethod,u,getCookieManager());
   if (res != null) {
     res.setURL(u);
     res.setRequestHeaders(hdrs);
