@@ -14,10 +14,17 @@
     vars.put(refName,defaultValue);
   }
   Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
-  PatternMatcherInput input=new PatternMatcherInput(useHeaders() ? previousResult.getResponseHeaders() : previousResult.getResponseDataAsString());
-  log.debug("Regex = " + getRegex());
+  String inputString=useUrl() ? previousResult.getUrlAsString() : useHeaders() ? previousResult.getResponseHeaders() : previousResult.getResponseDataAsString();
+  if (log.isDebugEnabled()) {
+    log.debug("Input = " + inputString);
+  }
+  PatternMatcherInput input=new PatternMatcherInput(inputString);
+  String regex=getRegex();
+  if (log.isDebugEnabled()) {
+    log.debug("Regex = " + regex);
+  }
   try {
-    Pattern pattern=patternCache.getPattern(getRegex(),Perl5Compiler.READ_ONLY_MASK);
+    Pattern pattern=patternCache.getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
     List matches=new ArrayList();
     int x=0;
     boolean done=false;
@@ -77,6 +84,6 @@
     }
   }
  catch (  MalformedCachePatternException e) {
-    log.warn("Error in pattern: " + getRegex());
+    log.warn("Error in pattern: " + regex);
   }
 }
