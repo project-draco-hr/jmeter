@@ -23,10 +23,10 @@ catch (  IllegalArgumentException e) {
     Date expiryDate=cookies[i].getExpiryDate();
     long exp=0;
     if (expiryDate != null) {
-      exp=expiryDate.getTime() / 1000;
+      exp=expiryDate.getTime();
     }
-    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp);
-    if (exp == 0 || exp >= (System.currentTimeMillis() / 1000)) {
+    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp / 1000);
+    if (exp == 0 || exp >= System.currentTimeMillis()) {
       add(newCookie);
     }
  else {
