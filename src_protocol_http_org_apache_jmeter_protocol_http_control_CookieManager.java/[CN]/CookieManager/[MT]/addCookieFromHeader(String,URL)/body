@@ -1,60 +1,39 @@
 {
   boolean debugEnabled=log.isDebugEnabled();
   if (debugEnabled) {
-    log.debug("Received Cookie: " + cookieHeader + " From:"+ url.toExternalForm());
+    log.debug("Received Cookie: " + cookieHeader + " From: "+ url.toExternalForm());
   }
-  StringTokenizer st=new StringTokenizer(cookieHeader,";");
-  String nvp;
-  nvp=st.nextToken();
-  int index=nvp.indexOf("=");
-  String name=nvp.substring(0,index);
-  String value=nvp.substring(index + 1);
-  String domain="." + url.getHost();
-  String path="/";
-  Cookie newCookie=new Cookie(name,value,domain,path,false,0);
-  while (st.hasMoreTokens()) {
-    nvp=st.nextToken();
-    nvp=nvp.trim();
-    index=nvp.indexOf("=");
-    if (index == -1) {
-      index=nvp.length();
-    }
-    String key=nvp.substring(0,index);
-    if (key.equalsIgnoreCase("expires")) {
-      try {
-        String expires=nvp.substring(index + 1);
-        Date date=dateFormat.parse(expires);
-        newCookie.setExpires(date.getTime() / 1000);
-      }
- catch (      ParseException pe) {
-        log.error("Couldn't parse Cookie expiration time: " + cookieHeader,pe);
-      }
-catch (      Exception e) {
-        log.error("Couln't parse Cookie expiration time: likely JDK bug: " + cookieHeader,e);
-      }
-    }
- else     if (key.equalsIgnoreCase("domain")) {
-      domain=nvp.substring(index + 1).trim();
-      if (!domain.startsWith(".")) {
-        domain="." + domain;
-      }
-      newCookie.setDomain(domain);
-    }
- else     if (key.equalsIgnoreCase("path")) {
-      newCookie.setPath(nvp.substring(index + 1).trim());
-    }
- else     if (key.equalsIgnoreCase("secure")) {
-      newCookie.setSecure(true);
-    }
+  String protocol=url.getProtocol();
+  String host=url.getHost();
+  int port=HTTPSamplerBase.getDefaultPort(protocol,url.getPort());
+  String path=url.getPath();
+  boolean isSecure=HTTPSamplerBase.isSecure(protocol);
+  org.apache.commons.httpclient.Cookie[] cookies=null;
+  try {
+    cookies=cookieSpec.parse(host,port,path,isSecure,cookieHeader);
   }
-  long exp=newCookie.getExpires();
-  if (exp == 0 || exp >= System.currentTimeMillis() / 1000) {
-    add(newCookie);
+ catch (  MalformedCookieException e) {
+    log.warn(cookieHeader + e.getLocalizedMessage());
   }
+catch (  IllegalArgumentException e) {
+    log.warn(cookieHeader + e.getLocalizedMessage());
+  }
+  if (cookies == null)   return;
+  for (int i=0; i < cookies.length; i++) {
+    Date expiryDate=cookies[i].getExpiryDate();
+    long exp=0;
+    if (expiryDate != null) {
+      exp=expiryDate.getTime() / 1000;
+    }
+    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp);
+    if (exp == 0 || exp >= (System.currentTimeMillis() / 1000)) {
+      add(newCookie);
+    }
  else {
-    removeMatchingCookies(newCookie);
-    if (debugEnabled) {
-      log.debug("Dropping expired Cookie: " + newCookie.toString());
+      removeMatchingCookies(newCookie);
+      if (debugEnabled) {
+        log.debug("Dropping expired Cookie: " + newCookie.toString());
+      }
     }
   }
 }

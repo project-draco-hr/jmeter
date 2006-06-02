@@ -1,0 +1,4 @@
+{
+  long exp=jmc.getExpires() * 1000;
+  return new org.apache.commons.httpclient.Cookie(jmc.getDomain(),jmc.getName(),jmc.getValue(),jmc.getPath(),exp > 0 ? new Date(exp) : null,jmc.getSecure());
+}
