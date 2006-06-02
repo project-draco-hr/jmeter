@@ -1,7 +1,7 @@
 {
   String filename=getFilename();
   if ((filename != null) && (filename.trim().length() > 0)) {
-    conn.setRequestProperty("Content-Type",getMimetype());
+    conn.setRequestProperty(HEADER_CONTENT_TYPE,getMimetype());
     conn.setDoOutput(true);
     conn.setDoInput(true);
   }

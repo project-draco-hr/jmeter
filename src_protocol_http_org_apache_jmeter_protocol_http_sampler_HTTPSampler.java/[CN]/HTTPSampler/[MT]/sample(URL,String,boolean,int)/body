@@ -60,7 +60,7 @@ catch (      IOException e) {
     res.setEncodingAndType(ct);
     res.setResponseHeaders(getResponseHeaders(conn));
     if (res.isRedirect()) {
-      res.setRedirectLocation(conn.getHeaderField("Location"));
+      res.setRedirectLocation(conn.getHeaderField(HEADER_LOCATION));
     }
     if (getAutoRedirects()) {
       res.setURL(conn.getURL());
