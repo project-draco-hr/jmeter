@@ -80,7 +80,7 @@
     if (getAutoRedirects()) {
       res.setURL(new URL(httpMethod.getURI().toString()));
     }
-    saveConnectionCookies(client,getCookieManager());
+    saveConnectionCookies(httpMethod,res.getURL(),getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
     if (httpMethod != null)     httpMethod.releaseConnection();
