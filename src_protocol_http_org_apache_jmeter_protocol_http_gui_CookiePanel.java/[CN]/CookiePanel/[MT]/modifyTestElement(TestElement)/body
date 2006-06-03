@@ -11,5 +11,6 @@
       cookieManager.add(cookie);
     }
     cookieManager.setClearEachIteration(clearEachIteration.isSelected());
+    cookieManager.setCookiePolicy(policy.getText());
   }
 }
