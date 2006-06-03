@@ -1,8 +1,3 @@
 {
-  this.setName(name);
-  this.setValue(value);
-  this.setDomain(domain);
-  this.setPath(path);
-  this.setSecure(secure);
-  this.setExpires(expires);
+  this(name,value,domain,path,secure,expires,true,true);
 }
