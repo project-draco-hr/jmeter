@@ -1,18 +1,16 @@
 {
   org.apache.commons.httpclient.Cookie[] c=getCookiesForUrl(url);
   int count=c.length;
-  log.debug("*** Cookies for " + url.toExternalForm() + " = "+ count);
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Found " + count + " cookies for "+ url.toExternalForm());
+  }
   if (count <= 0) {
     return null;
   }
-  StringBuffer sb=new StringBuffer(count * 20);
-  for (int i=0; i < count; i++) {
-    if (i > 0) {
-      sb.append("; ");
-    }
-    sb.append(c[i].getName());
-    sb.append("=");
-    sb.append(c[i].getValue());
+  String hdr=cookieSpec.formatCookieHeader(c).getValue();
+  if (debugEnabled) {
+    log.debug("Cookie: " + hdr);
   }
-  return sb.toString();
+  return hdr;
 }

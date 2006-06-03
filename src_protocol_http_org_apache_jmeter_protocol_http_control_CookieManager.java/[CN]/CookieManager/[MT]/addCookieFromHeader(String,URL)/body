@@ -25,7 +25,7 @@ catch (  IllegalArgumentException e) {
     if (expiryDate != null) {
       exp=expiryDate.getTime();
     }
-    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp / 1000);
+    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp / 1000,cookies[i].isPathAttributeSpecified(),cookies[i].isDomainAttributeSpecified());
     if (exp == 0 || exp >= System.currentTimeMillis()) {
       add(newCookie);
     }
