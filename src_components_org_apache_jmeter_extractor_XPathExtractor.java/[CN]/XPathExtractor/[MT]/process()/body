@@ -11,11 +11,11 @@
   }
  catch (  IOException e) {
     log.error("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")",e);
-    throw new RuntimeException(e);
+    throw new JMeterError(e);
   }
 catch (  ParserConfigurationException e) {
     log.error("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")",e);
-    throw new RuntimeException(e);
+    throw new JMeterError(e);
   }
 catch (  SAXException e) {
     log.warn("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")"+ e.getLocalizedMessage());
