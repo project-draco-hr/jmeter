@@ -1,8 +1,13 @@
 {
   Iterator urls=null;
   try {
-    if (res.getContentType().toLowerCase().indexOf("text/html") != -1 && res.getResponseData().length > 0) {
-      urls=HTMLParser.getParser().getEmbeddedResourceURLs(res.getResponseData(),res.getURL());
+    final byte[] responseData=res.getResponseData();
+    if (responseData.length > 0) {
+      String parserName=getParserClass(res);
+      if (parserName != null) {
+        final HTMLParser parser=parserName.length() > 0 ? HTMLParser.getParser(parserName) : HTMLParser.getParser();
+        urls=parser.getEmbeddedResourceURLs(responseData,res.getURL());
+      }
     }
   }
  catch (  HTMLParseException e) {
