@@ -1,0 +1,16 @@
+{
+  if (getHeaderManager() != null) {
+    HeaderManager mngr=getHeaderManager();
+    int headerSize=mngr.size();
+    for (int idx=0; idx < headerSize; idx++) {
+      Header hd=mngr.getHeader(idx);
+      post.addParameter(hd.getName(),hd.getValue());
+    }
+  }
+ else {
+    post.addParameter(HEADER_CONTENT_TYPE,"text/xml");
+  }
+  if (getSendSOAPAction()) {
+    post.setRequestHeader(SOAPACTION,getSOAPActionQuoted());
+  }
+}
