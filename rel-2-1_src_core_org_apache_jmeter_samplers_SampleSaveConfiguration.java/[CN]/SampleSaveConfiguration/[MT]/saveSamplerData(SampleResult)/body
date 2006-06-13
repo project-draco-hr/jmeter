@@ -1,0 +1,3 @@
+{
+  return samplerData || TestPlan.getFunctionalMode() || (responseDataOnError && !res.isSuccessful());
+}

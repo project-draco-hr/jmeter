@@ -1,0 +1,4 @@
+{
+  guiPackage.getTreeModel().removeNodeFromParent(node);
+  guiPackage.getTreeModel().insertNodeInto(node,newParentNode,newParentNode.getChildCount());
+}

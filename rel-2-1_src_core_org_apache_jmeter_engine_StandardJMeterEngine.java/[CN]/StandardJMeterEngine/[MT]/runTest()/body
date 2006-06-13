@@ -1,0 +1,13 @@
+{
+  try {
+    runningThread=new Thread(this);
+    runningThread.start();
+  }
+ catch (  Exception err) {
+    stopTest();
+    StringWriter string=new StringWriter();
+    PrintWriter writer=new PrintWriter(string);
+    err.printStackTrace(writer);
+    throw new JMeterEngineException(string.toString());
+  }
+}

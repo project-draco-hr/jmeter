@@ -1,0 +1,19 @@
+{
+  try {
+    String className=ev.getActionCommand().substring(4).replace('/','.');
+    UIManager.setLookAndFeel(className);
+    SwingUtilities.updateComponentTreeUI(ReportGuiPackage.getInstance().getMainFrame());
+  }
+ catch (  javax.swing.UnsupportedLookAndFeelException e) {
+    JMeterUtils.reportErrorToUser("Look and Feel unavailable:" + e.toString());
+  }
+catch (  InstantiationException e) {
+    JMeterUtils.reportErrorToUser("Look and Feel unavailable:" + e.toString());
+  }
+catch (  ClassNotFoundException e) {
+    JMeterUtils.reportErrorToUser("Look and Feel unavailable:" + e.toString());
+  }
+catch (  IllegalAccessException e) {
+    JMeterUtils.reportErrorToUser("Look and Feel unavailable:" + e.toString());
+  }
+}

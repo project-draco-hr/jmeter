@@ -1,0 +1,10 @@
+{
+  if (!data.containsKey(key)) {
+    HashTree newTree=createNewTree();
+    data.put(key,newTree);
+    return newTree;
+  }
+ else {
+    return getTree(key);
+  }
+}

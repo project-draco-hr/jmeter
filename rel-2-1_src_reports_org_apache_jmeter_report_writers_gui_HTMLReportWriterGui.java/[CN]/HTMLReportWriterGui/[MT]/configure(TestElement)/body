@@ -1,0 +1,5 @@
+{
+  super.configure(element);
+  HTMLReportWriter wr=(HTMLReportWriter)element;
+  outputDirectory.setFilename(wr.getTargetDirectory());
+}

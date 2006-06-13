@@ -1,0 +1,7 @@
+{
+  if (getModel() == null) {
+    setModel(new MailerResultCollector());
+  }
+  modifyTestElement(getModel());
+  return getModel();
+}

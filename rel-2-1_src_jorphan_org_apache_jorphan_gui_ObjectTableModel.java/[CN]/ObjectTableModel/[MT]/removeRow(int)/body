@@ -1,0 +1,4 @@
+{
+  objects.remove(row);
+  super.fireTableRowsDeleted(row,row);
+}

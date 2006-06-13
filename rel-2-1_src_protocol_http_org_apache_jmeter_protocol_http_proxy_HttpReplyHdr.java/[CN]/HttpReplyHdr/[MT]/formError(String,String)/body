@@ -1,0 +1,12 @@
+{
+  String body=formErrorBody(error,description);
+  StringBuffer header=new StringBuffer();
+  header.append(HTTP_PROTOCOL).append(" ").append(error).append(CR);
+  header.append("Server: ").append(HTTP_SERVER).append(CR);
+  header.append("MIME-version: 1.0").append(CR);
+  header.append("Content-Type: text/html").append(CR);
+  header.append("Content-Length: ").append(body.length()).append(CR);
+  header.append(CR);
+  header.append(body);
+  return header.toString();
+}

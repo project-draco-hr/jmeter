@@ -1,0 +1,24 @@
+{
+  ArrayList tempList;
+  if ((tempList=(ArrayList)data.get(column)) == null) {
+    tempList=new ArrayList();
+    data.put(column,tempList);
+  }
+  int s=tempList.size();
+  if (currentPos == -1) {
+    currentPos=size;
+  }
+  if (currentPos >= size) {
+    size=currentPos + 1;
+  }
+  while (currentPos > s) {
+    s++;
+    tempList.add(null);
+  }
+  if (currentPos == s) {
+    tempList.add(value);
+  }
+ else {
+    tempList.set(currentPos,value);
+  }
+}

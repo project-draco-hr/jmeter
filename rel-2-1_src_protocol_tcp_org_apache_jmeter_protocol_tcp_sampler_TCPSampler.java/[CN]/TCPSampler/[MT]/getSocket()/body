@@ -1,0 +1,25 @@
+{
+  Map cp=(Map)tp.get();
+  Socket con=(Socket)cp.get(TCPKEY);
+  if (con != null) {
+    log.debug(this + " Reusing connection " + con);
+    return con;
+  }
+  try {
+    con=new Socket(getServer(),getPort());
+    con.setSoTimeout(getTimeout());
+    con.setTcpNoDelay(getNoDelay());
+    log.debug(this + "  Timeout " + getTimeout()+ " NoDelay "+ getNoDelay());
+    log.debug("Created new connection " + con);
+    cp.put(TCPKEY,con);
+  }
+ catch (  UnknownHostException e) {
+    log.warn("Unknown host for " + getLabel(),e);
+    cp.put(ERRKEY,e.toString());
+  }
+catch (  IOException e) {
+    log.warn("Could not create socket for " + getLabel(),e);
+    cp.put(ERRKEY,e.toString());
+  }
+  return con;
+}

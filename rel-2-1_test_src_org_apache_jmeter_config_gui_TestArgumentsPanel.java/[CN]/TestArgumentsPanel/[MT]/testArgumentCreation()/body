@@ -1,0 +1,8 @@
+{
+  ArgumentsPanel gui=new ArgumentsPanel();
+  gui.tableModel.addRow(new Argument());
+  gui.tableModel.setValueAt("howdy",0,0);
+  gui.tableModel.addRow(new Argument());
+  gui.tableModel.setValueAt("doody",0,1);
+  assertEquals("=",((Argument)((Arguments)gui.createTestElement()).getArguments().get(0).getObjectValue()).getMetaData());
+}

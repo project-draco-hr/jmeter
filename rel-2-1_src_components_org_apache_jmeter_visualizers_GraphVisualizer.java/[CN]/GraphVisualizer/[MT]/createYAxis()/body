@@ -1,0 +1,9 @@
+{
+  JPanel graphYAxisPanel=new JPanel();
+  graphYAxisPanel.setLayout(new BorderLayout());
+  maxYField=createYAxisField(5);
+  minYField=createYAxisField(3);
+  graphYAxisPanel.add(createYAxisPanel("graph_results_ms",maxYField),BorderLayout.NORTH);
+  graphYAxisPanel.add(createYAxisPanel("graph_results_ms",minYField),BorderLayout.SOUTH);
+  return graphYAxisPanel;
+}

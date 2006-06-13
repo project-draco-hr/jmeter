@@ -1,0 +1,8 @@
+{
+  ModuleController mc=new ModuleController();
+  configureTestElement(mc);
+  if (selected != null) {
+    mc.setSelectedNode(selected);
+  }
+  return mc;
+}

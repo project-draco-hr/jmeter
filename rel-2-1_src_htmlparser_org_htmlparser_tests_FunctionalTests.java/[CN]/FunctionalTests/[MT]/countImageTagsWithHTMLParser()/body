@@ -1,0 +1,13 @@
+{
+  Parser parser=new Parser("http://www.yahoo.com",new DefaultParserFeedback());
+  parser.addScanner(new ImageScanner("-i",new LinkProcessor()));
+  int parserImgTagCount=0;
+  Node node;
+  for (NodeIterator e=parser.elements(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    if (node instanceof ImageTag) {
+      parserImgTagCount++;
+    }
+  }
+  return parserImgTagCount;
+}

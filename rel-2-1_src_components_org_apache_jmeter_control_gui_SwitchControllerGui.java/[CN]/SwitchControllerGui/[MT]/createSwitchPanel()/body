@@ -1,0 +1,9 @@
+{
+  JPanel switchPanel=new JPanel(new BorderLayout(5,0));
+  JLabel selectionLabel=new JLabel(JMeterUtils.getResString(SWITCH_LABEL));
+  switchValue=new JTextField("");
+  selectionLabel.setLabelFor(switchValue);
+  switchPanel.add(selectionLabel,BorderLayout.WEST);
+  switchPanel.add(switchValue,BorderLayout.CENTER);
+  return switchPanel;
+}

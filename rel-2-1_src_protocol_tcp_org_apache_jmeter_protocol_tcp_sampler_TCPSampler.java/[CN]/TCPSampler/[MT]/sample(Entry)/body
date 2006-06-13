@@ -1,0 +1,59 @@
+{
+  log.debug(getLabel() + " " + getFilename()+ " "+ getUsername()+ " "+ getPassword());
+  SampleResult res=new SampleResult();
+  boolean isSuccessful=false;
+  res.setSampleLabel(getName());
+  res.setSamplerData("Host: " + getServer() + " Port: "+ getPort());
+  res.sampleStart();
+  try {
+    Socket sock=getSocket();
+    if (sock == null) {
+      res.setResponseCode("500");
+      res.setResponseMessage(getError());
+    }
+ else {
+      InputStream is=sock.getInputStream();
+      OutputStream os=sock.getOutputStream();
+      String req=getRequestData();
+      res.setSamplerData(req);
+      protocolHandler.write(os,req);
+      String in=protocolHandler.read(is);
+      res.setResponseData(in.getBytes());
+      res.setDataType(SampleResult.TEXT);
+      res.setResponseCodeOK();
+      res.setResponseMessage("OK");
+      isSuccessful=true;
+      if (STATUS_PREFIX.length() > 0) {
+        int i=in.indexOf(STATUS_PREFIX);
+        int j=in.indexOf(STATUS_SUFFIX,i + STATUS_PREFIX.length());
+        if (i != -1 && j > i) {
+          String rc=in.substring(i + STATUS_PREFIX.length(),j);
+          res.setResponseCode(rc);
+          isSuccessful=checkResponseCode(rc);
+          if (haveStatusProps) {
+            res.setResponseMessage(statusProps.getProperty(rc,"Status code not found in properties"));
+          }
+ else {
+            res.setResponseMessage("No status property file");
+          }
+        }
+ else {
+          res.setResponseCode("999");
+          res.setResponseMessage("Status value not found");
+          isSuccessful=false;
+        }
+      }
+    }
+  }
+ catch (  IOException ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+    closeSocket();
+  }
+ finally {
+    res.sampleEnd();
+    res.setSuccessful(isSuccessful);
+  }
+  return res;
+}

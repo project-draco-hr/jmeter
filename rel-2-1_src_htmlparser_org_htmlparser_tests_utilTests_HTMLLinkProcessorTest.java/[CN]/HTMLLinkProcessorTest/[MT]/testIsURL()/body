@@ -1,0 +1,8 @@
+{
+  String resourceLoc1="http://someurl.com";
+  String resourceLoc2="myfilehttp.dat";
+  assertTrue(resourceLoc1 + " should be a url",LinkProcessor.isURL(resourceLoc1));
+  assertTrue(resourceLoc2 + " should not be a url",!LinkProcessor.isURL(resourceLoc2));
+  String resourceLoc3="file://localhost/D:/java/jdk1.3/docs/api/overview-summary.html";
+  assertTrue(resourceLoc3 + " should be a url",LinkProcessor.isURL(resourceLoc3));
+}

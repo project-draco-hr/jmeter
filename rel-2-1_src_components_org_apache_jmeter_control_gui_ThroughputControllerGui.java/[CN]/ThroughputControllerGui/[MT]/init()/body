@@ -1,0 +1,43 @@
+{
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  DefaultComboBoxModel styleModel=new DefaultComboBoxModel();
+  styleModel.addElement(BYNUMBER_LABEL);
+  styleModel.addElement(BYPERCENT_LABEL);
+  styleBox=new JComboBox(styleModel);
+  styleBox.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      if (((String)styleBox.getSelectedItem()).equals(BYNUMBER_LABEL)) {
+        style=ThroughputController.BYNUMBER;
+      }
+ else {
+        style=ThroughputController.BYPERCENT;
+      }
+    }
+  }
+);
+  add(styleBox);
+  JPanel tpPanel=new JPanel();
+  JLabel tpLabel=new JLabel(THROUGHPUT_LABEL);
+  tpPanel.add(tpLabel);
+  throughput=new JTextField(5);
+  tpPanel.add(throughput);
+  throughput.setName(THROUGHPUT);
+  throughput.setText("1");
+  tpPanel.add(throughput);
+  add(tpPanel);
+  perthread=new JCheckBox(PERTHREAD_LABEL,isPerThread);
+  perthread.addItemListener(new ItemListener(){
+    public void itemStateChanged(    ItemEvent event){
+      if (event.getStateChange() == ItemEvent.SELECTED) {
+        isPerThread=true;
+      }
+ else {
+        isPerThread=false;
+      }
+    }
+  }
+);
+  add(perthread);
+}

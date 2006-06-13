@@ -1,0 +1,31 @@
+{
+  JMeterVariables vars=getVariables();
+  String script=((CompoundVariable)values[0]).execute();
+  String varName=values.length < 2 ? null : ((CompoundVariable)values[1]).execute();
+  String resultStr="";
+  Context cx=Context.enter();
+  try {
+    Scriptable scope=cx.initStandardObjects(null);
+    Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
+    resultStr=Context.toString(result);
+    if (varName != null && vars != null) {
+      vars.put(varName,resultStr);
+    }
+  }
+ catch (  WrappedException e) {
+    log.error("Error processing Javascript",e);
+    throw new InvalidVariableException();
+  }
+catch (  EcmaError e) {
+    log.error("Error processing Javascript",e);
+    throw new InvalidVariableException();
+  }
+catch (  JavaScriptException e) {
+    log.error("Error processing Javascript",e);
+    throw new InvalidVariableException();
+  }
+ finally {
+    Context.exit();
+  }
+  return resultStr;
+}

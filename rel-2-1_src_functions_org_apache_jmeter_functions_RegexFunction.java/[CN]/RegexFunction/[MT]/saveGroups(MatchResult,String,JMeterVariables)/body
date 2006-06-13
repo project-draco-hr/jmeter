@@ -1,0 +1,7 @@
+{
+  if (result != null) {
+    for (int x=0; x < result.groups(); x++) {
+      vars.put(namep + "_g" + x,result.group(x));
+    }
+  }
+}

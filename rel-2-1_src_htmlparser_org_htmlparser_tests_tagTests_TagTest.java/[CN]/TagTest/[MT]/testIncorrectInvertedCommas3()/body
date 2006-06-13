@@ -1,0 +1,8 @@
+{
+  String testHTML=new String("<meta name=\"description\" content=\"Une base de donn?es sur les th?ses de g\"ographie soutenues en France \">");
+  createParser(testHTML);
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a tag",node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertEquals("Node contents","meta name=\"description\" content=\"Une base de donn?es sur les th?ses de gographie soutenues en France\"",tag.getText());
+}

@@ -1,0 +1,13 @@
+{
+  TestElement el=urlConfigGui.createTestElement();
+  sampler.clear();
+  sampler.addTestElement(el);
+  if (getImages.isSelected()) {
+    ((HTTPSamplerBase)sampler).setImageParser(true);
+  }
+ else {
+    sampler.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
+  }
+  ((HTTPSamplerBase)sampler).setMonitor(isMon.isSelected());
+  this.configureTestElement(sampler);
+}

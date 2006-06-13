@@ -1,0 +1,60 @@
+{
+  try {
+    if (nextParsedNode.size() > 0) {
+      node=nextParsedNode.elementAt(0);
+      nextParsedNode.remove(0);
+      return node;
+    }
+    if (readNextLine()) {
+      do {
+        line=getNextLine();
+      }
+ while (line != null && line.length() == 0);
+    }
+ else     if (dontReadNextLine) {
+      dontReadNextLine=false;
+    }
+ else     posInLine=getLastReadPosition() + 1;
+    if (line == null)     return null;
+    if (beginTag(line,posInLine)) {
+      node=remarkNodeParser.find(this,line,posInLine);
+      if (node != null)       return node;
+      node=Tag.find(this,line,posInLine);
+      if (node != null) {
+        Tag tag=(Tag)node;
+        try {
+          node=tag.scan(parser.getScanners(),url,this);
+          return node;
+        }
+ catch (        Exception e) {
+          StringBuffer msgBuffer=new StringBuffer();
+          msgBuffer.append(DECIPHER_ERROR + "\n" + "    Tag being processed : "+ tag.getTagName()+ "\n"+ "    Current Tag Line : "+ tag.getTagLine());
+          appendLineDetails(msgBuffer);
+          ParserException ex=new ParserException(msgBuffer.toString(),e);
+          parser.getFeedback().error(msgBuffer.toString(),ex);
+          throw ex;
+        }
+      }
+      node=EndTag.find(line,posInLine);
+      if (node != null)       return node;
+    }
+ else {
+      node=stringParser.find(this,line,posInLine,balance_quotes);
+      if (node != null)       return node;
+    }
+    return null;
+  }
+ catch (  ParserException pe) {
+    throw pe;
+  }
+catch (  Exception e) {
+    StringBuffer msgBuffer=new StringBuffer("NodeReader.readElement() : Error occurred while trying to read the next element,");
+    StringWriter sw=new StringWriter();
+    e.printStackTrace(new PrintWriter(sw));
+    appendLineDetails(msgBuffer);
+    msgBuffer.append("\n Caused by:\n").append(sw.getBuffer().toString());
+    ParserException ex=new ParserException(msgBuffer.toString(),e);
+    parser.getFeedback().error(msgBuffer.toString(),ex);
+    throw ex;
+  }
+}

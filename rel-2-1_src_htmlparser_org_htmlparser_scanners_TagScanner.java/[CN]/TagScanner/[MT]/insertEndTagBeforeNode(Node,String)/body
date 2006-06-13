@@ -1,0 +1,6 @@
+{
+  String newLine=currentLine.substring(0,node.elementBegin());
+  newLine+="</A>";
+  newLine+=currentLine.substring(node.elementBegin(),currentLine.length());
+  return newLine;
+}

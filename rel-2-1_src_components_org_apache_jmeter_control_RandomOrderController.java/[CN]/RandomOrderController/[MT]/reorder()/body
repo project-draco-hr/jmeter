@@ -1,0 +1,21 @@
+{
+  int numElements=this.subControllersAndSamplers.size();
+  List reordered=new ArrayList(this.subControllersAndSamplers.size());
+  for (int i=0; i < numElements; i++) {
+    reordered.add(null);
+  }
+  for (Iterator i=this.subControllersAndSamplers.iterator(); i.hasNext(); ) {
+    int idx=(int)Math.floor(Math.random() * reordered.size());
+    while (true) {
+      if (idx == numElements) {
+        idx=0;
+      }
+      if (reordered.get(idx) == null) {
+        reordered.set(idx,i.next());
+        break;
+      }
+      idx++;
+    }
+  }
+  this.subControllersAndSamplers=reordered;
+}

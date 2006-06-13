@@ -1,0 +1,18 @@
+{
+  log.debug("Subtracting node, stack size = " + stack.size());
+  TestElement child=(TestElement)stack.getLast();
+  trackIterationListeners(stack);
+  if (child instanceof Sampler) {
+    saveSamplerConfigs((Sampler)child);
+  }
+  stack.removeLast();
+  if (stack.size() > 0) {
+    ObjectPair pair=new ObjectPair(child,(TestElement)stack.getLast());
+synchronized (pairing) {
+      if (!pairing.contains(pair)) {
+        pair.addTestElements();
+        pairing.add(pair);
+      }
+    }
+  }
+}

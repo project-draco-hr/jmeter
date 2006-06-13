@@ -1,0 +1,7 @@
+{
+  String tagContents="a href=r/anorth/top.html";
+  Tag tag=new Tag(new TagData(0,0,tagContents,""));
+  String url="c:\\cvs\\html\\binaries\\yahoo.htm";
+  LinkScanner scanner=new LinkScanner("-l");
+  assertEquals("Extracted Link","r/anorth/top.html",scanner.extractLink(tag,url));
+}

@@ -1,0 +1,9 @@
+{
+  File furl=new File(url);
+  try {
+    loader.addURL(furl.toURL());
+  }
+ catch (  MalformedURLException e) {
+    e.printStackTrace();
+  }
+}

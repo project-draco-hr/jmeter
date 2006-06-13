@@ -1,0 +1,4 @@
+{
+  NodeList columns=compositeTagData.getChildren().searchFor(TableColumn.class);
+  return new TableRow(tagData,compositeTagData,columns);
+}

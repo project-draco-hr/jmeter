@@ -1,0 +1,13 @@
+{
+  if (edit_add != null) {
+    edit_add.setEnabled(enabled);
+  }
+  if (enabled) {
+    setEditEnabled(true);
+  }
+ else {
+    if (!edit_remove.isEnabled()) {
+      editMenu.setEnabled(false);
+    }
+  }
+}

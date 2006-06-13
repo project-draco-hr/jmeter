@@ -1,0 +1,18 @@
+{
+  Iterator iter=subTree.list().iterator();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    if (item instanceof ReportPlan) {
+      current=(ReportTreeNode)((ReportTreeNode)getRoot()).getChildAt(0);
+      ((TestElement)current.getUserObject()).addTestElement(item);
+      ((ReportPlan)current.getUserObject()).setName(item.getPropertyAsString(TestElement.NAME));
+      addSubTree(subTree.getTree(item),current);
+    }
+ else {
+      if (subTree.getTree(item) != null) {
+        addSubTree(subTree.getTree(item),addComponent(item,current));
+      }
+    }
+  }
+  return getCurrentSubTree(current);
+}

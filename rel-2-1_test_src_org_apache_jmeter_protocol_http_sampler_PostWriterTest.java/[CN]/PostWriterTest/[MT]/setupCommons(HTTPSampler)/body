@@ -1,0 +1,7 @@
+{
+  httpSampler.setFileField("upload");
+  Arguments args=new Arguments();
+  args.addArgument(new HTTPArgument("title","mytitle"));
+  args.addArgument(new HTTPArgument("description","mydescription"));
+  httpSampler.setArguments(args);
+}

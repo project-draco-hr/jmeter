@@ -1,0 +1,15 @@
+{
+  CollectionProperty jar=getCookies();
+  org.apache.commons.httpclient.Cookie cookies[]=new org.apache.commons.httpclient.Cookie[jar.size()];
+  int i=0;
+  for (PropertyIterator iter=getCookies().iterator(); iter.hasNext(); ) {
+    Cookie jmcookie=(Cookie)iter.next().getObjectValue();
+    cookies[i++]=makeCookie(jmcookie);
+  }
+  String host=url.getHost();
+  String protocol=url.getProtocol();
+  int port=HTTPSamplerBase.getDefaultPort(protocol,url.getPort());
+  String path=url.getPath();
+  boolean secure=HTTPSamplerBase.isSecure(protocol);
+  return cookieSpec.match(host,port,path,secure,cookies);
+}

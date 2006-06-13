@@ -1,0 +1,26 @@
+{
+  JMeterContext context=getThreadContext();
+  JMeterVariables vars=context.getVariables();
+  String refName=getRefName();
+  vars.put(refName,getDefaultValue());
+  vars.put(concat(refName,MATCH_NR),"0");
+  vars.remove(concat(refName,"1"));
+  try {
+    Document d=parseResponse(context.getPreviousResult());
+    getValuesForXPath(d,getXPathQuery(),vars,refName);
+  }
+ catch (  IOException e) {
+    log.error("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")",e);
+    throw new JMeterError(e);
+  }
+catch (  ParserConfigurationException e) {
+    log.error("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")",e);
+    throw new JMeterError(e);
+  }
+catch (  SAXException e) {
+    log.warn("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")"+ e.getLocalizedMessage());
+  }
+catch (  TransformerException e) {
+    log.warn("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")"+ e.getLocalizedMessage());
+  }
+}

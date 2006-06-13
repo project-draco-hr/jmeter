@@ -1,0 +1,26 @@
+{
+  if (s.isSuccessful() && getErrorsOnly())   return;
+  nextNumber();
+  String fileName=makeFileName(s.getContentType());
+  log.debug("Saving " + s.getSampleLabel() + " in "+ fileName);
+  s.setResultFileName(fileName);
+  File out=new File(fileName);
+  FileOutputStream pw=null;
+  try {
+    pw=new FileOutputStream(out);
+    pw.write(s.getResponseData());
+  }
+ catch (  FileNotFoundException e1) {
+    log.error("Error creating sample file for " + s.getSampleLabel(),e1);
+  }
+catch (  IOException e1) {
+    log.error("Error saving sample " + s.getSampleLabel(),e1);
+  }
+ finally {
+    try {
+      if (pw != null)       pw.close();
+    }
+ catch (    IOException e) {
+    }
+  }
+}

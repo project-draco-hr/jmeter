@@ -1,0 +1,4 @@
+{
+  super(filter,nameOfTagToMatch,tagEnders,endTagEnders,allowSelfChildren);
+  parser.addScanner(new TableColumnScanner());
+}

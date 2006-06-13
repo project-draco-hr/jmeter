@@ -1,0 +1,6 @@
+{
+  Iterator iter=list.iterator();
+  while (iter.hasNext()) {
+    ((TestElement)iter.next()).setRunningVersion(running);
+  }
+}

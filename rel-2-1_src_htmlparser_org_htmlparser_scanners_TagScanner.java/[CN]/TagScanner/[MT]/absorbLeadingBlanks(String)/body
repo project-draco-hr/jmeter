@@ -1,0 +1,12 @@
+{
+  int length;
+  int i;
+  String ret;
+  i=0;
+  length=s.length();
+  while (i < length && Character.isWhitespace(s.charAt(i)))   i++;
+  if (0 == i)   ret=s;
+ else   if (length == i)   ret="";
+ else   ret=s.substring(i);
+  return (ret);
+}

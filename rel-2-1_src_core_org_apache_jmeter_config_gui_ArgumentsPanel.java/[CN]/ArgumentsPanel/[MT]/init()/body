@@ -1,0 +1,19 @@
+{
+  JPanel p=this;
+  if (standalone) {
+    setLayout(new BorderLayout(0,5));
+    setBorder(makeBorder());
+    add(makeTitlePanel(),BorderLayout.NORTH);
+    p=new JPanel();
+  }
+  p.setLayout(new BorderLayout());
+  p.add(makeLabelPanel(),BorderLayout.NORTH);
+  p.add(makeMainPanel(),BorderLayout.CENTER);
+  p.add(Box.createVerticalStrut(70),BorderLayout.WEST);
+  p.add(makeButtonPanel(),BorderLayout.SOUTH);
+  if (standalone) {
+    add(p,BorderLayout.CENTER);
+  }
+  table.revalidate();
+  sizeColumns(table);
+}

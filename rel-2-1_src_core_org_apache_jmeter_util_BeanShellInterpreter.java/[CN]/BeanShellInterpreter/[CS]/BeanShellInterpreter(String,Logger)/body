@@ -1,0 +1,12 @@
+{
+  this();
+  try {
+    this.init(init,_log);
+  }
+ catch (  IOException e) {
+    _log.warn("Could not initialise interpreter",e);
+  }
+catch (  JMeterException e) {
+    _log.warn("Could not initialise interpreter",e);
+  }
+}

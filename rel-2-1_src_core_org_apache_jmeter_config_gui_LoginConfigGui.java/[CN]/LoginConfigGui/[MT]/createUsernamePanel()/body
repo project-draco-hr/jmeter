@@ -1,0 +1,8 @@
+{
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  JLabel label=new JLabel(JMeterUtils.getResString("username"));
+  label.setLabelFor(username);
+  panel.add(label,BorderLayout.WEST);
+  panel.add(username,BorderLayout.CENTER);
+  return panel;
+}

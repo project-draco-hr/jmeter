@@ -1,0 +1,12 @@
+{
+  Enumeration en=this.bGroup.getElements();
+  while (en.hasMoreElements()) {
+    JRadioButton jrb=(JRadioButton)en.nextElement();
+    if (jrb.getText().equals(text)) {
+      this.bGroup.setSelected(jrb.getModel(),true);
+    }
+ else {
+      this.bGroup.setSelected(jrb.getModel(),false);
+    }
+  }
+}

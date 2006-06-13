@@ -1,0 +1,12 @@
+{
+  if (testStart == 0) {
+    numberOfThreads=0;
+    testStart=System.currentTimeMillis();
+    threadContext=new ThreadLocal(){
+      public Object initialValue(){
+        return new JMeterContext();
+      }
+    }
+;
+  }
+}

@@ -1,0 +1,13 @@
+{
+  Thread.currentThread().setName("XPathTwo");
+  Thread.sleep(500);
+synchronized (baton) {
+    assertEquals("u3",sxp2.execute());
+    assertEquals("u4",sxp2.execute());
+    baton.pass();
+    assertEquals("u1",sxp2.execute());
+    baton.pass();
+    assertEquals("u3",sxp2.execute());
+    baton.done();
+  }
+}

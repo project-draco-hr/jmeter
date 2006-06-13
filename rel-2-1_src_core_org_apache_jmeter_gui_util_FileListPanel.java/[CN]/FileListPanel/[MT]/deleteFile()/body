@@ -1,0 +1,7 @@
+{
+  int rowSelected=files.getSelectedRow();
+  if (rowSelected >= 0) {
+    tableModel.removeRow(rowSelected);
+    tableModel.fireTableDataChanged();
+  }
+}

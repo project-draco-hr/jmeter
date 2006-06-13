@@ -1,0 +1,15 @@
+{
+  if (decodeMethod != null) {
+    Object args[]={string,encoding};
+    try {
+      return (String)decodeMethod.invoke(null,args);
+    }
+ catch (    Exception e) {
+      log.warn("Error trying to decode",e);
+      return string;
+    }
+  }
+ else {
+    return URLDecoder.decode(string);
+  }
+}

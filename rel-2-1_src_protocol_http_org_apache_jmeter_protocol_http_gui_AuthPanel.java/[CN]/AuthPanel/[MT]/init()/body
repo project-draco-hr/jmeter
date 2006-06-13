@@ -1,0 +1,6 @@
+{
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(createAuthTablePanel(),BorderLayout.CENTER);
+}

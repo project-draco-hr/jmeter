@@ -1,0 +1,9 @@
+{
+  try {
+    return (SampleSaveConfiguration)getProperty(SAVE_CONFIG).getObjectValue();
+  }
+ catch (  ClassCastException e) {
+    setSaveConfig(new SampleSaveConfiguration());
+    return getSaveConfig();
+  }
+}

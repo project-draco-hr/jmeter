@@ -1,0 +1,12 @@
+{
+  if (currentNode instanceof EndTag) {
+    EndTag possibleEndTag=(EndTag)currentNode;
+    if (isExpectedEndTag(possibleEndTag)) {
+      endTagFound=true;
+      endTag=possibleEndTag;
+      return;
+    }
+  }
+  nodeList.add(currentNode);
+  scanner.childNodeEncountered(currentNode);
+}

@@ -1,0 +1,7 @@
+{
+  send();
+  if (method.equals(POST)) {
+    sendPostBody();
+  }
+  handshake(res);
+}

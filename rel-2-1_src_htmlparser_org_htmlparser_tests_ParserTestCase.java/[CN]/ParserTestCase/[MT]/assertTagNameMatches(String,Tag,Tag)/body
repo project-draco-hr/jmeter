@@ -1,0 +1,6 @@
+{
+  String expectedTagName=nextExpectedTag.getTagName();
+  String actualTagName=nextActualTag.getTagName();
+  displayMessage="The tag names did not match: Expected " + expectedTagName + " \nbut was "+ actualTagName+ displayMessage;
+  assertStringEquals(displayMessage,expectedTagName,actualTagName);
+}

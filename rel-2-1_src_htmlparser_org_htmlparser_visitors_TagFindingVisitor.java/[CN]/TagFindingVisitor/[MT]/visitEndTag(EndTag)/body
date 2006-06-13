@@ -1,0 +1,7 @@
+{
+  if (!endTagCheck)   return;
+  for (int i=0; i < tagsToBeFound.length; i++)   if (endTag.getTagName().equalsIgnoreCase(tagsToBeFound[i])) {
+    endTagCount[i]++;
+    endTags[i].add(endTag);
+  }
+}

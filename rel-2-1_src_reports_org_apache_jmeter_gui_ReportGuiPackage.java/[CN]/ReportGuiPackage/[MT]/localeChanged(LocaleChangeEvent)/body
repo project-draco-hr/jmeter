@@ -1,0 +1,15 @@
+{
+  updateCurrentNode();
+  guis=new HashMap();
+  nodesToGui=new HashMap();
+  testBeanGUIs=new HashMap();
+  Introspector.flushCaches();
+  ReportMainFrame mf=getMainFrame();
+  if (mf == null) {
+    log.warn("Mainframe is null");
+  }
+ else {
+    mf.setMainPanel((javax.swing.JComponent)getCurrentGui());
+    mf.setEditMenu(getTreeListener().getCurrentNode().createPopupMenu());
+  }
+}

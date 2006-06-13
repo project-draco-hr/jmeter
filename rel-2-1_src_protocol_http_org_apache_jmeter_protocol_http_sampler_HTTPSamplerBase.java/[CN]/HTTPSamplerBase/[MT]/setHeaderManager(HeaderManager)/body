@@ -1,0 +1,7 @@
+{
+  HeaderManager mgr=getHeaderManager();
+  if (mgr != null) {
+    log.warn("Existing Manager " + mgr.getName() + " superseded by "+ value.getName());
+  }
+  setProperty(new TestElementProperty(HEADER_MANAGER,value));
+}

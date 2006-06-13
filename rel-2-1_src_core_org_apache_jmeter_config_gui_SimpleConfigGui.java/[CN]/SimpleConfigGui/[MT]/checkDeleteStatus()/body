@@ -1,0 +1,8 @@
+{
+  if (tableModel.getRowCount() == 0) {
+    delete.setEnabled(false);
+  }
+ else {
+    delete.setEnabled(true);
+  }
+}

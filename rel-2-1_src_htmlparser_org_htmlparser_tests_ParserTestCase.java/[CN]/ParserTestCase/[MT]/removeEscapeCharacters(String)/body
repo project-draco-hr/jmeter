@@ -1,0 +1,6 @@
+{
+  inputString=ParserUtils.removeChars(inputString,'\r');
+  inputString=inputString.replace('\n',' ');
+  inputString=ParserUtils.removeChars(inputString,'\t');
+  return inputString;
+}

@@ -1,0 +1,9 @@
+{
+  in.defaultReadObject();
+  try {
+    setURL(getURL());
+  }
+ catch (  ParserException hpe) {
+    throw new IOException(hpe.toString());
+  }
+}

@@ -1,0 +1,9 @@
+{
+  configureTestElement((AbstractListenerElement)c);
+  if (c instanceof ResultCollector) {
+    ResultCollector rc=(ResultCollector)c;
+    rc.setErrorLogging(errorLogging.isSelected());
+    rc.setFilename(getFile());
+    collector=rc;
+  }
+}

@@ -1,0 +1,4 @@
+{
+  String msg="XStream ConversionException at line: " + ce.get("line number") + "\n"+ ce.get("message")+ "\nPerhaps a missing jar? See log file.";
+  return msg;
+}

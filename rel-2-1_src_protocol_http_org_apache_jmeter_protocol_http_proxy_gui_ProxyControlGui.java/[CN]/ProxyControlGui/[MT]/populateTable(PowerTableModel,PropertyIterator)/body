@@ -1,0 +1,7 @@
+{
+  p_model.clearData();
+  while (iter.hasNext()) {
+    p_model.addRow(new Object[]{iter.next().getStringValue()});
+  }
+  p_model.fireTableDataChanged();
+}

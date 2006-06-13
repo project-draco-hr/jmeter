@@ -1,0 +1,15 @@
+{
+  if (res != null) {
+    StringBuffer display=new StringBuffer();
+    AssertionResult assertionResults[]=res.getAssertionResults();
+    for (int i=0; i < assertionResults.length; i++) {
+      AssertionResult item=assertionResults[i];
+      if (item.isFailure() || item.isError()) {
+        display.append("\n\t");
+        display.append(item.getFailureMessage());
+      }
+    }
+    return display.toString();
+  }
+  return "";
+}

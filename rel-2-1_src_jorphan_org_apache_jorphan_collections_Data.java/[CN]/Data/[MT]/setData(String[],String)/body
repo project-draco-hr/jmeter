@@ -1,0 +1,7 @@
+{
+  setHeaders(JOrphanUtils.split(contents[0],delimiter));
+  int x=1;
+  while (x < contents.length) {
+    setLine(JOrphanUtils.split(contents[x++],delimiter));
+  }
+}

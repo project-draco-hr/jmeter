@@ -1,0 +1,8 @@
+{
+  MultiProperty prop=(MultiProperty)arg0;
+  writer.addAttribute(ATT_NAME,ConversionHelp.encode(prop.getName()));
+  PropertyIterator iter=prop.iterator();
+  while (iter.hasNext()) {
+    writeItem(iter.next(),context,writer);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  super();
+  this.SERVERMAP=new HashMap();
+  this.MODEL=model;
+  this.MODEL.addListener(this);
+  this.GRAPH=graph;
+  init();
+}

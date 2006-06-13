@@ -1,0 +1,22 @@
+{
+  try {
+    String responseHeaders=massageResponseHeaders(res,res.getResponseHeaders());
+    out.write(responseHeaders.getBytes());
+    out.write('\n');
+    out.write(res.getResponseData());
+    out.flush();
+    log.debug("Done writing to client");
+  }
+ catch (  IOException e) {
+    log.error("",e);
+    throw e;
+  }
+ finally {
+    try {
+      out.close();
+    }
+ catch (    Exception ex) {
+      log.warn("Error while closing socket",ex);
+    }
+  }
+}

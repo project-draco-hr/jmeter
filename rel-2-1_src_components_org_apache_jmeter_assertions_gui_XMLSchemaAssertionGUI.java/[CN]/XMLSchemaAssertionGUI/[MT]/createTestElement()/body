@@ -1,0 +1,6 @@
+{
+  log.debug("XMLSchemaAssertionGui.createTestElement() called");
+  XMLSchemaAssertion el=new XMLSchemaAssertion();
+  modifyTestElement(el);
+  return el;
+}

@@ -1,0 +1,9 @@
+{
+  ConfigurationTree tree=getTree(getPath(name));
+  if (tree != null) {
+    tree.setValue(value);
+  }
+ else {
+    add(name).setValue(value);
+  }
+}

@@ -1,0 +1,24 @@
+{
+  String filename=sampler.getFilename();
+  if ((filename != null) && (filename.trim().length() > 0)) {
+    OutputStream out=connection.getOutputStream();
+    writeln(out,DASH_DASH + BOUNDARY);
+    PropertyIterator args=sampler.getArguments().iterator();
+    while (args.hasNext()) {
+      Argument arg=(Argument)args.next().getObjectValue();
+      writeFormMultipartStyle(out,arg.getName(),arg.getValue());
+      writeln(out,DASH_DASH + BOUNDARY);
+    }
+    writeFileToURL(out,filename,sampler.getFileField(),getFileStream(filename),sampler.getMimetype());
+    writeln(out,DASH_DASH + BOUNDARY + DASH_DASH);
+    out.flush();
+    out.close();
+  }
+ else {
+    String postData=sampler.getQueryString();
+    PrintWriter out=new PrintWriter(connection.getOutputStream());
+    out.print(postData);
+    out.flush();
+    out.close();
+  }
+}

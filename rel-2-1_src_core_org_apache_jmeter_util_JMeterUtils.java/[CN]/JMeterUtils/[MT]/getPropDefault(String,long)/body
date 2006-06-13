@@ -1,0 +1,10 @@
+{
+  long ans;
+  try {
+    ans=(Long.valueOf(appProperties.getProperty(propName,Long.toString(defaultVal)).trim())).longValue();
+  }
+ catch (  Exception e) {
+    ans=defaultVal;
+  }
+  return ans;
+}

@@ -1,0 +1,22 @@
+{
+  extractor.setRegex("<value field=\"(pinposition\\d+)\">(\\d+)</value>");
+  extractor.setTemplate("$1$");
+  extractor.setMatchNumber(-1);
+  extractor.process();
+  assertEquals("3",vars.get("regVal_matchNr"));
+  assertEquals("pinposition1",vars.get("regVal_1"));
+  assertEquals("pinposition2",vars.get("regVal_2"));
+  assertEquals("pinposition3",vars.get("regVal_3"));
+  assertEquals("pinposition1",vars.get("regVal_1_g1"));
+  assertEquals("1",vars.get("regVal_1_g2"));
+  assertEquals("<value field=\"pinposition1\">1</value>",vars.get("regVal_1_g0"));
+  assertNull(vars.get("regVal_4"));
+  extractor.setRegex("(\\w+)count");
+  extractor.process();
+  assertEquals("2",vars.get("regVal_matchNr"));
+  assertEquals("position",vars.get("regVal_1"));
+  assertEquals("invalidpin",vars.get("regVal_2"));
+  assertNull("Unused variables should be null",vars.get("regVal_3"));
+  assertNull("Unused variables should be null",vars.get("regVal_3_g0"));
+  assertNull("Unused variables should be null",vars.get("regVal_3_g1"));
+}

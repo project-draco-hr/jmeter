@@ -1,0 +1,7 @@
+{
+  int resizeMode=table.getAutoResizeMode();
+  table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+  fixSize(table.getColumn(INCLUDE_EQUALS));
+  fixSize(table.getColumn(ENCODE_OR_NOT));
+  table.setAutoResizeMode(resizeMode);
+}

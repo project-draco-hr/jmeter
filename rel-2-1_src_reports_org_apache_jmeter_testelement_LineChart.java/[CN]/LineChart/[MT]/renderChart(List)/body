@@ -1,0 +1,19 @@
+{
+  ArrayList dset=new ArrayList();
+  ArrayList xlabels=new ArrayList();
+  Iterator itr=dataset.iterator();
+  while (itr.hasNext()) {
+    DataSet item=(DataSet)itr.next();
+    if (item != null) {
+      dset.add(item);
+      if (getXLabel().equals(X_DATA_FILENAME_LABEL)) {
+        xlabels.add(item.getDataSourceName());
+      }
+ else {
+        xlabels.add(item.getMonthDayYearDate());
+      }
+    }
+  }
+  double[][] dbset=convertToDouble(dset);
+  return renderGraphics(dbset,(String[])xlabels.toArray(new String[xlabels.size()]));
+}

@@ -1,0 +1,8 @@
+{
+  LDAPArgumentsPanel gui=new LDAPArgumentsPanel();
+  gui.tableModel.addRow(new LDAPArgument());
+  gui.tableModel.setValueAt("howdy",0,0);
+  gui.tableModel.addRow(new LDAPArgument());
+  gui.tableModel.setValueAt("doody",0,1);
+  assertEquals("=",((LDAPArgument)((LDAPArguments)gui.createTestElement()).getArguments().get(0).getObjectValue()).getMetaData());
+}

@@ -1,0 +1,13 @@
+{
+  StringBuffer newValue=new StringBuffer();
+  char[] chars=value.toCharArray();
+  for (int i=0; i < chars.length; i++) {
+    if (chars[i] == '\\') {
+      newValue.append("\\\\");
+    }
+ else {
+      newValue.append(chars[i]);
+    }
+  }
+  return newValue.toString();
+}

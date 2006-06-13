@@ -1,0 +1,12 @@
+{
+  if (current < subControllersAndSamplers.size()) {
+    return (TestElement)subControllersAndSamplers.get(current);
+  }
+ else {
+    if (subControllersAndSamplers.size() == 0) {
+      setDone(true);
+      throw new NextIsNullException();
+    }
+    return null;
+  }
+}

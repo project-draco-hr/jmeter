@@ -1,0 +1,69 @@
+{
+  CLArgsParser parser=new CLArgsParser(args,options);
+  if (null != parser.getErrorString()) {
+    System.err.println("Error: " + parser.getErrorString());
+    System.out.println("Usage");
+    System.out.println(CLUtil.describeOptions(options).toString());
+    return;
+  }
+  try {
+    initializeProperties(parser);
+    if (System.getProperty("org.apache.commons.logging.Log") == null) {
+      System.setProperty("org.apache.commons.logging.Log","org.apache.commons.logging.impl.LogKitLogger");
+    }
+    log.info(JMeterUtils.getJMeterCopyright());
+    log.info("Version " + JMeterUtils.getJMeterVersion());
+    logProperty("java.version");
+    logProperty("os.name");
+    logProperty("os.arch");
+    logProperty("os.version");
+    log.info("Default Locale=" + Locale.getDefault().getDisplayName());
+    log.info("JMeter  Locale=" + JMeterUtils.getLocale().getDisplayName());
+    log.info("JMeterHome=" + JMeterUtils.getJMeterHome());
+    logProperty("user.dir");
+    log.info("PWD     =" + new File(".").getCanonicalPath());
+    setProxy(parser);
+    updateClassLoader();
+    if (log.isDebugEnabled()) {
+      String jcp=System.getProperty("java.class.path");
+      log.debug(jcp);
+    }
+    long now=System.currentTimeMillis();
+    JMeterUtils.setProperty("START.MS",Long.toString(now));
+    Date today=new Date(now);
+    JMeterUtils.setProperty("START.YMD",new SimpleDateFormat("yyyyMMdd").format(today));
+    JMeterUtils.setProperty("START.HMS",new SimpleDateFormat("HHmmss").format(today));
+    if (parser.getArgumentById(VERSION_OPT) != null) {
+      System.out.println(JMeterUtils.getJMeterCopyright());
+      System.out.println("Version " + JMeterUtils.getJMeterVersion());
+    }
+ else     if (parser.getArgumentById(HELP_OPT) != null) {
+      System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
+    }
+ else     if (parser.getArgumentById(SERVER_OPT) != null) {
+      startServer(JMeterUtils.getPropDefault("server_port",0));
+      startBSH();
+    }
+ else     if (parser.getArgumentById(NONGUI_OPT) == null) {
+      startGui(parser.getArgumentById(TESTFILE_OPT));
+      startBSH();
+    }
+ else {
+      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),parser.getArgumentById(REMOTE_OPT));
+      startBSH();
+    }
+  }
+ catch (  IllegalUserActionException e) {
+    System.out.println(e.getMessage());
+    System.out.println("Incorrect Usage");
+    System.out.println(CLUtil.describeOptions(options).toString());
+  }
+catch (  Exception e) {
+    if (log != null) {
+      log.fatalError("An error occurred: ",e);
+    }
+    e.printStackTrace();
+    System.out.println("An error occurred: " + e.getMessage());
+    System.exit(-1);
+  }
+}

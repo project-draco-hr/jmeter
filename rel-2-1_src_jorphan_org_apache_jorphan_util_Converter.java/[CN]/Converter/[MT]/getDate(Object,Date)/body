@@ -1,0 +1,37 @@
+{
+  Date val=null;
+  if (date != null && date instanceof java.util.Date) {
+    return (Date)date;
+  }
+ else   if (date != null) {
+    DateFormat formatter=DateFormat.getDateInstance(DateFormat.SHORT);
+    try {
+      val=formatter.parse(date.toString());
+    }
+ catch (    ParseException e) {
+      formatter=DateFormat.getDateInstance(DateFormat.MEDIUM);
+      try {
+        val=formatter.parse((String)date);
+      }
+ catch (      ParseException e1) {
+        formatter=DateFormat.getDateInstance(DateFormat.LONG);
+        try {
+          val=formatter.parse((String)date);
+        }
+ catch (        ParseException e2) {
+          formatter=DateFormat.getDateInstance(DateFormat.FULL);
+          try {
+            val=formatter.parse((String)date);
+          }
+ catch (          ParseException e3) {
+            return defaultValue;
+          }
+        }
+      }
+    }
+  }
+ else {
+    return defaultValue;
+  }
+  return val;
+}

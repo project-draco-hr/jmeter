@@ -1,0 +1,16 @@
+{
+  this.SUBTREE=this.loadIncludedElements();
+  IncludeController clone=(IncludeController)super.clone();
+  clone.setIncludePath(this.getIncludePath());
+  if (this.SUBTREE != null) {
+    if (this.SUBTREE.keySet().size() == 1) {
+      Iterator itr=this.SUBTREE.keySet().iterator();
+      while (itr.hasNext()) {
+        this.SUB=(TestElement)itr.next();
+      }
+    }
+    clone.SUBTREE=(HashTree)this.SUBTREE.clone();
+    clone.SUB=(TestElement)this.SUB.clone();
+  }
+  return clone;
+}

@@ -1,0 +1,8 @@
+{
+  createParser("<html>" + "<head>" + "<title>Foo</title>"+ "</head>"+ "<body>"+ "    <ul>"+ "        <li>"+ "            <a href=\"http://foo.com/c.html\">bibliographies on:"+ "                <ul>"+ "                    <li>chironomidae</li>"+ "                </ul>"+ "            </a>"+ "        </li>"+ "    </ul>"+ ""+ "</body>"+ "</html>");
+  parser.registerScanners();
+  for (NodeIterator i=parser.elements(); i.hasMoreNodes(); ) {
+    Node node=i.nextNode();
+    System.out.println(node.toHtml());
+  }
+}

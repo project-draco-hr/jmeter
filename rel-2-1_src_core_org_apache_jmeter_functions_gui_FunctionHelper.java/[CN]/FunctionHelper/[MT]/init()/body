@@ -1,0 +1,21 @@
+{
+  parameterPanel=new ArgumentsPanel(JMeterUtils.getResString("function_params"));
+  initializeFunctionList();
+  this.getContentPane().setLayout(new BorderLayout(10,10));
+  JPanel comboPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
+  comboPanel.add(functionList);
+  JButton helpButton=new JButton(JMeterUtils.getResString("help"));
+  helpButton.addActionListener(new HelpListener());
+  comboPanel.add(helpButton);
+  this.getContentPane().add(comboPanel,BorderLayout.NORTH);
+  this.getContentPane().add(parameterPanel,BorderLayout.CENTER);
+  JPanel resultsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
+  cutPasteFunction=new JLabeledTextField(JMeterUtils.getResString("cut_paste_function"),35);
+  resultsPanel.add(cutPasteFunction);
+  generateButton=new JButton(JMeterUtils.getResString("generate"));
+  generateButton.addActionListener(this);
+  resultsPanel.add(generateButton);
+  this.getContentPane().add(resultsPanel,BorderLayout.SOUTH);
+  this.pack();
+  ComponentUtil.centerComponentInWindow(this);
+}

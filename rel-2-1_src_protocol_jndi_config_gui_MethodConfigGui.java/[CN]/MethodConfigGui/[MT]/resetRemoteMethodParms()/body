@@ -1,0 +1,9 @@
+{
+  log.info("Start : resetRemoteMethodParms1");
+  int totalChild=rootRemote.getChildCount();
+  for (int i=0; i < totalChild; i++) {
+    treeModelRemote.removeNodeFromParent((DefaultMutableTreeNode)rootRemote.getChildAt(0));
+  }
+  rootRemote.setUserObject("Root");
+  log.info("End : resetRemoteMethodParms1");
+}

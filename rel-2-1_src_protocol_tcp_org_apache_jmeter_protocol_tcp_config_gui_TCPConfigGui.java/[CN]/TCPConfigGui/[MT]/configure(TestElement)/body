@@ -1,0 +1,8 @@
+{
+  super.configure(element);
+  server.setText(element.getPropertyAsString(TCPSampler.SERVER));
+  port.setText(element.getPropertyAsString(TCPSampler.PORT));
+  timeout.setText(element.getPropertyAsString(TCPSampler.TIMEOUT));
+  setNoDelay.setSelected(element.getPropertyAsBoolean(TCPSampler.NODELAY));
+  requestData.setText(element.getPropertyAsString(TCPSampler.REQUEST));
+}

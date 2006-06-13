@@ -1,0 +1,43 @@
+{
+  super.configure(el);
+  ResponseAssertion model=(ResponseAssertion)el;
+  if (model.isContainsType()) {
+    containsBox.setSelected(true);
+    matchesBox.setSelected(false);
+  }
+ else {
+    containsBox.setSelected(false);
+    matchesBox.setSelected(true);
+  }
+  if (model.isNotType()) {
+    notBox.setSelected(true);
+  }
+ else {
+    notBox.setSelected(false);
+  }
+  if (ResponseAssertion.RESPONSE_DATA.equals(model.getTestField())) {
+    responseStringButton.setSelected(true);
+  }
+ else   if (ResponseAssertion.RESPONSE_CODE.equals(model.getTestField())) {
+    responseCodeButton.setSelected(true);
+  }
+ else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(model.getTestField())) {
+    responseMessageButton.setSelected(true);
+  }
+ else {
+    labelButton.setSelected(true);
+  }
+  assumeSuccess.setSelected(model.getAssumeSuccess());
+  tableModel.clearData();
+  PropertyIterator tests=model.getTestStrings().iterator();
+  while (tests.hasNext()) {
+    tableModel.addRow(new Object[]{tests.next().getStringValue()});
+  }
+  if (model.getTestStrings().size() == 0) {
+    deletePattern.setEnabled(false);
+  }
+ else {
+    deletePattern.setEnabled(true);
+  }
+  tableModel.fireTableDataChanged();
+}

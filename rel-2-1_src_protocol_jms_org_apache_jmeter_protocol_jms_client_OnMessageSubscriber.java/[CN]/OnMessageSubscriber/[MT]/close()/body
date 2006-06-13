@@ -1,0 +1,17 @@
+{
+  try {
+    log.info("Subscriber closed");
+    this.SUBSCRIBER.close();
+    this.SESSION.close();
+    this.CONN.close();
+    this.SUBSCRIBER=null;
+    this.SESSION=null;
+    this.CONN=null;
+  }
+ catch (  JMSException e) {
+    log.error(e.getMessage());
+  }
+catch (  Throwable e) {
+    log.error(e.getMessage());
+  }
+}

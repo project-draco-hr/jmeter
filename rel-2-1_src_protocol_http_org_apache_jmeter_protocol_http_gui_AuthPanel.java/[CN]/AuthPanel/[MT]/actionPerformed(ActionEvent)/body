@@ -1,0 +1,74 @@
+{
+  String action=e.getActionCommand();
+  if (action.equals(DELETE_COMMAND)) {
+    if (tableModel.getRowCount() > 0) {
+      if (authTable.isEditing()) {
+        TableCellEditor cellEditor=authTable.getCellEditor(authTable.getEditingRow(),authTable.getEditingColumn());
+        cellEditor.cancelCellEditing();
+      }
+      int rowSelected=authTable.getSelectedRow();
+      if (rowSelected != -1) {
+        tableModel.removeRow(rowSelected);
+        tableModel.fireTableDataChanged();
+        if (tableModel.getRowCount() == 0) {
+          deleteButton.setEnabled(false);
+          saveButton.setEnabled(false);
+        }
+ else {
+          int rowToSelect=rowSelected;
+          if (rowSelected >= tableModel.getRowCount()) {
+            rowToSelect=rowSelected - 1;
+          }
+          authTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+        }
+      }
+    }
+  }
+ else   if (action.equals(ADD_COMMAND)) {
+    if (authTable.isEditing()) {
+      TableCellEditor cellEditor=authTable.getCellEditor(authTable.getEditingRow(),authTable.getEditingColumn());
+      cellEditor.stopCellEditing();
+    }
+    tableModel.addNewRow();
+    tableModel.fireTableDataChanged();
+    if (!deleteButton.isEnabled()) {
+      deleteButton.setEnabled(true);
+    }
+    if (!saveButton.isEnabled()) {
+      saveButton.setEnabled(true);
+    }
+    int rowToSelect=tableModel.getRowCount() - 1;
+    authTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+  }
+ else   if (action.equals(LOAD_COMMAND)) {
+    try {
+      File tmp=FileDialoger.promptToOpenFile().getSelectedFile();
+      if (tmp != null) {
+        tableModel.manager.addFile(tmp.getAbsolutePath());
+        tableModel.fireTableDataChanged();
+        if (tableModel.getRowCount() > 0) {
+          deleteButton.setEnabled(true);
+          saveButton.setEnabled(true);
+        }
+      }
+    }
+ catch (    IOException ex) {
+      log.error("",ex);
+    }
+catch (    NullPointerException err) {
+    }
+  }
+ else   if (action.equals(SAVE_COMMAND)) {
+    try {
+      File tmp=FileDialoger.promptToSaveFile(null).getSelectedFile();
+      if (tmp != null) {
+        tableModel.manager.save(tmp.getAbsolutePath());
+      }
+    }
+ catch (    IOException ex) {
+      log.error("",ex);
+    }
+catch (    NullPointerException err) {
+    }
+  }
+}

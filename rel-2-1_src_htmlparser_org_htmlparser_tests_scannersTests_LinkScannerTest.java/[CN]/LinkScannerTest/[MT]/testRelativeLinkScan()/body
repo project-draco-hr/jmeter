@@ -1,0 +1,8 @@
+{
+  createParser("<A HREF=\"mytest.html\"> Hello World</A>","http://www.yahoo.com");
+  parser.addScanner(new LinkScanner("-l"));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node identified should be HTMLLinkTag",node[0] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertEquals("Expected Link","http://www.yahoo.com/mytest.html",linkTag.getLink());
+}

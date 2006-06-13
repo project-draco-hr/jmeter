@@ -1,0 +1,13 @@
+{
+  super.paintComponent(g);
+  log.debug("Start : paintComponent1");
+synchronized (model.getList()) {
+    previousPtsAlloc=false;
+    Iterator e=model.getList().iterator();
+    for (int i=0; e.hasNext(); i++) {
+      SampleResult s=(SampleResult)e.next();
+      drawSample(i * PLOT_X_WIDTH,s,g);
+    }
+  }
+  log.debug("End : paintComponent1");
+}

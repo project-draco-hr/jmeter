@@ -1,0 +1,12 @@
+{
+  float maxValue=0;
+  for (int t=0; t < keys.size(); t++) {
+    String key=(String)keys.elementAt(t);
+    Vector temp=(Vector)data.get(key);
+    for (int j=0; j < temp.size(); j++) {
+      float f=((Integer)temp.elementAt(j)).intValue();
+      maxValue=Math.max(f,maxValue);
+    }
+  }
+  return (float)(maxValue + maxValue * 0.1);
+}

@@ -1,0 +1,6 @@
+{
+  for (int i=0; i < nonProxyHostSuffixSize; i++) {
+    if (host.endsWith((String)nonProxyHostSuffix.get(i)))     return true;
+  }
+  return false;
+}

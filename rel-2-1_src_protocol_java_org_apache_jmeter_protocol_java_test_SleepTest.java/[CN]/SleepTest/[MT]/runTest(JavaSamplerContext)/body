@@ -1,0 +1,27 @@
+{
+  SampleResult results=new SampleResult();
+  try {
+    results.sampleStart();
+    long start=System.currentTimeMillis();
+    long sleep=getSleepTime() + (start % getSleepMask());
+    results.setSampleLabel("Sleep Test: time = " + sleep);
+    Thread.sleep(sleep);
+    results.setSuccessful(true);
+  }
+ catch (  InterruptedException e) {
+    getLogger().warn("SleepTest: interrupted.");
+    results.setSuccessful(true);
+  }
+catch (  Exception e) {
+    getLogger().error("SleepTest: error during sample",e);
+    results.setSuccessful(false);
+  }
+ finally {
+    results.sampleEnd();
+  }
+  if (getLogger().isDebugEnabled()) {
+    getLogger().debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
+    listParameters(context);
+  }
+  return results;
+}

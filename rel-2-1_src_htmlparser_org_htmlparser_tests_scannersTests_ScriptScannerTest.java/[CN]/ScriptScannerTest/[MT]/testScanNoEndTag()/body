@@ -1,0 +1,5 @@
+{
+  createParser("<script>");
+  parser.addScanner(new ScriptScanner("-s"));
+  parseAndAssertNodeCount(1);
+}

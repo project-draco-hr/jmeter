@@ -1,0 +1,9 @@
+{
+  super.configure(element);
+  if (element instanceof LoopController) {
+    setState(((LoopController)element).getLoopString());
+  }
+ else {
+    setState(1);
+  }
+}

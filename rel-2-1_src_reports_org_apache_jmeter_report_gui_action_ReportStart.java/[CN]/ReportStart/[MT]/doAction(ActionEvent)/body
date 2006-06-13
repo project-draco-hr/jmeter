@@ -1,0 +1,20 @@
+{
+  if (e.getActionCommand().equals(ActionNames.ACTION_START)) {
+    popupShouldSave(e);
+    startEngine();
+  }
+ else   if (e.getActionCommand().equals(ActionNames.ACTION_STOP)) {
+    if (engine != null) {
+      ReportGuiPackage.getInstance().getMainFrame().showStoppingMessage("");
+      engine.stopTest();
+      engine=null;
+    }
+  }
+ else   if (e.getActionCommand().equals(ActionNames.ACTION_SHUTDOWN)) {
+    if (engine != null) {
+      ReportGuiPackage.getInstance().getMainFrame().showStoppingMessage("");
+      engine.askThreadsToStop();
+      engine=null;
+    }
+  }
+}

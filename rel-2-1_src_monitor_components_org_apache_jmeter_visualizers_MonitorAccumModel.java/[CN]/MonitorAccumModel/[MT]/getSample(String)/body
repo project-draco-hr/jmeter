@@ -1,0 +1,9 @@
+{
+  if (MAP.containsKey(url)) {
+    ArrayList list=(ArrayList)MAP.get(url);
+    return (MonitorModel)list.get(0);
+  }
+ else {
+    return null;
+  }
+}

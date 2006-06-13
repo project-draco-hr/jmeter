@@ -1,0 +1,39 @@
+{
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Received Cookie: " + cookieHeader + " From: "+ url.toExternalForm());
+  }
+  String protocol=url.getProtocol();
+  String host=url.getHost();
+  int port=HTTPSamplerBase.getDefaultPort(protocol,url.getPort());
+  String path=url.getPath();
+  boolean isSecure=HTTPSamplerBase.isSecure(protocol);
+  org.apache.commons.httpclient.Cookie[] cookies=null;
+  try {
+    cookies=cookieSpec.parse(host,port,path,isSecure,cookieHeader);
+  }
+ catch (  MalformedCookieException e) {
+    log.warn(cookieHeader + e.getLocalizedMessage());
+  }
+catch (  IllegalArgumentException e) {
+    log.warn(cookieHeader + e.getLocalizedMessage());
+  }
+  if (cookies == null)   return;
+  for (int i=0; i < cookies.length; i++) {
+    Date expiryDate=cookies[i].getExpiryDate();
+    long exp=0;
+    if (expiryDate != null) {
+      exp=expiryDate.getTime();
+    }
+    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp / 1000,cookies[i].isPathAttributeSpecified(),cookies[i].isDomainAttributeSpecified());
+    if (exp == 0 || exp >= System.currentTimeMillis()) {
+      add(newCookie);
+    }
+ else {
+      removeMatchingCookies(newCookie);
+      if (debugEnabled) {
+        log.debug("Dropping expired Cookie: " + newCookie.toString());
+      }
+    }
+  }
+}

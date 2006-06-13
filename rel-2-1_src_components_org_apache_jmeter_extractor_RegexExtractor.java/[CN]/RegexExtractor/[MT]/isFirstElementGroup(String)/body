@@ -1,0 +1,10 @@
+{
+  try {
+    Pattern pattern=patternCache.getPattern("^\\$\\d+\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
+    return ((Perl5Matcher)localMatcher.get()).contains(rawData,pattern);
+  }
+ catch (  RuntimeException e) {
+    log.error("",e);
+    return false;
+  }
+}

@@ -1,0 +1,22 @@
+{
+  Iterator iter=coll.iterator();
+  Collection newColl=null;
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    if (newColl == null) {
+      try {
+        newColl=(Collection)coll.getClass().newInstance();
+      }
+ catch (      Exception e) {
+        log.error("Bad collection",e);
+      }
+    }
+    newColl.add(convertObject(item));
+  }
+  if (newColl != null) {
+    return newColl;
+  }
+ else {
+    return coll;
+  }
+}

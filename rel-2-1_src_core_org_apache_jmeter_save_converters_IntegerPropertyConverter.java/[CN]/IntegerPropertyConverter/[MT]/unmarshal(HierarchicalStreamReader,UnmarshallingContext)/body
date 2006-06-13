@@ -1,0 +1,4 @@
+{
+  IntegerProperty prop=new IntegerProperty(ConversionHelp.decode(reader.getAttribute(ATT_NAME)),Integer.parseInt(reader.getValue()));
+  return prop;
+}

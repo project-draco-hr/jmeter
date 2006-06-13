@@ -1,0 +1,8 @@
+{
+  String endTagName=tag.getTagName();
+  int endTagBegin=possibleEndTagCauser.elementBegin();
+  int endTagEnd=endTagBegin + endTagName.length() + 2;
+  possibleEndTagCauser.setTagBegin(endTagEnd + 1);
+  reader.addNextParsedNode(possibleEndTagCauser);
+  endTag=new EndTag(new TagData(endTagBegin,endTagEnd,endTagName,currLine));
+}

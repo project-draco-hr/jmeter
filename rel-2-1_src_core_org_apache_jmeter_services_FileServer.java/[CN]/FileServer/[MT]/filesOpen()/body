@@ -1,0 +1,10 @@
+{
+  Iterator iter=files.values().iterator();
+  while (iter.hasNext()) {
+    FileEntry fileEntry=(FileEntry)iter.next();
+    if (fileEntry.inputOutputObject != null) {
+      return true;
+    }
+  }
+  return false;
+}

@@ -1,0 +1,78 @@
+{
+  log.debug("Start : updateGui1");
+  log.info("updateGui1");
+  String methodName=model.getMethodHomeName();
+  log.debug("updateGui1 : home method name - " + methodName);
+  String[] strings=model.getMethodHomeList();
+  setupPullDown(methodHomeNameBox,methodName,strings);
+  if (methodName == null && strings != null) {
+    model.setMethodHomeName(strings[0]);
+  }
+  int childCount=treeModelHome.getChildCount(rootHome);
+  if (log.isDebugEnabled()) {
+    log.debug("updateGui1 : state - " + model.getState());
+    log.debug("updateGui1 : METHOD_GET_HOME_NAMES");
+    log.debug("updateGui1 : rootHome child count - " + childCount);
+  }
+  if (model.getState() > MethodConfig.METHOD_GET_HOME_PARMS && childCount == 0) {
+    log.debug("updateGui1 : METHOD_GET_HOME_PARMS");
+    rootHome.setUserObject(model.getMethodHomeName());
+    Class[] parmTypes=model.getMethodHomeParms();
+    for (int i=0; i < parmTypes.length; i++) {
+      log.debug("updateGui1 : parmType #" + i + " - "+ parmTypes[i]);
+      recurseParm(parmTypes[i],rootHome,i,treeModelHome);
+    }
+    if (parmTypes.length == 0) {
+      jTreeHome.treeDidChange();
+    }
+  }
+  if (model.getState() > MethodConfig.METHOD_SELECT_REMOTE_INTERFACE) {
+    log.debug("METHOD_SELECT_REMOTE_INTERFACE");
+    Object remoteInterfaceType=model.getRemoteInterfaceType();
+    String interfaceName=null;
+    if (remoteInterfaceType != null) {
+      interfaceName=remoteInterfaceType.toString();
+    }
+    ArrayList remoteInterfaces=(ArrayList)model.getRemoteInterfaceList();
+    if (log.isDebugEnabled()) {
+      log.debug("updateGui1 : remote interfaces - " + remoteInterfaces);
+      log.debug("updateGui1 : remoteInterfacesType - " + remoteInterfaces.getClass());
+    }
+    Object[] remoteInterfacesArray=remoteInterfaces.toArray();
+    strings=new String[remoteInterfacesArray.length];
+    for (int i=0; i < remoteInterfacesArray.length; i++) {
+      strings[i]=remoteInterfacesArray[i].toString();
+    }
+    setupPullDown(remoteInterfaceBox,interfaceName,strings);
+    if (interfaceName == null && remoteInterfacesArray != null) {
+      model.setRemoteInterfaceType(remoteInterfacesArray[0]);
+    }
+  }
+  if (model.getState() > MethodConfig.METHOD_GET_REMOTE_NAMES) {
+    log.debug("METHOD_GET_REMOTE_NAMES");
+    methodName=model.getMethodRemoteName();
+    log.debug("updateGui1 : remote method name - " + methodName);
+    strings=model.getMethodRemoteList();
+    setupPullDown(methodRemoteNameBox,methodName,strings);
+    childCount=treeModelRemote.getChildCount(rootRemote);
+    if (log.isDebugEnabled()) {
+      log.debug("updateGui1 : rootRemote child count - " + childCount);
+    }
+  }
+  if (model.getState() > MethodConfig.METHOD_GET_REMOTE_PARMS && childCount == 0) {
+    log.debug("METHOD_GET_REMOTE_PARMS");
+    rootRemote.setUserObject(model.getMethodRemoteName());
+    Class[] parmTypes=model.getMethodRemoteParms();
+    for (int i=0; i < parmTypes.length; i++) {
+      log.debug("updateGui1 : parmType #" + i + " - "+ parmTypes[i]);
+      recurseParm(parmTypes[i],rootHome,i,treeModelHome);
+    }
+    if (parmTypes.length == 0) {
+      jTreeRemote.treeDidChange();
+    }
+  }
+  if (displayName) {
+    namePanel.updateGui();
+  }
+  log.debug("End : updateGui1");
+}

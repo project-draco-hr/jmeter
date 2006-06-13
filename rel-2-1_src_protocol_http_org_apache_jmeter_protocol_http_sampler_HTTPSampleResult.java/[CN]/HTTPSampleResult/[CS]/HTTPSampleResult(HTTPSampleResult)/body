@@ -1,0 +1,8 @@
+{
+  super(res);
+  method=res.method;
+  setURL(res.getURL());
+  cookies=res.cookies;
+  queryString=res.queryString;
+  redirectLocation=res.redirectLocation;
+}

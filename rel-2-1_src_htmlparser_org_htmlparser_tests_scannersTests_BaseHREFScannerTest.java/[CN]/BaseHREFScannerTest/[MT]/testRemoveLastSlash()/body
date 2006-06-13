@@ -1,0 +1,8 @@
+{
+  String url1="http://www.yahoo.com/";
+  String url2="http://www.google.com";
+  String modifiedUrl1=LinkProcessor.removeLastSlash(url1);
+  String modifiedUrl2=LinkProcessor.removeLastSlash(url2);
+  assertEquals("Url1","http://www.yahoo.com",modifiedUrl1);
+  assertEquals("Url2","http://www.google.com",modifiedUrl2);
+}

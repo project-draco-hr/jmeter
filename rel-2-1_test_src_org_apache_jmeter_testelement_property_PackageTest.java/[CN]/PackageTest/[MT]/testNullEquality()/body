@@ -1,0 +1,20 @@
+{
+  NullProperty jpn1=new NullProperty();
+  NullProperty jpn2=new NullProperty();
+  try {
+    new NullProperty(null);
+    fail("Should have generated an Illegal Argument Exception");
+  }
+ catch (  IllegalArgumentException e) {
+  }
+  NullProperty jp1=new NullProperty("name1");
+  NullProperty jp2=new NullProperty("name1");
+  NullProperty jp3=new NullProperty("name2");
+  NullProperty jp4=new NullProperty("name2");
+  checkEquals(jpn1,jpn2);
+  checkNotEquals(jpn1,jp1);
+  checkEquals(jp1,jp2);
+  checkNotEquals(jp1,jp3);
+  checkNotEquals(jp2,jp3);
+  checkEquals(jp3,jp4);
+}

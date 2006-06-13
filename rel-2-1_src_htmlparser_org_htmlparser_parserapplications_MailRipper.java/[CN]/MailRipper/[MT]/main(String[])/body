@@ -1,0 +1,31 @@
+{
+  System.out.println("Mail Ripper v" + Parser.getVersion());
+  if (args.length < 1 || args[0].equals("-help")) {
+    System.out.println();
+    System.out.println("Syntax : java -classpath htmlparser.jar org.htmlparser.parserapplications.MailRipper <resourceLocn/website>");
+    System.out.println();
+    System.out.println("   <resourceLocn> the name of the file to be parsed (with complete path ");
+    System.out.println("                  if not in current directory)");
+    System.out.println("   -help This screen");
+    System.out.println();
+    System.out.println("HTML Parser home page : http://htmlparser.sourceforge.net");
+    System.out.println();
+    System.out.println("Example : java -classpath htmlparser.jar com.kizna.parserapplications.MailRipper http://htmlparser.sourceforge.net");
+    System.out.println();
+    System.out.println("If you have any doubts, please join the HTMLParser mailing list (user/developer) from the HTML Parser home page instead of mailing any of the contributors directly. You will be surprised with the quality of open source support. ");
+    System.exit(-1);
+  }
+  String resourceLocation="http://htmlparser.sourceforge.net";
+  if (args.length != 0)   resourceLocation=args[0];
+  MailRipper ripper=new MailRipper(resourceLocation);
+  System.out.println("Ripping Site " + resourceLocation);
+  try {
+    for (Enumeration e=ripper.rip(); e.hasMoreElements(); ) {
+      LinkTag tag=(LinkTag)e.nextElement();
+      System.out.println("Ripped mail address : " + tag.getLink());
+    }
+  }
+ catch (  ParserException e) {
+    e.printStackTrace();
+  }
+}

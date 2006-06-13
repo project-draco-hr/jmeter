@@ -1,0 +1,10 @@
+{
+  String testHTML="<HTML><HEAD><TITLE>Test Form Tag</TITLE></HEAD>" + "<BODY><FORM name=\"form0\"><INPUT type=\"text\" name=\"text0\"></FORM>" + "</BODY></HTML>";
+  createParser(testHTML);
+  parser.registerScanners();
+  FormTag formTag=(FormTag)(parser.extractAllNodesThatAre(FormTag.class)[0]);
+  assertNotNull("Should have found a form tag",formTag);
+  assertStringEquals("name","form0",formTag.getFormName());
+  assertNull("action",formTag.getAttribute("ACTION"));
+  assertXmlEquals("html","<FORM NAME=\"form0\">" + "<INPUT TYPE=\"text\" NAME=\"text0\">" + "</FORM>",formTag.toHtml());
+}

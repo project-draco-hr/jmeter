@@ -1,0 +1,11 @@
+{
+  if (clazz != null && method != null) {
+    try {
+      return clazz.getClass().getMethod(method,new Class[0]);
+    }
+ catch (    NoSuchMethodException e) {
+      log.warn(e.getMessage());
+    }
+  }
+  return null;
+}

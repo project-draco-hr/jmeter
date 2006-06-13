@@ -1,0 +1,14 @@
+{
+  StringBuffer response=new StringBuffer();
+  String line=in.readLine();
+  response.append(line);
+  log.info("FtpClient.getResponse(): #" + line + "#");
+  while (line.charAt(3) == '-') {
+    line=in.readLine();
+    response.append("\n");
+    response.append(line);
+    log.info("FtpClient.getResponse(): #" + line + "#");
+  }
+  log.info("return response");
+  return response.toString();
+}

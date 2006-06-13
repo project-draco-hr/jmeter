@@ -1,0 +1,16 @@
+{
+  org.apache.commons.httpclient.Cookie[] c=getCookiesForUrl(url);
+  int count=c.length;
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Found " + count + " cookies for "+ url.toExternalForm());
+  }
+  if (count <= 0) {
+    return null;
+  }
+  String hdr=cookieSpec.formatCookieHeader(c).getValue();
+  if (debugEnabled) {
+    log.debug("Cookie: " + hdr);
+  }
+  return hdr;
+}

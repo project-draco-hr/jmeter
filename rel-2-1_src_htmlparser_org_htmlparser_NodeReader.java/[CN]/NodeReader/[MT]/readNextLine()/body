@@ -1,0 +1,7 @@
+{
+  if (dontReadNextLine) {
+    return false;
+  }
+  if (posInLine == -1 || (line != null && node.elementEnd() + 1 >= line.length()))   return true;
+ else   return false;
+}

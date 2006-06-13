@@ -1,0 +1,26 @@
+{
+  strPathsOrJars=addJarsInPath(strPathsOrJars);
+  for (int k=0; k < strPathsOrJars.length; k++) {
+    strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
+    if (log.isDebugEnabled()) {
+      log.debug("strPathsOrJars : " + strPathsOrJars[k]);
+    }
+  }
+  List listPaths=getClasspathMatches(strPathsOrJars);
+  if (log.isDebugEnabled()) {
+    Iterator tIter=listPaths.iterator();
+    while (tIter.hasNext()) {
+      log.debug("listPaths : " + tIter.next());
+    }
+  }
+  Set listClasses=new FilterTreeSet(superClasses,innerClasses);
+  findClassesInPaths(listPaths,listClasses);
+  if (log.isDebugEnabled()) {
+    log.debug("listClasses.size()=" + listClasses.size());
+    Iterator tIter=listClasses.iterator();
+    while (tIter.hasNext()) {
+      log.debug("listClasses : " + tIter.next());
+    }
+  }
+  return new ArrayList(listClasses);
+}

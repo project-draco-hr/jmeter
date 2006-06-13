@@ -1,0 +1,6 @@
+{
+  if (!isPerThread()) {
+    return globalIteration;
+  }
+  return iteration;
+}

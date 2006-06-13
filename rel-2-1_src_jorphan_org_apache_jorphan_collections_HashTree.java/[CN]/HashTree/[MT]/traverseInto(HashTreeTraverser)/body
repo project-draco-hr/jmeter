@@ -1,0 +1,14 @@
+{
+  if (list().size() == 0) {
+    visitor.processPath();
+  }
+ else {
+    Iterator iter=list().iterator();
+    while (iter.hasNext()) {
+      Object item=iter.next();
+      visitor.addNode(item,getTree(item));
+      getTree(item).traverseInto(visitor);
+    }
+  }
+  visitor.subtractNode();
+}

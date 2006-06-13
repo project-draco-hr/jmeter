@@ -1,0 +1,9 @@
+{
+  createParser("<a class=rlbA href=/news/866201.asp?0sl=-" + "32>Shoe bomber handed life sentence</a>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertType("node type",LinkTag.class,node[0]);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertStringEquals("link text","Shoe bomber handed life sentence",linkTag.getLinkText());
+  assertStringEquals("link url","/news/866201.asp?0sl=-32",linkTag.getLink());
+}

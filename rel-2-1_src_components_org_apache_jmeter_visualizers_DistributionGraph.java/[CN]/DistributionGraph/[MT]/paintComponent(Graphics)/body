@@ -1,0 +1,7 @@
+{
+  super.paintComponent(g);
+  final SamplingStatCalculator m=this.model;
+synchronized (m) {
+    drawSample(m,g);
+  }
+}

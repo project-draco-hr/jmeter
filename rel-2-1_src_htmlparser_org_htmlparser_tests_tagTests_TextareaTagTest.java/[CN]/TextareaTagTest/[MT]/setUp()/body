@@ -1,0 +1,6 @@
+{
+  super.setUp();
+  createParser(testHTML);
+  parser.addScanner(new TextareaTagScanner("-t"));
+  parseAndAssertNodeCount(5);
+}

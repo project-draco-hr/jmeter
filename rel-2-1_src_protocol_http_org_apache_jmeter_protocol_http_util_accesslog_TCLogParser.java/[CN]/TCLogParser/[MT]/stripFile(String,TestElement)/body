@@ -1,0 +1,12 @@
+{
+  if (url.indexOf("?") > -1) {
+    StringTokenizer tokens=this.tokenize(url,"?");
+    this.URL_PATH=tokens.nextToken();
+    el.setProperty(HTTPSamplerBase.PATH,URL_PATH);
+    return tokens.hasMoreTokens() ? tokens.nextToken() : null;
+  }
+ else {
+    el.setProperty(HTTPSamplerBase.PATH,url);
+    return null;
+  }
+}

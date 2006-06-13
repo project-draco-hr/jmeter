@@ -1,0 +1,6 @@
+{
+  super.configure(el);
+  mimetypeField.setText(el.getPropertyAsString(HTTPSamplerBase.MIMETYPE));
+  filenameField.setText(el.getPropertyAsString(HTTPSamplerBase.FILE_NAME));
+  paramNameField.setText(el.getPropertyAsString(HTTPSamplerBase.FILE_FIELD));
+}

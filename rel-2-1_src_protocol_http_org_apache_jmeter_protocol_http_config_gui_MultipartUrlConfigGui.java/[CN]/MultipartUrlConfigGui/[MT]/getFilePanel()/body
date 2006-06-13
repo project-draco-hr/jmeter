@@ -1,0 +1,8 @@
+{
+  JPanel filePanel=new VerticalPanel();
+  filePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("send_file")));
+  filePanel.add(createFilenamePanel());
+  filePanel.add(createFileParamNamePanel());
+  filePanel.add(createFileMimeTypePanel());
+  return filePanel;
+}

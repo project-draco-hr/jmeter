@@ -1,0 +1,15 @@
+{
+  TestSuite suite=new TestSuite("Functions");
+  Iterator iter=getObjects(Function.class).iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    if (item.getClass().equals(CompoundVariable.class)) {
+      continue;
+    }
+    TestSuite ts=new TestSuite(item.getClass().getName());
+    ts.addTest(new JMeterTest("runFunction",(Function)item));
+    ts.addTest(new JMeterTest("runFunction2",(Function)item));
+    suite.addTest(ts);
+  }
+  return suite;
+}

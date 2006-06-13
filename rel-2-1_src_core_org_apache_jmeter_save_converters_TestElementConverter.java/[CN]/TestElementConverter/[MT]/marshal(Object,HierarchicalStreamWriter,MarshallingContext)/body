@@ -1,0 +1,13 @@
+{
+  TestElement el=(TestElement)arg0;
+  if (testFormat22) {
+    ConversionHelp.saveSpecialProperties(el,writer);
+  }
+  PropertyIterator iter=el.propertyIterator();
+  while (iter.hasNext()) {
+    JMeterProperty jmp=iter.next();
+    if (!testFormat22 || !ConversionHelp.isSpecialProperty(jmp.getName())) {
+      writeItem(jmp,context,writer);
+    }
+  }
+}

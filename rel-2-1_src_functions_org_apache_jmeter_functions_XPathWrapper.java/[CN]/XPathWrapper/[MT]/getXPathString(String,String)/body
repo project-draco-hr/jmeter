@@ -1,0 +1,24 @@
+{
+  Map my=(Map)filePacks.get();
+  String key=file + xpathString;
+  XPathFileContainer xpfc=(XPathFileContainer)my.get(key);
+  if (xpfc == null) {
+synchronized (fileContainers) {
+      xpfc=(XPathFileContainer)fileContainers.get(key);
+      if (xpfc == null) {
+        xpfc=open(file,xpathString);
+      }
+      if (xpfc != null) {
+        fileContainers.put(key,xpfc);
+      }
+    }
+    if (xpfc == null) {
+      log.error("XPathWrapper is null!");
+      return "";
+    }
+    my.put(key,xpfc);
+  }
+  int currentRow=xpfc.nextRow();
+  log.debug("getting match number " + currentRow);
+  return xpfc.getXPathString(currentRow);
+}

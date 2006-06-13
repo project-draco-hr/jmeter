@@ -1,0 +1,35 @@
+{
+  FloatProperty jp1=new FloatProperty("name1",123.4f);
+  FloatProperty jp2=new FloatProperty("name1",123.4f);
+  FloatProperty jp3=new FloatProperty("name2",-123.4f);
+  FloatProperty jp4=new FloatProperty("name2",123.4f);
+  FloatProperty jp5=new FloatProperty("name2",Float.NEGATIVE_INFINITY);
+  FloatProperty jp6=new FloatProperty("name2",Float.NEGATIVE_INFINITY);
+  FloatProperty jp7=new FloatProperty("name2",Float.POSITIVE_INFINITY);
+  FloatProperty jp8=new FloatProperty("name2",Float.POSITIVE_INFINITY);
+  FloatProperty jp9=new FloatProperty("name2",Float.NaN);
+  FloatProperty jp10=new FloatProperty("name2",Float.NaN);
+  FloatProperty jp11=new FloatProperty("name1",Float.NaN);
+  FloatProperty jp12=new FloatProperty("name1",Float.MIN_VALUE);
+  FloatProperty jp13=new FloatProperty("name2",Float.MIN_VALUE);
+  FloatProperty jp14=new FloatProperty("name2",Float.MIN_VALUE);
+  FloatProperty jp15=new FloatProperty("name1",Float.MAX_VALUE);
+  FloatProperty jp16=new FloatProperty("name2",Float.MAX_VALUE);
+  FloatProperty jp17=new FloatProperty("name2",Float.MAX_VALUE);
+  checkEquals(jp1,jp2);
+  checkNotEquals(jp1,jp3);
+  checkNotEquals(jp2,jp3);
+  checkNotEquals(jp3,jp4);
+  checkEquals(jp5,jp6);
+  checkNotEquals(jp3,jp6);
+  checkEquals(jp7,jp8);
+  checkNotEquals(jp4,jp7);
+  checkNotEquals(jp8,jp9);
+  checkEquals(jp9,jp10);
+  checkNotEquals(jp10,jp11);
+  checkNotEquals(jp5,jp10);
+  checkNotEquals(jp12,jp14);
+  checkEquals(jp13,jp14);
+  checkNotEquals(jp15,jp16);
+  checkEquals(jp16,jp17);
+}

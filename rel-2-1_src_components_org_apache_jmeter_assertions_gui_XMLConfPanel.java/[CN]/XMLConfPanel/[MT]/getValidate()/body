@@ -1,0 +1,6 @@
+{
+  if (validate == null) {
+    validate=new JCheckBox(JMeterUtils.getResString("xml_validate_button"));
+  }
+  return validate;
+}

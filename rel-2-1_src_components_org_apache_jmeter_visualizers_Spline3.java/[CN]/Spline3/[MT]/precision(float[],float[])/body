@@ -1,0 +1,15 @@
+{
+  float N=0F, D=0F, erreur=0F;
+  int i=0;
+  for (i=0; i < _n; i++) {
+    N=N + Math.abs(newX[i] - oldX[i]);
+    D=D + Math.abs(newX[i]);
+  }
+  if (D != 0F) {
+    erreur=N / D;
+  }
+ else {
+    erreur=Float.MAX_VALUE;
+  }
+  return erreur;
+}

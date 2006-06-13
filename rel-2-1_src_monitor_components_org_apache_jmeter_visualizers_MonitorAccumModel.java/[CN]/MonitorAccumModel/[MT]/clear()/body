@@ -1,0 +1,8 @@
+{
+  Iterator itr=this.MAP.keySet().iterator();
+  while (itr.hasNext()) {
+    List lt=(List)this.MAP.get(itr.next());
+    lt.clear();
+  }
+  this.MAP.clear();
+}

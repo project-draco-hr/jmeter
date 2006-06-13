@@ -1,0 +1,6 @@
+{
+  createParser("<html><head></head>\n" + "<body>\n" + "<table>\n"+ "<tr>\n"+ "      <td><img src=\"foo.jpg\" alt=\"f's b\"><font\n"+ " size=1>blah</font>\n"+ "</td>\n"+ "</tr>\n"+ "</table>\n"+ "</body></html>\n");
+  for (NodeIterator e=parser.elements(); e.hasMoreNodes(); ) {
+    Node node=e.nextNode();
+  }
+}

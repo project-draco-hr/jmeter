@@ -1,0 +1,12 @@
+{
+  String[] arr={"SOMETHING"};
+  scanner=new CompositeTagScanner(arr){
+    public Tag createTag(    TagData tagData,    CompositeTagData compositeTagData) throws ParserException {
+      return null;
+    }
+    public String[] getID(){
+      return null;
+    }
+  }
+;
+}

@@ -1,0 +1,8 @@
+{
+  double[][] dataset=new double[1][data.size()];
+  for (int idx=0; idx < data.size(); idx++) {
+    SamplingStatCalculator stat=(SamplingStatCalculator)data.get(idx);
+    dataset[0][idx]=getValue(stat);
+  }
+  return dataset;
+}

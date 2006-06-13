@@ -1,0 +1,7 @@
+{
+  Sampler sampler=new NullSampler();
+  response=new SampleResult();
+  context.setCurrentSampler(sampler);
+  context.setPreviousResult(response);
+  mod.process();
+}

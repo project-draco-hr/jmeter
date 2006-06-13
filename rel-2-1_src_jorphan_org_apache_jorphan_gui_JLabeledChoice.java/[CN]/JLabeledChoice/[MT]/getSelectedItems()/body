@@ -1,0 +1,7 @@
+{
+  Object list[]=choiceList.getSelectedObjects();
+  if (list == null) {
+    return EMPTY_OBJECT_ARRAY;
+  }
+  return list;
+}

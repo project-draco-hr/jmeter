@@ -1,0 +1,27 @@
+{
+  String ret;
+  try {
+    Class cls;
+    java.lang.reflect.Method method;
+    Object object;
+    cls=Class.forName("java.nio.charset.Charset");
+    method=cls.getMethod("forName",new Class[]{String.class});
+    object=method.invoke(null,new Object[]{name});
+    method=cls.getMethod("name",new Class[]{});
+    object=method.invoke(object,new Object[]{});
+    ret=(String)object;
+  }
+ catch (  ClassNotFoundException cnfe) {
+    ret=name;
+  }
+catch (  NoSuchMethodException nsme) {
+    ret=name;
+  }
+catch (  IllegalAccessException ia) {
+    ret=name;
+  }
+catch (  java.lang.reflect.InvocationTargetException ita) {
+    ret=_default;
+  }
+  return (ret);
+}

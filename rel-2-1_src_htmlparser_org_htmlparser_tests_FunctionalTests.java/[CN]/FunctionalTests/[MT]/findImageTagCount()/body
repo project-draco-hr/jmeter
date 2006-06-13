@@ -1,0 +1,18 @@
+{
+  int imgTagCount=0;
+  try {
+    URL url=new URL("http://www.yahoo.com");
+    InputStream is=url.openStream();
+    BufferedReader reader;
+    reader=new BufferedReader(new InputStreamReader(is));
+    imgTagCount=countImageTagsWithoutHTMLParser(reader);
+    is.close();
+  }
+ catch (  MalformedURLException e) {
+    System.err.println("URL was malformed!");
+  }
+catch (  IOException e) {
+    System.err.println("IO Exception occurred while trying to open stream");
+  }
+  return imgTagCount;
+}

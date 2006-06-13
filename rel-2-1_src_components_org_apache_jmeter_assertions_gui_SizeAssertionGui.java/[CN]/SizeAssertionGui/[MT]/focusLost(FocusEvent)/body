@@ -1,0 +1,18 @@
+{
+  boolean isInvalid=false;
+  String sizeString=size.getText();
+  if (sizeString != null) {
+    try {
+      long assertionSize=Long.parseLong(sizeString);
+      if (assertionSize < 0) {
+        isInvalid=true;
+      }
+    }
+ catch (    NumberFormatException ex) {
+      isInvalid=true;
+    }
+    if (isInvalid) {
+      JOptionPane.showMessageDialog(null,JMeterUtils.getResString("size_assertion_input_error"),"Error",JOptionPane.ERROR_MESSAGE);
+    }
+  }
+}

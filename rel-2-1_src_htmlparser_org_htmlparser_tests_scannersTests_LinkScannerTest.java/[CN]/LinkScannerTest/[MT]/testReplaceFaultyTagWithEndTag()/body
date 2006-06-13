@@ -1,0 +1,7 @@
+{
+  String currentLine="<p>Site Comments?<br><a href=\"mailto:sam@neurogrid.com?subject=Site Comments\">Mail Us<a></p>";
+  Tag tag=new Tag(new TagData(85,87,"a",currentLine));
+  LinkScanner linkScanner=new LinkScanner();
+  String newLine=linkScanner.replaceFaultyTagWithEndTag(tag,currentLine);
+  assertEquals("Expected replacement","<p>Site Comments?<br><a href=\"mailto:sam@neurogrid.com?subject=Site Comments\">Mail Us</A></p>",newLine);
+}

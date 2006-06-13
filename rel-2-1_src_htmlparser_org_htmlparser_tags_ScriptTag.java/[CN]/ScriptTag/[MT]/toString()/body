@@ -1,0 +1,14 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append("Script Node : \n");
+  if (language != null && type != null)   if (language.length() != 0 || type.length() != 0) {
+    sb.append("Properties -->\n");
+    if (language.length() != 0)     sb.append("[Language : " + language + "]\n");
+    if (type != null && type.length() != 0)     sb.append("[Type : " + type + "]\n");
+  }
+  sb.append("\n");
+  sb.append("Code\n");
+  sb.append("****\n");
+  sb.append(getScriptCode() + "\n");
+  return sb.toString();
+}

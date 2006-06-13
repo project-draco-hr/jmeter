@@ -1,0 +1,4 @@
+{
+  outbuf[outpos++]=(byte)((n >> 8) & 0xff);
+  outbuf[outpos++]=(byte)(n & 0xff);
+}

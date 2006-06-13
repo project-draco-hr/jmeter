@@ -1,0 +1,4 @@
+{
+  LongProperty prop=new LongProperty(ConversionHelp.decode(reader.getAttribute(ATT_NAME)),Long.parseLong(reader.getValue()));
+  return prop;
+}

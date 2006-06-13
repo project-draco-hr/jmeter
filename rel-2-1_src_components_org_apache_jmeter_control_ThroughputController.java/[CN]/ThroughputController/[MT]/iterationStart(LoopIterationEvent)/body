@@ -1,0 +1,14 @@
+{
+  if (!isPerThread()) {
+synchronized (counterLock) {
+      increaseIteration();
+      runThisTime=decide();
+      if (runThisTime)       increaseExecutions();
+    }
+  }
+ else {
+    increaseIteration();
+    runThisTime=decide();
+    if (runThisTime)     increaseExecutions();
+  }
+}

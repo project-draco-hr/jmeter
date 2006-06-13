@@ -1,0 +1,7 @@
+{
+  createParser("<tag att=\"a<b\">");
+  parseAndAssertNodeCount(1);
+  assertType("should be Tag",Tag.class,node[0]);
+  Tag tag=(Tag)node[0];
+  assertStringEquals("attribute","a<b",tag.getAttribute("att"));
+}

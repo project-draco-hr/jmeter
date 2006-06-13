@@ -1,0 +1,31 @@
+{
+  Thread.currentThread().setContextClassLoader(loader);
+  if (System.getProperty("log4j.configuration") == null) {
+    File conf=new File(jmDir,"bin" + File.separator + "log4j.conf");
+    System.setProperty("log4j.configuration","file:" + conf);
+  }
+  if (args != null && args.length > 0 && args[0].equals("report")) {
+    try {
+      Class JMeterReport=loader.loadClass("org.apache.jmeter.JMeterReport");
+      Object instance=JMeterReport.newInstance();
+      Method startup=JMeterReport.getMethod("start",new Class[]{(new String[0]).getClass()});
+      startup.invoke(instance,new Object[]{args});
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+      System.out.println("JMeter home directory was detected as: " + jmDir);
+    }
+  }
+ else {
+    try {
+      Class JMeter=loader.loadClass("org.apache.jmeter.JMeter");
+      Object instance=JMeter.newInstance();
+      Method startup=JMeter.getMethod("start",new Class[]{(new String[0]).getClass()});
+      startup.invoke(instance,new Object[]{args});
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+      System.out.println("JMeter home directory was detected as: " + jmDir);
+    }
+  }
+}

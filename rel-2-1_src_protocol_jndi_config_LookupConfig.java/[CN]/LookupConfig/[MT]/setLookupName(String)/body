@@ -1,0 +1,6 @@
+{
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("setLookupName1 : lookup name  - " + string);
+  }
+  this.putProperty(LOOKUP_NAME,string);
+}

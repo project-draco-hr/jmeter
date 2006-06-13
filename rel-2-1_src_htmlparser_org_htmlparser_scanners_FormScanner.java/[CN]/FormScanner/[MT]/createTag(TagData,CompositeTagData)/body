@@ -1,0 +1,5 @@
+{
+  String formUrl=extractFormLocn(compositeTagData.getStartTag(),tagData.getUrlBeingParsed());
+  if (formUrl != null && formUrl.length() > 0)   compositeTagData.getStartTag().setAttribute("ACTION",formUrl);
+  return new FormTag(tagData,compositeTagData);
+}

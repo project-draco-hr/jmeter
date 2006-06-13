@@ -1,0 +1,7 @@
+{
+  String v=getValue(key);
+  if (v == null) {
+    return def;
+  }
+  return v;
+}

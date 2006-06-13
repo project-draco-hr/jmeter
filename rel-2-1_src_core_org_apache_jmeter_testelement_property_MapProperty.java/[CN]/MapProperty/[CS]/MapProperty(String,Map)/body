@@ -1,0 +1,6 @@
+{
+  super(name);
+  log.info("map = " + value);
+  this.value=normalizeMap(value);
+  log.info("normalized map = " + this.value);
+}

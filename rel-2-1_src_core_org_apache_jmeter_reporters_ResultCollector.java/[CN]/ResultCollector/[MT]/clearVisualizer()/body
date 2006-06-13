@@ -1,0 +1,6 @@
+{
+  if (getVisualizer() != null && getVisualizer() instanceof Clearable) {
+    ((Clearable)getVisualizer()).clear();
+  }
+  finalizeFileOutput();
+}

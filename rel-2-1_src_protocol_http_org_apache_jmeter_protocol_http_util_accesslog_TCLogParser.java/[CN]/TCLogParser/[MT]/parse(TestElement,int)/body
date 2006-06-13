@@ -1,0 +1,15 @@
+{
+  if (this.SOURCE == null) {
+    this.SOURCE=this.openFile(this.FILENAME);
+  }
+  try {
+    if (this.READER == null) {
+      this.READER=new BufferedReader(new FileReader(this.SOURCE));
+    }
+    return parse(this.READER,el,parseCount);
+  }
+ catch (  Exception exception) {
+    log.error("Problem creating samples",exception);
+  }
+  return -1;
+}

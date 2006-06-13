@@ -1,0 +1,5 @@
+{
+  TagFindingVisitor visitor=new TagFindingVisitor(new String[]{"LI"});
+  parser.visitAllNodesWith(visitor);
+  assertEquals("LI tags found",2,visitor.getTagCount(0));
+}

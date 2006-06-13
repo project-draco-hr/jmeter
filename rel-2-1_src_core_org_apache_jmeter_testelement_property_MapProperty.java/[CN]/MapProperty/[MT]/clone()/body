@@ -1,0 +1,5 @@
+{
+  MapProperty prop=(MapProperty)super.clone();
+  prop.value=cloneMap();
+  return prop;
+}

@@ -1,0 +1,4 @@
+{
+  Collection newProps=replaceValues(el.propertyIterator(),new UndoVariableReplacement(masterFunction,variables));
+  setProperties(el,newProps);
+}

@@ -1,0 +1,6 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("setVisualizer1 : Setting visualizer - " + visualizer);
+  }
+  this.visualizer=(GraphAccumVisualizer)visualizer;
+}

@@ -1,0 +1,5 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{YOU,ALL,CLEAR1,CLEAR2,CLEAR3,CLEAR5};
+  final CLArgsParser parser=new CLArgsParser(ARGLIST1,options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+}

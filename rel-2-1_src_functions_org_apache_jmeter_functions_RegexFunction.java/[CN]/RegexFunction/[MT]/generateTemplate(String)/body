@@ -1,0 +1,28 @@
+{
+  List pieces=new ArrayList();
+  List combined=new LinkedList();
+  PatternMatcher matcher=new Perl5Matcher();
+  Util.split(pieces,new Perl5Matcher(),templatePattern,rawTemplate);
+  PatternMatcherInput input=new PatternMatcherInput(rawTemplate);
+  Iterator iter=pieces.iterator();
+  boolean startsWith=isFirstElementGroup(rawTemplate);
+  while (iter.hasNext()) {
+    boolean matchExists=matcher.contains(input,templatePattern);
+    if (startsWith) {
+      if (matchExists) {
+        combined.add(new Integer(matcher.getMatch().group(1)));
+      }
+      combined.add(iter.next());
+    }
+ else {
+      combined.add(iter.next());
+      if (matchExists) {
+        combined.add(new Integer(matcher.getMatch().group(1)));
+      }
+    }
+  }
+  if (matcher.contains(input,templatePattern)) {
+    combined.add(new Integer(matcher.getMatch().group(1)));
+  }
+  return combined.toArray();
+}

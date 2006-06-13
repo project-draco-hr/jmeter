@@ -1,0 +1,14 @@
+{
+  File file=new File(headFile);
+  if (!file.isAbsolute()) {
+    file=new File(System.getProperty("user.dir") + File.separator + headFile);
+  }
+  PrintWriter writer=new PrintWriter(new FileWriter(file));
+  writer.println("# JMeter generated Header file");
+  for (int i=0; i < getHeaders().size(); i++) {
+    Header head=(Header)getHeaders().get(i);
+    writer.println(head.toString());
+  }
+  writer.flush();
+  writer.close();
+}

@@ -1,0 +1,36 @@
+{
+  portField=new JTextField(ProxyControl.DEFAULT_PORT_S,8);
+  portField.setName(ProxyControl.PORT);
+  portField.addKeyListener(this);
+  JLabel label=new JLabel(JMeterUtils.getResString("port"));
+  label.setLabelFor(portField);
+  httpHeaders=new JCheckBox(JMeterUtils.getResString("proxy_headers"));
+  httpHeaders.setName(ProxyControl.CAPTURE_HTTP_HEADERS);
+  httpHeaders.setSelected(true);
+  httpHeaders.addActionListener(this);
+  httpHeaders.setActionCommand(ProxyControl.CAPTURE_HTTP_HEADERS);
+  addAssertions=new JCheckBox(JMeterUtils.getResString("proxy_assertions"));
+  addAssertions.setName(ProxyControl.ADD_ASSERTIONS);
+  addAssertions.setSelected(false);
+  addAssertions.addActionListener(this);
+  addAssertions.setActionCommand(ProxyControl.ADD_ASSERTIONS);
+  useKeepAlive=new JCheckBox(JMeterUtils.getResString("proxy_usekeepalive"));
+  useKeepAlive.setName(ProxyControl.USE_KEEPALIVE);
+  useKeepAlive.setSelected(true);
+  useKeepAlive.addActionListener(this);
+  useKeepAlive.setActionCommand(ProxyControl.USE_KEEPALIVE);
+  regexMatch=new JCheckBox(JMeterUtils.getResString("proxy_regex"));
+  regexMatch.setName(ProxyControl.REGEX_MATCH);
+  regexMatch.setSelected(false);
+  regexMatch.addActionListener(this);
+  regexMatch.setActionCommand(ProxyControl.REGEX_MATCH);
+  HorizontalPanel panel=new HorizontalPanel();
+  panel.add(label);
+  panel.add(portField);
+  panel.add(Box.createHorizontalStrut(10));
+  panel.add(httpHeaders);
+  panel.add(useKeepAlive);
+  panel.add(addAssertions);
+  panel.add(regexMatch);
+  return panel;
+}

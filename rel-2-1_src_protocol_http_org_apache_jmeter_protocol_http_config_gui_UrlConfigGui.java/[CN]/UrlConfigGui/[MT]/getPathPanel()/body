@@ -1,0 +1,29 @@
+{
+  path=new JTextField(15);
+  path.setName(PATH);
+  JLabel label=new JLabel(JMeterUtils.getResString("path"));
+  label.setLabelFor(path);
+  autoRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects_auto"));
+  autoRedirects.setName(AUTO_REDIRECTS);
+  autoRedirects.setSelected(false);
+  followRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects"));
+  followRedirects.setName(FOLLOW_REDIRECTS);
+  followRedirects.setSelected(true);
+  useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
+  useKeepAlive.setName(USE_KEEPALIVE);
+  useKeepAlive.setSelected(true);
+  JPanel pathPanel=new JPanel(new BorderLayout(5,0));
+  pathPanel.add(label,BorderLayout.WEST);
+  pathPanel.add(path,BorderLayout.CENTER);
+  pathPanel.setMinimumSize(pathPanel.getPreferredSize());
+  JPanel optionPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  optionPanel.add(autoRedirects);
+  optionPanel.add(followRedirects);
+  optionPanel.add(useKeepAlive);
+  optionPanel.setMinimumSize(optionPanel.getPreferredSize());
+  JPanel panel=new JPanel();
+  panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+  panel.add(pathPanel);
+  panel.add(optionPanel);
+  return panel;
+}

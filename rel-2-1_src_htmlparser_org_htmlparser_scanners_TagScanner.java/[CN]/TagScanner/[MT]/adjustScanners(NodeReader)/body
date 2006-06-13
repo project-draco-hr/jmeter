@@ -1,0 +1,6 @@
+{
+  Map tempScanners=new Hashtable();
+  tempScanners=reader.getParser().getScanners();
+  reader.getParser().flushScanners();
+  return tempScanners;
+}

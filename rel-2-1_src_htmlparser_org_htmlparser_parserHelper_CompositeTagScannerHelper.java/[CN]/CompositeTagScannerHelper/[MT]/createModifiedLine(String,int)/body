@@ -1,0 +1,9 @@
+{
+  StringBuffer newLine=new StringBuffer();
+  newLine.append(currLine.substring(0,endTagBegin));
+  newLine.append("</");
+  newLine.append(endTagName);
+  newLine.append(">");
+  newLine.append(currLine.substring(endTagBegin,currLine.length()));
+  return newLine;
+}

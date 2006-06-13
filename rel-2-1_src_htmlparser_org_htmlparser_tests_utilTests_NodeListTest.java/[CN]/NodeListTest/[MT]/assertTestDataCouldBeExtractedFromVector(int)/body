@@ -1,0 +1,5 @@
+{
+  for (int i=0; i < nodeCount; i++) {
+    assertTrue("Element " + i + " did not match",testNodes[i] == nodeList.elementAt(i));
+  }
+}

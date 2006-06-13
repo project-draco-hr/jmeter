@@ -1,0 +1,27 @@
+{
+  if (authManager != null) {
+    Authorization auth=authManager.getAuthForURL(u);
+    if (auth != null) {
+      String user=auth.getUser();
+      String realm=null;
+      String domain="";
+      String username="";
+      int bs=user.indexOf('\\');
+      int at=user.indexOf('@');
+      if (bs > 0) {
+        domain=user.substring(0,bs);
+      }
+      if (at > 0 && at > bs + 1) {
+        realm=user.substring(at + 1);
+      }
+ else {
+        at=user.length();
+      }
+      username=user.substring(bs + 1,at);
+      if (log.isDebugEnabled()) {
+        log.debug(user + " >  D=" + username+ " D="+ domain+ " R="+ realm);
+      }
+      client.getState().setCredentials(new AuthScope(u.getHost(),u.getPort(),realm,AuthScope.ANY_SCHEME),new NTCredentials(username,auth.getPass(),localHost,domain));
+    }
+  }
+}

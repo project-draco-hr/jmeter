@@ -1,0 +1,5 @@
+{
+  String testData=new String("");
+  String result=TagScanner.absorbLeadingBlanks(testData);
+  assertEquals("",result);
+}

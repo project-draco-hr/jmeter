@@ -1,0 +1,10 @@
+{
+  long delay=(startTime - System.currentTimeMillis());
+  if (delay > 0) {
+    try {
+      Thread.sleep(delay);
+    }
+ catch (    Exception e) {
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  if (e.getSource() instanceof MailerModel) {
+    MailerModel testModel=(MailerModel)e.getSource();
+    updateVisualizer(testModel);
+  }
+ else {
+    super.stateChanged(e);
+  }
+}

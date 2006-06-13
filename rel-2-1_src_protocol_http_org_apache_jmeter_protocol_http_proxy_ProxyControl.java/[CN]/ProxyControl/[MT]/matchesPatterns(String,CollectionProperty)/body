@@ -1,0 +1,17 @@
+{
+  PropertyIterator iter=patterns.iterator();
+  while (iter.hasNext()) {
+    String item=iter.next().getStringValue();
+    Pattern pattern=null;
+    try {
+      pattern=patternCache.getPattern(item,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.SINGLELINE_MASK);
+      if (matcher.matches(url,pattern)) {
+        return true;
+      }
+    }
+ catch (    MalformedCachePatternException e) {
+      log.warn("Skipped invalid pattern: " + item,e);
+    }
+  }
+  return false;
+}

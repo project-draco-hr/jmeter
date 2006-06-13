@@ -1,0 +1,13 @@
+{
+  authTable=new JTable(tableModel);
+  authTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  authTable.setPreferredScrollableViewportSize(new Dimension(100,70));
+  TableColumn passwordColumn=authTable.getColumnModel().getColumn(2);
+  passwordColumn.setCellEditor(new DefaultCellEditor(new JPasswordField()));
+  passwordColumn.setCellRenderer(new PasswordCellRenderer());
+  JPanel panel=new JPanel(new BorderLayout(0,5));
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("auths_stored")));
+  panel.add(new JScrollPane(authTable));
+  panel.add(createButtonPanel(),BorderLayout.SOUTH);
+  return panel;
+}

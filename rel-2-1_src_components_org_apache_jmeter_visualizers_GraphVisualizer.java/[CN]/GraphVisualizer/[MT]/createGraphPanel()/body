@@ -1,0 +1,6 @@
+{
+  JScrollPane graphScrollPanel=makeScrollPane(graph,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+  graphScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+  graphScrollPanel.setPreferredSize(graphScrollPanel.getMinimumSize());
+  return graphScrollPanel;
+}

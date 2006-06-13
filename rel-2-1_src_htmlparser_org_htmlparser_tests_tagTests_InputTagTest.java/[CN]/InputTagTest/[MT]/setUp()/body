@@ -1,0 +1,5 @@
+{
+  super.setUp();
+  createParser(testHTML,"http://www.google.com/test/index.html");
+  parser.addScanner(new InputTagScanner("-i"));
+}

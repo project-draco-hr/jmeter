@@ -1,0 +1,17 @@
+{
+  String stringToLog=((CompoundVariable)values[0]).execute();
+  String priorityString;
+  if (values.length > 1) {
+    priorityString=((CompoundVariable)values[1]).execute();
+    if (priorityString.length() == 0)     priorityString=DEFAULT_PRIORITY;
+  }
+ else {
+    priorityString=DEFAULT_PRIORITY;
+  }
+  Throwable t=null;
+  if (values.length > 2) {
+    t=new Throwable(((CompoundVariable)values[2]).execute());
+  }
+  logDetails(log,stringToLog,priorityString,t);
+  return stringToLog;
+}

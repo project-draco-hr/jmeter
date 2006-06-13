@@ -1,0 +1,41 @@
+{
+  List listClasses;
+  Command command;
+  Iterator iterClasses;
+  Class commandClass;
+  try {
+    listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Class.forName("org.apache.jmeter.gui.action.Command")});
+    commands=new HashMap(listClasses.size());
+    if (listClasses.size() == 0) {
+      log.warn("!!!!!Uh-oh, didn't find any action handlers!!!!!");
+    }
+    iterClasses=listClasses.iterator();
+    while (iterClasses.hasNext()) {
+      String strClassName=(String)iterClasses.next();
+      if (strClassName.startsWith("org.apache.jmeter.gui")) {
+        commandClass=Class.forName(strClassName);
+        if (!Modifier.isAbstract(commandClass.getModifiers())) {
+          command=(Command)commandClass.newInstance();
+          Iterator iter=command.getActionNames().iterator();
+          while (iter.hasNext()) {
+            String commandName=(String)iter.next();
+            Set commandObjects=(Set)commands.get(commandName);
+            if (commandObjects == null) {
+              commandObjects=new HashSet();
+              commands.put(commandName,commandObjects);
+            }
+            commandObjects.add(command);
+          }
+        }
+      }
+    }
+  }
+ catch (  Exception e) {
+    if ("java.awt.HeadlessException".equals(e.getClass().getName())) {
+      log.warn(e.toString());
+    }
+ else {
+      log.error("exception finding action handlers",e);
+    }
+  }
+}

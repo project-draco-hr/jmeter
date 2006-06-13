@@ -1,0 +1,20 @@
+{
+  producer.send(request);
+  String id=request.getJMSMessageID();
+  MessageAdmin.getAdmin().putRequest(id,request);
+  try {
+    if (log.isDebugEnabled()) {
+      log.debug("wait for reply " + id + " started on "+ System.currentTimeMillis());
+    }
+synchronized (request) {
+      request.wait(timeout);
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("done waiting for " + id + " ended on "+ System.currentTimeMillis());
+    }
+  }
+ catch (  InterruptedException e) {
+    log.warn("Interrupt exception caught",e);
+  }
+  return MessageAdmin.getAdmin().get(request.getJMSMessageID());
+}

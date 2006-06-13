@@ -1,0 +1,15 @@
+{
+  log.debug("Configuring gui with " + element);
+  super.configure(element);
+  model=(ProxyControl)element;
+  portField.setText(model.getPortString());
+  httpHeaders.setSelected(model.getCaptureHttpHeaders());
+  groupingMode.setSelectedIndex(model.getGroupingMode());
+  addAssertions.setSelected(model.getAssertions());
+  useKeepAlive.setSelected(model.getUseKeepalive());
+  regexMatch.setSelected(model.getRegexMatch());
+  reinitializeTargetCombo();
+  populateTable(includeModel,model.getIncludePatterns().iterator());
+  populateTable(excludeModel,model.getExcludePatterns().iterator());
+  repaint();
+}

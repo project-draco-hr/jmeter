@@ -1,0 +1,7 @@
+{
+  createParser("<TABLE><TR><TD><TD></TD></TR></TABLE>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  String s=node[0].toHtml();
+  assertEquals("Unclosed","<TABLE><TR><TD></TD><TD></TD></TR></TABLE>",s);
+}

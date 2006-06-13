@@ -1,0 +1,9 @@
+{
+  JTextField field=new JTextField(length);
+  field.setBorder(BorderFactory.createEmptyBorder(0,10,0,0));
+  field.setEditable(false);
+  field.setForeground(Color.black);
+  field.setBackground(getBackground());
+  field.setHorizontalAlignment(JTextField.RIGHT);
+  return field;
+}

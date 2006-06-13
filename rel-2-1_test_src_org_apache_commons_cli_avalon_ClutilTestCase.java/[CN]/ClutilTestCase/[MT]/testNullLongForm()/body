@@ -1,0 +1,11 @@
+{
+  final CLOptionDescriptor test=new CLOptionDescriptor(null,CLOptionDescriptor.ARGUMENT_DISALLOWED,'n',"test null long form");
+  final String[] args={"-n","testarg"};
+  final CLOptionDescriptor[] options={test};
+  final CLArgsParser parser=new CLArgsParser(args,options);
+  final CLOption optionByID=parser.getArgumentById('n');
+  assertNotNull(optionByID);
+  assertEquals('n',optionByID.getDescriptor().getId());
+  final CLOption optionByName=parser.getArgumentByName(FILE.getName());
+  assertNull("Looking for non-existent option by name",optionByName);
+}

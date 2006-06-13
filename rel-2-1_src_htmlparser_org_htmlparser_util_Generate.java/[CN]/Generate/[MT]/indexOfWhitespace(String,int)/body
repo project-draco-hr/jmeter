@@ -1,0 +1,11 @@
+{
+  int space;
+  int cr;
+  int ret;
+  space=string.indexOf(" ",index);
+  cr=string.indexOf(nl,index);
+  if (-1 == space)   ret=cr;
+ else   if (-1 == cr)   ret=space;
+ else   ret=Math.min(space,cr);
+  return (ret);
+}

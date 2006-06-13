@@ -1,0 +1,5 @@
+{
+  BeanShellTimer o=(BeanShellTimer)super.clone();
+  o.script=script;
+  return o;
+}

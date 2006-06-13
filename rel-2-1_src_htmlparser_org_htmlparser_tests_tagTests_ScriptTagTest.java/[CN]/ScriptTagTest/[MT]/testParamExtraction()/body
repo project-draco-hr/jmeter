@@ -1,0 +1,16 @@
+{
+  StringBuffer sb1=new StringBuffer();
+  sb1.append("<script src=\"/adb.js\" language=\"javascript\">\r\n");
+  sb1.append("if(navigator.appName.indexOf(\"Netscape\") != -1)\r\n");
+  sb1.append(" document.write ('xxx');\r\n");
+  sb1.append("else\r\n");
+  sb1.append(" document.write ('yyy');\r\n");
+  sb1.append("</script>\r\n");
+  createParser(sb1.toString());
+  parser.addScanner(new ScriptScanner("-s"));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a script tag",node[0] instanceof ScriptTag);
+  ScriptTag scriptTag=(ScriptTag)node[0];
+  assertEquals("Script Src","/adb.js",scriptTag.getAttribute("src"));
+  assertEquals("Script Language","javascript",scriptTag.getAttribute("language"));
+}

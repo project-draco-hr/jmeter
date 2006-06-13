@@ -1,0 +1,6 @@
+{
+  log.debug("Sample occurred");
+synchronized (sampleStore) {
+    sampleStore.add(e);
+  }
+}

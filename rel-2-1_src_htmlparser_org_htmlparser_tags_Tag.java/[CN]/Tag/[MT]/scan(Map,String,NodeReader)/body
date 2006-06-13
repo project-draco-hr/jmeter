@@ -1,0 +1,27 @@
+{
+  if (tagContents.length() == 0)   return this;
+  try {
+    boolean found=false;
+    Node retVal=null;
+    String firstWord=extractWord(tagContents.toString());
+    TagScanner scanner=(TagScanner)scanners.get(firstWord);
+    if (scanner != null && scanner.evaluate(tagContents.toString(),reader.getPreviousOpenScanner())) {
+      found=true;
+      TagScanner save;
+      save=reader.getPreviousOpenScanner();
+      reader.setPreviousOpenScanner(scanner);
+      retVal=scanner.createScannedNode(this,url,reader,tagLine);
+      reader.setPreviousOpenScanner(save);
+    }
+    if (!found)     return this;
+ else {
+      return retVal;
+    }
+  }
+ catch (  Exception e) {
+    String errorMsg;
+    if (tagContents != null)     errorMsg=tagContents.toString();
+ else     errorMsg="null";
+    throw new ParserException("Tag.scan() : Error while scanning tag, tag contents = " + errorMsg + ", tagLine = "+ tagLine,e);
+  }
+}

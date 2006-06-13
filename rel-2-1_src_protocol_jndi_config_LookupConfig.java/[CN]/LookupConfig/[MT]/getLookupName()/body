@@ -1,0 +1,7 @@
+{
+  String string=(String)this.getProperty(LOOKUP_NAME);
+  if (catClass.isDebugEnabled()) {
+    catClass.debug("getLookupName1 : lookup name - " + string);
+  }
+  return string;
+}

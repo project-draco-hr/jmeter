@@ -1,0 +1,8 @@
+{
+  this.startTag=startTag;
+  this.endTag=endTag;
+  this.children=new NodeList();
+  if (children != null)   for (SimpleNodeIterator i=children.elements(); i.hasMoreNodes(); ) {
+    this.children.add(i.nextNode());
+  }
+}

@@ -1,0 +1,13 @@
+{
+  PropertyIterator iter=getCookies().iterator();
+  while (iter.hasNext()) {
+    Cookie cookie=(Cookie)iter.next().getObjectValue();
+    if (cookie == null)     continue;
+    if (match(cookie,newCookie)) {
+      if (log.isDebugEnabled()) {
+        log.debug("New Cookie = " + newCookie.toString() + " removing matching Cookie "+ cookie.toString());
+      }
+      iter.remove();
+    }
+  }
+}

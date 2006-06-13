@@ -1,0 +1,3 @@
+{
+  return (MouseEvent.BUTTON2_MASK & e.getModifiers()) > 0 || (MouseEvent.BUTTON3_MASK == e.getModifiers());
+}

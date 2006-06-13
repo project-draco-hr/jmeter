@@ -1,0 +1,28 @@
+{
+  int fails=0;
+  InputStream ras=this.getClass().getResourceAsStream(res);
+  BufferedReader fileReader=new BufferedReader(new InputStreamReader(ras));
+  String s;
+  while ((s=fileReader.readLine()) != null) {
+    if (s.length() > 0 && !s.startsWith("#") && !s.startsWith("!")) {
+      int equ=s.indexOf('=');
+      String key=s.substring(0,equ);
+      if ((key.indexOf(' ') >= 0) || !key.toLowerCase().equals(key)) {
+        System.out.println("Invalid key for JMeterUtils " + key);
+        fails++;
+      }
+      String val=s.substring(equ + 1);
+      l.add(key);
+      if (val.indexOf("{0}") > 0 && val.indexOf("'") > 0) {
+        String m=java.text.MessageFormat.format(val,DUMMY_PARAMS);
+        if (m.indexOf("{") > 0) {
+          fails++;
+          System.out.println("Incorrect message format ? (input/output): ");
+          System.out.println(val);
+          System.out.println(m);
+        }
+      }
+    }
+  }
+  return fails;
+}

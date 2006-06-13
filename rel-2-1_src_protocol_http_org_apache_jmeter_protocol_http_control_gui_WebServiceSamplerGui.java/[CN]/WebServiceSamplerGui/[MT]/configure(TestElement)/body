@@ -1,0 +1,28 @@
+{
+  super.configure(el);
+  WebServiceSampler sampler=(WebServiceSampler)el;
+  wsdlField.setText(sampler.getWsdlURL());
+  protocol.setText(sampler.getProtocol());
+  domain.setText(sampler.getDomain());
+  port.setText(sampler.getPropertyAsString(HTTPSamplerBase.PORT));
+  path.setText(sampler.getPath());
+  soapAction.setText(sampler.getSoapAction());
+  soapXml.setText(sampler.getXmlData());
+  soapXmlFile.setFilename(sampler.getXmlFile());
+  randomXmlFile.setText(sampler.getXmlPathLoc());
+  memCache.setSelected(sampler.getMemoryCache());
+  readResponse.setSelected(sampler.getReadResponse());
+  useProxy.setSelected(sampler.getUseProxy());
+  if (sampler.getProxyHost().length() == 0) {
+    proxyHost.setEnabled(false);
+  }
+ else {
+    proxyHost.setText(sampler.getProxyHost());
+  }
+  if (sampler.getProxyPort() == 0) {
+    proxyPort.setEnabled(false);
+  }
+ else {
+    proxyPort.setText(String.valueOf(sampler.getProxyPort()));
+  }
+}

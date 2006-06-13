@@ -1,0 +1,8 @@
+{
+  if (comparator == null) {
+    return new SortedHashTree();
+  }
+ else {
+    return new SortedHashTree(comparator);
+  }
+}

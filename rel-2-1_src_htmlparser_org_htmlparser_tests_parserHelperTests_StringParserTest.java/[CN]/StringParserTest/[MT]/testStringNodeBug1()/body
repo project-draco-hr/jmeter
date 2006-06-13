@@ -1,0 +1,7 @@
+{
+  createParser("<HTML><HEAD><TITLE>Google</TITLE>");
+  parseAndAssertNodeCount(5);
+  assertTrue("Fourth node should be a HTMLStringNode",node[3] instanceof StringNode);
+  StringNode stringNode=(StringNode)node[3];
+  assertEquals("Text of the StringNode","Google",stringNode.getText());
+}

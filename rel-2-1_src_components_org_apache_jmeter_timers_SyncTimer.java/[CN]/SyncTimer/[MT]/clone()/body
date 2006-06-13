@@ -1,0 +1,6 @@
+{
+  SyncTimer newTimer=(SyncTimer)super.clone();
+  newTimer.timerCounter=timerCounter;
+  newTimer.sync=sync;
+  return newTimer;
+}

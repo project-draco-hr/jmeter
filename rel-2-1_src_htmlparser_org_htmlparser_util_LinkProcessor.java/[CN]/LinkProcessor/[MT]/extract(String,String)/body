@@ -1,0 +1,20 @@
+{
+  String path;
+  boolean modified;
+  boolean absolute;
+  int index;
+  String ret;
+  try {
+    if (null == link)     link="";
+    if (null != getBaseUrl())     base=getBaseUrl();
+    if ((null == base) || ("".equals(link)))     ret=link;
+ else {
+      URL url=constructUrl(link,base);
+      ret=url.toExternalForm();
+    }
+  }
+ catch (  MalformedURLException murle) {
+    ret=link;
+  }
+  return (Translate.decode(ret));
+}

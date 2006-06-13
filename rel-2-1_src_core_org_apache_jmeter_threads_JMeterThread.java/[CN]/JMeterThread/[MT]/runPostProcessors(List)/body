@@ -1,0 +1,8 @@
+{
+  ListIterator iter=extractors.listIterator(extractors.size());
+  while (iter.hasPrevious()) {
+    PostProcessor ex=(PostProcessor)iter.previous();
+    TestBeanHelper.prepare((TestElement)ex);
+    ex.process();
+  }
+}

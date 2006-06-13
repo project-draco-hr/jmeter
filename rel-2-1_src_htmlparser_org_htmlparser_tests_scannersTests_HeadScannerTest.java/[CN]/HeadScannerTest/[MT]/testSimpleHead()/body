@@ -1,0 +1,9 @@
+{
+  createParser("<HTML><HEAD></HEAD></HTML>");
+  HeadScanner headScanner=new HeadScanner();
+  parser.registerDomScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof Html);
+  Html htmlTag=(Html)node[0];
+  assertTrue(htmlTag.getChild(0) instanceof HeadTag);
+}

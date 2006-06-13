@@ -1,0 +1,9 @@
+{
+  if (startTime == 0)   startTime=System.currentTimeMillis();
+  if (endOfLoop()) {
+    reInitialize();
+    resetLoopCount();
+    return null;
+  }
+  return super.next();
+}

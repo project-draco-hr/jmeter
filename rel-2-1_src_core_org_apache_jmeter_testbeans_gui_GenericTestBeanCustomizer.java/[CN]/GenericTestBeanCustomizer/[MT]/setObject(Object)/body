@@ -1,0 +1,23 @@
+{
+  propertyMap=(Map)map;
+  if (propertyMap.size() == 0) {
+    for (int i=0; i < editors.length; i++) {
+      Object value=descriptors[i].getValue(DEFAULT);
+      String name=descriptors[i].getName();
+      if (value != null) {
+        propertyMap.put(name,value);
+        log.debug("Set " + name + "= "+ value);
+      }
+      firePropertyChange(name,null,value);
+    }
+  }
+  for (int i=0; i < editors.length; i++) {
+    if (editors[i] == null)     continue;
+    try {
+      setEditorValue(i,propertyMap.get(descriptors[i].getName()));
+    }
+ catch (    IllegalArgumentException e) {
+      setEditorValue(i,descriptors[i].getValue(DEFAULT));
+    }
+  }
+}

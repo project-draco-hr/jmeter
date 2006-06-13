@@ -1,0 +1,15 @@
+{
+  log.info("Notifying test listeners of end of test");
+  Iterator iter=testListeners.getSearchResults().iterator();
+  while (iter.hasNext()) {
+    TestListener tl=(TestListener)iter.next();
+    if (tl instanceof TestBean)     TestBeanHelper.prepare((TestElement)tl);
+    if (host == null) {
+      tl.testEnded();
+    }
+ else {
+      tl.testEnded(host);
+    }
+  }
+  log.info("Test has ended");
+}

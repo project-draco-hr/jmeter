@@ -1,0 +1,38 @@
+{
+  try {
+    String xmlData="";
+    boolean xmlTagFound=isXMLTagFound(node,tagName);
+    if (xmlTagFound) {
+      try {
+        do {
+          node=reader.readElement();
+          if (node != null) {
+            if (node instanceof StringNode) {
+              StringNode stringNode=(StringNode)node;
+              if (xmlData.length() > 0)               xmlData+=" ";
+              xmlData+=stringNode.getText();
+            }
+ else             if (!(node instanceof org.htmlparser.tags.EndTag))             xmlTagFound=false;
+          }
+        }
+ while (node instanceof StringNode);
+      }
+ catch (      Exception e) {
+        throw new ParserException("HTMLTagScanner.extractXMLData() : error while trying to find xml tag",e);
+      }
+    }
+    if (xmlTagFound) {
+      if (node != null) {
+        if (node instanceof org.htmlparser.tags.EndTag) {
+          org.htmlparser.tags.EndTag endTag=(org.htmlparser.tags.EndTag)node;
+          if (!endTag.getText().equals(tagName))           xmlTagFound=false;
+        }
+      }
+    }
+    if (xmlTagFound)     return xmlData;
+ else     return null;
+  }
+ catch (  Exception e) {
+    throw new ParserException("HTMLTagScanner.extractXMLData() : Error occurred while trying to extract xml tag",e);
+  }
+}

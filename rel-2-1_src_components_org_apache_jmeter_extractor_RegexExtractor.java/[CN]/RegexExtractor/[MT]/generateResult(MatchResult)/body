@@ -1,0 +1,14 @@
+{
+  StringBuffer result=new StringBuffer();
+  for (int a=0; a < template.length; a++) {
+    log.debug("RegexExtractor: Template piece #" + a + " = "+ template[a]);
+    if (template[a] instanceof String) {
+      result.append(template[a]);
+    }
+ else {
+      result.append(match.group(((Integer)template[a]).intValue()));
+    }
+  }
+  log.debug("Regex Extractor result = " + result.toString());
+  return result.toString();
+}

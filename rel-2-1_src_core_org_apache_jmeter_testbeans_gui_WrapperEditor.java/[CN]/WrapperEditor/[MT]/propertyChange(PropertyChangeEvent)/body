@@ -1,0 +1,11 @@
+{
+  String text=guiEditor.getAsText();
+  if (isValidValue(text)) {
+    lastValidValue=text;
+    firePropertyChange();
+  }
+ else {
+    JOptionPane.showMessageDialog(guiEditor.getCustomEditor().getParent(),JMeterUtils.getResString("property_editor.value_is_invalid_message"),JMeterUtils.getResString("property_editor.value_is_invalid_title"),JOptionPane.WARNING_MESSAGE);
+    guiEditor.setAsText(lastValidValue);
+  }
+}

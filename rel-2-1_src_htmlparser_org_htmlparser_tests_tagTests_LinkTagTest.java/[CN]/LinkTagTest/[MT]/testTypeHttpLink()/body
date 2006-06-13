@@ -1,0 +1,8 @@
+{
+  LinkTag linkTag=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("http://www.someurl.com","","",false,false));
+  assertTrue("This is a http link : " + linkTag.getLink(),linkTag.isHTTPLink());
+  linkTag=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("somePage.html","","",false,false));
+  assertTrue("This relative link is alsp a http link : " + linkTag.getLink(),linkTag.isHTTPLink());
+  linkTag=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("ftp://somePage.html","","",false,false));
+  assertTrue("This is not a http link : " + linkTag.getLink(),!linkTag.isHTTPLink());
+}

@@ -1,0 +1,19 @@
+{
+  boolean stoppedAll=true;
+  Iterator iter=new HashSet(allThreads.keySet()).iterator();
+  while (iter.hasNext()) {
+    Thread t=(Thread)allThreads.get(iter.next());
+    if (t != null && t.isAlive()) {
+      try {
+        t.join(WAIT_TO_DIE);
+      }
+ catch (      InterruptedException e) {
+      }
+      if (t.isAlive()) {
+        stoppedAll=false;
+        log.info("Thread won't die: " + t.getName());
+      }
+    }
+  }
+  return stoppedAll;
+}

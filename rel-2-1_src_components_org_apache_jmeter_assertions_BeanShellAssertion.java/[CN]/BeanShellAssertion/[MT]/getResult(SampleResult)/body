@@ -1,0 +1,53 @@
+{
+  AssertionResult result=new AssertionResult();
+  if (bshInterpreter == null) {
+    result.setFailure(true);
+    result.setError(true);
+    result.setFailureMessage("BeanShell Interpreter not found");
+    return result;
+  }
+  try {
+    String request=getScript();
+    String fileName=getFilename();
+    bshInterpreter.set("FileName",getFilename());
+    bshInterpreter.set("Parameters",getParameters());
+    bshInterpreter.set("bsh.args",JOrphanUtils.split(getParameters()," "));
+    bshInterpreter.set("SampleResult",response);
+    bshInterpreter.set("Response",response);
+    bshInterpreter.set("ResponseData",response.getResponseData());
+    bshInterpreter.set("ResponseCode",response.getResponseCode());
+    bshInterpreter.set("ResponseMessage",response.getResponseMessage());
+    bshInterpreter.set("ResponseHeaders",response.getResponseHeaders());
+    bshInterpreter.set("RequestHeaders",response.getRequestHeaders());
+    bshInterpreter.set("SampleLabel",response.getSampleLabel());
+    bshInterpreter.set("SamplerData",response.getSamplerData());
+    bshInterpreter.set("Successful",response.isSuccessful());
+    bshInterpreter.set("FailureMessage","");
+    bshInterpreter.set("Failure",false);
+    JMeterContext jmctx=JMeterContextService.getContext();
+    JMeterVariables vars=jmctx.getVariables();
+    bshInterpreter.set("ctx",jmctx);
+    bshInterpreter.set("vars",vars);
+    if (fileName.length() == 0) {
+      bshInterpreter.eval(request);
+    }
+ else {
+      bshInterpreter.source(fileName);
+    }
+    result.setFailureMessage(bshInterpreter.get("FailureMessage").toString());
+    result.setFailure(Boolean.valueOf(bshInterpreter.get("Failure").toString()).booleanValue());
+    result.setError(false);
+  }
+ catch (  NoClassDefFoundError ex) {
+    log.error("BeanShell Jar missing? " + ex.toString());
+    result.setError(true);
+    result.setFailureMessage("BeanShell Jar missing? " + ex.toString());
+    response.setStopThread(true);
+  }
+catch (  Exception ex) {
+    result.setError(true);
+    result.setFailureMessage(ex.toString());
+    log.warn(ex.toString());
+  }
+  return result;
+}

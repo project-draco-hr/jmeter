@@ -1,0 +1,11 @@
+{
+  if (exts.length == 0) {
+    return true;
+  }
+  for (int i=0; i < exts.length; i++) {
+    if (filename.endsWith(exts[i])) {
+      return true;
+    }
+  }
+  return false;
+}

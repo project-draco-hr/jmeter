@@ -1,0 +1,4 @@
+{
+  double rate=getBytesPerSecond() / 1024;
+  return kbFormatter.format(rate);
+}

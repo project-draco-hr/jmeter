@@ -1,0 +1,47 @@
+{
+  log.info("Start : getMethodHomeParmsPanel1");
+  JPanel panel=new JPanel();
+  panel.add(new JLabel(JMeterUtils.getResString("jndi_method_home_parms")));
+  rootHome=new DefaultMutableTreeNode("Root");
+  treeModelHome=new DefaultTreeModel(rootHome);
+  jTreeHome=new JTree(treeModelHome);
+  jTreeHome.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  jTreeHome.addTreeSelectionListener(this);
+  jTreeHome.setPreferredSize(new Dimension(200,50));
+  JPanel jTreePanel=new JPanel();
+  jTreePanel.add(jTreeHome);
+  panel.add(jTreePanel);
+  MouseListener ml=new MouseAdapter(){
+    public void mousePressed(    MouseEvent e){
+      TreePath selPath=jTreeHome.getPathForLocation(e.getX(),e.getY());
+      if (e.getClickCount() == 2) {
+        log.info("Double clicked on - " + selPath.getLastPathComponent());
+        DefaultMutableTreeNode node=(DefaultMutableTreeNode)selPath.getLastPathComponent();
+        int childCount=node.getChildCount();
+        if (childCount == 0 && node.getParent() != null) {
+          log.info("Pop!!!");
+          Object userObject=node.getUserObject();
+          Class type=null;
+          if (userObject instanceof Class) {
+            type=(Class)userObject;
+          }
+ else           if (userObject instanceof MethodConfigUserObject) {
+            type=(Class)((MethodConfigUserObject)userObject).getType();
+          }
+          MethodConfigDialog dialog=new MethodConfigDialog(frame,type);
+          dialog.pack();
+          dialog.setVisible(true);
+          MethodConfigUserObject input=dialog.getValidatedInput();
+          log.info("input - " + input);
+          if (input != null) {
+            node.setUserObject(input);
+          }
+        }
+      }
+    }
+  }
+;
+  jTreeHome.addMouseListener(ml);
+  log.info("End : getMethodHomeParmsPanel1");
+  return panel;
+}

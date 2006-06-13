@@ -1,0 +1,18 @@
+{
+synchronized (lock) {
+    if (log.isDebugEnabled()) {
+      log.debug(Thread.currentThread().getName() + " Running up named: " + getName());
+    }
+    PropertyIterator namesIter=getNames().iterator();
+    PropertyIterator valueIter=getValues().iterator();
+    JMeterVariables jmvars=getThreadContext().getVariables();
+    while (namesIter.hasNext() && valueIter.hasNext()) {
+      String name=namesIter.next().getStringValue();
+      String value=valueIter.next().getStringValue();
+      if (log.isDebugEnabled()) {
+        log.debug(Thread.currentThread().getName() + " saving variable: " + name+ "="+ value);
+      }
+      jmvars.put(name,value);
+    }
+  }
+}

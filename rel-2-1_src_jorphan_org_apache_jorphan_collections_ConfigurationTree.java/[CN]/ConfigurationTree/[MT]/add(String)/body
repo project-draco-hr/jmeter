@@ -1,0 +1,8 @@
+{
+  String[] keys=getPath(key);
+  ListedHashTree tree=propTree;
+  for (int i=0; i < keys.length; i++) {
+    tree=(ListedHashTree)tree.add(keys[i]);
+  }
+  return makeSubtree(tree);
+}

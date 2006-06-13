@@ -1,0 +1,11 @@
+{
+  createParser(createHtmlWithTable());
+  parser.addScanner(new TableScanner(parser));
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof TableTag);
+  TableTag tableTag=(TableTag)node[0];
+  assertEquals("rows",1,tableTag.getRowCount());
+  TableRow row=tableTag.getRow(0);
+  assertEquals("columns in row 1",2,row.getColumnCount());
+  assertEquals("table width","100.0%",tableTag.getAttribute("WIDTH"));
+}

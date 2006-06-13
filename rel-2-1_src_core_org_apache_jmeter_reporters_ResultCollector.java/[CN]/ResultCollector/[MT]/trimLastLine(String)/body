@@ -1,0 +1,45 @@
+{
+  RandomAccessFile raf=null;
+  try {
+    raf=new RandomAccessFile(filename,"rw");
+    long len=raf.length();
+    if (len < MIN_XML_FILE_LEN) {
+      return false;
+    }
+    raf.seek(len - TESTRESULTS_END.length() - 10);
+    String line;
+    long pos=raf.getFilePointer();
+    int end=0;
+    while ((line=raf.readLine()) != null) {
+      end=line.indexOf(TESTRESULTS_END);
+      if (end >= 0) {
+        break;
+      }
+      pos=raf.getFilePointer();
+    }
+    if (line == null) {
+      log.warn("Unexpected EOF trying to find XML end marker in " + filename);
+      raf.close();
+      return false;
+    }
+    raf.setLength(pos + end);
+    raf.close();
+    raf=null;
+  }
+ catch (  FileNotFoundException e) {
+    return false;
+  }
+catch (  IOException e) {
+    log.warn("Error trying to find XML terminator " + e.toString());
+    return false;
+  }
+ finally {
+    try {
+      if (raf != null)       raf.close();
+    }
+ catch (    IOException e1) {
+      log.info("Could not close " + filename + " "+ e1.getLocalizedMessage());
+    }
+  }
+  return true;
+}

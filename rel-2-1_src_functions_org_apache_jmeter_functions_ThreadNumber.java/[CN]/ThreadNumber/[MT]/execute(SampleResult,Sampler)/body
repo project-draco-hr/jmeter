@@ -1,0 +1,3 @@
+{
+  return Thread.currentThread().getName().substring(Thread.currentThread().getName().lastIndexOf("-") + 1);
+}

@@ -1,0 +1,7 @@
+{
+  String[] names=new String[meths.length];
+  for (int idx=0; idx < meths.length; idx++) {
+    names[idx]=meths[idx].getName();
+  }
+  return names;
+}

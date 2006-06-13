@@ -1,0 +1,31 @@
+{
+  setLayout(new BorderLayout(10,10));
+  setBorder(makeBorder());
+  setBackground(Color.white);
+  JPanel pane=new JPanel();
+  pane.setLayout(new BorderLayout(10,10));
+  pane.setBackground(Color.white);
+  pane.add(this.getNamePanel(),BorderLayout.NORTH);
+  meanCheck.addChangeListener(this);
+  VerticalPanel options=new VerticalPanel(Color.white);
+  meanCheck.setBackground(Color.white);
+  medianCheck.setBackground(Color.white);
+  maxCheck.setBackground(Color.white);
+  minCheck.setBackground(Color.white);
+  responseRateCheck.setBackground(Color.white);
+  transferRateCheck.setBackground(Color.white);
+  fiftypercentCheck.setBackground(Color.white);
+  nintypercentCheck.setBackground(Color.white);
+  errorRateCheck.setBackground(Color.white);
+  options.add(meanCheck);
+  options.add(medianCheck);
+  options.add(maxCheck);
+  options.add(minCheck);
+  options.add(responseRateCheck);
+  options.add(transferRateCheck);
+  options.add(fiftypercentCheck);
+  options.add(nintypercentCheck);
+  options.add(errorRateCheck);
+  add(pane,BorderLayout.NORTH);
+  add(options,BorderLayout.CENTER);
+}

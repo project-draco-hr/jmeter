@@ -1,0 +1,8 @@
+{
+  if (temporaryProperties == null) {
+    return false;
+  }
+ else {
+    return temporaryProperties.contains(property);
+  }
+}

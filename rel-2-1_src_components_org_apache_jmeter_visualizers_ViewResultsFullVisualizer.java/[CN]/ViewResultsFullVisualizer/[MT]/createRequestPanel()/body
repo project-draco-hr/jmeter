@@ -1,0 +1,9 @@
+{
+  sampleDataField=new JTextArea();
+  sampleDataField.setEditable(false);
+  sampleDataField.setLineWrap(true);
+  sampleDataField.setWrapStyleWord(true);
+  JPanel pane=new JPanel(new BorderLayout(0,5));
+  pane.add(makeScrollPane(sampleDataField));
+  return pane;
+}

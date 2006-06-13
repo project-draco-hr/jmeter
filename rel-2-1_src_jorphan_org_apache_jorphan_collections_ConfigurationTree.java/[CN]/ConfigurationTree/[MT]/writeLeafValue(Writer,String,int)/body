@@ -1,0 +1,13 @@
+{
+  if (entry.indexOf('\n') > -1 || entry.indexOf('\r') > -1) {
+    buf.write(BLOCK);
+    buf.write("\n");
+    buf.write(entry.trim());
+    buf.write("\n");
+    getSpaces(level,buf);
+    buf.write(END_BLOCK);
+  }
+ else {
+    buf.write(entry);
+  }
+}

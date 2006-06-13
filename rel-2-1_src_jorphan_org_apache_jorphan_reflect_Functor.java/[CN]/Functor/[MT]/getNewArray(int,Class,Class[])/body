@@ -1,0 +1,12 @@
+{
+  Class[] newArray=new Class[orig.length];
+  for (int j=0; j < newArray.length; j++) {
+    if (j == i) {
+      newArray[j]=replacement;
+    }
+ else {
+      newArray[j]=orig[j];
+    }
+  }
+  return newArray;
+}

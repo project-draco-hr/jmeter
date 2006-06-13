@@ -1,0 +1,10 @@
+{
+  try {
+    ResourceBundle b=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(RESOURCE_BUNDLE);
+    if (b == null)     return group;
+ else     return b.getString(group + ".displayName");
+  }
+ catch (  MissingResourceException e) {
+    return group;
+  }
+}

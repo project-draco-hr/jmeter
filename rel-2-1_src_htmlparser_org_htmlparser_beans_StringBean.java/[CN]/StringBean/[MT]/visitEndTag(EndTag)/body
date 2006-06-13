@@ -1,0 +1,6 @@
+{
+  String name;
+  name=end.getTagName();
+  if (name.equalsIgnoreCase("PRE"))   mIsPre=false;
+ else   if (name.equalsIgnoreCase("SCRIPT"))   mIsScript=false;
+}

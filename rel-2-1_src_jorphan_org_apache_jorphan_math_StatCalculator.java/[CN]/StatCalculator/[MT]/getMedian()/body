@@ -1,0 +1,6 @@
+{
+  if (count > 0) {
+    return (Number)values.get((int)(values.size() * .5));
+  }
+  return new Long(0);
+}

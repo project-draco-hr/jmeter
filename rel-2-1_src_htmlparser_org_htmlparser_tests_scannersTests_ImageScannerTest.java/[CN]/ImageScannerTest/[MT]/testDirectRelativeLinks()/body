@@ -1,0 +1,8 @@
+{
+  createParser("<IMG SRC  = \"/images/lines/li065.jpg\">","http://www.cybergeo.presse.fr/REVGEO/ttsavoir/joly.htm");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue("Node identified should be HTMLImageTag",node[0] instanceof ImageTag);
+  ImageTag imageTag=(ImageTag)node[0];
+  assertEquals("Image Location","http://www.cybergeo.presse.fr/images/lines/li065.jpg",imageTag.getImageURL());
+}

@@ -1,0 +1,9 @@
+{
+  ComboStringEditor e=new ComboStringEditor();
+  testSetGetAsText(e,"any string");
+  testSetGetAsText(e,"");
+  testSetGetAsText(e,null);
+  testSetGetAsText(e,"${var}");
+  e.setAsText(ComboStringEditor.UNDEFINED.toString());
+  assertNotNull(e.getAsText());
+}

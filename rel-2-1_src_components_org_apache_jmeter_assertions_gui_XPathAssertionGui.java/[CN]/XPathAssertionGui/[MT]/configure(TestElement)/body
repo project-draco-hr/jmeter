@@ -1,0 +1,10 @@
+{
+  super.configure(el);
+  XPathAssertion assertion=(XPathAssertion)el;
+  xpath.setXPath(assertion.getXPathString());
+  xpath.setNegated(assertion.isNegated());
+  xml.setWhitespace(assertion.isWhitespace());
+  xml.setValidate(assertion.isValidating());
+  xml.setTolerant(assertion.isTolerant());
+  xml.setNamespace(assertion.isNamespace());
+}

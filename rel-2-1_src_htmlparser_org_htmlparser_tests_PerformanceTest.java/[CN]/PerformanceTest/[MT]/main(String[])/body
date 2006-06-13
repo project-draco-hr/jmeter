@@ -1,0 +1,18 @@
+{
+  if (args.length < 2) {
+    System.err.println("Syntax Error.");
+    System.err.println("Params needed for test : <file/url to be parsed> <number of iterations>");
+    System.exit(-1);
+  }
+  String file=args[0];
+  String numTimesString=args[1];
+  int numTimes=Integer.decode(numTimesString).intValue();
+  PerformanceTest pt=new PerformanceTest(file,numTimes);
+  try {
+    pt.beginTestWithoutScanners();
+    pt.beginTestWithScanners();
+  }
+ catch (  ParserException e) {
+    e.printStackTrace();
+  }
+}

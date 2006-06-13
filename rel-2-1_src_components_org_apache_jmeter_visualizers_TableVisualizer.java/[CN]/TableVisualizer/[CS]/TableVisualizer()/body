@@ -1,0 +1,5 @@
+{
+  super();
+  model=new ObjectTableModel(COLUMNS,new Functor[]{new Functor("getCount"),new Functor("getStartTimeFormatted",new Object[]{format}),new Functor("getThreadName"),new Functor("getLabel"),new Functor("getData"),new Functor("isSuccess"),new Functor("getBytes")},new Functor[]{null,null,null,null,null,null,null},new Class[]{Long.class,String.class,String.class,String.class,Long.class,Boolean.class,Integer.class});
+  init();
+}

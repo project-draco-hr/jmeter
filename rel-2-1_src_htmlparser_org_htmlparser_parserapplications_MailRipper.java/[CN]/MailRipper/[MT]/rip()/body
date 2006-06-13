@@ -1,0 +1,12 @@
+{
+  Node node;
+  Vector mailAddresses=new Vector();
+  for (NodeIterator e=parser.elements(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    if (node instanceof LinkTag) {
+      LinkTag linkTag=(LinkTag)node;
+      if (linkTag.isMailLink())       mailAddresses.addElement(linkTag);
+    }
+  }
+  return mailAddresses.elements();
+}

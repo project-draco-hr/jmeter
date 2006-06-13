@@ -1,0 +1,7 @@
+{
+  String currentLine="<a href=s/7509><b>Yahoo! Movies</b></a>";
+  Tag tag=new Tag(new TagData(0,14,"a href=s/7509",currentLine));
+  LinkScanner linkScanner=new LinkScanner();
+  String newLine=linkScanner.insertEndTagBeforeNode(tag,currentLine);
+  assertEquals("Expected insertion","</A><a href=s/7509><b>Yahoo! Movies</b></a>",newLine);
+}

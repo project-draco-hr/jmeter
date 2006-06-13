@@ -1,0 +1,13 @@
+{
+  if (filterUrl(sampler)) {
+    JMeterTreeNode myTarget=findTargetControllerNode();
+    Collection defaultConfigurations=findApplicableElements(myTarget,ConfigTestElement.class,false);
+    Collection userDefinedVariables=findApplicableElements(myTarget,Arguments.class,true);
+    removeValuesFromSampler(sampler,defaultConfigurations);
+    replaceValues(sampler,subConfigs,userDefinedVariables);
+    sampler.setUseKeepAlive(useKeepAlive);
+    sampler.setProperty(TestElement.GUI_CLASS,HTTP_TEST_SAMPLE_GUI);
+    placeSampler(sampler,subConfigs,myTarget);
+    notifySampleListeners(new SampleEvent(result,sampler.getName()));
+  }
+}

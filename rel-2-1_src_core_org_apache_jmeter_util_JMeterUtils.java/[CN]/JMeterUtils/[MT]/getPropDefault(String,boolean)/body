@@ -1,0 +1,19 @@
+{
+  boolean ans;
+  try {
+    String strVal=appProperties.getProperty(propName,JOrphanUtils.booleanToString(defaultVal)).trim();
+    if (strVal.equalsIgnoreCase("true") || strVal.equalsIgnoreCase("t")) {
+      ans=true;
+    }
+ else     if (strVal.equalsIgnoreCase("false") || strVal.equalsIgnoreCase("f")) {
+      ans=false;
+    }
+ else {
+      ans=((Integer.valueOf(strVal)).intValue() == 1);
+    }
+  }
+ catch (  Exception e) {
+    ans=defaultVal;
+  }
+  return ans;
+}

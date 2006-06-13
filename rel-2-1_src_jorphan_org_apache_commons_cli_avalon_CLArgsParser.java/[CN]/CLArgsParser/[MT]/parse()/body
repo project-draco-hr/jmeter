@@ -1,0 +1,62 @@
+{
+  if (0 == m_args.length) {
+    return;
+  }
+  m_stringLength=m_args[m_argIndex].length();
+  while (true) {
+    m_ch=peekAtChar();
+    if (m_argIndex >= m_args.length) {
+      break;
+    }
+    if (null != m_control && m_control.isFinished(m_lastOptionId)) {
+      m_unparsedArgs=subArray(m_args,m_argIndex,m_stringIndex);
+      return;
+    }
+    if (STATE_OPTION_MODE == m_state) {
+      if (0 == m_ch) {
+        getChar();
+        m_state=STATE_NORMAL;
+      }
+ else {
+        parseShortOption();
+      }
+    }
+ else     if (STATE_NORMAL == m_state) {
+      parseNormal();
+    }
+ else     if (STATE_NO_OPTIONS == m_state) {
+      addOption(new CLOption(m_args[m_argIndex++]));
+    }
+ else     if (STATE_OPTIONAL_ARG == m_state && m_isLong && m_ch != 0) {
+      m_state=STATE_NORMAL;
+      addOption(m_option);
+    }
+ else {
+      parseArguments();
+    }
+  }
+  if (m_option != null) {
+    if (STATE_OPTIONAL_ARG == m_state) {
+      m_options.addElement(m_option);
+    }
+ else     if (STATE_REQUIRE_ARG == m_state) {
+      final CLOptionDescriptor descriptor=getDescriptorFor(m_option.getDescriptor().getId());
+      final String message="Missing argument to option " + getOptionDescription(descriptor);
+      throw new ParseException(message,0);
+    }
+ else     if (STATE_REQUIRE_2ARGS == m_state) {
+      if (1 == m_option.getArgumentCount()) {
+        m_option.addArgument("");
+        m_options.addElement(m_option);
+      }
+ else {
+        final CLOptionDescriptor descriptor=getDescriptorFor(m_option.getDescriptor().getId());
+        final String message="Missing argument to option " + getOptionDescription(descriptor);
+        throw new ParseException(message,0);
+      }
+    }
+ else {
+      throw new ParseException("IllegalState " + m_state + ": "+ m_option,0);
+    }
+  }
+}

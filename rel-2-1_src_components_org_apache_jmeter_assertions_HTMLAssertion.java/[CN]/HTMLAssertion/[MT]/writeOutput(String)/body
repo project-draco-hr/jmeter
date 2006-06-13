@@ -1,0 +1,24 @@
+{
+  String lFilename=getFilename();
+  if ((lFilename != null) && (!"".equals(lFilename.trim()))) {
+    FileWriter lOutputWriter=null;
+    try {
+      lOutputWriter=new FileWriter(lFilename,false);
+      lOutputWriter.write(inOutput);
+      lOutputWriter.flush();
+      log.debug("writeOutput() -> output successfully written to file " + lFilename);
+    }
+ catch (    IOException ex) {
+      log.warn("writeOutput() -> could not write output to file " + lFilename,ex);
+    }
+ finally {
+      if (lOutputWriter != null) {
+        try {
+          lOutputWriter.close();
+        }
+ catch (        IOException e) {
+        }
+      }
+    }
+  }
+}

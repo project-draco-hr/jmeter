@@ -1,0 +1,21 @@
+{
+  Tag tag;
+  EndTag etag;
+  StringNode snode;
+  Node node=null;
+  String testHTML="<INPUT name=\"foo\" value=\"foobar\" type=\"text\" />";
+  createParser(testHTML);
+  NodeIterator en=parser.elements();
+  String result="";
+  try {
+    while (en.hasMoreNodes()) {
+      node=en.nextNode();
+      result=node.toHtml();
+    }
+    String expected="<INPUT VALUE=\"foobar\" NAME=\"foo\" TYPE=\"text\"/>";
+    assertStringEquals("Check collected contents to original",expected,result);
+  }
+ catch (  ClassCastException ce) {
+    fail("Bad class element = " + node.getClass().getName());
+  }
+}

@@ -1,0 +1,11 @@
+{
+  createParser("<a href=s/8741>" + "<img src=\"http://us.i1.yimg.com/us.yimg.com/i/i16/mov_popc.gif\" " + "height=16 "+ "width=16 "+ "border=0>"+ "This is a test\n"+ "<a href=s/7509>"+ "<b>Yahoo! Movies</b>"+ "</a>","http://www.yahoo.com");
+  parser.registerScanners();
+  parseAndAssertNodeCount(2);
+  assertTrue("First node should be a HTMLLinkTag",node[0] instanceof LinkTag);
+  assertTrue("Second node should be a HTMLLinkTag",node[1] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertEquals("Link","http://www.yahoo.com/s/8741",linkTag.getLink());
+  assertEquals("Link Text","This is a test\r\n",linkTag.getLinkText());
+  assertStringEquals("toHTML()","<A HREF=\"s/8741\"><IMG BORDER=\"0\" WIDTH=\"16\" SRC=\"http://us.i1.yimg.com/us.yimg.com/i/i16/mov_popc.gif\" HEIGHT=\"16\">This is a test\r\n</A>",linkTag.toHtml());
+}

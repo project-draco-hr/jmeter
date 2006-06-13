@@ -1,0 +1,8 @@
+{
+  StringBuffer msg=new StringBuffer();
+  for (int i=0; i < nodeCount; i++) {
+    msg.append(node[i].getClass().getName());
+    msg.append("-->\n").append(node[i].toHtml()).append("\n");
+  }
+  assertEquals("Number of nodes parsed didn't match, nodes found were :\n" + msg.toString(),nodeCountExpected,nodeCount);
+}

@@ -1,0 +1,8 @@
+{
+  if (guiPack == null) {
+    guiPack=new GuiPackage();
+    guiPack.setTreeListener(listener);
+    guiPack.setTreeModel(treeModel);
+  }
+  return guiPack;
+}

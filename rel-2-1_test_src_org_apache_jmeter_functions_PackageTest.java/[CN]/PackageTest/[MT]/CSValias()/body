@@ -1,0 +1,27 @@
+{
+  cr1=setParams("testfiles/test.csv","*A");
+  cr2=setParams("*A","1");
+  cr3=setParams("*A","next");
+  cr4=setParams("testfiles/test.csv","*B");
+  cr5=setParams("*B","2");
+  cr6=setParams("*B","next");
+  String s;
+  s=cr1.execute(null,null);
+  assertEquals("",s);
+  s=cr2.execute(null,null);
+  assertEquals("b1",s);
+  s=cr4.execute(null,null);
+  assertEquals("",s);
+  s=cr5.execute(null,null);
+  assertEquals("c1",s);
+  s=cr3.execute(null,null);
+  assertEquals("",s);
+  s=cr2.execute(null,null);
+  assertEquals("b2",s);
+  s=cr5.execute(null,null);
+  assertEquals("c1",s);
+  s=cr6.execute(null,null);
+  assertEquals("",s);
+  s=cr5.execute(null,null);
+  assertEquals("c2",s);
+}

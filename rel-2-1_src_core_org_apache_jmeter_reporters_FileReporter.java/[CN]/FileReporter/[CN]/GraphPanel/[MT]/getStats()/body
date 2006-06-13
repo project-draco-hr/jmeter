@@ -1,0 +1,48 @@
+{
+  int total=0;
+  float totalValue=0;
+  float maxValue=0;
+  float minValue=999999;
+  for (int t=0; t < keys.size(); t++) {
+    String key=(String)keys.elementAt(t);
+    Vector temp=(Vector)data.get(key);
+    for (int j=0; j < temp.size(); j++) {
+      float f=((Integer)temp.elementAt(j)).intValue();
+      minValue=Math.min(f,minValue);
+      maxValue=Math.max(f,maxValue);
+      totalValue+=f;
+      total++;
+    }
+  }
+  float averageValue=totalValue / total;
+  JPanel main=new JPanel();
+  GridBagLayout g=new GridBagLayout();
+  main.setLayout(g);
+  DecimalFormat df=new DecimalFormat("#0.0");
+  GridBagConstraints c=new GridBagConstraints();
+  c.insets=new Insets(3,6,3,6);
+  c.fill=GridBagConstraints.BOTH;
+  c.gridwidth=1;
+  c.gridheight=1;
+  JLabel count=new JLabel("Count: " + total);
+  c.gridx=1;
+  c.gridy=1;
+  g.setConstraints(count,c);
+  JLabel min=new JLabel("Min: " + df.format(new Float(minValue)));
+  c.gridx=1;
+  c.gridy=2;
+  g.setConstraints(min,c);
+  JLabel max=new JLabel("Max: " + df.format(new Float(maxValue)));
+  c.gridx=1;
+  c.gridy=3;
+  g.setConstraints(max,c);
+  JLabel average=new JLabel("Average: " + df.format(new Float(averageValue)));
+  c.gridx=1;
+  c.gridy=4;
+  g.setConstraints(average,c);
+  main.add(count);
+  main.add(min);
+  main.add(max);
+  main.add(average);
+  return main;
+}

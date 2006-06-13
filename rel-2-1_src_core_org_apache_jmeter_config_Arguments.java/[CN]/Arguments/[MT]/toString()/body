@@ -1,0 +1,17 @@
+{
+  StringBuffer str=new StringBuffer();
+  PropertyIterator iter=getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next().getObjectValue();
+    if (arg.getMetaData() == null) {
+      str.append(arg.getName() + "=" + arg.getValue());
+    }
+ else {
+      str.append(arg.getName() + arg.getMetaData() + arg.getValue());
+    }
+    if (iter.hasNext()) {
+      str.append("&");
+    }
+  }
+  return str.toString();
+}

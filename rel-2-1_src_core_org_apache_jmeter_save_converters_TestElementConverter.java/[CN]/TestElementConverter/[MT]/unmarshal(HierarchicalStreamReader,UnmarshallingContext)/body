@@ -1,0 +1,25 @@
+{
+  String classAttribute=reader.getAttribute(ConversionHelp.ATT_CLASS);
+  Class type;
+  if (classAttribute == null) {
+    type=mapper().realClass(reader.getNodeName());
+  }
+ else {
+    type=mapper().realClass(classAttribute);
+  }
+  try {
+    TestElement el=(TestElement)type.newInstance();
+    ConversionHelp.restoreSpecialProperties(el,reader);
+    while (reader.hasMoreChildren()) {
+      reader.moveDown();
+      JMeterProperty prop=(JMeterProperty)readItem(reader,context,el);
+      el.setProperty(prop);
+      reader.moveUp();
+    }
+    return el;
+  }
+ catch (  Exception e) {
+    log.error("TestElement not instantiable: " + type,e);
+    return null;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (map instanceof HashTree) {
+    this.add((HashTree)map);
+  }
+ else {
+    throw new UnsupportedOperationException("can only putAll other HashTree objects");
+  }
+}

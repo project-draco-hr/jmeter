@@ -1,0 +1,5 @@
+{
+  LDAPArguments args=new LDAPArguments();
+  modifyTestElement(args);
+  return (TestElement)args.clone();
+}

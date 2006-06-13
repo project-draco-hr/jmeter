@@ -1,0 +1,19 @@
+{
+  byte[] buffer=new byte[4096];
+  ByteArrayOutputStream w=new ByteArrayOutputStream();
+  int x=0;
+  try {
+    while ((x=is.read(buffer)) > -1) {
+      w.write(buffer,0,x);
+      if ((eolByte != 0) && (buffer[x - 1] == eolByte))       break;
+    }
+  }
+ catch (  InterruptedIOException e) {
+  }
+catch (  IOException e) {
+    log.warn("Read error:" + e);
+    return "";
+  }
+  log.debug("Read: " + w.size() + "\n"+ w.toString());
+  return w.toString();
+}

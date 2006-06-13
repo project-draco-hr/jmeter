@@ -1,0 +1,17 @@
+{
+  SSLManager.reset();
+  keyStoreChooser=new JFileChooser(JMeterUtils.getJMeterProperties().getProperty("user.dir"));
+  keyStoreChooser.addChoosableFileFilter(new AcceptPKCS12FileFilter());
+  keyStoreChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+  int retVal=keyStoreChooser.showOpenDialog(GuiPackage.getInstance().getMainFrame());
+  if (JFileChooser.APPROVE_OPTION == retVal) {
+    File selectedFile=keyStoreChooser.getSelectedFile();
+    try {
+      JMeterUtils.getJMeterProperties().setProperty("javax.net.ssl.keyStore",selectedFile.getCanonicalPath());
+    }
+ catch (    Exception e) {
+    }
+  }
+  keyStoreChooser=null;
+  SSLManager.getInstance();
+}

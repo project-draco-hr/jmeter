@@ -1,0 +1,6 @@
+{
+  JPopupMenu pop=new JPopupMenu();
+  ReportMenuFactory.addFileMenu(pop);
+  ReportMenuFactory.addEditMenu(pop,true);
+  return pop;
+}

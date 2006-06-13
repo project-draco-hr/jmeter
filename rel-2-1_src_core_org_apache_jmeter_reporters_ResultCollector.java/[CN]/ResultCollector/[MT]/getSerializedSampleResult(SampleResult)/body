@@ -1,0 +1,15 @@
+{
+  ByteArrayOutputStream tempOut=new ByteArrayOutputStream();
+  serializer.serialize(tempOut,OldSaveService.getConfiguration(result,getSaveConfig()));
+  String serVer=tempOut.toString();
+  String lineSep=System.getProperty("line.separator");
+  int index=serVer.indexOf(lineSep);
+  if (index > -1) {
+    return serVer.substring(index);
+  }
+  if (serVer.startsWith("<?xml")) {
+    index=serVer.indexOf("?>");
+    return lineSep + serVer.substring(index + 2);
+  }
+  return serVer;
+}

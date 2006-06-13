@@ -1,0 +1,11 @@
+{
+  setBackground(this.background);
+  setBorder(BorderFactory.createTitledBorder(title));
+  add(Box.createHorizontalStrut(5));
+  add(filename);
+  add(Box.createHorizontalStrut(5));
+  filename.addActionListener(this);
+  add(browse);
+  browse.setActionCommand("browse");
+  browse.addActionListener(this);
+}

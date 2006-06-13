@@ -1,0 +1,5 @@
+{
+  DoubleProperty prop=(DoubleProperty)super.clone();
+  prop.value=value;
+  return prop;
+}

@@ -1,0 +1,9 @@
+{
+  try {
+    ObjectMessage msg=this.SESSION.createObjectMessage(contents);
+    this.PUBLISHER.publish(msg);
+  }
+ catch (  JMSException e) {
+    log.error(e.getMessage());
+  }
+}

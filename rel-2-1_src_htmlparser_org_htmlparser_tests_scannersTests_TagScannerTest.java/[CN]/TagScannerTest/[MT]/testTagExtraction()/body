@@ -1,0 +1,6 @@
+{
+  String testHTML="<AREA \n coords=0,0,52,52 href=\"http://www.yahoo.com/r/c1\" shape=RECT>";
+  createParser(testHTML);
+  Tag tag=Tag.find(parser.getReader(),testHTML,0);
+  assertNotNull(tag);
+}

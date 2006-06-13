@@ -1,0 +1,9 @@
+{
+  Container panel=makeTitlePanel();
+  commentPanel=new JTextArea();
+  JLabel label=new JLabel(JMeterUtils.getResString("testplan_comments"));
+  label.setLabelFor(commentPanel);
+  panel.add(label);
+  panel.add(commentPanel);
+  return panel;
+}

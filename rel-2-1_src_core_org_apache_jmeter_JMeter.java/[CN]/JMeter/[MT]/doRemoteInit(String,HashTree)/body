@@ -1,0 +1,12 @@
+{
+  JMeterEngine engine=null;
+  try {
+    engine=new ClientJMeterEngine(hostName);
+  }
+ catch (  Exception e) {
+    log.fatalError("Failure connecting to remote host",e);
+    System.exit(0);
+  }
+  engine.configure(testTree);
+  return engine;
+}

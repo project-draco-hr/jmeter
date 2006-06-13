@@ -1,0 +1,5 @@
+{
+  getParameterTableFor("INPUT type=");
+  assertEquals("Name of Tag","INPUT",table.get(Tag.TAGNAME));
+  assertEquals("Type","",table.get("TYPE"));
+}

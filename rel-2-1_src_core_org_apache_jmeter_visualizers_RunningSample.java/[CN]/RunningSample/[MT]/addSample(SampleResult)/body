@@ -1,0 +1,22 @@
+{
+  long aTimeInMillis=res.getTime();
+  boolean aSuccessFlag=res.isSuccessful();
+  counter++;
+  long startTime=res.getTimeStamp() - aTimeInMillis;
+  if (firstTime > startTime) {
+    firstTime=startTime;
+  }
+  if (lastTime < res.getTimeStamp()) {
+    lastTime=res.getTimeStamp();
+  }
+  runningSum+=aTimeInMillis;
+  if (aTimeInMillis > max) {
+    max=aTimeInMillis;
+  }
+  if (aTimeInMillis < min) {
+    min=aTimeInMillis;
+  }
+  if (!aSuccessFlag) {
+    errorCount++;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  GenericController sc=new GenericController();
+  sc.setProperty(TestElement.GUI_CLASS,LOGIC_CONTROLLER_GUI);
+  sc.setName(name);
+  model.addComponent(sc,node);
+}

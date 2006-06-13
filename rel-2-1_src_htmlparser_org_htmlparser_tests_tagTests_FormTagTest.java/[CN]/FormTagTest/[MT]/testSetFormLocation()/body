@@ -1,0 +1,10 @@
+{
+  createParser(FormScannerTest.FORM_HTML);
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue("Node 0 should be Form Tag",node[0] instanceof FormTag);
+  FormTag formTag=(FormTag)node[0];
+  formTag.setFormLocation("http://www.yahoo.com/yahoo/do_not_login.jsp");
+  String expectedHTML="<FORM ACTION=\"http://www.yahoo.com/yahoo/do_not_login.jsp\" NAME=\"login_form\" ONSUBMIT=\"return CheckData()\" METHOD=\"" + FormTag.POST + "\">\r\n"+ FormScannerTest.EXPECTED_FORM_HTML_REST_OF_FORM;
+  assertStringEquals("Raw String",expectedHTML,formTag.toHtml());
+}

@@ -1,0 +1,82 @@
+{
+  HttpURLConnection conn=null;
+  String urlStr=url.toString();
+  log.debug("Start : sample" + urlStr);
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setMonitor(isMonitor());
+  res.setSampleLabel(urlStr);
+  res.sampleStart();
+  try {
+    int retry;
+    for (retry=1; retry <= MAX_CONN_RETRIES; retry++) {
+      try {
+        conn=setupConnection(url,method,res);
+        conn.connect();
+        break;
+      }
+ catch (      BindException e) {
+        if (retry >= MAX_CONN_RETRIES) {
+          log.error("Can't connect",e);
+          throw e;
+        }
+        log.debug("Bind exception, try again");
+        conn.disconnect();
+        this.setUseKeepAlive(false);
+        continue;
+      }
+catch (      IOException e) {
+        log.debug("Connection failed, giving up");
+        throw e;
+      }
+    }
+    if (retry > MAX_CONN_RETRIES) {
+      throw new BindException();
+    }
+    if (method.equals(POST)) {
+      sendPostData(conn);
+    }
+ else     if (method.equals(PUT)) {
+      sendPutData(conn);
+    }
+    byte[] responseData=readResponse(conn,res);
+    res.sampleEnd();
+    res.setResponseData(responseData);
+    int errorLevel=conn.getResponseCode();
+    String respMsg=conn.getResponseMessage();
+    if (errorLevel == -1) {
+      try {
+        errorLevel=Integer.parseInt(respMsg.substring(0,3));
+        log.warn("ResponseCode==-1; parsed " + respMsg + " as "+ errorLevel);
+      }
+ catch (      NumberFormatException e) {
+        log.warn("ResponseCode==-1; could not parse " + respMsg);
+      }
+    }
+    res.setResponseCode(Integer.toString(errorLevel));
+    res.setSuccessful(isSuccessCode(errorLevel));
+    res.setResponseMessage(respMsg);
+    String ct=conn.getContentType();
+    res.setContentType(ct);
+    res.setEncodingAndType(ct);
+    res.setResponseHeaders(getResponseHeaders(conn));
+    if (res.isRedirect()) {
+      res.setRedirectLocation(conn.getHeaderField(HEADER_LOCATION));
+    }
+    if (getAutoRedirects()) {
+      res.setURL(conn.getURL());
+    }
+    saveConnectionCookies(conn,url,getCookieManager());
+    res=resultProcessing(areFollowingRedirect,frameDepth,res);
+    log.debug("End : sample");
+    return res;
+  }
+ catch (  IOException e) {
+    res.sampleEnd();
+    conn.disconnect();
+    conn=null;
+    return errorResult(e,res);
+  }
+ finally {
+    disconnect(conn);
+  }
+}

@@ -1,0 +1,43 @@
+{
+  int status=getInt();
+  res.setResponseCode(Integer.toString(status));
+  res.setSuccessful(200 <= status && status <= 399);
+  String msg=getString();
+  res.setResponseMessage(msg);
+  int nh=getInt();
+  StringBuffer sb=new StringBuffer();
+  sb.append(HTTP_1_1).append(status).append(" ").append(msg).append(NEWLINE);
+  for (int i=0; i < nh; i++) {
+    String name;
+    int thn=peekInt();
+    if ((thn & 0xff00) == AJP_HEADER_BASE) {
+      name=headerTransArray[(thn & 0xff) - 1];
+    }
+ else {
+      name=getString();
+    }
+    String value=getString();
+    if (HEADER_CONTENT_TYPE.equalsIgnoreCase(name)) {
+      res.setContentType(value);
+      String de=value.toLowerCase();
+      int cset=de.indexOf("charset=");
+      if (cset >= 0) {
+        res.setDataEncoding(de.substring(cset + 8));
+      }
+      if (de.startsWith("text/")) {
+        res.setDataType(HTTPSampleResult.TEXT);
+      }
+ else {
+        res.setDataType(HTTPSampleResult.BINARY);
+      }
+    }
+ else     if (HEADER_SET_COOKIE.equalsIgnoreCase(name)) {
+      CookieManager cookies=getCookieManager();
+      if (cookies != null) {
+        cookies.addCookieFromHeader(value,res.getURL());
+      }
+    }
+    sb.append(name).append(COLON_SPACE).append(value).append(NEWLINE);
+  }
+  res.setResponseHeaders(sb.toString());
+}

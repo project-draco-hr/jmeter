@@ -1,0 +1,25 @@
+{
+  String[] returnValue;
+  Object o;
+  List temp=(List)data.get(columnName);
+  if (temp != null) {
+    returnValue=new String[temp.size()];
+    Iterator it=temp.iterator();
+    int index=0;
+    while (it.hasNext()) {
+      o=it.next();
+      if (o != null) {
+        if (o instanceof String) {
+          returnValue[index++]=(String)o;
+        }
+ else {
+          returnValue[index++]=o.toString();
+        }
+      }
+    }
+  }
+ else {
+    returnValue=new String[0];
+  }
+  return returnValue;
+}

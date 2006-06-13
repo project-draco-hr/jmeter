@@ -1,0 +1,32 @@
+{
+  int index;
+  String[] mods;
+  int count=0;
+  if (reqAttr.length() == 0) {
+    return null;
+  }
+  if (!reqAttr.endsWith(";")) {
+    reqAttr=reqAttr + ";";
+  }
+  String attr=reqAttr;
+  while (attr.length() > 0) {
+    index=attr.indexOf(";");
+    count+=1;
+    attr=attr.substring(index + 1);
+  }
+  if (count > 0) {
+    mods=new String[count];
+    attr=reqAttr;
+    count=0;
+    while (attr.length() > 0) {
+      index=attr.indexOf(";");
+      mods[count]=attr.substring(0,index);
+      count+=1;
+      attr=attr.substring(index + 1);
+    }
+  }
+ else {
+    mods=null;
+  }
+  return mods;
+}

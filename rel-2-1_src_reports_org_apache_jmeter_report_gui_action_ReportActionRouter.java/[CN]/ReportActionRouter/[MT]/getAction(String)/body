@@ -1,0 +1,14 @@
+{
+  Set set=new HashSet();
+  Set commandObjects=(Set)commands.get(actionName);
+  Iterator iter=commandObjects.iterator();
+  while (iter.hasNext()) {
+    try {
+      set.add(iter.next());
+    }
+ catch (    Exception err) {
+      log.error("",err);
+    }
+  }
+  return set;
+}

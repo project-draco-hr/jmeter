@@ -1,0 +1,6 @@
+{
+  if (currentRow == NO_LINE) {
+    log.warn("endRow() called twice in succession");
+  }
+  currentRow=NO_LINE;
+}

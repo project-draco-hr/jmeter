@@ -1,0 +1,6 @@
+{
+  tableModel=new PowerTableModel(new String[]{COLUMN_NAMES_0,COLUMN_NAMES_1},new Class[]{String.class,String.class});
+  table=new JTable(tableModel);
+  table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  return makeScrollPane(table);
+}

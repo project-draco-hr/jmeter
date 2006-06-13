@@ -1,0 +1,9 @@
+{
+  log.debug("Sample started");
+  try {
+    listener.sampleStarted(e);
+  }
+ catch (  RemoteException err) {
+    log.error("sampleStarted",err);
+  }
+}

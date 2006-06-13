@@ -1,0 +1,9 @@
+{
+  PropertyIterator iter=getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument arg=(Argument)iter.next().getObjectValue();
+    if (arg.getName().equals(argName)) {
+      iter.remove();
+    }
+  }
+}

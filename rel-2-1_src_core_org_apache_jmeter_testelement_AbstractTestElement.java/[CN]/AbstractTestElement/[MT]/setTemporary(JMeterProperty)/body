@@ -1,0 +1,12 @@
+{
+  if (temporaryProperties == null) {
+    temporaryProperties=new HashSet();
+  }
+  temporaryProperties.add(property);
+  if (property instanceof MultiProperty) {
+    PropertyIterator iter=((MultiProperty)property).iterator();
+    while (iter.hasNext()) {
+      setTemporary(iter.next());
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  try {
+    if (o == null) {
+      return defaultValue;
+    }
+    if (o instanceof Character) {
+      return ((Character)o).charValue();
+    }
+ else     if (o instanceof Byte) {
+      return (char)((Byte)o).byteValue();
+    }
+ else     if (o instanceof Integer) {
+      return (char)((Integer)o).intValue();
+    }
+ else {
+      String s=o.toString();
+      if (s.length() > 0) {
+        return o.toString().charAt(0);
+      }
+ else       return defaultValue;
+    }
+  }
+ catch (  Exception e) {
+    return defaultValue;
+  }
+}

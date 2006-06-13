@@ -1,0 +1,24 @@
+{
+  Iterator iter=coll.entrySet().iterator();
+  Map newColl=null;
+  while (iter.hasNext()) {
+    Map.Entry entry=(Map.Entry)iter.next();
+    Object item=entry.getKey();
+    Object prop=entry.getValue();
+    if (newColl == null) {
+      try {
+        newColl=(Map)coll.getClass().newInstance();
+      }
+ catch (      Exception e) {
+        log.error("Bad collection",e);
+      }
+    }
+    newColl.put(item,convertObject(prop));
+  }
+  if (newColl != null) {
+    return newColl;
+  }
+ else {
+    return coll;
+  }
+}

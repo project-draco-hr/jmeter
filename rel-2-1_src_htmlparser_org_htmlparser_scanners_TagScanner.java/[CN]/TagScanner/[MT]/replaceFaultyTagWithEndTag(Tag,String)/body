@@ -1,0 +1,6 @@
+{
+  String newLine=currentLine.substring(0,tag.elementBegin());
+  newLine+="</" + tag.getTagName() + ">";
+  newLine+=currentLine.substring(tag.elementEnd() + 1,currentLine.length());
+  return newLine;
+}

@@ -1,0 +1,8 @@
+{
+  StringBuffer sb=new StringBuffer(80);
+  sb.append("[");
+  sb.append(getQueryType());
+  sb.append("] ");
+  sb.append(getQuery());
+  return sb.toString();
+}

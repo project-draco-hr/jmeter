@@ -1,0 +1,5 @@
+{
+  String stringValue=tree.convertValueToText(value,isSelected,expanded,leaf,row,false);
+  delegate.setValue(stringValue);
+  return new JScrollPane(editorComponent);
+}

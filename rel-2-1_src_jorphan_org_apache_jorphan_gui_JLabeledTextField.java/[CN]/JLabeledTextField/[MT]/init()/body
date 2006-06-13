@@ -1,0 +1,6 @@
+{
+  setLayout(new BorderLayout(5,0));
+  mTextField.addFocusListener(this);
+  add(mLabel,BorderLayout.WEST);
+  add(mTextField,BorderLayout.CENTER);
+}

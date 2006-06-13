@@ -1,0 +1,10 @@
+{
+  this.USEFILE=false;
+  for (int idx=0; idx < this.INCFILE.length; idx++) {
+    if (text.indexOf(this.INCFILE[idx]) > -1) {
+      this.USEFILE=true;
+      break;
+    }
+  }
+  return this.USEFILE;
+}

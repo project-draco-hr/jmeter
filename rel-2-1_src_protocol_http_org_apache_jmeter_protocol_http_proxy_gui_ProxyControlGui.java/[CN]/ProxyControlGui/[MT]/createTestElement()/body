@@ -1,0 +1,6 @@
+{
+  model=makeProxyControl();
+  log.debug("creating/configuring model = " + model);
+  modifyTestElement(model);
+  return model;
+}

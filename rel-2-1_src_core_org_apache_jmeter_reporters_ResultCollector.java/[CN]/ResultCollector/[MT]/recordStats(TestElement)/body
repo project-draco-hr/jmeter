@@ -1,0 +1,8 @@
+{
+  if (out == null) {
+    initializeFileOutput();
+  }
+  if (out != null) {
+    SaveService.saveTestElement(e,out);
+  }
+}

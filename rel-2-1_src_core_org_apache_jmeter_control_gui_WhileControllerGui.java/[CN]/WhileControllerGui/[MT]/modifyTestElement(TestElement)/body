@@ -1,0 +1,11 @@
+{
+  configureTestElement(controller);
+  if (controller instanceof WhileController) {
+    if (theCondition.getText().length() > 0) {
+      ((WhileController)controller).setCondition(theCondition.getText());
+    }
+ else {
+      ((WhileController)controller).setCondition("");
+    }
+  }
+}

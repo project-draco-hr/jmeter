@@ -1,0 +1,19 @@
+{
+  if (arg0 instanceof JMeterProperty) {
+    String val=getStringValue();
+    String val2=((JMeterProperty)arg0).getStringValue();
+    if (val == null) {
+      log.warn("Warning: Unexpected null value for property: " + name);
+      if (val2 == null) {
+        return 0;
+      }
+ else {
+        return -1;
+      }
+    }
+    return val.compareTo(val2);
+  }
+ else {
+    return -1;
+  }
+}

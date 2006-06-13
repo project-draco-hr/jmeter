@@ -1,0 +1,20 @@
+{
+  try {
+    setParams(null,null);
+    fail("Should have failed");
+  }
+ catch (  InvalidVariableException e) {
+  }
+  try {
+    setParams(null,"");
+    fail("Should have failed");
+  }
+ catch (  InvalidVariableException e) {
+  }
+  try {
+    setParams("",null);
+    fail("Should have failed");
+  }
+ catch (  InvalidVariableException e) {
+  }
+}

@@ -1,0 +1,25 @@
+{
+  StringBuffer sb1=new StringBuffer();
+  sb1.append("<body><script language=\"javascript\">\r\n");
+  sb1.append("if(navigator.appName.indexOf(\"Netscape\") != -1)\r\n");
+  sb1.append(" document.write ('xxx');\r\n");
+  sb1.append("else\r\n");
+  sb1.append(" document.write ('yyy');\r\n");
+  sb1.append("</script>\r\n");
+  String testHTML1=new String(sb1.toString());
+  createParser(testHTML1);
+  Parser.setLineSeparator("\r\n");
+  parser.addScanner(new ScriptScanner("-s"));
+  StringBuffer sb2=new StringBuffer();
+  sb2.append("<SCRIPT LANGUAGE=\"javascript\">\r\n");
+  sb2.append("if(navigator.appName.indexOf(\"Netscape\") != -1)\r\n");
+  sb2.append(" document.write ('xxx');\r\n");
+  sb2.append("else\r\n");
+  sb2.append(" document.write ('yyy');\r\n");
+  sb2.append("</SCRIPT>");
+  String expectedHTML=new String(sb2.toString());
+  parseAndAssertNodeCount(2);
+  assertTrue("Node should be a script tag",node[1] instanceof ScriptTag);
+  ScriptTag scriptTag=(ScriptTag)node[1];
+  assertStringEquals("Expected Script Code",expectedHTML,scriptTag.toHtml());
+}

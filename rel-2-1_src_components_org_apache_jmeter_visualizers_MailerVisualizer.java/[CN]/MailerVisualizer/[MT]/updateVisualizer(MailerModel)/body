@@ -1,0 +1,11 @@
+{
+  addressField.setText(model.getToAddress());
+  fromField.setText(model.getFromAddress());
+  smtpHostField.setText(model.getSmtpHost());
+  successSubjectField.setText(model.getSuccessSubject());
+  failureSubjectField.setText(model.getFailureSubject());
+  failureLimitField.setText(String.valueOf(model.getFailureLimit()));
+  failureField.setText(String.valueOf(model.getFailureCount()));
+  successLimitField.setText(String.valueOf(model.getSuccessLimit()));
+  repaint();
+}

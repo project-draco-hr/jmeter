@@ -1,0 +1,44 @@
+{
+  List configs=new LinkedList();
+  List modifiers=new LinkedList();
+  List controllers=new LinkedList();
+  List responseModifiers=new LinkedList();
+  List listeners=new LinkedList();
+  List timers=new LinkedList();
+  List assertions=new LinkedList();
+  LinkedList posts=new LinkedList();
+  LinkedList pres=new LinkedList();
+  for (int i=stack.size(); i > 0; i--) {
+    addDirectParentControllers(controllers,(TestElement)stack.get(i - 1));
+    Iterator iter=testTree.list(stack.subList(0,i)).iterator();
+    List tempPre=new LinkedList();
+    List tempPost=new LinkedList();
+    while (iter.hasNext()) {
+      TestElement item=(TestElement)iter.next();
+      if ((item instanceof ConfigTestElement)) {
+        configs.add(item);
+      }
+      if (item instanceof SampleListener) {
+        listeners.add(item);
+      }
+      if (item instanceof Timer) {
+        timers.add(item);
+      }
+      if (item instanceof Assertion) {
+        assertions.add(item);
+      }
+      if (item instanceof PostProcessor) {
+        tempPost.add(item);
+      }
+      if (item instanceof PreProcessor) {
+        tempPre.add(item);
+      }
+    }
+    pres.addAll(0,tempPre);
+    posts.addAll(0,tempPost);
+  }
+  SamplePackage pack=new SamplePackage(configs,modifiers,responseModifiers,listeners,timers,assertions,posts,pres,controllers);
+  pack.setSampler(sam);
+  pack.setRunningVersion(true);
+  samplerConfigMap.put(sam,pack);
+}

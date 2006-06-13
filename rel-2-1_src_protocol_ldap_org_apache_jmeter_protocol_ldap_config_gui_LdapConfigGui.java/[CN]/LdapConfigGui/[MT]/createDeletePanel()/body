@@ -1,0 +1,10 @@
+{
+  VerticalPanel panel=new VerticalPanel();
+  JPanel deletePanel=new JPanel(new BorderLayout(5,0));
+  JLabel label=new JLabel(JMeterUtils.getResString("delete"));
+  label.setLabelFor(delete);
+  deletePanel.add(label,BorderLayout.WEST);
+  deletePanel.add(delete,BorderLayout.CENTER);
+  panel.add(deletePanel);
+  return panel;
+}

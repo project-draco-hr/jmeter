@@ -1,0 +1,16 @@
+{
+  try {
+    DocumentBuilderFactory dbfactory=DocumentBuilderFactory.newInstance();
+    DocumentBuilder docbuild=dbfactory.newDocumentBuilder();
+    WSDLDOC=docbuild.parse(CONN.getInputStream());
+  }
+ catch (  ParserConfigurationException exception) {
+    throw exception;
+  }
+catch (  IOException exception) {
+    throw exception;
+  }
+catch (  SAXException exception) {
+    throw exception;
+  }
+}

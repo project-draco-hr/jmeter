@@ -1,0 +1,12 @@
+{
+  String val=getStringValue();
+  if (val == null) {
+    return 0;
+  }
+  try {
+    return Integer.parseInt(val);
+  }
+ catch (  NumberFormatException e) {
+    return 0;
+  }
+}

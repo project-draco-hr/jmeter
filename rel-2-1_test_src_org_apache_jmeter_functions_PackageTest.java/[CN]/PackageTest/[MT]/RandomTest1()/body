@@ -1,0 +1,6 @@
+{
+  Random r=new Random();
+  Collection parms=MakeParams("0","10000000000","VAR");
+  r.setParameters(parms);
+  r.execute(null,null);
+}

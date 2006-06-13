@@ -1,0 +1,26 @@
+{
+  if (response == null) {
+    results.setText("");
+    return;
+  }
+  int htmlIndex=response.indexOf("<HTML");
+  if (htmlIndex < 0) {
+    htmlIndex=response.indexOf("<html");
+  }
+  if (htmlIndex < 0) {
+    htmlIndex=0;
+  }
+  String html=response.substring(htmlIndex);
+  results.setEditorKitForContentType(TEXT_HTML,downloadAll.isSelected() ? defaultHtmlEditor : customisedEditor);
+  results.setContentType(TEXT_HTML);
+  if (downloadAll.isSelected()) {
+    results.getDocument().putProperty(Document.StreamDescriptionProperty,res.getURL());
+  }
+  results.getDocument().putProperty("IgnoreCharsetDirective",Boolean.TRUE);
+  results.setText(html);
+  results.setCaretPosition(0);
+  resultsScrollPane.setViewportView(results);
+  textButton.setEnabled(true);
+  htmlButton.setEnabled(true);
+  xmlButton.setEnabled(true);
+}

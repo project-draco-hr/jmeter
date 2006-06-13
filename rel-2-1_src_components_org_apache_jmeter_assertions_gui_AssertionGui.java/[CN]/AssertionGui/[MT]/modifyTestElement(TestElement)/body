@@ -1,0 +1,36 @@
+{
+  configureTestElement(el);
+  if (el instanceof ResponseAssertion) {
+    ResponseAssertion ra=(ResponseAssertion)el;
+    ra.clearTestStrings();
+    String[] testStrings=tableModel.getData().getColumn(COL_NAME);
+    for (int i=0; i < testStrings.length; i++) {
+      ra.addTestString(testStrings[i]);
+    }
+    if (labelButton.isSelected()) {
+      ra.setTestField(ResponseAssertion.SAMPLE_LABEL);
+    }
+ else     if (responseCodeButton.isSelected()) {
+      ra.setTestField(ResponseAssertion.RESPONSE_CODE);
+    }
+ else     if (responseMessageButton.isSelected()) {
+      ra.setTestField(ResponseAssertion.RESPONSE_MESSAGE);
+    }
+ else {
+      ra.setTestField(ResponseAssertion.RESPONSE_DATA);
+    }
+    ra.setAssumeSuccess(assumeSuccess.isSelected());
+    if (containsBox.isSelected()) {
+      ra.setToContainsType();
+    }
+ else {
+      ra.setToMatchType();
+    }
+    if (notBox.isSelected()) {
+      ra.setToNotType();
+    }
+ else {
+      ra.unsetNotType();
+    }
+  }
+}

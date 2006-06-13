@@ -1,0 +1,16 @@
+{
+  if (prop.getObjectValue() == getObjectValue()) {
+    return;
+  }
+  log.debug("merging in " + prop.getClass());
+  if (prop instanceof MultiProperty) {
+    PropertyIterator iter=((MultiProperty)prop).iterator();
+    while (iter.hasNext()) {
+      JMeterProperty item=iter.next();
+      addProperty(item);
+    }
+  }
+ else {
+    addProperty(prop);
+  }
+}

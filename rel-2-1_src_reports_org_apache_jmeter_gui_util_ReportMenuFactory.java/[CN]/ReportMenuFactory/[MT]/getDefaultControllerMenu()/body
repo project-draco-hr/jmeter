@@ -1,0 +1,8 @@
+{
+  JPopupMenu pop=new JPopupMenu();
+  pop.add(MenuFactory.makeMenus(MENU_ADD_CONTROLLER,JMeterUtils.getResString("Add"),"Add"));
+  pop.add(makeMenus(MENU_PARENT_CONTROLLER,JMeterUtils.getResString("insert_parent"),"Add Parent"));
+  MenuFactory.addEditMenu(pop,true);
+  MenuFactory.addFileMenu(pop);
+  return pop;
+}

@@ -1,0 +1,55 @@
+{
+  System.out.println("HTMLParser v" + VERSION_STRING);
+  if (args.length < 1 || args[0].equals("-help")) {
+    System.out.println();
+    System.out.println("Syntax : java -jar htmlparser.jar <resourceLocn/website> -l");
+    System.out.println("   <resourceLocn> the name of the file to be parsed (with complete path if not in current directory)");
+    System.out.println("   -l Show only the link tags extracted from the document");
+    System.out.println("   -i Show only the image tags extracted from the document");
+    System.out.println("   -s Show only the Javascript code extracted from the document");
+    System.out.println("   -t Show only the Style code extracted from the document");
+    System.out.println("   -a Show only the Applet tag extracted from the document");
+    System.out.println("   -j Parse JSP tags");
+    System.out.println("   -m Parse Meta tags");
+    System.out.println("   -T Extract the Title");
+    System.out.println("   -f Extract forms");
+    System.out.println("   -r Extract frameset");
+    System.out.println("   -help This screen");
+    System.out.println();
+    System.out.println("HTML Parser home page : http://htmlparser.sourceforge.net");
+    System.out.println();
+    System.out.println("Example : java -jar htmlparser.jar http://www.yahoo.com");
+    System.out.println();
+    System.out.println("If you have any doubts, please join the HTMLParser mailing list (user/developer) from the HTML Parser home page instead of mailing any of the contributors directly. You will be surprised with the quality of open source support. ");
+    System.exit(-1);
+  }
+  try {
+    if (args[0].indexOf("http") < 0) {
+      File input=new File(args[0]);
+      try {
+        args[0]=input.toURL().toString();
+        System.out.println("file converted to URL: " + args[0]);
+      }
+ catch (      MalformedURLException e) {
+        e.printStackTrace();
+      }
+    }
+    Parser parser=new Parser(args[0]);
+    System.out.println("Parsing " + parser.getURL());
+    parser.registerScanners();
+    try {
+      long start=System.currentTimeMillis();
+      if (args.length == 2) {
+        parser.parse(args[1]);
+      }
+ else       parser.parse(null);
+      System.out.println("Elapsed Time ms: " + (System.currentTimeMillis() - start));
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+ catch (  ParserException e) {
+    e.printStackTrace();
+  }
+}

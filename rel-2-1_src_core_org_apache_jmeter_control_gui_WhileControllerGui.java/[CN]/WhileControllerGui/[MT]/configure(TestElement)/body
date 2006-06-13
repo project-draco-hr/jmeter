@@ -1,0 +1,6 @@
+{
+  super.configure(element);
+  if (element instanceof WhileController) {
+    theCondition.setText(((WhileController)element).getCondition());
+  }
+}

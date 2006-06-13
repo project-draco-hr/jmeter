@@ -1,0 +1,19 @@
+{
+  super();
+  log.debug("testing class: " + testBeanClass.getName());
+  if (!TestBean.class.isAssignableFrom(testBeanClass)) {
+    Error e=new Error();
+    log.error("This should never happen!",e);
+    throw e;
+  }
+  this.testBeanClass=testBeanClass;
+  try {
+    beanInfo=Introspector.getBeanInfo(testBeanClass);
+  }
+ catch (  IntrospectionException e) {
+    log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
+    throw new Error(e.toString());
+  }
+  customizerClass=beanInfo.getBeanDescriptor().getCustomizerClass();
+  initialized=false;
+}

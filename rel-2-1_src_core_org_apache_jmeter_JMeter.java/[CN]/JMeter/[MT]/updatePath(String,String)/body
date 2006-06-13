@@ -1,0 +1,22 @@
+{
+  String userpath=JMeterUtils.getPropDefault(property,"");
+  if (userpath.length() <= 0)   return;
+  log.info(property + "=" + userpath);
+  StringTokenizer tok=new StringTokenizer(userpath,sep);
+  while (tok.hasMoreTokens()) {
+    String path=tok.nextToken();
+    File f=new File(path);
+    if (!f.canRead() && !f.isDirectory()) {
+      log.warn("Can't read " + path);
+    }
+ else {
+      log.info("Adding to classpath: " + path);
+      try {
+        NewDriver.addPath(path);
+      }
+ catch (      MalformedURLException e) {
+        log.warn("Error adding: " + path + " "+ e.getLocalizedMessage());
+      }
+    }
+  }
+}

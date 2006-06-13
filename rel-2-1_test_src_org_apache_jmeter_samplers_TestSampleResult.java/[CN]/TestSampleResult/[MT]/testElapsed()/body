@@ -1,0 +1,7 @@
+{
+  SampleResult res=new SampleResult();
+  res.sampleStart();
+  Thread.sleep(100);
+  res.sampleEnd();
+  assertTrue(res.getTime() >= 100);
+}

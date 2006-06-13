@@ -1,0 +1,15 @@
+{
+  if (GET.equals(getMethod())) {
+    int index=path.indexOf(QRY_PFX);
+    if (index > -1) {
+      setProperty(PATH,path.substring(0,index));
+      parseArguments(path.substring(index + 1));
+    }
+ else {
+      setProperty(PATH,path);
+    }
+  }
+ else {
+    setProperty(PATH,path);
+  }
+}

@@ -1,0 +1,16 @@
+{
+  if (cookieTable.isEditing()) {
+    cookieTable.getCellEditor().stopCellEditing();
+  }
+  cm.clear();
+  configureTestElement(cm);
+  if (cm instanceof CookieManager) {
+    CookieManager cookieManager=(CookieManager)cm;
+    for (int i=0; i < tableModel.getRowCount(); i++) {
+      Cookie cookie=createCookie(tableModel.getRowData(i));
+      cookieManager.add(cookie);
+    }
+    cookieManager.setClearEachIteration(clearEachIteration.isSelected());
+    cookieManager.setCookiePolicy(policy.getText());
+  }
+}

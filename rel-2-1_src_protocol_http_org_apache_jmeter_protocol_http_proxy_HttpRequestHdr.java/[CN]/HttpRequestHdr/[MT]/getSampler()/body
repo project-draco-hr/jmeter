@@ -1,0 +1,10 @@
+{
+  HttpTestSampleGui tempGui=new HttpTestSampleGui();
+  HTTPSamplerBase result=createSampler();
+  tempGui.configure(result);
+  tempGui.modifyTestElement(result);
+  result.setFollowRedirects(false);
+  result.setUseKeepAlive(true);
+  if (log.isDebugEnabled())   log.debug("getSampler: sampler path = " + result.getPath());
+  return result;
+}

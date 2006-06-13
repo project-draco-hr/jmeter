@@ -1,0 +1,7 @@
+{
+  DefaultConfiguration config=new DefaultConfiguration("map","map");
+  config.setAttribute("class",map.getObjectValue().getClass().getName());
+  config.setAttribute("name",map.getName());
+  config.setAttribute("propType",map.getClass().getName());
+  stack.add(config);
+}

@@ -1,0 +1,33 @@
+{
+  log.info(getLabel() + " " + getFilename());
+  SampleResult res=new SampleResult();
+  boolean isSuccessful=false;
+  res.setSampleLabel(getLabel());
+  res.sampleStart();
+  try {
+    String request=getScript();
+    res.setSamplerData(request);
+    mgr.registerBean("Label",getLabel());
+    mgr.registerBean("Name",getFilename());
+    bsfEngine=mgr.loadScriptingEngine(getScriptLanguage());
+    Object bsfOut=bsfEngine.eval("Sampler",0,0,request);
+    res.setResponseData(bsfOut.toString().getBytes());
+    res.setDataType(SampleResult.TEXT);
+    res.setResponseCode("200");
+    res.setResponseMessage("OK");
+    isSuccessful=true;
+  }
+ catch (  NoClassDefFoundError ex) {
+    log.warn("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+catch (  Exception ex) {
+    log.warn("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+  res.sampleEnd();
+  res.setSuccessful(isSuccessful);
+  return res;
+}

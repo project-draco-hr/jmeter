@@ -1,0 +1,7 @@
+{
+  NodeList nodeList=new NodeList();
+  for (NodeIterator e=elements(); e.hasMoreNodes(); ) {
+    e.nextNode().collectInto(nodeList,nodeType);
+  }
+  return nodeList.toNodeArray();
+}

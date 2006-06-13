@@ -1,0 +1,4 @@
+{
+  Logger logger=Hierarchy.getDefaultHierarchy().getLoggerFor(category);
+  logger.setLogTargets(new LogTarget[]{target});
+}

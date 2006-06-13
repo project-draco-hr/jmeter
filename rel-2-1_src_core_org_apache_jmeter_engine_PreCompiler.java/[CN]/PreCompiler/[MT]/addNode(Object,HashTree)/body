@@ -1,0 +1,24 @@
+{
+  if (node instanceof TestElement) {
+    try {
+      replacer.replaceValues((TestElement)node);
+    }
+ catch (    InvalidVariableException e) {
+      log.error("invalid variables",e);
+    }
+  }
+  if (node instanceof TestPlan) {
+    ((TestPlan)node).prepareForPreCompile();
+    Map args=((TestPlan)node).getUserDefinedVariables();
+    replacer.setUserDefinedVariables(args);
+    JMeterVariables vars=new JMeterVariables();
+    vars.putAll(args);
+    JMeterContextService.getContext().setVariables(vars);
+  }
+  if (node instanceof Arguments) {
+    ((Arguments)node).setRunningVersion(true);
+    Map args=((Arguments)node).getArgumentsAsMap();
+    replacer.addVariables(args);
+    JMeterContextService.getContext().getVariables().putAll(args);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  if (session == null) {
+    throw new IllegalStateException("Session may not be null while creating message");
+  }
+  TextMessage msg=session.createTextMessage();
+  msg.setText(getContent());
+  addJMSProperties(msg);
+  return msg;
+}

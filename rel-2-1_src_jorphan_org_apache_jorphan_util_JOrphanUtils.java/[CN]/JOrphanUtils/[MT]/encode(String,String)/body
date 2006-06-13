@@ -1,0 +1,15 @@
+{
+  if (encodeMethod != null) {
+    Object args[]={string,encoding};
+    try {
+      return (String)encodeMethod.invoke(null,args);
+    }
+ catch (    Exception e) {
+      log.warn("Error trying to encode",e);
+      return string;
+    }
+  }
+ else {
+    return URLEncoder.encode(string);
+  }
+}

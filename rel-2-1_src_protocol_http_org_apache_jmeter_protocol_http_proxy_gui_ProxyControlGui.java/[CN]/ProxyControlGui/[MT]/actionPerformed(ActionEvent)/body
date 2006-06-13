@@ -1,0 +1,46 @@
+{
+  String command=action.getActionCommand();
+  if (command.equals(STOP)) {
+    model.stopProxy();
+    stop.setEnabled(false);
+    start.setEnabled(true);
+    restart.setEnabled(false);
+  }
+ else   if (command.equals(START)) {
+    startProxy();
+  }
+ else   if (command.equals(RESTART)) {
+    model.stopProxy();
+    startProxy();
+  }
+ else   if (command.equals(ProxyControl.CAPTURE_HTTP_HEADERS) || command.equals(ProxyControl.ADD_ASSERTIONS) || command.equals(ProxyControl.USE_KEEPALIVE)|| command.equals(ProxyControl.REGEX_MATCH)) {
+    enableRestart();
+  }
+ else   if (command.equals(ADD_EXCLUDE)) {
+    excludeModel.addNewRow();
+    excludeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(ADD_INCLUDE)) {
+    includeModel.addNewRow();
+    includeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(DELETE_EXCLUDE)) {
+    excludeModel.removeRow(excludeTable.getSelectedRow());
+    excludeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(DELETE_INCLUDE)) {
+    includeModel.removeRow(includeTable.getSelectedRow());
+    includeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(CHANGE_TARGET)) {
+    log.debug("Change target " + targetNodes.getSelectedItem());
+    log.debug("In model " + model);
+    TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
+    model.setTarget(nw.getTreeNode());
+    enableRestart();
+  }
+}

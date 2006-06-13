@@ -1,0 +1,15 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{ALL,TAINT};
+  final String[] args=new String[]{"-T3","-a"};
+  final CLArgsParser parser=new CLArgsParser(args,options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+  final List clOptions=parser.getArguments();
+  final int size=clOptions.size();
+  assertEquals(size,2);
+  final CLOption option0=(CLOption)clOptions.get(0);
+  assertEquals(option0.getDescriptor().getId(),TAINT_OPT);
+  assertEquals(option0.getArgument(0),"3");
+  final CLOption option1=(CLOption)clOptions.get(1);
+  assertEquals(ALL_OPT,option1.getDescriptor().getId());
+  assertEquals(null,option1.getArgument(0));
+}

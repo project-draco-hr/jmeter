@@ -1,0 +1,12 @@
+{
+  long val=0;
+  if (data.length() > 0) {
+    try {
+      val=Long.parseLong(data);
+    }
+ catch (    NumberFormatException e) {
+      val=0;
+    }
+  }
+  return val;
+}

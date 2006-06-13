@@ -1,0 +1,48 @@
+{
+  HttpURLConnection conn;
+  SSLManager sslmgr=null;
+  if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
+    try {
+      sslmgr=SSLManager.getInstance();
+    }
+ catch (    Exception e) {
+      log.warn("You may have forgotten to set the ssl.provider property " + "in jmeter.properties",e);
+    }
+  }
+  conn=(HttpURLConnection)u.openConnection();
+  conn.setInstanceFollowRedirects(getAutoRedirects());
+  if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
+    try {
+      sslmgr.setContext(conn);
+    }
+ catch (    Exception e) {
+      log.warn("You may have forgotten to set the ssl.provider property " + "in jmeter.properties",e);
+    }
+  }
+  if (getUseKeepAlive()) {
+    conn.setRequestProperty(HEADER_CONNECTION,KEEP_ALIVE);
+  }
+ else {
+    conn.setRequestProperty(HEADER_CONNECTION,CONNECTION_CLOSE);
+  }
+  conn.setRequestMethod(method);
+  String hdrs=setConnectionHeaders(conn,u,getHeaderManager());
+  String cookies=setConnectionCookie(conn,u,getCookieManager());
+  if (res != null) {
+    res.setURL(u);
+    res.setHTTPMethod(method);
+    res.setRequestHeaders(hdrs);
+    res.setCookies(cookies);
+    if (method.equals(POST)) {
+      res.setQueryString(getQueryString());
+    }
+  }
+  setConnectionAuthorization(conn,u,getAuthManager());
+  if (method.equals(POST)) {
+    setPostHeaders(conn);
+  }
+ else   if (method.equals(PUT)) {
+    setPutHeaders(conn);
+  }
+  return conn;
+}

@@ -1,0 +1,17 @@
+{
+  if (paramTable.isEditing()) {
+    paramTable.getCellEditor().stopCellEditing();
+  }
+  ((UserParameters)params).setNames(new CollectionProperty(UserParameters.NAMES,tableModel.getColumnData(JMeterUtils.getResString("name"))));
+  CollectionProperty threadLists=new CollectionProperty(UserParameters.THREAD_VALUES,new ArrayList());
+  log.debug("making threadlists from gui = " + threadLists);
+  for (int x=1; x < tableModel.getColumnCount(); x++) {
+    threadLists.addItem(tableModel.getColumnData(THREAD_COLUMNS + "_" + x));
+    log.debug("Adding column to threadlist: " + tableModel.getColumnData(THREAD_COLUMNS + "_" + x));
+    log.debug("Threadlists now = " + threadLists);
+  }
+  log.debug("In the end, threadlists = " + threadLists);
+  ((UserParameters)params).setThreadLists(threadLists);
+  ((UserParameters)params).setPerIteration(perIterationCheck.isSelected());
+  super.configureTestElement(params);
+}

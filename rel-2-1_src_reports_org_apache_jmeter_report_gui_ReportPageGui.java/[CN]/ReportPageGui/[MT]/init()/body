@@ -1,0 +1,24 @@
+{
+  setLayout(new BorderLayout(10,10));
+  setBorder(makeBorder());
+  setBackground(Color.white);
+  JPanel pane=new JPanel();
+  pane.setLayout(new BorderLayout(10,10));
+  pane.setBackground(Color.white);
+  pane.add(this.getNamePanel(),BorderLayout.NORTH);
+  VerticalPanel options=new VerticalPanel(Color.white);
+  pageTitle.setBackground(Color.white);
+  makeIndex.setBackground(Color.white);
+  cssURL.setBackground(Color.white);
+  headerURL.setBackground(Color.white);
+  footerURL.setBackground(Color.white);
+  introduction.setBackground(Color.white);
+  options.add(pageTitle);
+  options.add(makeIndex);
+  options.add(cssURL);
+  options.add(headerURL);
+  options.add(footerURL);
+  options.add(introduction);
+  add(pane,BorderLayout.NORTH);
+  add(options,BorderLayout.CENTER);
+}

@@ -1,0 +1,24 @@
+{
+  Tag tag;
+  EndTag etag;
+  StringNode snode;
+  Node node=null;
+  String lin1="<DIV class=\"userData\" id=\"oLayout\" name=\"oLayout\"></DIV>";
+  createParser(lin1);
+  NodeIterator en=parser.elements();
+  Hashtable h;
+  boolean testEnd=true;
+  String a, href, myPara, myValue, nice;
+  try {
+    if (en.hasMoreNodes()) {
+      node=en.nextNode();
+      tag=(Tag)node;
+      h=tag.getAttributes();
+      String classValue=(String)h.get("CLASS");
+      assertEquals("The class value should be ","userData",classValue);
+    }
+  }
+ catch (  ClassCastException ce) {
+    fail("Bad class element = " + node.getClass().getName());
+  }
+}

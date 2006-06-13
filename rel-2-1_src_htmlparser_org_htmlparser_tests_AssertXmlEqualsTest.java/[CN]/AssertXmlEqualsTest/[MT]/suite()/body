@@ -1,0 +1,5 @@
+{
+  TestSuite suite=new TestSuite("XML Tests");
+  suite.addTestSuite(AssertXmlEqualsTest.class);
+  return (suite);
+}

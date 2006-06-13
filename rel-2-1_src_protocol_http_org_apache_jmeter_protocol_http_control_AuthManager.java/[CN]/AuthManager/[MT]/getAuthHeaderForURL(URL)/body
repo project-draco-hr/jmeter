@@ -1,0 +1,5 @@
+{
+  Authorization auth=getAuthForURL(url);
+  if (auth == null)   return null;
+  return auth.toBasicHeader();
+}

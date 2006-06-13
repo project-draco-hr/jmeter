@@ -1,0 +1,9 @@
+{
+  addSortedValue(val);
+  count++;
+  double currentVal=val.doubleValue();
+  sum+=currentVal;
+  sumOfSquares+=currentVal * currentVal;
+  mean=sum / count;
+  deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
+}

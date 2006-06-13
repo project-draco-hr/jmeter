@@ -1,0 +1,8 @@
+{
+  StringBuffer lString=new StringBuffer(ParserUtils.toString(this));
+  for (int i=0; i < childTags.size(); i++) {
+    OptionTag optionTag=(OptionTag)childTags.elementAt(i);
+    lString.append(optionTag.toString()).append("\n");
+  }
+  return lString.toString();
+}

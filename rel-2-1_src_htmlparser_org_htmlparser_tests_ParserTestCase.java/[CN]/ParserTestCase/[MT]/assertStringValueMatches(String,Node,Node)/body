@@ -1,0 +1,8 @@
+{
+  String expected=expectedNode.toPlainTextString().trim();
+  String actual=actualNode.toPlainTextString().trim();
+  expected=expected.replace('\n',' ');
+  actual=actual.replace('\n',' ');
+  displayMessage="String value mismatch\nEXPECTED:" + expected + "\nACTUAL:"+ actual+ displayMessage;
+  assertStringEquals(displayMessage,expected,actual);
+}

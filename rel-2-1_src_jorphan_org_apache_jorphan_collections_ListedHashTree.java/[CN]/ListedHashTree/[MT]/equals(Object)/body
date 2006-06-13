@@ -1,0 +1,5 @@
+{
+  if (!(o instanceof ListedHashTree))   return false;
+  ListedHashTree lht=(ListedHashTree)o;
+  return (super.equals(lht) && order.equals(lht.order));
+}

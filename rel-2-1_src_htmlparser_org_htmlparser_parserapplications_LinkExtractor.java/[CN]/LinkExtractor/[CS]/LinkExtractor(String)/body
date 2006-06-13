@@ -1,0 +1,10 @@
+{
+  this.location=location;
+  try {
+    this.parser=new Parser(location);
+    parser.registerScanners();
+  }
+ catch (  ParserException e) {
+    e.printStackTrace();
+  }
+}

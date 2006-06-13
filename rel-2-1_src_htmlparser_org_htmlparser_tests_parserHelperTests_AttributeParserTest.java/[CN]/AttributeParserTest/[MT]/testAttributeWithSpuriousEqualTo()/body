@@ -1,0 +1,4 @@
+{
+  getParameterTableFor("a class=rlbA href=/news/866201.asp?0sl=-32");
+  assertStringEquals("href","/news/866201.asp?0sl=-32",(String)table.get("HREF"));
+}

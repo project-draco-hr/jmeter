@@ -1,0 +1,6 @@
+{
+  if (subResults == null) {
+    return EMPTY_SR;
+  }
+  return (SampleResult[])subResults.toArray(new SampleResult[0]);
+}

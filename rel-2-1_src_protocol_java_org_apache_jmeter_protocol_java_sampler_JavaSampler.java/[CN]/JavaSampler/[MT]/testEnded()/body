@@ -1,0 +1,11 @@
+{
+  log.debug(whoAmI() + "\ttestEnded");
+synchronized (allSamplers) {
+    Iterator i=allSamplers.iterator();
+    while (i.hasNext()) {
+      JavaSampler sampler=(JavaSampler)i.next();
+      sampler.releaseJavaClient();
+      i.remove();
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  int count=-1;
+  int index=-1;
+  if (array != null && value != null) {
+    while (++count < array.length) {
+      if (array[count] != null && array[count].equals(value)) {
+        index=count;
+        break;
+      }
+    }
+  }
+  return index;
+}

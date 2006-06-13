@@ -1,0 +1,10 @@
+{
+  mimetypeField=new JTextField(15);
+  mimetypeField.setName(MIMETYPE);
+  JLabel mimetypeLabel=new JLabel(JMeterUtils.getResString("send_file_mime_label"));
+  mimetypeLabel.setLabelFor(mimetypeField);
+  JPanel mimePanel=new JPanel(new BorderLayout(5,0));
+  mimePanel.add(mimetypeLabel,BorderLayout.WEST);
+  mimePanel.add(mimetypeField,BorderLayout.CENTER);
+  return mimePanel;
+}

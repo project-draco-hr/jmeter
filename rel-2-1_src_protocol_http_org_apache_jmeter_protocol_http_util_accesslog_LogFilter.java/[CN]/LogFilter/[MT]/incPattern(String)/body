@@ -1,0 +1,10 @@
+{
+  this.USEFILE=false;
+  for (int idx=0; idx < this.INCPATTERNS.size(); idx++) {
+    if (JMeterUtils.getMatcher().contains(text,(Pattern)this.INCPATTERNS.get(idx))) {
+      this.USEFILE=true;
+      break;
+    }
+  }
+  return this.USEFILE;
+}

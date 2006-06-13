@@ -1,0 +1,9 @@
+{
+  m_ch=getChar();
+  final CLOptionDescriptor descriptor=getDescriptorFor(m_ch);
+  m_isLong=false;
+  parseOption(descriptor,"-" + m_ch);
+  if (STATE_NORMAL == m_state) {
+    m_state=STATE_OPTION_MODE;
+  }
+}

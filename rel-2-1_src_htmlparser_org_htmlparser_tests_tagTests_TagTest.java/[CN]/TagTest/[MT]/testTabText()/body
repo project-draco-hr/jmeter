@@ -1,0 +1,10 @@
+{
+  String testHTML="<a\thref=\"http://cbc.ca\">";
+  createParser(testHTML);
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a LinkTag",node[0] instanceof LinkTag);
+  LinkTag tag=(LinkTag)node[0];
+  String href=tag.getAttribute("HREF");
+  assertStringEquals("Resolved Link","http://cbc.ca",href);
+}

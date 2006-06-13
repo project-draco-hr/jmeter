@@ -1,0 +1,8 @@
+{
+  ConfigurationTree tree=getTree(key);
+  String[] vals=tree.getPropertyNames();
+  if (vals == null || vals.length == 0 || (vals.length == 1 && (tree.listPropertyNames(vals[0]) == null || tree.listPropertyNames(vals[0]).size() == 0))) {
+    return true;
+  }
+  return false;
+}

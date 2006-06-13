@@ -1,0 +1,23 @@
+{
+  String name=guiItem.getClass().getName();
+  TestElement el=guiItem.createTestElement();
+  assertNotNull(name + ".createTestElement should be non-null ",el);
+  assertEquals("GUI-CLASS: Failed on " + name,name,el.getPropertyAsString(TestElement.GUI_CLASS));
+  assertEquals("NAME: Failed on " + name,guiItem.getName(),el.getPropertyAsString(TestElement.NAME));
+  assertEquals("TEST-CLASS: Failed on " + name,el.getClass().getName(),el.getPropertyAsString(TestElement.TEST_CLASS));
+  TestElement el2=guiItem.createTestElement();
+  el.setProperty(TestElement.NAME,"hey, new name!:");
+  el.setProperty("NOT","Shouldn't be here");
+  if (!(guiItem instanceof UnsharedComponent)) {
+    assertEquals("SHARED: Failed on " + name,"",el2.getPropertyAsString("NOT"));
+  }
+  log.debug("Saving element: " + el.getClass());
+  StringWriter writer=new StringWriter();
+  SaveService.saveElement(el,writer);
+  el=(TestElement)SaveService.loadElement(new StringReader(writer.toString()));
+  assertNotNull("Load element failed on: " + name,el);
+  guiItem.configure(el);
+  assertEquals("CONFIGURE-TEST: Failed on " + name,el.getPropertyAsString(TestElement.NAME),guiItem.getName());
+  guiItem.modifyTestElement(el2);
+  assertEquals("Modify Test: Failed on " + name,"hey, new name!:",el2.getPropertyAsString(TestElement.NAME));
+}

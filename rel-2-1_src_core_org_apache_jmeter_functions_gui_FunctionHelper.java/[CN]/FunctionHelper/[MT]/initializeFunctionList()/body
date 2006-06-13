@@ -1,0 +1,24 @@
+{
+  try {
+    List functionClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Function.class},true);
+    Iterator iter=functionClasses.iterator();
+    String[] functionNames=new String[functionClasses.size()];
+    int count=0;
+    while (iter.hasNext()) {
+      Class cl=Class.forName((String)iter.next());
+      functionNames[count]=((Function)cl.newInstance()).getReferenceKey();
+      functionMap.put(functionNames[count],cl);
+      count++;
+    }
+    functionList=new JLabeledChoice(JMeterUtils.getResString("choose_function"),functionNames);
+    functionList.addChangeListener(this);
+  }
+ catch (  IOException e) {
+  }
+catch (  ClassNotFoundException e) {
+  }
+catch (  InstantiationException e) {
+  }
+catch (  IllegalAccessException e) {
+  }
+}

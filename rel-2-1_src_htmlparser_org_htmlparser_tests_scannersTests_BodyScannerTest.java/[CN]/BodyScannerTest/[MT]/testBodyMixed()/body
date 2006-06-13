@@ -1,0 +1,11 @@
+{
+  createParser("<html><head><title>Test 1</title></head><body>before jsp<%=BodyValue%>after jsp</body></html>");
+  parser.registerScanners();
+  BodyScanner bodyScanner=new BodyScanner("-b");
+  parser.addScanner(bodyScanner);
+  parseAndAssertNodeCount(6);
+  assertTrue(node[4] instanceof BodyTag);
+  BodyTag bodyTag=(BodyTag)node[4];
+  assertEquals("Body","<BODY>before jsp<%=BodyValue%>after jsp</BODY>",bodyTag.toHtml());
+  assertEquals("Body Scanner",bodyScanner,bodyTag.getThisScanner());
+}

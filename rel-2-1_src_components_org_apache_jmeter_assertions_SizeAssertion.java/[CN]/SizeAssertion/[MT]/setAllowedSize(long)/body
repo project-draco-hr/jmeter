@@ -1,0 +1,11 @@
+{
+  if (size < 0L) {
+    throw new IllegalArgumentException(JMeterUtils.getResString("argument_must_not_be_negative"));
+  }
+  if (size == Long.MAX_VALUE) {
+    setProperty(new LongProperty(SIZE_KEY,0));
+  }
+ else {
+    setProperty(new LongProperty(SIZE_KEY,size));
+  }
+}

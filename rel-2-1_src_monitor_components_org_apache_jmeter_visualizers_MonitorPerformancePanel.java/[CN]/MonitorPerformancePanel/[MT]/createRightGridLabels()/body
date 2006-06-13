@@ -1,0 +1,15 @@
+{
+  JPanel labels=new JPanel();
+  labels.setLayout(new BorderLayout());
+  labels.setPreferredSize(new Dimension(40,GRAPHPANEL.getWidth() - 100));
+  Dimension lsize=new Dimension(40,20);
+  JLabel h=new JLabel(GRID_LABEL_HEALTHY);
+  h.setFont(plaintext);
+  h.setPreferredSize(lsize);
+  labels.add(h,BorderLayout.NORTH);
+  JLabel d=new JLabel(GRID_LABEL_DEAD);
+  d.setFont(plaintext);
+  d.setPreferredSize(lsize);
+  labels.add(d,BorderLayout.SOUTH);
+  return labels;
+}

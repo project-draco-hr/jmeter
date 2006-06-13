@@ -1,0 +1,8 @@
+{
+  LdapExtClient ldap_temp;
+  ldap_temp=new LdapExtClient();
+  res.sampleStart();
+  DirContext ctx=ldap_temp.connect(getServername(),getPort(),getRootdn(),getSuserDN(),getSuserPw());
+  ldap_temp.disconnect(ctx);
+  res.sampleEnd();
+}

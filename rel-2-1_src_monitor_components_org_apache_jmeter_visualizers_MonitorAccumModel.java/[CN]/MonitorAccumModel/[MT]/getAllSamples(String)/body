@@ -1,0 +1,8 @@
+{
+  if (!MAP.containsKey(url)) {
+    return Collections.synchronizedList(new LinkedList());
+  }
+ else {
+    return (List)MAP.get(url);
+  }
+}

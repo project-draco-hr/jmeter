@@ -1,0 +1,14 @@
+{
+  add=new JButton(JMeterUtils.getResString("add"));
+  add.setActionCommand(ADD);
+  add.addActionListener(this);
+  add.setEnabled(true);
+  delete=new JButton(JMeterUtils.getResString("delete"));
+  delete.setActionCommand(DELETE);
+  delete.addActionListener(this);
+  checkDeleteStatus();
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.add(add);
+  buttonPanel.add(delete);
+  return buttonPanel;
+}

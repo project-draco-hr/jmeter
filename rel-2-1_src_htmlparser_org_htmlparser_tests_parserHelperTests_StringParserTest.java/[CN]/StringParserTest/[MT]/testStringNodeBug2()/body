@@ -1,0 +1,16 @@
+{
+  createParser("view these documents, you must have <A href='http://www.adobe.com'>Adobe \n" + "Acrobat Reader</A> installed on your computer.");
+  Parser.setLineSeparator("\r\n");
+  parser.addScanner(new LinkScanner("-l"));
+  parseAndAssertNodeCount(3);
+  assertTrue("First node should be a HTMLStringNode",node[0] instanceof StringNode);
+  StringNode stringNode=(StringNode)node[0];
+  assertEquals("Text of the StringNode","view these documents, you must have ",stringNode.getText());
+  assertTrue("Second node should be a link node",node[1] instanceof LinkTag);
+  LinkTag linkNode=(LinkTag)node[1];
+  assertEquals("Link is","http://www.adobe.com",linkNode.getLink());
+  assertEquals("Link text is","Adobe \r\nAcrobat Reader",linkNode.getLinkText());
+  assertTrue("Third node should be a string node",node[2] instanceof StringNode);
+  StringNode stringNode2=(StringNode)node[2];
+  assertEquals("Contents of third node"," installed on your computer.",stringNode2.getText());
+}

@@ -1,0 +1,15 @@
+{
+  try {
+    if (message instanceof TextMessage) {
+      TextMessage msg=(TextMessage)message;
+      String content=msg.getText();
+      if (content != null) {
+        this.BUFFER.append(content);
+        count(1);
+      }
+    }
+  }
+ catch (  JMSException e) {
+    log.error(e.getMessage());
+  }
+}

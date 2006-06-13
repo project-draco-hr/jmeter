@@ -1,0 +1,13 @@
+{
+  JTextField temp=(JTextField)evt.getSource();
+  long longVal=0;
+  try {
+    longVal=Long.parseLong(temp.getText());
+  }
+ catch (  NumberFormatException err) {
+    JOptionPane.showMessageDialog(this,"This field must have a long value!","Value Required",JOptionPane.ERROR_MESSAGE);
+    temp.setText(defaultValue);
+    temp.requestFocus();
+  }
+  return longVal;
+}

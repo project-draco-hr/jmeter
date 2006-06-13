@@ -1,0 +1,40 @@
+{
+  URL url;
+  URLConnection connection;
+  Parser parser;
+  String idiots="http://users.aol.com/geinster/rej.htm";
+  try {
+    url=new URL(idiots);
+    connection=url.openConnection();
+    parser=new Parser(){
+      protected String getCharset(      String content){
+        int index;
+        String ret;
+        ret=DEFAULT_CHARSET;
+        if (null != content) {
+          index=content.indexOf(CHARSET_STRING);
+          if (index != -1) {
+            content=content.substring(index + CHARSET_STRING.length()).trim();
+            if (content.startsWith("=")) {
+              content=content.substring(1).trim();
+              index=content.indexOf(";");
+              if (index != -1)               content=content.substring(0,index);
+              if (content.startsWith("\"") && content.endsWith("\"") && (1 < content.length()))               content=content.substring(1,content.length() - 1);
+              if (content.startsWith("'") && content.endsWith("'") && (1 < content.length()))               content=content.substring(1,content.length() - 1);
+              ret=content;
+            }
+          }
+        }
+        return (ret);
+      }
+    }
+;
+    parser.setConnection(connection);
+    assertTrue("Wrong encoding",parser.getEncoding().equals("ISO-8859-1"));
+    for (NodeIterator e=parser.elements(); e.hasMoreNodes(); )     e.nextNode();
+    assertTrue("Wrong encoding",parser.getEncoding().equals("windows-1252"));
+  }
+ catch (  Exception e) {
+    fail(e.getMessage());
+  }
+}

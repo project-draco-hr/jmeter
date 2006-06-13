@@ -1,0 +1,16 @@
+{
+  if (ct != null) {
+    String de=ct.toLowerCase();
+    final String cs="charset=";
+    int cset=de.indexOf(cs);
+    if (cset >= 0) {
+      setDataEncoding(de.substring(cset + cs.length()));
+    }
+    if (ct.startsWith("image/")) {
+      setDataType(BINARY);
+    }
+ else {
+      setDataType(TEXT);
+    }
+  }
+}

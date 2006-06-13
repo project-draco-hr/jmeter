@@ -1,0 +1,22 @@
+{
+  if (errorMsg == null) {
+    errorMsg="Unknown error - see log file";
+    log.warn("Unknown error",new Throwable("errorMsg == null"));
+  }
+  GuiPackage instance=GuiPackage.getInstance();
+  if (instance == null) {
+    System.out.println(errorMsg);
+    return;
+  }
+  try {
+    JOptionPane.showMessageDialog(instance.getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
+  }
+ catch (  RuntimeException e) {
+    if (e.getClass().getName().equals("java.awt.HeadlessException")) {
+      log.warn("reportErrorToUser(\"" + errorMsg + "\") caused",e);
+    }
+ else {
+      throw e;
+    }
+  }
+}

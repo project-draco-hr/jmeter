@@ -1,0 +1,8 @@
+{
+  if (text.indexOf("&") > -1 && text.indexOf("=") > -1) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

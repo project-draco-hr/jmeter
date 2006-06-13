@@ -1,0 +1,13 @@
+{
+  XPath xp1=setupXPath("testfiles/XPathTest.xml","//user/@username");
+  XPath xp1a=setupXPath("testfiles/XPathTest.xml","//user/@username");
+  XPath xp2=setupXPath("testfiles/XPathTest.xml","//user/@password");
+  XPath xp2a=setupXPath("testfiles/XPathTest.xml","//user/@password");
+  assertEquals("u1",xp1.execute());
+  assertEquals("p1",xp2.execute());
+  assertEquals("p2",xp2.execute());
+  assertEquals("u2",xp1a.execute());
+  assertEquals("u3",xp1.execute());
+  assertEquals("u4",xp1.execute());
+  assertEquals("p3",xp2a.execute());
+}

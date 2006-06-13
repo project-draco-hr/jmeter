@@ -1,0 +1,15 @@
+{
+  final LinkBean lb;
+  final Boolean hit[]=new Boolean[1];
+  lb=new LinkBean();
+  hit[0]=Boolean.FALSE;
+  lb.addPropertyChangeListener(new PropertyChangeListener(){
+    public void propertyChange(    PropertyChangeEvent event){
+      if (event.getSource().equals(lb))       if (event.getPropertyName().equals(LinkBean.PROP_LINKS_PROPERTY))       hit[0]=Boolean.TRUE;
+    }
+  }
+);
+  hit[0]=Boolean.FALSE;
+  lb.setURL("http://htmlparser.sourceforge.net/test/example.html");
+  assertTrue("Links property change not fired for URL change",hit[0].booleanValue());
+}

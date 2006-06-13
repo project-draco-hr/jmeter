@@ -1,0 +1,13 @@
+{
+  if (text.indexOf("GET") > -1) {
+    this.RMETHOD=GET;
+    return true;
+  }
+ else   if (text.indexOf("POST") > -1) {
+    this.RMETHOD=POST;
+    return true;
+  }
+ else {
+    return false;
+  }
+}

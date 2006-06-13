@@ -1,0 +1,13 @@
+{
+  setLayout(new BorderLayout(0,10));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel mainPanel=new JPanel(new BorderLayout());
+  HorizontalPanel md5HexPanel=new HorizontalPanel();
+  md5HexPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("md5hex_assertion_md5hex_test")));
+  md5HexPanel.add(new JLabel(JMeterUtils.getResString("md5hex_assertion_label")));
+  md5HexInput=new JTextField(25);
+  md5HexPanel.add(md5HexInput);
+  mainPanel.add(md5HexPanel,BorderLayout.NORTH);
+  add(mainPanel,BorderLayout.CENTER);
+}

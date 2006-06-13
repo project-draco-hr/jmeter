@@ -1,0 +1,6 @@
+{
+  if (noUndefined == b)   return;
+  noUndefined=b;
+  if (noUndefined)   model.removeElement(UNDEFINED);
+ else   model.insertElementAt(UNDEFINED,0);
+}

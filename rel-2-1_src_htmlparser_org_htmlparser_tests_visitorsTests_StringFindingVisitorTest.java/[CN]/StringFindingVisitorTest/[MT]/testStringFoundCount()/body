@@ -1,0 +1,9 @@
+{
+  createParser(HTML);
+  StringFindingVisitor visitor=new StringFindingVisitor("is");
+  parser.visitAllNodesWith(visitor);
+  assertEquals("# times 'is' was found",2,visitor.stringFoundCount());
+  visitor=new StringFindingVisitor("and");
+  parser.visitAllNodesWith(visitor);
+  assertEquals("# times 'and' was found",0,visitor.stringFoundCount());
+}

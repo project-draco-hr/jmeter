@@ -1,0 +1,7 @@
+{
+  String[] _files=new String[tableModel.getRowCount()];
+  for (int idx=0; idx < _files.length; idx++) {
+    _files[idx]=(String)tableModel.getValueAt(idx,0);
+  }
+  return _files;
+}

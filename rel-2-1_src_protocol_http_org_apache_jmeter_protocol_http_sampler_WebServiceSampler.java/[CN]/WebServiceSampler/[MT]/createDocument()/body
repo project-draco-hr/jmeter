@@ -1,0 +1,20 @@
+{
+  Document doc=null;
+  String next=this.getRandomFileName();
+  if (next.length() > 0 && getMemoryCache()) {
+    doc=DOMPool.getDocument(next);
+    if (doc == null) {
+      doc=openDocument(next);
+      if (doc != null) {
+        DOMPool.putDocument(next,doc);
+      }
+    }
+  }
+ else {
+    doc=openDocument(next);
+  }
+  if (doc == null) {
+    return null;
+  }
+  return doc.getDocumentElement();
+}

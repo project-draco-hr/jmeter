@@ -1,0 +1,20 @@
+{
+synchronized (sync) {
+    timerCounter[0]++;
+    final int groupSz=getGroupSize();
+    final int count=timerCounter[0];
+    if ((groupSz == 0 && count >= JMeterContextService.getNumberOfThreads()) || (groupSz > 0 && count >= groupSz)) {
+      sync.notifyAll();
+    }
+ else {
+      try {
+        sync.wait();
+      }
+ catch (      InterruptedException e) {
+        log.warn(e.getLocalizedMessage());
+      }
+    }
+    timerCounter[0]=0;
+  }
+  return 0;
+}

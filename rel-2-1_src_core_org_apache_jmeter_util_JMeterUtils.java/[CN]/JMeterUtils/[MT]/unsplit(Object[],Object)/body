@@ -1,0 +1,13 @@
+{
+  StringBuffer retVal=new StringBuffer();
+  int count=-1;
+  while (++count < splittee.length) {
+    if (splittee[count] != null) {
+      retVal.append(splittee[count]);
+    }
+    if (count + 1 < splittee.length && splittee[count + 1] != null) {
+      retVal.append(splitChar);
+    }
+  }
+  return retVal.toString();
+}

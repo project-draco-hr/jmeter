@@ -1,0 +1,11 @@
+{
+  super.modifyTestElement(c);
+  MailerModel mailerModel=((MailerResultCollector)c).getMailerModel();
+  mailerModel.setFailureLimit(failureLimitField.getText());
+  mailerModel.setFailureSubject(failureSubjectField.getText());
+  mailerModel.setFromAddress(fromField.getText());
+  mailerModel.setSmtpHost(smtpHostField.getText());
+  mailerModel.setSuccessLimit(successLimitField.getText());
+  mailerModel.setSuccessSubject(successSubjectField.getText());
+  mailerModel.setToAddress(addressField.getText());
+}

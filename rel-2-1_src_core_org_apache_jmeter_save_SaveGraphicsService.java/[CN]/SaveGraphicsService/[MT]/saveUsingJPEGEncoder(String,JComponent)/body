@@ -1,0 +1,26 @@
+{
+  Dimension size=component.getSize();
+  BufferedImage image=new BufferedImage(size.width,size.height,BufferedImage.TYPE_USHORT_GRAY);
+  Graphics2D grp=image.createGraphics();
+  component.paint(grp);
+  File outfile=new File(filename + JPEG_EXTENSION);
+  FileOutputStream fos=createFile(outfile);
+  JPEGEncodeParam param=JPEGCodec.getDefaultJPEGEncodeParam(image);
+  Float q=new Float(1.0);
+  param.setQuality(q.floatValue(),true);
+  JPEGImageEncoder encoder=JPEGCodec.createJPEGEncoder(fos,param);
+  try {
+    encoder.encode(image);
+    fos.close();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+ finally {
+    try {
+      fos.close();
+    }
+ catch (    Exception e) {
+    }
+  }
+}

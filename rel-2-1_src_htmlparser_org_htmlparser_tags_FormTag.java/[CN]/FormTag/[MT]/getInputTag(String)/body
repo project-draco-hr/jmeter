@@ -1,0 +1,13 @@
+{
+  InputTag inputTag=null;
+  boolean found=false;
+  for (SimpleNodeIterator e=formInputList.elements(); e.hasMoreNodes() && !found; ) {
+    inputTag=(InputTag)e.nextNode();
+    String inputTagName=inputTag.getAttribute("NAME");
+    if (inputTagName != null && inputTagName.equalsIgnoreCase(name)) {
+      found=true;
+    }
+  }
+  if (found)   return inputTag;
+ else   return null;
+}

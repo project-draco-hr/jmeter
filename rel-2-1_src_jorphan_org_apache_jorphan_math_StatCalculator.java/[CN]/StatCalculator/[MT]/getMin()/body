@@ -1,0 +1,6 @@
+{
+  if (count > 0) {
+    return (Number)values.get(0);
+  }
+  return new Long(Long.MIN_VALUE);
+}

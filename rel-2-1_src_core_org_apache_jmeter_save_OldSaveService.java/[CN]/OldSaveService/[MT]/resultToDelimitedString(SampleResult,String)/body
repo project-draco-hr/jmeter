@@ -1,0 +1,82 @@
+{
+  StringBuffer text=new StringBuffer();
+  SampleSaveConfiguration saveConfig=sample.getSaveConfig();
+  if (saveConfig.saveTimestamp()) {
+    if (saveConfig.printMilliseconds()) {
+      text.append(sample.getTimeStamp());
+      text.append(delimiter);
+    }
+ else     if (saveConfig.formatter() != null) {
+      String stamp=saveConfig.formatter().format(new Date(sample.getTimeStamp()));
+      text.append(stamp);
+      text.append(delimiter);
+    }
+  }
+  if (saveConfig.saveTime()) {
+    text.append(sample.getTime());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveLabel()) {
+    text.append(sample.getSampleLabel());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveCode()) {
+    text.append(sample.getResponseCode());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveMessage()) {
+    text.append(sample.getResponseMessage());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveThreadName()) {
+    text.append(sample.getThreadName());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveDataType()) {
+    text.append(sample.getDataType());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveSuccess()) {
+    text.append(sample.isSuccessful());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveAssertionResultsFailureMessage()) {
+    String message=null;
+    AssertionResult[] results=sample.getAssertionResults();
+    if ((results != null) && (results.length > 0)) {
+      message=results[0].getFailureMessage();
+    }
+    if (message != null) {
+      text.append(message);
+    }
+    text.append(delimiter);
+  }
+  if (saveConfig.saveBytes()) {
+    text.append(sample.getBytes());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveThreadCounts()) {
+    text.append(JMeterContextService.getContext().getThreadGroup().getNumberOfThreads());
+    text.append(delimiter);
+    text.append(JMeterContextService.getNumberOfThreads());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveUrl()) {
+    text.append(sample.getURL());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveFileName()) {
+    text.append(sample.getResultFileName());
+    text.append(delimiter);
+  }
+  String resultString=null;
+  int size=text.length();
+  int delSize=delimiter.length();
+  if (size >= delSize) {
+    resultString=text.substring(0,size - delSize);
+  }
+ else {
+    resultString=text.toString();
+  }
+  return resultString;
+}

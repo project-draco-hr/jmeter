@@ -1,0 +1,14 @@
+{
+  te.clear();
+  configureTestElement(te);
+  MailReaderSampler mrs=(MailReaderSampler)te;
+  if (((String)serverTypeBox.getSelectedItem()).equals(POP3Label))   mrs.setServerType(MailReaderSampler.TYPE_POP3);
+ else   mrs.setServerType(MailReaderSampler.TYPE_IMAP);
+  mrs.setFolder(folderBox.getText());
+  mrs.setServer(serverBox.getText());
+  mrs.setUserName(usernameBox.getText());
+  mrs.setPassword(passwordBox.getText());
+  if (allMessagesButton.isSelected())   mrs.setNumMessages(-1);
+ else   mrs.setNumMessages(num_messages);
+  mrs.setDeleteMessages(delete);
+}

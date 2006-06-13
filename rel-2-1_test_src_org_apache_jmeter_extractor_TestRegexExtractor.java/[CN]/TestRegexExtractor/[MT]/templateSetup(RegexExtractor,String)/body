@@ -1,0 +1,6 @@
+{
+  rex.setRegex("<company-(\\w+?)-(\\w+?)-(\\w+?)>");
+  rex.setMatchNumber(1);
+  rex.setTemplate(tmp);
+  rex.process();
+}

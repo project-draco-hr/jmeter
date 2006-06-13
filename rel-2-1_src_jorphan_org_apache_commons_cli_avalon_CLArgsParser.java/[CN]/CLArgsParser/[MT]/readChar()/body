@@ -1,0 +1,17 @@
+{
+  if (m_stringIndex >= m_stringLength) {
+    m_argIndex++;
+    m_stringIndex=0;
+    if (m_argIndex < m_args.length) {
+      m_stringLength=m_args[m_argIndex].length();
+    }
+ else {
+      m_stringLength=0;
+    }
+    return 0;
+  }
+  if (m_argIndex >= m_args.length) {
+    return 0;
+  }
+  return m_args[m_argIndex].charAt(m_stringIndex++);
+}

@@ -1,0 +1,57 @@
+{
+  String password=this.defaultpw;
+  if (null == this.keyStore) {
+    String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
+    String fileName=JMeterUtils.getJMeterProperties().getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
+    System.setProperty(JAVAX_NET_SSL_KEY_STORE,fileName);
+    try {
+      if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
+        this.keyStore=JmeterKeyStore.getInstance(PKCS12);
+        log.info("KeyStore Type: PKCS 12");
+        System.setProperty("javax.net.ssl.keyStoreType",PKCS12);
+      }
+ else {
+        this.keyStore=JmeterKeyStore.getInstance("JKS");
+        log.info("KeyStore Type: JKS");
+      }
+    }
+ catch (    Exception e) {
+      JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),e,JMeterUtils.getResString("ssl_error_title"),JOptionPane.ERROR_MESSAGE);
+      this.keyStore=null;
+      throw new RuntimeException("KeyStore Problem");
+    }
+    if (null == password) {
+      if (null == defaultpw) {
+        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty(KEY_STORE_PASSWORD);
+        if (null == defaultpw) {
+synchronized (this) {
+            this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
+            JMeterUtils.getJMeterProperties().setProperty(KEY_STORE_PASSWORD,this.defaultpw);
+          }
+        }
+      }
+      password=this.defaultpw;
+      System.setProperty(KEY_STORE_PASSWORD,password);
+    }
+    FileInputStream fileInputStream=null;
+    try {
+      File initStore=new File(fileName);
+      if (initStore.exists()) {
+        fileInputStream=new FileInputStream(initStore);
+        this.keyStore.load(fileInputStream,password);
+      }
+ else {
+        this.keyStore.load(null,password);
+      }
+    }
+ catch (    Exception e) {
+      log.error("Couldn't load keystore",e);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(fileInputStream);
+    }
+    log.info("JmeterKeyStore Location: " + fileName);
+    log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());
+  }
+  return this.keyStore;
+}

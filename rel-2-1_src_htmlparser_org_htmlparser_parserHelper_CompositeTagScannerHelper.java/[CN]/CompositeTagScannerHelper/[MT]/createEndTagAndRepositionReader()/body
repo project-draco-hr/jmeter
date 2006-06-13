@@ -1,0 +1,6 @@
+{
+  createCorrectionEndTagBefore(tag.elementBegin());
+  reader.setPosInLine(tag.elementBegin());
+  reader.setDontReadNextLine(true);
+  return endTag;
+}

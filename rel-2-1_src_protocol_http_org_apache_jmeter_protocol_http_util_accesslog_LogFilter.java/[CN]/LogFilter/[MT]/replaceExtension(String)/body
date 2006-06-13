@@ -1,0 +1,11 @@
+{
+  int pt=text.indexOf(this.OLDEXT);
+  if (pt > -1) {
+    int extsize=this.OLDEXT.length();
+    this.NEWFILE=text.substring(0,pt) + this.NEWEXT + text.substring(pt + extsize);
+    return true;
+  }
+ else {
+    return false;
+  }
+}

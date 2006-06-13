@@ -1,0 +1,9 @@
+{
+  createParser("<A HREF=\".foo.txt\">Foo</A>","http://www.oygevalt.com");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertStringEquals("link","http://www.oygevalt.com/foo.txt",linkTag.getLink());
+  assertEquals("link","Foo",linkTag.getLinkText());
+}

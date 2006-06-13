@@ -1,0 +1,16 @@
+{
+  JPanel panel=new JPanel();
+  panel.setBackground(Color.white);
+  panel.setLayout(new BorderLayout(10,10));
+  Container title=makeTitlePanel();
+  commentPanel=new JTextField();
+  commentPanel.setBackground(Color.white);
+  JLabel label=new JLabel(JMeterUtils.getResString("testplan_comments"));
+  label.setBackground(Color.white);
+  label.setLabelFor(commentPanel);
+  title.add(label);
+  title.add(commentPanel);
+  panel.add(title,BorderLayout.NORTH);
+  panel.add(baseDir,BorderLayout.CENTER);
+  return panel;
+}

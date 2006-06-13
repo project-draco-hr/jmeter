@@ -1,0 +1,14 @@
+{
+  while (factory == null) {
+    try {
+      Object objfac=ctx.lookup(fac);
+      if (objfac instanceof TopicConnectionFactory) {
+        factory=(TopicConnectionFactory)objfac;
+      }
+    }
+ catch (    NamingException e) {
+      log.error(e.getRootCause().toString());
+    }
+  }
+  return factory;
+}

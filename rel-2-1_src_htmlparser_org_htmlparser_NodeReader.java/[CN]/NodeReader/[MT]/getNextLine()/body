@@ -1,0 +1,13 @@
+{
+  try {
+    previousLine=line;
+    line=readLine();
+    if (line != null)     lineCount++;
+    posInLine=0;
+    return line;
+  }
+ catch (  IOException e) {
+    System.err.println("I/O Exception occurred while reading!");
+  }
+  return null;
+}

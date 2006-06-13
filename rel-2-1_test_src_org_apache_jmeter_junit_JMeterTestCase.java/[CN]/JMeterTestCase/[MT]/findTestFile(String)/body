@@ -1,0 +1,7 @@
+{
+  File f=new File(file);
+  if (filePrefix.length() > 0 && !f.isAbsolute()) {
+    f=new File(filePrefix + file);
+  }
+  return f;
+}

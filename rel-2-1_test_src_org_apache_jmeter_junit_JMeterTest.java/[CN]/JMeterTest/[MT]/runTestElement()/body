@@ -1,0 +1,9 @@
+{
+  checkElementCloning(testItem);
+  String name=testItem.getClass().getName();
+  assertTrue(name + " must implement Serializable",testItem instanceof Serializable);
+  if (name.startsWith("org.apache.jmeter.examples.")) {
+    return;
+  }
+  checkElementAlias(testItem);
+}

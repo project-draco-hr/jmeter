@@ -1,0 +1,5 @@
+{
+  HashTree tree=getTreePath(treePath);
+  if (tree != null)   return tree.list();
+  return new LinkedList();
+}

@@ -1,0 +1,11 @@
+{
+  createParser(SIMPLE_PAGE);
+  HtmlPage page=new HtmlPage(parser);
+  parser.visitAllNodesWith(page);
+  assertStringEquals("title","Welcome to the HTMLParser website",page.getTitle());
+  NodeList bodyNodes=page.getBody();
+  assertEquals("number of nodes in body",1,bodyNodes.size());
+  Node node=bodyNodes.elementAt(0);
+  assertTrue("expected stringNode but was " + node.getClass().getName(),node instanceof StringNode);
+  assertStringEquals("body contents","Welcome to HTMLParser",page.getBody().asString());
+}

@@ -1,0 +1,15 @@
+{
+  JMeterProperty prop=getProperty(MAXTHROUGHPUT);
+  int retVal=1;
+  if (prop instanceof IntegerProperty) {
+    retVal=(((IntegerProperty)prop).getIntValue());
+  }
+ else {
+    try {
+      retVal=Integer.parseInt(prop.getStringValue());
+    }
+ catch (    NumberFormatException e) {
+    }
+  }
+  return retVal;
+}

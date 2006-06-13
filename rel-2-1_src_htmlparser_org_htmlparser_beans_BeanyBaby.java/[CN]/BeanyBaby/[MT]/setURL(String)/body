@@ -1,0 +1,9 @@
+{
+  mTextField.setText(url);
+  mCrumb++;
+  if (mTrail.size() <= mCrumb)   mTrail.addElement(url);
+ else   mTrail.setElementAt(url,mCrumb);
+  mLinkBean.setURL(url);
+  mBack.setEnabled(mCrumb > 0);
+  mForward.setEnabled(mCrumb + 1 < mTrail.size());
+}

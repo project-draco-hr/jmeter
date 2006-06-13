@@ -1,0 +1,5 @@
+{
+  toBeCentered.setLocation(parent.getX() + (parent.getWidth() - toBeCentered.getWidth()) / 2,parent.getY() + (parent.getHeight() - toBeCentered.getHeight()) / 2);
+  toBeCentered.validate();
+  toBeCentered.repaint();
+}

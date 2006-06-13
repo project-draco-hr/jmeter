@@ -1,0 +1,62 @@
+{
+  if (STATE_REQUIRE_ARG == m_state) {
+    if ('=' == m_ch || 0 == m_ch) {
+      getChar();
+    }
+    final Token token=nextToken(NULL_SEPARATORS);
+    m_option.addArgument(token.getValue());
+    addOption(m_option);
+    m_state=STATE_NORMAL;
+  }
+ else   if (STATE_OPTIONAL_ARG == m_state) {
+    if ('-' == m_ch || 0 == m_ch) {
+      getChar();
+      addOption(m_option);
+      m_state=STATE_NORMAL;
+      return;
+    }
+    if ('=' == m_ch) {
+      getChar();
+    }
+    final Token token=nextToken(NULL_SEPARATORS);
+    m_option.addArgument(token.getValue());
+    addOption(m_option);
+    m_state=STATE_NORMAL;
+  }
+ else   if (STATE_REQUIRE_2ARGS == m_state) {
+    if (0 == m_option.getArgumentCount()) {
+      if (!m_isLong) {
+        if (0 == peekAtChar()) {
+          getChar();
+        }
+      }
+      final Token token=nextToken(ARG_SEPARATORS);
+      if (TOKEN_SEPARATOR == token.getType()) {
+        final CLOptionDescriptor descriptor=getDescriptorFor(m_option.getDescriptor().getId());
+        final String message="Unable to parse first argument for option " + getOptionDescription(descriptor);
+        throw new ParseException(message,0);
+      }
+ else {
+        m_option.addArgument(token.getValue());
+      }
+      if (0 == m_ch && '-' == peekAtChar()) {
+        m_option.addArgument("");
+        m_options.addElement(m_option);
+        m_state=STATE_NORMAL;
+      }
+    }
+ else {
+      final StringBuffer sb=new StringBuffer();
+      m_ch=getChar();
+      while (!isSeparator(m_ch,NULL_SEPARATORS)) {
+        sb.append(m_ch);
+        m_ch=getChar();
+      }
+      final String argument=sb.toString();
+      m_option.addArgument(argument);
+      addOption(m_option);
+      m_option=null;
+      m_state=STATE_NORMAL;
+    }
+  }
+}

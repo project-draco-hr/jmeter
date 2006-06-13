@@ -1,0 +1,8 @@
+{
+  if (save.saveSamplerData(res)) {
+    writeString(writer,TAG_SAMPLER_DATA,res.getSamplerData());
+  }
+  if (save.saveUrl()) {
+    writeItem(res.getURL(),context,writer);
+  }
+}

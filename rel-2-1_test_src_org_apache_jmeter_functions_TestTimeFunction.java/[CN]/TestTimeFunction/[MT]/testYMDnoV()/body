@@ -1,0 +1,7 @@
+{
+  params.add(new CompoundVariable("YMD"));
+  variable.setParameters(params);
+  value=variable.execute(result,null);
+  assertEquals(8,value.length());
+  assertNull(vars.get("NAME"));
+}

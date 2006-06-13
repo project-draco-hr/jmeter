@@ -1,0 +1,27 @@
+{
+  String text=(String)guiEditor.getValue();
+  Object value;
+  if (text == null) {
+    if (!acceptsNull)     shouldNeverHappen();
+    value=null;
+  }
+ else {
+    if (acceptsExpressions && isExpression(text)) {
+      value=text;
+    }
+ else {
+      if (!acceptsOther && !isATag(text))       shouldNeverHappen();
+      try {
+        typeEditor.setAsText(text);
+      }
+ catch (      IllegalArgumentException e) {
+        shouldNeverHappen(e);
+      }
+      value=typeEditor.getValue();
+    }
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("->" + (value != null ? value.getClass().getName() : "NULL") + ":"+ value);
+  }
+  return value;
+}

@@ -1,0 +1,17 @@
+{
+  super(JDBCSampler.class);
+  createPropertyGroup("varName",new String[]{"dataSource"});
+  createPropertyGroup("sql",new String[]{"queryType","query"});
+  PropertyDescriptor p=property("dataSource");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p=property("queryType");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,JDBCSampler.SELECT);
+  p.setValue(NOT_OTHER,Boolean.TRUE);
+  p.setValue(TAGS,new String[]{JDBCSampler.SELECT,JDBCSampler.UPDATE,JDBCSampler.CALLABLE});
+  p=property("query");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p.setPropertyEditorClass(TextAreaEditor.class);
+}

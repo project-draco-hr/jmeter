@@ -1,0 +1,6 @@
+{
+  if (!isPerThread()) {
+    return globalNumExecutions;
+  }
+  return numExecutions;
+}

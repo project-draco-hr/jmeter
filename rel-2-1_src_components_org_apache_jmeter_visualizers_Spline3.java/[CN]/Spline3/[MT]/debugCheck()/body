@@ -1,0 +1,7 @@
+{
+  int i=0;
+  for (i=0; i < _m; i++) {
+    log.info("Point " + i + " : ");
+    log.info(_r[i] + " =? " + value(i));
+  }
+}

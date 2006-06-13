@@ -1,0 +1,7 @@
+{
+  log.info("Start : resetRemoteInterfaceList1");
+  model.setRemoteInterfaceList(null);
+  model.setRemoteInterfaceType(null);
+  remoteInterfaceBox.removeAllItems();
+  log.info("End : resetRemoteInterfaceList1");
+}

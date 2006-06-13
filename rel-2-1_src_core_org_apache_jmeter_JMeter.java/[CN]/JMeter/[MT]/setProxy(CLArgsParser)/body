@@ -1,0 +1,36 @@
+{
+  if (parser.getArgumentById(PROXY_USERNAME) != null) {
+    Properties jmeterProps=JMeterUtils.getJMeterProperties();
+    if (parser.getArgumentById(PROXY_PASSWORD) != null) {
+      String u, p;
+      Authenticator.setDefault(new ProxyAuthenticator(u=parser.getArgumentById(PROXY_USERNAME).getArgument(),p=parser.getArgumentById(PROXY_PASSWORD).getArgument()));
+      log.info("Set Proxy login: " + u + "/"+ p);
+      jmeterProps.setProperty(HTTP_PROXY_USER,u);
+      jmeterProps.setProperty(HTTP_PROXY_PASS,p);
+    }
+ else {
+      String u;
+      Authenticator.setDefault(new ProxyAuthenticator(u=parser.getArgumentById(PROXY_USERNAME).getArgument(),""));
+      log.info("Set Proxy login: " + u);
+      jmeterProps.setProperty(HTTP_PROXY_USER,u);
+    }
+  }
+  if (parser.getArgumentById(PROXY_HOST) != null && parser.getArgumentById(PROXY_PORT) != null) {
+    String h=parser.getArgumentById(PROXY_HOST).getArgument();
+    String p=parser.getArgumentById(PROXY_PORT).getArgument();
+    System.setProperty("http.proxyHost",h);
+    System.setProperty("https.proxyHost",h);
+    System.setProperty("http.proxyPort",p);
+    System.setProperty("https.proxyPort",p);
+    log.info("Set http[s].proxyHost: " + h + " Port: "+ p);
+  }
+ else   if (parser.getArgumentById(PROXY_HOST) != null || parser.getArgumentById(PROXY_PORT) != null) {
+    throw new IllegalUserActionException(JMeterUtils.getResString("proxy_cl_error"));
+  }
+  if (parser.getArgumentById(NONPROXY_HOSTS) != null) {
+    String n=parser.getArgumentById(NONPROXY_HOSTS).getArgument();
+    System.setProperty("http.nonProxyHosts",n);
+    System.setProperty("https.nonProxyHosts",n);
+    log.info("Set http[s].nonProxyHosts: " + n);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  calculator.addAll(ssc.calculator);
+synchronized (storedValues) {
+    storedValues.addAll(ssc.storedValues);
+    Collections.sort(storedValues);
+  }
+  if (firstTime > ssc.firstTime) {
+    firstTime=ssc.firstTime;
+  }
+}

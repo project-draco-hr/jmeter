@@ -1,0 +1,12 @@
+{
+  StringBuffer buffer;
+  String ret;
+  if (null != (ret=(String)charRefTable.get(character))) {
+    buffer=new StringBuffer(ret.length() + 2);
+    buffer.append('&');
+    buffer.append(ret);
+    buffer.append(';');
+    ret=buffer.toString();
+  }
+  return (ret);
+}

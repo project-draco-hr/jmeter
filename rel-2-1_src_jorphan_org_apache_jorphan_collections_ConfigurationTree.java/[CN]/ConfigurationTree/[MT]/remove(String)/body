@@ -1,0 +1,17 @@
+{
+  String[] keys=JOrphanUtils.split(key,"/");
+  String prop=null;
+  HashTree tree=propTree;
+  for (int i=0; i < keys.length && tree != null; i++) {
+    if ((i + 1) == keys.length) {
+      tree=(HashTree)tree.remove(keys[i]);
+      if (tree.list() != null && tree.list().size() == 1) {
+        prop=(String)tree.getArray()[0];
+      }
+    }
+ else {
+      tree=tree.getTree(keys[i]);
+    }
+  }
+  return prop;
+}

@@ -1,0 +1,46 @@
+{
+  final String xmlFile=getXmlFile();
+  if (xmlFile != null && getXmlFile().length() > 0) {
+    post.setRequestEntity(new RequestEntity(){
+      public boolean isRepeatable(){
+        return true;
+      }
+      public void writeRequest(      OutputStream out) throws IOException {
+        byte[] buf=new byte[1024];
+        int read;
+        InputStream in=new FileInputStream(xmlFile);
+        while ((read=in.read(buf)) > 0) {
+          out.write(buf,0,read);
+        }
+        in.close();
+        out.flush();
+      }
+      public long getContentLength(){
+        return -1;
+      }
+      public String getContentType(){
+        return "text/xml";
+      }
+    }
+);
+  }
+ else {
+    post.setRequestEntity(new RequestEntity(){
+      public boolean isRepeatable(){
+        return true;
+      }
+      public void writeRequest(      OutputStream out) throws IOException {
+        PrintWriter printer=new PrintWriter(out);
+        printer.print(getXmlData());
+        printer.flush();
+      }
+      public long getContentLength(){
+        return -1;
+      }
+      public String getContentType(){
+        return "text/xml";
+      }
+    }
+);
+  }
+}

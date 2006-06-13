@@ -1,0 +1,12 @@
+{
+  super.configure(element);
+  TestAction ta=(TestAction)element;
+  target=ta.getTarget();
+  if (target == TestAction.THREAD)   targetBox.setSelectedItem(threadTarget);
+ else   targetBox.setSelectedItem(testTarget);
+  action=ta.getAction();
+  if (action == TestAction.PAUSE)   pauseButton.setSelected(true);
+ else   stopButton.setSelected(true);
+  duration=ta.getDuration();
+  durationField.setText(Integer.toString(duration));
+}

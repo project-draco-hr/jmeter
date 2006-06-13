@@ -1,0 +1,3 @@
+{
+  return new MonitorStats(current.getHealth(),current.getLoad(),current.getCpuLoad(),current.getMemLoad(),current.getThreadLoad(),current.getHost(),current.getPort(),current.getProtocol(),current.getTimeStamp());
+}

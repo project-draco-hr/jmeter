@@ -1,0 +1,12 @@
+{
+  if (loopCount <= -1) {
+    infinite.setSelected(true);
+    loops.setEnabled(false);
+    loops.setText("");
+  }
+ else {
+    infinite.setSelected(false);
+    loops.setEnabled(true);
+    loops.setText("" + loopCount);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  super.configure(el);
+  tableModel.clearData();
+  PropertyIterator iter=el.propertyIterator();
+  while (iter.hasNext()) {
+    JMeterProperty prop=iter.next();
+    tableModel.addRow(new Object[]{prop.getName(),prop.getStringValue()});
+  }
+  checkDeleteStatus();
+}

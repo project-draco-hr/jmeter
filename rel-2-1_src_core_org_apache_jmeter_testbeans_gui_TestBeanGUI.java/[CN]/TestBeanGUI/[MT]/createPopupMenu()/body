@@ -1,0 +1,21 @@
+{
+  if (Timer.class.isAssignableFrom(testBeanClass)) {
+    return MenuFactory.getDefaultTimerMenu();
+  }
+ else   if (Sampler.class.isAssignableFrom(testBeanClass)) {
+    return MenuFactory.getDefaultSamplerMenu();
+  }
+ else   if (ConfigTestElement.class.isAssignableFrom(testBeanClass)) {
+    return MenuFactory.getDefaultConfigElementMenu();
+  }
+ else   if (Assertion.class.isAssignableFrom(testBeanClass)) {
+    return MenuFactory.getDefaultAssertionMenu();
+  }
+ else   if (PostProcessor.class.isAssignableFrom(testBeanClass) || PreProcessor.class.isAssignableFrom(testBeanClass)) {
+    return MenuFactory.getDefaultExtractorMenu();
+  }
+ else   if (AbstractListenerElement.class.isAssignableFrom(testBeanClass)) {
+    return MenuFactory.getDefaultVisualizerMenu();
+  }
+ else   return MenuFactory.getDefaultControllerMenu();
+}

@@ -1,0 +1,10 @@
+{
+  String ans=null;
+  try {
+    ans=appProperties.getProperty(propName);
+  }
+ catch (  Exception e) {
+    ans=null;
+  }
+  return ans;
+}

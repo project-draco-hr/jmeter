@@ -1,0 +1,14 @@
+{
+  protocol=new JTextField(20);
+  protocol.setName(PROTOCOL);
+  JLabel protocolLabel=new JLabel(JMeterUtils.getResString("protocol"));
+  protocolLabel.setLabelFor(protocol);
+  method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
+  JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  panel.add(protocolLabel);
+  panel.add(protocol);
+  panel.add(Box.createHorizontalStrut(5));
+  panel.add(method);
+  panel.setMinimumSize(panel.getPreferredSize());
+  return panel;
+}

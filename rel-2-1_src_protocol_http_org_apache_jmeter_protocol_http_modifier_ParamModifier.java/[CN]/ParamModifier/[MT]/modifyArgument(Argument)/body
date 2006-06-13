@@ -1,0 +1,9 @@
+{
+  if (arg.getName().equals(getMask().getFieldName())) {
+    if ("*".equals(arg.getValue())) {
+      arg.setValue(getMask().getNextValue());
+      return true;
+    }
+  }
+  return false;
+}

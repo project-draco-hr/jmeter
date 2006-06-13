@@ -1,0 +1,7 @@
+{
+  String text=node.getNodeValue().trim();
+  if (text != null && text.length() > 0) {
+    XMLDefaultMutableTreeNode textNode=new XMLDefaultMutableTreeNode(text,node);
+    mTreeNode.add(textNode);
+  }
+}

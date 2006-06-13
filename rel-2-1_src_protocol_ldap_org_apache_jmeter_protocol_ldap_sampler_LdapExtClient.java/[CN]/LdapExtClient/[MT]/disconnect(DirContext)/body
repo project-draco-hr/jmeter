@@ -1,0 +1,12 @@
+{
+  if (dirContext == null) {
+    log.info("Cannot disconnect null context");
+    return;
+  }
+  try {
+    dirContext.close();
+  }
+ catch (  NamingException e) {
+    log.warn("Ldap client disconnect - ",e);
+  }
+}

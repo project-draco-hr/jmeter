@@ -1,0 +1,7 @@
+{
+  Tidy tidy=new Tidy();
+  tidy.setCharEncoding(org.w3c.tidy.Configuration.UTF8);
+  tidy.setQuiet(true);
+  tidy.setShowWarnings(false);
+  return tidy;
+}

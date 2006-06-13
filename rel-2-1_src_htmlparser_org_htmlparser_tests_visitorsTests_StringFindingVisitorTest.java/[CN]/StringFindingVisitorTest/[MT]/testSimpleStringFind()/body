@@ -1,0 +1,6 @@
+{
+  createParser(HTML);
+  StringFindingVisitor visitor=new StringFindingVisitor("Hello");
+  parser.visitAllNodesWith(visitor);
+  assertTrue("Hello found",visitor.stringWasFound());
+}

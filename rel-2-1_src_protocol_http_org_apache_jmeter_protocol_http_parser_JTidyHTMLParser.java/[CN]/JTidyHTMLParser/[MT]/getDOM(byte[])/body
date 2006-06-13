@@ -1,0 +1,9 @@
+{
+  log.debug("Start : getDOM");
+  Node node=getTidyParser().parseDOM(new ByteArrayInputStream(text),null);
+  if (log.isDebugEnabled()) {
+    log.debug("node : " + node);
+  }
+  log.debug("End   : getDOM");
+  return node;
+}

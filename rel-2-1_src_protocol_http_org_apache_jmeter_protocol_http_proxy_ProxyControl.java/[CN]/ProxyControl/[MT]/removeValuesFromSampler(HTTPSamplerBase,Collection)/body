@@ -1,0 +1,18 @@
+{
+  for (PropertyIterator props=sampler.propertyIterator(); props.hasNext(); ) {
+    JMeterProperty prop=props.next();
+    String name=prop.getName();
+    String value=prop.getStringValue();
+    if (name.equals(TestElement.ENABLED) || name.equals(TestElement.GUI_CLASS) || name.equals(TestElement.NAME)|| name.equals(TestElement.TEST_CLASS)) {
+      continue;
+    }
+    for (Iterator configs=configurations.iterator(); configs.hasNext(); ) {
+      ConfigTestElement config=(ConfigTestElement)configs.next();
+      String configValue=config.getPropertyAsString(name);
+      if (configValue != null && configValue.length() > 0) {
+        if (configValue.equals(value))         sampler.setProperty(name,"");
+        break;
+      }
+    }
+  }
+}

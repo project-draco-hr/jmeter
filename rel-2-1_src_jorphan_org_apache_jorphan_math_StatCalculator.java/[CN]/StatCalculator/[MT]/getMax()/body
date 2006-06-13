@@ -1,0 +1,6 @@
+{
+  if (count > 0) {
+    return (Number)values.get(count - 1);
+  }
+  return new Long(Long.MAX_VALUE);
+}

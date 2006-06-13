@@ -1,0 +1,9 @@
+{
+  super.configure(el);
+  if (((RandomController)el).getStyle() == InterleaveControl.IGNORE_SUB_CONTROLLERS) {
+    style.setSelected(true);
+  }
+ else {
+    style.setSelected(false);
+  }
+}

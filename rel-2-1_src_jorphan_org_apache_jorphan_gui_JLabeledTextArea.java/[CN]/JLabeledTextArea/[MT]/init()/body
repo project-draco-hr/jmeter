@@ -1,0 +1,10 @@
+{
+  setLayout(new BorderLayout());
+  mTextArea=new JTextArea();
+  mTextArea.setRows(4);
+  mTextArea.setLineWrap(true);
+  mTextArea.setWrapStyleWord(true);
+  mTextArea.addFocusListener(this);
+  this.add(mLabel,BorderLayout.NORTH);
+  this.add(new JScrollPane(mTextArea),BorderLayout.CENTER);
+}

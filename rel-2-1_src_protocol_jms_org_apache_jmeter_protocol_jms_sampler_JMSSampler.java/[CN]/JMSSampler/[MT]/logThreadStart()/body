@@ -1,0 +1,10 @@
+{
+  if (LOGGER.isDebugEnabled()) {
+    LOGGER.debug("Thread started " + new Date());
+    LOGGER.debug("JMSSampler: [" + Thread.currentThread().getName() + "], hashCode=["+ hashCode()+ "]");
+    LOGGER.debug("QCF: [" + getQueueConnectionFactory() + "], sendQueue=["+ getSendQueue()+ "]");
+    LOGGER.debug("Timeout             = " + getTimeout() + "]");
+    LOGGER.debug("Use temporary queue =" + useTemporyQueue() + "]");
+    LOGGER.debug("Reply queue         =" + getReceiveQueue() + "]");
+  }
+}

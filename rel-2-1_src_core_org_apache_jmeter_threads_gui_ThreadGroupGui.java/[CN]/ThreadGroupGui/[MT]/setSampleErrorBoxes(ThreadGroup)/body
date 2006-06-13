@@ -1,0 +1,5 @@
+{
+  stopTestBox.setSelected(te.getOnErrorStopTest());
+  stopThrdBox.setSelected(te.getOnErrorStopThread());
+  continueBox.setSelected(!te.getOnErrorStopThread() && !te.getOnErrorStopTest());
+}

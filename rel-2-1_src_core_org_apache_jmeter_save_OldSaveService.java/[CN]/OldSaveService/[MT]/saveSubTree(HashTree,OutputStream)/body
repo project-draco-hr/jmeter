@@ -1,0 +1,14 @@
+{
+  Configuration config=(Configuration)getConfigsFromTree(subTree).get(0);
+  DefaultConfigurationSerializer saver=new DefaultConfigurationSerializer();
+  saver.setIndent(true);
+  try {
+    saver.serialize(writer,config);
+  }
+ catch (  SAXException e) {
+    throw new IOException("SAX implementation problem");
+  }
+catch (  ConfigurationException e) {
+    throw new IOException("Problem using Avalon Configuration tools");
+  }
+}

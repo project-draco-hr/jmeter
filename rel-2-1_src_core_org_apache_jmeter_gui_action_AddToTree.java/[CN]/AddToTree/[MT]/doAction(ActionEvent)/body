@@ -1,0 +1,9 @@
+{
+  try {
+    TestElement node=GuiPackage.getInstance().createTestElement(((JComponent)e.getSource()).getName());
+    addObjectToTree(node);
+  }
+ catch (  Exception err) {
+    log.error("",err);
+  }
+}

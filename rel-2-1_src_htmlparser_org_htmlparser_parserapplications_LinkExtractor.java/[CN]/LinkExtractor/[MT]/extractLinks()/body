@@ -1,0 +1,8 @@
+{
+  System.out.println("Parsing " + location + " for links...");
+  Node[] links=parser.extractAllNodesThatAre(LinkTag.class);
+  for (int i=0; i < links.length; i++) {
+    LinkTag linkTag=(LinkTag)links[i];
+    System.out.println(linkTag.getLink());
+  }
+}

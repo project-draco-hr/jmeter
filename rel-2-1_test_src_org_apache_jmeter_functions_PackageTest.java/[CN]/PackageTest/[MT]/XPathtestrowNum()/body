@@ -1,0 +1,13 @@
+{
+  XPathFileContainer f=new XPathFileContainer("../build.xml","/project/target/@name");
+  assertNotNull(f);
+  int myRow=f.nextRow();
+  assertEquals(0,myRow);
+  assertEquals(1,f.getNextRow());
+  myRow=f.nextRow();
+  assertEquals(1,myRow);
+  assertEquals(2,f.getNextRow());
+  myRow=f.nextRow();
+  assertEquals(2,myRow);
+  assertEquals(3,f.getNextRow());
+}

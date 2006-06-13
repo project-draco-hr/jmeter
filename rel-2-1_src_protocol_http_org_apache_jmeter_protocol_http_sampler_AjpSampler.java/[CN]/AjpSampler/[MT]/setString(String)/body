@@ -1,0 +1,13 @@
+{
+  if (s == null) {
+    setInt(0xFFFF);
+  }
+ else {
+    int len=s.length();
+    setInt(len);
+    for (int i=0; i < len; i++) {
+      setByte((byte)s.charAt(i));
+    }
+    setByte((byte)0);
+  }
+}

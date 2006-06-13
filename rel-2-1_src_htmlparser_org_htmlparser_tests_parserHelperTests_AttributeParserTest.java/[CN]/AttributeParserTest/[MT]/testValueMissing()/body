@@ -1,0 +1,8 @@
+{
+  getParameterTableFor("INPUT type=\"checkbox\" name=\"Authorize\" value=\"Y\" checked");
+  assertEquals("Name of Tag","INPUT",table.get(Tag.TAGNAME));
+  assertEquals("Type","checkbox",table.get("TYPE"));
+  assertEquals("Name","Authorize",table.get("NAME"));
+  assertEquals("Value","Y",table.get("VALUE"));
+  assertEquals("Checked","",table.get("CHECKED"));
+}

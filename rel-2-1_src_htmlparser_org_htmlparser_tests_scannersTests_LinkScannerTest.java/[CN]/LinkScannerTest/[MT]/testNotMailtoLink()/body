@@ -1,0 +1,9 @@
+{
+  createParser("<A HREF=\"mailto.html\">not@for.real</A>","http://www.cj.com/");
+  parser.addScanner(new LinkScanner("-l"));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a HTMLLinkTag",node[0] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertEquals("Link Plain Text","not@for.real",linkTag.toPlainTextString());
+  assertTrue("Link is not a mail link",!linkTag.isMailLink());
+}

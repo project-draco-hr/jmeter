@@ -1,0 +1,26 @@
+{
+  setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  JPanel threadDelayPropsPanel=new JPanel();
+  threadDelayPropsPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  threadDelayPropsPanel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("thread_delay_properties")));
+  Box delayDevPanel=Box.createHorizontalBox();
+  delayDevPanel.add(new JLabel(JMeterUtils.getResString("uniform_timer_range")));
+  delayDevPanel.add(Box.createHorizontalStrut(5));
+  rangeField=new JTextField(6);
+  rangeField.setText(DEFAULT_RANGE);
+  rangeField.setName(RANGE_FIELD);
+  delayDevPanel.add(rangeField);
+  threadDelayPropsPanel.add(delayDevPanel);
+  Box avgDelayPanel=Box.createHorizontalBox();
+  avgDelayPanel.add(new JLabel(JMeterUtils.getResString("uniform_timer_delay")));
+  avgDelayPanel.add(Box.createHorizontalStrut(5));
+  delayField=new JTextField(6);
+  delayField.setText(DEFAULT_DELAY);
+  delayField.setName(DELAY_FIELD);
+  avgDelayPanel.add(delayField);
+  threadDelayPropsPanel.add(avgDelayPanel);
+  add(threadDelayPropsPanel);
+  new FocusRequester(rangeField);
+}

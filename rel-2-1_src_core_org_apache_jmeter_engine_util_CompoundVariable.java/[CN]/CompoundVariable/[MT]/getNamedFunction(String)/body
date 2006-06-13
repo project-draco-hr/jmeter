@@ -1,0 +1,12 @@
+{
+  if (functions.containsKey(functionName)) {
+    try {
+      return ((Class)functions.get(functionName)).newInstance();
+    }
+ catch (    Exception e) {
+      log.error("",e);
+      throw new InvalidVariableException();
+    }
+  }
+  return new SimpleVariable(functionName);
+}

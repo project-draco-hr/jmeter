@@ -1,0 +1,5 @@
+{
+  RandomOrderController roc=new RandomOrderController();
+  roc.initialize();
+  assertTrue(roc.next() == null);
+}

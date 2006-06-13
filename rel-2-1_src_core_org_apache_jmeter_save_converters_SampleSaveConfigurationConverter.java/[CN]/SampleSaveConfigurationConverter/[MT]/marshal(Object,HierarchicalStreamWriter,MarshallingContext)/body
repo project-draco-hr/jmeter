@@ -1,0 +1,8 @@
+{
+  super.marshal(obj,writer,context);
+  SampleSaveConfiguration prop=(SampleSaveConfiguration)obj;
+  createNode(writer,prop.saveBytes(),NODE_BYTES);
+  createNode(writer,prop.saveUrl(),NODE_URL);
+  createNode(writer,prop.saveFileName(),NODE_FILENAME);
+  createNode(writer,prop.saveThreadCounts(),NODE_THREAD_COUNT);
+}

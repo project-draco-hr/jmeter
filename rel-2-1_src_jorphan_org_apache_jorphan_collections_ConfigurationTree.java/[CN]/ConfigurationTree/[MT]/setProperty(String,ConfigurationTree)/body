@@ -1,0 +1,12 @@
+{
+  String[] keys=getPath(key);
+  ListedHashTree tree=(ListedHashTree)propTree.getTree(keys);
+  if (tree != null) {
+    tree.clear();
+    tree.add(t.propTree);
+  }
+ else {
+    propTree.add(keys);
+    propTree.getTree(keys).add(t.propTree);
+  }
+}

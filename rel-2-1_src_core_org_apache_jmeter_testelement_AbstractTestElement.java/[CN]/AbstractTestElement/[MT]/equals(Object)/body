@@ -1,0 +1,8 @@
+{
+  if (o instanceof AbstractTestElement) {
+    return ((AbstractTestElement)o).propMap.equals(propMap);
+  }
+ else {
+    return false;
+  }
+}

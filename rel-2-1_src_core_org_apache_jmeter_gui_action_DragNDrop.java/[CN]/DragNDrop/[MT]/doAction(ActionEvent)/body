@@ -1,0 +1,33 @@
+{
+  String action=e.getActionCommand();
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  JMeterTreeNode[] draggedNodes=guiPackage.getTreeListener().getDraggedNodes();
+  JMeterTreeListener treeListener=guiPackage.getTreeListener();
+  JMeterTreeNode currentNode=treeListener.getCurrentNode();
+  JMeterTreeNode parentNode=(JMeterTreeNode)currentNode.getParent();
+  TestElement te=currentNode.getTestElement();
+  if (te instanceof TestPlan || te instanceof WorkBench) {
+    parentNode=null;
+  }
+  if (ActionNames.DRAG_ADD.equals(action) && canAddTo(currentNode)) {
+    removeNodesFromParents(draggedNodes);
+    for (int i=0; i < draggedNodes.length; i++) {
+      GuiPackage.getInstance().getTreeModel().insertNodeInto(draggedNodes[i],currentNode,currentNode.getChildCount());
+    }
+  }
+ else   if (ActionNames.INSERT_BEFORE.equals(action) && canAddTo(parentNode)) {
+    removeNodesFromParents(draggedNodes);
+    for (int i=0; i < draggedNodes.length; i++) {
+      int index=parentNode.getIndex(currentNode);
+      GuiPackage.getInstance().getTreeModel().insertNodeInto(draggedNodes[i],parentNode,index);
+    }
+  }
+ else   if (ActionNames.INSERT_AFTER.equals(action) && canAddTo(parentNode)) {
+    removeNodesFromParents(draggedNodes);
+    for (int i=0; i < draggedNodes.length; i++) {
+      int index=parentNode.getIndex(currentNode) + 1;
+      GuiPackage.getInstance().getTreeModel().insertNodeInto(draggedNodes[i],parentNode,index);
+    }
+  }
+  GuiPackage.getInstance().getMainFrame().repaint();
+}

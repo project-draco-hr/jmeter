@@ -1,0 +1,9 @@
+{
+  if (!getPropertyAsBoolean(USER_DEFINED)) {
+    ldap.createTest(getBasicAttributes(),getPropertyAsString(ADD));
+    setProperty(new StringProperty(DELETE,getPropertyAsString(ADD)));
+  }
+  res.sampleStart();
+  ldap.deleteTest(getPropertyAsString(DELETE));
+  res.sampleEnd();
+}

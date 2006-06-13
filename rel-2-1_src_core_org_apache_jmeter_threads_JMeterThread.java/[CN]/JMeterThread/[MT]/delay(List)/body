@@ -1,0 +1,17 @@
+{
+  long sum=0;
+  Iterator iter=timers.iterator();
+  while (iter.hasNext()) {
+    Timer timer=(Timer)iter.next();
+    TestBeanHelper.prepare((TestElement)timer);
+    sum+=timer.delay();
+  }
+  if (sum > 0) {
+    try {
+      Thread.sleep(sum);
+    }
+ catch (    InterruptedException e) {
+      log.error("",e);
+    }
+  }
+}

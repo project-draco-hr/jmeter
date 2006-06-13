@@ -1,0 +1,9 @@
+{
+  Authorization auth=new Authorization(url,user,pass);
+  if (index >= 0) {
+    getAuthObjects().set(index,new TestElementProperty(auth.getName(),auth));
+  }
+ else {
+    getAuthObjects().addItem(auth);
+  }
+}

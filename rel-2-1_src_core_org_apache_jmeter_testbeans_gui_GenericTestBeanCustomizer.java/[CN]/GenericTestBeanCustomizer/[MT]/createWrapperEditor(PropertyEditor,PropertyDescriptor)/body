@@ -1,0 +1,29 @@
+{
+  String[] editorTags=typeEditor.getTags();
+  String[] additionalTags=(String[])descriptor.getValue(TAGS);
+  String[] tags=null;
+  if (editorTags == null)   tags=additionalTags;
+ else   if (additionalTags == null)   tags=editorTags;
+ else {
+    tags=new String[editorTags.length + additionalTags.length];
+    int j=0;
+    for (int i=0; i < editorTags.length; i++)     tags[j++]=editorTags[i];
+    for (int i=0; i < additionalTags.length; i++)     tags[j++]=additionalTags[i];
+  }
+  boolean notNull=Boolean.TRUE.equals(descriptor.getValue(NOT_UNDEFINED));
+  boolean notExpression=Boolean.TRUE.equals(descriptor.getValue(NOT_EXPRESSION));
+  boolean notOther=Boolean.TRUE.equals(descriptor.getValue(NOT_OTHER));
+  PropertyEditor guiEditor;
+  if (notNull && tags == null) {
+    guiEditor=new FieldStringEditor();
+  }
+ else {
+    ComboStringEditor e=new ComboStringEditor();
+    e.setNoUndefined(notNull);
+    e.setNoEdit(notExpression && notOther);
+    e.setTags(tags);
+    guiEditor=e;
+  }
+  WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!notNull,!notExpression,!notOther,descriptor.getValue(DEFAULT));
+  return wrapper;
+}

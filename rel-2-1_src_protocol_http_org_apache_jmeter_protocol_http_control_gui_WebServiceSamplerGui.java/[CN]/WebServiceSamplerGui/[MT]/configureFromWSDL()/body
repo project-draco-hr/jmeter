@@ -1,0 +1,16 @@
+{
+  if (HELPER != null) {
+    if (HELPER.getBinding() != null) {
+      this.protocol.setText(HELPER.getProtocol());
+      this.domain.setText(HELPER.getBindingHost());
+      if (HELPER.getBindingPort() > 0) {
+        this.port.setText(String.valueOf(HELPER.getBindingPort()));
+      }
+ else {
+        this.port.setText("80");
+      }
+      this.path.setText(HELPER.getBindingPath());
+    }
+    this.soapAction.setText(HELPER.getSoapAction(this.wsdlMethods.getText()));
+  }
+}

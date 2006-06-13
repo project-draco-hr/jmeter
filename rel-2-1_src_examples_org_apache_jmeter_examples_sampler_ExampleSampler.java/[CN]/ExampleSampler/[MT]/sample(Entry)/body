@@ -1,0 +1,26 @@
+{
+  trace("sample()");
+  SampleResult res=new SampleResult();
+  boolean isOK=false;
+  String data=getData();
+  String response=null;
+  res.setSampleLabel(getTitle());
+  res.sampleStart();
+  try {
+    response=Thread.currentThread().getName();
+    res.setSamplerData(data);
+    res.setResponseData(response.getBytes());
+    res.setDataType(SampleResult.TEXT);
+    res.setResponseCodeOK();
+    res.setResponseMessage("OK");
+    isOK=true;
+  }
+ catch (  Exception ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+  res.sampleEnd();
+  res.setSuccessful(isOK);
+  return res;
+}

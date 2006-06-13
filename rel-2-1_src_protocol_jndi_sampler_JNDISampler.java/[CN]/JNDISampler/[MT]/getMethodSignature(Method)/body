@@ -1,0 +1,19 @@
+{
+  log.debug("Start : getMethodSignature1");
+  StringBuffer strbuff=new StringBuffer();
+  Class[] parameterTypes=method.getParameterTypes();
+  strbuff.append(method.getName());
+  strbuff.append("(");
+  if (parameterTypes.length > 0) {
+    for (int j=0; j < (parameterTypes.length - 1); j++) {
+      strbuff.append(parameterTypes[j].toString());
+      strbuff.append(", ");
+    }
+    strbuff.append(parameterTypes[parameterTypes.length - 1]);
+  }
+  strbuff.append(")");
+  String returnVal=strbuff.toString();
+  log.debug("getMethodSignature1 : method signature - " + returnVal);
+  log.debug("End : getMethodSignature1");
+  return returnVal;
+}

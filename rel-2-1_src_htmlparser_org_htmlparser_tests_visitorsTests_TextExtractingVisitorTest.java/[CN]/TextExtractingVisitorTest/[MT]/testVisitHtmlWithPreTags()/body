@@ -1,0 +1,6 @@
+{
+  createParser("Some text with &nbsp;<pre>this &nbsp; should be preserved</pre>");
+  TextExtractingVisitor visitor=new TextExtractingVisitor();
+  parser.visitAllNodesWith(visitor);
+  assertStringEquals("extracted text","Some text with  this &nbsp; should be preserved",visitor.getExtractedText());
+}

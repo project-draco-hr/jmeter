@@ -1,0 +1,9 @@
+{
+  if (getLogger().isDebugEnabled()) {
+    Iterator argsIt=context.getParameterNamesIterator();
+    while (argsIt.hasNext()) {
+      String name=(String)argsIt.next();
+      getLogger().debug(name + "=" + context.getParameter(name));
+    }
+  }
+}

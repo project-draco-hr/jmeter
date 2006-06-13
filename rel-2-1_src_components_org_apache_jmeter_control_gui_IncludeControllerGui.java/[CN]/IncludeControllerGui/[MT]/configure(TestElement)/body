@@ -1,0 +1,5 @@
+{
+  super.configure(el);
+  IncludeController controller=(IncludeController)el;
+  this.includePanel.setFilename(controller.getIncludePath());
+}

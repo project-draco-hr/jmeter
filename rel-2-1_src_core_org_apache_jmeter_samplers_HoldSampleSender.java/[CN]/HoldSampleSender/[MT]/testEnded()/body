@@ -1,0 +1,17 @@
+{
+  log.info("Test ended()");
+  try {
+synchronized (sampleStore) {
+      Iterator i=sampleStore.iterator();
+      while (i.hasNext()) {
+        SampleEvent se=(SampleEvent)i.next();
+        listener.sampleOccurred(se);
+      }
+    }
+    listener.testEnded();
+    sampleStore=null;
+  }
+ catch (  Throwable ex) {
+    log.warn("testEnded()",ex);
+  }
+}

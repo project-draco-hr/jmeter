@@ -1,0 +1,11 @@
+{
+  String tn=getThreadName();
+  if (tn.length() == 0)   tn=Thread.currentThread().getName();
+  subResult.setThreadName(tn);
+  if (subResults == null) {
+    subResults=new ArrayList();
+  }
+  subResults.add(subResult);
+  setElapsed(getTime() + subResult.getTime());
+  subResult.setParent(this);
+}

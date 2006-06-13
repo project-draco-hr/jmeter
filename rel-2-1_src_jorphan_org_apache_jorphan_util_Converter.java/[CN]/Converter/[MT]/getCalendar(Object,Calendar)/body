@@ -1,0 +1,40 @@
+{
+  Calendar cal=new GregorianCalendar();
+  if (date != null && date instanceof java.util.Date) {
+    cal.setTime((java.util.Date)date);
+    return cal;
+  }
+ else   if (date != null) {
+    DateFormat formatter=DateFormat.getDateInstance(DateFormat.SHORT);
+    java.util.Date d=null;
+    try {
+      d=formatter.parse(date.toString());
+    }
+ catch (    ParseException e) {
+      formatter=DateFormat.getDateInstance(DateFormat.MEDIUM);
+      try {
+        d=formatter.parse((String)date);
+      }
+ catch (      ParseException e1) {
+        formatter=DateFormat.getDateInstance(DateFormat.LONG);
+        try {
+          d=formatter.parse((String)date);
+        }
+ catch (        ParseException e2) {
+          formatter=DateFormat.getDateInstance(DateFormat.FULL);
+          try {
+            d=formatter.parse((String)date);
+          }
+ catch (          ParseException e3) {
+            return defaultValue;
+          }
+        }
+      }
+    }
+    cal.setTime(d);
+  }
+ else {
+    cal=defaultValue;
+  }
+  return cal;
+}

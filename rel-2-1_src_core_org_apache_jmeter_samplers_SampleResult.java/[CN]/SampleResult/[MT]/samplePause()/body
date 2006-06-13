@@ -1,0 +1,6 @@
+{
+  if (pauseTime != 0) {
+    log.error("samplePause called twice",new Throwable("Invalid call sequence"));
+  }
+  pauseTime=System.currentTimeMillis();
+}

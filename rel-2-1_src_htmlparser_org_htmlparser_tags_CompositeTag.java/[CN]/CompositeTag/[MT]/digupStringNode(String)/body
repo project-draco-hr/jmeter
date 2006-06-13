@@ -1,0 +1,22 @@
+{
+  NodeList nodeList=searchFor(searchText);
+  NodeList stringNodes=new NodeList();
+  for (int i=0; i < nodeList.size(); i++) {
+    Node node=nodeList.elementAt(i);
+    if (node instanceof StringNode) {
+      stringNodes.add(node);
+    }
+ else {
+      if (node instanceof CompositeTag) {
+        CompositeTag ctag=(CompositeTag)node;
+        StringNode[] nodes=ctag.digupStringNode(searchText);
+        for (int j=0; j < nodes.length; j++)         stringNodes.add(nodes[j]);
+      }
+    }
+  }
+  StringNode[] stringNode=new StringNode[stringNodes.size()];
+  for (int i=0; i < stringNode.length; i++) {
+    stringNode[i]=(StringNode)stringNodes.elementAt(i);
+  }
+  return stringNode;
+}

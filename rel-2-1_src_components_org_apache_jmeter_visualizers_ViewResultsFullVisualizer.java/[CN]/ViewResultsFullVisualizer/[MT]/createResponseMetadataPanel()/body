@@ -1,0 +1,15 @@
+{
+  stats=new JTextPane();
+  stats.setEditable(false);
+  stats.setBackground(getBackground());
+  StyledDocument doc=(StyledDocument)stats.getDocument();
+  Style style=doc.addStyle(STYLE_REDIRECT,null);
+  StyleConstants.setForeground(style,REDIRECT_COLOR);
+  style=doc.addStyle(STYLE_CLIENT_ERROR,null);
+  StyleConstants.setForeground(style,CLIENT_ERROR_COLOR);
+  style=doc.addStyle(STYLE_SERVER_ERROR,null);
+  StyleConstants.setForeground(style,SERVER_ERROR_COLOR);
+  JScrollPane pane=makeScrollPane(stats);
+  pane.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+  return pane;
+}

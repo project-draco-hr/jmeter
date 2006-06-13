@@ -1,0 +1,7 @@
+{
+  if (getLinks()) {
+    mBuffer.append("<");
+    mBuffer.append(link.getLink());
+    mBuffer.append(">");
+  }
+}

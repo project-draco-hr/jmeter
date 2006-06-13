@@ -1,0 +1,22 @@
+{
+  SampleResult result=e.getResult();
+  if (!isErrorLogging() || !result.isSuccessful()) {
+    sendToVisualizer(result);
+    SampleSaveConfiguration config=getSaveConfig();
+    result.setSaveConfig(config);
+    try {
+      if (!config.saveAsXml()) {
+        if (out != null) {
+          String savee=OldSaveService.resultToDelimitedString(result);
+          out.println(savee);
+        }
+      }
+ else {
+        recordResult(result);
+      }
+    }
+ catch (    Exception err) {
+      log.error("",err);
+    }
+  }
+}

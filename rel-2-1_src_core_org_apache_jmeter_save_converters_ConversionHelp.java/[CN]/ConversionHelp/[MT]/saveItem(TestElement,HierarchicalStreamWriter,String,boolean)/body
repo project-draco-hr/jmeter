@@ -1,0 +1,7 @@
+{
+  String item=el.getPropertyAsString(prop);
+  if (item.length() > 0) {
+    if (encode)     item=ConversionHelp.encode(item);
+    writer.addAttribute((String)propertyToAttribute.get(prop),item);
+  }
+}

@@ -1,0 +1,12 @@
+{
+  log.debug("Start : getParser");
+  Tidy tidy=new Tidy();
+  tidy.setCharEncoding(org.w3c.tidy.Configuration.UTF8);
+  tidy.setQuiet(true);
+  tidy.setShowWarnings(false);
+  if (log.isDebugEnabled()) {
+    log.debug("getParser : tidy parser created - " + tidy);
+  }
+  log.debug("End   : getParser");
+  return tidy;
+}

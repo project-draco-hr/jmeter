@@ -1,0 +1,20 @@
+{
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel mainPanel=new JPanel(new BorderLayout());
+  Box myBox=Box.createVerticalBox();
+  myBox.add(createPortPanel());
+  myBox.add(Box.createVerticalStrut(5));
+  myBox.add(createTargetPanel());
+  myBox.add(Box.createVerticalStrut(5));
+  myBox.add(createGroupingPanel());
+  myBox.add(Box.createVerticalStrut(5));
+  mainPanel.add(myBox,BorderLayout.NORTH);
+  Box includeExcludePanel=Box.createVerticalBox();
+  includeExcludePanel.add(createIncludePanel());
+  includeExcludePanel.add(createExcludePanel());
+  mainPanel.add(includeExcludePanel,BorderLayout.CENTER);
+  mainPanel.add(createControls(),BorderLayout.SOUTH);
+  add(mainPanel,BorderLayout.CENTER);
+}

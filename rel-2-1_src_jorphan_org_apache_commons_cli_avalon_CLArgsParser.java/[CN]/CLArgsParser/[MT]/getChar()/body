@@ -1,0 +1,10 @@
+{
+  if (INVALID != m_lastChar) {
+    final char result=(char)m_lastChar;
+    m_lastChar=INVALID;
+    return result;
+  }
+ else {
+    return readChar();
+  }
+}

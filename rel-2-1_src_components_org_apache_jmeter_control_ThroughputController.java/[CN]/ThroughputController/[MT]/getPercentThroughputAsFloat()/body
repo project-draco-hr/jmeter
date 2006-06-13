@@ -1,0 +1,15 @@
+{
+  JMeterProperty prop=getProperty(PERCENTTHROUGHPUT);
+  float retVal=100;
+  if (prop instanceof FloatProperty) {
+    retVal=(((FloatProperty)prop).getFloatValue());
+  }
+ else {
+    try {
+      retVal=Float.parseFloat(prop.getStringValue());
+    }
+ catch (    NumberFormatException e) {
+    }
+  }
+  return retVal;
+}

@@ -1,0 +1,8 @@
+{
+  if (isAlwaysEncoded()) {
+    return cache.getEncoded(getValue());
+  }
+ else {
+    return getValue();
+  }
+}

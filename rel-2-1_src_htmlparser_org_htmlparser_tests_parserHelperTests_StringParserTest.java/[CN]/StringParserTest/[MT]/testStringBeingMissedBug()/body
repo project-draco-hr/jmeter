@@ -1,0 +1,13 @@
+{
+  createParser("Before Comment <!-- Comment --> After Comment");
+  parseAndAssertNodeCount(3);
+  assertTrue("First node should be HTMLStringNode",node[0] instanceof StringNode);
+  assertTrue("Second node should be HTMLRemarkNode",node[1] instanceof RemarkNode);
+  assertTrue("Third node should be HTMLStringNode",node[2] instanceof StringNode);
+  StringNode stringNode=(StringNode)node[0];
+  assertEquals("First String node contents","Before Comment ",stringNode.getText());
+  StringNode stringNode2=(StringNode)node[2];
+  assertEquals("Second String node contents"," After Comment",stringNode2.getText());
+  RemarkNode remarkNode=(RemarkNode)node[1];
+  assertEquals("Remark Node contents"," Comment ",remarkNode.getText());
+}

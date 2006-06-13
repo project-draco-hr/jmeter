@@ -1,0 +1,13 @@
+{
+  super.configure(el);
+  if (el instanceof Arguments) {
+    tableModel.clearData();
+    HTTPArgument.convertArgumentsToHTTP((Arguments)el);
+    PropertyIterator iter=((Arguments)el).getArguments().iterator();
+    while (iter.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)iter.next().getObjectValue();
+      tableModel.addRow(arg);
+    }
+  }
+  checkDeleteStatus();
+}

@@ -1,0 +1,18 @@
+{
+  setName(el.getPropertyAsString(TestElement.NAME));
+  argsPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
+  domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
+  String portString=el.getPropertyAsString(HTTPSamplerBase.PORT);
+  if (portString.equals(HTTPSamplerBase.UNSPECIFIED_PORT_AS_STRING)) {
+    port.setText("");
+  }
+ else {
+    port.setText(portString);
+  }
+  protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
+  method.setText(el.getPropertyAsString(HTTPSamplerBase.METHOD));
+  path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
+  followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
+  autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
+  useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
+}

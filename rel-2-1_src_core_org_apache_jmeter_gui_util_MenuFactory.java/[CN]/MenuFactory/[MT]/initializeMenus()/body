@@ -1,0 +1,91 @@
+{
+  try {
+    List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
+    timers=new LinkedList();
+    controllers=new LinkedList();
+    samplers=new LinkedList();
+    configElements=new LinkedList();
+    assertions=new LinkedList();
+    listeners=new LinkedList();
+    postProcessors=new LinkedList();
+    preProcessors=new LinkedList();
+    nonTestElements=new LinkedList();
+    menuMap.put(TIMERS,timers);
+    menuMap.put(ASSERTIONS,assertions);
+    menuMap.put(CONFIG_ELEMENTS,configElements);
+    menuMap.put(CONTROLLERS,controllers);
+    menuMap.put(LISTENERS,listeners);
+    menuMap.put(NON_TEST_ELEMENTS,nonTestElements);
+    menuMap.put(SAMPLERS,samplers);
+    menuMap.put(POST_PROCESSORS,postProcessors);
+    menuMap.put(PRE_PROCESSORS,preProcessors);
+    Collections.sort(guiClasses);
+    Iterator iter=guiClasses.iterator();
+    while (iter.hasNext()) {
+      String name=(String)iter.next();
+      if (name.endsWith("JMeterTreeNode") || name.endsWith("TestBeanGUI")) {
+        continue;
+      }
+      JMeterGUIComponent item;
+      try {
+        Class c=Class.forName(name);
+        if (TestBean.class.isAssignableFrom(c)) {
+          item=new TestBeanGUI(c);
+        }
+ else {
+          item=(JMeterGUIComponent)c.newInstance();
+        }
+      }
+ catch (      NoClassDefFoundError e) {
+        log.warn("Missing jar? Could not create " + name + ". "+ e);
+        continue;
+      }
+catch (      Throwable e) {
+        log.warn("Could not instantiate " + name,e);
+        continue;
+      }
+      if (elementsToSkip.contains(name) || elementsToSkip.contains(item.getStaticLabel())) {
+        log.info("Skipping " + name);
+        continue;
+      }
+ else {
+        elementsToSkip.add(name);
+      }
+      Collection categories=item.getMenuCategories();
+      if (categories == null) {
+        log.debug(name + " participates in no menus.");
+        continue;
+      }
+      if (categories.contains(TIMERS)) {
+        timers.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(POST_PROCESSORS)) {
+        postProcessors.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(PRE_PROCESSORS)) {
+        preProcessors.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(CONTROLLERS)) {
+        controllers.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(SAMPLERS)) {
+        samplers.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(NON_TEST_ELEMENTS)) {
+        nonTestElements.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(LISTENERS)) {
+        listeners.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(CONFIG_ELEMENTS)) {
+        configElements.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+      if (categories.contains(ASSERTIONS)) {
+        assertions.add(new MenuInfo(item.getStaticLabel(),name));
+      }
+    }
+  }
+ catch (  Exception e) {
+    log.error("",e);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (o instanceof CollectionProperty) {
+    if (value != null) {
+      return value.equals(((JMeterProperty)o).getObjectValue());
+    }
+  }
+  return false;
+}

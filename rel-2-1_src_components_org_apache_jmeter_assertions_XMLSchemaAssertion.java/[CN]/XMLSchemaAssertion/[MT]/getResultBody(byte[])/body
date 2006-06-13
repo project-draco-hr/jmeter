@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < (resultData.length - 1); i++) {
+    if (resultData[i] == '\n' && resultData[i + 1] == '\n') {
+      return JOrphanUtils.getByteArraySlice(resultData,(i + 2),resultData.length - 1);
+    }
+  }
+  return resultData;
+}

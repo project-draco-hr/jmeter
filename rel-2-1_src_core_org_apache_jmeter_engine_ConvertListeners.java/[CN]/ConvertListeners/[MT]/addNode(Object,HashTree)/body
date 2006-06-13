@@ -1,0 +1,32 @@
+{
+  if (node instanceof ThreadGroup) {
+    log.info("num threads = " + ((ThreadGroup)node).getNumThreads());
+  }
+  Iterator iter=subTree.list().iterator();
+  while (iter.hasNext()) {
+    Object item=iter.next();
+    if (item instanceof ThreadGroup) {
+      log.info("num threads = " + ((ThreadGroup)item).getNumThreads());
+    }
+    if (item instanceof Remoteable && (item instanceof TestListener || item instanceof SampleListener)) {
+      try {
+        RemoteSampleListener rtl=new RemoteSampleListenerImpl(item);
+        if (item instanceof TestListener && item instanceof SampleListener) {
+          RemoteListenerWrapper wrap=new RemoteListenerWrapper(rtl);
+          subTree.replace(item,wrap);
+        }
+ else         if (item instanceof TestListener) {
+          RemoteTestListenerWrapper wrap=new RemoteTestListenerWrapper(rtl);
+          subTree.replace(item,wrap);
+        }
+ else {
+          RemoteSampleListenerWrapper wrap=new RemoteSampleListenerWrapper(rtl);
+          subTree.replace(item,wrap);
+        }
+      }
+ catch (      RemoteException e) {
+        log.error("",e);
+      }
+    }
+  }
+}

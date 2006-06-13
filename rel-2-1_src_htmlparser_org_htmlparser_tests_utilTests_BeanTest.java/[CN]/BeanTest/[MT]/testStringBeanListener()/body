@@ -1,0 +1,18 @@
+{
+  final StringBean sb;
+  final Boolean hit[]=new Boolean[1];
+  sb=new StringBean();
+  hit[0]=Boolean.FALSE;
+  sb.addPropertyChangeListener(new PropertyChangeListener(){
+    public void propertyChange(    PropertyChangeEvent event){
+      if (event.getSource().equals(sb))       if (event.getPropertyName().equals(StringBean.PROP_STRINGS_PROPERTY))       hit[0]=Boolean.TRUE;
+    }
+  }
+);
+  hit[0]=Boolean.FALSE;
+  sb.setURL("http://htmlparser.sourceforge.net/test/example.html");
+  assertTrue("Strings property change not fired for URL change",hit[0].booleanValue());
+  hit[0]=Boolean.FALSE;
+  sb.setLinks(true);
+  assertTrue("Strings property change not fired for links change",hit[0].booleanValue());
+}

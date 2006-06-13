@@ -1,0 +1,14 @@
+{
+  String columnName=(String)header.get(column);
+  try {
+    if (currentPos < size) {
+      return ((List)data.get(columnName)).get(currentPos);
+    }
+ else {
+      return null;
+    }
+  }
+ catch (  Exception e) {
+    return null;
+  }
+}

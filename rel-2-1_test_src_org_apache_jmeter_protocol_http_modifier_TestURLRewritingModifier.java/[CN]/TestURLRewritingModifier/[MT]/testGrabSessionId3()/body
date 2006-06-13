@@ -1,0 +1,12 @@
+{
+  String html="href='index.html?session_id=jfdkjdkfjddkfdfjkdjfdf'";
+  response=new SampleResult();
+  response.setResponseData(html.getBytes());
+  mod.setArgumentName("session_id");
+  HTTPSamplerBase sampler=createSampler();
+  context.setCurrentSampler(sampler);
+  context.setPreviousResult(response);
+  mod.process();
+  Arguments args=sampler.getArguments();
+  assertEquals("jfdkjdkfjddkfdfjkdjfdf",((Argument)args.getArguments().get(0).getObjectValue()).getValue());
+}

@@ -1,0 +1,11 @@
+{
+  includeModel=new PowerTableModel(new String[]{INCLUDE_COL},new Class[]{String.class});
+  includeTable=new JTable(includeModel);
+  includeTable.setPreferredScrollableViewportSize(new Dimension(100,50));
+  includeTable.addFocusListener(this);
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("patterns_to_include")));
+  panel.add(new JScrollPane(includeTable),BorderLayout.CENTER);
+  panel.add(createTableButtonPanel(ADD_INCLUDE,DELETE_INCLUDE),BorderLayout.SOUTH);
+  return panel;
+}

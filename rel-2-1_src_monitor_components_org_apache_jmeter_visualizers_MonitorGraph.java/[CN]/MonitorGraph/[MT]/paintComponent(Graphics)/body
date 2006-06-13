@@ -1,0 +1,27 @@
+{
+  super.paintComponent(g);
+  if (this.CURRENT != null) {
+synchronized (MODEL) {
+      List samples=MODEL.getAllSamples(this.CURRENT.getURL());
+      int size=samples.size();
+synchronized (samples) {
+        Iterator e;
+        if (size > getWidth()) {
+          e=samples.listIterator(size - getWidth());
+        }
+ else {
+          e=samples.iterator();
+        }
+        MonitorModel last=null;
+        for (int i=0; e.hasNext(); i++) {
+          MonitorModel s=(MonitorModel)e.next();
+          if (last == null) {
+            last=s;
+          }
+          drawSample(i,s,g,last);
+          last=s;
+        }
+      }
+    }
+  }
+}

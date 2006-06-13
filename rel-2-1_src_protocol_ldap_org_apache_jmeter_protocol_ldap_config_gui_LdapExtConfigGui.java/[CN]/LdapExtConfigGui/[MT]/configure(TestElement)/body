@@ -1,0 +1,64 @@
+{
+  super.configure(element);
+  servername.setText(element.getPropertyAsString(LDAPExtSampler.SERVERNAME));
+  port.setText(element.getPropertyAsString(LDAPExtSampler.PORT));
+  rootdn.setText(element.getPropertyAsString(LDAPExtSampler.ROOTDN));
+  scope.setText(element.getPropertyAsString(LDAPExtSampler.SCOPE));
+  countlim.setText(element.getPropertyAsString(LDAPExtSampler.COUNTLIM));
+  timelim.setText(element.getPropertyAsString(LDAPExtSampler.TIMELIM));
+  attribs.setText(element.getPropertyAsString(LDAPExtSampler.ATTRIBS));
+  retobj.setText(element.getPropertyAsString(LDAPExtSampler.RETOBJ));
+  deref.setText(element.getPropertyAsString(LDAPExtSampler.DEREF));
+  userpw.setText(element.getPropertyAsString(LDAPExtSampler.USERPW));
+  userdn.setText(element.getPropertyAsString(LDAPExtSampler.USERDN));
+  comparedn.setText(element.getPropertyAsString(LDAPExtSampler.COMPAREDN));
+  comparefilt.setText(element.getPropertyAsString(LDAPExtSampler.COMPAREFILT));
+  suserpw.setText(element.getPropertyAsString(LDAPExtSampler.SUSERPW));
+  suserdn.setText(element.getPropertyAsString(LDAPExtSampler.SUSERDN));
+  modddn.setText(element.getPropertyAsString(LDAPExtSampler.MODDDN));
+  newdn.setText(element.getPropertyAsString(LDAPExtSampler.NEWDN));
+  CardLayout cl=(CardLayout)(cards.getLayout());
+  if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("unbind")) {
+    unbind.setSelected(true);
+    cl.show(cards,"unbind");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("bind")) {
+    bind.setSelected(true);
+    cl.show(cards,"bind");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("sbind")) {
+    sbind.setSelected(true);
+    cl.show(cards,"sbind");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("compare")) {
+    compare.setSelected(true);
+    cl.show(cards,"compare");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("add")) {
+    addTest.setSelected(true);
+    add.setText(element.getPropertyAsString(LDAPExtSampler.BASE_ENTRY_DN));
+    tableAddPanel.configure((TestElement)element.getProperty(LDAPExtSampler.ARGUMENTS).getObjectValue());
+    cl.show(cards,"Add");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("modify")) {
+    modifyTest.setSelected(true);
+    modify.setText(element.getPropertyAsString(LDAPExtSampler.BASE_ENTRY_DN));
+    tableModifyPanel.configure((TestElement)element.getProperty(LDAPExtSampler.LDAPARGUMENTS).getObjectValue());
+    cl.show(cards,"Modify");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("delete")) {
+    deleteTest.setSelected(true);
+    delete.setText(element.getPropertyAsString(LDAPExtSampler.DELETE));
+    cl.show(cards,"Delete");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("rename")) {
+    rename.setSelected(true);
+    cl.show(cards,"rename");
+  }
+ else   if (element.getPropertyAsString(LDAPExtSampler.TEST).equals("search")) {
+    searchTest.setSelected(true);
+    searchbase.setText(element.getPropertyAsString(LDAPExtSampler.SEARCHBASE));
+    searchfilter.setText(element.getPropertyAsString(LDAPExtSampler.SEARCHFILTER));
+    cl.show(cards,"Search");
+  }
+}

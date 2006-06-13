@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("bsf_script_language"));
+  langField=new JTextField(10);
+  langField.setName(BSFSampler.LANGUAGE);
+  label.setLabelFor(langField);
+  JPanel langPanel=new JPanel(new BorderLayout(5,0));
+  langPanel.add(label,BorderLayout.WEST);
+  langPanel.add(langField,BorderLayout.CENTER);
+  return langPanel;
+}

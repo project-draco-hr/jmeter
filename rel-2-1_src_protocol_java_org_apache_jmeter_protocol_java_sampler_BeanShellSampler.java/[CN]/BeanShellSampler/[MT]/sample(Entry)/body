@@ -1,0 +1,64 @@
+{
+  SampleResult res=new SampleResult();
+  boolean isSuccessful=false;
+  res.setSampleLabel(getLabel());
+  res.sampleStart();
+  if (bshInterpreter == null) {
+    res.sampleEnd();
+    res.setResponseCode("503");
+    res.setResponseMessage("BeanShell Interpreter not found");
+    res.setSuccessful(false);
+    return res;
+  }
+  try {
+    String request=getScript();
+    String fileName=getFilename();
+    if (fileName.length() == 0) {
+      res.setSamplerData(request);
+    }
+ else {
+      res.setSamplerData(fileName);
+    }
+    bshInterpreter.set("Label",getLabel());
+    bshInterpreter.set("FileName",getFilename());
+    bshInterpreter.set("SampleResult",res);
+    bshInterpreter.set("Parameters",getParameters());
+    bshInterpreter.set("bsh.args",JOrphanUtils.split(getParameters()," "));
+    bshInterpreter.set("ResponseCode","200");
+    bshInterpreter.set("ResponseMessage","OK");
+    bshInterpreter.set("IsSuccess",true);
+    JMeterContext jmctx=JMeterContextService.getContext();
+    JMeterVariables vars=jmctx.getVariables();
+    bshInterpreter.set("ctx",jmctx);
+    bshInterpreter.set("vars",vars);
+    res.setDataType(SampleResult.TEXT);
+    Object bshOut;
+    if (fileName.length() == 0) {
+      bshOut=bshInterpreter.eval(request);
+    }
+ else {
+      bshOut=bshInterpreter.source(fileName);
+    }
+    if (bshOut != null) {
+      String out=bshOut.toString();
+      res.setResponseData(out.getBytes());
+    }
+    res.setResponseCode(bshInterpreter.get("ResponseCode").toString());
+    res.setResponseMessage(bshInterpreter.get("ResponseMessage").toString());
+    isSuccessful=Boolean.valueOf(bshInterpreter.get("IsSuccess").toString()).booleanValue();
+  }
+ catch (  NoClassDefFoundError ex) {
+    log.error("BeanShell Jar missing? " + ex.toString());
+    res.setResponseCode("501");
+    res.setResponseMessage(ex.toString());
+    res.setStopThread(true);
+  }
+catch (  Exception ex) {
+    log.warn(ex.toString());
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+  res.sampleEnd();
+  res.setSuccessful(isSuccessful);
+  return res;
+}

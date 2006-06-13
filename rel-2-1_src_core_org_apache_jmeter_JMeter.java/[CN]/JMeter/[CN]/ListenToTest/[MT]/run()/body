@@ -1,0 +1,10 @@
+{
+  println("Tidying up ...");
+  try {
+    Thread.sleep(5000);
+  }
+ catch (  InterruptedException e) {
+  }
+  println("... end of run");
+  System.exit(0);
+}

@@ -1,0 +1,7 @@
+{
+  log.debug("remove row: " + row);
+  if (model.size() > row) {
+    log.debug("Calling remove row on Data");
+    model.removeRow(row);
+  }
+}

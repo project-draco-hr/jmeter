@@ -1,0 +1,7 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append(Thread.currentThread().getName());
+  sb.append("@");
+  sb.append(Integer.toHexString(hashCode()));
+  return sb.toString();
+}

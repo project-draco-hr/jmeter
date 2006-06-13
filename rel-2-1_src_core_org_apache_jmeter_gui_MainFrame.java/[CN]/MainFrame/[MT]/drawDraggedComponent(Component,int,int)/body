@@ -1,0 +1,8 @@
+{
+  Dimension size=dragIcon.getPreferredSize();
+  treePanel.paintImmediately(previousDragXLocation,previousDragYLocation,size.width,size.height);
+  this.getLayeredPane().setLayer(dragIcon,400);
+  SwingUtilities.paintComponent(treePanel.getGraphics(),dragIcon,treePanel,x,y,size.width,size.height);
+  previousDragXLocation=x;
+  previousDragYLocation=y;
+}

@@ -1,0 +1,6 @@
+{
+  if (standalone) {
+    return super.getMenuCategories();
+  }
+  return null;
+}

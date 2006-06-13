@@ -1,0 +1,21 @@
+{
+  configureTestElement(el);
+  if (el instanceof ProxyControl) {
+    model=(ProxyControl)el;
+    model.setPort(portField.getText());
+    setIncludeListInProxyControl(model);
+    setExcludeListInProxyControl(model);
+    model.setCaptureHttpHeaders(httpHeaders.isSelected());
+    model.setGroupingMode(groupingMode.getSelectedIndex());
+    model.setAssertions(addAssertions.isSelected());
+    model.setUseKeepAlive(useKeepAlive.isSelected());
+    model.setRegexMatch(regexMatch.isSelected());
+    TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
+    if (nw == null) {
+      model.setTarget(null);
+    }
+ else {
+      model.setTarget(nw.getTreeNode());
+    }
+  }
+}

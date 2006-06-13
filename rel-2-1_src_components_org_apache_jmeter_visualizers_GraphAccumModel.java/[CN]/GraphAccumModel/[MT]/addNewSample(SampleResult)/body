@@ -1,0 +1,16 @@
+{
+  log.debug("Start : addNewSample1");
+  long totalTime=res.getTime();
+  if (log.isDebugEnabled()) {
+    log.debug("addNewSample1 : time - " + totalTime);
+    log.debug("addNewSample1 : max - " + max);
+  }
+  if (totalTime > max) {
+    bigChange=true;
+    max=totalTime;
+  }
+  current=res;
+  samples.add(res);
+  log.debug("End : addNewSample1");
+  fireDataChanged();
+}

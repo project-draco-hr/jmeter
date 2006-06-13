@@ -1,0 +1,12 @@
+{
+  final CLOptionDescriptor[] options=new CLOptionDescriptor[]{BLEE,TAINT,FILE};
+  final CLArgsParser parser=new CLArgsParser(new String[]{"-bT","-fa"},options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+  final List clOptions=parser.getArguments();
+  final int size=clOptions.size();
+  assertEquals(3,size);
+  assertEquals(BLEE_OPT,((CLOption)clOptions.get(0)).getDescriptor().getId());
+  assertEquals(TAINT_OPT,((CLOption)clOptions.get(1)).getDescriptor().getId());
+  assertEquals(FILE_OPT,((CLOption)clOptions.get(2)).getDescriptor().getId());
+  assertEquals("a",((CLOption)clOptions.get(2)).getArgument());
+}

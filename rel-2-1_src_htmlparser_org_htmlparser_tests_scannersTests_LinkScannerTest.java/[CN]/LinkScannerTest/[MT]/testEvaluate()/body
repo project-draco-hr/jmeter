@@ -1,0 +1,5 @@
+{
+  LinkScanner scanner=new LinkScanner("-l");
+  boolean retVal=scanner.evaluate("   a href ",null);
+  assertEquals("Evaluation of the Link tag",new Boolean(true),new Boolean(retVal));
+}

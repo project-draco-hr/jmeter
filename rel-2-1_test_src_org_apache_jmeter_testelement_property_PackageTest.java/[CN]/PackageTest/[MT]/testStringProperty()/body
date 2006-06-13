@@ -1,0 +1,13 @@
+{
+  StringProperty prop=new StringProperty("name","value");
+  prop.setRunningVersion(true);
+  prop.setObjectValue("new Value");
+  assertEquals("new Value",prop.getStringValue());
+  prop.recoverRunningVersion(null);
+  assertEquals("value",prop.getStringValue());
+  prop.setObjectValue("new Value");
+  prop.setObjectValue("2nd Value");
+  assertEquals("2nd Value",prop.getStringValue());
+  prop.recoverRunningVersion(null);
+  assertEquals("value",prop.getStringValue());
+}

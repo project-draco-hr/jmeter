@@ -1,0 +1,8 @@
+{
+  boolean oldValue=mReplaceSpace;
+  if (oldValue != replace_space) {
+    mReplaceSpace=replace_space;
+    mPropertySupport.firePropertyChange(PROP_REPLACE_SPACE_PROPERTY,oldValue,replace_space);
+    resetStrings();
+  }
+}

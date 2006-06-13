@@ -1,0 +1,8 @@
+{
+  if (v instanceof Boolean) {
+    value=((Boolean)v).booleanValue();
+  }
+ else {
+    value=Boolean.valueOf(v.toString()).booleanValue();
+  }
+}

@@ -1,0 +1,9 @@
+{
+  log.info("Test Ended on " + host);
+  try {
+    listener.testEnded(host);
+  }
+ catch (  Throwable ex) {
+    log.error("testEnded(host)",ex);
+  }
+}

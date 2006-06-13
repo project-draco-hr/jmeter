@@ -1,0 +1,7 @@
+{
+  tableModel.clearData();
+  PropertyIterator iter=manager.getCookies().iterator();
+  while (iter.hasNext()) {
+    addCookieToTable((Cookie)iter.next().getObjectValue());
+  }
+}

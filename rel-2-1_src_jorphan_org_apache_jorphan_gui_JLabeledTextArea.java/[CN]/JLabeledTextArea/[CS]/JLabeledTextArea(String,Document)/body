@@ -1,0 +1,8 @@
+{
+  super();
+  mLabel=new JLabel(pLabel);
+  if (docModel != null) {
+    setDocumentModel(docModel);
+  }
+  init();
+}

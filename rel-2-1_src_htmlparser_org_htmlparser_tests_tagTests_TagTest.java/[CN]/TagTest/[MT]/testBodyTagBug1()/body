@@ -1,0 +1,7 @@
+{
+  createParser("<BODY aLink=#ff0000 bgColor=#ffffff link=#0000cc onload=setfocus() text=#000000\nvLink=#551a8b>");
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a Tag",node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertEquals("Contents of the tag","BODY aLink=#ff0000 bgColor=#ffffff link=#0000cc onload=setfocus() text=#000000\r\nvLink=#551a8b",tag.getText());
+}

@@ -1,0 +1,69 @@
+{
+  log.debug("sampling jdbc");
+  SampleResult res=new SampleResult();
+  res.setSampleLabel(getName());
+  res.setSamplerData(toString());
+  res.setDataType(SampleResult.TEXT);
+  res.setDataEncoding(System.getProperty("file.encoding"));
+  res.setSuccessful(true);
+  res.sampleStart();
+  DataSourceComponent pool=(DataSourceComponent)getThreadContext().getVariables().getObject(getDataSource());
+  log.debug("DataSourceComponent: " + pool);
+  Connection conn=null;
+  Statement stmt=null;
+  CallableStatement cs=null;
+  try {
+    if (pool == null)     throw new SQLException("No pool created");
+    conn=pool.getConnection();
+    stmt=conn.createStatement();
+    String _queryType=getQueryType();
+    if (SELECT.equals(_queryType)) {
+      ResultSet rs=null;
+      try {
+        rs=stmt.executeQuery(getQuery());
+        Data data=getDataFromResultSet(rs);
+        res.setResponseData(data.toString().getBytes());
+      }
+  finally {
+        close(rs);
+      }
+    }
+ else     if (CALLABLE.equals(_queryType)) {
+      cs=conn.prepareCall(getQuery());
+      boolean hasResultSet=cs.execute();
+      if (hasResultSet) {
+        ResultSet rs=cs.getResultSet();
+        Data data=getDataFromResultSet(rs);
+        res.setResponseData(data.toString().getBytes());
+      }
+ else {
+        int updateCount=cs.getUpdateCount();
+        String results=updateCount + " updates";
+        res.setResponseData(results.getBytes());
+      }
+    }
+ else     if (UPDATE.equals(_queryType)) {
+      stmt.execute(getQuery());
+      int updateCount=stmt.getUpdateCount();
+      String results=updateCount + " updates";
+      res.setResponseData(results.getBytes());
+    }
+ else {
+      String results="Unexpected query type: " + _queryType;
+      res.setResponseMessage(results);
+      res.setSuccessful(false);
+    }
+  }
+ catch (  SQLException ex) {
+    log.error("Error in JDBC sampling",ex);
+    res.setResponseMessage(ex.toString());
+    res.setSuccessful(false);
+  }
+ finally {
+    close(cs);
+    close(stmt);
+    close(conn);
+  }
+  res.sampleEnd();
+  return res;
+}

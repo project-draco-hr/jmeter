@@ -1,0 +1,16 @@
+{
+  int len=body.available();
+  if (len < 0) {
+    len=0;
+  }
+ else   if (len > MAX_SEND_SIZE) {
+    len=MAX_SEND_SIZE;
+  }
+  outpos=4;
+  int nr=0;
+  if (len > 0) {
+    nr=body.read(outbuf,outpos + 2,len);
+  }
+  setInt(nr);
+  outpos+=nr;
+}

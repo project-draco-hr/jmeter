@@ -1,0 +1,10 @@
+{
+  StringBuffer sb1=new StringBuffer();
+  sb1.append("<script type=\"text/javascript\">\r\n" + "<A HREF=\"http://thisisabadlink.com\">\r\n" + "</script>\r\n");
+  String testHTML1=new String(sb1.toString());
+  createParser(testHTML1,"http://www.hardwareextreme.com/");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a script tag",node[0] instanceof ScriptTag);
+  ScriptTag scriptTag=(ScriptTag)node[0];
+}

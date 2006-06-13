@@ -1,0 +1,6 @@
+{
+  sampler.clear();
+  ((LDAPSampler)sampler).addTestElement(ldapDefaultPanel.createTestElement());
+  ((LDAPSampler)sampler).addTestElement(loginPanel.createTestElement());
+  this.configureTestElement(sampler);
+}

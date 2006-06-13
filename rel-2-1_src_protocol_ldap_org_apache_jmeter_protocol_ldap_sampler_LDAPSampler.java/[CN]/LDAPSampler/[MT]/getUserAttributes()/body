@@ -1,0 +1,17 @@
+{
+  BasicAttribute basicattribute=new BasicAttribute("objectclass");
+  basicattribute.add("top");
+  basicattribute.add("person");
+  basicattribute.add("organizationalPerson");
+  basicattribute.add("inetOrgPerson");
+  BasicAttributes attrs=new BasicAttributes(true);
+  attrs.put(basicattribute);
+  BasicAttribute attr;
+  PropertyIterator iter=getArguments().iterator();
+  while (iter.hasNext()) {
+    Argument item=(Argument)iter.next().getObjectValue();
+    attr=getBasicAttribute(item.getName(),item.getValue());
+    attrs.put(attr);
+  }
+  return attrs;
+}

@@ -1,0 +1,16 @@
+{
+  ConfigTestElement element=new ConfigTestElement();
+  this.configureTestElement(element);
+  Arguments args=(Arguments)argsPanel.createTestElement();
+  HTTPArgument.convertArgumentsToHTTP(args);
+  element.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
+  element.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
+  element.setProperty(HTTPSamplerBase.PORT,port.getText());
+  element.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());
+  element.setProperty(HTTPSamplerBase.METHOD,method.getText());
+  element.setProperty(HTTPSamplerBase.PATH,path.getText());
+  element.setProperty(new BooleanProperty(HTTPSamplerBase.FOLLOW_REDIRECTS,followRedirects.isSelected()));
+  element.setProperty(new BooleanProperty(HTTPSamplerBase.AUTO_REDIRECTS,autoRedirects.isSelected()));
+  element.setProperty(new BooleanProperty(HTTPSamplerBase.USE_KEEPALIVE,useKeepAlive.isSelected()));
+  return element;
+}

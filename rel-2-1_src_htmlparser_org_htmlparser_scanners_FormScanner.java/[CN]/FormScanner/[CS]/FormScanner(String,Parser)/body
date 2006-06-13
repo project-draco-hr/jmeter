@@ -1,0 +1,7 @@
+{
+  super(filter,MATCH_ID,formTagEnders,false);
+  parser.addScanner(new InputTagScanner("-i"));
+  parser.addScanner(new TextareaTagScanner("-t"));
+  parser.addScanner(new SelectTagScanner("-select"));
+  parser.addScanner(new OptionTagScanner("-option"));
+}

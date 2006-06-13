@@ -1,0 +1,11 @@
+{
+synchronized (out) {
+    if (throwable != null) {
+      out.println(getClass().getName() + ": " + getMessage()+ ";");
+      throwable.printStackTrace(out);
+    }
+ else {
+      super.printStackTrace(out);
+    }
+  }
+}

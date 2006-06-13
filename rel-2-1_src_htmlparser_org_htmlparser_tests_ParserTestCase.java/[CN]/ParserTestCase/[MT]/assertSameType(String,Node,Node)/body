@@ -1,0 +1,6 @@
+{
+  String expectedNodeName=expected.getClass().getName();
+  String actualNodeName=actual.getClass().getName();
+  displayMessage="The types did not match: Expected " + expectedNodeName + " \nbut was "+ actualNodeName+ "\nEXPECTED XML:"+ expected.toHtml()+ "\n"+ "ACTUAL XML:"+ actual.toHtml()+ displayMessage;
+  assertStringEquals(displayMessage,expectedNodeName,actualNodeName);
+}

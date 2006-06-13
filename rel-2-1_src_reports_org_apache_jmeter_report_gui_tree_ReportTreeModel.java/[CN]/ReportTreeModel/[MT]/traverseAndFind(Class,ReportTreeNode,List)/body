@@ -1,0 +1,10 @@
+{
+  if (type.isInstance(node.getUserObject())) {
+    nodeList.add(node);
+  }
+  Enumeration enumNode=node.children();
+  while (enumNode.hasMoreElements()) {
+    ReportTreeNode child=(ReportTreeNode)enumNode.nextElement();
+    traverseAndFind(type,child,nodeList);
+  }
+}

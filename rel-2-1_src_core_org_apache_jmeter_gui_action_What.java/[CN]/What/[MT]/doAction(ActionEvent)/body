@@ -1,0 +1,15 @@
+{
+  JMeterTreeNode node=GuiPackage.getInstance().getTreeListener().getCurrentNode();
+  TestElement te=(TestElement)node.getUserObject();
+  if (ActionNames.WHAT_CLASS.equals(e.getActionCommand())) {
+    String guiClassName=te.getPropertyAsString(TestElement.GUI_CLASS);
+    System.out.println(te.getClass().getName());
+    System.out.println(guiClassName);
+  }
+ else   if (ActionNames.DEBUG_ON.equals(e.getActionCommand())) {
+    LoggingManager.setPriorityFullName("DEBUG",te.getClass().getName());
+  }
+ else   if (ActionNames.DEBUG_OFF.equals(e.getActionCommand())) {
+    LoggingManager.setPriorityFullName("INFO",te.getClass().getName());
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (endTime == 0) {
+    setEndTime(System.currentTimeMillis());
+  }
+ else {
+    log.error("sampleEnd called twice",new Throwable("Invalid call sequence"));
+  }
+}

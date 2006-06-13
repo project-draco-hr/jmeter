@@ -1,0 +1,8 @@
+{
+  SampleResult s=e.getResult();
+  saveSample(s);
+  SampleResult[] sr=s.getSubResults();
+  for (int i=0; i < sr.length; i++) {
+    saveSample(sr[i]);
+  }
+}

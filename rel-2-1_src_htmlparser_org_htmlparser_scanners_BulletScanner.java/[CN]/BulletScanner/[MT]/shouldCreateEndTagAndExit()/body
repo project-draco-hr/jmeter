@@ -1,0 +1,9 @@
+{
+  if (ulli.size() == 0)   return false;
+  CompositeTagScanner parentScanner=(CompositeTagScanner)ulli.peek();
+  if (parentScanner == this) {
+    ulli.pop();
+    return true;
+  }
+ else   return false;
+}

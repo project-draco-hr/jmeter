@@ -1,0 +1,10 @@
+{
+  if (null == mLinks)   try {
+    mLinks=extractLinks(getURL());
+    mPropertySupport.firePropertyChange(PROP_LINKS_PROPERTY,null,mLinks);
+  }
+ catch (  ParserException hpe) {
+    mLinks=null;
+  }
+  return (mLinks);
+}

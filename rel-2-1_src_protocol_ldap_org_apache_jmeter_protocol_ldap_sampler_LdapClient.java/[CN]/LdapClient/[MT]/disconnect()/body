@@ -1,0 +1,11 @@
+{
+  try {
+    if (dirContext != null) {
+      dirContext.close();
+      dirContext=null;
+    }
+  }
+ catch (  NamingException e) {
+    log.error("Ldap client - ",e);
+  }
+}

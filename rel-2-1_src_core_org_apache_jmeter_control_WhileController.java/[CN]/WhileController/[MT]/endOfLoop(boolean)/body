@@ -1,0 +1,19 @@
+{
+  String cnd=getCondition();
+  log.debug("Condition string:" + cnd);
+  boolean res;
+  if ((loopEnd && cnd.length() == 0) || "LAST".equalsIgnoreCase(cnd)) {
+    if (testMode) {
+      res=!testModeResult;
+    }
+ else {
+      JMeterVariables threadVars=JMeterContextService.getContext().getVariables();
+      res="false".equalsIgnoreCase(threadVars.get(JMeterThread.LAST_SAMPLE_OK));
+    }
+  }
+ else {
+    res="false".equalsIgnoreCase(cnd);
+  }
+  log.debug("Condition value: " + res);
+  return res;
+}

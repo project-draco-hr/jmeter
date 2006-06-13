@@ -1,0 +1,12 @@
+{
+  FileRowColContainer frcc;
+  if ((frcc=(FileRowColContainer)fileContainers.get(alias)) == null) {
+    frcc=new FileRowColContainer(file);
+    fileContainers.put(alias,frcc);
+    log.info("Saved " + file + " as "+ alias+ " delimiter=<"+ frcc.getDelimiter()+ ">");
+    if (defaultFile.length() == 0) {
+      defaultFile=file;
+    }
+  }
+  return frcc;
+}

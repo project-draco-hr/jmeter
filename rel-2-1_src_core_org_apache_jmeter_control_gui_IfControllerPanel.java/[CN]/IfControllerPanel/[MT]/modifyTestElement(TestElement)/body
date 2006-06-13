@@ -1,0 +1,11 @@
+{
+  configureTestElement(controller);
+  if (controller instanceof IfController) {
+    if (theCondition.getText().length() > 0) {
+      ((IfController)controller).setCondition(theCondition.getText());
+    }
+ else {
+      ((IfController)controller).setCondition("");
+    }
+  }
+}

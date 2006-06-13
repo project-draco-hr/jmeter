@@ -1,0 +1,14 @@
+{
+  log.debug("Start : addTagListeners");
+  parser.addScanner(new BodyScanner());
+  parser.addScanner(new BaseHrefScanner());
+  LinkScanner linkScanner=new LinkScanner(LinkTag.LINK_TAG_FILTER);
+  parser.addScanner(linkScanner.createImageScanner(ImageTag.IMAGE_TAG_FILTER));
+  parser.addScanner(linkScanner.createBaseHREFScanner("-b"));
+  parser.addScanner(new InputTagScanner());
+  parser.addScanner(new AppletScanner());
+  parser.addScanner(new ScriptScanner());
+  parser.addScanner(new LinkTagScanner());
+  parser.addScanner(new FrameScanner());
+  parser.addScanner(new BgSoundScanner());
+}

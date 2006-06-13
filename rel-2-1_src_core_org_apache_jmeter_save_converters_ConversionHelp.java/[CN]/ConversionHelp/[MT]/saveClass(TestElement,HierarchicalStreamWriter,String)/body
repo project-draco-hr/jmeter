@@ -1,0 +1,6 @@
+{
+  String clazz=el.getPropertyAsString(prop);
+  if (clazz.length() > 0) {
+    writer.addAttribute((String)propertyToAttribute.get(prop),SaveService.classToAlias(clazz));
+  }
+}

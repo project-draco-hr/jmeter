@@ -1,0 +1,11 @@
+{
+  createParser("<A HREF=\"http://www.oygevalt.org/\">Home</A>\n" + "<P>\n" + "And now, the good stuff:\n"+ "<P>\n"+ "<A HREF=\"http://www.yahoo.com\">Yahoo!\n"+ "<FORM ACTION=\".\" METHOD=\"GET\">\n"+ "<INPUT TYPE=\"TEXT\">\n"+ "<BR>\n"+ "<A HREF=\"http://www.helpme.com\">Help</A> "+ "<INPUT TYPE=\"checkbox\">\n"+ "<P>\n"+ "<INPUT TYPE=\"SUBMIT\">\n"+ "</FORM>");
+  parser.addScanner(new FormScanner("",parser));
+  parser.addScanner(new LinkScanner());
+  parseAndAssertNodeCount(6);
+  assertTrue("Fifth Node is a link",node[4] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[4];
+  assertEquals("Link Text","Yahoo!\r\n",linkTag.getLinkText());
+  assertEquals("Link URL","http://www.yahoo.com",linkTag.getLink());
+  assertType("Sixth Node",FormTag.class,node[5]);
+}

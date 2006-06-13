@@ -1,0 +1,56 @@
+{
+  String command=e.getActionCommand();
+  boolean valid=true;
+  index=-1;
+  if (command.equals("Edit")) {
+    index=headerTable.getSelectedRow();
+    if (index < 0) {
+      valid=false;
+    }
+ else {
+      Header c=tableModel.manager.get(index);
+      nameField=new JTextField(c.getName(),20);
+      valueField=new JTextField(c.getValue(),20);
+      ok=new JButton("Ok");
+      cancel=new JButton("Cancel");
+    }
+  }
+ else   if (command.equals("Add")) {
+    nameField=new JTextField(20);
+    valueField=new JTextField(20);
+    ok=new JButton("Ok");
+    cancel=new JButton("Cancel");
+  }
+  if (valid) {
+    if (updateDialog != null) {
+      updateDialog.dispose();
+    }
+    updateDialog=new JDialog();
+    updateDialog.setSize(350,300);
+    ok.addActionListener(new ActionListener(){
+      public void actionPerformed(      ActionEvent ev){
+        int i=index;
+        Header c=new Header();
+        if (i >= 0) {
+          c=tableModel.manager.get(index);
+        }
+        c.setName(nameField.getText());
+        c.setValue(valueField.getText());
+        if (i < 0) {
+          tableModel.manager.add(c);
+        }
+        tableModel.fireTableDataChanged();
+        updateDialog.dispose();
+      }
+    }
+);
+    cancel.addActionListener(new ActionListener(){
+      public void actionPerformed(      ActionEvent ev){
+        updateDialog.dispose();
+      }
+    }
+);
+    updateDialog.getContentPane().add(getPanel());
+    updateDialog.show();
+  }
+}

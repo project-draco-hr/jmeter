@@ -1,0 +1,16 @@
+{
+  try {
+    if (o == null) {
+      return defaultValue;
+    }
+    if (o instanceof Number) {
+      return ((Number)o).longValue();
+    }
+ else {
+      return Long.parseLong(o.toString());
+    }
+  }
+ catch (  NumberFormatException e) {
+    return defaultValue;
+  }
+}

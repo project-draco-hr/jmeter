@@ -1,0 +1,7 @@
+{
+  String p=getPropertyAsString(PATH);
+  if (dynamicPath) {
+    return encodeSpaces(p);
+  }
+  return p;
+}

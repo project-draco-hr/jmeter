@@ -1,0 +1,15 @@
+{
+  createParser("<td rowspan=3>" + "<img height=49 \n\n" + "alt=\"Central Intelligence Agency, Director of Central Intelligence\" \n\n"+ "src=\"graphics/images_home2/cia_banners_template3_01.gif\" \n\n"+ "width=241>"+ "</td>","http://www.cia.gov");
+  parser.registerScanners();
+  parser.addScanner(new TableScanner(parser));
+  parseAndAssertNodeCount(1);
+  assertType("node should be",TableColumn.class,node[0]);
+  TableColumn col=(TableColumn)node[0];
+  Node node=col.children().nextNode();
+  assertType("node inside column",ImageTag.class,node);
+  ImageTag imageTag=(ImageTag)node;
+  assertEquals("Image location","http://www.cia.gov/graphics/images_home2/cia_banners_template3_01.gif",imageTag.getImageURL());
+  assertEquals("Alt Value","Central Intelligence Agency, Director of Central Intelligence",imageTag.getAttribute("ALT"));
+  assertEquals("Width","241",imageTag.getAttribute("WIDTH"));
+  assertEquals("Height","49",imageTag.getAttribute("HEIGHT"));
+}

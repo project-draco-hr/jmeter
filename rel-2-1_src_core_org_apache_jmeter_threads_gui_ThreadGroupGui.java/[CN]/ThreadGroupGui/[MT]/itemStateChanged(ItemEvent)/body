@@ -1,0 +1,10 @@
+{
+  if (ie.getItem().equals(scheduler)) {
+    if (scheduler.isSelected()) {
+      mainPanel.setVisible(true);
+    }
+ else {
+      mainPanel.setVisible(false);
+    }
+  }
+}

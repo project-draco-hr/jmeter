@@ -1,0 +1,19 @@
+{
+  setLayout(new BorderLayout(5,0));
+  nameLabel=new JLabel(JMeterUtils.getResString("name"));
+  nameLabel.setName("name");
+  nameLabel.setLabelFor(nameField);
+  nameField.getDocument().addDocumentListener(new DocumentListener(){
+    public void insertUpdate(    DocumentEvent e){
+      updateName(nameField.getText());
+    }
+    public void removeUpdate(    DocumentEvent e){
+      updateName(nameField.getText());
+    }
+    public void changedUpdate(    DocumentEvent e){
+    }
+  }
+);
+  add(nameLabel,BorderLayout.WEST);
+  add(nameField,BorderLayout.CENTER);
+}

@@ -1,0 +1,6 @@
+{
+  if (inputFile == null) {
+    inputFile=new File(getDataSource());
+  }
+  return inputFile.getName().substring(0,inputFile.getName().length() - 4);
+}

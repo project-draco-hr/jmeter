@@ -1,0 +1,26 @@
+{
+  if (state == SizeAssertion.EQUAL) {
+    equalButton.setSelected(true);
+    execState=state;
+  }
+ else   if (state == SizeAssertion.NOTEQUAL) {
+    notequalButton.setSelected(true);
+    execState=state;
+  }
+ else   if (state == SizeAssertion.GREATERTHAN) {
+    greaterthanButton.setSelected(true);
+    execState=state;
+  }
+ else   if (state == SizeAssertion.LESSTHAN) {
+    lessthanButton.setSelected(true);
+    execState=state;
+  }
+ else   if (state == SizeAssertion.GREATERTHANEQUAL) {
+    greaterthanequalButton.setSelected(true);
+    execState=state;
+  }
+ else   if (state == SizeAssertion.LESSTHANEQUAL) {
+    lessthanequalButton.setSelected(true);
+    execState=state;
+  }
+}

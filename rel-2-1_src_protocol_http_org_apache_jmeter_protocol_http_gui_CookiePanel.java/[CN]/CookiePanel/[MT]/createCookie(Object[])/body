@@ -1,0 +1,4 @@
+{
+  Cookie cookie=new Cookie((String)rowData[0],(String)rowData[1],(String)rowData[2],(String)rowData[3],((Boolean)rowData[4]).booleanValue(),0);
+  return cookie;
+}

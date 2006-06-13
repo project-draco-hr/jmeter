@@ -1,0 +1,8 @@
+{
+  if (startTimeStamp) {
+    setTimes(stamp,stamp + elapsed);
+  }
+ else {
+    setTimes(stamp - elapsed,stamp);
+  }
+}

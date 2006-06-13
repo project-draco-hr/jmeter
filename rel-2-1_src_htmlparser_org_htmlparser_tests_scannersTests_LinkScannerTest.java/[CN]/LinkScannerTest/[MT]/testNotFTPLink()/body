@@ -1,0 +1,9 @@
+{
+  createParser("<A HREF=\"ftp.html\">my ftp</A>","http://www.cj.com/");
+  parser.addScanner(new LinkScanner("-l"));
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a HTMLLinkTag",node[0] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertEquals("Link Plain Text","my ftp",linkTag.toPlainTextString());
+  assertTrue("Link is not a FTP site",!linkTag.isFTPLink());
+}

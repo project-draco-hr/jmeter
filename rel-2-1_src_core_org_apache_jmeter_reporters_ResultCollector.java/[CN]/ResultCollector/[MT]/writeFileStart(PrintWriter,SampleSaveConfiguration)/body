@@ -1,0 +1,15 @@
+{
+  if (saveConfig.saveAsXml()) {
+    writer.println(XML_HEADER);
+    String pi=saveConfig.getXmlPi();
+    if (pi.length() > 0) {
+      writer.println(pi);
+    }
+    writer.print(TESTRESULTS_START_V1_1_PREVER);
+    writer.print(SaveService.getVERSION());
+    writer.println(TESTRESULTS_START_V1_1_POSTVER);
+  }
+ else   if (saveConfig.saveFieldNames()) {
+    writer.println(OldSaveService.printableFieldNamesToString(saveConfig));
+  }
+}

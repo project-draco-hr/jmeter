@@ -1,0 +1,19 @@
+{
+  Object r=null;
+  try {
+    r=m.invoke(bshInstance,new Object[]{s,o});
+  }
+ catch (  IllegalArgumentException e) {
+    log.error("Error invoking bsh method " + m.getName() + "\n",e);
+    throw new JMeterError("Error invoking bsh method " + m.getName(),e);
+  }
+catch (  IllegalAccessException e) {
+    log.error("Error invoking bsh method " + m.getName() + "\n",e);
+    throw new JMeterError("Error invoking bsh method " + m.getName(),e);
+  }
+catch (  InvocationTargetException e) {
+    log.error("Error invoking bsh method " + m.getName() + "\n",e);
+    throw new JMeterException("Error invoking bsh method " + m.getName(),e);
+  }
+  return r;
+}

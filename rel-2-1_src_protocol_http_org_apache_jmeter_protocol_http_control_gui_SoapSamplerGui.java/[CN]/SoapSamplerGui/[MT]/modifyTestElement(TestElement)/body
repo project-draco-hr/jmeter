@@ -1,0 +1,11 @@
+{
+  this.configureTestElement(s);
+  if (s instanceof SoapSampler) {
+    SoapSampler sampler=(SoapSampler)s;
+    sampler.setURLData(urlField.getText());
+    sampler.setXmlData(soapXml.getText());
+    sampler.setXmlFile(soapXmlFile.getFilename());
+    sampler.setSOAPAction(soapAction.getText());
+    sampler.setSendSOAPAction(sendSoapAction.isSelected());
+  }
+}

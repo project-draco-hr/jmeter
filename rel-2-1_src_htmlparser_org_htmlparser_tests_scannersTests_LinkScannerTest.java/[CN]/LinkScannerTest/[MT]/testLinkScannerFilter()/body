@@ -1,0 +1,4 @@
+{
+  LinkScanner linkScanner=new LinkScanner(LinkTag.LINK_TAG_FILTER);
+  assertEquals("linkscanner filter",LinkTag.LINK_TAG_FILTER,linkScanner.getFilter());
+}

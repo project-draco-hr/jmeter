@@ -1,0 +1,10 @@
+{
+  configureTestElement(element);
+  TreeNodeWrapper tnw=(TreeNodeWrapper)nodesModel.getSelectedItem();
+  if (tnw != null && tnw.getTreeNode() != null) {
+    selected=tnw.getTreeNode();
+    if (selected != null) {
+      ((ModuleController)element).setSelectedNode(selected);
+    }
+  }
+}

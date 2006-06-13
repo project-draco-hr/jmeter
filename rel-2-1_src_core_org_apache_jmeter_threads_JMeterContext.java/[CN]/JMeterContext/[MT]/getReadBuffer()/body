@@ -1,0 +1,6 @@
+{
+  if (readBuffer == null) {
+    readBuffer=new byte[8192];
+  }
+  return readBuffer;
+}

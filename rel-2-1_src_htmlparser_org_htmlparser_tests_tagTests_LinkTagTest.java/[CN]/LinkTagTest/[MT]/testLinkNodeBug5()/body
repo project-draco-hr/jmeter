@@ -1,0 +1,15 @@
+{
+  createParser("<a href=http://note.kimo.com.tw/>???O</a>&nbsp; <a \n" + "href=http://photo.kimo.com.tw/>????</a>&nbsp; <a\n" + "href=http://address.kimo.com.tw/>?q?T??</a>&nbsp;&nbsp;","http://www.cj.com");
+  Parser.setLineSeparator("\r\n");
+  parser.addScanner(new LinkScanner("-l"));
+  parseAndAssertNodeCount(6);
+  assertTrue("Node should be a LinkTag",node[0] instanceof LinkTag);
+  LinkTag linkNode=(LinkTag)node[2];
+  assertStringEquals("Link incorrect!!","http://photo.kimo.com.tw",linkNode.getLink());
+  assertEquals("Link beginning",new Integer(48),new Integer(linkNode.elementBegin()));
+  assertEquals("Link ending",new Integer(38),new Integer(linkNode.elementEnd()));
+  LinkTag linkNode2=(LinkTag)node[4];
+  assertStringEquals("Link incorrect!!","http://address.kimo.com.tw",linkNode2.getLink());
+  assertEquals("Link beginning",new Integer(46),new Integer(linkNode2.elementBegin()));
+  assertEquals("Link ending",new Integer(42),new Integer(linkNode2.elementEnd()));
+}

@@ -1,0 +1,20 @@
+{
+  int red=col.getRed();
+  int green=col.getGreen();
+  int blue=col.getBlue();
+  int temp1=Math.min(red,green);
+  int temp2=Math.min(temp1,blue);
+  if (red == temp2) {
+    red+=inc;
+    red%=256;
+  }
+ else   if (green == temp2) {
+    green+=inc;
+    green%=256;
+  }
+ else   if (blue == temp2) {
+    blue+=inc;
+    blue%=256;
+  }
+  return new Color(red,green,blue);
+}

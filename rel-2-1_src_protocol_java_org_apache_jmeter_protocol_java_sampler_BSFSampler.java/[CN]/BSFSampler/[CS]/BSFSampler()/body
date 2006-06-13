@@ -1,0 +1,8 @@
+{
+  try {
+    mgr=new BSFManager();
+    BSFManager.registerScriptingEngine("beanshell","bsh.util.BeanShellBSFEngine",new String[]{"bsh"});
+  }
+ catch (  NoClassDefFoundError e) {
+  }
+}

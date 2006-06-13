@@ -1,0 +1,12 @@
+{
+  if (myBread == null)   return;
+  String tn=Thread.currentThread().getName();
+  log.info(tn + " closing file " + fileName);
+  try {
+    myBread.close();
+    fis.close();
+  }
+ catch (  IOException e) {
+    log.error("closeFile() error: " + e.toString());
+  }
+}

@@ -1,0 +1,15 @@
+{
+  if (prio.equalsIgnoreCase("OUT")) {
+    printDetails(System.out,s,t);
+  }
+ else   if (prio.equalsIgnoreCase("ERR")) {
+    printDetails(System.err,s,t);
+  }
+ else {
+    Priority p=Priority.getPriorityForName(prio);
+    if (log.isPriorityEnabled(p)) {
+      String tn=Thread.currentThread().getName();
+      log.log(p,tn + " " + s,t);
+    }
+  }
+}

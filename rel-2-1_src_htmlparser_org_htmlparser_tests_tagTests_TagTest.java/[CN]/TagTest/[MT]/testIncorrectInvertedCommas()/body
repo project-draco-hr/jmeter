@@ -1,0 +1,10 @@
+{
+  String testHTML=new String("<META NAME=\"Author\" CONTENT = \"DORIER-APPRILL E., GERVAIS-LAMBONY P., MORICONI-EBRARD F., NAVEZ-BOUCHANINE F.\"\">");
+  createParser(testHTML);
+  parseAndAssertNodeCount(1);
+  assertTrue("Node should be a tag",node[0] instanceof Tag);
+  Tag tag=(Tag)node[0];
+  assertStringEquals("Node contents","META NAME=\"Author\" CONTENT=\"DORIER-APPRILL E., GERVAIS-LAMBONY P., MORICONI-EBRARD F., NAVEZ-BOUCHANINE F.\"",tag.getText());
+  Hashtable table=tag.getAttributes();
+  assertEquals("Meta Content","DORIER-APPRILL E., GERVAIS-LAMBONY P., MORICONI-EBRARD F., NAVEZ-BOUCHANINE F.",tag.getAttribute("CONTENT"));
+}

@@ -1,0 +1,26 @@
+{
+  JPanel main=new JPanel();
+  GridBagLayout g=new GridBagLayout();
+  main.setLayout(g);
+  GridBagConstraints c=new GridBagConstraints();
+  c.insets=new Insets(3,3,3,3);
+  c.fill=GridBagConstraints.BOTH;
+  c.gridwidth=1;
+  c.gridheight=1;
+  for (int t=0; t < keys.size(); t++) {
+    String key=(String)keys.elementAt(t);
+    JLabel colorSwatch=new JLabel("  ");
+    colorSwatch.setBackground((Color)colorList.elementAt(t % colorList.size()));
+    colorSwatch.setOpaque(true);
+    c.gridx=1;
+    c.gridy=t;
+    g.setConstraints(colorSwatch,c);
+    main.add(colorSwatch);
+    JLabel name=new JLabel(key);
+    c.gridx=2;
+    c.gridy=t;
+    g.setConstraints(name,c);
+    main.add(name);
+  }
+  return main;
+}

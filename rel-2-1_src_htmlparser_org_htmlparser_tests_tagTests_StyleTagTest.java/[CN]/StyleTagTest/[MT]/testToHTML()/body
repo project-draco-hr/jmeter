@@ -1,0 +1,8 @@
+{
+  createParser("<style>a.h{background-color:#ffee99}</style>");
+  parser.registerScanners();
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof StyleTag);
+  StyleTag styleTag=(StyleTag)node[0];
+  assertEquals("Raw String","<STYLE>a.h{background-color:#ffee99}</STYLE>",styleTag.toHtml());
+}

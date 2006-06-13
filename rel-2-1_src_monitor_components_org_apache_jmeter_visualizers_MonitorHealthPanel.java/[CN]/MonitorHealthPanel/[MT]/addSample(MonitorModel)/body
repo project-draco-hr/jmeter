@@ -1,0 +1,20 @@
+{
+  if (SERVERMAP.containsKey(model.getURL())) {
+    ServerPanel pane=null;
+    if (SERVERMAP.get(model.getURL()) != null) {
+      pane=(ServerPanel)SERVERMAP.get((model.getURL()));
+    }
+ else {
+      pane=new ServerPanel(model);
+      SERVERMAP.put(model.getURL(),pane);
+    }
+    pane.updateGui(model);
+  }
+ else {
+    ServerPanel newpane=new ServerPanel(model);
+    SERVERMAP.put(model.getURL(),newpane);
+    this.SERVERS.add(newpane);
+    newpane.updateGui(model);
+  }
+  this.SERVERS.updateUI();
+}

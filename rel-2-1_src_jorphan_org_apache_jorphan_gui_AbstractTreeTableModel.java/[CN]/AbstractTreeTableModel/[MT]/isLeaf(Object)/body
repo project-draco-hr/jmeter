@@ -1,0 +1,8 @@
+{
+  if (node instanceof TreeNode) {
+    return ((TreeNode)node).isLeaf();
+  }
+ else {
+    return false;
+  }
+}

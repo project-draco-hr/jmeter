@@ -1,0 +1,8 @@
+{
+  reInitialize();
+  if (endOfLoop()) {
+    resetLoopCount();
+    return null;
+  }
+  return next();
+}

@@ -1,0 +1,7 @@
+{
+  JPanel panel=new JPanel(new FlowLayout());
+  JLabel label=new JLabel(JMeterUtils.getResString(labelResourceName));
+  panel.add(field);
+  panel.add(label);
+  return panel;
+}

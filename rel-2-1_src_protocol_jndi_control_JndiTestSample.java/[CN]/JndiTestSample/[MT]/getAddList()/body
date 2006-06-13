@@ -1,0 +1,8 @@
+{
+  if (addableList == null) {
+    addableList=new HashSet();
+    addableList.add(new LookupConfig().getClassLabel());
+    addableList.add(new MethodConfig().getClassLabel());
+  }
+  return addableList;
+}

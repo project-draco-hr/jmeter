@@ -1,0 +1,6 @@
+{
+  super.configure(element);
+  inputVal.setText(((ForeachController)element).getInputValString());
+  returnVal.setText(((ForeachController)element).getReturnValString());
+  useSeparator.setSelected(((ForeachController)element).getUseSeparator());
+}

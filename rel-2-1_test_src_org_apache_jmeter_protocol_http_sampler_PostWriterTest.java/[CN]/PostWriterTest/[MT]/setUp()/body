@@ -1,0 +1,10 @@
+{
+  postWriter=new PostWriter();
+  connection=new StubURLConnection("http://fake_url/test");
+  sampler=new HTTPSampler();
+  temporaryFile=File.createTempFile("foo","txt");
+  OutputStream output=new FileOutputStream(temporaryFile);
+  output.write("foo content".getBytes());
+  output.flush();
+  output.close();
+}

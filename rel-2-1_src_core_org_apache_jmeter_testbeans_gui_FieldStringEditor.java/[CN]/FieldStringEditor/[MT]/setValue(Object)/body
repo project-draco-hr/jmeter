@@ -1,0 +1,4 @@
+{
+  if (value instanceof String)   setAsText((String)value);
+ else   throw new IllegalArgumentException();
+}

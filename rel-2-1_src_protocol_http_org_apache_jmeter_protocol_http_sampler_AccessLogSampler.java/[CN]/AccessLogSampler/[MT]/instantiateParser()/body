@@ -1,0 +1,25 @@
+{
+  if (PARSER == null) {
+    try {
+      if (this.getParserClassName() != null && this.getParserClassName().length() > 0) {
+        if (this.getLogFile() != null && this.getLogFile().length() > 0) {
+          PARSER=(LogParser)Class.forName(getParserClassName()).newInstance();
+          PARSER.setSourceFile(this.getLogFile());
+          PARSER.setFilter(filter);
+        }
+ else {
+          log.error("No log file specified");
+        }
+      }
+    }
+ catch (    InstantiationException e) {
+      log.error("",e);
+    }
+catch (    IllegalAccessException e) {
+      log.error("",e);
+    }
+catch (    ClassNotFoundException e) {
+      log.error("",e);
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  String name=((Component)evt.getSource()).getName();
+  if (evt.isTemporary()) {
+    return;
+  }
+ else   if (name.equals(LOWERBOUND)) {
+    checkTextField(evt,"0");
+  }
+ else   if (name.equals(UPPERBOUND)) {
+    checkTextField(evt,"0");
+  }
+ else   if (name.equals(INCREMENT)) {
+    checkTextField(evt,"0");
+  }
+}

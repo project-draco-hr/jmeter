@@ -1,0 +1,22 @@
+{
+  super.configure(el);
+  JMSSampler sampler=(JMSSampler)el;
+  queueuConnectionFactory.setText(sampler.getQueueConnectionFactory());
+  sendQueue.setText(sampler.getSendQueue());
+  receiveQueue.setText(sampler.getReceiveQueue());
+  JComboBox box=(JComboBox)oneWay.getComponentList().get(1);
+  String selected=null;
+  if (sampler.isOneway()) {
+    selected=JMeterUtils.getResString("jms_request");
+  }
+ else {
+    selected=JMeterUtils.getResString("jms_requestreply");
+  }
+  box.setSelectedItem(selected);
+  timeout.setText(String.valueOf(sampler.getTimeout()));
+  soapXml.setText(sampler.getContent());
+  initialContextFactory.setText(sampler.getInitialContextFactory());
+  providerUrl.setText(sampler.getContextProvider());
+  jmsPropertiesPanel.configure(sampler.getJMSProperties());
+  jndiPropertiesPanel.configure(sampler.getJNDIProperties());
+}

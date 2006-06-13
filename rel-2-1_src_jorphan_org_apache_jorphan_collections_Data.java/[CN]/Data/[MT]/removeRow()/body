@@ -1,0 +1,16 @@
+{
+  List tempList;
+  Iterator it=data.keySet().iterator();
+  log.debug("removing row, size = " + size);
+  if (currentPos > -1 && currentPos < size) {
+    log.debug("got to here");
+    while (it.hasNext()) {
+      tempList=(List)data.get(it.next());
+      tempList.remove(currentPos);
+    }
+    if (currentPos > 0) {
+      currentPos--;
+    }
+    size--;
+  }
+}

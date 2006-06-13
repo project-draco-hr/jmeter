@@ -1,0 +1,30 @@
+{
+  CookieManager cm=null;
+synchronized (managersInUse) {
+    if (lastUsed != null) {
+      managersInUse.remove(lastUsed);
+      managersInUse.notify();
+    }
+  }
+  if (lastUsed != null) {
+    Thread.yield();
+  }
+synchronized (managersInUse) {
+    cm=(CookieManager)cookieManagers.get(ipAddr);
+    if (cm == null) {
+      cm=new CookieManager();
+      cookieManagers.put(ipAddr,cm);
+    }
+    while (managersInUse.contains(cm)) {
+      try {
+        managersInUse.wait();
+      }
+ catch (      InterruptedException e) {
+        log.info("SessionFilter wait interrupted");
+      }
+    }
+    managersInUse.add(cm);
+    lastUsed=cm;
+  }
+  return cm;
+}

@@ -1,0 +1,31 @@
+{
+  boolean result=false;
+  int comp=getCompOper();
+switch (comp) {
+case EQUAL:
+    result=(resultSize == getAllowedSize());
+  comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_equal");
+break;
+case NOTEQUAL:
+result=(resultSize != getAllowedSize());
+comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_notequal");
+break;
+case GREATERTHAN:
+result=(resultSize > getAllowedSize());
+comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_greater");
+break;
+case LESSTHAN:
+result=(resultSize < getAllowedSize());
+comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_less");
+break;
+case GREATERTHANEQUAL:
+result=(resultSize >= getAllowedSize());
+comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_greaterequal");
+break;
+case LESSTHANEQUAL:
+result=(resultSize <= getAllowedSize());
+comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_lessequal");
+break;
+}
+return result;
+}

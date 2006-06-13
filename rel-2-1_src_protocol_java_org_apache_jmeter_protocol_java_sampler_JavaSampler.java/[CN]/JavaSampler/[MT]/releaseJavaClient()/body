@@ -1,0 +1,7 @@
+{
+  if (javaClient != null) {
+    javaClient.teardownTest(context);
+  }
+  javaClient=null;
+  context=null;
+}

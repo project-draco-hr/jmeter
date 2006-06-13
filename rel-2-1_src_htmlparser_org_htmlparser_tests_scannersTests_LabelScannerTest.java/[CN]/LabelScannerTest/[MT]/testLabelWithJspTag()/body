@@ -1,0 +1,11 @@
+{
+  createParser("<label><%=labelValue%></label>");
+  parser.registerScanners();
+  LabelScanner labelScanner=new LabelScanner("-l");
+  parser.addScanner(labelScanner);
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof LabelTag);
+  LabelTag labelTag=(LabelTag)node[0];
+  assertStringEquals("Label","<LABEL><%=labelValue%></LABEL>",labelTag.toHtml());
+  assertEquals("Label Scanner",labelScanner,labelTag.getThisScanner());
+}

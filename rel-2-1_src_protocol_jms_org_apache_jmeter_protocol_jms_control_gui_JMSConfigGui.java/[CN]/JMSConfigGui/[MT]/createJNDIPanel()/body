@@ -1,0 +1,13 @@
+{
+  JPanel jndiPanel=new JPanel(new BorderLayout());
+  jndiPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_jndi_props")));
+  JPanel contextPanel=new JPanel(new BorderLayout(10,0));
+  contextPanel.add(initialContextFactory);
+  jndiPanel.add(contextPanel,BorderLayout.NORTH);
+  JPanel providerPanel=new JPanel(new BorderLayout(10,0));
+  providerPanel.add(providerUrl);
+  jndiPanel.add(providerPanel,BorderLayout.SOUTH);
+  jndiPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_jndi_props"));
+  jndiPanel.add(jndiPropertiesPanel);
+  return jndiPanel;
+}

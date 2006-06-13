@@ -1,0 +1,18 @@
+{
+  StringTokenizer tz;
+  tz=new StringTokenizer(nextLine);
+  String token=getToken(tz);
+  if (0 == token.length()) {
+    return 0;
+  }
+ else {
+    String trimmed=token.trim();
+    String name=trimmed.substring(0,trimmed.length() - 1);
+    String value=getRemainder(tz);
+    headers.put(name.toLowerCase(),new Header(name,value));
+    if (name.equalsIgnoreCase(CONTENT_LENGTH)) {
+      return Integer.parseInt(value);
+    }
+  }
+  return 0;
+}

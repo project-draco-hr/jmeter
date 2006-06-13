@@ -1,0 +1,50 @@
+{
+  DefaultConfiguration config=new DefaultConfiguration(SAMPLE_RESULT_TAG_NAME,"JMeter Save Service");
+  if (saveConfig.saveTime()) {
+    config.setAttribute(TIME,String.valueOf(result.getTime()));
+  }
+  if (saveConfig.saveLabel()) {
+    config.setAttribute(LABEL,result.getSampleLabel());
+  }
+  if (saveConfig.saveCode()) {
+    config.setAttribute(RESPONSE_CODE,result.getResponseCode());
+  }
+  if (saveConfig.saveMessage()) {
+    config.setAttribute(RESPONSE_MESSAGE,result.getResponseMessage());
+  }
+  if (saveConfig.saveThreadName()) {
+    config.setAttribute(THREAD_NAME,result.getThreadName());
+  }
+  if (saveConfig.saveDataType()) {
+    config.setAttribute(DATA_TYPE,result.getDataType());
+  }
+  if (saveConfig.printMilliseconds()) {
+    config.setAttribute(TIME_STAMP,String.valueOf(result.getTimeStamp()));
+  }
+ else   if (saveConfig.formatter() != null) {
+    String stamp=saveConfig.formatter().format(new Date(result.getTimeStamp()));
+    config.setAttribute(TIME_STAMP,stamp);
+  }
+  if (saveConfig.saveSuccess()) {
+    config.setAttribute(SUCCESSFUL,JOrphanUtils.booleanToString(result.isSuccessful()));
+  }
+  SampleResult[] subResults=result.getSubResults();
+  if (subResults != null) {
+    for (int i=0; i < subResults.length; i++) {
+      config.addChild(getConfiguration(subResults[i],saveConfig));
+    }
+  }
+  AssertionResult[] assResults=result.getAssertionResults();
+  if (saveConfig.saveSamplerData(result)) {
+    config.addChild(createConfigForString("samplerData",result.getSamplerData()));
+  }
+  if (saveConfig.saveAssertions() && assResults != null) {
+    for (int i=0; i < assResults.length; i++) {
+      config.addChild(getConfiguration(assResults[i]));
+    }
+  }
+  if (saveConfig.saveResponseData(result)) {
+    config.addChild(getConfiguration(result.getResponseData()));
+  }
+  return config;
+}

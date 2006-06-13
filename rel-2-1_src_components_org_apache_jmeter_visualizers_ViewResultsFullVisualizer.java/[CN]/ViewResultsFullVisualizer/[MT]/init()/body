@@ -1,0 +1,12 @@
+{
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  Component leftSide=createLeftPanel();
+  JTabbedPane rightSide=new JTabbedPane();
+  rightSide.addTab(JMeterUtils.getResString("view_results_tab_sampler"),createResponseMetadataPanel());
+  rightSide.addTab(JMeterUtils.getResString("view_results_tab_request"),createRequestPanel());
+  rightSide.addTab(JMeterUtils.getResString("view_results_tab_response"),createResponseDataPanel());
+  JSplitPane mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,leftSide,rightSide);
+  add(mainSplit,BorderLayout.CENTER);
+}

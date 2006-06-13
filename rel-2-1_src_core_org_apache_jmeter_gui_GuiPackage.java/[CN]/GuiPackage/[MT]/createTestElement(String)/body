@@ -1,0 +1,35 @@
+{
+  JMeterGUIComponent comp;
+  Class c;
+  try {
+    c=Class.forName(objClass);
+    if (TestBean.class.isAssignableFrom(c)) {
+      comp=getGuiFromCache(TestBeanGUI.class,c);
+    }
+ else {
+      comp=getGuiFromCache(c,null);
+    }
+    comp.clear();
+    TestElement node=comp.createTestElement();
+    nodesToGui.put(node,comp);
+    return node;
+  }
+ catch (  NoClassDefFoundError e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    String msg="Cannot find class: " + e.getMessage();
+    JOptionPane.showMessageDialog(null,msg,"Missing jar? See log file.",JOptionPane.ERROR_MESSAGE);
+    throw new RuntimeException(e.toString());
+  }
+catch (  ClassNotFoundException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new RuntimeException(e.toString());
+  }
+catch (  InstantiationException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new RuntimeException(e.toString());
+  }
+catch (  IllegalAccessException e) {
+    log.error("Problem retrieving gui for " + objClass,e);
+    throw new RuntimeException(e.toString());
+  }
+}

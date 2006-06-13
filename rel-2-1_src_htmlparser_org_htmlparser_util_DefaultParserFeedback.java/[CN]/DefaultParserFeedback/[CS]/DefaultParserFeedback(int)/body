@@ -1,0 +1,4 @@
+{
+  if (mode < QUIET || mode > DEBUG)   throw new IllegalArgumentException("illegal mode (" + mode + "), must be one of: QUIET, NORMAL, DEBUG");
+  this.mode=mode;
+}

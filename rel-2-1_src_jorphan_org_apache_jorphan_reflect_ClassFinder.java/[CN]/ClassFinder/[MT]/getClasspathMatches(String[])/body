@@ -1,0 +1,33 @@
+{
+  log.debug("Classpath = " + System.getProperty("java.class.path"));
+  StringTokenizer stPaths=new StringTokenizer(System.getProperty("java.class.path"),System.getProperty("path.separator"));
+  if (log.isDebugEnabled()) {
+    for (int i=0; i < strPathsOrJars.length; i++) {
+      log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
+    }
+  }
+  ArrayList listPaths=new ArrayList();
+  String strPath=null;
+  while (stPaths.hasMoreTokens()) {
+    strPath=fixPathEntry(stPaths.nextToken());
+    if (strPathsOrJars == null) {
+      log.debug("Adding: " + strPath);
+      listPaths.add(strPath);
+    }
+ else {
+      boolean found=false;
+      for (int i=0; i < strPathsOrJars.length; i++) {
+        if (strPath.endsWith(strPathsOrJars[i])) {
+          found=true;
+          log.debug("Adding " + strPath + " found at "+ i);
+          listPaths.add(strPath);
+          break;
+        }
+      }
+      if (!found) {
+        log.debug("Did not find: " + strPath);
+      }
+    }
+  }
+  return listPaths;
+}

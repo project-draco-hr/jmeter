@@ -1,0 +1,12 @@
+{
+  if (this.CONN == null) {
+    log.error("Connection not set up");
+    return;
+  }
+  try {
+    this.CONN.start();
+  }
+ catch (  JMSException e) {
+    log.error("failed to start recieving");
+  }
+}

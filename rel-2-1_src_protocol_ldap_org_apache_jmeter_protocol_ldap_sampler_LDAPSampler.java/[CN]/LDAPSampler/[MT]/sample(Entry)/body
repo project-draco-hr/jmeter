@@ -1,0 +1,45 @@
+{
+  SampleResult res=new SampleResult();
+  boolean isSuccessful=false;
+  res.setSampleLabel(getName());
+  res.setSamplerData(getPropertyAsString(TEST));
+  LdapClient ldap=new LdapClient();
+  try {
+    ldap.connect(getServername(),getPort(),getRootdn(),getUsername(),getPassword());
+    if (getPropertyAsString(TEST).equals("add")) {
+      addTest(ldap,res);
+    }
+ else     if (getPropertyAsString(TEST).equals("delete")) {
+      deleteTest(ldap,res);
+    }
+ else     if (getPropertyAsString(TEST).equals("modify")) {
+      modifyTest(ldap,res);
+    }
+ else     if (getPropertyAsString(TEST).equals("search")) {
+      searchTest(ldap,res);
+    }
+    if (getPropertyAsString(TEST).equals("search") && !searchFoundEntries) {
+      res.setResponseCode("201");
+      res.setResponseMessage("OK - no results");
+      res.setResponseData("successful - no results".getBytes());
+    }
+ else {
+      res.setResponseCodeOK();
+      res.setResponseMessage("OK");
+      res.setResponseData("successful".getBytes());
+    }
+    res.setDataType(SampleResult.TEXT);
+    isSuccessful=true;
+  }
+ catch (  Exception ex) {
+    log.error("Ldap client - ",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+    isSuccessful=false;
+  }
+ finally {
+    ldap.disconnect();
+  }
+  res.setSuccessful(isSuccessful);
+  return res;
+}

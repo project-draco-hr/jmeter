@@ -1,0 +1,10 @@
+{
+  JMeterGUIComponent gui;
+  if (guiClass == TestBeanGUI.class) {
+    gui=new TestBeanGUI(testClass);
+  }
+ else {
+    gui=(JMeterGUIComponent)guiClass.newInstance();
+  }
+  GUI_MAP.put(key,gui);
+}

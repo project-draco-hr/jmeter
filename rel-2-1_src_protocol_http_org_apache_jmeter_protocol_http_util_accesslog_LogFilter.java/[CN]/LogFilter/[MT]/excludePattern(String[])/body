@@ -1,0 +1,9 @@
+{
+  if (regexp != null && regexp.length > 0) {
+    EXCPTRN=regexp;
+    this.PTRNFILTER=true;
+    for (int idx=0; idx < EXCPTRN.length; idx++) {
+      this.EXCPATTERNS.add(this.createPattern(EXCPTRN[idx]));
+    }
+  }
+}

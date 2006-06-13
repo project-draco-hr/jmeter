@@ -1,0 +1,6 @@
+{
+  model.clearData();
+  tableRows.clear();
+  tableRows.put(TOTAL_ROW_LABEL,new SamplingStatCalculator(TOTAL_ROW_LABEL));
+  model.addRow(tableRows.get(TOTAL_ROW_LABEL));
+}

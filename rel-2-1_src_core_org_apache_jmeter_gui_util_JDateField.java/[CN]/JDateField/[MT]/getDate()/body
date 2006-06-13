@@ -1,0 +1,11 @@
+{
+  try {
+    return dateFormat.parse(getText());
+  }
+ catch (  ParseException e) {
+    return new Date();
+  }
+catch (  Exception e) {
+    return new Date();
+  }
+}

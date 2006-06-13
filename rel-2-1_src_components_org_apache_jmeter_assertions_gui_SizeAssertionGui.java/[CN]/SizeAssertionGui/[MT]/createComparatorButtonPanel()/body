@@ -1,0 +1,21 @@
+{
+  ButtonGroup group=new ButtonGroup();
+  equalButton=createComparatorButton("=",SizeAssertion.EQUAL,group);
+  notequalButton=createComparatorButton("!=",SizeAssertion.NOTEQUAL,group);
+  greaterthanButton=createComparatorButton(">",SizeAssertion.GREATERTHAN,group);
+  lessthanButton=createComparatorButton("<",SizeAssertion.LESSTHAN,group);
+  greaterthanequalButton=createComparatorButton(">=",SizeAssertion.GREATERTHANEQUAL,group);
+  lessthanequalButton=createComparatorButton("<=",SizeAssertion.LESSTHANEQUAL,group);
+  equalButton.setSelected(true);
+  execState=Integer.parseInt(equalButton.getActionCommand());
+  Box checkPanel=Box.createVerticalBox();
+  JLabel compareLabel=new JLabel(JMeterUtils.getResString("size_assertion_comparator_label"));
+  checkPanel.add(compareLabel);
+  checkPanel.add(equalButton);
+  checkPanel.add(notequalButton);
+  checkPanel.add(greaterthanButton);
+  checkPanel.add(lessthanButton);
+  checkPanel.add(greaterthanequalButton);
+  checkPanel.add(lessthanequalButton);
+  return checkPanel;
+}

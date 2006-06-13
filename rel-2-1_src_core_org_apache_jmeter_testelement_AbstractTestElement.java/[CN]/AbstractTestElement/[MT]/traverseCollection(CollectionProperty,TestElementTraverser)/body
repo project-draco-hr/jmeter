@@ -1,0 +1,6 @@
+{
+  PropertyIterator iter=col.iterator();
+  while (iter.hasNext()) {
+    traverseProperty(traverser,iter.next());
+  }
+}

@@ -1,0 +1,9 @@
+{
+  int executions, iterations;
+  executions=getExecutions();
+  iterations=getIteration();
+  if (getStyle() == BYNUMBER) {
+    return executions < getMaxThroughputAsInt();
+  }
+  return (100.0 * executions + 50.0) / (iterations + 1) < getPercentThroughputAsFloat();
+}

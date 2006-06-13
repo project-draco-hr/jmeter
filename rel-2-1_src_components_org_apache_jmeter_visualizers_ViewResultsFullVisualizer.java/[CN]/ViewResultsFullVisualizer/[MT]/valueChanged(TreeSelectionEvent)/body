@@ -1,0 +1,88 @@
+{
+  log.debug("Start : valueChanged1");
+  DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+  if (log.isDebugEnabled()) {
+    log.debug("valueChanged : selected node - " + node);
+  }
+  StyledDocument statsDoc=stats.getStyledDocument();
+  try {
+    statsDoc.remove(0,statsDoc.getLength());
+    sampleDataField.setText("");
+    results.setText("");
+    if (node != null) {
+      SampleResult res=(SampleResult)node.getUserObject();
+      if (log.isDebugEnabled()) {
+        log.debug("valueChanged1 : sample result - " + res);
+      }
+      if (res != null) {
+        log.debug("valueChanged1 : load time - " + res.getTime());
+        String sd=res.getSamplerData();
+        if (sd != null) {
+          String rh=res.getRequestHeaders();
+          if (rh != null) {
+            StringBuffer sb=new StringBuffer(sd.length() + rh.length() + 20);
+            sb.append(sd);
+            sb.append("\nRequest Headers:\n");
+            sb.append(rh);
+            sd=sb.toString();
+          }
+          sampleDataField.setText(sd);
+        }
+        statsDoc.insertString(statsDoc.getLength(),"Thread Name: " + res.getThreadName() + "\n",null);
+        String startTime=new Date(res.getStartTime()).toString();
+        statsDoc.insertString(statsDoc.getLength(),"Sample Start: " + startTime + "\n",null);
+        statsDoc.insertString(statsDoc.getLength(),"Load time: " + res.getTime() + "\n",null);
+        String responseCode=res.getResponseCode();
+        log.debug("valueChanged1 : response code - " + responseCode);
+        int responseLevel=0;
+        if (responseCode != null) {
+          try {
+            responseLevel=Integer.parseInt(responseCode) / 100;
+          }
+ catch (          NumberFormatException numberFormatException) {
+          }
+        }
+        Style style=null;
+switch (responseLevel) {
+case 3:
+          style=statsDoc.getStyle(STYLE_REDIRECT);
+        break;
+case 4:
+      style=statsDoc.getStyle(STYLE_CLIENT_ERROR);
+    break;
+case 5:
+  style=statsDoc.getStyle(STYLE_SERVER_ERROR);
+break;
+}
+statsDoc.insertString(statsDoc.getLength(),"HTTP response code: " + responseCode + "\n",style);
+String responseMsgStr=res.getResponseMessage();
+log.debug("valueChanged1 : response message - " + responseMsgStr);
+statsDoc.insertString(statsDoc.getLength(),"HTTP response message: " + responseMsgStr + "\n",null);
+statsDoc.insertString(statsDoc.getLength(),"\nHTTP response headers:\n" + res.getResponseHeaders() + "\n",null);
+if ((SampleResult.TEXT).equals(res.getDataType())) {
+String response=getResponseAsString(res);
+if (command.equals(TEXT_COMMAND)) {
+showTextResponse(response);
+}
+ else if (command.equals(HTML_COMMAND)) {
+showRenderedResponse(response,res);
+}
+ else if (command.equals(XML_COMMAND)) {
+showRenderXMLResponse(response);
+}
+}
+ else {
+byte[] responseBytes=res.getResponseData();
+if (responseBytes != null) {
+showImage(new ImageIcon(responseBytes));
+}
+}
+}
+}
+}
+ catch (BadLocationException exc) {
+log.error("Error setting statistics text",exc);
+stats.setText("");
+}
+log.debug("End : valueChanged1");
+}

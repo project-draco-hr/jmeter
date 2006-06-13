@@ -1,0 +1,14 @@
+{
+  if (useProps) {
+    try {
+      return new InitialContext();
+    }
+ catch (    NamingException e) {
+      log.error(e.getMessage());
+      return null;
+    }
+  }
+ else {
+    return InitialContextFactory.lookupContext(jndi,url,useAuth,user,pwd);
+  }
+}

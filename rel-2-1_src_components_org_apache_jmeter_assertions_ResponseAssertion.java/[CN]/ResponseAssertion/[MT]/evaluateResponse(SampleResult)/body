@@ -1,0 +1,66 @@
+{
+  boolean pass=true;
+  boolean not=(NOT & getTestType()) > 0;
+  AssertionResult result=new AssertionResult();
+  String toCheck="";
+  if (getAssumeSuccess()) {
+    response.setSuccessful(true);
+  }
+  if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
+    String data=response.getResponseDataAsString();
+    toCheck=new StringBuffer(response.getResponseHeaders()).append(data).toString();
+  }
+ else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
+    toCheck=response.getResponseCode();
+  }
+ else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(getTestField())) {
+    toCheck=response.getResponseMessage();
+  }
+ else {
+    toCheck=response.getSamplerData();
+    if (toCheck == null)     toCheck="";
+  }
+  if (toCheck.length() == 0) {
+    return result.setResultForNull();
+  }
+  result.setFailure(false);
+  result.setError(false);
+  boolean contains=isContainsType();
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Type:" + (contains ? "Contains" : "Match") + (not ? "(not)" : ""));
+  }
+  try {
+    Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
+    PropertyIterator iter=getTestStrings().iterator();
+    while (iter.hasNext()) {
+      String stringPattern=iter.next().getStringValue();
+      Pattern pattern=patternCache.getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
+      boolean found;
+      if (contains) {
+        found=localMatcher.contains(toCheck,pattern);
+      }
+ else {
+        found=localMatcher.matches(toCheck,pattern);
+      }
+      pass=not ? !found : found;
+      if (!pass) {
+        if (debugEnabled) {
+          log.debug("Failed: " + pattern);
+        }
+        result.setFailure(true);
+        result.setFailureMessage(getFailText(stringPattern));
+        break;
+      }
+      if (debugEnabled) {
+        log.debug("Passed: " + pattern);
+      }
+    }
+  }
+ catch (  MalformedCachePatternException e) {
+    result.setError(true);
+    result.setFailure(false);
+    result.setFailureMessage("Bad test configuration " + e);
+  }
+  return result;
+}

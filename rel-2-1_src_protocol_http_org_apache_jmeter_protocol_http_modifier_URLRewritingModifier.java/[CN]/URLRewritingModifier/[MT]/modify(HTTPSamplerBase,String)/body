@@ -1,0 +1,14 @@
+{
+  if (isPathExtension()) {
+    if (isPathExtensionNoEquals()) {
+      sampler.setPath(sampler.getPath() + SEMI_COLON + getArgumentName()+ value);
+    }
+ else {
+      sampler.setPath(sampler.getPath() + SEMI_COLON + getArgumentName()+ "="+ value);
+    }
+  }
+ else {
+    sampler.getArguments().removeArgument(getArgumentName());
+    sampler.getArguments().addArgument(new HTTPArgument(getArgumentName(),value,true));
+  }
+}

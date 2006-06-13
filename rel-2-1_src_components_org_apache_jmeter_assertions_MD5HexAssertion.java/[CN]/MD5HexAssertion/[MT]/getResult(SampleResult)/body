@@ -1,0 +1,25 @@
+{
+  AssertionResult result=new AssertionResult();
+  result.setFailure(false);
+  byte[] resultData=response.getResponseData();
+  if (resultData.length == 0) {
+    result.setError(false);
+    result.setFailure(true);
+    result.setFailureMessage("Response was null");
+    return result;
+  }
+  if (getAllowedMD5Hex().equals("")) {
+    result.setError(false);
+    result.setFailure(true);
+    result.setFailureMessage("MD5Hex to test against is empty");
+    return result;
+  }
+  String md5Result=baMD5Hex(resultData);
+  if (!md5Result.equalsIgnoreCase(getAllowedMD5Hex())) {
+    result.setFailure(true);
+    Object[] arguments={md5Result,getAllowedMD5Hex()};
+    String message=MessageFormat.format(JMeterUtils.getResString("md5hex_assertion_failure"),arguments);
+    result.setFailureMessage(message);
+  }
+  return result;
+}

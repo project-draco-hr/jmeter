@@ -1,0 +1,8 @@
+{
+  char ch=' ';
+  while (ch == ' ') {
+    ch=text.charAt(text.length() - 1);
+    if (ch == ' ')     text=text.substring(0,text.length() - 1);
+  }
+  return text;
+}

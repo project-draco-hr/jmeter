@@ -1,0 +1,13 @@
+{
+  String in="a,bc,,";
+  String out[]=JOrphanUtils.split(in,",",true);
+  assertEquals(2,out.length);
+  assertEquals("a",out[0]);
+  assertEquals("bc",out[1]);
+  out=JOrphanUtils.split(in,",",false);
+  assertEquals("Should detect the trailing split chars; ",4,out.length);
+  assertEquals("a",out[0]);
+  assertEquals("bc",out[1]);
+  assertEquals("",out[2]);
+  assertEquals("",out[3]);
+}

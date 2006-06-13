@@ -1,0 +1,6 @@
+{
+  ComboStringEditor e=new ComboStringEditor();
+  testSetGetAsText(e,"any string");
+  testSetGetAsText(e,"");
+  testSetGetAsText(e,"${var}");
+}

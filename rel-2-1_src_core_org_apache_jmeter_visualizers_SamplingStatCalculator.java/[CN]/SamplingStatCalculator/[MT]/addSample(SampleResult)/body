@@ -1,0 +1,43 @@
+{
+  long rtime, cmean, cstdv, cmedian, cpercent, eCount, endTime;
+  double throughput;
+  boolean rbool;
+synchronized (calculator) {
+    long byteslength=res.getBytes();
+    if (res.getSampleCount() > 1) {
+      long time=res.getTime() / res.getSampleCount();
+      long resbytes=byteslength / res.getSampleCount();
+      for (int idx=0; idx < res.getSampleCount(); idx++) {
+        calculator.addValue(time);
+        calculator.addBytes(resbytes);
+      }
+    }
+ else {
+      calculator.addValue(res.getTime());
+      calculator.addBytes(byteslength);
+    }
+    setStartTime(res);
+    eCount=getCurrentSample().getErrorCount();
+    if (!res.isSuccessful()) {
+      eCount++;
+    }
+    endTime=getEndTime(res);
+    long howLongRunning=endTime - firstTime;
+    throughput=((double)calculator.getCount() / (double)howLongRunning) * 1000.0;
+    if (throughput > maxThroughput) {
+      maxThroughput=throughput;
+    }
+    rtime=res.getTime();
+    cmean=(long)calculator.getMean();
+    cstdv=(long)calculator.getStandardDeviation();
+    cmedian=calculator.getMedian().longValue();
+    cpercent=calculator.getPercentPoint(0.500).longValue();
+    rbool=res.isSuccessful();
+  }
+synchronized (storedValues) {
+    int count=storedValues.size() + 1;
+    Sample s=new Sample(null,rtime,cmean,cstdv,cmedian,cpercent,throughput,eCount,rbool,count,endTime);
+    storedValues.add(s);
+    return s;
+  }
+}

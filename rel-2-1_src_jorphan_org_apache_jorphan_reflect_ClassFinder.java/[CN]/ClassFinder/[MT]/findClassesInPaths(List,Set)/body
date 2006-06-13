@@ -1,0 +1,6 @@
+{
+  Iterator iterPaths=listPaths.iterator();
+  while (iterPaths.hasNext()) {
+    findClassesInOnePath((String)iterPaths.next(),listClasses);
+  }
+}

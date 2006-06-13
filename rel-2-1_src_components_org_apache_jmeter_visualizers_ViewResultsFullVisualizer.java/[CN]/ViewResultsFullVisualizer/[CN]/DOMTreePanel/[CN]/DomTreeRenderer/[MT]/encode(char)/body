@@ -1,0 +1,18 @@
+{
+  String toReturn=String.valueOf(c);
+switch (c) {
+case '<':
+    toReturn="&lt;";
+  break;
+case '>':
+toReturn="&gt;";
+break;
+case '\'':
+toReturn="&apos;";
+break;
+case '\"':
+toReturn="&quot;";
+break;
+}
+return toReturn;
+}

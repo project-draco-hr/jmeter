@@ -1,0 +1,8 @@
+{
+  String text=stringNode.getText();
+  if (!preTagBeingProcessed) {
+    text=Translate.decode(text);
+    text=replaceNonBreakingSpaceWithOrdinarySpace(text);
+  }
+  textAccumulator.append(text);
+}

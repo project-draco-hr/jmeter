@@ -1,0 +1,5 @@
+{
+  List nodeList=new LinkedList();
+  traverseAndFind(type,(JMeterTreeNode)this.getRoot(),nodeList);
+  return nodeList;
+}

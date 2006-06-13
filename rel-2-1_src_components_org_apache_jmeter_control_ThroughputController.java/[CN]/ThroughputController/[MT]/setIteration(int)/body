@@ -1,0 +1,6 @@
+{
+  if (!isPerThread()) {
+    globalIteration=iteration;
+  }
+  this.iteration=iteration;
+}

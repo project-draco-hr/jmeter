@@ -1,0 +1,4 @@
+{
+  Tag tag=new Tag(new TagData(0,0,"a href=http://someurl.com/",""));
+  assertFalse("should not be an xml end tag",helper.isXmlEndTag(tag));
+}

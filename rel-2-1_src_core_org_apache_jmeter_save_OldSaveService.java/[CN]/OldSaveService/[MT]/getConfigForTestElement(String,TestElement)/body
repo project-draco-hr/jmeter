@@ -1,0 +1,6 @@
+{
+  TestElementSaver saver=new TestElementSaver(named);
+  item.traverse(saver);
+  Configuration config=saver.getConfiguration();
+  return config;
+}

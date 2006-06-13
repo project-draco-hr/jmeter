@@ -1,0 +1,12 @@
+{
+  super.configureTestElement(config);
+  config.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());
+  config.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
+  config.setProperty(HTTPSamplerBase.PATH,path.getText());
+  config.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,argPanel.createTestElement()));
+  config.setProperty(HTTPSamplerBase.PORT,port.getText());
+  if (imageParser.isSelected())   config.setProperty(new BooleanProperty(HTTPSamplerBase.IMAGE_PARSER,true));
+ else {
+    config.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
+  }
+}

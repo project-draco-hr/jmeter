@@ -1,0 +1,4 @@
+{
+  LinkTag linkTag=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("javascript://www.someurl.com","","",false,true));
+  assertTrue("This is a javascript link",linkTag.isJavascriptLink());
+}

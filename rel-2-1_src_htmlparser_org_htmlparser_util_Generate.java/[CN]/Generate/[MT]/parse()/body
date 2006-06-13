@@ -1,0 +1,31 @@
+{
+  Node node;
+  StringBuffer buffer=new StringBuffer(4096);
+  for (NodeIterator e=parser.elements(); e.hasMoreNodes(); ) {
+    node=e.nextNode();
+    if (node instanceof StringNode) {
+      StringNode stringNode=(StringNode)node;
+      buffer.append(stringNode.getText());
+    }
+ else     if (node instanceof LinkTag) {
+      LinkTag linkNode=(LinkTag)node;
+      buffer.append(linkNode.getLinkText());
+    }
+ else     if (node instanceof Tag) {
+      String contents=((Tag)node).getText();
+      if (contents.equals("BR") || contents.equals("P"))       buffer.append(nl);
+    }
+ else     if (node instanceof EndTag) {
+      String contents=((EndTag)node).getText();
+      if (contents.equals("BR") || contents.equals("P"))       buffer.append(nl);
+    }
+ else     if (node instanceof RemarkNode) {
+    }
+ else {
+      System.out.println();
+      System.out.println(node.toString());
+    }
+  }
+  String text=translate(buffer.toString());
+  sgml(text);
+}

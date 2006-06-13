@@ -1,0 +1,15 @@
+{
+  tableModel=new PowerTableModel(new String[]{COL_NAME},new Class[]{String.class});
+  stringTable=new JTable(tableModel);
+  TextAreaCellRenderer renderer=new TextAreaCellRenderer();
+  stringTable.setRowHeight(renderer.getPreferredHeight());
+  stringTable.setDefaultRenderer(String.class,renderer);
+  stringTable.setDefaultEditor(String.class,new TextAreaTableCellEditor());
+  stringTable.setPreferredScrollableViewportSize(new Dimension(100,70));
+  JPanel panel=new JPanel();
+  panel.setLayout(new BorderLayout());
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("assertion_patterns_to_test")));
+  panel.add(new JScrollPane(stringTable),BorderLayout.CENTER);
+  panel.add(createButtonPanel(),BorderLayout.SOUTH);
+  return panel;
+}

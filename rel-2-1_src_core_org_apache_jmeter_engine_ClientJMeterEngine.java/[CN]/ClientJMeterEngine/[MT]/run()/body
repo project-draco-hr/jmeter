@@ -1,0 +1,24 @@
+{
+  log.info("running clientengine run method");
+  testListeners=new SearchByClass(TestListener.class);
+  getTestTree().traverse(testListeners);
+  sampleListeners=new ConvertListeners();
+  try {
+    getTestTree().traverse(sampleListeners);
+  }
+ catch (  IndexOutOfBoundsException e) {
+    log.warn("Error replacing sample listeners",e);
+  }
+  try {
+    JMeterContextService.startTest();
+    remote.setHost(host);
+    log.info("sent host =" + host);
+    remote.configure(test);
+    log.info("sent test");
+    remote.runTest();
+    log.info("sent run command");
+  }
+ catch (  Exception ex) {
+    log.error("",ex);
+  }
+}

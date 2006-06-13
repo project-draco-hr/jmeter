@@ -1,0 +1,9 @@
+{
+  StringBuffer sb=new StringBuffer();
+  putStartTagInto(sb);
+  if (!startTag.isEmptyXmlTag()) {
+    putChildrenInto(sb);
+    putEndTagInto(sb);
+  }
+  return sb.toString();
+}

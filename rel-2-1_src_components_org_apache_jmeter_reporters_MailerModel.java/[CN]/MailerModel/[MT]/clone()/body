@@ -1,0 +1,5 @@
+{
+  MailerModel m=(MailerModel)super.clone();
+  m.changeListener=changeListener;
+  return m;
+}

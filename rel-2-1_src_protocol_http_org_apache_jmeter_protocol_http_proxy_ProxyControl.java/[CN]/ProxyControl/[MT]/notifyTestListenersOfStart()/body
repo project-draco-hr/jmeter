@@ -1,0 +1,14 @@
+{
+  JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
+  JMeterTreeNode myNode=treeModel.getNodeOf(this);
+  Enumeration kids=myNode.children();
+  while (kids.hasMoreElements()) {
+    JMeterTreeNode subNode=(JMeterTreeNode)kids.nextElement();
+    if (subNode.isEnabled()) {
+      TestElement testElement=subNode.getTestElement();
+      if (testElement instanceof TestListener) {
+        ((TestListener)testElement).testStarted();
+      }
+    }
+  }
+}

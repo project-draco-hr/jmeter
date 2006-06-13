@@ -1,0 +1,20 @@
+{
+  JMeterVariables variables=JMeterContextService.getContext().getVariables();
+  long start=getStart(), end=getEnd(), increment=getIncrement();
+  if (!isPerUser()) {
+    if (globalCounter == Long.MIN_VALUE || globalCounter > end) {
+      globalCounter=start;
+    }
+    variables.put(getVarName(),formatNumber(globalCounter));
+    globalCounter+=increment;
+  }
+ else {
+    long current=((Long)perTheadNumber.get()).longValue();
+    variables.put(getVarName(),formatNumber(current));
+    current+=increment;
+    if (current > end) {
+      current=start;
+    }
+    perTheadNumber.set(new Long(current));
+  }
+}

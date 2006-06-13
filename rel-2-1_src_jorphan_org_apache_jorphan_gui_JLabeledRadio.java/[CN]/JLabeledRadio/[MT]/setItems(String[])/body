@@ -1,0 +1,9 @@
+{
+  Enumeration en=this.bGroup.getElements();
+  while (en.hasMoreElements()) {
+    JComponent comp=(JComponent)en.nextElement();
+    this.bGroup.remove((JRadioButton)comp);
+    this.remove(comp);
+  }
+  init(items,null);
+}

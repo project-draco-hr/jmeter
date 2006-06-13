@@ -1,0 +1,62 @@
+{
+  boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
+  if (!merging) {
+    ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),"close"));
+  }
+  JFileChooser chooser=FileDialoger.promptToOpenFile(new String[]{".jmx"});
+  if (chooser == null) {
+    return;
+  }
+  boolean isTestPlan=false;
+  InputStream reader=null;
+  File f=null;
+  try {
+    f=chooser.getSelectedFile();
+    if (f != null) {
+      if (merging) {
+        log.info("Merging file: " + f);
+      }
+ else {
+        log.info("Loading file: " + f);
+        FileServer.getFileServer().setBasedir(f.getAbsolutePath());
+      }
+      reader=new FileInputStream(f);
+      HashTree tree=SaveService.loadTree(reader);
+      isTestPlan=insertLoadedTree(e.getID(),tree);
+    }
+  }
+ catch (  NoClassDefFoundError ex) {
+    log.warn("Missing jar file",ex);
+    String msg=ex.getMessage();
+    if (msg == null) {
+      msg="Missing jar file - see log for details";
+    }
+    JMeterUtils.reportErrorToUser(msg);
+  }
+catch (  ConversionException ex) {
+    log.warn("Could not convert file " + ex);
+    JMeterUtils.reportErrorToUser(SaveService.CEtoString(ex));
+  }
+catch (  Exception ex) {
+    log.warn("Unexpected error",ex);
+    String msg=ex.getMessage();
+    if (msg == null) {
+      msg="Unexpected error - see log for details";
+    }
+    JMeterUtils.reportErrorToUser(msg);
+  }
+ finally {
+    try {
+      if (reader != null) {
+        reader.close();
+      }
+    }
+ catch (    IOException e1) {
+    }
+    GuiPackage.getInstance().updateCurrentGui();
+    GuiPackage.getInstance().getMainFrame().repaint();
+  }
+  if (!merging && isTestPlan && f != null) {
+    GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
+  }
+}

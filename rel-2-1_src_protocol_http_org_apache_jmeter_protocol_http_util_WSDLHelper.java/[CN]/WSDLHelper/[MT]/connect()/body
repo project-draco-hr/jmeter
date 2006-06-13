@@ -1,0 +1,11 @@
+{
+  try {
+    CONN=(HttpURLConnection)WSDLURL.openConnection();
+    if (this.AUTH != null && this.AUTH.getAuthHeaderForURL(this.WSDLURL) != null) {
+      CONN.setRequestProperty("Authorization",this.AUTH.getAuthHeaderForURL(this.WSDLURL));
+    }
+  }
+ catch (  IOException exception) {
+    throw exception;
+  }
+}

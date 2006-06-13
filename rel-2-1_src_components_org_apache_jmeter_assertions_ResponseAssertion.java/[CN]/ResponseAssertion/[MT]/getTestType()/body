@@ -1,0 +1,7 @@
+{
+  JMeterProperty type=getProperty(TEST_TYPE);
+  if (type instanceof NullProperty) {
+    return CONTAINS;
+  }
+  return type.getIntValue();
+}

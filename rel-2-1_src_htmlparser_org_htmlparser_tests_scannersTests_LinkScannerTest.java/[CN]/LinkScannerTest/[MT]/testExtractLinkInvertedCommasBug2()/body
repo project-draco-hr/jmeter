@@ -1,0 +1,8 @@
+{
+  createParser("<a href=\"http://cbc.ca/artsCanada/stories/greatnorth271202\" class=\"lgblacku\">Vancouver schools plan 'Great Northern Way'</a>");
+  parser.addScanner(new LinkScanner("-l"));
+  parseAndAssertNodeCount(1);
+  assertTrue("The node should be a link tag",node[0] instanceof LinkTag);
+  LinkTag linkTag=(LinkTag)node[0];
+  assertStringEquals("Extracted Text","Vancouver schools plan 'Great Northern Way'",linkTag.getLinkText());
+}

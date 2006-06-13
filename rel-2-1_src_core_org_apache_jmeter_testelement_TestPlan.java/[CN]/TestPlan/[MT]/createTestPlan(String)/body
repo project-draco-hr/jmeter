@@ -1,0 +1,12 @@
+{
+  if (plan == null) {
+    if (name == null) {
+      plan=new TestPlan();
+    }
+ else {
+      plan=new TestPlan(name);
+    }
+    plan.setProperty(new StringProperty(TestElement.GUI_CLASS,"org.apache.jmeter.control.gui.TestPlanGui"));
+  }
+  return plan;
+}

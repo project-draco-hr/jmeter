@@ -1,0 +1,17 @@
+{
+  ArrayList list=new ArrayList();
+  list.add(getMessage());
+  if (throwable != null) {
+    if (throwable instanceof ChainedException) {
+      ChainedException chain=(ChainedException)throwable;
+      list.addAll(chain.getMessageList());
+    }
+ else {
+      String message=throwable.getMessage();
+      if (message != null && !message.equals("")) {
+        list.add(message);
+      }
+    }
+  }
+  return list;
+}

@@ -1,0 +1,8 @@
+{
+  createParser("<h1>\n" + "This is a <%=object%>\n" + "</h1>");
+  parser.addScanner(new JspScanner("-j"));
+  parseAndAssertNodeCount(4);
+  assertTrue("Third should be an HTMLJspTag",node[2] instanceof JspTag);
+  JspTag tag=(JspTag)node[2];
+  assertEquals("tag contents","=object",tag.getText());
+}

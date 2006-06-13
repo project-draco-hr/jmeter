@@ -1,0 +1,11 @@
+{
+  scanner=new InputTagScanner("-i");
+  createParser(testHTML,"http://www.google.com/test/index.html");
+  parser.addScanner(scanner);
+  parseAndAssertNodeCount(1);
+  assertTrue(node[0] instanceof InputTag);
+  InputTag inputTag=(InputTag)node[0];
+  assertEquals("Input Scanner",scanner,inputTag.getThisScanner());
+  assertEquals("Type","text",inputTag.getAttribute("TYPE"));
+  assertEquals("Name","Google",inputTag.getAttribute("NAME"));
+}

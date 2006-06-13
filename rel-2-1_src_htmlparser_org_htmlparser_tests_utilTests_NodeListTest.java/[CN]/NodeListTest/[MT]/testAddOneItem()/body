@@ -1,0 +1,6 @@
+{
+  Node node=createHTMLNodeObject();
+  nodeList.add(node);
+  assertEquals("Vector Size",1,nodeList.size());
+  assertTrue("First Element",node == nodeList.elementAt(0));
+}

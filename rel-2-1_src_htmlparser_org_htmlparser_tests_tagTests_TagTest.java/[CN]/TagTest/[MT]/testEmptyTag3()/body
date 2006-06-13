@@ -1,0 +1,9 @@
+{
+  String testHTML="<html><body>text<>text</body></html>";
+  createParser(testHTML);
+  parser.registerScanners();
+  parseAndAssertNodeCount(5);
+  assertTrue("Third node should be a string node",node[2] instanceof StringNode);
+  StringNode stringNode=(StringNode)node[2];
+  assertEquals("Third node has incorrect text","text<>text",stringNode.getText());
+}

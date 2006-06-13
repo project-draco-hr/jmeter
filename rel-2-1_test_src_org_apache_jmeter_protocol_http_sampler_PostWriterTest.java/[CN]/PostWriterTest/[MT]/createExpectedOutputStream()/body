@@ -1,0 +1,32 @@
+{
+  final OutputStream output=new ByteArrayOutputStream();
+  output.write("-----------------------------7d159c1302d0y0".getBytes());
+  output.write(CRLF);
+  output.write("Content-Disposition: form-data; name=\"title\"".getBytes());
+  output.write(CRLF);
+  output.write(CRLF);
+  output.write("mytitle".getBytes());
+  output.write(CRLF);
+  output.write("-----------------------------7d159c1302d0y0".getBytes());
+  output.write(CRLF);
+  output.write("Content-Disposition: form-data; name=\"description\"".getBytes());
+  output.write(CRLF);
+  output.write(CRLF);
+  output.write("mydescription".getBytes());
+  output.write(CRLF);
+  output.write("-----------------------------7d159c1302d0y0".getBytes());
+  output.write(CRLF);
+  String filename=temporaryFile.getAbsolutePath().replaceAll("\\\\","\\\\\\\\");
+  output.write(("Content-Disposition: form-data; name=\"upload\"; filename=\"" + filename + "\"").getBytes());
+  output.write(CRLF);
+  output.write("Content-Type: text/plain".getBytes());
+  output.write(CRLF);
+  output.write(CRLF);
+  output.write("foo content".getBytes());
+  output.write(CRLF);
+  output.write("-----------------------------7d159c1302d0y0--".getBytes());
+  output.write(CRLF);
+  output.flush();
+  output.close();
+  return output;
+}

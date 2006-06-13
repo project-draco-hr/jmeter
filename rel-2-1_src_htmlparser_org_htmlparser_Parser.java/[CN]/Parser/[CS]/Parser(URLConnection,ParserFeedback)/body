@@ -1,0 +1,11 @@
+{
+  setFeedback(fb);
+  setScanners(null);
+  resourceLocn=null;
+  reader=null;
+  character_set=DEFAULT_CHARSET;
+  url_conn=null;
+  input=null;
+  Tag.setTagParser(new TagParser(feedback));
+  setConnection(connection);
+}

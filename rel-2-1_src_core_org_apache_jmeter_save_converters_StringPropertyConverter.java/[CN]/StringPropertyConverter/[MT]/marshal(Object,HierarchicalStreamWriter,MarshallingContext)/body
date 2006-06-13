@@ -1,0 +1,5 @@
+{
+  StringProperty prop=(StringProperty)obj;
+  writer.addAttribute(ATT_NAME,ConversionHelp.encode(prop.getName()));
+  writer.setValue(ConversionHelp.encode(prop.getStringValue()));
+}
