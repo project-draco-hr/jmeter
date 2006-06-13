@@ -1,9 +1,0 @@
-{
-  ConstantThroughputTimer timer=new ConstantThroughputTimer();
-  timer.setThroughput(60.0);
-  long delay=timer.delay();
-  assertEquals(0,delay);
-  Thread.sleep(500);
-  long diff=Math.abs(timer.delay() - 500);
-  assertTrue("Delay is approximately 500",diff <= 50);
-}

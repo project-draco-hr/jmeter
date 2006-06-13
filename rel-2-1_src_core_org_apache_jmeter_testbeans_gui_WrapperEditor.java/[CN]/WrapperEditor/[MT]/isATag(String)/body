@@ -1,8 +1,0 @@
-{
-  String[] tags=getTags();
-  if (tags == null)   return false;
-  for (int i=0; i < tags.length; i++) {
-    if (tags[i].equals(text))     return true;
-  }
-  return false;
-}

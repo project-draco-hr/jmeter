@@ -1,5 +1,0 @@
-{
-  SearchControls searchcontrols=new SearchControls(SearchControls.SUBTREE_SCOPE,1L,0,null,false,false);
-  NamingEnumeration ne=dirContext.search(searchBase,searchFilter,searchcontrols);
-  return ne.hasMore();
-}

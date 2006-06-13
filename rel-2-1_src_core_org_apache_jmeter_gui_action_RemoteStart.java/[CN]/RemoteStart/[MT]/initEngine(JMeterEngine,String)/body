@@ -1,7 +1,0 @@
-{
-  GuiPackage gui=GuiPackage.getInstance();
-  HashTree testTree=gui.getTreeModel().getTestPlan();
-  convertSubTree(testTree);
-  testTree.add(testTree.getArray()[0],gui.getMainFrame());
-  engine.configure(testTree);
-}

@@ -1,5 +1,0 @@
-{
-  sampler.setDomain("jakarta.org");
-  sampler.setPath("index.jsp");
-  assertTrue("Should find jakarta.org/index.jsp",control.filterUrl(sampler));
-}

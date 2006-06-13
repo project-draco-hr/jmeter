@@ -1,7 +1,0 @@
-{
-  Box toolPanel=new Box(BoxLayout.X_AXIS);
-  toolPanel.add(Box.createRigidArea(new Dimension(10,15)));
-  toolPanel.add(Box.createGlue());
-  toolPanel.add(runningIndicator);
-  return toolPanel;
-}

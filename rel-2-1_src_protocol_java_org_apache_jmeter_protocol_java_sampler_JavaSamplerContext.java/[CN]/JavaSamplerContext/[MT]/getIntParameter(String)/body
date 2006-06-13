@@ -1,6 +1,0 @@
-{
-  if (params == null || !params.containsKey(name)) {
-    throw new NumberFormatException("No value for parameter named '" + name + "'.");
-  }
-  return Integer.decode((String)params.get(name)).intValue();
-}

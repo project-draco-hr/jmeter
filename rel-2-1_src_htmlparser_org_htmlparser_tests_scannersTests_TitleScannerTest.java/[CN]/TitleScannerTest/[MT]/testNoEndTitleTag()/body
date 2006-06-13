@@ -1,8 +1,0 @@
-{
-  createParser("<TITLE>KRP VALIDATION<PROCESS/TITLE>");
-  TitleScanner titleScanner=new TitleScanner("-t");
-  parser.addScanner(titleScanner);
-  parseAndAssertNodeCount(1);
-  TitleTag titleTag=(TitleTag)node[0];
-  assertEquals("Expected title","KRP VALIDATION",titleTag.getTitle());
-}

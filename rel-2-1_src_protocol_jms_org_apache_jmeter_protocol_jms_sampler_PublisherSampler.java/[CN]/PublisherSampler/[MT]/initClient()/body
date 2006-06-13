@@ -1,5 +1,0 @@
-{
-  this.PUB=new Publisher(this.getUseJNDIPropertiesAsBoolean(),this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.getUseAuth(),this.getUsername(),this.getPassword());
-  ClientPool.addClient(this.PUB);
-  log.info("PublisherSampler.initClient called");
-}

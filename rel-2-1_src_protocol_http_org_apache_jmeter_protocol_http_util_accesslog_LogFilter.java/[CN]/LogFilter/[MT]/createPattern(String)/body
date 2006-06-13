@@ -1,9 +1,0 @@
-{
-  try {
-    return JMeterUtils.getPatternCache().getPattern(pattern,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.SINGLELINE_MASK);
-  }
- catch (  Exception exception) {
-    exception.printStackTrace();
-    return null;
-  }
-}

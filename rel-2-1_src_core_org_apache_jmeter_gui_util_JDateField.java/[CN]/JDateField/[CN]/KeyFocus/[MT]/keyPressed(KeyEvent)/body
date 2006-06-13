@@ -1,8 +1,0 @@
-{
-  if (e.getKeyCode() == KeyEvent.VK_UP) {
-    update(1,e.isShiftDown());
-  }
- else   if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-    update(-1,e.isShiftDown());
-  }
-}

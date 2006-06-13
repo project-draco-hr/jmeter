@@ -1,7 +1,0 @@
-{
-  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
-  setBorder(makeBorder());
-  add(makeTitlePanel());
-  style=new JCheckBox(JMeterUtils.getResString("ignore_subcontrollers"));
-  add(style);
-}

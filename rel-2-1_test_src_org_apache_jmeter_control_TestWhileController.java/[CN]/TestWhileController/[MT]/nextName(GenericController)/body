@@ -1,9 +1,0 @@
-{
-  Sampler s=c.next();
-  if (s == null) {
-    return null;
-  }
- else {
-    return s.getPropertyAsString(TestElement.NAME);
-  }
-}

@@ -1,8 +1,0 @@
-{
-  JPanel rootdnPanel=new JPanel(new BorderLayout(5,0));
-  JLabel label=new JLabel(JMeterUtils.getResString("dn"));
-  label.setLabelFor(rootdn);
-  rootdnPanel.add(label,BorderLayout.WEST);
-  rootdnPanel.add(rootdn,BorderLayout.CENTER);
-  return rootdnPanel;
-}

@@ -1,6 +1,0 @@
-{
-  createParser("<BODY>Hello World&nbsp;&nbsp;</BODY>");
-  TextExtractingVisitor visitor=new TextExtractingVisitor();
-  parser.visitAllNodesWith(visitor);
-  assertStringEquals("extracted text","Hello World  ",visitor.getExtractedText());
-}

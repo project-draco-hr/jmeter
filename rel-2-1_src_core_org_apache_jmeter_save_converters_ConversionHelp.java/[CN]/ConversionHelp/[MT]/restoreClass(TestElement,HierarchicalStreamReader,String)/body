@@ -1,7 +1,0 @@
-{
-  String att=(String)propertyToAttribute.get(prop);
-  String alias=reader.getAttribute(att);
-  if (alias != null) {
-    el.setProperty(prop,SaveService.aliasToClass(alias));
-  }
-}

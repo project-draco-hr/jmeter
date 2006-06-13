@@ -1,9 +1,0 @@
-{
-  int h=getPropertyAsInt(REPORT_CHART_HEIGHT);
-  if (h <= 0) {
-    return DEFAULT_HEIGHT;
-  }
- else {
-    return h;
-  }
-}

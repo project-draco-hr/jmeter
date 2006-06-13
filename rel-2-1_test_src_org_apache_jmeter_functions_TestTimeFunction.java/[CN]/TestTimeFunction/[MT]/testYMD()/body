@@ -1,8 +1,0 @@
-{
-  params.add(new CompoundVariable("YMD"));
-  params.add(new CompoundVariable("NAME"));
-  variable.setParameters(params);
-  value=variable.execute(result,null);
-  assertEquals(8,value.length());
-  assertEquals(value,vars.get("NAME"));
-}

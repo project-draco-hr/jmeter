@@ -1,8 +1,0 @@
-{
-  try {
-    return Long.parseLong(getPropertyAsString(SECONDS));
-  }
- catch (  NumberFormatException e) {
-    return 0L;
-  }
-}

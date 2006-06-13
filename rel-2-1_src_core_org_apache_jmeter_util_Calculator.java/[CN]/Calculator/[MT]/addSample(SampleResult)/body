@@ -1,9 +1,0 @@
-{
-  addBytes(res.getBytes());
-  addValue(res.getTime(),res.getSampleCount());
-  if (!res.isSuccessful())   errors++;
-  if (startTime == 0) {
-    startTime=res.getStartTime();
-  }
-  elapsedTime=res.getEndTime() - startTime;
-}

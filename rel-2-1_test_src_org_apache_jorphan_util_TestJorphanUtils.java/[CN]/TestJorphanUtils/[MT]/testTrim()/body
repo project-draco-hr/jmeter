@@ -1,8 +1,0 @@
-{
-  assertEquals("",JOrphanUtils.trim(""," ;"));
-  assertEquals("",JOrphanUtils.trim(" "," ;"));
-  assertEquals("",JOrphanUtils.trim("; "," ;"));
-  assertEquals("",JOrphanUtils.trim(";;"," ;"));
-  assertEquals("",JOrphanUtils.trim("  "," ;"));
-  assertEquals("abc",JOrphanUtils.trim("abc ;"," ;"));
-}

@@ -1,6 +1,0 @@
-{
-  this.SUBSCRIBER=new ReceiveSubscriber(this.getUseJNDIPropertiesAsBoolean(),this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.getUseAuth(),this.getUsername(),this.getPassword());
-  this.SUBSCRIBER.resume();
-  ClientPool.addClient(this.SUBSCRIBER);
-  log.info("SubscriberSampler.initReceiveClient called");
-}

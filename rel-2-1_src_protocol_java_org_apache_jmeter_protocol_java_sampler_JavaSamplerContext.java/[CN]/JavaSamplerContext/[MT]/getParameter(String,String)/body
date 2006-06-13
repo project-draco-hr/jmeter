@@ -1,6 +1,0 @@
-{
-  if (params == null || !params.containsKey(name)) {
-    return defaultValue;
-  }
-  return (String)params.get(name);
-}

@@ -1,9 +1,0 @@
-{
-  if (searchStart == null) {
-    searchStart=currentElement;
-  }
- else   if (searchStart == currentElement && !stillSame) {
-    reInitialize();
-    throw new NextIsNullException();
-  }
-}

@@ -1,8 +1,0 @@
-{
-  if (nameMap.containsKey(className)) {
-    String newName=nameMap.getProperty(className);
-    log.info("Upgrading class " + className + " to "+ newName);
-    return newName;
-  }
-  return className;
-}

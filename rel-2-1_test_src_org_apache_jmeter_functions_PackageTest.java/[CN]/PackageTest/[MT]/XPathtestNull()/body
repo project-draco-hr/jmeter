@@ -1,8 +1,0 @@
-{
-  try {
-    new XPathFileContainer("nosuch.xml","/");
-    fail("Should not find the file");
-  }
- catch (  FileNotFoundException e) {
-  }
-}

@@ -1,9 +1,0 @@
-{
-  divertLog();
-  SampleResult res=new SampleResult();
-  res.sampleStart();
-  res.samplePause();
-  assertTrue(wr.toString().length() == 0);
-  res.samplePause();
-  assertFalse(wr.toString().length() == 0);
-}

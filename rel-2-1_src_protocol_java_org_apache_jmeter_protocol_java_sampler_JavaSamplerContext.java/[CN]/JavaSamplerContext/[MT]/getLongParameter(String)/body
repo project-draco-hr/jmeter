@@ -1,6 +1,0 @@
-{
-  if (params == null || !params.containsKey(name)) {
-    throw new NumberFormatException("No value for parameter named '" + name + "'.");
-  }
-  return Long.decode((String)params.get(name)).longValue();
-}

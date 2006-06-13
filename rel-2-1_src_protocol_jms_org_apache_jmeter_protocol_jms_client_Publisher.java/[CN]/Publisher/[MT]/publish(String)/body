@@ -1,9 +1,0 @@
-{
-  try {
-    TextMessage msg=this.SESSION.createTextMessage(text);
-    this.PUBLISHER.publish(msg);
-  }
- catch (  JMSException e) {
-    log.error(e.getMessage());
-  }
-}

@@ -1,9 +1,0 @@
-{
-  configureTestElement(ic);
-  if (style.isSelected()) {
-    ((RandomController)ic).setStyle(InterleaveControl.IGNORE_SUB_CONTROLLERS);
-  }
- else {
-    ((RandomController)ic).setStyle(InterleaveControl.USE_SUB_CONTROLLERS);
-  }
-}

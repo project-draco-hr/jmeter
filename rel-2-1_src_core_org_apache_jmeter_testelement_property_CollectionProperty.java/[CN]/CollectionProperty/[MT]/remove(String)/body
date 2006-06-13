@@ -1,8 +1,0 @@
-{
-  PropertyIterator iter=iterator();
-  while (iter.hasNext()) {
-    if (iter.next().getName().equals(prop)) {
-      iter.remove();
-    }
-  }
-}

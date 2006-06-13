@@ -1,9 +1,0 @@
-{
-  PropertyIterator iter=getArguments().iterator();
-  while (iter.hasNext()) {
-    LDAPArgument item=(LDAPArgument)iter.next().getObjectValue();
-    if (arg.equals(item)) {
-      iter.remove();
-    }
-  }
-}

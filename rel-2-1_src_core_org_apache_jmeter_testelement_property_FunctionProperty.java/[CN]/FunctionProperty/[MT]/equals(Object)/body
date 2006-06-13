@@ -1,8 +1,0 @@
-{
-  if (o instanceof FunctionProperty) {
-    if (function != null) {
-      return function.equals(((JMeterProperty)o).getObjectValue());
-    }
-  }
-  return false;
-}

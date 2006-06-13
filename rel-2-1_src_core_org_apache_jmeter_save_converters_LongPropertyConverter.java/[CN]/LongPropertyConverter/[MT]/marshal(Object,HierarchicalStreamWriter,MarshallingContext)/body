@@ -1,5 +1,0 @@
-{
-  LongProperty prop=(LongProperty)obj;
-  writer.addAttribute(ATT_NAME,ConversionHelp.encode(prop.getName()));
-  writer.setValue(prop.getStringValue());
-}

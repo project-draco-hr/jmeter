@@ -1,6 +1,0 @@
-{
-  Arguments params=new Arguments();
-  params.addArgument("SleepTime",String.valueOf(DEFAULT_SLEEP_TIME));
-  params.addArgument("SleepMask","0x" + (Long.toHexString(DEFAULT_SLEEP_MASK)).toUpperCase());
-  return params;
-}

@@ -1,8 +1,0 @@
-{
-  if (!files.containsKey(filename)) {
-    File f=new File(filename);
-    FileEntry file=new FileEntry(f.isAbsolute() ? f : new File(base,filename),null);
-    log.info("Stored: " + filename);
-    files.put(filename,file);
-  }
-}

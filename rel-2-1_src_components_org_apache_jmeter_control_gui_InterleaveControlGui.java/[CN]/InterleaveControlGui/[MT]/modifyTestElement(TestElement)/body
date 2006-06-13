@@ -1,9 +1,0 @@
-{
-  configureTestElement(ic);
-  if (style.isSelected()) {
-    ((InterleaveControl)ic).setStyle(InterleaveControl.IGNORE_SUB_CONTROLLERS);
-  }
- else {
-    ((InterleaveControl)ic).setStyle(InterleaveControl.USE_SUB_CONTROLLERS);
-  }
-}

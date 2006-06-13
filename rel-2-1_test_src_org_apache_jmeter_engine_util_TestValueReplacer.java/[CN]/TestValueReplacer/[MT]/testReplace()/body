@@ -1,9 +1,0 @@
-{
-  ValueReplacer replacer=new ValueReplacer();
-  replacer.setUserDefinedVariables(variables.getUserDefinedVariables());
-  TestElement element=new ConfigTestElement();
-  element.setProperty(new StringProperty("domain","${server}"));
-  replacer.replaceValues(element);
-  element.setRunningVersion(true);
-  assertEquals("jakarta.apache.org",element.getPropertyAsString("domain"));
-}

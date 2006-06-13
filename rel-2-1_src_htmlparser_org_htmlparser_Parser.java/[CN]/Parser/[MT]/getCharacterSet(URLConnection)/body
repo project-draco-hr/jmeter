@@ -1,9 +1,0 @@
-{
-  final String field="Content-Type";
-  String string;
-  String ret;
-  ret=DEFAULT_CHARSET;
-  string=connection.getHeaderField(field);
-  if (null != string)   ret=getCharset(string);
-  return (ret);
-}

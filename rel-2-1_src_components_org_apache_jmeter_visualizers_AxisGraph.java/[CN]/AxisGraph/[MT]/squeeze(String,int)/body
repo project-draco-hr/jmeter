@@ -1,7 +1,0 @@
-{
-  if (input.length() > _maxLength) {
-    String output=input.substring(0,_maxLength - ELLIPSIS_LEN) + ELLIPSIS;
-    return output;
-  }
-  return input;
-}

@@ -1,6 +1,0 @@
-{
-  JMeterTreeNode treeNode=(JMeterTreeNode)node.clone();
-  treeNode.setUserObject(((TestElement)node.getUserObject()).clone());
-  cloneChildren(treeNode,node);
-  return treeNode;
-}

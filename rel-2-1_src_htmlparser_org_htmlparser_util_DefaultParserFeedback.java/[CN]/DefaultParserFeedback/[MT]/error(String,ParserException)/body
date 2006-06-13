@@ -1,6 +1,0 @@
-{
-  if (mode != QUIET) {
-    System.out.println("ERROR: " + message);
-    if (mode == DEBUG && (exception != null))     exception.printStackTrace();
-  }
-}

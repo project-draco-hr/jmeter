@@ -1,8 +1,0 @@
-{
-  PropertyIterator iter=propertyIterator();
-  traverser.startTestElement(this);
-  while (iter.hasNext()) {
-    traverseProperty(traverser,iter.next());
-  }
-  traverser.endTestElement(this);
-}

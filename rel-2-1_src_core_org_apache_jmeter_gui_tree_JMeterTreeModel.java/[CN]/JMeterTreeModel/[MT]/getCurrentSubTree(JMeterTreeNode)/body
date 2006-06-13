@@ -1,9 +1,0 @@
-{
-  ListedHashTree hashTree=new ListedHashTree(node);
-  Enumeration enumNode=node.children();
-  while (enumNode.hasMoreElements()) {
-    JMeterTreeNode child=(JMeterTreeNode)enumNode.nextElement();
-    hashTree.add(node,getCurrentSubTree(child));
-  }
-  return hashTree;
-}

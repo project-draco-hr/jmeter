@@ -1,7 +1,0 @@
-{
-  ReportGuiPackage pack=ReportGuiPackage.getInstance();
-  for (int i=0; i < nodes.length; i++) {
-    nodes[i].setEnabled(enable);
-    pack.getGui(nodes[i].getTestElement()).setEnabled(enable);
-  }
-}

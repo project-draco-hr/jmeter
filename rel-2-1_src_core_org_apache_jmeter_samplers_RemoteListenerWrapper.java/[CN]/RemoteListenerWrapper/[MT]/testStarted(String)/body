@@ -1,9 +1,0 @@
-{
-  log.info("Test Started on " + host);
-  try {
-    listener.testStarted(host);
-  }
- catch (  Throwable ex) {
-    log.error("testStarted(host)",ex);
-  }
-}

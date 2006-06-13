@@ -1,6 +1,0 @@
-{
-  String inputLine=tag.getTagLine();
-  int closeTagPos=inputLine.indexOf('>',pos + 1);
-  int openTagPos=inputLine.indexOf('<',pos + 1);
-  return openTagPos > closeTagPos || (openTagPos == -1 && closeTagPos != -1);
-}

@@ -1,6 +1,0 @@
-{
-  createParser("<LI><A HREF=\"collapseHierarchy.html\">Collapse Hierarchy</A>\n" + "</LI>");
-  parser.registerScanners();
-  parseAndAssertNodeCount(1);
-  assertType("should be a bullet",Bullet.class,node[0]);
-}

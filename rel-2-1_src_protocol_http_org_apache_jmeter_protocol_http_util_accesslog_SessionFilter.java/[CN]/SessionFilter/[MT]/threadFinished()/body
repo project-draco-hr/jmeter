@@ -1,6 +1,0 @@
-{
-synchronized (managersInUse) {
-    managersInUse.remove(lastUsed);
-    managersInUse.notify();
-  }
-}

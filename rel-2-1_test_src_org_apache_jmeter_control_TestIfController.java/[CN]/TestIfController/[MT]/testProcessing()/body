@@ -1,6 +1,0 @@
-{
-  GenericController controller=new GenericController();
-  controller.addTestElement(new IfController("false==false"));
-  controller.addTestElement(new IfController(" \"a\".equals(\"a\")"));
-  controller.addTestElement(new IfController("2<100"));
-}

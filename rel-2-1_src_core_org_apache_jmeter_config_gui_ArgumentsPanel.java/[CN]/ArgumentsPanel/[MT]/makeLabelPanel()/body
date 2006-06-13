@@ -1,8 +1,0 @@
-{
-  JPanel labelPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
-  labelPanel.add(tableLabel);
-  if (this.background != null) {
-    labelPanel.setBackground(this.background);
-  }
-  return labelPanel;
-}

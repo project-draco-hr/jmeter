@@ -1,7 +1,0 @@
-{
-  this.paint_counter++;
-  if (this.paint_counter == (PAINT_ARRAY.length - 1)) {
-    this.paint_counter=0;
-  }
-  return PAINT_ARRAY[this.paint_counter];
-}

@@ -1,9 +1,0 @@
-{
-  createParser("<html>\n" + "<head>\n" + "<TITLE>test page</TITLE>\n"+ "<BASE HREF=\"http://www.abc.com/\">\n"+ "<a href=\"home.cfm\">Home</a>\n"+ "...\n"+ "</html>","http://transfer.go.com");
-  parser.registerScanners();
-  parseAndAssertNodeCount(7);
-  assertTrue("Node 4 should be a link tag",node[4] instanceof LinkTag);
-  LinkTag linkTag=(LinkTag)node[4];
-  assertEquals("Resolved Link","http://www.abc.com/home.cfm",linkTag.getLink());
-  assertEquals("Resolved Link Text","Home",linkTag.getLinkText());
-}

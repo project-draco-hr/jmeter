@@ -1,7 +1,0 @@
-{
-  setText((String)value);
-  setBackground(isSelected && !hasFocus ? table.getSelectionBackground() : table.getBackground());
-  setForeground(isSelected && !hasFocus ? table.getSelectionForeground() : table.getForeground());
-  setFont(table.getFont());
-  return this;
-}

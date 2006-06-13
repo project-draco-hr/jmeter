@@ -1,9 +1,0 @@
-{
-  createParser(xml);
-  parser.addScanner(new CustomScanner());
-  parseAndAssertNodeCount(numNodes);
-  assertType("custom node",CustomTag.class,node[useNode]);
-  CustomTag tag=(CustomTag)node[useNode];
-  assertEquals("start line",expectedStartLine,tag.tagData.getStartLine());
-  assertEquals("end line",expectedEndLine,tag.tagData.getEndLine());
-}

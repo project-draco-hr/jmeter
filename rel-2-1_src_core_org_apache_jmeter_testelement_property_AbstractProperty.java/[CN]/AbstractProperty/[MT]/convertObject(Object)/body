@@ -1,9 +1,0 @@
-{
-  JMeterProperty prop=makeProperty(item);
-  if (prop == null) {
-    prop=getBlankProperty();
-    prop.setName("" + item.hashCode());
-    prop.setObjectValue(item);
-  }
-  return prop;
-}

@@ -1,6 +1,0 @@
-{
-  int hc=17;
-  hc=hc * 37 + (order == null ? 0 : order.hashCode());
-  hc=hc * 37 + super.hashCode();
-  return hc;
-}

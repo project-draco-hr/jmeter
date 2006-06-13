@@ -1,6 +1,0 @@
-{
-  String in="a,bc,,";
-  String out[]=JOrphanUtils.split(in,"","?");
-  assertEquals(1,out.length);
-  assertEquals(in,out[0]);
-}

@@ -1,9 +1,0 @@
-{
-  String baseUrl=tag.getAttribute("HREF");
-  String absoluteBaseUrl="";
-  if (baseUrl != null && baseUrl.length() > 0) {
-    absoluteBaseUrl=baseUrl.trim();
-    processor.setBaseUrl(absoluteBaseUrl);
-  }
-  return new BaseHrefTag(tagData,absoluteBaseUrl);
-}

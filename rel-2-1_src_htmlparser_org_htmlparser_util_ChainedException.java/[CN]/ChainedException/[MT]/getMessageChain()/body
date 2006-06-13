@@ -1,8 +1,0 @@
-{
-  List list=getMessageList();
-  String[] chain=new String[list.size()];
-  for (int i=0; i < list.size(); i++) {
-    chain[i]=(String)list.get(i);
-  }
-  return chain;
-}

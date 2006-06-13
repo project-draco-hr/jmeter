@@ -1,9 +1,0 @@
-{
-  assertEquals(jp1,jp1);
-  assertEquals(jp2,jp2);
-  assertFalse(jp1.equals(jp2));
-  assertFalse(jp2.equals(jp1));
-  if (jp1.hashCode() == jp2.hashCode()) {
-    System.out.println("Expected different hashCodes for " + jp1.getClass().getName());
-  }
-}

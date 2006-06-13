@@ -1,7 +1,0 @@
-{
-  int result=17;
-  result=result * 37 + name.hashCode();
-  String s=getStringValue();
-  result=result * 37 + (s == null ? 0 : s.hashCode());
-  return result;
-}

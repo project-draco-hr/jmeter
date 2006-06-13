@@ -1,8 +1,0 @@
-{
-  msgBuffer.append("\nat Line ");
-  msgBuffer.append(getLineCount());
-  msgBuffer.append(" : ");
-  msgBuffer.append(getLine());
-  msgBuffer.append("\nPrevious Line ").append(getLineCount() - 1);
-  msgBuffer.append(" : ").append(getPreviousLine());
-}

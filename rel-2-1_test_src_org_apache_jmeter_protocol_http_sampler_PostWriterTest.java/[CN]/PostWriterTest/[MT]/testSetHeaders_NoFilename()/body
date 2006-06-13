@@ -1,7 +1,0 @@
-{
-  setupNoFilename(sampler);
-  setupCommons(sampler);
-  postWriter.setHeaders(connection,sampler);
-  assertEquals("application/x-www-form-urlencoded",connection.getRequestProperty("Content-Type"));
-  assertEquals("39",connection.getRequestProperty("Content-Length"));
-}

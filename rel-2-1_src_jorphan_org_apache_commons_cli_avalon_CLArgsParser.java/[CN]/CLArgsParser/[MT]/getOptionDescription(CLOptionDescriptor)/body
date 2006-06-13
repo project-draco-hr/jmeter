@@ -1,8 +1,0 @@
-{
-  if (m_isLong) {
-    return "--" + descriptor.getName();
-  }
- else {
-    return "-" + (char)descriptor.getId();
-  }
-}

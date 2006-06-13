@@ -1,5 +1,0 @@
-{
-  createParser("<form>" + "<select> " + "<!-- 1 --><option selected>123 "+ "<option>345 "+ "</select> "+ "</form>");
-  parser.registerScanners();
-  parseAndAssertNodeCount(1);
-}

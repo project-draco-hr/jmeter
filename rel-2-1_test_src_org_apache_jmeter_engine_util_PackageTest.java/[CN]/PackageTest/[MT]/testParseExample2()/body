@@ -1,7 +1,0 @@
-{
-  StringProperty prop=new StringProperty("html","It should say:\\${${__regexFunction(<html>(.*)</html>,$1$)}}");
-  JMeterProperty newProp=transformer.transformValue(prop);
-  newProp.setRunningVersion(true);
-  assertEquals("org.apache.jmeter.testelement.property.FunctionProperty",newProp.getClass().getName());
-  assertEquals("It should say:${hello world}",newProp.getStringValue());
-}

@@ -1,7 +1,0 @@
-{
-  DefaultConfiguration config=new DefaultConfiguration("collection","collection");
-  config.setAttribute("class",col.getObjectValue().getClass().getName());
-  config.setAttribute("name",col.getName());
-  config.setAttribute("propType",col.getClass().getName());
-  stack.add(config);
-}

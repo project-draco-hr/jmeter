@@ -1,8 +1,0 @@
-{
-  TestElement ce=super.createTestElement();
-  configureTestElement(ce);
-  ce.setProperty(HTTPSamplerBase.MIMETYPE,mimetypeField.getText());
-  ce.setProperty(HTTPSamplerBase.FILE_NAME,filenameField.getText());
-  ce.setProperty(HTTPSamplerBase.FILE_FIELD,paramNameField.getText());
-  return ce;
-}

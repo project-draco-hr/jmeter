@@ -1,6 +1,0 @@
-{
-  createParser("<STYLE TYPE=\"text/css\"><!--\n\n" + "input{font-family: arial, helvetica, sans-serif; font-size:11px;}\n\n" + "i {font-family: times; font-size:10pt; font-weight:normal;}\n\n"+ ".ruuhka {font-family: arial, helvetica, sans-serif; font-size:11px;}\n\n"+ ".paalinkit {font-family: arial, helvetica, sans-serif; font-size:12px;}\n\n"+ ".shortselect{font-family: arial, helvetica, sans-serif; font-size:12px; width:130;}\n\n"+ ".cityselect{font-family: arial, helvetica, sans-serif; font-size:11px; width:100;}\n\n"+ ".longselect{font-family: arial, helvetica, sans-serif; font-size:12px;}\n\n"+ "---></STYLE>","http://www.yle.fi/");
-  parser.addScanner(new StyleScanner("-s"));
-  parseAndAssertNodeCount(1);
-  assertTrue(node[0] instanceof StyleTag);
-}

@@ -1,9 +1,0 @@
-{
-  Object[] values=parameters.toArray();
-  if (values.length < 3) {
-    throw new InvalidVariableException();
-  }
-  varName=(CompoundVariable)values[2];
-  minimum=(CompoundVariable)values[0];
-  maximum=(CompoundVariable)values[1];
-}

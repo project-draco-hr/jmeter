@@ -1,8 +1,0 @@
-{
-  Map my=(Map)filePacks.get();
-  FileWrapper fw=(FileWrapper)(my).get(file);
-  if (fw == null) {
-    return -1;
-  }
-  return fw.currentRow;
-}

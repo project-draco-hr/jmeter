@@ -1,7 +1,0 @@
-{
-  LDAPArgument argument=null;
-  if (row < getArguments().size()) {
-    argument=(LDAPArgument)getArguments().get(row).getObjectValue();
-  }
-  return argument;
-}

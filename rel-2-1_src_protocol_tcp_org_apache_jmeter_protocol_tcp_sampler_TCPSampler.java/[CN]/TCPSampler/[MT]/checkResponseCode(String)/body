@@ -1,9 +1,0 @@
-{
-  if (rc.compareTo("400") >= 0 && rc.compareTo("499") <= 0) {
-    return false;
-  }
-  if (rc.compareTo("500") >= 0 && rc.compareTo("599") <= 0) {
-    return false;
-  }
-  return true;
-}

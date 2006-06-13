@@ -1,9 +1,0 @@
-{
-  setLayout(new BorderLayout());
-  setBorder(makeBorder());
-  Box box=Box.createVerticalBox();
-  box.add(makeTitlePanel());
-  errorPanel=new OnErrorPanel();
-  box.add(errorPanel);
-  add(box,BorderLayout.NORTH);
-}

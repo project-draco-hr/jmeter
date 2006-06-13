@@ -1,9 +1,0 @@
-{
-  log.debug("Sample occurred");
-  try {
-    listener.sampleOccurred(e);
-  }
- catch (  RemoteException err) {
-    log.error("sampleOccurred",err);
-  }
-}

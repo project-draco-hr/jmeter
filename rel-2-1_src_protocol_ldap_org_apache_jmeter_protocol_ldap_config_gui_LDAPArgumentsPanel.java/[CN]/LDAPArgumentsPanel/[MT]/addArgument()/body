@@ -1,7 +1,0 @@
-{
-  stopTableEditing();
-  tableModel.addRow(makeNewLDAPArgument());
-  delete.setEnabled(true);
-  int rowToSelect=tableModel.getRowCount() - 1;
-  table.setRowSelectionInterval(rowToSelect,rowToSelect);
-}

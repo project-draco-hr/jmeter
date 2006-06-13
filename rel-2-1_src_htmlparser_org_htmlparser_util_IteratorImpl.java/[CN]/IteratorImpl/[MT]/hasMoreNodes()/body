@@ -1,8 +1,0 @@
-{
-  Node node;
-  boolean ret;
-  if (null == reader)   ret=false;
- else   if (0 != preRead.size())   ret=true;
- else   ret=!(null == peek());
-  return (ret);
-}

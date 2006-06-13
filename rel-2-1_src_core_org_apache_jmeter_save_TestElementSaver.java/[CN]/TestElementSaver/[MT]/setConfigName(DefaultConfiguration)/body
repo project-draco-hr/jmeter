@@ -1,6 +1,0 @@
-{
-  if (!(stack.getLast() instanceof Configuration)) {
-    Object key=stack.removeLast();
-    config.setAttribute("name",key.toString());
-  }
-}

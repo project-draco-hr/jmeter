@@ -1,9 +1,0 @@
-{
-  String key=className + "/" + propertyName;
-  if (nameMap.containsKey(key)) {
-    String newName=nameMap.getProperty(key);
-    log.info("Upgrading property " + propertyName + " to "+ newName);
-    return newName;
-  }
-  return propertyName;
-}

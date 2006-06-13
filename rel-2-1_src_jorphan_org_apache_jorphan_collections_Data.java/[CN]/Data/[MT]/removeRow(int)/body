@@ -1,8 +1,0 @@
-{
-  log.debug("Removing row: " + index);
-  if (index < size) {
-    setCurrentPos(index);
-    log.debug("Setting currentpos to " + index);
-    removeRow();
-  }
-}

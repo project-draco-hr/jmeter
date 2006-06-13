@@ -1,6 +1,0 @@
-{
-  String input="http://jakarta.apache.org/jmeter/index.html";
-  String pattern="jakarta.apache.org";
-  String sub="${server}";
-  assertEquals("http://${server}/jmeter/index.html",StringUtilities.substitute(input,pattern,sub));
-}

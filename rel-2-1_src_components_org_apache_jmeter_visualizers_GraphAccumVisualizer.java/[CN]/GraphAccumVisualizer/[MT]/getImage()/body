@@ -1,7 +1,0 @@
-{
-  log.debug("Start : getImage1");
-  Image result=graph.createImage(graph.getWidth(),graph.getHeight());
-  graph.paintComponent(result.getGraphics());
-  log.debug("End : getImage1");
-  return result;
-}

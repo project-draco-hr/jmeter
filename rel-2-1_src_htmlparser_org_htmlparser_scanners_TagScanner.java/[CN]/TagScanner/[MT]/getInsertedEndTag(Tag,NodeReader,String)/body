@@ -1,5 +1,0 @@
-{
-  String newLine=insertEndTagBeforeNode(tag,currentLine);
-  reader.changeLine(newLine);
-  return new EndTag(new TagData(tag.elementBegin(),tag.elementBegin() + 3,tag.getTagName(),currentLine));
-}

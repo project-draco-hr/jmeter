@@ -1,4 +1,0 @@
-{
-  Pattern pattern=patternCache.getPattern("^\\$\\d+\\$",Perl5Compiler.READ_ONLY_MASK);
-  return new Perl5Matcher().contains(rawData,pattern);
-}

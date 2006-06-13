@@ -1,9 +1,0 @@
-{
-  log.debug(whoAmI() + "\trunTest");
-  Thread.yield();
-  SampleResult results=new SampleResult();
-  results.setSuccessful(false);
-  results.setResponseData(("Class not found: " + getClassname()).getBytes());
-  results.setSampleLabel("ERROR: " + getClassname());
-  return results;
-}

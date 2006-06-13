@@ -1,8 +1,0 @@
-{
-  super(BeanShellPostProcessor.class);
-  createPropertyGroup("scripting",new String[]{"script"});
-  PropertyDescriptor p=property("script");
-  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
-  p.setValue(DEFAULT,"");
-  p.setPropertyEditorClass(TextAreaEditor.class);
-}

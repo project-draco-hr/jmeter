@@ -1,9 +1,0 @@
-{
-  int bshport=JMeterUtils.getPropDefault("beanshell.server.port",0);
-  String bshfile=JMeterUtils.getPropDefault("beanshell.server.file","");
-  if (bshport > 0) {
-    log.info("Starting Beanshell server (" + bshport + ","+ bshfile+ ")");
-    Runnable t=new BeanShellServer(bshport,bshfile);
-    t.run();
-  }
-}

@@ -1,9 +1,0 @@
-{
-  JMeterProperty newValue=prop;
-  getMasterFunction().clear();
-  getMasterFunction().setParameters(prop.getStringValue());
-  if (getMasterFunction().hasFunction()) {
-    newValue=new FunctionProperty(prop.getName(),getMasterFunction().getFunction());
-  }
-  return newValue;
-}

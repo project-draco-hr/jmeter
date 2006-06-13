@@ -1,9 +1,0 @@
-{
-  try {
-    JMeterProperty prop=getProperty(LOOPS);
-    return Integer.parseInt(prop.getStringValue());
-  }
- catch (  NumberFormatException e) {
-    return 0;
-  }
-}

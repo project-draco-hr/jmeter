@@ -1,9 +1,0 @@
-{
-  if (currentPath != null) {
-    if (currentPath.getLastPathComponent() != null) {
-      return (JMeterTreeNode)currentPath.getLastPathComponent();
-    }
-    return (JMeterTreeNode)currentPath.getParentPath().getLastPathComponent();
-  }
-  return (JMeterTreeNode)model.getRoot();
-}

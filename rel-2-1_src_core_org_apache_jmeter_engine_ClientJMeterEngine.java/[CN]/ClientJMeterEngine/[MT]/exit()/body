@@ -1,8 +1,0 @@
-{
-  try {
-    remote.exit();
-  }
- catch (  RemoteException e) {
-    log.warn("Could not perform remote exit: " + e.toString());
-  }
-}

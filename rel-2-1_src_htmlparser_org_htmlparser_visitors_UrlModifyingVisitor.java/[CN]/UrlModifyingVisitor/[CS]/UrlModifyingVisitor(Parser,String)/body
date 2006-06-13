@@ -1,9 +1,0 @@
-{
-  super(true,false);
-  this.parser=parser;
-  LinkScanner linkScanner=new LinkScanner();
-  parser.addScanner(linkScanner);
-  parser.addScanner(linkScanner.createImageScanner(ImageTag.IMAGE_TAG_FILTER));
-  this.linkPrefix=linkPrefix;
-  modifiedResult=new StringBuffer();
-}

@@ -1,8 +1,0 @@
-{
-  if ((inDoctype == null) || (inDoctype.trim().equals(""))) {
-    setProperty(new StringProperty(DOCTYPE_KEY,DEFAULT_DOCTYPE));
-  }
- else {
-    setProperty(new StringProperty(DOCTYPE_KEY,inDoctype));
-  }
-}

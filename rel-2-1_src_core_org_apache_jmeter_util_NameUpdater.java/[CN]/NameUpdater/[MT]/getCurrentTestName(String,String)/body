@@ -1,9 +1,0 @@
-{
-  String key=testClassName + "|" + guiClassName;
-  if (nameMap.containsKey(key)) {
-    String newName=nameMap.getProperty(key);
-    log.info("Upgrading " + key + " to "+ newName);
-    return newName;
-  }
-  return getCurrentName(testClassName);
-}

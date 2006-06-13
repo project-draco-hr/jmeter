@@ -1,9 +1,0 @@
-{
-  if (vgap > 0 && subPanel.getComponentCount() > 0) {
-    subPanel.add(Box.createVerticalStrut(vgap));
-  }
-  if (c instanceof JComponent) {
-    ((JComponent)c).setAlignmentX(horizontalAlign);
-  }
-  return subPanel.add(c);
-}

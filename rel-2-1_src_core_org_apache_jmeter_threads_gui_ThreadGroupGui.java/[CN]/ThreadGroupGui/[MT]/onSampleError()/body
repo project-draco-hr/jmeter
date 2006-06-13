@@ -1,5 +1,0 @@
-{
-  if (stopTestBox.isSelected())   return ThreadGroup.ON_SAMPLE_ERROR_STOPTEST;
-  if (stopThrdBox.isSelected())   return ThreadGroup.ON_SAMPLE_ERROR_STOPTHREAD;
-  return ThreadGroup.ON_SAMPLE_ERROR_CONTINUE;
-}

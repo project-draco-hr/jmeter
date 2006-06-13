@@ -1,7 +1,0 @@
-{
-  Iterator iter=list().iterator();
-  while (iter.hasNext()) {
-    Object key=iter.next();
-    newTree.set(key,(HashTree)getTree(key).clone());
-  }
-}

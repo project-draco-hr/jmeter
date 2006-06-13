@@ -1,6 +1,0 @@
-{
-  String tagContents=tag.getText();
-  tagContents=tagContents.substring(9,tagContents.length());
-  tagData.setTagContents(tagContents);
-  return new DoctypeTag(tagData);
-}

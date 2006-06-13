@@ -1,6 +1,0 @@
-{
-  String endTagName=tag.getTagName();
-  int endTagBegin=pos;
-  int endTagEnd=endTagBegin + endTagName.length() + 2;
-  endTag=new EndTag(new TagData(endTagBegin,endTagEnd,endTagName,currLine));
-}

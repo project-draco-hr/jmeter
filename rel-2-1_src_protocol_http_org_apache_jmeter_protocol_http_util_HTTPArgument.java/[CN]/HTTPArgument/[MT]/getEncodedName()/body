@@ -1,8 +1,0 @@
-{
-  if (isAlwaysEncoded()) {
-    return cache.getEncoded(getName());
-  }
- else {
-    return getName();
-  }
-}

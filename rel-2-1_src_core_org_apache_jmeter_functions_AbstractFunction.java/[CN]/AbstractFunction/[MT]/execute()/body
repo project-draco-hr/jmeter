@@ -1,6 +1,0 @@
-{
-  JMeterContext context=JMeterContextService.getContext();
-  SampleResult previousResult=context.getPreviousResult();
-  Sampler currentSampler=context.getCurrentSampler();
-  return execute(previousResult,currentSampler);
-}

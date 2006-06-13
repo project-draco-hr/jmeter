@@ -1,4 +1,0 @@
-{
-  JMeterProperty jmp=getProperty(key);
-  return jmp instanceof NullProperty ? defaultValue : jmp.getStringValue();
-}

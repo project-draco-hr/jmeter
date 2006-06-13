@@ -1,6 +1,0 @@
-{
-  control=new ProxyControl();
-  control.addIncludedPattern(".*\\.jsp");
-  control.addExcludedPattern(".*apache.org.*");
-  sampler=new HTTPNullSampler();
-}

@@ -1,5 +1,0 @@
-{
-  log.debug("Adding row value: " + value);
-  objects.add(value);
-  super.fireTableRowsInserted(objects.size() - 1,objects.size());
-}

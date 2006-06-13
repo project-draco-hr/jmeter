@@ -1,9 +1,0 @@
-{
-  this.comp=comp;
-  try {
-    SwingUtilities.invokeLater(this);
-  }
- catch (  Exception e) {
-    log.error("",e);
-  }
-}

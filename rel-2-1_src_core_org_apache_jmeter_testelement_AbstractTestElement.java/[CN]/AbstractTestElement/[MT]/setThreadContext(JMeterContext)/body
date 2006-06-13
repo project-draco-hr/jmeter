@@ -1,6 +1,0 @@
-{
-  if (threadContext != null) {
-    if (inthreadContext != threadContext)     throw new RuntimeException("Attempting to reset the thread context");
-  }
-  this.threadContext=inthreadContext;
-}

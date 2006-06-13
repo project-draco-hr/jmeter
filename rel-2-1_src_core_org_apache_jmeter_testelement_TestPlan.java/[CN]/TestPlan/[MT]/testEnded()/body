@@ -1,8 +1,0 @@
-{
-  try {
-    FileServer.getFileServer().closeFiles();
-  }
- catch (  IOException e) {
-    log.error("Problem closing files at end of test",e);
-  }
-}

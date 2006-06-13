@@ -1,9 +1,0 @@
-{
-  if (popup != null) {
-    log.debug("Showing pop up for " + invoker + " at x,y = "+ e.getX()+ ","+ e.getY());
-    popup.pack();
-    popup.show(invoker,e.getX(),e.getY());
-    popup.setVisible(true);
-    popup.requestFocus();
-  }
-}

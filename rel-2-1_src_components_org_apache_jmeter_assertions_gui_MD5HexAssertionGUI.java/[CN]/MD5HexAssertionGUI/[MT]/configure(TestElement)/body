@@ -1,5 +1,0 @@
-{
-  super.configure(el);
-  MD5HexAssertion assertion=(MD5HexAssertion)el;
-  this.md5HexInput.setText(String.valueOf(assertion.getAllowedMD5Hex()));
-}

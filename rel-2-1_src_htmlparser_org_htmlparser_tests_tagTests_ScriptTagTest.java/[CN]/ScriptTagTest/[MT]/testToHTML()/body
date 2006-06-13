@@ -1,8 +1,0 @@
-{
-  createParser("<SCRIPT>document.write(d+\".com\")</SCRIPT>");
-  parser.addScanner(new ScriptScanner("-s"));
-  parseAndAssertNodeCount(1);
-  assertTrue("Node should be a script tag",node[0] instanceof ScriptTag);
-  ScriptTag scriptTag=(ScriptTag)node[0];
-  assertEquals("Expected Raw String","<SCRIPT>document.write(d+\".com\")</SCRIPT>",scriptTag.toHtml());
-}

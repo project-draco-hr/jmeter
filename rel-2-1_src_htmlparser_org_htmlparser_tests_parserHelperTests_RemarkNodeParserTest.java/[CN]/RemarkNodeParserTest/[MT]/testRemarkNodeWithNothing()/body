@@ -1,7 +1,0 @@
-{
-  createParser("<!-->");
-  parseAndAssertNodeCount(1);
-  assertTrue("Node should be a HTMLRemarkNode",node[0] instanceof RemarkNode);
-  RemarkNode remarkNode=(RemarkNode)node[0];
-  assertEquals("Expected contents","",remarkNode.getText());
-}

@@ -1,9 +1,0 @@
-{
-  try {
-    return new String(responseData,getDataEncoding());
-  }
- catch (  UnsupportedEncodingException e) {
-    log.warn("Using " + dataEncoding + " caused "+ e);
-    return new String(responseData);
-  }
-}

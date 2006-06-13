@@ -1,9 +1,0 @@
-{
-  HashTree temp=(HashTree)data.get(key);
-  if (temp != null) {
-    return temp.list();
-  }
- else {
-    return new LinkedList();
-  }
-}

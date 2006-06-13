@@ -1,7 +1,0 @@
-{
-  ResponseAssertion ra=new ResponseAssertion();
-  ra.setProperty(TestElement.GUI_CLASS,ASSERTION_GUI);
-  ra.setName("Check response");
-  ra.setTestField(ResponseAssertion.RESPONSE_DATA);
-  model.addComponent(ra,node);
-}

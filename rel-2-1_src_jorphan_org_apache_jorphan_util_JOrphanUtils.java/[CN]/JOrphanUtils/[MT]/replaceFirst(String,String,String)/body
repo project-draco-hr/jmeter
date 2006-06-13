@@ -1,7 +1,0 @@
-{
-  int start=source.indexOf(search);
-  int len=search.length();
-  if (start == -1)   return source;
-  if (start == 0)   return replace + source.substring(len);
-  return source.substring(0,start) + replace + source.substring(start + len);
-}

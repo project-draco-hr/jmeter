@@ -1,8 +1,0 @@
-{
-  final double data=getCurrentTime();
-  if (m_state != STATE_STARTED) {
-    throw new IllegalStateException(this + ": stop() must be called from STARTED state, " + "current state is "+ STATE_NAMES[m_state]);
-  }
-  m_data=data - m_data;
-  m_state=STATE_STOPPED;
-}

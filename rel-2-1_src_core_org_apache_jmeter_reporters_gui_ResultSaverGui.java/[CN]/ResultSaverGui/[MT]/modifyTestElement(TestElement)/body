@@ -1,5 +1,0 @@
-{
-  super.configureTestElement(te);
-  te.setProperty(ResultSaver.FILENAME,filename.getText());
-  te.setProperty(ResultSaver.ERRORS_ONLY,JOrphanUtils.booleanToString(errorsOnly.isSelected()));
-}

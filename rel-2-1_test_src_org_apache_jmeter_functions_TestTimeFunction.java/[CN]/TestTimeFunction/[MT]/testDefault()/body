@@ -1,8 +1,0 @@
-{
-  variable.setParameters(params);
-  long before=System.currentTimeMillis();
-  value=variable.execute(result,null);
-  long now=Long.parseLong(value);
-  long after=System.currentTimeMillis();
-  assertTrue(now >= before && now <= after);
-}

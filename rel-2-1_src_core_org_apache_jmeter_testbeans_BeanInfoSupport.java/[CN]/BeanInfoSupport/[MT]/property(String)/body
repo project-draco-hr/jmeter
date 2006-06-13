@@ -1,9 +1,0 @@
-{
-  PropertyDescriptor[] properties=getPropertyDescriptors();
-  for (int i=0; i < properties.length; i++) {
-    if (properties[i].getName().equals(name)) {
-      return properties[i];
-    }
-  }
-  return null;
-}

@@ -1,8 +1,0 @@
-{
-  try {
-    crawl(parser,crawlDepth);
-  }
- catch (  ParserException e) {
-    throw new ParserException("HTMLParserException at crawl(" + crawlDepth + ")",e);
-  }
-}

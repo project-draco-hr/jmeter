@@ -1,9 +1,0 @@
-{
-  setSampleCount(getSampleCount() + res.getSampleCount());
-  setBytes(getBytes() + res.getBytes());
-  if (!res.isSuccessful()) {
-    errorCount++;
-  }
-  this.setStartTime(Math.min(getStartTime(),res.getStartTime()));
-  this.setEndTime(Math.max(getEndTime(),res.getEndTime()));
-}

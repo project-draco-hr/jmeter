@@ -1,8 +1,0 @@
-{
-  if (expected instanceof Tag) {
-    Tag expectedTag=(Tag)expected;
-    Tag actualTag=(Tag)actual;
-    assertTagNameMatches(displayMessage,expectedTag,actualTag);
-    assertAttributesMatch(displayMessage,expectedTag,actualTag);
-  }
-}

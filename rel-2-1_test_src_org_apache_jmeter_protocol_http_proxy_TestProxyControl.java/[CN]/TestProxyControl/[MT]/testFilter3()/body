@@ -1,5 +1,0 @@
-{
-  sampler.setPath("header.gif");
-  sampler.setDomain("jakarta.org");
-  assertFalse("Should not match header.gif",control.filterUrl(sampler));
-}

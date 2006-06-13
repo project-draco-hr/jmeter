@@ -1,6 +1,0 @@
-{
-  String input="jakarta.apache.org";
-  String pattern="jakarta.apache.org";
-  String sub="${server}";
-  assertEquals("${server}",StringUtilities.substitute(input,pattern,sub));
-}

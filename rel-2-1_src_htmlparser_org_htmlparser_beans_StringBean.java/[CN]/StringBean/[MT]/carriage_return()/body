@@ -1,5 +1,0 @@
-{
-  int length;
-  length=mBuffer.length();
-  if ((0 != length) && ((newline_size <= length) && (!mBuffer.substring(length - newline_size,length).equals(newline))))   mBuffer.append(newline);
-}

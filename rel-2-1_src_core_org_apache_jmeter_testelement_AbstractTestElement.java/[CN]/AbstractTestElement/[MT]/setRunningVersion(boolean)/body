@@ -1,7 +1,0 @@
-{
-  this.runningVersion=runningVersion;
-  PropertyIterator iter=propertyIterator();
-  while (iter.hasNext()) {
-    iter.next().setRunningVersion(runningVersion);
-  }
-}

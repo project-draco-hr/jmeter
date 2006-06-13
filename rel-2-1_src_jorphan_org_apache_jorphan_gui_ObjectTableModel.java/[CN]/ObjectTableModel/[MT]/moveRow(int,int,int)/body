@@ -1,8 +1,0 @@
-{
-  List subList=objects.subList(start,end);
-  for (int x=end - 1; x >= start; x--) {
-    objects.remove(x);
-  }
-  objects.addAll(to,subList);
-  super.fireTableChanged(new TableModelEvent(this));
-}

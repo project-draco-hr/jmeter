@@ -1,8 +1,0 @@
-{
-  model=new DefaultComboBoxModel();
-  model.addElement(UNDEFINED);
-  model.addElement(EDIT);
-  combo=new JComboBox(model);
-  combo.addItemListener(this);
-  combo.setEditable(false);
-}

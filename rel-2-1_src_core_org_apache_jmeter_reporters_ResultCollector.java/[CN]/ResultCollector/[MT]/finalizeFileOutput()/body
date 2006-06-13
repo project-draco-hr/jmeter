@@ -1,8 +1,0 @@
-{
-  if (out != null) {
-    writeFileEnd(out,getSaveConfig());
-    out.close();
-    files.remove(getFilename());
-    out=null;
-  }
-}

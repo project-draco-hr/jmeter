@@ -1,8 +1,0 @@
-{
-  Properties p=JMeterUtils.getJMeterProperties();
-  if (p == null) {
-    p=JMeterUtils.getProperties("jmeter.properties");
-  }
-  p.setProperty(HTMLParser.PARSER_CLASSNAME,parserName);
-  HTMLParser.getParser();
-}

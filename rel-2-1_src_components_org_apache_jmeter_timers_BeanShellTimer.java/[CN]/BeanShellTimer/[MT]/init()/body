@@ -1,8 +1,0 @@
-{
-  try {
-    bshInterpreter=new BeanShellInterpreter(JMeterUtils.getProperty(INIT_FILE),log);
-  }
- catch (  ClassNotFoundException e) {
-    log.error(e.getLocalizedMessage());
-  }
-}

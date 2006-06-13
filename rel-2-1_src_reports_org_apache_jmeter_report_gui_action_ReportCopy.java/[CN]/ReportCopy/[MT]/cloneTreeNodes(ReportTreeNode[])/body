@@ -1,7 +1,0 @@
-{
-  ReportTreeNode treeNodes[]=new ReportTreeNode[nodes.length];
-  for (int i=0; i < nodes.length; i++) {
-    treeNodes[i]=cloneTreeNode(nodes[i]);
-  }
-  return treeNodes;
-}

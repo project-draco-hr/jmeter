@@ -1,9 +1,0 @@
-{
-  try {
-    return new FileOutputStream(filename);
-  }
- catch (  FileNotFoundException e) {
-    e.printStackTrace();
-    return null;
-  }
-}

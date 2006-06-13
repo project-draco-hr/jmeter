@@ -1,8 +1,0 @@
-{
-  reInitialize();
-  if (!endOfLoop(true)) {
-    return super.next();
-  }
-  setDone(true);
-  return null;
-}

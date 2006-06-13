@@ -1,9 +1,0 @@
-{
-  if (o == null) {
-    return defaultValue;
-  }
- else   if (o instanceof Boolean) {
-    return ((Boolean)o).booleanValue();
-  }
- else   return Boolean.valueOf(o.toString()).booleanValue();
-}

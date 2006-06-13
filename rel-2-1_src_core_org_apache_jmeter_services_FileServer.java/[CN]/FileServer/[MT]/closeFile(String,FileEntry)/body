@@ -1,7 +1,0 @@
-{
-  if (fileEntry != null && fileEntry.inputOutputObject != null) {
-    log.info("Close: " + name);
-    ((Reader)fileEntry.inputOutputObject).close();
-    fileEntry.inputOutputObject=null;
-  }
-}

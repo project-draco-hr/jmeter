@@ -1,7 +1,0 @@
-{
-  super.configure(el);
-  CookieManager cookieManager=(CookieManager)el;
-  populateTable(cookieManager);
-  clearEachIteration.setSelected((cookieManager).getClearEachIteration());
-  policy.setText(cookieManager.getPolicy());
-}

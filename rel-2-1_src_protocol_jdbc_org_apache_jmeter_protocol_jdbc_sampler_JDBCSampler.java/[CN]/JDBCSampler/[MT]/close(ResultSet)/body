@@ -1,8 +1,0 @@
-{
-  try {
-    if (rs != null)     rs.close();
-  }
- catch (  SQLException e) {
-    log.warn("Error closing ResultSet",e);
-  }
-}

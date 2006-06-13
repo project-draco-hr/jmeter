@@ -1,8 +1,0 @@
-{
-  URL url=new URL("https://a.b.c.d/testCookies2");
-  man.addCookieFromHeader("test1=1;secure, test2=2;secure",url);
-  assertEquals(2,man.getCookieCount());
-  String s=man.getCookieHeaderForURL(url);
-  assertNotNull(s);
-  assertEquals("test1=1; test2=2",s);
-}

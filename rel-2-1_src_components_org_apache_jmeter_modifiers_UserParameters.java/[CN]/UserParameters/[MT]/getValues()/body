@@ -1,7 +1,0 @@
-{
-  CollectionProperty threadValues=(CollectionProperty)getProperty(THREAD_VALUES);
-  if (threadValues.size() > 0) {
-    return (CollectionProperty)threadValues.get(getThreadContext().getThreadNum() % threadValues.size());
-  }
-  return new CollectionProperty("noname",new LinkedList());
-}

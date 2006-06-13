@@ -1,6 +1,0 @@
-{
-  params.add(new CompoundVariable("YMDHMS"));
-  variable.setParameters(params);
-  value=variable.execute(result,null);
-  assertEquals(15,value.length());
-}

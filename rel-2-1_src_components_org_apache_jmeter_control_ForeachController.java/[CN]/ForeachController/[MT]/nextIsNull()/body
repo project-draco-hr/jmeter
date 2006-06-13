@@ -1,8 +1,0 @@
-{
-  reInitialize();
-  if (endOfArguments()) {
-    resetLoopCount();
-    return null;
-  }
-  return next();
-}

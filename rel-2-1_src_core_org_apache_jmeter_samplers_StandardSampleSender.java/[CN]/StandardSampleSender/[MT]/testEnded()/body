@@ -1,9 +1,0 @@
-{
-  log.info("Test ended()");
-  try {
-    listener.testEnded();
-  }
- catch (  Throwable ex) {
-    log.warn("testEnded()",ex);
-  }
-}

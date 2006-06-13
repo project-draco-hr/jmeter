@@ -1,9 +1,0 @@
-{
-  GuiPackage gui=GuiPackage.getInstance();
-  try {
-    engine.runTest();
-  }
- catch (  JMeterEngineException e) {
-    JOptionPane.showMessageDialog(gui.getMainFrame(),e.getMessage(),JMeterUtils.getResString("Error Occurred"),JOptionPane.ERROR_MESSAGE);
-  }
-}

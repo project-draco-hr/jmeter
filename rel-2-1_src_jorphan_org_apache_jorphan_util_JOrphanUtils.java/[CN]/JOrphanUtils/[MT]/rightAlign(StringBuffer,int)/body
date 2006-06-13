@@ -1,7 +1,0 @@
-{
-  int pfx=len - in.length();
-  if (pfx <= 0)   return in;
-  if (pfx > SPACES_LEN)   pfx=SPACES_LEN;
-  in.insert(0,SPACES.substring(0,pfx));
-  return in;
-}

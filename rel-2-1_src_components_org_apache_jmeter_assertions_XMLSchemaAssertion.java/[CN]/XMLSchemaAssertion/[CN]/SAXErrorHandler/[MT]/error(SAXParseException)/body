@@ -1,7 +1,0 @@
-{
-  String msg="error: " + errorDetails(exception);
-  log.debug(msg);
-  result.setFailureMessage(msg);
-  result.setError(true);
-  throw exception;
-}

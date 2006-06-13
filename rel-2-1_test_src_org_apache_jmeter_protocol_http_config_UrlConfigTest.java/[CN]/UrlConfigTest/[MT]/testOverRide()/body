@@ -1,8 +1,0 @@
-{
-  JMeterProperty jmp=partialConfig.getProperty(HTTPSamplerBase.DOMAIN);
-  assertTrue(jmp instanceof NullProperty);
-  assertTrue(new NullProperty(HTTPSamplerBase.DOMAIN).equals(jmp));
-  partialConfig.addTestElement(defaultConfig);
-  assertEquals(partialConfig.getPropertyAsString(HTTPSamplerBase.DOMAIN),"www.xerox.com");
-  assertEquals(partialConfig.getPropertyAsString(HTTPSamplerBase.PATH),"main.jsp");
-}

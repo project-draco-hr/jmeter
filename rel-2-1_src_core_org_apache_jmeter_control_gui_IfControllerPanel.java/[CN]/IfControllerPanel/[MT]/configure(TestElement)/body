@@ -1,6 +1,0 @@
-{
-  super.configure(element);
-  if (element instanceof IfController) {
-    theCondition.setText(((IfController)element).getCondition());
-  }
-}

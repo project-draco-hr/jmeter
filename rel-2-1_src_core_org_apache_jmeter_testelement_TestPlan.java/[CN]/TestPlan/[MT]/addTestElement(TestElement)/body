@@ -1,6 +1,0 @@
-{
-  super.addTestElement(tg);
-  if (tg instanceof ThreadGroup && !isRunningVersion()) {
-    addThreadGroup((ThreadGroup)tg);
-  }
-}

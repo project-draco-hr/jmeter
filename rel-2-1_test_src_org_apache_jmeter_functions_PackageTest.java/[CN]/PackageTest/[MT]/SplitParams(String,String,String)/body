@@ -1,9 +1,0 @@
-{
-  SplitFunction split=new SplitFunction();
-  Collection parms=new LinkedList();
-  parms.add(new CompoundVariable(p1));
-  if (p2 != null)   parms.add(new CompoundVariable(p2));
-  if (p3 != null)   parms.add(new CompoundVariable(p3));
-  split.setParameters(parms);
-  return split;
-}

@@ -1,6 +1,0 @@
-{
-  getLogger().debug(whoAmI() + "\tsetupTest()");
-  listParameters(context);
-  sleepTime=context.getLongParameter("SleepTime",DEFAULT_SLEEP_TIME);
-  sleepMask=context.getLongParameter("SleepMask",DEFAULT_SLEEP_MASK);
-}

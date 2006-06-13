@@ -1,9 +1,0 @@
-{
-  Header header=manager.getHeader(row);
-  if (column == 0) {
-    header.setName((String)value);
-  }
- else   if (column == 1) {
-    header.setValue((String)value);
-  }
-}

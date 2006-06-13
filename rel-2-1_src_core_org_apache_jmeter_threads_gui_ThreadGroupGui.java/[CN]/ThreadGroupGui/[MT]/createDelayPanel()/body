@@ -1,8 +1,0 @@
-{
-  JPanel panel=new JPanel(new BorderLayout(5,0));
-  JLabel label=new JLabel(JMeterUtils.getResString("delay"));
-  panel.add(label,BorderLayout.WEST);
-  delay=new JTextField();
-  panel.add(delay,BorderLayout.CENTER);
-  return panel;
-}

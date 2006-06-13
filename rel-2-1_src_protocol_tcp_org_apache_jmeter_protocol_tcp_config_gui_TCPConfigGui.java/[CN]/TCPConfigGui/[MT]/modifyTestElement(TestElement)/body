@@ -1,8 +1,0 @@
-{
-  configureTestElement(element);
-  element.setProperty(TCPSampler.SERVER,server.getText());
-  element.setProperty(TCPSampler.PORT,port.getText());
-  element.setProperty(TCPSampler.NODELAY,JOrphanUtils.booleanToString(setNoDelay.isSelected()));
-  element.setProperty(TCPSampler.TIMEOUT,timeout.getText());
-  element.setProperty(TCPSampler.REQUEST,requestData.getText());
-}

@@ -1,7 +1,0 @@
-{
-  if (msgType.equals(object_msg)) {
-    if (configChoice.getText().equals(use_text)) {
-      JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("jms_error_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
-    }
-  }
-}

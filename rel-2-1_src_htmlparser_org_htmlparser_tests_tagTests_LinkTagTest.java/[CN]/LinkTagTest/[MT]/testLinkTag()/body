@@ -1,8 +1,0 @@
-{
-  createParser("<A HREF=\"test.html\">abcd</A>","http://www.google.com/test/index.html");
-  parser.addScanner(new LinkScanner("-l"));
-  parseAndAssertNodeCount(1);
-  assertTrue("Node should be a HTMLLinkTag",node[0] instanceof LinkTag);
-  LinkTag LinkTag=(LinkTag)node[0];
-  assertEquals("The image locn","http://www.google.com/test/test.html",LinkTag.getLink());
-}

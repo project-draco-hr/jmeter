@@ -1,7 +1,0 @@
-{
-  super.configure(el);
-  xpathQueryField.setText(el.getPropertyAsString(XPathExtractor.XPATH_QUERY));
-  defaultField.setText(el.getPropertyAsString(XPathExtractor.DEFAULT));
-  refNameField.setText(el.getPropertyAsString(XPathExtractor.REFNAME));
-  tolerant.setSelected(el.getPropertyAsBoolean(XPathExtractor.TOLERANT));
-}

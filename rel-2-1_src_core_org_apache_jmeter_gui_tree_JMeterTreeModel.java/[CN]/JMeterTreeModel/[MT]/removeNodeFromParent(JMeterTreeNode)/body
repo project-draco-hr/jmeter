@@ -1,5 +1,0 @@
-{
-  if (!(node.getUserObject() instanceof TestPlan) && !(node.getUserObject() instanceof WorkBench)) {
-    super.removeNodeFromParent(node);
-  }
-}

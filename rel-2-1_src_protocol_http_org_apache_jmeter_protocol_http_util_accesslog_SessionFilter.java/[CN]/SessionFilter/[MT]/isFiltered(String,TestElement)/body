@@ -1,6 +1,0 @@
-{
-  String ipAddr=getIpAddress(path);
-  CookieManager cm=getCookieManager(ipAddr);
-  ((HTTPSampler)sampler).setCookieManager(cm);
-  return false;
-}

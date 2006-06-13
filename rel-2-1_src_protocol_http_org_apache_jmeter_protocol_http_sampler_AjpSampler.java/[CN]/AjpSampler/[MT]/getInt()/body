@@ -1,5 +1,0 @@
-{
-  int res=(inbuf[inpos++] << 8) & 0xff00;
-  res+=inbuf[inpos++] & 0xff;
-  return res;
-}

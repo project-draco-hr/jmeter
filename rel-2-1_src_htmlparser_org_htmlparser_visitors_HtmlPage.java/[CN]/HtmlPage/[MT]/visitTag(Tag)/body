@@ -1,9 +1,0 @@
-{
-  addTagToBodyIfApplicable(tag);
-  if (isTable(tag)) {
-    tables.add(tag);
-  }
- else {
-    if (isBodyTag(tag))     bodyTagBegin=true;
-  }
-}

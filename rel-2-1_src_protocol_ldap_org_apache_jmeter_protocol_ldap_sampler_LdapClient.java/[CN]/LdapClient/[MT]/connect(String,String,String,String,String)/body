@@ -1,9 +1,0 @@
-{
-  Hashtable env=new Hashtable();
-  env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
-  env.put(Context.PROVIDER_URL,"ldap://" + host + ":"+ port+ "/"+ rootdn);
-  env.put(Context.REFERRAL,"throw");
-  env.put(Context.SECURITY_CREDENTIALS,password);
-  env.put(Context.SECURITY_PRINCIPAL,username);
-  dirContext=new InitialDirContext(env);
-}

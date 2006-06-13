@@ -1,7 +1,0 @@
-{
-  Object obj=super.unmarshal(reader,arg1);
-  SampleSaveConfiguration prop=(SampleSaveConfiguration)obj;
-  prop.setDefaultDelimiter();
-  prop.setDefaultTimeStampFormat();
-  return prop;
-}

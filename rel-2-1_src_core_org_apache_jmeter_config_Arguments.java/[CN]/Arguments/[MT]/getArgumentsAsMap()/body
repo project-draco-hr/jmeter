@@ -1,9 +1,0 @@
-{
-  PropertyIterator iter=getArguments().iterator();
-  Map argMap=new HashMap();
-  while (iter.hasNext()) {
-    Argument arg=(Argument)iter.next().getObjectValue();
-    if (!argMap.containsKey(arg.getName()))     argMap.put(arg.getName(),arg.getValue());
-  }
-  return argMap;
-}

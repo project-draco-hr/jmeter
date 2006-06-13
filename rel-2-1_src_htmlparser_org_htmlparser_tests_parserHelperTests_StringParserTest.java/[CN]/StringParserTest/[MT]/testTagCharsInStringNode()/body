@@ -1,9 +1,0 @@
-{
-  createParser("<a href=\"http://asgard.ch\">[> ASGARD <]</a>");
-  parser.addScanner(new LinkScanner("-l"));
-  parseAndAssertNodeCount(1);
-  assertTrue("Node identified must be a link tag",node[0] instanceof LinkTag);
-  LinkTag linkTag=(LinkTag)node[0];
-  assertEquals("[> ASGARD <]",linkTag.getLinkText());
-  assertEquals("http://asgard.ch",linkTag.getLink());
-}

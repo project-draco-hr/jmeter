@@ -1,9 +1,0 @@
-{
-  reset();
-  Iterator iter=data.iterator();
-  String columnName=(String)header.get(col);
-  while (iter.hasNext()) {
-    next();
-    setColumnValue(columnName,iter.next());
-  }
-}
