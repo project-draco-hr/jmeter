@@ -8,6 +8,7 @@
   addAssertions.setSelected(model.getAssertions());
   useKeepAlive.setSelected(model.getUseKeepalive());
   regexMatch.setSelected(model.getRegexMatch());
+  httpsSpoof.setSelected(model.getHttpsSpoof());
   reinitializeTargetCombo();
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());

@@ -8,7 +8,14 @@
     sampler=request.getSampler();
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
+    if (httpsSpoof) {
+      sampler.setProtocol("https");
+    }
     result=sampler.sample();
+    if (httpsSpoof && result.getDataType() == result.TEXT) {
+      String noHttpsResult=new String(result.getResponseData());
+      result.setResponseData(noHttpsResult.replaceAll("https","http").getBytes());
+    }
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
   }

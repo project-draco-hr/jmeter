@@ -24,6 +24,11 @@
   regexMatch.setSelected(false);
   regexMatch.addActionListener(this);
   regexMatch.setActionCommand(ProxyControl.REGEX_MATCH);
+  httpsSpoof=new JCheckBox(JMeterUtils.getResString("proxy_httpsspoofing"));
+  httpsSpoof.setName(ProxyControl.HTTPS_SPOOF);
+  httpsSpoof.setSelected(false);
+  httpsSpoof.addActionListener(this);
+  httpsSpoof.setActionCommand(ProxyControl.HTTPS_SPOOF);
   HorizontalPanel panel=new HorizontalPanel();
   panel.add(label);
   panel.add(portField);
@@ -32,5 +37,6 @@
   panel.add(useKeepAlive);
   panel.add(addAssertions);
   panel.add(regexMatch);
+  panel.add(httpsSpoof);
   return panel;
 }
