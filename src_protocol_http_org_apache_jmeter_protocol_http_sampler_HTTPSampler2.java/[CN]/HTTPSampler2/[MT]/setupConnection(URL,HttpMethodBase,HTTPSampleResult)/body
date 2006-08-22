@@ -25,7 +25,7 @@
     }
     hc.setProxy(PROXY_HOST,PROXY_PORT);
     if (PROXY_USER.length() > 0) {
-      httpClient.getState().setProxyCredentials(new AuthScope(PROXY_HOST,PROXY_PORT,null,AuthScope.ANY_SCHEME),new NTCredentials(PROXY_USER,PROXY_PASS,null,""));
+      httpClient.getState().setProxyCredentials(new AuthScope(PROXY_HOST,PROXY_PORT,null,AuthScope.ANY_SCHEME),new NTCredentials(PROXY_USER,PROXY_PASS,localHost,""));
     }
   }
   HttpMethodParams params=httpMethod.getParams();
