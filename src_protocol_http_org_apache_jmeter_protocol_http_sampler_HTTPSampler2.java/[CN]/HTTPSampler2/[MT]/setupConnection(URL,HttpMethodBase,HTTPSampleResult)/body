@@ -17,6 +17,7 @@
   HttpClient httpClient=(HttpClient)map.get(hc);
   if (httpClient == null) {
     httpClient=new HttpClient(new SimpleHttpConnectionManager());
+    httpClient.setHostConfiguration(hc);
     map.put(hc,httpClient);
   }
   if (PROXY_HOST.length() > 0 && !isNonProxy(host)) {
