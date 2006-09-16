@@ -23,5 +23,11 @@
       }
       client.getState().setCredentials(new AuthScope(u.getHost(),u.getPort(),realm,AuthScope.ANY_SCHEME),new NTCredentials(username,auth.getPass(),localHost,domain));
     }
+ else {
+      client.getState().clearCredentials();
+    }
+  }
+ else {
+    client.getState().clearCredentials();
   }
 }
