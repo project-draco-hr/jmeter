@@ -6,4 +6,18 @@
     Runnable t=new BeanShellServer(bshport,bshfile);
     t.run();
   }
+  String bshinit=JMeterUtils.getProperty("beanshell.init.file");
+  if (bshinit != null) {
+    log.info("Run Beanshell on file: " + bshinit);
+    try {
+      BeanShellInterpreter bsi=new BeanShellInterpreter();
+      bsi.source(bshinit);
+    }
+ catch (    ClassNotFoundException e) {
+      log.warn("Could not start Beanshell: " + e.getLocalizedMessage());
+    }
+catch (    JMeterException e) {
+      log.warn("Could not process Beanshell file: " + e.getLocalizedMessage());
+    }
+  }
 }
