@@ -1,6 +1,6 @@
 {
   if (bshClass == null) {
-    throw new ClassNotFoundException("bsh.Interpreter");
+    throw new ClassNotFoundException(BSH_INTERPRETER);
   }
   try {
     bshInstance=bshClass.newInstance();
