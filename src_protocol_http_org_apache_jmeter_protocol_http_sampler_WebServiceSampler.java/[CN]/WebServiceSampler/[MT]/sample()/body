@@ -17,6 +17,7 @@
  else {
       spconn=new SOAPHTTPConnection();
     }
+    spconn.setTimeout(getTimeoutAsInt());
     if (getAuthManager() != null) {
       if (getAuthManager().getAuthForURL(getUrl()) != null) {
         AuthManager authmanager=getAuthManager();
