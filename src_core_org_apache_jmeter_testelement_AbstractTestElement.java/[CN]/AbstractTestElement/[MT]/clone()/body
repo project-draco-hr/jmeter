@@ -8,7 +8,9 @@
     }
     clonedElement.setRunningVersion(runningVersion);
   }
- catch (  Exception e) {
+ catch (  InstantiationException e) {
+  }
+catch (  IllegalAccessException e) {
   }
   return clonedElement;
 }
