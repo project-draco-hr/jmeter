@@ -85,7 +85,10 @@ catch (      Throwable e) {
       }
     }
   }
- catch (  Exception e) {
+ catch (  IOException e) {
+    log.error("",e);
+  }
+catch (  ClassNotFoundException e) {
     log.error("",e);
   }
 }
