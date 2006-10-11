@@ -20,8 +20,8 @@
       res.setResponseCodeOK();
       res.setResponseMessage("Called: " + calls);
       res.setThreadName(threadName);
-      threadContext=getThreadContext();
-      threadVars=threadContext.getVariables();
+      JMeterContext threadContext=getThreadContext();
+      JMeterVariables threadVars=threadContext.getVariables();
       SamplePackage pack=(SamplePackage)threadVars.getObject(JMeterThread.PACKAGE_OBJECT);
       if (pack == null) {
         log.warn("Could not fetch SamplePackage");
