@@ -43,7 +43,10 @@
     axisChart.setGraphics2D((Graphics2D)g);
     axisChart.render();
   }
- catch (  Exception e) {
-    e.printStackTrace();
+ catch (  ChartDataException e) {
+    log.warn("",e);
+  }
+catch (  PropertyException e) {
+    log.warn("",e);
   }
 }
