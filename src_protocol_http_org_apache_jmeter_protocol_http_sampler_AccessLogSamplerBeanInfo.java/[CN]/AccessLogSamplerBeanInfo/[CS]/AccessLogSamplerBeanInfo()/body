@@ -33,7 +33,11 @@
     p.setValue(DEFAULT,Boolean.FALSE);
     p.setValue(NOT_OTHER,Boolean.TRUE);
   }
- catch (  Exception e) {
+ catch (  IOException e) {
+    log.warn("couldn't find classes and set up properties",e);
+    throw new RuntimeException("Could not find classes with class finder");
+  }
+catch (  ClassNotFoundException e) {
     log.warn("couldn't find classes and set up properties",e);
     throw new RuntimeException("Could not find classes with class finder");
   }
