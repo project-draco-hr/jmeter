@@ -1,0 +1,8 @@
+{
+  perThreadInt=new ThreadLocal(){
+    protected synchronized Object initialValue(){
+      return new Integer(0);
+    }
+  }
+;
+}
