@@ -1,0 +1,6 @@
+{
+  if (startTime != 0 || endTime != 0) {
+    throw new RuntimeException("Calling setStampAndTime() after start/end times have been set");
+  }
+  stampAndTime(stamp,elapsed);
+}

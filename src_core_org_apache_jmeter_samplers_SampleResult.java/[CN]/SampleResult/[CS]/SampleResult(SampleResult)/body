@@ -1,6 +1,6 @@
 {
   setStartTime(res.getStartTime());
-  setElapsed(0);
+  setEndTime(res.getStartTime());
   setSampleLabel(res.getSampleLabel());
   setRequestHeaders(res.getRequestHeaders());
   setResponseData(res.getResponseData());

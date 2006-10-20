@@ -6,6 +6,6 @@
     subResults=new ArrayList();
   }
   subResults.add(subResult);
-  setElapsed(getTime() + subResult.getTime());
+  setEndTime(subResult.getEndTime());
   subResult.setParent(this);
 }
