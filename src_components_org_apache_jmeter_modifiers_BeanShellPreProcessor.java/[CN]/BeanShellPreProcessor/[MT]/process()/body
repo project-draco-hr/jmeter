@@ -1,4 +1,7 @@
 {
+  if (bshInterpreter == null) {
+    return;
+  }
   JMeterContext jmctx=JMeterContextService.getContext();
   JMeterVariables vars=jmctx.getVariables();
   Sampler sam=jmctx.getCurrentSampler();
