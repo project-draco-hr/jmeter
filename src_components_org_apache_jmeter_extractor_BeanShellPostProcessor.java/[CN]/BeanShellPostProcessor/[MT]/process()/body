@@ -1,7 +1,7 @@
 {
   JMeterContext jmctx=JMeterContextService.getContext();
   SampleResult prev=jmctx.getPreviousResult();
-  if (prev == null) {
+  if (prev == null || bshInterpreter == null) {
     return;
   }
   JMeterVariables vars=jmctx.getVariables();
