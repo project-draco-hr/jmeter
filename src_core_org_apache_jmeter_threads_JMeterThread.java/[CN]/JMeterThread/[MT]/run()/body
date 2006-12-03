@@ -28,6 +28,9 @@
               stopTest();
             }
           }
+ else {
+            compiler.done(pack);
+          }
           if (scheduler) {
             stopScheduler();
           }
