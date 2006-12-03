@@ -4,7 +4,7 @@
   if (file != null) {
     HttpClientDefaultParameters.load(file,params);
   }
-  String ver=JMeterUtils.getProperty("httpclient.version");
+  String ver=JMeterUtils.getPropDefault("httpclient.version","1.1");
   try {
     params.setParameter(HttpMethodParams.PROTOCOL_VERSION,HttpVersion.parse("HTTP/" + ver));
   }
