@@ -1,24 +1,24 @@
 {
   versionsOK=true;
-  checkVersion(BooleanPropertyConverter.class,"332820");
-  checkVersion(HashTreeConverter.class,"332820");
-  checkVersion(IntegerPropertyConverter.class,"332820");
-  checkVersion(LongPropertyConverter.class,"332820");
-  checkVersion(MultiPropertyConverter.class,"332820");
-  checkVersion(SampleResultConverter.class,"466304");
+  checkVersion(BooleanPropertyConverter.class,"493779");
+  checkVersion(HashTreeConverter.class,"493779");
+  checkVersion(IntegerPropertyConverter.class,"493779");
+  checkVersion(LongPropertyConverter.class,"493779");
+  checkVersion(MultiPropertyConverter.class,"493779");
+  checkVersion(SampleResultConverter.class,"493779");
   try {
-    checkVersion(Class.forName("org.apache.jmeter.protocol.http.util.HTTPResultConverter"),"398320");
+    checkVersion(Class.forName("org.apache.jmeter.protocol.http.util.HTTPResultConverter"),"493789");
   }
  catch (  ClassNotFoundException e) {
     versionsOK=false;
     log.warn(e.getLocalizedMessage());
   }
-  checkVersion(StringPropertyConverter.class,"332820");
-  checkVersion(TestElementConverter.class,"332820");
-  checkVersion(TestElementPropertyConverter.class,"332820");
-  checkVersion(ScriptWrapperConverter.class,"390848");
-  checkVersion(TestResultWrapperConverter.class,"332820");
-  checkVersion(SampleSaveConfigurationConverter.class,"408969");
+  checkVersion(StringPropertyConverter.class,"493779");
+  checkVersion(TestElementConverter.class,"493779");
+  checkVersion(TestElementPropertyConverter.class,"493779");
+  checkVersion(ScriptWrapperConverter.class,"493779");
+  checkVersion(TestResultWrapperConverter.class,"493779");
+  checkVersion(SampleSaveConfigurationConverter.class,"493779");
   if (!PROPVERSION.equalsIgnoreCase(propertiesVersion)) {
     log.warn("Bad _version - expected " + PROPVERSION + ", found "+ propertiesVersion+ ".");
   }
