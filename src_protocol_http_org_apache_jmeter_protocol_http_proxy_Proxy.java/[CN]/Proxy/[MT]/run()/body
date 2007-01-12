@@ -12,7 +12,7 @@
       sampler.setProtocol("https");
     }
     result=sampler.sample();
-    if (httpsSpoof && result.getDataType() == result.TEXT) {
+    if (httpsSpoof && SampleResult.TEXT.equals(result.getDataType())) {
       String noHttpsResult=new String(result.getResponseData());
       result.setResponseData(noHttpsResult.replaceAll("https","http").getBytes());
     }
