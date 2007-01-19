@@ -64,6 +64,14 @@
       text=parts[i++];
       result.setResultFileName(text);
     }
+    if (saveConfig.saveLatency()) {
+      text=parts[i++];
+      result.setLatency(Long.parseLong(text));
+    }
+    if (saveConfig.saveEncoding()) {
+      text=parts[i++];
+      result.setEncodingAndType(text);
+    }
   }
  catch (  NumberFormatException e) {
     log.warn("Error parsing number " + e);

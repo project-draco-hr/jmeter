@@ -69,6 +69,14 @@
     text.append(sample.getResultFileName());
     text.append(delimiter);
   }
+  if (saveConfig.saveLatency()) {
+    text.append(sample.getLatency());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveEncoding()) {
+    text.append(sample.getDataEncoding());
+    text.append(delimiter);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delimiter.length();

@@ -55,6 +55,14 @@
     text.append(CSV_FILENAME);
     text.append(delim);
   }
+  if (saveConfig.saveLatency()) {
+    text.append(CSV_LATENCY);
+    text.append(delim);
+  }
+  if (saveConfig.saveEncoding()) {
+    text.append(CSV_ENCODING);
+    text.append(delim);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delim.length();
