@@ -48,17 +48,17 @@
       result.setSuccessful(Boolean.valueOf(text).booleanValue());
     }
     if (saveConfig.saveAssertionResultsFailureMessage()) {
-      text=parts[i++];
+      i++;
     }
     if (saveConfig.saveBytes()) {
       text=parts[i++];
       result.setBytes(Integer.parseInt(text));
     }
     if (saveConfig.saveThreadCounts()) {
-      text=parts[i++];
+      i+=2;
     }
     if (saveConfig.saveUrl()) {
-      text=parts[i++];
+      i++;
     }
     if (saveConfig.saveFileName()) {
       text=parts[i++];
