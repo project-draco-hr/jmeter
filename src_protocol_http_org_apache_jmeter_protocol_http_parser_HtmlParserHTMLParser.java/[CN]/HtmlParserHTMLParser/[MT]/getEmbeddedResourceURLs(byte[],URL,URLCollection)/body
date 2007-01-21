@@ -43,7 +43,7 @@
  else       if (node instanceof InputTag) {
         InputTag input=(InputTag)node;
         String strType=input.getAttribute(ATT_TYPE);
-        if (strType != null && strType.equalsIgnoreCase(ATT_IS_IMAGE)) {
+        if (ATT_IS_IMAGE.equalsIgnoreCase(strType)) {
           binUrlStr=input.getAttribute(ATT_SRC);
         }
       }
@@ -64,7 +64,7 @@
       }
  else       if (node instanceof LinkTagTag) {
         LinkTagTag script=(LinkTagTag)node;
-        if (script.getAttribute(ATT_REL).equalsIgnoreCase(STYLESHEET)) {
+        if (STYLESHEET.equalsIgnoreCase(script.getAttribute(ATT_REL))) {
           binUrlStr=script.getAttribute(ATT_HREF);
         }
       }
