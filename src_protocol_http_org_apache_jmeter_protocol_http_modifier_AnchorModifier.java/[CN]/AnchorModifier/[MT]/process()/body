@@ -20,16 +20,11 @@
  catch (  UnsupportedEncodingException e) {
   }
   Document html;
-  try {
-    int index=responseText.indexOf("<");
-    if (index == -1) {
-      index=0;
-    }
-    html=(Document)HtmlParsingUtils.getDOM(responseText.substring(index));
+  int index=responseText.indexOf("<");
+  if (index == -1) {
+    index=0;
   }
- catch (  SAXException e) {
-    return;
-  }
+  html=(Document)HtmlParsingUtils.getDOM(responseText.substring(index));
   addAnchorUrls(html,result,sampler,potentialLinks);
   addFormUrls(html,result,sampler,potentialLinks);
   addFramesetUrls(html,result,sampler,potentialLinks);

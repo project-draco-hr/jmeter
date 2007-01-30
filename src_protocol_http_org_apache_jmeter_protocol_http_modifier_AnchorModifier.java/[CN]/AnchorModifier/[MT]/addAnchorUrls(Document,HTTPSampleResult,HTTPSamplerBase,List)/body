@@ -23,9 +23,7 @@
       }
     }
  catch (    MalformedURLException e) {
-    }
-catch (    org.apache.oro.text.regex.MalformedPatternException e) {
-      log.error("Bad pattern",e);
+      log.warn("Bad URL " + e);
     }
   }
 }

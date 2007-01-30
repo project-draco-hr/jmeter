@@ -7,14 +7,9 @@
   Iterator iter=urls.iterator();
   while (iter.hasNext()) {
     HTTPSamplerBase newUrl=(HTTPSamplerBase)iter.next();
-    try {
-      newUrl.setMethod(HTTPSamplerBase.POST);
-      if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
-        potentialLinks.add(newUrl);
-      }
-    }
- catch (    org.apache.oro.text.regex.MalformedPatternException e) {
-      log.error("Bad pattern",e);
+    newUrl.setMethod(HTTPSamplerBase.POST);
+    if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
+      potentialLinks.add(newUrl);
     }
   }
 }

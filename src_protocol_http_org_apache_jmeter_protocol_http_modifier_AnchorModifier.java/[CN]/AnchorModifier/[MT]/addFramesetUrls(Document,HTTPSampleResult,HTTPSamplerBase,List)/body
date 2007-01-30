@@ -25,8 +25,5 @@
  catch (    MalformedURLException e) {
       log.warn("Bad URL " + e);
     }
-catch (    org.apache.oro.text.regex.MalformedPatternException e) {
-      log.error("Bad pattern",e);
-    }
   }
 }
