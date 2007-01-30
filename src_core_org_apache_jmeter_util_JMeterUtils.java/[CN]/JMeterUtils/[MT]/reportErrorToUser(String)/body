@@ -11,12 +11,7 @@
   try {
     JOptionPane.showMessageDialog(instance.getMainFrame(),errorMsg,"Error",JOptionPane.ERROR_MESSAGE);
   }
- catch (  RuntimeException e) {
-    if (e.getClass().getName().equals("java.awt.HeadlessException")) {
-      log.warn("reportErrorToUser(\"" + errorMsg + "\") caused",e);
-    }
- else {
-      throw e;
-    }
+ catch (  HeadlessException e) {
+    log.warn("reportErrorToUser(\"" + errorMsg + "\") caused",e);
   }
 }

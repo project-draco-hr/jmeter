@@ -2,7 +2,7 @@
   if (save.saveTime())   writer.addAttribute(ATT_TIME,Long.toString(res.getTime()));
   if (save.saveLatency())   writer.addAttribute(ATT_LATENCY,Long.toString(res.getLatency()));
   if (save.saveTimestamp())   writer.addAttribute(ATT_TIME_STAMP,Long.toString(res.getTimeStamp()));
-  if (save.saveSuccess())   writer.addAttribute(ATT_SUCCESS,JOrphanUtils.booleanToString(res.isSuccessful()));
+  if (save.saveSuccess())   writer.addAttribute(ATT_SUCCESS,Boolean.toString(res.isSuccessful()));
   if (save.saveLabel())   writer.addAttribute(ATT_LABEL,ConversionHelp.encode(res.getSampleLabel()));
   if (save.saveCode())   writer.addAttribute(ATT_RESPONSE_CODE,ConversionHelp.encode(res.getResponseCode()));
   if (save.saveMessage())   writer.addAttribute(ATT_RESPONSE_MESSAGE,ConversionHelp.encode(res.getResponseMessage()));

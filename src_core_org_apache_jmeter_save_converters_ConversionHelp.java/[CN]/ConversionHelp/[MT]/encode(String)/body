@@ -4,7 +4,7 @@
     return "";
   }
   try {
-    String p1=JOrphanUtils.encode(p,CHAR_SET);
+    String p1=URLEncoder.encode(p,CHAR_SET);
     return p1;
   }
  catch (  UnsupportedEncodingException e) {
