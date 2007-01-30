@@ -16,11 +16,11 @@
         }
  catch (        InvalidVariableException e) {
           log.error("Program error",e);
-          throw new Error(e.toString());
+          throw new Error(e);
         }
 catch (        IllegalUserActionException e) {
           log.error("Program error",e);
-          throw new Error(e.toString());
+          throw new Error(e);
         }
       }
     }

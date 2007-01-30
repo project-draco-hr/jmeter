@@ -10,13 +10,21 @@
     }
   }
  catch (  IOException e) {
-    if (conn.getResponseCode() != 404) {
+    if (!(e.getCause() instanceof FileNotFoundException)) {
       log.error("readResponse: " + e.toString());
+      Throwable cause=e.getCause();
+      if (cause != null) {
+        log.error("Cause: " + cause);
+      }
     }
     in=new BufferedInputStream(conn.getErrorStream());
   }
 catch (  Exception e) {
     log.error("readResponse: " + e.toString());
+    Throwable cause=e.getCause();
+    if (cause != null) {
+      log.error("Cause: " + cause);
+    }
     in=new BufferedInputStream(conn.getErrorStream());
   }
   java.io.ByteArrayOutputStream w=new ByteArrayOutputStream();

@@ -2,8 +2,8 @@
   setAlwaysEncoded(true);
   if (alreadyEncoded) {
     try {
-      name=JOrphanUtils.decode(name,"UTF-8");
-      value=JOrphanUtils.decode(value,"UTF-8");
+      name=URLDecoder.decode(name,"UTF-8");
+      value=URLDecoder.decode(value,"UTF-8");
     }
  catch (    UnsupportedEncodingException e) {
       log.error("UTF-8 encoding not supported!");
