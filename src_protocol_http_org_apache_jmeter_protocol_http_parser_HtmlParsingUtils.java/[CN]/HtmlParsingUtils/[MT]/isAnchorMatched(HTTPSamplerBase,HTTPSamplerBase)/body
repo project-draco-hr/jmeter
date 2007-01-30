@@ -4,7 +4,7 @@
   PropertyIterator iter=config.getArguments().iterator();
   String query=null;
   try {
-    query=JOrphanUtils.decode(newLink.getQueryString(),"UTF-8");
+    query=URLDecoder.decode(newLink.getQueryString(),"UTF-8");
   }
  catch (  UnsupportedEncodingException e) {
     log.error("UTF-8 encoding not supported!");
