@@ -1,6 +1,7 @@
 {
   configureTestElement(element);
   element.setProperty(TCPSampler.SERVER,server.getText());
+  element.setProperty(TCPSampler.RE_USE_CONNECTION,JOrphanUtils.booleanToString(reUseConnection.isSelected()));
   element.setProperty(TCPSampler.PORT,port.getText());
   element.setProperty(TCPSampler.NODELAY,JOrphanUtils.booleanToString(setNoDelay.isSelected()));
   element.setProperty(TCPSampler.TIMEOUT,timeout.getText());

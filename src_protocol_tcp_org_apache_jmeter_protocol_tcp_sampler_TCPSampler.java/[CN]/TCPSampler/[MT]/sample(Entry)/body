@@ -54,6 +54,9 @@
  finally {
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
+    if (!isReUseConnection()) {
+      closeSocket();
+    }
   }
   return res;
 }

@@ -1,6 +1,7 @@
 {
   super.configure(element);
   server.setText(element.getPropertyAsString(TCPSampler.SERVER));
+  reUseConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.RE_USE_CONNECTION,true));
   port.setText(element.getPropertyAsString(TCPSampler.PORT));
   timeout.setText(element.getPropertyAsString(TCPSampler.TIMEOUT));
   setNoDelay.setSelected(element.getPropertyAsBoolean(TCPSampler.NODELAY));

@@ -1,9 +1,12 @@
 {
   Map cp=(Map)tp.get();
-  Socket con=(Socket)cp.get(TCPKEY);
-  if (con != null) {
-    log.debug(this + " Reusing connection " + con);
-    return con;
+  Socket con=null;
+  if (isReUseConnection()) {
+    con=(Socket)cp.get(TCPKEY);
+    if (con != null) {
+      log.debug(this + " Reusing connection " + con);
+      return con;
+    }
   }
   try {
     con=new Socket(getServer(),getPort());
