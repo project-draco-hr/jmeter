@@ -41,11 +41,12 @@ synchronized (this) {
         this.keyStore.load(fileInputStream,password);
       }
  else {
+        log.warn("Keystore not found, creating empty keystore");
         this.keyStore.load(null,password);
       }
     }
  catch (    Exception e) {
-      log.error("Couldn't load keystore",e);
+      log.warn("Problem loading keystore: " + e.getMessage());
     }
  finally {
       JOrphanUtils.closeQuietly(fileInputStream);
