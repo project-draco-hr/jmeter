@@ -1,9 +1,7 @@
 {
-  String password=this.defaultpw;
   if (null == this.keyStore) {
     String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
-    String fileName=JMeterUtils.getJMeterProperties().getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
-    System.setProperty(JAVAX_NET_SSL_KEY_STORE,fileName);
+    String fileName=System.getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
     try {
       if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
         this.keyStore=JmeterKeyStore.getInstance(PKCS12);
@@ -20,29 +18,17 @@
       this.keyStore=null;
       throw new RuntimeException("KeyStore Problem");
     }
-    if (null == password) {
-      if (null == defaultpw) {
-        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty(KEY_STORE_PASSWORD);
-        if (null == defaultpw) {
-synchronized (this) {
-            this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
-            JMeterUtils.getJMeterProperties().setProperty(KEY_STORE_PASSWORD,this.defaultpw);
-          }
-        }
-      }
-      password=this.defaultpw;
-      System.setProperty(KEY_STORE_PASSWORD,password);
-    }
     FileInputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
       if (initStore.exists()) {
         fileInputStream=new FileInputStream(initStore);
-        this.keyStore.load(fileInputStream,password);
+        this.keyStore.load(fileInputStream,getPassword());
       }
  else {
         log.warn("Keystore not found, creating empty keystore");
-        this.keyStore.load(null,password);
+        this.defaultpw="";
+        this.keyStore.load(null,"");
       }
     }
  catch (    Exception e) {

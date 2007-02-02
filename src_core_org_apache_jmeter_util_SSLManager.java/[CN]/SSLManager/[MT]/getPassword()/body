@@ -1,0 +1,17 @@
+{
+  String password=this.defaultpw;
+  if (null == password) {
+    if (null == defaultpw) {
+      this.defaultpw=System.getProperty(KEY_STORE_PASSWORD);
+      if (null == defaultpw) {
+synchronized (this) {
+          this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
+          System.setProperty(KEY_STORE_PASSWORD,this.defaultpw);
+        }
+      }
+    }
+    password=this.defaultpw;
+    System.setProperty(KEY_STORE_PASSWORD,password);
+  }
+  return password;
+}
