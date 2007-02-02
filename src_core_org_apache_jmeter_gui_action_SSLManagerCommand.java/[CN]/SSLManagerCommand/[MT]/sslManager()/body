@@ -7,9 +7,9 @@
   if (JFileChooser.APPROVE_OPTION == retVal) {
     File selectedFile=keyStoreChooser.getSelectedFile();
     try {
-      JMeterUtils.getJMeterProperties().setProperty("javax.net.ssl.keyStore",selectedFile.getCanonicalPath());
+      System.setProperty(SSLManager.JAVAX_NET_SSL_KEY_STORE,selectedFile.getCanonicalPath());
     }
- catch (    Exception e) {
+ catch (    IOException e) {
     }
   }
   keyStoreChooser=null;
