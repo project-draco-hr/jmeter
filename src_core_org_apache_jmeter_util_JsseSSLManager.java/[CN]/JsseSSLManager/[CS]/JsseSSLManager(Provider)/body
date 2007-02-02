@@ -4,9 +4,6 @@
   if (null == this.rand) {
     this.rand=new SecureRandom();
   }
-  if ("all".equalsIgnoreCase(JMeterUtils.getPropDefault("javax.net.debug","none"))) {
-    System.setProperty("javax.net.debug","all");
-  }
   this.getContext();
   log.info("JsseSSLManager installed");
 }

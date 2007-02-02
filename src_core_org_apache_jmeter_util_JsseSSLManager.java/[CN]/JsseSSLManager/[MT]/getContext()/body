@@ -10,10 +10,10 @@
       log.debug("SSL context = " + context);
     }
  catch (    Exception ee) {
-      log.error("Exception occurred",ee);
+      log.error("Could not create SSLContext",ee);
     }
     try {
-      KeyManagerFactory managerFactory=KeyManagerFactory.getInstance("SunX509");
+      KeyManagerFactory managerFactory=KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
       JmeterKeyStore keys=this.getKeyStore();
       managerFactory.init(null,this.defaultpw.toCharArray());
       KeyManager[] managers=managerFactory.getKeyManagers();
@@ -28,7 +28,7 @@
       context.init(managers,trusts,this.rand);
       HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
       HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
-        public boolean verify(        String urlHostname,        String certHostname){
+        public boolean verify(        String hostname,        SSLSession session){
           return true;
         }
       }
@@ -36,7 +36,7 @@
       log.debug("SSL stuff all set");
     }
  catch (    Exception e) {
-      log.error("Exception occurred",e);
+      log.error("Could not set up default SSL socket factory",e);
     }
     if (log.isDebugEnabled()) {
       String[] dCiphers=this.context.getSocketFactory().getDefaultCipherSuites();
