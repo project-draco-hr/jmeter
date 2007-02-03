@@ -2,6 +2,7 @@
   if (null == this.keyStore) {
     String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
     String fileName=System.getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
+    log.info("JmeterKeyStore Location: " + fileName);
     try {
       if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
         this.keyStore=JmeterKeyStore.getInstance(PKCS12);
@@ -14,9 +15,8 @@
       }
     }
  catch (    Exception e) {
-      JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),e,JMeterUtils.getResString("ssl_error_title"),JOptionPane.ERROR_MESSAGE);
       this.keyStore=null;
-      throw new RuntimeException("KeyStore Problem");
+      throw new RuntimeException("Could not create keystore: " + e.getMessage());
     }
     FileInputStream fileInputStream=null;
     try {
@@ -32,13 +32,12 @@
       }
     }
  catch (    Exception e) {
-      log.warn("Problem loading keystore: " + e.getMessage());
+      log.error("Problem loading keystore: " + e.getMessage());
     }
  finally {
       JOrphanUtils.closeQuietly(fileInputStream);
     }
-    log.info("JmeterKeyStore Location: " + fileName);
-    log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());
+    log.debug("JmeterKeyStore type: " + this.keyStore.getClass().toString());
   }
   return this.keyStore;
 }

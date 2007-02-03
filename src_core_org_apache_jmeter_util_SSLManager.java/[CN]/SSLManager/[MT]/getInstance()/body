@@ -9,7 +9,7 @@
         SSLManager.manager=(SSLManager)con.newInstance(new Object[]{SSLManager.sslProvider});
       }
  catch (      Exception e) {
-        log.error("",e);
+        log.error("Could not create SSLManager instance",e);
         SSLManager.isSSLSupported=false;
         return null;
       }
