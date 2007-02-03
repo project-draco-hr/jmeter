@@ -5,6 +5,9 @@
   if ((schema == null) || (schema.length() == 0)) {
     schema=PROTOCOL_HTTP;
   }
+  if (PROTOCOL_HTTPS.equalsIgnoreCase(schema)) {
+    SSLManager.getInstance();
+  }
   Protocol protocol=Protocol.getProtocol(schema);
   String host=uri.getHost();
   int port=uri.getPort();

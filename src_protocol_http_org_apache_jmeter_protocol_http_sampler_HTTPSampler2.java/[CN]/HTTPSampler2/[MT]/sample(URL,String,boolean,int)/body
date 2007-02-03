@@ -21,7 +21,11 @@
  else   if (method.equals(DELETE)) {
     httpMethod=new DeleteMethod(urlStr);
   }
+ else   if (method.equals(GET)) {
+    httpMethod=new GetMethod(urlStr);
+  }
  else {
+    log.error("Unexpected method (converted to GET): " + method);
     httpMethod=new GetMethod(urlStr);
   }
   HTTPSampleResult res=new HTTPSampleResult();
