@@ -6,17 +6,19 @@
       sslmgr=SSLManager.getInstance();
     }
  catch (    Exception e) {
-      log.warn("You may have forgotten to set the ssl.provider property " + "in jmeter.properties",e);
+      log.warn("Problem creating the SSLManager: ",e);
     }
   }
   conn=(HttpURLConnection)u.openConnection();
   conn.setInstanceFollowRedirects(getAutoRedirects());
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
-      sslmgr.setContext(conn);
+      if (null != sslmgr) {
+        sslmgr.setContext(conn);
+      }
     }
  catch (    Exception e) {
-      log.warn("You may have forgotten to set the ssl.provider property " + "in jmeter.properties",e);
+      log.warn("Problem setting the SSLManager for the connection: ",e);
     }
   }
   if (getUseKeepAlive()) {
