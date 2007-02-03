@@ -1,7 +1,5 @@
 {
   if (conn instanceof HttpsURLConnection) {
-    HttpsURLConnection secureConn=(HttpsURLConnection)conn;
-    secureConn.setSSLSocketFactory(this.getContext().getSocketFactory());
   }
  else {
     log.warn("Unexpected HttpURLConnection class: " + conn.getClass().getName());

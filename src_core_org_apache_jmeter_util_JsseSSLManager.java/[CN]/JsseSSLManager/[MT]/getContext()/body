@@ -17,7 +17,7 @@
       JmeterKeyStore keys=this.getKeyStore();
       managerFactory.init(null,this.defaultpw.toCharArray());
       KeyManager[] managers=managerFactory.getKeyManagers();
-      log.info(keys.getClass().toString());
+      log.debug(keys.getClass().toString());
       for (int i=0; i < managers.length; i++) {
         if (managers[i] instanceof X509KeyManager) {
           X509KeyManager manager=(X509KeyManager)managers[i];
@@ -33,10 +33,12 @@
         }
       }
 );
+      Protocol protocol=new Protocol("https",(ProtocolSocketFactory)new HttpClientSSLProtocolSocketFactory(context),443);
+      Protocol.registerProtocol("https",protocol);
       log.debug("SSL stuff all set");
     }
  catch (    Exception e) {
-      log.error("Could not set up default SSL socket factory",e);
+      log.error("Could not set up SSLContext",e);
     }
     if (log.isDebugEnabled()) {
       String[] dCiphers=this.context.getSocketFactory().getDefaultCipherSuites();
