@@ -24,7 +24,7 @@
       if (initStore.exists()) {
         fileInputStream=new FileInputStream(initStore);
         this.keyStore.load(fileInputStream,getPassword());
-        log.info("Keystore loaded OK from file");
+        log.info("Keystore loaded OK from file, found alias: " + keyStore.getAlias());
       }
  else {
         log.warn("Keystore file not found, loading empty keystore");

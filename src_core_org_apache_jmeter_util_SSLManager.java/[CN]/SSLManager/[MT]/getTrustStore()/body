@@ -1,6 +1,10 @@
 {
-  if (null == this.trustStore) {
-    String fileName=System.getProperty(SSL_TRUST_STORE,"");
+  if (!truststore_loaded) {
+    truststore_loaded=true;
+    String fileName=System.getProperty(SSL_TRUST_STORE);
+    if (fileName == null) {
+      return null;
+    }
     log.info("TrustStore Location: " + fileName);
     try {
       this.trustStore=KeyStore.getInstance("JKS");
