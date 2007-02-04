@@ -1,4 +1,4 @@
 {
-  log.info("WrappedX509Manager: getCertificateChain(" + alias + ")");
+  log.debug("WrappedX509Manager: getCertificateChain(" + alias + ")");
   return this.store.getCertificateChain();
 }

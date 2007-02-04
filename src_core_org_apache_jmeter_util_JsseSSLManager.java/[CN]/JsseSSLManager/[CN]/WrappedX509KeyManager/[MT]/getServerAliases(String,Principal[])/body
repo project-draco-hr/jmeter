@@ -1,4 +1,4 @@
 {
-  log.info("WrappedX509Manager: getServerAliases: ");
+  log.debug("WrappedX509Manager: getServerAliases: ");
   return this.manager.getServerAliases(keyType,issuers);
 }

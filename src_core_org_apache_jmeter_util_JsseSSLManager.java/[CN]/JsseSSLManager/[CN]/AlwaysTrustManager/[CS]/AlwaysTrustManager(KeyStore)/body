@@ -4,13 +4,13 @@
     java.util.ArrayList list=new java.util.ArrayList(store.size());
     while (enumer.hasMoreElements()) {
       String alias=(String)enumer.nextElement();
-      log.info("AlwaysTrustManager alias: " + alias);
+      log.debug("AlwaysTrustManager alias: " + alias);
       if (store.isCertificateEntry(alias)) {
         list.add(store.getCertificate(alias));
-        log.info(" INSTALLED");
+        log.debug(" INSTALLED");
       }
  else {
-        log.info(" SKIPPED");
+        log.debug(" SKIPPED");
       }
     }
     this.certs=(X509Certificate[])list.toArray(new X509Certificate[]{});
