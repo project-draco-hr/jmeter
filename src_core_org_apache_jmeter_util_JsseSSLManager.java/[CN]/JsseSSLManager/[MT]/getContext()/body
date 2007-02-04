@@ -24,8 +24,15 @@
           managers[i]=new WrappedX509KeyManager(manager,keys);
         }
       }
-      TrustManager[] trusts=new TrustManager[]{new AlwaysTrustManager(this.getTrustStore())};
-      context.init(managers,trusts,this.rand);
+      TrustManagerFactory tmfactory=TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+      tmfactory.init(this.getTrustStore());
+      TrustManager[] trustmanagers=tmfactory.getTrustManagers();
+      for (int i=0; i < trustmanagers.length; i++) {
+        if (trustmanagers[i] instanceof X509TrustManager) {
+          trustmanagers[i]=new CustomX509TrustManager((X509TrustManager)trustmanagers[i]);
+        }
+      }
+      context.init(managers,trustmanagers,this.rand);
       HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
       HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
         public boolean verify(        String hostname,        SSLSession session){
@@ -33,8 +40,8 @@
         }
       }
 );
-      Protocol protocol=new Protocol("https",(ProtocolSocketFactory)new HttpClientSSLProtocolSocketFactory(context),443);
-      Protocol.registerProtocol("https",protocol);
+      Protocol protocol=new Protocol(JsseSSLManager.HTTPS,(ProtocolSocketFactory)new HttpClientSSLProtocolSocketFactory(context),443);
+      Protocol.registerProtocol(JsseSSLManager.HTTPS,protocol);
       log.debug("SSL stuff all set");
     }
  catch (    Exception e) {

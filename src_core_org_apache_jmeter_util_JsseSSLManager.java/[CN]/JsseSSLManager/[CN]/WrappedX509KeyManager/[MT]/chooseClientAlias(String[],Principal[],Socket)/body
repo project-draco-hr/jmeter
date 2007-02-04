@@ -1,4 +1,8 @@
 {
-  log.debug("Alias: " + this.store.getAlias());
-  return this.store.getAlias();
+  String alias=this.store.getAlias();
+  log.debug("ClientAlias: " + alias);
+  if (alias == null || alias.length() == 0) {
+    log.debug("ClientAlias not found.");
+  }
+  return alias;
 }
