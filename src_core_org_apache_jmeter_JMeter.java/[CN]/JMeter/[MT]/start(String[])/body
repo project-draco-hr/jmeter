@@ -20,8 +20,8 @@
     log.info("Default Locale=" + Locale.getDefault().getDisplayName());
     log.info("JMeter  Locale=" + JMeterUtils.getLocale().getDisplayName());
     log.info("JMeterHome=" + JMeterUtils.getJMeterHome());
-    logProperty("user.dir");
-    log.info("PWD     =" + new File(".").getCanonicalPath());
+    logProperty("user.dir","  =");
+    log.info("PWD       =" + new File(".").getCanonicalPath());
     setProxy(parser);
     updateClassLoader();
     if (log.isDebugEnabled()) {
