@@ -6,12 +6,12 @@
     try {
       if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
         this.keyStore=JmeterKeyStore.getInstance(PKCS12);
-        log.info("KeyStore Type: PKCS 12");
+        log.info("KeyStore created OK, Type: PKCS 12");
         System.setProperty("javax.net.ssl.keyStoreType",PKCS12);
       }
  else {
         this.keyStore=JmeterKeyStore.getInstance("JKS");
-        log.info("KeyStore Type: JKS");
+        log.info("KeyStore created OK, Type: JKS");
       }
     }
  catch (    Exception e) {
@@ -24,9 +24,10 @@
       if (initStore.exists()) {
         fileInputStream=new FileInputStream(initStore);
         this.keyStore.load(fileInputStream,getPassword());
+        log.info("Keystore loaded OK from file");
       }
  else {
-        log.warn("Keystore not found, creating empty keystore");
+        log.warn("Keystore file not found, loading empty keystore");
         this.defaultpw="";
         this.keyStore.load(null,"");
       }

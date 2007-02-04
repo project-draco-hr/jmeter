@@ -4,7 +4,7 @@
     log.info("TrustStore Location: " + fileName);
     try {
       this.trustStore=KeyStore.getInstance("JKS");
-      log.info("TrustStore Type: JKS");
+      log.info("TrustStore created OK, Type: JKS");
     }
  catch (    Exception e) {
       this.trustStore=null;
@@ -16,9 +16,10 @@
       if (initStore.exists()) {
         fileInputStream=new FileInputStream(initStore);
         this.trustStore.load(fileInputStream,null);
+        log.info("Truststore loaded OK from file");
       }
  else {
-        log.info("Truststore not found, creating empty truststore");
+        log.info("Truststore file not found, loading empty truststore");
         this.trustStore.load(null,null);
       }
     }
