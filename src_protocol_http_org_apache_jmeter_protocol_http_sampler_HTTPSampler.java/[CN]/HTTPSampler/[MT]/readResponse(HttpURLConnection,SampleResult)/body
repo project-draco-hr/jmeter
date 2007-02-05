@@ -1,6 +1,11 @@
 {
   byte[] readBuffer=getThreadContext().getReadBuffer();
   BufferedInputStream in;
+  if ((conn.getContentLength() == 0) && JMeterUtils.getPropDefault("httpsampler.obey_contentlength",false)) {
+    log.info("Content-Length: 0, not reading http-body");
+    res.setResponseHeaders(getResponseHeaders(conn));
+    return NULL_BA;
+  }
   try {
     if (ENCODING_GZIP.equals(conn.getContentEncoding())) {
       in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
@@ -17,7 +22,16 @@
         log.error("Cause: " + cause);
       }
     }
-    in=new BufferedInputStream(conn.getErrorStream());
+    InputStream errorStream=conn.getErrorStream();
+    if (errorStream == null) {
+      log.info("Error Response Code: " + conn.getResponseCode() + ", Server sent no Errorpage");
+      res.setResponseHeaders(getResponseHeaders(conn));
+      return NULL_BA;
+    }
+ else {
+      log.info("Error Response Code: " + conn.getResponseCode());
+    }
+    in=new BufferedInputStream(errorStream);
   }
 catch (  Exception e) {
     log.error("readResponse: " + e.toString());
