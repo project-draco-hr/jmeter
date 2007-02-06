@@ -35,7 +35,7 @@
         printer.flush();
       }
       public long getContentLength(){
-        return getXmlData().length();
+        return getXmlData().getBytes().length;
       }
       public String getContentType(){
         return "text/xml";
