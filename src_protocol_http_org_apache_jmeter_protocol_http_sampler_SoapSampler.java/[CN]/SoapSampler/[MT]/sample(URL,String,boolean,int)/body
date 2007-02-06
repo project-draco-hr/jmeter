@@ -12,10 +12,10 @@
   HttpClient client=null;
   InputStream instream=null;
   try {
-    setPostHeaders(httpMethod);
+    int content_len=setPostHeaders(httpMethod);
     client=setupConnection(url,httpMethod,res);
     res.setQueryString(getQueryString());
-    sendPostData(httpMethod);
+    sendPostData(httpMethod,content_len);
     int statusCode=client.executeMethod(httpMethod);
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
