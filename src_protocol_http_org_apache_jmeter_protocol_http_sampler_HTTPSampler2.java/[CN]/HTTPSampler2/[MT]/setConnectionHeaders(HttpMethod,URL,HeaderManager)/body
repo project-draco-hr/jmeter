@@ -7,12 +7,14 @@
       while (i.hasNext()) {
         org.apache.jmeter.protocol.http.control.Header header=(org.apache.jmeter.protocol.http.control.Header)i.next().getObjectValue();
         String n=header.getName();
-        String v=header.getValue();
-        method.addRequestHeader(n,v);
-        hdrs.append(n);
-        hdrs.append(": ");
-        hdrs.append(v);
-        hdrs.append("\n");
+        if (!HEADER_CONTENT_LENGTH.equalsIgnoreCase(n)) {
+          String v=header.getValue();
+          method.addRequestHeader(n,v);
+          hdrs.append(n);
+          hdrs.append(": ");
+          hdrs.append(v);
+          hdrs.append("\n");
+        }
       }
     }
   }
