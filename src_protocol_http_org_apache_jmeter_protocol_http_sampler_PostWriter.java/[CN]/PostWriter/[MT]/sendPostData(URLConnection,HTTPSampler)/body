@@ -2,6 +2,17 @@
   String filename=sampler.getFilename();
   if ((filename != null) && (filename.trim().length() > 0)) {
     OutputStream out=connection.getOutputStream();
+    if (sampler.getSendFileAsPostBody()) {
+      InputStream in=getFileStream(filename);
+      byte[] buf=new byte[1024];
+      int read;
+      while ((read=in.read(buf)) > 0) {
+        out.write(buf,0,read);
+      }
+      out.flush();
+      in.close();
+      return;
+    }
     writeln(out,DASH_DASH + BOUNDARY);
     PropertyIterator args=sampler.getArguments().iterator();
     while (args.hasNext()) {
