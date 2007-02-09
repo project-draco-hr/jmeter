@@ -1,6 +1,6 @@
 {
   String specialChars="-_.!~*'()%25";
-  String htmlEncodedFixture=JOrphanUtils.encode(specialChars,"UTF-8");
+  String htmlEncodedFixture=URLEncoder.encode(specialChars,"UTF-8");
   HTTPSamplerBase config=makeUrlConfig(".*index.html");
   config.addArgument("test",".*");
   config.setMethod(HTTPSamplerBase.POST);
