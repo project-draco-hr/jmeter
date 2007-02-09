@@ -1,6 +1,6 @@
 {
   setupFilename(sampler);
   setupCommons(sampler);
-  postWriter.sendPostData(connection,sampler);
+  PostWriter.sendPostData(connection,sampler);
   assertEquals(createExpectedOutputStream().toString(),connection.getOutputStream().toString());
 }

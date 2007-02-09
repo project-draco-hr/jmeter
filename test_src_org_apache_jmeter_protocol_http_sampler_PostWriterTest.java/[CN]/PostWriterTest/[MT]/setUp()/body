@@ -1,5 +1,4 @@
 {
-  postWriter=new PostWriter();
   connection=new StubURLConnection("http://fake_url/test");
   sampler=new HTTPSampler();
   temporaryFile=File.createTempFile("foo","txt");
