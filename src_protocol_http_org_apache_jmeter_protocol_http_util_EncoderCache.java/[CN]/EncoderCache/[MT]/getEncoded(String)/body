@@ -4,7 +4,7 @@
     return (String)encodedValue;
   }
   try {
-    encodedValue=JOrphanUtils.encode(k,"utf8");
+    encodedValue=URLEncoder.encode(k,"utf8");
   }
  catch (  UnsupportedEncodingException e) {
     throw new Error("Should not happen: " + e.toString());
