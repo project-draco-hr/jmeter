@@ -5,7 +5,7 @@
   int count=0;
   while (iter.hasNext()) {
     LDAPArgument item=(LDAPArgument)iter.next().getObjectValue();
-    if ((item.getValue()).equals("")) {
+    if ((item.getValue()).length() == 0) {
       attr=new BasicAttribute(item.getName());
     }
  else {
@@ -15,7 +15,7 @@
       mods[count]=new ModificationItem(DirContext.ADD_ATTRIBUTE,attr);
     }
  else {
-      if ("delete".equals(item.getOpcode())) {
+      if ("delete".equals(item.getOpcode()) || "remove".equals(item.getOpcode())) {
         mods[count]=new ModificationItem(DirContext.REMOVE_ATTRIBUTE,attr);
       }
  else {

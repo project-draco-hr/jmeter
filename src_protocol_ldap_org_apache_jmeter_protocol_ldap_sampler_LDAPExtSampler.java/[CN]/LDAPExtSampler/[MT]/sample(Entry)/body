@@ -84,6 +84,8 @@
       renameTest(temp_client,dirContext,res);
     }
  else     if (getPropertyAsString(TEST).equals(SEARCHBASE)) {
+      final String scopeStr=getPropertyAsString(SCOPE);
+      final int scope;
       res.setSamplerData("Search with filter " + getPropertyAsString(SEARCHFILTER));
       responseData=responseData + "<operation><opertype>search</opertype>";
       responseData=responseData + "<searchfilter>" + getPropertyAsString(SEARCHFILTER)+ "</searchfilter>";
@@ -93,7 +95,19 @@
       responseData=responseData + "<timelimit>" + getPropertyAsString(TIMELIM)+ "</timelimit>";
       responseData=responseData + "</operation><searchresult>";
       res.sampleStart();
-      NamingEnumeration srch=temp_client.searchTest(dirContext,getPropertyAsString(SEARCHBASE),getPropertyAsString(SEARCHFILTER),getPropertyAsInt(SCOPE),getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),getPropertyAsBoolean(RETOBJ),getPropertyAsBoolean(DEREF));
+      if ("object".equals(scopeStr)) {
+        scope=SearchControls.OBJECT_SCOPE;
+      }
+ else       if ("onelevel".equals(scopeStr)) {
+        scope=SearchControls.ONELEVEL_SCOPE;
+      }
+ else       if ("subtree".equals(scopeStr)) {
+        scope=SearchControls.SUBTREE_SCOPE;
+      }
+ else {
+        scope=getPropertyAsInt(SCOPE);
+      }
+      NamingEnumeration srch=temp_client.searchTest(dirContext,getPropertyAsString(SEARCHBASE),getPropertyAsString(SEARCHFILTER),scope,getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),getPropertyAsBoolean(RETOBJ),getPropertyAsBoolean(DEREF));
       res.sampleEnd();
       while (srch.hasMore()) {
         SearchResult sr=(SearchResult)srch.next();
