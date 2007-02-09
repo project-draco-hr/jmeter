@@ -1,13 +1,23 @@
 {
   Authorization auth=manager.getAuthObjectAt(row);
   log.debug("Setting auth value: " + value);
-  if (column == 0) {
+switch (column) {
+case AuthManager.COL_URL:
     auth.setURL((String)value);
-  }
- else   if (column == 1) {
-    auth.setUser((String)value);
-  }
- else   if (column == 2) {
-    auth.setPass((String)value);
-  }
+  break;
+case AuthManager.COL_USERNAME:
+auth.setUser((String)value);
+break;
+case AuthManager.COL_PASSWORD:
+auth.setPass((String)value);
+break;
+case AuthManager.COL_DOMAIN:
+auth.setDomain((String)value);
+break;
+case AuthManager.COL_REALM:
+auth.setRealm((String)value);
+break;
+default :
+break;
+}
 }

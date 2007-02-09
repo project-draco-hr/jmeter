@@ -1,13 +1,17 @@
 {
   Authorization auth=manager.getAuthObjectAt(row);
-  if (column == 0) {
+switch (column) {
+case AuthManager.COL_URL:
     return auth.getURL();
-  }
- else   if (column == 1) {
-    return auth.getUser();
-  }
- else   if (column == 2) {
-    return auth.getPass();
-  }
-  return null;
+case AuthManager.COL_USERNAME:
+  return auth.getUser();
+case AuthManager.COL_PASSWORD:
+return auth.getPass();
+case AuthManager.COL_DOMAIN:
+return auth.getDomain();
+case AuthManager.COL_REALM:
+return auth.getRealm();
+default :
+return null;
+}
 }

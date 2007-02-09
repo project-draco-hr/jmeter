@@ -1,5 +1,5 @@
 {
-  Authorization auth=new Authorization(url,user,pass);
+  Authorization auth=new Authorization(url,user,pass,domain,realm);
   if (index >= 0) {
     getAuthObjects().set(index,new TestElementProperty(auth.getName(),auth));
   }

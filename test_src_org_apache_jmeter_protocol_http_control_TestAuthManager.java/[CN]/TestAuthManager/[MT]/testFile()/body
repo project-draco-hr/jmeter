@@ -3,7 +3,7 @@
   CollectionProperty ao=am.getAuthObjects();
   assertEquals(0,ao.size());
   am.addFile("testfiles/TestAuth.txt");
-  assertEquals(5,ao.size());
+  assertEquals(6,ao.size());
   Authorization at;
   at=am.getAuthForURL(new URL("http://a.b.c/"));
   assertEquals("login",at.getUser());
@@ -11,4 +11,11 @@
   at=am.getAuthForURL(new URL("http://a.b.c/1"));
   assertEquals("login1",at.getUser());
   assertEquals("password1",at.getPass());
+  assertEquals("",at.getDomain());
+  assertEquals("",at.getRealm());
+  at=am.getAuthForURL(new URL("http://d.e.f/"));
+  assertEquals("user",at.getUser());
+  assertEquals("pass",at.getPass());
+  assertEquals("domain",at.getDomain());
+  assertEquals("realm",at.getRealm());
 }
