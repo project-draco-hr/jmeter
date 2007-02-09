@@ -2,6 +2,6 @@
   String name=item.getClass().getName();
   boolean contains=nameMap.values().contains(name);
   if (!contains) {
-    fail("nameMap should contain " + name);
+    fail("SaveService nameMap should contain " + name);
   }
 }
