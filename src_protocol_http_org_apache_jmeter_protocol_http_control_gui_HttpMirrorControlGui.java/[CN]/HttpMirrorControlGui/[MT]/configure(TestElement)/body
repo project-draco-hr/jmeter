@@ -1,0 +1,7 @@
+{
+  log.debug("Configuring gui with " + element);
+  super.configure(element);
+  mirrorController=(HttpMirrorControl)element;
+  portField.setText(mirrorController.getPortString());
+  repaint();
+}

@@ -1,0 +1,14 @@
+{
+  String command=action.getActionCommand();
+  if (command.equals(STOP)) {
+    mirrorController.stopHttpMirror();
+    stop.setEnabled(false);
+    start.setEnabled(true);
+  }
+ else   if (command.equals(START)) {
+    modifyTestElement(mirrorController);
+    mirrorController.startHttpMirror();
+    start.setEnabled(false);
+    stop.setEnabled(true);
+  }
+}

@@ -1,0 +1,6 @@
+{
+  mirrorController=new HttpMirrorControl();
+  log.debug("creating/configuring model = " + mirrorController);
+  modifyTestElement(mirrorController);
+  return mirrorController;
+}

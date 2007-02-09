@@ -1,0 +1,11 @@
+{
+  portField=new JTextField(HttpMirrorControl.DEFAULT_PORT_S,8);
+  portField.setName(HttpMirrorControl.PORT);
+  JLabel label=new JLabel(JMeterUtils.getResString("port"));
+  label.setLabelFor(portField);
+  HorizontalPanel panel=new HorizontalPanel();
+  panel.add(label);
+  panel.add(portField);
+  panel.add(Box.createHorizontalStrut(10));
+  return panel;
+}

@@ -1,0 +1,11 @@
+{
+  if (server != null) {
+    server.stopServer();
+    try {
+      server.join(1000);
+    }
+ catch (    InterruptedException e) {
+    }
+    server=null;
+  }
+}
