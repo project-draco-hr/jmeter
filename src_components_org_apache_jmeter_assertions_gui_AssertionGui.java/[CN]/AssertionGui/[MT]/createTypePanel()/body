@@ -9,6 +9,9 @@
   matchesBox=new JRadioButton(JMeterUtils.getResString("assertion_matches"));
   group.add(matchesBox);
   panel.add(matchesBox);
+  equalsBox=new JRadioButton(JMeterUtils.getResString("assertion_equals"));
+  group.add(equalsBox);
+  panel.add(equalsBox);
   notBox=new JCheckBox(JMeterUtils.getResString("assertion_not"));
   panel.add(notBox);
   return panel;

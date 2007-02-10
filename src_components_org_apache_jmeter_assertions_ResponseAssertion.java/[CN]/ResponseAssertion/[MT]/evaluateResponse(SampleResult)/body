@@ -6,14 +6,14 @@
   if (getAssumeSuccess()) {
     response.setSuccessful(true);
   }
-  if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
+  if (isTestFieldResponseData()) {
     String data=response.getResponseDataAsString();
     toCheck=new StringBuffer(response.getResponseHeaders()).append(data).toString();
   }
- else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
+ else   if (isTestFieldResponseCode()) {
     toCheck=response.getResponseCode();
   }
- else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(getTestField())) {
+ else   if (isTestFieldResponseMessage()) {
     toCheck=response.getResponseMessage();
   }
  else {
@@ -26,6 +26,7 @@
   result.setFailure(false);
   result.setError(false);
   boolean contains=isContainsType();
+  boolean equals=isEqualsType();
   boolean debugEnabled=log.isDebugEnabled();
   if (debugEnabled) {
     log.debug("Type:" + (contains ? "Contains" : "Match") + (not ? "(not)" : ""));
@@ -40,6 +41,9 @@
       if (contains) {
         found=localMatcher.contains(toCheck,pattern);
       }
+ else       if (equals) {
+        found=toCheck.equals(stringPattern);
+      }
  else {
         found=localMatcher.matches(toCheck,pattern);
       }
@@ -49,7 +53,7 @@
           log.debug("Failed: " + pattern);
         }
         result.setFailure(true);
-        result.setFailureMessage(getFailText(stringPattern));
+        result.setFailureMessage(getFailText(stringPattern,toCheck));
         break;
       }
       if (debugEnabled) {

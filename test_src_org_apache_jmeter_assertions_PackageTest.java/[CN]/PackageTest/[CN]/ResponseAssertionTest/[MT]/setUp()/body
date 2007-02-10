@@ -1,0 +1,12 @@
+{
+  jmctx=JMeterContextService.getContext();
+  assertion=new ResponseAssertion();
+  assertion.setThreadContext(jmctx);
+  sample=new SampleResult();
+  vars=new JMeterVariables();
+  jmctx.setVariables(vars);
+  jmctx.setPreviousResult(sample);
+  sample.setResponseData(("response Data\n" + "line 2\n\nEOF").getBytes());
+  sample.setSamplerData("Sampler Label");
+  sample.setResponseCode("401");
+}

@@ -4,10 +4,17 @@
   if (model.isContainsType()) {
     containsBox.setSelected(true);
     matchesBox.setSelected(false);
+    equalsBox.setSelected(false);
+  }
+ else   if (model.isEqualsType()) {
+    containsBox.setSelected(false);
+    matchesBox.setSelected(false);
+    equalsBox.setSelected(true);
   }
  else {
     containsBox.setSelected(false);
     matchesBox.setSelected(true);
+    equalsBox.setSelected(false);
   }
   if (model.isNotType()) {
     notBox.setSelected(true);
@@ -15,17 +22,17 @@
  else {
     notBox.setSelected(false);
   }
-  if (ResponseAssertion.RESPONSE_DATA.equals(model.getTestField())) {
+  if (model.isTestFieldResponseData()) {
     responseStringButton.setSelected(true);
   }
- else   if (ResponseAssertion.RESPONSE_CODE.equals(model.getTestField())) {
+ else   if (model.isTestFieldResponseCode()) {
     responseCodeButton.setSelected(true);
   }
- else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(model.getTestField())) {
+ else   if (model.isTestFieldResponseMessage()) {
     responseMessageButton.setSelected(true);
   }
  else {
-    labelButton.setSelected(true);
+    urlButton.setSelected(true);
   }
   assumeSuccess.setSelected(model.getAssumeSuccess());
   tableModel.clearData();
