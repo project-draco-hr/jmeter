@@ -24,8 +24,7 @@
   }
   testListeners=new SearchByClass(TestListener.class);
   getTestTree().traverse(testListeners);
-  Collection col=testListeners.getSearchResults();
-  col.addAll(testList);
+  testListeners.getSearchResults().addAll(testList);
   testList=null;
   if (!startListenersLater)   notifyTestListenersOfStart();
   getTestTree().traverse(new TurnElementsOn());
