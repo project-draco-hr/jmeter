@@ -1,7 +1,6 @@
 {
-  Properties nameMap=new Properties();
   try {
-    nameMap=loadProperties();
+    Properties nameMap=loadProperties();
     Iterator it=nameMap.entrySet().iterator();
     while (it.hasNext()) {
       Map.Entry me=(Map.Entry)it.next();
