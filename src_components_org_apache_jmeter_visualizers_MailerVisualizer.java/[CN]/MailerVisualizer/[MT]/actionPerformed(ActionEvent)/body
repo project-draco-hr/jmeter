@@ -1,7 +1,9 @@
 {
   if (e.getSource() == testerButton) {
+    ResultCollector testElement=getModel();
+    modifyTestElement(testElement);
     try {
-      MailerModel model=((MailerResultCollector)getModel()).getMailerModel();
+      MailerModel model=((MailerResultCollector)testElement).getMailerModel();
       model.sendTestMail();
       displayMessage(JMeterUtils.getResString("mail_sent"),false);
     }
