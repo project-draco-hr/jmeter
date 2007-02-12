@@ -79,7 +79,9 @@
  else {
       result.sampleEnd();
       result.setSuccessful(false);
-      result.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
+      if (st != null) {
+        result.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
+      }
       result.setResponseHeaders("error");
     }
     result.setSamplerData(fileContents);
