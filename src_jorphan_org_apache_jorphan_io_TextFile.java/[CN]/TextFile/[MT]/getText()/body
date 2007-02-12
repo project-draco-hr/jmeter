@@ -2,6 +2,7 @@
   String lineEnd=System.getProperty("line.separator");
   StringBuffer sb=new StringBuffer();
   Reader reader=null;
+  BufferedReader br=null;
   try {
     if (encoding == null) {
       reader=new FileReader(this);
@@ -9,7 +10,7 @@
  else {
       reader=new InputStreamReader(new FileInputStream(this),encoding);
     }
-    BufferedReader br=new BufferedReader(reader);
+    br=new BufferedReader(reader);
     String line="NOTNULL";
     while (line != null) {
       line=br.readLine();
@@ -22,11 +23,7 @@
     log.error("",ioe);
   }
  finally {
-    if (reader != null)     try {
-      reader.close();
-    }
- catch (    IOException e) {
-    }
+    JOrphanUtils.closeQuietly(br);
   }
   return sb.toString();
 }
