@@ -1,14 +1,15 @@
 {
   FileServer server=FileServer.getFileServer();
+  String _fileName=getFilename();
   if (vars == null) {
-    server.reserveFile(getFilename());
+    server.reserveFile(_fileName);
     vars=JOrphanUtils.split(getVariableNames(),",");
   }
   try {
     String delim=getDelimiter();
     if (delim.equals("\\t"))     delim="\t";
     JMeterVariables threadVars=this.getThreadContext().getVariables();
-    String line=server.readLine(getFilename(),getRecycle());
+    String line=server.readLine(_fileName,getRecycle());
     if (line != null) {
       String[] lineValues=JOrphanUtils.split(line,delim,false);
       for (int a=0; a < vars.length && a < lineValues.length; a++) {
