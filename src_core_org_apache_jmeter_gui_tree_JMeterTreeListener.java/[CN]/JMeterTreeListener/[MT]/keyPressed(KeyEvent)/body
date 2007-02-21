@@ -1,2 +1,14 @@
 {
+  if (e.getKeyCode() == KeyEvent.VK_C && e.isControlDown()) {
+    ActionRouter actionRouter=ActionRouter.getInstance();
+    actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.COPY));
+  }
+  if (e.getKeyCode() == KeyEvent.VK_V && e.isControlDown()) {
+    ActionRouter actionRouter=ActionRouter.getInstance();
+    actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.PASTE));
+  }
+  if (e.getKeyCode() == KeyEvent.VK_X && e.isControlDown()) {
+    ActionRouter actionRouter=ActionRouter.getInstance();
+    actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.CUT));
+  }
 }
