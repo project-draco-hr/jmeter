@@ -120,7 +120,7 @@
           responseData=responseData + "<attributevalue>" + sr.getAttributes().get(iets).toString().substring(iets.length() + 2)+ "</attributevalue></attribute>";
         }
       }
-      responseData=responseData + "</searchresult></operation>";
+      responseData=responseData + "</searchresult>";
     }
   }
  catch (  NamingException ex) {
