@@ -8,6 +8,7 @@
   mainPanel.add(makeTitlePanel());
   myJTable=new JTable(model);
   myJTable.setPreferredScrollableViewportSize(new Dimension(500,80));
+  RendererUtils.applyRenderers(myJTable,RENDERERS);
   myScrollPane=new JScrollPane(myJTable);
   graph=new VerticalPanel();
   graph.setBorder(margin2);

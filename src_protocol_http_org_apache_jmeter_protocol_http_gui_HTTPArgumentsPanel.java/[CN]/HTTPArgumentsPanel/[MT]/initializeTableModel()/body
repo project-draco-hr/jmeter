@@ -1,3 +1,3 @@
 {
-  tableModel=new ObjectTableModel(new String[]{ArgumentsPanel.COLUMN_NAMES_0,ArgumentsPanel.COLUMN_NAMES_1,ENCODE_OR_NOT,INCLUDE_EQUALS},new Functor[]{new Functor("getName"),new Functor("getValue"),new Functor("isAlwaysEncoded"),new Functor("isUseEquals")},new Functor[]{new Functor("setName"),new Functor("setValue"),new Functor("setAlwaysEncoded"),new Functor("setUseEquals")},new Class[]{String.class,String.class,Boolean.class,Boolean.class});
+  tableModel=new ObjectTableModel(new String[]{ArgumentsPanel.COLUMN_NAMES_0,ArgumentsPanel.COLUMN_NAMES_1,ENCODE_OR_NOT,INCLUDE_EQUALS},HTTPArgument.class,new Functor[]{new Functor("getName"),new Functor("getValue"),new Functor("isAlwaysEncoded"),new Functor("isUseEquals")},new Functor[]{new Functor("setName"),new Functor("setValue"),new Functor("setAlwaysEncoded"),new Functor("setUseEquals")},new Class[]{String.class,String.class,Boolean.class,Boolean.class});
 }

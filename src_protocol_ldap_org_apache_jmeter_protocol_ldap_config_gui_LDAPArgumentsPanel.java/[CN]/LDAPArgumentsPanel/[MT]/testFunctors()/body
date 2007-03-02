@@ -1,0 +1,5 @@
+{
+  LDAPArgumentsPanel instance=new LDAPArgumentsPanel();
+  instance.initializeTableModel();
+  return instance.tableModel.checkFunctors(null,instance.getClass());
+}

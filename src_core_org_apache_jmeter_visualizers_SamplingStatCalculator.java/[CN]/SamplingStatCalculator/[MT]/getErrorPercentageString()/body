@@ -1,7 +1,0 @@
-{
-  double myErrorPercentage=this.getErrorPercentage();
-  if (myErrorPercentage < 0) {
-    myErrorPercentage=0.0;
-  }
-  return (errorFormatter.format(myErrorPercentage));
-}

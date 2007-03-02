@@ -20,16 +20,16 @@ catch (    IllegalAccessException e) {
   for (int i=0; i < getColumnCount(); i++) {
     Functor setMethod=(Functor)writeFunctors.get(i);
     if (setMethod != null) {
-      if (!setMethod.checkMethod(value)) {
+      if (!setMethod.checkMethod(value,getColumnClass(i))) {
         status=false;
-        log.warn("Cannot find setMethod " + setMethod.toString());
+        log.warn(caller.getName() + " is attempting to use nonexistent " + setMethod.toString());
       }
     }
     Functor getMethod=(Functor)readFunctors.get(i);
     if (getMethod != null) {
       if (!getMethod.checkMethod(value)) {
         status=false;
-        log.warn("Cannot find getMethod " + getMethod.toString());
+        log.warn(caller.getName() + " is attempting to use nonexistent " + getMethod.toString());
       }
     }
   }
