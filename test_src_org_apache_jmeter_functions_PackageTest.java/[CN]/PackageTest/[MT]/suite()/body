@@ -49,5 +49,8 @@
   par3.addTest(new PackageTest("XPathThread1"));
   par3.addTest(new PackageTest("XPathThread2"));
   allsuites.addTest(par3);
+  TestSuite variable=new TestSuite("Variable");
+  random.addTest(new PackageTest("VariableTest1"));
+  allsuites.addTest(variable);
   return allsuites;
 }
