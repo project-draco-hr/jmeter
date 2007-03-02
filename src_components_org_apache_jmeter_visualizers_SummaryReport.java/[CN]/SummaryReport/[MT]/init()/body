@@ -7,6 +7,7 @@
   mainPanel.add(makeTitlePanel());
   myJTable=new JTable(model);
   myJTable.setPreferredScrollableViewportSize(new Dimension(500,70));
+  RendererUtils.applyRenderers(myJTable,RENDERERS);
   myScrollPane=new JScrollPane(myJTable);
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(myScrollPane,BorderLayout.CENTER);
