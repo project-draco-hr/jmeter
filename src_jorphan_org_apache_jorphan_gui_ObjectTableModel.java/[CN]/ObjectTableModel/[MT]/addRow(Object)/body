@@ -1,5 +1,11 @@
 {
   log.debug("Adding row value: " + value);
+  if (objectClass != null) {
+    final Class valueClass=value.getClass();
+    if (!objectClass.isAssignableFrom(valueClass)) {
+      throw new IllegalArgumentException("Trying to add class: " + valueClass.getName() + "; expecting class: "+ objectClass.getName());
+    }
+  }
   objects.add(value);
   super.fireTableRowsInserted(objects.size() - 1,objects.size());
 }
