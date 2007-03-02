@@ -10,12 +10,14 @@
     getValuesForXPath(d,getXPathQuery(),vars,refName);
   }
  catch (  IOException e) {
-    log.error("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")",e);
-    throw new JMeterError(e);
+    final String errorMessage="error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")";
+    log.error(errorMessage,e);
+    throw new JMeterError(errorMessage,e);
   }
 catch (  ParserConfigurationException e) {
-    log.error("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")",e);
-    throw new JMeterError(e);
+    final String errrorMessage="error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")";
+    log.error(errrorMessage,e);
+    throw new JMeterError(errrorMessage,e);
   }
 catch (  SAXException e) {
     log.warn("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")"+ e.getLocalizedMessage());
