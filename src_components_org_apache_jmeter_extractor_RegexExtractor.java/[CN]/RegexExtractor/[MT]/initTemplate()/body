@@ -5,8 +5,8 @@
   List pieces=new ArrayList();
   List combined=new LinkedList();
   String rawTemplate=getTemplate();
-  PatternMatcher matcher=(Perl5Matcher)localMatcher.get();
-  Pattern templatePattern=patternCache.getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
+  PatternMatcher matcher=JMeterUtils.getMatcher();
+  Pattern templatePattern=JMeterUtils.getPatternCache().getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
   log.debug("Pattern = " + templatePattern);
   log.debug("template = " + rawTemplate);
   Util.split(pieces,matcher,templatePattern,rawTemplate);

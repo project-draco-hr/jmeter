@@ -1,5 +1,5 @@
 {
-  PatternMatcher pm=new Perl5Matcher();
+  PatternMatcher pm=JMeterUtils.getMatcher();
   Pattern pattern=null;
   PatternCompiler compiler=new Perl5Compiler();
   Iterator iter=getVariables().keySet().iterator();

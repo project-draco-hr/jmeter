@@ -1,8 +1,8 @@
 {
   List pieces=new ArrayList();
   List combined=new LinkedList();
-  PatternMatcher matcher=new Perl5Matcher();
-  Util.split(pieces,new Perl5Matcher(),templatePattern,rawTemplate);
+  PatternMatcher matcher=JMeterUtils.getMatcher();
+  Util.split(pieces,matcher,templatePattern,rawTemplate);
   PatternMatcherInput input=new PatternMatcherInput(rawTemplate);
   Iterator iter=pieces.iterator();
   boolean startsWith=isFirstElementGroup(rawTemplate);

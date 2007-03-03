@@ -13,7 +13,7 @@
   if (defaultValue.length() > 0) {
     vars.put(refName,defaultValue);
   }
-  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
   String inputString=useUrl() ? previousResult.getUrlAsString() : useHeaders() ? previousResult.getResponseHeaders() : previousResult.getResponseDataAsString();
   if (log.isDebugEnabled()) {
     log.debug("Input = " + inputString);
@@ -24,7 +24,7 @@
     log.debug("Regex = " + regex);
   }
   try {
-    Pattern pattern=patternCache.getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
+    Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
     List matches=new ArrayList();
     int x=0;
     boolean done=false;
