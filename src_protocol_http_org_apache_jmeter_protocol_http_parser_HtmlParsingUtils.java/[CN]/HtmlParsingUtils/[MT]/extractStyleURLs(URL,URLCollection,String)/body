@@ -1,0 +1,11 @@
+{
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
+  Pattern pattern=JMeterUtils.getPatternCache().getPattern("URL\\(\\s*('|\")(.*)('|\")\\s*\\)",Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  PatternMatcherInput input=null;
+  input=new PatternMatcherInput(styleTagStr);
+  while (matcher.contains(input,pattern)) {
+    MatchResult match=matcher.getMatch();
+    String styleUrl=match.group(2);
+    urls.addURL(styleUrl,baseUrl);
+  }
+}

@@ -56,6 +56,10 @@ if (name.equalsIgnoreCase(TAG_BGSOUND)) {
 urls.addURL(getValue(attrs,ATT_SRC),baseUrl);
 break;
 }
+String style=getValue(attrs,ATT_STYLE);
+if (style != null) {
+HtmlParsingUtils.extractStyleURLs(baseUrl,urls,style);
+}
 NodeList children=node.getChildNodes();
 if (children != null) {
 int len=children.getLength();

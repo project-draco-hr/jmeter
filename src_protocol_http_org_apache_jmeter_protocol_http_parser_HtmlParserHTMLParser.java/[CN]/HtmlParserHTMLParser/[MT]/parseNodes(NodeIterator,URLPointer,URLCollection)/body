@@ -62,6 +62,10 @@
     if (binUrlStr != null) {
       urls.addURL(binUrlStr,baseUrl.url);
     }
+    String styleTagStr=tag.getAttribute(ATT_STYLE);
+    if (styleTagStr != null) {
+      HtmlParsingUtils.extractStyleURLs(baseUrl.url,urls,styleTagStr);
+    }
     if (tag instanceof CompositeTag) {
       CompositeTag composite=(CompositeTag)tag;
       parseNodes(composite.elements(),baseUrl,urls);

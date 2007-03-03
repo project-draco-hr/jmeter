@@ -1,6 +1,6 @@
 {
   boolean ok=true;
-  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
   PropertyIterator iter=config.getArguments().iterator();
   String query=null;
   try {
@@ -16,20 +16,20 @@
   while (iter.hasNext()) {
     Argument item=(Argument)iter.next().getObjectValue();
     if (query.indexOf(item.getName() + "=") == -1) {
-      if (!(ok=ok && matcher.contains(query,patternCache.getPattern(item.getName(),Perl5Compiler.READ_ONLY_MASK)))) {
+      if (!(ok=ok && matcher.contains(query,JMeterUtils.getPatternCache().getPattern(item.getName(),Perl5Compiler.READ_ONLY_MASK)))) {
         return false;
       }
     }
   }
   if (config.getDomain() != null && config.getDomain().length() > 0 && !newLink.getDomain().equals(config.getDomain())) {
-    if (!(ok=ok && matcher.matches(newLink.getDomain(),patternCache.getPattern(config.getDomain(),Perl5Compiler.READ_ONLY_MASK)))) {
+    if (!(ok=ok && matcher.matches(newLink.getDomain(),JMeterUtils.getPatternCache().getPattern(config.getDomain(),Perl5Compiler.READ_ONLY_MASK)))) {
       return false;
     }
   }
-  if (!newLink.getPath().equals(config.getPath()) && !matcher.matches(newLink.getPath(),patternCache.getPattern("[/]*" + config.getPath(),Perl5Compiler.READ_ONLY_MASK))) {
+  if (!newLink.getPath().equals(config.getPath()) && !matcher.matches(newLink.getPath(),JMeterUtils.getPatternCache().getPattern("[/]*" + config.getPath(),Perl5Compiler.READ_ONLY_MASK))) {
     return false;
   }
-  if (!(ok=ok && matcher.matches(newLink.getProtocol(),patternCache.getPattern(config.getProtocol(),Perl5Compiler.READ_ONLY_MASK)))) {
+  if (!(ok=ok && matcher.matches(newLink.getProtocol(),JMeterUtils.getPatternCache().getPattern(config.getProtocol(),Perl5Compiler.READ_ONLY_MASK)))) {
     return false;
   }
   return ok;
