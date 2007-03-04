@@ -1,8 +1,0 @@
-{
-  String in=",,a,bc";
-  String out[]=JMeterUtils.split(in,",","?");
-  assertEquals(3,out.length);
-  assertEquals("?",out[0]);
-  assertEquals("a",out[1]);
-  assertEquals("bc",out[2]);
-}
