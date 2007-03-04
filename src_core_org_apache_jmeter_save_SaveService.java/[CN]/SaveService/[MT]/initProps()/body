@@ -22,10 +22,10 @@
           key=key.substring(1);
           try {
             if (val.trim().equals("collection")) {
-              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class}).newInstance(new Object[]{saver.getClassMapper()}));
+              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{Mapper.class}).newInstance(new Object[]{saver.getMapper()}));
             }
  else             if (val.trim().equals("mapping")) {
-              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{ClassMapper.class}).newInstance(new Object[]{saver.getClassMapper()}));
+              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{Mapper.class}).newInstance(new Object[]{saver.getMapper()}));
             }
  else {
               saver.registerConverter((Converter)Class.forName(key).newInstance());
