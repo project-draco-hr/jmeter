@@ -1,15 +1,4 @@
 {
-  Collection col;
-  if (hasLinkedHashSet) {
-    try {
-      col=(Collection)Class.forName(JAVA_UTIL_LINKED_HASH_SET).newInstance();
-    }
- catch (    Exception e) {
-      throw new Error("Should not happen:" + e.toString());
-    }
-  }
- else {
-    col=new java.util.HashSet();
-  }
+  Collection col=new LinkedHashSet();
   return getEmbeddedResourceURLs(html,baseUrl,new URLCollection(col));
 }
