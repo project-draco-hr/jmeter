@@ -1,7 +1,0 @@
-{
-  ConfigurationTree tree=getTree(getPath(name));
-  if (tree != null) {
-    return tree.getValue();
-  }
-  return null;
-}
