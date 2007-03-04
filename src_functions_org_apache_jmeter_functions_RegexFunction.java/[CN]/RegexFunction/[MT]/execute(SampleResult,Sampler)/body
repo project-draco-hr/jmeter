@@ -25,7 +25,7 @@
       name=((CompoundVariable)values[values.length - 1]).execute();
     }
   }
- catch (  Exception e) {
+ catch (  MalformedCachePatternException e) {
     throw new InvalidVariableException(e.toString());
   }
   JMeterVariables vars=getVariables();
