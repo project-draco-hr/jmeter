@@ -13,4 +13,7 @@
 catch (  NoClassDefFoundError e) {
     log.warn("Could not set up alias " + alias + " "+ e.toString());
   }
+catch (  Throwable e) {
+    log.error("Could not set up alias " + alias,e);
+  }
 }
