@@ -1,6 +1,6 @@
 {
   super(owner,title,modal);
   saveConfig=s;
-  log.info("SampleSaveConfiguration = " + saveConfig);
+  log.debug("SampleSaveConfiguration = " + saveConfig);
   dialogInit();
 }
