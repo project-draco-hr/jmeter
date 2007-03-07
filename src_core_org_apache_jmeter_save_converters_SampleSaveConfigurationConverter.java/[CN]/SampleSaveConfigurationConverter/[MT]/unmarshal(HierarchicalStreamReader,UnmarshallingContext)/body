@@ -1,0 +1,5 @@
+{
+  Object result=new SampleSaveConfiguration();
+  result=doUnmarshal(result,reader,context);
+  return serializationMethodInvoker.callReadResolve(result);
+}
