@@ -29,7 +29,8 @@
     if (!remoteStart) {
       engine=new StandardJMeterEngine();
       engine.configure(tree);
-      println("Starting the test");
+      long now=System.currentTimeMillis();
+      println("Starting the test @ " + new Date(now) + " ("+ now+ ")");
       engine.runTest();
     }
  else {
