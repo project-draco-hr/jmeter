@@ -1,5 +1,5 @@
 {
-  long endTime=res.getTimeStamp();
+  long endTime=res.getEndTime();
   long lastTime=getCurrentSample().getEndTime();
   if (res.isStampedAtStart()) {
     endTime+=res.getTime();
