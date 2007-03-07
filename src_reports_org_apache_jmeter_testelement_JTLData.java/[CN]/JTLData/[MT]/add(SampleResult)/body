@@ -1,9 +1,9 @@
 {
   if (data.size() == 0) {
-    this.startTimestamp=sample.getTimeStamp();
+    this.startTimestamp=sample.getStartTime();
   }
  else {
-    this.endTimestamp=sample.getTimeStamp() + sample.getTime();
+    this.endTimestamp=sample.getEndTime();
   }
   String url=sample.getSampleLabel();
   if (url == null) {
