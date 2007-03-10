@@ -1,8 +1,12 @@
 {
   protocol=new JTextField(20);
   protocol.setName(PROTOCOL);
+  contentEncoding=new JTextField(10);
+  contentEncoding.setName(CONTENT_ENCODING);
   JLabel protocolLabel=new JLabel(JMeterUtils.getResString("protocol"));
   protocolLabel.setLabelFor(protocol);
+  JLabel contentEncodingLabel=new JLabel(JMeterUtils.getResString("content_encoding"));
+  protocolLabel.setLabelFor(contentEncoding);
   method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   panel.add(protocolLabel);
@@ -10,5 +14,8 @@
   panel.add(Box.createHorizontalStrut(5));
   panel.add(method);
   panel.setMinimumSize(panel.getPreferredSize());
+  panel.add(Box.createHorizontalStrut(5));
+  panel.add(contentEncodingLabel);
+  panel.add(contentEncoding);
   return panel;
 }

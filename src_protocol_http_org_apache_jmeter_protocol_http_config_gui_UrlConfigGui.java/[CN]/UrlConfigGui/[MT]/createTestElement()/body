@@ -8,6 +8,7 @@
   element.setProperty(HTTPSamplerBase.PORT,port.getText());
   element.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());
   element.setProperty(HTTPSamplerBase.METHOD,method.getText());
+  element.setProperty(HTTPSamplerBase.CONTENT_ENCODING,contentEncoding.getText());
   element.setProperty(HTTPSamplerBase.PATH,path.getText());
   element.setProperty(new BooleanProperty(HTTPSamplerBase.FOLLOW_REDIRECTS,followRedirects.isSelected()));
   element.setProperty(new BooleanProperty(HTTPSamplerBase.AUTO_REDIRECTS,autoRedirects.isSelected()));

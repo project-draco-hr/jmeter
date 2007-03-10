@@ -27,8 +27,15 @@
   }
  else {
     String postData=sampler.getQueryString();
-    PrintWriter out=new PrintWriter(connection.getOutputStream());
-    out.print(postData);
+    final String contentEncoding=sampler.getContentEncoding();
+    OutputStreamWriter out;
+    if (contentEncoding.length() > 0) {
+      out=new OutputStreamWriter(connection.getOutputStream(),contentEncoding);
+    }
+ else {
+      out=new OutputStreamWriter(connection.getOutputStream());
+    }
+    out.write(postData);
     out.flush();
     out.close();
   }

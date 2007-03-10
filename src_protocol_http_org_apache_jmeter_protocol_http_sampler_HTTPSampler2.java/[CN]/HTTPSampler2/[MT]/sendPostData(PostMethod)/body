@@ -1,5 +1,6 @@
 {
   String filename=getFilename();
+  final String contentEncoding=getContentEncoding();
   if ((filename != null) && (filename.trim().length() > 0)) {
     if (getSendFileAsPostBody()) {
       post.setRequestEntity(new FileRequestEntity(new File(filename),null));
@@ -19,6 +20,9 @@
     }
   }
  else {
+    if (contentEncoding != null && contentEncoding.trim().length() > 0) {
+      post.getParams().setContentCharset(contentEncoding);
+    }
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       Argument arg=(Argument)args.next().getObjectValue();
