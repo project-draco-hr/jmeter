@@ -2,7 +2,7 @@
   FileServer server=FileServer.getFileServer();
   String _fileName=getFilename();
   if (vars == null) {
-    server.reserveFile(_fileName);
+    server.reserveFile(_fileName,getFileEncoding());
     vars=JOrphanUtils.split(getVariableNames(),",");
   }
   try {

@@ -2,7 +2,7 @@
   FileEntry fileEntry=(FileEntry)files.get(filename);
   if (fileEntry != null) {
     if (fileEntry.inputOutputObject == null) {
-      fileEntry.inputOutputObject=new BufferedWriter(new FileWriter(fileEntry.file));
+      fileEntry.inputOutputObject=createBufferedWriter(fileEntry,filename);
     }
  else     if (!(fileEntry.inputOutputObject instanceof Writer)) {
       throw new IOException("File " + filename + " already in use");
