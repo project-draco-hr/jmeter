@@ -1,6 +1,8 @@
 {
   super.configure(element);
   urlConfigGui.configure(element);
-  getImages.setSelected(((HTTPSamplerBase)element).isImageParser());
-  isMon.setSelected(((HTTPSamplerBase)element).isMonitor());
+  final HTTPSamplerBase samplerBase=(HTTPSamplerBase)element;
+  getImages.setSelected(samplerBase.isImageParser());
+  isMon.setSelected(samplerBase.isMonitor());
+  embeddedRE.setText(samplerBase.getEmbeddedUrlRE());
 }

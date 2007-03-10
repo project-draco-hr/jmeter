@@ -1,13 +1,13 @@
 {
-  HorizontalPanel optionalTasksPanel=new HorizontalPanel();
+  JPanel optionalTasksPanel=new VerticalPanel();
   optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
-  JPanel retrieveImagesPanel=new JPanel();
+  JPanel checkBoxPanel=new HorizontalPanel();
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
-  retrieveImagesPanel.add(getImages);
-  JPanel isMonitorPanel=new JPanel();
   isMon=new JCheckBox(JMeterUtils.getResString("monitor_is_title"));
-  isMonitorPanel.add(isMon);
-  optionalTasksPanel.add(retrieveImagesPanel);
-  optionalTasksPanel.add(isMonitorPanel);
+  checkBoxPanel.add(getImages);
+  checkBoxPanel.add(isMon);
+  optionalTasksPanel.add(checkBoxPanel);
+  embeddedRE=new JLabeledTextField(JMeterUtils.getResString("web_testing_embedded_url_pattern"),30);
+  optionalTasksPanel.add(embeddedRE);
   return optionalTasksPanel;
 }

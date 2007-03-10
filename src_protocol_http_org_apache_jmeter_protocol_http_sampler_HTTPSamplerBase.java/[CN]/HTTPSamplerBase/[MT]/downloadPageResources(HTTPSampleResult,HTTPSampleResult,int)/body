@@ -21,6 +21,18 @@
  else {
       res=container;
     }
+    String re=getEmbeddedUrlRE();
+    Perl5Matcher localMatcher=null;
+    Pattern pattern=null;
+    if (re.length() > 0) {
+      try {
+        pattern=JMeterUtils.getPattern(re);
+        localMatcher=JMeterUtils.getMatcher();
+      }
+ catch (      MalformedCachePatternException e) {
+        log.warn("Ignoring embedded URL match string: " + e.getMessage());
+      }
+    }
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {
@@ -36,6 +48,9 @@
             res.setSuccessful(false);
             continue;
           }
+        }
+        if (pattern != null && !localMatcher.matches(urlStrEnc,pattern)) {
+          continue;
         }
         HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
         res.addSubResult(binRes);
