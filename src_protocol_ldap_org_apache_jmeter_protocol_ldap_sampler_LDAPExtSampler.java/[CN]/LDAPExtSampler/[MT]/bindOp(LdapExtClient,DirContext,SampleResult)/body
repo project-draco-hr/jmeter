@@ -4,8 +4,12 @@
     log.warn("Closing previous context for thread: " + getThreadName());
     ctx.close();
   }
-  res.sampleStart();
-  ctx=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw(),getConnTimeOut(),isSecure());
-  res.sampleEnd();
+  try {
+    res.sampleStart();
+    ctx=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw(),getConnTimeOut(),isSecure());
+  }
+  finally {
+    res.sampleEnd();
+  }
   ldapContexts.put(getThreadName(),ctx);
 }

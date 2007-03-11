@@ -48,9 +48,14 @@
       res.setSamplerData("Compare " + getPropertyAsString(COMPAREFILT) + " "+ getPropertyAsString(COMPAREDN));
       xmlBuffer.tag("comparedn",getPropertyAsString(COMPAREDN));
       xmlBuffer.tag("comparefilter",getPropertyAsString(COMPAREFILT));
-      res.sampleStart();
-      NamingEnumeration cmp=temp_client.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
-      res.sampleEnd();
+      NamingEnumeration cmp;
+      try {
+        res.sampleStart();
+        cmp=temp_client.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
+      }
+  finally {
+        res.sampleEnd();
+      }
       if (cmp.hasMore()) {
       }
  else {
@@ -95,9 +100,14 @@
       xmlBuffer.tag("scope",scopeStr);
       xmlBuffer.tag("countlimit",countLimit);
       xmlBuffer.tag("timelimit",timeLimit);
-      res.sampleStart();
-      NamingEnumeration srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),getPropertyAsBoolean(RETOBJ),getPropertyAsBoolean(DEREF));
-      res.sampleEnd();
+      NamingEnumeration srch;
+      try {
+        res.sampleStart();
+        srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),isRetobj(),isDeref());
+      }
+  finally {
+        res.sampleEnd();
+      }
       if (isParseFlag()) {
         try {
           xmlBuffer.openTag("searchresults");
