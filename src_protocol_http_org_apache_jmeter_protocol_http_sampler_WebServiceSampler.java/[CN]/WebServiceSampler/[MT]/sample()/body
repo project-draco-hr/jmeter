@@ -45,6 +45,10 @@
       if (phost.length() > 0 && pport > 0) {
         spconn.setProxyHost(phost);
         spconn.setProxyPort(pport);
+        if (PROXY_USER.length() > 0 && PROXY_PASS.length() > 0) {
+          spconn.setProxyUserName(PROXY_USER);
+          spconn.setProxyPassword(PROXY_PASS);
+        }
       }
     }
     spconn.setMaintainSession(true);
