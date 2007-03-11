@@ -1,4 +1,7 @@
 {
+  if (dirContext == null) {
+    throw new NamingException("Context is null");
+  }
   SearchControls searchcontrols=new SearchControls(0,1,0,new String[0],false,false);
   return dirContext.search(entrydn,filter,searchcontrols);
 }

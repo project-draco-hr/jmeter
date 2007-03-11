@@ -1,3 +1,6 @@
 {
+  if (dirContext == null) {
+    throw new NamingException("Context is null");
+  }
   return dirContext.createSubcontext(string,attributes);
 }

@@ -2,8 +2,25 @@
   DirContext dirContext;
   Hashtable env=new Hashtable();
   env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
-  env.put(Context.PROVIDER_URL,"ldap://" + host + ":"+ port+ "/"+ rootdn);
+  StringBuffer sb=new StringBuffer(80);
+  if (secure) {
+    sb.append("ldaps://");
+  }
+ else {
+    sb.append("ldap://");
+  }
+  sb.append(host);
+  if (port.length() > 0) {
+    sb.append(":");
+    sb.append(port);
+  }
+  sb.append("/");
+  sb.append(rootdn);
+  env.put(Context.PROVIDER_URL,sb.toString());
   log.info("prov_url= " + env.get(Context.PROVIDER_URL));
+  if (connTimeOut.length() > 0) {
+    env.put("com.sun.jndi.ldap.connect.timeout",connTimeOut);
+  }
   env.put(Context.REFERRAL,"throw");
   env.put("java.naming.batchsize","0");
   env.put(Context.SECURITY_CREDENTIALS,password);

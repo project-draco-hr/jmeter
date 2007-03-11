@@ -24,17 +24,8 @@
   SC3Panel.add(label3,BorderLayout.WEST);
   SC3Panel.add(attribs,BorderLayout.CENTER);
   SCPanel.add(SC3Panel);
-  JPanel SC4Panel=new JPanel(new BorderLayout(5,0));
-  JLabel label4=new JLabel(JMeterUtils.getResString("retobj"));
-  label4.setLabelFor(retobj);
-  SC4Panel.add(label4,BorderLayout.WEST);
-  SC4Panel.add(retobj,BorderLayout.CENTER);
-  SCPanel.add(SC4Panel);
-  JPanel SC5Panel=new JPanel(new BorderLayout(5,0));
-  JLabel label5=new JLabel(JMeterUtils.getResString("deref"));
-  label5.setLabelFor(deref);
-  SC5Panel.add(label5,BorderLayout.WEST);
-  SC5Panel.add(deref,BorderLayout.CENTER);
-  SCPanel.add(SC5Panel);
+  SCPanel.add(retobj);
+  SCPanel.add(deref);
+  SCPanel.add(parseflag);
   return SCPanel;
 }

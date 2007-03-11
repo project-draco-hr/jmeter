@@ -1,4 +1,7 @@
 {
+  if (dirContext == null) {
+    throw new NamingException("Context is null");
+  }
   SearchControls searchcontrols=null;
   searchcontrols=new SearchControls(scope,countlim,timelim,attrs,retobj,deref);
   log.debug("scope, countlim, timelim, attrs, retobj, deref= " + searchFilter + scope+ countlim+ timelim+ attrs+ retobj+ deref);

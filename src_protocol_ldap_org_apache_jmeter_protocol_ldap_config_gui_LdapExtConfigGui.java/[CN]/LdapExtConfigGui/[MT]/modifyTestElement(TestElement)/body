@@ -4,18 +4,19 @@
   element.setProperty(LDAPExtSampler.SERVERNAME,servername.getText());
   element.setProperty(LDAPExtSampler.PORT,port.getText());
   element.setProperty(LDAPExtSampler.ROOTDN,rootdn.getText());
-  element.setProperty(LDAPExtSampler.SCOPE,scope.getText());
+  element.setProperty(LDAPExtSampler.SCOPE,String.valueOf(scope.getSelectedIndex()));
   element.setProperty(LDAPExtSampler.COUNTLIM,countlim.getText());
   element.setProperty(LDAPExtSampler.TIMELIM,timelim.getText());
   element.setProperty(LDAPExtSampler.ATTRIBS,attribs.getText());
-  element.setProperty(LDAPExtSampler.RETOBJ,retobj.getText());
-  element.setProperty(LDAPExtSampler.DEREF,deref.getText());
+  element.setProperty(LDAPExtSampler.RETOBJ,Boolean.toString(retobj.isSelected()));
+  element.setProperty(LDAPExtSampler.DEREF,Boolean.toString(deref.isSelected()));
+  element.setProperty(LDAPExtSampler.CONNTO,connto.getText());
+  element.setProperty(LDAPExtSampler.PARSEFLAG,Boolean.toString(parseflag.isSelected()));
+  element.setProperty(LDAPExtSampler.SECURE,Boolean.toString(secure.isSelected()));
   element.setProperty(LDAPExtSampler.USERDN,userdn.getText());
   element.setProperty(LDAPExtSampler.USERPW,userpw.getText());
   element.setProperty(LDAPExtSampler.COMPAREDN,comparedn.getText());
   element.setProperty(LDAPExtSampler.COMPAREFILT,comparefilt.getText());
-  element.setProperty(LDAPExtSampler.SUSERDN,suserdn.getText());
-  element.setProperty(LDAPExtSampler.SUSERPW,suserpw.getText());
   element.setProperty(LDAPExtSampler.MODDDN,modddn.getText());
   element.setProperty(LDAPExtSampler.NEWDN,newdn.getText());
   if (addTest.isSelected()) {
@@ -33,7 +34,7 @@
     element.setProperty(new StringProperty(LDAPExtSampler.DELETE,delete.getText()));
   }
   if (searchTest.isSelected()) {
-    element.setProperty(new StringProperty(LDAPExtSampler.TEST,LDAPExtSampler.SEARCHBASE));
+    element.setProperty(new StringProperty(LDAPExtSampler.TEST,LDAPExtSampler.SEARCH));
     element.setProperty(new StringProperty(LDAPExtSampler.SEARCHBASE,searchbase.getText()));
     element.setProperty(new StringProperty(LDAPExtSampler.SEARCHFILTER,searchfilter.getText()));
   }

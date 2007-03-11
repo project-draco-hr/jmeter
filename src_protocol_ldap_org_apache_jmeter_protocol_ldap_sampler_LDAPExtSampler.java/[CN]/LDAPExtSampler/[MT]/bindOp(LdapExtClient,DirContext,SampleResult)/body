@@ -5,7 +5,7 @@
     ctx.close();
   }
   res.sampleStart();
-  ctx=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw());
+  ctx=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw(),getConnTimeOut(),isSecure());
   res.sampleEnd();
   ldapContexts.put(getThreadName(),ctx);
 }

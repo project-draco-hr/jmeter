@@ -1,4 +1,7 @@
 {
   log.debug("ddn and newDn= " + ddn + "@@@@"+ newdn);
+  if (dirContext == null) {
+    throw new NamingException("Context is null");
+  }
   dirContext.rename(ddn,newdn);
 }
