@@ -1,0 +1,5 @@
+{
+  XMLBuffer xb=new XMLBuffer();
+  xb.tag("start","now");
+  assertEquals("<start>now</start>",xb.toString());
+}

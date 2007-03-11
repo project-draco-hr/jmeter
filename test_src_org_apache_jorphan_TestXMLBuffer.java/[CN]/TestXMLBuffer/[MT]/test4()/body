@@ -1,0 +1,10 @@
+{
+  XMLBuffer xb=new XMLBuffer();
+  xb.openTag("abc");
+  try {
+    xb.closeTag("abcd");
+    fail("Should have caused IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException e) {
+  }
+}

@@ -1,0 +1,6 @@
+{
+  while (!tags.isEmpty()) {
+    endTag((String)tags.pop());
+  }
+  return sb.toString();
+}
