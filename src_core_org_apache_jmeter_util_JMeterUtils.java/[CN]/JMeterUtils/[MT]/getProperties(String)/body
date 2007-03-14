@@ -1,38 +1,6 @@
 {
-  Properties p=new Properties(System.getProperties());
-  InputStream is=null;
-  try {
-    File f=new File(file);
-    is=new FileInputStream(f);
-    p.load(is);
-  }
- catch (  IOException e) {
-    try {
-      is=ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties");
-      if (is == null)       throw new RuntimeException("Could not read JMeter properties file");
-      p.load(is);
-    }
- catch (    IOException ex) {
-    }
-  }
- finally {
-    JOrphanUtils.closeQuietly(is);
-  }
-  appProperties=p;
-  LoggingManager.initializeLogging(appProperties);
-  log=LoggingManager.getLoggerForClass();
-  String loc=appProperties.getProperty("language");
-  if (loc != null) {
-    String[] parts=JOrphanUtils.split(loc,"_");
-    if (parts.length == 2) {
-      setLocale(new Locale(parts[0],parts[1]));
-    }
- else {
-      setLocale(new Locale(loc,""));
-    }
-  }
- else {
-    setLocale(Locale.getDefault());
-  }
-  return p;
+  loadJMeterProperties(file);
+  initLogging();
+  initLocale();
+  return appProperties;
 }

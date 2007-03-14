@@ -1,0 +1,22 @@
+{
+  Properties p=new Properties(System.getProperties());
+  InputStream is=null;
+  try {
+    File f=new File(file);
+    is=new FileInputStream(f);
+    p.load(is);
+  }
+ catch (  IOException e) {
+    try {
+      is=ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties");
+      if (is == null)       throw new RuntimeException("Could not read JMeter properties file");
+      p.load(is);
+    }
+ catch (    IOException ex) {
+    }
+  }
+ finally {
+    JOrphanUtils.closeQuietly(is);
+  }
+  appProperties=p;
+}
