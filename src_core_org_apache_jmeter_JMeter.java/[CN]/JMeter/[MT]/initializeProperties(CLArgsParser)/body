@@ -1,4 +1,8 @@
 {
+  String jmlogfile="";
+  if (parser.getArgumentById(JMLOGFILE_OPT) != null) {
+    jmlogfile=parser.getArgumentById(JMLOGFILE_OPT).getArgument();
+  }
   if (parser.getArgumentById(PROPFILE_OPT) != null) {
     JMeterUtils.getProperties(parser.getArgumentById(PROPFILE_OPT).getArgument());
   }
