@@ -1,6 +1,10 @@
 {
   VerticalPanel titlePanel=new VerticalPanel();
   titlePanel.add(createTitleLabel());
-  titlePanel.add(getNamePanel());
+  VerticalPanel contentPanel=new VerticalPanel();
+  contentPanel.setBorder(BorderFactory.createEtchedBorder());
+  contentPanel.add(getNamePanel());
+  contentPanel.add(getCommentPanel());
+  titlePanel.add(contentPanel);
   return titlePanel;
 }

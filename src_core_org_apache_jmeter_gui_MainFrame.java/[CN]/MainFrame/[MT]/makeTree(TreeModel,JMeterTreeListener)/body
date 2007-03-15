@@ -1,5 +1,24 @@
 {
-  JTree treevar=new JTree(treeModel);
+  JTree treevar=new JTree(treeModel){
+    public String getToolTipText(    MouseEvent event){
+      TreePath path=this.getPathForLocation(event.getX(),event.getY());
+      if (path != null) {
+        Object treeNode=path.getLastPathComponent();
+        if (treeNode instanceof DefaultMutableTreeNode) {
+          Object testElement=((DefaultMutableTreeNode)treeNode).getUserObject();
+          if (testElement instanceof TestElement) {
+            String comment=((TestElement)testElement).getPropertyAsString(TestPlan.COMMENTS);
+            if (comment != null && comment.length() > 0) {
+              return comment;
+            }
+          }
+        }
+      }
+      return null;
+    }
+  }
+;
+  treevar.setToolTipText("");
   treevar.setCellRenderer(getCellRenderer());
   treevar.setRootVisible(false);
   treevar.setShowsRootHandles(true);
