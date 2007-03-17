@@ -1,5 +1,5 @@
 {
-  AssertionResult result=new AssertionResult();
+  AssertionResult result=new AssertionResult(getName());
   result.setFailure(false);
   resultData=response.getResponseData();
   long resultSize=resultData.length;

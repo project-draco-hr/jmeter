@@ -1,7 +1,7 @@
 {
   boolean pass=true;
   boolean not=(NOT & getTestType()) > 0;
-  AssertionResult result=new AssertionResult();
+  AssertionResult result=new AssertionResult(getName());
   String toCheck="";
   if (getAssumeSuccess()) {
     response.setSuccessful(true);

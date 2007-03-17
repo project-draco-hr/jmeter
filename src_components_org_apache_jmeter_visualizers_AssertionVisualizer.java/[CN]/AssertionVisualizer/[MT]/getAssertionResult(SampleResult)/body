@@ -6,6 +6,7 @@
       AssertionResult item=assertionResults[i];
       if (item.isFailure() || item.isError()) {
         display.append("\n\t");
+        display.append(item.getName() != null ? item.getName() + " : " : "");
         display.append(item.getFailureMessage());
       }
     }

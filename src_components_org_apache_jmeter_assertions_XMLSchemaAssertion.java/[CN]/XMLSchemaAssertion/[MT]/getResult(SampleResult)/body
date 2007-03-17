@@ -1,5 +1,5 @@
 {
-  AssertionResult result=new AssertionResult();
+  AssertionResult result=new AssertionResult(getName());
   byte data[]=response.getResponseData();
   if (data.length == 0) {
     return result.setResultForNull();

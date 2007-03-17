@@ -1,0 +1,11 @@
+{
+  rightSide.setTitleAt(0,JMeterUtils.getResString("view_results_tab_assertion"));
+  int requestTabIndex=rightSide.indexOfTab(JMeterUtils.getResString("view_results_tab_request"));
+  if (requestTabIndex >= 0) {
+    rightSide.removeTabAt(requestTabIndex);
+  }
+  int responseTabIndex=rightSide.indexOfTab(JMeterUtils.getResString("view_results_tab_response"));
+  if (responseTabIndex >= 0) {
+    rightSide.removeTabAt(responseTabIndex);
+  }
+}

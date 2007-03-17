@@ -1,5 +1,5 @@
 {
-  AssertionResult result=new AssertionResult();
+  AssertionResult result=new AssertionResult(getName());
   if (bshInterpreter == null) {
     result.setFailure(true);
     result.setError(true);
