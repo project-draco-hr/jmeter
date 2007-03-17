@@ -1,0 +1,14 @@
+{
+  Boolean success=(Boolean)super.invoke(p_invokee);
+  if (success != null) {
+    if (success.booleanValue()) {
+      return imageSuccess;
+    }
+ else {
+      return imageFailure;
+    }
+  }
+ else {
+    return null;
+  }
+}
