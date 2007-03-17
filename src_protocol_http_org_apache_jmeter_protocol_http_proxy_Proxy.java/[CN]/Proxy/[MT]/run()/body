@@ -11,6 +11,7 @@
     if (httpsSpoof) {
       sampler.setProtocol("https");
     }
+    sampler.threadStarted();
     result=sampler.sample();
     if (httpsSpoof && SampleResult.TEXT.equals(result.getDataType())) {
       String noHttpsResult=new String(result.getResponseData());
@@ -38,5 +39,6 @@ catch (  Exception e) {
  catch (    Exception e) {
       log.error("",e);
     }
+    sampler.threadFinished();
   }
 }
