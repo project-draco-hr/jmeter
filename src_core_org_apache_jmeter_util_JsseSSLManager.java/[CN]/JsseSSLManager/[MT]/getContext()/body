@@ -2,10 +2,10 @@
   if (null == this.context) {
     try {
       if (pro != null) {
-        this.context=SSLContext.getInstance("TLS",pro);
+        this.context=SSLContext.getInstance(DEFAULT_SSL_PROTOCOL,pro);
       }
  else {
-        this.context=SSLContext.getInstance("TLS");
+        this.context=SSLContext.getInstance(DEFAULT_SSL_PROTOCOL);
       }
       log.debug("SSL context = " + context);
     }
