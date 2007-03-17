@@ -5,8 +5,10 @@
     Collection userDefinedVariables=findApplicableElements(myTarget,Arguments.class,true);
     removeValuesFromSampler(sampler,defaultConfigurations);
     replaceValues(sampler,subConfigs,userDefinedVariables);
+    sampler.setAutoRedirects(samplerRedirectAutomatically);
+    sampler.setFollowRedirects(samplerFollowRedirects);
     sampler.setUseKeepAlive(useKeepAlive);
-    sampler.setProperty(TestElement.GUI_CLASS,(sampler instanceof HTTPSampler2) ? HTTP_TEST_SAMPLE_GUI2 : HTTP_TEST_SAMPLE_GUI);
+    sampler.setImageParser(samplerDownloadImages);
     placeSampler(sampler,subConfigs,myTarget);
     notifySampleListeners(new SampleEvent(result,sampler.getName()));
   }

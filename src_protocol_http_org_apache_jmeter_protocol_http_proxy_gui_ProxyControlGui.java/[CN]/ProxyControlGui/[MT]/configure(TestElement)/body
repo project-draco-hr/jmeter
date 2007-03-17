@@ -6,7 +6,11 @@
   httpHeaders.setSelected(model.getCaptureHttpHeaders());
   groupingMode.setSelectedIndex(model.getGroupingMode());
   addAssertions.setSelected(model.getAssertions());
+  samplerTypeName.setSelectedIndex(model.getSamplerTypeName());
+  samplerRedirectAutomatically.setSelected(model.getSamplerRedirectAutomatically());
+  samplerFollowRedirects.setSelected(model.getSamplerFollowRedirects());
   useKeepAlive.setSelected(model.getUseKeepalive());
+  samplerDownloadImages.setSelected(model.getSamplerDownloadImages());
   regexMatch.setSelected(model.getRegexMatch());
   httpsSpoof.setSelected(model.getHttpsSpoof());
   reinitializeTargetCombo();

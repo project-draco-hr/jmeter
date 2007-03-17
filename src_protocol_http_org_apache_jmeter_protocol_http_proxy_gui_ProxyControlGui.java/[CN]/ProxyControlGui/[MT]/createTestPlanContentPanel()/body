@@ -1,0 +1,24 @@
+{
+  JLabel label=new JLabel("Test plan content:");
+  httpHeaders=new JCheckBox(JMeterUtils.getResString("proxy_headers"));
+  httpHeaders.setName(ProxyControl.CAPTURE_HTTP_HEADERS);
+  httpHeaders.setSelected(true);
+  httpHeaders.addActionListener(this);
+  httpHeaders.setActionCommand(ProxyControl.CAPTURE_HTTP_HEADERS);
+  addAssertions=new JCheckBox(JMeterUtils.getResString("proxy_assertions"));
+  addAssertions.setName(ProxyControl.ADD_ASSERTIONS);
+  addAssertions.setSelected(false);
+  addAssertions.addActionListener(this);
+  addAssertions.setActionCommand(ProxyControl.ADD_ASSERTIONS);
+  regexMatch=new JCheckBox(JMeterUtils.getResString("proxy_regex"));
+  regexMatch.setName(ProxyControl.REGEX_MATCH);
+  regexMatch.setSelected(false);
+  regexMatch.addActionListener(this);
+  regexMatch.setActionCommand(ProxyControl.REGEX_MATCH);
+  HorizontalPanel panel=new HorizontalPanel();
+  panel.add(label);
+  panel.add(httpHeaders);
+  panel.add(addAssertions);
+  panel.add(regexMatch);
+  return panel;
+}

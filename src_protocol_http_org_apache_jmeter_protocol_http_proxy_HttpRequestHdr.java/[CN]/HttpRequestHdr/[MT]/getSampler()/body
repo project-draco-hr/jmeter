@@ -1,10 +1,17 @@
 {
-  HttpTestSampleGui tempGui=new HttpTestSampleGui();
-  HTTPSamplerBase result=createSampler();
-  tempGui.configure(result);
-  tempGui.modifyTestElement(result);
-  result.setFollowRedirects(false);
-  result.setUseKeepAlive(true);
-  if (log.isDebugEnabled())   log.debug("getSampler: sampler path = " + result.getPath());
-  return result;
+  HttpTestSampleGui tempGui=null;
+  if (sampler instanceof HTTPSampler2) {
+    tempGui=new HttpTestSampleGui2();
+  }
+ else {
+    tempGui=new HttpTestSampleGui();
+  }
+  sampler.setProperty(TestElement.GUI_CLASS,tempGui.getClass().getName());
+  populateSampler();
+  tempGui.configure(sampler);
+  tempGui.modifyTestElement(sampler);
+  sampler.setFollowRedirects(false);
+  sampler.setUseKeepAlive(true);
+  if (log.isDebugEnabled())   log.debug("getSampler: sampler path = " + sampler.getPath());
+  return sampler;
 }
