@@ -1,5 +1,4 @@
 {
-  JLabel label=new JLabel("Test plan content:");
   httpHeaders=new JCheckBox(JMeterUtils.getResString("proxy_headers"));
   httpHeaders.setName(ProxyControl.CAPTURE_HTTP_HEADERS);
   httpHeaders.setSelected(true);
@@ -15,10 +14,14 @@
   regexMatch.setSelected(false);
   regexMatch.addActionListener(this);
   regexMatch.setActionCommand(ProxyControl.REGEX_MATCH);
-  HorizontalPanel panel=new HorizontalPanel();
-  panel.add(label);
-  panel.add(httpHeaders);
-  panel.add(addAssertions);
-  panel.add(regexMatch);
-  return panel;
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_test_plan_content")));
+  HorizontalPanel nodeCreationPanel=new HorizontalPanel();
+  nodeCreationPanel.add(httpHeaders);
+  nodeCreationPanel.add(addAssertions);
+  nodeCreationPanel.add(regexMatch);
+  mainPanel.add(createTargetPanel());
+  mainPanel.add(createGroupingPanel());
+  mainPanel.add(nodeCreationPanel);
+  return mainPanel;
 }

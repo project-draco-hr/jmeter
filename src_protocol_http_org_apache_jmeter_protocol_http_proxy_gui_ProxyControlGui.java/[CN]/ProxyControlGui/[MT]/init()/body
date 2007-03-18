@@ -10,9 +10,7 @@
   myBox.add(Box.createVerticalStrut(5));
   myBox.add(createHTTPSamplerPanel());
   myBox.add(Box.createVerticalStrut(5));
-  myBox.add(createTargetPanel());
-  myBox.add(Box.createVerticalStrut(5));
-  myBox.add(createGroupingPanel());
+  myBox.add(createContentTypePanel());
   myBox.add(Box.createVerticalStrut(5));
   mainPanel.add(myBox,BorderLayout.NORTH);
   Box includeExcludePanel=Box.createVerticalBox();

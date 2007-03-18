@@ -13,6 +13,8 @@
   samplerDownloadImages.setSelected(model.getSamplerDownloadImages());
   regexMatch.setSelected(model.getRegexMatch());
   httpsSpoof.setSelected(model.getHttpsSpoof());
+  contentTypeInclude.setText(model.getContentTypeInclude());
+  contentTypeExclude.setText(model.getContentTypeExclude());
   reinitializeTargetCombo();
   populateTable(includeModel,model.getIncludePatterns().iterator());
   populateTable(excludeModel,model.getExcludePatterns().iterator());

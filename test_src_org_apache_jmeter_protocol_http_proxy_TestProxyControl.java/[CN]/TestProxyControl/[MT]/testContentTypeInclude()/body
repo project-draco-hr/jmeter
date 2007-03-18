@@ -1,0 +1,10 @@
+{
+  SampleResult result=new SampleResult();
+  control.setContentTypeInclude("text/html|text/ascii");
+  result.setContentType(null);
+  assertTrue("Should allow if no content-type present",control.filterContentType(result));
+  result.setContentType("text/html; charset=utf-8");
+  assertTrue("Should allow text/html",control.filterContentType(result));
+  result.setContentType("text/css");
+  assertFalse("Should not allow text/css",control.filterContentType(result));
+}
