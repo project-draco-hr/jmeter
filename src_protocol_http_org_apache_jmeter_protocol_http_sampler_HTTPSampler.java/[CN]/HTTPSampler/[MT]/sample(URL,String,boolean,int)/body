@@ -54,9 +54,9 @@ catch (      IOException e) {
         }
       }
  else {
-        respMsg="(null)";
         String hdr=conn.getHeaderField(0);
         if (hdr == null)         hdr="(null)";
+        respMsg=hdr;
         log.warn("ResponseCode==-1 & null ResponseMessage. Header(0)= " + hdr);
       }
     }
