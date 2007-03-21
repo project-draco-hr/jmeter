@@ -30,6 +30,11 @@
   }
   if ((urlConfig=isMultipart(getContentType())) != null) {
     urlConfig.parseArguments(postData);
+    if (urlConfig.getFilename() == null) {
+      System.out.println("jada");
+      getHeaderManager().removeHeaderNamed("Content-Type");
+      getHeaderManager().add(new Header("Content-Type","application/x-www-form-urlencoded"));
+    }
     sampler.setArguments(urlConfig.getArguments());
     sampler.setFileField(urlConfig.getFileFieldName());
     sampler.setFilename(urlConfig.getFilename());
