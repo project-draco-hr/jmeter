@@ -44,6 +44,7 @@
  else     if (method.equals(PUT)) {
       setPutHeaders((PutMethod)httpMethod);
     }
+    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     int statusCode=client.executeMethod(httpMethod);
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {

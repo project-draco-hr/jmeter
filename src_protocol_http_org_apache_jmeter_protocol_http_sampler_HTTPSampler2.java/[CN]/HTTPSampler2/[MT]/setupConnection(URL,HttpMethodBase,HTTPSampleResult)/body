@@ -42,13 +42,12 @@
  else {
     httpMethod.setRequestHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
-  String hdrs=setConnectionHeaders(httpMethod,u,getHeaderManager());
+  setConnectionHeaders(httpMethod,u,getHeaderManager());
   String cookies=setConnectionCookie(httpMethod,u,getCookieManager());
+  setConnectionAuthorization(httpClient,u,getAuthManager());
   if (res != null) {
     res.setURL(u);
-    res.setRequestHeaders(hdrs);
     res.setCookies(cookies);
   }
-  setConnectionAuthorization(httpClient,u,getAuthManager());
   return httpClient;
 }
