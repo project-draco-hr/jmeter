@@ -1,6 +1,5 @@
 {
   headerTable=new JTable(tableModel);
-  headerTable.addFocusListener(this);
   headerTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   headerTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   JPanel panel=new JPanel(new BorderLayout(0,5));

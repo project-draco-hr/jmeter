@@ -1,6 +1,6 @@
 {
   String action=e.getActionCommand();
-  if (action.equals("Delete")) {
+  if (action.equals(DELETE_COMMAND)) {
     if (tableModel.getRowCount() > 0) {
       if (headerTable.isEditing()) {
         TableCellEditor cellEditor=headerTable.getCellEditor(headerTable.getEditingRow(),headerTable.getEditingColumn());
@@ -24,7 +24,7 @@
       }
     }
   }
- else   if (action.equals("Add")) {
+ else   if (action.equals(ADD_COMMAND)) {
     if (headerTable.isEditing()) {
       TableCellEditor cellEditor=headerTable.getCellEditor(headerTable.getEditingRow(),headerTable.getEditingColumn());
       cellEditor.stopCellEditing();
@@ -40,11 +40,11 @@
     int rowToSelect=tableModel.getRowCount() - 1;
     headerTable.setRowSelectionInterval(rowToSelect,rowToSelect);
   }
- else   if (action.equals("Load")) {
+ else   if (action.equals(LOAD_COMMAND)) {
     try {
       File tmp=FileDialoger.promptToOpenFile().getSelectedFile();
       if (tmp != null) {
-        tableModel.manager.addFile(tmp.getAbsolutePath());
+        headerManager.addFile(tmp.getAbsolutePath());
         tableModel.fireTableDataChanged();
         if (tableModel.getRowCount() > 0) {
           deleteButton.setEnabled(true);
@@ -53,20 +53,20 @@
       }
     }
  catch (    IOException ex) {
-      log.error("",ex);
+      log.error("Could not load headers",ex);
     }
 catch (    NullPointerException err) {
     }
   }
- else   if (action.equals("Save")) {
+ else   if (action.equals(SAVE_COMMAND)) {
     try {
       File tmp=FileDialoger.promptToSaveFile(null).getSelectedFile();
       if (tmp != null) {
-        tableModel.manager.save(tmp.getAbsolutePath());
+        headerManager.save(tmp.getAbsolutePath());
       }
     }
  catch (    IOException ex) {
-      log.error("",ex);
+      log.error("Could not save headers",ex);
     }
 catch (    NullPointerException err) {
     }
