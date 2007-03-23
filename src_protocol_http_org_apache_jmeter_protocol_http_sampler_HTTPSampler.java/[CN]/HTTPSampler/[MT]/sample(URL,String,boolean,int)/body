@@ -60,7 +60,12 @@ catch (      IOException e) {
         log.warn("ResponseCode==-1 & null ResponseMessage. Header(0)= " + hdr);
       }
     }
-    res.setResponseCode(Integer.toString(errorLevel));
+    if (errorLevel == -1) {
+      res.setResponseCode("(null)");
+    }
+ else {
+      res.setResponseCode(Integer.toString(errorLevel));
+    }
     res.setSuccessful(isSuccessCode(errorLevel));
     res.setResponseMessage(respMsg);
     String ct=conn.getContentType();
