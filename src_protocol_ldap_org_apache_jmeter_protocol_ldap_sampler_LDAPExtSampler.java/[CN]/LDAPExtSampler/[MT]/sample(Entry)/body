@@ -21,10 +21,10 @@
   }
   try {
     xmlBuffer.openTag("operation");
-    final String testType=getPropertyAsString(TEST);
+    final String testType=getTest();
     xmlBuffer.tag("opertype",testType);
     log.debug("performing test: " + testType);
-    if (testType.equals("unbind")) {
+    if (testType.equals(UNBIND)) {
       res.setSamplerData("Unbind");
       xmlBuffer.tag("baseobj",getRootdn());
       xmlBuffer.tag("binddn",getUserDN());
@@ -65,19 +65,19 @@
       }
     }
  else     if (testType.equals(ADD)) {
-      res.setSamplerData("Add object " + getPropertyAsString(BASE_ENTRY_DN));
+      res.setSamplerData("Add object " + getBaseEntryDN());
       xmlBuffer.tag("attributes",getArguments().toString());
-      xmlBuffer.tag("dn",getPropertyAsString(BASE_ENTRY_DN));
+      xmlBuffer.tag("dn",getBaseEntryDN());
       addTest(temp_client,dirContext,res);
     }
  else     if (testType.equals(DELETE)) {
-      res.setSamplerData("Delete object " + getPropertyAsString(DELETE));
-      xmlBuffer.tag("dn",getPropertyAsString(DELETE));
+      res.setSamplerData("Delete object " + getBaseEntryDN());
+      xmlBuffer.tag("dn",getBaseEntryDN());
       deleteTest(temp_client,dirContext,res);
     }
  else     if (testType.equals(MODIFY)) {
-      res.setSamplerData("Modify object " + getPropertyAsString(BASE_ENTRY_DN));
-      xmlBuffer.tag("dn",getPropertyAsString(BASE_ENTRY_DN));
+      res.setSamplerData("Modify object " + getBaseEntryDN());
+      xmlBuffer.tag("dn",getBaseEntryDN());
       xmlBuffer.tag("attributes",getLDAPArguments().toString());
       modifyTest(temp_client,dirContext,res);
     }
@@ -88,22 +88,23 @@
       renameTest(temp_client,dirContext,res);
     }
  else     if (testType.equals(SEARCH)) {
-      final String scopeStr=getPropertyAsString(SCOPE);
-      final int scope=getPropertyAsInt(SCOPE);
+      final String scopeStr=getScope();
+      final int scope=getScopeAsInt();
       final String searchFilter=getPropertyAsString(SEARCHFILTER);
       final String searchBase=getPropertyAsString(SEARCHBASE);
-      final String timeLimit=getPropertyAsString(TIMELIM);
-      final String countLimit=getPropertyAsString(COUNTLIM);
+      final String timeLimit=getTimelim();
+      final String countLimit=getCountlim();
       res.setSamplerData("Search with filter " + searchFilter);
       xmlBuffer.tag("searchfilter",searchFilter);
-      xmlBuffer.tag("searchbase",searchBase + "," + getPropertyAsString(ROOTDN));
+      xmlBuffer.tag("baseobj",getRootdn());
+      xmlBuffer.tag("searchbase",searchBase);
       xmlBuffer.tag("scope",scopeStr);
       xmlBuffer.tag("countlimit",countLimit);
       xmlBuffer.tag("timelimit",timeLimit);
       NamingEnumeration srch;
       try {
         res.sampleStart();
-        srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getPropertyAsLong(COUNTLIM),getPropertyAsInt(TIMELIM),getRequestAttributes(getPropertyAsString(ATTRIBS)),isRetobj(),isDeref());
+        srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getCountlimAsLong(),getTimelimAsInt(),getRequestAttributes(getAttrs()),isRetobj(),isDeref());
       }
   finally {
         res.sampleEnd();
@@ -115,7 +116,7 @@
             try {
               xmlBuffer.openTag("searchresult");
               SearchResult sr=(SearchResult)srch.next();
-              xmlBuffer.tag("dn",sr.getName() + "," + searchBase+ ","+ getRootdn());
+              xmlBuffer.tag("dn",sr.getName());
               xmlBuffer.tag("returnedattr",String.valueOf(sr.getAttributes().size()));
               NamingEnumeration attrlist=sr.getAttributes().getIDs();
               while (attrlist.hasMore()) {
