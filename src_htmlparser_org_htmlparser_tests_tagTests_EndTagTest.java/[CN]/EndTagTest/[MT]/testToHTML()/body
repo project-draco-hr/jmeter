@@ -1,8 +1,0 @@
-{
-  createParser("<HTML></HTML>");
-  parser.registerScanners();
-  parseAndAssertNodeCount(2);
-  assertTrue("Node should be a HTMLEndTag",node[1] instanceof EndTag);
-  EndTag endTag=(EndTag)node[1];
-  assertEquals("Raw String","</HTML>",endTag.toHtml());
-}

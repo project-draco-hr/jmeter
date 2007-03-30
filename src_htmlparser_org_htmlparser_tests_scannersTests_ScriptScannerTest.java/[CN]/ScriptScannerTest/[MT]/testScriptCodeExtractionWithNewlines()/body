@@ -1,9 +1,0 @@
-{
-  String scriptContents="alert()\r\nalert()";
-  createParser("<script>" + scriptContents + "</script>");
-  parser.registerScanners();
-  parseAndAssertNodeCount(1);
-  assertType("script",ScriptTag.class,node[0]);
-  ScriptTag scriptTag=(ScriptTag)node[0];
-  assertStringEquals("script code",scriptContents,scriptTag.getScriptCode());
-}

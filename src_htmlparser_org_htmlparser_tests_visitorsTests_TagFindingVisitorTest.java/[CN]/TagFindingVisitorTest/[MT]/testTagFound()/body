@@ -1,5 +1,0 @@
-{
-  TagFindingVisitor visitor=new TagFindingVisitor(new String[]{"HEAD"});
-  parser.visitAllNodesWith(visitor);
-  assertEquals("HEAD found",1,visitor.getTagCount(0));
-}

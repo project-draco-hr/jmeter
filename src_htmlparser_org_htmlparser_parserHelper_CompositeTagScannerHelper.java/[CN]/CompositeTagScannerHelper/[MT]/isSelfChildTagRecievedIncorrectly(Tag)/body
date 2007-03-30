@@ -1,3 +1,0 @@
-{
-  return (!(possibleEndTag instanceof EndTag) && !scanner.isAllowSelfChildren() && possibleEndTag.getTagName().equals(tag.getTagName()));
-}

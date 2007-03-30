@@ -1,8 +1,0 @@
-{
-  createParser("<IMG alt=Google height=115 src=\"../goo/title_homepage4.gif\" width=305>","http://www.google.com/test/");
-  parser.addScanner(new ImageScanner("-i",new LinkProcessor()));
-  parseAndAssertNodeCount(1);
-  assertTrue("Node should be a HTMLImageTag",node[0] instanceof ImageTag);
-  ImageTag imageTag=(ImageTag)node[0];
-  assertEquals("The image locn","http://www.google.com/goo/title_homepage4.gif",imageTag.getImageURL());
-}

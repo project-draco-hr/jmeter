@@ -1,7 +1,0 @@
-{
-  String testHTML=new String(inputHTML);
-  StringReader sr=new StringReader(testHTML);
-  reader=new NodeReader(new BufferedReader(sr),5000);
-  parser=new Parser(reader,new DefaultParserFeedback());
-  node=new Node[40];
-}

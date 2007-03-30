@@ -1,9 +1,0 @@
-{
-  if (null != rd) {
-    resourceLocn=rd.getURL();
-    reader=rd;
-    character_set=DEFAULT_CHARSET;
-    url_conn=null;
-    reader.setParser(this);
-  }
-}

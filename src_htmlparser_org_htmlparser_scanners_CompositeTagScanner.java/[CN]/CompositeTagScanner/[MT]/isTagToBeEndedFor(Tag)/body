@@ -1,6 +1,0 @@
-{
-  boolean isEndTag=tag instanceof EndTag;
-  String tagName=tag.getTagName();
-  if ((isEndTag && endTagEnderSet.contains(tagName)) || (!isEndTag && tagEnderSet.contains(tagName)))   return true;
- else   return false;
-}

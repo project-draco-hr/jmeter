@@ -1,7 +1,0 @@
-{
-  ParameterVisitor visitor=new ParameterVisitor();
-  createParser("<input>" + "<param name='key1'>value1</param>" + "<param name='key2'>value2</param>"+ "</input>");
-  parser.visitAllNodesWith(visitor);
-  assertEquals("value of key1","value1",visitor.getValue("key1"));
-  assertEquals("value of key2","value2",visitor.getValue("key2"));
-}

@@ -1,6 +1,0 @@
-{
-  createParser("<SPAN>The Refactoring Challenge</SPAN>" + "<SPAN>&#013;id: 6</SPAN>");
-  parser.registerScanners();
-  parser.addScanner(new SpanScanner());
-  assertSpanContent(parser.extractAllNodesThatAre(Span.class));
-}

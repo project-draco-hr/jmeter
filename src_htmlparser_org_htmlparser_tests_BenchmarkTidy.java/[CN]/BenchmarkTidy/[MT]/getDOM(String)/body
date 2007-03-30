@@ -1,9 +1,0 @@
-{
-  try {
-    Node node=getParser().parseDOM(new ByteArrayInputStream(text.getBytes(getUTFEncodingName())),null);
-    return node;
-  }
- catch (  UnsupportedEncodingException e) {
-    throw new RuntimeException("UTF-8 encoding failed - " + e);
-  }
-}

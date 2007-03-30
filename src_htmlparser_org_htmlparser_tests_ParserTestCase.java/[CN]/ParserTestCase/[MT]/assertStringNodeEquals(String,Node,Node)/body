@@ -1,7 +1,0 @@
-{
-  if (expectedNode instanceof StringNode) {
-    StringNode expectedString=(StringNode)expectedNode;
-    StringNode actualString=(StringNode)actualNode;
-    assertStringEquals(displayMessage,expectedString.getText(),actualString.getText());
-  }
-}

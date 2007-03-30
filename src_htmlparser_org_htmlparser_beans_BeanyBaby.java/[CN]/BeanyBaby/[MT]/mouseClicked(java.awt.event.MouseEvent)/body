@@ -1,9 +1,0 @@
-{
-  int index;
-  String url;
-  if (2 == event.getClickCount()) {
-    index=mLinkBean.locationToIndex(event.getPoint());
-    url=mLinkBean.getModel().getElementAt(index).toString();
-    setURL(url);
-  }
-}

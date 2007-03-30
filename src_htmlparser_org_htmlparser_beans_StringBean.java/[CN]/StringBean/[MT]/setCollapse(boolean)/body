@@ -1,8 +1,0 @@
-{
-  boolean oldValue=mCollapse;
-  if (oldValue != collapse_whitespace) {
-    mCollapse=collapse_whitespace;
-    mPropertySupport.firePropertyChange(PROP_COLLAPSE_PROPERTY,oldValue,collapse_whitespace);
-    resetStrings();
-  }
-}

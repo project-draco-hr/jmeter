@@ -1,8 +1,0 @@
-{
-  StringBuffer ret;
-  ret=new StringBuffer(13);
-  ret.append("&#");
-  ret.append(character);
-  ret.append(';');
-  return (ret.toString());
-}

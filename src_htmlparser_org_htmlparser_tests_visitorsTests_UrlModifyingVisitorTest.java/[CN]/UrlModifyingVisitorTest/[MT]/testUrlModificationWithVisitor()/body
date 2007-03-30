@@ -1,6 +1,0 @@
-{
-  Parser parser=Parser.createParser(HTML_WITH_LINK);
-  UrlModifyingVisitor visitor=new UrlModifyingVisitor(parser,"localhost://");
-  parser.visitAllNodesWith(visitor);
-  assertStringEquals("Expected HTML",MODIFIED_HTML,visitor.getModifiedResult());
-}

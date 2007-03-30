@@ -1,4 +1,0 @@
-{
-  LinkTag linkTag=new LinkTag(new TagData(0,0,"",""),new CompositeTagData(null,null,null),new LinkData("ftp://www.someurl.com","","",false,false));
-  assertTrue("This is an ftp link",linkTag.isFTPLink());
-}

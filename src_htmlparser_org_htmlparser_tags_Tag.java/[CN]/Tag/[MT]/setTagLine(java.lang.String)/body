@@ -1,7 +1,0 @@
-{
-  tagLine=newTagLine;
-  String[] newTagLines=new String[tagLines.length + 1];
-  for (int i=0; i < tagLines.length; i++)   newTagLines[i]=tagLines[i];
-  newTagLines[tagLines.length]=newTagLine;
-  tagLines=newTagLines;
-}

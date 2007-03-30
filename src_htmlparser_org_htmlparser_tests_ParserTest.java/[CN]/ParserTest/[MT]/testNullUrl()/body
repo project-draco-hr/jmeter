@@ -1,9 +1,0 @@
-{
-  Parser parser;
-  try {
-    parser=new Parser("http://someoneexisting.com",Parser.noFeedback);
-    assertTrue("Should have thrown an exception!",false);
-  }
- catch (  ParserException e) {
-  }
-}

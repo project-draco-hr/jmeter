@@ -1,3 +1,0 @@
-{
-  assertStringEquals("HTML String","<SELECT NAME=\"Nominees\">\r\n" + "<OPTION VALUE=\"Spouse\">Spouse</OPTION>" + "<OPTION VALUE=\"Father\"></OPTION>\r\n"+ "<OPTION VALUE=\"Mother\">Mother\r\n</OPTION>"+ "<OPTION VALUE=\"Son\">\r\nSon\r\n</OPTION>"+ "<OPTION VALUE=\"Daughter\">\r\nDaughter\r\n</OPTION>"+ "<OPTION VALUE=\"Nephew\">\r\nNephew</OPTION>\r\n"+ "<OPTION VALUE=\"Niece\">Niece\r\n</OPTION>"+ "</SELECT>",selectTag.toHtml());
-}

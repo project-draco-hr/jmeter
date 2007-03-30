@@ -1,8 +1,0 @@
-{
-  createParser("<!-- \n" + "<A>\n" + "bcd -->");
-  Parser.setLineSeparator("\n");
-  parseAndAssertNodeCount(1);
-  assertTrue("Node should be a HTMLRemarkNode",node[0] instanceof RemarkNode);
-  RemarkNode remarkNode=(RemarkNode)node[0];
-  assertStringEquals("Expected contents"," \n<A>\nbcd ",remarkNode.getText());
-}

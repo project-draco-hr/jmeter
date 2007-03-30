@@ -1,6 +1,0 @@
-{
-  if (state == TAG_IGNORE_DATA_STATE || state == TAG_BEGIN_PARSING_STATE || state == TAG_IGNORE_BEGIN_TAG_STATE) {
-    if (ch == '?')     encounteredQuery.setBoolean(true);
-    tag.append(ch);
-  }
-}

@@ -1,8 +1,0 @@
-{
-  capacity+=capacityIncrement;
-  capacityIncrement*=2;
-  Node oldData[]=nodeData;
-  nodeData=new Node[capacity];
-  System.arraycopy(oldData,0,nodeData,0,size);
-  numberOfAdjustments++;
-}

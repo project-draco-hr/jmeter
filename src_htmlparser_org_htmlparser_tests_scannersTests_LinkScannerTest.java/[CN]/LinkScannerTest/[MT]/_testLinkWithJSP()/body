@@ -1,8 +1,0 @@
-{
-  createParser("<a href=\"<%=Application(\"sURL\")% " + ">/literature/index.htm\">Literature</a>");
-  parser.registerScanners();
-  parseAndAssertNodeCount(1);
-  assertType("should be link tag",LinkTag.class,node[0]);
-  LinkTag linkTag=(LinkTag)node[0];
-  assertStringEquals("expected link","<%=Application(\"sURL\")%>/literature/index.htm",linkTag.getLink());
-}
