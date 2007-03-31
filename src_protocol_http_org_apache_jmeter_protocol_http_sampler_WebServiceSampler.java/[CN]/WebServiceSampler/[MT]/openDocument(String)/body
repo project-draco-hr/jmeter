@@ -1,36 +1,18 @@
 {
   DocumentBuilder XDB=XMLParserUtils.getXMLDocBuilder();
+  XDB.setErrorHandler(null);
   Document doc=null;
   if (file.length() > 0) {
-    try {
-      if (this.getReadResponse()) {
-        TextFile tfile=new TextFile(file);
-        fileContents=tfile.getText();
-      }
-      doc=XDB.parse(new FileInputStream(file));
+    if (this.getReadResponse()) {
+      TextFile tfile=new TextFile(file);
+      fileContents=tfile.getText();
     }
- catch (    SAXException e) {
-      log.warn("Error processing file data: " + e.getMessage());
-    }
-catch (    FileNotFoundException e) {
-      log.warn(e.getMessage());
-    }
-catch (    IOException e) {
-      log.warn(e.getMessage());
-    }
+    doc=XDB.parse(new FileInputStream(file));
   }
  else {
     fileContents=getXmlData();
     if (fileContents != null && fileContents.length() > 0) {
-      try {
-        doc=XDB.parse(new InputSource(new StringReader(fileContents)));
-      }
- catch (      SAXException ex) {
-        log.warn("Error processing data: " + ex.getMessage());
-      }
-catch (      IOException ex) {
-        log.warn(ex.getMessage());
-      }
+      doc=XDB.parse(new InputSource(new StringReader(fileContents)));
     }
  else {
       log.warn("No post data provided!");

@@ -99,10 +99,13 @@
     log.warn(message);
     result.setResponseMessage(message);
   }
+catch (  SAXException exception) {
+    log.warn(exception.toString());
+    result.setResponseMessage(exception.getMessage());
+  }
 catch (  SOAPException exception) {
-    String message=exception.getMessage();
-    log.warn(message);
-    result.setResponseMessage(message);
+    log.warn(exception.toString());
+    result.setResponseMessage(exception.getMessage());
   }
 catch (  MalformedURLException exception) {
     String message=exception.getMessage();
@@ -114,10 +117,18 @@ catch (  IOException exception) {
     log.warn(message);
     result.setResponseMessage(message);
   }
-catch (  MessagingException exception) {
-    String message=exception.getMessage();
-    log.warn(message);
-    result.setResponseMessage(message);
+catch (  NoClassDefFoundError error) {
+    log.error("Missing class: ",error);
+    result.setResponseMessage(error.toString());
+  }
+catch (  Exception exception) {
+    if ("javax.mail.MessagingException".equals(exception.getClass().getName())) {
+      log.warn(exception.toString());
+      result.setResponseMessage(exception.getMessage());
+    }
+ else {
+      throw new RuntimeException(exception);
+    }
   }
   return result;
 }
