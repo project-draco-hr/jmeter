@@ -1,13 +1,14 @@
 {
-  Sampler returnValue=null;
   if (isFirst()) {
     log_debug("+++++++++++++++++++++++++++++");
     calls=0;
+    noFailingSamples=0;
     res=new SampleResult();
+    res.setSampleLabel(getName());
+    res.setSuccessful(true);
     res.sampleStart();
   }
-  calls++;
-  returnValue=super.next();
+  Sampler returnValue=super.next();
   if (returnValue == null) {
     log_debug("-----------------------------" + calls);
     if (res == null) {
@@ -15,11 +16,10 @@
     }
  else {
       res.sampleEnd();
-      res.setSuccessful(true);
-      res.setSampleLabel(getName());
-      res.setResponseCodeOK();
-      res.setResponseMessage("Called: " + calls);
-      res.setThreadName(threadName);
+      res.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
+      if (res.isSuccessful()) {
+        res.setResponseCodeOK();
+      }
       JMeterContext threadContext=getThreadContext();
       JMeterVariables threadVars=threadContext.getVariables();
       SamplePackage pack=(SamplePackage)threadVars.getObject(JMeterThread.PACKAGE_OBJECT);
@@ -27,10 +27,14 @@
         log.warn("Could not fetch SamplePackage");
       }
  else {
-        lnf.notifyListeners(new SampleEvent(res,getName()),pack.getSampleListeners());
+        SampleEvent event=new SampleEvent(res,getName());
+        res=null;
+        lnf.notifyListeners(event,pack.getSampleListeners());
       }
-      res=null;
     }
+  }
+ else {
+    calls++;
   }
   return returnValue;
 }

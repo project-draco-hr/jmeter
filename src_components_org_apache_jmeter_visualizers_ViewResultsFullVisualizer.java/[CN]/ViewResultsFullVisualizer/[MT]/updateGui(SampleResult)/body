@@ -7,7 +7,7 @@
   treeModel.insertNodeInto(currNode,root,root.getChildCount());
   addSubResults(currNode,res);
   AssertionResult assertionResults[]=res.getAssertionResults();
-  int assertionIndex=0;
+  int assertionIndex=currNode.getChildCount();
   for (int j=0; j < assertionResults.length; j++) {
     AssertionResult item=assertionResults[j];
     if (item.isFailure() || item.isError()) {

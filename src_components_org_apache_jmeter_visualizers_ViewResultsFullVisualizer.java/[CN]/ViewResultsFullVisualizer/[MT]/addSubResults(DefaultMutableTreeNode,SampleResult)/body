@@ -9,5 +9,14 @@
     DefaultMutableTreeNode leafNode=new DefaultMutableTreeNode(child);
     treeModel.insertNodeInto(leafNode,currNode,leafIndex++);
     addSubResults(leafNode,child);
+    AssertionResult assertionResults[]=child.getAssertionResults();
+    int assertionIndex=leafNode.getChildCount();
+    for (int j=0; j < assertionResults.length; j++) {
+      AssertionResult item=assertionResults[j];
+      if (item.isFailure() || item.isError()) {
+        DefaultMutableTreeNode assertionNode=new DefaultMutableTreeNode(item);
+        treeModel.insertNodeInto(assertionNode,leafNode,assertionIndex++);
+      }
+    }
   }
 }

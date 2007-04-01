@@ -3,8 +3,8 @@
   results.setEditable(false);
   resultsScrollPane=makeScrollPane(results);
   imageLabel=new JLabel();
-  JPanel resultsPane=new JPanel(new BorderLayout());
-  resultsPane.add(resultsScrollPane,BorderLayout.CENTER);
-  resultsPane.add(createHtmlOrTextPane(),BorderLayout.SOUTH);
-  return resultsPane;
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.add(resultsScrollPane,BorderLayout.CENTER);
+  panel.add(createHtmlOrTextPane(),BorderLayout.SOUTH);
+  return panel;
 }
