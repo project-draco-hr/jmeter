@@ -1,6 +1,6 @@
 {
   setupFilepart(sampler);
   setupFormData(sampler);
-  PostWriter.setHeaders(connection,sampler);
+  postWriter.setHeaders(connection,sampler);
   checkContentTypeMultipart(connection,PostWriter.BOUNDARY);
 }

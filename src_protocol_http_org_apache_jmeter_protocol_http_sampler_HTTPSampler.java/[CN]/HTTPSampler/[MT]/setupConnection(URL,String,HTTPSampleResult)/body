@@ -1,5 +1,4 @@
 {
-  HttpURLConnection conn;
   SSLManager sslmgr=null;
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
@@ -9,7 +8,7 @@
       log.warn("Problem creating the SSLManager: ",e);
     }
   }
-  conn=(HttpURLConnection)u.openConnection();
+  HttpURLConnection conn=(HttpURLConnection)u.openConnection();
   conn.setInstanceFollowRedirects(getAutoRedirects());
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
@@ -32,9 +31,6 @@
   String cookies=setConnectionCookie(conn,u,getCookieManager());
   setConnectionAuthorization(conn,u,getAuthManager());
   if (method.equals(POST)) {
-    if (res != null) {
-      res.setQueryString(getQueryString());
-    }
     setPostHeaders(conn);
   }
  else   if (method.equals(PUT)) {

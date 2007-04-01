@@ -1,6 +1,7 @@
 {
   final String httpEncoding="ISO-8859-1";
   final byte[] DASH_DASH=new String("--").getBytes(httpEncoding);
+  final String mimeType="text/plain";
   final ByteArrayOutputStream output=new ByteArrayOutputStream();
   if (firstMultipart) {
     output.write(DASH_DASH);
@@ -10,6 +11,13 @@
   output.write("Content-Disposition: form-data; name=\"".getBytes(httpEncoding));
   output.write(titleField.getBytes(httpEncoding));
   output.write("\"".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Type: ".getBytes(httpEncoding));
+  output.write(mimeType.getBytes(httpEncoding));
+  output.write("; charset=".getBytes(httpEncoding));
+  output.write((contentEncoding == null ? PostWriter.ENCODING : contentEncoding).getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(httpEncoding));
   output.write(CRLF);
   output.write(CRLF);
   if (contentEncoding != null) {
@@ -25,6 +33,13 @@
   output.write("Content-Disposition: form-data; name=\"".getBytes(httpEncoding));
   output.write(descriptionField.getBytes(httpEncoding));
   output.write("\"".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Type: ".getBytes(httpEncoding));
+  output.write(mimeType.getBytes(httpEncoding));
+  output.write("; charset=".getBytes(httpEncoding));
+  output.write((contentEncoding == null ? PostWriter.ENCODING : contentEncoding).getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(httpEncoding));
   output.write(CRLF);
   output.write(CRLF);
   if (contentEncoding != null) {

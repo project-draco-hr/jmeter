@@ -1,0 +1,8 @@
+{
+  if (hideFileData) {
+    out.write("<actual file content, not shown here>".getBytes("UTF-8"));
+  }
+ else {
+    super.sendData(out);
+  }
+}

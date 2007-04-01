@@ -1,42 +1,39 @@
 {
-  String filename=sampler.getFilename();
-  if ((filename != null) && (filename.trim().length() > 0)) {
+  StringBuffer postedBody=new StringBuffer(1000);
+  if (sampler.getUseMultipartForPost()) {
     OutputStream out=connection.getOutputStream();
-    if (sampler.getSendFileAsPostBody()) {
-      InputStream in=getFileStream(filename);
-      byte[] buf=new byte[1024];
-      int read;
-      while ((read=in.read(buf)) > 0) {
-        out.write(buf,0,read);
-      }
+    out.write(formDataPostBody);
+    postedBody.append(new String(formDataPostBody,"UTF-8"));
+    if (sampler.hasUploadableFiles()) {
+      out.write(formDataFileStartMultipart);
+      postedBody.append(new String(formDataFileStartMultipart,"UTF-8"));
+      writeFileToStream(sampler.getFilename(),out);
+      postedBody.append("<actual file content, not shown here>");
+      byte[] fileMultipartEndDivider=getFileMultipartEndDivider();
+      out.write(fileMultipartEndDivider);
+      postedBody.append(new String(fileMultipartEndDivider,"UTF-8"));
+    }
+    byte[] multipartEndDivider=getMultipartEndDivider();
+    out.write(multipartEndDivider);
+    postedBody.append(new String(multipartEndDivider,"UTF-8"));
+    out.flush();
+    out.close();
+  }
+ else {
+    if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
+      OutputStream out=connection.getOutputStream();
+      writeFileToStream(sampler.getFilename(),out);
       out.flush();
-      in.close();
-      return;
-    }
-    writeln(out,DASH_DASH + BOUNDARY);
-    PropertyIterator args=sampler.getArguments().iterator();
-    while (args.hasNext()) {
-      Argument arg=(Argument)args.next().getObjectValue();
-      writeFormMultipartStyle(out,arg.getName(),arg.getValue());
-      writeln(out,DASH_DASH + BOUNDARY);
-    }
-    writeFileToURL(out,filename,sampler.getFileField(),getFileStream(filename),sampler.getMimetype());
-    writeln(out,DASH_DASH + BOUNDARY + DASH_DASH);
-    out.flush();
-    out.close();
-  }
- else {
-    String postData=sampler.getQueryString();
-    final String contentEncoding=sampler.getContentEncoding();
-    OutputStreamWriter out;
-    if (contentEncoding.length() > 0) {
-      out=new OutputStreamWriter(connection.getOutputStream(),contentEncoding);
+      out.close();
+      postedBody.append("<actual file content, not shown here>");
     }
  else {
-      out=new OutputStreamWriter(connection.getOutputStream());
+      OutputStream out=connection.getOutputStream();
+      out.write(formDataUrlEncoded);
+      out.flush();
+      out.close();
+      postedBody.append(new String(formDataUrlEncoded,"UTF-8"));
     }
-    out.write(postData);
-    out.flush();
-    out.close();
   }
+  return postedBody.toString();
 }

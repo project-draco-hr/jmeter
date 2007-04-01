@@ -1,0 +1,10 @@
+{
+  write(out,"Content-Disposition: form-data; name=\"");
+  write(out,nameField);
+  write(out,"\"; filename=\"");
+  write(out,(new File(filename).getName()));
+  writeln(out,"\"");
+  writeln(out,"Content-Type: " + mimetype);
+  writeln(out,"Content-Transfer-Encoding: 8bit");
+  out.write(CRLF);
+}

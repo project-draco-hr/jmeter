@@ -1,3 +1,4 @@
 {
-  PostWriter.setHeaders(conn,this);
+  postWriter=new PostWriter();
+  postWriter.setHeaders(conn,this);
 }

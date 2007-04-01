@@ -5,8 +5,8 @@
   setupFormData(sampler,titleValue,descriptionValue);
   String contentEncoding="";
   sampler.setContentEncoding(contentEncoding);
-  PostWriter.setHeaders(connection,sampler);
-  PostWriter.sendPostData(connection,sampler);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
   checkContentTypeUrlEncoded(connection);
   byte[] expectedUrl="title=mytitle&description=mydescription".getBytes();
   checkContentLength(connection,expectedUrl.length);
@@ -18,8 +18,8 @@
   establishConnection();
   contentEncoding="ISO-8859-1";
   sampler.setContentEncoding(contentEncoding);
-  PostWriter.setHeaders(connection,sampler);
-  PostWriter.sendPostData(connection,sampler);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
   checkContentTypeUrlEncoded(connection);
   expectedUrl="title=mytitle&description=mydescription".getBytes(contentEncoding);
   checkContentLength(connection,expectedUrl.length);

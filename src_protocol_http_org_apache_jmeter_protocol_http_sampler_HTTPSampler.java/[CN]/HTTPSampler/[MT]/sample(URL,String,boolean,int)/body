@@ -33,7 +33,8 @@ catch (      IOException e) {
       throw new BindException();
     }
     if (method.equals(POST)) {
-      sendPostData(conn);
+      String postBody=sendPostData(conn);
+      res.setQueryString(postBody);
     }
  else     if (method.equals(PUT)) {
       sendPutData(conn);

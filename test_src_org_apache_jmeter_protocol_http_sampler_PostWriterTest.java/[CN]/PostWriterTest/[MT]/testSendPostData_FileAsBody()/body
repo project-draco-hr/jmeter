@@ -1,18 +1,24 @@
 {
   setupFilepart(sampler,"",temporaryFile,"");
-  PostWriter.setHeaders(connection,sampler);
-  PostWriter.sendPostData(connection,sampler);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
+  checkContentLength(connection,TEST_FILE_CONTENT.length);
   checkArraysHaveSameContent(TEST_FILE_CONTENT,connection.getOutputStreamContent());
   connection.disconnect();
   establishConnection();
   sampler.setContentEncoding("UTF-8");
-  PostWriter.setHeaders(connection,sampler);
-  PostWriter.sendPostData(connection,sampler);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
+  checkContentLength(connection,TEST_FILE_CONTENT.length);
   checkArraysHaveSameContent(TEST_FILE_CONTENT,connection.getOutputStreamContent());
   checkArraysHaveDifferentContent(new String(TEST_FILE_CONTENT).getBytes("UTF-8"),connection.getOutputStreamContent());
   setupFormData(sampler);
   establishConnection();
   sampler.setContentEncoding("");
-  PostWriter.setHeaders(connection,sampler);
-  PostWriter.sendPostData(connection,sampler);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
+  checkContentTypeUrlEncoded(connection);
+  byte[] expectedUrl="title=mytitle&description=mydescription".getBytes();
+  checkContentLength(connection,expectedUrl.length);
+  checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
 }

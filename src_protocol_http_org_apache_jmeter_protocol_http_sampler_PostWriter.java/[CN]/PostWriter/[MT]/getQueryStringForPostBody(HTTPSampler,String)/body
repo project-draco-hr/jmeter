@@ -1,0 +1,23 @@
+{
+  StringBuffer buf=new StringBuffer();
+  PropertyIterator iter=sampler.getArguments().iterator();
+  boolean first=true;
+  while (iter.hasNext()) {
+    HTTPArgument arg=(HTTPArgument)iter.next().getObjectValue();
+    if (!first) {
+      buf.append("&");
+    }
+ else {
+      first=false;
+    }
+    buf.append(arg.getEncodedName());
+    if (arg.getMetaData() == null) {
+      buf.append("=");
+    }
+ else {
+      buf.append(arg.getMetaData());
+    }
+    buf.append(URLEncoder.encode(arg.getValue(),contentEncoding));
+  }
+  return buf.toString();
+}

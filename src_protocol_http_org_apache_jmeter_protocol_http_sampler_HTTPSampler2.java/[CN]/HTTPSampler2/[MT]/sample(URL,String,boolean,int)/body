@@ -38,8 +38,8 @@
   try {
     client=setupConnection(url,httpMethod,res);
     if (method.equals(POST)) {
-      res.setQueryString(getQueryString());
-      sendPostData((PostMethod)httpMethod);
+      String postBody=sendPostData((PostMethod)httpMethod);
+      res.setQueryString(postBody);
     }
  else     if (method.equals(PUT)) {
       setPutHeaders((PutMethod)httpMethod);

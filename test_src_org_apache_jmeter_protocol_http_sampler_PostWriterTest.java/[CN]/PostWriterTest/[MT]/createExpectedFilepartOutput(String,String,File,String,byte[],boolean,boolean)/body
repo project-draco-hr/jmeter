@@ -7,13 +7,15 @@
     output.write(boundaryString.getBytes(httpEncoding));
     output.write(CRLF);
   }
-  String filename=file.getAbsolutePath().replaceAll("\\\\","\\\\\\\\");
+  String filename=file.getName();
   output.write("Content-Disposition: form-data; name=\"".getBytes(httpEncoding));
   output.write(fileField.getBytes(httpEncoding));
   output.write(("\"; filename=\"" + filename + "\"").getBytes(httpEncoding));
   output.write(CRLF);
   output.write("Content-Type: ".getBytes(httpEncoding));
   output.write(mimeType.getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(httpEncoding));
   output.write(CRLF);
   output.write(CRLF);
   output.write(fileContent);

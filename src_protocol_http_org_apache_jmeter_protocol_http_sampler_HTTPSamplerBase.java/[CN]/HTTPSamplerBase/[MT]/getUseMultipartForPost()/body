@@ -1,0 +1,8 @@
+{
+  if (getDoMultipartPost() || (hasUploadableFiles() && !getSendFileAsPostBody())) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}
