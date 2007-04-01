@@ -1,0 +1,8 @@
+{
+  if (samplerType == HTTP_SAMPLER2) {
+    return new HTTPSampler2();
+  }
+ else {
+    return new HTTPSampler();
+  }
+}

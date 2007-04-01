@@ -1,7 +1,7 @@
 {
   setupNoFilename(sampler);
-  setupCommons(sampler);
+  setupFormData(sampler);
   PostWriter.setHeaders(connection,sampler);
-  assertEquals(HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED,connection.getRequestProperty("Content-Type"));
-  assertEquals("39",connection.getRequestProperty("Content-Length"));
+  checkContentTypeUrlEncoded(connection);
+  checkContentLength(connection,"title=mytitle&description=mydescription".length());
 }

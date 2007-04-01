@@ -1,0 +1,8 @@
+{
+  sampler.setRunningVersion(true);
+  sampler.threadStarted();
+  HTTPSampleResult res=(HTTPSampleResult)sampler.sample();
+  sampler.threadFinished();
+  sampler.setRunningVersion(false);
+  return res;
+}

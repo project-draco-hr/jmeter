@@ -1,0 +1,10 @@
+{
+  httpSampler.setFileField(fileField);
+  if (file != null) {
+    httpSampler.setFilename(file.getAbsolutePath());
+  }
+ else {
+    httpSampler.setFilename("");
+  }
+  httpSampler.setMimetype(mimeType);
+}

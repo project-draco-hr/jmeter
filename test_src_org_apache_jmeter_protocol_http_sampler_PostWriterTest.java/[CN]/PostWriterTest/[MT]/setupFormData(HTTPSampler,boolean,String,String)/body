@@ -1,0 +1,8 @@
+{
+  Arguments args=new Arguments();
+  HTTPArgument argument1=new HTTPArgument("title",titleValue,isEncoded);
+  HTTPArgument argument2=new HTTPArgument("description",descriptionValue,isEncoded);
+  args.addArgument(argument1);
+  args.addArgument(argument2);
+  httpSampler.setArguments(args);
+}

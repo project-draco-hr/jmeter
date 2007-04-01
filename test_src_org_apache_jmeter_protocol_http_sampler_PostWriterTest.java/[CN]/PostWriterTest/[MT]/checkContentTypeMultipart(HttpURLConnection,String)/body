@@ -1,0 +1,3 @@
+{
+  assertEquals("multipart/form-data; boundary=" + boundaryString,connection.getRequestProperty("Content-Type"));
+}

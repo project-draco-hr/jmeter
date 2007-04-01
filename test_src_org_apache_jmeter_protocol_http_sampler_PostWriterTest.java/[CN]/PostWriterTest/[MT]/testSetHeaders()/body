@@ -1,6 +1,6 @@
 {
-  setupFilename(sampler);
-  setupCommons(sampler);
+  setupFilepart(sampler);
+  setupFormData(sampler);
   PostWriter.setHeaders(connection,sampler);
-  assertEquals("multipart/form-data; boundary=" + PostWriter.BOUNDARY,connection.getRequestProperty("Content-Type"));
+  checkContentTypeMultipart(connection,PostWriter.BOUNDARY);
 }

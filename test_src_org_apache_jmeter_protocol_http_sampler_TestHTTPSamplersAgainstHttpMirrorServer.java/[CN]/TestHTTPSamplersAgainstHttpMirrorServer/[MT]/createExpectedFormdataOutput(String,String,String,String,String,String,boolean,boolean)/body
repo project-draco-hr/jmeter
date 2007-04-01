@@ -1,0 +1,63 @@
+{
+  final String httpEncoding="ISO-8859-1";
+  final byte[] CRLF={0x0d,0x0A};
+  final byte[] DASH_DASH=new String("--").getBytes(httpEncoding);
+  final ByteArrayOutputStream output=new ByteArrayOutputStream();
+  if (firstMultipart) {
+    output.write(DASH_DASH);
+    output.write(boundaryString.getBytes(httpEncoding));
+    output.write(CRLF);
+  }
+  output.write("Content-Disposition: form-data; name=\"".getBytes(httpEncoding));
+  output.write(titleField.getBytes(httpEncoding));
+  output.write("\"".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Type: text/plain".getBytes(httpEncoding));
+  if (contentEncoding != null) {
+    output.write("; charset=".getBytes(httpEncoding));
+    output.write(contentEncoding.getBytes(httpEncoding));
+  }
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write(CRLF);
+  if (contentEncoding != null) {
+    output.write(titleValue.getBytes(contentEncoding));
+  }
+ else {
+    output.write(titleValue.getBytes());
+  }
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Disposition: form-data; name=\"".getBytes(httpEncoding));
+  output.write(descriptionField.getBytes(httpEncoding));
+  output.write("\"".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Type: text/plain".getBytes(httpEncoding));
+  if (contentEncoding != null) {
+    output.write("; charset=".getBytes(httpEncoding));
+    output.write(contentEncoding.getBytes(httpEncoding));
+  }
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write(CRLF);
+  if (contentEncoding != null) {
+    output.write(descriptionValue.getBytes(contentEncoding));
+  }
+ else {
+    output.write(descriptionValue.getBytes());
+  }
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(httpEncoding));
+  if (lastMultipart) {
+    output.write(DASH_DASH);
+  }
+  output.write(CRLF);
+  output.flush();
+  output.close();
+  return output.toByteArray();
+}
