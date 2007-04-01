@@ -1,6 +1,9 @@
 {
   String tn=getThreadName();
-  if (tn.length() == 0)   tn=Thread.currentThread().getName();
+  if (tn.length() == 0) {
+    tn=Thread.currentThread().getName();
+    this.setThreadName(tn);
+  }
   subResult.setThreadName(tn);
   if (subResults == null) {
     subResults=new ArrayList();
