@@ -1,15 +1,18 @@
 {
   StringBuffer hdrs=new StringBuffer(100);
   Map requestHeaders=conn.getRequestProperties();
-  Set headerFields=requestHeaders.keySet();
+  Set headerFields=requestHeaders.entrySet();
   for (Iterator i=headerFields.iterator(); i.hasNext(); ) {
-    String headerKey=(String)i.next();
+    Map.Entry entry=(Map.Entry)i.next();
+    String headerKey=(String)entry.getKey();
     if (!HEADER_COOKIE.equalsIgnoreCase(headerKey)) {
-      String headerValue=conn.getRequestProperty(headerKey);
-      hdrs.append(headerKey);
-      hdrs.append(": ");
-      hdrs.append(headerValue);
-      hdrs.append("\n");
+      List values=(List)entry.getValue();
+      for (int j=0; j < values.size(); j++) {
+        hdrs.append(headerKey);
+        hdrs.append(": ");
+        hdrs.append((String)values.get(j));
+        hdrs.append("\n");
+      }
     }
   }
   return hdrs.toString();

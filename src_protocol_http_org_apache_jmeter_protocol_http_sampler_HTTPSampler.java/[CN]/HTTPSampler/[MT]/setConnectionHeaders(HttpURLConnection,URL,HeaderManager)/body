@@ -7,7 +7,7 @@
         Header header=(Header)i.next().getObjectValue();
         String n=header.getName();
         String v=header.getValue();
-        conn.setRequestProperty(n,v);
+        conn.addRequestProperty(n,v);
       }
     }
   }
