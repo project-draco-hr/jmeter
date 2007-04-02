@@ -7,12 +7,14 @@
   String contentEncoding="";
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
+  sampler.setDoMultipartPost(true);
   HTTPSampleResult res=executeSampler(sampler);
   checkPostRequestFormMultipart(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue);
   sampler=createHttpSampler(samplerType);
   contentEncoding="ISO-8859-1";
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
+  sampler.setDoMultipartPost(true);
   res=executeSampler(sampler);
   checkPostRequestFormMultipart(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue);
   sampler=createHttpSampler(samplerType);
@@ -21,6 +23,7 @@
   descriptionValue="mydescription\u0153\u20a1\u0115\u00c5";
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
+  sampler.setDoMultipartPost(true);
   res=executeSampler(sampler);
   checkPostRequestFormMultipart(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue);
   sampler=createHttpSampler(samplerType);
@@ -29,6 +32,7 @@
   descriptionValue="mydescription \u0153 \u20a1 \u0115 \u00c5";
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
+  sampler.setDoMultipartPost(true);
   res=executeSampler(sampler);
   checkPostRequestFormMultipart(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue);
   JMeterUtils.setLocale(Locale.ENGLISH);
@@ -46,6 +50,7 @@
   descriptionValue="mydescription\u0153\u20a1\u0115\u00c5${description_suffix}";
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
+  sampler.setDoMultipartPost(true);
   replacer.replaceValues(sampler);
   res=executeSampler(sampler);
   String expectedTitleValue="a test\u00c5mytitle\u0153\u20a1\u0115\u00c5";

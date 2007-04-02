@@ -15,7 +15,7 @@
   output.write("Content-Type: ".getBytes(httpEncoding));
   output.write(mimeType.getBytes(httpEncoding));
   output.write(CRLF);
-  output.write("Content-Transfer-Encoding: 8bit".getBytes(httpEncoding));
+  output.write("Content-Transfer-Encoding: binary".getBytes(httpEncoding));
   output.write(CRLF);
   output.write(CRLF);
   output.write(fileContent);

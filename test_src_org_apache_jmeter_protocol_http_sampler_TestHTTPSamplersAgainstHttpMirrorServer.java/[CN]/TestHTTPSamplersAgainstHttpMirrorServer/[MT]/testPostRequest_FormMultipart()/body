@@ -1,0 +1,6 @@
+{
+  String samplerDefaultEncoding="ISO-8859-1";
+  testPostRequest_FormMultipart(HTTP_SAMPLER,samplerDefaultEncoding);
+  samplerDefaultEncoding="US-ASCII";
+  testPostRequest_FormMultipart(HTTP_SAMPLER2,samplerDefaultEncoding);
+}

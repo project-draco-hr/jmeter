@@ -1,0 +1,10 @@
+{
+  byte[] formdataMultipart=createExpectedFormdataOutput(boundaryString,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,true,false);
+  byte[] fileMultipart=createExpectedFilepartOutput(boundaryString,fileField,fileValue,fileMimeType,fileContent,false,true);
+  ByteArrayOutputStream output=new ByteArrayOutputStream();
+  output.write(formdataMultipart);
+  output.write(fileMultipart);
+  output.flush();
+  output.close();
+  return output.toByteArray();
+}

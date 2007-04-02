@@ -1,5 +1,6 @@
 {
-  String samplerDefaultEncoding="ISO-8859-1".toLowerCase();
+  String samplerDefaultEncoding="ISO-8859-1";
   testPostRequest_UrlEncoded(HTTP_SAMPLER,samplerDefaultEncoding);
   samplerDefaultEncoding="US-ASCII";
+  testPostRequest_UrlEncoded(HTTP_SAMPLER2,samplerDefaultEncoding);
 }

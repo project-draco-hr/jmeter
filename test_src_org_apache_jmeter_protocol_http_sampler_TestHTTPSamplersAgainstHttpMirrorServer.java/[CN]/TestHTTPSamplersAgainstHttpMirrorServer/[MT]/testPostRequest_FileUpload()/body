@@ -1,0 +1,6 @@
+{
+  String samplerDefaultEncoding="ISO-8859-1".toLowerCase();
+  testPostRequest_FileUpload(HTTP_SAMPLER,samplerDefaultEncoding);
+  samplerDefaultEncoding="US-ASCII";
+  testPostRequest_FileUpload(HTTP_SAMPLER2,samplerDefaultEncoding);
+}

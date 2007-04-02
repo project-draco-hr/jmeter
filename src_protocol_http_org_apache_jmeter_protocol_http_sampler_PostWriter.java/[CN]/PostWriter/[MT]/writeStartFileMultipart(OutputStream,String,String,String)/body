@@ -5,6 +5,6 @@
   write(out,(new File(filename).getName()));
   writeln(out,"\"");
   writeln(out,"Content-Type: " + mimetype);
-  writeln(out,"Content-Transfer-Encoding: 8bit");
+  writeln(out,"Content-Transfer-Encoding: binary");
   out.write(CRLF);
 }
