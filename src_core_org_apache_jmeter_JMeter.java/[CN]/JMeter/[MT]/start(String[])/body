@@ -42,15 +42,15 @@
     }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
       startServer(JMeterUtils.getPropDefault("server_port",0));
-      startBSH();
+      startOptionalServers();
     }
  else     if (parser.getArgumentById(NONGUI_OPT) == null) {
       startGui(parser.getArgumentById(TESTFILE_OPT));
-      startBSH();
+      startOptionalServers();
     }
  else {
       startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),parser.getArgumentById(REMOTE_OPT));
-      startBSH();
+      startOptionalServers();
     }
   }
  catch (  IllegalUserActionException e) {
