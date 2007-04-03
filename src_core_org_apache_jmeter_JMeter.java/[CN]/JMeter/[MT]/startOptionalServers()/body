@@ -23,7 +23,12 @@ catch (    JMeterException e) {
   int mirrorPort=JMeterUtils.getPropDefault("mirror.server.port",0);
   if (mirrorPort > 0) {
     log.info("Starting Mirror server (" + mirrorPort + ")");
-    HttpMirrorControl webServerControl=new HttpMirrorControl(mirrorPort);
-    webServerControl.startHttpMirror();
+    try {
+      Object instance=ClassTools.construct("org.apache.jmeter.protocol.http.control.HttpMirrorControl",mirrorPort);
+      ClassTools.invoke(instance,"startHttpMirror");
+    }
+ catch (    JMeterException e) {
+      log.warn("Could not start Mirror server",e);
+    }
   }
 }
