@@ -1,0 +1,16 @@
+{
+  Method m;
+  try {
+    m=ClassUtils.getPublicMethod(instance.getClass(),methodName,new Class[]{});
+    m.invoke(instance,null);
+  }
+ catch (  NoSuchMethodException e) {
+    throw new JMeterException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new JMeterException(e);
+  }
+catch (  InvocationTargetException e) {
+    throw new JMeterException(e);
+  }
+}

@@ -1,0 +1,16 @@
+{
+  Object instance=null;
+  try {
+    instance=ClassUtils.getClass(className).newInstance();
+  }
+ catch (  ClassNotFoundException e) {
+    throw new JMeterException(e);
+  }
+catch (  InstantiationException e) {
+    throw new JMeterException(e);
+  }
+catch (  IllegalAccessException e) {
+    throw new JMeterException(e);
+  }
+  return instance;
+}
