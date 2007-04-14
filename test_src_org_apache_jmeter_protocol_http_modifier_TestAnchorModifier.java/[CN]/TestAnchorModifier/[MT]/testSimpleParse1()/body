@@ -1,6 +1,7 @@
 {
   HTTPSamplerBase config=makeUrlConfig(".*/index\\.html");
-  config.setProtocol("https");
+  config.setProtocol(HTTPSamplerBase.PROTOCOL_HTTPS);
+  config.setPort(HTTPSamplerBase.DEFAULT_HTTPS_PORT);
   HTTPSamplerBase context=makeContext("https://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"index.html\">Goto index page</a></body></html>";
   HTTPSampleResult result=new HTTPSampleResult();
