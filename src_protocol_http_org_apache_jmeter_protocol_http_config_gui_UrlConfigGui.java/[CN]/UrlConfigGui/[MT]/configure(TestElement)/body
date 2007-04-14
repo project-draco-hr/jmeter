@@ -16,4 +16,5 @@
   followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
   autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
   useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
+  useMultipartForPost.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
 }

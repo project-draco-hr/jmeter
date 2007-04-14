@@ -1,5 +1,4 @@
 {
-  MultipartUrlConfig urlConfig=null;
   sampler.setDomain(serverName());
   if (log.isDebugEnabled())   log.debug("Proxy: setting server: " + sampler.getDomain());
   sampler.setMethod(method);
@@ -28,13 +27,12 @@
     if (log.isDebugEnabled())     log.debug("Proxy setting default protocol to: http");
     sampler.setProtocol(HTTP);
   }
-  if ((urlConfig=isMultipart(getContentType())) != null) {
+  MultipartUrlConfig urlConfig=getMultipartConfig(getContentType());
+  if (urlConfig != null) {
     urlConfig.parseArguments(postData);
-    if (urlConfig.getFilename() == null) {
-      System.out.println("jada");
-      getHeaderManager().removeHeaderNamed("Content-Type");
-      getHeaderManager().add(new Header("Content-Type","application/x-www-form-urlencoded"));
-    }
+    sampler.setDoMultipartPost(true);
+    getHeaderManager().removeHeaderNamed(CONTENT_TYPE);
+    getHeaderManager().removeHeaderNamed(CONTENT_LENGTH);
     sampler.setArguments(urlConfig.getArguments());
     sampler.setFileField(urlConfig.getFileFieldName());
     sampler.setFilename(urlConfig.getFilename());

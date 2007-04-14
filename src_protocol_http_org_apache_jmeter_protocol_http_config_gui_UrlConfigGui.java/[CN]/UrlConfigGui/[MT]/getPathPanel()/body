@@ -12,6 +12,9 @@
   useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
   useKeepAlive.setName(USE_KEEPALIVE);
   useKeepAlive.setSelected(true);
+  useMultipartForPost=new JCheckBox(JMeterUtils.getResString("use_multipart_for_http_post"));
+  useMultipartForPost.setName(USE_MULTIPART_FOR_POST);
+  useMultipartForPost.setSelected(false);
   JPanel pathPanel=new JPanel(new BorderLayout(5,0));
   pathPanel.add(label,BorderLayout.WEST);
   pathPanel.add(path,BorderLayout.CENTER);
@@ -20,6 +23,7 @@
   optionPanel.add(autoRedirects);
   optionPanel.add(followRedirects);
   optionPanel.add(useKeepAlive);
+  optionPanel.add(useMultipartForPost);
   optionPanel.setMinimumSize(optionPanel.getPreferredSize());
   JPanel panel=new JPanel();
   panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
