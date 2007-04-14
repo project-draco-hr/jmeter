@@ -45,7 +45,7 @@
     }
  else {
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
-      String postBody=getQueryStringForPostBody(sampler,contentEncoding);
+      String postBody=sampler.getQueryString(contentEncoding);
       bos.write(postBody.getBytes("UTF-8"));
       bos.flush();
       bos.close();

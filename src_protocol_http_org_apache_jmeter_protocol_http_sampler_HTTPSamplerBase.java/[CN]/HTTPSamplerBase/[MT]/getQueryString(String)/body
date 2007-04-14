@@ -1,0 +1,39 @@
+{
+  if (contentEncoding == null || contentEncoding.trim().length() == 0) {
+    contentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;
+  }
+  StringBuffer buf=new StringBuffer();
+  PropertyIterator iter=getArguments().iterator();
+  boolean first=true;
+  while (iter.hasNext()) {
+    HTTPArgument item=null;
+    Object objectValue=iter.next().getObjectValue();
+    try {
+      item=(HTTPArgument)objectValue;
+    }
+ catch (    ClassCastException e) {
+      log.warn("Unexpected argument type: " + objectValue.getClass().getName());
+      item=new HTTPArgument((Argument)objectValue);
+    }
+    if (!first) {
+      buf.append(QRY_SEP);
+    }
+ else {
+      first=false;
+    }
+    buf.append(item.getEncodedName());
+    if (item.getMetaData() == null) {
+      buf.append(ARG_VAL_SEP);
+    }
+ else {
+      buf.append(item.getMetaData());
+    }
+    try {
+      buf.append(item.getEncodedValue(contentEncoding));
+    }
+ catch (    UnsupportedEncodingException e) {
+      log.warn("Unable to encode parameter in encoding " + contentEncoding + ", parameter value not included in query string");
+    }
+  }
+  return buf.toString();
+}

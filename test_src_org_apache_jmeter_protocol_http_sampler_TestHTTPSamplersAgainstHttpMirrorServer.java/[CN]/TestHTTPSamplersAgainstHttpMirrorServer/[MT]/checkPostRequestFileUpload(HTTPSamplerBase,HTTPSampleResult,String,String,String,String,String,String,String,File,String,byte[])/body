@@ -16,6 +16,10 @@
     headersSent=dataSentToMirrorServer.substring(0,posDividerHeadersAndBody);
     bodySent=dataSentToMirrorServer.substring(posDividerHeadersAndBody + 2);
   }
+ else {
+    fail("No header and body section found");
+  }
   assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_TYPE,"multipart/form-data" + "; boundary=" + boundaryString));
   assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(expectedPostBody.length)));
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
 }

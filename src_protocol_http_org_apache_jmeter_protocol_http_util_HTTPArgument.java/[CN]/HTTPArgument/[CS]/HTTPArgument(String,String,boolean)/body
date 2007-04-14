@@ -2,8 +2,8 @@
   setAlwaysEncoded(true);
   if (alreadyEncoded) {
     try {
-      name=URLDecoder.decode(name,"UTF-8");
-      value=URLDecoder.decode(value,"UTF-8");
+      name=URLDecoder.decode(name,EncoderCache.URL_ARGUMENT_ENCODING);
+      value=URLDecoder.decode(value,EncoderCache.URL_ARGUMENT_ENCODING);
     }
  catch (    UnsupportedEncodingException e) {
       log.error("UTF-8 encoding not supported!");

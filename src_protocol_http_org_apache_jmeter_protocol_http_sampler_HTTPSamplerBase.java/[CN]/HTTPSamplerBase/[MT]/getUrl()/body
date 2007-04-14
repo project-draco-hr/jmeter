@@ -5,17 +5,22 @@
     pathAndQuery.append("/");
   }
   pathAndQuery.append(path);
-  if (this.getMethod().equals(GET) && getQueryString().length() > 0) {
-    if (path.indexOf(QRY_PFX) > -1) {
-      pathAndQuery.append(QRY_SEP);
-    }
+  if (GET.equals(getMethod())) {
+    String queryString=getQueryString(getContentEncoding());
+    if (queryString.length() > 0) {
+      if (path.indexOf(QRY_PFX) > -1) {
+        pathAndQuery.append(QRY_SEP);
+      }
  else {
-      pathAndQuery.append(QRY_PFX);
+        pathAndQuery.append(QRY_PFX);
+      }
+      pathAndQuery.append(queryString);
     }
-    pathAndQuery.append(getQueryString());
   }
-  if (getPort() == UNSPECIFIED_PORT || getPort() == DEFAULT_HTTP_PORT) {
+  if (isProtocolDefaultPort()) {
     return new URL(getProtocol(),getDomain(),pathAndQuery.toString());
   }
-  return new URL(getProtocol(),getPropertyAsString(DOMAIN),getPort(),pathAndQuery.toString());
+ else {
+    return new URL(getProtocol(),getDomain(),getPort(),pathAndQuery.toString());
+  }
 }
