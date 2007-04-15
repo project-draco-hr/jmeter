@@ -1,0 +1,10 @@
+{
+  super.setUp();
+  jmctx=JMeterContextService.getContext();
+  assertion=new XPathAssertion();
+  assertion.setThreadContext(jmctx);
+  result=new SampleResult();
+  result.setResponseData(readFile("testfiles/XPathAssertionTest.xml"));
+  vars=new JMeterVariables();
+  jmctx.setVariables(vars);
+}

@@ -1,0 +1,8 @@
+{
+  assertion.setXPathString("//*[code=2]");
+  AssertionResult res=assertion.getResult(result);
+  testLog.debug("isError() " + res.isError() + " isFailure() "+ res.isFailure());
+  testLog.debug("failure message: " + res.getFailureMessage());
+  assertFalse("Should not be an error",res.isError());
+  assertTrue("Should be a failure",res.isFailure());
+}

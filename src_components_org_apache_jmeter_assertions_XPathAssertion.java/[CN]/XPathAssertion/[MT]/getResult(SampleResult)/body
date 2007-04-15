@@ -39,25 +39,41 @@ catch (  ParserConfigurationException e) {
     return result;
   }
   NodeList nodeList=null;
+  final String pathString=getXPathString();
   try {
-    nodeList=XPathAPI.selectNodeList(doc,getXPathString());
-  }
- catch (  TransformerException e) {
-    result.setError(true);
-    result.setFailureMessage(new StringBuffer("TransformerException: ").append(e.getMessage()).toString());
-    return result;
-  }
-  if (nodeList == null || nodeList.getLength() == 0) {
-    log.debug(new StringBuffer("nodeList null no match  ").append(getXPathString()).toString());
+    XObject xObject=XPathAPI.eval(doc,pathString);
+switch (xObject.getType()) {
+case XObject.CLASS_NODESET:
+      nodeList=xObject.nodelist();
+    break;
+case XObject.CLASS_BOOLEAN:
+  if (!xObject.bool()) {
     result.setFailure(!isNegated());
-    result.setFailureMessage("No Nodes Matched " + getXPathString());
-    return result;
+    result.setFailureMessage("No Nodes Matched " + pathString);
   }
-  log.debug("nodeList length " + nodeList.getLength());
-  if (log.isDebugEnabled() & !isNegated()) {
-    for (int i=0; i < nodeList.getLength(); i++)     log.debug(new StringBuffer("nodeList[").append(i).append("] ").append(nodeList.item(i)).toString());
-  }
-  result.setFailure(isNegated());
-  if (isNegated())   result.setFailureMessage("Specified XPath was found... Turn off negate if this is not desired");
-  return result;
+return result;
+default :
+result.setFailure(true);
+result.setFailureMessage("Cannot understand: " + pathString);
+return result;
+}
+}
+ catch (TransformerException e) {
+result.setError(true);
+result.setFailureMessage(new StringBuffer("TransformerException: ").append(e.getMessage()).append(" for:").append(pathString).toString());
+return result;
+}
+if (nodeList == null || nodeList.getLength() == 0) {
+log.debug(new StringBuffer("nodeList null no match  ").append(pathString).toString());
+result.setFailure(!isNegated());
+result.setFailureMessage("No Nodes Matched " + pathString);
+return result;
+}
+log.debug("nodeList length " + nodeList.getLength());
+if (log.isDebugEnabled() & !isNegated()) {
+for (int i=0; i < nodeList.getLength(); i++) log.debug(new StringBuffer("nodeList[").append(i).append("] ").append(nodeList.item(i)).toString());
+}
+result.setFailure(isNegated());
+if (isNegated()) result.setFailureMessage("Specified XPath was found... Turn off negate if this is not desired");
+return result;
 }
