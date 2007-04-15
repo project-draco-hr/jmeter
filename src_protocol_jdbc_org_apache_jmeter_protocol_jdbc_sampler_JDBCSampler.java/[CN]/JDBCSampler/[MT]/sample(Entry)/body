@@ -11,13 +11,12 @@
   log.debug("DataSourceComponent: " + pool);
   Connection conn=null;
   Statement stmt=null;
-  CallableStatement cs=null;
   try {
     if (pool == null)     throw new SQLException("No pool created");
     conn=pool.getConnection();
-    stmt=conn.createStatement();
     String _queryType=getQueryType();
     if (SELECT.equals(_queryType)) {
+      stmt=conn.createStatement();
       ResultSet rs=null;
       try {
         rs=stmt.executeQuery(getQuery());
@@ -29,24 +28,32 @@
       }
     }
  else     if (CALLABLE.equals(_queryType)) {
-      cs=conn.prepareCall(getQuery());
-      boolean hasResultSet=cs.execute();
-      if (hasResultSet) {
-        ResultSet rs=cs.getResultSet();
-        Data data=getDataFromResultSet(rs);
-        res.setResponseData(data.toString().getBytes());
-      }
- else {
-        int updateCount=cs.getUpdateCount();
-        String results=updateCount + " updates";
-        res.setResponseData(results.getBytes());
-      }
+      CallableStatement cstmt=getCallableStatement(conn);
+      setArguments(cstmt);
+      boolean hasResultSet=cstmt.execute();
+      String sb=resultSetsToString(cstmt,hasResultSet);
+      res.setResponseData(sb.toString().getBytes());
     }
  else     if (UPDATE.equals(_queryType)) {
-      stmt.execute(getQuery());
+      stmt=conn.createStatement();
+      stmt.executeUpdate(getQuery());
       int updateCount=stmt.getUpdateCount();
       String results=updateCount + " updates";
       res.setResponseData(results.getBytes());
+    }
+ else     if (PREPARED_SELECT.equals(_queryType)) {
+      PreparedStatement pstmt=getPreparedStatement(conn);
+      setArguments(pstmt);
+      pstmt.executeQuery();
+      String sb=resultSetsToString(pstmt,true);
+      res.setResponseData(sb.toString().getBytes());
+    }
+ else     if (PREPARED_UPDATE.equals(_queryType)) {
+      PreparedStatement pstmt=getPreparedStatement(conn);
+      setArguments(pstmt);
+      pstmt.executeUpdate();
+      String sb=resultSetsToString(pstmt,false);
+      res.setResponseData(sb.toString().getBytes());
     }
  else {
       String results="Unexpected query type: " + _queryType;
@@ -60,7 +67,6 @@
     res.setSuccessful(false);
   }
  finally {
-    close(cs);
     close(stmt);
     close(conn);
   }

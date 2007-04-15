@@ -1,0 +1,7 @@
+{
+  Iterator iterator=collection.iterator();
+  while (iterator.hasNext()) {
+    PreparedStatement pstmt=(PreparedStatement)iterator.next();
+    close(pstmt);
+  }
+}
