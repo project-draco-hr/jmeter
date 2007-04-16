@@ -48,21 +48,45 @@
     }
   }
  else {
-    post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+    Header contentTypeHeader=post.getRequestHeader(HEADER_CONTENT_TYPE);
+    boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
     if (getArguments().getArgumentCount() == 0 && getSendFileAsPostBody()) {
+      if (!hasContentTypeHeader) {
+        if (getMimetype() != null && getMimetype().length() > 0) {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+        }
+ else {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+        }
+      }
       FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(getFilename()),null);
       post.setRequestEntity(fileRequestEntity);
       postedBody.append("<actual file content, not shown here>");
     }
  else {
+      if (!hasContentTypeHeader) {
+        post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+      }
       final String contentEncoding=getContentEncoding();
       if (contentEncoding != null && contentEncoding.trim().length() > 0) {
         post.getParams().setContentCharset(contentEncoding);
       }
-      PropertyIterator args=getArguments().iterator();
-      while (args.hasNext()) {
-        HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-        post.addParameter(arg.getName(),arg.getValue());
+      if (!getSendParameterValuesAsPostBody()) {
+        PropertyIterator args=getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          post.addParameter(arg.getName(),arg.getValue());
+        }
+      }
+ else {
+        StringBuffer postBody=new StringBuffer();
+        PropertyIterator args=getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          postBody.append(arg.getValue());
+        }
+        StringRequestEntity requestEntity=new StringRequestEntity(postBody.toString(),post.getRequestHeader(HEADER_CONTENT_TYPE).getValue(),post.getRequestCharSet());
+        post.setRequestEntity(requestEntity);
       }
       if (post.getRequestEntity().isRepeatable()) {
         ByteArrayOutputStream bos=new ByteArrayOutputStream();

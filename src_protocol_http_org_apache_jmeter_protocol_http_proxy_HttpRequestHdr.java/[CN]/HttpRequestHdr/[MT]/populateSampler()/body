@@ -27,22 +27,28 @@
     if (log.isDebugEnabled())     log.debug("Proxy setting default protocol to: http");
     sampler.setProtocol(HTTP);
   }
-  MultipartUrlConfig urlConfig=getMultipartConfig(getContentType());
-  if (urlConfig != null) {
-    urlConfig.parseArguments(postData);
-    sampler.setDoMultipartPost(true);
-    getHeaderManager().removeHeaderNamed(CONTENT_TYPE);
-    getHeaderManager().removeHeaderNamed(CONTENT_LENGTH);
-    sampler.setArguments(urlConfig.getArguments());
-    sampler.setFileField(urlConfig.getFileFieldName());
-    sampler.setFilename(urlConfig.getFilename());
-    sampler.setMimetype(urlConfig.getMimeType());
-  }
- else   if (postData != null && postData.trim().startsWith("<?")) {
-    sampler.addNonEncodedArgument("",postData,"");
-  }
- else {
-    sampler.parseArguments(postData);
+  if (!HTTPSamplerBase.GET.equals(method)) {
+    final String contentType=getContentType();
+    MultipartUrlConfig urlConfig=getMultipartConfig(contentType);
+    if (urlConfig != null) {
+      urlConfig.parseArguments(postData);
+      sampler.setDoMultipartPost(true);
+      getHeaderManager().removeHeaderNamed(CONTENT_TYPE);
+      getHeaderManager().removeHeaderNamed(CONTENT_LENGTH);
+      sampler.setArguments(urlConfig.getArguments());
+      sampler.setFileField(urlConfig.getFileFieldName());
+      sampler.setFilename(urlConfig.getFilename());
+      sampler.setMimetype(urlConfig.getMimeType());
+    }
+ else     if (postData != null && postData.trim().startsWith("<?")) {
+      sampler.addNonEncodedArgument("",postData,"");
+    }
+ else     if (contentType == null || contentType.startsWith(HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED)) {
+      sampler.parseArguments(postData);
+    }
+ else     if (postData != null && postData.length() > 0) {
+      sampler.addNonEncodedArgument("",postData,"");
+    }
   }
   if (log.isDebugEnabled())   log.debug("sampler path = " + sampler.getPath());
 }

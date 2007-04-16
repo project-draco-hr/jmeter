@@ -1,5 +1,5 @@
 {
-  if (contentType != null && contentType.startsWith(MultipartUrlConfig.MULTIPART_FORM)) {
+  if (contentType != null && contentType.startsWith(HTTPSamplerBase.MULTIPART_FORM_DATA)) {
     return true;
   }
  else {
