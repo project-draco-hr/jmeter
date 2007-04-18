@@ -1,0 +1,6 @@
+{
+  String samplerDefaultEncoding="ISO-8859-1";
+  testPostRequest_BodyFromParameterValues(HTTP_SAMPLER,samplerDefaultEncoding);
+  samplerDefaultEncoding="US-ASCII";
+  testPostRequest_BodyFromParameterValues(HTTP_SAMPLER2,samplerDefaultEncoding);
+}

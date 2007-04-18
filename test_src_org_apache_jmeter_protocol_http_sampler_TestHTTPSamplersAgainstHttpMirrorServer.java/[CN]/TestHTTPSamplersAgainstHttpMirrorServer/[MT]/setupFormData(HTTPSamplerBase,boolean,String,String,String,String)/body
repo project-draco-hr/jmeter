@@ -1,8 +1,10 @@
 {
-  Arguments args=new Arguments();
-  HTTPArgument argument1=new HTTPArgument(titleField,titleValue,isEncoded);
-  HTTPArgument argument2=new HTTPArgument(descriptionField,descriptionValue,isEncoded);
-  args.addArgument(argument1);
-  args.addArgument(argument2);
-  httpSampler.setArguments(args);
+  if (isEncoded) {
+    httpSampler.addEncodedArgument(titleField,titleValue);
+    httpSampler.addEncodedArgument(descriptionField,descriptionValue);
+  }
+ else {
+    httpSampler.addArgument(titleField,titleValue);
+    httpSampler.addArgument(descriptionField,descriptionValue);
+  }
 }

@@ -12,7 +12,7 @@
   sampler.setRunningVersion(true);
   URL executedUrl=sampler.getUrl();
   sampler.setRunningVersion(false);
-  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue);
+  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue,false);
   sampler=createHttpSampler(samplerType);
   contentEncoding="ISO-8859-1";
   titleValue="mytitle\uc385";
@@ -24,7 +24,7 @@
   sampler.setRunningVersion(true);
   executedUrl=sampler.getUrl();
   sampler.setRunningVersion(false);
-  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue);
+  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue,false);
   sampler=createHttpSampler(samplerType);
   contentEncoding="UTF-8";
   titleValue="mytitle\u0153\u20a1\u0115\u00c5";
@@ -36,7 +36,7 @@
   sampler.setRunningVersion(true);
   executedUrl=sampler.getUrl();
   sampler.setRunningVersion(false);
-  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue);
+  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue,false);
   sampler=createHttpSampler(samplerType);
   contentEncoding="UTF-8";
   titleValue="mytitle\u0153+\u20a1 \u0115&yes\u00c5";
@@ -48,7 +48,21 @@
   sampler.setRunningVersion(true);
   executedUrl=sampler.getUrl();
   sampler.setRunningVersion(false);
-  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue);
+  String expectedTitleValue="mytitle\u0153%2B\u20a1+\u0115%26yes\u00c5";
+  String expectedDescriptionValue="mydescription+\u0153+\u20a1+\u0115+\u00c5";
+  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue,false);
+  sampler=createHttpSampler(samplerType);
+  contentEncoding="UTF-8";
+  titleValue="mytitle%2F%3D";
+  descriptionValue="mydescription+++%2F%5C";
+  setupUrl(sampler,contentEncoding);
+  sampler.setMethod(HTTPSamplerBase.GET);
+  setupFormData(sampler,true,titleField,titleValue,descriptionField,descriptionValue);
+  res=executeSampler(sampler);
+  sampler.setRunningVersion(true);
+  executedUrl=sampler.getUrl();
+  sampler.setRunningVersion(false);
+  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue,true);
   JMeterUtils.setLocale(Locale.ENGLISH);
   TestPlan testPlan=new TestPlan();
   JMeterVariables vars=new JMeterVariables();
@@ -67,10 +81,10 @@
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
   replacer.replaceValues(sampler);
   res=executeSampler(sampler);
-  String expectedTitleValue="a test\u00c5mytitle\u0153\u20a1\u0115\u00c5";
-  String expectedDescriptionValue="mydescription\u0153\u20a1\u0115\u00c5the_end";
+  expectedTitleValue="a test\u00c5mytitle\u0153\u20a1\u0115\u00c5";
+  expectedDescriptionValue="mydescription\u0153\u20a1\u0115\u00c5the_end";
   sampler.setRunningVersion(true);
   executedUrl=sampler.getUrl();
   sampler.setRunningVersion(false);
-  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,expectedTitleValue,descriptionField,expectedDescriptionValue);
+  checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,expectedTitleValue,descriptionField,expectedDescriptionValue,false);
 }
