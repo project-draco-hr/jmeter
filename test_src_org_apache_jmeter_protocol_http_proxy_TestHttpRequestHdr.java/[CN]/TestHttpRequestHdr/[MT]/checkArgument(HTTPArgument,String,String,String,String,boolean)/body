@@ -1,5 +1,6 @@
 {
   assertEquals(expectedName,arg.getName());
   assertEquals(expectedValue,arg.getValue());
+  assertEquals(expectedEncodedValue,arg.getEncodedValue(contentEncoding));
   assertEquals(expectedEncoded,arg.isAlwaysEncoded());
 }

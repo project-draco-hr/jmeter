@@ -1,0 +1,6 @@
+{
+  Arguments myArgs=getArguments();
+  HTTPArgument arg=new HTTPArgument(name,value,false);
+  arg.setAlwaysEncoded(false);
+  myArgs.addArgument(arg);
+}

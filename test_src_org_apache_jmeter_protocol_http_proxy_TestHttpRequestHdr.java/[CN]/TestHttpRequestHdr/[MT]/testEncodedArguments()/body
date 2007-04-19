@@ -4,16 +4,17 @@
   assertEquals(HTTPSamplerBase.GET,s.getMethod());
   Arguments arguments=s.getArguments();
   assertEquals(3,arguments.getArgumentCount());
-  checkArgument((HTTPArgument)arguments.getArgument(0),"abc?SPACE","a+b",false);
-  checkArgument((HTTPArgument)arguments.getArgument(1),"space","a%20b",false);
-  checkArgument((HTTPArgument)arguments.getArgument(2),"query","What?",false);
+  checkArgument((HTTPArgument)arguments.getArgument(0),"abc?SPACE","a+b","a+b","UTF-8",false);
+  checkArgument((HTTPArgument)arguments.getArgument(1),"space","a%20b","a%20b","UTF-8",false);
+  checkArgument((HTTPArgument)arguments.getArgument(2),"query","What?","What?","UTF-8",false);
   String postBody="abc?SPACE=a+b&space=a%20b&query=What?";
   String TEST_POST_REQ="POST http://localhost:80/matrix.html HTTP/1.1\n" + "Content-type: " + HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED + "; charset=UTF-8\n"+ postBody;
   s=getSamplerForRequest(TEST_POST_REQ,"UTF-8");
   assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertFalse(s.getDoMultipartPost());
   arguments=s.getArguments();
   assertEquals(3,arguments.getArgumentCount());
-  checkArgument((HTTPArgument)arguments.getArgument(0),"abc?SPACE","a+b",false);
-  checkArgument((HTTPArgument)arguments.getArgument(1),"space","a%20b",false);
-  checkArgument((HTTPArgument)arguments.getArgument(2),"query","What?",false);
+  checkArgument((HTTPArgument)arguments.getArgument(0),"abc?SPACE","a+b","a+b","UTF-8",false);
+  checkArgument((HTTPArgument)arguments.getArgument(1),"space","a%20b","a%20b","UTF-8",false);
+  checkArgument((HTTPArgument)arguments.getArgument(2),"query","What?","What?","UTF-8",false);
 }

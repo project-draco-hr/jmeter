@@ -1,0 +1,18 @@
+{
+  String boundary="xf8SqlDNvmn6mFYwrioJaeUR2_Z4cLRXOSmB";
+  String endOfLine="\r\n";
+  String fileFieldValue="test_file";
+  String fileName="somefilename.txt";
+  String mimeType="text/plain";
+  String fileContent="somedummycontent\n\ndfgdfg\r\nfgdgdg\nContent-type:dfsfsfds";
+  String postBody=createMultipartFileUploadBody(fileFieldValue,fileName,mimeType,fileContent,boundary,endOfLine);
+  String testPostRequest=createMultipartFormRequest(postBody,boundary,endOfLine);
+  HTTPSamplerBase s=getSamplerForRequest(testPostRequest,"UTF-8");
+  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertTrue(s.getDoMultipartPost());
+  Arguments arguments=s.getArguments();
+  assertEquals(0,arguments.getArgumentCount());
+  assertEquals(fileFieldValue,s.getFileField());
+  assertEquals(fileName,s.getFilename());
+  assertEquals(mimeType,s.getMimetype());
+}

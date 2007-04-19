@@ -1,0 +1,4 @@
+{
+  String postRequest="POST http://localhost:80/matrix.html HTTP/1.1" + endOfLine + "Content-type: "+ HTTPSamplerBase.MULTIPART_FORM_DATA+ "; boundary="+ boundary+ endOfLine+ "Content-length: "+ postBody.length()+ endOfLine+ endOfLine+ postBody;
+  return postRequest;
+}

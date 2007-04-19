@@ -47,6 +47,18 @@
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
   res=executeSampler(sampler);
   checkPostRequestUrlEncoded(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,false);
+  sampler=createHttpSampler(samplerType);
+  contentEncoding="UTF-8";
+  titleValue="%2FwEPDwULLTE2MzM2OTA0NTYPZBYCAgMPZ%2FrA%2B8DZ2dnZ2dnZ2d%2FGNDar6OshPwdJc%3D";
+  descriptionValue="mydescription";
+  setupUrl(sampler,contentEncoding);
+  setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
+  ((HTTPArgument)sampler.getArguments().getArgument(0)).setAlwaysEncoded(false);
+  ((HTTPArgument)sampler.getArguments().getArgument(1)).setAlwaysEncoded(false);
+  res=executeSampler(sampler);
+  assertFalse(((HTTPArgument)sampler.getArguments().getArgument(0)).isAlwaysEncoded());
+  assertFalse(((HTTPArgument)sampler.getArguments().getArgument(1)).isAlwaysEncoded());
+  checkPostRequestUrlEncoded(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,true);
   JMeterUtils.setLocale(Locale.ENGLISH);
   TestPlan testPlan=new TestPlan();
   JMeterVariables vars=new JMeterVariables();
