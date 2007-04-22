@@ -1,0 +1,9 @@
+{
+  SampleResult res=new SampleResult();
+  res.sampleStart();
+  res.setBytes(100);
+  res.setSampleLabel("sample of size 100 bytes");
+  res.sampleEnd();
+  assertEquals(100,res.getBytes());
+  assertEquals("sample of size 100 bytes",res.getSampleLabel());
+}

@@ -10,5 +10,6 @@
   }
   subResults.add(subResult);
   setEndTime(subResult.getEndTime());
+  setBytes(getBytes() + subResult.getBytes());
   subResult.setParent(this);
 }
