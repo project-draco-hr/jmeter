@@ -26,17 +26,15 @@
   }
  catch (  Exception err) {
   }
-  Writer writer=null;
   FileOutputStream ostream=null;
   try {
+    ostream=new FileOutputStream(updateFile);
     if (SaveService.isSaveTestPlanFormat20()) {
-      ostream=new FileOutputStream(updateFile);
       OldSaveService.saveSubTree(subTree,ostream);
       log.info("saveSubTree");
     }
  else {
-      writer=new FileWriter(updateFile);
-      SaveService.saveTree(subTree,writer);
+      SaveService.saveTree(subTree,ostream);
       log.info("saveTree");
     }
   }
@@ -46,7 +44,6 @@
     throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
   }
  finally {
-    closeWriter(writer);
     closeStream(ostream);
   }
 }

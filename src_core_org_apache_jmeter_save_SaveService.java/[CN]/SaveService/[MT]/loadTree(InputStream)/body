@@ -5,7 +5,9 @@
   reader.mark(Integer.MAX_VALUE);
   ScriptWrapper wrapper=null;
   try {
-    wrapper=(ScriptWrapper)saver.fromXML(new InputStreamReader(reader));
+    InputStreamReader inputStreamReader=getInputStreamReader(reader);
+    wrapper=(ScriptWrapper)saver.fromXML(inputStreamReader);
+    inputStreamReader.close();
     return wrapper.testPlan;
   }
  catch (  CannotResolveClassException e) {

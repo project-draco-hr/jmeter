@@ -1,0 +1,8 @@
+{
+  if (fileEncoding != null && fileEncoding.length() > 0) {
+    return Charset.forName(fileEncoding);
+  }
+ else {
+    return null;
+  }
+}

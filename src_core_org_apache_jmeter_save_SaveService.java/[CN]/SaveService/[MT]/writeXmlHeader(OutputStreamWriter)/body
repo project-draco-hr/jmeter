@@ -1,0 +1,8 @@
+{
+  Charset charset=getFileEncodingCharset();
+  if (charset != null) {
+    String header=XML_HEADER.replaceAll("<ph>",charset.name());
+    writer.write(header);
+    writer.write('\n');
+  }
+}
