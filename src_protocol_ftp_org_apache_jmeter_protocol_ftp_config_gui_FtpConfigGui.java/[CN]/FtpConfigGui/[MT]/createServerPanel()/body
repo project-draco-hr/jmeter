@@ -1,7 +1,6 @@
 {
   JLabel label=new JLabel(JMeterUtils.getResString("server"));
   server=new JTextField(10);
-  server.setName(SERVER);
   label.setLabelFor(server);
   JPanel serverPanel=new JPanel(new BorderLayout(5,0));
   serverPanel.add(label,BorderLayout.WEST);

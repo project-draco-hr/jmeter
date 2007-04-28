@@ -1,29 +1,100 @@
 {
   SampleResult res=new SampleResult();
-  boolean isSuccessful=false;
+  res.setSuccessful(false);
+  String remote=getRemoteFilename();
+  String local=getLocalFilename();
+  boolean binaryTransfer=isBinaryMode();
   res.setSampleLabel(getName());
   res.setSamplerData(getLabel());
+  InputStream input=null;
+  OutputStream output=null;
   res.sampleStart();
-  FtpClient ftp=new FtpClient();
+  FTPClient ftp=new FTPClient();
   try {
-    ftp.connect(getServer(),getUsername(),getPassword());
-    ftp.setPassive(true);
-    String s=ftp.get(getFilename());
-    res.setResponseData(s.getBytes());
-    res.setResponseCodeOK();
-    res.setResponseMessageOK();
-    ftp.disconnect();
-    isSuccessful=true;
+    ftp.connect(getServer());
+    int reply=ftp.getReplyCode();
+    if (FTPReply.isPositiveCompletion(reply)) {
+      if (ftp.login(getUsername(),getPassword())) {
+        if (binaryTransfer) {
+          ftp.setFileType(FTP.BINARY_FILE_TYPE);
+        }
+        ftp.enterLocalPassiveMode();
+        boolean ftpOK=false;
+        if (isUpload()) {
+          File infile=new File(local);
+          input=new FileInputStream(infile);
+          ftpOK=ftp.storeFile(remote,input);
+          res.setBytes((int)infile.length());
+        }
+ else {
+          final boolean saveResponse=isSaveResponse();
+          ByteArrayOutputStream baos=null;
+          OutputStream target=null;
+          if (saveResponse) {
+            baos=new ByteArrayOutputStream();
+            target=baos;
+          }
+          if (local.length() > 0) {
+            output=new FileOutputStream(local);
+            if (target == null) {
+              target=output;
+            }
+ else {
+              target=new TeeOutputStream(output,baos);
+            }
+          }
+          if (target == null) {
+            target=new NullOutputStream();
+          }
+          input=ftp.retrieveFileStream(remote);
+          long bytes=IOUtils.copy(input,target);
+          ftpOK=bytes > 0;
+          if (saveResponse) {
+            res.setResponseData(baos.toByteArray());
+            if (!binaryTransfer) {
+              res.setDataType(SampleResult.TEXT);
+            }
+          }
+ else {
+            res.setBytes((int)bytes);
+          }
+        }
+        if (ftpOK) {
+          res.setResponseCodeOK();
+          res.setResponseMessageOK();
+          res.setSuccessful(true);
+        }
+ else {
+          res.setResponseCode(Integer.toString(ftp.getReplyCode()));
+          res.setResponseMessage(ftp.getReplyString());
+        }
+      }
+ else {
+        res.setResponseCode(Integer.toString(ftp.getReplyCode()));
+        res.setResponseMessage(ftp.getReplyString());
+      }
+    }
+ else {
+      res.setResponseCode("501");
+      res.setResponseMessage("Could not connect");
+      res.setResponseMessage(ftp.getReplyString());
+    }
   }
- catch (  java.net.ConnectException ex) {
-    res.setResponseData(ex.toString().getBytes());
-    res.setResponseMessage(ex.getLocalizedMessage());
+ catch (  IOException ex) {
+    res.setResponseCode("000");
+    res.setResponseMessage(ex.toString());
   }
-catch (  Exception ex) {
-    res.setResponseData(ex.toString().getBytes());
-    res.setResponseMessage(ex.getLocalizedMessage());
+ finally {
+    if (ftp != null && ftp.isConnected()) {
+      try {
+        ftp.disconnect();
+      }
+ catch (      IOException ignored) {
+      }
+    }
+    IOUtils.closeQuietly(input);
+    IOUtils.closeQuietly(output);
   }
   res.sampleEnd();
-  res.setSuccessful(isSuccessful);
   return res;
 }
