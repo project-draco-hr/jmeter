@@ -42,13 +42,7 @@ catch (  Exception ex) {
     JMeterUtils.reportErrorToUser(msg);
   }
  finally {
-    try {
-      if (reader != null) {
-        reader.close();
-      }
-    }
- catch (    IOException e1) {
-    }
+    JOrphanUtils.closeQuietly(reader);
     ReportGuiPackage.getInstance().updateCurrentGui();
     ReportGuiPackage.getInstance().getMainFrame().repaint();
   }

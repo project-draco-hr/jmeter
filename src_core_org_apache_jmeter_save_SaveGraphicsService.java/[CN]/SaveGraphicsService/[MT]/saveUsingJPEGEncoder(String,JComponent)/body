@@ -11,16 +11,11 @@
   JPEGImageEncoder encoder=JPEGCodec.createJPEGEncoder(fos,param);
   try {
     encoder.encode(image);
-    fos.close();
   }
  catch (  Exception e) {
     e.printStackTrace();
   }
  finally {
-    try {
-      fos.close();
-    }
- catch (    Exception e) {
-    }
+    JOrphanUtils.closeQuietly(fos);
   }
 }

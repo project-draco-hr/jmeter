@@ -42,6 +42,6 @@
     throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
   }
  finally {
-    closeStream(ostream);
+    JOrphanUtils.closeQuietly(ostream);
   }
 }

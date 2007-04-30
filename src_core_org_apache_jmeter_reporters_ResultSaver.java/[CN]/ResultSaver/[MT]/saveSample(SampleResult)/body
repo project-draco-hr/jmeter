@@ -17,10 +17,6 @@ catch (  IOException e1) {
     log.error("Error saving sample " + s.getSampleLabel(),e1);
   }
  finally {
-    try {
-      if (pw != null)       pw.close();
-    }
- catch (    IOException e) {
-    }
+    JOrphanUtils.closeQuietly(pw);
   }
 }
