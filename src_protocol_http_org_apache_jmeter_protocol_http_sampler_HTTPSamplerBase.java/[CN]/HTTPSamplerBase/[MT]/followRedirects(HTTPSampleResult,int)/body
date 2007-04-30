@@ -3,12 +3,14 @@
   HTTPSampleResult lastRes=res;
   int redirect;
   for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {
+    boolean invalidRedirectUrl=false;
     String location=encodeSpaces(lastRes.getRedirectLocation());
     try {
       lastRes=sample(new URL(lastRes.getURL(),location),GET,true,frameDepth);
     }
  catch (    MalformedURLException e) {
       lastRes=errorResult(e,lastRes);
+      invalidRedirectUrl=true;
     }
     if (lastRes.getSubResults() != null && lastRes.getSubResults().length > 0) {
       SampleResult[] subs=lastRes.getSubResults();
@@ -16,7 +18,11 @@
         totalRes.addSubResult(subs[i]);
       }
     }
- else     totalRes.addSubResult(lastRes);
+ else {
+      if (!invalidRedirectUrl) {
+        totalRes.addSubResult(lastRes);
+      }
+    }
     if (!lastRes.isRedirect()) {
       break;
     }
