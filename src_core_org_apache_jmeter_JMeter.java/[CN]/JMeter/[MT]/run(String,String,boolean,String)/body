@@ -34,7 +34,6 @@
       engine.runTest();
     }
  else {
-      String remote_hosts_string=JMeterUtils.getPropDefault("remote_hosts","127.0.0.1");
       java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
       List engines=new LinkedList();
       while (st.hasMoreElements()) {

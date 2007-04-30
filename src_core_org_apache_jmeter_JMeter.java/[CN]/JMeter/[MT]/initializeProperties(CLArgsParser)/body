@@ -65,35 +65,37 @@
     String value=option.getArgument(1);
     FileInputStream fis=null;
 switch (option.getDescriptor().getId()) {
+case CLOption.TEXT_ARGUMENT:
+      throw new IllegalArgumentException("Unknown arg: " + option.getArgument());
 case PROPFILE2_OPT:
-      try {
-        fis=new FileInputStream(new File(name));
-        Properties tmp=new Properties();
-        tmp.load(fis);
-        jmeterProps.putAll(tmp);
-        LoggingManager.setLoggingLevels(tmp);
-      }
- catch (      FileNotFoundException e) {
-        log.warn("Can't find additional property file: " + name,e);
-      }
-catch (      IOException e) {
-        log.warn("Error loading additional property file: " + name,e);
-      }
+    try {
+      fis=new FileInputStream(new File(name));
+      Properties tmp=new Properties();
+      tmp.load(fis);
+      jmeterProps.putAll(tmp);
+      LoggingManager.setLoggingLevels(tmp);
+    }
+ catch (    FileNotFoundException e) {
+      log.warn("Can't find additional property file: " + name,e);
+    }
+catch (    IOException e) {
+      log.warn("Error loading additional property file: " + name,e);
+    }
  finally {
-        JOrphanUtils.closeQuietly(fis);
-      }
-    break;
+      JOrphanUtils.closeQuietly(fis);
+    }
+  break;
 case SYSTEM_PROPFILE:
-  log.info("Setting System properties from file: " + name);
+log.info("Setting System properties from file: " + name);
 try {
-  fis=new FileInputStream(new File(name));
-  System.getProperties().load(fis);
+fis=new FileInputStream(new File(name));
+System.getProperties().load(fis);
 }
  catch (IOException e) {
-  log.warn("Cannot find system property file " + e.getLocalizedMessage());
+log.warn("Cannot find system property file " + e.getLocalizedMessage());
 }
  finally {
-  JOrphanUtils.closeQuietly(fis);
+JOrphanUtils.closeQuietly(fis);
 }
 break;
 case SYSTEM_PROPERTY:
