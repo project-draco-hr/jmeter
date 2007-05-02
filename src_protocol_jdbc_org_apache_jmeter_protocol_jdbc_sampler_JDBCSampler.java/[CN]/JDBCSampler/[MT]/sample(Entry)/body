@@ -55,6 +55,22 @@
       String sb=resultSetsToString(pstmt,false);
       res.setResponseData(sb.toString().getBytes());
     }
+ else     if (ROLLBACK.equals(_queryType)) {
+      conn.rollback();
+      res.setResponseData(ROLLBACK.getBytes());
+    }
+ else     if (COMMIT.equals(_queryType)) {
+      conn.commit();
+      res.setResponseData(COMMIT.getBytes());
+    }
+ else     if (AUTOCOMMIT_FALSE.equals(_queryType)) {
+      conn.setAutoCommit(false);
+      res.setResponseData(AUTOCOMMIT_FALSE.getBytes());
+    }
+ else     if (AUTOCOMMIT_TRUE.equals(_queryType)) {
+      conn.setAutoCommit(true);
+      res.setResponseData(AUTOCOMMIT_TRUE.getBytes());
+    }
  else {
       String results="Unexpected query type: " + _queryType;
       res.setResponseMessage(results);
