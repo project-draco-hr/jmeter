@@ -3,6 +3,7 @@
   menu.add(makeMenuItem(JMeterUtils.getResString("open"),"Open",ActionNames.OPEN));
   menu.add(makeMenuItem(JMeterUtils.getResString("menu_merge"),"Merge",ActionNames.MERGE));
   menu.add(makeMenuItem(JMeterUtils.getResString("save_as"),"Save As",ActionNames.SAVE_AS));
+  addSeparator(menu);
   JMenuItem savePicture=makeMenuItem(JMeterUtils.getResString("save_as_image"),"Save Image",ActionNames.SAVE_GRAPHICS,KeyStroke.getKeyStroke(KeyEvent.VK_G,KeyEvent.CTRL_MASK));
   menu.add(savePicture);
   if (!(GuiPackage.getInstance().getCurrentGui() instanceof Printable)) {
@@ -10,6 +11,7 @@
   }
   JMenuItem savePictureAll=makeMenuItem(JMeterUtils.getResString("save_as_image_all"),"Save Image All",ActionNames.SAVE_GRAPHICS_ALL,KeyStroke.getKeyStroke(KeyEvent.VK_G,KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK));
   menu.add(savePictureAll);
+  addSeparator(menu);
   JMenuItem disabled=makeMenuItem(JMeterUtils.getResString("disable"),"Disable",ActionNames.DISABLE);
   JMenuItem enabled=makeMenuItem(JMeterUtils.getResString("enable"),"Enable",ActionNames.ENABLE);
   boolean isEnabled=GuiPackage.getInstance().getTreeListener().getCurrentNode().isEnabled();
