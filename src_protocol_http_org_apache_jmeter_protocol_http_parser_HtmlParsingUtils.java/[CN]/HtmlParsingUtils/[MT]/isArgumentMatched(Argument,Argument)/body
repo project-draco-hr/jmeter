@@ -1,4 +1,5 @@
 {
-  Perl5Matcher matcher=JMeterUtils.getMatcher();
-  return (arg.getName().equals(patternArg.getName()) || matcher.matches(arg.getName(),JMeterUtils.getPatternCache().getPattern(patternArg.getName(),Perl5Compiler.READ_ONLY_MASK))) && (arg.getValue().equals(patternArg.getValue()) || matcher.matches(arg.getValue(),JMeterUtils.getPatternCache().getPattern(patternArg.getValue(),Perl5Compiler.READ_ONLY_MASK)));
+  final Perl5Matcher matcher=JMeterUtils.getMatcher();
+  final PatternCacheLRU patternCache=JMeterUtils.getPatternCache();
+  return isEqualOrMatches(arg.getName(),patternArg.getName(),matcher,patternCache) && isEqualOrMatches(arg.getValue(),patternArg.getValue(),matcher,patternCache);
 }

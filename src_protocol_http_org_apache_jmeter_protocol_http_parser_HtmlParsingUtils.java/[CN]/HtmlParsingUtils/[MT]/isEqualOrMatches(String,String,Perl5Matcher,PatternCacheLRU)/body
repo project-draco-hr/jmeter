@@ -1,0 +1,3 @@
+{
+  return arg.equals(pat) || matcher.matches(arg,cache.getPattern(pat,Perl5Compiler.READ_ONLY_MASK));
+}

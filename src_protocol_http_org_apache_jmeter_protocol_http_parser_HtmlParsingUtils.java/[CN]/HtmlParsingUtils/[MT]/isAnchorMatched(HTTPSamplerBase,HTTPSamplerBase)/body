@@ -1,7 +1,4 @@
 {
-  boolean ok=true;
-  Perl5Matcher matcher=JMeterUtils.getMatcher();
-  PropertyIterator iter=config.getArguments().iterator();
   String query=null;
   try {
     query=URLDecoder.decode(newLink.getQueryString(),"UTF-8");
@@ -10,27 +7,34 @@
     log.error("UTF-8 encoding not supported!");
     throw new Error("Should not happen: " + e.toString());
   }
-  if (query == null && config.getArguments().getArgumentCount() > 0) {
+  final Arguments arguments=config.getArguments();
+  if (query == null && arguments.getArgumentCount() > 0) {
     return false;
   }
+  final Perl5Matcher matcher=JMeterUtils.getMatcher();
+  final PatternCacheLRU patternCache=JMeterUtils.getPatternCache();
+  if (!isEqualOrMatches(newLink.getProtocol(),config.getProtocol(),matcher,patternCache)) {
+    return false;
+  }
+  final String domain=config.getDomain();
+  if (domain != null && domain.length() > 0) {
+    if (!isEqualOrMatches(newLink.getDomain(),domain,matcher,patternCache)) {
+      return false;
+    }
+  }
+  final String path=config.getPath();
+  if (!newLink.getPath().equals(path) && !matcher.matches(newLink.getPath(),patternCache.getPattern("[/]*" + path,Perl5Compiler.READ_ONLY_MASK))) {
+    return false;
+  }
+  PropertyIterator iter=arguments.iterator();
   while (iter.hasNext()) {
     Argument item=(Argument)iter.next().getObjectValue();
-    if (query.indexOf(item.getName() + "=") == -1) {
-      if (!(ok=ok && matcher.contains(query,JMeterUtils.getPatternCache().getPattern(item.getName(),Perl5Compiler.READ_ONLY_MASK)))) {
+    final String name=item.getName();
+    if (query.indexOf(name + "=") == -1) {
+      if (!(matcher.contains(query,patternCache.getPattern(name,Perl5Compiler.READ_ONLY_MASK)))) {
         return false;
       }
     }
   }
-  if (config.getDomain() != null && config.getDomain().length() > 0 && !newLink.getDomain().equals(config.getDomain())) {
-    if (!(ok=ok && matcher.matches(newLink.getDomain(),JMeterUtils.getPatternCache().getPattern(config.getDomain(),Perl5Compiler.READ_ONLY_MASK)))) {
-      return false;
-    }
-  }
-  if (!newLink.getPath().equals(config.getPath()) && !matcher.matches(newLink.getPath(),JMeterUtils.getPatternCache().getPattern("[/]*" + config.getPath(),Perl5Compiler.READ_ONLY_MASK))) {
-    return false;
-  }
-  if (!(ok=ok && matcher.matches(newLink.getProtocol(),JMeterUtils.getPatternCache().getPattern(config.getProtocol(),Perl5Compiler.READ_ONLY_MASK)))) {
-    return false;
-  }
-  return ok;
+  return true;
 }
