@@ -24,12 +24,23 @@
   if (index == -1) {
     index=0;
   }
+  try {
+    if (log.isDebugEnabled()) {
+      log.debug("Check for matches against: " + sampler.getUrl().toExternalForm());
+    }
+  }
+ catch (  MalformedURLException e) {
+    log.debug("BAD URL" + e.getMessage());
+  }
   html=(Document)HtmlParsingUtils.getDOM(responseText.substring(index));
   addAnchorUrls(html,result,sampler,potentialLinks);
   addFormUrls(html,result,sampler,potentialLinks);
   addFramesetUrls(html,result,sampler,potentialLinks);
   if (potentialLinks.size() > 0) {
     HTTPSamplerBase url=(HTTPSamplerBase)potentialLinks.get(rand.nextInt(potentialLinks.size()));
+    if (log.isDebugEnabled()) {
+      log.debug("Selected: " + url.toString());
+    }
     sampler.setDomain(url.getDomain());
     sampler.setPath(url.getPath());
     if (url.getMethod().equals(HTTPSamplerBase.POST)) {
@@ -44,6 +55,9 @@
     }
     sampler.setProtocol(url.getProtocol());
     return;
+  }
+ else {
+    log.debug("No matches found");
   }
   return;
 }
