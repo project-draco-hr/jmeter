@@ -1,0 +1,23 @@
+{
+  HTTPSamplerBase target=new HTTPNullSampler();
+  HTTPSamplerBase pattern=new HTTPNullSampler();
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  target.setProtocol("http:");
+  assertFalse(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  pattern.setProtocol(".*");
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  target.setDomain("a.b.c");
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  pattern.setDomain(".*");
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  target.setPath("/abc");
+  assertFalse(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  pattern.setPath(".*");
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  target.addArgument("param2","value2","=");
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  pattern.addArgument("param1",".*","=");
+  assertFalse(HtmlParsingUtils.isAnchorMatched(target,pattern));
+  target.addArgument("param1","value1","=");
+  assertTrue(HtmlParsingUtils.isAnchorMatched(target,pattern));
+}

@@ -1,0 +1,6 @@
+{
+  assertTrue(HtmlParsingUtils.isEqualOrMatchesCaseBlind("http:","http:"));
+  assertTrue(HtmlParsingUtils.isEqualOrMatchesCaseBlind("http:","htTp:"));
+  assertTrue(HtmlParsingUtils.isEqualOrMatches("http:","ht+p:"));
+  assertFalse(HtmlParsingUtils.isEqualOrMatches("ht+p:","http:"));
+}
