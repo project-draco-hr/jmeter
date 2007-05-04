@@ -13,6 +13,9 @@
       continue;
     }
     String hrefStr=namedItem.getNodeValue();
+    if (hrefStr.startsWith("javascript:")) {
+      continue;
+    }
     try {
       HTTPSamplerBase newUrl=HtmlParsingUtils.createUrlFromAnchor(hrefStr,new URL(result.getURL(),base));
       newUrl.setMethod(HTTPSamplerBase.GET);
