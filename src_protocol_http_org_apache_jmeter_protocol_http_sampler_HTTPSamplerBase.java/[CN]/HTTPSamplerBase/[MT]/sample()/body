@@ -1,11 +1,22 @@
 {
   SampleResult res=null;
   try {
-    res=sample(getUrl(),getMethod(),false,0);
+    if (PROTOCOL_FILE.equalsIgnoreCase(getProtocol())) {
+      res=fileSample(new URI(PROTOCOL_FILE,getPath(),null));
+    }
+ else {
+      res=sample(getUrl(),getMethod(),false,0);
+    }
     res.setSampleLabel(getName());
     return res;
   }
  catch (  MalformedURLException e) {
+    return errorResult(e,new HTTPSampleResult());
+  }
+catch (  IOException e) {
+    return errorResult(e,new HTTPSampleResult());
+  }
+catch (  URISyntaxException e) {
     return errorResult(e,new HTTPSampleResult());
   }
 }

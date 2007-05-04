@@ -1,0 +1,36 @@
+{
+  String urlStr=uri.toString();
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setMonitor(isMonitor());
+  res.setHTTPMethod(GET);
+  res.setURL(new URL(urlStr));
+  res.setSampleLabel(urlStr);
+  FileReader reader=null;
+  res.sampleStart();
+  try {
+    byte[] responseData;
+    StringBuffer ctb=new StringBuffer("text/html");
+    reader=new FileReader(getPath());
+    String contentEncoding=getContentEncoding();
+    if (contentEncoding.length() == 0) {
+      responseData=IOUtils.toByteArray(reader);
+    }
+ else {
+      ctb.append("; charset=");
+      ctb.append(contentEncoding);
+      responseData=IOUtils.toByteArray(reader,contentEncoding);
+    }
+    res.sampleEnd();
+    res.setResponseData(responseData);
+    res.setResponseCodeOK();
+    res.setResponseMessage("");
+    res.setSuccessful(true);
+    String ct=ctb.toString();
+    res.setContentType(ct);
+    res.setEncodingAndType(ct);
+  }
+  finally {
+    IOUtils.closeQuietly(reader);
+  }
+  return res;
+}
