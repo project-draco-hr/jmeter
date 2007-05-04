@@ -1,9 +1,18 @@
 {
+  GuiPackage guiPackage=GuiPackage.getInstance();
   try {
-    TestElement node=GuiPackage.getInstance().createTestElement(((JComponent)e.getSource()).getName());
-    addObjectToTree(node);
+    guiPackage.updateCurrentNode();
+    TestElement testElement=guiPackage.createTestElement(((JComponent)e.getSource()).getName());
+    JMeterTreeNode parentNode=guiPackage.getCurrentNode();
+    JMeterTreeNode node=guiPackage.getTreeModel().addComponent(testElement,parentNode);
+    guiPackage.getMainFrame().getTree().setSelectionPath(new TreePath(node.getPath()));
   }
- catch (  Exception err) {
+ catch (  IllegalUserActionException iuae) {
+    log.error("",iuae);
+    JMeterUtils.reportErrorToUser(iuae.getMessage());
+  }
+catch (  Exception err) {
     log.error("",err);
+    JMeterUtils.reportErrorToUser(err.getMessage());
   }
 }
