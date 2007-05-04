@@ -1,6 +1,6 @@
 {
   JPopupMenu menu=new JPopupMenu();
-  JMenu addMenu=MenuFactory.makeMenus(new String[]{MenuFactory.CONTROLLERS,MenuFactory.SAMPLERS,MenuFactory.CONFIG_ELEMENTS,MenuFactory.NON_TEST_ELEMENTS},JMeterUtils.getResString("Add"),"Add");
+  JMenu addMenu=MenuFactory.makeMenus(new String[]{MenuFactory.CONTROLLERS,MenuFactory.SAMPLERS,MenuFactory.CONFIG_ELEMENTS,MenuFactory.NON_TEST_ELEMENTS},JMeterUtils.getResString("add"),ActionNames.ADD);
   menu.add(addMenu);
   MenuFactory.addEditMenu(menu,false);
   MenuFactory.addFileMenu(menu);
