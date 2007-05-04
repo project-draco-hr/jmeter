@@ -1,0 +1,10 @@
+{
+  super.clear();
+  targetBox.setSelectedIndex(0);
+  durationField.setText("");
+  pauseButton.setSelected(true);
+  stopButton.setSelected(false);
+  action=TestAction.PAUSE;
+  target=TestAction.THREAD;
+  duration=0;
+}
