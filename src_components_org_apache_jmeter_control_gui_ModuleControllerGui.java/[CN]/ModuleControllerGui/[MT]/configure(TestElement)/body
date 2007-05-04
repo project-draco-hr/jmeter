@@ -2,7 +2,11 @@
   super.configure(el);
   ModuleController controller=(ModuleController)el;
   this.selected=controller.getSelectedNode();
-  if (selected == null && controller.getNodePath() != null)   warningLabel.setText(JMeterUtils.getResString("module_controller_warning") + renderPath(controller.getNodePath()));
- else   warningLabel.setText("");
+  if (selected == null && controller.getNodePath() != null) {
+    warningLabel.setText(JMeterUtils.getResString("module_controller_warning") + renderPath(controller.getNodePath()));
+  }
+ else {
+    warningLabel.setText("");
+  }
   reinitialize();
 }
