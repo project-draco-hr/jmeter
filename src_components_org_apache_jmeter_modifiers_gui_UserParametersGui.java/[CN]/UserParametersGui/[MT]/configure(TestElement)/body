@@ -11,7 +11,7 @@
   }
   int count=2;
   while (iter.hasNext()) {
-    String colName=THREAD_COLUMNS + "_" + count;
+    String colName=THREAD_COLUMNS_PREFIX + count;
     tableModel.addNewColumn(colName,String.class);
     tableModel.setColumnData(count,(List)iter.next().getObjectValue());
     count++;

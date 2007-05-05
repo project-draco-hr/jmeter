@@ -4,12 +4,12 @@
     return;
   }
  else   if (name.equals(LOWERBOUND)) {
-    checkTextField(evt,"0");
+    checkTextField(evt,ZERO);
   }
  else   if (name.equals(UPPERBOUND)) {
-    checkTextField(evt,"0");
+    checkTextField(evt,ZERO);
   }
  else   if (name.equals(INCREMENT)) {
-    checkTextField(evt,"0");
+    checkTextField(evt,ZERO);
   }
 }

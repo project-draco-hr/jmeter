@@ -3,7 +3,7 @@
   StringBuffer buf=new StringBuffer();
   while (en.hasMoreElements()) {
     Object key=en.nextElement();
-    buf.append((String)key + "=" + (String)ht.get(key)+ "\n");
+    buf.append((String)key).append("=").append((String)ht.get(key)).append("\n");
   }
   return buf.toString();
 }

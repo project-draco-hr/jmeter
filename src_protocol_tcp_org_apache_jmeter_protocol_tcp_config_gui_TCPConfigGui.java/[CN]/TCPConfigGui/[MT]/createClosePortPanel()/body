@@ -1,5 +1,5 @@
 {
-  JLabel label=new JLabel(JMeterUtils.getResString("reUseConnection"));
+  JLabel label=new JLabel(JMeterUtils.getResString("reuseconnection"));
   reUseConnection=new JCheckBox("",true);
   reUseConnection.setName(RE_USE_CONNECTION);
   label.setLabelFor(reUseConnection);

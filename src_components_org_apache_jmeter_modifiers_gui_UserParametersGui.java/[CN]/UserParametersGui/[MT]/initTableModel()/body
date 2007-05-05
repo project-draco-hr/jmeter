@@ -1,3 +1,3 @@
 {
-  tableModel=new PowerTableModel(new String[]{JMeterUtils.getResString("name"),THREAD_COLUMNS + "_" + numUserColumns},new Class[]{String.class,String.class});
+  tableModel=new PowerTableModel(new String[]{JMeterUtils.getResString("name"),THREAD_COLUMNS_PREFIX + numUserColumns},new Class[]{String.class,String.class});
 }

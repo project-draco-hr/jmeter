@@ -3,7 +3,7 @@
     TableCellEditor cellEditor=paramTable.getCellEditor(paramTable.getEditingRow(),paramTable.getEditingColumn());
     cellEditor.stopCellEditing();
   }
-  tableModel.addNewColumn(THREAD_COLUMNS + "_" + tableModel.getColumnCount(),String.class);
+  tableModel.addNewColumn(THREAD_COLUMNS_PREFIX + tableModel.getColumnCount(),String.class);
   tableModel.fireTableDataChanged();
   deleteColumnButton.setEnabled(true);
   int colToSelect=tableModel.getColumnCount() - 1;

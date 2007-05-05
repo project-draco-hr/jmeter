@@ -31,7 +31,7 @@
   chineseSimple.setActionCommand(ActionNames.CHANGE_LANGUAGE);
   chineseSimple.setName(Locale.SIMPLIFIED_CHINESE.toString());
   languageMenu.add(chineseSimple);
-  JMenuItem chineseTrad=new JMenuItem(JMeterUtils.getResString("zh_TW"));
+  JMenuItem chineseTrad=new JMenuItem(JMeterUtils.getResString("zh_tw"));
   chineseTrad.addActionListener(ActionRouter.getInstance());
   chineseTrad.setActionCommand(ActionNames.CHANGE_LANGUAGE);
   chineseTrad.setName(Locale.TRADITIONAL_CHINESE.toString());
