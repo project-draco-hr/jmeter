@@ -3,12 +3,15 @@
   PropertyIterator iter=getArguments().iterator();
   while (iter.hasNext()) {
     LDAPArgument arg=(LDAPArgument)iter.next().getObjectValue();
-    if (arg.getMetaData() == null) {
-      str.append(arg.getName() + "=" + arg.getValue());
+    final String metaData=arg.getMetaData();
+    str.append(arg.getName());
+    if (metaData == null) {
+      str.append("=");
     }
  else {
-      str.append(arg.getName() + arg.getMetaData() + arg.getValue());
+      str.append(metaData);
     }
+    str.append(arg.getValue());
     if (iter.hasNext()) {
       str.append("&");
     }
