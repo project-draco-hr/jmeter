@@ -1,7 +1,7 @@
 {
   setBorder(makeBorder());
-  setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  startField=new JLabeledTextField(JMeterUtils.getResString("start") + "          ");
+  setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  startField=new JLabeledTextField(JMeterUtils.getResString("start"));
   incrField=new JLabeledTextField(JMeterUtils.getResString("increment"));
   endField=new JLabeledTextField(JMeterUtils.getResString("max"));
   varNameField=new JLabeledTextField(JMeterUtils.getResString("var_name"));
