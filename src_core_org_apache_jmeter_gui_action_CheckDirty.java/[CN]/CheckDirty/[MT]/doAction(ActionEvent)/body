@@ -21,10 +21,15 @@
     }
     removeMode=false;
   }
-  checkMode=true;
-  dirty=false;
-  HashTree wholeTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
-  wholeTree.traverse(this);
+  if (action.equals(ActionNames.SUB_TREE_MERGED)) {
+    dirty=true;
+  }
+ else {
+    dirty=false;
+    checkMode=true;
+    HashTree wholeTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
+    wholeTree.traverse(this);
+    checkMode=false;
+  }
   GuiPackage.getInstance().setDirty(dirty);
-  checkMode=false;
 }

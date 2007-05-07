@@ -1,28 +1,28 @@
 {
-  boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
-  if (!merging) {
-    ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),"close"));
-  }
   JFileChooser chooser=FileDialoger.promptToOpenFile(new String[]{".jmx"});
   if (chooser == null) {
     return;
   }
-  boolean isTestPlan=false;
   InputStream reader=null;
-  File f=null;
   try {
-    f=chooser.getSelectedFile();
+    File f=chooser.getSelectedFile();
     if (f != null) {
+      boolean isTestPlan=false;
+      boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
       if (merging) {
         log.info("Merging file: " + f);
       }
  else {
         log.info("Loading file: " + f);
+        ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.CLOSE));
         FileServer.getFileServer().setBasedir(f.getAbsolutePath());
       }
       reader=new FileInputStream(f);
       HashTree tree=SaveService.loadTree(reader);
-      isTestPlan=insertLoadedTree(e.getID(),tree);
+      isTestPlan=insertLoadedTree(e.getID(),tree,merging);
+      if (!merging && isTestPlan) {
+        GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
+      }
     }
   }
  catch (  NoClassDefFoundError ex) {
@@ -49,8 +49,5 @@ catch (  Exception ex) {
     JOrphanUtils.closeQuietly(reader);
     GuiPackage.getInstance().updateCurrentGui();
     GuiPackage.getInstance().getMainFrame().repaint();
-  }
-  if (!merging && isTestPlan && f != null) {
-    GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
   }
 }

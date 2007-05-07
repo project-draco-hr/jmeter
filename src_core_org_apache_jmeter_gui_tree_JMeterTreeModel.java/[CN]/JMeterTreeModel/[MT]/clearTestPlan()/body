@@ -1,4 +1,4 @@
 {
-  super.removeNodeFromParent((JMeterTreeNode)getChild(getRoot(),0));
-  initTree();
+  TestElement tp=new TestPlanGui().createTestElement();
+  clearTestPlan(tp);
 }

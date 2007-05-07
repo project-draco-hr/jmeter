@@ -1,0 +1,9 @@
+{
+  int children=getChildCount(getRoot());
+  while (children > 0) {
+    JMeterTreeNode child=(JMeterTreeNode)getChild(getRoot(),0);
+    super.removeNodeFromParent(child);
+    children=getChildCount(getRoot());
+  }
+  initTree(testPlan);
+}

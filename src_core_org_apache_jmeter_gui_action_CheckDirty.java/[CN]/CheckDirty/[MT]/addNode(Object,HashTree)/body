@@ -2,13 +2,15 @@
   log.debug("Node is class:" + node.getClass());
   JMeterTreeNode treeNode=(JMeterTreeNode)node;
   if (checkMode) {
-    if (previousGuiItems.containsKey(treeNode)) {
-      if (!previousGuiItems.get(treeNode).equals(treeNode.getTestElement())) {
+    if (!dirty) {
+      if (previousGuiItems.containsKey(treeNode)) {
+        if (!previousGuiItems.get(treeNode).equals(treeNode.getTestElement())) {
+          dirty=true;
+        }
+      }
+ else {
         dirty=true;
       }
-    }
- else {
-      dirty=true;
     }
   }
  else   if (removeMode) {
