@@ -1,32 +1,12 @@
 {
-  SampleSaveConfiguration s=new SampleSaveConfiguration();
-  s.time=time;
-  s.latency=latency;
-  s.timestamp=timestamp;
-  s.success=success;
-  s.label=label;
-  s.code=code;
-  s.message=message;
-  s.threadName=threadName;
-  s.dataType=dataType;
-  s.encoding=encoding;
-  s.assertions=assertions;
-  s.subresults=subresults;
-  s.responseData=responseData;
-  s.samplerData=samplerData;
-  s.xml=xml;
-  s.fieldNames=fieldNames;
-  s.responseHeaders=responseHeaders;
-  s.requestHeaders=requestHeaders;
-  s.formatter=formatter;
-  s.assertionsResultsToSave=assertionsResultsToSave;
-  s.saveAssertionResultsFailureMessage=saveAssertionResultsFailureMessage;
-  s.delimiter=delimiter;
-  s.printMilliseconds=printMilliseconds;
-  s.responseDataOnError=responseDataOnError;
-  s.url=url;
-  s.bytes=bytes;
-  s.fileName=fileName;
-  s.threadCounts=threadCounts;
-  return s;
+  try {
+    SampleSaveConfiguration clone=(SampleSaveConfiguration)super.clone();
+    if (this.formatter != null) {
+      clone.formatter=(SimpleDateFormat)this.formatter.clone();
+    }
+    return clone;
+  }
+ catch (  CloneNotSupportedException e) {
+    return null;
+  }
 }
