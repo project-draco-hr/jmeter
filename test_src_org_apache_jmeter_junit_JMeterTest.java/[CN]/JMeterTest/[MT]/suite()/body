@@ -9,6 +9,7 @@
  catch (  RuntimeException e) {
     System.out.println("Cannot create MainFrame: " + e);
   }
+  JMeterUtils.setLocale(TEST_LOCALE);
   TestSuite suite=new TestSuite("JMeterTest");
   suite.addTest(new JMeterTest("readAliases"));
   suite.addTest(new JMeterTest("createTitleSet"));
