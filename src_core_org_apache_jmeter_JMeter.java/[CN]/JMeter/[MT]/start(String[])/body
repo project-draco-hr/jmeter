@@ -41,6 +41,13 @@
       System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
     }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
+      File jmeterHome=new File(JMeterUtils.getJMeterHome());
+      if (!jmeterHome.toURL().equals(jmeterHome.toURI().toURL())) {
+        System.out.println("JMeter path cannot contain spaces when run in server mode.");
+        System.out.println("JMeterHome is " + jmeterHome.getAbsolutePath());
+        log.error("JMeter path cannot contain spaces when run in server mode : " + jmeterHome.getAbsolutePath());
+        System.exit(-1);
+      }
       startServer(JMeterUtils.getPropDefault("server_port",0));
       startOptionalServers();
     }
