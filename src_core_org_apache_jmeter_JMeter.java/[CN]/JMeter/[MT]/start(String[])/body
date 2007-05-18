@@ -41,12 +41,10 @@
       System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
     }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
-      File jmeterHome=new File(JMeterUtils.getJMeterHome());
-      if (!jmeterHome.toURL().equals(jmeterHome.toURI().toURL())) {
-        System.out.println("JMeter path cannot contain spaces when run in server mode.");
-        System.out.println("JMeterHome is " + jmeterHome.getAbsolutePath());
-        log.error("JMeter path cannot contain spaces when run in server mode : " + jmeterHome.getAbsolutePath());
-        System.exit(-1);
+      final String jmHome=JMeterUtils.getJMeterHome();
+      if (jmHome.indexOf(" ") > -1) {
+        log.error("JMeter path cannot contain spaces when run in server mode : " + jmHome);
+        throw new RuntimeException("JMeter path cannot contain spaces when run in server mode: " + jmHome);
       }
       startServer(JMeterUtils.getPropDefault("server_port",0));
       startOptionalServers();
@@ -56,7 +54,9 @@
       startOptionalServers();
     }
  else {
-      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),parser.getArgumentById(REMOTE_OPT));
+      CLOption rem=parser.getArgumentById(REMOTE_OPT_PARAM);
+      if (rem == null)       rem=parser.getArgumentById(REMOTE_OPT);
+      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),rem);
       startOptionalServers();
     }
   }
