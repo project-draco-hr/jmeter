@@ -14,15 +14,20 @@
       }
  else {
         if (!line.startsWith("<?xml ")) {
-          while (line != null) {
-            try {
-              SampleResult result=OldSaveService.makeResultFromDelimitedString(line,getSaveConfig());
-              if (result != null)               sendToVisualizer(result);
-            }
- catch (            NumberFormatException ignored) {
-              errorDetected=true;
-            }
+          long lineNumber=1;
+          SampleSaveConfiguration saveConfig=OldSaveService.getSampleSaveConfiguration(line);
+          if (saveConfig == null) {
+            saveConfig=(SampleSaveConfiguration)getSaveConfig().clone();
+          }
+ else {
             line=dataReader.readLine();
+            lineNumber++;
+          }
+          while (line != null) {
+            SampleResult result=OldSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
+            if (result != null)             sendToVisualizer(result);
+            line=dataReader.readLine();
+            lineNumber++;
           }
           parsedOK=true;
         }

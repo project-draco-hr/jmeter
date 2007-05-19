@@ -1,24 +1,35 @@
 {
-  if (inputLine.startsWith(TIME_STAMP) || inputLine.startsWith(CSV_ELAPSED)) {
-    return null;
-  }
   SampleResult result=null;
   long timeStamp=0;
   long elapsed=0;
   String parts[]=inputLine.split("\\Q" + _saveConfig.getDelimiter());
   String text=null;
-  String field=TIME_STAMP;
+  String field=null;
   int i=0;
   try {
     if (saveConfig.saveTimestamp()) {
+      field=TIME_STAMP;
+      text=parts[i++];
       if (saveConfig.printMilliseconds()) {
-        text=parts[i++];
-        timeStamp=Long.parseLong(text);
+        try {
+          timeStamp=Long.parseLong(text);
+        }
+ catch (        NumberFormatException e) {
+          log.warn(e.toString());
+          Date stamp=DEFAULT_DATE_FORMAT.parse(text);
+          timeStamp=stamp.getTime();
+          log.warn("Setting date format to: " + DEFAULT_DATE_FORMAT_STRING);
+          saveConfig.setFormatter(DEFAULT_DATE_FORMAT);
+        }
       }
  else       if (saveConfig.formatter() != null) {
-        text=parts[i++];
         Date stamp=saveConfig.formatter().parse(text);
         timeStamp=stamp.getTime();
+      }
+ else {
+        final String msg="Unknown timestamp format";
+        log.warn(msg);
+        throw new JMeterError(msg);
       }
     }
     if (saveConfig.saveTime()) {
@@ -88,15 +99,15 @@
     }
   }
  catch (  NumberFormatException e) {
-    log.warn("Error parsing " + field + " "+ e);
-    throw e;
+    log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);
+    throw new JMeterError(e);
   }
 catch (  ParseException e) {
-    log.warn("Error parsing " + field + " "+ e);
+    log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);
     throw new JMeterError(e);
   }
 catch (  ArrayIndexOutOfBoundsException e) {
-    log.warn("Insufficient columns to parse " + field);
+    log.warn("Insufficient columns to parse field '" + field + "' at line "+ lineNumber);
     throw new JMeterError(e);
   }
   return result;
