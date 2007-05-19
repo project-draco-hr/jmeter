@@ -1,5 +1,5 @@
 {
-  if (inputLine.startsWith(TIME_STAMP) || inputLine.startsWith(CSV_TIME)) {
+  if (inputLine.startsWith(TIME_STAMP) || inputLine.startsWith(CSV_ELAPSED)) {
     return null;
   }
   SampleResult result=null;
@@ -7,6 +7,7 @@
   long elapsed=0;
   String parts[]=inputLine.split("\\Q" + _saveConfig.getDelimiter());
   String text=null;
+  String field=TIME_STAMP;
   int i=0;
   try {
     if (saveConfig.printMilliseconds()) {
@@ -19,31 +20,38 @@
       timeStamp=stamp.getTime();
     }
     if (saveConfig.saveTime()) {
+      field=CSV_ELAPSED;
       text=parts[i++];
       elapsed=Long.parseLong(text);
     }
     result=new SampleResult(timeStamp,elapsed);
     if (saveConfig.saveLabel()) {
+      field=LABEL;
       text=parts[i++];
       result.setSampleLabel(text);
     }
     if (saveConfig.saveCode()) {
+      field=RESPONSE_CODE;
       text=parts[i++];
       result.setResponseCode(text);
     }
     if (saveConfig.saveMessage()) {
+      field=RESPONSE_MESSAGE;
       text=parts[i++];
       result.setResponseMessage(text);
     }
     if (saveConfig.saveThreadName()) {
+      field=THREAD_NAME;
       text=parts[i++];
       result.setThreadName(text);
     }
     if (saveConfig.saveDataType()) {
+      field=DATA_TYPE;
       text=parts[i++];
       result.setDataType(text);
     }
     if (saveConfig.saveSuccess()) {
+      field=SUCCESSFUL;
       text=parts[i++];
       result.setSuccessful(Boolean.valueOf(text).booleanValue());
     }
@@ -51,6 +59,7 @@
       i++;
     }
     if (saveConfig.saveBytes()) {
+      field=CSV_BYTES;
       text=parts[i++];
       result.setBytes(Integer.parseInt(text));
     }
@@ -61,25 +70,32 @@
       i++;
     }
     if (saveConfig.saveFileName()) {
+      field=CSV_FILENAME;
       text=parts[i++];
       result.setResultFileName(text);
     }
     if (saveConfig.saveLatency()) {
+      field=CSV_LATENCY;
       text=parts[i++];
       result.setLatency(Long.parseLong(text));
     }
     if (saveConfig.saveEncoding()) {
+      field=CSV_ENCODING;
       text=parts[i++];
       result.setEncodingAndType(text);
     }
   }
  catch (  NumberFormatException e) {
-    log.warn("Error parsing number " + e);
+    log.warn("Error parsing " + field + " "+ e);
     throw e;
   }
 catch (  ParseException e) {
-    log.warn("Error parsing line " + e);
-    throw new RuntimeException(e.toString());
+    log.warn("Error parsing " + field + " "+ e);
+    throw new JMeterError(e);
+  }
+catch (  ArrayIndexOutOfBoundsException e) {
+    log.warn("Insufficient columns to parse " + field);
+    throw new JMeterError(e);
   }
   return result;
 }

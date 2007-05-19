@@ -6,7 +6,7 @@
     text.append(delim);
   }
   if (saveConfig.saveTime()) {
-    text.append(CSV_TIME);
+    text.append(CSV_ELAPSED);
     text.append(delim);
   }
   if (saveConfig.saveLabel()) {
