@@ -16,7 +16,7 @@
         if (!line.startsWith("<?xml ")) {
           while (line != null) {
             try {
-              SampleResult result=OldSaveService.makeResultFromDelimitedString(line);
+              SampleResult result=OldSaveService.makeResultFromDelimitedString(line,getSaveConfig());
               if (result != null)               sendToVisualizer(result);
             }
  catch (            NumberFormatException ignored) {
