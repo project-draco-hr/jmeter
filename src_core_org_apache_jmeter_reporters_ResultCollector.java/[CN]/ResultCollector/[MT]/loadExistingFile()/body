@@ -51,13 +51,16 @@
       }
     }
  catch (    IOException e) {
-      log.warn("Problem reading JTL file " + e.getLocalizedMessage());
+      log.warn("Problem reading JTL file: " + file);
+    }
+catch (    JMeterError e) {
+      log.warn("Problem reading JTL file: " + file);
     }
  finally {
       JOrphanUtils.closeQuietly(dataReader);
       JOrphanUtils.closeQuietly(bufferedInputStream);
       if (!parsedOK || errorDetected) {
-        GuiPackage.showErrorMessage("Error loading results file - see log file","CSV Result file loader");
+        GuiPackage.showErrorMessage("Error loading results file - see log file","Result file loader");
       }
     }
   }
