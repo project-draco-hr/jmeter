@@ -15,6 +15,11 @@
       m_state=STATE_NORMAL;
       return;
     }
+    if (m_isLong && '=' != m_tokesep) {
+      addOption(m_option);
+      m_state=STATE_NORMAL;
+      return;
+    }
     if ('=' == m_ch) {
       getChar();
     }

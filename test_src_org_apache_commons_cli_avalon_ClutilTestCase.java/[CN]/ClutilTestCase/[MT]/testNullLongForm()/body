@@ -3,6 +3,7 @@
   final String[] args={"-n","testarg"};
   final CLOptionDescriptor[] options={test};
   final CLArgsParser parser=new CLArgsParser(args,options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
   final CLOption optionByID=parser.getArgumentById('n');
   assertNotNull(optionByID);
   assertEquals('n',optionByID.getDescriptor().getId());

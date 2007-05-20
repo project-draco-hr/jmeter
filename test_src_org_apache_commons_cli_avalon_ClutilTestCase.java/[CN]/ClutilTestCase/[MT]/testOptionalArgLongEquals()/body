@@ -5,7 +5,7 @@
   assertNull(parser.getErrorString(),parser.getErrorString());
   final List clOptions=parser.getArguments();
   final int size=clOptions.size();
-  assertEquals("Option count",3,size);
+  assertEquals("Option count",2,size);
   final CLOption option0=(CLOption)clOptions.get(0);
   assertEquals("Option Code: " + option0.getDescriptor().getId(),TAINT_OPT,option0.getDescriptor().getId());
   assertEquals("Option Arg: " + option0.getArgument(0),"param",option0.getArgument(0));
