@@ -18,6 +18,7 @@
   run_clear=new JMenuItem(JMeterUtils.getResString("clear"),'C');
   run_clear.addActionListener(ActionRouter.getInstance());
   run_clear.setActionCommand(ActionNames.CLEAR);
+  run_clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,KeyEvent.CTRL_MASK | KeyEvent.SHIFT_DOWN_MASK));
   run_clearAll=new JMenuItem(JMeterUtils.getResString("clear_all"),'a');
   run_clearAll.addActionListener(ActionRouter.getInstance());
   run_clearAll.setActionCommand(ActionNames.CLEAR_ALL);

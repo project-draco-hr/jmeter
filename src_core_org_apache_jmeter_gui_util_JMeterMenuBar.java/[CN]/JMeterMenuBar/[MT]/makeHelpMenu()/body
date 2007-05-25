@@ -11,7 +11,7 @@
   whatClass.addActionListener(ActionRouter.getInstance());
   JMenuItem setDebug=new JMenuItem(JMeterUtils.getResString("debug_on"));
   setDebug.setActionCommand(ActionNames.DEBUG_ON);
-  setDebug.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,KeyEvent.CTRL_MASK | KeyEvent.SHIFT_MASK));
+  setDebug.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,KeyEvent.CTRL_MASK | KeyEvent.SHIFT_DOWN_MASK));
   setDebug.addActionListener(ActionRouter.getInstance());
   JMenuItem resetDebug=new JMenuItem(JMeterUtils.getResString("debug_off"));
   resetDebug.setActionCommand(ActionNames.DEBUG_OFF);
