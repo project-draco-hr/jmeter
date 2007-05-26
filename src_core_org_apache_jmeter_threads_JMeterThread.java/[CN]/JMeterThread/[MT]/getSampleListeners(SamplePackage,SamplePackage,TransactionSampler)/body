@@ -1,0 +1,22 @@
+{
+  List sampleListeners=samplePack.getSampleListeners();
+  if (transactionSampler != null) {
+    ArrayList onlySubSamplerListeners=new ArrayList();
+    List transListeners=transactionPack.getSampleListeners();
+    for (Iterator i=sampleListeners.iterator(); i.hasNext(); ) {
+      SampleListener listener=(SampleListener)i.next();
+      boolean found=false;
+      for (Iterator j=transListeners.iterator(); j.hasNext(); ) {
+        if (j.next() == listener) {
+          found=true;
+          break;
+        }
+      }
+      if (!found) {
+        onlySubSamplerListeners.add(listener);
+      }
+    }
+    sampleListeners=onlySubSamplerListeners;
+  }
+  return sampleListeners;
+}

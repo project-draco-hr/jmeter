@@ -1,0 +1,8 @@
+{
+  calls++;
+  if (!res.isSuccessful()) {
+    transactionSampleResult.setSuccessful(false);
+    noFailingSamples++;
+  }
+  transactionSampleResult.addSubResult(res);
+}
