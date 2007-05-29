@@ -6,8 +6,8 @@
       remoteEngines.put(name,engine);
     }
  catch (    Exception ex) {
-      log.error("",ex);
-      JMeterUtils.reportErrorToUser("Bad call to remote host");
+      log.error("Failed to initialise remote engine",ex);
+      JMeterUtils.reportErrorToUser(ex.getMessage(),JMeterUtils.getResString("remote_error_init"));
       return;
     }
   }

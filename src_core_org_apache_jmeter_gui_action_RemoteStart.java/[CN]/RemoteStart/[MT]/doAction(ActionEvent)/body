@@ -15,12 +15,12 @@
  else   if (action.equals(ActionNames.REMOTE_START_ALL)) {
     popupShouldSave(e);
     String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
-    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
+    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
     while (st.hasMoreElements()) {
       String el=(String)st.nextElement();
       doRemoteInit(el.trim());
     }
-    st=new java.util.StringTokenizer(remote_hosts_string,",");
+    st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
     while (st.hasMoreElements()) {
       String el=(String)st.nextElement();
       doRemoteStart(el.trim());
@@ -28,7 +28,7 @@
   }
  else   if (action.equals(ActionNames.REMOTE_STOP_ALL)) {
     String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
-    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
+    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
     while (st.hasMoreElements()) {
       String el=(String)st.nextElement();
       doRemoteStop(el.trim());
@@ -39,7 +39,7 @@
   }
  else   if (action.equals(ActionNames.REMOTE_EXIT_ALL)) {
     String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
-    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
+    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
     while (st.hasMoreElements()) {
       String el=(String)st.nextElement();
       doRemoteExit(el.trim());
