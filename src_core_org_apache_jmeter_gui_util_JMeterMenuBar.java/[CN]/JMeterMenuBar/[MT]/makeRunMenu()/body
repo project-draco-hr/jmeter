@@ -2,34 +2,34 @@
   runMenu=new JMenu(JMeterUtils.getResString("run"));
   runMenu.setMnemonic('R');
   run_start=new JMenuItem(JMeterUtils.getResString("start"),'S');
-  run_start.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,KeyEvent.CTRL_MASK));
+  run_start.setAccelerator(KeyStrokes.ACTION_START);
   run_start.addActionListener(ActionRouter.getInstance());
   run_start.setActionCommand(ActionNames.ACTION_START);
   run_stop=new JMenuItem(JMeterUtils.getResString("stop"),'T');
-  run_stop.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_PERIOD,KeyEvent.CTRL_MASK));
+  run_stop.setAccelerator(KeyStrokes.ACTION_STOP);
   run_stop.setEnabled(false);
   run_stop.addActionListener(ActionRouter.getInstance());
   run_stop.setActionCommand(ActionNames.ACTION_STOP);
   run_shut=new JMenuItem(JMeterUtils.getResString("shutdown"),'Y');
-  run_shut.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_COMMA,KeyEvent.CTRL_MASK));
+  run_shut.setAccelerator(KeyStrokes.ACTION_SHUTDOWN);
   run_shut.setEnabled(false);
   run_shut.addActionListener(ActionRouter.getInstance());
   run_shut.setActionCommand(ActionNames.ACTION_SHUTDOWN);
   run_clear=new JMenuItem(JMeterUtils.getResString("clear"),'C');
   run_clear.addActionListener(ActionRouter.getInstance());
   run_clear.setActionCommand(ActionNames.CLEAR);
-  run_clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,KeyEvent.CTRL_MASK | KeyEvent.SHIFT_DOWN_MASK));
+  run_clear.setAccelerator(KeyStrokes.CLEAR);
   run_clearAll=new JMenuItem(JMeterUtils.getResString("clear_all"),'a');
   run_clearAll.addActionListener(ActionRouter.getInstance());
   run_clearAll.setActionCommand(ActionNames.CLEAR_ALL);
-  run_clearAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,KeyEvent.CTRL_MASK));
+  run_clearAll.setAccelerator(KeyStrokes.CLEAR_ALL);
   runMenu.add(run_start);
   if (remote_start != null) {
     runMenu.add(remote_start);
   }
-  remote_start_all=new JMenuItem(JMeterUtils.getResString("remote_start_all"),'Z');
+  remote_start_all=new JMenuItem(JMeterUtils.getResString("remote_start_all"));
   remote_start_all.setName("remote_start_all");
-  remote_start_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z,KeyEvent.CTRL_MASK));
+  remote_start_all.setAccelerator(KeyStrokes.REMOTE_START_ALL);
   remote_start_all.addActionListener(ActionRouter.getInstance());
   remote_start_all.setActionCommand(ActionNames.REMOTE_START_ALL);
   runMenu.add(remote_start_all);
@@ -39,7 +39,7 @@
     runMenu.add(remote_stop);
   }
   remote_stop_all=new JMenuItem(JMeterUtils.getResString("remote_stop_all"),'X');
-  remote_stop_all.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,KeyEvent.ALT_MASK));
+  remote_stop_all.setAccelerator(KeyStrokes.REMOTE_STOP_ALL);
   remote_stop_all.addActionListener(ActionRouter.getInstance());
   remote_stop_all.setActionCommand(ActionNames.REMOTE_STOP_ALL);
   runMenu.add(remote_stop_all);
