@@ -4,6 +4,28 @@
   if (null == this.rand) {
     this.rand=new SecureRandom();
   }
-  this.getContext();
+  try {
+    if (SHARED_SESSION_CONTEXT) {
+      log.debug("Creating shared context");
+      this.defaultContext=createContext();
+    }
+ else {
+      this.threadlocal=new ThreadLocal();
+    }
+    HttpSSLProtocolSocketFactory sockFactory=new HttpSSLProtocolSocketFactory(this);
+    HttpsURLConnection.setDefaultSSLSocketFactory(sockFactory);
+    HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+      public boolean verify(      String hostname,      SSLSession session){
+        return true;
+      }
+    }
+);
+    Protocol protocol=new Protocol(JsseSSLManager.HTTPS,(ProtocolSocketFactory)sockFactory,443);
+    Protocol.registerProtocol(JsseSSLManager.HTTPS,protocol);
+    log.debug("SSL stuff all set");
+  }
+ catch (  GeneralSecurityException ex) {
+    log.error("Could not set up SSLContext",ex);
+  }
   log.debug("JsseSSLManager installed");
 }

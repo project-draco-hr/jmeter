@@ -1,0 +1,6 @@
+{
+  if (!SHARED_SESSION_CONTEXT) {
+    log.debug("Clearing session context for current thread");
+    this.threadlocal.set(null);
+  }
+}

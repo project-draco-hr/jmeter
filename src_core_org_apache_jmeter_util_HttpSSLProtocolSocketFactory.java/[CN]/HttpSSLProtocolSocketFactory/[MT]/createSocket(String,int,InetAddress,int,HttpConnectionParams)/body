@@ -3,6 +3,7 @@
     throw new IllegalArgumentException("Parameters may not be null");
   }
   int timeout=params.getConnectionTimeout();
+  SSLSocketFactory sslfac=getSSLSocketFactory();
   Socket socket;
   if (timeout == 0) {
     socket=sslfac.createSocket(host,port,localAddress,localPort);
