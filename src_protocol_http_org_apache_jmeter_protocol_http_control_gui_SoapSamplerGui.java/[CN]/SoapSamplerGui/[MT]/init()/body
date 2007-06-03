@@ -3,7 +3,7 @@
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
   urlField=new JLabeledTextField(JMeterUtils.getResString("url"),10);
-  soapXml=new JLabeledTextArea(JMeterUtils.getResString("soap_data_title"),null);
+  soapXml=new JLabeledTextArea(JMeterUtils.getResString("soap_data_title"));
   soapAction=new JLabeledTextField("",10);
   sendSoapAction=new JCheckBox(JMeterUtils.getResString("soap_send_action"),true);
   JPanel mainPanel=new JPanel(new BorderLayout());
