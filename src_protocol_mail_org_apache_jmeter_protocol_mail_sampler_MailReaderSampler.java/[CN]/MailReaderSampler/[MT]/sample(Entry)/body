@@ -23,7 +23,7 @@
     data.append(messages.length);
     data.append(" messages found\n");
     int n=getNumMessages();
-    if (n == -1 || n > messages.length)     n=messages.length;
+    if (n == ALL_MESSAGES || n > messages.length)     n=messages.length;
     for (int i=0; i < n; i++) {
       message=messages[i];
       if (i == 0) {

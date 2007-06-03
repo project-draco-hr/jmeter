@@ -8,7 +8,7 @@
   mrs.setServer(serverBox.getText());
   mrs.setUserName(usernameBox.getText());
   mrs.setPassword(passwordBox.getText());
-  if (allMessagesButton.isSelected())   mrs.setNumMessages(-1);
- else   mrs.setNumMessages(num_messages);
-  mrs.setDeleteMessages(delete);
+  if (allMessagesButton.isSelected())   mrs.setNumMessages(MailReaderSampler.ALL_MESSAGES);
+ else   mrs.setNumMessages(someMessagesField.getText());
+  mrs.setDeleteMessages(deleteBox.isSelected());
 }

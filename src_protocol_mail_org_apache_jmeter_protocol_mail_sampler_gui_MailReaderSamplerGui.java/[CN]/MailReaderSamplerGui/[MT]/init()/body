@@ -69,36 +69,12 @@
   nmbg.add(allMessagesButton);
   nmbg.add(someMessagesButton);
   someMessagesField=new JTextField(5);
-  someMessagesField.setText(Integer.toString(0));
-  someMessagesField.addFocusListener(new FocusListener(){
-    public void focusGained(    FocusEvent e){
-    }
-    public void focusLost(    FocusEvent e){
-      try {
-        num_messages=Integer.parseInt(someMessagesField.getText());
-      }
- catch (      NumberFormatException nfe) {
-        num_messages=0;
-      }
-    }
-  }
-);
+  someMessagesField.setText("0");
   allMessagesButton.setSelected(true);
   numMessagesPanel.add(allMessagesButton);
   numMessagesPanel.add(someMessagesButton);
   numMessagesPanel.add(someMessagesField);
   add(numMessagesPanel);
-  deleteBox=new JCheckBox(DeleteLabel,delete);
-  deleteBox.addItemListener(new ItemListener(){
-    public void itemStateChanged(    ItemEvent event){
-      if (event.getStateChange() == ItemEvent.SELECTED) {
-        delete=true;
-      }
- else {
-        delete=false;
-      }
-    }
-  }
-);
+  deleteBox=new JCheckBox(DeleteLabel);
   add(deleteBox);
 }
