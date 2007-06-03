@@ -6,9 +6,9 @@
     return prop;
   }
  catch (  InstantiationException e) {
-    return null;
+    throw new AssertionError(e);
   }
 catch (  IllegalAccessException e) {
-    return null;
+    throw new AssertionError(e);
   }
 }
