@@ -1,7 +1,7 @@
 {
   super();
-  init();
   mLabel=new JLabel(pLabel);
+  init();
   if (docModel != null) {
     mTextArea.setDocument(docModel);
   }
