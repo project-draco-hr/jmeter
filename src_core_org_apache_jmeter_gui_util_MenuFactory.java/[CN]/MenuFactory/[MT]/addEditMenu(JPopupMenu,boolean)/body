@@ -3,6 +3,7 @@
   menu.add(makeMenuItem(JMeterUtils.getResString("cut"),"Cut",ActionNames.CUT,KeyStrokes.CUT));
   menu.add(makeMenuItem(JMeterUtils.getResString("copy"),"Copy",ActionNames.COPY,KeyStrokes.COPY));
   menu.add(makeMenuItem(JMeterUtils.getResString("paste"),"Paste",ActionNames.PASTE,KeyStrokes.PASTE));
+  menu.add(makeMenuItem(JMeterUtils.getResString("reset_gui"),"Reset",ActionNames.RESET_GUI));
   if (removable) {
     menu.add(makeMenuItem(JMeterUtils.getResString("remove"),"Remove",ActionNames.REMOVE,KeyStrokes.REMOVE));
   }
