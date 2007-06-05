@@ -1,8 +1,0 @@
-{
-  catClass.info("Start : createEntry1");
-  Entry entry=new Entry();
-  entry.setSamplerClass(JNDISampler.class);
-  entry.addConfigElement(defaultJndiConfig);
-  catClass.info("End : createEntry1");
-  return entry;
-}
