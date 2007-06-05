@@ -3,9 +3,7 @@
     updateCurrentNode();
     TestElement curNode=treeListener.getCurrentNode().getTestElement();
     JMeterGUIComponent comp=getGui(curNode);
-    if (!(comp instanceof AbstractVisualizer)) {
-      comp.clear();
-    }
+    comp.clearGui();
     log.debug("Updating gui to new node");
     comp.configure(curNode);
     currentNodeUpdated=false;

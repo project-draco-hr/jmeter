@@ -1,6 +1,6 @@
 {
   super();
   model=new ObjectTableModel(COLUMNS,Calculator.class,new Functor[]{new Functor("getLabel"),new Functor("getCount"),new Functor("getMeanAsNumber"),new Functor("getMin"),new Functor("getMax"),new Functor("getStandardDeviation"),new Functor("getErrorPercentage"),new Functor("getRate"),new Functor("getKBPerSecond"),new Functor("getPageSize")},new Functor[]{null,null,null,null,null,null,null,null,null,null},new Class[]{String.class,Long.class,Long.class,Long.class,Long.class,String.class,String.class,String.class,String.class,String.class});
-  clear();
+  clearData();
   init();
 }

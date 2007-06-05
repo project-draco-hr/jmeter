@@ -1,6 +1,6 @@
 {
   if (!initialized)   init();
-  clear();
+  clearGui();
   super.configure(element);
   for (PropertyIterator jprops=element.propertyIterator(); jprops.hasNext(); ) {
     JMeterProperty jprop=jprops.next();

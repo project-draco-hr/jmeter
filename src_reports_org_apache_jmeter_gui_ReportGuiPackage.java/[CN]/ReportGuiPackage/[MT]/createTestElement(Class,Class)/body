@@ -1,7 +1,7 @@
 {
   try {
     JMeterGUIComponent comp=getGuiFromCache(guiClass,testClass);
-    comp.clear();
+    comp.clearGui();
     TestElement node=comp.createTestElement();
     nodesToGui.put(node,comp);
     return node;

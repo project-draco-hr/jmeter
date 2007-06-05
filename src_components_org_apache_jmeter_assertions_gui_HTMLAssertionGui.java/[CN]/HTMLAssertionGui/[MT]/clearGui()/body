@@ -1,0 +1,11 @@
+{
+  super.clearGui();
+  docTypeBox.setSelectedIndex(0);
+  htmlRadioButton.setSelected(true);
+  xhtmlRadioButton.setSelected(false);
+  xmlRadioButton.setSelected(false);
+  errorThresholdField.setText("0");
+  warningThresholdField.setText("0");
+  filePanel.setFilename("");
+  errorsOnly.setSelected(false);
+}

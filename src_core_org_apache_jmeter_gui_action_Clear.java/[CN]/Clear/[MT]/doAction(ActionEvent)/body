@@ -1,13 +1,15 @@
 {
   GuiPackage guiPackage=GuiPackage.getInstance();
-  if (e.getActionCommand().equals(ActionNames.CLEAR)) {
-    JMeterGUIComponent model=guiPackage.getCurrentGui();
-    try {
-      ((Clearable)model).clear();
+  final String actionCommand=e.getActionCommand();
+  if (actionCommand.equals(ActionNames.CLEAR)) {
+    JMeterGUIComponent guiComp=guiPackage.getCurrentGui();
+    if (guiComp instanceof Clearable) {
+      ((Clearable)guiComp).clearData();
     }
- catch (    Throwable ex) {
-      log.error("",ex);
-    }
+  }
+ else   if (actionCommand.equals(ActionNames.RESET_GUI)) {
+    JMeterGUIComponent guiComp=guiPackage.getCurrentGui();
+    guiComp.clearGui();
   }
  else {
     Iterator iter=guiPackage.getTreeModel().getNodesOfType(Clearable.class).iterator();
@@ -19,7 +21,7 @@
         node=(JMeterTreeNode)next;
         guiComp=guiPackage.getGui(node.getTestElement());
         Clearable item=(Clearable)guiComp;
-        item.clear();
+        item.clearData();
       }
  catch (      Exception ex) {
         log.error("Can't clear: " + node + " "+ guiComp,ex);
