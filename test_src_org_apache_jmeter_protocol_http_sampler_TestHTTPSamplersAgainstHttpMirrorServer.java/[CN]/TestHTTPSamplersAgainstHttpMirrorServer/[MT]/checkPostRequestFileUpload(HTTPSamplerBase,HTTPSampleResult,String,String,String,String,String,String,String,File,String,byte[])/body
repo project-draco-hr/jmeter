@@ -21,5 +21,6 @@
   }
   assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_TYPE,"multipart/form-data" + "; boundary=" + boundaryString));
   assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(expectedPostBody.length)));
+  assertNotNull("Sent body should not be null",bodySent);
   checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
 }
