@@ -26,6 +26,11 @@
     updateClassLoader();
     if (log.isDebugEnabled()) {
       String jcp=System.getProperty("java.class.path");
+      String bits[]=jcp.split(File.pathSeparator);
+      log.debug("ClassPath");
+      for (int i=0; i < bits.length; i++) {
+        log.debug(bits[i]);
+      }
       log.debug(jcp);
     }
     long now=System.currentTimeMillis();
