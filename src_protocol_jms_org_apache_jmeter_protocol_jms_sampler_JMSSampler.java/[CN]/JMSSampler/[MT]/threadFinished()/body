@@ -1,6 +1,5 @@
 {
   LOGGER.debug("Thread ended " + new Date());
-  super.threadFinished();
   if (session != null)   try {
     session.close();
   }
