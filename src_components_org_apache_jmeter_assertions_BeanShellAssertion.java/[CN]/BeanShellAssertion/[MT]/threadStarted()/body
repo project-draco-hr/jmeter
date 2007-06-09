@@ -1,0 +1,9 @@
+{
+  if (bshInterpreter == null)   return;
+  try {
+    bshInterpreter.eval("threadStarted()");
+  }
+ catch (  JMeterException ignored) {
+    log.debug(ignored.getLocalizedMessage());
+  }
+}
