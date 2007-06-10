@@ -79,6 +79,9 @@ if (command.equals(TEXT_COMMAND)) {
  else if (command.equals(HTML_COMMAND)) {
   showRenderedResponse(response,res);
 }
+ else if (command.equals(JSON_COMMAND)) {
+  showRenderJSONResponse(response);
+}
  else if (command.equals(XML_COMMAND)) {
   showRenderXMLResponse(response);
 }

@@ -1,6 +1,6 @@
 {
   results.setContentType("text/plain");
-  results.setText(response == null ? "" : response);
+  results.setText(response == null ? "" : prettyJSON(response));
   results.setCaretPosition(0);
   resultsScrollPane.setViewportView(results);
   textButton.setEnabled(true);
