@@ -1,7 +1,7 @@
 {
   if (bshInterpreter == null)   return;
   try {
-    bshInterpreter.eval("testStarted()");
+    bshInterpreter.evalNoLog("testStarted()");
   }
  catch (  JMeterException ignored) {
     log.debug(ignored.getLocalizedMessage());
