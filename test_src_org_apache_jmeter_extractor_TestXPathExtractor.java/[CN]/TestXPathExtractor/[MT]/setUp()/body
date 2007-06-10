@@ -5,7 +5,7 @@
   extractor.setRefName(VAL_NAME);
   extractor.setDefaultValue("Default");
   result=new SampleResult();
-  String data="<book><preface>zero</preface><page>one</page><page>two</page></book>";
+  String data="<book><preface title='Intro'>zero</preface><page>one</page><page>two</page><empty></empty><a><b></b></a></book>";
   result.setResponseData(data.getBytes());
   vars=new JMeterVariables();
   jmctx.setVariables(vars);
