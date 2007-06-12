@@ -1,0 +1,10 @@
+{
+  if (e.getSource() == autoRedirects) {
+    if (autoRedirects.isSelected()) {
+      followRedirects.setEnabled(false);
+    }
+ else {
+      followRedirects.setEnabled(true);
+    }
+  }
+}
