@@ -1,0 +1,7 @@
+{
+  if (cps <= 0) {
+    throw new IllegalArgumentException("Speed (cps) <= 0");
+  }
+  sslSock=sock;
+  CPS=cps;
+}
