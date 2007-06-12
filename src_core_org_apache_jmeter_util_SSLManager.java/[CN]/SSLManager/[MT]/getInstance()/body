@@ -1,19 +1,6 @@
 {
   if (null == SSLManager.manager) {
-    if (SSLManager.isSSLSupported) {
-      String classname=null;
-      classname="org.apache.jmeter.util.JsseSSLManager";
-      try {
-        Class clazz=Class.forName(classname);
-        Constructor con=clazz.getConstructor(new Class[]{Provider.class});
-        SSLManager.manager=(SSLManager)con.newInstance(new Object[]{SSLManager.sslProvider});
-      }
- catch (      Exception e) {
-        log.error("Could not create SSLManager instance",e);
-        SSLManager.isSSLSupported=false;
-        return null;
-      }
-    }
+    return new JsseSSLManager(SSLManager.sslProvider);
   }
   return SSLManager.manager;
 }
