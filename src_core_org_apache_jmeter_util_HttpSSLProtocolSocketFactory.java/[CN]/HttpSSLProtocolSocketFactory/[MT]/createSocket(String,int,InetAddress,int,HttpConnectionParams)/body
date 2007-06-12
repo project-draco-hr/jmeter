@@ -16,5 +16,5 @@
     socket.connect(remoteaddr,timeout);
   }
   setSocket(socket);
-  return socket;
+  return wrapSocket(socket);
 }
