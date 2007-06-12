@@ -12,7 +12,7 @@
  else {
       this.threadlocal=new ThreadLocal();
     }
-    HttpSSLProtocolSocketFactory sockFactory=new HttpSSLProtocolSocketFactory(this);
+    HttpSSLProtocolSocketFactory sockFactory=new HttpSSLProtocolSocketFactory(this,cps);
     HttpsURLConnection.setDefaultSSLSocketFactory(sockFactory);
     HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
       public boolean verify(      String hostname,      SSLSession session){
