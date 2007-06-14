@@ -1,0 +1,29 @@
+{
+  Object r=null;
+  final String errorString="Error invoking bsh method: ";
+  try {
+    r=m.invoke(bshInstance,o);
+  }
+ catch (  IllegalArgumentException e) {
+    final String message=errorString + m.getName();
+    log.error(message);
+    throw new JMeterError(message,e);
+  }
+catch (  IllegalAccessException e) {
+    final String message=errorString + m.getName();
+    log.error(message);
+    throw new JMeterError(message,e);
+  }
+catch (  InvocationTargetException e) {
+    String message=errorString + m.getName();
+    Throwable cause=e.getCause();
+    if (cause != null) {
+      message+="\t" + cause.getLocalizedMessage();
+    }
+    if (shouldLog) {
+      log.error(message);
+    }
+    throw new JMeterException(message,e);
+  }
+  return r;
+}
