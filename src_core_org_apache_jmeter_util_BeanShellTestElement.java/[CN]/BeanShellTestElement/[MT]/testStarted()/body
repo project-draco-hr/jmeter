@@ -1,0 +1,9 @@
+{
+  if (bshInterpreter == null || !hasInitFile)   return;
+  try {
+    bshInterpreter.evalNoLog("testStarted()");
+  }
+ catch (  JMeterException ignored) {
+    log.debug(getClass().getName() + " : " + ignored.getLocalizedMessage());
+  }
+}

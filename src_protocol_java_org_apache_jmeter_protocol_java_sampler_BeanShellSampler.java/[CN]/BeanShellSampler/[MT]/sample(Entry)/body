@@ -3,6 +3,7 @@
   boolean isSuccessful=false;
   res.setSampleLabel(getLabel());
   res.sampleStart();
+  final BeanShellInterpreter bshInterpreter=getBeanShellInterpreter();
   if (bshInterpreter == null) {
     res.sampleEnd();
     res.setResponseCode("503");

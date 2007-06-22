@@ -1,0 +1,10 @@
+{
+  try {
+    String initFileName=JMeterUtils.getProperty(getInitFileProperty());
+    hasInitFile=initFileName != null;
+    bshInterpreter=new BeanShellInterpreter(initFileName,log);
+  }
+ catch (  ClassNotFoundException e) {
+    log.error("Cannot find BeanShell: " + e.toString());
+  }
+}

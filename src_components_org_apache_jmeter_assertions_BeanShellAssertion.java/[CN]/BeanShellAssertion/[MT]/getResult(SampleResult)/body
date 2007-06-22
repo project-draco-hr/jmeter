@@ -1,5 +1,6 @@
 {
   AssertionResult result=new AssertionResult(getName());
+  final BeanShellInterpreter bshInterpreter=getBeanShellInterpreter();
   if (bshInterpreter == null) {
     result.setFailure(true);
     result.setError(true);

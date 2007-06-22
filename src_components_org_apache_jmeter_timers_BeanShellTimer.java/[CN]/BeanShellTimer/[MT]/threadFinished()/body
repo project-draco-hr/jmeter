@@ -1,9 +1,0 @@
-{
-  if (bshInterpreter == null)   return;
-  try {
-    bshInterpreter.evalNoLog("threadFinished()");
-  }
- catch (  JMeterException ignored) {
-    log.debug(ignored.getLocalizedMessage());
-  }
-}

@@ -1,0 +1,6 @@
+{
+  BeanShellTestElement o=(BeanShellTestElement)super.clone();
+  o.init();
+  o.setScript(getScript());
+  return o;
+}
