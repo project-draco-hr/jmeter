@@ -11,7 +11,9 @@
   while (iter.hasNext()) {
     JMeterProperty jmp=iter.next();
     if (!testFormat22 || !ConversionHelp.isSpecialProperty(jmp.getName())) {
-      writeItem(jmp,context,writer);
+      if (!(TestPlan.COMMENTS.equals(jmp.getName()) && jmp.getStringValue().length() == 0)) {
+        writeItem(jmp,context,writer);
+      }
     }
   }
 }
