@@ -1,5 +1,8 @@
 {
-  boolean result=evaluateCondition(getCondition());
+  boolean result=true;
+  if (isFirst()) {
+    result=evaluateCondition(getCondition());
+  }
   if (result) {
     return super.next();
   }
