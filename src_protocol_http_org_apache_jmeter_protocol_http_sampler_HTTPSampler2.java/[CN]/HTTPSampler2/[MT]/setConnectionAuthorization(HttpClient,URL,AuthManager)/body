@@ -1,4 +1,5 @@
 {
+  HttpParams params=client.getParams();
   if (authManager != null) {
     Authorization auth=authManager.getAuthForURL(u);
     if (auth != null) {
@@ -9,9 +10,16 @@
         log.debug(username + " >  D=" + username+ " D="+ domain+ " R="+ realm);
       }
       client.getState().setCredentials(new AuthScope(u.getHost(),u.getPort(),realm.length() == 0 ? null : realm,AuthScope.ANY_SCHEME),new NTCredentials(username,auth.getPass(),localHost,domain));
+      if (canSetPreEmptive) {
+        log.debug("Setting Pre-emptive authentication");
+        params.setBooleanParameter(HTTP_AUTHENTICATION_PREEMPTIVE,true);
+      }
     }
  else {
       client.getState().clearCredentials();
+      if (canSetPreEmptive) {
+        params.setBooleanParameter(HTTP_AUTHENTICATION_PREEMPTIVE,false);
+      }
     }
   }
  else {
