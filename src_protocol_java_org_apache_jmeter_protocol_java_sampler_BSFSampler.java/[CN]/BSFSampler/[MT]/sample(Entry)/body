@@ -1,33 +1,58 @@
 {
-  log.info(getLabel() + " " + getFilename());
+  final String label=getLabel();
+  log.info(label + " " + getFilename());
   SampleResult res=new SampleResult();
-  boolean isSuccessful=false;
-  res.setSampleLabel(getLabel());
+  res.setSampleLabel(label);
+  FileInputStream is=null;
   res.sampleStart();
   try {
-    String request=getScript();
-    res.setSamplerData(request);
-    mgr.registerBean("Label",getLabel());
-    mgr.registerBean("Name",getFilename());
-    bsfEngine=mgr.loadScriptingEngine(getScriptLanguage());
-    Object bsfOut=bsfEngine.eval("Sampler",0,0,request);
-    res.setResponseData(bsfOut.toString().getBytes());
-    res.setDataType(SampleResult.TEXT);
+    final String request=getScript();
+    final String fileName=getFilename();
+    mgr.declareBean("log",log,log.getClass());
+    mgr.declareBean("Label",label,String.class);
+    mgr.declareBean("FileName",fileName,String.class);
+    mgr.declareBean("Parameters",getParameters(),String.class);
+    String[] args=JOrphanUtils.split(getParameters()," ");
+    mgr.declareBean("args",args,args.getClass());
+    mgr.declareBean("SampleResult",res,res.getClass());
     res.setResponseCode("200");
     res.setResponseMessage("OK");
-    isSuccessful=true;
+    res.setSuccessful(true);
+    res.setDataType(SampleResult.TEXT);
+    JMeterContext jmctx=JMeterContextService.getContext();
+    JMeterVariables vars=jmctx.getVariables();
+    mgr.declareBean("ctx",jmctx,jmctx.getClass());
+    mgr.declareBean("vars",vars,vars.getClass());
+    BSFEngine bsfEngine=mgr.loadScriptingEngine(getScriptLanguage());
+    Object bsfOut=null;
+    if (fileName.length() > 0) {
+      res.setSamplerData("File: " + fileName);
+      is=new FileInputStream(fileName);
+      bsfOut=bsfEngine.eval(fileName,0,0,IOUtils.toString(is));
+    }
+ else {
+      res.setSamplerData("[script]");
+      bsfOut=bsfEngine.eval("script",0,0,request);
+    }
+    if (bsfOut != null) {
+      res.setResponseData(bsfOut.toString().getBytes());
+    }
   }
  catch (  NoClassDefFoundError ex) {
     log.warn("",ex);
+    res.setSuccessful(false);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
   }
 catch (  Exception ex) {
     log.warn("",ex);
+    res.setSuccessful(false);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
   }
-  res.sampleEnd();
-  res.setSuccessful(isSuccessful);
+ finally {
+    res.sampleEnd();
+    IOUtils.closeQuietly(is);
+  }
   return res;
 }
