@@ -1,7 +1,7 @@
 {
   JMeterContext context=getThreadContext();
   String inputVariable=getInputVal() + getSeparator() + (loopCount + 1);
-  if (context.getVariables().get(inputVariable) != null) {
+  if (context.getVariables().getObject(inputVariable) != null) {
     log.debug("ForEach resultstring eofArgs= false");
     return false;
   }
