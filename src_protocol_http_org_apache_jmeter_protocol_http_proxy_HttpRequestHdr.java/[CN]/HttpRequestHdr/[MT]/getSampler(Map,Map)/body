@@ -1,0 +1,17 @@
+{
+  HttpTestSampleGui tempGui=null;
+  if (sampler instanceof HTTPSampler2) {
+    tempGui=new HttpTestSampleGui2();
+  }
+ else {
+    tempGui=new HttpTestSampleGui();
+  }
+  sampler.setProperty(TestElement.GUI_CLASS,tempGui.getClass().getName());
+  populateSampler(pageEncodings,formEncodings);
+  tempGui.configure(sampler);
+  tempGui.modifyTestElement(sampler);
+  sampler.setFollowRedirects(false);
+  sampler.setUseKeepAlive(true);
+  if (log.isDebugEnabled())   log.debug("getSampler: sampler path = " + sampler.getPath());
+  return sampler;
+}

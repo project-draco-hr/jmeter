@@ -1,0 +1,8 @@
+{
+  if (contentEncoding != null && contentEncoding.length() > 0) {
+    return postBody.getBytes(contentEncoding).length;
+  }
+ else {
+    return postBody.getBytes().length;
+  }
+}

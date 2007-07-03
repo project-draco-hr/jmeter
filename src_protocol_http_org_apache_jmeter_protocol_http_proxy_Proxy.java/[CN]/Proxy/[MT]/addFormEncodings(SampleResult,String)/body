@@ -1,0 +1,9 @@
+{
+  FormCharSetFinder finder=new FormCharSetFinder();
+  try {
+    finder.addFormActionsAndCharSet(result.getResponseDataAsString(),formEncodings,pageEncoding);
+  }
+ catch (  HTMLParseException parseException) {
+    log.debug("Unable to parse response, could not find any form character set encodings");
+  }
+}

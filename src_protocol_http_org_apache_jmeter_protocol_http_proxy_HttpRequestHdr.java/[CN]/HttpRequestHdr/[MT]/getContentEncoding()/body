@@ -1,0 +1,16 @@
+{
+  String contentType=getContentType();
+  if (contentType != null) {
+    int charSetStartPos=contentType.toLowerCase().indexOf("charset=");
+    if (charSetStartPos >= 0) {
+      String charSet=contentType.substring(charSetStartPos + "charset=".length());
+      if (charSet != null && charSet.length() > 0) {
+        charSet=JOrphanUtils.replaceAllChars(charSet,'"',"");
+        if (charSet.length() > 0) {
+          return charSet;
+        }
+      }
+    }
+  }
+  return null;
+}

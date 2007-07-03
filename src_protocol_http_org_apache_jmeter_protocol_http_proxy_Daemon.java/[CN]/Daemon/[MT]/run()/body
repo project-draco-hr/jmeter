@@ -1,6 +1,8 @@
 {
   running=true;
   ServerSocket mainSocket=null;
+  pageEncodings=Collections.synchronizedMap(new HashMap());
+  formEncodings=Collections.synchronizedMap(new HashMap());
   try {
     log.info("Creating Daemon Socket... on port " + daemonPort);
     mainSocket=new ServerSocket(daemonPort);
@@ -11,7 +13,7 @@
         Socket clientSocket=mainSocket.accept();
         if (running) {
           Proxy thd=(Proxy)proxyClass.newInstance();
-          thd.configure(clientSocket,target);
+          thd.configure(clientSocket,target,pageEncodings,formEncodings);
           thd.start();
         }
  else {
@@ -37,4 +39,6 @@
  catch (    Exception exc) {
     }
   }
+  pageEncodings=null;
+  formEncodings=null;
 }

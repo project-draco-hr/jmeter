@@ -1,16 +1,3 @@
 {
-  setAlwaysEncoded(true);
-  if (alreadyEncoded) {
-    try {
-      name=URLDecoder.decode(name,EncoderCache.URL_ARGUMENT_ENCODING);
-      value=URLDecoder.decode(value,EncoderCache.URL_ARGUMENT_ENCODING);
-    }
- catch (    UnsupportedEncodingException e) {
-      log.error("UTF-8 encoding not supported!");
-      throw new Error(e.toString());
-    }
-  }
-  setName(name);
-  setValue(value);
-  setMetaData("=");
+  this(name,value,alreadyEncoded,EncoderCache.URL_ARGUMENT_ENCODING);
 }

@@ -1,13 +1,15 @@
 {
+  String url="http://localhost/matrix.html";
   String contentEncoding="UTF-8";
   String boundary="xf8SqlDNvmn6mFYwrioJaeUR2_Z4cLRXOSmB";
   String endOfLine="\r\n";
   String titleValue="mytitle";
   String descriptionValue="mydescription";
   String postBody=createMultipartFormBody(titleValue,descriptionValue,contentEncoding,true,boundary,endOfLine);
-  String testPostRequest=createMultipartFormRequest(postBody,boundary,endOfLine);
-  HTTPSamplerBase s=getSamplerForRequest(testPostRequest,"UTF-8");
+  String testPostRequest=createMultipartFormRequest(url,postBody,contentEncoding,boundary,endOfLine);
+  HTTPSamplerBase s=getSamplerForRequest(url,testPostRequest,contentEncoding);
   assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(contentEncoding,s.getContentEncoding());
   assertTrue(s.getDoMultipartPost());
   Arguments arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());
@@ -17,9 +19,10 @@
   titleValue="mytitle";
   descriptionValue="mydescription";
   postBody=createMultipartFormBody(titleValue,descriptionValue,contentEncoding,true,boundary,endOfLine);
-  testPostRequest=createMultipartFormRequest(postBody,boundary,endOfLine);
-  s=getSamplerForRequest(testPostRequest,"UTF-8");
+  testPostRequest=createMultipartFormRequest(url,postBody,contentEncoding,boundary,endOfLine);
+  s=getSamplerForRequest(url,testPostRequest,contentEncoding);
   assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(contentEncoding,s.getContentEncoding());
   assertTrue(s.getDoMultipartPost());
   arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());
@@ -29,9 +32,10 @@
   titleValue="mytitle";
   descriptionValue="mydescription";
   postBody=createMultipartFormBody(titleValue,descriptionValue,contentEncoding,true,boundary,endOfLine);
-  testPostRequest=createMultipartFormRequest(postBody,boundary,endOfLine);
-  s=getSamplerForRequest(testPostRequest,"UTF-8");
+  testPostRequest=createMultipartFormRequest(url,postBody,contentEncoding,boundary,endOfLine);
+  s=getSamplerForRequest(url,testPostRequest,contentEncoding);
   assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(contentEncoding,s.getContentEncoding());
   assertTrue(s.getDoMultipartPost());
   arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());
@@ -41,9 +45,10 @@
   titleValue="/wEPDwULLTE2MzM2OTA0NTYPZBYCAgMPZ/rA+8DZ2dnZ2dnZ2d/GNDar6OshPwdJc=";
   descriptionValue="mydescription";
   postBody=createMultipartFormBody(titleValue,descriptionValue,contentEncoding,true,boundary,endOfLine);
-  testPostRequest=createMultipartFormRequest(postBody,boundary,endOfLine);
-  s=getSamplerForRequest(testPostRequest,"UTF-8");
+  testPostRequest=createMultipartFormRequest(url,postBody,contentEncoding,boundary,endOfLine);
+  s=getSamplerForRequest(url,testPostRequest,contentEncoding);
   assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(contentEncoding,s.getContentEncoding());
   assertTrue(s.getDoMultipartPost());
   arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());

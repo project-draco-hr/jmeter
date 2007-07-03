@@ -1,6 +1,3 @@
 {
-  this.target=_target;
-  this.clientSocket=_clientSocket;
-  this.captureHttpHeaders=_target.getCaptureHttpHeaders();
-  this.httpsSpoof=target.getHttpsSpoof();
+  configure(_clientSocket,_target,null,null);
 }

@@ -29,9 +29,9 @@
       readLength++;
     }
   }
-  postData=line.toString();
+  rawPostData=line.toByteArray();
   if (log.isDebugEnabled()) {
-    log.debug("postData: " + postData);
+    log.debug("rawPostData in default JRE encoding: " + new String(rawPostData));
     log.debug("Request: " + clientRequest.toString());
   }
   return clientRequest.toByteArray();

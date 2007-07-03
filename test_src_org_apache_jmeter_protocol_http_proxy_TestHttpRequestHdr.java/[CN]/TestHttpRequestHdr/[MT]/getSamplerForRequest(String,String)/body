@@ -1,7 +1,0 @@
-{
-  HttpRequestHdr req=new HttpRequestHdr();
-  ByteArrayInputStream bis=new ByteArrayInputStream(request.getBytes(contentEncoding));
-  req.parse(bis);
-  bis.close();
-  return req.getSampler();
-}

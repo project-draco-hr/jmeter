@@ -1,0 +1,19 @@
+{
+  String contentTypeHeader=res.getContentType();
+  String charSet=null;
+  if (contentTypeHeader != null) {
+    int charSetStartPos=contentTypeHeader.toLowerCase().indexOf("charset=");
+    if (charSetStartPos > 0) {
+      charSet=contentTypeHeader.substring(charSetStartPos + "charset=".length());
+      if (charSet != null) {
+        if (charSet.trim().length() > 0) {
+          charSet=charSet.trim();
+        }
+ else {
+          charSet=null;
+        }
+      }
+    }
+  }
+  return charSet;
+}

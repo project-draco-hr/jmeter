@@ -1,6 +1,11 @@
 {
   assertEquals(expectedName,arg.getName());
   assertEquals(expectedValue,arg.getValue());
-  assertEquals(expectedEncodedValue,arg.getEncodedValue(contentEncoding));
+  if (contentEncoding != null && contentEncoding.length() > 0) {
+    assertEquals(expectedEncodedValue,arg.getEncodedValue(contentEncoding));
+  }
+ else {
+    assertEquals(expectedEncodedValue,arg.getEncodedValue("ISO-8859-1"));
+  }
   assertEquals(expectedEncoded,arg.isAlwaysEncoded());
 }

@@ -1,0 +1,29 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("adding argument: name: " + name + " value: "+ value+ " metaData: "+ metaData+ " contentEncoding: "+ contentEncoding);
+  }
+  HTTPArgument arg=null;
+  if (contentEncoding != null) {
+    arg=new HTTPArgument(name,value,metaData,true,contentEncoding);
+  }
+ else {
+    arg=new HTTPArgument(name,value,metaData,true);
+  }
+  String valueEncoded=null;
+  if (contentEncoding != null) {
+    try {
+      valueEncoded=arg.getEncodedValue(contentEncoding);
+    }
+ catch (    UnsupportedEncodingException e) {
+      log.warn("Unable to get encoded value using encoding " + contentEncoding);
+      valueEncoded=arg.getEncodedValue();
+    }
+  }
+ else {
+    valueEncoded=arg.getEncodedValue();
+  }
+  if (arg.getName().equals(arg.getEncodedName()) && arg.getValue().equals(valueEncoded)) {
+    arg.setAlwaysEncoded(false);
+  }
+  this.getArguments().addArgument(arg);
+}

@@ -12,7 +12,7 @@
   HeaderManager headers=null;
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
-    request.getSampler();
+    request.getSampler(pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     if (httpsSpoof) {
@@ -24,6 +24,8 @@
       String noHttpsResult=new String(result.getResponseData());
       result.setResponseData(noHttpsResult.replaceAll("https","http").getBytes());
     }
+    String pageEncoding=addPageEncoding(result);
+    addFormEncodings(result,pageEncoding);
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
   }

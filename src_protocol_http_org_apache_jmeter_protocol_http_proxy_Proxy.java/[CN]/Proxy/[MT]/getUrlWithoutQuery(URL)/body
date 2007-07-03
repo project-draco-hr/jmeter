@@ -1,0 +1,9 @@
+{
+  String fullUrl=url.toString();
+  String urlWithoutQuery=fullUrl;
+  String query=url.getQuery();
+  if (query != null) {
+    urlWithoutQuery=urlWithoutQuery.substring(0,urlWithoutQuery.length() - query.length() - 1);
+  }
+  return urlWithoutQuery;
+}
