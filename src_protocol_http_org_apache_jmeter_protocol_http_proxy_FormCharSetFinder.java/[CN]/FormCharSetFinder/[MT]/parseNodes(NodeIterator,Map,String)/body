@@ -1,0 +1,34 @@
+{
+  while (e.hasMoreNodes()) {
+    Node node=e.nextNode();
+    if (!(node instanceof Tag)) {
+      continue;
+    }
+    Tag tag=(Tag)node;
+    if (tag instanceof FormTag) {
+      String action=tag.getAttribute("action");
+      String acceptCharSet=tag.getAttribute("accept-charset");
+      if (action != null && action.length() > 0) {
+        String formCharSet=pageEncoding;
+        if (acceptCharSet != null) {
+          String[] charSets=JOrphanUtils.split(acceptCharSet,",");
+          if (charSets.length > 0) {
+            formCharSet=charSets[0].trim();
+            if (formCharSet.length() == 0) {
+              formCharSet=null;
+            }
+          }
+        }
+        if (formCharSet != null) {
+synchronized (formEncodings) {
+            formEncodings.put(action,formCharSet);
+          }
+        }
+      }
+    }
+    if (tag instanceof CompositeTag) {
+      CompositeTag composite=(CompositeTag)tag;
+      parseNodes(composite.elements(),formEncodings,pageEncoding);
+    }
+  }
+}
