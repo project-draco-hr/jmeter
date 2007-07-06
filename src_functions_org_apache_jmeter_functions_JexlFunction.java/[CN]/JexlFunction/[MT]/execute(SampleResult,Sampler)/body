@@ -1,7 +1,7 @@
 {
   String str="";
   CompoundVariable var=(CompoundVariable)values[0];
-  String exp=var.getRawParameters();
+  String exp=var.execute();
   try {
     Expression e=ExpressionFactory.createExpression(exp);
     JexlContext jc=JexlHelper.createContext();
