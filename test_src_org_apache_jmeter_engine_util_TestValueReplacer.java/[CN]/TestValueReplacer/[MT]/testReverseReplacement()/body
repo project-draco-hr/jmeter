@@ -6,10 +6,11 @@
   element.setProperty(new StringProperty("domain","jakarta.apache.org"));
   List args=new ArrayList();
   args.add("username is jack");
-  args.add("jacks_password");
+  args.add("his_password");
   element.setProperty(new CollectionProperty("args",args));
   replacer.reverseReplace(element);
   assertEquals("${server}",element.getPropertyAsString("domain"));
   args=(List)element.getProperty("args").getObjectValue();
+  assertEquals("username is ${username}",((JMeterProperty)args.get(0)).getStringValue());
   assertEquals("${password}",((JMeterProperty)args.get(1)).getStringValue());
 }
