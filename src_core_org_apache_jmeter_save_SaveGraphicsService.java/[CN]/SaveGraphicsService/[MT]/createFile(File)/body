@@ -3,7 +3,7 @@
     return new FileOutputStream(filename);
   }
  catch (  FileNotFoundException e) {
-    e.printStackTrace();
+    log.warn(e.toString());
     return null;
   }
 }

@@ -9,10 +9,6 @@
  catch (  Exception e) {
   }
  finally {
-    try {
-      fos.close();
-    }
- catch (    Exception e) {
-    }
+    JOrphanUtils.closeQuietly(fos);
   }
 }
