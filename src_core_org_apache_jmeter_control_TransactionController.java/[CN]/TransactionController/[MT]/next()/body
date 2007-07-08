@@ -1,21 +1,8 @@
 {
-  if (transactionSampler != null && transactionSampler.isTransactionDone()) {
-    if (log.isDebugEnabled()) {
-      log.debug("End of transaction " + getName());
-    }
-    transactionSampler=null;
-    return null;
+  if (isParent()) {
+    return next1();
   }
-  if (isFirst()) {
-    if (log.isDebugEnabled()) {
-      log.debug("Start of transaction " + getName());
-    }
-    transactionSampler=new TransactionSampler(this,getName());
+ else {
+    return next2();
   }
-  Sampler subSampler=super.next();
-  transactionSampler.setSubSampler(subSampler);
-  if (subSampler == null) {
-    transactionSampler.setTransactionDone();
-  }
-  return transactionSampler;
 }

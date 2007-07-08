@@ -1,5 +1,7 @@
 {
-  setLayout(new BorderLayout());
+  setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
   setBorder(makeBorder());
-  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(makeTitlePanel());
+  parent=new JCheckBox(JMeterUtils.getResString("transaction_controller_parent"));
+  add(parent);
 }

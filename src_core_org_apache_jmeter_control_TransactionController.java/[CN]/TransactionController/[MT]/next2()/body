@@ -1,0 +1,35 @@
+{
+  if (isFirst()) {
+    calls=0;
+    noFailingSamples=0;
+    res=new SampleResult();
+    res.setSampleLabel(getName());
+    res.setSuccessful(true);
+    res.sampleStart();
+  }
+  Sampler returnValue=super.next();
+  if (returnValue == null) {
+    if (res != null) {
+      res.sampleEnd();
+      res.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
+      if (res.isSuccessful()) {
+        res.setResponseCodeOK();
+      }
+      JMeterContext threadContext=getThreadContext();
+      JMeterVariables threadVars=threadContext.getVariables();
+      SamplePackage pack=(SamplePackage)threadVars.getObject(JMeterThread.PACKAGE_OBJECT);
+      if (pack == null) {
+        log.warn("Could not fetch SamplePackage");
+      }
+ else {
+        SampleEvent event=new SampleEvent(res,getName());
+        res=null;
+        lnf.notifyListeners(event,pack.getSampleListeners());
+      }
+    }
+  }
+ else {
+    calls++;
+  }
+  return returnValue;
+}

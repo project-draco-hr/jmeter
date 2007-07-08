@@ -1,3 +1,4 @@
 {
   configureTestElement(el);
+  ((TransactionController)el).setParent(parent.isSelected());
 }

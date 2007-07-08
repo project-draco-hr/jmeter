@@ -1,0 +1,13 @@
+{
+  if (!isParent()) {
+    if (res != null) {
+      SampleResult sampleResult=se.getResult();
+      res.setThreadName(sampleResult.getThreadName());
+      res.setBytes(res.getBytes() + sampleResult.getBytes());
+      if (!sampleResult.isSuccessful()) {
+        res.setSuccessful(false);
+        noFailingSamples++;
+      }
+    }
+  }
+}

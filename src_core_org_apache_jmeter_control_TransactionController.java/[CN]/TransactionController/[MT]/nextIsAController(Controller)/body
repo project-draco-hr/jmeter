@@ -1,4 +1,7 @@
 {
+  if (!isParent()) {
+    return super.nextIsAController(controller);
+  }
   Sampler returnValue;
   Sampler sampler=controller.next();
   if (sampler == null) {
