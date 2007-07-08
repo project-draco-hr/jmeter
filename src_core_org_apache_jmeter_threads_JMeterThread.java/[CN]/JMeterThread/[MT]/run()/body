@@ -27,6 +27,7 @@
           }
           if (sam != null) {
             SamplePackage pack=compiler.configureSampler(sam);
+            threadContext.getVariables().putObject(PACKAGE_OBJECT,pack);
             delay(pack.getTimers());
             Sampler sampler=pack.getSampler();
             sampler.setThreadContext(threadContext);
