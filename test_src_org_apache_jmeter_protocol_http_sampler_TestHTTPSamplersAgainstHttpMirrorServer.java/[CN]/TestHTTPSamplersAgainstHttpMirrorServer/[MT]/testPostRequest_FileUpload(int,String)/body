@@ -12,7 +12,7 @@
   HTTPSampleResult res=executeSampler(sampler);
   checkPostRequestFileUpload(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,fileField,temporaryFile,fileMimeType,TEST_FILE_CONTENT);
   sampler=createHttpSampler(samplerType);
-  contentEncoding="ISO-8859-1";
+  contentEncoding=ISO_8859_1;
   setupUrl(sampler,contentEncoding);
   setupFileUploadData(sampler,false,titleField,titleValue,descriptionField,descriptionValue,fileField,temporaryFile,fileMimeType);
   res=executeSampler(sampler);

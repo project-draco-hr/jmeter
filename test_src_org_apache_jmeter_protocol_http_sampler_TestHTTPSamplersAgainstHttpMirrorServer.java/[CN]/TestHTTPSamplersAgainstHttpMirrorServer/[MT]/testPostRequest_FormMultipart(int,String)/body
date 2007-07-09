@@ -11,7 +11,7 @@
   HTTPSampleResult res=executeSampler(sampler);
   checkPostRequestFormMultipart(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue);
   sampler=createHttpSampler(samplerType);
-  contentEncoding="ISO-8859-1";
+  contentEncoding=ISO_8859_1;
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
   sampler.setDoMultipartPost(true);

@@ -1,26 +1,26 @@
 {
-  final byte[] DASH_DASH=new String("--").getBytes(HTTP_ENCODING);
+  final byte[] DASH_DASH=new String("--").getBytes(ISO_8859_1);
   final ByteArrayOutputStream output=new ByteArrayOutputStream();
   if (firstMultipart) {
     output.write(DASH_DASH);
-    output.write(boundaryString.getBytes(HTTP_ENCODING));
+    output.write(boundaryString.getBytes(ISO_8859_1));
     output.write(CRLF);
   }
   String filename=file.getName();
-  output.write("Content-Disposition: form-data; name=\"".getBytes(HTTP_ENCODING));
-  output.write(fileField.getBytes(HTTP_ENCODING));
-  output.write(("\"; filename=\"" + filename + "\"").getBytes(HTTP_ENCODING));
+  output.write("Content-Disposition: form-data; name=\"".getBytes(ISO_8859_1));
+  output.write(fileField.getBytes(ISO_8859_1));
+  output.write(("\"; filename=\"" + filename + "\"").getBytes(ISO_8859_1));
   output.write(CRLF);
-  output.write("Content-Type: ".getBytes(HTTP_ENCODING));
-  output.write(mimeType.getBytes(HTTP_ENCODING));
+  output.write("Content-Type: ".getBytes(ISO_8859_1));
+  output.write(mimeType.getBytes(ISO_8859_1));
   output.write(CRLF);
-  output.write("Content-Transfer-Encoding: binary".getBytes(HTTP_ENCODING));
+  output.write("Content-Transfer-Encoding: binary".getBytes(ISO_8859_1));
   output.write(CRLF);
   output.write(CRLF);
   output.write(fileContent);
   output.write(CRLF);
   output.write(DASH_DASH);
-  output.write(boundaryString.getBytes(HTTP_ENCODING));
+  output.write(boundaryString.getBytes(ISO_8859_1));
   if (lastMultipart) {
     output.write(DASH_DASH);
   }

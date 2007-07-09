@@ -10,7 +10,7 @@
   HTTPSampleResult res=executeSampler(sampler);
   checkPostRequestUrlEncoded(sampler,res,samplerDefaultEncoding,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,false);
   sampler=createHttpSampler(samplerType);
-  contentEncoding="ISO-8859-1";
+  contentEncoding=ISO_8859_1;
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
   res=executeSampler(sampler);

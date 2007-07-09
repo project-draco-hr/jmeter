@@ -14,7 +14,7 @@
   sampler.setRunningVersion(false);
   checkGetRequest_Parameters(sampler,res,contentEncoding,executedUrl,titleField,titleValue,descriptionField,descriptionValue,false);
   sampler=createHttpSampler(samplerType);
-  contentEncoding="ISO-8859-1";
+  contentEncoding=ISO_8859_1;
   titleValue="mytitle\uc385";
   descriptionValue="mydescription\uc385";
   setupUrl(sampler,contentEncoding);

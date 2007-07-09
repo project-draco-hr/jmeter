@@ -11,7 +11,7 @@
   String expectedPostBody=titleValue + descriptionValue;
   checkPostRequestBody(sampler,res,samplerDefaultEncoding,contentEncoding,expectedPostBody);
   sampler=createHttpSampler(samplerType);
-  contentEncoding="ISO-8859-1";
+  contentEncoding=ISO_8859_1;
   setupUrl(sampler,contentEncoding);
   setupFormData(sampler,false,titleField,titleValue,descriptionField,descriptionValue);
   res=executeSampler(sampler);

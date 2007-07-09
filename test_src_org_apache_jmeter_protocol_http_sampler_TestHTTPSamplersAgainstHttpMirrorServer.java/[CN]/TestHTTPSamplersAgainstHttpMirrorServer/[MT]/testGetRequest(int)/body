@@ -6,7 +6,7 @@
   HTTPSampleResult res=executeSampler(sampler);
   checkGetRequest(sampler,res);
   sampler=createHttpSampler(samplerType);
-  contentEncoding="ISO-8859-1";
+  contentEncoding=ISO_8859_1;
   setupUrl(sampler,contentEncoding);
   sampler.setMethod(HTTPSamplerBase.GET);
   res=executeSampler(sampler);

@@ -1,22 +1,22 @@
 {
-  final byte[] DASH_DASH=new String("--").getBytes(HTTP_ENCODING);
+  final byte[] DASH_DASH=new String("--").getBytes(ISO_8859_1);
   final ByteArrayOutputStream output=new ByteArrayOutputStream();
   if (firstMultipart) {
     output.write(DASH_DASH);
-    output.write(boundaryString.getBytes(HTTP_ENCODING));
+    output.write(boundaryString.getBytes(ISO_8859_1));
     output.write(CRLF);
   }
-  output.write("Content-Disposition: form-data; name=\"".getBytes(HTTP_ENCODING));
-  output.write(titleField.getBytes(HTTP_ENCODING));
-  output.write("\"".getBytes(HTTP_ENCODING));
+  output.write("Content-Disposition: form-data; name=\"".getBytes(ISO_8859_1));
+  output.write(titleField.getBytes(ISO_8859_1));
+  output.write("\"".getBytes(ISO_8859_1));
   output.write(CRLF);
-  output.write("Content-Type: text/plain".getBytes(HTTP_ENCODING));
+  output.write("Content-Type: text/plain".getBytes(ISO_8859_1));
   if (contentEncoding != null) {
-    output.write("; charset=".getBytes(HTTP_ENCODING));
-    output.write(contentEncoding.getBytes(HTTP_ENCODING));
+    output.write("; charset=".getBytes(ISO_8859_1));
+    output.write(contentEncoding.getBytes(ISO_8859_1));
   }
   output.write(CRLF);
-  output.write("Content-Transfer-Encoding: 8bit".getBytes(HTTP_ENCODING));
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(ISO_8859_1));
   output.write(CRLF);
   output.write(CRLF);
   if (contentEncoding != null) {
@@ -27,19 +27,19 @@
   }
   output.write(CRLF);
   output.write(DASH_DASH);
-  output.write(boundaryString.getBytes(HTTP_ENCODING));
+  output.write(boundaryString.getBytes(ISO_8859_1));
   output.write(CRLF);
-  output.write("Content-Disposition: form-data; name=\"".getBytes(HTTP_ENCODING));
-  output.write(descriptionField.getBytes(HTTP_ENCODING));
-  output.write("\"".getBytes(HTTP_ENCODING));
+  output.write("Content-Disposition: form-data; name=\"".getBytes(ISO_8859_1));
+  output.write(descriptionField.getBytes(ISO_8859_1));
+  output.write("\"".getBytes(ISO_8859_1));
   output.write(CRLF);
-  output.write("Content-Type: text/plain".getBytes(HTTP_ENCODING));
+  output.write("Content-Type: text/plain".getBytes(ISO_8859_1));
   if (contentEncoding != null) {
-    output.write("; charset=".getBytes(HTTP_ENCODING));
-    output.write(contentEncoding.getBytes(HTTP_ENCODING));
+    output.write("; charset=".getBytes(ISO_8859_1));
+    output.write(contentEncoding.getBytes(ISO_8859_1));
   }
   output.write(CRLF);
-  output.write("Content-Transfer-Encoding: 8bit".getBytes(HTTP_ENCODING));
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(ISO_8859_1));
   output.write(CRLF);
   output.write(CRLF);
   if (contentEncoding != null) {
@@ -50,7 +50,7 @@
   }
   output.write(CRLF);
   output.write(DASH_DASH);
-  output.write(boundaryString.getBytes(HTTP_ENCODING));
+  output.write(boundaryString.getBytes(ISO_8859_1));
   if (lastMultipart) {
     output.write(DASH_DASH);
   }
