@@ -1,5 +1,6 @@
 {
   SampleResult resWithSubResults=new SampleResult();
+  long beginTest=System.currentTimeMillis();
   resWithSubResults.sampleStart();
   Thread.sleep(100);
   resWithSubResults.setBytes(300);
@@ -28,6 +29,7 @@
   resNoSubResults2.setSuccessful(true);
   resNoSubResults2.sampleEnd();
   long sample2Time=resNoSubResults2.getTime();
+  long overallTime=System.currentTimeMillis() - beginTest;
   assertTrue(resNoSubResults2.isSuccessful());
   assertEquals(200,resNoSubResults2.getBytes());
   assertEquals("sample with no subresults",resNoSubResults2.getSampleLabel());
@@ -41,7 +43,13 @@
   assertEquals(1,resWithSubResults.getSampleCount());
   assertEquals(2,resWithSubResults.getSubResults().length);
   long totalTime=resWithSubResults.getTime();
-  assertEquals(sampleWithSubResultsTime + sample1Time + sample2Time,totalTime);
+  long allsamplesTime=sampleWithSubResultsTime + sample1Time + sample2Time;
+  if (totalTime < allsamplesTime) {
+    fail("Total: " + totalTime + " < sum(samples): "+ allsamplesTime);
+  }
+  if (totalTime > overallTime) {
+    fail("Total: " + totalTime + " > overall time: "+ overallTime);
+  }
   Calculator calculator=new Calculator();
   calculator.addSample(resWithSubResults);
   assertEquals(600,calculator.getTotalBytes());

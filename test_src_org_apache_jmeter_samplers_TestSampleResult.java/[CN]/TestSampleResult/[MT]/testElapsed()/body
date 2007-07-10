@@ -1,7 +1,7 @@
 {
   SampleResult res=new SampleResult();
   res.sampleStart();
-  Thread.sleep(100);
+  Thread.sleep(110);
   res.sampleEnd();
   long time=res.getTime();
   if (time < 100) {
