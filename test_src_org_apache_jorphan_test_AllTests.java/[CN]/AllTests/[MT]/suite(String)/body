@@ -14,10 +14,10 @@
       String name=(String)classes.next();
       try {
         Class clazz=Class.forName(name);
-        TestSuite t=null;
+        Test t=null;
         try {
           Method m=clazz.getMethod("suite",new Class[0]);
-          t=(TestSuite)m.invoke(clazz,null);
+          t=(Test)m.invoke(clazz,null);
           suites++;
         }
  catch (        NoSuchMethodException e) {
