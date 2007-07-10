@@ -9,4 +9,5 @@
  else {
     config.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
   }
+  config.setProperty(HTTPSamplerBase.CONTENT_ENCODING,encoding.getText());
 }

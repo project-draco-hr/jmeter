@@ -8,10 +8,12 @@
   domain=new JLabeledTextField(JMeterUtils.getResString("web_server_domain"));
   path=new JLabeledTextField(JMeterUtils.getResString("path"));
   port=new JLabeledTextField(JMeterUtils.getResString("web_server_port"));
+  encoding=new JLabeledTextField(JMeterUtils.getResString("content_encoding"));
   urlPanel.add(domain);
   urlPanel.add(port);
   urlPanel.add(protocol);
   urlPanel.add(path);
+  urlPanel.add(encoding);
   mainPanel.add(urlPanel);
   argPanel=new HTTPArgumentsPanel();
   mainPanel.add(argPanel);
