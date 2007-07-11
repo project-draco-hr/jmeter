@@ -11,7 +11,7 @@
   byte[] expectedUrl="title=mytitle&description=mydescription".getBytes();
   checkContentLength(connection,expectedUrl.length);
   checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
-  expectedUrl="title=mytitle&description=mydescription".getBytes("UTF-8");
+  expectedUrl="title=mytitle&description=mydescription".getBytes(UTF_8);
   checkContentLength(connection,expectedUrl.length);
   checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
   connection.disconnect();
@@ -24,7 +24,7 @@
   expectedUrl="title=mytitle&description=mydescription".getBytes(contentEncoding);
   checkContentLength(connection,expectedUrl.length);
   checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
-  expectedUrl="title=mytitle&description=mydescription".getBytes("UTF-8");
+  expectedUrl="title=mytitle&description=mydescription".getBytes(UTF_8);
   checkContentLength(connection,expectedUrl.length);
   checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
   connection.disconnect();

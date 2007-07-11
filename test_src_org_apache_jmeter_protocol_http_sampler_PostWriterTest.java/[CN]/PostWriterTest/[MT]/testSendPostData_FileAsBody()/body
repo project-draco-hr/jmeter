@@ -5,13 +5,23 @@
   checkContentLength(connection,TEST_FILE_CONTENT.length);
   checkArraysHaveSameContent(TEST_FILE_CONTENT,connection.getOutputStreamContent());
   connection.disconnect();
+  String otherEncoding;
+  final String fileEncoding=System.getProperty("file.encoding");
+  log.info("file.encoding: " + fileEncoding);
+  if (UTF_8.equalsIgnoreCase(fileEncoding) || "UTF8".equalsIgnoreCase(fileEncoding)) {
+    otherEncoding="ISO-8859-1";
+  }
+ else {
+    otherEncoding=UTF_8;
+  }
+  log.info("Using other encoding: " + otherEncoding);
   establishConnection();
-  sampler.setContentEncoding("UTF-8");
+  sampler.setContentEncoding(otherEncoding);
   postWriter.setHeaders(connection,sampler);
   postWriter.sendPostData(connection,sampler);
   checkContentLength(connection,TEST_FILE_CONTENT.length);
   checkArraysHaveSameContent(TEST_FILE_CONTENT,connection.getOutputStreamContent());
-  checkArraysHaveDifferentContent(new String(TEST_FILE_CONTENT).getBytes("UTF-8"),connection.getOutputStreamContent());
+  checkArraysHaveDifferentContent(new String(TEST_FILE_CONTENT).getBytes(otherEncoding),connection.getOutputStreamContent());
   setupFormData(sampler);
   establishConnection();
   sampler.setContentEncoding("");

@@ -26,7 +26,7 @@
   establishConnection();
   fileField="some_file_field";
   mimeType="image/png";
-  contentEncoding="UTF-8";
+  contentEncoding=UTF_8;
   sampler.setContentEncoding(contentEncoding);
   setupFilepart(sampler,fileField,file,mimeType);
   postWriter.setHeaders(connection,sampler);

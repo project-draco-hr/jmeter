@@ -1,9 +1,9 @@
 {
   if (expected != null && actual != null) {
     if (expected.length != actual.length) {
-      System.out.println(new String(expected,"UTF-8"));
+      System.out.println(new String(expected,UTF_8));
       System.out.println("--------------------");
-      System.out.println(new String(actual,"UTF-8"));
+      System.out.println(new String(actual,UTF_8));
       System.out.println("====================");
       fail("arrays have different length, expected is " + expected.length + ", actual is "+ actual.length);
     }

@@ -25,7 +25,7 @@
   establishConnection();
   titleValue="mytitle\u0153\u20a1\u0115\u00c5";
   descriptionValue="mydescription\u0153\u20a1\u0115\u00c5";
-  contentEncoding="UTF-8";
+  contentEncoding=UTF_8;
   sampler.setContentEncoding(contentEncoding);
   setupFormData(sampler,titleValue,descriptionValue);
   postWriter.setHeaders(connection,sampler);
@@ -36,7 +36,7 @@
   checkArraysHaveSameContent(expectedFormBody,connection.getOutputStreamContent());
   connection.disconnect();
   establishConnection();
-  contentEncoding="UTF-8";
+  contentEncoding=UTF_8;
   sampler.setContentEncoding("ISO-8859-1");
   postWriter.setHeaders(connection,sampler);
   postWriter.sendPostData(connection,sampler);
