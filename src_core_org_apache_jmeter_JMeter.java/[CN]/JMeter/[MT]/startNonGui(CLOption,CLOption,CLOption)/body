@@ -1,5 +1,10 @@
 {
   System.setProperty("JMeter.NonGui","true");
+  try {
+    new JLabel();
+  }
+ catch (  InternalError e) {
+  }
   JMeter driver=new JMeter();
   driver.parent=this;
   PluginManager.install(this,false);
