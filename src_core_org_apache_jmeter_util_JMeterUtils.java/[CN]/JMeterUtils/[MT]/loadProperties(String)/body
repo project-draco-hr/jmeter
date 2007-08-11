@@ -8,9 +8,14 @@
   }
  catch (  IOException e) {
     try {
-      is=JMeterUtils.class.getClassLoader().getResource(file).openStream();
-      if (is == null) {
+      final URL resource=JMeterUtils.class.getClassLoader().getResource(file);
+      if (resource == null) {
         log.warn("Cannot find " + file);
+        return null;
+      }
+      is=resource.openStream();
+      if (is == null) {
+        log.warn("Cannot open " + file);
         return null;
       }
       p.load(is);
