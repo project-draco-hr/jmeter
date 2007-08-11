@@ -3,10 +3,7 @@
   result.setFailure(false);
   resultData=response.getResponseData();
   long resultSize=resultData.length;
-  if (resultSize == 0) {
-    return result.setResultForNull();
-  }
-  if ((!(compareSize(resultSize)) && (getAllowedSize() > 0))) {
+  if (!(compareSize(resultSize))) {
     result.setFailure(true);
     Object[] arguments={new Long(resultSize),comparatorErrorMessage,new Long(getAllowedSize())};
     String message=MessageFormat.format(JMeterUtils.getResString("size_assertion_failure"),arguments);
