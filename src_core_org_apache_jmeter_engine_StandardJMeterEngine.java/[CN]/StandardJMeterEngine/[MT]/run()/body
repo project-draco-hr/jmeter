@@ -41,6 +41,7 @@
   JMeterContextService.getContext().setSamplingStarted(true);
   int groupCount=0;
   JMeterContextService.clearTotalThreads();
+  startingGroups=true;
   while (iter.hasNext()) {
     groupCount++;
     ThreadGroup group=(ThreadGroup)iter.next();
@@ -93,4 +94,5 @@
       }
     }
   }
+  startingGroups=false;
 }
