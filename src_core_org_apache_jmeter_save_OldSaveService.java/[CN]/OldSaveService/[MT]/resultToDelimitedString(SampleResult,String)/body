@@ -43,8 +43,11 @@
   if (saveConfig.saveAssertionResultsFailureMessage()) {
     String message=null;
     AssertionResult[] results=sample.getAssertionResults();
-    if ((results != null) && (results.length > 0)) {
-      message=results[0].getFailureMessage();
+    if (results != null) {
+      for (int i=0; i < results.length; i++) {
+        message=results[i].getFailureMessage();
+        if (message != null)         break;
+      }
     }
     if (message != null) {
       text.append(message);
