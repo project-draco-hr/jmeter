@@ -80,7 +80,11 @@
     }
     res.setResponseHeaders(getResponseHeaders(httpMethod));
     if (res.isRedirect()) {
-      res.setRedirectLocation(httpMethod.getResponseHeader(HEADER_LOCATION).getValue());
+      final Header headerLocation=httpMethod.getResponseHeader(HEADER_LOCATION);
+      if (headerLocation == null) {
+        throw new IllegalArgumentException("Missing location header");
+      }
+      res.setRedirectLocation(headerLocation.getValue());
     }
     if (getAutoRedirects()) {
       res.setURL(new URL(httpMethod.getURI().toString()));
