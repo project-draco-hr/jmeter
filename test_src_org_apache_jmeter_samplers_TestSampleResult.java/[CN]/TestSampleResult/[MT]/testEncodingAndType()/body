@@ -1,0 +1,14 @@
+{
+  SampleResult res=new SampleResult();
+  assertEquals(SampleResult.DEFAULT_ENCODING,res.getDataEncoding());
+  assertEquals("DataType should be blank","",res.getDataType());
+  res.setEncodingAndType(null);
+  assertEquals(SampleResult.DEFAULT_ENCODING,res.getDataEncoding());
+  assertEquals("DataType should be blank","",res.getDataType());
+  res.setEncodingAndType("text/html; charset=aBcd");
+  assertEquals("aBcd",res.getDataEncoding());
+  assertEquals("text",res.getDataType());
+  res.setEncodingAndType("text/html; charset=\"aBcd\"");
+  assertEquals("aBcd",res.getDataEncoding());
+  assertEquals("text",res.getDataType());
+}

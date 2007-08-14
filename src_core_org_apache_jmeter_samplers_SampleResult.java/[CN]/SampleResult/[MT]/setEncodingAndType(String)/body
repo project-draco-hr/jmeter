@@ -1,10 +1,15 @@
 {
   if (ct != null) {
-    String de=ct.toLowerCase();
-    final String cs="charset=";
-    int cset=de.indexOf(cs);
+    final String CS_PFX="charset=";
+    int cset=ct.toLowerCase().indexOf(CS_PFX);
     if (cset >= 0) {
-      setDataEncoding(de.substring(cset + cs.length()));
+      String charSet=ct.substring(cset + CS_PFX.length());
+      if (charSet.startsWith("\"")) {
+        setDataEncoding(charSet.substring(1,charSet.length() - 1));
+      }
+ else {
+        setDataEncoding(charSet);
+      }
     }
     if (ct.startsWith("image/")) {
       setDataType(BINARY);
