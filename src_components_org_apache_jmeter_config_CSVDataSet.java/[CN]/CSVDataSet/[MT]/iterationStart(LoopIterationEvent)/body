@@ -17,6 +17,9 @@
       }
     }
  else {
+      if (getStopThread()) {
+        throw new JMeterStopThreadException("End of file detected");
+      }
       for (int a=0; a < vars.length; a++) {
         threadVars.put(vars[a],EOFVALUE);
       }
