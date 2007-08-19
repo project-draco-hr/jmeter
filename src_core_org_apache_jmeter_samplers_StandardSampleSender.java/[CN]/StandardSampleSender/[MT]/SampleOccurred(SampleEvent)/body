@@ -4,6 +4,9 @@
     listener.sampleOccurred(e);
   }
  catch (  RemoteException err) {
+    if (err.getCause() instanceof java.net.ConnectException) {
+      throw new JMeterError("Could not return sample",err);
+    }
     log.error("sampleOccurred",err);
   }
 }
