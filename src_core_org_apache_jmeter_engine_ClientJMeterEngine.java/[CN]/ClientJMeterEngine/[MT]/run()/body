@@ -1,10 +1,10 @@
 {
   log.info("running clientengine run method");
   testListeners=new SearchByClass(TestListener.class);
+  sampleListeners=new ConvertListeners();
   HashTree testTree=getTestTree();
 synchronized (testTree) {
     testTree.traverse(testListeners);
-    sampleListeners=new ConvertListeners();
     try {
       testTree.traverse(sampleListeners);
     }
