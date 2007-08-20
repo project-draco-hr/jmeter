@@ -5,12 +5,7 @@
   HashTree testTree=getTestTree();
 synchronized (testTree) {
     testTree.traverse(testListeners);
-    try {
-      testTree.traverse(sampleListeners);
-    }
- catch (    IndexOutOfBoundsException e) {
-      log.warn("Error replacing sample listeners",e);
-    }
+    testTree.traverse(sampleListeners);
   }
   try {
     JMeterContextService.startTest();
