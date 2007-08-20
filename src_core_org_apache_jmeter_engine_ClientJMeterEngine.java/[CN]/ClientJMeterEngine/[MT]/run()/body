@@ -1,13 +1,16 @@
 {
   log.info("running clientengine run method");
   testListeners=new SearchByClass(TestListener.class);
-  getTestTree().traverse(testListeners);
-  sampleListeners=new ConvertListeners();
-  try {
-    getTestTree().traverse(sampleListeners);
-  }
- catch (  IndexOutOfBoundsException e) {
-    log.warn("Error replacing sample listeners",e);
+  HashTree testTree=getTestTree();
+synchronized (testTree) {
+    testTree.traverse(testListeners);
+    sampleListeners=new ConvertListeners();
+    try {
+      testTree.traverse(sampleListeners);
+    }
+ catch (    IndexOutOfBoundsException e) {
+      log.warn("Error replacing sample listeners",e);
+    }
   }
   try {
     JMeterContextService.startTest();
