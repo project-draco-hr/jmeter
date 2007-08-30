@@ -1,6 +1,6 @@
 {
   for (int i=0; i < editors.length; i++) {
-    if (editors[i] == evt.getSource()) {
+    if (evt == null || editors[i] == evt.getSource()) {
       Object value=editors[i].getValue();
       String name=descriptors[i].getName();
       if (value == null) {
@@ -11,7 +11,9 @@
         propertyMap.put(name,value);
         log.debug("Set " + name + "= "+ value);
       }
-      firePropertyChange(name,evt.getOldValue(),value);
+      if (evt != null) {
+        firePropertyChange(name,evt.getOldValue(),value);
+      }
       return;
     }
   }
