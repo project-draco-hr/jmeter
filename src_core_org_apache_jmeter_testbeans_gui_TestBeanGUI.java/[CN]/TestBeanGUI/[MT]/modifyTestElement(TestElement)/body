@@ -1,7 +1,7 @@
 {
   if (customizer instanceof GenericTestBeanCustomizer) {
     GenericTestBeanCustomizer gtbc=(GenericTestBeanCustomizer)customizer;
-    gtbc.propertyChange(null);
+    gtbc.saveGuiFields();
   }
   configureTestElement(element);
   PropertyDescriptor[] props=beanInfo.getPropertyDescriptors();
