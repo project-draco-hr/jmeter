@@ -10,6 +10,16 @@
     reader=new FileInputStream(f);
     log.info("Loading file: " + f);
     HashTree tree=SaveService.loadTree(reader);
+    JMeterTreeModel treeModel=new JMeterTreeModel();
+    JMeterTreeNode root=(JMeterTreeNode)treeModel.getRoot();
+    treeModel.addSubTree(tree,root);
+    SearchByClass replaceableControllers=new SearchByClass(ReplaceableController.class);
+    tree.traverse(replaceableControllers);
+    Collection replaceableControllersRes=replaceableControllers.getSearchResults();
+    for (Iterator iter=replaceableControllersRes.iterator(); iter.hasNext(); ) {
+      ReplaceableController replaceableController=(ReplaceableController)iter.next();
+      replaceableController.resolveReplacementSubTree(root);
+    }
     convertSubTree(tree);
     if (logFile != null) {
       ResultCollector logger=new ResultCollector();

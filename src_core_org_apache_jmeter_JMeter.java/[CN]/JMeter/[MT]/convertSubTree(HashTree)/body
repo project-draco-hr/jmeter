@@ -1,34 +1,55 @@
 {
   Iterator iter=new LinkedList(tree.list()).iterator();
   while (iter.hasNext()) {
-    TestElement item=(TestElement)iter.next();
-    if (item.isEnabled()) {
-      if (item instanceof TestPlan) {
-        TestPlan tp=(TestPlan)item;
-        tp.setFunctionalMode(tp.isFunctionalMode());
-        tp.setSerialized(tp.isSerialized());
-      }
-      if (item instanceof ReplaceableController) {
-        ReplaceableController rc=(ReplaceableController)item.clone();
-        HashTree subTree=tree.getTree(item);
-        if (subTree != null) {
-          HashTree replacementTree=rc.getReplacementSubTree();
-          if (replacementTree != null) {
-            convertSubTree(replacementTree);
-            tree.replace(item,rc);
-            tree.set(rc,replacementTree);
+    Object o=iter.next();
+    if (o instanceof TestElement) {
+      TestElement item=(TestElement)o;
+      if (item.isEnabled()) {
+        if (item instanceof ReplaceableController) {
+          ReplaceableController rc=(ReplaceableController)item.clone();
+          HashTree subTree=tree.getTree(item);
+          if (subTree != null) {
+            HashTree replacementTree=rc.getReplacementSubTree();
+            if (replacementTree != null) {
+              convertSubTree(replacementTree);
+              tree.replace(item,rc);
+              tree.set(rc,replacementTree);
+            }
+          }
+ else {
+            convertSubTree(tree.getTree(item));
           }
         }
  else {
           convertSubTree(tree.getTree(item));
         }
       }
- else {
-        convertSubTree(tree.getTree(item));
-      }
+ else       tree.remove(item);
     }
  else {
-      tree.remove(item);
+      JMeterTreeNode item=(JMeterTreeNode)o;
+      if (item.isEnabled()) {
+        if (item.getUserObject() instanceof ReplaceableController) {
+          ReplaceableController rc=(ReplaceableController)item.getTestElement();
+          HashTree subTree=tree.getTree(item);
+          if (subTree != null) {
+            HashTree replacementTree=rc.getReplacementSubTree();
+            if (replacementTree != null) {
+              convertSubTree(replacementTree);
+              tree.replace(item,rc);
+              tree.set(rc,replacementTree);
+            }
+          }
+        }
+ else {
+          convertSubTree(tree.getTree(item));
+          TestElement testElement=item.getTestElement();
+          tree.replace(item,testElement);
+        }
+      }
+ else {
+        tree.remove(item);
+      }
     }
   }
 }

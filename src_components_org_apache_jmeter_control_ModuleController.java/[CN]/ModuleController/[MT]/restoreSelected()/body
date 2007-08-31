@@ -1,12 +1,7 @@
 {
-  if (selectedNode == null) {
-    List nodePath=getNodePath();
-    if (nodePath != null && nodePath.size() > 0) {
-      GuiPackage gp=GuiPackage.getInstance();
-      if (gp != null) {
-        JMeterTreeNode root=(JMeterTreeNode)gp.getTreeModel().getRoot();
-        traverse(root,nodePath,1);
-      }
-    }
+  GuiPackage gp=GuiPackage.getInstance();
+  if (gp != null) {
+    JMeterTreeNode root=(JMeterTreeNode)gp.getTreeModel().getRoot();
+    resolveReplacementSubTree(root);
   }
 }

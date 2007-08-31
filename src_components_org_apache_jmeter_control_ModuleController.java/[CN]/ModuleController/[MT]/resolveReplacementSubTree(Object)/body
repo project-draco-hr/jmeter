@@ -1,0 +1,9 @@
+{
+  JMeterTreeNode root=(JMeterTreeNode)context;
+  if (selectedNode == null) {
+    List nodePathList=getNodePath();
+    if (nodePathList != null && nodePathList.size() > 0) {
+      traverse(root,nodePathList,1);
+    }
+  }
+}
