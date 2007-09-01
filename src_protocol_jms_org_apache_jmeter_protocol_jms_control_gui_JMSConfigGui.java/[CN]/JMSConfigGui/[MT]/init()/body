@@ -21,8 +21,10 @@
   JPanel onewayPanel=new JPanel(new BorderLayout());
   onewayPanel.add(oneWay);
   messageNorthPanel.add(onewayPanel,BorderLayout.NORTH);
-  JPanel timeoutPanel=new JPanel(new BorderLayout());
+  useNonPersistentDelivery=new JCheckBox(JMeterUtils.getResString("jms_use_non_persistent_delivery"),false);
+  JPanel timeoutPanel=new HorizontalPanel();
   timeoutPanel.add(timeout);
+  timeoutPanel.add(useNonPersistentDelivery);
   messageNorthPanel.add(timeoutPanel,BorderLayout.SOUTH);
   messagePanel.add(messageNorthPanel,BorderLayout.NORTH);
   JPanel soapXmlPanel=new JPanel(new BorderLayout());

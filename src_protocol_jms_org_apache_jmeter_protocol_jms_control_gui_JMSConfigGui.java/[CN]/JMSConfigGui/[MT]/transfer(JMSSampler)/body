@@ -4,6 +4,7 @@
   element.setReceiveQueue(receiveQueue.getText());
   boolean isOneway=oneWay.getText().equals(JMeterUtils.getResString("jms_request"));
   element.setIsOneway(isOneway);
+  element.setNonPersistent(useNonPersistentDelivery.isSelected());
   element.setTimeout(timeout.getText());
   element.setContent(soapXml.getText());
   element.setInitialContextFactory(initialContextFactory.getText());

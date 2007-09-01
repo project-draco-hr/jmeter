@@ -23,6 +23,9 @@
     }
     if (getPropertyAsBoolean(IS_ONE_WAY)) {
       producer=session.createSender(sendQueue);
+      if (isNonPersistent()) {
+        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+      }
     }
  else {
       if (useTemporyQueue()) {
@@ -30,6 +33,9 @@
       }
  else {
         producer=session.createSender(sendQueue);
+        if (isNonPersistent()) {
+          producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+        }
         executor=new FixedQueueExecutor(producer,getTimeout());
       }
     }
