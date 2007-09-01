@@ -4,7 +4,7 @@
   dataField.setText(Long.toString(s.getData()));
   averageField.setText(Long.toString(s.getAverage()));
   deviationField.setText(Long.toString(s.getDeviation()));
-  throughputField.setText(Double.toString(60 * s.getThroughput()) + "/" + minute);
+  throughputField.setText(nf.format(60 * s.getThroughput()) + "/" + minute);
   medianField.setText(Long.toString(s.getMedian()));
   updateYAxis();
 }
