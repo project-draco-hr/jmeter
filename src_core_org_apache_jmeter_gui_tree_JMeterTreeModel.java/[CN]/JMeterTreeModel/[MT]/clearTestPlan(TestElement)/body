@@ -5,5 +5,5 @@
     super.removeNodeFromParent(child);
     children=getChildCount(getRoot());
   }
-  initTree(testPlan);
+  initTree(testPlan,new WorkBenchGui().createTestElement());
 }

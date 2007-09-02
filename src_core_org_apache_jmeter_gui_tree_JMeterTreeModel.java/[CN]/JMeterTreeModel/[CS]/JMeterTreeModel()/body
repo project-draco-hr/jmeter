@@ -1,5 +1,3 @@
 {
-  super(new JMeterTreeNode(new WorkBenchGui().createTestElement(),null));
-  TestElement tp=new TestPlanGui().createTestElement();
-  initTree(tp);
+  this(new TestPlanGui().createTestElement(),new WorkBenchGui().createTestElement());
 }

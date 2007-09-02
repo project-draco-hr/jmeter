@@ -10,7 +10,7 @@
     reader=new FileInputStream(f);
     log.info("Loading file: " + f);
     HashTree tree=SaveService.loadTree(reader);
-    JMeterTreeModel treeModel=new JMeterTreeModel();
+    JMeterTreeModel treeModel=new JMeterTreeModel(new Object());
     JMeterTreeNode root=(JMeterTreeNode)treeModel.getRoot();
     treeModel.addSubTree(tree,root);
     SearchByClass replaceableControllers=new SearchByClass(ReplaceableController.class);

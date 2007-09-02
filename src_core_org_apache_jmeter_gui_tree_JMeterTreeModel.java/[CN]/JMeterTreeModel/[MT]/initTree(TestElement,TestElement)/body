@@ -1,6 +1,5 @@
 {
   insertNodeInto(new JMeterTreeNode(tp,this),(JMeterTreeNode)getRoot(),0);
-  TestElement wb=new WorkBenchGui().createTestElement();
   insertNodeInto(new JMeterTreeNode(wb,this),(JMeterTreeNode)getRoot(),1);
   nodeStructureChanged((JMeterTreeNode)getRoot());
 }
