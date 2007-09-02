@@ -7,14 +7,16 @@
     response.setSuccessful(true);
   }
   if (isTestFieldResponseData()) {
-    String data=response.getResponseDataAsString();
-    toCheck=new StringBuffer(response.getResponseHeaders()).append(data).toString();
+    toCheck=response.getResponseDataAsString();
   }
  else   if (isTestFieldResponseCode()) {
     toCheck=response.getResponseCode();
   }
  else   if (isTestFieldResponseMessage()) {
     toCheck=response.getResponseMessage();
+  }
+ else   if (isTestFieldResponseHeaders()) {
+    toCheck=response.getResponseHeaders();
   }
  else {
     toCheck=response.getSamplerData();

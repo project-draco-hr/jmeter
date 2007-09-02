@@ -7,8 +7,8 @@
     for (int i=0; i < testStrings.length; i++) {
       ra.addTestString(testStrings[i]);
     }
-    if (urlButton.isSelected()) {
-      ra.setTestFieldURL();
+    if (responseStringButton.isSelected()) {
+      ra.setTestFieldResponseData();
     }
  else     if (responseCodeButton.isSelected()) {
       ra.setTestFieldResponseCode();
@@ -16,8 +16,11 @@
  else     if (responseMessageButton.isSelected()) {
       ra.setTestFieldResponseMessage();
     }
+ else     if (responseHeadersButton.isSelected()) {
+      ra.setTestFieldResponseHeaders();
+    }
  else {
-      ra.setTestFieldResponseData();
+      ra.setTestFieldURL();
     }
     ra.setAssumeSuccess(assumeSuccess.isSelected());
     if (containsBox.isSelected()) {

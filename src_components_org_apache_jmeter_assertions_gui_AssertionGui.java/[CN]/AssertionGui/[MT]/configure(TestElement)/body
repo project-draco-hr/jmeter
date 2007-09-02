@@ -31,6 +31,9 @@
  else   if (model.isTestFieldResponseMessage()) {
     responseMessageButton.setSelected(true);
   }
+ else   if (model.isTestFieldResponseHeaders()) {
+    responseHeadersButton.setSelected(true);
+  }
  else {
     urlButton.setSelected(true);
   }

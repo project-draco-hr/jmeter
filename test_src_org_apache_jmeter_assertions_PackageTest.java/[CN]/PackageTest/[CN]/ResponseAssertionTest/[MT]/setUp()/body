@@ -9,4 +9,5 @@
   sample.setResponseData(("response Data\n" + "line 2\n\nEOF").getBytes());
   sample.setSamplerData("Sampler Label");
   sample.setResponseCode("401");
+  sample.setResponseHeaders("X-Header: abcd");
 }

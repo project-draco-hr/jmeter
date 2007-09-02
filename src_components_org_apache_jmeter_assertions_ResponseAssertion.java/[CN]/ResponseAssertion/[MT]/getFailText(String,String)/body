@@ -1,14 +1,17 @@
 {
   StringBuffer sb=new StringBuffer(200);
   sb.append("Test failed, ");
-  if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
+  if (isTestFieldResponseData()) {
     sb.append("text");
   }
- else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
+ else   if (isTestFieldResponseCode()) {
     sb.append("code");
   }
- else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(getTestField())) {
+ else   if (isTestFieldResponseMessage()) {
     sb.append("message");
+  }
+ else   if (isTestFieldResponseHeaders()) {
+    sb.append("headers");
   }
  else {
     sb.append("URL");

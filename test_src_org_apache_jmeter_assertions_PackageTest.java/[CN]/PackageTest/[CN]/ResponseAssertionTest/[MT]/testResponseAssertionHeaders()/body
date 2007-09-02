@@ -1,0 +1,13 @@
+{
+  assertion.unsetNotType();
+  assertion.setToEqualsType();
+  assertion.setTestFieldResponseHeaders();
+  assertion.addTestString("X-Header: abcd");
+  assertion.addTestString("X-Header: abcdx");
+  result=assertion.getResult(sample);
+  assertFailed();
+  assertion.clearTestStrings();
+  assertion.addTestString("X-Header: abcd");
+  result=assertion.getResult(sample);
+  assertPassed();
+}

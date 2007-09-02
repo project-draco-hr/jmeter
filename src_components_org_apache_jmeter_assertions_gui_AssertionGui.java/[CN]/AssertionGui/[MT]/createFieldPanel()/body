@@ -5,15 +5,18 @@
   urlButton=new JRadioButton(JMeterUtils.getResString("assertion_url_samp"));
   responseCodeButton=new JRadioButton(JMeterUtils.getResString("assertion_code_resp"));
   responseMessageButton=new JRadioButton(JMeterUtils.getResString("assertion_message_resp"));
+  responseHeadersButton=new JRadioButton(JMeterUtils.getResString("assertion_headers"));
   ButtonGroup group=new ButtonGroup();
   group.add(responseStringButton);
   group.add(urlButton);
   group.add(responseCodeButton);
   group.add(responseMessageButton);
+  group.add(responseHeadersButton);
   panel.add(responseStringButton);
   panel.add(urlButton);
   panel.add(responseCodeButton);
   panel.add(responseMessageButton);
+  panel.add(responseHeadersButton);
   responseStringButton.setSelected(true);
   assumeSuccess=new JCheckBox(JMeterUtils.getResString("assertion_assume_success"));
   panel.add(assumeSuccess);
