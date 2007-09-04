@@ -11,6 +11,11 @@
     String argument=arguments[i];
     String argumentType=argumentsTypes[i];
     int targetSqlType=getJdbcType(argumentType);
-    pstmt.setObject(i + 1,argument,targetSqlType);
+    try {
+      pstmt.setObject(i + 1,argument,targetSqlType);
+    }
+ catch (    NullPointerException e) {
+      throw new SQLException("Could not set argument no: " + (i + 1) + " - missing parameter marker?");
+    }
   }
 }
