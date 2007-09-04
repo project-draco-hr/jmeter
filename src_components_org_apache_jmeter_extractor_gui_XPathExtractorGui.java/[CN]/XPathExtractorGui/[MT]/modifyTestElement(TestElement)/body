@@ -6,5 +6,6 @@
     xpath.setRefName(refNameField.getText());
     xpath.setXPathQuery(xpathQueryField.getText());
     xpath.setTolerant(tolerant.isSelected());
+    xpath.setNameSpace(nameSpace.isSelected());
   }
 }

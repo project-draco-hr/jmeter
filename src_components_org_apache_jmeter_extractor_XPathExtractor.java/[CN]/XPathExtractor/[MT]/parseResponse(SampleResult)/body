@@ -2,5 +2,5 @@
   String unicodeData=new String(result.getResponseData(),result.getDataEncoding());
   byte[] utf8data=unicodeData.getBytes("UTF-8");
   ByteArrayInputStream in=new ByteArrayInputStream(utf8data);
-  return XPathUtil.makeDocument(in,false,false,false,isTolerant());
+  return XPathUtil.makeDocument(in,false,false,useNameSpace(),isTolerant());
 }
