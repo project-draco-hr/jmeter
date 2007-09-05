@@ -1,8 +1,8 @@
 {
-  if (!"1.0".equals(outVersion))   return p;
   if (p == null) {
     return "";
   }
+  if (!"1.0".equals(outVersion))   return p;
   try {
     String p1=URLEncoder.encode(p,CHAR_SET);
     return p1;
