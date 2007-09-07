@@ -1,4 +1,9 @@
 {
+  if (log.isDebugEnabled()) {
+    for (int i=0; i < superClasses.length; i++) {
+      log.debug("superclass: " + superClasses[i].getName());
+    }
+  }
   strPathsOrJars=addJarsInPath(strPathsOrJars);
   for (int k=0; k < strPathsOrJars.length; k++) {
     strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
