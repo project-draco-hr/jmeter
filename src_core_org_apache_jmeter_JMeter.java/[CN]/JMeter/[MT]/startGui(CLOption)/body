@@ -5,7 +5,7 @@
   treeLis.setActionHandler(ActionRouter.getInstance());
   GuiPackage.getInstance(treeLis,treeModel);
   org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
-  main.setTitle("Apache JMeter");
+  main.setTitle("Apache JMeter (" + JMeterUtils.getJMeterVersion() + ")");
   main.setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
