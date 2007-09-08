@@ -4,7 +4,7 @@
     log.debug("<-" + (value != null ? value.getClass().getName() : "NULL") + ":"+ value);
   }
   if (value == null) {
-    if (!acceptsNull)     throw new IllegalArgumentException();
+    if (!acceptsNull)     throw new IllegalArgumentException("Null is not allowed");
     text=null;
   }
  else   if (acceptsExpressions && isExpression(value)) {
@@ -13,7 +13,7 @@
  else {
     typeEditor.setValue(value);
     text=typeEditor.getAsText();
-    if (!acceptsOther && !isATag(text))     throw new IllegalArgumentException();
+    if (!acceptsOther && !isATag(text))     throw new IllegalArgumentException("Value not allowed: " + text);
   }
   guiEditor.setValue(text);
 }
