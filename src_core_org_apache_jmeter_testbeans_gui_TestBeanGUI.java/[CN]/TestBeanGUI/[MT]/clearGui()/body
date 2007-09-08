@@ -1,4 +1,7 @@
 {
   super.clearGui();
-  propertyMap.clear();
+  if (customizer instanceof GenericTestBeanCustomizer) {
+    GenericTestBeanCustomizer gtbc=(GenericTestBeanCustomizer)customizer;
+    gtbc.clearGuiFields();
+  }
 }
