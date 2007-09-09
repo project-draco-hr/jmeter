@@ -1,0 +1,7 @@
+{
+  SampleSaveConfiguration a=new SampleSaveConfiguration(false);
+  SampleSaveConfiguration b=new SampleSaveConfiguration(true);
+  assertFalse("Hash codes should not be equal",a.hashCode() == b.hashCode());
+  assertFalse("Objects should not be equal",a.equals(b));
+  assertFalse("Objects should not be equal",b.equals(a));
+}

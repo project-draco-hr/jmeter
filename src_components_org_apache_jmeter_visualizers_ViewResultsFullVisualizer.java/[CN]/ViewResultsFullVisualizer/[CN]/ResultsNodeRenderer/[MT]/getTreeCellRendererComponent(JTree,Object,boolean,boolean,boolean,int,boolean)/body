@@ -1,0 +1,20 @@
+{
+  super.getTreeCellRendererComponent(tree,value,sel,expanded,leaf,row,focus);
+  boolean failure=true;
+  Object userObject=((DefaultMutableTreeNode)value).getUserObject();
+  if (userObject instanceof SampleResult) {
+    failure=!(((SampleResult)userObject).isSuccessful());
+  }
+ else   if (userObject instanceof AssertionResult) {
+    AssertionResult assertion=(AssertionResult)userObject;
+    failure=assertion.isError() || assertion.isFailure();
+  }
+  if (failure) {
+    this.setForeground(Color.red);
+    this.setIcon(imageFailure);
+  }
+ else {
+    this.setIcon(imageSuccess);
+  }
+  return this;
+}

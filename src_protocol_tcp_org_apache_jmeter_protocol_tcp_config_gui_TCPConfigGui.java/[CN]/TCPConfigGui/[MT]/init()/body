@@ -6,6 +6,7 @@
   }
   VerticalPanel mainPanel=new VerticalPanel();
   mainPanel.add(createServerPanel());
+  mainPanel.add(createClosePortPanel());
   mainPanel.add(createPortPanel());
   mainPanel.add(createTimeoutPanel());
   mainPanel.add(createNoDelayPanel());

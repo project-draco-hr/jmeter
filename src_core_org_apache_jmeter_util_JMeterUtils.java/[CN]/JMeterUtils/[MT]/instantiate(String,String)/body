@@ -13,9 +13,7 @@
       if (c.isInstance(res)) {
         return res;
       }
- else {
-        throw new IllegalArgumentException(className + " is not an instance of " + impls);
-      }
+      throw new IllegalArgumentException(className + " is not an instance of " + impls);
     }
  catch (    ClassNotFoundException e) {
       log.error("Error loading class " + className + ": class is not found");

@@ -5,24 +5,25 @@
   int count=0;
   while (iter.hasNext()) {
     LDAPArgument item=(LDAPArgument)iter.next().getObjectValue();
-    if ((item.getValue()).equals("")) {
+    if ((item.getValue()).length() == 0) {
       attr=new BasicAttribute(item.getName());
     }
  else {
       attr=getBasicAttribute(item.getName(),item.getValue());
     }
-    if ("add".equals(item.getOpcode())) {
-      mods[count]=new ModificationItem(DirContext.ADD_ATTRIBUTE,attr);
+    final String opcode=item.getOpcode();
+    if ("add".equals(opcode)) {
+      mods[count++]=new ModificationItem(DirContext.ADD_ATTRIBUTE,attr);
+    }
+ else     if ("delete".equals(opcode) || "remove".equals(opcode)) {
+      mods[count++]=new ModificationItem(DirContext.REMOVE_ATTRIBUTE,attr);
+    }
+ else     if ("replace".equals(opcode)) {
+      mods[count++]=new ModificationItem(DirContext.REPLACE_ATTRIBUTE,attr);
     }
  else {
-      if ("delete".equals(item.getOpcode())) {
-        mods[count]=new ModificationItem(DirContext.REMOVE_ATTRIBUTE,attr);
-      }
- else {
-        mods[count]=new ModificationItem(DirContext.REPLACE_ATTRIBUTE,attr);
-      }
+      log.warn("Invalid opCode: " + opcode);
     }
-    count+=1;
   }
   return mods;
 }

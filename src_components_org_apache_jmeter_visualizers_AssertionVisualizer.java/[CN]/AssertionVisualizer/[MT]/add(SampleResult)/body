@@ -1,12 +1,6 @@
 {
   StringBuffer sb=new StringBuffer(100);
-  String sd=sample.getSamplerData();
-  if (null != sd) {
-    sb.append(sd);
-  }
- else {
-    sb.append(sample.getSampleLabel());
-  }
+  sb.append(sample.getSampleLabel());
   sb.append(getAssertionResult(sample));
   sb.append("\n");
 synchronized (textArea) {

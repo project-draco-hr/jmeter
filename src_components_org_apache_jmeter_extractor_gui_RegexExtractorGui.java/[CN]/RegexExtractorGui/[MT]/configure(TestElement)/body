@@ -1,10 +1,14 @@
 {
   super.configure(el);
-  useHeaders.setSelected(el.getPropertyAsBoolean(RegexExtractor.USEHEADERS));
-  useBody.setSelected(!el.getPropertyAsBoolean(RegexExtractor.USEHEADERS));
-  regexField.setText(el.getPropertyAsString(RegexExtractor.REGEX));
-  templateField.setText(el.getPropertyAsString(RegexExtractor.TEMPLATE));
-  defaultField.setText(el.getPropertyAsString(RegexExtractor.DEFAULT));
-  matchNumberField.setText(el.getPropertyAsString(RegexExtractor.MATCH_NUMBER));
-  refNameField.setText(el.getPropertyAsString(RegexExtractor.REFNAME));
+  if (el instanceof RegexExtractor) {
+    RegexExtractor re=(RegexExtractor)el;
+    useHeaders.setSelected(re.useHeaders());
+    useBody.setSelected(re.useBody());
+    useURL.setSelected(re.useUrl());
+    regexField.setText(re.getRegex());
+    templateField.setText(re.getTemplate());
+    defaultField.setText(re.getDefaultValue());
+    matchNumberField.setText(re.getMatchNumberAsString());
+    refNameField.setText(re.getRefName());
+  }
 }

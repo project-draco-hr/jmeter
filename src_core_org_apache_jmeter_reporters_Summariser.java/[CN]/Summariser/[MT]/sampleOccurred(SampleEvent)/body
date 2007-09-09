@@ -6,27 +6,35 @@
     myTotals.delta.addSample(s);
   }
   long now=System.currentTimeMillis() / 1000;
-  SamplingStatCalculator myDelta=null;
-  SamplingStatCalculator myTotal=null;
+  RunningSample myDelta=null;
+  RunningSample myTotal=null;
   boolean reportNow=false;
 synchronized (myTotals) {
     if ((now > myTotals.last + INTERVAL_WINDOW) && (now % INTERVAL <= INTERVAL_WINDOW)) {
       reportNow=true;
-      myDelta=new SamplingStatCalculator(myTotals.delta);
+      myDelta=new RunningSample(myTotals.delta);
       myTotals.moveDelta();
-      myTotal=new SamplingStatCalculator(myTotals.total);
+      myTotal=new RunningSample(myTotals.total);
       myTotals.last=now;
     }
   }
   if (reportNow) {
     String str;
     str=format(myDelta,"+");
-    if (TOLOG)     log.info(str);
-    if (TOOUT)     System.out.println(str);
-    if (myTotal.getCount() != myDelta.getCount()) {
+    if (TOLOG) {
+      log.info(str);
+    }
+    if (TOOUT) {
+      System.out.println(str);
+    }
+    if (myTotal.getNumSamples() != myDelta.getNumSamples()) {
       str=format(myTotal,"=");
-      if (TOLOG)       log.info(str);
-      if (TOOUT)       System.out.println(str);
+      if (TOLOG) {
+        log.info(str);
+      }
+      if (TOOUT) {
+        System.out.println(str);
+      }
     }
   }
 }

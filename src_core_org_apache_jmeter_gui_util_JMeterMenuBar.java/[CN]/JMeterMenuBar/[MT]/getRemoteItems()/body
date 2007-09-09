@@ -6,20 +6,20 @@
     for (int i=0; i < remoteHosts.length; i++) {
       remoteHosts[i]=remoteHosts[i].trim();
       JMenuItem item=new JMenuItem(remoteHosts[i]);
-      item.setActionCommand("remote_start");
+      item.setActionCommand(ActionNames.REMOTE_START);
       item.setName(remoteHosts[i]);
       item.addActionListener(ActionRouter.getInstance());
       remote_engine_start.add(item);
       remote_start.add(item);
       item=new JMenuItem(remoteHosts[i]);
-      item.setActionCommand("remote_stop");
+      item.setActionCommand(ActionNames.REMOTE_STOP);
       item.setName(remoteHosts[i]);
       item.addActionListener(ActionRouter.getInstance());
       item.setEnabled(false);
       remote_engine_stop.add(item);
       remote_stop.add(item);
       item=new JMenuItem(remoteHosts[i]);
-      item.setActionCommand("remote_exit");
+      item.setActionCommand(ActionNames.REMOTE_EXIT);
       item.setName(remoteHosts[i]);
       item.addActionListener(ActionRouter.getInstance());
       item.setEnabled(false);

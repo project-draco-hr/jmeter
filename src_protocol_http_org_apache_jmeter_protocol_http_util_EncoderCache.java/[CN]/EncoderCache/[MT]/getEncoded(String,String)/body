@@ -1,0 +1,10 @@
+{
+  String cacheKey=k + contentEncoding;
+  Object encodedValue=cache.getElement(cacheKey);
+  if (encodedValue != null) {
+    return (String)encodedValue;
+  }
+  encodedValue=URLEncoder.encode(k,contentEncoding);
+  cache.addElement(cacheKey,encodedValue);
+  return (String)encodedValue;
+}

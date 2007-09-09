@@ -1,0 +1,13 @@
+{
+  String postBody="--" + boundary + endOfLine+ "Content-Disposition: form-data; name=\"title\""+ endOfLine;
+  if (includeExtraHeaders) {
+    postBody+="Content-Type: text/plain; charset=" + contentEncoding + endOfLine+ "Content-Transfer-Encoding: 8bit"+ endOfLine;
+  }
+  postBody+=endOfLine + titleValue + endOfLine+ "--"+ boundary+ endOfLine;
+  postBody+="Content-Disposition: form-data; name=\"description\"" + endOfLine;
+  if (includeExtraHeaders) {
+    postBody+="Content-Type: text/plain; charset=" + contentEncoding + endOfLine+ "Content-Transfer-Encoding: 8bit"+ endOfLine;
+  }
+  postBody+=endOfLine + descriptionValue + endOfLine+ "--"+ boundary+ "--"+ endOfLine;
+  return postBody;
+}

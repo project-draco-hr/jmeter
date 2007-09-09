@@ -3,9 +3,10 @@
   JPanel mainPanel=new JPanel();
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
   mainPanel.add(makeTitlePanel());
   table=new JTable(model);
+  RendererUtils.applyRenderers(table,RENDERERS);
   tableScrollPanel=new JScrollPane(table);
   tableScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));
   JPanel dataPanel=new JPanel();

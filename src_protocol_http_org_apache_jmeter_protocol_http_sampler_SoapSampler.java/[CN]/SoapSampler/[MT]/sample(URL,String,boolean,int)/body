@@ -1,0 +1,81 @@
+{
+  String urlStr=url.toString();
+  log.debug("Start : sample" + urlStr);
+  log.debug("method" + method);
+  PostMethod httpMethod;
+  httpMethod=new PostMethod(urlStr);
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setMonitor(isMonitor());
+  res.setSampleLabel(urlStr);
+  res.setHTTPMethod(method);
+  res.sampleStart();
+  HttpClient client=null;
+  InputStream instream=null;
+  try {
+    int content_len=setPostHeaders(httpMethod);
+    client=setupConnection(url,httpMethod,res);
+    res.setQueryString(getQueryString());
+    sendPostData(httpMethod,content_len);
+    int statusCode=client.executeMethod(httpMethod);
+    instream=httpMethod.getResponseBodyAsStream();
+    if (instream != null) {
+      org.apache.commons.httpclient.Header responseHeader=httpMethod.getResponseHeader(TRANSFER_ENCODING);
+      if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
+        instream=new GZIPInputStream(instream);
+      }
+      ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
+      byte[] buffer=new byte[4096];
+      int len;
+      boolean first=true;
+      while ((len=instream.read(buffer)) > 0) {
+        if (first) {
+          res.latencyEnd();
+          first=false;
+        }
+        outstream.write(buffer,0,len);
+      }
+      res.setResponseData(outstream.toByteArray());
+      outstream.close();
+    }
+    res.sampleEnd();
+    res.setSampleLabel(httpMethod.getURI().toString());
+    res.setResponseCode(Integer.toString(statusCode));
+    res.setSuccessful(isSuccessCode(statusCode));
+    res.setResponseMessage(httpMethod.getStatusText());
+    String ct=null;
+    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader(HEADER_CONTENT_TYPE);
+    if (h != null) {
+      ct=h.getValue();
+      res.setContentType(ct);
+      res.setEncodingAndType(ct);
+    }
+    res.setResponseHeaders(getResponseHeaders(httpMethod));
+    if (res.isRedirect()) {
+      res.setRedirectLocation(httpMethod.getResponseHeader(HEADER_LOCATION).getValue());
+    }
+    if (getAutoRedirects()) {
+      res.setURL(new URL(httpMethod.getURI().toString()));
+    }
+    saveConnectionCookies(httpMethod,res.getURL(),getCookieManager());
+    res=resultProcessing(areFollowingRedirect,frameDepth,res);
+    log.debug("End : sample");
+    if (httpMethod != null)     httpMethod.releaseConnection();
+    return res;
+  }
+ catch (  IllegalArgumentException e) {
+    res.sampleEnd();
+    HTTPSampleResult err=errorResult(e,res);
+    err.setSampleLabel("Error: " + url.toString());
+    return err;
+  }
+catch (  IOException e) {
+    res.sampleEnd();
+    HTTPSampleResult err=errorResult(e,res);
+    err.setSampleLabel("Error: " + url.toString());
+    return err;
+  }
+ finally {
+    JOrphanUtils.closeQuietly(instream);
+    if (httpMethod != null)     httpMethod.releaseConnection();
+  }
+}

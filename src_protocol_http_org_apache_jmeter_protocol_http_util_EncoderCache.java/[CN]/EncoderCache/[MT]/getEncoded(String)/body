@@ -1,14 +1,8 @@
 {
-  Object encodedValue=cache.getElement(k);
-  if (encodedValue != null) {
-    return (String)encodedValue;
-  }
   try {
-    encodedValue=JOrphanUtils.encode(k,"utf8");
+    return getEncoded(k,URL_ARGUMENT_ENCODING);
   }
  catch (  UnsupportedEncodingException e) {
     throw new Error("Should not happen: " + e.toString());
   }
-  cache.addElement(k,encodedValue);
-  return (String)encodedValue;
 }

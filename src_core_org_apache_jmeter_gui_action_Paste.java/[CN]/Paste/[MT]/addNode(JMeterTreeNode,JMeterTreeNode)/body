@@ -1,0 +1,12 @@
+{
+  try {
+    JMeterTreeNode newNode=GuiPackage.getInstance().getTreeModel().addComponent(node.getTestElement(),parent);
+    for (int i=0; i < node.getChildCount(); i++) {
+      addNode(newNode,(JMeterTreeNode)node.getChildAt(i));
+    }
+  }
+ catch (  IllegalUserActionException iuae) {
+    log.error("",iuae);
+    JMeterUtils.reportErrorToUser(iuae.getMessage());
+  }
+}

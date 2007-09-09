@@ -1,0 +1,9 @@
+{
+  int timeout=params.getConnectionTimeout();
+  if (timeout == 0) {
+    return new SlowSocket(CPS,host,port,localAddress,localPort);
+  }
+ else {
+    return new SlowSocket(CPS,host,port,localAddress,localPort,timeout);
+  }
+}

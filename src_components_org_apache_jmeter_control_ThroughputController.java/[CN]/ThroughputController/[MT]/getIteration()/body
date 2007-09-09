@@ -2,7 +2,5 @@
   if (!isPerThread()) {
     return globalIteration;
   }
- else {
-    return iteration;
-  }
+  return iteration;
 }

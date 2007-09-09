@@ -1,7 +1,0 @@
-{
-  createParser(HTML_TO_SEARCH);
-  StringFindingVisitor visitor=new StringFindingVisitor("TEST");
-  visitor.doMultipleSearchesWithinStrings();
-  parser.visitAllNodesWith(visitor);
-  assertEquals("TEST found",5,visitor.stringFoundCount());
-}

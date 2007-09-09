@@ -1,6 +1,6 @@
 {
   try {
-    WSDLHelper help=new WSDLHelper("http://services.bio.ifi.lmu.de:1046/prothesaurus/services/BiologicalNameService?wsdl");
+    WSDLHelper help=new WSDLHelper("http://localhost:8080/ServiceGateway.wsdl");
     long start=System.currentTimeMillis();
     help.parse();
     String[] methods=help.getWebMethods();
@@ -9,6 +9,7 @@
       System.out.println("method name: " + methods[idx]);
     }
     System.out.println("service url: " + help.getBinding());
+    System.out.println("protocol: " + help.getProtocol());
     System.out.println("port=" + help.getURL().getPort());
   }
  catch (  Exception exception) {

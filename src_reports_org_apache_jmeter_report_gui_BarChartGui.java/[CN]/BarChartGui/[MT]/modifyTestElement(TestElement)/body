@@ -2,7 +2,9 @@
   this.configureTestElement(element);
   BarChart bc=(BarChart)element;
   bc.setXAxis(xItems.getText());
-  bc.setYAxis(checkItems.getText());
+  bc.setYAxis(yItems.getText());
   bc.setXLabel(xAxisLabel.getText());
   bc.setYLabel(yAxisLabel.getText());
+  bc.setCaption(caption.getText());
+  bc.setURL(url.getText());
 }

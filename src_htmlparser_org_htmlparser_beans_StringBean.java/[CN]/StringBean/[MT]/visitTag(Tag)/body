@@ -1,7 +1,0 @@
-{
-  String name;
-  name=tag.getTagName();
-  if (name.equalsIgnoreCase("PRE"))   mIsPre=true;
- else   if (name.equalsIgnoreCase("SCRIPT"))   mIsScript=true;
-  if (tag.breaksFlow())   carriage_return();
-}

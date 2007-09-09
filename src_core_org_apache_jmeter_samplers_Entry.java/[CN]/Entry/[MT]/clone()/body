@@ -1,9 +1,0 @@
-{
-  try {
-    return super.clone();
-  }
- catch (  Exception ex) {
-    log.error("",ex);
-  }
-  return null;
-}

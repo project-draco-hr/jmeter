@@ -1,0 +1,6 @@
+{
+  if (cps <= 0) {
+    throw new IllegalArgumentException("Speed (cps) <= 0");
+  }
+  CPS=cps;
+}

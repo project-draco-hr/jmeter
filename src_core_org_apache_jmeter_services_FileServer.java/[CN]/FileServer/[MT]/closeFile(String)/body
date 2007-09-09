@@ -1,9 +1,4 @@
 {
-  Object[] file=(Object[])files.get(name);
-synchronized (file) {
-    if (file != null && file.length == 2 && file[1] != null) {
-      ((Reader)file[1]).close();
-      file[1]=null;
-    }
-  }
+  FileEntry fileEntry=(FileEntry)files.get(name);
+  closeFile(name,fileEntry);
 }

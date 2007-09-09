@@ -6,6 +6,15 @@
   DefaultMutableTreeNode currNode=new DefaultMutableTreeNode(res);
   treeModel.insertNodeInto(currNode,root,root.getChildCount());
   addSubResults(currNode,res);
+  AssertionResult assertionResults[]=res.getAssertionResults();
+  int assertionIndex=currNode.getChildCount();
+  for (int j=0; j < assertionResults.length; j++) {
+    AssertionResult item=assertionResults[j];
+    if (item.isFailure() || item.isError()) {
+      DefaultMutableTreeNode assertionNode=new DefaultMutableTreeNode(item);
+      treeModel.insertNodeInto(assertionNode,currNode,assertionIndex++);
+    }
+  }
   if (root.getChildCount() == 1) {
     jTree.expandPath(new TreePath(root));
   }

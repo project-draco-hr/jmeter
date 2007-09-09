@@ -27,10 +27,6 @@
  else     if (STATE_NO_OPTIONS == m_state) {
       addOption(new CLOption(m_args[m_argIndex++]));
     }
- else     if (STATE_OPTIONAL_ARG == m_state && m_isLong && m_ch != 0) {
-      m_state=STATE_NORMAL;
-      addOption(m_option);
-    }
  else {
       parseArguments();
     }

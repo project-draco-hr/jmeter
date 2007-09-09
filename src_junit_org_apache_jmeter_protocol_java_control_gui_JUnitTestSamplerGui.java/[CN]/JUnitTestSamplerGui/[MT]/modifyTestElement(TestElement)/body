@@ -15,4 +15,6 @@
   sampler.setFailure(failureMsg.getText());
   sampler.setFailureCode(failureCode.getText());
   sampler.setDoNotSetUpTearDown(doSetup.isSelected());
+  sampler.setAppendError(appendError.isSelected());
+  sampler.setAppendException(appendExc.isSelected());
 }

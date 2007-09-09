@@ -1,0 +1,12 @@
+{
+  graph.clearData();
+  model.clear();
+  dataField.setText(ZERO);
+  averageField.setText(ZERO);
+  deviationField.setText(ZERO);
+  throughputField.setText("0/" + minute);
+  medianField.setText(ZERO);
+  noSamplesField.setText(ZERO);
+  updateYAxis();
+  repaint();
+}

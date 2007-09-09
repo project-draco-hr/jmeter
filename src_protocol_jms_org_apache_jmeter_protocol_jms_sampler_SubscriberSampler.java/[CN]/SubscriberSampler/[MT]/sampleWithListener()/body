@@ -13,13 +13,12 @@
     }
   }
   result.sampleEnd();
-  result.setSamplerData(this.BUFFER.toString());
   result.setResponseMessage(loop + " samples messages recieved");
   if (this.getReadResponseAsBoolean()) {
     result.setResponseData(this.BUFFER.toString().getBytes());
   }
  else {
-    result.setContentLength(this.BUFFER.toString().getBytes().length);
+    result.setBytes(this.BUFFER.toString().getBytes().length);
   }
   result.setSuccessful(true);
   result.setResponseCode(loop + " message(s) recieved successfully");

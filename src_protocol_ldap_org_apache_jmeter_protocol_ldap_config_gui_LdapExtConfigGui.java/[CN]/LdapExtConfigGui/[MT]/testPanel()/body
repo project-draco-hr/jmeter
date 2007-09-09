@@ -1,13 +1,12 @@
 {
   cards=new JPanel(new CardLayout());
-  cards.add(new JPanel(),"");
-  cards.add(createAddPanel(),"Add");
-  cards.add(createModifyPanel(),"Modify");
-  cards.add(createModdnPanel(),"Rename");
-  cards.add(createDeletePanel(),"Delete");
-  cards.add(createSearchPanel(),"Search");
-  cards.add(createBindPanel(),"Bind");
-  cards.add(createComparePanel(),"Compare");
-  cards.add(createSbindPanel(),"Sbind");
+  cards.add(new JPanel(),CARDS_DEFAULT);
+  cards.add(createAddPanel(),CARDS_ADD);
+  cards.add(createModifyPanel(),CARDS_MODIFY);
+  cards.add(createModdnPanel(),CARDS_RENAME);
+  cards.add(createDeletePanel(),CARDS_DELETE);
+  cards.add(createSearchPanel(),CARDS_SEARCH);
+  cards.add(createBindPanel(),CARDS_BIND);
+  cards.add(createComparePanel(),CARDS_COMPARE);
   return cards;
 }

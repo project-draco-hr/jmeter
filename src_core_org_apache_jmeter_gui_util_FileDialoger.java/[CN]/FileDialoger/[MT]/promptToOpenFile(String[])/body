@@ -1,12 +1,14 @@
 {
   if (lastJFCDirectory == null) {
     String start=JMeterUtils.getPropDefault("user.dir","");
-    if (!start.equals("")) {
+    if (start.length() > 0) {
       jfc.setCurrentDirectory(new File(start));
     }
   }
   clearFileFilters();
-  jfc.addChoosableFileFilter(new JMeterFileFilter(exts));
+  if (exts != null && exts.length > 0) {
+    jfc.addChoosableFileFilter(new JMeterFileFilter(exts));
+  }
   int retVal=jfc.showOpenDialog(GuiPackage.getInstance().getMainFrame());
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
   if (retVal == JFileChooser.APPROVE_OPTION) {

@@ -1,13 +1,16 @@
 {
-  if (HELPER.getBinding() != null) {
-    this.domain.setText(HELPER.getURL().getHost());
-    if (HELPER.getURL().getPort() > 0) {
-      this.port.setText(String.valueOf(HELPER.getURL().getPort()));
-    }
+  if (HELPER != null) {
+    if (HELPER.getBinding() != null) {
+      this.protocol.setText(HELPER.getProtocol());
+      this.domain.setText(HELPER.getBindingHost());
+      if (HELPER.getBindingPort() > 0) {
+        this.port.setText(String.valueOf(HELPER.getBindingPort()));
+      }
  else {
-      this.port.setText("80");
+        this.port.setText("80");
+      }
+      this.path.setText(HELPER.getBindingPath());
     }
-    this.path.setText(HELPER.getURL().getPath());
+    this.soapAction.setText(HELPER.getSoapAction(this.wsdlMethods.getText()));
   }
-  this.soapAction.setText(HELPER.getSoapAction(this.wsdlMethods.getText()));
 }

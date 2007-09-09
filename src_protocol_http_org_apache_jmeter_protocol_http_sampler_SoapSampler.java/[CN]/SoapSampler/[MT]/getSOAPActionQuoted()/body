@@ -1,0 +1,8 @@
+{
+  String action=getSOAPAction();
+  StringBuffer sb=new StringBuffer(action.length() + 2);
+  sb.append(DOUBLE_QUOTE);
+  sb.append(action);
+  sb.append(DOUBLE_QUOTE);
+  return sb.toString();
+}

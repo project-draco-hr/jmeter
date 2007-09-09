@@ -1,0 +1,60 @@
+{
+  final byte[] DASH_DASH=new String("--").getBytes(HTTP_ENCODING);
+  final String mimeType="text/plain";
+  final ByteArrayOutputStream output=new ByteArrayOutputStream();
+  if (firstMultipart) {
+    output.write(DASH_DASH);
+    output.write(boundaryString.getBytes(HTTP_ENCODING));
+    output.write(CRLF);
+  }
+  output.write("Content-Disposition: form-data; name=\"".getBytes(HTTP_ENCODING));
+  output.write(titleField.getBytes(HTTP_ENCODING));
+  output.write("\"".getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write("Content-Type: ".getBytes(HTTP_ENCODING));
+  output.write(mimeType.getBytes(HTTP_ENCODING));
+  output.write("; charset=".getBytes(HTTP_ENCODING));
+  output.write((contentEncoding == null ? PostWriter.ENCODING : contentEncoding).getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write(CRLF);
+  if (contentEncoding != null) {
+    output.write(titleValue.getBytes(contentEncoding));
+  }
+ else {
+    output.write(titleValue.getBytes());
+  }
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write("Content-Disposition: form-data; name=\"".getBytes(HTTP_ENCODING));
+  output.write(descriptionField.getBytes(HTTP_ENCODING));
+  output.write("\"".getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write("Content-Type: ".getBytes(HTTP_ENCODING));
+  output.write(mimeType.getBytes(HTTP_ENCODING));
+  output.write("; charset=".getBytes(HTTP_ENCODING));
+  output.write((contentEncoding == null ? PostWriter.ENCODING : contentEncoding).getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(HTTP_ENCODING));
+  output.write(CRLF);
+  output.write(CRLF);
+  if (contentEncoding != null) {
+    output.write(descriptionValue.getBytes(contentEncoding));
+  }
+ else {
+    output.write(descriptionValue.getBytes());
+  }
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(HTTP_ENCODING));
+  if (lastMultipart) {
+    output.write(DASH_DASH);
+  }
+  output.write(CRLF);
+  output.flush();
+  output.close();
+  return output.toByteArray();
+}

@@ -1,0 +1,10 @@
+{
+  final int port=getPropertyAsInt(PORT);
+  final String protocol=getProtocol();
+  if (port == UNSPECIFIED_PORT || (PROTOCOL_HTTP.equalsIgnoreCase(protocol) && port == DEFAULT_HTTP_PORT) || (PROTOCOL_HTTPS.equalsIgnoreCase(protocol) && port == DEFAULT_HTTPS_PORT)) {
+    return true;
+  }
+ else {
+    return false;
+  }
+}

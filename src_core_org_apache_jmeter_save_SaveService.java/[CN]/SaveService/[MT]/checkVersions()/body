@@ -1,20 +1,32 @@
 {
   versionsOK=true;
-  checkVersion(BooleanPropertyConverter.class,"1.5");
-  checkVersion(HashTreeConverter.class,"1.3");
-  checkVersion(IntegerPropertyConverter.class,"1.4");
-  checkVersion(LongPropertyConverter.class,"1.4");
-  checkVersion(MultiPropertyConverter.class,"1.4");
-  checkVersion(SampleResultConverter.class,"1.10");
-  checkVersion(StringPropertyConverter.class,"1.7");
-  checkVersion(TestElementConverter.class,"1.4");
-  checkVersion(TestElementPropertyConverter.class,"1.7");
-  checkVersion(ScriptWrapperConverter.class,"1.6");
-  checkVersion(TestResultWrapperConverter.class,"1.5");
+  checkVersion(BooleanPropertyConverter.class,"493779");
+  checkVersion(HashTreeConverter.class,"514283");
+  checkVersion(IntegerPropertyConverter.class,"493779");
+  checkVersion(LongPropertyConverter.class,"493779");
+  checkVersion(MultiPropertyConverter.class,"514283");
+  checkVersion(SampleResultConverter.class,"571992");
+  try {
+    checkVersion(Class.forName("org.apache.jmeter.protocol.http.util.HTTPResultConverter"),"514283");
+  }
+ catch (  ClassNotFoundException e) {
+    versionsOK=false;
+    log.warn(e.getLocalizedMessage());
+  }
+  checkVersion(StringPropertyConverter.class,"493779");
+  checkVersion(TestElementConverter.class,"549987");
+  checkVersion(TestElementPropertyConverter.class,"549987");
+  checkVersion(ScriptWrapperConverter.class,"514283");
+  checkVersion(TestResultWrapperConverter.class,"514283");
+  checkVersion(SampleSaveConfigurationConverter.class,"549936");
   if (!PROPVERSION.equalsIgnoreCase(propertiesVersion)) {
-    log.warn("Property file - expected " + PROPVERSION + ", found "+ propertiesVersion);
+    log.warn("Bad _version - expected " + PROPVERSION + ", found "+ propertiesVersion+ ".");
+  }
+  if (!FILEVERSION.equalsIgnoreCase(fileVersion)) {
+    log.warn("Bad _file_version - expected " + FILEVERSION + ", found "+ fileVersion+ ".");
   }
   if (versionsOK) {
     log.info("All converter versions present and correct");
   }
+  return versionsOK;
 }

@@ -2,12 +2,13 @@
   long aTimeInMillis=res.getTime();
   boolean aSuccessFlag=res.isSuccessful();
   counter++;
-  long startTime=res.getTimeStamp() - aTimeInMillis;
+  long startTime=res.getStartTime();
+  long endTime=res.getEndTime();
   if (firstTime > startTime) {
     firstTime=startTime;
   }
-  if (lastTime < res.getTimeStamp()) {
-    lastTime=res.getTimeStamp();
+  if (lastTime < endTime) {
+    lastTime=endTime;
   }
   runningSum+=aTimeInMillis;
   if (aTimeInMillis > max) {

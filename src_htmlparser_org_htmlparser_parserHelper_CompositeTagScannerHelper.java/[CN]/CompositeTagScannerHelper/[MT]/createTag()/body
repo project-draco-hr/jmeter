@@ -1,8 +1,0 @@
-{
-  CompositeTag newTag=(CompositeTag)scanner.createTag(new TagData(tag.elementBegin(),endTag.elementEnd(),startingLineNumber,endingLineNumber,tag.getText(),currLine,url,tag.isEmptyXmlTag()),new CompositeTagData(tag,endTag,nodeList));
-  for (int i=0; i < newTag.getChildCount(); i++) {
-    Node child=newTag.childAt(i);
-    child.setParent(newTag);
-  }
-  return newTag;
-}

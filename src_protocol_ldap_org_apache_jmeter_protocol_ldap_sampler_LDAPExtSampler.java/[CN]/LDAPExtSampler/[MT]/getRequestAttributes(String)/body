@@ -5,12 +5,12 @@
   if (reqAttr.length() == 0) {
     return null;
   }
-  if (!reqAttr.endsWith(";")) {
-    reqAttr=reqAttr + ";";
+  if (!reqAttr.endsWith(SEMI_COLON)) {
+    reqAttr=reqAttr + SEMI_COLON;
   }
   String attr=reqAttr;
   while (attr.length() > 0) {
-    index=attr.indexOf(";");
+    index=attr.indexOf(SEMI_COLON);
     count+=1;
     attr=attr.substring(index + 1);
   }
@@ -19,7 +19,7 @@
     attr=reqAttr;
     count=0;
     while (attr.length() > 0) {
-      index=attr.indexOf(";");
+      index=attr.indexOf(SEMI_COLON);
       mods[count]=attr.substring(0,index);
       count+=1;
       attr=attr.substring(index + 1);

@@ -1,0 +1,13 @@
+{
+  String srName=sr.getName();
+  if (!srName.endsWith(searchBase)) {
+    if (srName.length() > 0)     srName=srName + ',';
+    srName=srName + searchBase;
+  }
+  if ((rootDn.length() > 0) && !srName.endsWith(rootDn)) {
+    if (srName.length() > 0)     srName=srName + ',';
+    srName=srName + rootDn;
+  }
+  sr.setName(srName);
+  return srName;
+}

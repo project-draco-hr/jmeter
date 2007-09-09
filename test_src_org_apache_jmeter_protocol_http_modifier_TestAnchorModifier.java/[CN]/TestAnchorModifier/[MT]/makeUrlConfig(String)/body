@@ -1,0 +1,9 @@
+{
+  HTTPSamplerBase config=new HTTPNullSampler();
+  config.setDomain("www.apache.org");
+  config.setMethod(HTTPSamplerBase.GET);
+  config.setPath(path);
+  config.setPort(HTTPSamplerBase.DEFAULT_HTTP_PORT);
+  config.setProtocol(HTTPSamplerBase.PROTOCOL_HTTP);
+  return config;
+}

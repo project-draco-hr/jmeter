@@ -3,12 +3,7 @@
   String urlStr=url.toString();
   log.debug("Start : sample" + urlStr);
   HTTPSampleResult res=new HTTPSampleResult();
-  if (this.getPropertyAsBoolean(MONITOR)) {
-    res.setMonitor(true);
-  }
- else {
-    res.setMonitor(false);
-  }
+  res.setMonitor(isMonitor());
   res.setSampleLabel(urlStr);
   res.sampleStart();
   try {
@@ -38,34 +33,54 @@ catch (      IOException e) {
       throw new BindException();
     }
     if (method.equals(POST)) {
-      sendPostData(conn);
+      String postBody=sendPostData(conn);
+      res.setQueryString(postBody);
+    }
+ else     if (method.equals(PUT)) {
+      sendPutData(conn);
     }
     byte[] responseData=readResponse(conn,res);
     res.sampleEnd();
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();
-    res.setResponseCode(Integer.toString(errorLevel));
-    res.setSuccessful(200 <= errorLevel && errorLevel <= 399);
-    res.setResponseMessage(conn.getResponseMessage());
-    String ct=conn.getContentType();
-    res.setContentType(ct);
-    if (ct != null) {
-      String de=ct.toLowerCase();
-      final String cs="charset=";
-      int cset=de.indexOf(cs);
-      if (cset >= 0) {
-        res.setDataEncoding(de.substring(cset + cs.length()));
-      }
-      if (ct.startsWith("image/")) {
-        res.setDataType(HTTPSampleResult.BINARY);
+    String respMsg=conn.getResponseMessage();
+    String hdr=conn.getHeaderField(0);
+    if (hdr == null)     hdr="(null)";
+    if (errorLevel == -1) {
+      if (respMsg != null) {
+        try {
+          errorLevel=Integer.parseInt(respMsg.substring(0,3));
+          log.warn("ResponseCode==-1; parsed " + respMsg + " as "+ errorLevel);
+        }
+ catch (        NumberFormatException e) {
+          log.warn("ResponseCode==-1; could not parse " + respMsg + " hdr: "+ hdr);
+        }
       }
  else {
-        res.setDataType(HTTPSampleResult.TEXT);
+        respMsg=hdr;
+        log.warn("ResponseCode==-1 & null ResponseMessage. Header(0)= " + hdr);
       }
     }
+    if (errorLevel == -1) {
+      res.setResponseCode("(null)");
+    }
+ else {
+      res.setResponseCode(Integer.toString(errorLevel));
+    }
+    res.setSuccessful(isSuccessCode(errorLevel));
+    if (respMsg == null) {
+      respMsg=hdr;
+    }
+    res.setResponseMessage(respMsg);
+    String ct=conn.getContentType();
+    res.setContentType(ct);
+    res.setEncodingAndType(ct);
     res.setResponseHeaders(getResponseHeaders(conn));
     if (res.isRedirect()) {
-      res.setRedirectLocation(conn.getHeaderField("Location"));
+      res.setRedirectLocation(conn.getHeaderField(HEADER_LOCATION));
+    }
+    if (getAutoRedirects()) {
+      res.setURL(conn.getURL());
     }
     saveConnectionCookies(conn,url,getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
@@ -74,6 +89,10 @@ catch (      IOException e) {
   }
  catch (  IOException e) {
     res.sampleEnd();
+    if (conn != null) {
+      conn.disconnect();
+    }
+    conn=null;
     return errorResult(e,res);
   }
  finally {

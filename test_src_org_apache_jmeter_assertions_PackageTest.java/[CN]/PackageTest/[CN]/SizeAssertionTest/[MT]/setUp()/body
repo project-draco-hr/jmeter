@@ -1,0 +1,10 @@
+{
+  jmctx=JMeterContextService.getContext();
+  assertion=new SizeAssertion();
+  assertion.setThreadContext(jmctx);
+  vars=new JMeterVariables();
+  jmctx.setVariables(vars);
+  sample0=new SampleResult();
+  sample1=new SampleResult();
+  sample1.setResponseData(data1.getBytes());
+}

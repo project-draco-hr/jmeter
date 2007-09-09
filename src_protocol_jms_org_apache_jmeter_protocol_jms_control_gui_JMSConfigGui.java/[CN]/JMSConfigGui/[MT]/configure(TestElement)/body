@@ -13,6 +13,7 @@
     selected=JMeterUtils.getResString("jms_requestreply");
   }
   box.setSelectedItem(selected);
+  useNonPersistentDelivery.setSelected(sampler.isNonPersistent());
   timeout.setText(String.valueOf(sampler.getTimeout()));
   soapXml.setText(sampler.getContent());
   initialContextFactory.setText(sampler.getInitialContextFactory());

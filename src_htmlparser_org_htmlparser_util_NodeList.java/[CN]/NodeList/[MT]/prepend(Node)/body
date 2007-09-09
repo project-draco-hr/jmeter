@@ -1,6 +1,0 @@
-{
-  if (size == capacity)   adjustVectorCapacity();
-  System.arraycopy(nodeData,0,nodeData,1,size);
-  size++;
-  nodeData[0]=node;
-}

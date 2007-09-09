@@ -1,0 +1,53 @@
+{
+  final StringBuffer text;
+  int firstDiff;
+  int lastRecDiff=-1;
+  int lastCompDiff=-1;
+  final int recLength=received.length();
+  final int compLength=comparison.length();
+  final int minLength=Math.min(recLength,compLength);
+  final String startingEqSeq;
+  String recDeltaSeq="";
+  String compDeltaSeq="";
+  String endingEqSeq="";
+  final StringBuffer pad;
+  text=new StringBuffer(Math.max(recLength,compLength) * 2);
+  for (firstDiff=0; firstDiff < minLength; firstDiff++)   if (received.charAt(firstDiff) != comparison.charAt(firstDiff))   break;
+  if (firstDiff == 0)   startingEqSeq="";
+ else   startingEqSeq=trunc(false,received.substring(0,firstDiff));
+  lastRecDiff=recLength - 1;
+  lastCompDiff=compLength - 1;
+  while ((lastRecDiff > firstDiff) && (lastCompDiff > firstDiff) && received.charAt(lastRecDiff) == comparison.charAt(lastCompDiff)) {
+    lastRecDiff--;
+    lastCompDiff--;
+  }
+  endingEqSeq=trunc(true,received.substring(lastRecDiff + 1,recLength));
+  if (endingEqSeq.length() == 0) {
+    recDeltaSeq=trunc(true,received.substring(firstDiff,recLength));
+    compDeltaSeq=trunc(true,comparison.substring(firstDiff,compLength));
+  }
+ else {
+    recDeltaSeq=trunc(true,received.substring(firstDiff,lastRecDiff + 1));
+    compDeltaSeq=trunc(true,comparison.substring(firstDiff,lastCompDiff + 1));
+  }
+  pad=new StringBuffer(Math.abs(recDeltaSeq.length() - compDeltaSeq.length()));
+  for (int i=0; i < pad.capacity(); i++)   pad.append(' ');
+  if (recDeltaSeq.length() > compDeltaSeq.length())   compDeltaSeq+=pad.toString();
+ else   recDeltaSeq+=pad.toString();
+  text.append("\n\n");
+  text.append(RECEIVED_STR);
+  text.append(startingEqSeq);
+  text.append(DIFF_DELTA_START);
+  text.append(recDeltaSeq);
+  text.append(DIFF_DELTA_END);
+  text.append(endingEqSeq);
+  text.append("\n\n");
+  text.append(COMPARISON_STR);
+  text.append(startingEqSeq);
+  text.append(DIFF_DELTA_START);
+  text.append(compDeltaSeq);
+  text.append(DIFF_DELTA_END);
+  text.append(endingEqSeq);
+  text.append("\n\n");
+  return text;
+}

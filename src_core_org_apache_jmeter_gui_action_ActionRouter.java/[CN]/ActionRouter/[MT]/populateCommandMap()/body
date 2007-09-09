@@ -30,12 +30,10 @@
       }
     }
   }
- catch (  Exception e) {
-    if ("java.awt.HeadlessException".equals(e.getClass().getName())) {
-      log.warn(e.toString());
-    }
- else {
-      log.error("exception finding action handlers",e);
-    }
+ catch (  HeadlessException e) {
+    log.warn(e.toString());
+  }
+catch (  Exception e) {
+    log.error("exception finding action handlers",e);
   }
 }

@@ -1,0 +1,32 @@
+{
+  assertion.unsetNotType();
+  assertion.setToContainsType();
+  assertion.setTestFieldURL();
+  assertion.addTestString("Sampler");
+  assertion.addTestString("Label");
+  assertion.addTestString(" x");
+  result=assertion.getResult(sample);
+  assertFailed();
+  assertion.setToNotType();
+  result=assertion.getResult(sample);
+  assertFailed();
+  assertion.clearTestStrings();
+  assertion.addTestString("r l");
+  result=assertion.getResult(sample);
+  assertPassed();
+  assertion.unsetNotType();
+  assertion.setTestFieldResponseData();
+  assertion.clearTestStrings();
+  assertion.addTestString("line 2");
+  result=assertion.getResult(sample);
+  assertPassed();
+  assertion.clearTestStrings();
+  assertion.addTestString("(?s)line \\d+.*EOF");
+  result=assertion.getResult(sample);
+  assertPassed();
+  assertion.setTestFieldResponseCode();
+  assertion.clearTestStrings();
+  assertion.addTestString("401");
+  result=assertion.getResult(sample);
+  assertPassed();
+}

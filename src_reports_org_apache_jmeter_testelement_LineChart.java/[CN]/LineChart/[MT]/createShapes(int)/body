@@ -1,0 +1,7 @@
+{
+  Shape[] shapes=new Shape[count];
+  for (int idx=0; idx < count; idx++) {
+    shapes[idx]=nextShape();
+  }
+  return shapes;
+}

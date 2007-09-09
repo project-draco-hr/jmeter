@@ -5,5 +5,5 @@
   if (el.getProperty(TestPlan.USER_DEFINED_VARIABLES) != null) {
     argsPanel.configure((Arguments)el.getProperty(TestPlan.USER_DEFINED_VARIABLES).getObjectValue());
   }
-  commentPanel.setText(el.getPropertyAsString(TestPlan.COMMENTS));
+  browseJar.setFiles(((TestPlan)el).getTestPlanClasspathArray());
 }

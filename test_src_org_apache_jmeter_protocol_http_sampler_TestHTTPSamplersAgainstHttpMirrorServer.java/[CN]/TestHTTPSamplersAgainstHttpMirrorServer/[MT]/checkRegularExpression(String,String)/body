@@ -1,0 +1,5 @@
+{
+  Perl5Matcher localMatcher=JMeterUtils.getMatcher();
+  Pattern pattern=JMeterUtils.getPattern(regularExpression,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK);
+  return localMatcher.contains(stringToCheck,pattern);
+}

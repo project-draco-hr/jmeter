@@ -5,7 +5,7 @@
   root=new DefaultMutableTreeNode(rootSampleResult);
   treeModel=new DefaultTreeModel(root);
   jTree=new JTree(treeModel);
-  jTree.setCellRenderer(new TreeNodeRenderer());
+  jTree.setCellRenderer(new ResultsNodeRenderer());
   jTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
   jTree.addTreeSelectionListener(this);
   jTree.setRootVisible(false);

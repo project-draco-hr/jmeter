@@ -2,7 +2,5 @@
   if (config.expectsModification()) {
     return config;
   }
- else {
-    return (ConfigElement)config.clone();
-  }
+  return (ConfigElement)config.clone();
 }

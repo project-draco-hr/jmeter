@@ -1,13 +1,20 @@
 {
   String value=config.getValue("");
   String name=config.getAttribute("name",value);
+  String oname=name;
   String type=config.getAttribute("propType",StringProperty.class.getName());
   name=NameUpdater.getCurrentName(name,testClass);
-  if (TestElement.GUI_CLASS.equals(name) || TestElement.TEST_CLASS.equals(name)) {
+  if (TestElement.GUI_CLASS.equals(name)) {
     value=NameUpdater.getCurrentName(value);
+  }
+ else   if (TestElement.TEST_CLASS.equals(name)) {
+    value=testClass;
   }
  else {
     value=NameUpdater.getCurrentName(value,name,testClass);
+  }
+  if (oname.length() != 0 && name.length() == 0) {
+    return null;
   }
   JMeterProperty prop=(JMeterProperty)Class.forName(type).newInstance();
   prop.setName(name);

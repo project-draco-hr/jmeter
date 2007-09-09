@@ -9,7 +9,7 @@
     Socket sock=getSocket();
     if (sock == null) {
       res.setResponseCode("500");
-      res.setResponseMessage(except.toString());
+      res.setResponseMessage(getError());
     }
  else {
       InputStream is=sock.getInputStream();
@@ -20,7 +20,7 @@
       String in=protocolHandler.read(is);
       res.setResponseData(in.getBytes());
       res.setDataType(SampleResult.TEXT);
-      res.setResponseCode("200");
+      res.setResponseCodeOK();
       res.setResponseMessage("OK");
       isSuccessful=true;
       if (STATUS_PREFIX.length() > 0) {
@@ -46,7 +46,7 @@
     }
   }
  catch (  IOException ex) {
-    log.debug(getName(),ex);
+    log.debug("",ex);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
     closeSocket();
@@ -54,6 +54,9 @@
  finally {
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
+    if (!isReUseConnection()) {
+      closeSocket();
+    }
   }
   return res;
 }

@@ -1,0 +1,22 @@
+{
+  String url="http://localhost/matrix.html";
+  String contentEncoding="UTF-8";
+  String boundary="xf8SqlDNvmn6mFYwrioJaeUR2_Z4cLRXOSmB";
+  String endOfLine="\r\n";
+  String fileFieldValue="test_file";
+  String fileName="somefilename.txt";
+  String mimeType="text/plain";
+  String fileContent="somedummycontent\n\ndfgdfg\r\nfgdgdg\nContent-type:dfsfsfds";
+  String postBody=createMultipartFileUploadBody(fileFieldValue,fileName,mimeType,fileContent,boundary,endOfLine);
+  String testPostRequest=createMultipartFormRequest(url,postBody,contentEncoding,boundary,endOfLine);
+  HTTPSamplerBase s=getSamplerForRequest(url,testPostRequest,contentEncoding);
+  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(contentEncoding,s.getContentEncoding());
+  assertEquals("",s.getQueryString());
+  assertTrue(s.getDoMultipartPost());
+  Arguments arguments=s.getArguments();
+  assertEquals(0,arguments.getArgumentCount());
+  assertEquals(fileFieldValue,s.getFileField());
+  assertEquals(fileName,s.getFilename());
+  assertEquals(mimeType,s.getMimetype());
+}

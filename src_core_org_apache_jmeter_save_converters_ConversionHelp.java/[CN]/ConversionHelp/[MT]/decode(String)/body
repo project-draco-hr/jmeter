@@ -4,7 +4,7 @@
     return null;
   }
   try {
-    return JOrphanUtils.decode(p,CHAR_SET);
+    return URLDecoder.decode(p,CHAR_SET);
   }
  catch (  UnsupportedEncodingException e) {
     log.warn("System doesn't support " + CHAR_SET,e);

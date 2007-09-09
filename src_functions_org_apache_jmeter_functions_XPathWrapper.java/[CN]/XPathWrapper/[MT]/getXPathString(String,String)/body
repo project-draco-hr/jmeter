@@ -1,20 +1,24 @@
 {
   Map my=(Map)filePacks.get();
-  XPathWrapper fw=(XPathWrapper)(my).get(file);
-  if (fw == null) {
-    if (file.startsWith("*")) {
-      log.warn("Cannot perform initial open using alias " + file);
+  String key=file + xpathString;
+  XPathFileContainer xpfc=(XPathFileContainer)my.get(key);
+  if (xpfc == null) {
+synchronized (fileContainers) {
+      xpfc=(XPathFileContainer)fileContainers.get(key);
+      if (xpfc == null) {
+        xpfc=open(file,xpathString);
+      }
+      if (xpfc != null) {
+        fileContainers.put(key,xpfc);
+      }
     }
- else {
-      file=checkDefault(file);
-      log.info("Attaching " + file);
-      open(file,xpathString,file);
-      fw=(XPathWrapper)my.get(file);
-    }
-    if (fw == null) {
+    if (xpfc == null) {
       log.error("XPathWrapper is null!");
       return "";
     }
+    my.put(key,xpfc);
   }
-  return fw.getXPathString();
+  int currentRow=xpfc.nextRow();
+  log.debug("getting match number " + currentRow);
+  return xpfc.getXPathString(currentRow);
 }

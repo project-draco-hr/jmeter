@@ -1,0 +1,4 @@
+{
+  String postRequest="POST " + url + " HTTP/1.1"+ endOfLine+ "Content-type: "+ HTTPSamplerBase.MULTIPART_FORM_DATA+ "; boundary="+ boundary+ endOfLine+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ endOfLine+ endOfLine+ postBody;
+  return postRequest;
+}

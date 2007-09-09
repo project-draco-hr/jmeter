@@ -1,0 +1,10 @@
+{
+  StringBuffer sb=new StringBuffer(100);
+  sb.append("method: ");
+  sb.append(methodName);
+  if (invokee != null) {
+    sb.append(" invokee: ");
+    sb.append(invokee.getClass().getName());
+  }
+  return sb.toString();
+}

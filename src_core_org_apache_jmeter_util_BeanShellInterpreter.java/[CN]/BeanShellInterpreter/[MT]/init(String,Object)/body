@@ -9,15 +9,18 @@
     }
   }
   if (initFile != null && initFile.length() > 0) {
-    File in=new File(initFile);
+    String fileToUse=initFile;
+    File in=new File(fileToUse);
     if (!in.exists()) {
-      throw new FileNotFoundException("initFile");
+      fileToUse=JMeterUtils.getJMeterHome() + File.separator + "bin"+ File.separator+ initFile;
+      in=new File(fileToUse);
+      if (!in.exists()) {
+        throw new FileNotFoundException(initFile);
+      }
     }
     if (!in.canRead()) {
-      throw new IOException("initFile");
+      throw new IOException("Cannot read" + fileToUse);
     }
- else {
-      source(initFile);
-    }
+    source(fileToUse);
   }
 }

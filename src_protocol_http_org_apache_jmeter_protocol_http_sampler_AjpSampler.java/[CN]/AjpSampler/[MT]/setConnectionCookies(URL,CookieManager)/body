@@ -1,0 +1,11 @@
+{
+  if (cookies != null) {
+    CollectionProperty coll=cookies.getCookies();
+    PropertyIterator i=coll.iterator();
+    while (i.hasNext()) {
+      JMeterProperty header=i.next();
+      setInt(0xA009);
+      setString(header.getName() + "=" + header.getStringValue());
+    }
+  }
+}

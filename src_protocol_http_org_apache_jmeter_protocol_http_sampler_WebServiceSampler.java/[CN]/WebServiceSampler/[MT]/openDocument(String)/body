@@ -1,27 +1,22 @@
 {
   DocumentBuilder XDB=XMLParserUtils.getXMLDocBuilder();
+  XDB.setErrorHandler(null);
   Document doc=null;
-  if (getXmlFile().length() > 0 || getXmlPathLoc().length() > 0) {
-    try {
-      doc=XDB.parse(new FileInputStream(retrieveRuntimeXmlData()));
+  if (file.length() > 0) {
+    if (this.getReadResponse()) {
+      TextFile tfile=new TextFile(file);
+      fileContents=tfile.getText();
     }
- catch (    Exception e) {
-      log.debug(e.getMessage());
-    }
+    doc=XDB.parse(new FileInputStream(file));
   }
  else {
-    FILE_CONTENTS=getXmlData();
-    if (FILE_CONTENTS != null && FILE_CONTENTS.length() > 0) {
-      try {
-        doc=XDB.parse(new InputSource(new StringReader(FILE_CONTENTS)));
-      }
- catch (      Exception ex) {
-        log.debug(ex.getMessage());
-      }
+    fileContents=getXmlData();
+    if (fileContents != null && fileContents.length() > 0) {
+      doc=XDB.parse(new InputSource(new StringReader(fileContents)));
     }
-  }
-  if (this.getPropertyAsBoolean(MEMORY_CACHE)) {
-    DOMPool.putDocument(key,doc);
+ else {
+      log.warn("No post data provided!");
+    }
   }
   return doc;
 }

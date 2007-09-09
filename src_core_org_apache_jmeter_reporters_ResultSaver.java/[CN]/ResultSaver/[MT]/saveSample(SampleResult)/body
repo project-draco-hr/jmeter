@@ -3,6 +3,7 @@
   nextNumber();
   String fileName=makeFileName(s.getContentType());
   log.debug("Saving " + s.getSampleLabel() + " in "+ fileName);
+  s.setResultFileName(fileName);
   File out=new File(fileName);
   FileOutputStream pw=null;
   try {
@@ -16,10 +17,6 @@ catch (  IOException e1) {
     log.error("Error saving sample " + s.getSampleLabel(),e1);
   }
  finally {
-    try {
-      if (pw != null)       pw.close();
-    }
- catch (    IOException e) {
-    }
+    JOrphanUtils.closeQuietly(pw);
   }
 }

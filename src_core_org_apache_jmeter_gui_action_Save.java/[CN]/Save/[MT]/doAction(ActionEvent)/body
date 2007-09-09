@@ -3,39 +3,49 @@
   if (!commands.contains(e.getActionCommand())) {
     throw new IllegalUserActionException("Invalid user command:" + e.getActionCommand());
   }
-  if (e.getActionCommand().equals(SAVE_AS)) {
+  if (e.getActionCommand().equals(ActionNames.SAVE_AS)) {
     subTree=GuiPackage.getInstance().getCurrentSubTree();
   }
  else {
     subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
   }
   String updateFile=GuiPackage.getInstance().getTestPlanFile();
-  if (!SAVE.equals(e.getActionCommand()) || updateFile == null) {
-    JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + ".jmx");
+  if (!ActionNames.SAVE.equals(e.getActionCommand()) || updateFile == null) {
+    JFileChooser chooser=FileDialoger.promptToSaveFile(GuiPackage.getInstance().getTreeListener().getCurrentNode().getName() + JMX_FILE_EXTENSION);
     if (chooser == null) {
       return;
     }
     updateFile=chooser.getSelectedFile().getAbsolutePath();
-    if (!e.getActionCommand().equals(SAVE_AS)) {
+    if (FilenameUtils.getExtension(updateFile).equals("")) {
+      updateFile=updateFile + JMX_FILE_EXTENSION;
+    }
+    if (!e.getActionCommand().equals(ActionNames.SAVE)) {
+      File f=new File(updateFile);
+      if (f.exists()) {
+        int response=JOptionPane.showConfirmDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("save_overwrite_existing_file"),JMeterUtils.getResString("save?"),JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.NO_OPTION) {
+          return;
+        }
+      }
+    }
+    if (!e.getActionCommand().equals(ActionNames.SAVE_AS)) {
       GuiPackage.getInstance().setTestPlanFile(updateFile);
     }
   }
-  ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),CheckDirty.SUB_TREE_SAVED));
+  ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),ActionNames.SUB_TREE_SAVED));
   try {
     convertSubTree(subTree);
   }
  catch (  Exception err) {
   }
-  Writer writer=null;
   FileOutputStream ostream=null;
   try {
+    ostream=new FileOutputStream(updateFile);
     if (SaveService.isSaveTestPlanFormat20()) {
-      ostream=new FileOutputStream(updateFile);
       OldSaveService.saveSubTree(subTree,ostream);
     }
  else {
-      writer=new FileWriter(updateFile);
-      SaveService.saveTree(subTree,writer);
+      SaveService.saveTree(subTree,ostream);
     }
   }
  catch (  Throwable ex) {
@@ -44,7 +54,7 @@
     throw new IllegalUserActionException("Couldn't save test plan to file: " + updateFile);
   }
  finally {
-    closeWriter(writer);
-    closeStream(ostream);
+    JOrphanUtils.closeQuietly(ostream);
   }
+  GuiPackage.getInstance().updateCurrentGui();
 }

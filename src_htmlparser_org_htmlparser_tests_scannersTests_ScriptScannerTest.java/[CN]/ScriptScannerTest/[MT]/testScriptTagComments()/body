@@ -1,8 +1,0 @@
-{
-  String testHtml="<SCRIPT LANGUAGE=\"JavaScript\">\r\n" + "<!--\r\n" + "// -->\r\n"+ "</SCRIPT>";
-  createParser(testHtml);
-  parser.addScanner(new ScriptScanner("-s"));
-  parseAndAssertNodeCount(1);
-  ScriptTag scriptTag=(ScriptTag)node[0];
-  assertStringEquals("scriptag html",testHtml,scriptTag.toHtml());
-}

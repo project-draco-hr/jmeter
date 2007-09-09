@@ -1,0 +1,7 @@
+{
+  configureTestElement(el);
+  if (el instanceof HttpMirrorControl) {
+    mirrorController=(HttpMirrorControl)el;
+    mirrorController.setPort(portField.getText());
+  }
+}

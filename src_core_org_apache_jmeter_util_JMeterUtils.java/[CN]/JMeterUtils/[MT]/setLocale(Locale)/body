@@ -2,9 +2,9 @@
   log.info("Setting Locale to " + loc.toString());
   locale=loc;
   Locale def=null;
-  if (loc.getLanguage() == Locale.ENGLISH.getLanguage()) {
+  if (loc.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
     def=Locale.getDefault();
-    if (def.getLanguage() != Locale.ENGLISH.getLanguage()) {
+    if (!def.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
       Locale.setDefault(Locale.ENGLISH);
     }
  else {

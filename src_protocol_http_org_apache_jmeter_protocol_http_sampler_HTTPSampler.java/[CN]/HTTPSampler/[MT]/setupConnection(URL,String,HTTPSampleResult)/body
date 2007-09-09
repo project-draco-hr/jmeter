@@ -1,47 +1,46 @@
 {
-  HttpURLConnection conn;
-  HttpURLConnection.setFollowRedirects(getPropertyAsBoolean(AUTO_REDIRECTS));
-  conn=(HttpURLConnection)u.openConnection();
-  if ("https".equalsIgnoreCase(u.getProtocol())) {
+  SSLManager sslmgr=null;
+  if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
-      SSLManager.getInstance().setContext(conn);
+      sslmgr=SSLManager.getInstance();
     }
  catch (    Exception e) {
-      log.warn("You may have forgotten to set the ssl.provider property " + "in jmeter.properties",e);
+      log.warn("Problem creating the SSLManager: ",e);
+    }
+  }
+  HttpURLConnection conn=(HttpURLConnection)u.openConnection();
+  conn.setInstanceFollowRedirects(getAutoRedirects());
+  if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
+    try {
+      if (null != sslmgr) {
+        sslmgr.setContext(conn);
+      }
+    }
+ catch (    Exception e) {
+      log.warn("Problem setting the SSLManager for the connection: ",e);
     }
   }
   if (getUseKeepAlive()) {
-    conn.setRequestProperty("Connection","keep-alive");
+    conn.setRequestProperty(HEADER_CONNECTION,KEEP_ALIVE);
   }
  else {
-    conn.setRequestProperty("Connection","close");
+    conn.setRequestProperty(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
   conn.setRequestMethod(method);
-  String hdrs=setConnectionHeaders(conn,u,getHeaderManager());
+  setConnectionHeaders(conn,u,getHeaderManager());
   String cookies=setConnectionCookie(conn,u,getCookieManager());
-  if (res != null) {
-    StringBuffer sb=new StringBuffer();
-    if (method.equals(POST)) {
-      String q=this.getQueryString();
-      sb.append("\nQuery data:\n");
-      sb.append(q);
-      res.setQueryString(sb.toString());
-    }
-    if (cookies != null) {
-      StringBuffer temp=new StringBuffer("\nCookie Data:\n");
-      temp.append(cookies);
-      temp.append('\n');
-      res.setCookies(temp.toString());
-      sb.append(temp);
-    }
-    res.setSamplerData(sb.toString());
-    res.setURL(u);
-    res.setHTTPMethod(method);
-    res.setRequestHeaders(hdrs);
-  }
   setConnectionAuthorization(conn,u,getAuthManager());
   if (method.equals(POST)) {
     setPostHeaders(conn);
+  }
+ else   if (method.equals(PUT)) {
+    setPutHeaders(conn);
+  }
+  if (res != null) {
+    res.setURL(u);
+    res.setHTTPMethod(method);
+    res.setRequestHeaders(getConnectionHeaders(conn));
+    res.setCookies(cookies);
   }
   return conn;
 }

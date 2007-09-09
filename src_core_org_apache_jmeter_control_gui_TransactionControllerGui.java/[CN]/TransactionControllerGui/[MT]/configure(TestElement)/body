@@ -1,0 +1,4 @@
+{
+  super.configure(el);
+  parent.setSelected(((TransactionController)el).isParent());
+}

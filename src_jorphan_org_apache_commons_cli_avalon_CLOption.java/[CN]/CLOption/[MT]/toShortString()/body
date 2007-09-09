@@ -1,0 +1,15 @@
+{
+  final StringBuffer sb=new StringBuffer();
+  final char id=(char)m_descriptor.getId();
+  if (id != TEXT_ARGUMENT) {
+    sb.append("-");
+    sb.append(id);
+  }
+  if (null != m_arguments) {
+    if (id != TEXT_ARGUMENT) {
+      sb.append("=");
+    }
+    sb.append(Arrays.asList(m_arguments));
+  }
+  return sb.toString();
+}

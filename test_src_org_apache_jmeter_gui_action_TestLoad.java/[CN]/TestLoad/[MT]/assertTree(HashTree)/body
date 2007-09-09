@@ -1,3 +1,6 @@
 {
-  assertTrue(tree.getArray()[0] instanceof org.apache.jmeter.testelement.TestPlan);
+  final Object object=tree.getArray()[0];
+  if (!(object instanceof org.apache.jmeter.testelement.TestPlan)) {
+    fail("Hash tree should be TestPlan, but is " + object.getClass().getName());
+  }
 }

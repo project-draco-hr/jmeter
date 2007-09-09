@@ -1,6 +1,8 @@
 {
-  if (storedValues.size() == 0) {
-    return new Sample();
+synchronized (storedValues) {
+    if (storedValues.size() == 0) {
+      return new Sample();
+    }
+    return (Sample)storedValues.get(storedValues.size() - 1);
   }
-  return (Sample)storedValues.get(storedValues.size() - 1);
 }

@@ -1,0 +1,13 @@
+{
+  appendError.setSelected(false);
+  appendExc.setSelected(false);
+  doSetup.setSelected(false);
+  filterpkg.setText("");
+  constructorLabel.setText("");
+  successCode.setText(JMeterUtils.getResString("junit_success_default_code"));
+  successMsg.setText(JMeterUtils.getResString("junit_success_default_msg"));
+  failureCode.setText(JMeterUtils.getResString("junit_failure_default_code"));
+  failureMsg.setText(JMeterUtils.getResString("junit_failure_default_msg"));
+  errorMsg.setText(JMeterUtils.getResString("junit_error_default_msg"));
+  errorCode.setText(JMeterUtils.getResString("junit_error_default_code"));
+}

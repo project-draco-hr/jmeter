@@ -1,0 +1,7 @@
+{
+  ImageIcon icon=getImage(name);
+  if (icon != null) {
+    icon.setDescription(description);
+  }
+  return icon;
+}

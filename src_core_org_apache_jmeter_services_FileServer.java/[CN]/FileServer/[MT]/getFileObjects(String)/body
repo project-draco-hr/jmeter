@@ -1,8 +1,0 @@
-{
-  Object[] file=(Object[])files.get(filename);
-  if (file == null) {
-    reserveFile(filename);
-    file=(Object[])files.get(filename);
-  }
-  return file;
-}

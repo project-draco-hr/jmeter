@@ -1,0 +1,32 @@
+{
+  if (args.length < MINARGS) {
+    System.out.println("Please provide " + MINARGS + " or more arguments:");
+    System.out.println("serverhost serverport filename [arg1 arg2 ...]");
+    System.out.println("e.g. ");
+    System.out.println("localhost 9000 extras/remote.bsh apple blake 7");
+    System.exit(1);
+  }
+  String host=args[0];
+  String portString=args[1];
+  String file=args[2];
+  int port=Integer.parseInt(portString) + 1;
+  System.out.println("Connecting to BSH server on " + host + ":"+ portString);
+  Socket sock=new Socket(host,port);
+  InputStream is=sock.getInputStream();
+  OutputStream os=sock.getOutputStream();
+  InputStreamReader fis=new FileReader(file);
+  new SockRead(is).start();
+  sendLine("bsh.prompt=\"\";",os);
+  sendLine("String [] args={",os);
+  for (int i=MINARGS; i < args.length; i++) {
+    sendLine("\"" + args[i] + "\",\n",os);
+  }
+  sendLine("};",os);
+  int b;
+  while ((b=fis.read()) != -1) {
+    os.write(b);
+  }
+  sendLine("bsh.prompt=\"bsh % \";",os);
+  os.flush();
+  sock.shutdownOutput();
+}

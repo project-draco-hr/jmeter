@@ -1,0 +1,6 @@
+{
+  if (runThisTime) {
+    return super.next();
+  }
+  return null;
+}

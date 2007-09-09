@@ -1,0 +1,40 @@
+{
+  log.info("Starting thread");
+  BufferedReader in=null;
+  PrintWriter out=null;
+  try {
+    Thread.sleep(200);
+  }
+ catch (  InterruptedException e) {
+  }
+  try {
+    in=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+    out=new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+    out.print("HTTP/1.0 200 OK");
+    out.write(CRLF);
+    out.print("Content-Type: text/plain");
+    out.write(CRLF);
+    out.write(CRLF);
+    out.flush();
+    String line;
+    while ((line=in.readLine()) != null) {
+      out.print(line);
+      out.write(CRLF);
+      if (line.length() == 0)       break;
+    }
+    int c;
+    while (in.ready() && (c=in.read()) != -1) {
+      out.write(c);
+    }
+    out.flush();
+  }
+ catch (  Exception e) {
+    log.error("",e);
+  }
+ finally {
+    JOrphanUtils.closeQuietly(out);
+    JOrphanUtils.closeQuietly(in);
+    JOrphanUtils.closeQuietly(clientSocket);
+  }
+  log.info("End of Thread");
+}

@@ -1,14 +1,31 @@
 {
-  HttpRequestHdr request=new HttpRequestHdr();
+  String httpSamplerName=HTTPSamplerFactory.DEFAULT_CLASSNAME;
+  if (target.getSamplerTypeName() == ProxyControl.SAMPLER_TYPE_HTTP_SAMPLER) {
+    httpSamplerName=HTTPSamplerFactory.HTTP_SAMPLER_JAVA;
+  }
+ else   if (target.getSamplerTypeName() == ProxyControl.SAMPLER_TYPE_HTTP_SAMPLER2) {
+    httpSamplerName=HTTPSamplerFactory.HTTP_SAMPLER_APACHE;
+  }
+  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance(httpSamplerName);
+  HttpRequestHdr request=new HttpRequestHdr(sampler);
   SampleResult result=null;
   HeaderManager headers=null;
-  HTTPSamplerBase sampler=new HTTPSampler();
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
-    sampler=request.getSampler();
+    request.getSampler(pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
+    if (httpsSpoof) {
+      sampler.setProtocol("https");
+    }
+    sampler.threadStarted();
     result=sampler.sample();
+    if (httpsSpoof && SampleResult.TEXT.equals(result.getDataType())) {
+      String noHttpsResult=new String(result.getResponseData());
+      result.setResponseData(noHttpsResult.replaceAll("https","http").getBytes());
+    }
+    String pageEncoding=addPageEncoding(result);
+    addFormEncodings(result,pageEncoding);
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
   }
@@ -21,6 +38,9 @@ catch (  Exception e) {
     writeErrorToClient(HttpReplyHdr.formTimeout());
   }
  finally {
+    if (log.isDebugEnabled()) {
+      log.debug("Will deliver sample " + sampler.getName());
+    }
     target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
     try {
       clientSocket.close();
@@ -28,5 +48,6 @@ catch (  Exception e) {
  catch (    Exception e) {
       log.error("",e);
     }
+    sampler.threadFinished();
   }
 }

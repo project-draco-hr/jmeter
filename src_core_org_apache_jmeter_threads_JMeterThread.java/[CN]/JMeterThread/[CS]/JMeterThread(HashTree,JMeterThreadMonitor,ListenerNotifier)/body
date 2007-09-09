@@ -7,9 +7,6 @@
   SearchByClass threadListenerSearcher=new SearchByClass(TestListener.class);
   test.traverse(threadListenerSearcher);
   testListeners=threadListenerSearcher.getSearchResults();
-  SearchByClass testListenerSearcher=new SearchByClass(ThreadListener.class);
-  test.traverse(testListenerSearcher);
-  threadListeners=testListenerSearcher.getSearchResults();
   notifier=note;
   running=true;
 }

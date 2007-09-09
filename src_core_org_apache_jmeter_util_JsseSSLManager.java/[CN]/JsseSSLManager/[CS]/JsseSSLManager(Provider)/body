@@ -1,18 +1,30 @@
 {
   log.debug("ssl Provider =  " + provider);
   setProvider(provider);
-  try {
-    Class iaikProvider=SSLManager.class.getClassLoader().loadClass("iaik.security.jsse.provider.IAIKJSSEProvider");
-    setProvider((Provider)iaikProvider.newInstance());
-  }
- catch (  Exception e) {
-  }
   if (null == this.rand) {
     this.rand=new SecureRandom();
   }
-  if ("all".equalsIgnoreCase(JMeterUtils.getPropDefault("javax.net.debug","none"))) {
-    System.setProperty("javax.net.debug","all");
+  try {
+    if (SHARED_SESSION_CONTEXT) {
+      log.debug("Creating shared context");
+      this.defaultContext=createContext();
+    }
+ else {
+      this.threadlocal=new ThreadLocal();
+    }
+    HttpsURLConnection.setDefaultSSLSocketFactory(new HttpSSLProtocolSocketFactory(this));
+    HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){
+      public boolean verify(      String hostname,      SSLSession session){
+        return true;
+      }
+    }
+);
+    Protocol protocol=new Protocol(JsseSSLManager.HTTPS,(ProtocolSocketFactory)new HttpSSLProtocolSocketFactory(this,cps),443);
+    Protocol.registerProtocol(JsseSSLManager.HTTPS,protocol);
+    log.debug("SSL stuff all set");
   }
-  this.getContext();
-  log.info("JsseSSLManager installed");
+ catch (  GeneralSecurityException ex) {
+    log.error("Could not set up SSLContext",ex);
+  }
+  log.debug("JsseSSLManager installed");
 }

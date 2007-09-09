@@ -1,0 +1,12 @@
+{
+  FileInputStream fis=new FileInputStream(fileEntry.file);
+  InputStreamReader isr=null;
+  String charsetName=fileEntry.charSetEncoding;
+  if (charsetName != null && charsetName.trim().length() > 0) {
+    isr=new InputStreamReader(fis,charsetName);
+  }
+ else {
+    isr=new InputStreamReader(fis);
+  }
+  return new BufferedReader(isr);
+}

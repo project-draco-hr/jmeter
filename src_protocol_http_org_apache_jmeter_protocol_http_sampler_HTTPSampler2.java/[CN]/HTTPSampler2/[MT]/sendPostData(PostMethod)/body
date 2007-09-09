@@ -1,0 +1,115 @@
+{
+  StringBuffer postedBody=new StringBuffer(1000);
+  if (getUseMultipartForPost()) {
+    String contentEncoding=getContentEncoding();
+    if (contentEncoding != null && contentEncoding.length() == 0) {
+      contentEncoding=null;
+    }
+    int noParts=getArguments().getArgumentCount();
+    if (hasUploadableFiles()) {
+      noParts++;
+    }
+    Part[] parts=new Part[noParts];
+    int partNo=0;
+    PropertyIterator args=getArguments().iterator();
+    while (args.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      parts[partNo++]=new StringPart(arg.getName(),arg.getValue(),contentEncoding);
+    }
+    if (hasUploadableFiles()) {
+      File inputFile=new File(getFilename());
+      ViewableFilePart filePart=new ViewableFilePart(getFileField(),inputFile,getMimetype(),null);
+      filePart.setCharSet(null);
+      parts[partNo++]=filePart;
+    }
+    MultipartRequestEntity multiPart=new MultipartRequestEntity(parts,post.getParams());
+    post.setRequestEntity(multiPart);
+    String multiPartContentType=multiPart.getContentType();
+    post.setRequestHeader(HEADER_CONTENT_TYPE,multiPartContentType);
+    if (multiPart.isRepeatable()) {
+      for (int i=0; i < partNo; i++) {
+        if (parts[i] instanceof ViewableFilePart) {
+          ((ViewableFilePart)parts[i]).setHideFileData(true);
+        }
+      }
+      ByteArrayOutputStream bos=new ByteArrayOutputStream();
+      multiPart.writeRequest(bos);
+      bos.flush();
+      postedBody.append(new String(bos.toByteArray(),"UTF-8"));
+      bos.close();
+      for (int i=0; i < partNo; i++) {
+        if (parts[i] instanceof ViewableFilePart) {
+          ((ViewableFilePart)parts[i]).setHideFileData(false);
+        }
+      }
+    }
+ else {
+      postedBody.append("<Multipart was not repeatable, cannot view what was sent>");
+    }
+  }
+ else {
+    Header contentTypeHeader=post.getRequestHeader(HEADER_CONTENT_TYPE);
+    boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
+    if (getArguments().getArgumentCount() == 0 && getSendFileAsPostBody()) {
+      if (!hasContentTypeHeader) {
+        if (getMimetype() != null && getMimetype().length() > 0) {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+        }
+ else {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+        }
+      }
+      FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(getFilename()),null);
+      post.setRequestEntity(fileRequestEntity);
+      postedBody.append("<actual file content, not shown here>");
+    }
+ else {
+      if (!hasContentTypeHeader) {
+        post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+      }
+      final String contentEncoding=getContentEncoding();
+      if (contentEncoding != null && contentEncoding.trim().length() > 0) {
+        post.getParams().setContentCharset(contentEncoding);
+      }
+      if (!getSendParameterValuesAsPostBody()) {
+        PropertyIterator args=getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          String parameterName=arg.getName();
+          String parameterValue=arg.getValue();
+          if (!arg.isAlwaysEncoded()) {
+            String urlContentEncoding=contentEncoding;
+            if (urlContentEncoding == null || urlContentEncoding.length() == 0) {
+              urlContentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;
+            }
+            parameterName=URLDecoder.decode(parameterName,urlContentEncoding);
+            parameterValue=URLDecoder.decode(parameterValue,urlContentEncoding);
+          }
+          post.addParameter(parameterName,parameterValue);
+        }
+      }
+ else {
+        StringBuffer postBody=new StringBuffer();
+        PropertyIterator args=getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          postBody.append(arg.getValue());
+        }
+        StringRequestEntity requestEntity=new StringRequestEntity(postBody.toString(),post.getRequestHeader(HEADER_CONTENT_TYPE).getValue(),post.getRequestCharSet());
+        post.setRequestEntity(requestEntity);
+      }
+      if (post.getRequestEntity().isRepeatable()) {
+        ByteArrayOutputStream bos=new ByteArrayOutputStream();
+        post.getRequestEntity().writeRequest(bos);
+        bos.flush();
+        postedBody.append(new String(bos.toByteArray(),"UTF-8"));
+        bos.close();
+      }
+ else {
+        postedBody.append("<Multipart was not repeatable, cannot view what was sent>");
+      }
+    }
+  }
+  post.setRequestHeader(HEADER_CONTENT_LENGTH,Long.toString(post.getRequestEntity().getContentLength()));
+  return postedBody.toString();
+}

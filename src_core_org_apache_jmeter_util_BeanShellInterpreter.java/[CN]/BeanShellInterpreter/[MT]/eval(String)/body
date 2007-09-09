@@ -1,3 +1,3 @@
 {
-  return bshInvoke(bshEval,s);
+  return bshInvoke(bshEval,new Object[]{s},true);
 }

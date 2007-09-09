@@ -1,11 +1,12 @@
 {
-  rend=new JTextArea(arg1.toString());
+  rend=new JTextArea(value.toString());
+  rend.setRows(2);
   rend.revalidate();
-  if (!arg3 && !arg2) {
+  if (!hasFocus && !isSelected) {
     rend.setBackground(JMeterColor.LAVENDER);
   }
-  if (arg0.getRowHeight(arg4) < getPreferredHeight()) {
-    arg0.setRowHeight(arg4,getPreferredHeight());
+  if (table.getRowHeight(row) < getPreferredHeight()) {
+    table.setRowHeight(row,getPreferredHeight());
   }
   return rend;
 }

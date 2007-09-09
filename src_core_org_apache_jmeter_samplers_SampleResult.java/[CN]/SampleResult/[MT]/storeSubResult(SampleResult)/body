@@ -1,0 +1,7 @@
+{
+  if (subResults == null) {
+    subResults=new ArrayList();
+  }
+  subResults.add(subResult);
+  subResult.setParent(this);
+}

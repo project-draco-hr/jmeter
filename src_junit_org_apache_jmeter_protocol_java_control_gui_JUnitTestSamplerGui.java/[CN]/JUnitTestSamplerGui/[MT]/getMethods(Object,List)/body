@@ -9,7 +9,5 @@
     Method[] rmeth=new Method[list.size()];
     return (Method[])list.toArray(rmeth);
   }
- else {
-    return new Method[0];
-  }
+  return new Method[0];
 }

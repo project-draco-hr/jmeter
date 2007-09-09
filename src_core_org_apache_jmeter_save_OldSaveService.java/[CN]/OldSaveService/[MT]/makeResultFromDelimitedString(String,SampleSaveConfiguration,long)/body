@@ -1,0 +1,114 @@
+{
+  SampleResult result=null;
+  long timeStamp=0;
+  long elapsed=0;
+  String parts[]=inputLine.split("\\Q" + _saveConfig.getDelimiter());
+  String text=null;
+  String field=null;
+  int i=0;
+  try {
+    if (saveConfig.saveTimestamp()) {
+      field=TIME_STAMP;
+      text=parts[i++];
+      if (saveConfig.printMilliseconds()) {
+        try {
+          timeStamp=Long.parseLong(text);
+        }
+ catch (        NumberFormatException e) {
+          log.warn(e.toString());
+          Date stamp=DEFAULT_DATE_FORMAT.parse(text);
+          timeStamp=stamp.getTime();
+          log.warn("Setting date format to: " + DEFAULT_DATE_FORMAT_STRING);
+          saveConfig.setFormatter(DEFAULT_DATE_FORMAT);
+        }
+      }
+ else       if (saveConfig.formatter() != null) {
+        Date stamp=saveConfig.formatter().parse(text);
+        timeStamp=stamp.getTime();
+      }
+ else {
+        final String msg="Unknown timestamp format";
+        log.warn(msg);
+        throw new JMeterError(msg);
+      }
+    }
+    if (saveConfig.saveTime()) {
+      field=CSV_ELAPSED;
+      text=parts[i++];
+      elapsed=Long.parseLong(text);
+    }
+    result=new SampleResult(timeStamp,elapsed);
+    if (saveConfig.saveLabel()) {
+      field=LABEL;
+      text=parts[i++];
+      result.setSampleLabel(text);
+    }
+    if (saveConfig.saveCode()) {
+      field=RESPONSE_CODE;
+      text=parts[i++];
+      result.setResponseCode(text);
+    }
+    if (saveConfig.saveMessage()) {
+      field=RESPONSE_MESSAGE;
+      text=parts[i++];
+      result.setResponseMessage(text);
+    }
+    if (saveConfig.saveThreadName()) {
+      field=THREAD_NAME;
+      text=parts[i++];
+      result.setThreadName(text);
+    }
+    if (saveConfig.saveDataType()) {
+      field=DATA_TYPE;
+      text=parts[i++];
+      result.setDataType(text);
+    }
+    if (saveConfig.saveSuccess()) {
+      field=SUCCESSFUL;
+      text=parts[i++];
+      result.setSuccessful(Boolean.valueOf(text).booleanValue());
+    }
+    if (saveConfig.saveAssertionResultsFailureMessage()) {
+      i++;
+    }
+    if (saveConfig.saveBytes()) {
+      field=CSV_BYTES;
+      text=parts[i++];
+      result.setBytes(Integer.parseInt(text));
+    }
+    if (saveConfig.saveThreadCounts()) {
+      i+=2;
+    }
+    if (saveConfig.saveUrl()) {
+      i++;
+    }
+    if (saveConfig.saveFileName()) {
+      field=CSV_FILENAME;
+      text=parts[i++];
+      result.setResultFileName(text);
+    }
+    if (saveConfig.saveLatency()) {
+      field=CSV_LATENCY;
+      text=parts[i++];
+      result.setLatency(Long.parseLong(text));
+    }
+    if (saveConfig.saveEncoding()) {
+      field=CSV_ENCODING;
+      text=parts[i++];
+      result.setEncodingAndType(text);
+    }
+  }
+ catch (  NumberFormatException e) {
+    log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);
+    throw new JMeterError(e);
+  }
+catch (  ParseException e) {
+    log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);
+    throw new JMeterError(e);
+  }
+catch (  ArrayIndexOutOfBoundsException e) {
+    log.warn("Insufficient columns to parse field '" + field + "' at line "+ lineNumber);
+    throw new JMeterError(e);
+  }
+  return result;
+}

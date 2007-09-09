@@ -9,7 +9,5 @@
     }
     return null;
   }
- else {
-    return doNext();
-  }
+  return next();
 }

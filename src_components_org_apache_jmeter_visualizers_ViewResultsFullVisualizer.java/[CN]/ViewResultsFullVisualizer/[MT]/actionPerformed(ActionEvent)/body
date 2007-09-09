@@ -1,6 +1,6 @@
 {
   command=e.getActionCommand();
-  if (command != null && (command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND) || command.equals(XML_COMMAND))) {
+  if (command != null && (command.equals(TEXT_COMMAND) || command.equals(HTML_COMMAND) || command.equals(JSON_COMMAND)|| command.equals(XML_COMMAND))) {
     textMode=command.equals(TEXT_COMMAND);
     DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
     if (node == null) {
@@ -14,6 +14,9 @@
     }
  else     if (command.equals(HTML_COMMAND)) {
       showRenderedResponse(response,res);
+    }
+ else     if (command.equals(JSON_COMMAND)) {
+      showRenderJSONResponse(response);
     }
  else     if (command.equals(XML_COMMAND)) {
       showRenderXMLResponse(response);

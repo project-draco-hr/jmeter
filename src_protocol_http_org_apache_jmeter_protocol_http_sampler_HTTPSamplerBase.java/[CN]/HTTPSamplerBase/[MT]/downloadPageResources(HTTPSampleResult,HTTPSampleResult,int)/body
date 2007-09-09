@@ -1,8 +1,13 @@
 {
   Iterator urls=null;
   try {
-    if (res.getContentType().toLowerCase().indexOf("text/html") != -1) {
-      urls=HTMLParser.getParser().getEmbeddedResourceURLs(res.getResponseData(),res.getURL());
+    final byte[] responseData=res.getResponseData();
+    if (responseData.length > 0) {
+      String parserName=getParserClass(res);
+      if (parserName != null) {
+        final HTMLParser parser=parserName.length() > 0 ? HTMLParser.getParser(parserName) : HTMLParser.getParser();
+        urls=parser.getEmbeddedResourceURLs(responseData,res.getURL());
+      }
     }
   }
  catch (  HTMLParseException e) {
@@ -16,12 +21,45 @@
  else {
       res=container;
     }
+    String re=getEmbeddedUrlRE();
+    Perl5Matcher localMatcher=null;
+    Pattern pattern=null;
+    if (re.length() > 0) {
+      try {
+        pattern=JMeterUtils.getPattern(re);
+        localMatcher=JMeterUtils.getMatcher();
+      }
+ catch (      MalformedCachePatternException e) {
+        log.warn("Ignoring embedded URL match string: " + e.getMessage());
+      }
+    }
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {
-        HTTPSampleResult binRes=sample((URL)binURL,GET,false,frameDepth + 1);
-        res.addSubResult(binRes);
-        res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+        URL url=(URL)binURL;
+        if (url == null) {
+          log.warn("Null URL detected (should not happen)");
+        }
+ else {
+          String urlstr=url.toString();
+          String urlStrEnc=encodeSpaces(urlstr);
+          if (!urlstr.equals(urlStrEnc)) {
+            try {
+              url=new URL(urlStrEnc);
+            }
+ catch (            MalformedURLException e) {
+              res.addSubResult(errorResult(new Exception(urlStrEnc + " is not a correct URI"),res));
+              res.setSuccessful(false);
+              continue;
+            }
+          }
+          if (pattern != null && !localMatcher.matches(urlStrEnc,pattern)) {
+            continue;
+          }
+          HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
+          res.addSubResult(binRes);
+          res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+        }
       }
  catch (      ClassCastException e) {
         res.addSubResult(errorResult(new Exception(binURL + " is not a correct URI"),res));

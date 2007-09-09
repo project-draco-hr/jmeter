@@ -39,7 +39,7 @@
     }
     for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
       if (subConfigs[i] instanceof HeaderManager) {
-        subConfigs[i].setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.gui.HeaderPanel");
+        subConfigs[i].setProperty(TestElement.GUI_CLASS,HEADER_PANEL);
         treeModel.addComponent(subConfigs[i],newNode);
       }
     }

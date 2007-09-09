@@ -13,19 +13,22 @@
       continue;
     }
     String hrefStr=namedItem.getNodeValue();
+    if (hrefStr.startsWith("javascript:")) {
+      continue;
+    }
     try {
       HTTPSamplerBase newUrl=HtmlParsingUtils.createUrlFromAnchor(hrefStr,new URL(result.getURL(),base));
       newUrl.setMethod(HTTPSamplerBase.GET);
-      log.debug("possible match: " + newUrl);
+      if (log.isDebugEnabled()) {
+        log.debug("Potential <a href> match: " + newUrl);
+      }
       if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
-        log.debug("Is a match! " + newUrl);
+        log.debug("Matched!");
         potentialLinks.add(newUrl);
       }
     }
  catch (    MalformedURLException e) {
-    }
-catch (    org.apache.oro.text.regex.MalformedPatternException e) {
-      log.error("Bad pattern",e);
+      log.warn("Bad URL " + e);
     }
   }
 }

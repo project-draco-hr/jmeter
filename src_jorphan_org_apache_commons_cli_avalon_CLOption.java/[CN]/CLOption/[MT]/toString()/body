@@ -1,7 +1,14 @@
 {
   final StringBuffer sb=new StringBuffer();
-  sb.append("[Option ");
-  sb.append((char)m_descriptor.getId());
+  sb.append("[");
+  final char id=(char)m_descriptor.getId();
+  if (id == TEXT_ARGUMENT) {
+    sb.append("TEXT ");
+  }
+ else {
+    sb.append("Option ");
+    sb.append(id);
+  }
   if (null != m_arguments) {
     sb.append(", ");
     sb.append(Arrays.asList(m_arguments));

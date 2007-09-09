@@ -1,0 +1,9 @@
+{
+  super.configure(el);
+  XPathExtractor xpe=(XPathExtractor)el;
+  xpathQueryField.setText(xpe.getXPathQuery());
+  defaultField.setText(xpe.getDefaultValue());
+  refNameField.setText(xpe.getRefName());
+  tolerant.setSelected(xpe.isTolerant());
+  nameSpace.setSelected(xpe.useNameSpace());
+}

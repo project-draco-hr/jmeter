@@ -10,12 +10,12 @@
     for (int x=0; x < desc.length; x++) {
       JMeterProperty jprop=el.getProperty(desc[x].getName());
       Class type=desc[x].getPropertyType();
-      Object value=null;
-      value=unwrapProperty(desc[x],jprop,type);
+      Object value=Converter.convert(jprop.getStringValue(),type);
       if (log.isDebugEnabled())       log.debug("Setting " + jprop.getName() + "="+ value);
       if (value != null || !type.isPrimitive()) {
         param[0]=value;
-        invokeOrBailOut(el,desc[x].getWriteMethod(),param);
+        Method writeMethod=desc[x].getWriteMethod();
+        if (writeMethod != null)         invokeOrBailOut(el,writeMethod,param);
       }
     }
   }

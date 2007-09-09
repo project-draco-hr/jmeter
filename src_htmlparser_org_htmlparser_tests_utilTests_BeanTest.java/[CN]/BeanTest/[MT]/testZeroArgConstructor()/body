@@ -1,7 +1,0 @@
-{
-  Parser parser;
-  byte[] data;
-  parser=new Parser();
-  data=pickle(parser);
-  parser=(Parser)unpickle(data);
-}

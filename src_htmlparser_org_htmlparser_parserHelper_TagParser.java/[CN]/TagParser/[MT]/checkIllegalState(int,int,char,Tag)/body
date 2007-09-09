@@ -1,6 +1,0 @@
-{
-  if (ch == '/' && i > 0 && tag.getTagLine().charAt(i - 1) == '<' && state != TAG_IGNORE_DATA_STATE && state != TAG_IGNORE_BEGIN_TAG_STATE) {
-    state=TAG_ILLEGAL_STATE;
-  }
-  return state;
-}

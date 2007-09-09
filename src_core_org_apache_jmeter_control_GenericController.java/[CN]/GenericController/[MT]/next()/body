@@ -1,7 +1,26 @@
 {
   fireIterEvents();
   log.debug("Calling next on: " + this.getClass().getName());
-  Sampler returnValue=doNext();
-  fireIterEvents(returnValue);
+  if (isDone())   return null;
+  Sampler returnValue=null;
+  TestElement currentElement=null;
+  try {
+    currentElement=getCurrentElement();
+    setCurrentElement(currentElement);
+    if (currentElement == null) {
+      returnValue=nextIsNull();
+    }
+ else {
+      if (currentElement instanceof Sampler) {
+        returnValue=nextIsASampler((Sampler)currentElement);
+      }
+ else {
+        returnValue=nextIsAController((Controller)currentElement);
+      }
+    }
+  }
+ catch (  NextIsNullException e) {
+    returnValue=null;
+  }
   return returnValue;
 }

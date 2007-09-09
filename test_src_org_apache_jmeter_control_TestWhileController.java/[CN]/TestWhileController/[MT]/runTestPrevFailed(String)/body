@@ -1,0 +1,16 @@
+{
+  WhileController.testMode=true;
+  WhileController.testModeResult=false;
+  GenericController controller=new GenericController();
+  WhileController while_cont=new WhileController();
+  while_cont.setCondition(s);
+  while_cont.addTestElement(new TestSampler("one"));
+  while_cont.addTestElement(new TestSampler("two"));
+  controller.addTestElement(while_cont);
+  controller.addTestElement(new TestSampler("three"));
+  controller.initialize();
+  assertEquals("three",nextName(controller));
+  assertNull(nextName(controller));
+  assertEquals("three",nextName(controller));
+  assertNull(nextName(controller));
+}

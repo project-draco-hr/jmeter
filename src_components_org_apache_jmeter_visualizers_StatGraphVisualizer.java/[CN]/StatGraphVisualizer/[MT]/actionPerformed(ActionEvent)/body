@@ -1,0 +1,33 @@
+{
+  if (event.getSource() == displayButton) {
+    makeGraph();
+  }
+ else   if (event.getSource() == saveGraph) {
+    saveGraphToFile=true;
+    try {
+      ActionRouter.getInstance().getAction(ActionNames.SAVE_GRAPHICS,SaveGraphics.class.getName()).doAction(new ActionEvent(this,1,ActionNames.SAVE_GRAPHICS));
+    }
+ catch (    Exception e) {
+      e.printStackTrace();
+    }
+  }
+ else   if (event.getSource() == saveTable) {
+    JFileChooser chooser=FileDialoger.promptToSaveFile("statistics.csv");
+    File output=chooser.getSelectedFile();
+    FileWriter writer=null;
+    try {
+      writer=new FileWriter(output);
+      Vector data=this.getAllTableData();
+      OldSaveService.saveCSVStats(data,writer);
+    }
+ catch (    FileNotFoundException e) {
+      log.warn(e.getMessage());
+    }
+catch (    IOException e) {
+      log.warn(e.getMessage());
+    }
+ finally {
+      JOrphanUtils.closeQuietly(writer);
+    }
+  }
+}

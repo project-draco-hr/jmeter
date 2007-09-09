@@ -1,0 +1,15 @@
+{
+  String loc=appProperties.getProperty("language");
+  if (loc != null) {
+    String[] parts=JOrphanUtils.split(loc,"_");
+    if (parts.length == 2) {
+      setLocale(new Locale(parts[0],parts[1]));
+    }
+ else {
+      setLocale(new Locale(loc,""));
+    }
+  }
+ else {
+    setLocale(Locale.getDefault());
+  }
+}

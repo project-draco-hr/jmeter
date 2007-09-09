@@ -1,0 +1,8 @@
+{
+  perTheadNumber=new ThreadLocal(){
+    protected synchronized Object initialValue(){
+      return new Long(getStart());
+    }
+  }
+;
+}

@@ -1,7 +1,0 @@
-{
-  Hashtable table=tag.getAttributes();
-  String metaTagRel=(String)table.get("REL");
-  String metaTagType=(String)table.get("TYPE");
-  String httpEquiv=(String)table.get("HREF");
-  return new LinkTagTag(tagData,httpEquiv,metaTagRel,metaTagType);
-}

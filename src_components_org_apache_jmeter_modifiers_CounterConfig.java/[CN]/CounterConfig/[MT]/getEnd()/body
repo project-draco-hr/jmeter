@@ -1,3 +1,7 @@
 {
-  return getPropertyAsInt(END);
+  long propertyAsLong=getPropertyAsLong(END);
+  if (propertyAsLong == 0 && "".equals(getProperty(END).getStringValue())) {
+    propertyAsLong=Long.MAX_VALUE;
+  }
+  return propertyAsLong;
 }

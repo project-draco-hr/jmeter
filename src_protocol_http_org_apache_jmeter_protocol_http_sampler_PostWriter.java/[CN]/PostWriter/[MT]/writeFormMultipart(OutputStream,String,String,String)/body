@@ -1,0 +1,9 @@
+{
+  writeln(out,"Content-Disposition: form-data; name=\"" + name + "\"");
+  writeln(out,"Content-Type: text/plain; charset=" + charSet);
+  writeln(out,"Content-Transfer-Encoding: 8bit");
+  out.write(CRLF);
+  out.write(value.getBytes(charSet));
+  out.write(CRLF);
+  out.write(getMultipartDivider());
+}

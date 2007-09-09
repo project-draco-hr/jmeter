@@ -1,0 +1,5 @@
+{
+  OutputStreamWriter outputStreamWriter=getOutputStreamWriter(out);
+  saveTestElement(elem,outputStreamWriter);
+  outputStreamWriter.close();
+}

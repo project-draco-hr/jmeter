@@ -1,7 +1,8 @@
 {
   try {
     String responseHeaders=massageResponseHeaders(res,res.getResponseHeaders());
-    out.write((responseHeaders + "\n").getBytes());
+    out.write(responseHeaders.getBytes());
+    out.write('\n');
     out.write(res.getResponseData());
     out.flush();
     log.debug("Done writing to client");

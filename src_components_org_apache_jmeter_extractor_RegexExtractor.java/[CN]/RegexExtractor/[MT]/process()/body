@@ -1,19 +1,30 @@
 {
   initTemplate();
   JMeterContext context=getThreadContext();
-  if (context.getPreviousResult() == null || context.getPreviousResult().getResponseData() == null) {
+  SampleResult previousResult=context.getPreviousResult();
+  if (previousResult == null) {
     return;
   }
   log.debug("RegexExtractor processing result");
   JMeterVariables vars=context.getVariables();
   String refName=getRefName();
   int matchNumber=getMatchNumber();
-  vars.put(refName,getDefaultValue());
-  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
-  PatternMatcherInput input=new PatternMatcherInput(useHeaders() ? context.getPreviousResult().getResponseHeaders() : new String(context.getPreviousResult().getResponseData()));
-  log.debug("Regex = " + getRegex());
+  final String defaultValue=getDefaultValue();
+  if (defaultValue.length() > 0) {
+    vars.put(refName,defaultValue);
+  }
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
+  String inputString=useUrl() ? previousResult.getUrlAsString() : useHeaders() ? previousResult.getResponseHeaders() : previousResult.getResponseDataAsString();
+  if (log.isDebugEnabled()) {
+    log.debug("Input = " + inputString);
+  }
+  PatternMatcherInput input=new PatternMatcherInput(inputString);
+  String regex=getRegex();
+  if (log.isDebugEnabled()) {
+    log.debug("Regex = " + regex);
+  }
   try {
-    Pattern pattern=patternCache.getPattern(getRegex(),Perl5Compiler.READ_ONLY_MASK);
+    Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
     List matches=new ArrayList();
     int x=0;
     boolean done=false;
@@ -36,30 +47,35 @@
           vars.put(refName,generateResult(match));
           saveGroups(vars,refName,match);
         }
+ else {
+          vars.remove(refName + "_g");
+          vars.remove(refName + "_g0");
+          vars.remove(refName + "_g1");
+        }
       }
  else {
         int prevCount=0;
-        String prevString=vars.get(refName + "_matchNr");
+        String prevString=vars.get(refName + REF_MATCH_NR);
         if (prevString != null) {
           try {
             prevCount=Integer.parseInt(prevString);
           }
  catch (          NumberFormatException e1) {
-            e1.printStackTrace();
+            log.warn("Could not parse " + prevString + " "+ e1);
           }
         }
-        vars.put(refName + "_matchNr","" + matches.size());
+        vars.put(refName + REF_MATCH_NR,"" + matches.size());
         for (int i=1; i <= matches.size(); i++) {
           match=getCorrectMatch(matches,i);
           if (match != null) {
-            vars.put(refName + "_" + i,generateResult(match));
-            saveGroups(vars,refName + "_" + i,match);
+            vars.put(refName + UNDERSCORE + i,generateResult(match));
+            saveGroups(vars,refName + UNDERSCORE + i,match);
           }
         }
         for (int i=matches.size() + 1; i <= prevCount; i++) {
-          vars.remove(refName + "_" + i);
-          vars.remove(refName + "_" + i+ "_g0");
-          vars.remove(refName + "_" + i+ "_g1");
+          vars.remove(refName + UNDERSCORE + i);
+          vars.remove(refName + UNDERSCORE + i+ "_g0");
+          vars.remove(refName + UNDERSCORE + i+ "_g1");
         }
       }
     }
@@ -68,6 +84,6 @@
     }
   }
  catch (  MalformedCachePatternException e) {
-    log.warn("Error in pattern: " + getRegex());
+    log.warn("Error in pattern: " + regex);
   }
 }

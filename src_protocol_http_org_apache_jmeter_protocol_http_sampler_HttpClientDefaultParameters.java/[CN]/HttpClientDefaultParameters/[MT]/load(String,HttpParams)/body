@@ -1,0 +1,58 @@
+{
+  log.info("Reading httpclient parameters from " + file);
+  File f=new File(file);
+  InputStream is=null;
+  Properties props=new Properties();
+  try {
+    is=new FileInputStream(f);
+    props.load(is);
+    Iterator pi=props.entrySet().iterator();
+    while (pi.hasNext()) {
+      Map.Entry me=(Map.Entry)pi.next();
+      String key=(String)me.getKey();
+      String value=(String)me.getValue();
+      int typeSep=key.indexOf("$");
+      try {
+        if (typeSep > 0) {
+          String type=key.substring(typeSep + 1);
+          String name=key.substring(0,typeSep);
+          log.info("Defining " + name + " as "+ value+ " ("+ type+ ")");
+          if (type.equals("Integer")) {
+            params.setParameter(name,Integer.valueOf(value));
+          }
+ else           if (type.equals("Long")) {
+            params.setParameter(name,Long.valueOf(value));
+          }
+ else           if (type.equals("Boolean")) {
+            params.setParameter(name,Boolean.valueOf(value));
+          }
+ else           if (type.equals("HttpVersion")) {
+            params.setParameter(name,HttpVersion.parse("HTTP/" + value));
+          }
+ else {
+            log.warn("Unexpected type: " + type);
+          }
+        }
+ else {
+          log.info("Defining " + key + " as "+ value);
+          params.setParameter(key,value);
+        }
+      }
+ catch (      NumberFormatException e) {
+        log.error("Error in property: " + key + "="+ value+ " "+ e.toString());
+      }
+catch (      ProtocolException e) {
+        log.error("Error in property: " + key + "="+ value+ " "+ e.toString());
+      }
+    }
+  }
+ catch (  FileNotFoundException e) {
+    log.error("Problem loading properties " + e.toString());
+  }
+catch (  IOException e) {
+    log.error("Problem loading properties " + e.toString());
+  }
+ finally {
+    JOrphanUtils.closeQuietly(is);
+  }
+}

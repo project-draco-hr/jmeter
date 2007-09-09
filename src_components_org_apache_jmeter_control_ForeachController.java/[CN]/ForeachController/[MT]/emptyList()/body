@@ -1,11 +1,11 @@
 {
   JMeterContext context=getThreadContext();
   String inputVariable=getInputVal() + getSeparator() + "1";
-  if (context.getVariables().get(inputVariable) != null) {
+  if (context.getVariables().getObject(inputVariable) != null) {
     return false;
   }
- else {
+  if (log.isDebugEnabled()) {
     log.debug("No entries found - null first entry: " + inputVariable);
-    return true;
   }
+  return true;
 }

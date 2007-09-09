@@ -7,7 +7,7 @@
  else {
     rlabel=JUnitSampler.class.getName();
   }
-  sresult.setSampleLabel(rlabel);
+  sresult.setSampleLabel(getName());
   sresult.setSamplerData(getClassname() + "." + getMethod());
   if (this.TEST_INSTANCE == null) {
     this.TEST_INSTANCE=(TestCase)getClassInstance(getClassname(),rlabel);
@@ -15,13 +15,34 @@
   if (this.TEST_INSTANCE != null) {
     initMethodObjects(this.TEST_INSTANCE);
     TestResult tr=new TestResult();
+    this.TEST_INSTANCE.setName(getMethod());
     try {
       if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
-        SETUP_METHOD.invoke(TEST_INSTANCE,new Class[0]);
+        try {
+          SETUP_METHOD.invoke(this.TEST_INSTANCE,new Class[0]);
+        }
+ catch (        InvocationTargetException e) {
+          tr.addFailure(this.TEST_INSTANCE,new AssertionFailedError(e.getMessage()));
+        }
+catch (        IllegalAccessException e) {
+          tr.addFailure(this.TEST_INSTANCE,new AssertionFailedError(e.getMessage()));
+        }
+catch (        IllegalArgumentException e) {
+          tr.addFailure(this.TEST_INSTANCE,new AssertionFailedError(e.getMessage()));
+        }
       }
-      Method m=getMethod(TEST_INSTANCE,getMethod());
+      final Method m=getMethod(this.TEST_INSTANCE,getMethod());
+      final TestCase theClazz=this.TEST_INSTANCE;
+      tr.startTest(this.TEST_INSTANCE);
       sresult.sampleStart();
-      m.invoke(TEST_INSTANCE,null);
+      Protectable p=new Protectable(){
+        public void protect() throws Throwable {
+          m.invoke(theClazz,new Class[0]);
+        }
+      }
+;
+      tr.runProtected(theClazz,p);
+      tr.endTest(this.TEST_INSTANCE);
       sresult.sampleEnd();
       if (!getDoNotSetUpTearDown() && TDOWN_METHOD != null) {
         TDOWN_METHOD.invoke(TEST_INSTANCE,new Class[0]);
@@ -34,6 +55,12 @@
       sresult.setSuccessful(false);
     }
 catch (    IllegalAccessException e) {
+      sresult.setResponseCode(getErrorCode());
+      sresult.setResponseMessage(getError());
+      sresult.setResponseData(e.getMessage().getBytes());
+      sresult.setSuccessful(false);
+    }
+catch (    ComparisonFailure e) {
       sresult.setResponseCode(getErrorCode());
       sresult.setResponseMessage(getError());
       sresult.setResponseData(e.getMessage().getBytes());
@@ -63,20 +90,35 @@ catch (    Throwable e) {
       buf.append(getFailure());
       Enumeration en=tr.errors();
       while (en.hasMoreElements()) {
-        buf.append((String)en.nextElement());
+        Object item=en.nextElement();
+        if (getAppendError() && item instanceof TestFailure) {
+          buf.append("Trace -- ");
+          buf.append(((TestFailure)item).trace());
+          buf.append("Failure -- ");
+          buf.append(((TestFailure)item).toString());
+        }
+ else         if (getAppendException() && item instanceof Throwable) {
+          buf.append(((Throwable)item).getMessage());
+        }
       }
       sresult.setResponseMessage(buf.toString());
+      sresult.setRequestHeaders(buf.toString());
       sresult.setResponseCode(getFailureCode());
     }
  else {
       sresult.setSuccessful(true);
       sresult.setResponseMessage(getSuccess());
       sresult.setResponseCode(getSuccessCode());
+      sresult.setResponseData("Not Applicable".getBytes());
     }
   }
  else {
     sresult.setSuccessful(false);
     sresult.setResponseMessage("failed to create an instance of the class");
   }
+  sresult.setBytes(0);
+  sresult.setContentType("text");
+  sresult.setDataType("Not Applicable");
+  sresult.setRequestHeaders("Not Applicable");
   return sresult;
 }

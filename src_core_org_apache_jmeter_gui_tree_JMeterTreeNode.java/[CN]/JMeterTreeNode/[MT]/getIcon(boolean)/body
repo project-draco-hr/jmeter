@@ -18,9 +18,7 @@
         throw new org.apache.jorphan.util.JMeterError(e1);
       }
     }
- else {
-      return GUIFactory.getIcon(Class.forName(getTestElement().getPropertyAsString(TestElement.GUI_CLASS)),enabled);
-    }
+    return GUIFactory.getIcon(Class.forName(getTestElement().getPropertyAsString(TestElement.GUI_CLASS)),enabled);
   }
  catch (  ClassNotFoundException e) {
     log.warn("Can't get icon for class " + getTestElement(),e);

@@ -1,0 +1,27 @@
+{
+  httpHeaders=new JCheckBox(JMeterUtils.getResString("proxy_headers"));
+  httpHeaders.setName(ProxyControl.CAPTURE_HTTP_HEADERS);
+  httpHeaders.setSelected(true);
+  httpHeaders.addActionListener(this);
+  httpHeaders.setActionCommand(ProxyControl.CAPTURE_HTTP_HEADERS);
+  addAssertions=new JCheckBox(JMeterUtils.getResString("proxy_assertions"));
+  addAssertions.setName(ProxyControl.ADD_ASSERTIONS);
+  addAssertions.setSelected(false);
+  addAssertions.addActionListener(this);
+  addAssertions.setActionCommand(ProxyControl.ADD_ASSERTIONS);
+  regexMatch=new JCheckBox(JMeterUtils.getResString("proxy_regex"));
+  regexMatch.setName(ProxyControl.REGEX_MATCH);
+  regexMatch.setSelected(false);
+  regexMatch.addActionListener(this);
+  regexMatch.setActionCommand(ProxyControl.REGEX_MATCH);
+  VerticalPanel mainPanel=new VerticalPanel();
+  mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_test_plan_content")));
+  HorizontalPanel nodeCreationPanel=new HorizontalPanel();
+  nodeCreationPanel.add(httpHeaders);
+  nodeCreationPanel.add(addAssertions);
+  nodeCreationPanel.add(regexMatch);
+  mainPanel.add(createTargetPanel());
+  mainPanel.add(createGroupingPanel());
+  mainPanel.add(nodeCreationPanel);
+  return mainPanel;
+}

@@ -1,6 +1,6 @@
 {
-  long endTime=res.getTimeStamp();
-  long lastTime=getCurrentSample().endTime;
+  long endTime=res.getEndTime();
+  long lastTime=getCurrentSample().getEndTime();
   if (res.isStampedAtStart()) {
     endTime+=res.getTime();
   }

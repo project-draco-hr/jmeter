@@ -1,3 +1,6 @@
 {
+  if (dirContext == null) {
+    throw new NamingException(CONTEXT_IS_NULL);
+  }
   dirContext.destroySubcontext(string);
 }

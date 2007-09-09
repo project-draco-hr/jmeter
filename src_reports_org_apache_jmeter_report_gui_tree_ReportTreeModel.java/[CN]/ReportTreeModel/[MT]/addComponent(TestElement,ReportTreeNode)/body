@@ -8,9 +8,6 @@
   guicomp.configure(component);
   guicomp.modifyTestElement(component);
   ReportGuiPackage.getInstance().getCurrentGui();
-  if (component instanceof AbstractChart) {
-    ((AbstractChart)component).setParentTable((AbstractTable)node.getUserObject());
-  }
   ReportTreeNode newNode=new ReportTreeNode(component,this);
   try {
     if (component.getProperty(TestElement.ENABLED) instanceof NullProperty || component.getPropertyAsBoolean(TestElement.ENABLED)) {

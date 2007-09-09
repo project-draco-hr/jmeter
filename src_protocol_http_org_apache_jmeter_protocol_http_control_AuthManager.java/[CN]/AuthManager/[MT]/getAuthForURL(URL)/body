@@ -18,12 +18,16 @@
   String s1=url.toString();
   String s2=null;
   if (url2 != null)   s2=url2.toString();
+  log.debug("Target URL strings to match against: " + s1 + " and "+ s2);
   for (PropertyIterator iter=getAuthObjects().iterator(); iter.hasNext(); ) {
     Authorization auth=(Authorization)iter.next().getObjectValue();
     String uRL=auth.getURL();
+    log.debug("Checking match against auth'n entry: " + uRL);
     if (s1.startsWith(uRL) || s2 != null && s2.startsWith(uRL)) {
+      log.debug("Matched");
       return auth;
     }
+    log.debug("Did not match");
   }
   return null;
 }

@@ -2,6 +2,8 @@
   runningIndicator=new JButton(stoppedIcon);
   runningIndicator.setMargin(new Insets(0,0,0,0));
   runningIndicator.setBorder(BorderFactory.createEmptyBorder());
+  totalThreads=new JLabel("0");
+  activeThreads=new JLabel("0");
   tree=makeTree(treeModel,treeListener);
   GuiPackage.getInstance().setMainFrame(this);
   init();

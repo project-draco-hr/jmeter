@@ -1,7 +1,0 @@
-{
-  if (JMeterUtils.getJMeterProperties() != null) {
-    assertNotNull("Property user.dir should not be null",getprop("user.dir"));
-    setprop("beanshelltest","xyz");
-    assertEquals("xyz",getprop("beanshelltest"));
-  }
-}

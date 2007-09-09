@@ -1,0 +1,18 @@
+{
+  super.clearGui();
+  useProperties.setSelected(false);
+  jndiICF.setText("");
+  urlField.setText("");
+  jndiConnFac.setText("");
+  jmsTopic.setText("");
+  jmsUser.setText("");
+  jmsPwd.setText("");
+  textMessage.setText("");
+  messageFile.setFilename("");
+  randomFile.setFilename("");
+  msgChoice.setText("");
+  configChoice.setText(use_text);
+  updateConfig(use_text);
+  iterations.setText("");
+  reqAuth.setText("");
+}

@@ -1,0 +1,6 @@
+{
+  TransactionController controller=transactionSampler.getTransactionController();
+  SamplePackage pack=(SamplePackage)transactionControllerConfigMap.get(controller);
+  pack.setSampler(transactionSampler);
+  return pack;
+}

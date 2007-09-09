@@ -1,27 +1,22 @@
 {
   boolean pass=true;
   boolean not=(NOT & getTestType()) > 0;
-  AssertionResult result=new AssertionResult();
+  AssertionResult result=new AssertionResult(getName());
   String toCheck="";
   if (getAssumeSuccess()) {
     response.setSuccessful(true);
   }
-  if (ResponseAssertion.RESPONSE_DATA.equals(getTestField())) {
-    String data;
-    try {
-      data=new String(response.responseDataAsBA(),response.getDataEncoding());
-    }
- catch (    UnsupportedEncodingException e) {
-      log.warn("Problem with response encoding: " + e);
-      data=new String(response.responseDataAsBA());
-    }
-    toCheck=new StringBuffer(response.getResponseHeaders()).append(data).toString();
+  if (isTestFieldResponseData()) {
+    toCheck=response.getResponseDataAsString();
   }
- else   if (ResponseAssertion.RESPONSE_CODE.equals(getTestField())) {
+ else   if (isTestFieldResponseCode()) {
     toCheck=response.getResponseCode();
   }
- else   if (ResponseAssertion.RESPONSE_MESSAGE.equals(getTestField())) {
+ else   if (isTestFieldResponseMessage()) {
     toCheck=response.getResponseMessage();
+  }
+ else   if (isTestFieldResponseHeaders()) {
+    toCheck=response.getResponseHeaders();
   }
  else {
     toCheck=response.getSamplerData();
@@ -30,30 +25,43 @@
   if (toCheck.length() == 0) {
     return result.setResultForNull();
   }
+  result.setFailure(false);
+  result.setError(false);
+  boolean contains=isContainsType();
+  boolean equals=isEqualsType();
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Type:" + (contains ? "Contains" : "Match") + (not ? "(not)" : ""));
+  }
   try {
-    Perl5Matcher localMatcher=(Perl5Matcher)matcher.get();
+    Perl5Matcher localMatcher=JMeterUtils.getMatcher();
     PropertyIterator iter=getTestStrings().iterator();
     while (iter.hasNext()) {
       String stringPattern=iter.next().getStringValue();
-      Pattern pattern=patternCache.getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
+      Pattern pattern=JMeterUtils.getPatternCache().getPattern(stringPattern,Perl5Compiler.READ_ONLY_MASK);
       boolean found;
-      if ((CONTAINS & getTestType()) > 0) {
+      if (contains) {
         found=localMatcher.contains(toCheck,pattern);
+      }
+ else       if (equals) {
+        found=toCheck.equals(stringPattern);
       }
  else {
         found=localMatcher.matches(toCheck,pattern);
       }
       pass=not ? !found : found;
       if (!pass) {
+        if (debugEnabled) {
+          log.debug("Failed: " + pattern);
+        }
         result.setFailure(true);
-        result.setFailureMessage(getFailText(stringPattern));
+        result.setFailureMessage(getFailText(stringPattern,toCheck));
         break;
       }
+      if (debugEnabled) {
+        log.debug("Passed: " + pattern);
+      }
     }
-    if (pass) {
-      result.setFailure(false);
-    }
-    result.setError(false);
   }
  catch (  MalformedCachePatternException e) {
     result.setError(true);

@@ -10,7 +10,7 @@
   JPanel threadPanel=new JPanel(new BorderLayout(5,0));
   JLabel threadLabel=new JLabel(JMeterUtils.getResString("number_of_threads"));
   threadPanel.add(threadLabel,BorderLayout.WEST);
-  threadInput=new JTextField("1",5);
+  threadInput=new JTextField(5);
   threadInput.setName(THREAD_NAME);
   threadLabel.setLabelFor(threadInput);
   threadPanel.add(threadInput,BorderLayout.CENTER);
@@ -19,7 +19,7 @@
   JPanel rampPanel=new JPanel(new BorderLayout(5,0));
   JLabel rampLabel=new JLabel(JMeterUtils.getResString("ramp_up"));
   rampPanel.add(rampLabel,BorderLayout.WEST);
-  rampInput=new JTextField("1",5);
+  rampInput=new JTextField(5);
   rampInput.setName(RAMP_NAME);
   rampLabel.setLabelFor(rampInput);
   rampPanel.add(rampInput,BorderLayout.CENTER);

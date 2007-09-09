@@ -1,0 +1,6 @@
+{
+  int len=getInt();
+  String s=new String(inbuf,inpos,len,"iso-8859-1");
+  inpos+=len + 1;
+  return s;
+}

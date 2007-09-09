@@ -1,0 +1,13 @@
+{
+  if (log.isDebugEnabled() && certificates != null) {
+    for (int c=0; c < certificates.length; c++) {
+      X509Certificate cert=certificates[c];
+      log.debug(" Server certificate " + (c + 1) + ":");
+      log.debug("  Subject DN: " + cert.getSubjectDN());
+      log.debug("  Signature Algorithm: " + cert.getSigAlgName());
+      log.debug("  Valid from: " + cert.getNotBefore());
+      log.debug("  Valid until: " + cert.getNotAfter());
+      log.debug("  Issuer: " + cert.getIssuerDN());
+    }
+  }
+}

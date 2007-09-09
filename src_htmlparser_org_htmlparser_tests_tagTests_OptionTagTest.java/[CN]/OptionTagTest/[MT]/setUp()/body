@@ -1,6 +1,0 @@
-{
-  super.setUp();
-  createParser(testHTML);
-  parser.addScanner(new OptionTagScanner("-option"));
-  parseAndAssertNodeCount(11);
-}

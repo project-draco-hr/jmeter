@@ -1,5 +1,3 @@
 {
-  IterationCounter newCounter=new IterationCounter();
-  newCounter.counter=counter;
-  return newCounter;
+  return super.clone();
 }

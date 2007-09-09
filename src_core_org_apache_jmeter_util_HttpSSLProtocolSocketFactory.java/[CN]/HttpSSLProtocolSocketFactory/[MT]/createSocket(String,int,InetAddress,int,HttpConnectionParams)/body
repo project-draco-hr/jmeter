@@ -1,0 +1,20 @@
+{
+  if (params == null) {
+    throw new IllegalArgumentException("Parameters may not be null");
+  }
+  int timeout=params.getConnectionTimeout();
+  SSLSocketFactory sslfac=getSSLSocketFactory();
+  Socket socket;
+  if (timeout == 0) {
+    socket=sslfac.createSocket(host,port,localAddress,localPort);
+  }
+ else {
+    socket=sslfac.createSocket();
+    SocketAddress localaddr=new InetSocketAddress(localAddress,localPort);
+    SocketAddress remoteaddr=new InetSocketAddress(host,port);
+    socket.bind(localaddr);
+    socket.connect(remoteaddr,timeout);
+  }
+  setSocket(socket);
+  return wrapSocket(socket);
+}

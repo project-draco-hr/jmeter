@@ -1,0 +1,11 @@
+{
+  super();
+  if (cps <= 0) {
+    throw new IllegalArgumentException("Speed (cps) <= 0");
+  }
+  CPS=cps;
+  SocketAddress localaddr=new InetSocketAddress(localAddress,localPort);
+  SocketAddress remoteaddr=new InetSocketAddress(host,port);
+  bind(localaddr);
+  connect(remoteaddr,timeout);
+}

@@ -2,7 +2,5 @@
   if (!isPerThread()) {
     return globalNumExecutions;
   }
- else {
-    return numExecutions;
-  }
+  return numExecutions;
 }

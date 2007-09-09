@@ -1,10 +1,7 @@
 {
   if (clz != null && clz.length > 0) {
     Class[] nclz=null;
-    ArrayList matches=new ArrayList();
     return nclz;
   }
- else {
-    return clz;
-  }
+  return clz;
 }

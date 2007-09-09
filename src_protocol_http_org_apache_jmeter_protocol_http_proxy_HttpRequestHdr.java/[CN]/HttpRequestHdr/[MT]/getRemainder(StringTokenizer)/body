@@ -1,10 +1,11 @@
 {
-  String str="";
+  StringBuffer strBuff=new StringBuffer();
   if (tk.hasMoreTokens()) {
-    str=tk.nextToken();
+    strBuff.append(tk.nextToken());
   }
   while (tk.hasMoreTokens()) {
-    str+=" " + tk.nextToken();
+    strBuff.append(" ");
+    strBuff.append(tk.nextToken());
   }
-  return str;
+  return strBuff.toString();
 }

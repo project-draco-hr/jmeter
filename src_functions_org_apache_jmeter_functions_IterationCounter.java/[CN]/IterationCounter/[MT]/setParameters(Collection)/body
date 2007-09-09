@@ -1,6 +1,6 @@
 {
   variables=parameters.toArray();
-  if (variables.length < 2) {
-    throw new InvalidVariableException("Fewer than 2 parameters");
+  if (variables.length < 1) {
+    throw new InvalidVariableException("Need at least 1 parameter");
   }
 }

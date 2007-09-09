@@ -1,5 +1,4 @@
 {
   super.configure(el);
-  DurationAssertion assertion=(DurationAssertion)el;
-  duration.setText(String.valueOf(assertion.getAllowedDuration()));
+  duration.setText(el.getPropertyAsString(DurationAssertion.DURATION_KEY));
 }

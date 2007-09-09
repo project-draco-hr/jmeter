@@ -1,0 +1,16 @@
+{
+  setAlwaysEncoded(true);
+  if (alreadyEncoded) {
+    try {
+      name=URLDecoder.decode(name,EncoderCache.URL_ARGUMENT_ENCODING);
+      value=URLDecoder.decode(value,contentEncoding);
+    }
+ catch (    UnsupportedEncodingException e) {
+      log.error(contentEncoding + " encoding not supported!");
+      throw new Error(e.toString());
+    }
+  }
+  setName(name);
+  setValue(value);
+  setMetaData("=");
+}

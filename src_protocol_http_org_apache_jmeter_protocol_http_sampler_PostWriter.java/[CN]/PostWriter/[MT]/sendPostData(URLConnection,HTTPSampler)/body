@@ -1,23 +1,39 @@
 {
-  String filename=sampler.getFilename();
-  if ((filename != null) && (filename.trim().length() > 0)) {
+  StringBuffer postedBody=new StringBuffer(1000);
+  if (sampler.getUseMultipartForPost()) {
     OutputStream out=connection.getOutputStream();
-    writeln(out,"--" + BOUNDARY);
-    PropertyIterator args=sampler.getArguments().iterator();
-    while (args.hasNext()) {
-      Argument arg=(Argument)args.next().getObjectValue();
-      writeFormMultipartStyle(out,arg.getName(),arg.getValue());
-      writeln(out,"--" + BOUNDARY);
+    out.write(formDataPostBody);
+    postedBody.append(new String(formDataPostBody,"UTF-8"));
+    if (sampler.hasUploadableFiles()) {
+      out.write(formDataFileStartMultipart);
+      postedBody.append(new String(formDataFileStartMultipart,"UTF-8"));
+      writeFileToStream(sampler.getFilename(),out);
+      postedBody.append("<actual file content, not shown here>");
+      byte[] fileMultipartEndDivider=getFileMultipartEndDivider();
+      out.write(fileMultipartEndDivider);
+      postedBody.append(new String(fileMultipartEndDivider,"UTF-8"));
     }
-    writeFileToURL(out,filename,sampler.getFileField(),getFileStream(filename),sampler.getMimetype());
-    writeln(out,"--" + BOUNDARY + "--");
+    byte[] multipartEndDivider=getMultipartEndDivider();
+    out.write(multipartEndDivider);
+    postedBody.append(new String(multipartEndDivider,"UTF-8"));
     out.flush();
     out.close();
   }
  else {
-    String postData=sampler.getQueryString();
-    PrintWriter out=new PrintWriter(connection.getOutputStream());
-    out.print(postData);
-    out.flush();
+    if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
+      OutputStream out=connection.getOutputStream();
+      writeFileToStream(sampler.getFilename(),out);
+      out.flush();
+      out.close();
+      postedBody.append("<actual file content, not shown here>");
+    }
+ else {
+      OutputStream out=connection.getOutputStream();
+      out.write(formDataUrlEncoded);
+      out.flush();
+      out.close();
+      postedBody.append(new String(formDataUrlEncoded,"UTF-8"));
+    }
   }
+  return postedBody.toString();
 }

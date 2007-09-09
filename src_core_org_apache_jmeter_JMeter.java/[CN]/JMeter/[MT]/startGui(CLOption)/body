@@ -5,23 +5,32 @@
   treeLis.setActionHandler(ActionRouter.getInstance());
   GuiPackage.getInstance(treeLis,treeModel);
   org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
-  main.setTitle("Apache JMeter");
+  main.setTitle("Apache JMeter (" + JMeterUtils.getJMeterVersion() + ")");
   main.setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
-  ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,CheckDirty.ADD_ALL));
-  if (testFile != null) {
+  ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ActionNames.ADD_ALL));
+  String arg;
+  if (testFile != null && (arg=testFile.getArgument()) != null) {
+    FileInputStream reader=null;
     try {
-      File f=new File(testFile.getArgument());
+      File f=new File(arg);
       log.info("Loading file: " + f);
-      FileInputStream reader=new FileInputStream(f);
+      reader=new FileInputStream(f);
       HashTree tree=SaveService.loadTree(reader);
       GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
       new Load().insertLoadedTree(1,tree);
     }
- catch (    Exception e) {
+ catch (    ConversionException e) {
+      log.error("Failure loading test file",e);
+      JMeterUtils.reportErrorToUser(SaveService.CEtoString(e));
+    }
+catch (    Exception e) {
       log.error("Failure loading test file",e);
       JMeterUtils.reportErrorToUser(e.toString());
+    }
+ finally {
+      JOrphanUtils.closeQuietly(reader);
     }
   }
 }

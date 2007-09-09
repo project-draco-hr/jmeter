@@ -1,0 +1,7 @@
+{
+  setupNoFilename(sampler);
+  setupFormData(sampler);
+  postWriter.setHeaders(connection,sampler);
+  checkContentTypeUrlEncoded(connection);
+  checkContentLength(connection,"title=mytitle&description=mydescription".length());
+}

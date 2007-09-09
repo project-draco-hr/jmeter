@@ -18,5 +18,9 @@
     warningThresholdField.setEnabled(false);
     warningThresholdField.setEditable(false);
   }
+ else {
+    warningThresholdField.setEnabled(true);
+    warningThresholdField.setEditable(true);
+  }
   filePanel.setFilename(lAssertion.getFilename());
 }

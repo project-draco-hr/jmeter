@@ -1,8 +1,9 @@
 {
   ScriptWrapper wrap=(ScriptWrapper)arg0;
-  ConversionHelp.setOutVersion(SaveService.version);
-  writer.addAttribute("version",SaveService.version);
-  writer.addAttribute("properties",SaveService.propertiesVersion);
+  String version=SaveService.getVERSION();
+  ConversionHelp.setOutVersion(version);
+  writer.addAttribute(ATT_VERSION,version);
+  writer.addAttribute(ATT_PROPERTIES,SaveService.getPropertiesVersion());
   writer.startNode(classMapper.serializedClass(wrap.testPlan.getClass()));
   context.convertAnother(wrap.testPlan);
   writer.endNode();

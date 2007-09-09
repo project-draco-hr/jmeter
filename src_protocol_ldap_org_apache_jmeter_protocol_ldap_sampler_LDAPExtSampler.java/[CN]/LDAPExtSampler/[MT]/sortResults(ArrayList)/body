@@ -1,0 +1,24 @@
+{
+  Collections.sort(sortedResults,new Comparator(){
+    private int compareToReverse(    final String s1,    final String s2){
+      int len1=s1.length();
+      int len2=s2.length();
+      int s1i=len1 - 1;
+      int s2i=len2 - 1;
+      for (; (s1i >= 0) && (s2i >= 0); s1i--, s2i--) {
+        char c1=s1.charAt(s1i);
+        char c2=s2.charAt(s2i);
+        if (c1 != c2)         return c1 - c2;
+      }
+      return len1 - len2;
+    }
+    public int compare(    Object o1,    Object o2){
+      String nm1=((SearchResult)o1).getName();
+      String nm2=((SearchResult)o2).getName();
+      if (nm1 == null)       nm1="";
+      if (nm2 == null)       nm2="";
+      return compareToReverse(nm1,nm2);
+    }
+  }
+);
+}

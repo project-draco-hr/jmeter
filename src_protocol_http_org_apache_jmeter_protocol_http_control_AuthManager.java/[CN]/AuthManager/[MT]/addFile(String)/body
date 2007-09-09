@@ -20,7 +20,13 @@
       String url=st.nextToken();
       String user=st.nextToken();
       String pass=st.nextToken();
-      Authorization auth=new Authorization(url,user,pass);
+      String domain="";
+      String realm="";
+      if (st.hasMoreTokens()) {
+        domain=st.nextToken();
+        realm=st.nextToken();
+      }
+      Authorization auth=new Authorization(url,user,pass,domain,realm);
       getAuthObjects().addItem(auth);
     }
  catch (    Exception e) {

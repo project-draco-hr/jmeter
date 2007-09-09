@@ -1,0 +1,9 @@
+{
+  params.add(new CompoundVariable("G"));
+  variable.setParameters(params);
+  Locale locale=Locale.getDefault();
+  Locale.setDefault(Locale.ENGLISH);
+  value=variable.execute(result,null);
+  Locale.setDefault(locale);
+  assertEquals("AD",value);
+}

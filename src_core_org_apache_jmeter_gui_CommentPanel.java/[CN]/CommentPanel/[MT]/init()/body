@@ -1,0 +1,11 @@
+{
+  setLayout(new BorderLayout(5,0));
+  commentField=new JTextArea();
+  JLabel commentLabel=new JLabel(JMeterUtils.getResString("testplan_comments"));
+  commentLabel.setLabelFor(commentField);
+  JPanel commentPanel=new JPanel();
+  commentPanel.setLayout(new BorderLayout(0,5));
+  commentPanel.add(commentLabel,BorderLayout.WEST);
+  commentPanel.add(commentField,BorderLayout.CENTER);
+  add(commentPanel);
+}

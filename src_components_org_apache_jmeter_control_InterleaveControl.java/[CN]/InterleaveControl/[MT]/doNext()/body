@@ -1,7 +1,0 @@
-{
-  if (isSkipNext()) {
-    reInitialize();
-    return null;
-  }
-  return super.doNext();
-}

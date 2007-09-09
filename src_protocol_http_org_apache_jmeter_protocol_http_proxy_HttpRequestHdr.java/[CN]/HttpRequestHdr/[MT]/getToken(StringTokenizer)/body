@@ -1,7 +1,6 @@
 {
-  String str="";
   if (tk.hasMoreTokens()) {
-    str=tk.nextToken();
+    return tk.nextToken();
   }
-  return str;
+  return "";
 }

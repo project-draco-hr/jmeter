@@ -1,0 +1,5 @@
+{
+  Calendar cal=Calendar.getInstance();
+  cal.setTimeInMillis(this.startTimestamp);
+  return String.valueOf(cal.get(Calendar.MONTH)) + " - " + String.valueOf(cal.get(Calendar.DAY_OF_MONTH))+ " - "+ String.valueOf(cal.get(Calendar.YEAR));
+}

@@ -1,6 +1,9 @@
 {
   JMeterContext ctx=getThreadContext();
   Sampler sampler=ctx.getCurrentSampler();
+  if (!(sampler instanceof HTTPSamplerBase)) {
+    return;
+  }
   SampleResult responseText=ctx.getPreviousResult();
   if (responseText == null) {
     return;
@@ -40,6 +43,14 @@
         value=result.group(i);
         if (value != null)         break;
       }
+    }
+  }
+  if (shouldCache()) {
+    if (value == null || value.length() == 0) {
+      value=savedValue;
+    }
+ else {
+      savedValue=value;
     }
   }
   modify((HTTPSamplerBase)sampler,value);

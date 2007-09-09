@@ -2,8 +2,14 @@
   StringBuffer headerBuf=new StringBuffer();
   headerBuf.append(conn.getHeaderField(0));
   headerBuf.append("\n");
-  for (int i=1; conn.getHeaderFieldKey(i) != null; i++) {
-    modifyHeaderValues(conn,i,headerBuf);
+  String hfk;
+  for (int i=1; (hfk=conn.getHeaderFieldKey(i)) != null; i++) {
+    if (!TRANSFER_ENCODING.equalsIgnoreCase(hfk)) {
+      headerBuf.append(hfk);
+      headerBuf.append(": ");
+      headerBuf.append(conn.getHeaderField(i));
+      headerBuf.append("\n");
+    }
   }
   return headerBuf.toString();
 }

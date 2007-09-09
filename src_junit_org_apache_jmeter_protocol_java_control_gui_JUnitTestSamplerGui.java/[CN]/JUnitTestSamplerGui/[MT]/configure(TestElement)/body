@@ -43,4 +43,6 @@
     errorCode.setText(JMeterUtils.getResString("junit_error_default_code"));
   }
   doSetup.setSelected(sampler.getDoNotSetUpTearDown());
+  appendError.setSelected(sampler.getAppendError());
+  appendExc.setSelected(sampler.getAppendException());
 }

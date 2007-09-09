@@ -1,0 +1,14 @@
+{
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  Box box=Box.createVerticalBox();
+  box.add(makeTitlePanel());
+  Box options=Box.createHorizontalBox();
+  tolerant=new JCheckBox(JMeterUtils.getResString("xpath_extractor_tolerant"));
+  nameSpace=new JCheckBox(JMeterUtils.getResString("xpath_extractor_namespace"),true);
+  options.add(tolerant);
+  options.add(nameSpace);
+  box.add(options);
+  add(box,BorderLayout.NORTH);
+  add(makeParameterPanel(),BorderLayout.CENTER);
+}

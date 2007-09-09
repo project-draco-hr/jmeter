@@ -1,13 +1,15 @@
 {
-  SampleResult RESULT=new SampleResult();
+  SampleResult result=new SampleResult();
+  result.setSuccessful(false);
+  result.setResponseCode("000");
+  result.setSampleLabel(getName());
   try {
-    RESULT.setURL(this.getUrl());
-    RESULT.setSampleLabel(getName());
+    result.setURL(this.getUrl());
     org.w3c.dom.Element rdoc=createDocument();
     if (rdoc == null)     throw new SOAPException("Could not create document",null);
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
-    RESULT.sampleStart();
+    result.sampleStart();
     SOAPHTTPConnection spconn=null;
     if (this.getHeaderManager() != null && this.getHeaderManager().getSOAPHeader() != null) {
       spconn=(SOAPHTTPConnection)this.getHeaderManager().getSOAPHeader();
@@ -15,6 +17,7 @@
  else {
       spconn=new SOAPHTTPConnection();
     }
+    spconn.setTimeout(getTimeoutAsInt());
     if (getAuthManager() != null) {
       if (getAuthManager().getAuthForURL(getUrl()) != null) {
         AuthManager authmanager=getAuthManager();
@@ -42,6 +45,10 @@
       if (phost.length() > 0 && pport > 0) {
         spconn.setProxyHost(phost);
         spconn.setProxyPort(pport);
+        if (PROXY_USER.length() > 0 && PROXY_PASS.length() > 0) {
+          spconn.setProxyUserName(PROXY_USER);
+          spconn.setProxyPassword(PROXY_PASS);
+        }
       }
     }
     spconn.setMaintainSession(true);
@@ -51,54 +58,77 @@
       this.getHeaderManager().setSOAPHeader(spconn);
     }
     SOAPTransport st=msg.getSOAPTransport();
-    RESULT.setDataType(SampleResult.TEXT);
+    result.setDataType(SampleResult.TEXT);
     BufferedReader br=null;
     if (st != null && st.receive() != null) {
       br=st.receive();
-      if (this.getPropertyAsBoolean(READ_RESPONSE)) {
+      if (getReadResponse()) {
         StringBuffer buf=new StringBuffer();
         String line;
         while ((line=br.readLine()) != null) {
           buf.append(line);
         }
-        RESULT.sampleEnd();
-        RESULT.setResponseData(buf.toString().getBytes());
+        result.sampleEnd();
+        result.setResponseData(buf.toString().getBytes());
       }
  else {
         br.read();
-        RESULT.sampleEnd();
-        RESULT.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
+        result.sampleEnd();
+        result.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
       }
-      RESULT.setSuccessful(true);
-      RESULT.setResponseCode("200");
-      RESULT.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
+      result.setSuccessful(true);
+      result.setResponseCodeOK();
+      result.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
     }
  else {
-      RESULT.setSuccessful(false);
-      RESULT.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
-      RESULT.setResponseCode("000");
-      RESULT.setResponseHeaders("error");
+      result.sampleEnd();
+      result.setSuccessful(false);
+      if (st != null) {
+        result.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
+      }
+      result.setResponseHeaders("error");
     }
-    RESULT.setSamplerData(getUrl().getProtocol() + "://" + getUrl().getHost()+ "/"+ getUrl().getFile()+ "\n"+ FILE_CONTENTS);
-    RESULT.setDataEncoding(st.getResponseSOAPContext().getContentType());
+    result.setSamplerData(fileContents);
+    result.setEncodingAndType(st.getResponseSOAPContext().getContentType());
     if (br != null) {
       br.close();
     }
-    msg=null;
-    st=null;
   }
- catch (  SOAPException exception) {
-    log.warn(exception.getMessage());
-    RESULT.setSuccessful(false);
+ catch (  IllegalArgumentException exception) {
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
+  }
+catch (  SAXException exception) {
+    log.warn(exception.toString());
+    result.setResponseMessage(exception.getMessage());
+  }
+catch (  SOAPException exception) {
+    log.warn(exception.toString());
+    result.setResponseMessage(exception.getMessage());
   }
 catch (  MalformedURLException exception) {
-    log.warn(exception.getMessage());
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
   }
 catch (  IOException exception) {
-    log.warn(exception.getMessage());
+    String message=exception.getMessage();
+    log.warn(message);
+    result.setResponseMessage(message);
   }
-catch (  MessagingException exception) {
-    log.warn(exception.getMessage());
+catch (  NoClassDefFoundError error) {
+    log.error("Missing class: ",error);
+    result.setResponseMessage(error.toString());
   }
-  return RESULT;
+catch (  Exception exception) {
+    if ("javax.mail.MessagingException".equals(exception.getClass().getName())) {
+      log.warn(exception.toString());
+      result.setResponseMessage(exception.getMessage());
+    }
+ else {
+      throw new RuntimeException(exception);
+    }
+  }
+  return result;
 }

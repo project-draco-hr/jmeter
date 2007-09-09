@@ -1,7 +1,9 @@
 {
   this.configureTestElement(modifier);
-  ((URLRewritingModifier)modifier).setArgumentName(argumentName.getText());
-  ((URLRewritingModifier)modifier).setPathExtension(pathExt.isSelected());
-  ((URLRewritingModifier)modifier).setPathExtensionNoEquals(pathExtNoEquals.isSelected());
-  ((URLRewritingModifier)modifier).setPathExtensionNoQuestionmark(pathExtNoQuestionmark.isSelected());
+  URLRewritingModifier rewritingModifier=((URLRewritingModifier)modifier);
+  rewritingModifier.setArgumentName(argumentName.getText());
+  rewritingModifier.setPathExtension(pathExt.isSelected());
+  rewritingModifier.setPathExtensionNoEquals(pathExtNoEquals.isSelected());
+  rewritingModifier.setPathExtensionNoQuestionmark(pathExtNoQuestionmark.isSelected());
+  rewritingModifier.setShouldCache((shouldCache.isSelected()));
 }

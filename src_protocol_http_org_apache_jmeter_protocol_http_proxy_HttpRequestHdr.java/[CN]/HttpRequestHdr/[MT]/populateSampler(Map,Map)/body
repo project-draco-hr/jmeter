@@ -1,0 +1,105 @@
+{
+  sampler.setDomain(serverName());
+  if (log.isDebugEnabled())   log.debug("Proxy: setting server: " + sampler.getDomain());
+  sampler.setMethod(method);
+  log.debug("Proxy: method server: " + sampler.getMethod());
+  sampler.setPort(serverPort());
+  if (log.isDebugEnabled())   log.debug("Proxy: setting port: " + sampler.getPort());
+  if (url.indexOf("//") > -1) {
+    String protocol=url.substring(0,url.indexOf(":"));
+    if (log.isDebugEnabled())     log.debug("Proxy: setting protocol to : " + protocol);
+    sampler.setProtocol(protocol);
+  }
+ else   if (sampler.getPort() == HTTPSamplerBase.DEFAULT_HTTPS_PORT) {
+    sampler.setProtocol(HTTPS);
+    if (log.isDebugEnabled())     log.debug("Proxy: setting protocol to https");
+  }
+ else {
+    if (log.isDebugEnabled())     log.debug("Proxy setting default protocol to: http");
+    sampler.setProtocol(HTTP);
+  }
+  URL pageUrl=null;
+  if (sampler.isProtocolDefaultPort()) {
+    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),serverUrl());
+  }
+ else {
+    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),sampler.getPort(),serverUrl());
+  }
+  String urlWithoutQuery=getUrlWithoutQuery(pageUrl);
+  String contentEncoding=null;
+  String requestContentEncoding=getContentEncoding();
+  if (requestContentEncoding != null) {
+    contentEncoding=requestContentEncoding;
+  }
+ else {
+    if (pageEncodings != null) {
+synchronized (pageEncodings) {
+        contentEncoding=(String)pageEncodings.get(urlWithoutQuery);
+      }
+    }
+    if (formEncodings != null) {
+synchronized (formEncodings) {
+        String formEncoding=(String)formEncodings.get(urlWithoutQuery);
+        if (formEncoding != null) {
+          contentEncoding=formEncoding;
+        }
+      }
+    }
+  }
+  String postData=null;
+  if (log.isDebugEnabled()) {
+    if (contentEncoding != null) {
+      log.debug("Using encoding " + contentEncoding + " for request body");
+    }
+ else {
+      log.debug("No encoding found, using JRE default encoding for request body");
+    }
+  }
+  if (contentEncoding != null) {
+    postData=new String(rawPostData,contentEncoding);
+  }
+ else {
+    postData=new String(rawPostData);
+  }
+  if (contentEncoding != null) {
+    sampler.setPath(serverUrl(),contentEncoding);
+  }
+ else {
+    sampler.setPath(serverUrl(),null);
+  }
+  if (log.isDebugEnabled())   log.debug("Proxy: setting path: " + sampler.getPath());
+  if (numberRequests) {
+    requestNumber++;
+    sampler.setName(requestNumber + " " + sampler.getPath());
+  }
+ else {
+    sampler.setName(sampler.getPath());
+  }
+  if (contentEncoding != null) {
+    sampler.setContentEncoding(contentEncoding);
+  }
+  if (!HTTPSamplerBase.GET.equals(method)) {
+    final String contentType=getContentType();
+    MultipartUrlConfig urlConfig=getMultipartConfig(contentType);
+    if (urlConfig != null) {
+      urlConfig.parseArguments(postData);
+      sampler.setDoMultipartPost(true);
+      getHeaderManager().removeHeaderNamed(CONTENT_TYPE);
+      getHeaderManager().removeHeaderNamed(CONTENT_LENGTH);
+      sampler.setArguments(urlConfig.getArguments());
+      sampler.setFileField(urlConfig.getFileFieldName());
+      sampler.setFilename(urlConfig.getFilename());
+      sampler.setMimetype(urlConfig.getMimeType());
+    }
+ else     if (postData != null && postData.trim().startsWith("<?")) {
+      sampler.addNonEncodedArgument("",postData,"");
+    }
+ else     if (contentType == null || contentType.startsWith(HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED)) {
+      sampler.parseArguments(postData.trim(),contentEncoding);
+    }
+ else     if (postData != null && postData.length() > 0) {
+      sampler.addNonEncodedArgument("",postData,"");
+    }
+  }
+  if (log.isDebugEnabled())   log.debug("sampler path = " + sampler.getPath());
+}

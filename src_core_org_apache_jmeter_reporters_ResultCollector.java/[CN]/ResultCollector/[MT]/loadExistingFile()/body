@@ -1,39 +1,71 @@
 {
-  boolean parsedOK=false;
-  if (new File(getFilename()).exists()) {
+  boolean parsedOK=false, errorDetected=false;
+  String filename=getFilename();
+  File file=new File(filename);
+  if (file.exists()) {
     clearVisualizer();
     BufferedReader dataReader=null;
+    BufferedInputStream bufferedInputStream=null;
     try {
-      readSamples(SaveService.loadTestResults(new BufferedInputStream(new FileInputStream(getFilename()))));
-      parsedOK=true;
+      dataReader=new BufferedReader(new FileReader(file));
+      String line=dataReader.readLine();
+      if (line == null) {
+        log.warn(filename + " is empty");
+      }
+ else {
+        if (!line.startsWith("<?xml ")) {
+          long lineNumber=1;
+          SampleSaveConfiguration saveConfig=OldSaveService.getSampleSaveConfiguration(line);
+          if (saveConfig == null) {
+            saveConfig=(SampleSaveConfiguration)getSaveConfig().clone();
+          }
+ else {
+            line=dataReader.readLine();
+            lineNumber++;
+          }
+          while (line != null) {
+            SampleResult result=OldSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
+            if (result != null)             sendToVisualizer(result);
+            line=dataReader.readLine();
+            lineNumber++;
+          }
+          parsedOK=true;
+        }
+ else {
+          try {
+            bufferedInputStream=new BufferedInputStream(new FileInputStream(file));
+            readSamples(SaveService.loadTestResults(bufferedInputStream));
+            parsedOK=true;
+          }
+ catch (          Exception e) {
+            log.info("File load failure, trying old XML format. " + e.getLocalizedMessage());
+            try {
+              Configuration savedSamples=getConfiguration(filename);
+              Configuration[] samples=savedSamples.getChildren();
+              for (int i=0; i < samples.length; i++) {
+                SampleResult result=OldSaveService.getSampleResult(samples[i]);
+                sendToVisualizer(result);
+              }
+              parsedOK=true;
+            }
+ catch (            Exception e1) {
+              log.warn("Error parsing Avalon XML. " + e1.getLocalizedMessage());
+            }
+          }
+        }
+      }
     }
- catch (    Exception e) {
-      log.warn("File load failure, trying old data format.");
-      try {
-        Configuration savedSamples=getConfiguration(getFilename());
-        Configuration[] samples=savedSamples.getChildren();
-        for (int i=0; i < samples.length; i++) {
-          SampleResult result=OldSaveService.getSampleResult(samples[i]);
-          sendToVisualizer(result);
-        }
-      }
- catch (      Exception e1) {
-        log.warn("Error parsing XML results " + e);
-        log.info("Assuming CSV format instead");
-        dataReader=new BufferedReader(new FileReader(getFilename()));
-        String line;
-        while ((line=dataReader.readLine()) != null) {
-          sendToVisualizer(OldSaveService.makeResultFromDelimitedString(line,getSaveConfig()));
-        }
-        parsedOK=true;
-      }
+ catch (    IOException e) {
+      log.warn("Problem reading JTL file: " + file);
+    }
+catch (    JMeterError e) {
+      log.warn("Problem reading JTL file: " + file);
     }
  finally {
-      if (dataReader != null)       dataReader.close();
-      if (!parsedOK) {
-        SampleResult sr=new SampleResult();
-        sr.setSampleLabel("Error loading results file - see log file");
-        sendToVisualizer(sr);
+      JOrphanUtils.closeQuietly(dataReader);
+      JOrphanUtils.closeQuietly(bufferedInputStream);
+      if (!parsedOK || errorDetected) {
+        GuiPackage.showErrorMessage("Error loading results file - see log file","Result file loader");
       }
     }
   }

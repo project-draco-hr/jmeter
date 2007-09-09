@@ -1,0 +1,14 @@
+{
+  final String[] args={"-f","testarg"};
+  final CLOptionDescriptor[] options={FILE};
+  final CLArgsParser parser=new CLArgsParser(args,options);
+  assertNull(parser.getErrorString(),parser.getErrorString());
+  CLOption optionById=parser.getArgumentById(FILE_OPT);
+  assertNotNull(optionById);
+  assertEquals(FILE_OPT,optionById.getDescriptor().getId());
+  assertEquals("testarg",optionById.getArgument());
+  CLOption optionByName=parser.getArgumentByName(FILE.getName());
+  assertNotNull(optionByName);
+  assertEquals(FILE_OPT,optionByName.getDescriptor().getId());
+  assertEquals("testarg",optionByName.getArgument());
+}

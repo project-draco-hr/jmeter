@@ -1,3 +1,4 @@
 {
-  log.info(JMeterUtils.getResString("running_test"));
+  long now=System.currentTimeMillis();
+  log.info(JMeterUtils.getResString("running_test") + " (" + now+ ")");
 }

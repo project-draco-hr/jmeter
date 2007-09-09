@@ -1,0 +1,16 @@
+{
+  ButtonGroup group=new ButtonGroup();
+  getBox=new JRadioButton(JMeterUtils.getResString("ftp_get"));
+  group.add(getBox);
+  getBox.setSelected(true);
+  putBox=new JRadioButton(JMeterUtils.getResString("ftp_put"));
+  group.add(putBox);
+  binaryMode=new JCheckBox(JMeterUtils.getResString("ftp_binary_mode"));
+  saveResponseData=new JCheckBox(JMeterUtils.getResString("ftp_save_response_data"));
+  JPanel optionsPanel=new HorizontalPanel();
+  optionsPanel.add(getBox);
+  optionsPanel.add(putBox);
+  optionsPanel.add(binaryMode);
+  optionsPanel.add(saveResponseData);
+  return optionsPanel;
+}

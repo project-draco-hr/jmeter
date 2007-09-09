@@ -1,5 +1,3 @@
 {
-  this.target=target;
-  this.clientSocket=clientSocket;
-  this.captureHttpHeaders=target.getCaptureHttpHeaders();
+  configure(_clientSocket,_target,null,null);
 }

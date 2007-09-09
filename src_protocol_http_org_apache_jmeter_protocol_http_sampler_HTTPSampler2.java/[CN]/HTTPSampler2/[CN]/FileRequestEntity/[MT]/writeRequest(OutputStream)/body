@@ -1,0 +1,13 @@
+{
+  InputStream in=new FileInputStream(this.file);
+  try {
+    int l;
+    byte[] buffer=new byte[1024];
+    while ((l=in.read(buffer)) != -1) {
+      out.write(buffer,0,l);
+    }
+  }
+  finally {
+    in.close();
+  }
+}

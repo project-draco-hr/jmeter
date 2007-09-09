@@ -6,11 +6,18 @@
   if (values.length > 2) {
     splitString=((CompoundVariable)values[2]).execute();
   }
-  String parts[]=JMeterUtils.split(stringToSplit,splitString,"?");
+  if (log.isDebugEnabled()) {
+    log.debug("Split " + stringToSplit + " using "+ splitString+ " into "+ varNamePrefix);
+  }
+  String parts[]=JOrphanUtils.split(stringToSplit,splitString,"?");
   vars.put(varNamePrefix,stringToSplit);
   vars.put(varNamePrefix + "_n","" + parts.length);
   for (int i=1; i <= parts.length; i++) {
+    if (log.isDebugEnabled()) {
+      log.debug(parts[i - 1]);
+    }
     vars.put(varNamePrefix + "_" + i,parts[i - 1]);
   }
+  vars.remove(varNamePrefix + "_" + (parts.length + 1));
   return stringToSplit;
 }

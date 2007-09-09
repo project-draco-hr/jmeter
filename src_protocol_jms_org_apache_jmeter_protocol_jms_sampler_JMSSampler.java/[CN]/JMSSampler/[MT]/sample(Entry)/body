@@ -25,7 +25,6 @@
  else {
         if (replyMsg instanceof TextMessage) {
           res.setResponseData(((TextMessage)replyMsg).getText().getBytes());
-          res.setContentLength(((TextMessage)replyMsg).getText().getBytes().length);
         }
  else {
           res.setResponseData(replyMsg.toString().getBytes());

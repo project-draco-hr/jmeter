@@ -7,7 +7,6 @@
     this.PUBLISHER=null;
     this.SESSION=null;
     this.CONN=null;
-    this.finalize();
   }
  catch (  JMSException e) {
     log.error(e.getMessage());

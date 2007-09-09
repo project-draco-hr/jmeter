@@ -1,0 +1,22 @@
+{
+  final Class thisClass=SampleSaveConfiguration.class;
+  final Class requiredType=context.getRequiredType();
+  if (requiredType != thisClass) {
+    throw new IllegalArgumentException("Unexpected class: " + requiredType.getName());
+  }
+  SampleSaveConfiguration result=new SampleSaveConfiguration();
+  result.setBytes(false);
+  while (reader.hasMoreChildren()) {
+    reader.moveDown();
+    String nn=reader.getNodeName();
+    if (!"formatter".equals(nn)) {
+      String fieldName=mapper.realMember(thisClass,nn);
+      java.lang.reflect.Field field=reflectionProvider.getField(thisClass,fieldName);
+      Class type=field.getType();
+      Object value=unmarshallField(context,result,type,field);
+      reflectionProvider.writeField(result,nn,value,thisClass);
+    }
+    reader.moveUp();
+  }
+  return result;
+}

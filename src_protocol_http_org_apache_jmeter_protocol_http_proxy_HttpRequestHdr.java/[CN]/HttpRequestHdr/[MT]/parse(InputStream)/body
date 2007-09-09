@@ -20,15 +20,19 @@
  else {
         dataLength=Math.max(parseLine(line.toString()),dataLength);
       }
-      log.debug("Client Request Line: " + line.toString());
+      if (log.isDebugEnabled()) {
+        log.debug("Client Request Line: " + line.toString());
+      }
       line.reset();
     }
  else     if (!inHeaders) {
       readLength++;
     }
   }
-  postData=line.toString().trim();
-  log.debug("postData: " + postData);
-  log.debug("Request: " + clientRequest.toString());
+  rawPostData=line.toByteArray();
+  if (log.isDebugEnabled()) {
+    log.debug("rawPostData in default JRE encoding: " + new String(rawPostData));
+    log.debug("Request: " + clientRequest.toString());
+  }
   return clientRequest.toByteArray();
 }

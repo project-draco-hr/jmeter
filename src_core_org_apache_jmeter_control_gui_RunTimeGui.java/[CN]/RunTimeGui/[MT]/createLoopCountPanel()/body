@@ -3,7 +3,7 @@
   JLabel secondsLabel=new JLabel(JMeterUtils.getResString("runtime_seconds"));
   loopPanel.add(secondsLabel,BorderLayout.WEST);
   JPanel loopSubPanel=new JPanel(new BorderLayout(5,0));
-  seconds=new JTextField("60",5);
+  seconds=new JTextField("1",5);
   secondsLabel.setLabelFor(seconds);
   loopSubPanel.add(seconds,BorderLayout.CENTER);
   loopPanel.add(loopSubPanel,BorderLayout.CENTER);

@@ -1,0 +1,13 @@
+{
+  assertion.setCompOper(SizeAssertion.LESSTHAN);
+  assertion.setAllowedSize(0);
+  result=assertion.getResult(sample1);
+  assertFailed();
+  result=assertion.getResult(sample0);
+  assertFailed();
+  assertion.setAllowedSize(data1Len + 1);
+  result=assertion.getResult(sample1);
+  assertPassed();
+  result=assertion.getResult(sample0);
+  assertPassed();
+}

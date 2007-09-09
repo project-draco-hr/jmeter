@@ -1,0 +1,8 @@
+{
+  if (this.data.containsKey(url)) {
+    return (SamplingStatCalculator)this.data.get(url);
+  }
+ else {
+    return null;
+  }
+}

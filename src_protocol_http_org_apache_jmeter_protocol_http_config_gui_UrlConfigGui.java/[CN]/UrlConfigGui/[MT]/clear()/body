@@ -1,11 +1,13 @@
 {
   domain.setText("");
-  followRedirects.setSelected(true);
-  autoRedirects.setSelected(false);
-  get.setSelected(true);
+  followRedirects.setSelected(false);
+  autoRedirects.setSelected(true);
+  method.setText(HTTPSamplerBase.DEFAULT_METHOD);
   path.setText("");
   port.setText("");
   protocol.setText("");
+  contentEncoding.setText("");
   useKeepAlive.setSelected(true);
+  useMultipartForPost.setSelected(false);
   argsPanel.clear();
 }

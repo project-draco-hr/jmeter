@@ -1,0 +1,20 @@
+{
+  HttpParams params=DefaultHttpParams.getDefaultParams();
+  String file=JMeterUtils.getProperty("httpclient.parameters.file");
+  if (file != null) {
+    HttpClientDefaultParameters.load(file,params);
+  }
+  canSetPreEmptive=params.getParameter(HTTP_AUTHENTICATION_PREEMPTIVE) == null;
+  String ver=JMeterUtils.getPropDefault("httpclient.version","1.1");
+  try {
+    params.setParameter(HttpMethodParams.PROTOCOL_VERSION,HttpVersion.parse("HTTP/" + ver));
+  }
+ catch (  ProtocolException e) {
+    log.warn("Problem setting protocol version " + e.getLocalizedMessage());
+  }
+  String to=JMeterUtils.getProperty("httpclient.timeout");
+  if (to != null) {
+    params.setIntParameter(HttpMethodParams.SO_TIMEOUT,Integer.parseInt(to));
+  }
+  params.setParameter(HttpMethodParams.COOKIE_POLICY,CookiePolicy.IGNORE_COOKIES);
+}

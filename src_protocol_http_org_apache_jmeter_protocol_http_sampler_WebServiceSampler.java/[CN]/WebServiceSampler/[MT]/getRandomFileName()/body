@@ -2,9 +2,8 @@
   if (this.getXmlPathLoc() != null) {
     File src=new File(this.getXmlPathLoc());
     if (src.isDirectory() && src.list() != null) {
-      FILE_LIST=src.listFiles(new JMeterFileFilter(new String[]{".xml"}));
-      this.FILE_COUNT=FILE_LIST.length;
-      File one=FILE_LIST[RANDOM.nextInt(FILE_COUNT)];
+      File[] fileList=src.listFiles(new JMeterFileFilter(new String[]{".xml"},false));
+      File one=fileList[RANDOM.nextInt(fileList.length)];
       return one.getAbsolutePath();
     }
  else {

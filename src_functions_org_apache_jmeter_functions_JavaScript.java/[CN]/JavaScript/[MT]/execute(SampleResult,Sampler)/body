@@ -8,7 +8,9 @@
     Scriptable scope=cx.initStandardObjects(null);
     Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
     resultStr=Context.toString(result);
-    if (varName != null)     vars.put(varName,resultStr);
+    if (varName != null && vars != null) {
+      vars.put(varName,resultStr);
+    }
   }
  catch (  WrappedException e) {
     log.error("Error processing Javascript",e);

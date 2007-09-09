@@ -1,13 +1,10 @@
 {
   METHODLIST=new java.util.ArrayList();
-  SPATHS=new String[2];
-  SPATHS[0]=JMeterUtils.getSearchPaths()[0];
-  SPATHS[1]=JMeterUtils.getJMeterHome() + "/lib/junit/";
   try {
     CLASSLIST=ClassFinder.findClassesThatExtend(SPATHS,new Class[]{TestCase.class});
   }
- catch (  Exception e) {
-    log.debug("Exception getting interfaces.",e);
+ catch (  IOException e) {
+    log.error("Exception getting interfaces.",e);
   }
   JLabel label=new JLabel(JMeterUtils.getResString("protocol_java_classname"));
   classnameCombo=new JComboBox(CLASSLIST.toArray());
@@ -44,5 +41,7 @@
   panel.add(errorMsg);
   panel.add(errorCode);
   panel.add(doSetup);
+  panel.add(appendError);
+  panel.add(appendExc);
   return panel;
 }

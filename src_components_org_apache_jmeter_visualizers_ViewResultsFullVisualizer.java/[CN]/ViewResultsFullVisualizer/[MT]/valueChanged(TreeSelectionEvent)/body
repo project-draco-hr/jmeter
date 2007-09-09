@@ -10,68 +10,103 @@
     sampleDataField.setText("");
     results.setText("");
     if (node != null) {
-      SampleResult res=(SampleResult)node.getUserObject();
-      if (log.isDebugEnabled()) {
-        log.debug("valueChanged1 : sample result - " + res);
-      }
-      if (res != null) {
-        log.debug("valueChanged1 : load time - " + res.getTime());
-        if (res != null && res.getSamplerData() != null) {
-          String sd;
-          String rh=res.getRequestHeaders();
-          if (rh == null) {
-            sd=res.getSamplerData().trim();
-          }
- else {
-            sd=res.getSamplerData().trim() + "\n" + rh;
-          }
-          sampleDataField.setText(sd);
+      Object userObject=node.getUserObject();
+      if (userObject instanceof SampleResult) {
+        SampleResult res=(SampleResult)userObject;
+        setupTabPaneForSampleResult();
+        if (log.isDebugEnabled()) {
+          log.debug("valueChanged1 : sample result - " + res);
         }
-        statsDoc.insertString(statsDoc.getLength(),"Load time: " + res.getTime() + "\n",null);
-        String responseCode=res.getResponseCode();
-        log.debug("valueChanged1 : response code - " + responseCode);
-        int responseLevel=0;
-        if (responseCode != null) {
-          try {
-            responseLevel=Integer.parseInt(responseCode) / 100;
+        if (res != null) {
+          log.debug("valueChanged1 : load time - " + res.getTime());
+          String sd=res.getSamplerData();
+          if (sd != null) {
+            String rh=res.getRequestHeaders();
+            if (rh != null) {
+              StringBuffer sb=new StringBuffer(sd.length() + rh.length() + 20);
+              sb.append(sd);
+              sb.append("\nRequest Headers:\n");
+              sb.append(rh);
+              sd=sb.toString();
+            }
+            sampleDataField.setText(sd);
           }
- catch (          NumberFormatException numberFormatException) {
+          StringBuffer statsBuff=new StringBuffer(200);
+          statsBuff.append("Thread Name: ").append(res.getThreadName()).append(NL);
+          String startTime=dateFormat.format(new Date(res.getStartTime()));
+          statsBuff.append("Sample Start: ").append(startTime).append(NL);
+          statsBuff.append("Load time: ").append(res.getTime()).append(NL);
+          statsBuff.append("Size in bytes: ").append(res.getBytes()).append(NL);
+          statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
+          statsBuff=new StringBuffer();
+          String responseCode=res.getResponseCode();
+          log.debug("valueChanged1 : response code - " + responseCode);
+          int responseLevel=0;
+          if (responseCode != null) {
+            try {
+              responseLevel=Integer.parseInt(responseCode) / 100;
+            }
+ catch (            NumberFormatException numberFormatException) {
+            }
           }
-        }
-        Style style=null;
+          Style style=null;
 switch (responseLevel) {
 case 3:
-          style=statsDoc.getStyle("Redirect");
-        break;
+            style=statsDoc.getStyle(STYLE_REDIRECT);
+          break;
 case 4:
-      style=statsDoc.getStyle("ClientError");
-    break;
+        style=statsDoc.getStyle(STYLE_CLIENT_ERROR);
+      break;
 case 5:
-  style=statsDoc.getStyle("ServerError");
-break;
+    style=statsDoc.getStyle(STYLE_SERVER_ERROR);
+  break;
 }
-statsDoc.insertString(statsDoc.getLength(),"HTTP response code: " + responseCode + "\n",style);
+statsBuff.append("Response code: ").append(responseCode).append(NL);
+statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),style);
+statsBuff=new StringBuffer(100);
 String responseMsgStr=res.getResponseMessage();
 log.debug("valueChanged1 : response message - " + responseMsgStr);
-statsDoc.insertString(statsDoc.getLength(),"HTTP response message: " + responseMsgStr + "\n",null);
-statsDoc.insertString(statsDoc.getLength(),"\nHTTP response headers:\n" + res.getResponseHeaders() + "\n",null);
+statsBuff.append("Response message: ").append(responseMsgStr).append(NL);
+statsBuff.append(NL).append("Response headers:").append(NL);
+statsBuff.append(res.getResponseHeaders()).append(NL);
+statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
+statsBuff=null;
 if ((SampleResult.TEXT).equals(res.getDataType())) {
 String response=getResponseAsString(res);
 if (command.equals(TEXT_COMMAND)) {
-showTextResponse(response);
+  showTextResponse(response);
 }
  else if (command.equals(HTML_COMMAND)) {
-showRenderedResponse(response,res);
+  showRenderedResponse(response,res);
+}
+ else if (command.equals(JSON_COMMAND)) {
+  showRenderJSONResponse(response);
 }
  else if (command.equals(XML_COMMAND)) {
-showRenderXMLResponse(response);
+  showRenderXMLResponse(response);
 }
 }
  else {
 byte[] responseBytes=res.getResponseData();
 if (responseBytes != null) {
-showImage(new ImageIcon(responseBytes));
+  showImage(new ImageIcon(responseBytes));
 }
+}
+}
+}
+ else if (userObject instanceof AssertionResult) {
+AssertionResult res=(AssertionResult)userObject;
+setupTabPaneForAssertionResult();
+if (log.isDebugEnabled()) {
+log.debug("valueChanged1 : sample result - " + res);
+}
+if (res != null) {
+StringBuffer statsBuff=new StringBuffer(100);
+statsBuff.append("Assertion error: ").append(res.isError()).append(NL);
+statsBuff.append("Assertion failure: ").append(res.isFailure()).append(NL);
+statsBuff.append("Assertion failure message : ").append(res.getFailureMessage()).append(NL);
+statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
+statsBuff=null;
 }
 }
 }

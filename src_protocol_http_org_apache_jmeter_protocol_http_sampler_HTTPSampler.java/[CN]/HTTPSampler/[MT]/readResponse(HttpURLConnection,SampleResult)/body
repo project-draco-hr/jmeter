@@ -1,9 +1,13 @@
 {
   byte[] readBuffer=getThreadContext().getReadBuffer();
   BufferedInputStream in;
-  boolean logError=false;
+  if ((conn.getContentLength() == 0) && JMeterUtils.getPropDefault("httpsampler.obey_contentlength",false)) {
+    log.info("Content-Length: 0, not reading http-body");
+    res.setResponseHeaders(getResponseHeaders(conn));
+    return NULL_BA;
+  }
   try {
-    if ("gzip".equals(conn.getContentEncoding())) {
+    if (ENCODING_GZIP.equals(conn.getContentEncoding())) {
       in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
     }
  else {
@@ -11,16 +15,31 @@
     }
   }
  catch (  IOException e) {
-{
-      log.error(e.toString());
-      logError=true;
+    if (!(e.getCause() instanceof FileNotFoundException)) {
+      log.error("readResponse: " + e.toString());
+      Throwable cause=e.getCause();
+      if (cause != null) {
+        log.error("Cause: " + cause);
+      }
     }
-    in=new BufferedInputStream(conn.getErrorStream());
+    InputStream errorStream=conn.getErrorStream();
+    if (errorStream == null) {
+      log.info("Error Response Code: " + conn.getResponseCode() + ", Server sent no Errorpage");
+      res.setResponseHeaders(getResponseHeaders(conn));
+      return NULL_BA;
+    }
+ else {
+      log.info("Error Response Code: " + conn.getResponseCode());
+    }
+    in=new BufferedInputStream(errorStream);
   }
 catch (  Exception e) {
-    log.error(e.toString());
+    log.error("readResponse: " + e.toString());
+    Throwable cause=e.getCause();
+    if (cause != null) {
+      log.error("Cause: " + cause);
+    }
     in=new BufferedInputStream(conn.getErrorStream());
-    logError=true;
   }
   java.io.ByteArrayOutputStream w=new ByteArrayOutputStream();
   int x=0;
@@ -35,15 +54,5 @@ catch (  Exception e) {
   in.close();
   w.flush();
   w.close();
-  if (logError) {
-    String s;
-    if (w.size() > 1000) {
-      s="\n" + w.toString().substring(0,1000) + "\n\t...";
-    }
- else {
-      s="\n" + w.toString();
-    }
-    log.error(s);
-  }
   return w.toByteArray();
 }

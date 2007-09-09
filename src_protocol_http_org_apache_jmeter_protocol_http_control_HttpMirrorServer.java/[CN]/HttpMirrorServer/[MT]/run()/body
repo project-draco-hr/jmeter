@@ -1,0 +1,33 @@
+{
+  running=true;
+  ServerSocket mainSocket=null;
+  try {
+    log.info("Creating HttpMirror ... on port " + daemonPort);
+    mainSocket=new ServerSocket(daemonPort);
+    mainSocket.setSoTimeout(ACCEPT_TIMEOUT);
+    log.info("HttpMirror up and running!");
+    while (running) {
+      try {
+        Socket clientSocket=mainSocket.accept();
+        if (running) {
+          HttpMirrorThread thd=new HttpMirrorThread(clientSocket);
+          log.info("Starting new Mirror thread");
+          thd.start();
+        }
+ else {
+          log.warn("Server not running");
+          JOrphanUtils.closeQuietly(clientSocket);
+        }
+      }
+ catch (      InterruptedIOException e) {
+      }
+    }
+    log.info("HttpMirror Server stopped");
+  }
+ catch (  Exception e) {
+    log.warn("HttpMirror Server stopped",e);
+  }
+ finally {
+    JOrphanUtils.closeQuietly(mainSocket);
+  }
+}

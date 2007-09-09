@@ -1,0 +1,38 @@
+{
+  super.clearGui();
+  rootdn.setText("");
+  searchbase.setText("");
+  searchfilter.setText("");
+  delete.setText("");
+  add.setText("");
+  modify.setText("");
+  servername.setText("");
+  port.setText("");
+  add.setText("");
+  scope.setSelectedIndex(SCOPE_STRINGS.length - 1);
+  countlim.setText("");
+  timelim.setText("");
+  attribs.setText("");
+  userdn.setText("");
+  userpw.setText("");
+  comparedn.setText("");
+  comparefilt.setText("");
+  modddn.setText("");
+  newdn.setText("");
+  connto.setText("");
+  retobj.setSelected(false);
+  deref.setSelected(false);
+  parseflag.setSelected(false);
+  secure.setSelected(false);
+  addTest.setSelected(false);
+  modifyTest.setSelected(false);
+  deleteTest.setSelected(false);
+  searchTest.setSelected(false);
+  bind.setSelected(false);
+  rename.setSelected(false);
+  unbind.setSelected(false);
+  sbind.setSelected(false);
+  compare.setSelected(false);
+  tableAddPanel.clear();
+  tableModifyPanel.clear();
+}

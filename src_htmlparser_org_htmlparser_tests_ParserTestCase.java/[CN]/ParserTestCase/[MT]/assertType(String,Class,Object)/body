@@ -1,7 +1,0 @@
-{
-  String expectedTypeName=expectedType.getName();
-  String actualTypeName=object.getClass().getName();
-  if (!actualTypeName.equals(expectedTypeName)) {
-    fail(message + " should have been of type\n" + expectedTypeName+ " but was of type \n"+ actualTypeName+ "\n and is :"+ ((Node)object).toHtml());
-  }
-}

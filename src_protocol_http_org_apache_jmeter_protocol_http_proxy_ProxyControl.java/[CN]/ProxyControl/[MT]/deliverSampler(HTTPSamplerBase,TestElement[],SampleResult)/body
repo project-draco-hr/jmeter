@@ -1,13 +1,20 @@
 {
-  if (filterUrl(sampler)) {
+  if (filterContentType(result) && filterUrl(sampler)) {
     JMeterTreeNode myTarget=findTargetControllerNode();
     Collection defaultConfigurations=findApplicableElements(myTarget,ConfigTestElement.class,false);
     Collection userDefinedVariables=findApplicableElements(myTarget,Arguments.class,true);
     removeValuesFromSampler(sampler,defaultConfigurations);
     replaceValues(sampler,subConfigs,userDefinedVariables);
+    sampler.setAutoRedirects(samplerRedirectAutomatically);
+    sampler.setFollowRedirects(samplerFollowRedirects);
     sampler.setUseKeepAlive(useKeepAlive);
-    sampler.setProperty(TestElement.GUI_CLASS,"org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui");
+    sampler.setImageParser(samplerDownloadImages);
     placeSampler(sampler,subConfigs,myTarget);
     notifySampleListeners(new SampleEvent(result,sampler.getName()));
+  }
+ else {
+    if (log.isDebugEnabled()) {
+      log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
+    }
   }
 }

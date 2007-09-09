@@ -1,0 +1,12 @@
+{
+  FileOutputStream fos=new FileOutputStream(fileEntry.file);
+  OutputStreamWriter osw=null;
+  String charsetName=fileEntry.charSetEncoding;
+  if (charsetName != null && charsetName.trim().length() > 0) {
+    osw=new OutputStreamWriter(fos,charsetName);
+  }
+ else {
+    osw=new OutputStreamWriter(fos);
+  }
+  return new BufferedWriter(osw);
+}

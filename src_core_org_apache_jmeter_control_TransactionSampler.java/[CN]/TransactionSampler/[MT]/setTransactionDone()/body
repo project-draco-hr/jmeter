@@ -1,0 +1,7 @@
+{
+  this.transactionDone=true;
+  transactionSampleResult.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
+  if (transactionSampleResult.isSuccessful()) {
+    transactionSampleResult.setResponseCodeOK();
+  }
+}

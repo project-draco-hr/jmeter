@@ -1,11 +1,13 @@
 {
-  setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
   JPanel modulesPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,20,5));
-  modulesPanel.add(new JLabel(CONTROLLER));
+  JLabel nodesLabel=new JLabel(JMeterUtils.getResString("module_controller_module_to_run"));
+  modulesPanel.add(nodesLabel);
   nodesModel=new DefaultComboBoxModel();
   nodes=new JComboBox(nodesModel);
+  nodesLabel.setLabelFor(nodes);
   reinitialize();
   modulesPanel.add(nodes);
   warningLabel=new JLabel("");

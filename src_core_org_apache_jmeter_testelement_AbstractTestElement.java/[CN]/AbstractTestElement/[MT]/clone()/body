@@ -1,14 +1,17 @@
 {
-  TestElement clonedElement=null;
   try {
-    clonedElement=(TestElement)this.getClass().newInstance();
+    TestElement clonedElement=(TestElement)this.getClass().newInstance();
     PropertyIterator iter=propertyIterator();
     while (iter.hasNext()) {
       clonedElement.setProperty((JMeterProperty)iter.next().clone());
     }
     clonedElement.setRunningVersion(runningVersion);
+    return clonedElement;
   }
- catch (  Exception e) {
+ catch (  InstantiationException e) {
+    throw new AssertionError(e);
   }
-  return clonedElement;
+catch (  IllegalAccessException e) {
+    throw new AssertionError(e);
+  }
 }

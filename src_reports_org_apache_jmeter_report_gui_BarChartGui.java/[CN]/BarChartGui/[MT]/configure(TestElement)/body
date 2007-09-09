@@ -2,11 +2,9 @@
   super.configure(element);
   BarChart bc=(BarChart)element;
   xItems.setText(bc.getXAxis());
-  checkItems.setText(bc.getYAxis());
+  yItems.setText(bc.getYAxis());
   xAxisLabel.setText(bc.getXLabel());
   yAxisLabel.setText(bc.getYLabel());
-  if (bc.getCheckedItems() != null && bc.getCheckedItems().size() > 0) {
-    String[] its=new String[bc.getCheckedItems().size()];
-    checkItems.setValues((String[])bc.getCheckedItems().toArray(its));
-  }
+  caption.setText(bc.getCaption());
+  url.setText(bc.getURL());
 }

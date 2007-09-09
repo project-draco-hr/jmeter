@@ -1,15 +1,31 @@
 {
   System.setProperty("JMeter.NonGui","true");
+  try {
+    new JLabel();
+  }
+ catch (  InternalError e) {
+  }
   JMeter driver=new JMeter();
   driver.parent=this;
   PluginManager.install(this,false);
+  String remote_hosts_string=null;
+  if (remoteStart != null) {
+    remote_hosts_string=remoteStart.getArgument();
+    if (remote_hosts_string == null) {
+      remote_hosts_string=JMeterUtils.getPropDefault("remote_hosts","127.0.0.1");
+    }
+  }
   if (testFile == null) {
     throw new IllegalUserActionException();
   }
+  String argument=testFile.getArgument();
+  if (argument == null) {
+    throw new IllegalUserActionException();
+  }
   if (logFile == null) {
-    driver.run(testFile.getArgument(),null,remoteStart != null);
+    driver.run(argument,null,remoteStart != null,remote_hosts_string);
   }
  else {
-    driver.run(testFile.getArgument(),logFile.getArgument(),remoteStart != null);
+    driver.run(argument,logFile.getArgument(),remoteStart != null,remote_hosts_string);
   }
 }

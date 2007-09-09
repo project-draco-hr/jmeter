@@ -1,5 +1,5 @@
 {
   if (save.saveResponseHeaders()) {
-    writeString(writer,"responseHeader",res.getResponseHeaders());
+    writeString(writer,TAG_RESPONSE_HEADER,res.getResponseHeaders());
   }
 }

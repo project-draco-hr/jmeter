@@ -1,0 +1,7 @@
+{
+  super();
+  if (defaultTrustManager == null) {
+    throw new IllegalArgumentException("Trust manager may not be null");
+  }
+  this.defaultTrustManager=defaultTrustManager;
+}

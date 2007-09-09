@@ -17,10 +17,10 @@
   run_shut.setActionCommand(ACTION_SHUTDOWN);
   run_clear=new JMenuItem(JMeterUtils.getResString("clear"),'C');
   run_clear.addActionListener(ReportActionRouter.getInstance());
-  run_clear.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR);
+  run_clear.setActionCommand(ActionNames.CLEAR);
   run_clearAll=new JMenuItem(JMeterUtils.getResString("clear_all"),'a');
   run_clearAll.addActionListener(ReportActionRouter.getInstance());
-  run_clearAll.setActionCommand(org.apache.jmeter.gui.action.Clear.CLEAR_ALL);
+  run_clearAll.setActionCommand(ActionNames.CLEAR_ALL);
   run_clearAll.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,KeyEvent.CTRL_MASK));
   runMenu.add(run_start);
   if (remote_start != null) {

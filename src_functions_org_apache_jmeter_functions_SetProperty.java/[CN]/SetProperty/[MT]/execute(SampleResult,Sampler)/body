@@ -1,6 +1,15 @@
 {
   String propertyName=((CompoundVariable)values[0]).execute();
   String propertyValue=((CompoundVariable)values[1]).execute();
-  JMeterUtils.setProperty(propertyName,propertyValue);
-  return propertyValue;
+  boolean returnValue=false;
+  if (values.length > 2) {
+    returnValue=((CompoundVariable)values[2]).execute().equalsIgnoreCase("true");
+  }
+  if (returnValue) {
+    return (String)JMeterUtils.setProperty(propertyName,propertyValue);
+  }
+ else {
+    JMeterUtils.setProperty(propertyName,propertyValue);
+    return "";
+  }
 }

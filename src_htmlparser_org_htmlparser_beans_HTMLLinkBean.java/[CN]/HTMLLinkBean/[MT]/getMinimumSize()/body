@@ -1,9 +1,0 @@
-{
-  FontMetrics metrics;
-  int width;
-  int height;
-  metrics=getFontMetrics(getFont());
-  width=metrics.stringWidth("http://localhost");
-  height=metrics.getLeading() + metrics.getHeight() + metrics.getDescent();
-  return (new Dimension(width,height));
-}

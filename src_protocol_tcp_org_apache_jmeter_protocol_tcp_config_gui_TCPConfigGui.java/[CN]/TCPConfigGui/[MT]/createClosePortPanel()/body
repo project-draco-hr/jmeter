@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("reuseconnection"));
+  reUseConnection=new JCheckBox("",true);
+  reUseConnection.setName(RE_USE_CONNECTION);
+  label.setLabelFor(reUseConnection);
+  JPanel closePortPanel=new JPanel(new BorderLayout(5,0));
+  closePortPanel.add(label,BorderLayout.WEST);
+  closePortPanel.add(reUseConnection,BorderLayout.CENTER);
+  return closePortPanel;
+}

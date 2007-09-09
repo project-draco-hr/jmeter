@@ -1,24 +1,32 @@
 {
   String[] parts=JOrphanUtils.split(queryString,"--" + getBoundary());
   for (int i=0; i < parts.length; i++) {
-    if (parts[i].indexOf("filename=") > -1) {
-      int index=parts[i].indexOf("name=\"") + 6;
-      String name=parts[i].substring(index,parts[i].indexOf("\"",index));
-      index=parts[i].indexOf("filename=\"") + 10;
-      String fn=parts[i].substring(index,parts[i].indexOf("\"",index));
-      index=parts[i].indexOf("\n",index);
-      index=parts[i].indexOf(":",index) + 1;
-      String mt=parts[i].substring(index,parts[i].indexOf("\n",index)).trim();
-      this.setFileFieldName(name);
-      this.setFilename(fn);
-      this.setMimeType(mt);
-    }
- else     if (parts[i].indexOf("name=") > -1) {
-      int index=parts[i].indexOf("name=\"") + 6;
-      String name=parts[i].substring(index,parts[i].indexOf("\"",index));
-      index=parts[i].indexOf("\n",index) + 2;
-      String value=parts[i].substring(index).trim();
-      this.addEncodedArgument(name,value);
+    String contentDisposition=getHeaderValue("Content-disposition",parts[i]);
+    String contentType=getHeaderValue("Content-type",parts[i]);
+    if (contentDisposition != null && contentDisposition.indexOf("form-data") > -1) {
+      int index=contentDisposition.indexOf("name=\"") + 6;
+      String name=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
+      if (contentDisposition.indexOf("filename=") > -1) {
+        index=contentDisposition.indexOf("filename=\"") + 10;
+        String fn=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
+        if (fn != null && fn.length() > 0) {
+          this.setFileFieldName(name);
+          this.setFilename(fn);
+          this.setMimeType(contentType);
+        }
+      }
+ else {
+        int indexEmptyLfCrLfLinePos=parts[i].indexOf("\n\r\n");
+        int indexEmptyLfLfLinePos=parts[i].indexOf("\n\n");
+        String value=null;
+        if (indexEmptyLfCrLfLinePos > -1) {
+          value=parts[i].substring(indexEmptyLfCrLfLinePos).trim();
+        }
+ else         if (indexEmptyLfLfLinePos > -1) {
+          value=parts[i].substring(indexEmptyLfLfLinePos).trim();
+        }
+        this.addNonEncodedArgument(name,value);
+      }
     }
   }
 }

@@ -1,3 +1,3 @@
 {
-  setTestType((getTestType() | CONTAINS) & (~MATCH));
+  setTestType((getTestType() | CONTAINS) & ~(MATCH | EQUALS));
 }

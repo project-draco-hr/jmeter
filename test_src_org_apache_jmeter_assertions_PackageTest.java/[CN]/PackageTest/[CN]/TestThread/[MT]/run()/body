@@ -1,0 +1,19 @@
+{
+  ResponseAssertion assertion=new ResponseAssertion();
+  assertion.setTestFieldResponseData();
+  assertion.setToContainsType();
+  assertion.addTestString(TEST_PATTERN);
+  SampleResult response=new SampleResult();
+  response.setResponseData(TEST_STRING.getBytes());
+  for (int i=0; i < 100; i++) {
+    AssertionResult result;
+    result=assertion.getResult(response);
+    if (result.isFailure() || result.isError()) {
+      failed++;
+    }
+  }
+synchronized (PackageTest.this) {
+    threadsRunning--;
+    PackageTest.this.notifyAll();
+  }
+}

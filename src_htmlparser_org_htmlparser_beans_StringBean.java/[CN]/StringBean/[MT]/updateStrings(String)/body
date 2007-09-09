@@ -1,8 +1,0 @@
-{
-  String oldValue;
-  if ((null == mStrings) || !mStrings.equals(strings)) {
-    oldValue=mStrings;
-    mStrings=strings;
-    mPropertySupport.firePropertyChange(PROP_STRINGS_PROPERTY,oldValue,strings);
-  }
-}

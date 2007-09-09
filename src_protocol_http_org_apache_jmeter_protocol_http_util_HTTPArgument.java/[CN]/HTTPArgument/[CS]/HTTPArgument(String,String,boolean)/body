@@ -1,16 +1,3 @@
 {
-  setAlwaysEncoded(true);
-  if (alreadyEncoded) {
-    try {
-      name=JOrphanUtils.decode(name,"UTF-8");
-      value=JOrphanUtils.decode(value,"UTF-8");
-    }
- catch (    UnsupportedEncodingException e) {
-      log.error("UTF-8 encoding not supported!");
-      throw new Error(e.toString());
-    }
-  }
-  setName(name);
-  setValue(value);
-  setMetaData("=");
+  this(name,value,alreadyEncoded,EncoderCache.URL_ARGUMENT_ENCODING);
 }

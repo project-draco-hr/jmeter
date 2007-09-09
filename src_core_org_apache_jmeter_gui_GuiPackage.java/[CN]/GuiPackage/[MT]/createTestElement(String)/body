@@ -9,7 +9,7 @@
  else {
       comp=getGuiFromCache(c,null);
     }
-    comp.clear();
+    comp.clearGui();
     TestElement node=comp.createTestElement();
     nodesToGui.put(node,comp);
     return node;

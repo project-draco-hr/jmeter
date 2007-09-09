@@ -1,0 +1,8 @@
+{
+  Collection parms=new LinkedList();
+  parms.add(new CompoundVariable(file));
+  parms.add(new CompoundVariable(expr));
+  XPath xp=new XPath();
+  xp.setParameters(parms);
+  return xp;
+}

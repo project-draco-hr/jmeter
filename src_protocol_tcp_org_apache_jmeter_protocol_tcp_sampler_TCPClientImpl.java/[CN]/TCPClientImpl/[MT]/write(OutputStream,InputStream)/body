@@ -1,3 +1,12 @@
 {
-  return;
+  byte buff[]=new byte[512];
+  try {
+    while (is.read(buff) > 0) {
+      os.write(buff);
+      os.flush();
+    }
+  }
+ catch (  IOException e) {
+    log.warn("Write error",e);
+  }
 }

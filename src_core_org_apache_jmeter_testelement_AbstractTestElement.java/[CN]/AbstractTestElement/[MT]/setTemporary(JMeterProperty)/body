@@ -1,6 +1,6 @@
 {
   if (temporaryProperties == null) {
-    temporaryProperties=new HashSet();
+    temporaryProperties=new LinkedHashSet();
   }
   temporaryProperties.add(property);
   if (property instanceof MultiProperty) {

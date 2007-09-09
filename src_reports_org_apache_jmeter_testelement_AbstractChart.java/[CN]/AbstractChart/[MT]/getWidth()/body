@@ -1,0 +1,9 @@
+{
+  int w=getPropertyAsInt(REPORT_CHART_WIDTH);
+  if (w <= 0) {
+    return DEFAULT_WIDTH;
+  }
+ else {
+    return w;
+  }
+}

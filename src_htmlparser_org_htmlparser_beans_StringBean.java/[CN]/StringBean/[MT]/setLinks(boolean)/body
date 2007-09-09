@@ -1,8 +1,0 @@
-{
-  boolean oldValue=mLinks;
-  if (oldValue != links) {
-    mLinks=links;
-    mPropertySupport.firePropertyChange(PROP_LINKS_PROPERTY,oldValue,links);
-    resetStrings();
-  }
-}

@@ -1,0 +1,22 @@
+{
+  FileRowColContainer f=new FileRowColContainer("testfiles/testempty.csv");
+  assertNotNull(f);
+  assertEquals("Expected 4 lines",4,f.getSize());
+  int myRow=f.nextRow();
+  assertEquals(0,myRow);
+  assertEquals("",f.getColumn(myRow,0));
+  assertEquals("d1",f.getColumn(myRow,3));
+  myRow=f.nextRow();
+  assertEquals(1,myRow);
+  assertEquals("",f.getColumn(myRow,1));
+  assertEquals("c2",f.getColumn(myRow,2));
+  myRow=f.nextRow();
+  assertEquals(2,myRow);
+  assertEquals("b3",f.getColumn(myRow,1));
+  assertEquals("",f.getColumn(myRow,2));
+  myRow=f.nextRow();
+  assertEquals(3,myRow);
+  assertEquals("b4",f.getColumn(myRow,1));
+  assertEquals("c4",f.getColumn(myRow,2));
+  assertEquals("",f.getColumn(myRow,3));
+}

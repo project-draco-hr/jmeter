@@ -1,14 +1,21 @@
 {
   Properties p=new Properties();
+  InputStream is=null;
   try {
     File f=new File(file);
-    p.load(new FileInputStream(f));
+    is=new FileInputStream(f);
+    p.load(is);
   }
  catch (  IOException e) {
     try {
-      InputStream is=JMeterUtils.class.getClassLoader().getResource(file).openStream();
-      if (is == null) {
+      final URL resource=JMeterUtils.class.getClassLoader().getResource(file);
+      if (resource == null) {
         log.warn("Cannot find " + file);
+        return null;
+      }
+      is=resource.openStream();
+      if (is == null) {
+        log.warn("Cannot open " + file);
         return null;
       }
       p.load(is);
@@ -17,6 +24,9 @@
       log.warn("Error reading " + file + " "+ ex.toString());
       return null;
     }
+  }
+ finally {
+    JOrphanUtils.closeQuietly(is);
   }
   return p;
 }

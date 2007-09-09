@@ -1,5 +1,5 @@
 {
-  ActionRouter.getInstance().actionPerformed(new ActionEvent(e.getSource(),e.getID(),CheckDirty.REMOVE));
+  ActionRouter.getInstance().actionPerformed(new ActionEvent(e.getSource(),e.getID(),ActionNames.CHECK_REMOVE));
   GuiPackage guiPackage=GuiPackage.getInstance();
   JMeterTreeNode[] nodes=guiPackage.getTreeListener().getSelectedNodes();
   TreePath newTreePath=guiPackage.getTreeListener().removedSelectedNode();

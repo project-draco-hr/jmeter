@@ -1,0 +1,4 @@
+{
+  final int modifiersEx=e.getModifiersEx() | e.getModifiers();
+  return e.getKeyCode() == k.getKeyCode() && modifiersEx == k.getModifiers();
+}

@@ -3,7 +3,5 @@
   if (type instanceof NullProperty) {
     return CONTAINS;
   }
- else {
-    return type.getIntValue();
-  }
+  return type.getIntValue();
 }

@@ -1,4 +1,10 @@
 {
+  if (excludeTable.isEditing()) {
+    excludeTable.getCellEditor().stopCellEditing();
+  }
+  if (includeTable.isEditing()) {
+    includeTable.getCellEditor().stopCellEditing();
+  }
   configureTestElement(el);
   if (el instanceof ProxyControl) {
     model=(ProxyControl)el;
@@ -8,8 +14,15 @@
     model.setCaptureHttpHeaders(httpHeaders.isSelected());
     model.setGroupingMode(groupingMode.getSelectedIndex());
     model.setAssertions(addAssertions.isSelected());
+    model.setSamplerTypeName(samplerTypeName.getSelectedIndex());
+    model.setSamplerRedirectAutomatically(samplerRedirectAutomatically.isSelected());
+    model.setSamplerFollowRedirects(samplerFollowRedirects.isSelected());
     model.setUseKeepAlive(useKeepAlive.isSelected());
+    model.setSamplerDownloadImages(samplerDownloadImages.isSelected());
     model.setRegexMatch(regexMatch.isSelected());
+    model.setHttpsSpoof(httpsSpoof.isSelected());
+    model.setContentTypeInclude(contentTypeInclude.getText());
+    model.setContentTypeExclude(contentTypeExclude.getText());
     TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();
     if (nw == null) {
       model.setTarget(null);

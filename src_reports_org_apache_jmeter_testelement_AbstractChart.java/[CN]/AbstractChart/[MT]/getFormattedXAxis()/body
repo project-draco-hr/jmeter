@@ -1,0 +1,8 @@
+{
+  String text=getXAxis();
+  if (text.indexOf('.') > -1) {
+    text=text.substring(text.indexOf('.') + 1);
+    text=JOrphanUtils.replaceAllChars(text,'_'," ");
+  }
+  return text;
+}

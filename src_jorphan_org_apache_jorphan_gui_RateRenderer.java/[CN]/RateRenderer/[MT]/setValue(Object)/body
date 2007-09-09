@@ -1,0 +1,21 @@
+{
+  if (value == null || !(value instanceof Double)) {
+    setText("#N/A");
+    return;
+  }
+  double rate=((Double)value).doubleValue();
+  if (rate == Double.MAX_VALUE) {
+    setText("#N/A");
+    return;
+  }
+  String unit="sec";
+  if (rate < 1.0) {
+    rate*=60.0;
+    unit="min";
+  }
+  if (rate < 1.0) {
+    rate*=60.0;
+    unit="hour";
+  }
+  setText(formatter.format(rate) + "/" + unit);
+}

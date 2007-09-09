@@ -1,0 +1,11 @@
+{
+  if (node instanceof ThreadListener) {
+    ThreadListener tl=(ThreadListener)node;
+    if (isStart) {
+      tl.threadStarted();
+    }
+ else {
+      tl.threadFinished();
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  Map preparedStatementMap=(Map)perConnCache.get(conn);
+  if (null == preparedStatementMap) {
+    preparedStatementMap=new LinkedHashMap(MAX_ENTRIES){
+      protected boolean removeEldestEntry(      java.util.Map.Entry arg0){
+        final int theSize=size();
+        if (theSize > MAX_ENTRIES) {
+          Object value=arg0.getValue();
+          if (value instanceof PreparedStatement) {
+            PreparedStatement pstmt=(PreparedStatement)value;
+            close(pstmt);
+          }
+          return true;
+        }
+        return false;
+      }
+    }
+;
+    perConnCache.put(conn,preparedStatementMap);
+  }
+  PreparedStatement pstmt=(PreparedStatement)preparedStatementMap.get(getQuery());
+  if (null == pstmt) {
+    if (callable) {
+      pstmt=conn.prepareCall(getQuery());
+    }
+ else {
+      pstmt=conn.prepareStatement(getQuery());
+    }
+    preparedStatementMap.put(getQuery(),pstmt);
+  }
+  pstmt.clearParameters();
+  return pstmt;
+}

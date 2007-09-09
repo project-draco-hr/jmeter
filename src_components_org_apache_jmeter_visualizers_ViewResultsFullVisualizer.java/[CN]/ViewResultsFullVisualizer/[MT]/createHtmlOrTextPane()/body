@@ -10,6 +10,11 @@
   htmlButton.addActionListener(this);
   htmlButton.setSelected(!textMode);
   group.add(htmlButton);
+  jsonButton=new JRadioButton(JSON_BUTTON_LABEL);
+  jsonButton.setActionCommand(JSON_COMMAND);
+  jsonButton.addActionListener(this);
+  jsonButton.setSelected(!textMode);
+  group.add(jsonButton);
   xmlButton=new JRadioButton(XML_BUTTON_LABEL);
   xmlButton.setActionCommand(XML_COMMAND);
   xmlButton.addActionListener(this);
@@ -20,6 +25,7 @@
   pane.add(textButton);
   pane.add(htmlButton);
   pane.add(xmlButton);
+  pane.add(jsonButton);
   pane.add(downloadAll);
   return pane;
 }

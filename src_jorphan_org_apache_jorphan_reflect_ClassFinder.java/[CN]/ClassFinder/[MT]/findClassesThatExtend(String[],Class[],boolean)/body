@@ -1,32 +1,31 @@
 {
-  List listPaths=null;
-  Set listClasses=null;
-  List listSuperClasses=null;
-  strPathsOrJars=addJarsInPath(strPathsOrJars);
   if (log.isDebugEnabled()) {
-    for (int k=0; k < strPathsOrJars.length; k++) {
+    for (int i=0; i < superClasses.length; i++) {
+      log.debug("superclass: " + superClasses[i].getName());
+    }
+  }
+  strPathsOrJars=addJarsInPath(strPathsOrJars);
+  for (int k=0; k < strPathsOrJars.length; k++) {
+    strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
+    if (log.isDebugEnabled()) {
       log.debug("strPathsOrJars : " + strPathsOrJars[k]);
     }
   }
-  listPaths=getClasspathMatches(strPathsOrJars);
+  List listPaths=getClasspathMatches(strPathsOrJars);
   if (log.isDebugEnabled()) {
     Iterator tIter=listPaths.iterator();
-    for (; tIter.hasNext(); ) {
+    while (tIter.hasNext()) {
       log.debug("listPaths : " + tIter.next());
     }
   }
-  listClasses=new TreeSet();
-  listSuperClasses=new ArrayList();
-  for (int i=0; i < superClasses.length; i++) {
-    listSuperClasses.add(superClasses[i].getName());
-  }
+  Set listClasses=new FilterTreeSet(superClasses,innerClasses);
   findClassesInPaths(listPaths,listClasses);
   if (log.isDebugEnabled()) {
+    log.debug("listClasses.size()=" + listClasses.size());
     Iterator tIter=listClasses.iterator();
-    for (; tIter.hasNext(); ) {
+    while (tIter.hasNext()) {
       log.debug("listClasses : " + tIter.next());
     }
   }
-  Set subClassList=findAllSubclasses(listSuperClasses,listClasses,innerClasses);
-  return new ArrayList(subClassList);
+  return new ArrayList(listClasses);
 }

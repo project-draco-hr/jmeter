@@ -1,0 +1,30 @@
+{
+  StringBuffer sb=new StringBuffer();
+  sb.append("\n");
+  int updateCount=0;
+  if (!result) {
+    updateCount=pstmt.getUpdateCount();
+  }
+  do {
+    if (result) {
+      ResultSet rs=null;
+      try {
+        rs=pstmt.getResultSet();
+        Data data=getDataFromResultSet(rs);
+        sb.append(data.toString()).append("\n");
+      }
+  finally {
+        close(rs);
+      }
+    }
+ else {
+      sb.append(updateCount).append(" updates.\n");
+    }
+    result=pstmt.getMoreResults();
+    if (!result) {
+      updateCount=pstmt.getUpdateCount();
+    }
+  }
+ while (result || (updateCount != -1));
+  return sb.toString();
+}

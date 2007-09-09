@@ -1,22 +1,21 @@
 {
-  protocol=new JTextField(4);
+  protocol=new JTextField(10);
   protocol.setName(PROTOCOL);
+  contentEncoding=new JTextField(10);
+  contentEncoding.setName(CONTENT_ENCODING);
   JLabel protocolLabel=new JLabel(JMeterUtils.getResString("protocol"));
   protocolLabel.setLabelFor(protocol);
-  ButtonGroup methodButtonGroup=new ButtonGroup();
-  get=new JRadioButton(JMeterUtils.getResString("url_config_get"));
-  methodButtonGroup.add(get);
-  post=new JRadioButton(JMeterUtils.getResString("url_config_post"));
-  methodButtonGroup.add(post);
-  post.setSelected(true);
-  JLabel methodLabel=new JLabel(JMeterUtils.getResString("method"));
+  JLabel contentEncodingLabel=new JLabel(JMeterUtils.getResString("content_encoding"));
+  protocolLabel.setLabelFor(contentEncoding);
+  method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   panel.add(protocolLabel);
   panel.add(protocol);
   panel.add(Box.createHorizontalStrut(5));
-  panel.add(methodLabel);
-  panel.add(get);
-  panel.add(post);
+  panel.add(method);
   panel.setMinimumSize(panel.getPreferredSize());
+  panel.add(Box.createHorizontalStrut(5));
+  panel.add(contentEncodingLabel);
+  panel.add(contentEncoding);
   return panel;
 }

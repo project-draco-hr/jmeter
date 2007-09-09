@@ -1,14 +1,20 @@
 {
-  if (log.isDebugEnabled())   log.debug("Add cookie " + c.toString());
   String cv=c.getValue();
-  if (DELETE_NULL_COOKIES && (null == cv || "".equals(cv))) {
-    removeCookieNamed(c.getName());
+  String cn=c.getName();
+  removeMatchingCookies(c);
+  if (DELETE_NULL_COOKIES && (null == cv || cv.length() == 0)) {
+    if (log.isDebugEnabled()) {
+      log.debug("Dropping cookie with null value " + c.toString());
+    }
   }
  else {
-    JMeterContext context=getThreadContext();
+    if (log.isDebugEnabled()) {
+      log.debug("Add cookie to store " + c.toString());
+    }
     getCookies().addItem(c);
+    JMeterContext context=getThreadContext();
     if (context.isSamplingStarted()) {
-      context.getVariables().put(c.getName(),c.getValue());
+      context.getVariables().put(cn,cv);
     }
   }
 }

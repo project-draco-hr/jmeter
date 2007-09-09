@@ -4,6 +4,7 @@
     if (addTest.isSelected()) {
       cl.show(cards,"Add");
       tableModifyPanel.clear();
+      modify.setText("");
       searchbase.setText("");
       searchfilter.setText("");
       delete.setText("");
@@ -11,7 +12,9 @@
  else     if (deleteTest.isSelected()) {
       cl.show(cards,"Delete");
       tableModifyPanel.clear();
+      modify.setText("");
       tableAddPanel.clear();
+      add.setText("");
       searchbase.setText("");
       searchfilter.setText("");
     }
@@ -19,11 +22,14 @@
       cl.show(cards,"Search");
       delete.setText("");
       tableModifyPanel.clear();
+      modify.setText("");
       tableAddPanel.clear();
+      add.setText("");
     }
  else     if (modifyTest.isSelected()) {
       cl.show(cards,"Modify");
       tableAddPanel.clear();
+      add.setText("");
       searchbase.setText("");
       searchfilter.setText("");
       delete.setText("");
@@ -31,7 +37,9 @@
  else {
       cl.show(cards,"");
       tableAddPanel.clear();
+      add.setText("");
       tableModifyPanel.clear();
+      modify.setText("");
       searchbase.setText("");
       searchfilter.setText("");
       delete.setText("");
@@ -40,7 +48,9 @@
  else {
     cl.show(cards,"");
     tableAddPanel.clear();
+    add.setText("");
     tableModifyPanel.clear();
+    modify.setText("");
     searchbase.setText("");
     searchfilter.setText("");
     delete.setText("");

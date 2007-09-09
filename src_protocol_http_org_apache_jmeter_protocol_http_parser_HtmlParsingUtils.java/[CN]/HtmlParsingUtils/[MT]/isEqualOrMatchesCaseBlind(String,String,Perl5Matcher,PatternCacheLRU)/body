@@ -1,0 +1,3 @@
+{
+  return arg.equalsIgnoreCase(pat) || matcher.matches(arg,cache.getPattern(pat,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.CASE_INSENSITIVE_MASK));
+}

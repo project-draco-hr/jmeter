@@ -13,6 +13,7 @@
     }
  catch (    Exception e) {
       e.printStackTrace();
+      System.out.println("JMeter home directory was detected as: " + jmDir);
     }
   }
  else {
@@ -24,6 +25,7 @@
     }
  catch (    Exception e) {
       e.printStackTrace();
+      System.out.println("JMeter home directory was detected as: " + jmDir);
     }
   }
 }

@@ -1,0 +1,20 @@
+{
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setMonitor(false);
+  res.setSampleLabel(url.toExternalForm());
+  res.sampleStart();
+  try {
+    setupConnection(url,method,res);
+    execute(method,res);
+    res.sampleEnd();
+    res.setResponseData(responseData.toByteArray());
+    return res;
+  }
+ catch (  IOException iex) {
+    res.sampleEnd();
+    HTTPSampleResult err=errorResult(iex,res);
+    lastPort=-1;
+    channel=null;
+    return err;
+  }
+}

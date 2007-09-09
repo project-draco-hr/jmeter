@@ -1,0 +1,17 @@
+{
+  String datetime;
+  if (format.length() == 0) {
+    datetime=Long.toString(System.currentTimeMillis());
+  }
+ else {
+    String fmt=(String)aliases.get(format);
+    if (fmt == null)     fmt=format;
+    SimpleDateFormat df=new SimpleDateFormat(fmt);
+    datetime=df.format(new Date());
+  }
+  if (variable.length() > 0) {
+    JMeterVariables vars=getVariables();
+    vars.put(variable,datetime);
+  }
+  return datetime;
+}

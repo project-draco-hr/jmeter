@@ -1,0 +1,29 @@
+{
+  if (contentEncoding == null || contentEncoding.length() == 0) {
+    contentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;
+  }
+  assertEquals(executedUrl,res.getURL());
+  assertEquals(sampler.getMethod(),res.getHTTPMethod());
+  String expectedQueryString=null;
+  if (!valuesAlreadyUrlEncoded) {
+    String expectedTitle=URLEncoder.encode(titleValue,contentEncoding);
+    String expectedDescription=URLEncoder.encode(descriptionValue,contentEncoding);
+    expectedQueryString=titleField + "=" + expectedTitle+ "&"+ descriptionField+ "="+ expectedDescription;
+  }
+ else {
+    expectedQueryString=titleField + "=" + titleValue+ "&"+ descriptionField+ "="+ descriptionValue;
+  }
+  String dataSentToMirrorServer=new String(res.getResponseData(),EncoderCache.URL_ARGUMENT_ENCODING);
+  int posDividerHeadersAndBody=getPositionOfBody(dataSentToMirrorServer);
+  String headersSent=null;
+  String bodySent=null;
+  if (posDividerHeadersAndBody >= 0) {
+    headersSent=dataSentToMirrorServer.substring(0,posDividerHeadersAndBody);
+    bodySent=dataSentToMirrorServer.substring(posDividerHeadersAndBody + 2);
+  }
+ else {
+    fail("No header and body section found");
+  }
+  assertEquals(bodySent.length(),0);
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),expectedQueryString);
+}

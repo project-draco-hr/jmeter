@@ -1,0 +1,25 @@
+{
+  extractor.setXPathQuery("/book/preface/@title");
+  extractor.process();
+  assertEquals("Intro",vars.get(VAL_NAME));
+  assertEquals("1",vars.get(VAL_NAME_NR));
+  assertEquals("Intro",vars.get(VAL_NAME + "_1"));
+  assertNull(vars.get(VAL_NAME + "_2"));
+  extractor.setXPathQuery("/book/preface[@title]");
+  extractor.process();
+  assertEquals("zero",vars.get(VAL_NAME));
+  assertEquals("1",vars.get(VAL_NAME_NR));
+  assertEquals("zero",vars.get(VAL_NAME + "_1"));
+  assertNull(vars.get(VAL_NAME + "_2"));
+  extractor.setXPathQuery("/book/preface[@title='Intro']");
+  extractor.process();
+  assertEquals("zero",vars.get(VAL_NAME));
+  assertEquals("1",vars.get(VAL_NAME_NR));
+  assertEquals("zero",vars.get(VAL_NAME + "_1"));
+  assertNull(vars.get(VAL_NAME + "_2"));
+  extractor.setXPathQuery("/book/preface[@title='xyz']");
+  extractor.process();
+  assertEquals("Default",vars.get(VAL_NAME));
+  assertEquals("0",vars.get(VAL_NAME_NR));
+  assertNull(vars.get(VAL_NAME + "_1"));
+}

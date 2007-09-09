@@ -1,0 +1,13 @@
+{
+  StringBuffer hdrs=new StringBuffer(100);
+  Header[] requestHeaders=method.getRequestHeaders();
+  for (int i=0; i < requestHeaders.length; i++) {
+    if (!HEADER_COOKIE.equalsIgnoreCase(requestHeaders[i].getName())) {
+      hdrs.append(requestHeaders[i].getName());
+      hdrs.append(": ");
+      hdrs.append(requestHeaders[i].getValue());
+      hdrs.append("\n");
+    }
+  }
+  return hdrs.toString();
+}

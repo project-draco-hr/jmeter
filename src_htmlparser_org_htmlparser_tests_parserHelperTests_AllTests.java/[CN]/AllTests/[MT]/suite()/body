@@ -1,9 +1,0 @@
-{
-  TestSuite suite=new TestSuite("Parser Helper Tests");
-  suite.addTestSuite(AttributeParserTest.class);
-  suite.addTestSuite(CompositeTagScannerHelperTest.class);
-  suite.addTestSuite(RemarkNodeParserTest.class);
-  suite.addTestSuite(StringParserTest.class);
-  suite.addTestSuite(TagParserTest.class);
-  return suite;
-}

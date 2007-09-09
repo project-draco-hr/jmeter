@@ -1,0 +1,17 @@
+{
+  if (errorMsg == null) {
+    errorMsg="Unknown error - see log file";
+    log.warn("Unknown error",new Throwable("errorMsg == null"));
+  }
+  GuiPackage instance=GuiPackage.getInstance();
+  if (instance == null) {
+    System.out.println(errorMsg);
+    return;
+  }
+  try {
+    JOptionPane.showMessageDialog(instance.getMainFrame(),errorMsg,titleMsg,JOptionPane.ERROR_MESSAGE);
+  }
+ catch (  HeadlessException e) {
+    log.warn("reportErrorToUser(\"" + errorMsg + "\") caused",e);
+  }
+}

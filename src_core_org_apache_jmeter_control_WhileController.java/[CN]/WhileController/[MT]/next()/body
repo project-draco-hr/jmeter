@@ -1,0 +1,10 @@
+{
+  if (current != 0) {
+    return super.next();
+  }
+  if (!endOfLoop(false)) {
+    return super.next();
+  }
+  reInitialize();
+  return null;
+}

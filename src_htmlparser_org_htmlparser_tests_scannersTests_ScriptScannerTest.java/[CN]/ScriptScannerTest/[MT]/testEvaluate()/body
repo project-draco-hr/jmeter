@@ -1,5 +1,0 @@
-{
-  ScriptScanner scanner=new ScriptScanner("-s");
-  boolean retVal=scanner.evaluate("   script ",null);
-  assertEquals("Evaluation of SCRIPT tag",new Boolean(true),new Boolean(retVal));
-}

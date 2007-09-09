@@ -1,9 +1,10 @@
 {
-  if (classname.equals(HTTP_SAMPLER)) {
+  if (alias.length() == 0)   alias=DEFAULT_CLASSNAME;
+  if (alias.equals(HTTP_SAMPLER_JAVA)) {
     return new HTTPSampler();
   }
-  if (classname.equals(HTTP_SAMPLER_APACHE)) {
+  if (alias.equals(HTTP_SAMPLER_APACHE)) {
     return new HTTPSampler2();
   }
-  throw new UnsupportedOperationException("Cannot create class: " + classname);
+  throw new UnsupportedOperationException("Cannot create class: " + alias);
 }

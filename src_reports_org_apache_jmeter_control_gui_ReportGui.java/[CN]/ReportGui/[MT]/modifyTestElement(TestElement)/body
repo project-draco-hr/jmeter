@@ -4,5 +4,6 @@
     ReportPlan rp=(ReportPlan)plan;
     rp.setUserDefinedVariables((Arguments)argsPanel.createTestElement());
     rp.setProperty(ReportPlan.COMMENTS,commentPanel.getText());
+    rp.setBasedir(baseDir.getFilename());
   }
 }

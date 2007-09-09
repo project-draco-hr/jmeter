@@ -1,0 +1,50 @@
+{
+  StringBuffer sb=new StringBuffer(200);
+  sb.append("Test failed, ");
+  if (isTestFieldResponseData()) {
+    sb.append("text");
+  }
+ else   if (isTestFieldResponseCode()) {
+    sb.append("code");
+  }
+ else   if (isTestFieldResponseMessage()) {
+    sb.append("message");
+  }
+ else   if (isTestFieldResponseHeaders()) {
+    sb.append("headers");
+  }
+ else {
+    sb.append("URL");
+  }
+switch (getTestType()) {
+case CONTAINS:
+    sb.append(" expected to contain ");
+  break;
+case NOT | CONTAINS:
+sb.append(" expected not to contain ");
+break;
+case MATCH:
+sb.append(" expected to match ");
+break;
+case NOT | MATCH:
+sb.append(" expected not to match ");
+break;
+case EQUALS:
+sb.append(" expected to equal ");
+break;
+case NOT | EQUALS:
+sb.append(" expected not to equal ");
+break;
+default :
+sb.append(" expected something using ");
+}
+sb.append("/");
+if (isEqualsType()) {
+sb.append(equalsComparisonText(toCheck,stringPattern));
+}
+ else {
+sb.append(stringPattern);
+}
+sb.append("/");
+return sb.toString();
+}

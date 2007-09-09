@@ -4,24 +4,25 @@
   port.setText(element.getPropertyAsString(LDAPSampler.PORT));
   rootdn.setText(element.getPropertyAsString(LDAPSampler.ROOTDN));
   CardLayout cl=(CardLayout)(cards.getLayout());
-  if (element.getPropertyAsString(LDAPSampler.TEST).equals("add")) {
+  final String testType=element.getPropertyAsString(LDAPSampler.TEST);
+  if (testType.equals(LDAPSampler.ADD)) {
     addTest.setSelected(true);
     add.setText(element.getPropertyAsString(LDAPSampler.BASE_ENTRY_DN));
     tableAddPanel.configure((TestElement)element.getProperty(LDAPSampler.ARGUMENTS).getObjectValue());
     cl.show(cards,"Add");
   }
- else   if (element.getPropertyAsString(LDAPSampler.TEST).equals("modify")) {
+ else   if (testType.equals(LDAPSampler.MODIFY)) {
     modifyTest.setSelected(true);
     modify.setText(element.getPropertyAsString(LDAPSampler.BASE_ENTRY_DN));
     tableModifyPanel.configure((TestElement)element.getProperty(LDAPSampler.ARGUMENTS).getObjectValue());
     cl.show(cards,"Modify");
   }
- else   if (element.getPropertyAsString(LDAPSampler.TEST).equals("delete")) {
+ else   if (testType.equals(LDAPSampler.DELETE)) {
     deleteTest.setSelected(true);
     delete.setText(element.getPropertyAsString(LDAPSampler.DELETE));
     cl.show(cards,"Delete");
   }
- else   if (element.getPropertyAsString(LDAPSampler.TEST).equals("search")) {
+ else   if (testType.equals(LDAPSampler.SEARCHBASE)) {
     searchTest.setSelected(true);
     searchbase.setText(element.getPropertyAsString(LDAPSampler.SEARCHBASE));
     searchfilter.setText(element.getPropertyAsString(LDAPSampler.SEARCHFILTER));

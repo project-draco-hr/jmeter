@@ -1,0 +1,32 @@
+{
+  final String httpEncoding="ISO-8859-1";
+  final byte[] DASH_DASH=new String("--").getBytes(httpEncoding);
+  final ByteArrayOutputStream output=new ByteArrayOutputStream();
+  if (firstMultipart) {
+    output.write(DASH_DASH);
+    output.write(boundaryString.getBytes(httpEncoding));
+    output.write(CRLF);
+  }
+  String filename=file.getName();
+  output.write("Content-Disposition: form-data; name=\"".getBytes(httpEncoding));
+  output.write(fileField.getBytes(httpEncoding));
+  output.write(("\"; filename=\"" + filename + "\"").getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Type: ".getBytes(httpEncoding));
+  output.write(mimeType.getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: binary".getBytes(httpEncoding));
+  output.write(CRLF);
+  output.write(CRLF);
+  output.write(fileContent);
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(httpEncoding));
+  if (lastMultipart) {
+    output.write(DASH_DASH);
+  }
+  output.write(CRLF);
+  output.flush();
+  output.close();
+  return output.toByteArray();
+}

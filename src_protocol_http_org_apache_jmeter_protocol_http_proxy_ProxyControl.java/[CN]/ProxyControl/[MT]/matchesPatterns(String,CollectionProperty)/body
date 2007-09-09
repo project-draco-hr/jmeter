@@ -4,8 +4,8 @@
     String item=iter.next().getStringValue();
     Pattern pattern=null;
     try {
-      pattern=patternCache.getPattern(item,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.SINGLELINE_MASK);
-      if (matcher.matches(url,pattern)) {
+      pattern=JMeterUtils.getPatternCache().getPattern(item,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.SINGLELINE_MASK);
+      if (JMeterUtils.getMatcher().matches(url,pattern)) {
         return true;
       }
     }

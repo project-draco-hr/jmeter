@@ -6,4 +6,12 @@
     log.warn("no icon for " + name);
     return null;
   }
+catch (  NoClassDefFoundError e) {
+    log.info("no icon for " + name + " "+ e.getMessage());
+    return null;
+  }
+catch (  InternalError e) {
+    log.info("no icon for " + name + " "+ e.getMessage());
+    return null;
+  }
 }

@@ -3,11 +3,17 @@
   panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("regex_source")));
   useBody=new JRadioButton(JMeterUtils.getResString("regex_src_body"));
   useHeaders=new JRadioButton(JMeterUtils.getResString("regex_src_hdrs"));
-  ButtonGroup group=new ButtonGroup();
+  useURL=new JRadioButton(JMeterUtils.getResString("regex_src_url"));
+  group=new ButtonGroup();
   group.add(useBody);
   group.add(useHeaders);
+  group.add(useURL);
   panel.add(useBody);
   panel.add(useHeaders);
+  panel.add(useURL);
   useBody.setSelected(true);
+  useBody.setActionCommand(RegexExtractor.USE_BODY);
+  useHeaders.setActionCommand(RegexExtractor.USE_HDRS);
+  useURL.setActionCommand(RegexExtractor.USE_URL);
   return panel;
 }

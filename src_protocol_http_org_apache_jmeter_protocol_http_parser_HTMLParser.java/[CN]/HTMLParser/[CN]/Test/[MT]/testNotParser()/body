@@ -1,9 +1,0 @@
-{
-  try {
-    getParser("java.lang.String");
-  }
- catch (  HTMLParseError e) {
-    if (e.getCause() instanceof ClassCastException)     return;
-    throw e;
-  }
-}

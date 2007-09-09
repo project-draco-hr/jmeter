@@ -1,0 +1,39 @@
+{
+  int base=10;
+  g.setColor(Color.white);
+  g.fillRect(0,0,getSize().width,getSize().height);
+  int width=getSize().width;
+  int height=getSize().height;
+  float maxValue=getMax();
+  float minValue=getMin();
+  g.setColor(Color.gray);
+  int dataWidth=getDataWidth();
+  int increment=Math.round((float)(width - 1) / (dataWidth - 1));
+  int yIncrement=Math.round(((float)height - (1 + base)) / (10 - 1));
+  for (int t=1; t < dataWidth; t+=(dataWidth / 25 + 1)) {
+    g.drawString((new Integer(t)).toString(),t * increment + 2,height - 2);
+  }
+  float incrementValue=(maxValue - minValue) / (10 - 1);
+  for (int t=0; t < 10; t++) {
+    g.drawString(new Integer(Math.round(minValue + (t * incrementValue))).toString(),2,height - t * yIncrement - 2 - base);
+  }
+  int start=0;
+  for (int t=0; t < keys.size(); t++) {
+    String key=(String)keys.elementAt(t);
+    Vector v=(Vector)data.get(key);
+    start=0;
+    g.setColor((Color)colorList.elementAt(t % colorList.size()));
+    for (int i=0; i < v.size() - 1; i++) {
+      float y1=((Integer)v.elementAt(i)).intValue();
+      float y2=((Integer)v.elementAt(i + 1)).intValue();
+      y1=y1 - minValue;
+      y2=y2 - minValue;
+      int Y1=Math.round((height * y1) / (maxValue - minValue));
+      int Y2=Math.round((height * y2) / (maxValue - minValue));
+      Y1=height - Y1 - base;
+      Y2=height - Y2 - base;
+      g.drawLine(start,Y1,start + increment,Y2);
+      start+=increment;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  HttpRequestHdr req=new HttpRequestHdr();
+  ByteArrayInputStream bis=null;
+  if (contentEncoding != null) {
+    bis=new ByteArrayInputStream(request.getBytes(contentEncoding));
+  }
+ else {
+    bis=new ByteArrayInputStream(request.getBytes("ISO-8859-1"));
+  }
+  req.parse(bis);
+  bis.close();
+  Map pageEncodings=Collections.synchronizedMap(new HashMap());
+  Map formEncodings=Collections.synchronizedMap(new HashMap());
+  if (url != null && contentEncoding != null) {
+    pageEncodings.put(url,contentEncoding);
+  }
+  return req.getSampler(pageEncodings,formEncodings);
+}

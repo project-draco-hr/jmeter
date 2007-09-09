@@ -4,4 +4,5 @@
     argsPanel.configure((Arguments)el.getProperty(ReportPlan.USER_DEFINED_VARIABLES).getObjectValue());
   }
   commentPanel.setText(el.getPropertyAsString(ReportPlan.COMMENTS));
+  baseDir.setFilename(el.getPropertyAsString(ReportPlan.BASEDIR));
 }

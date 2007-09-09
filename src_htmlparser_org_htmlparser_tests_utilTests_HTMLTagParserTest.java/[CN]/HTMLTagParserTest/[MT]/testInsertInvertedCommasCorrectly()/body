@@ -1,5 +1,0 @@
-{
-  StringBuffer test=new StringBuffer("a b=c d e = f");
-  StringBuffer result=tagParser.insertInvertedCommasCorrectly(test);
-  assertStringEquals("Expected Correction","a b=\"c d\" e=\"f\"",result.toString());
-}

@@ -1,7 +1,9 @@
 {
   SampleResult res=new SampleResult();
   boolean isOK=false;
+  boolean deleteMessages=getDeleteMessages();
   res.setSampleLabel(getName());
+  res.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
   res.sampleStart();
   try {
     Properties props=new Properties();
@@ -9,48 +11,92 @@
     Store store=session.getStore(getServerType());
     store.connect(getServer(),getUserName(),getPassword());
     Folder folder=store.getFolder(getFolder());
-    folder.open(Folder.READ_WRITE);
+    if (deleteMessages) {
+      folder.open(Folder.READ_WRITE);
+    }
+ else {
+      folder.open(Folder.READ_ONLY);
+    }
     Message messages[]=folder.getMessages();
     Message message;
     StringBuffer data=new StringBuffer();
-    data.append(messages.length + " new messages\n");
+    data.append(messages.length);
+    data.append(" messages found\n");
     int n=getNumMessages();
-    if (n == -1 || n > messages.length)     n=messages.length;
+    if (n == ALL_MESSAGES || n > messages.length)     n=messages.length;
     for (int i=0; i < n; i++) {
       message=messages[i];
-      if (i == 0)       res.setContentType(message.getContentType());
-      data.append("Message " + message.getMessageNumber() + ":\n");
-      data.append("Date: " + message.getSentDate() + "\n");
+      if (i == 0) {
+        res.setContentType(message.getContentType());
+      }
+      data.append("Message ");
+      data.append(message.getMessageNumber());
+      data.append(":\n");
+      data.append("Date: ");
+      data.append(message.getSentDate());
+      data.append(NEW_LINE);
       data.append("To: ");
       Address[] recips=message.getAllRecipients();
       for (int j=0; j < recips.length; j++) {
         data.append(recips[j].toString());
         if (j < recips.length - 1)         data.append("; ");
       }
-      data.append("\n");
+      data.append(NEW_LINE);
       data.append("From: ");
       Address[] from=message.getFrom();
       for (int j=0; j < from.length; j++) {
         data.append(from[j].toString());
         if (j < from.length - 1)         data.append("; ");
       }
-      data.append("\n");
-      data.append("Subject: " + message.getSubject() + "\n");
-      data.append("\n" + message.getContent());
-      if (getDeleteMessages()) {
+      data.append(NEW_LINE);
+      data.append("Subject: ");
+      data.append(message.getSubject());
+      data.append(NEW_LINE);
+      data.append(NEW_LINE);
+      Object content=message.getContent();
+      if (content instanceof MimeMultipart) {
+        MimeMultipart mmp=(MimeMultipart)content;
+        int count=mmp.getCount();
+        data.append("Multipart. Count: ");
+        data.append(count);
+        data.append(NEW_LINE);
+        for (int j=0; j < count; j++) {
+          BodyPart bodyPart=mmp.getBodyPart(j);
+          data.append("Type: ");
+          data.append(bodyPart.getContentType());
+          data.append(NEW_LINE);
+          try {
+            data.append(bodyPart.getContent());
+          }
+ catch (          UnsupportedEncodingException ex) {
+            data.append(ex.getLocalizedMessage());
+          }
+          data.append(NEW_LINE);
+        }
+      }
+ else {
+        data.append(content);
+        data.append(NEW_LINE);
+      }
+      data.append(NEW_LINE);
+      if (deleteMessages) {
         message.setFlag(Flags.Flag.DELETED,true);
       }
     }
     folder.close(true);
     store.close();
-    res.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
     res.setResponseData(data.toString().getBytes());
     res.setDataType(SampleResult.TEXT);
-    res.setResponseCode("200");
+    res.setResponseCodeOK();
     res.setResponseMessage("OK");
     isOK=true;
   }
- catch (  Exception ex) {
+ catch (  NoClassDefFoundError ex) {
+    log.debug("",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
+catch (  Exception ex) {
     log.debug("",ex);
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());

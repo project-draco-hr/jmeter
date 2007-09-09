@@ -1,32 +1,22 @@
 {
-  ArrayList listPaths=null;
-  StringTokenizer stPaths=null;
-  String strPath=null;
-  int i;
-  listPaths=new ArrayList();
   log.debug("Classpath = " + System.getProperty("java.class.path"));
-  stPaths=new StringTokenizer(System.getProperty("java.class.path"),System.getProperty("path.separator"));
-  if (strPathsOrJars != null) {
-    strPathsOrJars=fixDotDirs(strPathsOrJars);
-    strPathsOrJars=fixSlashes(strPathsOrJars);
-    strPathsOrJars=fixEndingSlashes(strPathsOrJars);
-  }
+  StringTokenizer stPaths=new StringTokenizer(System.getProperty("java.class.path"),System.getProperty("path.separator"));
   if (log.isDebugEnabled()) {
-    for (i=0; i < strPathsOrJars.length; i++) {
+    for (int i=0; i < strPathsOrJars.length; i++) {
       log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
     }
   }
+  ArrayList listPaths=new ArrayList();
+  String strPath=null;
   while (stPaths.hasMoreTokens()) {
-    strPath=fixDotDir(stPaths.nextToken());
-    strPath=fixSlashes(strPath);
-    strPath=fixEndingSlashes(strPath);
+    strPath=fixPathEntry(stPaths.nextToken());
     if (strPathsOrJars == null) {
       log.debug("Adding: " + strPath);
       listPaths.add(strPath);
     }
  else {
       boolean found=false;
-      for (i=0; i < strPathsOrJars.length; i++) {
+      for (int i=0; i < strPathsOrJars.length; i++) {
         if (strPath.endsWith(strPathsOrJars[i])) {
           found=true;
           log.debug("Adding " + strPath + " found at "+ i);

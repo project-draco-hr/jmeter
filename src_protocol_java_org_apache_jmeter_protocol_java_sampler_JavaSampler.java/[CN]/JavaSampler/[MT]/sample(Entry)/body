@@ -7,5 +7,9 @@
     createJavaClient();
     javaClient.setupTest(context);
   }
-  return createJavaClient().runTest(context);
+  SampleResult result=createJavaClient().runTest(context);
+  if (result != null && result.getSampleLabel().length() == 0) {
+    result.setSampleLabel(getName());
+  }
+  return result;
 }

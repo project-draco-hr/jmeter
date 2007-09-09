@@ -4,7 +4,6 @@
   ButtonGroup group=new ButtonGroup();
   continueBox=new JRadioButton(JMeterUtils.getResString("sampler_on_error_continue"));
   group.add(continueBox);
-  continueBox.setSelected(true);
   panel.add(continueBox);
   stopThrdBox=new JRadioButton(JMeterUtils.getResString("sampler_on_error_stop_thread"));
   group.add(stopThrdBox);

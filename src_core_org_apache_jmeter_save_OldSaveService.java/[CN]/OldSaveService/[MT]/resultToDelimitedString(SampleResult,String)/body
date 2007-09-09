@@ -2,20 +2,18 @@
   StringBuffer text=new StringBuffer();
   SampleSaveConfiguration saveConfig=sample.getSaveConfig();
   if (saveConfig.saveTimestamp()) {
-    text.append(sample.getTimeStamp());
-    text.append(delimiter);
-  }
- else   if (saveConfig.formatter() != null) {
-    String stamp=saveConfig.formatter().format(new Date(sample.getTimeStamp()));
-    text.append(stamp);
-    text.append(delimiter);
+    if (saveConfig.printMilliseconds()) {
+      text.append(sample.getTimeStamp());
+      text.append(delimiter);
+    }
+ else     if (saveConfig.formatter() != null) {
+      String stamp=saveConfig.formatter().format(new Date(sample.getTimeStamp()));
+      text.append(stamp);
+      text.append(delimiter);
+    }
   }
   if (saveConfig.saveTime()) {
     text.append(sample.getTime());
-    text.append(delimiter);
-  }
-  if (saveConfig.saveContentLength()) {
-    text.append(sample.getContentLength());
     text.append(delimiter);
   }
   if (saveConfig.saveLabel()) {
@@ -45,12 +43,46 @@
   if (saveConfig.saveAssertionResultsFailureMessage()) {
     String message=null;
     AssertionResult[] results=sample.getAssertionResults();
-    if ((results != null) && (results.length > 0)) {
-      message=results[0].getFailureMessage();
+    if (results != null) {
+      for (int i=0; i < results.length; i++) {
+        message=results[i].getFailureMessage();
+        if (message != null)         break;
+      }
     }
     if (message != null) {
       text.append(message);
     }
+    text.append(delimiter);
+  }
+  if (saveConfig.saveBytes()) {
+    text.append(sample.getBytes());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveThreadCounts()) {
+    org.apache.jmeter.threads.ThreadGroup threadGroup=JMeterContextService.getContext().getThreadGroup();
+    int numThreads=0;
+    if (threadGroup != null) {
+      numThreads=threadGroup.getNumberOfThreads();
+    }
+    text.append(numThreads);
+    text.append(delimiter);
+    text.append(JMeterContextService.getNumberOfThreads());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveUrl()) {
+    text.append(sample.getURL());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveFileName()) {
+    text.append(sample.getResultFileName());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveLatency()) {
+    text.append(sample.getLatency());
+    text.append(delimiter);
+  }
+  if (saveConfig.saveEncoding()) {
+    text.append(sample.getDataEncoding());
     text.append(delimiter);
   }
   String resultString=null;

@@ -1,0 +1,15 @@
+{
+  if (!isParent()) {
+    return super.nextIsAController(controller);
+  }
+  Sampler returnValue;
+  Sampler sampler=controller.next();
+  if (sampler == null) {
+    currentReturnedNull(controller);
+    returnValue=super.next();
+  }
+ else {
+    returnValue=sampler;
+  }
+  return returnValue;
+}

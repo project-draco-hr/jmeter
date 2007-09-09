@@ -1,0 +1,6 @@
+{
+  setupFormData(httpSampler,isEncoded,titleField,titleValue,descriptionField,descriptionValue);
+  httpSampler.setFileField(fileField);
+  httpSampler.setFilename(fileValue.getAbsolutePath());
+  httpSampler.setMimetype(fileMimeType);
+}

@@ -1,7 +1,7 @@
 {
   DefaultConfiguration config=new DefaultConfiguration(SAMPLE_RESULT_TAG_NAME,"JMeter Save Service");
   if (saveConfig.saveTime()) {
-    config.setAttribute(TIME,"" + result.getTime());
+    config.setAttribute(TIME,String.valueOf(result.getTime()));
   }
   if (saveConfig.saveLabel()) {
     config.setAttribute(LABEL,result.getSampleLabel());
@@ -19,14 +19,14 @@
     config.setAttribute(DATA_TYPE,result.getDataType());
   }
   if (saveConfig.printMilliseconds()) {
-    config.setAttribute(TIME_STAMP,"" + result.getTimeStamp());
+    config.setAttribute(TIME_STAMP,String.valueOf(result.getTimeStamp()));
   }
  else   if (saveConfig.formatter() != null) {
     String stamp=saveConfig.formatter().format(new Date(result.getTimeStamp()));
     config.setAttribute(TIME_STAMP,stamp);
   }
   if (saveConfig.saveSuccess()) {
-    config.setAttribute(SUCCESSFUL,JOrphanUtils.booleanToString(result.isSuccessful()));
+    config.setAttribute(SUCCESSFUL,Boolean.toString(result.isSuccessful()));
   }
   SampleResult[] subResults=result.getSubResults();
   if (subResults != null) {

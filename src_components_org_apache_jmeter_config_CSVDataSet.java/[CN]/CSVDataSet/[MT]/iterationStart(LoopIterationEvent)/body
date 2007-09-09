@@ -1,18 +1,31 @@
 {
   FileServer server=FileServer.getFileServer();
+  String _fileName=getFilename();
   if (vars == null) {
-    server.reserveFile(getFilename());
+    server.reserveFile(_fileName,getFileEncoding());
     vars=JOrphanUtils.split(getVariableNames(),",");
   }
   try {
     String delim=getDelimiter();
     if (delim.equals("\\t"))     delim="\t";
-    String[] lineValues=JOrphanUtils.split(server.readLine(getFilename()),delim,false);
-    for (int a=0; a < vars.length && a < lineValues.length; a++) {
-      this.getThreadContext().getVariables().put(vars[a],lineValues[a]);
+    JMeterVariables threadVars=this.getThreadContext().getVariables();
+    String line=server.readLine(_fileName,getRecycle());
+    if (line != null) {
+      String[] lineValues=JOrphanUtils.split(line,delim,false);
+      for (int a=0; a < vars.length && a < lineValues.length; a++) {
+        threadVars.put(vars[a],lineValues[a]);
+      }
+    }
+ else {
+      if (getStopThread()) {
+        throw new JMeterStopThreadException("End of file detected");
+      }
+      for (int a=0; a < vars.length; a++) {
+        threadVars.put(vars[a],EOFVALUE);
+      }
     }
   }
  catch (  IOException e) {
-    log.error("Failed to read file: " + getFilename());
+    log.error(e.toString());
   }
 }

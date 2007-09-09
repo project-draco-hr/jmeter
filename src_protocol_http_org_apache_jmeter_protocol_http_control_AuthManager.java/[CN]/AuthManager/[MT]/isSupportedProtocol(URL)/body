@@ -1,3 +1,4 @@
 {
-  return url.getProtocol().toUpperCase().equals("HTTP") || url.getProtocol().toUpperCase().equals("HTTPS");
+  String protocol=url.getProtocol().toUpperCase();
+  return protocol.equals("HTTP") || protocol.equals("HTTPS");
 }

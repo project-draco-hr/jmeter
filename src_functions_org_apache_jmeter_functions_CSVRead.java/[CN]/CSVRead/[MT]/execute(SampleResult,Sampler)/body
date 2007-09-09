@@ -11,12 +11,6 @@
     FileWrapper.endRow(fileName);
     return "";
   }
-  boolean getNext=false;
-  int idxNext;
-  if ((idxNext=columnOrNext.indexOf("next")) != -1) {
-    getNext=true;
-    columnOrNext=columnOrNext.substring(0,idxNext);
-  }
   try {
     int columnIndex=Integer.parseInt(columnOrNext);
     myValue=FileWrapper.getColumn(fileName,columnIndex);
@@ -28,8 +22,5 @@ catch (  IndexOutOfBoundsException e) {
     log.warn(Thread.currentThread().getName() + " - invalid column number: " + columnOrNext+ " at row "+ FileWrapper.getCurrentRow(fileName)+ " "+ e.toString());
   }
   log.debug("execute value: " + myValue);
-  if (getNext) {
-    FileWrapper.endRow(fileName);
-  }
   return myValue;
 }

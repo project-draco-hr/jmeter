@@ -1,0 +1,12 @@
+{
+  String protocol="http";
+  String domain="localhost";
+  String path="/test/somescript.jsp";
+  int port=8080;
+  sampler.setProtocol(protocol);
+  sampler.setMethod(HTTPSamplerBase.POST);
+  sampler.setPath(path);
+  sampler.setDomain(domain);
+  sampler.setPort(port);
+  sampler.setContentEncoding(contentEncoding);
+}

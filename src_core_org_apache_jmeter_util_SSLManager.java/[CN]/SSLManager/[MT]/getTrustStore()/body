@@ -1,35 +1,38 @@
 {
-  if (null == this.trustStore) {
-    String fileName=JMeterUtils.getPropDefault("javax.net.ssl.trustStore","");
-    System.setProperty("javax.net.ssl.trustStore",fileName);
+  if (!truststore_loaded) {
+    truststore_loaded=true;
+    String fileName=System.getProperty(SSL_TRUST_STORE);
+    if (fileName == null) {
+      return null;
+    }
+    log.info("TrustStore Location: " + fileName);
     try {
-      if (fileName.endsWith(".iaik")) {
-        this.trustStore=KeyStore.getInstance("IAIKKeyStore","IAIK");
-      }
- else {
-        this.trustStore=KeyStore.getInstance("JKS");
-        log.info("KeyStore Type: JKS");
-      }
+      this.trustStore=KeyStore.getInstance("JKS");
+      log.info("TrustStore created OK, Type: JKS");
     }
  catch (    Exception e) {
-      JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),e,JMeterUtils.getResString("ssl_error_title"),JOptionPane.ERROR_MESSAGE);
       this.trustStore=null;
-      throw new RuntimeException("TrustStore Problem");
+      throw new RuntimeException("Problem creating truststore: " + e.getMessage());
     }
+    FileInputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
       if (initStore.exists()) {
-        this.trustStore.load(new FileInputStream(initStore),null);
+        fileInputStream=new FileInputStream(initStore);
+        this.trustStore.load(fileInputStream,null);
+        log.info("Truststore loaded OK from file");
       }
  else {
+        log.info("Truststore file not found, loading empty truststore");
         this.trustStore.load(null,null);
       }
     }
  catch (    Exception e) {
       throw new RuntimeException("Can't load TrustStore: " + e.toString());
     }
-    log.info("TrustStore Location: " + fileName);
-    log.info("TrustStore type: " + this.keyStore.getClass().toString());
+ finally {
+      JOrphanUtils.closeQuietly(fileInputStream);
+    }
   }
   return this.trustStore;
 }

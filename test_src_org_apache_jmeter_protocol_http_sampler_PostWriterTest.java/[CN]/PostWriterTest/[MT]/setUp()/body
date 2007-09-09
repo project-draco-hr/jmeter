@@ -1,0 +1,11 @@
+{
+  establishConnection();
+  sampler=new HTTPSampler();
+  postWriter=new PostWriter();
+  TEST_FILE_CONTENT=new String("foo content &?=01234+56789-\u007c\u2aa1\u266a\u0153\u20a1\u0115\u0364\u00c5\u2052").getBytes(UTF_8);
+  temporaryFile=File.createTempFile("foo","txt");
+  OutputStream output=new FileOutputStream(temporaryFile);
+  output.write(TEST_FILE_CONTENT);
+  output.flush();
+  output.close();
+}

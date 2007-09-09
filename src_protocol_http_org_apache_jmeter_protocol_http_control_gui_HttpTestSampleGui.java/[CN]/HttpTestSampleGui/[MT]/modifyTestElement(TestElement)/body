@@ -2,17 +2,14 @@
   TestElement el=urlConfigGui.createTestElement();
   sampler.clear();
   sampler.addTestElement(el);
+  final HTTPSamplerBase samplerBase=(HTTPSamplerBase)sampler;
   if (getImages.isSelected()) {
-    ((HTTPSamplerBase)sampler).setImageParser(true);
+    samplerBase.setImageParser(true);
   }
  else {
     sampler.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
   }
-  if (isMon.isSelected()) {
-    ((HTTPSamplerBase)sampler).setMonitor("true");
-  }
- else {
-    ((HTTPSamplerBase)sampler).setMonitor("false");
-  }
+  samplerBase.setMonitor(isMon.isSelected());
+  samplerBase.setEmbeddedUrlRE(embeddedRE.getText());
   this.configureTestElement(sampler);
 }

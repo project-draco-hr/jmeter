@@ -6,6 +6,8 @@
   }
   VerticalPanel mainPanel=new VerticalPanel();
   mainPanel.add(createServerPanel());
-  mainPanel.add(createFilenamePanel());
+  mainPanel.add(createRemoteFilenamePanel());
+  mainPanel.add(createLocalFilenamePanel());
+  mainPanel.add(createOptionsPanel());
   add(mainPanel,BorderLayout.CENTER);
 }

@@ -11,7 +11,7 @@
     res.setSamplerData(data);
     res.setResponseData(response.getBytes());
     res.setDataType(SampleResult.TEXT);
-    res.setResponseCode("200");
+    res.setResponseCodeOK();
     res.setResponseMessage("OK");
     isOK=true;
   }

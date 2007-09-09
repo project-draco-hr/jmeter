@@ -1,0 +1,13 @@
+{
+  URL url=new URL("http://a.b.c/");
+  man.addCookieFromHeader("test=1",url);
+  man.addCookieFromHeader("test2=a",url);
+  String s=man.getCookieHeaderForURL(url);
+  assertNotNull(s);
+  assertEquals("test=1; test2=a",s);
+  man.addCookieFromHeader("test=2",url);
+  man.addCookieFromHeader("test3=b",url);
+  s=man.getCookieHeaderForURL(url);
+  assertNotNull(s);
+  assertEquals("test2=a; test=2; test3=b",s);
+}

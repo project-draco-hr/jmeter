@@ -1,0 +1,18 @@
+{
+  if (data.size() == 0) {
+    this.startTimestamp=sample.getStartTime();
+  }
+ else {
+    this.endTimestamp=sample.getEndTime();
+  }
+  String url=sample.getSampleLabel();
+  if (url == null) {
+    url=sample.getURL().toString();
+  }
+  SamplingStatCalculator row=(SamplingStatCalculator)data.get(url);
+  if (row == null) {
+    row=new SamplingStatCalculator();
+    this.data.put(url,row);
+  }
+  row.addSample(sample);
+}

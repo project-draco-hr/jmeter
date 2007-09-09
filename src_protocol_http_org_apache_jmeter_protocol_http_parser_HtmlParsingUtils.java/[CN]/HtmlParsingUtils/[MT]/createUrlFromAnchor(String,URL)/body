@@ -3,7 +3,7 @@
     log.debug("Creating URL from Anchor: " + parsedUrlString + ", base: "+ context);
   }
   URL url=new URL(context,parsedUrlString);
-  HTTPSamplerBase sampler=new HTTPSampler();
+  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance();
   sampler.setDomain(url.getHost());
   sampler.setProtocol(url.getProtocol());
   sampler.setPort(url.getPort());

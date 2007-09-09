@@ -1,9 +1,0 @@
-{
-  if (null != mStrings)   try {
-    mParser.setURL(getURL());
-    setStrings();
-  }
- catch (  ParserException pe) {
-    updateStrings(pe.toString());
-  }
-}

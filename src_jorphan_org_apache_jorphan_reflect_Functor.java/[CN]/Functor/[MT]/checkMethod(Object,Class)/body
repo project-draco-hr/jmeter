@@ -1,0 +1,10 @@
+{
+  Method m=null;
+  this.invokee=_invokee;
+  try {
+    m=createMethod(new Class[]{c});
+  }
+ catch (  Exception e) {
+  }
+  return null != m;
+}

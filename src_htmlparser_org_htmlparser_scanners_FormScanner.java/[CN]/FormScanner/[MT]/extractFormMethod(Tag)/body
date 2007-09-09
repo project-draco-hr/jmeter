@@ -1,5 +1,0 @@
-{
-  String method=tag.getAttribute("METHOD");
-  if (method == null)   method=FormTag.GET;
-  return method.toUpperCase();
-}

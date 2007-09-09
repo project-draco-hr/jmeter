@@ -1,12 +1,9 @@
 {
-  AssertionResult result=new AssertionResult();
+  AssertionResult result=new AssertionResult(getName());
   result.setFailure(false);
-  if (response.getResponseData() == null) {
-    return result.setResultForNull();
-  }
   resultData=response.getResponseData();
   long resultSize=resultData.length;
-  if ((!(compareSize(resultSize)) && (getAllowedSize() > 0))) {
+  if (!(compareSize(resultSize))) {
     result.setFailure(true);
     Object[] arguments={new Long(resultSize),comparatorErrorMessage,new Long(getAllowedSize())};
     String message=MessageFormat.format(JMeterUtils.getResString("size_assertion_failure"),arguments);

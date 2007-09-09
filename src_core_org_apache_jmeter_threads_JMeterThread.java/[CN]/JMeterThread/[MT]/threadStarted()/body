@@ -1,3 +1,4 @@
 {
-  processThreadListeners(true);
+  ThreadListenerTraverser startup=new ThreadListenerTraverser(true);
+  testTree.traverse(startup);
 }

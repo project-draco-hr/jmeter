@@ -1,27 +1,23 @@
 {
-  AssertionResult result=new AssertionResult();
-  if (response.getResponseData() == null) {
+  AssertionResult result=new AssertionResult(getName());
+  byte[] responseData=response.getResponseData();
+  if (responseData.length == 0) {
     return result.setResultForNull();
   }
   result.setFailure(false);
-  String resultData=new String(getResultBody(response.getResponseData()));
-  if (builder == null) {
-    try {
-      builder=new SAXBuilder();
-    }
- catch (    Exception e) {
-      log.error("Unable to instantiate DOM Builder",e);
-      result.setFailure(true);
-      result.setFailureMessage("Unable to instantiate DOM Builder");
-      return result;
-    }
-  }
+  String resultData=new String(getResultBody(responseData));
+  SAXBuilder builder=(SAXBuilder)myBuilder.get();
   try {
     builder.build(new StringReader(resultData));
   }
- catch (  Exception e) {
+ catch (  JDOMException e) {
     log.debug("Cannot parse result content",e);
     result.setFailure(true);
+    result.setFailureMessage(e.getMessage());
+  }
+catch (  IOException e) {
+    log.error("Cannot read result content",e);
+    result.setError(true);
     result.setFailureMessage(e.getMessage());
   }
   return result;

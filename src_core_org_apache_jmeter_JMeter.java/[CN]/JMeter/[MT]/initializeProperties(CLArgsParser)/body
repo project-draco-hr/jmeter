@@ -1,10 +1,16 @@
 {
   if (parser.getArgumentById(PROPFILE_OPT) != null) {
-    JMeterUtils.getProperties(parser.getArgumentById(PROPFILE_OPT).getArgument());
+    JMeterUtils.loadJMeterProperties(parser.getArgumentById(PROPFILE_OPT).getArgument());
   }
  else {
-    JMeterUtils.getProperties(NewDriver.getJMeterDir() + File.separator + "bin"+ File.separator+ "jmeter.properties");
+    JMeterUtils.loadJMeterProperties(NewDriver.getJMeterDir() + File.separator + "bin"+ File.separator+ "jmeter.properties");
   }
+  if (parser.getArgumentById(JMLOGFILE_OPT) != null) {
+    String jmlogfile=parser.getArgumentById(JMLOGFILE_OPT).getArgument();
+    JMeterUtils.setProperty(LoggingManager.LOG_FILE,jmlogfile);
+  }
+  JMeterUtils.initLogging();
+  JMeterUtils.initLocale();
   if (parser.getArgumentById(JMETER_HOME_OPT) == null) {
     JMeterUtils.setJMeterHome(NewDriver.getJMeterDir());
   }
@@ -12,17 +18,62 @@
     JMeterUtils.setJMeterHome(parser.getArgumentById(JMETER_HOME_OPT).getArgument());
   }
   Properties jmeterProps=JMeterUtils.getJMeterProperties();
+  String userProp=JMeterUtils.getPropDefault("user.properties","");
+  if (userProp.length() > 0) {
+    FileInputStream fis=null;
+    try {
+      File file=new File(userProp);
+      if (file.canRead()) {
+        log.info("Loading user properties from: " + userProp);
+        fis=new FileInputStream(file);
+        Properties tmp=new Properties();
+        tmp.load(fis);
+        jmeterProps.putAll(tmp);
+        LoggingManager.setLoggingLevels(tmp);
+      }
+    }
+ catch (    IOException e) {
+      log.warn("Error loading user property file: " + userProp,e);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(fis);
+    }
+  }
+  String sysProp=JMeterUtils.getPropDefault("system.properties","");
+  if (sysProp.length() > 0) {
+    FileInputStream fis=null;
+    try {
+      File file=new File(sysProp);
+      if (file.canRead()) {
+        log.info("Loading system properties from: " + sysProp);
+        fis=new FileInputStream(file);
+        System.getProperties().load(fis);
+      }
+    }
+ catch (    IOException e) {
+      log.warn("Error loading system property file: " + sysProp,e);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(fis);
+    }
+  }
   List clOptions=parser.getArguments();
   int size=clOptions.size();
   for (int i=0; i < size; i++) {
     CLOption option=(CLOption)clOptions.get(i);
     String name=option.getArgument(0);
     String value=option.getArgument(1);
+    FileInputStream fis=null;
 switch (option.getDescriptor().getId()) {
+case CLOption.TEXT_ARGUMENT:
+      throw new IllegalArgumentException("Unknown arg: " + option.getArgument());
 case PROPFILE2_OPT:
-      File f=new File(name);
     try {
-      jmeterProps.load(new FileInputStream(f));
+      fis=new FileInputStream(new File(name));
+      Properties tmp=new Properties();
+      tmp.load(fis);
+      jmeterProps.putAll(tmp);
+      LoggingManager.setLoggingLevels(tmp);
     }
  catch (    FileNotFoundException e) {
       log.warn("Can't find additional property file: " + name,e);
@@ -30,15 +81,31 @@ case PROPFILE2_OPT:
 catch (    IOException e) {
       log.warn("Error loading additional property file: " + name,e);
     }
+ finally {
+      JOrphanUtils.closeQuietly(fis);
+    }
   break;
+case SYSTEM_PROPFILE:
+log.info("Setting System properties from file: " + name);
+try {
+fis=new FileInputStream(new File(name));
+System.getProperties().load(fis);
+}
+ catch (IOException e) {
+log.warn("Cannot find system property file " + e.getLocalizedMessage());
+}
+ finally {
+JOrphanUtils.closeQuietly(fis);
+}
+break;
 case SYSTEM_PROPERTY:
 if (value.length() > 0) {
-  log.info("Setting System property: " + name + "="+ value);
-  System.getProperties().setProperty(name,value);
+log.info("Setting System property: " + name + "="+ value);
+System.getProperties().setProperty(name,value);
 }
  else {
-  log.warn("Removing System property: " + name);
-  System.getProperties().remove(name);
+log.warn("Removing System property: " + name);
+System.getProperties().remove(name);
 }
 break;
 case JMETER_PROPERTY:

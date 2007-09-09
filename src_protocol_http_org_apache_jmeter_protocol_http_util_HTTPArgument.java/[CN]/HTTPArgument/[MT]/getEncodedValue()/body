@@ -1,8 +1,8 @@
 {
-  if (isAlwaysEncoded()) {
-    return cache.getEncoded(getValue());
+  try {
+    return getEncodedValue(EncoderCache.URL_ARGUMENT_ENCODING);
   }
- else {
-    return getValue();
+ catch (  UnsupportedEncodingException e) {
+    throw new Error("Should not happen: " + e.toString());
   }
 }

@@ -1,0 +1,10 @@
+{
+  if (isEncoded) {
+    httpSampler.addEncodedArgument(titleField,titleValue);
+    httpSampler.addEncodedArgument(descriptionField,descriptionValue);
+  }
+ else {
+    httpSampler.addArgument(titleField,titleValue);
+    httpSampler.addArgument(descriptionField,descriptionValue);
+  }
+}

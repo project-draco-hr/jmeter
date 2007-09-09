@@ -7,7 +7,7 @@
     return HELPER.getWebMethods();
   }
  catch (  Exception exception) {
-    JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_helper_error"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_helper_error"),"Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
     return null;
   }
 }

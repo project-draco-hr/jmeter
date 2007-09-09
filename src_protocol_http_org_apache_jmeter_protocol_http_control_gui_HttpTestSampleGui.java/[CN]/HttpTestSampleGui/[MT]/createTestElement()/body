@@ -1,5 +1,5 @@
 {
-  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance("HTTPSampler");
+  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance();
   modifyTestElement(sampler);
   return sampler;
 }

@@ -1,6 +1,0 @@
-{
-  createParser("this is some text!");
-  StringFindingVisitor visitor=new StringFindingVisitor("text");
-  parser.visitAllNodesWith(visitor);
-  assertTrue("text should be found",visitor.stringWasFound());
-}

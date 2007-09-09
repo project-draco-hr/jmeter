@@ -1,4 +1,4 @@
 {
-  String text=this.formatMeasureToDisplay(n) + " ms";
+  String text=this.formatMeasureToDisplay(n) + SUFFIX_MS;
   this.incomingNumberLabel.setText(text);
 }

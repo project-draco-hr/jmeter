@@ -1,0 +1,25 @@
+{
+  TestSuite suite=new TestSuite("GuiComponents");
+  Iterator iter=getObjects(JMeterGUIComponent.class).iterator();
+  while (iter.hasNext()) {
+    JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
+    if (item instanceof JMeterTreeNode) {
+      System.out.println("INFO: JMeterGUIComponent: skipping all tests  " + item.getClass().getName());
+      continue;
+    }
+    if (item instanceof ObsoleteGui) {
+      continue;
+    }
+    TestSuite ts=new TestSuite(item.getClass().getName());
+    ts.addTest(new JMeterTest("GUIComponents1",item));
+    if (item instanceof TestBeanGUI) {
+      System.out.println("INFO: JMeterGUIComponent: skipping some tests " + item.getClass().getName());
+    }
+ else {
+      ts.addTest(new JMeterTest("GUIComponents2",item));
+      ts.addTest(new JMeterTest("runGUITitle",item));
+    }
+    suite.addTest(ts);
+  }
+  return suite;
+}

@@ -1,5 +1,4 @@
 {
-  StringBuffer hdrs=new StringBuffer(100);
   if (headerManager != null) {
     CollectionProperty headers=headerManager.getHeaders();
     if (headers != null) {
@@ -8,13 +7,8 @@
         Header header=(Header)i.next().getObjectValue();
         String n=header.getName();
         String v=header.getValue();
-        conn.setRequestProperty(n,v);
-        hdrs.append(n);
-        hdrs.append(": ");
-        hdrs.append(v);
-        hdrs.append("\n");
+        conn.addRequestProperty(n,v);
       }
     }
   }
-  return hdrs.toString();
 }

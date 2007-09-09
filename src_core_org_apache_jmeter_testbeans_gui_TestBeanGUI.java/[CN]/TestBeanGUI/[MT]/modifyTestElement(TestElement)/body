@@ -1,4 +1,8 @@
 {
+  if (customizer instanceof GenericTestBeanCustomizer) {
+    GenericTestBeanCustomizer gtbc=(GenericTestBeanCustomizer)customizer;
+    gtbc.saveGuiFields();
+  }
   configureTestElement(element);
   PropertyDescriptor[] props=beanInfo.getPropertyDescriptors();
   for (int i=0; i < props.length; i++) {
@@ -6,7 +10,8 @@
     Object value=propertyMap.get(name);
     log.debug("Modify " + name + " to "+ value);
     if (value == null) {
-      if (((Boolean)props[i].getValue(BeanInfoSupport.NOT_UNDEFINED)).booleanValue()) {
+      Object valueNotUnDefined=props[i].getValue(BeanInfoSupport.NOT_UNDEFINED);
+      if (valueNotUnDefined != null && ((Boolean)valueNotUnDefined).booleanValue()) {
         setPropertyInElement(element,name,props[i].getValue(BeanInfoSupport.DEFAULT));
       }
  else {

@@ -1,0 +1,9 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("ftp_local_file"));
+  localFile=new JTextField(10);
+  label.setLabelFor(localFile);
+  JPanel filenamePanel=new JPanel(new BorderLayout(5,0));
+  filenamePanel.add(label,BorderLayout.WEST);
+  filenamePanel.add(localFile,BorderLayout.CENTER);
+  return filenamePanel;
+}

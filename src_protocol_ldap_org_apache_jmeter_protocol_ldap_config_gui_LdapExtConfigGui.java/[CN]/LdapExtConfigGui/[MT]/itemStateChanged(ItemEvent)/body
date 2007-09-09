@@ -1,30 +1,30 @@
 {
   CardLayout cl=(CardLayout)(cards.getLayout());
   if (addTest.isSelected()) {
-    cl.show(cards,"Add");
+    cl.show(cards,CARDS_ADD);
   }
  else   if (deleteTest.isSelected()) {
-    cl.show(cards,"Delete");
+    cl.show(cards,CARDS_DELETE);
   }
  else   if (bind.isSelected()) {
-    cl.show(cards,"Bind");
+    cl.show(cards,CARDS_BIND);
   }
  else   if (sbind.isSelected()) {
-    cl.show(cards,"Sbind");
+    cl.show(cards,CARDS_BIND);
   }
  else   if (rename.isSelected()) {
-    cl.show(cards,"Rename");
+    cl.show(cards,CARDS_RENAME);
   }
  else   if (compare.isSelected()) {
-    cl.show(cards,"Compare");
+    cl.show(cards,CARDS_COMPARE);
   }
  else   if (searchTest.isSelected()) {
-    cl.show(cards,"Search");
+    cl.show(cards,CARDS_SEARCH);
   }
  else   if (modifyTest.isSelected()) {
-    cl.show(cards,"Modify");
+    cl.show(cards,CARDS_MODIFY);
   }
  else {
-    cl.show(cards,"");
+    cl.show(cards,CARDS_DEFAULT);
   }
 }

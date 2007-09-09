@@ -6,4 +6,5 @@
  else {
     enabled=element.getPropertyAsBoolean(TestElement.ENABLED);
   }
+  getCommentPanel().setText(element.getPropertyAsString(TestPlan.COMMENTS));
 }

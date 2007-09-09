@@ -1,0 +1,9 @@
+{
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      activeThreads.setText(Integer.toString(JMeterContextService.getNumberOfThreads()));
+      totalThreads.setText(Integer.toString(JMeterContextService.getTotalThreads()));
+    }
+  }
+);
+}

@@ -1,20 +1,20 @@
 {
-  this.typeEditor=typeEditor;
-  this.guiEditor=guiEditor;
-  this.acceptsNull=acceptsNull;
-  this.acceptsExpressions=acceptsExpressions;
-  this.acceptsOther=acceptsOther;
+  this.typeEditor=_typeEditor;
+  this.guiEditor=_guiEditor;
+  this.acceptsNull=_acceptsNull;
+  this.acceptsExpressions=_acceptsExpressions;
+  this.acceptsOther=_acceptsOther;
   setValue(defaultValue);
   lastValidValue=getAsText();
-  if (guiEditor instanceof ComboStringEditor) {
-    String[] tags=((ComboStringEditor)guiEditor).getTags();
+  if (_guiEditor instanceof ComboStringEditor) {
+    String[] tags=((ComboStringEditor)_guiEditor).getTags();
     String v;
-    if (!acceptsOther)     v="${}";
+    if (!_acceptsOther)     v="${}";
  else     if (isValidValue(""))     v="";
- else     if (acceptsExpressions)     v="${}";
+ else     if (_acceptsExpressions)     v="${}";
  else     if (tags != null && tags.length > 0)     v=tags[0];
  else     v=getAsText();
-    ((ComboStringEditor)guiEditor).setInitialEditValue(v);
+    ((ComboStringEditor)_guiEditor).setInitialEditValue(v);
   }
-  guiEditor.addPropertyChangeListener(this);
+  _guiEditor.addPropertyChangeListener(this);
 }

@@ -1,0 +1,20 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Parsing html of: " + html);
+  }
+  Parser htmlParser=null;
+  try {
+    htmlParser=new Parser();
+    htmlParser.setInputHTML(html);
+  }
+ catch (  Exception e) {
+    throw new HTMLParseException(e);
+  }
+  try {
+    parseNodes(htmlParser.elements(),formEncodings,pageEncoding);
+    log.debug("End   : parseNodes");
+  }
+ catch (  ParserException e) {
+    throw new HTMLParseException(e);
+  }
+}

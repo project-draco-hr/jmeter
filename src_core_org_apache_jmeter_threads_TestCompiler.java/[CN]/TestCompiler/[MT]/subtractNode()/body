@@ -5,6 +5,9 @@
   if (child instanceof Sampler) {
     saveSamplerConfigs((Sampler)child);
   }
+ else   if (child instanceof TransactionController) {
+    saveTransactionControllerConfigs((TransactionController)child);
+  }
   stack.removeLast();
   if (stack.size() > 0) {
     ObjectPair pair=new ObjectPair(child,(TestElement)stack.getLast());

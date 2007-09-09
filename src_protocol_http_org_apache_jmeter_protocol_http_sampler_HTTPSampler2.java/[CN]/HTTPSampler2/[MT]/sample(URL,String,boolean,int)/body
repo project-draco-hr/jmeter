@@ -2,54 +2,94 @@
   String urlStr=url.toString();
   log.debug("Start : sample" + urlStr);
   log.debug("method" + method);
-  httpMethod=null;
+  HttpMethodBase httpMethod=null;
   HTTPSampleResult res=new HTTPSampleResult();
-  if (this.getPropertyAsBoolean(MONITOR)) {
-    res.setMonitor(true);
-  }
- else {
-    res.setMonitor(false);
-  }
+  res.setMonitor(isMonitor());
   res.setSampleLabel(urlStr);
+  res.setHTTPMethod(method);
   res.sampleStart();
+  HttpClient client=null;
+  InputStream instream=null;
   try {
-    HttpConnection connection=setupConnection(url,method,res);
     if (method.equals(POST)) {
-      sendPostData(httpMethod);
+      httpMethod=new PostMethod(urlStr);
     }
-    int statusCode=httpMethod.execute(httpState,connection);
-    byte[] responseData=httpMethod.getResponseBody();
+ else     if (method.equals(PUT)) {
+      httpMethod=new PutMethod(urlStr);
+    }
+ else     if (method.equals(HEAD)) {
+      httpMethod=new HeadMethod(urlStr);
+    }
+ else     if (method.equals(TRACE)) {
+      httpMethod=new TraceMethod(urlStr);
+    }
+ else     if (method.equals(OPTIONS)) {
+      httpMethod=new OptionsMethod(urlStr);
+    }
+ else     if (method.equals(DELETE)) {
+      httpMethod=new DeleteMethod(urlStr);
+    }
+ else     if (method.equals(GET)) {
+      httpMethod=new GetMethod(urlStr);
+    }
+ else {
+      log.error("Unexpected method (converted to GET): " + method);
+      httpMethod=new GetMethod(urlStr);
+    }
+    client=setupConnection(url,httpMethod,res);
+    if (method.equals(POST)) {
+      String postBody=sendPostData((PostMethod)httpMethod);
+      res.setQueryString(postBody);
+    }
+ else     if (method.equals(PUT)) {
+      setPutHeaders((PutMethod)httpMethod);
+    }
+    res.setRequestHeaders(getConnectionHeaders(httpMethod));
+    int statusCode=client.executeMethod(httpMethod);
+    instream=httpMethod.getResponseBodyAsStream();
+    if (instream != null) {
+      Header responseHeader=httpMethod.getResponseHeader(HEADER_CONTENT_ENCODING);
+      if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
+        instream=new GZIPInputStream(instream);
+      }
+      ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
+      byte[] buffer=new byte[4096];
+      int len;
+      boolean first=true;
+      while ((len=instream.read(buffer)) > 0) {
+        if (first) {
+          res.latencyEnd();
+          first=false;
+        }
+        outstream.write(buffer,0,len);
+      }
+      res.setResponseData(outstream.toByteArray());
+      outstream.close();
+    }
     res.sampleEnd();
     res.setSampleLabel(httpMethod.getURI().toString());
-    res.setResponseData(responseData);
     res.setResponseCode(Integer.toString(statusCode));
-    res.setSuccessful(200 <= statusCode && statusCode <= 399);
+    res.setSuccessful(isSuccessCode(statusCode));
     res.setResponseMessage(httpMethod.getStatusText());
     String ct=null;
-    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader("Content-Type");
+    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader(HEADER_CONTENT_TYPE);
     if (h != null) {
       ct=h.getValue();
       res.setContentType(ct);
-    }
-    if (ct != null) {
-      String de=ct.toLowerCase();
-      final String cs="charset=";
-      int cset=de.indexOf(cs);
-      if (cset >= 0) {
-        res.setDataEncoding(de.substring(cset + cs.length()));
-      }
-      if (ct.startsWith("image/")) {
-        res.setDataType(HTTPSampleResult.BINARY);
-      }
- else {
-        res.setDataType(HTTPSampleResult.TEXT);
-      }
+      res.setEncodingAndType(ct);
     }
     res.setResponseHeaders(getResponseHeaders(httpMethod));
     if (res.isRedirect()) {
-      res.setRedirectLocation(httpMethod.getResponseHeader("Location").getValue());
+      final Header headerLocation=httpMethod.getResponseHeader(HEADER_LOCATION);
+      if (headerLocation == null) {
+        throw new IllegalArgumentException("Missing location header");
+      }
+      res.setRedirectLocation(headerLocation.getValue());
     }
-    saveConnectionCookies(httpState,getCookieManager());
+    if (getAutoRedirects()) {
+      res.setURL(new URL(httpMethod.getURI().toString()));
+    }
+    saveConnectionCookies(httpMethod,res.getURL(),getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
     if (httpMethod != null)     httpMethod.releaseConnection();
@@ -68,6 +108,7 @@ catch (  IOException e) {
     return err;
   }
  finally {
+    JOrphanUtils.closeQuietly(instream);
     if (httpMethod != null)     httpMethod.releaseConnection();
   }
 }

@@ -1,6 +1,6 @@
 {
   String action=e.getActionCommand();
-  if (action.equals("Delete")) {
+  if (action.equals(DELETE_COMMAND)) {
     if (tableModel.getRowCount() > 0) {
       if (cookieTable.isEditing()) {
         TableCellEditor cellEditor=cookieTable.getCellEditor(cookieTable.getEditingRow(),cookieTable.getEditingColumn());
@@ -24,7 +24,7 @@
       }
     }
   }
- else   if (action.equals("Add")) {
+ else   if (action.equals(ADD_COMMAND)) {
     if (cookieTable.isEditing()) {
       TableCellEditor cellEditor=cookieTable.getCellEditor(cookieTable.getEditingRow(),cookieTable.getEditingColumn());
       cellEditor.stopCellEditing();
@@ -40,14 +40,16 @@
     int rowToSelect=tableModel.getRowCount() - 1;
     cookieTable.setRowSelectionInterval(rowToSelect,rowToSelect);
   }
- else   if (action.equals("Load")) {
+ else   if (action.equals(LOAD_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToOpenFile().getSelectedFile();
+      final String[] _txt={".txt"};
+      File tmp=FileDialoger.promptToOpenFile(_txt).getSelectedFile();
       if (tmp != null) {
         CookieManager manager=new CookieManager();
         manager.addFile(tmp.getAbsolutePath());
-        Cookie cookie=manager.get(0);
-        addCookieToTable(cookie);
+        for (int i=0; i < manager.getCookieCount(); i++) {
+          addCookieToTable(manager.get(i));
+        }
         tableModel.fireTableDataChanged();
         if (tableModel.getRowCount() > 0) {
           deleteButton.setEnabled(true);
@@ -61,7 +63,7 @@
 catch (    NullPointerException err) {
     }
   }
- else   if (action.equals("Save")) {
+ else   if (action.equals(SAVE_COMMAND)) {
     try {
       File tmp=FileDialoger.promptToSaveFile("cookies.txt").getSelectedFile();
       if (tmp != null) {

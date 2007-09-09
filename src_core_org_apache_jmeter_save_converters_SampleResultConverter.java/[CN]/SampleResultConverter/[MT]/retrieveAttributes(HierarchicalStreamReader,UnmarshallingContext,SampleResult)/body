@@ -1,13 +1,18 @@
 {
-  res.setSampleLabel(ConversionHelp.decode(reader.getAttribute("lb")));
-  res.setDataEncoding(ConversionHelp.decode(reader.getAttribute("de")));
-  res.setDataType(ConversionHelp.decode(reader.getAttribute("dt")));
-  res.setResponseCode(ConversionHelp.decode(reader.getAttribute("rc")));
-  res.setResponseMessage(ConversionHelp.decode(reader.getAttribute("rm")));
-  res.setSuccessful(Converter.getBoolean(reader.getAttribute("s"),true));
-  res.setThreadName(ConversionHelp.decode(reader.getAttribute("tn")));
-  res.setTime(Converter.getLong(reader.getAttribute("t")));
-  res.setTimeStamp(Converter.getLong(reader.getAttribute("ts")));
-  res.setLatency(Converter.getLong(reader.getAttribute("lt")));
-  res.setContentLength(Converter.getInt(reader.getAttribute("len")));
+  res.setSampleLabel(ConversionHelp.decode(reader.getAttribute(ATT_LABEL)));
+  res.setDataEncoding(ConversionHelp.decode(reader.getAttribute(ATT_DATA_ENCODING)));
+  res.setDataType(ConversionHelp.decode(reader.getAttribute(ATT_DATA_TYPE)));
+  String oldrc=reader.getAttribute(ATT_RESPONSE_CODE_OLD);
+  if (oldrc != null) {
+    res.setResponseCode(ConversionHelp.decode(oldrc));
+  }
+ else {
+    res.setResponseCode(ConversionHelp.decode(reader.getAttribute(ATT_RESPONSE_CODE)));
+  }
+  res.setResponseMessage(ConversionHelp.decode(reader.getAttribute(ATT_RESPONSE_MESSAGE)));
+  res.setSuccessful(Converter.getBoolean(reader.getAttribute(ATT_SUCCESS),true));
+  res.setThreadName(ConversionHelp.decode(reader.getAttribute(ATT_THREADNAME)));
+  res.setStampAndTime(Converter.getLong(reader.getAttribute(ATT_TIME_STAMP)),Converter.getLong(reader.getAttribute(ATT_TIME)));
+  res.setLatency(Converter.getLong(reader.getAttribute(ATT_LATENCY)));
+  res.setBytes(Converter.getInt(reader.getAttribute(ATT_BYTES)));
 }

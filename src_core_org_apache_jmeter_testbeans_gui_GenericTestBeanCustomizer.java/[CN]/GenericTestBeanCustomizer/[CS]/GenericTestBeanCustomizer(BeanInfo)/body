@@ -41,22 +41,17 @@ catch (      IllegalAccessException e) {
       editors[i]=null;
       continue;
     }
-    String[] tags=mergeTags(propertyEditor,descriptors[i]);
     if (!propertyEditor.supportsCustomEditor()) {
-      propertyEditor=createWrapperEditor(propertyEditor,descriptors[i],tags);
+      propertyEditor=createWrapperEditor(propertyEditor,descriptors[i]);
       if (log.isDebugEnabled()) {
         log.debug("Editor for property " + name + " is wrapped in "+ propertyEditor);
       }
-    }
-    if (propertyEditor instanceof TestBeanPropertyEditor) {
-      ((TestBeanPropertyEditor)propertyEditor).setDescriptor(descriptors[i]);
     }
     if (propertyEditor.getCustomEditor() instanceof JScrollPane) {
       scrollerCount++;
     }
     editors[i]=propertyEditor;
     setEditorValue(i,descriptors[i].getValue(DEFAULT));
-    propertyEditor.addPropertyChangeListener(this);
   }
   propertyFieldLabelMessage=new MessageFormat(JMeterUtils.getResString("property_as_field_label"));
   propertyToolTipMessage=new MessageFormat(JMeterUtils.getResString("property_tool_tip"));

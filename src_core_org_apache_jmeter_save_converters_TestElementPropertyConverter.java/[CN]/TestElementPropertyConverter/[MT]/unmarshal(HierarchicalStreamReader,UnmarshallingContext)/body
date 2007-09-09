@@ -1,10 +1,12 @@
 {
   try {
     TestElementProperty prop=(TestElementProperty)createCollection(context.getRequiredType());
-    prop.setName(ConversionHelp.decode(reader.getAttribute("name")));
-    String element=reader.getAttribute("elementType");
-    boolean isHeader="org.apache.jmeter.protocol.http.control.Header".equals(element);
-    prop.setObjectValue(Class.forName(element).newInstance());
+    prop.setName(ConversionHelp.decode(reader.getAttribute(ConversionHelp.ATT_NAME)));
+    String element=reader.getAttribute(ConversionHelp.ATT_ELEMENT_TYPE);
+    boolean isHeader=HEADER_CLASSNAME.equals(element);
+    prop.setObjectValue(mapper().realClass(element).newInstance());
+    TestElement te=(TestElement)prop.getObjectValue();
+    ConversionHelp.restoreSpecialProperties(te,reader);
     while (reader.hasMoreChildren()) {
       reader.moveDown();
       JMeterProperty subProp=(JMeterProperty)readItem(reader,context,prop);

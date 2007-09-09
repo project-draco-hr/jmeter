@@ -1,0 +1,8 @@
+{
+  try {
+    if (s != null)     s.close();
+  }
+ catch (  SQLException e) {
+    log.warn("Error closing Statement " + s.toString(),e);
+  }
+}

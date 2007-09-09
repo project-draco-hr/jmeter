@@ -6,9 +6,7 @@
       TestElement el=currentNode.getTestElement();
       comp.modifyTestElement(el);
     }
-    if (currentNode != treeListener.getCurrentNode()) {
-      currentNodeUpdated=true;
-    }
+    currentNodeUpdated=true;
     currentNode=treeListener.getCurrentNode();
   }
  catch (  Exception e) {

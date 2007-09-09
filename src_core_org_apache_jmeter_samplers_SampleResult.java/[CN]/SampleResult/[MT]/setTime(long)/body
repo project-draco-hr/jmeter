@@ -1,4 +1,7 @@
 {
+  if (startTime != 0 || endTime != 0) {
+    throw new RuntimeException("Calling setTime() after start/end times have been set");
+  }
   long now=System.currentTimeMillis();
   setTimes(now - elapsed,now);
 }

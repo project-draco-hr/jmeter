@@ -7,14 +7,13 @@
   Iterator iter=urls.iterator();
   while (iter.hasNext()) {
     HTTPSamplerBase newUrl=(HTTPSamplerBase)iter.next();
-    try {
-      newUrl.setMethod(HTTPSamplerBase.POST);
-      if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
-        potentialLinks.add(newUrl);
-      }
+    newUrl.setMethod(HTTPSamplerBase.POST);
+    if (log.isDebugEnabled()) {
+      log.debug("Potential Form match: " + newUrl.toString());
     }
- catch (    org.apache.oro.text.regex.MalformedPatternException e) {
-      log.error("Bad pattern",e);
+    if (HtmlParsingUtils.isAnchorMatched(newUrl,config)) {
+      log.debug("Matched!");
+      potentialLinks.add(newUrl);
     }
   }
 }

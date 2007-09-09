@@ -3,6 +3,9 @@
   SampleResult res=new SampleResult();
   res.setSampleLabel(getName());
   res.setSamplerData(toString());
+  res.setDataType(SampleResult.TEXT);
+  res.setDataEncoding(System.getProperty("file.encoding"));
+  res.setSuccessful(true);
   res.sampleStart();
   DataSourceComponent pool=(DataSourceComponent)getThreadContext().getVariables().getObject(getDataSource());
   log.debug("DataSourceComponent: " + pool);
@@ -11,8 +14,9 @@
   try {
     if (pool == null)     throw new SQLException("No pool created");
     conn=pool.getConnection();
-    stmt=conn.createStatement();
-    if (SELECT.equals(getQueryType())) {
+    String _queryType=getQueryType();
+    if (SELECT.equals(_queryType)) {
+      stmt=conn.createStatement();
       ResultSet rs=null;
       try {
         rs=stmt.executeQuery(getQuery());
@@ -20,48 +24,69 @@
         res.setResponseData(data.toString().getBytes());
       }
   finally {
-        if (rs != null) {
-          try {
-            rs.close();
-          }
- catch (          SQLException exc) {
-            log.warn("Error closing ResultSet",exc);
-          }
-        }
+        close(rs);
       }
     }
- else {
-      stmt.execute(getQuery());
+ else     if (CALLABLE.equals(_queryType)) {
+      CallableStatement cstmt=getCallableStatement(conn);
+      setArguments(cstmt);
+      boolean hasResultSet=cstmt.execute();
+      String sb=resultSetsToString(cstmt,hasResultSet);
+      res.setResponseData(sb.toString().getBytes());
+    }
+ else     if (UPDATE.equals(_queryType)) {
+      stmt=conn.createStatement();
+      stmt.executeUpdate(getQuery());
       int updateCount=stmt.getUpdateCount();
       String results=updateCount + " updates";
       res.setResponseData(results.getBytes());
     }
-    res.setDataType(SampleResult.TEXT);
-    res.setDataEncoding(System.getProperty("file.encoding"));
-    res.setSuccessful(true);
+ else     if (PREPARED_SELECT.equals(_queryType)) {
+      PreparedStatement pstmt=getPreparedStatement(conn);
+      setArguments(pstmt);
+      pstmt.executeQuery();
+      String sb=resultSetsToString(pstmt,true);
+      res.setResponseData(sb.toString().getBytes());
+    }
+ else     if (PREPARED_UPDATE.equals(_queryType)) {
+      PreparedStatement pstmt=getPreparedStatement(conn);
+      setArguments(pstmt);
+      pstmt.executeUpdate();
+      String sb=resultSetsToString(pstmt,false);
+      res.setResponseData(sb.toString().getBytes());
+    }
+ else     if (ROLLBACK.equals(_queryType)) {
+      conn.rollback();
+      res.setResponseData(ROLLBACK.getBytes());
+    }
+ else     if (COMMIT.equals(_queryType)) {
+      conn.commit();
+      res.setResponseData(COMMIT.getBytes());
+    }
+ else     if (AUTOCOMMIT_FALSE.equals(_queryType)) {
+      conn.setAutoCommit(false);
+      res.setResponseData(AUTOCOMMIT_FALSE.getBytes());
+    }
+ else     if (AUTOCOMMIT_TRUE.equals(_queryType)) {
+      conn.setAutoCommit(true);
+      res.setResponseData(AUTOCOMMIT_TRUE.getBytes());
+    }
+ else {
+      String results="Unexpected query type: " + _queryType;
+      res.setResponseMessage(results);
+      res.setSuccessful(false);
+    }
   }
  catch (  SQLException ex) {
-    log.error("Error in JDBC sampling",ex);
+    final String errCode=Integer.toString(ex.getErrorCode());
+    log.error("SQLstate: " + ex.getSQLState() + " SQLcode: "+ errCode+ " Message: "+ ex.getMessage(),ex);
     res.setResponseMessage(ex.toString());
+    res.setResponseCode(errCode);
     res.setSuccessful(false);
   }
  finally {
-    if (stmt != null) {
-      try {
-        stmt.close();
-      }
- catch (      SQLException ex) {
-        log.warn("Error closing statement",ex);
-      }
-    }
-    if (conn != null) {
-      try {
-        conn.close();
-      }
- catch (      SQLException ex) {
-        log.warn("Error closing connection",ex);
-      }
-    }
+    close(stmt);
+    close(conn);
   }
   res.sampleEnd();
   return res;

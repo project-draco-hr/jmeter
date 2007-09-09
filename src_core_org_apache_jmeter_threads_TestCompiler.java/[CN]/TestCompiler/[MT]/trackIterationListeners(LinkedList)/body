@@ -7,12 +7,10 @@
       if (item == child) {
         continue;
       }
- else {
-        if (item instanceof Controller) {
-          TestBeanHelper.prepare(child);
-          ((Controller)item).addIterationListener((LoopIterationListener)child);
-          break;
-        }
+      if (item instanceof Controller) {
+        TestBeanHelper.prepare(child);
+        ((Controller)item).addIterationListener((LoopIterationListener)child);
+        break;
       }
     }
   }

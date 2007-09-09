@@ -1,0 +1,26 @@
+{
+  if (getQueryArguments().trim().length() == 0) {
+    return;
+  }
+  String[] arguments=getQueryArguments().split(",");
+  String[] argumentsTypes=getQueryArgumentsTypes().split(",");
+  if (arguments.length != argumentsTypes.length) {
+    throw new SQLException("number of arguments (" + arguments.length + ") and number of types ("+ argumentsTypes.length+ ") are not equal");
+  }
+  for (int i=0; i < arguments.length; i++) {
+    String argument=arguments[i];
+    String argumentType=argumentsTypes[i];
+    int targetSqlType=getJdbcType(argumentType);
+    try {
+      if (argument.equals(NULL_MARKER)) {
+        pstmt.setNull(i + 1,targetSqlType);
+      }
+ else {
+        pstmt.setObject(i + 1,argument,targetSqlType);
+      }
+    }
+ catch (    NullPointerException e) {
+      throw new SQLException("Could not set argument no: " + (i + 1) + " - missing parameter marker?");
+    }
+  }
+}

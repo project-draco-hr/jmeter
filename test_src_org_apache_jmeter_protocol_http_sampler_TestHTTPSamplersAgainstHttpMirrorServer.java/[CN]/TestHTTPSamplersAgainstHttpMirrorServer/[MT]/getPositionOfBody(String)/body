@@ -1,0 +1,11 @@
+{
+  Perl5Matcher localMatcher=JMeterUtils.getMatcher();
+  String regularExpression="^.$";
+  Pattern pattern=JMeterUtils.getPattern(regularExpression,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.MULTILINE_MASK);
+  PatternMatcherInput input=new PatternMatcherInput(stringToCheck);
+  while (localMatcher.contains(input,pattern)) {
+    MatchResult match=localMatcher.getMatch();
+    return match.beginOffset(0);
+  }
+  return -1;
+}

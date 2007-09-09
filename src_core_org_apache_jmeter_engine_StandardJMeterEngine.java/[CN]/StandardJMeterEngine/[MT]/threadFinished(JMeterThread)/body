@@ -1,8 +1,8 @@
 {
   try {
     allThreads.remove(thread);
-    log.info("Ending thread " + thread.getThreadNum());
-    if (!serialized && allThreads.size() == 0 && !schcdule_run) {
+    log.info("Ending thread " + thread.getThreadName());
+    if (!serialized && !schcdule_run && !startingGroups&& allThreads.size() == 0) {
       log.info("Stopping test");
       stopTest();
     }

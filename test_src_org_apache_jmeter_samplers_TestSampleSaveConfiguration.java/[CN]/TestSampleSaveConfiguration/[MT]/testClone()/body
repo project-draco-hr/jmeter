@@ -1,0 +1,27 @@
+{
+  SampleSaveConfiguration a=new SampleSaveConfiguration();
+  a.setUrl(false);
+  a.setAssertions(true);
+  a.setDefaultDelimiter();
+  a.setDefaultTimeStampFormat();
+  a.setDataType(true);
+  assertFalse(a.saveUrl());
+  assertNotNull(a.getDelimiter());
+  assertTrue(a.saveAssertions());
+  assertTrue(a.saveDataType());
+  SampleSaveConfiguration cloneA=(SampleSaveConfiguration)a.clone();
+  assertNotSame(a,cloneA);
+  assertEquals(a,cloneA);
+  assertTrue(a.equals(cloneA));
+  assertTrue(cloneA.equals(a));
+  assertEquals(a.hashCode(),cloneA.hashCode());
+  a.setUrl(true);
+  assertFalse(a.equals(cloneA));
+  assertFalse(cloneA.equals(a));
+  assertFalse(a.hashCode() == cloneA.hashCode());
+  a.setUrl(false);
+  assertEquals(a,cloneA);
+  assertTrue(a.equals(cloneA));
+  assertTrue(cloneA.equals(a));
+  assertEquals(a.hashCode(),cloneA.hashCode());
+}

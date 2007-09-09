@@ -1,5 +1,0 @@
-{
-  writeln(out,"Content-Disposition: form-data; name=\"" + name + "\"");
-  out.write(CRLF);
-  writeln(out,value);
-}

@@ -1,15 +1,17 @@
 {
-  Object[] file=getFileObjects(filename);
-synchronized (file) {
-    if (file != null) {
-      if (file[1] == null) {
-        file[1]=new PrintWriter((File)file[0],"utf-8");
-      }
- else       if (!(file[1] instanceof Writer)) {
-        throw new IOException("File " + filename + " already in use for reading");
-      }
-      PrintWriter writer=(PrintWriter)file[1];
-      writer.write(value);
+  FileEntry fileEntry=(FileEntry)files.get(filename);
+  if (fileEntry != null) {
+    if (fileEntry.inputOutputObject == null) {
+      fileEntry.inputOutputObject=createBufferedWriter(fileEntry,filename);
     }
+ else     if (!(fileEntry.inputOutputObject instanceof Writer)) {
+      throw new IOException("File " + filename + " already in use");
+    }
+    BufferedWriter writer=(BufferedWriter)fileEntry.inputOutputObject;
+    if (log.isDebugEnabled())     log.debug("Write:" + value);
+    writer.write(value);
+  }
+ else {
+    throw new IOException("File never reserved: " + filename);
   }
 }

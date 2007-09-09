@@ -3,23 +3,18 @@
   argsPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
   domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
   String portString=el.getPropertyAsString(HTTPSamplerBase.PORT);
-  if (portString.equals("" + HTTPSamplerBase.UNSPECIFIED_PORT)) {
+  if (portString.equals(HTTPSamplerBase.UNSPECIFIED_PORT_AS_STRING)) {
     port.setText("");
   }
  else {
     port.setText(portString);
   }
   protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
-  if ("POST".equals(el.getPropertyAsString(HTTPSamplerBase.METHOD))) {
-    post.setSelected(true);
-    get.setSelected(false);
-  }
- else {
-    get.setSelected(true);
-    post.setSelected(false);
-  }
+  method.setText(el.getPropertyAsString(HTTPSamplerBase.METHOD));
+  contentEncoding.setText(el.getPropertyAsString(HTTPSamplerBase.CONTENT_ENCODING));
   path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
   followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
   autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
   useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
+  useMultipartForPost.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
 }

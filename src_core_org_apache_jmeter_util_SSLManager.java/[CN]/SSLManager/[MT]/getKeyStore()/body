@@ -1,52 +1,44 @@
 {
-  String password=this.defaultpw;
   if (null == this.keyStore) {
     String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
-    String fileName=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStore",defaultName);
-    System.setProperty("javax.net.ssl.keyStore",fileName);
+    String fileName=System.getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
+    log.info("JmeterKeyStore Location: " + fileName);
     try {
       if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
-        this.keyStore=JmeterKeyStore.getInstance("pkcs12");
-        log.info("KeyStore Type: PKCS 12");
-        System.setProperty("javax.net.ssl.keyStoreType","pkcs12");
+        this.keyStore=JmeterKeyStore.getInstance(PKCS12);
+        log.info("KeyStore created OK, Type: PKCS 12");
+        System.setProperty("javax.net.ssl.keyStoreType",PKCS12);
       }
  else {
         this.keyStore=JmeterKeyStore.getInstance("JKS");
-        log.info("KeyStore Type: JKS");
+        log.info("KeyStore created OK, Type: JKS");
       }
     }
  catch (    Exception e) {
-      JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),e,JMeterUtils.getResString("ssl_error_title"),JOptionPane.ERROR_MESSAGE);
       this.keyStore=null;
-      throw new RuntimeException("KeyStore Problem");
+      throw new RuntimeException("Could not create keystore: " + e.getMessage());
     }
-    if (null == password) {
-      if (null == defaultpw) {
-        this.defaultpw=JMeterUtils.getJMeterProperties().getProperty("javax.net.ssl.keyStorePassword");
-        if (null == defaultpw) {
-synchronized (this) {
-            this.defaultpw=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("ssl_pass_prompt"),JMeterUtils.getResString("ssl_pass_title"),JOptionPane.QUESTION_MESSAGE);
-            JMeterUtils.getJMeterProperties().setProperty("javax.net.ssl.keyStorePassword",this.defaultpw);
-          }
-        }
-      }
-      password=this.defaultpw;
-      System.setProperty("javax.net.ssl.keyStorePassword",password);
-    }
+    FileInputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
       if (initStore.exists()) {
-        this.keyStore.load(new FileInputStream(initStore),password);
+        fileInputStream=new FileInputStream(initStore);
+        this.keyStore.load(fileInputStream,getPassword());
+        log.info("Keystore loaded OK from file, found alias: " + keyStore.getAlias());
       }
  else {
-        this.keyStore.load(null,password);
+        log.warn("Keystore file not found, loading empty keystore");
+        this.defaultpw="";
+        this.keyStore.load(null,"");
       }
     }
  catch (    Exception e) {
-      log.error("Couldn't load keystore",e);
+      log.error("Problem loading keystore: " + e.getMessage());
     }
-    log.info("JmeterKeyStore Location: " + fileName);
-    log.info("JmeterKeyStore type: " + this.keyStore.getClass().toString());
+ finally {
+      JOrphanUtils.closeQuietly(fileInputStream);
+    }
+    log.debug("JmeterKeyStore type: " + this.keyStore.getClass().toString());
   }
   return this.keyStore;
 }

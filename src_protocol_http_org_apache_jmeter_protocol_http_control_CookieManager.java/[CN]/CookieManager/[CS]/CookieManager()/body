@@ -1,5 +1,5 @@
 {
-  dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
   setProperty(new CollectionProperty(COOKIES,new ArrayList()));
   setProperty(new BooleanProperty(CLEAR,false));
+  setCookiePolicy(DEFAULT_POLICY);
 }

@@ -1,9 +1,11 @@
 {
   if (save.saveSamplerData(res)) {
-    writeString(writer,"cookies",res.getCookies());
-    writeString(writer,"method",res.getHTTPMethod());
-    writeString(writer,"queryString",res.getQueryString());
-    writeString(writer,"redirectLocation",res.getRedirectLocation());
+    writeString(writer,TAG_COOKIES,res.getCookies());
+    writeString(writer,TAG_METHOD,res.getHTTPMethod());
+    writeString(writer,TAG_QUERY_STRING,res.getQueryString());
+    writeString(writer,TAG_REDIRECT_LOCATION,res.getRedirectLocation());
+  }
+  if (save.saveUrl()) {
     writeItem(res.getURL(),context,writer);
   }
 }

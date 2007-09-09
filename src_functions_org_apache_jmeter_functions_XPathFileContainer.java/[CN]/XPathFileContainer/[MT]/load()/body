@@ -32,6 +32,6 @@ catch (  TransformerException e) {
     throw e;
   }
  finally {
-    if (fis != null)     fis.close();
+    JOrphanUtils.closeQuietly(fis);
   }
 }

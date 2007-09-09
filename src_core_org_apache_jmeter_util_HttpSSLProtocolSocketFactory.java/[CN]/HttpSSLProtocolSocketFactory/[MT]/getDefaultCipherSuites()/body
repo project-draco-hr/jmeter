@@ -1,0 +1,9 @@
+{
+  try {
+    SSLSocketFactory sslfac=getSSLSocketFactory();
+    return sslfac.getDefaultCipherSuites();
+  }
+ catch (  IOException ex) {
+    return new String[]{};
+  }
+}

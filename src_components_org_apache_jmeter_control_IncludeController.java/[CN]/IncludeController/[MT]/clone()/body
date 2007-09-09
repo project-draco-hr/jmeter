@@ -1,5 +1,5 @@
 {
-  this.loadIncludedElements();
+  this.resolveReplacementSubTree(null);
   IncludeController clone=(IncludeController)super.clone();
   clone.setIncludePath(this.getIncludePath());
   if (this.SUBTREE != null) {

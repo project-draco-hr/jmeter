@@ -1,5 +1,0 @@
-{
-  createParser("<FORM action=http://search.yahoo.com/bin/search name=f><MAP name=m><AREA\n" + "coords=0,0,52,52 href=\"http://www.yahoo.com/r/c1\" shape=RECT><AREA" + "coords=53,0,121,52 href=\"http://www.yahoo.com/r/p1\" shape=RECT><AREA"+ "coords=122,0,191,52 href=\"http://www.yahoo.com/r/m1\" shape=RECT><AREA"+ "coords=441,0,510,52 href=\"http://www.yahoo.com/r/wn\" shape=RECT>","http://www.cj.com/");
-  parser.addScanner(new LinkScanner("-l"));
-  parseAndAssertNodeCount(6);
-}

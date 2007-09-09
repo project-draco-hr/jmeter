@@ -17,23 +17,12 @@
     }
   }
   result.sampleEnd();
-  result.setResponseHeaders(loop + " samples messages recieved");
-  if (this.SUBSCRIBER.getMessageType() == ReceiveSubscriber.TEXT) {
-    result.setSamplerData(this.SUBSCRIBER.getMessage());
-    result.setContentType(SampleResult.TEXT);
-  }
+  result.setResponseMessage(loop + " samples messages recieved");
   if (this.getReadResponseAsBoolean()) {
-    if (this.SUBSCRIBER.getMessageType() == ReceiveSubscriber.TEXT) {
-      result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
-    }
- else {
-      result.setResponseData(this.SUBSCRIBER.getObjectMessage().toString().getBytes());
-    }
+    result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
   }
  else {
-    if (this.SUBSCRIBER.getMessageType() == ReceiveSubscriber.TEXT) {
-      result.setContentLength(this.SUBSCRIBER.getMessage().getBytes().length);
-    }
+    result.setBytes(this.SUBSCRIBER.getMessage().getBytes().length);
   }
   result.setSuccessful(true);
   result.setResponseCode(loop + " message(s) recieved successfully");

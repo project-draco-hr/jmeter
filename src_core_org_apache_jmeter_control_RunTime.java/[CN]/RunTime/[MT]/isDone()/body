@@ -2,7 +2,5 @@
   if (getRuntime() > 0 && getSubControllers().size() > 0) {
     return super.isDone();
   }
- else {
-    return true;
-  }
+  return true;
 }

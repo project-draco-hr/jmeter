@@ -5,7 +5,5 @@
     Sampler currentSampler=context.getCurrentSampler();
     return execute(previousResult,currentSampler);
   }
- else {
-    return permanentResults;
-  }
+  return permanentResults;
 }

@@ -1,9 +1,15 @@
 {
-  subResult.setThreadName(getThreadName());
+  String tn=getThreadName();
+  if (tn.length() == 0) {
+    tn=Thread.currentThread().getName();
+    this.setThreadName(tn);
+  }
+  subResult.setThreadName(tn);
   if (subResults == null) {
     subResults=new ArrayList();
   }
   subResults.add(subResult);
-  setTime(getTime() + subResult.getTime());
+  setEndTime(subResult.getEndTime());
+  setBytes(getBytes() + subResult.getBytes());
   subResult.setParent(this);
 }

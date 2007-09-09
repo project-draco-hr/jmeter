@@ -3,6 +3,7 @@
   this.configureTestElement(sampler);
   sampler.setDomain(domain.getText());
   sampler.setProperty(HTTPSamplerBase.PORT,port.getText());
+  sampler.setProtocol(protocol.getText());
   sampler.setPath(path.getText());
   sampler.setWsdlURL(wsdlField.getText());
   sampler.setMethod(HTTPSamplerBase.POST);
@@ -10,6 +11,7 @@
   sampler.setXmlData(soapXml.getText());
   sampler.setXmlFile(soapXmlFile.getFilename());
   sampler.setXmlPathLoc(randomXmlFile.getText());
+  sampler.setTimeout(connectTimeout.getText());
   sampler.setMemoryCache(memCache.isSelected());
   sampler.setReadResponse(readResponse.isSelected());
   sampler.setUseProxy(useProxy.isSelected());

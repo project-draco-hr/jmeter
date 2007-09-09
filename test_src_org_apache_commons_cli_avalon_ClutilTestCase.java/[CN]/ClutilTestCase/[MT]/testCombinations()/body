@@ -1,0 +1,9 @@
+{
+  check(new String[]{},"");
+  check(new String[]{"--none","-0"},"-0 -0");
+  check(new String[]{"--one=a","--one","A","-1b","-1=c","-1","d"},"-1=[a] -1=[A] -1=[b] -1=[c] -1=[d]");
+  check(new String[]{"-2n=v","-2","N=V"},"-2=[n, v] -2=[N, V]");
+  check(new String[]{"--two=n=v","--two","N=V"},"-2=[n, v] -2=[N, V]");
+  check(new String[]{"-?","A","-?=B","-?C","-?"},"-? [A] -?=[B] -?=[C] -?");
+  check(new String[]{"--optional=A","--optional","B","--optional"},"-?=[A] -? [B] -?");
+}

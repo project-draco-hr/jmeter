@@ -1,5 +1,7 @@
 {
-  this.setLayout(new VerticalLayout(5,VerticalLayout.LEFT,VerticalLayout.TOP));
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
   wsdlMessage.setFont(plainText);
   wsdlMessage2.setFont(plainText);
   wsdlMessage3.setFont(plainText);
@@ -11,14 +13,7 @@
   JPanel mainPanel=new JPanel();
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
-  JLabel panelTitleLabel=new JLabel(getStaticLabel());
-  Font curFont=panelTitleLabel.getFont();
-  int curFontSize=curFont.getSize();
-  curFontSize+=4;
-  panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
-  mainPanel.add(panelTitleLabel);
-  mainPanel.add(getNamePanel());
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
   JPanel wsdlEntry=new JPanel();
   mainPanel.add(wsdlEntry);
   wsdlEntry.add(wsdlField);
@@ -32,9 +27,11 @@
   listPanel.add(wsdlMethods);
   listPanel.add(selectButton);
   selectButton.addActionListener(this);
+  mainPanel.add(protocol);
   mainPanel.add(domain);
   mainPanel.add(port);
   mainPanel.add(path);
+  mainPanel.add(connectTimeout);
   mainPanel.add(soapAction);
   Dimension pref=new Dimension(400,200);
   soapXml.setPreferredSize(pref);

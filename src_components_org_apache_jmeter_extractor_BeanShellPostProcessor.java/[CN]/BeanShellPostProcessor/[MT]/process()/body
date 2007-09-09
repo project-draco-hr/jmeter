@@ -1,0 +1,19 @@
+{
+  JMeterContext jmctx=JMeterContextService.getContext();
+  SampleResult prev=jmctx.getPreviousResult();
+  final BeanShellInterpreter bshInterpreter=getBeanShellInterpreter();
+  if (prev == null || bshInterpreter == null) {
+    return;
+  }
+  JMeterVariables vars=jmctx.getVariables();
+  try {
+    bshInterpreter.set("ctx",jmctx);
+    bshInterpreter.set("vars",vars);
+    bshInterpreter.set("prev",prev);
+    bshInterpreter.set("data",prev.getResponseData());
+    bshInterpreter.eval(getScript());
+  }
+ catch (  JMeterException e) {
+    log.warn("Problem in BeanShell script " + e);
+  }
+}

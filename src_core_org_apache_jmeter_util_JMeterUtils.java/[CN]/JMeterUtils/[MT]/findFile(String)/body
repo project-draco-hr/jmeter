@@ -1,0 +1,7 @@
+{
+  File f=new File(fileName);
+  if (!f.exists()) {
+    f=new File(getJMeterBinDir(),fileName);
+  }
+  return f;
+}

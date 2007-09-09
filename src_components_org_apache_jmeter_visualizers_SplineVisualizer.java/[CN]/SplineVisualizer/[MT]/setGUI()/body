@@ -5,7 +5,7 @@
   JPanel mainPanel=new JPanel();
   Border margin=new EmptyBorder(10,10,5,10);
   mainPanel.setBorder(margin);
-  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.LEFT));
+  mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
   mainPanel.add(makeTitlePanel());
   maximumLabel=new JLabel(JMeterUtils.getResString("spline_visualizer_maximum"));
   maximumLabel.setForeground(MAXIMUM_COLOR);

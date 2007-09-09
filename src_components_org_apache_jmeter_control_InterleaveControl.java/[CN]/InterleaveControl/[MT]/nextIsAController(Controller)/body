@@ -2,17 +2,15 @@
   Sampler sampler=controller.next();
   if (sampler == null) {
     currentReturnedNull(controller);
-    return doNext();
+    return next();
+  }
+  currentReturnedAtLeastOne=true;
+  if (getStyle() == IGNORE_SUB_CONTROLLERS) {
+    incrementCurrent();
+    skipNext=true;
   }
  else {
-    currentReturnedAtLeastOne=true;
-    if (getStyle() == IGNORE_SUB_CONTROLLERS) {
-      incrementCurrent();
-      skipNext=true;
-    }
- else {
-      searchStart=null;
-    }
-    return sampler;
+    searchStart=null;
   }
+  return sampler;
 }

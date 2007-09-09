@@ -1,8 +1,0 @@
-{
-  createParser("<IMG SRC=\"mypic.jpg\">","http://www.yahoo.com");
-  parser.addScanner(new ImageScanner("-i",new LinkProcessor()));
-  parseAndAssertNodeCount(1);
-  assertTrue("Node identified should be HTMLImageTag",node[0] instanceof ImageTag);
-  ImageTag imageTag=(ImageTag)node[0];
-  assertEquals("Expected Link","http://www.yahoo.com/mypic.jpg",imageTag.getImageURL());
-}

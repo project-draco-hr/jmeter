@@ -1,8 +1,9 @@
 {
-  if (event.getSource() == selectButton) {
+  final Object eventSource=event.getSource();
+  if (eventSource == selectButton) {
     this.configureFromWSDL();
   }
- else   if (event.getSource() == useProxy) {
+ else   if (eventSource == useProxy) {
     boolean use=useProxy.isSelected();
     if (use) {
       proxyHost.setEnabled(true);
@@ -13,16 +14,17 @@
       proxyPort.setEnabled(false);
     }
   }
- else {
-    if (this.domain.getText() != null) {
-      String[] wsdlData=browseWSDL(wsdlField.getText());
+ else   if (eventSource == wsdlButton) {
+    final String wsdlText=wsdlField.getText();
+    if (wsdlText != null && wsdlText.length() > 0) {
+      String[] wsdlData=browseWSDL(wsdlText);
       if (wsdlData != null) {
         wsdlMethods.setValues(wsdlData);
         wsdlMethods.repaint();
       }
     }
  else {
-      JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_url_error"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_url_error"),"Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
     }
   }
 }

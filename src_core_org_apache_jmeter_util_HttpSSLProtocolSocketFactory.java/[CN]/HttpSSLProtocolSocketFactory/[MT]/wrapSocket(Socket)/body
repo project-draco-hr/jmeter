@@ -1,0 +1,4 @@
+{
+  if (CPS > 0)   return new SlowSSLSocket((SSLSocket)sock,CPS);
+  return sock;
+}

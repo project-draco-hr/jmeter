@@ -1,0 +1,7 @@
+{
+  if (null != result.getFailureMessage()) {
+  }
+  assertNull(result.getFailureMessage(),result.getFailureMessage());
+  assertFalse(result.isError());
+  assertFalse(result.isFailure());
+}

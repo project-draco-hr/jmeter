@@ -1,7 +1,0 @@
-{
-  Properties props=new Properties();
-  props.setProperty("name","Mike");
-  props.setProperty("pets","dog");
-  config.add(props);
-  assertEquals("dog",config.getProperty("pets"));
-}

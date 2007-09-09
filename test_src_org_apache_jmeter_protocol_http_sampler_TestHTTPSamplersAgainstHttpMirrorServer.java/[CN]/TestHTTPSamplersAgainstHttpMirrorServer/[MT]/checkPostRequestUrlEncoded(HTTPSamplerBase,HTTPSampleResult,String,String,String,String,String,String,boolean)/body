@@ -1,0 +1,16 @@
+{
+  if (contentEncoding == null || contentEncoding.length() == 0) {
+    contentEncoding=samplerDefaultEncoding;
+  }
+  assertEquals(sampler.getUrl(),res.getURL());
+  String expectedPostBody=null;
+  if (!valuesAlreadyUrlEncoded) {
+    String expectedTitle=URLEncoder.encode(titleValue,contentEncoding);
+    String expectedDescription=URLEncoder.encode(descriptionValue,contentEncoding);
+    expectedPostBody=titleField + "=" + expectedTitle+ "&"+ descriptionField+ "="+ expectedDescription;
+  }
+ else {
+    expectedPostBody=titleField + "=" + titleValue+ "&"+ descriptionField+ "="+ descriptionValue;
+  }
+  checkPostRequestBody(sampler,res,samplerDefaultEncoding,contentEncoding,expectedPostBody);
+}

@@ -1,15 +1,82 @@
 {
-  ((HttpURLConnection)connection).setRequestMethod("POST");
-  String filename=sampler.getFileField();
-  if ((filename != null) && (filename.trim().length() > 0)) {
-    connection.setRequestProperty("Content-Type","multipart/form-data; boundary=" + BOUNDARY);
+  String contentEncoding=sampler.getContentEncoding();
+  if (contentEncoding == null || contentEncoding.length() == 0) {
+    contentEncoding=ENCODING;
+  }
+  long contentLength=0L;
+  if (sampler.getUseMultipartForPost()) {
+    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.MULTIPART_FORM_DATA + "; boundary=" + getBoundary());
+    ByteArrayOutputStream bos=new ByteArrayOutputStream();
+    bos.write(getMultipartDivider());
+    PropertyIterator args=sampler.getArguments().iterator();
+    while (args.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      bos.write(CRLF);
+      writeFormMultipart(bos,arg.getName(),arg.getValue(),contentEncoding);
+    }
+    if (sampler.hasUploadableFiles()) {
+      bos.write(CRLF);
+    }
+    bos.flush();
+    formDataPostBody=bos.toByteArray();
+    bos.close();
+    contentLength=formDataPostBody.length;
+    if (sampler.hasUploadableFiles()) {
+      bos=new ByteArrayOutputStream();
+      writeStartFileMultipart(bos,sampler.getFilename(),sampler.getFileField(),sampler.getMimetype());
+      bos.flush();
+      formDataFileStartMultipart=bos.toByteArray();
+      bos.close();
+      contentLength+=formDataFileStartMultipart.length;
+      File uploadFile=new File(sampler.getFilename());
+      contentLength+=uploadFile.length();
+      contentLength+=getFileMultipartEndDivider().length;
+    }
+    contentLength+=getMultipartEndDivider().length;
+    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
     connection.setDoOutput(true);
     connection.setDoInput(true);
   }
  else {
-    String postData=sampler.getQueryString();
-    connection.setRequestProperty("Content-Length","" + postData.length());
-    connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+    String contentTypeHeader=connection.getRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE);
+    boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.length() > 0;
+    if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
+      if (!hasContentTypeHeader) {
+        if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
+          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+        }
+ else {
+          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+        }
+      }
+      File inputFile=new File(sampler.getFilename());
+      contentLength=inputFile.length();
+    }
+ else {
+      if (!hasContentTypeHeader) {
+        connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+      }
+      ByteArrayOutputStream bos=new ByteArrayOutputStream();
+      String postBody=null;
+      if (!sampler.getSendParameterValuesAsPostBody()) {
+        postBody=sampler.getQueryString(contentEncoding);
+      }
+ else {
+        StringBuffer postBodyBuffer=new StringBuffer();
+        PropertyIterator args=sampler.getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          postBodyBuffer.append(arg.getValue());
+        }
+        postBody=postBodyBuffer.toString();
+      }
+      bos.write(postBody.getBytes("UTF-8"));
+      bos.flush();
+      bos.close();
+      formDataUrlEncoded=bos.toByteArray();
+      contentLength=bos.toByteArray().length;
+    }
+    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
     connection.setDoOutput(true);
   }
 }

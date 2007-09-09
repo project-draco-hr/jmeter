@@ -1,0 +1,5 @@
+{
+  String variableName=((CompoundVariable)values[0]).execute();
+  String variableValue=getVariables().get(variableName);
+  return variableValue == null ? variableName : variableValue;
+}

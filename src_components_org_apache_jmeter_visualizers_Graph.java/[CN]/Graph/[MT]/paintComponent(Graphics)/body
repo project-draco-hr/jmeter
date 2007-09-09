@@ -1,7 +1,8 @@
 {
   super.paintComponent(g);
-synchronized (model.getSamples()) {
-    Iterator e=model.getSamples().iterator();
+  List samples=model.getSamples();
+synchronized (samples) {
+    Iterator e=samples.iterator();
     for (int i=0; e.hasNext(); i++) {
       Sample s=(Sample)e.next();
       drawSample(i,s,g);

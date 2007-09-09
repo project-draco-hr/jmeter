@@ -1,11 +1,12 @@
 {
-  Perl5Matcher matcher=(Perl5Matcher)localMatcher.get();
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
   PatternMatcherInput input=(PatternMatcherInput)localInput.get();
   input.setInput(new String(html));
+  Pattern pattern=JMeterUtils.getPatternCache().getPattern(REGEXP,Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK | Perl5Compiler.READ_ONLY_MASK);
   while (matcher.contains(input,pattern)) {
     MatchResult match=matcher.getMatch();
     String s;
-    if (log.isDebugEnabled())     log.debug("match groups " + match.groups());
+    if (log.isDebugEnabled())     log.debug("match groups " + match.groups() + " "+ match.toString());
     for (int g=1; g <= NUM_BASE_GROUPS && g <= match.groups(); g++) {
       s=match.group(g);
       if (s != null) {
@@ -24,10 +25,10 @@
     }
     for (int g=NUM_BASE_GROUPS + 1; g <= match.groups(); g++) {
       s=match.group(g);
-      if (log.isDebugEnabled()) {
-        log.debug("group " + g + " - "+ match.group(g));
-      }
       if (s != null) {
+        if (log.isDebugEnabled()) {
+          log.debug("group " + g + " - "+ match.group(g));
+        }
         urls.addURL(s,baseUrl);
       }
     }

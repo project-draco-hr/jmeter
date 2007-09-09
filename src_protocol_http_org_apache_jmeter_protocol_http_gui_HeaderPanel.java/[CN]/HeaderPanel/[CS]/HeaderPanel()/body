@@ -1,4 +1,5 @@
 {
-  tableModel=new InnerTableModel();
+  headerManager=new HeaderManager();
+  tableModel=new InnerTableModel(headerManager);
   init();
 }

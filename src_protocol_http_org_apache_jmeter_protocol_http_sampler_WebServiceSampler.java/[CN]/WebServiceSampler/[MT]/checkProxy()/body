@@ -4,14 +4,14 @@
     String port=this.getPropertyAsString(PROXY_PORT);
     String host=this.getPropertyAsString(PROXY_HOST);
     if (host == null || host.length() == 0) {
-      if (System.getProperty("http.proxyHost") != null) {
-        host=System.getProperty("http.proxyHost");
+      host=System.getProperty("http.proxyHost");
+      if (host != null) {
         this.setProxyHost(host);
       }
     }
     if (port == null || port.length() == 0) {
-      if (System.getProperty("http.proxyPort") != null) {
-        port=System.getProperty("http.proxyPort");
+      port=System.getProperty("http.proxyPort");
+      if (port != null) {
         this.setProxyPort(port);
       }
     }

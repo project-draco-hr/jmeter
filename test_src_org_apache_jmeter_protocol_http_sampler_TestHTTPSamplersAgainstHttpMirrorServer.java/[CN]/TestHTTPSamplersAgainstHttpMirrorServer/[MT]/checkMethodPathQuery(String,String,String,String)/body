@@ -1,0 +1,30 @@
+{
+  int indexFirstSpace=headersSent.indexOf(" ");
+  int indexSecondSpace=headersSent.indexOf(" ",headersSent.length() > indexFirstSpace ? indexFirstSpace + 1 : indexFirstSpace);
+  if (indexFirstSpace <= 0 && indexSecondSpace <= 0 || indexFirstSpace == indexSecondSpace) {
+    fail("Could not find method and URI sent");
+  }
+  String methodSent=headersSent.substring(0,indexFirstSpace);
+  assertEquals(expectedMethod,methodSent);
+  String uriSent=headersSent.substring(indexFirstSpace + 1,indexSecondSpace);
+  int indexQueryStart=uriSent.indexOf("?");
+  if (expectedQueryString != null && expectedQueryString.length() > 0) {
+    if (indexQueryStart <= 0 || (indexQueryStart == uriSent.length() - 1)) {
+      fail("Could not find query string in URI");
+    }
+  }
+ else {
+    if (indexQueryStart > 0) {
+      fail("Query string present in URI");
+    }
+ else {
+      indexQueryStart=uriSent.length();
+    }
+  }
+  String pathSent=uriSent.substring(0,indexQueryStart);
+  assertEquals(expectedPath,pathSent);
+  if (expectedQueryString != null && expectedQueryString.length() > 0) {
+    String queryStringSent=uriSent.substring(indexQueryStart + 1);
+    checkArraysHaveSameContent(expectedQueryString.getBytes(EncoderCache.URL_ARGUMENT_ENCODING),queryStringSent.getBytes(EncoderCache.URL_ARGUMENT_ENCODING));
+  }
+}

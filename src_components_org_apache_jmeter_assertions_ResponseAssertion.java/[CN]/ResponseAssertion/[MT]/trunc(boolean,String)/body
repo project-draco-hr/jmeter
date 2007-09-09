@@ -1,0 +1,5 @@
+{
+  if (str.length() <= EQUALS_SECTION_DIFF_LEN)   return str;
+ else   if (right)   return str.substring(0,EQUALS_SECTION_DIFF_LEN) + EQUALS_DIFF_TRUNC;
+ else   return EQUALS_DIFF_TRUNC + str.substring(str.length() - EQUALS_SECTION_DIFF_LEN,str.length());
+}

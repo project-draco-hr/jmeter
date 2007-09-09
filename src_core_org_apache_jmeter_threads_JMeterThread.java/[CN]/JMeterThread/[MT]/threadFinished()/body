@@ -1,5 +1,10 @@
 {
-  processThreadListeners(false);
+  ThreadListenerTraverser shut=new ThreadListenerTraverser(false);
+  testTree.traverse(shut);
   JMeterContextService.decrNumberOfThreads();
   threadGroup.decrNumberOfThreads();
+  GuiPackage gp=GuiPackage.getInstance();
+  if (gp != null) {
+    gp.getMainFrame().updateCounts();
+  }
 }

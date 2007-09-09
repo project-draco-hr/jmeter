@@ -1,0 +1,7 @@
+{
+  byte[] ending=DASH_DASH.getBytes(ENCODING);
+  byte[] completeEnding=new byte[ending.length + CRLF.length];
+  System.arraycopy(ending,0,completeEnding,0,ending.length);
+  System.arraycopy(CRLF,0,completeEnding,ending.length,CRLF.length);
+  return completeEnding;
+}

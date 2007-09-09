@@ -1,0 +1,8 @@
+{
+  String tag=(String)tags.pop();
+  if (!tag.equals(tagname)) {
+    throw new IllegalArgumentException("Trying to close tag: " + tagname + " ; should be "+ tag);
+  }
+  endTag(tag);
+  return this;
+}

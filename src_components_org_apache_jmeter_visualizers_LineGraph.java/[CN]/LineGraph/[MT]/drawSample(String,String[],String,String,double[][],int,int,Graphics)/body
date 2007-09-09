@@ -1,0 +1,32 @@
+{
+  try {
+    if (_width == 0) {
+      _width=450;
+    }
+    if (_height == 0) {
+      _height=250;
+    }
+    this.setPreferredSize(new Dimension(_width,_height));
+    DataSeries dataSeries=new DataSeries(_xAxisLabels,_xAxisTitle,_yAxisTitle,_title);
+    String[] legendLabels=yAxisLabel;
+    Paint[] paints=this.createPaint(_data.length);
+    Shape[] shapes=createShapes(_data.length);
+    Stroke[] lstrokes=createStrokes(_data.length);
+    LineChartProperties lineChartProperties=new LineChartProperties(lstrokes,shapes);
+    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,legendLabels,paints,ChartType.LINE,lineChartProperties);
+    dataSeries.addIAxisPlotDataSet(axisChartDataSet);
+    ChartProperties chartProperties=new ChartProperties();
+    AxisProperties axisProperties=new AxisProperties();
+    axisProperties.getYAxisProperties().setShowGridLines(1);
+    axisProperties.setXAxisLabelsAreVertical(true);
+    DataAxisProperties daxp=(DataAxisProperties)axisProperties.getYAxisProperties();
+    daxp.setRoundToNearest(1);
+    LegendProperties legendProperties=new LegendProperties();
+    AxisChart axisChart=new AxisChart(dataSeries,chartProperties,axisProperties,legendProperties,_width,_height);
+    axisChart.setGraphics2D((Graphics2D)g);
+    axisChart.render();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

@@ -1,0 +1,31 @@
+{
+  setupNoFilename(sampler);
+  String titleValue="mytitle";
+  String descriptionValue="mydescription";
+  setupFormData(sampler,titleValue,descriptionValue);
+  String contentEncoding="";
+  sampler.setContentEncoding(contentEncoding);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
+  checkContentTypeUrlEncoded(connection);
+  byte[] expectedUrl="title=mytitle&description=mydescription".getBytes();
+  checkContentLength(connection,expectedUrl.length);
+  checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
+  expectedUrl="title=mytitle&description=mydescription".getBytes(UTF_8);
+  checkContentLength(connection,expectedUrl.length);
+  checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
+  connection.disconnect();
+  establishConnection();
+  contentEncoding="ISO-8859-1";
+  sampler.setContentEncoding(contentEncoding);
+  postWriter.setHeaders(connection,sampler);
+  postWriter.sendPostData(connection,sampler);
+  checkContentTypeUrlEncoded(connection);
+  expectedUrl="title=mytitle&description=mydescription".getBytes(contentEncoding);
+  checkContentLength(connection,expectedUrl.length);
+  checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
+  expectedUrl="title=mytitle&description=mydescription".getBytes(UTF_8);
+  checkContentLength(connection,expectedUrl.length);
+  checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
+  connection.disconnect();
+}

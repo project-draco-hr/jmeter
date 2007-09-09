@@ -9,24 +9,35 @@
     throw new IOException("The file you specified cannot be read.");
   }
   String line;
-  while ((line=reader.readLine()) != null) {
-    try {
-      if (line.startsWith("#") || line.trim().length() == 0)       continue;
-      String[] st=split(line,"\t"," ");
-      int domain=0;
-      int path=2;
-      if (st[path].equals(" "))       st[path]="/";
-      boolean secure=Boolean.valueOf(st[3]).booleanValue();
-      long expires=new Long(st[4]).longValue();
-      int name=5;
-      int value=6;
-      Cookie cookie=new Cookie(st[name],st[value],st[domain],st[path],secure,expires);
-      getCookies().addItem(cookie);
-    }
- catch (    Exception e) {
-      reader.close();
-      throw new IOException("Error parsing cookie line\n\t'" + line + "'\n\t"+ e);
+  try {
+    final CollectionProperty cookies=getCookies();
+    while ((line=reader.readLine()) != null) {
+      try {
+        if (line.startsWith("#") || line.trim().length() == 0)         continue;
+        String[] st=JOrphanUtils.split(line,TAB,false);
+        final int _domain=0;
+        final int _path=2;
+        final int _secure=3;
+        final int _expires=4;
+        final int _name=5;
+        final int _value=6;
+        final int _fields=7;
+        if (st.length != _fields) {
+          throw new IOException("Expected " + _fields + " fields, found "+ st.length+ " in "+ line);
+        }
+        if (st[_path].length() == 0)         st[_path]="/";
+        boolean secure=Boolean.valueOf(st[_secure]).booleanValue();
+        long expires=new Long(st[_expires]).longValue();
+        if (expires == Long.MAX_VALUE)         expires=0;
+        Cookie cookie=new Cookie(st[_name],st[_value],st[_domain],st[_path],secure,expires);
+        cookies.addItem(cookie);
+      }
+ catch (      NumberFormatException e) {
+        throw new IOException("Error parsing cookie line\n\t'" + line + "'\n\t"+ e);
+      }
     }
   }
-  reader.close();
+  finally {
+    reader.close();
+  }
 }

@@ -1,0 +1,9 @@
+{
+  Charset charset=getFileEncodingCharset();
+  if (charset != null) {
+    return new OutputStreamWriter(outStream,charset);
+  }
+ else {
+    return new OutputStreamWriter(outStream);
+  }
+}

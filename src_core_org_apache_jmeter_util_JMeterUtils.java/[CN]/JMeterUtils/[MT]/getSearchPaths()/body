@@ -2,7 +2,7 @@
   String p=JMeterUtils.getPropDefault("search_paths",null);
   String[] result=new String[1];
   if (p != null) {
-    String[] paths=JOrphanUtils.split(p,";");
+    String[] paths=p.split(";");
     result=new String[paths.length + 1];
     for (int i=1; i < result.length; i++) {
       result[i]=paths[i - 1];

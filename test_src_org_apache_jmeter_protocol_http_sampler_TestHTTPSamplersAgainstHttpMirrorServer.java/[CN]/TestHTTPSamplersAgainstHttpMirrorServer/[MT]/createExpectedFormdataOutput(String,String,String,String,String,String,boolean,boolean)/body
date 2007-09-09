@@ -1,0 +1,61 @@
+{
+  final byte[] DASH_DASH=new String("--").getBytes(ISO_8859_1);
+  final ByteArrayOutputStream output=new ByteArrayOutputStream();
+  if (firstMultipart) {
+    output.write(DASH_DASH);
+    output.write(boundaryString.getBytes(ISO_8859_1));
+    output.write(CRLF);
+  }
+  output.write("Content-Disposition: form-data; name=\"".getBytes(ISO_8859_1));
+  output.write(titleField.getBytes(ISO_8859_1));
+  output.write("\"".getBytes(ISO_8859_1));
+  output.write(CRLF);
+  output.write("Content-Type: text/plain".getBytes(ISO_8859_1));
+  if (contentEncoding != null) {
+    output.write("; charset=".getBytes(ISO_8859_1));
+    output.write(contentEncoding.getBytes(ISO_8859_1));
+  }
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(ISO_8859_1));
+  output.write(CRLF);
+  output.write(CRLF);
+  if (contentEncoding != null) {
+    output.write(titleValue.getBytes(contentEncoding));
+  }
+ else {
+    output.write(titleValue.getBytes());
+  }
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(ISO_8859_1));
+  output.write(CRLF);
+  output.write("Content-Disposition: form-data; name=\"".getBytes(ISO_8859_1));
+  output.write(descriptionField.getBytes(ISO_8859_1));
+  output.write("\"".getBytes(ISO_8859_1));
+  output.write(CRLF);
+  output.write("Content-Type: text/plain".getBytes(ISO_8859_1));
+  if (contentEncoding != null) {
+    output.write("; charset=".getBytes(ISO_8859_1));
+    output.write(contentEncoding.getBytes(ISO_8859_1));
+  }
+  output.write(CRLF);
+  output.write("Content-Transfer-Encoding: 8bit".getBytes(ISO_8859_1));
+  output.write(CRLF);
+  output.write(CRLF);
+  if (contentEncoding != null) {
+    output.write(descriptionValue.getBytes(contentEncoding));
+  }
+ else {
+    output.write(descriptionValue.getBytes());
+  }
+  output.write(CRLF);
+  output.write(DASH_DASH);
+  output.write(boundaryString.getBytes(ISO_8859_1));
+  if (lastMultipart) {
+    output.write(DASH_DASH);
+  }
+  output.write(CRLF);
+  output.flush();
+  output.close();
+  return output.toByteArray();
+}

@@ -4,7 +4,7 @@
   saveConfigButton=new JButton(JMeterUtils.getResString("config_save_settings"));
   saveConfigButton.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
-      SavePropertyDialog d=new SavePropertyDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("Sample Result Save Configuration"),true,collector.getSaveConfig());
+      SavePropertyDialog d=new SavePropertyDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("sample_result_save_configuration"),true,collector.getSaveConfig());
       d.pack();
       ComponentUtil.centerComponentInComponent(GuiPackage.getInstance().getMainFrame(),d);
       d.setVisible(true);
