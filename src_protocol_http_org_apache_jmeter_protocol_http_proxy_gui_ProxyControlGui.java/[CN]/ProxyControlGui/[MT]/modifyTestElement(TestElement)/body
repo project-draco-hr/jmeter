@@ -1,4 +1,10 @@
 {
+  if (excludeTable.isEditing()) {
+    excludeTable.getCellEditor().stopCellEditing();
+  }
+  if (includeTable.isEditing()) {
+    includeTable.getCellEditor().stopCellEditing();
+  }
   configureTestElement(el);
   if (el instanceof ProxyControl) {
     model=(ProxyControl)el;

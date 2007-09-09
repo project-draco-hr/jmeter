@@ -2,7 +2,6 @@
   excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class});
   excludeTable=new JTable(excludeModel);
   excludeTable.setPreferredScrollableViewportSize(new Dimension(100,30));
-  excludeTable.addFocusListener(this);
   JPanel panel=new JPanel(new BorderLayout());
   panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("patterns_to_exclude")));
   panel.add(new JScrollPane(excludeTable),BorderLayout.CENTER);
