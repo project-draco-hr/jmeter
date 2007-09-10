@@ -1,19 +1,7 @@
 {
-  try {
-    saver.alias(alias,Class.forName(clazz));
-    aliasToClass.setProperty(alias,clazz);
-    Object oldval=classToAlias.setProperty(clazz,alias);
-    if (oldval != null) {
-      log.error("Duplicate alias detected for " + clazz + ": "+ alias+ " & "+ oldval);
-    }
-  }
- catch (  ClassNotFoundException e) {
-    log.warn("Could not set up alias " + alias + " "+ e.toString());
-  }
-catch (  NoClassDefFoundError e) {
-    log.warn("Could not set up alias " + alias + " "+ e.toString());
-  }
-catch (  Throwable e) {
-    log.error("Could not set up alias " + alias,e);
+  aliasToClass.setProperty(alias,clazz);
+  Object oldval=classToAlias.setProperty(clazz,alias);
+  if (oldval != null) {
+    log.error("Duplicate alias detected for " + clazz + ": "+ alias+ " & "+ oldval);
   }
 }
