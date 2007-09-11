@@ -1,0 +1,6 @@
+{
+  if (!(e instanceof ThreadDeath)) {
+    log.error("Uncaught exception: ",e);
+    System.err.println("Uncaught Exception " + e + ". See log file for details.");
+  }
+}
