@@ -3,51 +3,12 @@
   if (chooser == null) {
     return;
   }
-  InputStream reader=null;
-  try {
-    File f=chooser.getSelectedFile();
-    if (f != null) {
-      boolean isTestPlan=false;
-      boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
-      if (merging) {
-        log.info("Merging file: " + f);
-      }
- else {
-        log.info("Loading file: " + f);
-        if (!Close.performAction(e))         return;
-        FileServer.getFileServer().setBasedir(f.getAbsolutePath());
-      }
-      reader=new FileInputStream(f);
-      HashTree tree=SaveService.loadTree(reader);
-      isTestPlan=insertLoadedTree(e.getID(),tree,merging);
-      if (!merging && isTestPlan) {
-        GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
-      }
+  File selectedFile=chooser.getSelectedFile();
+  if (selectedFile != null) {
+    boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
+    if (!merging) {
+      if (!Close.performAction(e))       return;
     }
-  }
- catch (  NoClassDefFoundError ex) {
-    log.warn("Missing jar file",ex);
-    String msg=ex.getMessage();
-    if (msg == null) {
-      msg="Missing jar file - see log for details";
-    }
-    JMeterUtils.reportErrorToUser(msg);
-  }
-catch (  ConversionException ex) {
-    log.warn("Could not convert file " + ex);
-    JMeterUtils.reportErrorToUser(SaveService.CEtoString(ex));
-  }
-catch (  Exception ex) {
-    log.warn("Unexpected error",ex);
-    String msg=ex.getMessage();
-    if (msg == null) {
-      msg="Unexpected error - see log for details";
-    }
-    JMeterUtils.reportErrorToUser(msg);
-  }
- finally {
-    JOrphanUtils.closeQuietly(reader);
-    GuiPackage.getInstance().updateCurrentGui();
-    GuiPackage.getInstance().getMainFrame().repaint();
+    loadProjectFile(e,selectedFile,merging);
   }
 }

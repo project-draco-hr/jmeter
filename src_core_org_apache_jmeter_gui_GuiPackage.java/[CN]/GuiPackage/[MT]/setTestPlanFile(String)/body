@@ -1,6 +1,7 @@
 {
   testPlanFile=f;
-  GuiPackage.getInstance().getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
+  getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
+  getMainFrame().setFileRevertEnabled(f != null);
   try {
     FileServer.getFileServer().setBasedir(testPlanFile);
   }

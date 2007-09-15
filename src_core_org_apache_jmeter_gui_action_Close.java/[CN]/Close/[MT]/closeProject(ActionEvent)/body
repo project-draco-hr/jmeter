@@ -1,0 +1,7 @@
+{
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  guiPackage.getTreeModel().clearTestPlan();
+  guiPackage.getTreeListener().getJTree().setSelectionRow(1);
+  guiPackage.setTestPlanFile(null);
+  ActionRouter.getInstance().actionPerformed(new ActionEvent(e.getSource(),e.getID(),ActionNames.ADD_ALL));
+}
