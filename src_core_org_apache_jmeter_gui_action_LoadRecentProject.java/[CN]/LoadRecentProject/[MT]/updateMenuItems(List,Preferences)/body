@@ -1,0 +1,21 @@
+{
+  boolean someRecentFiles=false;
+  for (int i=0; i < NUMBER_OF_MENU_ITEMS; i++) {
+    JMenuItem recentFile=(JMenuItem)menuItems.get(i);
+    String recentFilePath=getRecentFile(prefs,i);
+    if (recentFilePath != null) {
+      File file=new File(recentFilePath);
+      recentFile.setText(getMenuItemDisplayName(file));
+      recentFile.setToolTipText(recentFilePath);
+      recentFile.setEnabled(true);
+      recentFile.setVisible(true);
+      someRecentFiles=true;
+    }
+ else {
+      recentFile.setEnabled(false);
+      recentFile.setVisible(false);
+    }
+  }
+  JSeparator separator=(JSeparator)menuItems.get(menuItems.size() - 1);
+  separator.setVisible(someRecentFiles);
+}

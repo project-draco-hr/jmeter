@@ -2,6 +2,7 @@
   testPlanFile=f;
   getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
   getMainFrame().setFileRevertEnabled(f != null);
+  getMainFrame().setProjectFileLoaded(f);
   try {
     FileServer.getFileServer().setBasedir(testPlanFile);
   }

@@ -1,0 +1,8 @@
+{
+  final int maxLength=40;
+  String menuText=file.getName();
+  if (menuText.length() > maxLength) {
+    menuText="..." + menuText.substring(menuText.length() - maxLength,menuText.length());
+  }
+  return menuText;
+}

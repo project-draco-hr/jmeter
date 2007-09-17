@@ -1,0 +1,4 @@
+{
+  if (!Close.performAction(e))   return;
+  loadProjectFile(e,getRecentFile(e),false);
+}

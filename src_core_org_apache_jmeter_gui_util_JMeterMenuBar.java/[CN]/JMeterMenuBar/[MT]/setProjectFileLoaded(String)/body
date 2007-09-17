@@ -1,0 +1,5 @@
+{
+  if (file_load_recent_files != null && file != null) {
+    LoadRecentProject.updateRecentFileMenuItems(file_load_recent_files,file);
+  }
+}

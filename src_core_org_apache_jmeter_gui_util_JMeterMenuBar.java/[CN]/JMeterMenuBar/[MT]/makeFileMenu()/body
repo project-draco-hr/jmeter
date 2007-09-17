@@ -40,5 +40,9 @@
   fileMenu.add(file_save_as);
   fileMenu.add(file_revert);
   fileMenu.addSeparator();
+  file_load_recent_files=LoadRecentProject.getRecentFileMenuItems();
+  for (Iterator i=file_load_recent_files.iterator(); i.hasNext(); ) {
+    fileMenu.add((JComponent)i.next());
+  }
   fileMenu.add(file_exit);
 }

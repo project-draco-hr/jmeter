@@ -1,0 +1,5 @@
+{
+  JMenuItem menuItem=(JMenuItem)e.getSource();
+  Preferences prefs=Preferences.userNodeForPackage(LoadRecentProject.class);
+  return new File(getRecentFile(prefs,Integer.parseInt(menuItem.getName())));
+}
