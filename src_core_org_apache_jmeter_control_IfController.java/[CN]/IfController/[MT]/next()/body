@@ -1,6 +1,6 @@
 {
   boolean result=true;
-  if (isFirst()) {
+  if (isEvaluateAll() || isFirst()) {
     result=evaluateCondition(getCondition());
   }
   if (result) {

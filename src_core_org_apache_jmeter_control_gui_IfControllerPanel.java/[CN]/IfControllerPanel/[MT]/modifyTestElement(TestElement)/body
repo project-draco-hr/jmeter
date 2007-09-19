@@ -1,11 +1,8 @@
 {
   configureTestElement(controller);
   if (controller instanceof IfController) {
-    if (theCondition.getText().length() > 0) {
-      ((IfController)controller).setCondition(theCondition.getText());
-    }
- else {
-      ((IfController)controller).setCondition("");
-    }
+    IfController ifController=(IfController)controller;
+    ifController.setCondition(theCondition.getText());
+    ifController.setEvaluateAll(evaluateAll.isSelected());
   }
 }

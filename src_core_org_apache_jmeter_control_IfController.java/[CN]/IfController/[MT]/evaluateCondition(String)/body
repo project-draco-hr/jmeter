@@ -14,7 +14,7 @@
       result=true;
     }
  else {
-      throw new Exception(" BAD CONDITION :: " + cond);
+      throw new Exception(" BAD CONDITION :: " + cond + " :: expected true or false");
     }
     logger.debug("    >> evaluate Condition -  [ " + cond + "] results is  ["+ result+ "]");
   }
