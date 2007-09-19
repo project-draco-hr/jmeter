@@ -1,4 +1,7 @@
 {
+  parameters="";
+  filename="";
+  script="";
   try {
     String initFileName=JMeterUtils.getProperty(getInitFileProperty());
     hasInitFile=initFileName != null;
