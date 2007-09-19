@@ -5,7 +5,10 @@
     String recentFilePath=getRecentFile(prefs,i);
     if (recentFilePath != null) {
       File file=new File(recentFilePath);
-      recentFile.setText(getMenuItemDisplayName(file));
+      StringBuffer sb=new StringBuffer(60);
+      if (i < 9)       sb.append(i + 1).append(" ");
+      sb.append(getMenuItemDisplayName(file));
+      recentFile.setText(sb.toString());
       recentFile.setToolTipText(recentFilePath);
       recentFile.setEnabled(true);
       recentFile.setVisible(true);

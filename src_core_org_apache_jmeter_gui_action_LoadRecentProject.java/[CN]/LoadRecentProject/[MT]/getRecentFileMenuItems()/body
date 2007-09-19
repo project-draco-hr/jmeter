@@ -8,7 +8,7 @@
     recentFile.setActionCommand(ActionNames.OPEN_RECENT);
     int shortKey=getShortcutKey(i);
     if (shortKey >= 0) {
-      recentFile.setAccelerator(KeyStroke.getKeyStroke(shortKey,0));
+      recentFile.setMnemonic(shortKey);
     }
     menuItems.add(recentFile);
   }
