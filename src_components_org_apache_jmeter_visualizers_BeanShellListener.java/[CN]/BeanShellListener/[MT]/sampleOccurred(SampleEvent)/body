@@ -12,7 +12,7 @@
     bshInterpreter.set("vars",vars);
     bshInterpreter.set("sampleEvent",se);
     bshInterpreter.set("sampleResult",samp);
-    bshInterpreter.eval(getScript());
+    processFileOrScript(bshInterpreter);
   }
  catch (  JMeterException e) {
     log.warn("Problem in BeanShell script " + e);

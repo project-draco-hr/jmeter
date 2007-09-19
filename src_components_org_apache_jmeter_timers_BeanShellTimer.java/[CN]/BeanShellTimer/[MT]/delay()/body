@@ -10,7 +10,7 @@
   try {
     bshInterpreter.set("ctx",jmctx);
     bshInterpreter.set("vars",vars);
-    Object o=bshInterpreter.eval(getScript());
+    Object o=processFileOrScript(bshInterpreter);
     if (o != null)     ret=o.toString();
   }
  catch (  JMeterException e) {

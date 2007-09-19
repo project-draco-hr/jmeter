@@ -3,6 +3,7 @@
   SampleResult prev=jmctx.getPreviousResult();
   final BeanShellInterpreter bshInterpreter=getBeanShellInterpreter();
   if (prev == null || bshInterpreter == null) {
+    log.error("BeanShell not found");
     return;
   }
   JMeterVariables vars=jmctx.getVariables();
@@ -11,7 +12,7 @@
     bshInterpreter.set("vars",vars);
     bshInterpreter.set("prev",prev);
     bshInterpreter.set("data",prev.getResponseData());
-    bshInterpreter.eval(getScript());
+    processFileOrScript(bshInterpreter);
   }
  catch (  JMeterException e) {
     log.warn("Problem in BeanShell script " + e);

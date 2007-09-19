@@ -1,6 +1,7 @@
 {
   final BeanShellInterpreter bshInterpreter=getBeanShellInterpreter();
   if (bshInterpreter == null) {
+    log.error("BeanShell not found");
     return;
   }
   JMeterContext jmctx=JMeterContextService.getContext();
@@ -12,7 +13,7 @@
     bshInterpreter.set("vars",vars);
     bshInterpreter.set("sampler",sam);
     bshInterpreter.set("prev",prev);
-    bshInterpreter.eval(getScript());
+    processFileOrScript(bshInterpreter);
   }
  catch (  JMeterException e) {
     log.warn("Problem in BeanShell script " + e);
