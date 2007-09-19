@@ -1,0 +1,12 @@
+{
+  String fileName=getFilename();
+  bsh.set("FileName",getFilename());
+  bsh.set("Parameters",getParameters());
+  bsh.set("bsh.args",JOrphanUtils.split(getParameters()," "));
+  if (fileName.length() == 0) {
+    return bsh.eval(getScript());
+  }
+ else {
+    return bsh.source(fileName);
+  }
+}
