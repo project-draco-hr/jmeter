@@ -15,4 +15,6 @@
   res.setStampAndTime(Converter.getLong(reader.getAttribute(ATT_TIME_STAMP)),Converter.getLong(reader.getAttribute(ATT_TIME)));
   res.setLatency(Converter.getLong(reader.getAttribute(ATT_LATENCY)));
   res.setBytes(Converter.getInt(reader.getAttribute(ATT_BYTES)));
+  res.setGroupThreads(Converter.getInt(reader.getAttribute(ATT_GRP_THRDS)));
+  res.setAllThreads(Converter.getInt(reader.getAttribute(ATT_ALL_THRDS)));
 }

@@ -59,14 +59,9 @@
     text.append(delimiter);
   }
   if (saveConfig.saveThreadCounts()) {
-    org.apache.jmeter.threads.ThreadGroup threadGroup=JMeterContextService.getContext().getThreadGroup();
-    int numThreads=0;
-    if (threadGroup != null) {
-      numThreads=threadGroup.getNumberOfThreads();
-    }
-    text.append(numThreads);
+    text.append(sample.getGroupThreads());
     text.append(delimiter);
-    text.append(JMeterContextService.getNumberOfThreads());
+    text.append(sample.getAllThreads());
     text.append(delimiter);
   }
   if (saveConfig.saveUrl()) {

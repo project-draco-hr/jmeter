@@ -12,5 +12,7 @@
   setContentType(res.getContentType());
   setDataEncoding(res.getDataEncoding());
   setURL(res.getURL());
+  setGroupThreads(res.getGroupThreads());
+  setAllThreads(res.getAllThreads());
   addSubResult(res);
 }

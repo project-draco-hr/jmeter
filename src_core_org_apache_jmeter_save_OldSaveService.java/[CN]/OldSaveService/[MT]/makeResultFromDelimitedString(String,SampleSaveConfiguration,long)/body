@@ -77,7 +77,12 @@
       result.setBytes(Integer.parseInt(text));
     }
     if (saveConfig.saveThreadCounts()) {
-      i+=2;
+      field=CSV_THREAD_COUNT1;
+      text=parts[i++];
+      result.setGroupThreads(Integer.parseInt(text));
+      field=CSV_THREAD_COUNT2;
+      text=parts[i++];
+      result.setAllThreads(Integer.parseInt(text));
     }
     if (saveConfig.saveUrl()) {
       i++;

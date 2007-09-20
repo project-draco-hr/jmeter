@@ -35,6 +35,8 @@
             TestBeanHelper.prepare(sampler);
             SampleResult result=sampler.sample(null);
             if (result != null) {
+              result.setGroupThreads(threadGroup.getNumberOfThreads());
+              result.setAllThreads(JMeterContextService.getNumberOfThreads());
               result.setThreadName(threadName);
               threadContext.setPreviousResult(result);
               runPostProcessors(pack.getPostProcessors());
