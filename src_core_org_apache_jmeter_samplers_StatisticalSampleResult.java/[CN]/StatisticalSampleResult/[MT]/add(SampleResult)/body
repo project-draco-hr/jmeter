@@ -11,4 +11,5 @@
     this.setStartTime(Math.min(getStartTime(),res.getStartTime()));
   }
   this.setEndTime(Math.max(getEndTime(),res.getEndTime()));
+  setLatency(getLatency() + res.getLatency());
 }
