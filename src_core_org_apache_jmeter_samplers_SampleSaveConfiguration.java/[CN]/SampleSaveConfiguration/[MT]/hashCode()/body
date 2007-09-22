@@ -28,5 +28,6 @@
   hash=31 * hash + (threadCounts ? 1 : 0);
   hash=31 * hash + (delimiter != null ? delimiter.hashCode() : 0);
   hash=31 * hash + (formatter != null ? formatter.hashCode() : 0);
+  hash=31 * hash + (sampleCount ? 1 : 0);
   return hash;
 }

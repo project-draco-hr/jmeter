@@ -63,6 +63,10 @@
     text.append(CSV_ENCODING);
     text.append(delim);
   }
+  if (saveConfig.saveSampleCount()) {
+    text.append(CSV_SAMPLE_COUNT);
+    text.append(delim);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delim.length();

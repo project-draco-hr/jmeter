@@ -80,6 +80,10 @@
     text.append(sample.getDataEncoding());
     text.append(delimiter);
   }
+  if (saveConfig.saveSampleCount()) {
+    text.append(sample.getSampleCount());
+    text.append(delimiter);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delimiter.length();

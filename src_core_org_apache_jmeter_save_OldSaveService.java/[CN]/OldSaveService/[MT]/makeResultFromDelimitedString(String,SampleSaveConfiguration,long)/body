@@ -102,6 +102,11 @@
       text=parts[i++];
       result.setEncodingAndType(text);
     }
+    if (saveConfig.saveEncoding()) {
+      field=CSV_SAMPLE_COUNT;
+      text=parts[i++];
+      result.setSampleCount(Integer.parseInt(text));
+    }
   }
  catch (  NumberFormatException e) {
     log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);
