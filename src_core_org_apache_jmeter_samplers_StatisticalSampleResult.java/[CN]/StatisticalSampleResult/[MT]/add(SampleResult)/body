@@ -3,6 +3,7 @@
   setBytes(getBytes() + res.getBytes());
   if (!res.isSuccessful()) {
     errorCount++;
+    this.setSuccessful(false);
   }
   if (getStartTime() == 0) {
     this.setStartTime(res.getStartTime());

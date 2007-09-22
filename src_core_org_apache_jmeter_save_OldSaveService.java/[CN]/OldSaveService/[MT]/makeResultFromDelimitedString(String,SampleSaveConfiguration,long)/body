@@ -37,7 +37,12 @@
       text=parts[i++];
       elapsed=Long.parseLong(text);
     }
-    result=new SampleResult(timeStamp,elapsed);
+    if (saveConfig.saveSampleCount()) {
+      result=new StatisticalSampleResult(timeStamp,elapsed);
+    }
+ else {
+      result=new SampleResult(timeStamp,elapsed);
+    }
     if (saveConfig.saveLabel()) {
       field=LABEL;
       text=parts[i++];
@@ -102,10 +107,13 @@
       text=parts[i++];
       result.setEncodingAndType(text);
     }
-    if (saveConfig.saveEncoding()) {
+    if (saveConfig.saveSampleCount()) {
       field=CSV_SAMPLE_COUNT;
       text=parts[i++];
       result.setSampleCount(Integer.parseInt(text));
+      field=CSV_ERROR_COUNT;
+      text=parts[i++];
+      result.setErrorCount(Integer.parseInt(text));
     }
   }
  catch (  NumberFormatException e) {

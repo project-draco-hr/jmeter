@@ -83,6 +83,8 @@
   if (saveConfig.saveSampleCount()) {
     text.append(sample.getSampleCount());
     text.append(delimiter);
+    text.append(sample.getErrorCount());
+    text.append(delimiter);
   }
   String resultString=null;
   int size=text.length();

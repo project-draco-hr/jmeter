@@ -1,4 +1,6 @@
 {
-  String key=event.getResult().getSampleLabel() + "-" + event.getThreadGroup();
-  return key;
+  SampleResult result=event.getResult();
+  StringBuffer sb=new StringBuffer(80);
+  sb.append(result.getSampleLabel()).append("-").append(result.getThreadName());
+  return sb.toString();
 }

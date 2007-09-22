@@ -66,6 +66,8 @@
   if (saveConfig.saveSampleCount()) {
     text.append(CSV_SAMPLE_COUNT);
     text.append(delim);
+    text.append(CSV_ERROR_COUNT);
+    text.append(delim);
   }
   String resultString=null;
   int size=text.length();

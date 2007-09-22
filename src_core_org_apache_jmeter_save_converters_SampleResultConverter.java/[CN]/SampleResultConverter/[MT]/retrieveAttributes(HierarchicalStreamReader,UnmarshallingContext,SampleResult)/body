@@ -16,6 +16,7 @@
   res.setLatency(Converter.getLong(reader.getAttribute(ATT_LATENCY)));
   res.setBytes(Converter.getInt(reader.getAttribute(ATT_BYTES)));
   res.setSampleCount(Converter.getInt(reader.getAttribute(ATT_SAMPLE_COUNT),1));
+  res.setErrorCount(Converter.getInt(reader.getAttribute(ATT_ERROR_COUNT),0));
   res.setGroupThreads(Converter.getInt(reader.getAttribute(ATT_GRP_THRDS)));
   res.setAllThreads(Converter.getInt(reader.getAttribute(ATT_ALL_THRDS)));
 }
