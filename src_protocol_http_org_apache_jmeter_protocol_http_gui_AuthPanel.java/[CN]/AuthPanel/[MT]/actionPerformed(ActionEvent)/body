@@ -42,7 +42,8 @@
   }
  else   if (action.equals(LOAD_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToOpenFile().getSelectedFile();
+      final String[] _txt={".txt"};
+      File tmp=FileDialoger.promptToOpenFile(_txt).getSelectedFile();
       if (tmp != null) {
         tableModel.manager.addFile(tmp.getAbsolutePath());
         tableModel.fireTableDataChanged();
@@ -60,7 +61,7 @@ catch (    NullPointerException err) {
   }
  else   if (action.equals(SAVE_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToSaveFile(null).getSelectedFile();
+      File tmp=FileDialoger.promptToSaveFile("auth.txt").getSelectedFile();
       if (tmp != null) {
         tableModel.manager.save(tmp.getAbsolutePath());
       }
