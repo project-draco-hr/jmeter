@@ -1,0 +1,5 @@
+{
+  String parameter=((CompoundVariable)values[0]).execute();
+  CompoundVariable cv=new CompoundVariable(parameter);
+  return cv.execute();
+}

@@ -1,0 +1,6 @@
+{
+  String variableName=((CompoundVariable)values[0]).execute();
+  String variableValue=getVariables().get(variableName);
+  CompoundVariable cv=new CompoundVariable(variableValue);
+  return cv.execute();
+}
