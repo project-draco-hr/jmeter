@@ -11,6 +11,7 @@
     throw new IOException("The file you specified cannot be read.");
   }
   String line;
+  boolean ok=true;
   while ((line=reader.readLine()) != null) {
     try {
       if (line.startsWith("#") || line.trim().length() == 0) {
@@ -29,10 +30,13 @@
       Authorization auth=new Authorization(url,user,pass,domain,realm);
       getAuthObjects().addItem(auth);
     }
- catch (    Exception e) {
-      reader.close();
-      throw new IOException("Error parsing auth line\n\t'" + line + "'\n\t"+ e);
+ catch (    NoSuchElementException e) {
+      log.error("Error parsing auth line: '" + line + "'");
+      ok=false;
     }
   }
   reader.close();
+  if (!ok) {
+    JMeterUtils.reportErrorToUser("One or more errors found when reading the Auth file - see the log file");
+  }
 }
