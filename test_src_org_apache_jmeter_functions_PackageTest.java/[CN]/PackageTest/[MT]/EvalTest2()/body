@@ -1,0 +1,12 @@
+{
+  EvalVarFunction evalVar=new EvalVarFunction();
+  vars.put("query","select ${column} from ${table}");
+  vars.put("column","name");
+  vars.put("table","customers");
+  Collection parms;
+  String s;
+  parms=MakeParams("query",null,null);
+  evalVar.setParameters(parms);
+  s=evalVar.execute(null,null);
+  assertEquals("select name from customers",s);
+}
