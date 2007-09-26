@@ -28,6 +28,7 @@
     addFormEncodings(result,pageEncoding);
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
+    headers.removeHeaderNamed("Authorization");
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
