@@ -1,0 +1,12 @@
+{
+  try {
+    Integer.parseInt(field.getText());
+  }
+ catch (  NumberFormatException nfe) {
+    int length=field.getText().length();
+    if (length > 0) {
+      JOptionPane.showMessageDialog(this,"Only digits allowed","Invalid data",JOptionPane.WARNING_MESSAGE);
+      field.setText(field.getText().substring(0,length - 1));
+    }
+  }
+}
