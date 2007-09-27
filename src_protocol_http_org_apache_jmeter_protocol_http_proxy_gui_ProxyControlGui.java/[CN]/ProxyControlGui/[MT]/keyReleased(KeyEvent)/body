@@ -5,9 +5,10 @@
       Integer.parseInt(portField.getText());
     }
  catch (    NumberFormatException nfe) {
-      if (portField.getText().length() > 0) {
-        JOptionPane.showMessageDialog(this,"You must enter a valid number","Invalid data",JOptionPane.WARNING_MESSAGE);
-        portField.setText("");
+      int length=portField.getText().length();
+      if (length > 0) {
+        JOptionPane.showMessageDialog(this,"Only digits allowed","Invalid data",JOptionPane.WARNING_MESSAGE);
+        portField.setText(portField.getText().substring(0,length - 1));
       }
     }
     enableRestart();
