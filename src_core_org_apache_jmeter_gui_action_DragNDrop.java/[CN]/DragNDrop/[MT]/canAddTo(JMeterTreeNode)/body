@@ -1,9 +1,0 @@
-{
-  if (null == parentNode)   return false;
-  TestElement te=parentNode.getTestElement();
-  if (te instanceof Controller)   return true;
-  if (te instanceof Sampler)   return true;
-  if (te instanceof WorkBench)   return true;
-  if (te instanceof TestPlan)   return true;
-  return false;
-}

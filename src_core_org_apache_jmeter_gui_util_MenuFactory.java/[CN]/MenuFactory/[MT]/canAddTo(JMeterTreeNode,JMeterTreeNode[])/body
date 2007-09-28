@@ -1,0 +1,34 @@
+{
+  if (null == parentNode) {
+    return false;
+  }
+  if (foundClass(nodes,new Class[]{WorkBench.class})) {
+    return false;
+  }
+  if (foundClass(nodes,new Class[]{TestPlan.class})) {
+    return false;
+  }
+  TestElement parent=parentNode.getTestElement();
+  if (parent instanceof TestPlan) {
+    if (foundClass(nodes,new Class[]{Sampler.class,Controller.class})) {
+      return false;
+    }
+    return true;
+  }
+  if (foundClass(nodes,new Class[]{org.apache.jmeter.threads.ThreadGroup.class})) {
+    return false;
+  }
+  if (parent instanceof Controller) {
+    return true;
+  }
+  if (parent instanceof Sampler) {
+    if (foundClass(nodes,new Class[]{Sampler.class,Controller.class})) {
+      return false;
+    }
+    return true;
+  }
+  if (parent instanceof WorkBench) {
+    return true;
+  }
+  return false;
+}

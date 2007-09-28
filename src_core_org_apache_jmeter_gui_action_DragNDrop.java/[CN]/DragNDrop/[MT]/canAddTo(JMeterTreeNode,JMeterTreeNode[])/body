@@ -1,0 +1,7 @@
+{
+  boolean ok=MenuFactory.canAddTo(parentNode,draggedNodes);
+  if (!ok) {
+    Toolkit.getDefaultToolkit().beep();
+  }
+  return ok;
+}

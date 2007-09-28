@@ -2,12 +2,15 @@
   JMeterTreeNode draggedNodes[]=Copy.getCopiedNodes();
   JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
   JMeterTreeNode currentNode=treeListener.getCurrentNode();
-  if (DragNDrop.canAddTo(currentNode)) {
+  if (MenuFactory.canAddTo(currentNode,draggedNodes)) {
     for (int i=0; i < draggedNodes.length; i++) {
       if (draggedNodes[i] != null) {
         addNode(currentNode,draggedNodes[i]);
       }
     }
+  }
+ else {
+    Toolkit.getDefaultToolkit().beep();
   }
   GuiPackage.getInstance().getMainFrame().repaint();
 }
