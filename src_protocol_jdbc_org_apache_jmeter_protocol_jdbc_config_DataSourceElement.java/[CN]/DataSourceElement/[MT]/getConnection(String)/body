@@ -1,0 +1,7 @@
+{
+  DataSourceComponent pool=(DataSourceComponent)JMeterContextService.getContext().getVariables().getObject(poolName);
+  if (pool == null) {
+    throw new SQLException("No pool found named: '" + poolName + "'");
+  }
+  return pool.getConnection();
+}

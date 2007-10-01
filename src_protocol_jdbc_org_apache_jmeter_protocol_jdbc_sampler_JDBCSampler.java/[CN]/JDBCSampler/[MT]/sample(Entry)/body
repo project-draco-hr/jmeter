@@ -7,13 +7,10 @@
   res.setDataEncoding(System.getProperty("file.encoding"));
   res.setSuccessful(true);
   res.sampleStart();
-  DataSourceComponent pool=(DataSourceComponent)getThreadContext().getVariables().getObject(getDataSource());
-  log.debug("DataSourceComponent: " + pool);
   Connection conn=null;
   Statement stmt=null;
   try {
-    if (pool == null)     throw new SQLException("No pool created");
-    conn=pool.getConnection();
+    conn=DataSourceElement.getConnection(getDataSource());
     String _queryType=getQueryType();
     if (SELECT.equals(_queryType)) {
       stmt=conn.createStatement();
