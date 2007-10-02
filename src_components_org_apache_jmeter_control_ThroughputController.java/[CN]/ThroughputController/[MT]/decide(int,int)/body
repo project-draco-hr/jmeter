@@ -1,7 +1,4 @@
 {
-  int executions, iterations;
-  executions=getExecutions();
-  iterations=getIteration();
   if (getStyle() == BYNUMBER) {
     return executions < getMaxThroughputAsInt();
   }

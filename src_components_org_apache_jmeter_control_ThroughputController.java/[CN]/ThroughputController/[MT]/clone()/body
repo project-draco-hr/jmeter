@@ -2,9 +2,6 @@
   ThroughputController clone=(ThroughputController)super.clone();
   clone.numExecutions=numExecutions;
   clone.iteration=iteration;
-  clone.globalNumExecutions=globalNumExecutions;
-  clone.globalIteration=globalIteration;
-  clone.counterLock=counterLock;
   clone.runThisTime=false;
   return clone;
 }

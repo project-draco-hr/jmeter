@@ -1,4 +1,5 @@
 {
-  setExecutions(0);
-  setIteration(-1);
+  globalNumExecutions=0;
+  globalIteration=-1;
+  counterLock=new Object();
 }

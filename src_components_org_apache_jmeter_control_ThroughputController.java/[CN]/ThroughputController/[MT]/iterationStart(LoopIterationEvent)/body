@@ -1,14 +1,14 @@
 {
   if (!isPerThread()) {
 synchronized (counterLock) {
-      increaseIteration();
-      runThisTime=decide();
-      if (runThisTime)       increaseExecutions();
+      globalIteration++;
+      runThisTime=decide(globalNumExecutions,globalIteration);
+      if (runThisTime)       globalNumExecutions++;
     }
   }
  else {
-    increaseIteration();
-    runThisTime=decide();
-    if (runThisTime)     increaseExecutions();
+    iteration++;
+    runThisTime=decide(numExecutions,iteration);
+    if (runThisTime)     numExecutions++;
   }
 }
