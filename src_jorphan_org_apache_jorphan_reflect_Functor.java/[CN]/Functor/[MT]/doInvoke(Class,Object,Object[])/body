@@ -3,6 +3,7 @@
   try {
     Method method=doCreateMethod(_class,argTypes);
     if (method == null) {
+      log.error("Can't find method " + _class + typesToString(argTypes));
       throw new JMeterError("Can't find method " + _class + typesToString(argTypes));
     }
     return method.invoke(_invokee,_args);

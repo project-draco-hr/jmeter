@@ -21,9 +21,11 @@
           }
         }
         Class parent=p_types[i].getSuperclass();
-        methodToInvoke=doCreateMethod(p_class,getNewArray(i,parent,p_types));
-        if (methodToInvoke != null) {
-          return methodToInvoke;
+        if (parent != null) {
+          methodToInvoke=doCreateMethod(p_class,getNewArray(i,parent,p_types));
+          if (methodToInvoke != null) {
+            return methodToInvoke;
+          }
         }
       }
     }
