@@ -1,0 +1,15 @@
+{
+  JPanel labelPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
+  ButtonGroup bg=new ButtonGroup();
+  bg.add(systemButton);
+  bg.add(jmeterButton);
+  jmeterButton.setSelected(true);
+  systemButton.setActionCommand(SYSTEM);
+  jmeterButton.setActionCommand(JMETER);
+  systemButton.addActionListener(this);
+  jmeterButton.addActionListener(this);
+  labelPanel.add(systemButton);
+  labelPanel.add(jmeterButton);
+  labelPanel.add(tableLabel);
+  return labelPanel;
+}

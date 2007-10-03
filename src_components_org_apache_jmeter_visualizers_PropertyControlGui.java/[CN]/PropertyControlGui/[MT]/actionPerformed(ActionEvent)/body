@@ -1,0 +1,17 @@
+{
+  String command=action.getActionCommand();
+  if (ADD.equals(command)) {
+    return;
+  }
+  if (DELETE.equals(command)) {
+    return;
+  }
+  if (SYSTEM.equals(command)) {
+    setUpData();
+    return;
+  }
+  if (JMETER.equals(command)) {
+    setUpData();
+    return;
+  }
+}

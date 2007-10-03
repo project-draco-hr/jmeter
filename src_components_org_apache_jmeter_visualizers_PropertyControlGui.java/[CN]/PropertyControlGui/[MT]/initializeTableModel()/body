@@ -1,0 +1,3 @@
+{
+  tableModel=new ObjectTableModel(new String[]{COLUMN_NAMES_0,COLUMN_NAMES_1},new Functor[]{new Functor(Map.Entry.class,"getKey"),new Functor(Map.Entry.class,"getValue")},new Functor[]{null,new Functor(Map.Entry.class,"setValue",new Class[]{Object.class})},new Class[]{String.class,String.class});
+}

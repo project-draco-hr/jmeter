@@ -1,0 +1,26 @@
+{
+  tableModel.clearData();
+  Properties p=null;
+  if (systemButton.isSelected()) {
+    p=System.getProperties();
+  }
+  if (jmeterButton.isSelected()) {
+    p=JMeterUtils.getJMeterProperties();
+  }
+  if (p == null)   return;
+  Set s=p.entrySet();
+  ArrayList al=new ArrayList(s);
+  Collections.sort(al,new Comparator(){
+    public int compare(    Object o1,    Object o2){
+      String m1, m2;
+      m1=(String)((Map.Entry)o1).getKey();
+      m2=(String)((Map.Entry)o2).getKey();
+      return m1.compareTo(m2);
+    }
+  }
+);
+  Iterator i=al.iterator();
+  while (i.hasNext()) {
+    tableModel.addRow(i.next());
+  }
+}
