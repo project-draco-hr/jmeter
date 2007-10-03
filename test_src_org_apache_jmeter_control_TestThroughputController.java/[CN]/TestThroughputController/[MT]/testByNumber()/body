@@ -22,7 +22,7 @@
   for (int counter=0; counter < order.length; counter++) {
     TestElement sampler=test.next();
     assertNotNull(sampler);
-    assertEquals("Counter: " + counter + ", executions: "+ sub_1.getExecutions()+ ", iteration: "+ sub_1.getIteration(),order[counter],sampler.getPropertyAsString(TestElement.NAME));
+    assertEquals("Counter: " + counter,order[counter],sampler.getPropertyAsString(TestElement.NAME));
   }
   assertNull(test.next());
   sub_1.testEnded();
