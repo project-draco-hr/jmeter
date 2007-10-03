@@ -1,0 +1,7 @@
+{
+  Test1 t1=new Test1("t1");
+  Test2 t2=new Test2("t2");
+  Functor f1=new Functor(t1,"getName");
+  assertEquals("t1",f1.invoke(t1));
+  assertEquals("t1",f1.invoke(t2));
+}

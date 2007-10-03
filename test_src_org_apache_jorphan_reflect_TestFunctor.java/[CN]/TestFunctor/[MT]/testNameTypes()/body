@@ -1,0 +1,19 @@
+{
+  Functor f=new Functor("getString",new Class[]{String.class});
+  Functor f2=new Functor("getString");
+  Test1 t1=new Test1("t1");
+  assertEquals("x1",f.invoke(t1,new String[]{"x1"}));
+  try {
+    assertEquals("x1",f.invoke(t1));
+    fail("Should have generated an Exception");
+  }
+ catch (  JMeterError ok) {
+  }
+  assertEquals("x2",f2.invoke(t1,new String[]{"x2"}));
+  try {
+    assertEquals("x2",f2.invoke(t1));
+    fail("Should have generated an Exception");
+  }
+ catch (  JMeterError ok) {
+  }
+}

@@ -1,0 +1,15 @@
+{
+  Functor f=new Functor("method");
+  try {
+    f.invoke();
+    fail("should have generated IllegalStateException;");
+  }
+ catch (  IllegalStateException ok) {
+  }
+  try {
+    f.invoke(new Object[]{});
+    fail("should have generated IllegalStateException;");
+  }
+ catch (  IllegalStateException ok) {
+  }
+}

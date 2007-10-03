@@ -1,0 +1,24 @@
+{
+  Functor f1=new Functor("getName");
+  Functor f2=new Functor("getName");
+  Functor f1a=new Functor("getName");
+  Test1 t1=new Test1("t1");
+  Test2 t2=new Test2("t2");
+  Test1a t1a=new Test1a("aa");
+  assertEquals("t1",f1.invoke(t1));
+  try {
+    f1.invoke(t2);
+    fail("Should have generated error");
+  }
+ catch (  JMeterError e) {
+  }
+  assertEquals("t2",f2.invoke(t2));
+  assertEquals("1a:aa.",f1a.invoke(t1a));
+  try {
+    f1a.invoke(t1);
+    fail("Should have generated error");
+  }
+ catch (  JMeterError e) {
+  }
+  assertEquals("1a:aa.",f1.invoke(t1a));
+}

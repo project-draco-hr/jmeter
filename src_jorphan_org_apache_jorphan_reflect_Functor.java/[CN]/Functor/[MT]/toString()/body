@@ -1,10 +1,14 @@
 {
   StringBuffer sb=new StringBuffer(100);
-  sb.append("method: ");
-  sb.append(methodName);
-  if (invokee != null) {
-    sb.append(" invokee: ");
-    sb.append(invokee.getClass().getName());
+  if (clazz != null) {
+    sb.append(clazz.getName());
   }
+  if (invokee != null) {
+    sb.append("@");
+    sb.append(System.identityHashCode(invokee));
+  }
+  sb.append(".");
+  sb.append(methodName);
+  typesToString(sb,types);
   return sb.toString();
 }

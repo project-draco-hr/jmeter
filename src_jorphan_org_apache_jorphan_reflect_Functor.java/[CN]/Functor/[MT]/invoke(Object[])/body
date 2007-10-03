@@ -1,4 +1,6 @@
 {
-  this.args=p_args;
-  return invoke();
+  if (invokee == null) {
+    throw new IllegalStateException("Invokee was not provided in constructor");
+  }
+  return doInvoke(clazz,invokee,args != null ? args : p_args);
 }

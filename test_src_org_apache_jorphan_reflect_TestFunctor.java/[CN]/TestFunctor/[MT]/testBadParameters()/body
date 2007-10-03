@@ -1,0 +1,44 @@
+{
+  try {
+    new Functor(null);
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+  try {
+    new Functor(null,new Class[]{});
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+  try {
+    new Functor(null,new Object[]{});
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+  try {
+    new Functor(String.class,null);
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+  try {
+    new Functor(new Object(),null);
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+  try {
+    new Functor(new Object(),null,new Class[]{});
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+  try {
+    new Functor(new Object(),null,new Object[]{});
+    fail("should have generated IllegalArgumentException;");
+  }
+ catch (  IllegalArgumentException ok) {
+  }
+}

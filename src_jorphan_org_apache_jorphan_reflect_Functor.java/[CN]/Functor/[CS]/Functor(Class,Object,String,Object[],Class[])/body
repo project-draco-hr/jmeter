@@ -1,0 +1,16 @@
+{
+  if (_methodName == null) {
+    throw new IllegalArgumentException("Methodname must not be null");
+  }
+  if (_clazz != null && _invokee != null) {
+    throw new IllegalArgumentException("Cannot provide both Class and Object");
+  }
+  if (_args != null && _types != null) {
+    throw new IllegalArgumentException("Cannot provide both arguments and argument types");
+  }
+  this.clazz=_clazz != null ? _clazz : (_invokee != null ? _invokee.getClass() : null);
+  this.invokee=_invokee;
+  this.methodName=_methodName;
+  this.args=_args;
+  this.types=_types != null ? _types : (_args != null ? _getTypes(_args) : null);
+}

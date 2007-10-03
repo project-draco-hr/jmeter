@@ -1,0 +1,32 @@
+{
+  Test1 t1=new Test1("t1");
+  Test1 t1a=new Test1a("t1a");
+  Test2 t2=new Test2("t2");
+  Functor f1=new Functor(HasName.class,"getName");
+  assertEquals("t1",f1.invoke(t1));
+  assertEquals("1a:t1a.",f1.invoke(t1a));
+  assertEquals("t2",f1.invoke(t2));
+  try {
+    f1.invoke();
+    fail("Should have failed");
+  }
+ catch (  IllegalStateException ok) {
+  }
+  Functor f2=new Functor(HasString.class,"getString");
+  assertEquals("xyz",f2.invoke(t2,new String[]{"xyz"}));
+  try {
+    f2.invoke(t1,new String[]{"xyz"});
+    fail("Should have failed");
+  }
+ catch (  JMeterError ok) {
+  }
+  Functor f3=new Functor(t2,"getString");
+  assertEquals("xyz",f3.invoke(t2,new Object[]{"xyz"}));
+  Properties p=new Properties();
+  p.put("Name","Value");
+  Functor fk=new Functor(Map.Entry.class,"getKey");
+  Functor fv=new Functor(Map.Entry.class,"getValue");
+  Object o=p.entrySet().iterator().next();
+  assertEquals("Name",fk.invoke(o));
+  assertEquals("Value",fv.invoke(o));
+}

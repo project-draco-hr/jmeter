@@ -1,8 +1,7 @@
 {
   Method m=null;
-  this.invokee=_invokee;
   try {
-    m=createMethod(getTypes());
+    m=doCreateMethod(_invokee.getClass(),getTypes(args));
   }
  catch (  Exception e) {
   }

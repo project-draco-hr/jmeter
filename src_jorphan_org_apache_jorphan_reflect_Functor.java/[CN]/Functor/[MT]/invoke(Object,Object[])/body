@@ -1,5 +1,3 @@
 {
-  this.args=p_args;
-  this.invokee=p_invokee;
-  return invoke();
+  return doInvoke(clazz != null ? clazz : p_invokee.getClass(),invokee != null ? invokee : p_invokee,args != null ? args : p_args);
 }

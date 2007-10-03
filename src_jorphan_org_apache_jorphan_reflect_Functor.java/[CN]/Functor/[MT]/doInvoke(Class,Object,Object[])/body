@@ -1,0 +1,15 @@
+{
+  Class[] argTypes=getTypes(_args);
+  try {
+    Method method=doCreateMethod(_class,argTypes);
+    if (method == null) {
+      throw new JMeterError("Can't find method " + _class + typesToString(argTypes));
+    }
+    return method.invoke(_invokee,_args);
+  }
+ catch (  Exception e) {
+    final String message="Trouble functing: " + _class.getName() + "."+ methodName+ "(...) : "+ " invokee: "+ _invokee+ " "+ e.getMessage();
+    log.warn(message,e);
+    throw new JMeterError(message,e);
+  }
+}
