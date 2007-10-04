@@ -4,16 +4,24 @@
   useBody=new JRadioButton(JMeterUtils.getResString("regex_src_body"));
   useHeaders=new JRadioButton(JMeterUtils.getResString("regex_src_hdrs"));
   useURL=new JRadioButton(JMeterUtils.getResString("regex_src_url"));
+  useCode=new JRadioButton(JMeterUtils.getResString("assertion_code_resp"));
+  useMessage=new JRadioButton(JMeterUtils.getResString("assertion_message_resp"));
   group=new ButtonGroup();
   group.add(useBody);
   group.add(useHeaders);
   group.add(useURL);
+  group.add(useCode);
+  group.add(useMessage);
   panel.add(useBody);
   panel.add(useHeaders);
   panel.add(useURL);
+  panel.add(useCode);
+  panel.add(useMessage);
   useBody.setSelected(true);
   useBody.setActionCommand(RegexExtractor.USE_BODY);
   useHeaders.setActionCommand(RegexExtractor.USE_HDRS);
   useURL.setActionCommand(RegexExtractor.USE_URL);
+  useCode.setActionCommand(RegexExtractor.USE_CODE);
+  useMessage.setActionCommand(RegexExtractor.USE_MESSAGE);
   return panel;
 }

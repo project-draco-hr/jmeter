@@ -1,4 +1,4 @@
 {
-  String body=getPropertyAsString(MATCH_AGAINST);
-  return body.length() == 0 || USE_BODY.equalsIgnoreCase(body);
+  String prop=getPropertyAsString(MATCH_AGAINST);
+  return prop.length() == 0 || USE_BODY.equalsIgnoreCase(prop);
 }

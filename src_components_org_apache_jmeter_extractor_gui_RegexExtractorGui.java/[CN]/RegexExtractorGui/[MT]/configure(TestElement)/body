@@ -5,6 +5,8 @@
     useHeaders.setSelected(re.useHeaders());
     useBody.setSelected(re.useBody());
     useURL.setSelected(re.useUrl());
+    useCode.setSelected(re.useCode());
+    useMessage.setSelected(re.useMessage());
     regexField.setText(re.getRegex());
     templateField.setText(re.getTemplate());
     defaultField.setText(re.getDefaultValue());

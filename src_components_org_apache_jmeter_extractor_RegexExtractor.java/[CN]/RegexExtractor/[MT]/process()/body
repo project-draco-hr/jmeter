@@ -14,7 +14,7 @@
     vars.put(refName,defaultValue);
   }
   Perl5Matcher matcher=JMeterUtils.getMatcher();
-  String inputString=useUrl() ? previousResult.getUrlAsString() : useHeaders() ? previousResult.getResponseHeaders() : previousResult.getResponseDataAsString();
+  String inputString=useUrl() ? previousResult.getUrlAsString() : useHeaders() ? previousResult.getResponseHeaders() : useCode() ? previousResult.getResponseCode() : useMessage() ? previousResult.getResponseMessage() : previousResult.getResponseDataAsString();
   if (log.isDebugEnabled()) {
     log.debug("Input = " + inputString);
   }
