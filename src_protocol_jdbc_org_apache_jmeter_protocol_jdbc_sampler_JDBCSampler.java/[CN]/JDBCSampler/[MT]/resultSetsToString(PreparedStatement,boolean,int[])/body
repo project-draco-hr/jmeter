@@ -26,5 +26,18 @@
     }
   }
  while (result || (updateCount != -1));
+  if (out != null && pstmt instanceof CallableStatement) {
+    CallableStatement cs=(CallableStatement)pstmt;
+    sb.append("Output variables by position:\n");
+    for (int i=0; i < out.length; i++) {
+      if (out[i] != java.sql.Types.NULL) {
+        sb.append("[");
+        sb.append(i + 1);
+        sb.append("] ");
+        sb.append(cs.getObject(i + 1));
+        sb.append("\n");
+      }
+    }
+  }
   return sb.toString();
 }
