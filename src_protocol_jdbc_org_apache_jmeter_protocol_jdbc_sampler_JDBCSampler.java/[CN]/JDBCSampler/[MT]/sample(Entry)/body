@@ -11,6 +11,8 @@
   Statement stmt=null;
   try {
     conn=DataSourceElement.getConnection(getDataSource());
+    res.latencyEnd();
+    res.setResponseHeaders(conn.toString());
     String _queryType=getQueryType();
     if (SELECT.equals(_queryType)) {
       stmt=conn.createStatement();
