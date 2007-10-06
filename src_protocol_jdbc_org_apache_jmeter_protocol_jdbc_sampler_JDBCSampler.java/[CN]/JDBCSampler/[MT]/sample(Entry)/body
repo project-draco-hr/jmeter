@@ -10,8 +10,12 @@
   Connection conn=null;
   Statement stmt=null;
   try {
-    conn=DataSourceElement.getConnection(getDataSource());
-    res.latencyEnd();
+    try {
+      conn=DataSourceElement.getConnection(getDataSource());
+    }
+  finally {
+      res.latencyEnd();
+    }
     res.setResponseHeaders(conn.toString());
     String _queryType=getQueryType();
     if (SELECT.equals(_queryType)) {
