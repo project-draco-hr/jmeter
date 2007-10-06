@@ -5,10 +5,11 @@
     dsc=sharedDSC;
   }
  else {
-    dsc=(DataSourceComponent)perThreadPool.get();
+    Map poolMap=(Map)perThreadPoolMap.get();
+    dsc=(DataSourceComponent)poolMap.get(getDataSource());
     if (dsc == null) {
       dsc=initPool("1");
-      perThreadPool.set(dsc);
+      poolMap.put(getDataSource(),dsc);
       perThreadPoolSet.add(dsc);
     }
   }
