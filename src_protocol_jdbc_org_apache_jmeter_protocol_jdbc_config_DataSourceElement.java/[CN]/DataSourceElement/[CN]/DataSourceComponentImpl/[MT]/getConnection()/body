@@ -1,0 +1,19 @@
+{
+  Connection conn=null;
+  DataSourceComponent dsc=null;
+  if (sharedDSC != null) {
+    dsc=sharedDSC;
+  }
+ else {
+    dsc=(DataSourceComponent)perThreadPool.get();
+    if (dsc == null) {
+      dsc=initPool("1");
+      perThreadPool.set(dsc);
+      perThreadPoolSet.add(dsc);
+    }
+  }
+  if (dsc != null) {
+    conn=dsc.getConnection();
+  }
+  return conn;
+}

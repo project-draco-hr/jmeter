@@ -1,11 +1,16 @@
 {
-  if (started[0]) {
-synchronized (excaliburSource) {
-      if (started[0]) {
-        excaliburSource.dispose();
-      }
+synchronized (this) {
+    if (excaliburSource != null) {
+      excaliburSource.dispose();
     }
+    excaliburSource=null;
   }
-  excaliburSource=null;
-  started[0]=false;
+  if (perThreadPoolSet != null) {
+    Iterator it=perThreadPoolSet.iterator();
+    while (it.hasNext()) {
+      ResourceLimitingJdbcDataSource dsc=(ResourceLimitingJdbcDataSource)it.next();
+      dsc.dispose();
+    }
+    perThreadPoolSet.clear();
+  }
 }

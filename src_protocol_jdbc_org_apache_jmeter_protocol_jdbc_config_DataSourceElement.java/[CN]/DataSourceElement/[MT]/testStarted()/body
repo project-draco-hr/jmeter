@@ -1,13 +1,22 @@
 {
-  if (!started[0]) {
-    try {
-      this.setRunningVersion(true);
-      TestBeanHelper.prepare(this);
-      initPool();
+  this.setRunningVersion(true);
+  TestBeanHelper.prepare(this);
+  JMeterVariables variables=getThreadContext().getVariables();
+  String poolName=getDataSource();
+  if (variables.getObject(poolName) != null) {
+    log.error("JDBC data source already defined for: " + poolName);
+  }
+ else {
+    String maxPool=getPoolMax();
+    if (maxPool.equals("0")) {
+      variables.putObject(poolName,new DataSourceComponentImpl());
     }
- catch (    Exception e) {
-      log.error("Unable to start database connection pool.",e);
+ else {
+      ResourceLimitingJdbcDataSource src=initPool(maxPool);
+synchronized (this) {
+        excaliburSource=src;
+        variables.putObject(poolName,new DataSourceComponentImpl(excaliburSource));
+      }
     }
   }
-  getThreadContext().getVariables().putObject(getDataSource(),excaliburSource);
 }

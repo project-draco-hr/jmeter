@@ -1,18 +1,21 @@
 {
-  excaliburSource=new ResourceLimitingJdbcDataSource();
+  ResourceLimitingJdbcDataSource source=null;
+  source=new ResourceLimitingJdbcDataSource();
   DefaultConfiguration config=new DefaultConfiguration("rl-jdbc");
   if (log.isDebugEnabled()) {
     StringBuffer sb=new StringBuffer(40);
     sb.append("MaxPool: ");
-    sb.append(getPoolMax());
+    sb.append(maxPool);
     sb.append(" Timeout: ");
     sb.append(getTimeout());
     sb.append(" TrimInt: ");
     sb.append(getTrimInterval());
+    sb.append(" Auto-Commit: ");
+    sb.append(isAutocommit());
     log.debug(sb.toString());
   }
   DefaultConfiguration poolController=new DefaultConfiguration("pool-controller");
-  poolController.setAttribute("max",getPoolMax());
+  poolController.setAttribute("max",maxPool);
   poolController.setAttribute("max-strict","true");
   poolController.setAttribute("blocking","true");
   poolController.setAttribute("timeout",getTimeout());
@@ -61,8 +64,13 @@
     cfgPassword.setValue(getPassword());
     config.addChild(cfgPassword);
   }
-  excaliburSource.enableLogging(new LogKitLogger(log));
-  excaliburSource.configure(config);
-  excaliburSource.setInstrumentableName(getDataSource());
-  started[0]=true;
+  source.enableLogging(new LogKitLogger(log));
+  try {
+    source.configure(config);
+    source.setInstrumentableName(getDataSource());
+  }
+ catch (  ConfigurationException e) {
+    log.error("Could not configure datasource for pool: " + getDataSource(),e);
+  }
+  return source;
 }
