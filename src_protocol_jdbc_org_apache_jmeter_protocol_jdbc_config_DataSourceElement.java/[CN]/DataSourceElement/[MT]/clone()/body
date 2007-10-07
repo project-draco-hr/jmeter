@@ -1,5 +1,6 @@
 {
   DataSourceElement el=(DataSourceElement)super.clone();
   el.excaliburSource=excaliburSource;
+  el.perThreadPoolSet=perThreadPoolSet;
   return el;
 }

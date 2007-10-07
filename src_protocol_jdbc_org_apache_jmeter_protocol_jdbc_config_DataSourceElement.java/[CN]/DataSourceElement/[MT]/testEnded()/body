@@ -9,6 +9,7 @@ synchronized (this) {
     Iterator it=perThreadPoolSet.iterator();
     while (it.hasNext()) {
       ResourceLimitingJdbcDataSource dsc=(ResourceLimitingJdbcDataSource)it.next();
+      log.debug("Disposing pool: " + dsc.getInstrumentableName() + " @"+ System.identityHashCode(dsc));
       dsc.dispose();
     }
     perThreadPoolSet.clear();
