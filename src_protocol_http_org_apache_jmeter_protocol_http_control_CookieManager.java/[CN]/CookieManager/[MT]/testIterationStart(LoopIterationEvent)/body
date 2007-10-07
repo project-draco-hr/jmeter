@@ -1,3 +1,6 @@
 {
-  if (getClearEachIteration())   clear();
+  if (getClearEachIteration()) {
+    clearCookies();
+    setProperty(initialCookies);
+  }
 }
