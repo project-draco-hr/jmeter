@@ -14,6 +14,10 @@
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      String parameterName=arg.getName();
+      if (parameterName.length() == 0) {
+        continue;
+      }
       parts[partNo++]=new StringPart(arg.getName(),arg.getValue(),contentEncoding);
     }
     if (hasUploadableFiles()) {
@@ -68,14 +72,36 @@
         post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
       }
       final String contentEncoding=getContentEncoding();
+      boolean haveContentEncoding=false;
       if (contentEncoding != null && contentEncoding.trim().length() > 0) {
         post.getParams().setContentCharset(contentEncoding);
+        haveContentEncoding=true;
       }
-      if (!getSendParameterValuesAsPostBody()) {
+      if (getSendParameterValuesAsPostBody()) {
+        StringBuffer postBody=new StringBuffer();
+        PropertyIterator args=getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          String value;
+          if (haveContentEncoding) {
+            value=arg.getEncodedValue(contentEncoding);
+          }
+ else {
+            value=arg.getEncodedValue();
+          }
+          postBody.append(value);
+        }
+        StringRequestEntity requestEntity=new StringRequestEntity(postBody.toString(),post.getRequestHeader(HEADER_CONTENT_TYPE).getValue(),post.getRequestCharSet());
+        post.setRequestEntity(requestEntity);
+      }
+ else {
         PropertyIterator args=getArguments().iterator();
         while (args.hasNext()) {
           HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
           String parameterName=arg.getName();
+          if (parameterName.length() == 0) {
+            continue;
+          }
           String parameterValue=arg.getValue();
           if (!arg.isAlwaysEncoded()) {
             String urlContentEncoding=contentEncoding;
@@ -87,16 +113,6 @@
           }
           post.addParameter(parameterName,parameterValue);
         }
-      }
- else {
-        StringBuffer postBody=new StringBuffer();
-        PropertyIterator args=getArguments().iterator();
-        while (args.hasNext()) {
-          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-          postBody.append(arg.getValue());
-        }
-        StringRequestEntity requestEntity=new StringRequestEntity(postBody.toString(),post.getRequestHeader(HEADER_CONTENT_TYPE).getValue(),post.getRequestCharSet());
-        post.setRequestEntity(requestEntity);
       }
       if (post.getRequestEntity().isRepeatable()) {
         ByteArrayOutputStream bos=new ByteArrayOutputStream();
