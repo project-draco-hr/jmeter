@@ -1,0 +1,38 @@
+{
+  SampleResult res=new SampleResult();
+  res.setSampleLabel(getName());
+  res.sampleStart();
+  StringBuffer sb=new StringBuffer(100);
+  StringBuffer rd=new StringBuffer(20);
+  if (isDisplayJMeterVariables()) {
+    rd.append("JMeterVariables\n");
+    sb.append("JMeterVariables:\n");
+    JMeterVariables vars=JMeterContextService.getContext().getVariables();
+    Iterator i=vars.getIterator();
+    while (i.hasNext()) {
+      Map.Entry me=(Map.Entry)i.next();
+      if (String.class.equals(me.getValue().getClass())) {
+        sb.append(me.toString()).append("\n");
+      }
+    }
+    sb.append("\n");
+  }
+  if (isDisplayJMeterProperties()) {
+    rd.append("JMeterProperties\n");
+    sb.append("JMeterProperties:\n");
+    formatProperties(sb,JMeterUtils.getJMeterProperties());
+    sb.append("\n");
+  }
+  if (isDisplaySystemProperties()) {
+    rd.append("SystemProperties\n");
+    sb.append("SystemProperties:\n");
+    formatProperties(sb,System.getProperties());
+    sb.append("\n");
+  }
+  res.setResponseData(sb.toString().getBytes());
+  res.setDataType(SampleResult.TEXT);
+  res.setSamplerData(rd.toString());
+  res.setSuccessful(true);
+  res.sampleEnd();
+  return res;
+}
