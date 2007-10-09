@@ -23,7 +23,7 @@
     res.sampleEnd();
     res.setResponseData(responseData);
     res.setResponseCodeOK();
-    res.setResponseMessage("");
+    res.setResponseMessageOK();
     res.setSuccessful(true);
     String ct=ctb.toString();
     res.setContentType(ct);
