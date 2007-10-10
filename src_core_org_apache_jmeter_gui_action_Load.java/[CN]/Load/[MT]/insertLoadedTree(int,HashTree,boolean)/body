@@ -3,13 +3,26 @@
     throw new Exception("Error in TestPlan - see log file");
   }
   boolean isTestPlan=tree.getArray()[0] instanceof TestPlan;
+  GuiPackage guiInstance=GuiPackage.getInstance();
   if (isTestPlan && !merging) {
-    GuiPackage.getInstance().getTreeModel().clearTestPlan((TestElement)tree.getArray()[0]);
+    guiInstance.getTreeModel().clearTestPlan((TestElement)tree.getArray()[0]);
   }
-  HashTree newTree=GuiPackage.getInstance().addSubTree(tree);
-  GuiPackage.getInstance().updateCurrentGui();
-  GuiPackage.getInstance().getMainFrame().getTree().setSelectionPath(new TreePath(((JMeterTreeNode)newTree.getArray()[0]).getPath()));
-  tree=GuiPackage.getInstance().getCurrentSubTree();
+  if (merging) {
+    TestElement te=(TestElement)tree.getArray()[0];
+    if (!(te instanceof WorkBench || te instanceof TestPlan)) {
+      boolean ok=MenuFactory.canAddTo(guiInstance.getCurrentNode(),te);
+      if (!ok) {
+        String name=te.getName();
+        String className=te.getClass().getName();
+        className=className.substring(className.lastIndexOf(".") + 1);
+        throw new IllegalUserActionException("Can't merge " + name + " ("+ className+ ") here");
+      }
+    }
+  }
+  HashTree newTree=guiInstance.addSubTree(tree);
+  guiInstance.updateCurrentGui();
+  guiInstance.getMainFrame().getTree().setSelectionPath(new TreePath(((JMeterTreeNode)newTree.getArray()[0]).getPath()));
+  tree=guiInstance.getCurrentSubTree();
   ActionEvent actionEvent=null;
   if (!merging) {
     actionEvent=new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,ActionNames.SUB_TREE_LOADED);
@@ -18,11 +31,5 @@
     actionEvent=new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,ActionNames.SUB_TREE_MERGED);
   }
   ActionRouter.getInstance().actionPerformed(actionEvent);
-  if (expandTree) {
-    JTree jTree=GuiPackage.getInstance().getMainFrame().getTree();
-    for (int i=0; i < jTree.getRowCount(); i++) {
-      jTree.expandRow(i);
-    }
-  }
   return isTestPlan;
 }
