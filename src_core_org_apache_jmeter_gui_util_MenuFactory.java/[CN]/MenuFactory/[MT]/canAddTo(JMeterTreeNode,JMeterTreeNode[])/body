@@ -9,8 +9,11 @@
     return false;
   }
   TestElement parent=parentNode.getTestElement();
+  if (parent instanceof WorkBench) {
+    return true;
+  }
   if (parent instanceof TestPlan) {
-    if (foundClass(nodes,new Class[]{Sampler.class,Controller.class})) {
+    if (foundClass(nodes,new Class[]{Sampler.class,Controller.class},org.apache.jmeter.threads.ThreadGroup.class)) {
       return false;
     }
     return true;
@@ -25,9 +28,6 @@
     if (foundClass(nodes,new Class[]{Sampler.class,Controller.class})) {
       return false;
     }
-    return true;
-  }
-  if (parent instanceof WorkBench) {
     return true;
   }
   return false;

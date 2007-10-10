@@ -1,0 +1,4 @@
+{
+  JMeterTreeNode node=new JMeterTreeNode(element,null);
+  return canAddTo(parentNode,new JMeterTreeNode[]{node});
+}
