@@ -2,7 +2,7 @@
   SampleResult result=null;
   long timeStamp=0;
   long elapsed=0;
-  String parts[]=inputLine.split("\\Q" + _saveConfig.getDelimiter());
+  String parts[]=inputLine.split("\\Q" + saveConfig.getDelimiter());
   String text=null;
   String field=null;
   int i=0;

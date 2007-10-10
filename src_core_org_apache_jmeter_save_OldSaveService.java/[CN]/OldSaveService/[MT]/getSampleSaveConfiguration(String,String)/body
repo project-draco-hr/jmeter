@@ -1,0 +1,26 @@
+{
+  String[] parts=splitHeader(headerLine,_saveConfig.getDelimiter());
+  String delim=null;
+  if (parts == null) {
+    Perl5Matcher matcher=JMeterUtils.getMatcher();
+    PatternMatcherInput input=new PatternMatcherInput(headerLine);
+    Pattern pattern=JMeterUtils.getPatternCache().getPattern("\\w+((\\W)\\w+)?(\\2\\w+)*",Perl5Compiler.READ_ONLY_MASK);
+    if (matcher.matches(input,pattern)) {
+      delim=matcher.getMatch().group(2);
+      parts=splitHeader(headerLine,delim);
+    }
+  }
+  if (parts == null) {
+    return null;
+  }
+  SampleSaveConfiguration saveConfig=new SampleSaveConfiguration(false);
+  for (int i=0; i < parts.length; i++) {
+    Functor set=(Functor)headerLabelMethods.get(parts[i]);
+    set.invoke(saveConfig,new Boolean[]{Boolean.TRUE});
+  }
+  if (delim != null) {
+    log.warn("Default delimiter '" + _saveConfig.getDelimiter() + "' did not work; using alternate '"+ delim+ "' for reading "+ filename);
+    saveConfig.setDelimiter(delim);
+  }
+  return saveConfig;
+}

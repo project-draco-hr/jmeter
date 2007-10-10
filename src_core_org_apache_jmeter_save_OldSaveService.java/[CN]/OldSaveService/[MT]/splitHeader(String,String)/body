@@ -1,0 +1,9 @@
+{
+  String parts[]=headerLine.split("\\Q" + delim);
+  for (int i=0; i < parts.length; i++) {
+    if (!headerLabelMethods.containsKey(parts[i])) {
+      return null;
+    }
+  }
+  return parts;
+}
