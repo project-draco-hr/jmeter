@@ -11,6 +11,10 @@
   file_save_as.setActionCommand(ActionNames.SAVE_ALL_AS);
   file_save_as.addActionListener(ActionRouter.getInstance());
   file_save_as.setEnabled(true);
+  file_selection_as=new JMenuItem(JMeterUtils.getResString("save_as"));
+  file_selection_as.setActionCommand(ActionNames.SAVE_AS);
+  file_selection_as.addActionListener(ActionRouter.getInstance());
+  file_selection_as.setEnabled(true);
   file_revert=new JMenuItem(JMeterUtils.getResString("revert_project"),'R');
   file_revert.setActionCommand(ActionNames.REVERT_PROJECT);
   file_revert.addActionListener(ActionRouter.getInstance());
@@ -38,6 +42,7 @@
   fileMenu.addSeparator();
   fileMenu.add(file_save);
   fileMenu.add(file_save_as);
+  fileMenu.add(file_selection_as);
   fileMenu.add(file_revert);
   fileMenu.addSeparator();
   file_load_recent_files=LoadRecentProject.getRecentFileMenuItems();

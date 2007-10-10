@@ -4,6 +4,11 @@
     throw new IllegalUserActionException("Invalid user command:" + e.getActionCommand());
   }
   if (e.getActionCommand().equals(ActionNames.SAVE_AS)) {
+    JMeterTreeNode[] nodes=GuiPackage.getInstance().getTreeListener().getSelectedNodes();
+    if (nodes.length > 1) {
+      JMeterUtils.reportErrorToUser(JMeterUtils.getResString("save_as_error"),JMeterUtils.getResString("save_as"));
+      return;
+    }
     subTree=GuiPackage.getInstance().getCurrentSubTree();
   }
  else {
