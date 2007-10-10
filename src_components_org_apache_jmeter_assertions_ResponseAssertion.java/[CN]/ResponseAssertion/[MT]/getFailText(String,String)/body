@@ -1,6 +1,6 @@
 {
   StringBuffer sb=new StringBuffer(200);
-  sb.append("Test failed, ");
+  sb.append("Test failed: ");
   if (isTestFieldResponseData()) {
     sb.append("text");
   }
