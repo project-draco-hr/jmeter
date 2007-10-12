@@ -1,8 +1,12 @@
 {
   HTTPArgument arg=new HTTPArgument("name.?","value_ here");
+  assertEquals("name.?",arg.getName());
+  assertEquals("value_ here",arg.getValue());
   assertEquals("name.%3F",arg.getEncodedName());
   assertEquals("value_+here",arg.getEncodedValue());
   HTTPArgument clone=(HTTPArgument)arg.clone();
   assertEquals("name.%3F",clone.getEncodedName());
   assertEquals("value_+here",clone.getEncodedValue());
+  assertEquals("name.?",clone.getName());
+  assertEquals("value_ here",clone.getValue());
 }

@@ -1,0 +1,11 @@
+{
+  HTTPArgument arg;
+  arg=new HTTPArgument("name.?","value_ here",false);
+  assertEquals("name.?",arg.getName());
+  assertEquals("value_ here",arg.getValue());
+  assertEquals("name.%3F",arg.getEncodedName());
+  assertEquals("value_+here",arg.getEncodedValue());
+  arg=new HTTPArgument("name.?","value_ here",true);
+  assertEquals("name.?",arg.getName());
+  assertEquals("value_ here",arg.getValue());
+}
