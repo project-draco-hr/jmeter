@@ -1,7 +1,7 @@
 {
-  String titleField="";
+  final String titleField="";
   String titleValue="mytitle";
-  String descriptionField="";
+  final String descriptionField="";
   String descriptionValue="mydescription";
   HTTPSamplerBase sampler=createHttpSampler(samplerType);
   String contentEncoding="";
