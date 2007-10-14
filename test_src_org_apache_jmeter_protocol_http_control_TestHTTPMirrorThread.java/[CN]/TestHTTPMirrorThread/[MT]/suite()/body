@@ -1,0 +1,16 @@
+{
+  TestSetup setup=new TestSetup(new TestSuite(TestHTTPMirrorThread.class)){
+    private HttpMirrorServer httpServer;
+    protected void setUp() throws Exception {
+      httpServer=new HttpMirrorServer(HTTP_SERVER_PORT);
+      httpServer.start();
+      Thread.sleep(500);
+    }
+    protected void tearDown() throws Exception {
+      httpServer.stopServer();
+      httpServer=null;
+    }
+  }
+;
+  return setup;
+}

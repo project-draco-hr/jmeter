@@ -1,0 +1,12 @@
+{
+  int startOfMirrorResponse=0;
+  for (int i=0; i < allResponse.length; i++) {
+    if (allResponse[i] == 0x0d && allResponse[i + 1] == 0x0a && allResponse[i + 2] == 0x0d && allResponse[i + 3] == 0x0a) {
+      startOfMirrorResponse=i + 4;
+      break;
+    }
+  }
+  byte[] mirrorResponse=new byte[allResponse.length - startOfMirrorResponse];
+  System.arraycopy(allResponse,startOfMirrorResponse,mirrorResponse,0,mirrorResponse.length);
+  return mirrorResponse;
+}

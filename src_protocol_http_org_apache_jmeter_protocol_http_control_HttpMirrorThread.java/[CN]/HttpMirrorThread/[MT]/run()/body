@@ -1,30 +1,55 @@
 {
   log.info("Starting thread");
-  BufferedReader in=null;
-  PrintWriter out=null;
+  BufferedInputStream in=null;
+  BufferedOutputStream out=null;
   try {
-    Thread.sleep(200);
-  }
- catch (  InterruptedException e) {
-  }
-  try {
-    in=new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-    out=new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-    out.print("HTTP/1.0 200 OK");
+    in=new BufferedInputStream(clientSocket.getInputStream());
+    out=new BufferedOutputStream(clientSocket.getOutputStream());
+    out.write("HTTP/1.0 200 OK".getBytes(ISO_8859_1));
     out.write(CRLF);
-    out.print("Content-Type: text/plain");
+    out.write("Content-Type: text/plain".getBytes(ISO_8859_1));
     out.write(CRLF);
     out.write(CRLF);
     out.flush();
-    String line;
-    while ((line=in.readLine()) != null) {
-      out.print(line);
-      out.write(CRLF);
-      if (line.length() == 0)       break;
+    int contentLength=-1;
+    boolean isChunked=false;
+    byte[] buffer=new byte[1024];
+    StringBuffer headers=new StringBuffer();
+    int length=0;
+    boolean haveAllHeaders=false;
+    int positionOfBody=0;
+    while (!haveAllHeaders && ((length=in.read(buffer)) != -1)) {
+      headers.append(new String(buffer,0,length,ISO_8859_1));
+      positionOfBody=getPositionOfBody(headers.toString());
+      haveAllHeaders=positionOfBody > 0;
     }
-    int c;
-    while (in.ready() && (c=in.read()) != -1) {
-      out.write(c);
+    out.write(headers.toString().getBytes(ISO_8859_1));
+    String contentLengthHeaderValue=getRequestHeaderValue(headers.toString(),"Content-Length");
+    if (contentLengthHeaderValue != null) {
+      contentLength=new Integer(contentLengthHeaderValue).intValue();
+    }
+    String transferEncodingHeaderValue=getRequestHeaderValue(headers.toString(),"Transfer-Encoding");
+    if (transferEncodingHeaderValue != null) {
+      isChunked=transferEncodingHeaderValue.equalsIgnoreCase("chunked");
+      if (!isChunked) {
+        log.error("Transfer-Encoding header set, the value is not supported : " + transferEncodingHeaderValue);
+      }
+    }
+    length=0;
+    if (contentLength > 0) {
+      int totalReadBytes=headers.toString().length() - positionOfBody - 2;
+      while ((totalReadBytes < contentLength) && ((length=in.read(buffer)) != -1)) {
+        out.write(buffer,0,length);
+        totalReadBytes+=length;
+      }
+    }
+ else     if (isChunked) {
+      while (in.available() > 0 && ((length=in.read(buffer)) != -1)) {
+        out.write(buffer,0,length);
+      }
+    }
+ else {
+      log.error("No content-length header found, and it is not chunked transfer, we cannot read the request");
     }
     out.flush();
   }

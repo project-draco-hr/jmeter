@@ -1,0 +1,54 @@
+{
+  Socket clientSocket=new Socket("localhost",HTTP_SERVER_PORT);
+  OutputStream outputStream=clientSocket.getOutputStream();
+  InputStream inputStream=clientSocket.getInputStream();
+  ByteArrayOutputStream bos=new ByteArrayOutputStream();
+  bos.write("GET / HTTP 1.1".getBytes(ISO_8859_1));
+  bos.write(CRLF);
+  bos.write("Host: localhost".getBytes(ISO_8859_1));
+  bos.write(CRLF);
+  bos.write(CRLF);
+  bos.close();
+  outputStream.write(bos.toByteArray());
+  ByteArrayOutputStream response=new ByteArrayOutputStream();
+  byte[] buffer=new byte[1024];
+  int length=0;
+  while ((length=inputStream.read(buffer)) != -1) {
+    response.write(buffer,0,length);
+  }
+  response.close();
+  byte[] mirroredResponse=getMirroredResponse(response.toByteArray());
+  checkArraysHaveSameContent(bos.toByteArray(),mirroredResponse);
+  clientSocket.close();
+  clientSocket=new Socket("localhost",HTTP_SERVER_PORT);
+  outputStream=clientSocket.getOutputStream();
+  inputStream=clientSocket.getInputStream();
+  bos=new ByteArrayOutputStream();
+  bos.write("GET / HTTP 1.1".getBytes(ISO_8859_1));
+  bos.write(CRLF);
+  bos.close();
+  byte[] firstChunk=bos.toByteArray();
+  outputStream.write(firstChunk);
+  Thread.sleep(300);
+  bos=new ByteArrayOutputStream();
+  bos.write("Host: localhost".getBytes(ISO_8859_1));
+  bos.write(CRLF);
+  bos.write(CRLF);
+  bos.close();
+  byte[] secondChunk=bos.toByteArray();
+  outputStream.write(secondChunk);
+  response=new ByteArrayOutputStream();
+  buffer=new byte[1024];
+  length=0;
+  while ((length=inputStream.read(buffer)) != -1) {
+    response.write(buffer,0,length);
+  }
+  response.close();
+  mirroredResponse=getMirroredResponse(response.toByteArray());
+  bos=new ByteArrayOutputStream();
+  bos.write(firstChunk);
+  bos.write(secondChunk);
+  bos.close();
+  checkArraysHaveSameContent(bos.toByteArray(),mirroredResponse);
+  clientSocket.close();
+}
