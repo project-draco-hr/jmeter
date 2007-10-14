@@ -71,12 +71,14 @@
     System.out.println("Incorrect Usage");
     System.out.println(CLUtil.describeOptions(options).toString());
   }
-catch (  Exception e) {
+catch (  Throwable e) {
     if (log != null) {
       log.fatalError("An error occurred: ",e);
     }
-    e.printStackTrace();
+ else {
+      e.printStackTrace();
+    }
     System.out.println("An error occurred: " + e.getMessage());
-    System.exit(-1);
+    System.exit(1);
   }
 }
