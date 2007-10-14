@@ -7,6 +7,6 @@
   }
  catch (  Exception ex) {
     log.error("Giving up, as server failed with:",ex);
-    System.exit(0);
+    System.exit(1);
   }
 }
