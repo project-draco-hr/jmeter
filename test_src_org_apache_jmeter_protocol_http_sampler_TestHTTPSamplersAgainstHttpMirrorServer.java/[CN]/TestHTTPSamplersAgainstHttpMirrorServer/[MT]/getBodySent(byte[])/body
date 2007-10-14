@@ -1,0 +1,17 @@
+{
+  byte[] bodySent=null;
+  String headersSent=getHeadersSent(responseData);
+  if (headersSent != null) {
+    String contentLengthValue=getSentRequestHeaderValue(headersSent,HTTPSamplerBase.HEADER_CONTENT_LENGTH);
+    int contentLength=-1;
+    if (contentLengthValue != null) {
+      contentLength=new Integer(contentLengthValue).intValue();
+    }
+ else {
+      fail("Did not receive any content-lenght header");
+    }
+    bodySent=new byte[contentLength];
+    System.arraycopy(responseData,responseData.length - contentLength,bodySent,0,contentLength);
+  }
+  return bodySent;
+}

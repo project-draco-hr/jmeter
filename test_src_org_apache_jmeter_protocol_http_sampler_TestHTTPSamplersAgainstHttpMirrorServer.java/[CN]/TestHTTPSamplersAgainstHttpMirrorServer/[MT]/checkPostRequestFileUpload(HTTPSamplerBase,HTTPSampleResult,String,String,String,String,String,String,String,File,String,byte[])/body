@@ -8,19 +8,14 @@
   byte[] expectedPostBody=createExpectedFormAndUploadOutput(boundaryString,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,fileField,fileValue,fileMimeType,fileContent);
   assertTrue(isInRequestHeaders(res.getRequestHeaders(),HTTPSamplerBase.HEADER_CONTENT_TYPE,"multipart/form-data" + "; boundary=" + boundaryString));
   assertTrue(isInRequestHeaders(res.getRequestHeaders(),HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(expectedPostBody.length)));
-  String dataSentToMirrorServer=new String(res.getResponseData(),contentEncoding);
-  int posDividerHeadersAndBody=getPositionOfBody(dataSentToMirrorServer);
-  String headersSent=null;
-  String bodySent=null;
-  if (posDividerHeadersAndBody >= 0) {
-    headersSent=dataSentToMirrorServer.substring(0,posDividerHeadersAndBody);
-    bodySent=dataSentToMirrorServer.substring(posDividerHeadersAndBody + 2);
-  }
- else {
+  String headersSent=getHeadersSent(res.getResponseData());
+  if (headersSent == null) {
     fail("No header and body section found");
   }
   assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_TYPE,"multipart/form-data" + "; boundary=" + boundaryString));
   assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(expectedPostBody.length)));
+  byte[] bodySent=getBodySent(res.getResponseData());
   assertNotNull("Sent body should not be null",bodySent);
+  checkArraysHaveSameContent(expectedPostBody,bodySent);
   checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
 }

@@ -1,0 +1,9 @@
+{
+  String dataSentToMirrorServer=new String(responseData,ISO_8859_1);
+  int posDividerHeadersAndBody=getPositionOfBody(dataSentToMirrorServer);
+  String headersSent=null;
+  if (posDividerHeadersAndBody >= 0) {
+    headersSent=dataSentToMirrorServer.substring(0,posDividerHeadersAndBody);
+  }
+  return headersSent;
+}

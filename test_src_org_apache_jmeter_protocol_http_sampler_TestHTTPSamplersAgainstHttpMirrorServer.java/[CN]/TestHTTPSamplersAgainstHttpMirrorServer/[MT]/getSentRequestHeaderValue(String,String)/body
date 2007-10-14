@@ -1,0 +1,11 @@
+{
+  Perl5Matcher localMatcher=JMeterUtils.getMatcher();
+  String expression=".*" + headerName + ": (\\d*).*";
+  Pattern pattern=JMeterUtils.getPattern(expression,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK);
+  if (localMatcher.matches(requestHeaders,pattern)) {
+    return localMatcher.getMatch().group(1);
+  }
+ else {
+    return null;
+  }
+}
