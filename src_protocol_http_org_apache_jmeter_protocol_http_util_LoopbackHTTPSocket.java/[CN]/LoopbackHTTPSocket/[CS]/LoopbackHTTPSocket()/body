@@ -1,4 +1,4 @@
 {
   os=new LoopbackOutputStream();
-  os.write("HTTP/1.1 200 OK\nContent-Type: text/plain\n\n".getBytes());
+  os.write("HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\n".getBytes());
 }
