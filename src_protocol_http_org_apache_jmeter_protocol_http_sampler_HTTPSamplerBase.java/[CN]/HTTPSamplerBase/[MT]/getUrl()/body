@@ -5,7 +5,7 @@
     pathAndQuery.append("/");
   }
   pathAndQuery.append(path);
-  if (GET.equals(getMethod())) {
+  if (GET.equals(getMethod()) || DELETE.equals(getMethod())) {
     String queryString=getQueryString(getContentEncoding());
     if (queryString.length() > 0) {
       if (path.indexOf(QRY_PFX) > -1) {

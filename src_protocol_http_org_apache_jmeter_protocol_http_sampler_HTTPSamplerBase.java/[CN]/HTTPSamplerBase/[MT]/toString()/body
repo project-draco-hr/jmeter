@@ -1,6 +1,12 @@
 {
   try {
-    return this.getUrl().toString() + ((POST.equals(getMethod())) ? "\nQuery Data: " + getQueryString() : "");
+    StringBuffer stringBuffer=new StringBuffer();
+    stringBuffer.append(this.getUrl().toString());
+    if (POST.equals(getMethod()) || PUT.equals(getMethod())) {
+      stringBuffer.append("\nQuery Data: ");
+      stringBuffer.append(getQueryString());
+    }
+    return stringBuffer.toString();
   }
  catch (  MalformedURLException e) {
     return "";

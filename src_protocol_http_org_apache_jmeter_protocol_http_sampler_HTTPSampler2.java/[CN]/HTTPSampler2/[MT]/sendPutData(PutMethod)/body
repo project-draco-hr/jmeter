@@ -1,0 +1,62 @@
+{
+  StringBuffer putBody=new StringBuffer(1000);
+  boolean hasPutBody=false;
+  Header contentTypeHeader=put.getRequestHeader(HEADER_CONTENT_TYPE);
+  boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
+  if (!hasArguments() && getSendFileAsPostBody()) {
+    hasPutBody=true;
+    FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(getFilename()),null);
+    put.setRequestEntity(fileRequestEntity);
+    putBody.append("<actual file content, not shown here>");
+  }
+ else   if (getSendParameterValuesAsPostBody()) {
+    hasPutBody=true;
+    final String contentEncoding=getContentEncoding();
+    boolean haveContentEncoding=false;
+    if (contentEncoding != null && contentEncoding.trim().length() > 0) {
+      put.getParams().setContentCharset(contentEncoding);
+      haveContentEncoding=true;
+    }
+    StringBuffer putBodyContent=new StringBuffer();
+    PropertyIterator args=getArguments().iterator();
+    while (args.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      String value=null;
+      if (haveContentEncoding) {
+        value=arg.getEncodedValue(contentEncoding);
+      }
+ else {
+        value=arg.getEncodedValue();
+      }
+      putBody.append(value);
+    }
+    String contentTypeValue=null;
+    if (hasContentTypeHeader) {
+      contentTypeValue=put.getRequestHeader(HEADER_CONTENT_TYPE).getValue();
+    }
+    StringRequestEntity requestEntity=new StringRequestEntity(putBodyContent.toString(),contentTypeValue,put.getRequestCharSet());
+    put.setRequestEntity(requestEntity);
+  }
+  if (hasPutBody) {
+    if (put.getRequestEntity().isRepeatable()) {
+      ByteArrayOutputStream bos=new ByteArrayOutputStream();
+      put.getRequestEntity().writeRequest(bos);
+      bos.flush();
+      putBody.append(new String(bos.toByteArray(),"UTF-8"));
+      bos.close();
+    }
+ else {
+      putBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
+    }
+    if (!hasContentTypeHeader) {
+      if (getMimetype() != null && getMimetype().length() > 0) {
+        put.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+      }
+    }
+    put.setRequestHeader(HEADER_CONTENT_LENGTH,Long.toString(put.getRequestEntity().getContentLength()));
+    return putBody.toString();
+  }
+ else {
+    return null;
+  }
+}

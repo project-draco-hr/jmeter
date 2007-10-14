@@ -37,7 +37,8 @@ catch (      IOException e) {
       res.setQueryString(postBody);
     }
  else     if (method.equals(PUT)) {
-      sendPutData(conn);
+      String putBody=sendPutData(conn);
+      res.setQueryString(putBody);
     }
     byte[] responseData=readResponse(conn,res);
     res.sampleEnd();

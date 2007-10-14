@@ -1,7 +1,7 @@
 {
   String urlStr=url.toString();
-  log.debug("Start : sample" + urlStr);
-  log.debug("method" + method);
+  log.debug("Start : sample " + urlStr);
+  log.debug("method " + method);
   HttpMethodBase httpMethod=null;
   HTTPSampleResult res=new HTTPSampleResult();
   res.setMonitor(isMonitor());
@@ -36,13 +36,15 @@
       log.error("Unexpected method (converted to GET): " + method);
       httpMethod=new GetMethod(urlStr);
     }
+    setDefaultRequestHeaders(httpMethod);
     client=setupConnection(url,httpMethod,res);
     if (method.equals(POST)) {
       String postBody=sendPostData((PostMethod)httpMethod);
       res.setQueryString(postBody);
     }
  else     if (method.equals(PUT)) {
-      setPutHeaders((PutMethod)httpMethod);
+      String putBody=sendPutData((PutMethod)httpMethod);
+      res.setQueryString(putBody);
     }
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
     int statusCode=client.executeMethod(httpMethod);

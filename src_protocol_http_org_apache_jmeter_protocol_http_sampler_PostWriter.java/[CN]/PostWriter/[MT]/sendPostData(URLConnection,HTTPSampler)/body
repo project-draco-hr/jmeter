@@ -20,7 +20,7 @@
     out.close();
   }
  else {
-    if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
+    if (sampler.getArguments() != null && !sampler.hasArguments() && sampler.getSendFileAsPostBody()) {
       OutputStream out=connection.getOutputStream();
       writeFileToStream(sampler.getFilename(),out);
       out.flush();

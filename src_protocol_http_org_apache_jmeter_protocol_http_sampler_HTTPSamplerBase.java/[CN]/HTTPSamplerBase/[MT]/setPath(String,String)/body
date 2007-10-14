@@ -1,5 +1,5 @@
 {
-  if (GET.equals(getMethod())) {
+  if (GET.equals(getMethod()) || DELETE.equals(getMethod())) {
     int index=path.indexOf(QRY_PFX);
     if (index > -1) {
       setProperty(PATH,path.substring(0,index));
