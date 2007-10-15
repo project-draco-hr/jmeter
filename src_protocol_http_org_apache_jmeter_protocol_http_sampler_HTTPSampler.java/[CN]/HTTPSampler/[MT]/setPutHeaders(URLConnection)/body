@@ -1,16 +1,4 @@
 {
-  boolean hasPutBody=false;
-  if (hasUploadableFiles()) {
-    if (getMimetype() != null && getMimetype().trim().length() > 0) {
-      conn.setRequestProperty(HEADER_CONTENT_TYPE,getMimetype());
-    }
-    hasPutBody=true;
-  }
-  if (getSendParameterValuesAsPostBody()) {
-    hasPutBody=true;
-  }
-  if (hasPutBody) {
-    conn.setDoInput(true);
-    conn.setDoOutput(true);
-  }
+  postWriter=new PostWriter();
+  postWriter.setHeaders(conn,this);
 }
