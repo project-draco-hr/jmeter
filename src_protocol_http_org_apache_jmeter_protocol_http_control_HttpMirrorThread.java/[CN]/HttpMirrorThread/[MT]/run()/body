@@ -49,7 +49,9 @@
       }
     }
  else {
-      log.error("No content-length header found, and it is not chunked transfer, we cannot read the request");
+      while (in.available() > 0 && ((length=in.read(buffer)) != -1)) {
+        out.write(buffer,0,length);
+      }
     }
     out.flush();
   }
