@@ -1,0 +1,43 @@
+{
+  String contentEncoding=sampler.getContentEncoding();
+  if (contentEncoding == null || contentEncoding.length() == 0) {
+    contentEncoding=ENCODING;
+  }
+  long contentLength=0L;
+  boolean hasPutBody=false;
+  String contentTypeHeader=connection.getRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE);
+  boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.length() > 0;
+  if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
+    hasPutBody=true;
+    if (!hasContentTypeHeader) {
+      if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
+        connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+      }
+    }
+    File inputFile=new File(sampler.getFilename());
+    contentLength=inputFile.length();
+  }
+ else   if (sampler.getSendParameterValuesAsPostBody()) {
+    hasPutBody=true;
+    if (!hasContentTypeHeader && sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
+      connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+    }
+    ByteArrayOutputStream bos=new ByteArrayOutputStream();
+    StringBuffer postBodyBuffer=new StringBuffer();
+    PropertyIterator args=sampler.getArguments().iterator();
+    while (args.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      postBodyBuffer.append(arg.getEncodedValue(contentEncoding));
+    }
+    String postBody=postBodyBuffer.toString();
+    bos.write(postBody.getBytes("UTF-8"));
+    bos.flush();
+    bos.close();
+    formDataUrlEncoded=bos.toByteArray();
+    contentLength=bos.toByteArray().length;
+  }
+  if (hasPutBody) {
+    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
+    connection.setDoOutput(true);
+  }
+}

@@ -1,7 +1,7 @@
 {
   HttpURLConnection conn=null;
   String urlStr=url.toString();
-  log.debug("Start : sample" + urlStr);
+  log.debug("Start : sample " + urlStr);
   HTTPSampleResult res=new HTTPSampleResult();
   res.setMonitor(isMonitor());
   res.setSampleLabel(urlStr);
