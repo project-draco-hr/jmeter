@@ -68,9 +68,6 @@
       postedBody.append("<actual file content, not shown here>");
     }
  else {
-      if (!hasContentTypeHeader) {
-        post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
-      }
       final String contentEncoding=getContentEncoding();
       boolean haveContentEncoding=false;
       if (contentEncoding != null && contentEncoding.trim().length() > 0) {
@@ -78,6 +75,9 @@
         haveContentEncoding=true;
       }
       if (getSendParameterValuesAsPostBody()) {
+        if (!hasContentTypeHeader && getMimetype() != null && getMimetype().length() > 0) {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+        }
         StringBuffer postBody=new StringBuffer();
         PropertyIterator args=getArguments().iterator();
         while (args.hasNext()) {
@@ -95,6 +95,9 @@
         post.setRequestEntity(requestEntity);
       }
  else {
+        if (!hasContentTypeHeader) {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+        }
         PropertyIterator args=getArguments().iterator();
         while (args.hasNext()) {
           HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

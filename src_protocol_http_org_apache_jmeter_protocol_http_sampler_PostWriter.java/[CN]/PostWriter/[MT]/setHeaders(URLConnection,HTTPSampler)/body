@@ -57,15 +57,18 @@
       contentLength=inputFile.length();
     }
  else {
-      if (!hasContentTypeHeader) {
-        connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
-      }
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
       String postBody=null;
       if (!sampler.getSendParameterValuesAsPostBody()) {
+        if (!hasContentTypeHeader) {
+          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+        }
         postBody=sampler.getQueryString(contentEncoding);
       }
  else {
+        if (!hasContentTypeHeader && sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
+          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+        }
         StringBuffer postBodyBuffer=new StringBuffer();
         PropertyIterator args=sampler.getArguments().iterator();
         while (args.hasNext()) {
