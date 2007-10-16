@@ -15,7 +15,9 @@
   }
   try {
     Registry reg=LocateRegistry.getRegistry(port);
-    backingEngine=new StandardJMeterEngine(InetAddress.getLocalHost().getHostName());
+    hostName=InetAddress.getLocalHost().getHostName();
+    log.info("Creating JMeter engine on host " + hostName);
+    backingEngine=new StandardJMeterEngine(hostName);
     reg.rebind("JMeterEngine",this);
     log.info("Bound to registry on port " + port);
   }

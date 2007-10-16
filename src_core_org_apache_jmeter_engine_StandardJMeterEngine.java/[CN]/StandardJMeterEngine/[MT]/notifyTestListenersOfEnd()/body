@@ -12,4 +12,8 @@
     }
   }
   log.info("Test has ended");
+  if (host != null) {
+    long now=System.currentTimeMillis();
+    System.out.println("Finished the test on host " + host + " @ "+ new Date(now)+ " ("+ now+ ")");
+  }
 }
