@@ -1,12 +1,10 @@
 {
   try {
     new RemoteJMeterEngineImpl(port);
-    while (true) {
-      Thread.sleep(Long.MAX_VALUE);
-    }
   }
  catch (  Exception ex) {
     log.error("Giving up, as server failed with:",ex);
+    System.err.println("Server failed to start: " + ex);
     System.exit(1);
   }
 }
