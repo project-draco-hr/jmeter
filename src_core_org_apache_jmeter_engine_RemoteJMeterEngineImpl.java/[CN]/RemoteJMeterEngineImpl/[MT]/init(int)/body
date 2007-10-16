@@ -1,6 +1,18 @@
 {
   log.info("Starting backing engine on " + port);
   log.debug("This = " + this);
+  if (createServer) {
+    log.info("Creating RMI registry (server.rmi.create=true)");
+    try {
+      LocateRegistry.createRegistry(port);
+    }
+ catch (    RemoteException e) {
+      String msg="Problem creating registry: " + e;
+      log.warn(msg);
+      System.err.println(msg);
+      System.err.println("Continuing...");
+    }
+  }
   try {
     Registry reg=LocateRegistry.getRegistry(port);
     backingEngine=new StandardJMeterEngine(InetAddress.getLocalHost().getHostName());
