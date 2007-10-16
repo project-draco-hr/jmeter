@@ -15,5 +15,8 @@
   if (host != null) {
     long now=System.currentTimeMillis();
     System.out.println("Finished the test on host " + host + " @ "+ new Date(now)+ " ("+ now+ ")");
+    if (exitAfterTest) {
+      exit();
+    }
   }
 }
