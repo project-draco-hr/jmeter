@@ -6,14 +6,12 @@
   String boundaryString=getBoundaryStringFromContentType(res.getRequestHeaders());
   assertNotNull(boundaryString);
   byte[] expectedPostBody=createExpectedFormAndUploadOutput(boundaryString,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,fileField,fileValue,fileMimeType,fileContent);
-  assertTrue(isInRequestHeaders(res.getRequestHeaders(),HTTPSamplerBase.HEADER_CONTENT_TYPE,"multipart/form-data" + "; boundary=" + boundaryString));
-  assertTrue(isInRequestHeaders(res.getRequestHeaders(),HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(expectedPostBody.length)));
+  checkHeaderTypeLength(res.getRequestHeaders(),"multipart/form-data" + "; boundary=" + boundaryString,expectedPostBody.length);
   String headersSent=getHeadersSent(res.getResponseData());
   if (headersSent == null) {
     fail("No header and body section found");
   }
-  assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_TYPE,"multipart/form-data" + "; boundary=" + boundaryString));
-  assertTrue(isInRequestHeaders(headersSent,HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(expectedPostBody.length)));
+  checkHeaderTypeLength(headersSent,"multipart/form-data" + "; boundary=" + boundaryString,expectedPostBody.length);
   byte[] bodySent=getBodySent(res.getResponseData());
   assertNotNull("Sent body should not be null",bodySent);
   checkArraysHaveSameContent(expectedPostBody,bodySent);
