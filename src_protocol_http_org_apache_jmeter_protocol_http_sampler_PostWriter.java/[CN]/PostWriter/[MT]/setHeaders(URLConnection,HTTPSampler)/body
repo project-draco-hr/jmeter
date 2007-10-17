@@ -66,8 +66,13 @@
         postBody=sampler.getQueryString(contentEncoding);
       }
  else {
-        if (!hasContentTypeHeader && sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
-          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+        if (!hasContentTypeHeader) {
+          if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
+            connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+          }
+ else {
+            connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+          }
         }
         StringBuffer postBodyBuffer=new StringBuffer();
         PropertyIterator args=sampler.getArguments().iterator();
