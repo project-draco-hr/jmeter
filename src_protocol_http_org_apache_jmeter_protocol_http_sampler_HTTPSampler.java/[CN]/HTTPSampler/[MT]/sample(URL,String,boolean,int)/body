@@ -20,7 +20,7 @@
           throw e;
         }
         log.debug("Bind exception, try again");
-        conn.disconnect();
+        if (conn != null)         conn.disconnect();
         this.setUseKeepAlive(false);
         continue;
       }
