@@ -75,8 +75,13 @@
         haveContentEncoding=true;
       }
       if (getSendParameterValuesAsPostBody()) {
-        if (!hasContentTypeHeader && getMimetype() != null && getMimetype().length() > 0) {
-          post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+        if (!hasContentTypeHeader) {
+          if (getMimetype() != null && getMimetype().length() > 0) {
+            post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+          }
+ else {
+            post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+          }
         }
         StringBuffer postBody=new StringBuffer();
         PropertyIterator args=getArguments().iterator();
