@@ -1,5 +1,6 @@
 {
-  globalNumExecutions=0;
-  globalIteration=-1;
-  counterLock=new Object();
+synchronized (counterLock) {
+    globalNumExecutions=0;
+    globalIteration=-1;
+  }
 }
