@@ -1,8 +1,8 @@
 {
-  this.target=target;
-  this.clientSocket=clientSocket;
-  this.captureHttpHeaders=target.getCaptureHttpHeaders();
-  this.httpsSpoof=target.getHttpsSpoof();
-  this.pageEncodings=pageEncodings;
-  this.formEncodings=formEncodings;
+  this.target=_target;
+  this.clientSocket=_clientSocket;
+  this.captureHttpHeaders=_target.getCaptureHttpHeaders();
+  this.httpsSpoof=_target.getHttpsSpoof();
+  this.pageEncodings=_pageEncodings;
+  this.formEncodings=_formEncodings;
 }
