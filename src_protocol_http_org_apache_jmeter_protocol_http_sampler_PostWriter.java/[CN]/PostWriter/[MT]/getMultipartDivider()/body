@@ -1,3 +1,3 @@
 {
-  return new String(DASH_DASH + getBoundary()).getBytes(ENCODING);
+  return (DASH_DASH + getBoundary()).getBytes(ENCODING);
 }

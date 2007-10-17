@@ -1,5 +1,5 @@
 {
-  byte[] ending=new String(DASH_DASH + getBoundary()).getBytes(ENCODING);
+  byte[] ending=getMultipartDivider();
   byte[] completeEnding=new byte[ending.length + CRLF.length];
   System.arraycopy(CRLF,0,completeEnding,0,CRLF.length);
   System.arraycopy(ending,0,completeEnding,CRLF.length,ending.length);
