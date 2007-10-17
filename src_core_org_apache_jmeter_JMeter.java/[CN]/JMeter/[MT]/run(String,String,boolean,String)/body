@@ -52,6 +52,8 @@
         engines.add(doRemoteInit(el.trim(),tree));
       }
       println("Starting remote engines");
+      long now=System.currentTimeMillis();
+      println("Starting the test @ " + new Date(now) + " ("+ now+ ")");
       Iterator iter=engines.iterator();
       while (iter.hasNext()) {
         engine=(JMeterEngine)iter.next();

@@ -1,8 +1,14 @@
 {
-  String iconProp=JMeterUtils.getPropDefault("jmeter.icons","org/apache/jmeter/images/icon.properties");
+  final String defaultIconProp="org/apache/jmeter/images/icon.properties";
+  String iconProp=JMeterUtils.getPropDefault("jmeter.icons",defaultIconProp);
   Properties p=JMeterUtils.loadProperties(iconProp);
+  if (p == null && !iconProp.equals(defaultIconProp)) {
+    log.info(iconProp + " not found - using " + defaultIconProp);
+    iconProp=defaultIconProp;
+    p=JMeterUtils.loadProperties(iconProp);
+  }
   if (p == null) {
-    log.info(iconProp + " not found - using default icon set");
+    log.info(iconProp + " not found - using inbuilt icon set");
     return DEFAULT_ICONS;
   }
   log.info("Loaded icon properties from " + iconProp);

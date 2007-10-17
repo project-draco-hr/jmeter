@@ -1,7 +1,10 @@
 {
   started--;
-  log.info("Remote host " + host + " finished");
-  if (started == 0) {
-    testEnded();
+  long now=System.currentTimeMillis();
+  log.info("Finished remote host: " + host + " ("+ now+ ")");
+  if (started <= 0) {
+    remote=true;
+    Thread stopSoon=new Thread(this);
+    stopSoon.start();
   }
 }

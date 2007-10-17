@@ -1,11 +1,15 @@
 {
   long now=System.currentTimeMillis();
   println("Tidying up ...    @ " + new Date(now) + " ("+ now+ ")");
-  try {
-    Thread.sleep(5000);
-  }
- catch (  InterruptedException e) {
+  if (remote) {
+    try {
+      Thread.sleep(5000);
+    }
+ catch (    InterruptedException ignored) {
+    }
   }
   println("... end of run");
-  System.exit(0);
+  if (remote) {
+    System.exit(0);
+  }
 }
