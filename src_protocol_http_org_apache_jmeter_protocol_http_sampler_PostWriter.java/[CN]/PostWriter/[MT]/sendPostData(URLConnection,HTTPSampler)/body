@@ -27,7 +27,7 @@
       out.close();
       postedBody.append("<actual file content, not shown here>");
     }
- else {
+ else     if (formDataUrlEncoded != null) {
       OutputStream out=connection.getOutputStream();
       out.write(formDataUrlEncoded);
       out.flush();
