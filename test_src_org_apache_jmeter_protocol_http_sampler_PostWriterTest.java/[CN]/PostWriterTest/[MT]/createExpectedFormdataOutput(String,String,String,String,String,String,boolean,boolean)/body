@@ -1,5 +1,5 @@
 {
-  final byte[] DASH_DASH=new String("--").getBytes(HTTP_ENCODING);
+  final byte[] DASH_DASH="--".getBytes(HTTP_ENCODING);
   final String mimeType="text/plain";
   final ByteArrayOutputStream output=new ByteArrayOutputStream();
   if (firstMultipart) {

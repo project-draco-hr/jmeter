@@ -7,7 +7,7 @@
   postWriter.setHeaders(connection,sampler);
   postWriter.sendPostData(connection,sampler);
   checkContentTypeUrlEncoded(connection);
-  byte[] expectedUrl=new String("title=" + titleValue + "&description="+ descriptionValue).getBytes("US-ASCII");
+  byte[] expectedUrl=("title=" + titleValue + "&description="+ descriptionValue).getBytes("US-ASCII");
   checkContentLength(connection,expectedUrl.length);
   checkArraysHaveSameContent(expectedUrl,connection.getOutputStreamContent());
   assertEquals(URLDecoder.decode(new String(expectedUrl,"US-ASCII"),"ISO-8859-1"),URLDecoder.decode(new String(connection.getOutputStreamContent(),"US-ASCII"),"ISO-8859-1"));

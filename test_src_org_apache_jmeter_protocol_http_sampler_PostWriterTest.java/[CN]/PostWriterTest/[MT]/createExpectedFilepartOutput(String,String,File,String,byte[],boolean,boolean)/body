@@ -1,6 +1,6 @@
 {
   final String httpEncoding="ISO-8859-1";
-  final byte[] DASH_DASH=new String("--").getBytes(httpEncoding);
+  final byte[] DASH_DASH="--".getBytes(httpEncoding);
   final ByteArrayOutputStream output=new ByteArrayOutputStream();
   if (firstMultipart) {
     output.write(DASH_DASH);
