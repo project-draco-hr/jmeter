@@ -24,7 +24,8 @@
  else           elements.add(element);
         }
         if (element instanceof TestPlan) {
-          Arguments args=(Arguments)element.getProperty(TestPlan.USER_DEFINED_VARIABLES).getObjectValue();
+          TestPlan tp=(TestPlan)element;
+          Arguments args=tp.getArguments();
           if (myClass.isInstance(args)) {
             if (ascending)             elements.addFirst(args);
  else             elements.add(args);
