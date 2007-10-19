@@ -7,7 +7,7 @@
   while (iter.hasNext()) {
     JMeterProperty jmp=iter.next();
     if (!testFormat22 || !ConversionHelp.isSpecialProperty(jmp.getName())) {
-      if (!(TestPlan.COMMENTS.equals(jmp.getName()) && jmp.getStringValue().length() == 0 && !el.getClass().equals(TestPlan.class))) {
+      if (!(TestElement.COMMENTS.equals(jmp.getName()) && jmp.getStringValue().length() == 0 && !el.getClass().equals(TestPlan.class))) {
         writeItem(jmp,context,writer);
       }
     }
