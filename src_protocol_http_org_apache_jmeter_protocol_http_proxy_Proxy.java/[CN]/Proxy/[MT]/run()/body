@@ -22,7 +22,7 @@
     result=sampler.sample();
     if (httpsSpoof && SampleResult.TEXT.equals(result.getDataType())) {
       String noHttpsResult=new String(result.getResponseData());
-      result.setResponseData(noHttpsResult.replaceAll("https","http").getBytes());
+      result.setResponseData(noHttpsResult.replaceAll("https:","http:").getBytes());
     }
     String pageEncoding=addPageEncoding(result);
     addFormEncodings(result,pageEncoding);
