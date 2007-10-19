@@ -13,11 +13,10 @@
   files.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
   files.revalidate();
   JScrollPane scrollpane=new JScrollPane(files);
-  scrollpane.setPreferredSize(new Dimension(400,140));
+  scrollpane.setPreferredSize(new Dimension(100,80));
   add(scrollpane,BorderLayout.CENTER);
   browse.setActionCommand(ACTION_BROWSE);
   browse.addActionListener(this);
   clear.addActionListener(this);
   delete.addActionListener(this);
-  this.setPreferredSize(new Dimension(400,230));
 }
