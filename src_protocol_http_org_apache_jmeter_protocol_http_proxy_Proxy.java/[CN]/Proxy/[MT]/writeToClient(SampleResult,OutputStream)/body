@@ -1,6 +1,6 @@
 {
   try {
-    String responseHeaders=massageResponseHeaders(res,res.getResponseHeaders());
+    String responseHeaders=massageResponseHeaders(res);
     out.write(responseHeaders.getBytes());
     out.write('\n');
     out.write(res.getResponseData());
