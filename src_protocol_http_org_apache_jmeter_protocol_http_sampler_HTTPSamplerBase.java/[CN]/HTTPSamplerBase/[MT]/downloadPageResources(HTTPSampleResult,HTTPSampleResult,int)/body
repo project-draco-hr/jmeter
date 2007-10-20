@@ -53,7 +53,7 @@
               continue;
             }
           }
-          if (pattern != null && !localMatcher.matches(urlStrEnc,pattern)) {
+          if (pattern != null && localMatcher != null && !localMatcher.matches(urlStrEnc,pattern)) {
             continue;
           }
           HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
