@@ -5,12 +5,10 @@
   headerBuf.append("\n");
   for (int i=0; i < rh.length; i++) {
     String key=rh[i].getName();
-    if (!key.equalsIgnoreCase(TRANSFER_ENCODING)) {
-      headerBuf.append(key);
-      headerBuf.append(": ");
-      headerBuf.append(rh[i].getValue());
-      headerBuf.append("\n");
-    }
+    headerBuf.append(key);
+    headerBuf.append(": ");
+    headerBuf.append(rh[i].getValue());
+    headerBuf.append("\n");
   }
   return headerBuf.toString();
 }
