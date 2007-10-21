@@ -1,0 +1,9 @@
+{
+  log.info("Sending properties " + p);
+  try {
+    remote.setProperties(p);
+  }
+ catch (  RemoteException e) {
+    log.warn("Could not set properties: " + e.toString());
+  }
+}
