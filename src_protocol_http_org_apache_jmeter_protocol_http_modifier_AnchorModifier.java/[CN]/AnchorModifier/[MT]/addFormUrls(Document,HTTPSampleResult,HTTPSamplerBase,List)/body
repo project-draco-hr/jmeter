@@ -7,7 +7,7 @@
   Iterator iter=urls.iterator();
   while (iter.hasNext()) {
     HTTPSamplerBase newUrl=(HTTPSamplerBase)iter.next();
-    newUrl.setMethod(HTTPSamplerBase.POST);
+    newUrl.setMethod(HTTPConstants.POST);
     if (log.isDebugEnabled()) {
       log.debug("Potential Form match: " + newUrl.toString());
     }

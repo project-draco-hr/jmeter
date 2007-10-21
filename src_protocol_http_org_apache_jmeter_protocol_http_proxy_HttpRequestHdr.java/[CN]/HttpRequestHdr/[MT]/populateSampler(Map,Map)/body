@@ -10,7 +10,7 @@
     if (log.isDebugEnabled())     log.debug("Proxy: setting protocol to : " + protocol);
     sampler.setProtocol(protocol);
   }
- else   if (sampler.getPort() == HTTPSamplerBase.DEFAULT_HTTPS_PORT) {
+ else   if (sampler.getPort() == HTTPConstants.DEFAULT_HTTPS_PORT) {
     sampler.setProtocol(HTTPS);
     if (log.isDebugEnabled())     log.debug("Proxy: setting protocol to https");
   }
@@ -78,7 +78,7 @@ synchronized (formEncodings) {
   if (contentEncoding != null) {
     sampler.setContentEncoding(contentEncoding);
   }
-  if (!HTTPSamplerBase.GET.equals(method)) {
+  if (!HTTPConstants.GET.equals(method)) {
     final String contentType=getContentType();
     MultipartUrlConfig urlConfig=getMultipartConfig(contentType);
     if (urlConfig != null) {
@@ -94,7 +94,7 @@ synchronized (formEncodings) {
  else     if (postData != null && postData.trim().startsWith("<?")) {
       sampler.addNonEncodedArgument("",postData,"");
     }
- else     if (contentType == null || contentType.startsWith(HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED)) {
+ else     if (contentType == null || contentType.startsWith(HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED)) {
       sampler.parseArguments(postData.trim(),contentEncoding);
     }
  else     if (postData != null && postData.length() > 0) {

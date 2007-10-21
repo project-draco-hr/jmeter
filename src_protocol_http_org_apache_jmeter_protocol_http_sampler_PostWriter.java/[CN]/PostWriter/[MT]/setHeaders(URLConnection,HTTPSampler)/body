@@ -5,7 +5,7 @@
   }
   long contentLength=0L;
   if (sampler.getUseMultipartForPost()) {
-    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.MULTIPART_FORM_DATA + "; boundary=" + getBoundary());
+    connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.MULTIPART_FORM_DATA + "; boundary=" + getBoundary());
     ByteArrayOutputStream bos=new ByteArrayOutputStream();
     bos.write(getMultipartDivider());
     PropertyIterator args=sampler.getArguments().iterator();
@@ -37,20 +37,20 @@
       contentLength+=getFileMultipartEndDivider().length;
     }
     contentLength+=getMultipartEndDivider().length;
-    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
+    connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
     connection.setDoOutput(true);
     connection.setDoInput(true);
   }
  else {
-    String contentTypeHeader=connection.getRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE);
+    String contentTypeHeader=connection.getRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE);
     boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.length() > 0;
     if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
       if (!hasContentTypeHeader) {
         if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
-          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+          connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,sampler.getMimetype());
         }
  else {
-          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+          connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
       }
       File inputFile=new File(sampler.getFilename());
@@ -61,17 +61,17 @@
       String postBody=null;
       if (!sampler.getSendParameterValuesAsPostBody()) {
         if (!hasContentTypeHeader) {
-          connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+          connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
         postBody=sampler.getQueryString(contentEncoding);
       }
  else {
         if (!hasContentTypeHeader) {
           if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
-            connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,sampler.getMimetype());
+            connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,sampler.getMimetype());
           }
  else {
-            connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_TYPE,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED);
+            connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
           }
         }
         StringBuffer postBodyBuffer=new StringBuffer();
@@ -88,7 +88,7 @@
       formDataUrlEncoded=bos.toByteArray();
       contentLength=bos.toByteArray().length;
     }
-    connection.setRequestProperty(HTTPSamplerBase.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
+    connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
     connection.setDoOutput(true);
   }
 }

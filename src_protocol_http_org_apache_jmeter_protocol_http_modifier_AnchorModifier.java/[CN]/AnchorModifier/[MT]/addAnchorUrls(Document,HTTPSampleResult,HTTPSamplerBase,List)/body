@@ -18,7 +18,7 @@
     }
     try {
       HTTPSamplerBase newUrl=HtmlParsingUtils.createUrlFromAnchor(hrefStr,new URL(result.getURL(),base));
-      newUrl.setMethod(HTTPSamplerBase.GET);
+      newUrl.setMethod(HTTPConstants.GET);
       if (log.isDebugEnabled()) {
         log.debug("Potential <a href> match: " + newUrl);
       }
