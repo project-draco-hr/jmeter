@@ -9,5 +9,6 @@
     System.exit(1);
   }
   engine.configure(testTree);
+  engine.setProperties(remoteProps);
   return engine;
 }

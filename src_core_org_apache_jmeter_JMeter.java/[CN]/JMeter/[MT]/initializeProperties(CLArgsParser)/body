@@ -18,6 +18,7 @@
     JMeterUtils.setJMeterHome(parser.getArgumentById(JMETER_HOME_OPT).getArgument());
   }
   Properties jmeterProps=JMeterUtils.getJMeterProperties();
+  remoteProps=new Properties();
   String userProp=JMeterUtils.getPropDefault("user.properties","");
   if (userProp.length() > 0) {
     FileInputStream fis=null;
@@ -116,6 +117,12 @@ jmeterProps.setProperty(name,value);
  else {
 log.warn("Removing JMeter property: " + name);
 jmeterProps.remove(name);
+}
+break;
+case JMETER_GLOBAL_PROP:
+if (value.length() > 0) {
+log.info("Setting Global property: " + name + "="+ value);
+remoteProps.setProperty(name,value);
 }
 break;
 case LOGLEVEL:

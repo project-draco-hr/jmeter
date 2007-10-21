@@ -6,6 +6,7 @@
  catch (  InternalError e) {
   }
   JMeter driver=new JMeter();
+  driver.remoteProps=this.remoteProps;
   driver.parent=this;
   PluginManager.install(this,false);
   String remote_hosts_string=null;
