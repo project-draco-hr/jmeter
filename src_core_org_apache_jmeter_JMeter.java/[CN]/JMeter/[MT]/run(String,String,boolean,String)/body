@@ -33,7 +33,8 @@
       Summariser summer=new Summariser(summariserName);
       tree.add(tree.getArray()[0],summer);
     }
-    tree.add(tree.getArray()[0],new ListenToTest(parent));
+    List engines=new LinkedList();
+    tree.add(tree.getArray()[0],new ListenToTest(parent,(remoteStart && remoteStop) ? engines : null));
     println("Created the tree successfully");
     JMeterEngine engine=null;
     if (!remoteStart) {
@@ -45,7 +46,6 @@
     }
  else {
       java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
-      List engines=new LinkedList();
       while (st.hasMoreElements()) {
         String el=(String)st.nextElement();
         println("Configuring remote engine for " + el);

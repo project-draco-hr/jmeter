@@ -3,7 +3,6 @@
   long now=System.currentTimeMillis();
   log.info("Finished remote host: " + host + " ("+ now+ ")");
   if (started <= 0) {
-    remote=true;
     Thread stopSoon=new Thread(this);
     stopSoon.start();
   }

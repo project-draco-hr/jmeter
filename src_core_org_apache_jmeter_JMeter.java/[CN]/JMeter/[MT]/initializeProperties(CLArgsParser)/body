@@ -135,6 +135,9 @@ log.warn("LogLevel: " + name);
 LoggingManager.setPriority(name);
 }
 break;
+case REMOTE_STOP:
+remoteStop=true;
+break;
 }
 }
 }

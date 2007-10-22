@@ -1,15 +1,19 @@
 {
   long now=System.currentTimeMillis();
   println("Tidying up ...    @ " + new Date(now) + " ("+ now+ ")");
-  if (remote) {
-    try {
-      Thread.sleep(5000);
+  if (engines != null) {
+    System.out.println("Exitting remote servers");
+    Iterator it=engines.iterator();
+    while (it.hasNext()) {
+      JMeterEngine e=(JMeterEngine)it.next();
+      e.exit();
     }
- catch (    InterruptedException ignored) {
-    }
+  }
+  try {
+    Thread.sleep(5000);
+  }
+ catch (  InterruptedException ignored) {
   }
   println("... end of run");
-  if (remote) {
-    System.exit(0);
-  }
+  System.exit(0);
 }
