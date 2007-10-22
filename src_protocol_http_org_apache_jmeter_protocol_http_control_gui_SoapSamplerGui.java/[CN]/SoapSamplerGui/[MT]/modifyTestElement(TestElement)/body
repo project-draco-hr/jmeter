@@ -7,5 +7,6 @@
     sampler.setXmlFile(soapXmlFile.getFilename());
     sampler.setSOAPAction(soapAction.getText());
     sampler.setSendSOAPAction(sendSoapAction.isSelected());
+    sampler.setUseKeepAlive(useKeepAlive.isSelected());
   }
 }

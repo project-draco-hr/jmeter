@@ -6,4 +6,5 @@
   soapAction.setText(sampler.getSOAPAction());
   soapXml.setText(sampler.getXmlData());
   soapXmlFile.setFilename(sampler.getXmlFile());
+  useKeepAlive.setSelected(sampler.getUseKeepAlive());
 }

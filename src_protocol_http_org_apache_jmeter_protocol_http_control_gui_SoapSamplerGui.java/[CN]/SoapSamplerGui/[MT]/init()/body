@@ -6,6 +6,7 @@
   soapXml=new JLabeledTextArea(JMeterUtils.getResString("soap_data_title"));
   soapAction=new JLabeledTextField("",10);
   sendSoapAction=new JCheckBox(JMeterUtils.getResString("soap_send_action"),true);
+  useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
   JPanel mainPanel=new JPanel(new BorderLayout());
   JPanel soapActionPanel=new JPanel();
   soapActionPanel.setLayout(new GridBagLayout());
@@ -25,6 +26,11 @@
   c.fill=GridBagConstraints.HORIZONTAL;
   c.weightx=1;
   soapActionPanel.add(soapAction,c);
+  c.fill=GridBagConstraints.HORIZONTAL;
+  c.gridwidth=2;
+  c.gridy=2;
+  c.gridx=0;
+  soapActionPanel.add(useKeepAlive,c);
   mainPanel.add(soapActionPanel,BorderLayout.NORTH);
   mainPanel.add(soapXml,BorderLayout.CENTER);
   mainPanel.add(soapXmlFile,BorderLayout.SOUTH);
