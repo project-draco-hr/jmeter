@@ -10,11 +10,13 @@
     port.setText(portString);
   }
   protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
-  method.setText(el.getPropertyAsString(HTTPSamplerBase.METHOD));
   contentEncoding.setText(el.getPropertyAsString(HTTPSamplerBase.CONTENT_ENCODING));
   path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
-  followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
-  autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
-  useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
-  useMultipartForPost.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
+  if (notConfigOnly) {
+    method.setText(el.getPropertyAsString(HTTPSamplerBase.METHOD));
+    followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
+    autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
+    useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
+    useMultipartForPost.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
+  }
 }

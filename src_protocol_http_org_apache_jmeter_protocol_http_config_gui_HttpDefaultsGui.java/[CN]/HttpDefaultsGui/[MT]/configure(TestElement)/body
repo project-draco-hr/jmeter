@@ -1,10 +1,5 @@
 {
   super.configure(el);
-  protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
-  domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
-  path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
-  port.setText(el.getPropertyAsString(HTTPSamplerBase.PORT));
-  encoding.setText(el.getPropertyAsString(HTTPSamplerBase.CONTENT_ENCODING));
-  argPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
+  urlConfig.configure(el);
   imageParser.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.IMAGE_PARSER));
 }

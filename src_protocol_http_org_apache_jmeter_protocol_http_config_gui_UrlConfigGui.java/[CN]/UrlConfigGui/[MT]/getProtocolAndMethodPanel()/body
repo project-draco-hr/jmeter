@@ -7,12 +7,16 @@
   protocolLabel.setLabelFor(protocol);
   JLabel contentEncodingLabel=new JLabel(JMeterUtils.getResString("content_encoding"));
   protocolLabel.setLabelFor(contentEncoding);
-  method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
+  if (notConfigOnly) {
+    method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
+  }
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   panel.add(protocolLabel);
   panel.add(protocol);
   panel.add(Box.createHorizontalStrut(5));
-  panel.add(method);
+  if (notConfigOnly) {
+    panel.add(method);
+  }
   panel.setMinimumSize(panel.getPreferredSize());
   panel.add(Box.createHorizontalStrut(5));
   panel.add(contentEncodingLabel);
