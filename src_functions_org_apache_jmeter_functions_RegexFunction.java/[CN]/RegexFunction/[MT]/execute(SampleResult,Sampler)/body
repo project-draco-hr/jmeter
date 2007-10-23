@@ -36,7 +36,7 @@
   List collectAllMatches=new ArrayList();
   try {
     PatternMatcher matcher=JMeterUtils.getMatcher();
-    String responseText=new String(previousResult.getResponseData(),previousResult.getDataEncoding());
+    String responseText=previousResult.getResponseDataAsString();
     PatternMatcherInput input=new PatternMatcherInput(responseText);
     while (matcher.contains(input,searchPattern)) {
       MatchResult match=matcher.getMatch();
@@ -45,10 +45,6 @@
   }
  catch (  NumberFormatException e) {
     log.error("",e);
-    return defaultValue;
-  }
-catch (  UnsupportedEncodingException e) {
-    log.error("Can't convert ResponseData",e);
     return defaultValue;
   }
  finally {

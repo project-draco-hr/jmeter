@@ -14,11 +14,7 @@
   }
   List potentialLinks=new ArrayList();
   String responseText="";
-  try {
-    responseText=new String(result.getResponseData(),result.getDataEncoding());
-  }
- catch (  UnsupportedEncodingException e) {
-  }
+  responseText=result.getResponseDataAsString();
   Document html;
   int index=responseText.indexOf("<");
   if (index == -1) {
