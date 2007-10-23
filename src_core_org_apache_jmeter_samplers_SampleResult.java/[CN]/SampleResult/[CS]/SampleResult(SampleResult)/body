@@ -10,7 +10,7 @@
   setDataType(res.getDataType());
   setResponseHeaders(res.getResponseHeaders());
   setContentType(res.getContentType());
-  setDataEncoding(res.getDataEncoding());
+  setDataEncoding(res.getDataEncodingNoDefault());
   setURL(res.getURL());
   setGroupThreads(res.getGroupThreads());
   setAllThreads(res.getAllThreads());
