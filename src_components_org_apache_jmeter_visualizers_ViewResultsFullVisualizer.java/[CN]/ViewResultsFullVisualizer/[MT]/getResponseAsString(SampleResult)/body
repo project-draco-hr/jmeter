@@ -1,19 +1,13 @@
 {
-  byte[] responseBytes=res.getResponseData();
   String response=null;
   if ((SampleResult.TEXT).equals(res.getDataType())) {
-    try {
-      if (responseBytes.length > 200 * 1024) {
-        response=("Response too large to be displayed (" + responseBytes.length + " bytes).");
-        log.warn("Response too large to display.");
-      }
- else {
-        response=new String(responseBytes,res.getDataEncoding());
-      }
+    int len=res.getResponseData().length;
+    if (len > 200 * 1024) {
+      response="Response too large to be displayed (" + len + " bytes).";
+      log.warn(response);
     }
- catch (    UnsupportedEncodingException err) {
-      log.warn("Could not decode response " + err);
-      response=new String(responseBytes);
+ else {
+      response=res.getResponseDataAsString();
     }
   }
   return response;
