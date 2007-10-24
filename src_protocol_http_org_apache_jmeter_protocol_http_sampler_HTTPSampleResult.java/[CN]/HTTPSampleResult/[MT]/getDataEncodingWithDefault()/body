@@ -1,0 +1,17 @@
+{
+  if (getDataEncodingNoDefault() == null && getContentType().startsWith("text/html")) {
+    byte[] bytes=getResponseData();
+    String prefix=new String(bytes,0,Math.min(bytes.length,1000)).toLowerCase();
+    final String METATAG="<meta http-equiv=\"content-type\" content=\"";
+    int tagstart=prefix.indexOf(METATAG);
+    if (tagstart != -1) {
+      tagstart+=METATAG.length();
+      int tagend=prefix.indexOf("\"",tagstart);
+      if (tagend != -1) {
+        final String ct=new String(bytes,tagstart,tagend - tagstart);
+        setEncodingAndType(ct);
+      }
+    }
+  }
+  return super.getDataEncodingWithDefault();
+}
