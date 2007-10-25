@@ -1,6 +1,7 @@
 {
   if (emptyList()) {
     reInitialize();
+    resetLoopCount();
     return null;
   }
   return super.next();
