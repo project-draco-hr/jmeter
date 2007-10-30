@@ -7,6 +7,6 @@
   action=ta.getAction();
   if (action == TestAction.PAUSE)   pauseButton.setSelected(true);
  else   stopButton.setSelected(true);
-  duration=ta.getDuration();
-  durationField.setText(Integer.toString(duration));
+  durationString=ta.getDurationAsString();
+  durationField.setText(durationString);
 }

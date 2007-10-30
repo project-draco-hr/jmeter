@@ -50,16 +50,11 @@
   actionPanel.add(stopButton);
   add(actionPanel);
   HorizontalPanel durationPanel=new HorizontalPanel();
-  durationField=new JTextField(5);
-  durationField.setText(Integer.toString(duration));
+  durationField=new JTextField(15);
+  durationField.setText("");
   durationField.addFocusListener(new FocusListener(){
     public void focusLost(    FocusEvent e){
-      try {
-        duration=Integer.parseInt(durationField.getText());
-      }
- catch (      NumberFormatException nfe) {
-        duration=0;
-      }
+      durationString=durationField.getText();
     }
     public void focusGained(    FocusEvent e){
     }

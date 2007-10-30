@@ -3,7 +3,7 @@
   int target=getTarget();
   int action=getAction();
   if (action == PAUSE) {
-    pause(getDuration());
+    pause(getDurationAsString());
   }
  else   if (action == STOP) {
     if (target == THREAD) {

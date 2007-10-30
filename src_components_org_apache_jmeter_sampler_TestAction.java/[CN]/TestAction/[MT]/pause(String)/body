@@ -1,0 +1,15 @@
+{
+  int milis;
+  try {
+    milis=Integer.parseInt(mili_s);
+  }
+ catch (  NumberFormatException e) {
+    log.warn("Could not create number from " + mili_s);
+    milis=0;
+  }
+  try {
+    Thread.sleep(milis);
+  }
+ catch (  InterruptedException e) {
+  }
+}
