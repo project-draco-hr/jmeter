@@ -1,6 +1,6 @@
 {
   String headers=res.getResponseHeaders();
-  String[] headerLines=headers.split(NEW_LINE,-1);
+  String[] headerLines=headers.split(NEW_LINE,0);
   int contentLengthIndex=-1;
   boolean fixContentLength=false;
   for (int i=0; i < headerLines.length; i++) {
