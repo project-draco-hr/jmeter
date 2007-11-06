@@ -10,11 +10,13 @@
     sampler.setUseKeepAlive(useKeepAlive);
     sampler.setImageParser(samplerDownloadImages);
     placeSampler(sampler,subConfigs,myTarget);
-    notifySampleListeners(new SampleEvent(result,sampler.getName()));
+    notifySampleListeners(new SampleEvent(result,"WorkBench"));
   }
  else {
     if (log.isDebugEnabled()) {
       log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
     }
+    result.setSampleLabel("[" + result.getSampleLabel() + "]");
+    notifySampleListeners(new SampleEvent(result,"WorkBench"));
   }
 }
