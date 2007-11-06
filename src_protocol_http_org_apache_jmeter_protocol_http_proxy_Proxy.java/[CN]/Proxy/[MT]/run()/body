@@ -29,6 +29,9 @@
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     headers.removeHeaderNamed("cookie");
     headers.removeHeaderNamed("Authorization");
+    for (int i=0; i < headersToRemove.length; i++) {
+      headers.removeHeaderNamed(headersToRemove[i]);
+    }
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
