@@ -3,7 +3,7 @@
   testListeners=new SearchByClass(TestListener.class);
   sampleListeners=new ConvertListeners();
   HashTree testTree=getTestTree();
-  PreCompiler compiler=new PreCompiler();
+  PreCompiler compiler=new PreCompiler(true);
 synchronized (testTree) {
     testTree.traverse(compiler);
     testTree.traverse(new TurnElementsOn());

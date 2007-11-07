@@ -1,4 +1,15 @@
 {
+  if (isRemote && node instanceof ResultCollector) {
+    try {
+      replacer.replaceValues((TestElement)node);
+    }
+ catch (    InvalidVariableException e) {
+      log.error("invalid variables",e);
+    }
+  }
+  if (isRemote) {
+    return;
+  }
   if (node instanceof TestElement) {
     try {
       replacer.replaceValues((TestElement)node);
