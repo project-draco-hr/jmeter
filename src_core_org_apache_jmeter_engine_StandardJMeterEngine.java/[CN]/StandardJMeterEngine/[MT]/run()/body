@@ -1,7 +1,6 @@
 {
   log.info("Running the test!");
   running=true;
-  testList=new ArrayList();
   SearchByClass testPlan=new SearchByClass(TestPlan.class);
   getTestTree().traverse(testPlan);
   Object[] plan=testPlan.getSearchResults().toArray();
@@ -25,7 +24,7 @@
   testListeners=new SearchByClass(TestListener.class);
   getTestTree().traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
-  testList=null;
+  testList.clear();
   if (!startListenersLater)   notifyTestListenersOfStart();
   getTestTree().traverse(new TurnElementsOn());
   if (startListenersLater)   notifyTestListenersOfStart();
