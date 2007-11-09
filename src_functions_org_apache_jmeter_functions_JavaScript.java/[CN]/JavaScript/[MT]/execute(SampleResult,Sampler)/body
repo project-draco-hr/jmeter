@@ -1,14 +1,15 @@
 {
-  JMeterVariables vars=getVariables();
+  JMeterContext jmctx=JMeterContextService.getContext();
+  JMeterVariables vars=jmctx.getVariables();
   String script=((CompoundVariable)values[0]).execute();
   String varName=values.length < 2 ? null : ((CompoundVariable)values[1]).execute();
   String resultStr="";
   Context cx=Context.enter();
   try {
     Scriptable scope=cx.initStandardObjects(null);
-    scope.put("ctx",scope,currentSampler.getThreadContext());
+    scope.put("ctx",scope,jmctx);
     scope.put("vars",scope,vars);
-    scope.put("theadName",scope,currentSampler.getThreadName());
+    scope.put("theadName",scope,Thread.currentThread().getName());
     scope.put("sampler",scope,currentSampler);
     scope.put("sampleResult",scope,previousResult);
     Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
