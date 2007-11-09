@@ -1,7 +1,8 @@
 {
   super.configure(element);
-  scriptField.setText(element.getPropertyAsString(BSFSampler.SCRIPT));
-  langField.setText(element.getPropertyAsString(BSFSampler.LANGUAGE));
-  filename.setText(element.getPropertyAsString(BSFSampler.FILENAME));
-  parameters.setText(element.getPropertyAsString(BSFSampler.PARAMETERS));
+  BSFSampler sampler=(BSFSampler)element;
+  scriptField.setText(sampler.getScript());
+  langField.setSelectedItem(sampler.getScriptLanguage());
+  filename.setText(sampler.getFilename());
+  parameters.setText(sampler.getParameters());
 }

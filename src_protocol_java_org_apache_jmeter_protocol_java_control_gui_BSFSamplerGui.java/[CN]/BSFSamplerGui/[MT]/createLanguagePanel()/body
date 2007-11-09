@@ -1,7 +1,11 @@
 {
   JLabel label=new JLabel(JMeterUtils.getResString("bsf_script_language"));
-  langField=new JTextField(10);
-  langField.setName(BSFSampler.LANGUAGE);
+  Properties p=JMeterUtils.loadProperties("org/apache/bsf/Languages.properties");
+  Set keySet=p.keySet();
+  String[] items=(String[])keySet.toArray(new String[]{});
+  Arrays.sort(items);
+  langField=new JComboBox(items);
+  langField.setEditable(true);
   label.setLabelFor(langField);
   JPanel langPanel=new JPanel(new BorderLayout(5,0));
   langPanel.add(label,BorderLayout.WEST);
