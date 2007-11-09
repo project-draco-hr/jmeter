@@ -6,6 +6,11 @@
   Context cx=Context.enter();
   try {
     Scriptable scope=cx.initStandardObjects(null);
+    scope.put("ctx",scope,currentSampler.getThreadContext());
+    scope.put("vars",scope,vars);
+    scope.put("theadName",scope,currentSampler.getThreadName());
+    scope.put("sampler",scope,currentSampler);
+    scope.put("sampleResult",scope,previousResult);
     Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
     resultStr=Context.toString(result);
     if (varName != null && vars != null) {
