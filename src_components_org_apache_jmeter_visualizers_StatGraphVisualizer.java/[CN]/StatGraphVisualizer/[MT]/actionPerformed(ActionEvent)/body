@@ -18,7 +18,7 @@
     try {
       writer=new FileWriter(output);
       Vector data=this.getAllTableData();
-      OldSaveService.saveCSVStats(data,writer);
+      CSVSaveService.saveCSVStats(data,writer);
     }
  catch (    FileNotFoundException e) {
       log.warn(e.getMessage());

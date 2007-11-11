@@ -15,7 +15,7 @@
  else {
         if (!line.startsWith("<?xml ")) {
           long lineNumber=1;
-          SampleSaveConfiguration saveConfig=OldSaveService.getSampleSaveConfiguration(line,filename);
+          SampleSaveConfiguration saveConfig=CSVSaveService.getSampleSaveConfiguration(line,filename);
           if (saveConfig == null) {
             saveConfig=(SampleSaveConfiguration)getSaveConfig().clone();
           }
@@ -24,7 +24,7 @@
             lineNumber++;
           }
           while (line != null) {
-            SampleEvent event=OldSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
+            SampleEvent event=CSVSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
             if (event != null)             sendToVisualizer(event);
             line=dataReader.readLine();
             lineNumber++;

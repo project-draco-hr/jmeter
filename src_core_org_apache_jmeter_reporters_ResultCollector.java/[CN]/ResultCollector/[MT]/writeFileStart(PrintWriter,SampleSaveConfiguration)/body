@@ -12,6 +12,6 @@
     writer.print("\n");
   }
  else   if (saveConfig.saveFieldNames()) {
-    writer.println(OldSaveService.printableFieldNamesToString(saveConfig));
+    writer.println(CSVSaveService.printableFieldNamesToString(saveConfig));
   }
 }
