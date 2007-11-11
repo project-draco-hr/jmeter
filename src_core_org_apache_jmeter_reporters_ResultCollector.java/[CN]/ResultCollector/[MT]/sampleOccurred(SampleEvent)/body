@@ -10,7 +10,7 @@
           recordResult(result);
         }
  else {
-          String savee=OldSaveService.resultToDelimitedString(result);
+          String savee=OldSaveService.resultToDelimitedString(e);
           out.println(savee);
         }
       }
