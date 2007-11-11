@@ -24,8 +24,8 @@
             lineNumber++;
           }
           while (line != null) {
-            SampleResult result=OldSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
-            if (result != null)             sendToVisualizer(result);
+            SampleEvent event=OldSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
+            if (event != null)             sendToVisualizer(event);
             line=dataReader.readLine();
             lineNumber++;
           }

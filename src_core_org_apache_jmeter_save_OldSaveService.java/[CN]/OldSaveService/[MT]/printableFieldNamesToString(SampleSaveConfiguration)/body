@@ -69,6 +69,10 @@
     text.append(CSV_ERROR_COUNT);
     text.append(delim);
   }
+  if (saveConfig.saveHostname()) {
+    text.append(CSV_HOSTNAME);
+    text.append(delim);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delim.length();

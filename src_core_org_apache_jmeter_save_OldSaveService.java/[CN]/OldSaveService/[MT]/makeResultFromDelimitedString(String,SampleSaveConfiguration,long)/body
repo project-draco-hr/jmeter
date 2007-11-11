@@ -1,5 +1,6 @@
 {
   SampleResult result=null;
+  String hostname="";
   long timeStamp=0;
   long elapsed=0;
   String parts[]=inputLine.split("\\Q" + saveConfig.getDelimiter());
@@ -115,6 +116,10 @@
       text=parts[i++];
       result.setErrorCount(Integer.parseInt(text));
     }
+    if (saveConfig.saveHostname()) {
+      field=CSV_HOSTNAME;
+      hostname=parts[i++];
+    }
   }
  catch (  NumberFormatException e) {
     log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);
@@ -128,5 +133,5 @@ catch (  ArrayIndexOutOfBoundsException e) {
     log.warn("Insufficient columns to parse field '" + field + "' at line "+ lineNumber);
     throw new JMeterError(e);
   }
-  return result;
+  return new SampleEvent(result,"",hostname);
 }

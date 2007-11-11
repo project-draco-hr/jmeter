@@ -25,6 +25,7 @@
   hash=31 * hash + (url ? 1 : 0);
   hash=31 * hash + (bytes ? 1 : 0);
   hash=31 * hash + (fileName ? 1 : 0);
+  hash=31 * hash + (hostname ? 1 : 0);
   hash=31 * hash + (threadCounts ? 1 : 0);
   hash=31 * hash + (delimiter != null ? delimiter.hashCode() : 0);
   hash=31 * hash + (formatter != null ? formatter.hashCode() : 0);
