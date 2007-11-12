@@ -4,9 +4,7 @@
   JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
   treeLis.setActionHandler(ActionRouter.getInstance());
   GuiPackage.getInstance(treeLis,treeModel);
-  org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
-  main.setTitle("Apache JMeter (" + JMeterUtils.getJMeterVersion() + ")");
-  main.setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
+  MainFrame main=new MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
   ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ActionNames.ADD_ALL));

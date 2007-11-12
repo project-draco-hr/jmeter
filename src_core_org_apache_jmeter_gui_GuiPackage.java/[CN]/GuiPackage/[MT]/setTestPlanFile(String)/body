@@ -1,6 +1,6 @@
 {
   testPlanFile=f;
-  getMainFrame().setTitle(JMeterUtils.getExtendedFrameTitle(testPlanFile));
+  getMainFrame().setExtendedFrameTitle(testPlanFile);
   getMainFrame().setFileRevertEnabled(f != null);
   getMainFrame().setProjectFileLoaded(f);
   try {

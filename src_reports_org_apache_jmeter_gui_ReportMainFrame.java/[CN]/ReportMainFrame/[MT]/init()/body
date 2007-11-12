@@ -14,4 +14,6 @@
   getContentPane().add(all);
   tree.setSelectionRow(1);
   addWindowListener(new WindowHappenings());
+  setTitle(DEFAULT_TITLE);
+  setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
 }
