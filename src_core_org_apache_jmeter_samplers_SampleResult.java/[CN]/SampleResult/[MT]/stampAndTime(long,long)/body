@@ -1,8 +1,10 @@
 {
   if (startTimeStamp) {
     startTime=stamp;
+    endTime=stamp + elapsed;
   }
  else {
+    startTime=stamp - elapsed;
     endTime=stamp;
   }
   timeStamp=stamp;
