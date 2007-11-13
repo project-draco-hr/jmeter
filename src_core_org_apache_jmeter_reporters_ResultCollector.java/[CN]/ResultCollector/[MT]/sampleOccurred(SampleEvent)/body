@@ -1,5 +1,5 @@
 {
-  SampleResult result=e.getResult();
+  SampleResult result=event.getResult();
   if (!isErrorLogging() || !result.isSuccessful()) {
     sendToVisualizer(result);
     if (out != null) {
@@ -7,10 +7,10 @@
       result.setSaveConfig(config);
       try {
         if (config.saveAsXml()) {
-          recordResult(result);
+          recordResult(event);
         }
  else {
-          String savee=CSVSaveService.resultToDelimitedString(e);
+          String savee=CSVSaveService.resultToDelimitedString(event);
           out.println(savee);
         }
       }

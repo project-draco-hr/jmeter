@@ -1,11 +1,12 @@
 {
+  SampleResult result=event.getResult();
   if (!isResultMarked(result) && !this.isStats) {
     if (SaveService.isSaveTestLogFormat20()) {
       if (serializer == null)       serializer=new DefaultConfigurationSerializer();
       out.write(getSerializedSampleResult(result));
     }
  else {
-      SaveService.saveSampleResult(result,out);
+      SaveService.saveSampleResult(event,out);
     }
   }
 }
