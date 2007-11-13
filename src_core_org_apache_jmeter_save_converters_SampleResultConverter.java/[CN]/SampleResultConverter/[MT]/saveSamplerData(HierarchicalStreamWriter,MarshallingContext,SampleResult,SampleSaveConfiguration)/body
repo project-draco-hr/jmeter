@@ -3,6 +3,9 @@
     writeString(writer,TAG_SAMPLER_DATA,res.getSamplerData());
   }
   if (save.saveUrl()) {
-    writeItem(res.getURL(),context,writer);
+    final URL url=res.getURL();
+    if (url != null) {
+      writeItem(url,context,writer);
+    }
   }
 }
