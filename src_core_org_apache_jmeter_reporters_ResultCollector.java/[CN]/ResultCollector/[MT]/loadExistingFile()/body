@@ -1,4 +1,8 @@
 {
+  final Visualizer visualizer=getVisualizer();
+  if (visualizer == null) {
+    return;
+  }
   boolean parsedOK=false, errorDetected=false;
   String filename=getFilename();
   File file=new File(filename);
@@ -25,7 +29,9 @@
           }
           while (line != null) {
             SampleEvent event=CSVSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
-            if (event != null)             sendToVisualizer(event);
+            if (event != null) {
+              visualizer.add(event.getResult());
+            }
             line=dataReader.readLine();
             lineNumber++;
           }
@@ -34,18 +40,13 @@
  else {
           try {
             bufferedInputStream=new BufferedInputStream(new FileInputStream(file));
-            readSamples(SaveService.loadTestResults(bufferedInputStream));
+            readSamples(SaveService.loadTestResults(bufferedInputStream),visualizer);
             parsedOK=true;
           }
  catch (          Exception e) {
             log.info("Failed to load " + filename + " using XStream, trying old XML format. Error was: "+ e);
             try {
-              Configuration savedSamples=getConfiguration(filename);
-              Configuration[] samples=savedSamples.getChildren();
-              for (int i=0; i < samples.length; i++) {
-                SampleResult result=OldSaveService.getSampleResult(samples[i]);
-                sendToVisualizer(result);
-              }
+              OldSaveService.processSamples(filename,visualizer);
               parsedOK=true;
             }
  catch (            Exception e1) {

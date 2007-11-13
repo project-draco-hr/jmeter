@@ -1,6 +1,6 @@
 {
   ByteArrayOutputStream tempOut=new ByteArrayOutputStream();
-  serializer.serialize(tempOut,OldSaveService.getConfiguration(result,getSaveConfig()));
+  slzr.serialize(tempOut,OldSaveService.getConfiguration(result,cfg));
   String serVer=tempOut.toString();
   String lineSep=System.getProperty("line.separator");
   int index=serVer.indexOf(lineSep);
