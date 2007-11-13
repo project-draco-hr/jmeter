@@ -1,0 +1,5 @@
+{
+  SampleEvent evt=(SampleEvent)source;
+  Object res=evt.getResult();
+  context.convertAnother(res);
+}
