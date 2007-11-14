@@ -4,7 +4,7 @@
     writer.addAttribute(ATT_CLASS,JAVA_LANG_STRING);
     try {
       if (SampleResult.TEXT.equals(res.getDataType())) {
-        writer.setValue(new String(res.getResponseData(),res.getDataEncoding()));
+        writer.setValue(new String(res.getResponseData(),res.getDataEncodingWithDefault()));
       }
     }
  catch (    UnsupportedEncodingException e) {

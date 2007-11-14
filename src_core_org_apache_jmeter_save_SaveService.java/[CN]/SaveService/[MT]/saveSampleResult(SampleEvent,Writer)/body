@@ -1,4 +1,6 @@
 {
-  saver.toXML(evt.getResult(),writer);
+  DataHolder dh=saver.newDataHolder();
+  dh.put(SAMPLE_EVENT_OBJECT,evt);
+  saver.marshal(evt.getResult(),new XppDriver().createWriter(writer),dh);
   writer.write('\n');
 }

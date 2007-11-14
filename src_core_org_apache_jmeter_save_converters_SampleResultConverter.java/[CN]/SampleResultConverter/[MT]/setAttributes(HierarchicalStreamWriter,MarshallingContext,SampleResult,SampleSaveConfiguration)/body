@@ -8,7 +8,7 @@
   if (save.saveMessage())   writer.addAttribute(ATT_RESPONSE_MESSAGE,ConversionHelp.encode(res.getResponseMessage()));
   if (save.saveThreadName())   writer.addAttribute(ATT_THREADNAME,ConversionHelp.encode(res.getThreadName()));
   if (save.saveDataType())   writer.addAttribute(ATT_DATA_TYPE,ConversionHelp.encode(res.getDataType()));
-  if (save.saveEncoding())   writer.addAttribute(ATT_DATA_ENCODING,ConversionHelp.encode(res.getDataEncoding()));
+  if (save.saveEncoding())   writer.addAttribute(ATT_DATA_ENCODING,ConversionHelp.encode(res.getDataEncodingNoDefault()));
   if (save.saveBytes())   writer.addAttribute(ATT_BYTES,String.valueOf(res.getBytes()));
   if (save.saveSampleCount()) {
     writer.addAttribute(ATT_SAMPLE_COUNT,String.valueOf(res.getSampleCount()));
@@ -17,5 +17,11 @@
   if (save.saveThreadCounts()) {
     writer.addAttribute(ATT_GRP_THRDS,String.valueOf(res.getGroupThreads()));
     writer.addAttribute(ATT_ALL_THRDS,String.valueOf(res.getAllThreads()));
+  }
+  if (save.saveHostname()) {
+    SampleEvent event=(SampleEvent)context.get(SaveService.SAMPLE_EVENT_OBJECT);
+    if (event != null) {
+      writer.addAttribute(ATT_HOSTNAME,event.getHostname());
+    }
   }
 }

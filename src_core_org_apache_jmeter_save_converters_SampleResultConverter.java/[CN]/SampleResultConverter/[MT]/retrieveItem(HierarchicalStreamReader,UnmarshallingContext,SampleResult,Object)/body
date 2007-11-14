@@ -13,11 +13,12 @@
     res.setRequestHeaders((String)subItem);
   }
  else   if (nodeName.equals(TAG_RESPONSE_DATA)) {
+    final String dataEncoding=res.getDataEncodingWithDefault();
     try {
-      res.setResponseData(((String)subItem).getBytes(res.getDataEncoding()));
+      res.setResponseData(((String)subItem).getBytes(dataEncoding));
     }
  catch (    UnsupportedEncodingException e) {
-      res.setResponseData(("Can't support the char set: " + res.getDataEncoding()).getBytes());
+      res.setResponseData(("Can't support the char set: " + dataEncoding).getBytes());
     }
   }
  else   if (nodeName.equals(TAG_SAMPLER_DATA)) {
