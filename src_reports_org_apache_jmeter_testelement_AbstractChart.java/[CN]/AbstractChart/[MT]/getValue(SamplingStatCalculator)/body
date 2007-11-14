@@ -24,7 +24,7 @@
     return stat.getRate();
   }
  else   if (this.getXAxis().equals(AbstractTable.REPORT_TABLE_TRANSFER_RATE)) {
-    return stat.getPageSize() / 1024;
+    return stat.getKBPerSecond();
   }
  else {
     return Double.NaN;
