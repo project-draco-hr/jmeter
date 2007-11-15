@@ -3,6 +3,8 @@
   Iterator iter=samples.iterator();
   while (iter.hasNext()) {
     SampleResult result=(SampleResult)iter.next();
-    visualizer.add(result);
+    if (showAll || !result.isSuccessful()) {
+      visualizer.add(result);
+    }
   }
 }

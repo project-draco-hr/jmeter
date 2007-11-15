@@ -4,6 +4,8 @@
   Configuration[] samples=savedSamples.getChildren();
   for (int i=0; i < samples.length; i++) {
     SampleResult result=OldSaveService.getSampleResult(samples[i]);
-    visualizer.add(result);
+    if (showAll || !result.isSuccessful()) {
+      visualizer.add(result);
+    }
   }
 }
