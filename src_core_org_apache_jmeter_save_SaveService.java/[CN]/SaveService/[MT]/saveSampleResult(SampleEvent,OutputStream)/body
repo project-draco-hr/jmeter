@@ -1,6 +1,0 @@
-{
-  OutputStreamWriter outputStreamWriter=getOutputStreamWriter(out);
-  writeXmlHeader(outputStreamWriter);
-  saveSampleResult(event,outputStreamWriter);
-  outputStreamWriter.close();
-}

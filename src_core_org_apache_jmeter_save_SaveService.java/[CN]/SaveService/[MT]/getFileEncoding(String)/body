@@ -1,0 +1,8 @@
+{
+  if (fileEncoding != null && fileEncoding.length() > 0) {
+    return fileEncoding;
+  }
+ else {
+    return dflt;
+  }
+}

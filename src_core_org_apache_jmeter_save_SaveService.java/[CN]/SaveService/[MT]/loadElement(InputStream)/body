@@ -1,6 +1,6 @@
 {
   InputStreamReader inputStreamReader=getInputStreamReader(in);
-  Object element=loadElement(inputStreamReader);
+  Object element=saver.fromXML(inputStreamReader);
   inputStreamReader.close();
   return element;
 }

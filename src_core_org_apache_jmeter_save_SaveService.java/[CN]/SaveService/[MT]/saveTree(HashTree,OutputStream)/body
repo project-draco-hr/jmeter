@@ -1,6 +1,9 @@
 {
   OutputStreamWriter outputStreamWriter=getOutputStreamWriter(out);
   writeXmlHeader(outputStreamWriter);
-  saveTree(tree,outputStreamWriter);
+  ScriptWrapper wrapper=new ScriptWrapper();
+  wrapper.testPlan=tree;
+  saver.toXML(wrapper,outputStreamWriter);
+  outputStreamWriter.write('\n');
   outputStreamWriter.close();
 }
