@@ -5,7 +5,6 @@
   m.addElement(JMeterUtils.getResString("grouping_in_controllers"));
   m.addElement(JMeterUtils.getResString("grouping_store_first_only"));
   groupingMode=new JComboBox(m);
-  groupingMode.setName(ProxyControl.GROUPING_MODE);
   groupingMode.setSelectedIndex(0);
   groupingMode.addItemListener(this);
   JLabel label2=new JLabel(JMeterUtils.getResString("grouping_mode"));

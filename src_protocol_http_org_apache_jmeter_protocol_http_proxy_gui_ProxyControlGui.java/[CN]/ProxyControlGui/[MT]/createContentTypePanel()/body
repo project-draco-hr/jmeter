@@ -1,15 +1,13 @@
 {
   contentTypeInclude=new JTextField(30);
-  contentTypeInclude.setName(ProxyControl.CONTENT_TYPE_INCLUDE);
-  contentTypeInclude.addActionListener(this);
-  contentTypeInclude.setActionCommand(ProxyControl.CONTENT_TYPE_INCLUDE);
+  contentTypeInclude.addKeyListener(this);
+  contentTypeInclude.setName(ENABLE_RESTART);
   JLabel labelInclude=new JLabel(JMeterUtils.getResString("proxy_content_type_include"));
   labelInclude.setLabelFor(contentTypeInclude);
   contentTypeInclude.setText(JMeterUtils.getProperty("proxy.content_type_include"));
   contentTypeExclude=new JTextField(30);
-  contentTypeExclude.setName(ProxyControl.CONTENT_TYPE_EXCLUDE);
-  contentTypeExclude.addActionListener(this);
-  contentTypeExclude.setActionCommand(ProxyControl.CONTENT_TYPE_EXCLUDE);
+  contentTypeExclude.addKeyListener(this);
+  contentTypeExclude.setName(ENABLE_RESTART);
   JLabel labelExclude=new JLabel(JMeterUtils.getResString("proxy_content_type_exclude"));
   labelExclude.setLabelFor(contentTypeExclude);
   contentTypeExclude.setText(JMeterUtils.getProperty("proxy.content_type_exclude"));

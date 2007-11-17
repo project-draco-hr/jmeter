@@ -21,6 +21,7 @@
     model.setSamplerDownloadImages(samplerDownloadImages.isSelected());
     model.setRegexMatch(regexMatch.isSelected());
     model.setHttpsSpoof(httpsSpoof.isSelected());
+    model.setHttpsSpoofMatch(httpsMatch.getText());
     model.setContentTypeInclude(contentTypeInclude.getText());
     model.setContentTypeExclude(contentTypeExclude.getText());
     TreeNodeWrapper nw=(TreeNodeWrapper)targetNodes.getSelectedItem();

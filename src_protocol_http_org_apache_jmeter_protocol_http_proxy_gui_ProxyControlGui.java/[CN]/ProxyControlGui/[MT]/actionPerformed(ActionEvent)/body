@@ -13,7 +13,7 @@
     model.stopProxy();
     startProxy();
   }
- else   if (command.equals(ProxyControl.CAPTURE_HTTP_HEADERS) || command.equals(ProxyControl.ADD_ASSERTIONS) || command.equals(ProxyControl.SAMPLER_REDIRECT_AUTOMATICALLY)|| command.equals(ProxyControl.SAMPLER_FOLLOW_REDIRECTS)|| command.equals(ProxyControl.USE_KEEPALIVE)|| command.equals(ProxyControl.SAMPLER_DOWNLOAD_IMAGES)|| command.equals(ProxyControl.REGEX_MATCH)|| command.equals(ProxyControl.HTTPS_SPOOF)|| command.equals(ProxyControl.CONTENT_TYPE_INCLUDE)|| command.equals(ProxyControl.CONTENT_TYPE_EXCLUDE)) {
+ else   if (command.equals(ENABLE_RESTART)) {
     enableRestart();
   }
  else   if (command.equals(ADD_EXCLUDE)) {

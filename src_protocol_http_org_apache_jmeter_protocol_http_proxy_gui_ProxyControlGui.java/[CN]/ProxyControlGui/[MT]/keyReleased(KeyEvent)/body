@@ -1,6 +1,6 @@
 {
   String fieldName=e.getComponent().getName();
-  if (fieldName.equals(ProxyControl.PORT)) {
+  if (fieldName.equals(PORTFIELD)) {
     try {
       Integer.parseInt(portField.getText());
     }
@@ -11,6 +11,9 @@
         portField.setText(portField.getText().substring(0,length - 1));
       }
     }
+    enableRestart();
+  }
+ else   if (fieldName.equals(ENABLE_RESTART)) {
     enableRestart();
   }
 }

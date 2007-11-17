@@ -13,6 +13,7 @@
   samplerDownloadImages.setSelected(model.getSamplerDownloadImages());
   regexMatch.setSelected(model.getRegexMatch());
   httpsSpoof.setSelected(model.getHttpsSpoof());
+  httpsMatch.setText(model.getHttpsSpoofMatch());
   contentTypeInclude.setText(model.getContentTypeInclude());
   contentTypeExclude.setText(model.getContentTypeExclude());
   reinitializeTargetCombo();

@@ -1,18 +1,24 @@
 {
   portField=new JTextField(ProxyControl.DEFAULT_PORT_S,8);
-  portField.setName(ProxyControl.PORT);
+  portField.setName(PORTFIELD);
   portField.addKeyListener(this);
   JLabel label=new JLabel(JMeterUtils.getResString("port"));
   label.setLabelFor(portField);
   httpsSpoof=new JCheckBox(JMeterUtils.getResString("proxy_httpsspoofing"));
-  httpsSpoof.setName(ProxyControl.HTTPS_SPOOF);
   httpsSpoof.setSelected(false);
   httpsSpoof.addActionListener(this);
-  httpsSpoof.setActionCommand(ProxyControl.HTTPS_SPOOF);
+  httpsSpoof.setActionCommand(ENABLE_RESTART);
+  httpsMatch=new JTextField(20);
+  httpsMatch.addKeyListener(this);
+  httpsMatch.setName(ENABLE_RESTART);
+  JLabel matchlabel=new JLabel(JMeterUtils.getResString("proxy_httpsspoofing_match"));
+  matchlabel.setLabelFor(httpsMatch);
   HorizontalPanel panel=new HorizontalPanel();
   panel.add(label);
   panel.add(portField);
   panel.add(Box.createHorizontalStrut(10));
   panel.add(httpsSpoof);
+  panel.add(matchlabel);
+  panel.add(httpsMatch);
   return panel;
 }
