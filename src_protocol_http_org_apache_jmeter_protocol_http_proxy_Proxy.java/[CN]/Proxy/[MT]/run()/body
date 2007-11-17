@@ -15,22 +15,28 @@
     request.getSampler(pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
+    boolean forcedHTTP=false;
     if (httpsSpoof) {
       if (httpsSpoofMatch.length() > 0) {
         String url=request.getUrl();
         if (url.matches(httpsSpoofMatch)) {
           sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+          forcedHTTP=true;
         }
       }
  else {
         sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+        forcedHTTP=true;
       }
     }
     sampler.threadStarted();
     result=sampler.sample();
-    if (httpsSpoof && SampleResult.TEXT.equals(result.getDataType())) {
-      String noHttpsResult=new String(result.getResponseData());
-      result.setResponseData(noHttpsResult.replaceAll("https:","http:").getBytes());
+    if (forcedHTTP && SampleResult.TEXT.equals(result.getDataType())) {
+      final String enc=result.getDataEncodingWithDefault();
+      String noHttpsResult=new String(result.getResponseData(),enc);
+      final String HTTPS_HOST="https://([^:/]+)(:" + HTTPConstants.DEFAULT_HTTPS_PORT_STRING + ")?";
+      noHttpsResult=noHttpsResult.replaceAll(HTTPS_HOST,"http://$1");
+      result.setResponseData(noHttpsResult.getBytes(enc));
     }
     String pageEncoding=addPageEncoding(result);
     addFormEncodings(result,pageEncoding);
