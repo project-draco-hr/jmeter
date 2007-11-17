@@ -1,5 +1,8 @@
 {
   FormCharSetFinder finder=new FormCharSetFinder();
+  if (!result.getContentType().startsWith("text/")) {
+    return;
+  }
   try {
     finder.addFormActionsAndCharSet(result.getResponseDataAsString(),formEncodings,pageEncoding);
   }

@@ -1,0 +1,8 @@
+{
+  if (result == null) {
+    result=new SampleResult();
+    result.setSampleLabel("Sample failed");
+  }
+  result.setResponseMessage(e.getMessage());
+  return result;
+}

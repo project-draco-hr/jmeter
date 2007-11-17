@@ -31,10 +31,17 @@
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
     writeErrorToClient(HttpReplyHdr.formServerNotFound());
+    result=generateErrorResult(result,uhe);
+  }
+catch (  IllegalArgumentException e) {
+    log.error("Not implemented (probably used https)",e);
+    writeErrorToClient(HttpReplyHdr.formNotImplemented());
+    result=generateErrorResult(result,e);
   }
 catch (  Exception e) {
-    log.error("",e);
+    log.error("Exception when processing sample",e);
     writeErrorToClient(HttpReplyHdr.formTimeout());
+    result=generateErrorResult(result,e);
   }
  finally {
     if (log.isDebugEnabled()) {
