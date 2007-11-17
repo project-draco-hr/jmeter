@@ -16,7 +16,15 @@
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     if (httpsSpoof) {
-      sampler.setProtocol("https");
+      if (httpsSpoofMatch.length() > 0) {
+        String url=request.getUrl();
+        if (url.matches(httpsSpoofMatch)) {
+          sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+        }
+      }
+ else {
+        sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+      }
     }
     sampler.threadStarted();
     result=sampler.sample();
