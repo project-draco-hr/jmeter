@@ -20,10 +20,10 @@
   }
   URL pageUrl=null;
   if (sampler.isProtocolDefaultPort()) {
-    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),serverUrl());
+    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),getPath());
   }
  else {
-    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),sampler.getPort(),serverUrl());
+    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),sampler.getPort(),getPath());
   }
   String urlWithoutQuery=getUrlWithoutQuery(pageUrl);
   String contentEncoding=null;
@@ -62,10 +62,10 @@ synchronized (formEncodings) {
     postData=new String(rawPostData);
   }
   if (contentEncoding != null) {
-    sampler.setPath(serverUrl(),contentEncoding);
+    sampler.setPath(getPath(),contentEncoding);
   }
  else {
-    sampler.setPath(serverUrl(),null);
+    sampler.setPath(getPath(),null);
   }
   if (log.isDebugEnabled())   log.debug("Proxy: setting path: " + sampler.getPath());
   if (numberRequests) {
