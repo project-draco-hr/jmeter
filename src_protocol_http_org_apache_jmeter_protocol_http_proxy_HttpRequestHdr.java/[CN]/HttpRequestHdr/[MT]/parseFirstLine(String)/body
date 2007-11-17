@@ -1,8 +1,24 @@
 {
-  if (log.isDebugEnabled())   log.debug("browser request: " + firstLine);
+  if (log.isDebugEnabled()) {
+    log.debug("browser request: " + firstLine);
+  }
+  if (!CharUtils.isAsciiAlphanumeric(firstLine.charAt(0))) {
+    throw new IllegalArgumentException("Unrecognised header line (probably used HTTPS)");
+  }
   StringTokenizer tz=new StringTokenizer(firstLine);
   method=getToken(tz).toUpperCase();
   url=getToken(tz);
-  if (log.isDebugEnabled())   log.debug("parsed url: " + url);
+  if (url.toLowerCase().startsWith(HTTPConstants.PROTOCOL_HTTPS)) {
+    throw new IllegalArgumentException("Cannot handle https URLS: " + url);
+  }
   version=getToken(tz);
+  if (log.isDebugEnabled()) {
+    log.debug("parser input:  " + firstLine);
+    log.debug("parsed method: " + method);
+    log.debug("parsed url:    " + url);
+    log.debug("parsed version:" + version);
+  }
+  if ("CONNECT".equalsIgnoreCase(method)) {
+    throw new IllegalArgumentException("Cannot handle CONNECT - probably used HTTPS");
+  }
 }
