@@ -1,5 +1,5 @@
 {
-  portField=new JTextField(ProxyControl.DEFAULT_PORT_S,8);
+  portField=new JTextField(ProxyControl.DEFAULT_PORT_S,5);
   portField.setName(PORTFIELD);
   portField.addKeyListener(this);
   JLabel label=new JLabel(JMeterUtils.getResString("port"));
@@ -8,7 +8,7 @@
   httpsSpoof.setSelected(false);
   httpsSpoof.addActionListener(this);
   httpsSpoof.setActionCommand(ENABLE_RESTART);
-  httpsMatch=new JTextField(20);
+  httpsMatch=new JTextField(40);
   httpsMatch.addKeyListener(this);
   httpsMatch.setName(ENABLE_RESTART);
   JLabel matchlabel=new JLabel(JMeterUtils.getResString("proxy_httpsspoofing_match"));
