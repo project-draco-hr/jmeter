@@ -24,7 +24,7 @@
   sff.addTest(new PackageTest("SFFTest5"));
   allsuites.addTest(sff);
   TestSuite split=new TestSuite("SplitFunction");
-  split.addTest(new PackageTest("SplitTest1"));
+  split.addTest(new PackageTest("splitTest1"));
   allsuites.addTest(split);
   TestSuite xpath=new TestSuite("XPath");
   xpath.addTest(new PackageTest("XPathtestColumns"));
@@ -37,7 +37,7 @@
   xpath.addTest(new PackageTest("XPathNoFile"));
   allsuites.addTest(xpath);
   TestSuite random=new TestSuite("Random");
-  random.addTest(new PackageTest("RandomTest1"));
+  random.addTest(new PackageTest("randomTest1"));
   allsuites.addTest(random);
   allsuites.addTest(new PackageTest("XPathSetup1"));
   TestSuite par2=new ActiveTestSuite("ParallelXPath1");
@@ -50,11 +50,11 @@
   par3.addTest(new PackageTest("XPathThread2"));
   allsuites.addTest(par3);
   TestSuite variable=new TestSuite("Variable");
-  variable.addTest(new PackageTest("VariableTest1"));
+  variable.addTest(new PackageTest("variableTest1"));
   allsuites.addTest(variable);
   TestSuite eval=new TestSuite("Eval");
-  eval.addTest(new PackageTest("EvalTest1"));
-  eval.addTest(new PackageTest("EvalTest2"));
+  eval.addTest(new PackageTest("evalTest1"));
+  eval.addTest(new PackageTest("evalTest2"));
   allsuites.addTest(eval);
   return allsuites;
 }
