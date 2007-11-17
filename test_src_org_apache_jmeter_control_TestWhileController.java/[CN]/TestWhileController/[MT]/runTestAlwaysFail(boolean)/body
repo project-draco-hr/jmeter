@@ -1,10 +1,10 @@
 {
-  WhileController.testMode=true;
-  WhileController.testModeResult=false;
   LoopController controller=new LoopController();
   controller.setContinueForever(true);
   controller.setLoops(-1);
   WhileController while_cont=new WhileController();
+  while_cont.testMode=true;
+  while_cont.testModeResult=false;
   while_cont.setCondition("false");
   while_cont.addTestElement(new TestSampler("one"));
   while_cont.addTestElement(new TestSampler("two"));
