@@ -8,7 +8,7 @@
   res.sampleStart();
   try {
     int retry;
-    for (retry=1; retry <= MAX_CONN_RETRIES; retry++) {
+    for (retry=0; retry <= MAX_CONN_RETRIES; retry++) {
       try {
         conn=setupConnection(url,method,res);
         conn.connect();
