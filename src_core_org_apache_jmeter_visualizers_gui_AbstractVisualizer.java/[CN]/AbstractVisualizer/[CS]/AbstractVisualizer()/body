@@ -1,6 +1,19 @@
 {
   super();
   errorLogging=new JCheckBox(JMeterUtils.getResString("log_errors_only"));
+  errorLogging.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      if (errorLogging.isSelected())       successOnlyLogging.setSelected(false);
+    }
+  }
+);
+  successOnlyLogging=new JCheckBox(JMeterUtils.getResString("log_success_only"));
+  successOnlyLogging.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      if (successOnlyLogging.isSelected())       errorLogging.setSelected(false);
+    }
+  }
+);
   saveConfigButton=new JButton(JMeterUtils.getResString("config_save_settings"));
   saveConfigButton.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
@@ -13,6 +26,8 @@
 );
   filePanel=new FilePanel(JMeterUtils.getResString("file_visualizer_output_file"),".jtl");
   filePanel.addChangeListener(this);
+  filePanel.add(new JLabel(JMeterUtils.getResString("log_only")));
   filePanel.add(errorLogging);
+  filePanel.add(successOnlyLogging);
   filePanel.add(saveConfigButton);
 }

@@ -1,0 +1,8 @@
+{
+  if (value) {
+    setProperty(new BooleanProperty(SUCCESS_ONLY_LOGGING,true));
+  }
+ else {
+    removeProperty(SUCCESS_ONLY_LOGGING);
+  }
+}

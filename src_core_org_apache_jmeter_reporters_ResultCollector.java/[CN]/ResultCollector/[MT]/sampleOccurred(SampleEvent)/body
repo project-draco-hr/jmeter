@@ -1,6 +1,6 @@
 {
   SampleResult result=event.getResult();
-  if (!isErrorLogging() || !result.isSuccessful()) {
+  if (isSampleWanted(result.isSuccessful())) {
     sendToVisualizer(result);
     if (out != null) {
       SampleSaveConfiguration config=getSaveConfig();

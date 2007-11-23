@@ -3,7 +3,7 @@
   Iterator iter=samples.iterator();
   while (iter.hasNext()) {
     SampleResult result=(SampleResult)iter.next();
-    if (showAll || !result.isSuccessful()) {
+    if (isSampleWanted(result.isSuccessful())) {
       visualizer.add(result);
     }
   }
