@@ -1,4 +1,13 @@
 {
+  final int length=logFile.split("'",-1).length;
+  if (length > 1 && length % 2 == 1) {
+    try {
+      SimpleDateFormat df=new SimpleDateFormat(logFile);
+      logFile=df.format(new Date());
+    }
+ catch (    Exception ignored) {
+    }
+  }
   Writer wt;
   isWriterSystemOut=false;
   try {
