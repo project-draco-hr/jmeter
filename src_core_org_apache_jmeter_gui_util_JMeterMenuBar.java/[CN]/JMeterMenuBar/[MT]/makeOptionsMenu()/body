@@ -25,4 +25,14 @@
     optionsMenu.add(sslManager);
   }
   optionsMenu.add(makeLanguageMenu());
+  JMenuItem collapse=new JMenuItem(JMeterUtils.getResString("menu_collapse_all"));
+  collapse.addActionListener(ActionRouter.getInstance());
+  collapse.setActionCommand(ActionNames.COLLAPSE_ALL);
+  collapse.setAccelerator(KeyStrokes.COLLAPSE_ALL);
+  optionsMenu.add(collapse);
+  JMenuItem expand=new JMenuItem(JMeterUtils.getResString("menu_expand_all"));
+  expand.addActionListener(ActionRouter.getInstance());
+  expand.setActionCommand(ActionNames.EXPAND_ALL);
+  expand.setAccelerator(KeyStrokes.EXPAND_ALL);
+  optionsMenu.add(expand);
 }
