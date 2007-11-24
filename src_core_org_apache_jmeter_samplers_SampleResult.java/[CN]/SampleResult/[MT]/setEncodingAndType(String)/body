@@ -11,11 +11,11 @@
         setDataEncoding(charSet);
       }
     }
-    if (ct.startsWith("image/")) {
-      setDataType(BINARY);
+    if (isTextType(ct)) {
+      setDataType(TEXT);
     }
  else {
-      setDataType(TEXT);
+      setDataType(BINARY);
     }
   }
 }

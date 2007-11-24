@@ -1,0 +1,13 @@
+{
+  for (int i=0; i < TEXT_TYPES.length; i++) {
+    if (ct.startsWith(TEXT_TYPES[i])) {
+      return true;
+    }
+  }
+  for (int i=0; i < TEXT_TYPES_OPT.length; i++) {
+    if (ct.startsWith(TEXT_TYPES_OPT[i])) {
+      return true;
+    }
+  }
+  return false;
+}
