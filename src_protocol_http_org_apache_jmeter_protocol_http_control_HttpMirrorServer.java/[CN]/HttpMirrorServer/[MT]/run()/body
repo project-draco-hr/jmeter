@@ -1,4 +1,5 @@
 {
+  except=null;
   running=true;
   ServerSocket mainSocket=null;
   try {
@@ -25,6 +26,7 @@
     log.info("HttpMirror Server stopped");
   }
  catch (  Exception e) {
+    except=e;
     log.warn("HttpMirror Server stopped",e);
   }
  finally {
