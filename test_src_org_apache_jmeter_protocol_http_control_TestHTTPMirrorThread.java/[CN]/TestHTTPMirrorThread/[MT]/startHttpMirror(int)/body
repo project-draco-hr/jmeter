@@ -1,0 +1,22 @@
+{
+  HttpMirrorServer server=null;
+  server=new HttpMirrorServer(port);
+  server.start();
+  Exception e=null;
+  for (int i=0; i < 10; i++) {
+    try {
+      Thread.sleep(100);
+    }
+ catch (    InterruptedException ignored) {
+    }
+    e=server.getException();
+    if (e != null) {
+      throw new Exception("Could not start mirror server on port: " + port + ". "+ e);
+    }
+    if (server.isAlive())     break;
+  }
+  if (!server.isAlive()) {
+    throw new Exception("Could not start mirror server on port: " + port);
+  }
+  return server;
+}
