@@ -1,0 +1,17 @@
+{
+  if (StringUtils.containsNone(input,specialChars)) {
+    return input;
+  }
+  StringBuffer buffer=new StringBuffer(input.length() + 10);
+  final char escape=specialChars[1];
+  buffer.append(escape);
+  for (int i=0; i < input.length(); i++) {
+    char c=input.charAt(i);
+    if (c == escape) {
+      buffer.append(escape);
+    }
+    buffer.append(c);
+  }
+  buffer.append(escape);
+  return buffer.toString();
+}

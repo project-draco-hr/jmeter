@@ -1,0 +1,29 @@
+{
+  BufferedReader dataReader=null;
+  try {
+    dataReader=new BufferedReader(new FileReader(filename));
+    dataReader.mark(400);
+    String line=dataReader.readLine();
+    long lineNumber=1;
+    SampleSaveConfiguration saveConfig=CSVSaveService.getSampleSaveConfiguration(line,filename);
+    if (saveConfig == null) {
+      saveConfig=(SampleSaveConfiguration)resultCollector.getSaveConfig().clone();
+      dataReader.reset();
+      lineNumber=0;
+    }
+    String[] parts;
+    while ((parts=csvReadFile(dataReader,saveConfig.getDelimiter().charAt(0))).length != 0) {
+      lineNumber++;
+      SampleEvent event=CSVSaveService.makeResultFromDelimitedString(parts,saveConfig,lineNumber);
+      if (event != null) {
+        final SampleResult result=event.getResult();
+        if (resultCollector.isSampleWanted(result.isSuccessful())) {
+          visualizer.add(result);
+        }
+      }
+    }
+  }
+  finally {
+    JOrphanUtils.closeQuietly(dataReader);
+  }
+}

@@ -1,0 +1,74 @@
+{
+  int ch;
+  int state=INITIAL;
+  List list=new ArrayList();
+  ByteArrayOutputStream baos=new ByteArrayOutputStream(200);
+  while (-1 != (ch=infile.read())) {
+    boolean push=false;
+switch (state) {
+case INITIAL:
+      if (ch == QUOTING_CHAR) {
+        state=QUOTED;
+      }
+ else       if (isDelimOrEOL(delim,ch)) {
+        push=true;
+      }
+ else {
+        baos.write(ch);
+        state=PLAIN;
+      }
+    break;
+case PLAIN:
+  if (ch == QUOTING_CHAR) {
+    throw new IllegalStateException("Cannot have quote-char in plain field:[" + baos.toString() + "]");
+  }
+ else   if (isDelimOrEOL(delim,ch)) {
+    push=true;
+    state=INITIAL;
+  }
+ else {
+    baos.write(ch);
+  }
+break;
+case QUOTED:
+if (ch == QUOTING_CHAR) {
+state=EMBEDDEDQUOTE;
+}
+ else {
+baos.write(ch);
+}
+break;
+case EMBEDDEDQUOTE:
+if (ch == QUOTING_CHAR) {
+baos.write(QUOTING_CHAR);
+state=QUOTED;
+}
+ else if (isDelimOrEOL(delim,ch)) {
+push=true;
+state=INITIAL;
+}
+ else {
+throw new IllegalStateException("Cannot have single quote-char in quoted field:[" + baos.toString() + "]");
+}
+break;
+}
+if (push) {
+if (ch == '\r') {
+infile.mark(1);
+if (infile.read() != '\n') {
+infile.reset();
+}
+}
+String s=baos.toString();
+list.add(s);
+baos.reset();
+}
+if ((ch == '\n' || ch == '\r') && state != QUOTED) {
+break;
+}
+}
+if (ch == -1 && baos.size() > 0) {
+list.add(baos.toString());
+}
+return (String[])list.toArray(new String[]{});
+}
