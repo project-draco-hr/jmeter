@@ -13,31 +13,14 @@
     try {
       dataReader=new BufferedReader(new FileReader(file));
       String line=dataReader.readLine();
+      dataReader.close();
+      dataReader=null;
       if (line == null) {
         log.warn(filename + " is empty");
       }
  else {
         if (!line.startsWith("<?xml ")) {
-          long lineNumber=1;
-          SampleSaveConfiguration saveConfig=CSVSaveService.getSampleSaveConfiguration(line,filename);
-          if (saveConfig == null) {
-            saveConfig=(SampleSaveConfiguration)getSaveConfig().clone();
-          }
- else {
-            line=dataReader.readLine();
-            lineNumber++;
-          }
-          while (line != null) {
-            SampleEvent event=CSVSaveService.makeResultFromDelimitedString(line,saveConfig,lineNumber);
-            if (event != null) {
-              final SampleResult result=event.getResult();
-              if (isSampleWanted(result.isSuccessful())) {
-                visualizer.add(result);
-              }
-            }
-            line=dataReader.readLine();
-            lineNumber++;
-          }
+          CSVSaveService.processSamples(filename,visualizer,this);
           parsedOK=true;
         }
  else {
