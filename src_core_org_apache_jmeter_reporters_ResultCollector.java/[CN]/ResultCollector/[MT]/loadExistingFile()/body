@@ -3,7 +3,7 @@
   if (visualizer == null) {
     return;
   }
-  boolean parsedOK=false, errorDetected=false;
+  boolean parsedOK=false;
   String filename=getFilename();
   File file=new File(filename);
   if (file.exists()) {
@@ -65,10 +65,13 @@
 catch (    JMeterError e) {
       log.warn("Problem reading JTL file: " + file);
     }
+catch (    RuntimeException e) {
+      log.warn("Problem reading JTL file: " + file,e);
+    }
  finally {
       JOrphanUtils.closeQuietly(dataReader);
       JOrphanUtils.closeQuietly(bufferedInputStream);
-      if (!parsedOK || errorDetected) {
+      if (!parsedOK) {
         GuiPackage.showErrorMessage("Error loading results file - see log file","Result file loader");
       }
     }
