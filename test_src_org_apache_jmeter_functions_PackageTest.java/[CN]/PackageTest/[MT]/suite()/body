@@ -1,8 +1,14 @@
 {
   TestSuite allsuites=new TestSuite("Function PackageTest");
-  TestSuite bsh=new TestSuite("BeanShell");
-  bsh.addTest(new PackageTest("BSH1"));
-  allsuites.addTest(bsh);
+  if (!BeanShellInterpreter.isInterpreterPresent()) {
+    final String msg="BeanShell jar not present, tests ignored";
+    log.warn(msg);
+  }
+ else {
+    TestSuite bsh=new TestSuite("BeanShell");
+    bsh.addTest(new PackageTest("BSH1"));
+    allsuites.addTest(bsh);
+  }
   TestSuite suite=new TestSuite("SingleThreaded");
   suite.addTest(new PackageTest("CSVParams"));
   suite.addTest(new PackageTest("CSVNoFile"));

@@ -1,4 +1,9 @@
 {
+  if (!BeanShellInterpreter.isInterpreterPresent()) {
+    final String msg="BeanShell jar not present, test ignored";
+    log.warn(msg);
+    return;
+  }
   BeanShellTimer timer=new BeanShellTimer();
   long delay;
   timer.setScript("\"60\"");
