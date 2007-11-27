@@ -62,5 +62,8 @@
   eval.addTest(new PackageTest("evalTest1"));
   eval.addTest(new PackageTest("evalTest2"));
   allsuites.addTest(eval);
+  TestSuite intSum=new TestSuite("Sums");
+  intSum.addTest(new PackageTest("sumTest"));
+  allsuites.addTest(intSum);
   return allsuites;
 }

@@ -1,0 +1,12 @@
+{
+  Collection parms=new LinkedList();
+  for (int c=0; c <= max; c++) {
+    try {
+      func.setParameters(parms);
+      fail("Should have generated InvalidVariableException for " + c + " parameters");
+    }
+ catch (    InvalidVariableException ignored) {
+    }
+    parms.add("");
+  }
+}

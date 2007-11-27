@@ -1,0 +1,22 @@
+{
+  IntSum is=new IntSum();
+  checkInvalidParameterCounts(is,2);
+  checkSum(is,"3",new String[]{"1","2"});
+  checkSum(is,"1",new String[]{"-1","1","1","1","-1","0"});
+  String maxIntVal=Integer.toString(Integer.MAX_VALUE);
+  String minIntVal=Integer.toString(Integer.MIN_VALUE);
+  checkSum(is,maxIntVal,new String[]{maxIntVal,"0"});
+  checkSum(is,minIntVal,new String[]{maxIntVal,"1"});
+  is=null;
+  LongSum ls=new LongSum();
+  checkInvalidParameterCounts(ls,2);
+  checkSum(ls,"3",new String[]{"1","2"});
+  checkSum(ls,"1",new String[]{"-1","1","1","1","-1","0"});
+  String maxIntVal_1=Long.toString(1 + (long)Integer.MAX_VALUE);
+  checkSum(ls,maxIntVal,new String[]{maxIntVal,"0"});
+  checkSum(ls,maxIntVal_1,new String[]{maxIntVal,"1"});
+  String maxLongVal=Long.toString(Long.MAX_VALUE);
+  String minLongVal=Long.toString(Long.MIN_VALUE);
+  checkSum(ls,maxLongVal,new String[]{maxLongVal,"0"});
+  checkSum(ls,minLongVal,new String[]{maxLongVal,"1"});
+}
