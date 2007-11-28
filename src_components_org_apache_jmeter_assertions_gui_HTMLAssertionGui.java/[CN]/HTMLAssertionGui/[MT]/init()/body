@@ -38,7 +38,7 @@
   warningThresholdField.addKeyListener(this);
   thresholdPanel.add(warningThresholdField);
   assertionPanel.add(thresholdPanel);
-  filePanel=new FilePanel(JMeterUtils.getResString("file_visualizer_output_file"),".txt");
+  filePanel=new FilePanel(JMeterUtils.getResString("html_assertion_file"),".txt");
   assertionPanel.add(filePanel);
   mainPanel.add(assertionPanel,BorderLayout.NORTH);
   add(mainPanel,BorderLayout.CENTER);
