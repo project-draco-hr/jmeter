@@ -5,24 +5,32 @@
   vars.put(refName,getDefaultValue());
   vars.put(concat(refName,MATCH_NR),"0");
   vars.remove(concat(refName,"1"));
+  final SampleResult previousResult=context.getPreviousResult();
   try {
-    Document d=parseResponse(context.getPreviousResult());
+    Document d=parseResponse(previousResult);
     getValuesForXPath(d,getXPathQuery(),vars,refName);
   }
  catch (  IOException e) {
-    final String errorMessage="error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")";
+    final String errorMessage="error on (" + getXPathQuery() + ")";
     log.error(errorMessage,e);
     throw new JMeterError(errorMessage,e);
   }
 catch (  ParserConfigurationException e) {
-    final String errrorMessage="error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")";
+    final String errrorMessage="error on (" + getXPathQuery() + ")";
     log.error(errrorMessage,e);
     throw new JMeterError(errrorMessage,e);
   }
 catch (  SAXException e) {
-    log.warn("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")"+ e.getLocalizedMessage());
+    log.warn("error on (" + getXPathQuery() + ")"+ e.getLocalizedMessage());
   }
 catch (  TransformerException e) {
-    log.warn("error on " + XPATH_QUERY + "("+ getXPathQuery()+ ")"+ e.getLocalizedMessage());
+    log.warn("error on (" + getXPathQuery() + ")"+ e.getLocalizedMessage());
+  }
+catch (  TidyException e) {
+    AssertionResult ass=new AssertionResult("TidyException");
+    ass.setFailure(true);
+    ass.setFailureMessage(e.getMessage());
+    previousResult.addAssertionResult(ass);
+    previousResult.setSuccessful(false);
   }
 }

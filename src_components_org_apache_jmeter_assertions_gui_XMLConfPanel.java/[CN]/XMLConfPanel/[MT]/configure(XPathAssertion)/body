@@ -1,0 +1,9 @@
+{
+  setWhitespace(assertion.isWhitespace());
+  setValidate(assertion.isValidating());
+  setTolerant(assertion.isTolerant());
+  setNamespace(assertion.isNamespace());
+  quiet.setSelected(assertion.isQuiet());
+  showWarnings.setSelected(assertion.showWarnings());
+  reportErrors.setSelected(assertion.reportErrors());
+}

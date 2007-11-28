@@ -13,7 +13,7 @@
   }
   Document doc=null;
   try {
-    doc=XPathUtil.makeDocument(new ByteArrayInputStream(responseData),isValidating(),isWhitespace(),isNamespace(),isTolerant());
+    doc=XPathUtil.makeDocument(new ByteArrayInputStream(responseData),isValidating(),isWhitespace(),isNamespace(),isTolerant(),isQuiet(),showWarnings(),reportErrors());
   }
  catch (  SAXException e) {
     log.debug("Caught sax exception: " + e);
@@ -31,6 +31,11 @@ catch (  ParserConfigurationException e) {
     log.warn("Cannot parse result content",e);
     result.setError(true);
     result.setFailureMessage(new StringBuffer("ParserConfigurationException: ").append(e.getMessage()).toString());
+    return result;
+  }
+catch (  TidyException e) {
+    result.setError(true);
+    result.setFailureMessage(e.getMessage());
     return result;
   }
   if (doc == null || doc.getDocumentElement() == null) {

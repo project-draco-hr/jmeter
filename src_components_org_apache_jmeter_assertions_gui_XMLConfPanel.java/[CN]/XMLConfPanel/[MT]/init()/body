@@ -1,5 +1,14 @@
 {
-  add(getTolerant());
+  Box tidyOptions=Box.createHorizontalBox();
+  tidyOptions.setBorder(BorderFactory.createEtchedBorder());
+  tidyOptions.add(getTolerant());
+  quiet=new JCheckBox(JMeterUtils.getResString("xpath_tidy_quiet"),true);
+  reportErrors=new JCheckBox(JMeterUtils.getResString("xpath_tidy_report_errors"),true);
+  showWarnings=new JCheckBox(JMeterUtils.getResString("xpath_tidy_show_warnings"),true);
+  tidyOptions.add(quiet);
+  tidyOptions.add(reportErrors);
+  tidyOptions.add(showWarnings);
+  add(tidyOptions);
   add(getNamespace());
   add(getValidate());
   add(getWhitespace());

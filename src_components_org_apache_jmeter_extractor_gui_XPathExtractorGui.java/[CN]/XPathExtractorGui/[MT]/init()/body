@@ -5,8 +5,24 @@
   box.add(makeTitlePanel());
   Box options=Box.createHorizontalBox();
   tolerant=new JCheckBox(JMeterUtils.getResString("xpath_extractor_tolerant"));
+  quiet=new JCheckBox(JMeterUtils.getResString("xpath_tidy_quiet"),true);
+  reportErrors=new JCheckBox(JMeterUtils.getResString("xpath_tidy_report_errors"),true);
+  showWarnings=new JCheckBox(JMeterUtils.getResString("xpath_tidy_show_warnings"),true);
   nameSpace=new JCheckBox(JMeterUtils.getResString("xpath_extractor_namespace"),true);
-  options.add(tolerant);
+  tolerant.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      setTidyOptions(tolerant.isSelected());
+    }
+  }
+);
+  setTidyOptions(tolerant.isSelected());
+  Box tidyOptions=Box.createHorizontalBox();
+  tidyOptions.add(tolerant);
+  tidyOptions.add(quiet);
+  tidyOptions.add(reportErrors);
+  tidyOptions.add(showWarnings);
+  tidyOptions.setBorder(BorderFactory.createEtchedBorder());
+  options.add(tidyOptions);
   options.add(nameSpace);
   box.add(options);
   add(box,BorderLayout.NORTH);

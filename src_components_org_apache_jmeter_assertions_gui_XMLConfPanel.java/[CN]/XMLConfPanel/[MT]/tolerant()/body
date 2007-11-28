@@ -1,5 +1,9 @@
 {
-  getValidate().setEnabled(!isTolerant());
-  getWhitespace().setEnabled(!isTolerant());
-  getNamespace().setEnabled(!isTolerant());
+  final boolean isTolerant=isTolerant();
+  getValidate().setEnabled(!isTolerant);
+  getWhitespace().setEnabled(!isTolerant);
+  getNamespace().setEnabled(!isTolerant);
+  quiet.setEnabled(isTolerant);
+  reportErrors.setEnabled(isTolerant);
+  showWarnings.setEnabled(isTolerant);
 }

@@ -1,8 +1,8 @@
 {
   Tidy tidy=new Tidy();
   tidy.setCharEncoding(org.w3c.tidy.Configuration.UTF8);
-  tidy.setQuiet(true);
-  tidy.setShowWarnings(false);
+  tidy.setQuiet(quiet);
+  tidy.setShowWarnings(showWarnings);
   tidy.setMakeClean(true);
   tidy.setXmlTags(false);
   return tidy;
