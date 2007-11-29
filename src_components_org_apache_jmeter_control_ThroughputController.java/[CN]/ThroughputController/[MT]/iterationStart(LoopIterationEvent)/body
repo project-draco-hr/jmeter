@@ -3,12 +3,16 @@
 synchronized (counterLock) {
       globalIteration++;
       runThisTime=decide(globalNumExecutions,globalIteration);
-      if (runThisTime)       globalNumExecutions++;
+      if (runThisTime) {
+        globalNumExecutions++;
+      }
     }
   }
  else {
     iteration++;
     runThisTime=decide(numExecutions,iteration);
-    if (runThisTime)     numExecutions++;
+    if (runThisTime) {
+      numExecutions++;
+    }
   }
 }
