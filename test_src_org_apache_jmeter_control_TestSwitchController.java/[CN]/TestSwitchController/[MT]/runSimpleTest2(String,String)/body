@@ -15,9 +15,9 @@
   controller.addTestElement(new TestSampler("after"));
   controller.initialize();
   for (int i=1; i <= 3; i++) {
-    assertEquals("before",nextName(controller));
-    assertEquals(exp,nextName(controller));
-    assertEquals("after",nextName(controller));
-    assertNull(nextName(controller));
+    assertEquals("Loop=" + i,"before",nextName(controller));
+    assertEquals("Loop=" + i,exp,nextName(controller));
+    assertEquals("Loop=" + i,"after",nextName(controller));
+    assertNull("Loop=" + i,nextName(controller));
   }
 }
