@@ -1,11 +1,14 @@
 {
   fireIterEvents();
-  log.debug("Calling next on: " + this.getClass().getName());
-  if (isDone())   return null;
+  if (log.isDebugEnabled()) {
+    log.debug("Calling next on: " + this.getClass().getName());
+  }
+  if (isDone()) {
+    return null;
+  }
   Sampler returnValue=null;
-  TestElement currentElement=null;
   try {
-    currentElement=getCurrentElement();
+    TestElement currentElement=getCurrentElement();
     setCurrentElement(currentElement);
     if (currentElement == null) {
       returnValue=nextIsNull();

@@ -1,12 +1,8 @@
 {
-  Sampler returnValue;
   Sampler sampler=controller.next();
   if (sampler == null) {
     currentReturnedNull(controller);
-    returnValue=next();
+    sampler=next();
   }
- else {
-    returnValue=sampler;
-  }
-  return returnValue;
+  return sampler;
 }
