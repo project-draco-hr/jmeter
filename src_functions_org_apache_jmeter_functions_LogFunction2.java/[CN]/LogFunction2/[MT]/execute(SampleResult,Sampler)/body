@@ -12,6 +12,6 @@
   if (values.length > 2) {
     t=new Throwable(((CompoundVariable)values[2]).execute());
   }
-  LogFunction.logDetails(log,stringToLog,priorityString,t);
+  LogFunction.logDetails(log,stringToLog,priorityString,t,"");
   return "";
 }

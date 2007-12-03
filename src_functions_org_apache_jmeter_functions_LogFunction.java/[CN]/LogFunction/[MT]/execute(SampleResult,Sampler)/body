@@ -10,8 +10,13 @@
   }
   Throwable t=null;
   if (values.length > 2) {
-    t=new Throwable(((CompoundVariable)values[2]).execute());
+    String value=((CompoundVariable)values[2]).execute();
+    if (value.length() > 0)     t=new Throwable(value);
   }
-  logDetails(log,stringToLog,priorityString,t);
+  String comment="";
+  if (values.length > 3) {
+    comment=((CompoundVariable)values[3]).execute();
+  }
+  logDetails(log,stringToLog,priorityString,t,comment);
   return stringToLog;
 }

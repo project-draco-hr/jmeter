@@ -1,0 +1,25 @@
+{
+  if (prio.equalsIgnoreCase("OUT")) {
+    printDetails(System.out,s,t,c);
+  }
+ else   if (prio.equalsIgnoreCase("ERR")) {
+    printDetails(System.err,s,t,c);
+  }
+ else {
+    Priority p=Priority.getPriorityForName(prio);
+    if (log.isPriorityEnabled(p)) {
+      String tn=Thread.currentThread().getName();
+      StringBuffer sb=new StringBuffer(40);
+      sb.append(tn);
+      if (c.length() > 0) {
+        sb.append(" ");
+        sb.append(c);
+      }
+ else {
+        sb.append(DEFAULT_SEPARATOR);
+      }
+      sb.append(s);
+      log.log(p,sb.toString(),t);
+    }
+  }
+}
