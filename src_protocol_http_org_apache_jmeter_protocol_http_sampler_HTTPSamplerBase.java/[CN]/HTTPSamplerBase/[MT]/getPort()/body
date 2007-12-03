@@ -1,5 +1,5 @@
 {
-  int port=getPropertyAsInt(PORT);
+  final int port=getPortIfSpecified();
   if (port == UNSPECIFIED_PORT) {
     String prot=getProtocol();
     if (PROTOCOL_HTTPS.equalsIgnoreCase(prot)) {
