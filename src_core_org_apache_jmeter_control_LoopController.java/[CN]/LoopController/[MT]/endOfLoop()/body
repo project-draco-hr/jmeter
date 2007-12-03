@@ -1,3 +1,4 @@
 {
-  return (getLoops() > -1) && loopCount >= getLoops();
+  final int loops=getLoops();
+  return (loops > -1) && (loopCount >= loops);
 }
