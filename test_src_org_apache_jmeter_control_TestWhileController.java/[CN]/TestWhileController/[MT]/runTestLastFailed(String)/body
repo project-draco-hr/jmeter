@@ -1,0 +1,20 @@
+{
+  GenericController controller=new GenericController();
+  controller.addTestElement(new TestSampler("1"));
+  WhileController while_cont=new WhileController();
+  controller.addTestElement(while_cont);
+  while_cont.setCondition(s);
+  GenericController sub=new GenericController();
+  while_cont.addTestElement(sub);
+  sub.addTestElement(new TestSampler("2"));
+  sub.addTestElement(new TestSampler("3"));
+  controller.addTestElement(new TestSampler("4"));
+  setLastSampleStatus(true);
+  controller.initialize();
+  assertEquals("1",nextName(controller));
+  assertEquals("2",nextName(controller));
+  setLastSampleStatus(false);
+  assertEquals("3",nextName(controller));
+  assertEquals("4",nextName(controller));
+  assertNull(nextName(controller));
+}

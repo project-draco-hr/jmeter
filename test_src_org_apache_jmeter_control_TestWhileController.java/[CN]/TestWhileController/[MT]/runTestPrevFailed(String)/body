@@ -1,8 +1,7 @@
 {
   GenericController controller=new GenericController();
   WhileController while_cont=new WhileController();
-  while_cont.testMode=true;
-  while_cont.testModeResult=false;
+  setLastSampleStatus(false);
   while_cont.setCondition(s);
   while_cont.addTestElement(new TestSampler("one"));
   while_cont.addTestElement(new TestSampler("two"));

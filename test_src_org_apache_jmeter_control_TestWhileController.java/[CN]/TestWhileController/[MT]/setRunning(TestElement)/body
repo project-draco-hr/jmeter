@@ -1,0 +1,6 @@
+{
+  PropertyIterator pi=el.propertyIterator();
+  while (pi.hasNext()) {
+    pi.next().setRunningVersion(true);
+  }
+}

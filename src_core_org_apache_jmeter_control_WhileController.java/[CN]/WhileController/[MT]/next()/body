@@ -1,10 +1,8 @@
 {
-  if (current != 0) {
-    return super.next();
+  if (isFirst()) {
+    if (endOfLoop(false)) {
+      return null;
+    }
   }
-  if (!endOfLoop(false)) {
-    return super.next();
-  }
-  reInitialize();
-  return null;
+  return super.next();
 }

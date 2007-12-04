@@ -3,13 +3,14 @@
   controller.setContinueForever(true);
   controller.setLoops(-1);
   WhileController while_cont=new WhileController();
-  while_cont.testMode=true;
-  while_cont.testModeResult=false;
+  setLastSampleStatus(false);
   while_cont.setCondition("false");
   while_cont.addTestElement(new TestSampler("one"));
   while_cont.addTestElement(new TestSampler("two"));
   controller.addTestElement(while_cont);
-  if (other)   controller.addTestElement(new TestSampler("three"));
+  if (other) {
+    controller.addTestElement(new TestSampler("three"));
+  }
   controller.initialize();
   try {
     if (other) {
