@@ -1,9 +1,14 @@
 {
   Object[] values=parameters.toArray();
-  if (values.length < 3) {
-    throw new InvalidVariableException();
+  if (values.length < 2 || values.length > 3) {
+    throw new InvalidVariableException("Expecting 2 or 3 parameters, but found " + values.length);
   }
-  varName=(CompoundVariable)values[2];
   minimum=(CompoundVariable)values[0];
   maximum=(CompoundVariable)values[1];
+  if (values.length > 2) {
+    varName=(CompoundVariable)values[2];
+  }
+ else {
+    varName=null;
+  }
 }

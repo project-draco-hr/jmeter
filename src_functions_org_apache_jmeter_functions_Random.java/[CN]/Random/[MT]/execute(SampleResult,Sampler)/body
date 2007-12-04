@@ -4,6 +4,8 @@
   long max=Long.parseLong(maximum.execute().trim());
   long rand=min + (long)(Math.random() * (max - min + 1));
   String randString=Long.toString(rand);
-  vars.put(varName.execute(),randString);
+  if (varName != null) {
+    vars.put(varName.execute(),randString);
+  }
   return randString;
 }
