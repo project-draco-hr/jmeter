@@ -1,5 +1,5 @@
 {
   AbstractListenerElement clone=(AbstractListenerElement)super.clone();
-  clone.setListener(getVisualizer());
+  clone.listener=this.listener;
   return clone;
 }

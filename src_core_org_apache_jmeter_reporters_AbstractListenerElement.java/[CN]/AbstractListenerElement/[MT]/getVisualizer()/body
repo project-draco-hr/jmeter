@@ -1,3 +1,6 @@
 {
-  return listener;
+  if (listener == null) {
+    return null;
+  }
+  return (Visualizer)listener.get();
 }

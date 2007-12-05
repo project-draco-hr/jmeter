@@ -5,7 +5,7 @@
   boolean isTestPlan=tree.getArray()[0] instanceof TestPlan;
   GuiPackage guiInstance=GuiPackage.getInstance();
   if (isTestPlan && !merging) {
-    guiInstance.getTreeModel().clearTestPlan((TestElement)tree.getArray()[0]);
+    guiInstance.clearTestPlan((TestElement)tree.getArray()[0]);
   }
   if (merging) {
     TestElement te=(TestElement)tree.getArray()[0];
