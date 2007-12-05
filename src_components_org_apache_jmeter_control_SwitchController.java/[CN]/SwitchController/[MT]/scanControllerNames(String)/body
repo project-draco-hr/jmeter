@@ -1,0 +1,14 @@
+{
+  Iterator iter=getSubControllers().iterator();
+  int i=0;
+  int default_pos=Integer.MAX_VALUE;
+  while (iter.hasNext()) {
+    String name;
+    TestElement el=(TestElement)iter.next();
+    name=el.getName();
+    if (name.equals(sel))     return i;
+    if (name.equalsIgnoreCase("default"))     default_pos=i;
+    i++;
+  }
+  return default_pos;
+}

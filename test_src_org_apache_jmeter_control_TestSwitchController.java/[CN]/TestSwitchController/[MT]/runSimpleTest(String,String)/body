@@ -12,7 +12,9 @@
   controller.initialize();
   for (int i=1; i <= 3; i++) {
     assertEquals("Loop " + i,"before",nextName(controller));
-    assertEquals("Loop " + i,exp,nextName(controller));
+    if (exp != null) {
+      assertEquals("Loop " + i,exp,nextName(controller));
+    }
     assertEquals("Loop " + i,"after",nextName(controller));
     assertNull(nextName(controller));
   }
