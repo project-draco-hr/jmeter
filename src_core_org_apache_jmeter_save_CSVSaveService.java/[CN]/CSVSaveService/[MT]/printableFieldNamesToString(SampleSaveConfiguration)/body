@@ -73,6 +73,12 @@
     text.append(CSV_HOSTNAME);
     text.append(delim);
   }
+  for (int i=0; i < SampleEvent.getVarCount(); i++) {
+    text.append(VARIABLE_NAME_QUOTE_CHAR);
+    text.append(SampleEvent.getVarName(i));
+    text.append(VARIABLE_NAME_QUOTE_CHAR);
+    text.append(delim);
+  }
   String resultString=null;
   int size=text.length();
   int delSize=delim.length();

@@ -22,7 +22,7 @@
         log.warn("Could not fetch SamplePackage");
       }
  else {
-        SampleEvent event=new SampleEvent(res,threadContext.getThreadGroup().getName());
+        SampleEvent event=new SampleEvent(res,threadContext.getThreadGroup().getName(),threadVars);
         res=null;
         lnf.notifyListeners(event,pack.getSampleListeners());
       }

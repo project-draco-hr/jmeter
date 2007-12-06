@@ -119,6 +119,9 @@
       field=CSV_HOSTNAME;
       hostname=parts[i++];
     }
+    if (i + saveConfig.getVarCount() < parts.length) {
+      log.warn("Line: " + lineNumber + ". Found "+ parts.length+ " fields, expected "+ i+ ". Extra fields have been ignored.");
+    }
   }
  catch (  NumberFormatException e) {
     log.warn("Error parsing field '" + field + "' at line "+ lineNumber+ " "+ e);

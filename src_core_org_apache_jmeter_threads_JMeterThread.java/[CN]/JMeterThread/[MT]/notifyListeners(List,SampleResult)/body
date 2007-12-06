@@ -1,4 +1,4 @@
 {
-  SampleEvent event=new SampleEvent(result,threadGroup.getName());
+  SampleEvent event=new SampleEvent(result,threadGroup.getName(),threadVars);
   notifier.notifyListeners(event,listeners);
 }

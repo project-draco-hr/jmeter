@@ -1,0 +1,3 @@
+{
+  return label.length() > 2 && label.startsWith(VARIABLE_NAME_QUOTE_CHAR) && label.endsWith(VARIABLE_NAME_QUOTE_CHAR);
+}
