@@ -3,7 +3,7 @@
     return (JMeterProperty)item;
   }
   if (item instanceof TestElement) {
-    return new TestElementProperty(((TestElement)item).getPropertyAsString(TestElement.NAME),(TestElement)item);
+    return new TestElementProperty(((TestElement)item).getName(),(TestElement)item);
   }
   if (item instanceof Collection) {
     return new CollectionProperty("" + item.hashCode(),(Collection)item);

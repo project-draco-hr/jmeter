@@ -1,5 +1,5 @@
 {
-  setName(el.getPropertyAsString(TestElement.NAME));
+  setName(el.getName());
   argsPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
   domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
   String portString=el.getPropertyAsString(HTTPSamplerBase.PORT);
