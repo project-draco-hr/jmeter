@@ -1,3 +1,5 @@
 {
-  return (Controller)getProperty(MAIN_CONTROLLER).getObjectValue();
+  Controller c=(Controller)getProperty(MAIN_CONTROLLER).getObjectValue();
+  c.setName(getName());
+  return c;
 }
