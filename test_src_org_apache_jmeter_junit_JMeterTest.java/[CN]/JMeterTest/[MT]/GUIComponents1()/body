@@ -9,9 +9,7 @@
     try {
       String label=guiItem.getLabelResource();
       assertTrue(label.length() > 0);
-      if (!label.equals("unused")) {
-        assertFalse("'" + label + "' should be in resource file for "+ name,JMeterUtils.getResString(label).startsWith(JMeterUtils.RES_KEY_PFX));
-      }
+      assertFalse("'" + label + "' should be in resource file for "+ name,JMeterUtils.getResString(label).startsWith(JMeterUtils.RES_KEY_PFX));
     }
  catch (    UnsupportedOperationException uoe) {
       log.warn("Class has not yet implemented getLabelResource " + name);

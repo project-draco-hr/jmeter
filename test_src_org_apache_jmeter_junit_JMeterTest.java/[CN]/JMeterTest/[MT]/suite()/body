@@ -3,12 +3,6 @@
   JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
   treeLis.setActionHandler(ActionRouter.getInstance());
   GuiPackage.getInstance(treeLis,treeModel);
-  try {
-    org.apache.jmeter.gui.MainFrame main=new org.apache.jmeter.gui.MainFrame(ActionRouter.getInstance(),treeModel,treeLis);
-  }
- catch (  RuntimeException e) {
-    System.out.println("Cannot create MainFrame: " + e);
-  }
   JMeterUtils.setLocale(TEST_LOCALE);
   TestSuite suite=new TestSuite("JMeterTest");
   suite.addTest(new JMeterTest("readAliases"));
