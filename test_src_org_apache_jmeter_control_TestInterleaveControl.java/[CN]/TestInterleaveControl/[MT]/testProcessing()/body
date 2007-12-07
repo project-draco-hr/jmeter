@@ -30,10 +30,10 @@
     TestElement sampler=null;
     while ((sampler=controller.next()) != null) {
       if (counter == 0) {
-        assertEquals(interleaveOrder[i % 2],sampler.getPropertyAsString(TestElement.NAME));
+        assertEquals(interleaveOrder[i % 2],sampler.getName());
       }
  else {
-        assertEquals(order[counter],sampler.getPropertyAsString(TestElement.NAME));
+        assertEquals(order[counter],sampler.getName());
       }
       counter++;
     }

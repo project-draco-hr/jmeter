@@ -19,7 +19,7 @@
   for (int i=0; i < 3; i++) {
     TestElement sampler=null;
     while ((sampler=controller.next()) != null) {
-      assertEquals("Counter: " + counter + ", i: "+ i,order[counter],sampler.getPropertyAsString(TestElement.NAME));
+      assertEquals("Counter: " + counter + ", i: "+ i,order[counter],sampler.getName());
       counter++;
     }
     assertEquals(counter,order.length);

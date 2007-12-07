@@ -18,7 +18,7 @@
     counter=0;
     TestElement sampler=null;
     while ((sampler=controller.next()) != null) {
-      assertEquals("one",sampler.getPropertyAsString(TestElement.NAME));
+      assertEquals("one",sampler.getName());
       counter++;
     }
   }
