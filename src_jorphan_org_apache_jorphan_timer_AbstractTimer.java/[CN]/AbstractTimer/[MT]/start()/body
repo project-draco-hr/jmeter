@@ -1,7 +1,0 @@
-{
-  if (m_state != STATE_READY) {
-    throw new IllegalStateException(this + ": start() must be called from READY state, " + "current state is "+ STATE_NAMES[m_state]);
-  }
-  m_state=STATE_STARTED;
-  m_data=getCurrentTime();
-}
