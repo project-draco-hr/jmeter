@@ -1,6 +1,6 @@
 {
   if (getClearEachIteration()) {
     clearCookies();
-    setProperty(initialCookies);
+    setProperty((CollectionProperty)initialCookies.clone());
   }
 }
