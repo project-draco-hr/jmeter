@@ -1,6 +1,6 @@
 {
   if (getClearEachIteration()) {
-    clearCookies();
+    log.debug("Initialise cookies from pre-defined list");
     setProperty((CollectionProperty)initialCookies.clone());
   }
 }
