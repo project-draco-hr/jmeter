@@ -1,10 +1,5 @@
 {
   System.setProperty("JMeter.NonGui","true");
-  try {
-    new JLabel();
-  }
- catch (  InternalError e) {
-  }
   JMeter driver=new JMeter();
   driver.remoteProps=this.remoteProps;
   driver.remoteStop=this.remoteStop;
