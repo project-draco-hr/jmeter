@@ -5,7 +5,7 @@
     for (Iterator it=map.entrySet().iterator(); it.hasNext(); ) {
       Map.Entry entry=(Map.Entry)it.next();
       HttpClient cl=(HttpClient)entry.getValue();
-      ((SimpleHttpConnectionManager)cl.getHttpConnectionManager()).shutdown();
+      cl.getHttpConnectionManager().closeIdleConnections(-1000);
     }
     map.clear();
   }
