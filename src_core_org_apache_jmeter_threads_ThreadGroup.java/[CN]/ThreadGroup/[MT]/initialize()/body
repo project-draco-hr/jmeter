@@ -1,3 +1,7 @@
 {
-  getSamplerController().initialize();
+  Controller c=getSamplerController();
+  JMeterProperty property=c.getProperty(TestElement.NAME);
+  property.setObjectValue(getName());
+  property.setRunningVersion(property.isRunningVersion());
+  c.initialize();
 }
