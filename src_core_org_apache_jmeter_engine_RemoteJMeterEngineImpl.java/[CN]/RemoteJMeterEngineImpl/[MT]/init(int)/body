@@ -1,5 +1,17 @@
 {
   log.info("Starting backing engine on " + port);
+  InetAddress localHost=null;
+  try {
+    localHost=InetAddress.getLocalHost();
+  }
+ catch (  UnknownHostException e1) {
+    throw new RemoteException("Cannot start. Unable to get local host IP address.");
+  }
+  log.info("IP address=" + localHost.getHostAddress());
+  hostName=localHost.getHostName();
+  if (localHost.isLoopbackAddress()) {
+    throw new RemoteException("Cannot start. " + hostName + " is a loopback address.");
+  }
   log.debug("This = " + this);
   if (createServer) {
     log.info("Creating RMI registry (server.rmi.create=true)");
@@ -15,7 +27,6 @@
   }
   try {
     Registry reg=LocateRegistry.getRegistry(port);
-    hostName=InetAddress.getLocalHost().getHostName();
     log.info("Creating JMeter engine on host " + hostName);
     backingEngine=new StandardJMeterEngine(hostName);
     reg.rebind("JMeterEngine",this);
