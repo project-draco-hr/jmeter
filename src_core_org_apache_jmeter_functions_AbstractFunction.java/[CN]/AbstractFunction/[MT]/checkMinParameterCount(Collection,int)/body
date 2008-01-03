@@ -1,0 +1,6 @@
+{
+  int num=parameters.size();
+  if (num < minimum) {
+    throw new InvalidVariableException(getReferenceKey() + " called with wrong number of parameters. Actual: " + num+ ". Expected at least: "+ minimum+ ".");
+  }
+}
