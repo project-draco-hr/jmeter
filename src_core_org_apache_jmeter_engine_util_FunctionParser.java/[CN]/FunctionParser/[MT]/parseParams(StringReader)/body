@@ -23,6 +23,9 @@
         result.add(param);
       }
  else       if (current[0] == ')' && functionRecursion == 0 && parenRecursion == 0) {
+        if (buffer.length() == 0 && result.isEmpty()) {
+          return result;
+        }
         CompoundVariable param=new CompoundVariable();
         param.setParameters(buffer.toString());
         buffer.setLength(0);

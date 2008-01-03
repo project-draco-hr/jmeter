@@ -34,6 +34,9 @@
       }
  else       if (current[0] == '}') {
         function=CompoundVariable.getNamedFunction(buffer.toString());
+        if (function instanceof Function) {
+          ((Function)function).setParameters(new LinkedList());
+        }
         buffer.setLength(0);
         return function;
       }
