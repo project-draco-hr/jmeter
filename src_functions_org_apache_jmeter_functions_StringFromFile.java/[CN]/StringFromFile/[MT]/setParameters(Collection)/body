@@ -1,9 +1,7 @@
 {
   log.debug(this + "::StringFromFile.setParameters()");
+  checkParameterCount(parameters,MIN_PARAM_COUNT,MAX_PARAM_COUNT);
   values=parameters.toArray();
-  if ((values.length > MAX_PARAM_COUNT) || (values.length < MIN_PARAM_COUNT)) {
-    throw new InvalidVariableException("Wrong number of parameters");
-  }
   StringBuffer sb=new StringBuffer(40);
   sb.append("setParameters(");
   for (int i=0; i < values.length; i++) {

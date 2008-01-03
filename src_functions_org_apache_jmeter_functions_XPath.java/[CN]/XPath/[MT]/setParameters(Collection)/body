@@ -6,8 +6,6 @@
       log.debug("i:" + ((CompoundVariable)values[i]).execute());
     }
   }
-  if (values.length != 2) {
-    throw new InvalidVariableException("Wrong number of parameters; 2 != " + values.length);
-  }
+  checkParameterCount(parameters,2);
   XPathWrapper.clearAll();
 }

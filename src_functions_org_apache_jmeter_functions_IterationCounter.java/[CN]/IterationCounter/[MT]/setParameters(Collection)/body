@@ -1,6 +1,4 @@
 {
+  checkParameterCount(parameters,1,2);
   variables=parameters.toArray();
-  if (variables.length < 1 || variables.length > 2) {
-    throw new InvalidVariableException("Expecting 1 or 2 parameters, but found " + variables.length);
-  }
 }

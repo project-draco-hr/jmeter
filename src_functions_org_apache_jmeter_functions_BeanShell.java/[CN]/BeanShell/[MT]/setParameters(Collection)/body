@@ -1,8 +1,6 @@
 {
+  checkParameterCount(parameters,1,2);
   values=parameters.toArray();
-  if (values.length < 1 || values.length > 2) {
-    throw new InvalidVariableException("Expecting 1 or 2 parameters, but found " + values.length);
-  }
   try {
     bshInterpreter=new BeanShellInterpreter(JMeterUtils.getProperty(INIT_FILE),log);
   }
