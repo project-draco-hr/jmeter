@@ -1,6 +1,6 @@
 {
   int num=parameters.size();
   if ((num > max) || (num < min)) {
-    throw new InvalidVariableException("Wrong number of parameters. Actual: " + num + ". Expected: >= "+ min+ " and <= "+ max);
+    throw new InvalidVariableException(getReferenceKey() + " called with wrong number of parameters. Actual: " + num+ (min == max ? ". Expected: " + min + "." : ". Expected: >= " + min + " and <= "+ max));
   }
 }
