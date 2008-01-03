@@ -1,6 +1,5 @@
 {
   JMeterVariables vars=getVariables();
-  String varName=((CompoundVariable)values[values.length - 1]).execute();
   String machineName="";
   try {
     InetAddress Address=InetAddress.getLocalHost();
@@ -8,6 +7,11 @@
   }
  catch (  UnknownHostException e) {
   }
-  vars.put(varName,machineName);
+  if (values.length >= 1) {
+    String varName=((CompoundVariable)values[0]).execute();
+    if (varName.length() > 0) {
+      vars.put(varName,machineName);
+    }
+  }
   return machineName;
 }
