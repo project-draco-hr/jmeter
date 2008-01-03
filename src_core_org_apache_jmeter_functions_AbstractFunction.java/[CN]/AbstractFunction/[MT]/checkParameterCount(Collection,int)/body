@@ -1,0 +1,6 @@
+{
+  int num=parameters.size();
+  if (num != count) {
+    throw new InvalidVariableException(getReferenceKey() + " called with wrong number of parameters. Actual: " + num+ ". Expected: "+ count+ ".");
+  }
+}
