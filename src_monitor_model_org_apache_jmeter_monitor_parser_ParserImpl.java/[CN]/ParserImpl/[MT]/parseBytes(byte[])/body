@@ -6,11 +6,11 @@
     return DOCHANDLER.getContents();
   }
  catch (  SAXException e) {
-    e.printStackTrace();
+    log.error("Failed to parse the bytes",e);
     return DOCHANDLER.getContents();
   }
 catch (  IOException e) {
-    e.printStackTrace();
+    log.error("Failed to read the bytes",e);
     return DOCHANDLER.getContents();
   }
 }

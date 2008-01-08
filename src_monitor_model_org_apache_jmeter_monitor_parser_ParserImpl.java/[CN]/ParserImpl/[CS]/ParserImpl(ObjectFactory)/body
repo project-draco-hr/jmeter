@@ -8,7 +8,9 @@
     DOCHANDLER.setObjectFactory(this.FACTORY);
   }
  catch (  SAXException e) {
+    log.error("Failed to create the parser",e);
   }
 catch (  ParserConfigurationException e) {
+    log.error("Failed to create the parser",e);
   }
 }
