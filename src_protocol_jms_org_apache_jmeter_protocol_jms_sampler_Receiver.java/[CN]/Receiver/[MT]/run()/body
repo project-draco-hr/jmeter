@@ -18,16 +18,23 @@
       }
     }
  catch (    JMSException e1) {
-      e1.printStackTrace();
+      log.error("Error handling receive",e1);
     }
   }
   if (session != null) {
     try {
       session.close();
-      if (conn != null)       conn.close();
+      try {
+        if (conn != null) {
+          conn.close();
+        }
+      }
+ catch (      JMSException e) {
+        log.error("Error closing connection",e);
+      }
     }
  catch (    JMSException e) {
-      e.printStackTrace();
+      log.error("Error closing session",e);
     }
   }
 }
