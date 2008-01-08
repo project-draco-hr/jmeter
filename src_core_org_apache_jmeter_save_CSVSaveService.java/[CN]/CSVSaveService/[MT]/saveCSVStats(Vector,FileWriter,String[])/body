@@ -7,7 +7,7 @@
       if (i > 0) {
         writer.write(DELIM);
       }
-      writer.write(escapeDelimiters(headers[i],SPECIALS));
+      writer.write(quoteDelimiters(headers[i],SPECIALS));
     }
     writer.write(LINE_SEP);
   }
@@ -18,7 +18,7 @@
         writer.write(DELIM);
       }
       Object item=row.elementAt(idy);
-      writer.write(escapeDelimiters(String.valueOf(item),SPECIALS));
+      writer.write(quoteDelimiters(String.valueOf(item),SPECIALS));
     }
     writer.write(LINE_SEP);
   }

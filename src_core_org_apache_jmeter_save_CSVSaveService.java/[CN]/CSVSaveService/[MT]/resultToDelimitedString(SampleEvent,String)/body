@@ -1,9 +1,9 @@
 {
-final class StringEscaper {
+final class StringQuoter {
     final StringBuffer sb=new StringBuffer();
     private final char[] specials;
     private boolean addDelim;
-    public StringEscaper(    char delim){
+    public StringQuoter(    char delim){
       specials=new char[]{delim,QUOTING_CHAR,CharUtils.CR,CharUtils.LF};
       addDelim=false;
     }
@@ -17,7 +17,7 @@ final class StringEscaper {
     }
     public void append(    String s){
       addDelim();
-      sb.append(escapeDelimiters(s,specials));
+      sb.append(quoteDelimiters(s,specials));
     }
     public void append(    Object obj){
       append(String.valueOf(obj));
@@ -38,7 +38,7 @@ final class StringEscaper {
       return sb.toString();
     }
   }
-  StringEscaper text=new StringEscaper(delimiter.charAt(0));
+  StringQuoter text=new StringQuoter(delimiter.charAt(0));
   SampleResult sample=event.getResult();
   SampleSaveConfiguration saveConfig=sample.getSaveConfig();
   if (saveConfig.saveTimestamp()) {

@@ -3,15 +3,15 @@
     return input;
   }
   StringBuffer buffer=new StringBuffer(input.length() + 10);
-  final char escape=specialChars[1];
-  buffer.append(escape);
+  final char quote=specialChars[1];
+  buffer.append(quote);
   for (int i=0; i < input.length(); i++) {
     char c=input.charAt(i);
-    if (c == escape) {
-      buffer.append(escape);
+    if (c == quote) {
+      buffer.append(quote);
     }
     buffer.append(c);
   }
-  buffer.append(escape);
+  buffer.append(quote);
   return buffer.toString();
 }
