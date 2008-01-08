@@ -4,7 +4,7 @@ final class StringEscaper {
     private final char[] specials;
     private boolean addDelim;
     public StringEscaper(    char delim){
-      specials=new char[]{delim,'"',CharUtils.CR,CharUtils.LF};
+      specials=new char[]{delim,QUOTING_CHAR,CharUtils.CR,CharUtils.LF};
       addDelim=false;
     }
     private void addDelim(){
