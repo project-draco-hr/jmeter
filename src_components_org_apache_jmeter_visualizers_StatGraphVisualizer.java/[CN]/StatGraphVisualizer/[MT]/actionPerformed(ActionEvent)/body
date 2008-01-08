@@ -8,7 +8,7 @@
       ActionRouter.getInstance().getAction(ActionNames.SAVE_GRAPHICS,SaveGraphics.class.getName()).doAction(new ActionEvent(this,1,ActionNames.SAVE_GRAPHICS));
     }
  catch (    Exception e) {
-      e.printStackTrace();
+      log.error(e.getMessage());
     }
   }
  else   if (event.getSource() == saveTable) {
