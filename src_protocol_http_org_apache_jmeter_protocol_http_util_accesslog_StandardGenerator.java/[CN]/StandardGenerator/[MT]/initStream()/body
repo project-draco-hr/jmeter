@@ -3,5 +3,6 @@
     this.OUTPUT=new FileOutputStream(FILE);
   }
  catch (  IOException exception) {
+    log.error(exception.getMessage());
   }
 }
