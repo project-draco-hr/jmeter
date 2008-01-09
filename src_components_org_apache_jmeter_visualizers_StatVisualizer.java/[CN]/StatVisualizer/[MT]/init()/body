@@ -11,4 +11,6 @@
   myScrollPane=new JScrollPane(myJTable);
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(myScrollPane,BorderLayout.CENTER);
+  saveTable.addActionListener(this);
+  this.add(saveTable,BorderLayout.SOUTH);
 }
