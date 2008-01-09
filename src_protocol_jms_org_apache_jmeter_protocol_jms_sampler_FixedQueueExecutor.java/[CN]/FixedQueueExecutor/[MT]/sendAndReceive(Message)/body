@@ -1,6 +1,10 @@
 {
+  String id=request.getJMSCorrelationID();
+  if (id == null) {
+    log.error("Correlation id is null. Set the JMSCorrelationID header");
+    return null;
+  }
   producer.send(request);
-  String id=request.getJMSMessageID();
   MessageAdmin.getAdmin().putRequest(id,request);
   try {
     if (log.isDebugEnabled()) {
@@ -16,5 +20,5 @@ synchronized (request) {
  catch (  InterruptedException e) {
     log.warn("Interrupt exception caught",e);
   }
-  return MessageAdmin.getAdmin().get(request.getJMSMessageID());
+  return MessageAdmin.getAdmin().get(id);
 }
