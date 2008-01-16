@@ -1,0 +1,10 @@
+{
+  HashTree tree=null;
+  try {
+    tree=getTree(testFile);
+  }
+ catch (  Exception e) {
+    fail(parent + ": " + testFile.getName()+ " caused "+ e);
+  }
+  assertTree(tree);
+}

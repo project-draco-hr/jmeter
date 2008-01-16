@@ -1,0 +1,6 @@
+{
+  TestSuite suite=new TestSuite("Load Test");
+  scanFiles(suite,testfiledir);
+  scanFiles(suite,demofiledir);
+  return suite;
+}
