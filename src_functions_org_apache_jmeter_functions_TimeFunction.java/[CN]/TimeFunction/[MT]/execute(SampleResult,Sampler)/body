@@ -11,7 +11,9 @@
   }
   if (variable.length() > 0) {
     JMeterVariables vars=getVariables();
-    vars.put(variable,datetime);
+    if (vars != null) {
+      vars.put(variable,datetime);
+    }
   }
   return datetime;
 }

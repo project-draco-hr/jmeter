@@ -6,6 +6,8 @@
     sum+=Integer.parseInt(((CompoundVariable)values[i]).execute());
   }
   String totalString=Integer.toString(sum);
-  vars.put(varName,totalString);
+  if (vars != null) {
+    vars.put(varName,totalString);
+  }
   return totalString;
 }
