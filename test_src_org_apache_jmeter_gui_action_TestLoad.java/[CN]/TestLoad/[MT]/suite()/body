@@ -1,5 +1,6 @@
 {
   TestSuite suite=new TestSuite("Load Test");
+  suite.addTest(new TestLoad("checkGuiPackage"));
   scanFiles(suite,testfiledir);
   scanFiles(suite,demofiledir);
   return suite;
