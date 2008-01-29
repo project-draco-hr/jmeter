@@ -12,6 +12,9 @@
  else {
       if (!acceptsOther && !isATag(text))       shouldNeverHappen();
       try {
+        if (text.length() == 0 && typeEditor instanceof NumberEditor) {
+          text="0";
+        }
         typeEditor.setAsText(text);
       }
  catch (      IllegalArgumentException e) {
