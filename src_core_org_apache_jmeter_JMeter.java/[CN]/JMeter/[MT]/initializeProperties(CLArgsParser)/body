@@ -124,6 +124,26 @@ if (value.length() > 0) {
 log.info("Setting Global property: " + name + "="+ value);
 remoteProps.setProperty(name,value);
 }
+ else {
+File propFile=new File(name);
+if (propFile.canRead()) {
+log.info("Setting Global properties from the file " + name);
+fis=null;
+try {
+fis=new FileInputStream(propFile);
+remoteProps.load(fis);
+}
+ catch (FileNotFoundException e) {
+log.warn("Could not find properties file: " + e.getLocalizedMessage());
+}
+catch (IOException e) {
+log.warn("Could not load properties file: " + e.getLocalizedMessage());
+}
+ finally {
+JOrphanUtils.closeQuietly(fis);
+}
+}
+}
 break;
 case LOGLEVEL:
 if (value.length() > 0) {
