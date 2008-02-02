@@ -1,0 +1,6 @@
+{
+  if (localHostIP == null) {
+    getLocalHostDetails();
+  }
+  return localHostIP;
+}

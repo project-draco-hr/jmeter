@@ -1,0 +1,6 @@
+{
+  if (localHostFullName == null) {
+    getLocalHostDetails();
+  }
+  return localHostFullName;
+}

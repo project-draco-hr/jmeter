@@ -1,0 +1,13 @@
+{
+  InetAddress localHost=null;
+  try {
+    localHost=InetAddress.getLocalHost();
+  }
+ catch (  UnknownHostException e1) {
+    log.error("Unable to get local host IP address.");
+    return;
+  }
+  localHostIP=localHost.getHostAddress();
+  localHostName=localHost.getHostName();
+  localHostFullName=localHost.getCanonicalHostName();
+}

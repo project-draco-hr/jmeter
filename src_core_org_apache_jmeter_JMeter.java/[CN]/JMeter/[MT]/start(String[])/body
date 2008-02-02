@@ -31,6 +31,7 @@
     log.info("JMeterHome=" + JMeterUtils.getJMeterHome());
     logProperty("user.dir","  =");
     log.info("PWD       =" + new File(".").getCanonicalPath());
+    log.info("IP: " + JMeterUtils.getLocalHostIP() + " Name: "+ JMeterUtils.getLocalHostName()+ " FullName: "+ JMeterUtils.getLocalHostFullName());
     setProxy(parser);
     updateClassLoader();
     if (log.isDebugEnabled()) {
