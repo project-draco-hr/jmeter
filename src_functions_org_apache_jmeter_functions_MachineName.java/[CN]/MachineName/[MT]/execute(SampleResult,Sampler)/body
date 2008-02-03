@@ -1,11 +1,5 @@
 {
-  String machineName="";
-  try {
-    InetAddress Address=InetAddress.getLocalHost();
-    machineName=Address.getHostName();
-  }
- catch (  UnknownHostException e) {
-  }
+  String machineName=JMeterUtils.getLocalHostName();
   if (values.length >= 1) {
     JMeterVariables vars=getVariables();
     if (vars != null) {
