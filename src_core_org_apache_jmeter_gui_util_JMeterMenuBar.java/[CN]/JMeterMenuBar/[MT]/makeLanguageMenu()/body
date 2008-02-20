@@ -41,5 +41,10 @@
   spanish.setActionCommand(ActionNames.CHANGE_LANGUAGE);
   spanish.setName("es");
   languageMenu.add(spanish);
+  JMenuItem turkish=new JMenuItem(JMeterUtils.getResString("tr"));
+  turkish.addActionListener(ActionRouter.getInstance());
+  turkish.setActionCommand(ActionNames.CHANGE_LANGUAGE);
+  turkish.setName("tr");
+  languageMenu.add(turkish);
   return languageMenu;
 }
