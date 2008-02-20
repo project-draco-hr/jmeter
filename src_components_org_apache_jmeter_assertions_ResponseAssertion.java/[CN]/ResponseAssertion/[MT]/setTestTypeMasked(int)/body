@@ -1,0 +1,4 @@
+{
+  int value=getTestType() & ~(TYPE_MASK) | testType;
+  setProperty(new IntegerProperty(TEST_TYPE,value));
+}

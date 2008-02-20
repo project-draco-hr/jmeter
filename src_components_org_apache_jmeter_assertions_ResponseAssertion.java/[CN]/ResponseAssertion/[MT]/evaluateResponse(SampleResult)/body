@@ -29,6 +29,7 @@
   result.setError(false);
   boolean contains=isContainsType();
   boolean equals=isEqualsType();
+  boolean substring=isSubstringType();
   boolean debugEnabled=log.isDebugEnabled();
   if (debugEnabled) {
     log.debug("Type:" + (contains ? "Contains" : "Match") + (not ? "(not)" : ""));
@@ -45,6 +46,9 @@
       }
  else       if (equals) {
         found=toCheck.equals(stringPattern);
+      }
+ else       if (substring) {
+        found=toCheck.indexOf(stringPattern) != -1;
       }
  else {
         found=localMatcher.matches(toCheck,pattern);

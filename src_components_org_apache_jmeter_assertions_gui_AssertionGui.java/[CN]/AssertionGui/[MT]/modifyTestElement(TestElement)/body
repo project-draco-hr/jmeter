@@ -29,6 +29,9 @@
  else     if (equalsBox.isSelected()) {
       ra.setToEqualsType();
     }
+ else     if (substringBox.isSelected()) {
+      ra.setToSubstringType();
+    }
  else {
       ra.setToMatchType();
     }

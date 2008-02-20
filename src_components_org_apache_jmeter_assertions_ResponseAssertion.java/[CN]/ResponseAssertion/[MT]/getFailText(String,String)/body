@@ -18,9 +18,11 @@
   }
 switch (getTestType()) {
 case CONTAINS:
+case SUBSTRING:
     sb.append(" expected to contain ");
   break;
 case NOT | CONTAINS:
+case NOT | SUBSTRING:
 sb.append(" expected not to contain ");
 break;
 case MATCH:

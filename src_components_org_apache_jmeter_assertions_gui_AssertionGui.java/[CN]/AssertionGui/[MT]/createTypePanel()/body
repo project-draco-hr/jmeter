@@ -12,6 +12,9 @@
   equalsBox=new JRadioButton(JMeterUtils.getResString("assertion_equals"));
   group.add(equalsBox);
   panel.add(equalsBox);
+  substringBox=new JRadioButton(JMeterUtils.getResString("assertion_substring"));
+  group.add(substringBox);
+  panel.add(substringBox);
   notBox=new JCheckBox(JMeterUtils.getResString("assertion_not"));
   panel.add(notBox);
   return panel;
