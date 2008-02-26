@@ -1,10 +1,10 @@
 {
-  cr1=setParams("testfiles/test.csv","*A");
-  cr2=setParams("*A","1");
-  cr3=setParams("*A","next");
-  cr4=setParams("testfiles/test.csv","*B");
-  cr5=setParams("*B","2");
-  cr6=setParams("*B","next");
+  cr1=setCSVReadParams("testfiles/test.csv","*A");
+  cr2=setCSVReadParams("*A","1");
+  cr3=setCSVReadParams("*A","next");
+  cr4=setCSVReadParams("testfiles/test.csv","*B");
+  cr5=setCSVReadParams("*B","2");
+  cr6=setCSVReadParams("*B","next");
   String s;
   s=cr1.execute(null,null);
   assertEquals("",s);

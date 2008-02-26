@@ -1,18 +1,18 @@
 {
   try {
-    setParams(null,null);
+    setCSVReadParams(null,null);
     fail("Should have failed");
   }
  catch (  InvalidVariableException e) {
   }
   try {
-    setParams(null,"");
+    setCSVReadParams(null,"");
     fail("Should have failed");
   }
  catch (  InvalidVariableException e) {
   }
   try {
-    setParams("",null);
+    setCSVReadParams("",null);
     fail("Should have failed");
   }
  catch (  InvalidVariableException e) {

@@ -1,6 +1,6 @@
 {
   IntSum is=new IntSum();
-  checkInvalidParameterCounts(is,2);
+  checkInvalidParameterCounts(is,3);
   checkSum(is,"3",new String[]{"1","2"});
   checkSum(is,"1",new String[]{"-1","1","1","1","-1","0"});
   String maxIntVal=Integer.toString(Integer.MAX_VALUE);
@@ -9,7 +9,7 @@
   checkSum(is,minIntVal,new String[]{maxIntVal,"1"});
   is=null;
   LongSum ls=new LongSum();
-  checkInvalidParameterCounts(ls,2);
+  checkInvalidParameterCounts(ls,3);
   checkSum(ls,"3",new String[]{"1","2"});
   checkSum(ls,"1",new String[]{"-1","1","1","1","-1","0"});
   String maxIntVal_1=Long.toString(1 + (long)Integer.MAX_VALUE);

@@ -1,0 +1,23 @@
+{
+  Collection parms=new LinkedList();
+  for (int count=0; count < min; count++) {
+    try {
+      func.setParameters(parms);
+      fail("Should have generated InvalidVariableException for " + parms.size() + " parameters");
+    }
+ catch (    InvalidVariableException ignored) {
+    }
+    parms.add("");
+  }
+  for (int count=min; count <= max; count++) {
+    func.setParameters(parms);
+    parms.add("");
+  }
+  parms.add("");
+  try {
+    func.setParameters(parms);
+    fail("Should have generated InvalidVariableException for " + parms.size() + " parameters");
+  }
+ catch (  InvalidVariableException ignored) {
+  }
+}

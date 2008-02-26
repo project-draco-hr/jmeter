@@ -1,6 +1,6 @@
 {
-  CSVRead csv1=setParams("testfiles/testblank.csv","1");
-  CSVRead csv2=setParams("testfiles/testblank.csv","next");
+  CSVRead csv1=setCSVReadParams("testfiles/testblank.csv","1");
+  CSVRead csv2=setCSVReadParams("testfiles/testblank.csv","next");
   String s;
   for (int i=1; i <= 2; i++) {
     s=csv1.execute(null,null);
