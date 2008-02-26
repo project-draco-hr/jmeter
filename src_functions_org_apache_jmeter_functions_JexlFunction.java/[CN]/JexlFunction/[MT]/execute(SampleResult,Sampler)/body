@@ -2,21 +2,30 @@
   String str="";
   CompoundVariable var=(CompoundVariable)values[0];
   String exp=var.execute();
+  String varName="";
+  if (values.length > 1) {
+    varName=((CompoundVariable)values[1]).execute();
+  }
+  JMeterContext jmctx=JMeterContextService.getContext();
+  JMeterVariables vars=jmctx.getVariables();
   try {
     Expression e=ExpressionFactory.createExpression(exp);
     JexlContext jc=JexlHelper.createContext();
-    jc.getVars().put("ctx",sampler.getThreadContext());
-    jc.getVars().put("vars",getVariables());
-    jc.getVars().put("theadName",sampler.getThreadName());
-    jc.getVars().put("sampler",sampler);
-    jc.getVars().put("sampleResult",result);
+    jc.getVars().put("ctx",jmctx);
+    jc.getVars().put("vars",vars);
+    jc.getVars().put("theadName",Thread.currentThread().getName());
+    jc.getVars().put("sampler",currentSampler);
+    jc.getVars().put("sampleResult",previousResult);
     Object o=e.evaluate(jc);
     if (o != null) {
       str=o.toString();
     }
+    if (vars != null && varName.length() > 0) {
+      vars.put(varName,str);
+    }
   }
  catch (  Exception e) {
-    log.error("An error occurred while evaluating the expression \"" + exp + "\"");
+    log.error("An error occurred while evaluating the expression \"" + exp + "\"\n",e);
   }
   return str;
 }

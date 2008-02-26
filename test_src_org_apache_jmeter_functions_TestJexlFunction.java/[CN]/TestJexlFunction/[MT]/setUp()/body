@@ -1,0 +1,11 @@
+{
+  function=new JexlFunction();
+  result=new SampleResult();
+  jmctx=JMeterContextService.getContext();
+  String data="The quick brown fox";
+  result.setResponseData(data.getBytes());
+  vars=new JMeterVariables();
+  jmctx.setVariables(vars);
+  jmctx.setPreviousResult(result);
+  params=new LinkedList();
+}
