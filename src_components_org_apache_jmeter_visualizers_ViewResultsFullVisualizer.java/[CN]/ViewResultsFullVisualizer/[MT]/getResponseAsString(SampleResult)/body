@@ -2,8 +2,8 @@
   String response=null;
   if ((SampleResult.TEXT).equals(res.getDataType())) {
     int len=res.getResponseData().length;
-    if (len > 200 * 1024) {
-      response="Response too large to be displayed (" + len + " bytes).";
+    if (MAX_DISPLAY_SIZE > 0 && len > MAX_DISPLAY_SIZE) {
+      response="Response too large to be displayed. Size: " + len + " > Max: "+ MAX_DISPLAY_SIZE;
       log.warn(response);
     }
  else {
