@@ -1,30 +1,18 @@
 {
-  String parsable="";
-  if (response == null) {
-    results.setText("");
-    parsable="";
-  }
- else {
-    results.setText(response);
-    int start=response.indexOf(XML_PFX);
-    if (start > 0) {
-      parsable=response.substring(start);
-    }
- else {
-      parsable=response;
-    }
-  }
   results.setContentType("text/xml");
   results.setCaretPosition(0);
+  byte[] source=res.getResponseData();
+  final ByteArrayInputStream baIS=new ByteArrayInputStream(source);
+  for (int i=0; i < source.length - XML_PFX.length; i++) {
+    if (JOrphanUtils.startsWith(source,XML_PFX,i)) {
+      baIS.skip(i);
+      break;
+    }
+  }
   Component view=results;
   org.w3c.dom.Document document=null;
   try {
-    DocumentBuilderFactory parserFactory=DocumentBuilderFactory.newInstance();
-    parserFactory.setValidating(false);
-    parserFactory.setNamespaceAware(false);
-    DocumentBuilder parser=parserFactory.newDocumentBuilder();
-    parser.setErrorHandler(saxErrorHandler);
-    document=parser.parse(new InputSource(new StringReader(parsable)));
+    document=XPathUtil.makeDocument(baIS,false,false,false,true,true,false,false);
     JPanel domTreePanel=new DOMTreePanel(document);
     document.normalize();
     view=domTreePanel;
@@ -42,6 +30,10 @@ catch (  IOException e) {
     log.debug(e.getMessage());
   }
 catch (  ParserConfigurationException e) {
+    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
+    log.debug(e.getMessage());
+  }
+catch (  TidyException e) {
     showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
     log.debug(e.getMessage());
   }

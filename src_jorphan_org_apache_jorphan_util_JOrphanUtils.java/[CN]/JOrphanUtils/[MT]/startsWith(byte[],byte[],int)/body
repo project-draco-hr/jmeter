@@ -1,0 +1,13 @@
+{
+  final int targetLength=target.length;
+  final int searchLength=search.length;
+  if (offset < 0 || searchLength > targetLength + offset) {
+    return false;
+  }
+  for (int i=0; i < searchLength; i++) {
+    if (target[i + offset] != search[i]) {
+      return false;
+    }
+  }
+  return true;
+}

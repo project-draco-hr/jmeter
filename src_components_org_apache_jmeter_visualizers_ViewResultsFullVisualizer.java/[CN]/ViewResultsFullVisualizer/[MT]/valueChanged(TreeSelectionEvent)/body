@@ -86,7 +86,7 @@ if (command.equals(TEXT_COMMAND)) {
   showRenderJSONResponse(response);
 }
  else if (command.equals(XML_COMMAND)) {
-  showRenderXMLResponse(response);
+  showRenderXMLResponse(res);
 }
 }
  else {
