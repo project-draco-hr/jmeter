@@ -11,32 +11,15 @@
   }
   Component view=results;
   org.w3c.dom.Document document=null;
-  try {
-    document=XPathUtil.makeDocument(baIS,false,false,false,true,true,false,false);
-    JPanel domTreePanel=new DOMTreePanel(document);
-    document.normalize();
-    view=domTreePanel;
+  StringWriter sw=new StringWriter();
+  Tidy tidy=XPathUtil.makeTidyParser(true,true,true,sw);
+  document=tidy.parseDOM(baIS,null);
+  document.normalize();
+  if (tidy.getParseErrors() > 0) {
+    showErrorMessageDialog(sw.toString(),"Tidy: " + tidy.getParseErrors() + " errors, "+ tidy.getParseWarnings()+ " warnings",JOptionPane.WARNING_MESSAGE);
   }
- catch (  SAXParseException e) {
-    showErrorMessageDialog(saxErrorHandler.getErrorMessage(),saxErrorHandler.getMessageType());
-    log.debug(e.getMessage());
-  }
-catch (  SAXException e) {
-    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
-    log.debug(e.getMessage());
-  }
-catch (  IOException e) {
-    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
-    log.debug(e.getMessage());
-  }
-catch (  ParserConfigurationException e) {
-    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
-    log.debug(e.getMessage());
-  }
-catch (  TidyException e) {
-    showErrorMessageDialog(e.getMessage(),JOptionPane.ERROR_MESSAGE);
-    log.debug(e.getMessage());
-  }
+  JPanel domTreePanel=new DOMTreePanel(document);
+  view=domTreePanel;
   resultsScrollPane.setViewportView(view);
   textButton.setEnabled(true);
   htmlButton.setEnabled(true);
