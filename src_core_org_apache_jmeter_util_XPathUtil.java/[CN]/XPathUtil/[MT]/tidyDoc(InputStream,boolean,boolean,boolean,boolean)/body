@@ -1,0 +1,17 @@
+{
+  Tidy tidy=makeTidyParser(quiet,showWarnings,isXML);
+  StringWriter sw=new StringWriter();
+  tidy.setErrout(new PrintWriter(sw));
+  Document doc=tidy.parseDOM(stream,null);
+  doc.normalize();
+  if (tidy.getParseErrors() > 0) {
+    if (report_errors) {
+      log.error("TidyException: " + sw.toString());
+      throw new TidyException(tidy.getParseErrors(),tidy.getParseWarnings());
+    }
+ else {
+      log.warn("Tidy errors: " + sw.toString());
+    }
+  }
+  return doc;
+}

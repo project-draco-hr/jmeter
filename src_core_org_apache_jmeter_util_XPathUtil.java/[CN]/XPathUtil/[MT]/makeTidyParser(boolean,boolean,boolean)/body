@@ -4,6 +4,6 @@
   tidy.setQuiet(quiet);
   tidy.setShowWarnings(showWarnings);
   tidy.setMakeClean(true);
-  tidy.setXmlTags(false);
+  tidy.setXmlTags(isXml);
   return tidy;
 }
