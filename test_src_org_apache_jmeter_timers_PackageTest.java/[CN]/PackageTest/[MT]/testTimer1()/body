@@ -1,5 +1,6 @@
 {
   ConstantThroughputTimer timer=new ConstantThroughputTimer();
+  assertEquals(0,timer.getCalcModeInt());
   timer.setThroughput(60.0);
   long delay=timer.delay();
   assertEquals(0,delay);

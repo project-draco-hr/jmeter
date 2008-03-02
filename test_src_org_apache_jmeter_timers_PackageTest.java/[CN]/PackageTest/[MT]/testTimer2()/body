@@ -1,0 +1,8 @@
+{
+  ConstantThroughputTimer timer=new ConstantThroughputTimer();
+  assertEquals(0,timer.getCalcModeInt());
+  timer.setThroughput(60.0);
+  assertEquals(1000,timer.calculateCurrentTarget(0));
+  timer.setThroughput(60000.0);
+  assertEquals(1,timer.calculateCurrentTarget(0));
+}
