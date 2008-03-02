@@ -1,0 +1,8 @@
+{
+  for (int i=0; i < BINARY_TYPES.length; i++) {
+    if (ct.startsWith(BINARY_TYPES[i])) {
+      return true;
+    }
+  }
+  return false;
+}

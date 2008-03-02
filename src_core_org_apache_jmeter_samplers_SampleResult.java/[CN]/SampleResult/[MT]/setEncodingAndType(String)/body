@@ -11,11 +11,11 @@
         setDataEncoding(charSet);
       }
     }
-    if (isTextType(ct)) {
-      setDataType(TEXT);
+    if (isBinaryType(ct)) {
+      setDataType(BINARY);
     }
  else {
-      setDataType(BINARY);
+      setDataType(TEXT);
     }
   }
 }
