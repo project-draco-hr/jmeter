@@ -1,0 +1,19 @@
+{
+  StringBuffer buf=new StringBuffer();
+  buf.append(basename);
+  buf.append("_g");
+  int pfxlen=buf.length();
+  int groups;
+  try {
+    groups=Integer.parseInt(vars.get(buf.toString()));
+  }
+ catch (  NumberFormatException e) {
+    groups=0;
+  }
+  vars.remove(buf.toString());
+  for (int i=0; i <= groups; i++) {
+    buf.append(i);
+    vars.remove(buf.toString());
+    buf.setLength(pfxlen);
+  }
+}

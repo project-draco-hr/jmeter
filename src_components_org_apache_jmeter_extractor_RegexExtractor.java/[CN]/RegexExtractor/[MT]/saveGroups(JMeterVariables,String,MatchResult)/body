@@ -3,10 +3,26 @@
   buf.append(basename);
   buf.append("_g");
   int pfxlen=buf.length();
-  for (int x=0; x < match.groups(); x++) {
+  String prevString=vars.get(buf.toString());
+  int previous=0;
+  if (prevString != null) {
+    try {
+      previous=Integer.parseInt(prevString);
+    }
+ catch (    NumberFormatException e) {
+      log.warn("Could not parse " + prevString + " "+ e);
+    }
+  }
+  final int groups=match.groups();
+  for (int x=0; x < groups; x++) {
     buf.append(x);
     vars.put(buf.toString(),match.group(x));
     buf.setLength(pfxlen);
   }
-  vars.put(buf.toString(),Integer.toString(match.groups() - 1));
+  vars.put(buf.toString(),Integer.toString(groups - 1));
+  for (int i=groups; i <= previous; i++) {
+    buf.append(i);
+    vars.remove(buf.toString());
+    buf.setLength(pfxlen);
+  }
 }

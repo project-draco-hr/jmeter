@@ -39,6 +39,18 @@
       x++;
     }
  while (x != matchNumber && !done);
+    int prevCount=0;
+    String prevString=vars.get(refName + REF_MATCH_NR);
+    if (prevString != null) {
+      vars.remove(refName + REF_MATCH_NR);
+      try {
+        prevCount=Integer.parseInt(prevString);
+      }
+ catch (      NumberFormatException e1) {
+        log.warn("Could not parse " + prevString + " "+ e1);
+      }
+    }
+    int matchCount=0;
     try {
       MatchResult match;
       if (matchNumber >= 0) {
@@ -48,35 +60,26 @@
           saveGroups(vars,refName,match);
         }
  else {
-          vars.remove(refName + "_g");
-          vars.remove(refName + "_g0");
-          vars.remove(refName + "_g1");
+          removeGroups(vars,refName);
         }
       }
  else {
-        int prevCount=0;
-        String prevString=vars.get(refName + REF_MATCH_NR);
-        if (prevString != null) {
-          try {
-            prevCount=Integer.parseInt(prevString);
-          }
- catch (          NumberFormatException e1) {
-            log.warn("Could not parse " + prevString + " "+ e1);
-          }
-        }
-        vars.put(refName + REF_MATCH_NR,"" + matches.size());
-        for (int i=1; i <= matches.size(); i++) {
+        removeGroups(vars,refName);
+        matchCount=matches.size();
+        vars.put(refName + REF_MATCH_NR,Integer.toString(matchCount));
+        for (int i=1; i <= matchCount; i++) {
           match=getCorrectMatch(matches,i);
           if (match != null) {
-            vars.put(refName + UNDERSCORE + i,generateResult(match));
-            saveGroups(vars,refName + UNDERSCORE + i,match);
+            final String refName_n=new StringBuffer(refName).append(UNDERSCORE).append(i).toString();
+            vars.put(refName_n,generateResult(match));
+            saveGroups(vars,refName_n,match);
           }
         }
-        for (int i=matches.size() + 1; i <= prevCount; i++) {
-          vars.remove(refName + UNDERSCORE + i);
-          vars.remove(refName + UNDERSCORE + i+ "_g0");
-          vars.remove(refName + UNDERSCORE + i+ "_g1");
-        }
+      }
+      for (int i=matchCount + 1; i <= prevCount; i++) {
+        final String refName_n=new StringBuffer(refName).append(UNDERSCORE).append(i).toString();
+        vars.remove(refName_n);
+        removeGroups(vars,refName_n);
       }
     }
  catch (    RuntimeException e) {
