@@ -5,8 +5,8 @@
   tidy.setShowWarnings(showWarnings);
   tidy.setMakeClean(true);
   tidy.setXmlTags(isXml);
-  if (sw != null) {
-    tidy.setErrout(new PrintWriter(sw));
+  if (stringWriter != null) {
+    tidy.setErrout(new PrintWriter(stringWriter));
   }
   return tidy;
 }
