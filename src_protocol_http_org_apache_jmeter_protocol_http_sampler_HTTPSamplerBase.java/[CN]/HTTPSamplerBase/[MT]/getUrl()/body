@@ -1,6 +1,9 @@
 {
   StringBuffer pathAndQuery=new StringBuffer(100);
   String path=this.getPath();
+  if (path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX)) {
+    return new URL(path);
+  }
   if (!path.startsWith("/")) {
     pathAndQuery.append("/");
   }
