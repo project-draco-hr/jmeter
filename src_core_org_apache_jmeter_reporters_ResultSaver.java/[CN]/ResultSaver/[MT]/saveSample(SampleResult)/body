@@ -1,5 +1,14 @@
 {
-  if (s.isSuccessful() && getErrorsOnly())   return;
+  if (s.isSuccessful()) {
+    if (getErrorsOnly()) {
+      return;
+    }
+  }
+ else {
+    if (getSuccessOnly()) {
+      return;
+    }
+  }
   nextNumber();
   String fileName=makeFileName(s.getContentType());
   log.debug("Saving " + s.getSampleLabel() + " in "+ fileName);

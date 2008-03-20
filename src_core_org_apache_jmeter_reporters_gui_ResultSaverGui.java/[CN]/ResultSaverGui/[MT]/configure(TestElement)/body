@@ -2,4 +2,5 @@
   super.configure(el);
   filename.setText(el.getPropertyAsString(ResultSaver.FILENAME));
   errorsOnly.setSelected(el.getPropertyAsBoolean(ResultSaver.ERRORS_ONLY));
+  successOnly.setSelected(el.getPropertyAsBoolean(ResultSaver.SUCCESS_ONLY));
 }

@@ -6,5 +6,7 @@
   box.add(createFilenamePanel());
   errorsOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_errors"));
   box.add(errorsOnly);
+  successOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_success"));
+  box.add(successOnly);
   add(box,BorderLayout.NORTH);
 }
