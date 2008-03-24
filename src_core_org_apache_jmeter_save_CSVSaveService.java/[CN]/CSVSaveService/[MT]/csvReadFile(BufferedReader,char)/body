@@ -20,7 +20,8 @@ case INITIAL:
     break;
 case PLAIN:
   if (ch == QUOTING_CHAR) {
-    throw new IllegalStateException("Cannot have quote-char in plain field:[" + baos.toString() + "]");
+    baos.write(ch);
+    throw new IOException("Cannot have quote-char in plain field:[" + baos.toString() + "]");
   }
  else   if (isDelimOrEOL(delim,ch)) {
     push=true;
@@ -48,7 +49,8 @@ push=true;
 state=INITIAL;
 }
  else {
-throw new IllegalStateException("Cannot have single quote-char in quoted field:[" + baos.toString() + "]");
+baos.write(QUOTING_CHAR);
+throw new IOException("Cannot have single quote-char in quoted field:[" + baos.toString() + "]");
 }
 break;
 }
