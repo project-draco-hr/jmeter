@@ -21,10 +21,18 @@
         ftp.enterLocalPassiveMode();
         boolean ftpOK=false;
         if (isUpload()) {
-          File infile=new File(local);
-          input=new FileInputStream(infile);
+          String contents=getLocalFileContents();
+          if (contents.length() > 0) {
+            byte bytes[]=contents.getBytes();
+            input=new ByteArrayInputStream(bytes);
+            res.setBytes(bytes.length);
+          }
+ else {
+            File infile=new File(local);
+            res.setBytes((int)infile.length());
+            input=new FileInputStream(infile);
+          }
           ftpOK=ftp.storeFile(remote,input);
-          res.setBytes((int)infile.length());
         }
  else {
           final boolean saveResponse=isSaveResponse();

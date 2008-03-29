@@ -3,6 +3,7 @@
   server.setText(element.getPropertyAsString(FTPSampler.SERVER));
   remoteFile.setText(element.getPropertyAsString(FTPSampler.REMOTE_FILENAME));
   localFile.setText(element.getPropertyAsString(FTPSampler.LOCAL_FILENAME));
+  inputData.setText(element.getPropertyAsString(FTPSampler.INPUT_DATA));
   binaryMode.setSelected(element.getPropertyAsBoolean(FTPSampler.BINARY_MODE,false));
   saveResponseData.setSelected(element.getPropertyAsBoolean(FTPSampler.SAVE_RESPONSE,false));
   putBox.setSelected(element.getPropertyAsBoolean(FTPSampler.UPLOAD_FILE,false));

@@ -1,0 +1,9 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("ftp_local_file_contents"));
+  inputData=new JTextArea();
+  label.setLabelFor(inputData);
+  JPanel contentsPanel=new JPanel(new BorderLayout(5,0));
+  contentsPanel.add(label,BorderLayout.WEST);
+  contentsPanel.add(inputData,BorderLayout.CENTER);
+  return contentsPanel;
+}
