@@ -2,6 +2,6 @@
   if (pauseTime == 0) {
     log.error("sampleResume without samplePause",new Throwable("Invalid call sequence"));
   }
-  idleTime+=System.currentTimeMillis() - pauseTime;
+  idleTime+=currentTimeInMs() - pauseTime;
   pauseTime=0;
 }

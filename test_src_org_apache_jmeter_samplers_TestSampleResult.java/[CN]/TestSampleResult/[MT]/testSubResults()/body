@@ -1,6 +1,6 @@
 {
   SampleResult resWithSubResults=new SampleResult();
-  long beginTest=System.currentTimeMillis();
+  long beginTest=sampleClock();
   resWithSubResults.sampleStart();
   Thread.sleep(100);
   resWithSubResults.setBytes(300);
@@ -29,7 +29,7 @@
   resNoSubResults2.setSuccessful(true);
   resNoSubResults2.sampleEnd();
   long sample2Time=resNoSubResults2.getTime();
-  long overallTime=System.currentTimeMillis() - beginTest;
+  long overallTime=sampleClock() - beginTest;
   assertTrue(resNoSubResults2.isSuccessful());
   assertEquals(200,resNoSubResults2.getBytes());
   assertEquals("sample with no subresults",resNoSubResults2.getSampleLabel());

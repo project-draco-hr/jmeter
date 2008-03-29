@@ -1,5 +1,5 @@
 {
-  long now=System.currentTimeMillis();
+  long now=currentTimeInMs();
   if (atend) {
     setTimes(now - elapsed,now);
   }

@@ -1,0 +1,13 @@
+{
+  Long result=null;
+  try {
+    result=(Long)nanoTimeMethod.invoke(null,null);
+  }
+ catch (  IllegalAccessException e) {
+    throw new RuntimeException(e);
+  }
+catch (  InvocationTargetException e) {
+    throw new RuntimeException(e);
+  }
+  return result.longValue();
+}
