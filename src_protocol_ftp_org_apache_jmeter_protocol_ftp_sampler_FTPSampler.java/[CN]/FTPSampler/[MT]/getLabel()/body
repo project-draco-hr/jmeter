@@ -1,3 +1,12 @@
 {
-  return ("ftp://" + getServer() + "/"+ getRemoteFilename()+ (isBinaryMode() ? " (Binary) " : " (Ascii) ")+ (isUpload() ? " <- " : " -> ")+ getLocalFilename());
+  StrBuilder sb=new StrBuilder();
+  sb.setNullText("null");
+  sb.append("ftp://");
+  sb.append(getServer());
+  sb.append("/");
+  sb.append(getRemoteFilename());
+  sb.append(isBinaryMode() ? " (Binary) " : " (Ascii) ");
+  sb.append(isUpload() ? " <- " : " -> ");
+  sb.append(getLocalFilename());
+  return sb.toString();
 }

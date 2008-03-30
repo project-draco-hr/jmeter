@@ -5,7 +5,14 @@
   String local=getLocalFilename();
   boolean binaryTransfer=isBinaryMode();
   res.setSampleLabel(getName());
-  res.setSamplerData(getLabel());
+  final String label=getLabel();
+  res.setSamplerData(label);
+  try {
+    res.setURL(new URL(label));
+  }
+ catch (  MalformedURLException e1) {
+    log.warn("Cannot set URL: " + e1.getLocalizedMessage());
+  }
   InputStream input=null;
   OutputStream output=null;
   res.sampleStart();
