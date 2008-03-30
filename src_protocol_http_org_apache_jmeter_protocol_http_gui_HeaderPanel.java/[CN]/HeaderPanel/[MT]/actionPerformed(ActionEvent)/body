@@ -42,9 +42,9 @@
   }
  else   if (action.equals(LOAD_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToOpenFile().getSelectedFile();
-      if (tmp != null) {
-        headerManager.addFile(tmp.getAbsolutePath());
+      final JFileChooser chooser=FileDialoger.promptToOpenFile();
+      if (chooser != null) {
+        headerManager.addFile(chooser.getSelectedFile().getAbsolutePath());
         tableModel.fireTableDataChanged();
         if (tableModel.getRowCount() > 0) {
           deleteButton.setEnabled(true);
@@ -55,20 +55,16 @@
  catch (    IOException ex) {
       log.error("Could not load headers",ex);
     }
-catch (    NullPointerException err) {
-    }
   }
  else   if (action.equals(SAVE_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToSaveFile(null).getSelectedFile();
-      if (tmp != null) {
-        headerManager.save(tmp.getAbsolutePath());
+      final JFileChooser chooser=FileDialoger.promptToSaveFile(null);
+      if (chooser != null) {
+        headerManager.save(chooser.getSelectedFile().getAbsolutePath());
       }
     }
  catch (    IOException ex) {
       log.error("Could not save headers",ex);
-    }
-catch (    NullPointerException err) {
     }
   }
 }

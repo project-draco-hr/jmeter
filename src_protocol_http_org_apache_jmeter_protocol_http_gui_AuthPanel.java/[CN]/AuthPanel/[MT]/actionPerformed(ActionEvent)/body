@@ -43,9 +43,9 @@
  else   if (action.equals(LOAD_COMMAND)) {
     try {
       final String[] _txt={".txt"};
-      File tmp=FileDialoger.promptToOpenFile(_txt).getSelectedFile();
-      if (tmp != null) {
-        tableModel.manager.addFile(tmp.getAbsolutePath());
+      final JFileChooser dialog=FileDialoger.promptToOpenFile(_txt);
+      if (dialog != null) {
+        tableModel.manager.addFile(dialog.getSelectedFile().getAbsolutePath());
         tableModel.fireTableDataChanged();
         if (tableModel.getRowCount() > 0) {
           deleteButton.setEnabled(true);
@@ -56,20 +56,16 @@
  catch (    IOException ex) {
       log.error("",ex);
     }
-catch (    NullPointerException err) {
-    }
   }
  else   if (action.equals(SAVE_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToSaveFile("auth.txt").getSelectedFile();
-      if (tmp != null) {
-        tableModel.manager.save(tmp.getAbsolutePath());
+      final JFileChooser chooser=FileDialoger.promptToSaveFile("auth.txt");
+      if (chooser != null) {
+        tableModel.manager.save(chooser.getSelectedFile().getAbsolutePath());
       }
     }
  catch (    IOException ex) {
       log.error("",ex);
-    }
-catch (    NullPointerException err) {
     }
   }
 }

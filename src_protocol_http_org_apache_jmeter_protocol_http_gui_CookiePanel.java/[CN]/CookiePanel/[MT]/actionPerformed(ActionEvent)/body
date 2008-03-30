@@ -43,10 +43,10 @@
  else   if (action.equals(LOAD_COMMAND)) {
     try {
       final String[] _txt={".txt"};
-      File tmp=FileDialoger.promptToOpenFile(_txt).getSelectedFile();
-      if (tmp != null) {
+      final JFileChooser chooser=FileDialoger.promptToOpenFile(_txt);
+      if (chooser != null) {
         CookieManager manager=new CookieManager();
-        manager.addFile(tmp.getAbsolutePath());
+        manager.addFile(chooser.getSelectedFile().getAbsolutePath());
         for (int i=0; i < manager.getCookieCount(); i++) {
           addCookieToTable(manager.get(i));
         }
@@ -60,20 +60,16 @@
  catch (    IOException ex) {
       log.error("",ex);
     }
-catch (    NullPointerException err) {
-    }
   }
  else   if (action.equals(SAVE_COMMAND)) {
     try {
-      File tmp=FileDialoger.promptToSaveFile("cookies.txt").getSelectedFile();
-      if (tmp != null) {
-        ((CookieManager)createTestElement()).save(tmp.getAbsolutePath());
+      final JFileChooser chooser=FileDialoger.promptToSaveFile("cookies.txt");
+      if (chooser != null) {
+        ((CookieManager)createTestElement()).save(chooser.getSelectedFile().getAbsolutePath());
       }
     }
  catch (    IOException ex) {
       log.error("",ex);
-    }
-catch (    NullPointerException err) {
     }
   }
 }
