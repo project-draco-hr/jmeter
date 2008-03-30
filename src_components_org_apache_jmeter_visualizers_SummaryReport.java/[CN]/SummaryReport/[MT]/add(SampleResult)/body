@@ -1,9 +1,10 @@
 {
   Calculator row=null;
+  final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());
 synchronized (tableRows) {
-    row=(Calculator)tableRows.get(res.getSampleLabel());
+    row=(Calculator)tableRows.get(sampleLabel);
     if (row == null) {
-      row=new Calculator(res.getSampleLabel());
+      row=new Calculator(sampleLabel);
       tableRows.put(row.getLabel(),row);
       model.insertRow(row,model.getRowCount() - 1);
     }

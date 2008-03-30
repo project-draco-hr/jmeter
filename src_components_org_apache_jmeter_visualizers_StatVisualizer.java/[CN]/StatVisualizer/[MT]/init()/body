@@ -12,5 +12,8 @@
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(myScrollPane,BorderLayout.CENTER);
   saveTable.addActionListener(this);
-  this.add(saveTable,BorderLayout.SOUTH);
+  JPanel opts=new JPanel();
+  opts.add(useGroupName,BorderLayout.WEST);
+  opts.add(saveTable,BorderLayout.CENTER);
+  this.add(opts,BorderLayout.SOUTH);
 }

@@ -1,10 +1,12 @@
 {
   if (ev.getSource() == saveTable) {
     JFileChooser chooser=FileDialoger.promptToSaveFile("aggregate.csv");
-    File output=chooser.getSelectedFile();
+    if (chooser == null) {
+      return;
+    }
     FileWriter writer=null;
     try {
-      writer=new FileWriter(output);
+      writer=new FileWriter(chooser.getSelectedFile());
       CSVSaveService.saveCSVStats(model,writer);
     }
  catch (    FileNotFoundException e) {
