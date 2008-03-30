@@ -1,9 +1,0 @@
-{
-  StringBuffer sb=new StringBuffer(32);
-  for (int i=0; i < ba.length; i++) {
-    int j=ba[i] & 0xff;
-    if (j < 16)     sb.append("0");
-    sb.append(Integer.toHexString(j));
-  }
-  return sb.toString();
-}

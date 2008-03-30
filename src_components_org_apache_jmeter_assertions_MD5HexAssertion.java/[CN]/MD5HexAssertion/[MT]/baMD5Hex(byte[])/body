@@ -8,5 +8,5 @@
  catch (  NoSuchAlgorithmException e) {
     log.error("",e);
   }
-  return baToHex(md5Result);
+  return JOrphanUtils.baToHexString(md5Result);
 }
