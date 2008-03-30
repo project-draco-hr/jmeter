@@ -1,9 +1,10 @@
 {
   SamplingStatCalculator row=null;
+  final String sampleLabel=res.getSampleLabel();
 synchronized (tableRows) {
-    row=(SamplingStatCalculator)tableRows.get(res.getSampleLabel());
+    row=(SamplingStatCalculator)tableRows.get(sampleLabel);
     if (row == null) {
-      row=new SamplingStatCalculator(res.getSampleLabel());
+      row=new SamplingStatCalculator(sampleLabel);
       tableRows.put(row.getLabel(),row);
       model.insertRow(row,model.getRowCount() - 1);
     }

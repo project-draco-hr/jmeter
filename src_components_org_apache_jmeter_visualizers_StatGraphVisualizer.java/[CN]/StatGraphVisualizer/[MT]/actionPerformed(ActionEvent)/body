@@ -13,10 +13,12 @@
   }
  else   if (event.getSource() == saveTable) {
     JFileChooser chooser=FileDialoger.promptToSaveFile("statistics.csv");
-    File output=chooser.getSelectedFile();
+    if (chooser == null) {
+      return;
+    }
     FileWriter writer=null;
     try {
-      writer=new FileWriter(output);
+      writer=new FileWriter(chooser.getSelectedFile());
       Vector data=this.getAllTableData();
       CSVSaveService.saveCSVStats(data,writer,saveHeaders.isSelected() ? COLUMNS : null);
     }
