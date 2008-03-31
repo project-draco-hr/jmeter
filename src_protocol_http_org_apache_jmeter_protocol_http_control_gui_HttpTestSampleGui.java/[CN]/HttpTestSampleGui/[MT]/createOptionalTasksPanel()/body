@@ -4,8 +4,10 @@
   JPanel checkBoxPanel=new HorizontalPanel();
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
   isMon=new JCheckBox(JMeterUtils.getResString("monitor_is_title"));
+  useMD5=new JCheckBox(JMeterUtils.getResString("response_save_as_md5"));
   checkBoxPanel.add(getImages);
   checkBoxPanel.add(isMon);
+  checkBoxPanel.add(useMD5);
   optionalTasksPanel.add(checkBoxPanel);
   embeddedRE=new JLabeledTextField(JMeterUtils.getResString("web_testing_embedded_url_pattern"),30);
   optionalTasksPanel.add(embeddedRE);

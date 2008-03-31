@@ -4,5 +4,6 @@
   final HTTPSamplerBase samplerBase=(HTTPSamplerBase)element;
   getImages.setSelected(samplerBase.isImageParser());
   isMon.setSelected(samplerBase.isMonitor());
+  useMD5.setSelected(samplerBase.useMD5());
   embeddedRE.setText(samplerBase.getEmbeddedUrlRE());
 }

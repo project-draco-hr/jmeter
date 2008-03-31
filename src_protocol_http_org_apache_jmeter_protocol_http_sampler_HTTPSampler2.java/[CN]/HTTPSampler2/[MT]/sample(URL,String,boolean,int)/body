@@ -54,19 +54,7 @@
       if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
         instream=new GZIPInputStream(instream);
       }
-      ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
-      byte[] buffer=new byte[4096];
-      int len;
-      boolean first=true;
-      while ((len=instream.read(buffer)) > 0) {
-        if (first) {
-          res.latencyEnd();
-          first=false;
-        }
-        outstream.write(buffer,0,len);
-      }
-      res.setResponseData(outstream.toByteArray());
-      outstream.close();
+      res.setResponseData(readResponse(res,instream,(int)httpMethod.getResponseContentLength()));
     }
     res.sampleEnd();
     res.setSampleLabel(httpMethod.getURI().toString());

@@ -10,6 +10,7 @@
     sampler.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
   }
   samplerBase.setMonitor(isMon.isSelected());
+  samplerBase.setMD5(useMD5.isSelected());
   samplerBase.setEmbeddedUrlRE(embeddedRE.getText());
   this.configureTestElement(sampler);
 }
