@@ -1,0 +1,17 @@
+{
+  params=new LinkedList();
+  params.add(new CompoundVariable("<value field=\"(pinposition\\d+)\">(\\d+)</value>"));
+  params.add(new CompoundVariable("$2$"));
+  params.add(new CompoundVariable("2"));
+  params.add(new CompoundVariable("-"));
+  params.add(new CompoundVariable("default"));
+  params.add(new CompoundVariable("OUTVAR"));
+  variable.setParameters(params);
+  String match=variable.execute(result,null);
+  assertEquals("3",vars.getObject("OUTVAR_matchNr"));
+  assertEquals("5",match);
+  assertEquals("5",vars.getObject("OUTVAR"));
+  assertEquals("<value field=\"pinposition2\">5</value>",vars.getObject("OUTVAR_g0"));
+  assertEquals("pinposition2",vars.getObject("OUTVAR_g1"));
+  assertEquals("5",vars.getObject("OUTVAR_g2"));
+}

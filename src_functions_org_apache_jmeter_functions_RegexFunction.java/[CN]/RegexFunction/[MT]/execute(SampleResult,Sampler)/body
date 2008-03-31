@@ -1,6 +1,7 @@
 {
   String valueIndex="", defaultValue="", between="";
   String name="";
+  String inputVariable="";
   Pattern searchPattern;
   Object[] tmplt;
   try {
@@ -9,7 +10,7 @@
     if (values.length > 2) {
       valueIndex=((CompoundVariable)values[2]).execute();
     }
-    if (valueIndex.equals("")) {
+    if (valueIndex.length() == 0) {
       valueIndex="1";
     }
     if (values.length > 3) {
@@ -17,27 +18,38 @@
     }
     if (values.length > 4) {
       String dv=((CompoundVariable)values[4]).execute();
-      if (!dv.equals("")) {
+      if (dv.length() != 0) {
         defaultValue=dv;
       }
     }
     if (values.length > 5) {
-      name=((CompoundVariable)values[values.length - 1]).execute();
+      name=((CompoundVariable)values[5]).execute();
+    }
+    if (values.length > 6) {
+      inputVariable=((CompoundVariable)values[6]).execute();
     }
   }
  catch (  MalformedCachePatternException e) {
     throw new InvalidVariableException(e.toString());
   }
   JMeterVariables vars=getVariables();
-  vars.put(name,defaultValue);
-  if (previousResult == null || previousResult.getResponseData().length == 0) {
+  if (name.length() > 0) {
+    vars.put(name,defaultValue);
+  }
+  String textToMatch=null;
+  if (inputVariable.length() > 0) {
+    textToMatch=vars.get(inputVariable);
+  }
+ else   if (previousResult != null) {
+    textToMatch=previousResult.getResponseDataAsString();
+  }
+  if (textToMatch == null || textToMatch.length() == 0) {
     return defaultValue;
   }
   List collectAllMatches=new ArrayList();
   try {
     PatternMatcher matcher=JMeterUtils.getMatcher();
-    String responseText=previousResult.getResponseDataAsString();
-    PatternMatcherInput input=new PatternMatcherInput(responseText);
+    PatternMatcherInput input=new PatternMatcherInput(textToMatch);
     while (matcher.contains(input,searchPattern)) {
       MatchResult match=matcher.getMatch();
       collectAllMatches.add(match);
@@ -48,7 +60,9 @@
     return defaultValue;
   }
  finally {
-    vars.put(name + "_matchNr","" + collectAllMatches.size());
+    if (name.length() > 0) {
+      vars.put(name + "_matchNr","" + collectAllMatches.size());
+    }
   }
   if (collectAllMatches.size() == 0) {
     return defaultValue;

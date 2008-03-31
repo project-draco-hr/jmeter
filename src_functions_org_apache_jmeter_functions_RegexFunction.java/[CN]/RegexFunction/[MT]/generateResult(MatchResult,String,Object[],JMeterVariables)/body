@@ -9,6 +9,8 @@
       result.append(match.group(((Integer)template[a]).intValue()));
     }
   }
-  vars.put(namep,result.toString());
+  if (namep.length() > 0) {
+    vars.put(namep,result.toString());
+  }
   return result.toString();
 }
