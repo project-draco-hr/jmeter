@@ -7,6 +7,10 @@
   binaryMode.setSelected(element.getPropertyAsBoolean(FTPSampler.BINARY_MODE,false));
   saveResponseData.setSelected(element.getPropertyAsBoolean(FTPSampler.SAVE_RESPONSE,false));
   final boolean uploading=element.getPropertyAsBoolean(FTPSampler.UPLOAD_FILE,false);
-  getBox.setSelected(!uploading);
-  putBox.setSelected(uploading);
+  if (uploading) {
+    putBox.setSelected(true);
+  }
+ else {
+    getBox.setSelected(true);
+  }
 }
