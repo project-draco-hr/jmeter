@@ -1,0 +1,7 @@
+{
+  resetInterpreter=new JCheckBox(JMeterUtils.getResString("bsh_script_reset_interpreter"));
+  resetInterpreter.setName(BeanShellSampler.PARAMETERS);
+  JPanel resetInterpreterPanel=new JPanel(new BorderLayout());
+  resetInterpreterPanel.add(resetInterpreter,BorderLayout.WEST);
+  return resetInterpreterPanel;
+}

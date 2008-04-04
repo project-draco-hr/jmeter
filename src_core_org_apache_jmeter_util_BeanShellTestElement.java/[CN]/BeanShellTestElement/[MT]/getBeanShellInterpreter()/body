@@ -1,3 +1,11 @@
 {
+  if (isResetInterpreter()) {
+    try {
+      bshInterpreter.reset();
+    }
+ catch (    ClassNotFoundException e) {
+      log.error("Cannot find BeanShell: " + e.toString());
+    }
+  }
   return bshInterpreter;
 }

@@ -3,6 +3,7 @@
   setBorder(makeBorder());
   Box box=Box.createVerticalBox();
   box.add(makeTitlePanel());
+  box.add(createResetPanel());
   box.add(createParameterPanel());
   box.add(createFilenamePanel());
   add(box,BorderLayout.NORTH);

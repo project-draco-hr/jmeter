@@ -4,4 +4,5 @@
   te.setProperty(BeanShellSampler.SCRIPT,scriptField.getText());
   te.setProperty(BeanShellSampler.FILENAME,filename.getText());
   te.setProperty(BeanShellSampler.PARAMETERS,parameters.getText());
+  te.setProperty(new BooleanProperty(BeanShellSampler.RESET_INTREPRETER,resetInterpreter.isSelected()));
 }

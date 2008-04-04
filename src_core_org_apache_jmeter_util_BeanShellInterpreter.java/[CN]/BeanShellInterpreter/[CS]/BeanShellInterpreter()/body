@@ -1,16 +1,5 @@
 {
-  if (bshClass == null) {
-    throw new ClassNotFoundException(BSH_INTERPRETER);
-  }
-  try {
-    bshInstance=bshClass.newInstance();
-  }
- catch (  InstantiationException e) {
-    log.error("Can't instantiate BeanShell",e);
-    throw new ClassNotFoundException("Can't instantiate BeanShell",e);
-  }
-catch (  IllegalAccessException e) {
-    log.error("Can't instantiate BeanShell",e);
-    throw new ClassNotFoundException("Can't instantiate BeanShell",e);
-  }
+  initFile=null;
+  logger=null;
+  init();
 }

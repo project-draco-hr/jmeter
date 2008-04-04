@@ -1,0 +1,44 @@
+{
+  if (bshClass == null) {
+    throw new ClassNotFoundException(BSH_INTERPRETER);
+  }
+  try {
+    bshInstance=bshClass.newInstance();
+  }
+ catch (  InstantiationException e) {
+    log.error("Can't instantiate BeanShell",e);
+    throw new ClassNotFoundException("Can't instantiate BeanShell",e);
+  }
+catch (  IllegalAccessException e) {
+    log.error("Can't instantiate BeanShell",e);
+    throw new ClassNotFoundException("Can't instantiate BeanShell",e);
+  }
+  if (logger != null) {
+    try {
+      set("log",logger);
+    }
+ catch (    JMeterException e) {
+      log.warn("Can't set logger variable",e);
+    }
+  }
+  if (initFile != null && initFile.length() > 0) {
+    String fileToUse=initFile;
+    File in=new File(fileToUse);
+    if (!in.exists()) {
+      fileToUse=JMeterUtils.getJMeterHome() + File.separator + "bin"+ File.separator+ initFile;
+      in=new File(fileToUse);
+      if (!in.exists()) {
+        log.warn("Cannot find init file: " + initFile);
+      }
+    }
+    if (!in.canRead()) {
+      log.warn("Cannot read init file: " + fileToUse);
+    }
+    try {
+      source(fileToUse);
+    }
+ catch (    JMeterException e) {
+      log.warn("Cannot source init file: " + fileToUse,e);
+    }
+  }
+}
