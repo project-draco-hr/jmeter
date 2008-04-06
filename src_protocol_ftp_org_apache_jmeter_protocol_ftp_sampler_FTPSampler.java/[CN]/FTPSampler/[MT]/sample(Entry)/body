@@ -63,16 +63,22 @@
             target=new NullOutputStream();
           }
           input=ftp.retrieveFileStream(remote);
-          long bytes=IOUtils.copy(input,target);
-          ftpOK=bytes > 0;
-          if (saveResponse) {
-            res.setResponseData(baos.toByteArray());
-            if (!binaryTransfer) {
-              res.setDataType(SampleResult.TEXT);
-            }
+          if (input == null) {
+            res.setResponseCode(Integer.toString(ftp.getReplyCode()));
+            res.setResponseMessage(ftp.getReplyString());
           }
  else {
-            res.setBytes((int)bytes);
+            long bytes=IOUtils.copy(input,target);
+            ftpOK=bytes > 0;
+            if (saveResponse) {
+              res.setResponseData(baos.toByteArray());
+              if (!binaryTransfer) {
+                res.setDataType(SampleResult.TEXT);
+              }
+            }
+ else {
+              res.setBytes((int)bytes);
+            }
           }
         }
         if (ftpOK) {
