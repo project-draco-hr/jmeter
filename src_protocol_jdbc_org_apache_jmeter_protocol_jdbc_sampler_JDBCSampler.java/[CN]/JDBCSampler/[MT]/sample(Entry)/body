@@ -6,6 +6,8 @@
   res.setDataType(SampleResult.TEXT);
   res.setDataEncoding(System.getProperty("file.encoding"));
   res.setSuccessful(true);
+  res.setResponseMessageOK();
+  res.setResponseCodeOK();
   res.sampleStart();
   Connection conn=null;
   Statement stmt=null;
