@@ -1,5 +1,7 @@
 {
   HashTree t=getTree(key);
-  if (t != null)   return t.getArray();
- else   return null;
+  if (t != null) {
+    return t.getArray();
+  }
+  return null;
 }

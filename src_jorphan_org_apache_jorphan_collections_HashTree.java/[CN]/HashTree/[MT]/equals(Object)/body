@@ -1,6 +1,10 @@
 {
-  if (!(o instanceof HashTree))   return false;
+  if (!(o instanceof HashTree)) {
+    return false;
+  }
   HashTree oo=(HashTree)o;
-  if (oo.size() != this.size())   return false;
+  if (oo.size() != this.size()) {
+    return false;
+  }
   return data.equals(oo.data);
 }

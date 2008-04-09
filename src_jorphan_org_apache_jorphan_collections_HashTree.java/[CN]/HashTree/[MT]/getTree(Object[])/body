@@ -2,7 +2,5 @@
   if (treePath != null) {
     return getTree(Arrays.asList(treePath));
   }
- else {
-    return this;
-  }
+  return this;
 }

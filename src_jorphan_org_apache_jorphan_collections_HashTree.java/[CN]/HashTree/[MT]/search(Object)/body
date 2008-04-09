@@ -7,7 +7,10 @@
   try {
     traverse(searcher);
   }
- catch (  Exception e) {
+ catch (  RuntimeException e) {
+    if (!e.getMessage().equals(FOUND)) {
+      throw e;
+    }
   }
   return searcher.getResult();
 }
