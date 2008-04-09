@@ -17,52 +17,51 @@
         if (log.isDebugEnabled()) {
           log.debug("valueChanged1 : sample result - " + res);
         }
-        if (res != null) {
-          log.debug("valueChanged1 : load time - " + res.getTime());
-          String sd=res.getSamplerData();
-          if (sd != null) {
-            String rh=res.getRequestHeaders();
-            if (rh != null) {
-              StringBuffer sb=new StringBuffer(sd.length() + rh.length() + 20);
-              sb.append(sd);
-              sb.append("\nRequest Headers:\n");
-              sb.append(rh);
-              sd=sb.toString();
-            }
-            sampleDataField.setText(sd);
+        log.debug("valueChanged1 : load time - " + res.getTime());
+        String sd=res.getSamplerData();
+        if (sd != null) {
+          String rh=res.getRequestHeaders();
+          if (rh != null) {
+            StringBuffer sb=new StringBuffer(sd.length() + rh.length() + 20);
+            sb.append(sd);
+            sb.append("\nRequest Headers:\n");
+            sb.append(rh);
+            sd=sb.toString();
           }
-          StringBuffer statsBuff=new StringBuffer(200);
-          statsBuff.append("Thread Name: ").append(res.getThreadName()).append(NL);
-          String startTime=dateFormat.format(new Date(res.getStartTime()));
-          statsBuff.append("Sample Start: ").append(startTime).append(NL);
-          statsBuff.append("Load time: ").append(res.getTime()).append(NL);
-          statsBuff.append("Latency: ").append(res.getLatency()).append(NL);
-          statsBuff.append("Size in bytes: ").append(res.getBytes()).append(NL);
-          statsBuff.append("Sample Count: ").append(res.getSampleCount()).append(NL);
-          statsBuff.append("Error Count: ").append(res.getErrorCount()).append(NL);
-          statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
-          statsBuff=new StringBuffer();
-          String responseCode=res.getResponseCode();
-          log.debug("valueChanged1 : response code - " + responseCode);
-          int responseLevel=0;
-          if (responseCode != null) {
-            try {
-              responseLevel=Integer.parseInt(responseCode) / 100;
-            }
- catch (            NumberFormatException numberFormatException) {
-            }
+          sampleDataField.setText(sd);
+        }
+        StringBuffer statsBuff=new StringBuffer(200);
+        statsBuff.append("Thread Name: ").append(res.getThreadName()).append(NL);
+        String startTime=dateFormat.format(new Date(res.getStartTime()));
+        statsBuff.append("Sample Start: ").append(startTime).append(NL);
+        statsBuff.append("Load time: ").append(res.getTime()).append(NL);
+        statsBuff.append("Latency: ").append(res.getLatency()).append(NL);
+        statsBuff.append("Size in bytes: ").append(res.getBytes()).append(NL);
+        statsBuff.append("Sample Count: ").append(res.getSampleCount()).append(NL);
+        statsBuff.append("Error Count: ").append(res.getErrorCount()).append(NL);
+        statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
+        statsBuff=new StringBuffer();
+        String responseCode=res.getResponseCode();
+        log.debug("valueChanged1 : response code - " + responseCode);
+        int responseLevel=0;
+        if (responseCode != null) {
+          try {
+            responseLevel=Integer.parseInt(responseCode) / 100;
           }
-          Style style=null;
+ catch (          NumberFormatException numberFormatException) {
+          }
+        }
+        Style style=null;
 switch (responseLevel) {
 case 3:
-            style=statsDoc.getStyle(STYLE_REDIRECT);
-          break;
+          style=statsDoc.getStyle(STYLE_REDIRECT);
+        break;
 case 4:
-        style=statsDoc.getStyle(STYLE_CLIENT_ERROR);
-      break;
+      style=statsDoc.getStyle(STYLE_CLIENT_ERROR);
+    break;
 case 5:
-    style=statsDoc.getStyle(STYLE_SERVER_ERROR);
-  break;
+  style=statsDoc.getStyle(STYLE_SERVER_ERROR);
+break;
 }
 statsBuff.append("Response code: ").append(responseCode).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),style);
@@ -77,23 +76,22 @@ statsBuff=null;
 if ((SampleResult.TEXT).equals(res.getDataType())) {
 String response=getResponseAsString(res);
 if (command.equals(TEXT_COMMAND)) {
-  showTextResponse(response);
+showTextResponse(response);
 }
  else if (command.equals(HTML_COMMAND)) {
-  showRenderedResponse(response,res);
+showRenderedResponse(response,res);
 }
  else if (command.equals(JSON_COMMAND)) {
-  showRenderJSONResponse(response);
+showRenderJSONResponse(response);
 }
  else if (command.equals(XML_COMMAND)) {
-  showRenderXMLResponse(res);
+showRenderXMLResponse(res);
 }
 }
  else {
 byte[] responseBytes=res.getResponseData();
 if (responseBytes != null) {
-  showImage(new ImageIcon(responseBytes));
-}
+showImage(new ImageIcon(responseBytes));
 }
 }
 }
@@ -103,14 +101,12 @@ setupTabPaneForAssertionResult();
 if (log.isDebugEnabled()) {
 log.debug("valueChanged1 : sample result - " + res);
 }
-if (res != null) {
 StringBuffer statsBuff=new StringBuffer(100);
 statsBuff.append("Assertion error: ").append(res.isError()).append(NL);
 statsBuff.append("Assertion failure: ").append(res.isFailure()).append(NL);
 statsBuff.append("Assertion failure message : ").append(res.getFailureMessage()).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
 statsBuff=null;
-}
 }
 }
 }

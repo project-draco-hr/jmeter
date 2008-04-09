@@ -4,7 +4,9 @@
   for (int i=0; i < childNodes.getLength(); i++) {
     Node childNode=childNodes.item(i);
     toReturn=childNode;
-    if (childNode.getNodeType() == Node.ELEMENT_NODE)     break;
+    if (childNode.getNodeType() == Node.ELEMENT_NODE) {
+      break;
+    }
   }
   return toReturn;
 }
