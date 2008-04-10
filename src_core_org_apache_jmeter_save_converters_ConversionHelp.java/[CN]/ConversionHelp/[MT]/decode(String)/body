@@ -1,5 +1,7 @@
 {
-  if (!"1.0".equals(inVersion))   return p;
+  if (!"1.0".equals(inVersion)) {
+    return p;
+  }
   if (p == null) {
     return null;
   }

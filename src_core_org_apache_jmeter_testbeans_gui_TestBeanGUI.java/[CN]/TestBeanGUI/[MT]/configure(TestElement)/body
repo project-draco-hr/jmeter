@@ -1,5 +1,7 @@
 {
-  if (!initialized)   init();
+  if (!initialized) {
+    init();
+  }
   clearGui();
   super.configure(element);
   for (PropertyIterator jprops=element.propertyIterator(); jprops.hasNext(); ) {
@@ -10,7 +12,9 @@
     customizer.setObject(propertyMap);
   }
  else {
-    if (initialized)     remove(customizerIndexInPanel);
+    if (initialized) {
+      remove(customizerIndexInPanel);
+    }
     Customizer c=(Customizer)customizers.get(element);
     if (c == null) {
       c=createCustomizer();

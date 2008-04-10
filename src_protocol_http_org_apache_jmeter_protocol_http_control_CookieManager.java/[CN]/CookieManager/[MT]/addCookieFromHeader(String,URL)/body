@@ -18,7 +18,9 @@
 catch (  IllegalArgumentException e) {
     log.warn(cookieHeader + e.getLocalizedMessage());
   }
-  if (cookies == null)   return;
+  if (cookies == null) {
+    return;
+  }
   for (int i=0; i < cookies.length; i++) {
     Date expiryDate=cookies[i].getExpiryDate();
     long exp=0;

@@ -5,7 +5,9 @@
   }
  else {
     String fmt=(String)aliases.get(format);
-    if (fmt == null)     fmt=format;
+    if (fmt == null) {
+      fmt=format;
+    }
     SimpleDateFormat df=new SimpleDateFormat(fmt);
     datetime=df.format(new Date());
   }

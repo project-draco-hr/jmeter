@@ -23,8 +23,12 @@
   res.setHTTPMethod(method);
   outpos=4;
   setByte((byte)2);
-  if (method.equals(POST))   setByte((byte)4);
- else   setByte((byte)2);
+  if (method.equals(POST)) {
+    setByte((byte)4);
+  }
+ else {
+    setByte((byte)2);
+  }
   if (JMeterUtils.getPropDefault("httpclient.version","1.1").equals("1.0")) {
     setString("HTTP/1.0");
   }

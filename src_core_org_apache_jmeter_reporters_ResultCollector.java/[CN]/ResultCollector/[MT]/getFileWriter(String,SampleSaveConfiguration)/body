@@ -12,7 +12,9 @@
       trimmed=new File(filename).exists();
     }
     File pdir=new File(filename).getParentFile();
-    if (pdir != null)     pdir.mkdirs();
+    if (pdir != null) {
+      pdir.mkdirs();
+    }
     writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),SaveService.getFileEncoding("UTF-8")),true);
     files.put(filename,writer);
   }

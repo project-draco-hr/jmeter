@@ -5,7 +5,9 @@
   responseCode=context.getParameter(RESPONSE_CODE_NAME,RESPONSE_CODE_DEFAULT);
   success=context.getParameter(SUCCESS_NAME,SUCCESS_DEFAULT).equalsIgnoreCase("OK");
   label=context.getParameter(LABEL_NAME,"");
-  if (label.length() == 0)   label=context.getParameter(TestElement.NAME);
+  if (label.length() == 0) {
+    label=context.getParameter(TestElement.NAME);
+  }
   samplerData=context.getParameter(SAMPLER_DATA_NAME,SAMPLER_DATA_DEFAULT);
   resultData=context.getParameter(RESULT_DATA_NAME,RESULT_DATA_DEFAULT);
 }

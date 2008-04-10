@@ -9,5 +9,7 @@
  else   if (SharedCustomizer.class.isAssignableFrom(customizerClass)) {
     customizer=createCustomizer();
   }
-  if (customizer != null)   add((Component)customizer,BorderLayout.CENTER);
+  if (customizer != null) {
+    add((Component)customizer,BorderLayout.CENTER);
+  }
 }

@@ -1,5 +1,7 @@
 {
   String group=(String)d.getValue(GROUP);
-  if (group == null)   group=DEFAULT_GROUP;
+  if (group == null) {
+    group=DEFAULT_GROUP;
+  }
   return group;
 }

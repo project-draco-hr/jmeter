@@ -15,7 +15,9 @@
       fileEntry.inputOutputObject=reader;
       line=reader.readLine();
     }
-    if (log.isDebugEnabled())     log.debug("Read:" + line);
+    if (log.isDebugEnabled()) {
+      log.debug("Read:" + line);
+    }
     return line;
   }
   throw new IOException("File never reserved: " + filename);

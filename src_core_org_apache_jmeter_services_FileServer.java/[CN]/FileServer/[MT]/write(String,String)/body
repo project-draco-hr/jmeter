@@ -8,7 +8,9 @@
       throw new IOException("File " + filename + " already in use");
     }
     BufferedWriter writer=(BufferedWriter)fileEntry.inputOutputObject;
-    if (log.isDebugEnabled())     log.debug("Write:" + value);
+    if (log.isDebugEnabled()) {
+      log.debug("Write:" + value);
+    }
     writer.write(value);
   }
  else {

@@ -1,5 +1,7 @@
 {
-  if (!save)   return;
+  if (!save) {
+    return;
+  }
   writer.startNode(node);
   writer.setValue(TRUE);
   writer.endNode();

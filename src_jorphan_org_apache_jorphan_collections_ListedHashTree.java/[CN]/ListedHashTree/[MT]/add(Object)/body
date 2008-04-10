@@ -5,7 +5,5 @@
     order.add(key);
     return newTree;
   }
- else {
-    return getTree(key);
-  }
+  return getTree(key);
 }

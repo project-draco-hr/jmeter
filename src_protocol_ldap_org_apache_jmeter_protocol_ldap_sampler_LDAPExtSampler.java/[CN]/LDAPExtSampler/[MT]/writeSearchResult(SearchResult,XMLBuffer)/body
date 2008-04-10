@@ -15,7 +15,9 @@
     for (Iterator ait=sortedAttrs.iterator(); ait.hasNext(); ) {
       final Attribute attr=(Attribute)ait.next();
       StringBuffer sb=new StringBuffer();
-      if (attr.size() == 1)       sb.append(getWriteValue(attr.get()));
+      if (attr.size() == 1) {
+        sb.append(getWriteValue(attr.get()));
+      }
  else {
         final ArrayList sortedVals=new ArrayList(attr.size());
         boolean first=true;

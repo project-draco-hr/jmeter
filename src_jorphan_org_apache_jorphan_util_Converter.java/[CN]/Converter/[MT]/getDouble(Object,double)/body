@@ -6,9 +6,7 @@
     if (o instanceof Number) {
       return ((Number)o).doubleValue();
     }
- else {
-      return Double.parseDouble(o.toString());
-    }
+    return Double.parseDouble(o.toString());
   }
  catch (  NumberFormatException e) {
     return defaultValue;

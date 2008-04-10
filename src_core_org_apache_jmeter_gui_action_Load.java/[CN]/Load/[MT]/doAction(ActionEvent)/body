@@ -7,7 +7,9 @@
   if (selectedFile != null) {
     boolean merging=e.getActionCommand().equals(ActionNames.MERGE);
     if (!merging) {
-      if (!Close.performAction(e))       return;
+      if (!Close.performAction(e)) {
+        return;
+      }
     }
     loadProjectFile(e,selectedFile,merging);
   }

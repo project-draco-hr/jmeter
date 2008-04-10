@@ -3,7 +3,9 @@
   String priorityString;
   if (values.length > 1) {
     priorityString=((CompoundVariable)values[1]).execute();
-    if (priorityString.length() == 0)     priorityString=DEFAULT_PRIORITY;
+    if (priorityString.length() == 0) {
+      priorityString=DEFAULT_PRIORITY;
+    }
   }
  else {
     priorityString=DEFAULT_PRIORITY;
@@ -11,7 +13,9 @@
   Throwable t=null;
   if (values.length > 2) {
     String value=((CompoundVariable)values[2]).execute();
-    if (value.length() > 0)     t=new Throwable(value);
+    if (value.length() > 0) {
+      t=new Throwable(value);
+    }
   }
   String comment="";
   if (values.length > 3) {

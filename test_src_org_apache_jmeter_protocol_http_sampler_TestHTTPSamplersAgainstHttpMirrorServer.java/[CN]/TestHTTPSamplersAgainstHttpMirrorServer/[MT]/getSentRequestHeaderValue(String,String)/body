@@ -5,7 +5,5 @@
   if (localMatcher.matches(requestHeaders,pattern)) {
     return localMatcher.getMatch().group(1);
   }
- else {
-    return null;
-  }
+  return null;
 }

@@ -1,16 +1,22 @@
 {
   LOGGER.debug("Thread ended " + new Date());
-  if (session != null)   try {
-    session.close();
+  if (session != null) {
+    try {
+      session.close();
+    }
+ catch (    JMSException e) {
+      LOGGER.info(e.getLocalizedMessage());
+    }
   }
- catch (  JMSException e) {
-    LOGGER.info(e.getLocalizedMessage());
+  if (connection != null) {
+    try {
+      connection.close();
+    }
+ catch (    JMSException e) {
+      LOGGER.info(e.getLocalizedMessage());
+    }
   }
-  if (connection != null)   try {
-    connection.close();
+  if (receiverThread != null) {
+    receiverThread.deactivate();
   }
- catch (  JMSException e) {
-    LOGGER.info(e.getLocalizedMessage());
-  }
-  if (receiverThread != null)   receiverThread.deactivate();
 }

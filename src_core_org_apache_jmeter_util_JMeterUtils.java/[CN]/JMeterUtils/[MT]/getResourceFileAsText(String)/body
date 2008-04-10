@@ -21,10 +21,6 @@ catch (  IOException e) {
     return "";
   }
  finally {
-    if (fileReader != null)     try {
-      fileReader.close();
-    }
- catch (    IOException e1) {
-    }
+    IOUtils.closeQuietly(fileReader);
   }
 }

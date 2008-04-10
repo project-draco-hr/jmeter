@@ -7,7 +7,9 @@
   if (jmeterButton.isSelected()) {
     p=JMeterUtils.getJMeterProperties();
   }
-  if (p == null)   return;
+  if (p == null) {
+    return;
+  }
   Set s=p.entrySet();
   ArrayList al=new ArrayList(s);
   Collections.sort(al,new Comparator(){

@@ -58,7 +58,7 @@ catch (  NamingException e) {
       try {
         context.close();
       }
- catch (      NamingException e1) {
+ catch (      NamingException ignored) {
       }
     }
   }

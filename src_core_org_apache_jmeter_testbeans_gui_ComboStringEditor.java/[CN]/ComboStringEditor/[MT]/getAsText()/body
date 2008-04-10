@@ -1,5 +1,7 @@
 {
   Object value=combo.getSelectedItem();
-  if (value == UNDEFINED)   return null;
- else   return (String)value;
+  if (value == UNDEFINED) {
+    return null;
+  }
+  return (String)value;
 }

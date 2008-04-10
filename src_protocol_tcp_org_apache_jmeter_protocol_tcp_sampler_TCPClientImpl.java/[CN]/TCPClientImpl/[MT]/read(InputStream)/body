@@ -5,7 +5,9 @@
   try {
     while ((x=is.read(buffer)) > -1) {
       w.write(buffer,0,x);
-      if ((eolByte != 0) && (buffer[x - 1] == eolByte))       break;
+      if ((eolByte != 0) && (buffer[x - 1] == eolByte)) {
+        break;
+      }
     }
   }
  catch (  InterruptedIOException e) {

@@ -11,7 +11,9 @@
         Class primitive=getPrimitive(p_types[i]);
         if (primitive != null) {
           methodToInvoke=doCreateMethod(p_class,getNewArray(i,primitive,p_types));
-          if (methodToInvoke != null)           return methodToInvoke;
+          if (methodToInvoke != null) {
+            return methodToInvoke;
+          }
         }
         Class[] interfaces=p_types[i].getInterfaces();
         for (int j=0; j < interfaces.length; j++) {

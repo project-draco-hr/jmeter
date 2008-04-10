@@ -29,9 +29,7 @@
       res.setResponseHeaders(getResponseHeaders(conn));
       return NULL_BA;
     }
- else {
-      log.info("Error Response Code: " + conn.getResponseCode());
-    }
+    log.info("Error Response Code: " + conn.getResponseCode());
     if (gzipped) {
       in=new BufferedInputStream(new GZIPInputStream(errorStream));
     }

@@ -1,6 +1,8 @@
 {
   try {
-    if (c != null)     c.close();
+    if (c != null) {
+      c.close();
+    }
   }
  catch (  SQLException e) {
     log.warn("Error closing Connection",e);

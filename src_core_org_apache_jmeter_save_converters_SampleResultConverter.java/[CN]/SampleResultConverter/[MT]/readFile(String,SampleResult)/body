@@ -14,14 +14,12 @@
     res.setResponseData(outstream.toByteArray());
   }
  catch (  FileNotFoundException e) {
+    log.warn(e.getLocalizedMessage());
   }
 catch (  IOException e) {
+    log.warn(e.getLocalizedMessage());
   }
  finally {
-    try {
-      if (fis != null)       fis.close();
-    }
- catch (    IOException e) {
-    }
+    IOUtils.closeQuietly(fis);
   }
 }

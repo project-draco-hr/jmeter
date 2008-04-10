@@ -12,6 +12,8 @@
   tempGui.modifyTestElement(sampler);
   sampler.setFollowRedirects(false);
   sampler.setUseKeepAlive(true);
-  if (log.isDebugEnabled())   log.debug("getSampler: sampler path = " + sampler.getPath());
+  if (log.isDebugEnabled()) {
+    log.debug("getSampler: sampler path = " + sampler.getPath());
+  }
   return sampler;
 }

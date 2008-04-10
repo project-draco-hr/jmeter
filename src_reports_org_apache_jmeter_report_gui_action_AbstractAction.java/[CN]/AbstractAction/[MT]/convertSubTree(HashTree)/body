@@ -2,7 +2,9 @@
   Iterator iter=new LinkedList(tree.list()).iterator();
   while (iter.hasNext()) {
     Object o=iter.next();
-    if (o instanceof TestElement)     continue;
+    if (o instanceof TestElement) {
+      continue;
+    }
     ReportTreeNode item=(ReportTreeNode)o;
     if (item.isEnabled()) {
       if (item.getUserObject() instanceof ReplaceableController) {

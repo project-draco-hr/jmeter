@@ -1,7 +1,9 @@
 {
   try {
-    if (wr != null)     wr.close();
+    if (wr != null) {
+      wr.close();
+    }
   }
- catch (  IOException e) {
+ catch (  IOException ignored) {
   }
 }

@@ -1,6 +1,8 @@
 {
   String userpath=JMeterUtils.getPropDefault(property,"");
-  if (userpath.length() <= 0)   return;
+  if (userpath.length() <= 0) {
+    return;
+  }
   log.info(property + "=" + userpath);
   StringTokenizer tok=new StringTokenizer(userpath,sep);
   while (tok.hasMoreTokens()) {

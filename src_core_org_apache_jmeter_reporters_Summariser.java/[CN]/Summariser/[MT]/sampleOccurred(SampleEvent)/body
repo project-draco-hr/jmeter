@@ -1,6 +1,8 @@
 {
   SampleResult s=e.getResult();
-  if (myName == null)   myName=getName();
+  if (myName == null) {
+    myName=getName();
+  }
   if (myTotals == null) {
 synchronized (accumulators) {
       myTotals=(Totals)accumulators.get(myName);

@@ -17,9 +17,13 @@
   if (gp != null) {
     gp.getMainFrame().updateCounts();
   }
-  if (startEarlier)   threadContext.setSamplingStarted(true);
+  if (startEarlier) {
+    threadContext.setSamplingStarted(true);
+  }
   controller.initialize();
   controller.addIterationListener(new IterationListener());
-  if (!startEarlier)   threadContext.setSamplingStarted(true);
+  if (!startEarlier) {
+    threadContext.setSamplingStarted(true);
+  }
   threadStarted();
 }

@@ -6,7 +6,9 @@
     if (recentFilePath != null) {
       File file=new File(recentFilePath);
       StringBuffer sb=new StringBuffer(60);
-      if (i < 9)       sb.append(i + 1).append(" ");
+      if (i < 9) {
+        sb.append(i + 1).append(" ");
+      }
       sb.append(getMenuItemDisplayName(file));
       recentFile.setText(sb.toString());
       recentFile.setToolTipText(recentFilePath);

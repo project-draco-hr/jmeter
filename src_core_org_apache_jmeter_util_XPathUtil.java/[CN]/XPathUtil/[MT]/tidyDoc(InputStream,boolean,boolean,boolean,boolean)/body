@@ -8,9 +8,7 @@
       log.error("TidyException: " + sw.toString());
       throw new TidyException(tidy.getParseErrors(),tidy.getParseWarnings());
     }
- else {
-      log.warn("Tidy errors: " + sw.toString());
-    }
+    log.warn("Tidy errors: " + sw.toString());
   }
   return doc;
 }

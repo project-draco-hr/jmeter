@@ -17,6 +17,8 @@
  else {
     counterString=String.valueOf(globalCounter);
   }
-  if (varName.length() > 0)   vars.put(varName,counterString);
+  if (varName.length() > 0) {
+    vars.put(varName,counterString);
+  }
   return counterString;
 }

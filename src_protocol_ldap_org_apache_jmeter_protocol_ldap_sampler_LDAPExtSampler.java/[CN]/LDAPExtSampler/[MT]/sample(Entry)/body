@@ -56,9 +56,7 @@
   finally {
         res.sampleEnd();
       }
-      if (cmp.hasMore()) {
-      }
- else {
+      if (!cmp.hasMore()) {
         res.setResponseCode("5");
         res.setResponseMessage("compareFalse");
         isSuccessful=false;

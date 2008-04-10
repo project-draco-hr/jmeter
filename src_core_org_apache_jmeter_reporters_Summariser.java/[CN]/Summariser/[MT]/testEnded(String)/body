@@ -5,13 +5,21 @@ synchronized (accumulators) {
       String str;
       if (t.total.getNumSamples() != 0) {
         str=format(t.delta,"+");
-        if (TOLOG)         log.info(str);
-        if (TOOUT)         System.out.println(str);
+        if (TOLOG) {
+          log.info(str);
+        }
+        if (TOOUT) {
+          System.out.println(str);
+        }
       }
       t.moveDelta();
       str=format(t.total,"=");
-      if (TOLOG)       log.info(str);
-      if (TOOUT)       System.out.println(str);
+      if (TOLOG) {
+        log.info(str);
+      }
+      if (TOOUT) {
+        System.out.println(str);
+      }
       t.last=-1;
     }
   }

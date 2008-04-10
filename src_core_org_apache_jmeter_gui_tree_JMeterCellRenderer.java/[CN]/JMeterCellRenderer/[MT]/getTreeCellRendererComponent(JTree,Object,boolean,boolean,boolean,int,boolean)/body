@@ -13,7 +13,9 @@
  else {
     if (!enabled) {
       ic=((JMeterTreeNode)value).getIcon();
-      if (ic != null)       setIcon(ic);
+      if (ic != null) {
+        setIcon(ic);
+      }
     }
   }
   this.setEnabled(enabled);

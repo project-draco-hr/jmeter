@@ -2,7 +2,9 @@
   String att=(String)propertyToAttribute.get(prop);
   String value=reader.getAttribute(att);
   if (value != null) {
-    if (decode)     value=ConversionHelp.decode(value);
+    if (decode) {
+      value=ConversionHelp.decode(value);
+    }
     el.setProperty(prop,value);
   }
 }

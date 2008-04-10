@@ -13,10 +13,14 @@
       }
       firstInBatch=true;
     }
-    if (lastTime == 0)     deltaT=0;
+    if (lastTime == 0) {
+      deltaT=0;
+    }
     lastTime=now;
     if (groupingMode == GROUPING_STORE_FIRST_ONLY) {
-      if (!firstInBatch)       return;
+      if (!firstInBatch) {
+        return;
+      }
       sampler.setFollowRedirects(true);
       sampler.setImageParser(true);
     }

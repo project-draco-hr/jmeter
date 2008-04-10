@@ -20,7 +20,9 @@
           throw e;
         }
         log.debug("Bind exception, try again");
-        if (conn != null)         conn.disconnect();
+        if (conn != null) {
+          conn.disconnect();
+        }
         this.setUseKeepAlive(false);
         continue;
       }
@@ -46,7 +48,9 @@ catch (      IOException e) {
     int errorLevel=conn.getResponseCode();
     String respMsg=conn.getResponseMessage();
     String hdr=conn.getHeaderField(0);
-    if (hdr == null)     hdr="(null)";
+    if (hdr == null) {
+      hdr="(null)";
+    }
     if (errorLevel == -1) {
       if (respMsg != null) {
         try {

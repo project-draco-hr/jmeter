@@ -6,7 +6,9 @@
     }
  else {
       long start=group.getStartTime();
-      if (start < now)       start=now;
+      if (start < now) {
+        start=now;
+      }
       thread.setStartTime(start);
     }
     if (group.getDuration() > 0) {

@@ -1,5 +1,7 @@
 {
-  if (startTime == 0)   startTime=System.currentTimeMillis();
+  if (startTime == 0) {
+    startTime=System.currentTimeMillis();
+  }
   if (endOfLoop()) {
     reInitialize();
     resetLoopCount();

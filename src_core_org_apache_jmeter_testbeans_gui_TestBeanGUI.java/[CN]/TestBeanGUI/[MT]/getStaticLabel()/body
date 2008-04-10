@@ -1,4 +1,6 @@
 {
-  if (beanInfo == null)   return "null";
+  if (beanInfo == null) {
+    return "null";
+  }
   return beanInfo.getBeanDescriptor().getDisplayName();
 }

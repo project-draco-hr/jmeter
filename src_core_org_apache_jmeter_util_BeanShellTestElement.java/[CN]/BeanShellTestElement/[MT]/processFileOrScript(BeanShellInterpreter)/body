@@ -6,7 +6,5 @@
   if (fileName.length() == 0) {
     return bsh.eval(getScript());
   }
- else {
-    return bsh.source(fileName);
-  }
+  return bsh.source(fileName);
 }

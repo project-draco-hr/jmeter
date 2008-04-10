@@ -1,4 +1,8 @@
 {
-  if (bundle == defaultBundle)   checkAllNecessaryKeysPresent();
- else   checkNoInventedKeys();
+  if (bundle == defaultBundle) {
+    checkAllNecessaryKeysPresent();
+  }
+ else {
+    checkNoInventedKeys();
+  }
 }

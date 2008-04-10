@@ -3,7 +3,5 @@
     String boundaryString=contentType.substring(contentType.toLowerCase().indexOf("boundary=") + "boundary=".length());
     return new MultipartUrlConfig(boundaryString);
   }
- else {
-    return null;
-  }
+  return null;
 }

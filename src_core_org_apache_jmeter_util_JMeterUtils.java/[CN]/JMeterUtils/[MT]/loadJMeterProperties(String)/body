@@ -9,7 +9,9 @@
  catch (  IOException e) {
     try {
       is=ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties");
-      if (is == null)       throw new RuntimeException("Could not read JMeter properties file");
+      if (is == null) {
+        throw new RuntimeException("Could not read JMeter properties file");
+      }
       p.load(is);
     }
  catch (    IOException ex) {

@@ -10,7 +10,9 @@
       ConfigTestElement config=(ConfigTestElement)configs.next();
       String configValue=config.getPropertyAsString(name);
       if (configValue != null && configValue.length() > 0) {
-        if (configValue.equals(value))         sampler.setProperty(name,"");
+        if (configValue.equals(value)) {
+          sampler.setProperty(name,"");
+        }
         break;
       }
     }

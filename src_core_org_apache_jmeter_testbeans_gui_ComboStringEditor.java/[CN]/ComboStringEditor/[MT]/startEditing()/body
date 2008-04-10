@@ -3,9 +3,15 @@
   combo.setEditable(true);
   textField.requestFocus();
   String text=initialEditValue;
-  if (initialEditValue == null)   text="";
+  if (initialEditValue == null) {
+    text="";
+  }
   combo.setSelectedItem(text);
   int i=text.indexOf("${}");
-  if (i != -1)   textField.setCaretPosition(i + 2);
- else   textField.selectAll();
+  if (i != -1) {
+    textField.setCaretPosition(i + 2);
+  }
+ else {
+    textField.selectAll();
+  }
 }

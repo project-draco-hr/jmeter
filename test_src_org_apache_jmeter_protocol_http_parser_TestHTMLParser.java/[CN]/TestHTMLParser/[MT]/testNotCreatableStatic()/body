@@ -4,8 +4,12 @@
     fail("Should not have been able to create the parser");
   }
  catch (  HTMLParseError e) {
-    if (e.getCause() instanceof ClassCastException)     return;
-    if (e.getCause() instanceof IllegalAccessException)     return;
+    if (e.getCause() instanceof ClassCastException) {
+      return;
+    }
+    if (e.getCause() instanceof IllegalAccessException) {
+      return;
+    }
     throw e;
   }
 }

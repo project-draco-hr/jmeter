@@ -24,7 +24,9 @@
           convertSubTree(tree.getTree(item));
         }
       }
- else       tree.remove(item);
+ else {
+        tree.remove(item);
+      }
     }
  else {
       JMeterTreeNode item=(JMeterTreeNode)o;

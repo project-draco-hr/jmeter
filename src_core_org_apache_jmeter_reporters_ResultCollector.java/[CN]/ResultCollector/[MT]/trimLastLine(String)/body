@@ -35,7 +35,9 @@ catch (  IOException e) {
   }
  finally {
     try {
-      if (raf != null)       raf.close();
+      if (raf != null) {
+        raf.close();
+      }
     }
  catch (    IOException e1) {
       log.info("Could not close " + filename + " "+ e1.getLocalizedMessage());

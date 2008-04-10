@@ -11,7 +11,9 @@
       open(file,file);
       fw=(FileWrapper)my.get(file);
     }
-    if (fw == null)     return "";
+    if (fw == null) {
+      return "";
+    }
   }
   return fw.getColumn(col);
 }

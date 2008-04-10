@@ -56,7 +56,5 @@
     put.setRequestHeader(HEADER_CONTENT_LENGTH,Long.toString(put.getRequestEntity().getContentLength()));
     return putBody.toString();
   }
- else {
-    return null;
-  }
+  return null;
 }

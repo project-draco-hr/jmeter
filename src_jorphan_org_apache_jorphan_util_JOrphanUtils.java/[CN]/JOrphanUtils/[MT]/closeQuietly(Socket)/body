@@ -1,7 +1,9 @@
 {
   try {
-    if (sock != null)     sock.close();
+    if (sock != null) {
+      sock.close();
+    }
   }
- catch (  IOException e) {
+ catch (  IOException ignored) {
   }
 }

@@ -11,7 +11,9 @@
       myStart=COUNT_UNUSED;
     }
   }
-  if (myCurrent == COUNT_UNUSED)   myCurrent=myStart == COUNT_UNUSED ? 1 : myStart;
+  if (myCurrent == COUNT_UNUSED) {
+    myCurrent=myStart == COUNT_UNUSED ? 1 : myStart;
+  }
   if (values.length >= PARAM_END) {
     String tmp=((CompoundVariable)values[PARAM_END - 1]).execute();
     try {

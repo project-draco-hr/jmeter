@@ -4,7 +4,9 @@
   }
   String value;
   if (text == null) {
-    if (!acceptsNull)     throw new IllegalArgumentException("Null parameter not allowed");
+    if (!acceptsNull) {
+      throw new IllegalArgumentException("Null parameter not allowed");
+    }
     value=null;
   }
  else {
@@ -14,7 +16,9 @@
  else {
       typeEditor.setAsText(text);
       value=typeEditor.getAsText();
-      if (!acceptsOther && !isATag(text))       throw new IllegalArgumentException("Value not allowed: " + text);
+      if (!acceptsOther && !isATag(text)) {
+        throw new IllegalArgumentException("Value not allowed: " + text);
+      }
     }
   }
   guiEditor.setValue(value);

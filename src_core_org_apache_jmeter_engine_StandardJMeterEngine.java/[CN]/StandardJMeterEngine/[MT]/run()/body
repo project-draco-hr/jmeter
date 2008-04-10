@@ -25,9 +25,13 @@
   getTestTree().traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
-  if (!startListenersLater)   notifyTestListenersOfStart();
+  if (!startListenersLater) {
+    notifyTestListenersOfStart();
+  }
   getTestTree().traverse(new TurnElementsOn());
-  if (startListenersLater)   notifyTestListenersOfStart();
+  if (startListenersLater) {
+    notifyTestListenersOfStart();
+  }
   List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));
   removeThreadGroups(testLevelElements);
   SearchByClass searcher=new SearchByClass(ThreadGroup.class);

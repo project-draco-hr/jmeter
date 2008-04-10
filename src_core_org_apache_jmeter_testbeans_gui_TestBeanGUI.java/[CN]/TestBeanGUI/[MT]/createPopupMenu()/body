@@ -17,5 +17,7 @@
  else   if (AbstractListenerElement.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultVisualizerMenu();
   }
- else   return MenuFactory.getDefaultControllerMenu();
+ else {
+    return MenuFactory.getDefaultControllerMenu();
+  }
 }

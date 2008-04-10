@@ -7,8 +7,12 @@
     if (subNode.isEnabled()) {
       TestElement element=(TestElement)subNode.getUserObject();
       if (myClass.isInstance(element)) {
-        if (ascending)         elements.addFirst(element);
- else         elements.add(element);
+        if (ascending) {
+          elements.addFirst(element);
+        }
+ else {
+          elements.add(element);
+        }
       }
     }
   }
@@ -20,15 +24,23 @@
         TestElement element=(TestElement)subNode.getUserObject();
         if (myClass.isInstance(element)) {
           log.debug("Applicable: " + element.getName());
-          if (ascending)           elements.addFirst(element);
- else           elements.add(element);
+          if (ascending) {
+            elements.addFirst(element);
+          }
+ else {
+            elements.add(element);
+          }
         }
         if (element instanceof TestPlan) {
           TestPlan tp=(TestPlan)element;
           Arguments args=tp.getArguments();
           if (myClass.isInstance(args)) {
-            if (ascending)             elements.addFirst(args);
- else             elements.add(args);
+            if (ascending) {
+              elements.addFirst(args);
+            }
+ else {
+              elements.add(args);
+            }
           }
         }
       }

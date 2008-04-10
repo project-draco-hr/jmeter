@@ -7,7 +7,9 @@
   }
   try {
     String delim=getDelimiter();
-    if (delim.equals("\\t"))     delim="\t";
+    if (delim.equals("\\t")) {
+      delim="\t";
+    }
     JMeterVariables threadVars=this.getThreadContext().getVariables();
     String line=server.readLine(_fileName,getRecycle());
     if (line != null) {

@@ -9,22 +9,20 @@
     mainSocket.setSoTimeout(ACCEPT_TIMEOUT);
     log.info("Proxy up and running!");
     while (running) {
+      Socket clientSocket=null;
       try {
-        Socket clientSocket=mainSocket.accept();
+        clientSocket=mainSocket.accept();
         if (running) {
           Proxy thd=(Proxy)proxyClass.newInstance();
           thd.configure(clientSocket,target,pageEncodings,formEncodings);
           thd.start();
         }
- else {
-          try {
-            clientSocket.close();
-          }
- catch (          IOException e) {
-          }
-        }
       }
  catch (      InterruptedIOException e) {
+        continue;
+      }
+ finally {
+        JOrphanUtils.closeQuietly(clientSocket);
       }
     }
     log.info("Proxy Server stopped");
@@ -33,11 +31,7 @@
     log.warn("Proxy Server stopped",e);
   }
  finally {
-    try {
-      if (mainSocket != null)       mainSocket.close();
-    }
- catch (    Exception exc) {
-    }
+    JOrphanUtils.closeQuietly(mainSocket);
   }
   pageEncodings=null;
   formEncodings=null;

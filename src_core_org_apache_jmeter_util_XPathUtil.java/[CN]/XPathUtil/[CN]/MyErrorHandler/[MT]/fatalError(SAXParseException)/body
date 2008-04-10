@@ -1,4 +1,6 @@
 {
   log.error("Type=" + type + " "+ ex);
-  if (val && !tol)   throw new SAXException(ex);
+  if (val && !tol) {
+    throw new SAXException(ex);
+  }
 }

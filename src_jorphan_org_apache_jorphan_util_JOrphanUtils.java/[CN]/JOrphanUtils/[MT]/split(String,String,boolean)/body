@@ -11,8 +11,12 @@
     while ((spot=splittee.indexOf(adjacentSplit)) != -1) {
       splittee=splittee.substring(0,spot + splitLength) + splittee.substring(spot + adjacentSplitLength,splittee.length());
     }
-    if (splittee.startsWith(splitChar))     splittee=splittee.substring(splitLength);
-    if (splittee.endsWith(splitChar))     splittee=splittee.substring(0,splittee.length() - splitLength);
+    if (splittee.startsWith(splitChar)) {
+      splittee=splittee.substring(splitLength);
+    }
+    if (splittee.endsWith(splitChar)) {
+      splittee=splittee.substring(0,splittee.length() - splitLength);
+    }
   }
   Vector returns=new Vector();
   final int length=splittee.length();

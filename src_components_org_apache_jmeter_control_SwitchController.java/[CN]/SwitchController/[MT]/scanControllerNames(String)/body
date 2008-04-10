@@ -6,8 +6,12 @@
     String name;
     TestElement el=(TestElement)iter.next();
     name=el.getName();
-    if (name.equals(sel))     return i;
-    if (name.equalsIgnoreCase("default"))     default_pos=i;
+    if (name.equals(sel)) {
+      return i;
+    }
+    if (name.equalsIgnoreCase("default")) {
+      default_pos=i;
+    }
     i++;
   }
   return default_pos;

@@ -14,7 +14,9 @@
     String icons[]=JOrphanUtils.split(p.getProperty(key)," ");
     iconlist[i][0]=key;
     iconlist[i][1]=icons[0];
-    if (icons.length > 1)     iconlist[i][2]=icons[1];
+    if (icons.length > 1) {
+      iconlist[i][2]=icons[1];
+    }
     i++;
   }
   return iconlist;

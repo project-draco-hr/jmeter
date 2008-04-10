@@ -6,11 +6,7 @@
       File one=fileList[RANDOM.nextInt(fileList.length)];
       return one.getAbsolutePath();
     }
- else {
-      return getXmlFile();
-    }
-  }
- else {
     return getXmlFile();
   }
+  return getXmlFile();
 }

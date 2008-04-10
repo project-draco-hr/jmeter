@@ -1,5 +1,7 @@
 {
-  if (allThreadNames == null)   return false;
+  if (allThreadNames == null) {
+    return false;
+  }
   JMeterThread thrd;
   try {
     thrd=(JMeterThread)allThreadNames.get(threadName);

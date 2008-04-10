@@ -11,7 +11,9 @@
     bshInterpreter.set("ctx",jmctx);
     bshInterpreter.set("vars",vars);
     Object o=processFileOrScript(bshInterpreter);
-    if (o != null)     ret=o.toString();
+    if (o != null) {
+      ret=o.toString();
+    }
   }
  catch (  JMeterException e) {
     log.warn("Problem in BeanShell script " + e);

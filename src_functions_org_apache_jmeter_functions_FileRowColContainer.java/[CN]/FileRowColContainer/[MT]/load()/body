@@ -21,6 +21,8 @@ catch (  IOException e) {
     throw e;
   }
  finally {
-    if (myBread != null)     myBread.close();
+    if (myBread != null) {
+      myBread.close();
+    }
   }
 }

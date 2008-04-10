@@ -12,7 +12,9 @@
     }
   }
   for (int i=0; i < editors.length; i++) {
-    if (editors[i] == null)     continue;
+    if (editors[i] == null) {
+      continue;
+    }
     try {
       setEditorValue(i,propertyMap.get(descriptors[i].getName()));
     }

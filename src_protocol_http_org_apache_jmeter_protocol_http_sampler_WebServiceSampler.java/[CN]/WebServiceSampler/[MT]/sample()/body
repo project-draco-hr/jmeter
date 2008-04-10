@@ -6,7 +6,9 @@
   try {
     result.setURL(this.getUrl());
     org.w3c.dom.Element rdoc=createDocument();
-    if (rdoc == null)     throw new SOAPException("Could not create document",null);
+    if (rdoc == null) {
+      throw new SOAPException("Could not create document",null);
+    }
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
     result.sampleStart();

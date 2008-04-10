@@ -3,7 +3,9 @@
   String priorityString;
   if (values.length > 1) {
     priorityString=((CompoundVariable)values[1]).execute();
-    if (priorityString.length() == 0)     priorityString=DEFAULT_PRIORITY;
+    if (priorityString.length() == 0) {
+      priorityString=DEFAULT_PRIORITY;
+    }
   }
  else {
     priorityString=DEFAULT_PRIORITY;

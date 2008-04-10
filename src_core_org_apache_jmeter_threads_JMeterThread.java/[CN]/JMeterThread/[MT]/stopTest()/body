@@ -1,5 +1,7 @@
 {
   running=false;
   log.info("Stop Test detected by thread " + threadName);
-  if (engine != null)   engine.askThreadsToStop();
+  if (engine != null) {
+    engine.askThreadsToStop();
+  }
 }

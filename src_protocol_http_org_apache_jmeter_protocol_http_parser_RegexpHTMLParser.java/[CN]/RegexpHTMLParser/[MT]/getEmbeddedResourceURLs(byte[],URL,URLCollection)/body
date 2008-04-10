@@ -6,7 +6,9 @@
   while (matcher.contains(input,pattern)) {
     MatchResult match=matcher.getMatch();
     String s;
-    if (log.isDebugEnabled())     log.debug("match groups " + match.groups() + " "+ match.toString());
+    if (log.isDebugEnabled()) {
+      log.debug("match groups " + match.groups() + " "+ match.toString());
+    }
     for (int g=1; g <= NUM_BASE_GROUPS && g <= match.groups(); g++) {
       s=match.group(g);
       if (s != null) {

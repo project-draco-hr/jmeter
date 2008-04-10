@@ -2,7 +2,9 @@
   String text=(String)guiEditor.getValue();
   Object value;
   if (text == null) {
-    if (!acceptsNull)     shouldNeverHappen();
+    if (!acceptsNull) {
+      shouldNeverHappen();
+    }
     value=null;
   }
  else {
@@ -10,7 +12,9 @@
       value=text;
     }
  else {
-      if (!acceptsOther && !isATag(text))       shouldNeverHappen();
+      if (!acceptsOther && !isATag(text)) {
+        shouldNeverHappen();
+      }
       try {
         if (text.length() == 0 && typeEditor instanceof NumberEditor) {
           text="0";

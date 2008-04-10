@@ -1,6 +1,8 @@
 {
   String v=null;
   Node n=attrs.getNamedItem(attname);
-  if (n != null)   v=n.getNodeValue();
+  if (n != null) {
+    v=n.getNodeValue();
+  }
   return v;
 }

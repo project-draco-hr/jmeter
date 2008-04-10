@@ -12,13 +12,7 @@
       log.warn("writeOutput() -> could not write output to file " + lFilename,ex);
     }
  finally {
-      if (lOutputWriter != null) {
-        try {
-          lOutputWriter.close();
-        }
- catch (        IOException e) {
-        }
-      }
+      IOUtils.closeQuietly(lOutputWriter);
     }
   }
 }

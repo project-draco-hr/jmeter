@@ -77,7 +77,9 @@ final class StringQuoter {
     if (results != null) {
       for (int i=0; i < results.length; i++) {
         message=results[i].getFailureMessage();
-        if (message != null)         break;
+        if (message != null) {
+          break;
+        }
       }
     }
     if (message != null) {

@@ -1,7 +1,9 @@
 {
   Set s=m.keySet();
   int unseen=0;
-  if (s.size() == 0)   return 0;
+  if (s.size() == 0) {
+    return 0;
+  }
   Iterator i=s.iterator();
   while (i.hasNext()) {
     Object key=i.next();

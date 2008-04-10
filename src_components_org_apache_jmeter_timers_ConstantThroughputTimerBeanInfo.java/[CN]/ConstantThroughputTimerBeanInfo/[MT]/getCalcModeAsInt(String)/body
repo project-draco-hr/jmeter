@@ -1,6 +1,8 @@
 {
   for (int i=0; i < tags.length; i++) {
-    if (tags[i].equals(mode))     return i;
+    if (tags[i].equals(mode)) {
+      return i;
+    }
   }
   return -1;
 }

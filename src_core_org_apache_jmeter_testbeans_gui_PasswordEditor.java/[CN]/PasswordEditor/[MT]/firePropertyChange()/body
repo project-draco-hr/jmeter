@@ -1,6 +1,8 @@
 {
   String newValue=getAsText();
-  if (initialValue.equals(newValue))   return;
+  if (initialValue.equals(newValue)) {
+    return;
+  }
   initialValue=newValue;
   super.firePropertyChange();
 }

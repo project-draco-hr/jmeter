@@ -1,5 +1,7 @@
 {
-  if (contains(o))   return false;
+  if (contains(o)) {
+    return false;
+  }
   String s=(String)o;
   if (contains != null && s.indexOf(contains) == -1) {
     return false;

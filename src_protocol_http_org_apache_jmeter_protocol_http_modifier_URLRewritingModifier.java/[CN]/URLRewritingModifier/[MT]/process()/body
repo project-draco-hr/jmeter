@@ -41,7 +41,9 @@
       MatchResult result=matcher.getMatch();
       for (int i=1; i < result.groups(); i++) {
         value=result.group(i);
-        if (value != null)         break;
+        if (value != null) {
+          break;
+        }
       }
     }
   }

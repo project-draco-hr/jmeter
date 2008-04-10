@@ -2,7 +2,5 @@
   if (contentType != null && contentType.startsWith(HTTPConstants.MULTIPART_FORM_DATA)) {
     return true;
   }
- else {
-    return false;
-  }
+  return false;
 }

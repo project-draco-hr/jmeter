@@ -1,6 +1,8 @@
 {
   String cfg=p.getProperty("log_config");
-  if (cfg == null)   return;
+  if (cfg == null) {
+    return;
+  }
   Hierarchy hier=Hierarchy.getDefaultHierarchy();
   LogKitLoggerManager manager=new LogKitLoggerManager(null,hier,null,null);
   DefaultConfigurationBuilder builder=new DefaultConfigurationBuilder();

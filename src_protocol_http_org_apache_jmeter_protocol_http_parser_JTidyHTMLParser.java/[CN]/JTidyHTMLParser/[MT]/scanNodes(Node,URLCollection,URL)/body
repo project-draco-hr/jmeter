@@ -12,11 +12,13 @@ case Node.ELEMENT_NODE:
 NamedNodeMap attrs=node.getAttributes();
 if (name.equalsIgnoreCase(TAG_BASE)) {
 String tmp=getValue(attrs,ATT_HREF);
-if (tmp != null) try {
-  baseUrl=new URL(baseUrl,tmp);
-}
- catch (MalformedURLException e) {
-  throw new HTMLParseException(e);
+if (tmp != null) {
+  try {
+    baseUrl=new URL(baseUrl,tmp);
+  }
+ catch (  MalformedURLException e) {
+    throw new HTMLParseException(e);
+  }
 }
 break;
 }

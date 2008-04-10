@@ -70,7 +70,9 @@
     }
  else {
       CLOption rem=parser.getArgumentById(REMOTE_OPT_PARAM);
-      if (rem == null)       rem=parser.getArgumentById(REMOTE_OPT);
+      if (rem == null) {
+        rem=parser.getArgumentById(REMOTE_OPT);
+      }
       startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),rem);
       startOptionalServers();
     }

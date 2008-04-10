@@ -1,5 +1,7 @@
 {
-  if (bshInterpreter == null || !hasInitFile)   return;
+  if (bshInterpreter == null || !hasInitFile) {
+    return;
+  }
   try {
     bshInterpreter.evalNoLog("testEnded()");
   }

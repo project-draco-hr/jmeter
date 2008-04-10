@@ -20,7 +20,9 @@
   }
  else {
     toCheck=response.getSamplerData();
-    if (toCheck == null)     toCheck="";
+    if (toCheck == null) {
+      toCheck="";
+    }
   }
   if (toCheck.length() == 0) {
     return result.setResultForNull();

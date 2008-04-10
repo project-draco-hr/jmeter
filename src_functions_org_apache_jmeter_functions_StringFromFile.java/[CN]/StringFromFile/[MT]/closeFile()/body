@@ -1,5 +1,7 @@
 {
-  if (myBread == null)   return;
+  if (myBread == null) {
+    return;
+  }
   String tn=Thread.currentThread().getName();
   log.info(tn + " closing file " + fileName);
   try {
