@@ -1,11 +1,12 @@
 {
   TestSuite suite=new TestSuite("Bean Resource Test Suite");
   Iterator iter=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestBean.class}).iterator();
+  boolean errorDetected=false;
   while (iter.hasNext()) {
     String className=(String)iter.next();
     Class testBeanClass=Class.forName(className);
     JMeterUtils.setLocale(defaultLocale);
-    ResourceBundle defaultBundle;
+    ResourceBundle defaultBundle=null;
     try {
       defaultBundle=(ResourceBundle)Introspector.getBeanInfo(testBeanClass).getBeanDescriptor().getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);
     }
@@ -15,15 +16,20 @@
     }
     if (defaultBundle == null) {
       if (className.startsWith("org.apache.jmeter.examples.")) {
-        log.warn("No default bundle found for " + className);
+        log.info("No default bundle found for " + className);
         continue;
       }
-      throw new Error("No default bundle for class " + className);
+      errorDetected=true;
+      log.error("No default bundle found for " + className);
+      continue;
     }
     suite.addTest(new PackageTest(testBeanClass,defaultLocale,defaultBundle));
     for (int i=0; i < locales.length; i++) {
       suite.addTest(new PackageTest(testBeanClass,locales[i],defaultBundle));
     }
+  }
+  if (errorDetected) {
+    suite.addTest(new PackageTest("errorDetected"));
   }
   return suite;
 }

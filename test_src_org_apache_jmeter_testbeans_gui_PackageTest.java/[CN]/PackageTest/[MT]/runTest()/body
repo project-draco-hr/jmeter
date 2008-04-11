@@ -1,4 +1,8 @@
 {
+  if (testLocale == null) {
+    super.runTest();
+    return;
+  }
   if (bundle == defaultBundle) {
     checkAllNecessaryKeysPresent();
   }

@@ -1,4 +1,7 @@
 {
+  if (testLocale == null) {
+    return;
+  }
   JMeterUtils.setLocale(testLocale);
   Introspector.flushFromCaches(testBeanClass);
   try {
