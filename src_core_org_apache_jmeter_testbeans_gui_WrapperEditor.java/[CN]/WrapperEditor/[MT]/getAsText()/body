@@ -12,7 +12,7 @@
  catch (    IllegalArgumentException e) {
       shouldNeverHappen(e);
     }
-    text=typeEditor.getAsText();
+    text=fixGetAsTextBug(typeEditor.getAsText());
     if (!acceptsOther && !isATag(text)) {
       shouldNeverHappen();
     }

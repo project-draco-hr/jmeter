@@ -1,0 +1,11 @@
+{
+  if (asText.equals("true")) {
+    log.debug("true=>True");
+    return "True";
+  }
+  if (asText.equals("false")) {
+    log.debug("false=>False");
+    return "False";
+  }
+  return asText;
+}
