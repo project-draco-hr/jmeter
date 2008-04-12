@@ -1,8 +1,4 @@
 {
-  JMeterTreeModel treeModel=new JMeterTreeModel();
-  JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
-  treeLis.setActionHandler(ActionRouter.getInstance());
-  GuiPackage.getInstance(treeLis,treeModel);
   JMeterUtils.setLocale(TEST_LOCALE);
   TestSuite suite=new TestSuite("JMeterTest");
   suite.addTest(new JMeterTest("readAliases"));

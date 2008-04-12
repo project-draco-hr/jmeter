@@ -1,15 +1,6 @@
 {
   final Object object=tree.getArray()[0];
   final String name=testFile.getName();
-  if (parent.equals("demos") && guiInstance != null) {
-    try {
-      guiInstance.addSubTree(tree);
-    }
- catch (    Exception e) {
-      log.warn(parent + ": " + name,e);
-      fail(parent + ": " + name+ " "+ e);
-    }
-  }
   if (!(object instanceof org.apache.jmeter.testelement.TestPlan) && !notTestPlan.contains(name)) {
     fail(parent + ": " + name+ " tree should be TestPlan, but is "+ object.getClass().getName());
   }
