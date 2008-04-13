@@ -1,8 +1,8 @@
 {
-  String text=guiEditor.getAsText();
+  String text=fixGetAsTextBug(guiEditor.getAsText());
   if (text == null) {
     if (!acceptsNull) {
-      shouldNeverHappen();
+      shouldNeverHappen("Text is null, but null is not allowed");
     }
   }
  else   if (!acceptsExpressions || !isExpression(text)) {
@@ -14,7 +14,7 @@
     }
     text=fixGetAsTextBug(typeEditor.getAsText());
     if (!acceptsOther && !isATag(text)) {
-      shouldNeverHappen();
+      shouldNeverHappen("Text is not a tag, but other values are not allowed");
     }
   }
   if (log.isDebugEnabled()) {

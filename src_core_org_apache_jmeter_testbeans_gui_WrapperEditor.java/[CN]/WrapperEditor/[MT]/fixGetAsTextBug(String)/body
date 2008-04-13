@@ -1,4 +1,7 @@
 {
+  if (asText == null) {
+    return asText;
+  }
   if (asText.equals("true")) {
     log.debug("true=>True");
     return "True";

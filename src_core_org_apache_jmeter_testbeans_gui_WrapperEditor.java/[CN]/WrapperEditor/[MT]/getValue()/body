@@ -3,7 +3,7 @@
   Object value;
   if (text == null) {
     if (!acceptsNull) {
-      shouldNeverHappen();
+      shouldNeverHappen("Text is null but null is not allowed");
     }
     value=null;
   }
@@ -13,7 +13,7 @@
     }
  else {
       if (!acceptsOther && !isATag(text)) {
-        shouldNeverHappen();
+        shouldNeverHappen("Text is not a tag but other entries are not allowed");
       }
       try {
         if (text.length() == 0 && typeEditor instanceof NumberEditor) {
