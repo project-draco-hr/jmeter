@@ -1,5 +1,5 @@
 {
-  String pageEncoding=getContentEncoding(result);
+  String pageEncoding=ConversionUtils.getEncodingFromContentType(result.getContentType());
   if (pageEncoding != null) {
     String urlWithoutQuery=getUrlWithoutQuery(result.getURL());
 synchronized (pageEncodings) {
