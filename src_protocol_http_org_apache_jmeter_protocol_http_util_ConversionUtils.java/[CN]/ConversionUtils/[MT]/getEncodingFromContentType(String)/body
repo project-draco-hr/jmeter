@@ -2,12 +2,19 @@
   String charSet=null;
   if (contentType != null) {
     int charSetStartPos=contentType.toLowerCase().indexOf(CHARSET_EQ);
-    if (charSetStartPos > 0) {
+    if (charSetStartPos >= 0) {
       charSet=contentType.substring(charSetStartPos + CHARSET_EQ_LEN);
       if (charSet != null) {
         charSet=JOrphanUtils.replaceAllChars(charSet,'"',"");
         charSet=charSet.trim();
         if (charSet.length() > 0) {
+          int semi=charSet.indexOf(";");
+          if (semi == 0) {
+            return null;
+          }
+          if (semi != -1) {
+            return charSet.substring(0,semi);
+          }
           return charSet;
         }
         return null;
