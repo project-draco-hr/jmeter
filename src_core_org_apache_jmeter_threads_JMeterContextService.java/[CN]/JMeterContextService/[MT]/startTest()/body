@@ -2,6 +2,7 @@
   if (testStart == 0) {
     numberOfActiveThreads=0;
     testStart=System.currentTimeMillis();
+    JMeterUtils.setProperty("TESTSTART.MS",Long.toString(testStart));
     threadContext=new ThreadLocal(){
       public Object initialValue(){
         return new JMeterContext();
