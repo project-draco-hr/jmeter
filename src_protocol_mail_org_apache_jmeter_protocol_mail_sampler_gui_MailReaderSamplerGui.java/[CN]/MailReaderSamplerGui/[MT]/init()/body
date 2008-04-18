@@ -6,11 +6,14 @@
   serverTypePanel.add(new JLabel(ServerTypeLabel));
   DefaultComboBoxModel serverTypeModel=new DefaultComboBoxModel();
   serverTypeModel.addElement(POP3Label);
+  serverTypeModel.addElement(POP3SLabel);
   serverTypeModel.addElement(IMAPLabel);
+  serverTypeModel.addElement(IMAPSLabel);
   serverTypeBox=new JComboBox(serverTypeModel);
   serverTypeBox.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
-      if (((String)serverTypeBox.getSelectedItem()).equals(POP3Label)) {
+      final String item=(String)serverTypeBox.getSelectedItem();
+      if (item.equals(POP3Label) || item.equals(POP3SLabel)) {
         folderLabel.setEnabled(false);
         folderBox.setText(INBOX);
         folderBox.setEnabled(false);

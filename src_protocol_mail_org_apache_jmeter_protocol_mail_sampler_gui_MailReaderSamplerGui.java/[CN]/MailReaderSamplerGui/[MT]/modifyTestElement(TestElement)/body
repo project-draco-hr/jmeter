@@ -2,8 +2,15 @@
   te.clear();
   configureTestElement(te);
   MailReaderSampler mrs=(MailReaderSampler)te;
-  if (((String)serverTypeBox.getSelectedItem()).equals(POP3Label)) {
+  final String item=(String)serverTypeBox.getSelectedItem();
+  if (item.equals(POP3Label)) {
     mrs.setServerType(MailReaderSampler.TYPE_POP3);
+  }
+ else   if (item.equals(POP3SLabel)) {
+    mrs.setServerType(MailReaderSampler.TYPE_POP3S);
+  }
+ else   if (item.equals(IMAPSLabel)) {
+    mrs.setServerType(MailReaderSampler.TYPE_IMAPS);
   }
  else {
     mrs.setServerType(MailReaderSampler.TYPE_IMAP);

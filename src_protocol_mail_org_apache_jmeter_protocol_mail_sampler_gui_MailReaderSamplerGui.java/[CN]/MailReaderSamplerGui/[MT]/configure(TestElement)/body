@@ -4,6 +4,14 @@
     serverTypeBox.setSelectedItem(POP3Label);
     folderBox.setText(INBOX);
   }
+ else   if (mrs.getServerType().equals(MailReaderSampler.TYPE_POP3S)) {
+    serverTypeBox.setSelectedItem(POP3SLabel);
+    folderBox.setText(INBOX);
+  }
+ else   if (mrs.getServerType().equals(MailReaderSampler.TYPE_IMAPS)) {
+    serverTypeBox.setSelectedItem(IMAPSLabel);
+    folderBox.setText(mrs.getFolder());
+  }
  else {
     serverTypeBox.setSelectedItem(IMAPLabel);
     folderBox.setText(mrs.getFolder());
