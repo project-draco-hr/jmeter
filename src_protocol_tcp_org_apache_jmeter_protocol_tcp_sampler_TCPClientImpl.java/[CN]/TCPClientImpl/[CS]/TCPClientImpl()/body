@@ -1,4 +1,6 @@
 {
   super();
-  log.info("Using eolByte=" + eolByte);
+  if (!eolIgnore) {
+    log.info("Using eolByte=" + eolByte);
+  }
 }
