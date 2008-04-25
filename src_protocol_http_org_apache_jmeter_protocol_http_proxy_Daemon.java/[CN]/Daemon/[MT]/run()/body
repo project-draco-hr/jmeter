@@ -9,9 +9,8 @@
     mainSocket.setSoTimeout(ACCEPT_TIMEOUT);
     log.info("Proxy up and running!");
     while (running) {
-      Socket clientSocket=null;
       try {
-        clientSocket=mainSocket.accept();
+        Socket clientSocket=mainSocket.accept();
         if (running) {
           Proxy thd=(Proxy)proxyClass.newInstance();
           thd.configure(clientSocket,target,pageEncodings,formEncodings);
@@ -20,9 +19,6 @@
       }
  catch (      InterruptedIOException e) {
         continue;
-      }
- finally {
-        JOrphanUtils.closeQuietly(clientSocket);
       }
     }
     log.info("Proxy Server stopped");
