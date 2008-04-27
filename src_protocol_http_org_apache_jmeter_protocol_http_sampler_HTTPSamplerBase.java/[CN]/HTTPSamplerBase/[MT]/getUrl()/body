@@ -23,7 +23,5 @@
   if (isProtocolDefaultPort()) {
     return new URL(getProtocol(),getDomain(),pathAndQuery.toString());
   }
- else {
-    return new URL(getProtocol(),getDomain(),getPort(),pathAndQuery.toString());
-  }
+  return new URL(getProtocol(),getDomain(),getPort(),pathAndQuery.toString());
 }

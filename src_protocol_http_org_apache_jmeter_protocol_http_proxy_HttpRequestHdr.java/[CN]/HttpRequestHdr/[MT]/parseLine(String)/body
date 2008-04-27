@@ -8,7 +8,7 @@
   String trimmed=token.trim();
   String name=trimmed.substring(0,trimmed.length() - 1);
   String value=getRemainder(tz);
-  headers.put(name.toLowerCase(),new Header(name,value));
+  headers.put(name.toLowerCase(java.util.Locale.ENGLISH),new Header(name,value));
   if (name.equalsIgnoreCase(CONTENT_LENGTH)) {
     return Integer.parseInt(value);
   }

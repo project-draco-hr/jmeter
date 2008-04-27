@@ -2,7 +2,5 @@
   if (POST.equals(getMethod()) && (getDoMultipartPost() || (hasUploadableFiles() && !getSendFileAsPostBody()))) {
     return true;
   }
- else {
-    return false;
-  }
+  return false;
 }

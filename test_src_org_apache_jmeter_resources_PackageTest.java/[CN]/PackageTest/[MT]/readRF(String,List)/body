@@ -7,7 +7,7 @@
     if (s.length() > 0 && !s.startsWith("#") && !s.startsWith("!")) {
       int equ=s.indexOf('=');
       String key=s.substring(0,equ);
-      if ((key.indexOf(' ') >= 0) || !key.toLowerCase().equals(key)) {
+      if ((key.indexOf(' ') >= 0) || !key.toLowerCase(java.util.Locale.ENGLISH).equals(key)) {
         System.out.println("Invalid key for JMeterUtils " + key);
         fails++;
       }

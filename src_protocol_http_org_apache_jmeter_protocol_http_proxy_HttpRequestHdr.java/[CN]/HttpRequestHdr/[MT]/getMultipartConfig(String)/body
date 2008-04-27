@@ -1,6 +1,6 @@
 {
   if (isMultipart(contentType)) {
-    String boundaryString=contentType.substring(contentType.toLowerCase().indexOf("boundary=") + "boundary=".length());
+    String boundaryString=contentType.substring(contentType.toLowerCase(java.util.Locale.ENGLISH).indexOf("boundary=") + "boundary=".length());
     return new MultipartUrlConfig(boundaryString);
   }
   return null;
