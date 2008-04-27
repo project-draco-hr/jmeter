@@ -4,30 +4,20 @@
     File conf=new File(jmDir,"bin" + File.separator + "log4j.conf");
     System.setProperty("log4j.configuration","file:" + conf);
   }
-  if (args != null && args.length > 0 && args[0].equals("report")) {
-    try {
-      Class JMeterReport=loader.loadClass("org.apache.jmeter.JMeterReport");
-      Object instance=JMeterReport.newInstance();
-      Method startup=JMeterReport.getMethod("start",new Class[]{(new String[0]).getClass()});
-      startup.invoke(instance,new Object[]{args});
+  try {
+    Class initialClass;
+    if (args != null && args.length > 0 && args[0].equals("report")) {
+      initialClass=loader.loadClass("org.apache.jmeter.JMeterReport");
     }
- catch (    Exception e) {
-      e.printStackTrace();
-      System.out.println("JMeter home directory was detected as: " + jmDir);
-      System.exit(1);
-    }
-  }
  else {
-    try {
-      Class JMeter=loader.loadClass("org.apache.jmeter.JMeter");
-      Object instance=JMeter.newInstance();
-      Method startup=JMeter.getMethod("start",new Class[]{(new String[0]).getClass()});
-      startup.invoke(instance,new Object[]{args});
+      initialClass=loader.loadClass("org.apache.jmeter.JMeter");
     }
- catch (    Exception e) {
-      e.printStackTrace();
-      System.out.println("JMeter home directory was detected as: " + jmDir);
-      System.exit(1);
-    }
+    Object instance=initialClass.newInstance();
+    Method startup=initialClass.getMethod("start",new Class[]{(new String[0]).getClass()});
+    startup.invoke(instance,new Object[]{args});
+  }
+ catch (  Throwable e) {
+    e.printStackTrace();
+    System.out.println("JMeter home directory was detected as: " + jmDir);
   }
 }
