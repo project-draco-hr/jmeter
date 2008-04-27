@@ -1,5 +1,12 @@
 {
-  URL url=new URL("file","",path);
+  File file=new File(path);
+  URL url;
+  if (file.isDirectory() && !path.endsWith("/")) {
+    url=new URL("file","",path + "/");
+  }
+ else {
+    url=new URL("file","",path);
+  }
   loader.addURL(url);
   StringBuffer sb=new StringBuffer(System.getProperty(JAVA_CLASS_PATH));
   sb.append(CLASSPATH_SEPARATOR);
