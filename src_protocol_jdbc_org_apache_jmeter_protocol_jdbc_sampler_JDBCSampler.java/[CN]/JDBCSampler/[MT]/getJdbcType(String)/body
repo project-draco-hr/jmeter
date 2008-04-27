@@ -1,5 +1,5 @@
 {
-  Integer entry=(Integer)mapJdbcNameToInt.get(jdbcType.toLowerCase());
+  Integer entry=(Integer)mapJdbcNameToInt.get(jdbcType.toLowerCase(java.util.Locale.ENGLISH));
   if (entry == null) {
     throw new SQLException("Invalid data type: " + jdbcType);
   }

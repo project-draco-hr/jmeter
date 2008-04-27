@@ -3,7 +3,7 @@
     return null;
   }
   key=key.replace(' ','_');
-  key=key.toLowerCase();
+  key=key.toLowerCase(java.util.Locale.ENGLISH);
   String resString=null;
   try {
     resString=resources.getString(key);
