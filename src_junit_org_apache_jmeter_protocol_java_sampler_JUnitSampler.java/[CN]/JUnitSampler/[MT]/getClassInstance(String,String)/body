@@ -28,16 +28,14 @@
  catch (      NoSuchMethodException e) {
         log.info("String constructor:: " + e.getMessage());
       }
-      if (con == null) {
-        try {
-          con=theclazz.getDeclaredConstructor(new Class[0]);
-          if (con != null) {
-            params=new Object[]{};
-          }
+      try {
+        con=theclazz.getDeclaredConstructor(new Class[0]);
+        if (con != null) {
+          params=new Object[]{};
         }
- catch (        NoSuchMethodException e) {
-          log.info("Empty constructor:: " + e.getMessage());
-        }
+      }
+ catch (      NoSuchMethodException e) {
+        log.info("Empty constructor:: " + e.getMessage());
       }
       try {
         if (strCon != null) {
