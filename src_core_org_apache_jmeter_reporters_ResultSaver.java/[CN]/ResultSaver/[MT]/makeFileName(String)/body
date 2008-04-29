@@ -12,5 +12,5 @@
       }
     }
   }
-  return getFilename() + sequenceNumber + "."+ suffix;
+  return getFilename() + nextNumber() + "."+ suffix;
 }

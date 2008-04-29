@@ -1,4 +1,6 @@
 {
   super.clear();
-  sequenceNumber=0;
+synchronized (this) {
+    sequenceNumber=0;
+  }
 }

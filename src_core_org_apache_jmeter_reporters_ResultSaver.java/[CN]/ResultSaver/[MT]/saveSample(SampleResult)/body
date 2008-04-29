@@ -9,7 +9,6 @@
       return;
     }
   }
-  nextNumber();
   String fileName=makeFileName(s.getContentType());
   log.debug("Saving " + s.getSampleLabel() + " in "+ fileName);
   s.setResultFileName(fileName);
