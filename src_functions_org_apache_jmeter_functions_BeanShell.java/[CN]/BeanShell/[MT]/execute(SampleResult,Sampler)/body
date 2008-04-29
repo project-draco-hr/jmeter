@@ -7,7 +7,7 @@
   String script=((CompoundVariable)values[0]).execute();
   String varName="";
   if (values.length > 1) {
-    varName=((CompoundVariable)values[1]).execute();
+    varName=((CompoundVariable)values[1]).execute().trim();
   }
   String resultStr="";
   log.debug("Script=" + script);

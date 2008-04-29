@@ -6,6 +6,6 @@
     format=((CompoundVariable)values[0]).execute();
   }
   if (count > 1) {
-    variable=((CompoundVariable)values[1]).execute();
+    variable=((CompoundVariable)values[1]).execute().trim();
   }
 }

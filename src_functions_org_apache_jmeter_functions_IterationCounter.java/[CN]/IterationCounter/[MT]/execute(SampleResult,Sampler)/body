@@ -5,7 +5,7 @@
   boolean perThread=Boolean.valueOf(((CompoundVariable)variables[0]).execute()).booleanValue();
   String varName="";
   if (variables.length >= 2) {
-    varName=((CompoundVariable)variables[1]).execute();
+    varName=((CompoundVariable)variables[1]).execute().trim();
   }
   String counterString="";
   if (perThread) {

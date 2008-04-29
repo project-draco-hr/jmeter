@@ -1,5 +1,5 @@
 {
-  width=getWidth();
+  int width=getWidth();
   double height=getHeight() - 1.0;
   for (int y=0; y < 4; y++) {
     int q1=(int)(height - (height * 0.25 * y));
@@ -14,7 +14,7 @@
   if (p_model != null && p_model.getCount() > 50) {
     Number ninety=p_model.getPercentPoint(0.90);
     Number fifty=p_model.getPercentPoint(0.50);
-    total=p_model.getCount();
+    int total=p_model.getCount();
     Collection values=p_model.getDistribution().values();
     Object[] objval=new Object[values.size()];
     objval=values.toArray(objval);

@@ -5,8 +5,6 @@
     el.setProperty(HTTPSamplerBase.PATH,URL_PATH);
     return tokens.hasMoreTokens() ? tokens.nextToken() : null;
   }
- else {
-    el.setProperty(HTTPSamplerBase.PATH,url);
-    return null;
-  }
+  el.setProperty(HTTPSamplerBase.PATH,url);
+  return null;
 }

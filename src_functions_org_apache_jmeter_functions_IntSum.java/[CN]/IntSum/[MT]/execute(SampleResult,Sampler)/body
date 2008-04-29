@@ -13,7 +13,7 @@
   }
   String totalString=Integer.toString(sum);
   if (vars != null && varName != null) {
-    vars.put(varName,totalString);
+    vars.put(varName.trim(),totalString);
   }
   return totalString;
 }

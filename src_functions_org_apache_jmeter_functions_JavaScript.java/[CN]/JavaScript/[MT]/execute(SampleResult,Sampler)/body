@@ -2,7 +2,7 @@
   JMeterContext jmctx=JMeterContextService.getContext();
   JMeterVariables vars=jmctx.getVariables();
   String script=((CompoundVariable)values[0]).execute();
-  String varName=values.length < 2 ? null : ((CompoundVariable)values[1]).execute();
+  String varName=values.length < 2 ? null : ((CompoundVariable)values[1]).execute().trim();
   String resultStr="";
   Context cx=Context.enter();
   try {

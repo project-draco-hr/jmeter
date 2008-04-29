@@ -1,7 +1,7 @@
 {
   JMeterVariables vars=getVariables();
   long sum=0;
-  String varName=((CompoundVariable)values[values.length - 1]).execute();
+  String varName=((CompoundVariable)values[values.length - 1]).execute().trim();
   for (int i=0; i < values.length - 1; i++) {
     sum+=Long.parseLong(((CompoundVariable)values[i]).execute());
   }
@@ -12,7 +12,7 @@
  catch (  NumberFormatException ignored) {
   }
   String totalString=Long.toString(sum);
-  if (vars != null && varName != null) {
+  if (vars != null && varName != null && varName.length() > 0) {
     vars.put(varName,totalString);
   }
   return totalString;

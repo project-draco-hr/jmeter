@@ -4,7 +4,7 @@
   String exp=var.execute();
   String varName="";
   if (values.length > 1) {
-    varName=((CompoundVariable)values[1]).execute();
+    varName=((CompoundVariable)values[1]).execute().trim();
   }
   JMeterContext jmctx=JMeterContextService.getContext();
   JMeterVariables vars=jmctx.getVariables();

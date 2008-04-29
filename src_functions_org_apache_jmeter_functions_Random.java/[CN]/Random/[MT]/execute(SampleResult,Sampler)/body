@@ -5,8 +5,9 @@
   String randString=Long.toString(rand);
   if (varName != null) {
     JMeterVariables vars=getVariables();
-    if (vars != null) {
-      vars.put(varName.execute(),randString);
+    final String varTrim=varName.execute().trim();
+    if (vars != null && varTrim.length() > 0) {
+      vars.put(varTrim,randString);
     }
   }
   return randString;

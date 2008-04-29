@@ -1,7 +1,7 @@
 {
   JMeterVariables vars=getVariables();
   String stringToSplit=((CompoundVariable)values[0]).execute();
-  String varNamePrefix=((CompoundVariable)values[1]).execute();
+  String varNamePrefix=((CompoundVariable)values[1]).execute().trim();
   String splitString=",";
   if (values.length > 2) {
     splitString=((CompoundVariable)values[2]).execute();
