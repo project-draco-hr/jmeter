@@ -1,21 +1,20 @@
 {
   String urlStr=url.toString();
-  log.debug("Start : sample" + urlStr);
-  log.debug("method" + method);
+  log.debug("Start : sample " + urlStr);
   PostMethod httpMethod;
   httpMethod=new PostMethod(urlStr);
   HTTPSampleResult res=new HTTPSampleResult();
-  res.setMonitor(isMonitor());
+  res.setMonitor(false);
   res.setSampleLabel(urlStr);
-  res.setHTTPMethod(method);
+  res.setHTTPMethod(HTTPConstants.POST);
   res.sampleStart();
   HttpClient client=null;
   InputStream instream=null;
   try {
     int content_len=setPostHeaders(httpMethod);
     client=setupConnection(url,httpMethod,res);
-    res.setQueryString(getQueryString());
-    sendPostData(httpMethod,content_len);
+    res.setQueryString(sendPostData(httpMethod,content_len));
+    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     int statusCode=client.executeMethod(httpMethod);
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
@@ -59,9 +58,7 @@
     saveConnectionCookies(httpMethod,res.getURL(),getCookieManager());
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
-    if (httpMethod != null) {
-      httpMethod.releaseConnection();
-    }
+    httpMethod.releaseConnection();
     return res;
   }
  catch (  IllegalArgumentException e) {
@@ -78,8 +75,6 @@ catch (  IOException e) {
   }
  finally {
     JOrphanUtils.closeQuietly(instream);
-    if (httpMethod != null) {
-      httpMethod.releaseConnection();
-    }
+    httpMethod.releaseConnection();
   }
 }

@@ -1,6 +1,9 @@
 {
+  StringBuffer postedBody=new StringBuffer(1000);
   final String xmlFile=getXmlFile();
-  if (xmlFile != null && getXmlFile().length() > 0) {
+  if (xmlFile != null && xmlFile.length() > 0) {
+    postedBody.append("Filename: ").append(xmlFile).append("\n");
+    postedBody.append("<actual file content, not shown here>");
     post.setRequestEntity(new RequestEntity(){
       public boolean isRepeatable(){
         return true;
@@ -32,6 +35,7 @@ public String getContentType(){
 );
 }
  else {
+postedBody.append(getXmlData());
 post.setRequestEntity(new RequestEntity(){
 public boolean isRepeatable(){
   return true;
@@ -50,4 +54,5 @@ public String getContentType(){
 }
 );
 }
+return postedBody.toString();
 }
