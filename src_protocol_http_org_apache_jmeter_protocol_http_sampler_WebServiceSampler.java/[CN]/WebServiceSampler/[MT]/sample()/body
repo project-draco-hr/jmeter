@@ -65,13 +65,10 @@
     if (st != null && st.receive() != null) {
       br=st.receive();
       if (getReadResponse()) {
-        StringBuffer buf=new StringBuffer();
-        String line;
-        while ((line=br.readLine()) != null) {
-          buf.append(line);
-        }
+        StringWriter sw=new StringWriter();
+        IOUtils.copy(br,sw);
         result.sampleEnd();
-        result.setResponseData(buf.toString().getBytes());
+        result.setResponseData(sw.toString().getBytes());
       }
  else {
         br.read();
