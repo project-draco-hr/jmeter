@@ -9,6 +9,7 @@
     }
   }
   try {
+    closeSocket();
     con=new Socket(getServer(),getPort());
     con.setSoTimeout(getTimeout());
     con.setTcpNoDelay(getNoDelay());
