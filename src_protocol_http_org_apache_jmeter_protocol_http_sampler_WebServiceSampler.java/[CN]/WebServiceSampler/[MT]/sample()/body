@@ -88,7 +88,9 @@
       result.setResponseHeaders("error");
     }
     result.setSamplerData(fileContents);
-    result.setEncodingAndType(st.getResponseSOAPContext().getContentType());
+    if (st != null) {
+      result.setEncodingAndType(st.getResponseSOAPContext().getContentType());
+    }
     if (br != null) {
       br.close();
     }
