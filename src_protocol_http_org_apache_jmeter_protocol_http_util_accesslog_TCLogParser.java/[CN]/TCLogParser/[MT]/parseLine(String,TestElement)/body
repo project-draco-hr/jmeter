@@ -10,7 +10,7 @@
       count++;
       line=FILTER.filter(cleanedLine);
       if (line != null) {
-        createUrl(cleanedLine,el);
+        createUrl(line,el);
       }
     }
  else {
