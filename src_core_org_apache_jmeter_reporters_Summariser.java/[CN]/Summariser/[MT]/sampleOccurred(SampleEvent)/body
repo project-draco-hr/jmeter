@@ -33,7 +33,7 @@ synchronized (myTotals) {
     if (TOOUT) {
       System.out.println(str);
     }
-    if (myTotal.getNumSamples() != myDelta.getNumSamples()) {
+    if (myTotal != null && myDelta != null && myTotal.getNumSamples() != myDelta.getNumSamples()) {
       str=format(myTotal,"=");
       if (TOLOG) {
         log.info(str);
