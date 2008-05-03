@@ -106,7 +106,7 @@ final class StringQuoter {
     text.append(sample.getLatency());
   }
   if (saveConfig.saveEncoding()) {
-    text.append(sample.getDataEncoding());
+    text.append(sample.getDataEncodingWithDefault());
   }
   if (saveConfig.saveSampleCount()) {
     text.append(sample.getSampleCount());
