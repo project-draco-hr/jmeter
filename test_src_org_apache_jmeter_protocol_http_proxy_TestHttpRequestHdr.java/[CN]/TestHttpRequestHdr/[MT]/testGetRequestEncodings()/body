@@ -3,7 +3,7 @@
   String contentEncoding="";
   String param1Value="yes";
   String param2Value="0+5 -\u00c5\uc385%C3%85";
-  String param2ValueEncoded=URLEncoder.encode(param2Value);
+  String param2ValueEncoded=URLEncoder.encode(param2Value,"UTF-8");
   String testGetRequest="GET " + url + "?param1="+ param1Value+ "&param2="+ param2ValueEncoded+ " "+ "HTTP/1.1\r\n\r\n";
   HTTPSamplerBase s=getSamplerForRequest(null,testGetRequest,null);
   assertEquals(HTTPSamplerBase.GET,s.getMethod());
