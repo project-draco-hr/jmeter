@@ -2,27 +2,30 @@
   boolean inHeaders=true;
   int readLength=0;
   int dataLength=0;
-  boolean first=true;
+  boolean firstLine=true;
   ByteArrayOutputStream clientRequest=new ByteArrayOutputStream();
   ByteArrayOutputStream line=new ByteArrayOutputStream();
   int x;
   while ((inHeaders || readLength < dataLength) && ((x=in.read()) != -1)) {
     line.write(x);
     clientRequest.write(x);
-    if (first && !CharUtils.isAscii((char)x)) {
+    if (firstLine && !CharUtils.isAscii((char)x)) {
       throw new IllegalArgumentException("Only ASCII supported in headers (perhaps SSL was used?)");
     }
     if (inHeaders && (byte)x == (byte)'\n') {
       if (line.size() < 3) {
         inHeaders=false;
-        first=false;
+        firstLine=false;
       }
-      if (first) {
+      if (firstLine) {
         parseFirstLine(line.toString());
-        first=false;
+        firstLine=false;
       }
  else {
-        dataLength=Math.max(parseLine(line.toString()),dataLength);
+        final int contentLen=parseLine(line.toString());
+        if (contentLen > 0) {
+          dataLength=contentLen;
+        }
       }
       if (log.isDebugEnabled()) {
         log.debug("Client Request Line: " + line.toString());
