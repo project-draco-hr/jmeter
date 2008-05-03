@@ -11,6 +11,7 @@
       }
  catch (      Exception e) {
         log.error("Bad collection",e);
+        return coll;
       }
     }
     newColl.put(item,convertObject(prop));

@@ -9,6 +9,7 @@
       }
  catch (      Exception e) {
         log.error("Bad collection",e);
+        return coll;
       }
     }
     newColl.add(convertObject(item));
