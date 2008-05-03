@@ -5,7 +5,27 @@
   assertEquals("value_ here",arg.getValue());
   assertEquals("name.%3F",arg.getEncodedName());
   assertEquals("value_+here",arg.getEncodedValue());
+  arg.setAlwaysEncoded(false);
+  assertEquals("name.?",arg.getEncodedName());
+  assertEquals("value_ here",arg.getEncodedValue());
   arg=new HTTPArgument("name.?","value_ here",true);
   assertEquals("name.?",arg.getName());
   assertEquals("value_ here",arg.getValue());
+  assertEquals("name.%3F",arg.getEncodedName());
+  assertEquals("value_+here",arg.getEncodedValue());
+  arg.setAlwaysEncoded(false);
+  assertEquals("name.?",arg.getEncodedName());
+  assertEquals("value_ here",arg.getEncodedValue());
+  arg=new HTTPArgument("name.%3F","value_+here",true);
+  assertEquals("name.?",arg.getName());
+  assertEquals("value_ here",arg.getValue());
+  assertEquals("name.%3F",arg.getEncodedName());
+  assertEquals("value_+here",arg.getEncodedValue());
+  arg.setAlwaysEncoded(false);
+  assertEquals("name.?",arg.getEncodedName());
+  assertEquals("value_ here",arg.getEncodedValue());
+  arg=new HTTPArgument("","\00\01\07","",false);
+  arg.setAlwaysEncoded(false);
+  assertEquals("",arg.getEncodedName());
+  assertEquals("\00\01\07",arg.getEncodedValue());
 }
