@@ -35,13 +35,17 @@ catch (      IllegalAccessException e) {
         caught=e;
         System.out.println("WARN: " + exName + ": IllegalAccessException "+ n);
       }
+catch (      HeadlessException e) {
+        caught=e;
+        System.out.println("Error creating " + n + " "+ e.toString());
+      }
 catch (      Exception e) {
         caught=e;
-        if ((e instanceof RemoteException) || e.getClass().getName().equals("java.awt.HeadlessException")) {
+        if (e instanceof RemoteException) {
           System.out.println("WARN: " + "Error creating " + n + " "+ e.toString());
         }
  else {
-          throw new Exception("Error creating " + n + " "+ e.toString());
+          throw new Exception("Error creating " + n,e);
         }
       }
     }
