@@ -1,6 +1,5 @@
 {
   LinkedList menuItems=new LinkedList();
-  Preferences prefs=Preferences.userNodeForPackage(LoadRecentProject.class);
   for (int i=0; i < NUMBER_OF_MENU_ITEMS; i++) {
     JMenuItem recentFile=new JMenuItem();
     recentFile.setName(Integer.toString(i));
@@ -15,6 +14,6 @@
   JSeparator separator=new JSeparator();
   separator.setVisible(false);
   menuItems.add(separator);
-  updateMenuItems(menuItems,prefs);
+  updateMenuItems(menuItems);
   return menuItems;
 }
