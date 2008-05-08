@@ -64,17 +64,32 @@
       startServer(JMeterUtils.getPropDefault("server_port",0));
       startOptionalServers();
     }
- else     if (parser.getArgumentById(NONGUI_OPT) == null) {
-      startGui(parser.getArgumentById(TESTFILE_OPT));
-      startOptionalServers();
-    }
  else {
-      CLOption rem=parser.getArgumentById(REMOTE_OPT_PARAM);
-      if (rem == null) {
-        rem=parser.getArgumentById(REMOTE_OPT);
+      String testFile=null;
+      CLOption testFileOpt=parser.getArgumentById(TESTFILE_OPT);
+      if (testFileOpt != null) {
+        testFile=testFileOpt.getArgument();
+        if (USE_LAST_JMX.equals(testFile)) {
+          testFile=LoadRecentProject.getRecentFile(0);
+        }
       }
-      startNonGui(parser.getArgumentById(TESTFILE_OPT),parser.getArgumentById(LOGFILE_OPT),rem);
-      startOptionalServers();
+      if (parser.getArgumentById(NONGUI_OPT) == null) {
+        startGui(testFile);
+        startOptionalServers();
+      }
+ else {
+        CLOption rem=parser.getArgumentById(REMOTE_OPT_PARAM);
+        if (rem == null) {
+          rem=parser.getArgumentById(REMOTE_OPT);
+        }
+        CLOption jtl=parser.getArgumentById(LOGFILE_OPT);
+        String jtlFile=null;
+        if (jtl != null) {
+          jtlFile=processLAST(jtl.getArgument(),".jtl");
+        }
+        startNonGui(testFile,jtlFile,rem);
+        startOptionalServers();
+      }
     }
   }
  catch (  IllegalUserActionException e) {

@@ -1,0 +1,10 @@
+{
+  if (USE_LAST_JMX.equals(jmlogfile) || USE_LAST_JMX.concat(suffix).equals(jmlogfile)) {
+    String last=LoadRecentProject.getRecentFile(0);
+    final String JMX_SUFFIX=".JMX";
+    if (last.toUpperCase(Locale.ENGLISH).endsWith(JMX_SUFFIX)) {
+      jmlogfile=last.substring(0,last.length() - JMX_SUFFIX.length()).concat(suffix);
+    }
+  }
+  return jmlogfile;
+}

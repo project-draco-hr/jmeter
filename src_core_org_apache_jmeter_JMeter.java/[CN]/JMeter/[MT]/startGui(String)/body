@@ -8,11 +8,10 @@
   ComponentUtil.centerComponentInWindow(main,80);
   main.show();
   ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ActionNames.ADD_ALL));
-  String arg;
-  if (testFile != null && (arg=testFile.getArgument()) != null) {
+  if (testFile != null) {
     FileInputStream reader=null;
     try {
-      File f=new File(arg);
+      File f=new File(testFile);
       log.info("Loading file: " + f);
       reader=new FileInputStream(f);
       HashTree tree=SaveService.loadTree(reader);

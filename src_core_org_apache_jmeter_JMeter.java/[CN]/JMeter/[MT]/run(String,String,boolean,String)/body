@@ -35,7 +35,7 @@
     }
     List engines=new LinkedList();
     tree.add(tree.getArray()[0],new ListenToTest(parent,(remoteStart && remoteStop) ? engines : null));
-    println("Created the tree successfully");
+    println("Created the tree successfully using " + testFile);
     JMeterEngine engine=null;
     if (!remoteStart) {
       engine=new StandardJMeterEngine();

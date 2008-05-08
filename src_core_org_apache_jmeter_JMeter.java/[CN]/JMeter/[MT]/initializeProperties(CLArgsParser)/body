@@ -7,6 +7,7 @@
   }
   if (parser.getArgumentById(JMLOGFILE_OPT) != null) {
     String jmlogfile=parser.getArgumentById(JMLOGFILE_OPT).getArgument();
+    jmlogfile=processLAST(jmlogfile,".log");
     JMeterUtils.setProperty(LoggingManager.LOG_FILE,jmlogfile);
   }
   JMeterUtils.initLogging();
@@ -128,7 +129,6 @@ remoteProps.setProperty(name,value);
 File propFile=new File(name);
 if (propFile.canRead()) {
 log.info("Setting Global properties from the file " + name);
-fis=null;
 try {
 fis=new FileInputStream(propFile);
 remoteProps.load(fis);

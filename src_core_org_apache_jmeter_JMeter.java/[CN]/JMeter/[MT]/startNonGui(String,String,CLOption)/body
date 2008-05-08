@@ -15,14 +15,10 @@
   if (testFile == null) {
     throw new IllegalUserActionException("Non-GUI runs require a test plan");
   }
-  String argument=testFile.getArgument();
-  if (argument == null) {
-    throw new IllegalUserActionException("Non-GUI runs require a test plan");
-  }
   if (logFile == null) {
-    driver.run(argument,null,remoteStart != null,remote_hosts_string);
+    driver.run(testFile,null,remoteStart != null,remote_hosts_string);
   }
  else {
-    driver.run(argument,logFile.getArgument(),remoteStart != null,remote_hosts_string);
+    driver.run(testFile,logFile,remoteStart != null,remote_hosts_string);
   }
 }
