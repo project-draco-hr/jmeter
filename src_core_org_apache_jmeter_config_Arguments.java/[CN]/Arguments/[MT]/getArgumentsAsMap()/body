@@ -1,6 +1,6 @@
 {
   PropertyIterator iter=getArguments().iterator();
-  Map argMap=new HashMap();
+  Map argMap=new LinkedHashMap();
   while (iter.hasNext()) {
     Argument arg=(Argument)iter.next().getObjectValue();
     if (!argMap.containsKey(arg.getName())) {
