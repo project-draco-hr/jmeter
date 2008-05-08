@@ -1,14 +1,13 @@
 {
   StringBuffer postedBody=new StringBuffer(1000);
+  HTTPFileArg files[]=getHTTPFiles();
   if (getUseMultipartForPost()) {
     String contentEncoding=getContentEncoding();
     if (contentEncoding != null && contentEncoding.length() == 0) {
       contentEncoding=null;
     }
     int noParts=getArguments().getArgumentCount();
-    if (hasUploadableFiles()) {
-      noParts++;
-    }
+    noParts+=files.length;
     Part[] parts=new Part[noParts];
     int partNo=0;
     PropertyIterator args=getArguments().iterator();
@@ -20,9 +19,10 @@
       }
       parts[partNo++]=new StringPart(arg.getName(),arg.getValue(),contentEncoding);
     }
-    if (hasUploadableFiles()) {
-      File inputFile=new File(getFilename());
-      ViewableFilePart filePart=new ViewableFilePart(getFileField(),inputFile,getMimetype(),null);
+    for (int i=0; i < files.length; i++) {
+      HTTPFileArg file=files[i];
+      File inputFile=new File(file.getPath());
+      ViewableFilePart filePart=new ViewableFilePart(file.getParamName(),inputFile,file.getMimeType(),null);
       filePart.setCharSet(null);
       parts[partNo++]=filePart;
     }
@@ -55,15 +55,16 @@
     Header contentTypeHeader=post.getRequestHeader(HEADER_CONTENT_TYPE);
     boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
     if (!hasArguments() && getSendFileAsPostBody()) {
+      HTTPFileArg file=files[0];
       if (!hasContentTypeHeader) {
-        if (getMimetype() != null && getMimetype().length() > 0) {
-          post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+        if (file.getMimeType() != null && file.getMimeType().length() > 0) {
+          post.setRequestHeader(HEADER_CONTENT_TYPE,file.getMimeType());
         }
  else {
           post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
         }
       }
-      FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(getFilename()),null);
+      FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(file.getPath()),null);
       post.setRequestEntity(fileRequestEntity);
       postedBody.append("<actual file content, not shown here>");
     }
@@ -76,8 +77,9 @@
       }
       if (getSendParameterValuesAsPostBody()) {
         if (!hasContentTypeHeader) {
-          if (getMimetype() != null && getMimetype().length() > 0) {
-            post.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+          HTTPFileArg file=files.length > 0 ? files[0] : null;
+          if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
+            post.setRequestHeader(HEADER_CONTENT_TYPE,file.getMimeType());
           }
  else {
             post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);

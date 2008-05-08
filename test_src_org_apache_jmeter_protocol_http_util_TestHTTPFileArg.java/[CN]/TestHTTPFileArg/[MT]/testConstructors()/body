@@ -1,0 +1,18 @@
+{
+  HTTPFileArg file=new HTTPFileArg();
+  assertEquals("no parameter failure","",file.getPath());
+  assertEquals("no parameter failure","",file.getParamName());
+  assertEquals("no parameter failure","",file.getMimeType());
+  file=new HTTPFileArg("path");
+  assertEquals("single parameter failure","path",file.getPath());
+  assertEquals("single parameter failure","",file.getParamName());
+  assertEquals("single parameter failure","",file.getMimeType());
+  file=new HTTPFileArg("path","param","mimetype");
+  assertEquals("three parameter failure","path",file.getPath());
+  assertEquals("three parameter failure","param",file.getParamName());
+  assertEquals("three parameter failure","mimetype",file.getMimeType());
+  HTTPFileArg file2=new HTTPFileArg(file);
+  assertEquals("copy constructor failure","path",file2.getPath());
+  assertEquals("copy constructor failure","param",file2.getParamName());
+  assertEquals("copy constructor failure","mimetype",file2.getMimeType());
+}

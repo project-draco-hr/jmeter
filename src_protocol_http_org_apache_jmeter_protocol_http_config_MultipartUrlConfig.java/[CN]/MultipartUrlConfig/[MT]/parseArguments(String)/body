@@ -4,15 +4,15 @@
     String contentDisposition=getHeaderValue("Content-disposition",parts[i]);
     String contentType=getHeaderValue("Content-type",parts[i]);
     if (contentDisposition != null && contentDisposition.indexOf("form-data") > -1) {
-      int index=contentDisposition.indexOf("name=\"") + 6;
+      final String namePrefix="name=\"";
+      int index=contentDisposition.indexOf(namePrefix) + namePrefix.length();
       String name=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
-      if (contentDisposition.indexOf("filename=") > -1) {
-        index=contentDisposition.indexOf("filename=\"") + 10;
-        String fn=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
-        if (fn != null && fn.length() > 0) {
-          this.setFileFieldName(name);
-          this.setFilename(fn);
-          this.setMimeType(contentType);
+      final String filenamePrefix="filename=\"";
+      if (contentDisposition.indexOf(filenamePrefix) > -1) {
+        index=contentDisposition.indexOf(filenamePrefix) + filenamePrefix.length();
+        String path=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
+        if (path != null && path.length() > 0) {
+          files.addHTTPFileArg(path,name,contentType);
         }
       }
  else {

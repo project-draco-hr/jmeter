@@ -1,3 +1,4 @@
 {
-  return getFileField().length() == 0 && getFilename().length() > 0;
+  HTTPFileArg[] files=getHTTPFiles();
+  return (files.length == 1) && (files[0].getPath().length() > 0) && (files[0].getParamName().length() == 0);
 }

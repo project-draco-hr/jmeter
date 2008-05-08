@@ -4,19 +4,24 @@
   Argument arg;
   args=sampler.getArguments();
   assertEquals(0,args.getArgumentCount());
+  assertEquals(0,sampler.getHTTPFileCount());
   sampler.parseArguments("&name1&name2=&name3=value3");
   args=sampler.getArguments();
   assertEquals(3,args.getArgumentCount());
+  assertEquals(0,sampler.getHTTPFileCount());
   arg=args.getArgument(0);
   assertEquals("name1",arg.getName());
   assertEquals("",arg.getMetaData());
   assertEquals("",arg.getValue());
+  assertEquals(0,sampler.getHTTPFileCount());
   arg=args.getArgument(1);
   assertEquals("name2",arg.getName());
   assertEquals("=",arg.getMetaData());
   assertEquals("",arg.getValue());
+  assertEquals(0,sampler.getHTTPFileCount());
   arg=args.getArgument(2);
   assertEquals("name3",arg.getName());
   assertEquals("=",arg.getMetaData());
   assertEquals("value3",arg.getValue());
+  assertEquals(0,sampler.getHTTPFileCount());
 }

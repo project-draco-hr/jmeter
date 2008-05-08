@@ -99,9 +99,7 @@ synchronized (formEncodings) {
       getHeaderManager().removeHeaderNamed(CONTENT_TYPE);
       getHeaderManager().removeHeaderNamed(CONTENT_LENGTH);
       sampler.setArguments(urlConfig.getArguments());
-      sampler.setFileField(urlConfig.getFileFieldName());
-      sampler.setFilename(urlConfig.getFilename());
-      sampler.setMimetype(urlConfig.getMimeType());
+      sampler.setHTTPFiles(urlConfig.getHTTPFileArgs().asArray());
     }
  else     if (postData.trim().startsWith("<?")) {
       sampler.addNonEncodedArgument("",postData,"");

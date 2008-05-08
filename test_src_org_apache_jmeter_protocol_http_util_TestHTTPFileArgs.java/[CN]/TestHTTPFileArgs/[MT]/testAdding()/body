@@ -1,0 +1,19 @@
+{
+  HTTPFileArgs files=new HTTPFileArgs();
+  assertEquals(0,files.getHTTPFileArgCount());
+  files.addHTTPFileArg("hede");
+  assertEquals(1,files.getHTTPFileArgCount());
+  assertEquals("hede",((HTTPFileArg)files.iterator().next().getObjectValue()).getPath());
+  HTTPFileArg file=new HTTPFileArg("hodo");
+  files.addHTTPFileArg(file);
+  assertEquals(2,files.getHTTPFileArgCount());
+  PropertyIterator iter=files.iterator();
+  assertEquals("hede",((HTTPFileArg)iter.next().getObjectValue()).getPath());
+  assertEquals("hodo",((HTTPFileArg)iter.next().getObjectValue()).getPath());
+  files.addEmptyHTTPFileArg();
+  assertEquals(3,files.getHTTPFileArgCount());
+  iter=files.iterator();
+  assertEquals("hede",((HTTPFileArg)iter.next().getObjectValue()).getPath());
+  assertEquals("hodo",((HTTPFileArg)iter.next().getObjectValue()).getPath());
+  assertEquals("",((HTTPFileArg)iter.next().getObjectValue()).getPath());
+}

@@ -1,0 +1,7 @@
+{
+  String action=e.getActionCommand();
+  if (action.equals(ADD)) {
+    addFile("");
+  }
+  runCommandOnSelectedFile(action);
+}

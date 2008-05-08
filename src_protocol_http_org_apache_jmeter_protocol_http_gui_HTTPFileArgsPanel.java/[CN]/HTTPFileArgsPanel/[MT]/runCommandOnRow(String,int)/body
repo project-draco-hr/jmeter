@@ -1,0 +1,9 @@
+{
+  if (DELETE.equals(command)) {
+    tableModel.removeRow(rowSelected);
+  }
+ else   if (BROWSE.equals(command)) {
+    String path=browseAndGetFilePath();
+    tableModel.setValueAt(path,rowSelected,0);
+  }
+}

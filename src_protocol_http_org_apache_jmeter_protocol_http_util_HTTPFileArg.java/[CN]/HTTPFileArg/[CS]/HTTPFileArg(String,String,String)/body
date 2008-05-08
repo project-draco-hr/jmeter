@@ -1,0 +1,8 @@
+{
+  if (path == null || paramname == null || mimetype == null) {
+    throw new IllegalArgumentException("Parameters must not be null");
+  }
+  setPath(path);
+  setParamName(paramname);
+  setMimeType(mimetype);
+}

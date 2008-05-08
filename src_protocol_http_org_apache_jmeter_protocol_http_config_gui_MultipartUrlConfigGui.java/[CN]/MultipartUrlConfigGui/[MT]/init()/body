@@ -15,7 +15,7 @@
   webRequestPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_request")));
   webRequestPanel.add(northPanel,BorderLayout.NORTH);
   webRequestPanel.add(getParameterPanel(),BorderLayout.CENTER);
-  webRequestPanel.add(getFilePanel(),BorderLayout.SOUTH);
+  webRequestPanel.add(getHTTPFileArgsPanel(),BorderLayout.SOUTH);
   this.add(webServerPanel,BorderLayout.NORTH);
   this.add(webRequestPanel,BorderLayout.CENTER);
 }

@@ -1,0 +1,4 @@
+{
+  HTTPFileArg file=new HTTPFileArg("path1","param1","mimetype1");
+  assertEquals("path:'path1'|param:'param1'|mimetype:'mimetype1'",file.toString());
+}

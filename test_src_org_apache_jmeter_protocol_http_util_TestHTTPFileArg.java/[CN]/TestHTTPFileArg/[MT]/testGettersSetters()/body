@@ -1,0 +1,14 @@
+{
+  HTTPFileArg file=new HTTPFileArg();
+  assertEquals("",file.getPath());
+  assertEquals("",file.getParamName());
+  assertEquals("",file.getMimeType());
+  file.setPath("path");
+  file.setParamName("param");
+  file.setMimeType("mimetype");
+  file.setHeader("header");
+  assertEquals("path",file.getPath());
+  assertEquals("param",file.getParamName());
+  assertEquals("mimetype",file.getMimeType());
+  assertEquals("header",file.getHeader());
+}

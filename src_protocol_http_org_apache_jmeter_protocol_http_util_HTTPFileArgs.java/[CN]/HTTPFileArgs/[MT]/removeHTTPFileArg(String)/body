@@ -1,0 +1,9 @@
+{
+  PropertyIterator iter=getHTTPFileArgsCollection().iterator();
+  while (iter.hasNext()) {
+    HTTPFileArg file=(HTTPFileArg)iter.next().getObjectValue();
+    if (file.getPath().equals(filePath)) {
+      iter.remove();
+    }
+  }
+}

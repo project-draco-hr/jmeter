@@ -1,0 +1,10 @@
+{
+  JPanel p=this;
+  p.setLayout(new BorderLayout());
+  p.add(makeLabelPanel(),BorderLayout.NORTH);
+  p.add(makeMainPanel(),BorderLayout.CENTER);
+  p.add(Box.createVerticalStrut(70),BorderLayout.WEST);
+  p.add(makeButtonPanel(),BorderLayout.SOUTH);
+  table.revalidate();
+  sizeColumns(table);
+}

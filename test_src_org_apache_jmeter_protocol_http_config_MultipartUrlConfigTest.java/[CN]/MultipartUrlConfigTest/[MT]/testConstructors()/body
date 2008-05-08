@@ -1,0 +1,9 @@
+{
+  MultipartUrlConfig muc=new MultipartUrlConfig();
+  assertEquals(0,muc.getArguments().getArgumentCount());
+  assertEquals(0,muc.getHTTPFileArgs().getHTTPFileArgCount());
+  muc=new MultipartUrlConfig("boundary");
+  assertEquals(0,muc.getArguments().getArgumentCount());
+  assertEquals(0,muc.getHTTPFileArgs().getHTTPFileArgCount());
+  assertEquals("boundary",muc.getBoundary());
+}

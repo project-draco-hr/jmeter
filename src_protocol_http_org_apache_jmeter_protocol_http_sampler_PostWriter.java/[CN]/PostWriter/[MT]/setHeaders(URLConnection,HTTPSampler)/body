@@ -4,6 +4,7 @@
     contentEncoding=ENCODING;
   }
   long contentLength=0L;
+  HTTPFileArg files[]=sampler.getHTTPFiles();
   if (sampler.getUseMultipartForPost()) {
     connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.MULTIPART_FORM_DATA + "; boundary=" + getBoundary());
     ByteArrayOutputStream bos=new ByteArrayOutputStream();
@@ -18,23 +19,28 @@
       bos.write(CRLF);
       writeFormMultipart(bos,parameterName,arg.getValue(),contentEncoding);
     }
-    if (sampler.hasUploadableFiles()) {
+    if (files.length > 0) {
       bos.write(CRLF);
     }
     bos.flush();
     formDataPostBody=bos.toByteArray();
     bos.close();
     contentLength=formDataPostBody.length;
-    if (sampler.hasUploadableFiles()) {
+    for (int i=0; i < files.length; i++) {
+      HTTPFileArg file=files[i];
       bos=new ByteArrayOutputStream();
-      writeStartFileMultipart(bos,sampler.getFilename(),sampler.getFileField(),sampler.getMimetype());
+      writeStartFileMultipart(bos,file.getPath(),file.getParamName(),file.getMimeType());
       bos.flush();
-      formDataFileStartMultipart=bos.toByteArray();
+      String header=bos.toString();
+      file.setHeader(header);
       bos.close();
-      contentLength+=formDataFileStartMultipart.length;
-      File uploadFile=new File(sampler.getFilename());
+      contentLength+=header.length();
+      File uploadFile=new File(file.getPath());
       contentLength+=uploadFile.length();
       contentLength+=getFileMultipartEndDivider().length;
+      if (i + 1 < files.length) {
+        contentLength+=CRLF.length;
+      }
     }
     contentLength+=getMultipartEndDivider().length;
     connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_LENGTH,Long.toString(contentLength));
@@ -45,15 +51,16 @@
     String contentTypeHeader=connection.getRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE);
     boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.length() > 0;
     if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
+      HTTPFileArg file=files[0];
       if (!hasContentTypeHeader) {
-        if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
-          connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,sampler.getMimetype());
+        if (file.getMimeType() != null && file.getMimeType().length() > 0) {
+          connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,file.getMimeType());
         }
  else {
           connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
       }
-      File inputFile=new File(sampler.getFilename());
+      File inputFile=new File(file.getPath());
       contentLength=inputFile.length();
     }
  else {
@@ -67,8 +74,9 @@
       }
  else {
         if (!hasContentTypeHeader) {
-          if (sampler.getMimetype() != null && sampler.getMimetype().length() > 0) {
-            connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,sampler.getMimetype());
+          HTTPFileArg file=files.length > 0 ? files[0] : null;
+          if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
+            connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,file.getMimeType());
           }
  else {
             connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);

@@ -1,0 +1,12 @@
+{
+  URLConnection uc=new NullURLConnection();
+  HTTPSampler sampler=new HTTPSampler();
+  sampler.setHTTPFiles(new HTTPFileArg[]{new HTTPFileArg("file1","","mime1")});
+  PutWriter pw=new PutWriter();
+  pw.setHeaders(uc,sampler);
+  assertEquals("mime1",uc.getRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE));
+  uc=new NullURLConnection();
+  sampler.setHTTPFiles(new HTTPFileArg[]{new HTTPFileArg("file2","param2","mime2")});
+  pw.setHeaders(uc,sampler);
+  assertEquals("mime2",uc.getRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE));
+}

@@ -3,9 +3,10 @@
   boolean hasPutBody=false;
   Header contentTypeHeader=put.getRequestHeader(HEADER_CONTENT_TYPE);
   boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
+  HTTPFileArg files[]=getHTTPFiles();
   if (!hasArguments() && getSendFileAsPostBody()) {
     hasPutBody=true;
-    FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(getFilename()),null);
+    FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(files[0].getPath()),null);
     put.setRequestEntity(fileRequestEntity);
     putBody.append("<actual file content, not shown here>");
   }
@@ -49,8 +50,9 @@
       putBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
     }
     if (!hasContentTypeHeader) {
-      if (getMimetype() != null && getMimetype().length() > 0) {
-        put.setRequestHeader(HEADER_CONTENT_TYPE,getMimetype());
+      HTTPFileArg file=files.length > 0 ? files[0] : null;
+      if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
+        put.setRequestHeader(HEADER_CONTENT_TYPE,file.getMimeType());
       }
     }
     put.setRequestHeader(HEADER_CONTENT_LENGTH,Long.toString(put.getRequestEntity().getContentLength()));

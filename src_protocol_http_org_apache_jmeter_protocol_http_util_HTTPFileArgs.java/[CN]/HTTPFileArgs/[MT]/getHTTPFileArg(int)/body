@@ -1,0 +1,7 @@
+{
+  HTTPFileArg file=null;
+  if (row < getHTTPFileArgCount()) {
+    file=(HTTPFileArg)getHTTPFileArgsCollection().get(row).getObjectValue();
+  }
+  return file;
+}

@@ -1,0 +1,29 @@
+{
+  if (fileList != null) {
+    return fileList;
+  }
+  HTTPFileArg[] outFiles;
+  String fileName=getFilenameProperty();
+  String paramName=getFileFieldProperty();
+  String mimeType=getMimetypeProperty();
+  HTTPFileArg file=new HTTPFileArg(fileName,paramName,mimeType);
+  if (file.isNotEmpty()) {
+    final HTTPFileArgs fileArgs=getHTTPFileArgs();
+    if (fileArgs != null) {
+      outFiles=new HTTPFileArg[1 + fileArgs.getHTTPFileArgCount()];
+      outFiles[0]=file;
+      HTTPFileArg[] infiles=fileArgs.asArray();
+      for (int i=0; i < infiles.length; i++) {
+        outFiles[i + 1]=infiles[i];
+      }
+    }
+ else {
+      outFiles=new HTTPFileArg[]{file};
+    }
+  }
+ else {
+    outFiles=new HTTPFileArg[]{};
+  }
+  fileList=outFiles;
+  return fileList;
+}

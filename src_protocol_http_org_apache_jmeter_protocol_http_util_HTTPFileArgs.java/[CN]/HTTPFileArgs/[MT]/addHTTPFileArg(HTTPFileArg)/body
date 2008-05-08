@@ -1,0 +1,7 @@
+{
+  TestElementProperty newHTTPFileArg=new TestElementProperty(file.getPath(),file);
+  if (isRunningVersion()) {
+    this.setTemporary(newHTTPFileArg);
+  }
+  getHTTPFileArgsCollection().addItem(newHTTPFileArg);
+}

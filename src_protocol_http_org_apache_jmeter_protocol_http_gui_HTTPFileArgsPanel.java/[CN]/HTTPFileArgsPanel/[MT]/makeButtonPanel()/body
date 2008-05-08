@@ -1,0 +1,19 @@
+{
+  add=new JButton(JMeterUtils.getResString("add"));
+  add.setActionCommand(ADD);
+  add.setEnabled(true);
+  browse=new JButton(JMeterUtils.getResString("browse"));
+  browse.setActionCommand(BROWSE);
+  delete=new JButton(JMeterUtils.getResString("delete"));
+  delete.setActionCommand(DELETE);
+  checkDeleteAndBrowseStatus();
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+  add.addActionListener(this);
+  browse.addActionListener(this);
+  delete.addActionListener(this);
+  buttonPanel.add(add);
+  buttonPanel.add(browse);
+  buttonPanel.add(delete);
+  return buttonPanel;
+}

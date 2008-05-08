@@ -1,7 +1,7 @@
 {
   super.configure(element);
-  urlConfigGui.configure(element);
   final HTTPSamplerBase samplerBase=(HTTPSamplerBase)element;
+  urlConfigGui.configure(element);
   getImages.setSelected(samplerBase.isImageParser());
   isMon.setSelected(samplerBase.isMonitor());
   useMD5.setSelected(samplerBase.useMD5());

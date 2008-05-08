@@ -1,0 +1,9 @@
+{
+  CollectionProperty props=getHTTPFileArgsCollection();
+  final int size=props.size();
+  HTTPFileArg[] args=new HTTPFileArg[size];
+  for (int i=0; i < size; i++) {
+    args[i]=(HTTPFileArg)props.get(i).getObjectValue();
+  }
+  return args;
+}

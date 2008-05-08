@@ -1,0 +1,11 @@
+{
+  HTTPSamplerBase sampler=new HTTPNullSampler();
+  sampler.setMimetype("mime");
+  assertEquals("mime",sampler.getMimetype());
+  HTTPFileArg file=sampler.getHTTPFiles()[0];
+  assertEquals("mime",file.getMimeType());
+  sampler.setMimetype("mime2");
+  assertEquals("mime2",sampler.getMimetype());
+  file=sampler.getHTTPFiles()[0];
+  assertEquals("mime2",file.getMimeType());
+}

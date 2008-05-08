@@ -1,0 +1,40 @@
+{
+  clearHTTPFileArgs();
+  fileList=null;
+  HTTPFileArg[] nonEmptyFile={};
+  int filesFound=0;
+  if (files.length > 0) {
+    nonEmptyFile=new HTTPFileArg[files.length];
+    for (int i=0; i < files.length; i++) {
+      HTTPFileArg file=files[i];
+      if (file.isNotEmpty()) {
+        nonEmptyFile[filesFound++]=file;
+      }
+    }
+  }
+  if (filesFound > 0) {
+    HTTPFileArg file=nonEmptyFile[0];
+    setFilenameProperty(file.getPath());
+    setFileFieldProperty(file.getParamName());
+    setMimetypeProperty(file.getMimeType());
+    if (filesFound > 1) {
+      HTTPFileArgs fileArgs=new HTTPFileArgs();
+      boolean empty=true;
+      for (int i=1; i < filesFound; i++) {
+        final HTTPFileArg fileArg=nonEmptyFile[i];
+        if (fileArg.isNotEmpty()) {
+          fileArgs.addHTTPFileArg(fileArg);
+          empty=false;
+        }
+      }
+      if (!empty) {
+        setHTTPFileArgs(fileArgs);
+      }
+    }
+  }
+ else {
+    setFilenameProperty("");
+    setFileFieldProperty("");
+    setMimetypeProperty("");
+  }
+}

@@ -1,0 +1,11 @@
+{
+  String path="";
+  JFileChooser chooser=FileDialoger.promptToOpenFile();
+  if (chooser != null) {
+    File file=chooser.getSelectedFile();
+    if (file != null) {
+      path=file.getPath();
+    }
+  }
+  return path;
+}

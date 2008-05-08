@@ -1,0 +1,5 @@
+{
+  if (getHTTPFileCount() > 1) {
+    log.warn(method + "() called with more than 1 file; additional files may be ignored.");
+  }
+}

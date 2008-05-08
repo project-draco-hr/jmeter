@@ -1,0 +1,19 @@
+{
+  if (table.isEditing()) {
+    TableCellEditor cellEditor=table.getCellEditor(table.getEditingRow(),table.getEditingColumn());
+    cellEditor.cancelCellEditing();
+  }
+  int rowSelected=table.getSelectedRow();
+  if (rowSelected >= 0) {
+    runCommandOnRow(command,rowSelected);
+    tableModel.fireTableDataChanged();
+    checkDeleteAndBrowseStatus();
+    if (tableModel.getRowCount() != 0) {
+      int rowToSelect=rowSelected;
+      if (rowSelected >= tableModel.getRowCount()) {
+        rowToSelect=rowSelected - 1;
+      }
+      table.setRowSelectionInterval(rowToSelect,rowToSelect);
+    }
+  }
+}
