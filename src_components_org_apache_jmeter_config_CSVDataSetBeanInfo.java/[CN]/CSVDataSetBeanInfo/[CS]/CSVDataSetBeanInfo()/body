@@ -1,6 +1,10 @@
 {
   super(CSVDataSet.class);
-  createPropertyGroup("csv_data",new String[]{FILENAME,FILE_ENCODING,VARIABLE_NAMES,DELIMITER,QUOTED_DATA,RECYCLE,STOPTHREAD});
+  ResourceBundle rb=(ResourceBundle)getBeanDescriptor().getValue(RESOURCE_BUNDLE);
+  SHARE_TAGS[SHARE_ALL]=rb.getString("shareMode.all");
+  SHARE_TAGS[SHARE_GROUP]=rb.getString("shareMode.group");
+  SHARE_TAGS[SHARE_THREAD]=rb.getString("shareMode.thread");
+  createPropertyGroup("csv_data",new String[]{FILENAME,FILE_ENCODING,VARIABLE_NAMES,DELIMITER,QUOTED_DATA,RECYCLE,STOPTHREAD,SHAREMODE});
   PropertyDescriptor p=property(FILENAME);
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
@@ -26,4 +30,10 @@
   p=property(STOPTHREAD);
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,Boolean.FALSE);
+  p=property(SHAREMODE);
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,SHARE_TAGS[0]);
+  p.setValue(NOT_OTHER,Boolean.FALSE);
+  p.setValue(NOT_EXPRESSION,Boolean.FALSE);
+  p.setValue(TAGS,SHARE_TAGS);
 }
