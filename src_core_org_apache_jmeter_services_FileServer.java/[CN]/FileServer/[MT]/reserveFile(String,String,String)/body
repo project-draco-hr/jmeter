@@ -1,0 +1,19 @@
+{
+  if (filename == null) {
+    throw new IllegalArgumentException("Filename must not be null");
+  }
+  if (alias == null) {
+    throw new IllegalArgumentException("Alias must not be null");
+  }
+  if (!files.containsKey(alias)) {
+    File f=new File(filename);
+    FileEntry file=new FileEntry(f.isAbsolute() ? f : new File(base,filename),null,charsetName);
+    if (filename.equals(alias)) {
+      log.info("Stored: " + filename);
+    }
+ else {
+      log.info("Stored: " + filename + " Alias: "+ alias);
+    }
+    files.put(alias,file);
+  }
+}
