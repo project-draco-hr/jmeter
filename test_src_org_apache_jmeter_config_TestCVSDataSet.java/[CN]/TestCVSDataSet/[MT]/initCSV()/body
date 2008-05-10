@@ -1,0 +1,7 @@
+{
+  CSVDataSet csv=new CSVDataSet();
+  csv.setFilename("testfiles/test.csv");
+  csv.setVariableNames("a,b,c");
+  csv.setDelimiter(",");
+  return csv;
+}
