@@ -1,5 +1,5 @@
 {
-  if (mode.length() == 0) {
+  if (mode == null || mode.length() == 0) {
     return SHARE_ALL;
   }
   for (int i=0; i < SHARE_TAGS.length; i++) {
