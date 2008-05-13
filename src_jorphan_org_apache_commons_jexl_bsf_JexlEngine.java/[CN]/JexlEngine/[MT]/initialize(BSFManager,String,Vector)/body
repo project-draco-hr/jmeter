@@ -1,0 +1,8 @@
+{
+  super.initialize(mgr,lang,declaredBeans);
+  jc=JexlHelper.createContext();
+  for (int i=0; i < declaredBeans.size(); i++) {
+    BSFDeclaredBean bean=(BSFDeclaredBean)declaredBeans.elementAt(i);
+    jc.getVars().put(bean.name,bean.bean);
+  }
+}

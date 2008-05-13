@@ -1,0 +1,12 @@
+{
+  if (expr == null) {
+    return null;
+  }
+  try {
+    Expression jExpr=ExpressionFactory.createExpression((String)expr);
+    return jExpr.evaluate(jc);
+  }
+ catch (  Exception e) {
+    throw new BSFException(e.getMessage());
+  }
+}
