@@ -9,6 +9,7 @@
     Scriptable scope=cx.initStandardObjects(null);
     scope.put("ctx",scope,jmctx);
     scope.put("vars",scope,vars);
+    scope.put("props",scope,JMeterUtils.getJMeterProperties());
     scope.put("theadName",scope,Thread.currentThread().getName());
     scope.put("sampler",scope,currentSampler);
     scope.put("sampleResult",scope,previousResult);

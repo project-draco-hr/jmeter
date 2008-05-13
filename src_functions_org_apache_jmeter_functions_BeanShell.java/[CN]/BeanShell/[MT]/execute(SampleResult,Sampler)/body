@@ -20,6 +20,7 @@
     }
     bshInterpreter.set("ctx",jmctx);
     bshInterpreter.set("vars",vars);
+    bshInterpreter.set("props",JMeterUtils.getJMeterProperties());
     bshInterpreter.set("threadName",Thread.currentThread().getName());
     Object bshOut=bshInterpreter.eval(script);
     if (bshOut != null) {
