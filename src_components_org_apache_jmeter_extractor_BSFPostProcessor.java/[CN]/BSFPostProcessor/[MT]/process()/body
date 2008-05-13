@@ -1,0 +1,13 @@
+{
+  try {
+    BSFManager mgr=getManager();
+    if (mgr == null) {
+      return;
+    }
+    processFileOrScript(mgr);
+    mgr.terminate();
+  }
+ catch (  BSFException e) {
+    log.warn("Problem in BSF script " + e);
+  }
+}

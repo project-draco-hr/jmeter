@@ -1,0 +1,21 @@
+{
+  super(beanClass);
+  PropertyDescriptor p;
+  p=property("scriptLanguage");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  createPropertyGroup("scriptingLanguage",new String[]{"scriptLanguage"});
+  p=property("parameters");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  createPropertyGroup("parameterGroup",new String[]{"parameters"});
+  p=property("filename");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  createPropertyGroup("filenameGroup",new String[]{"filename"});
+  p=property("script");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p.setPropertyEditorClass(TextAreaEditor.class);
+  createPropertyGroup("scripting",new String[]{"script"});
+}

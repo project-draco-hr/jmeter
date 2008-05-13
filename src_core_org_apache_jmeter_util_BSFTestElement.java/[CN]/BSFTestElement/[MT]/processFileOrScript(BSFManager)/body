@@ -1,0 +1,8 @@
+{
+  BSFEngine bsfEngine=mgr.loadScriptingEngine(getScriptLanguage());
+  final String scriptFile=getFilename();
+  if (scriptFile.length() == 0) {
+    bsfEngine.exec("[script]",0,0,getScript());
+  }
+  bsfEngine.exec(scriptFile,0,0,scriptFile);
+}

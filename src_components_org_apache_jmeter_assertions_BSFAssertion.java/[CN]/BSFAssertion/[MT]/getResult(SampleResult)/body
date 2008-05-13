@@ -1,0 +1,23 @@
+{
+  AssertionResult result=new AssertionResult(getName());
+  try {
+    BSFManager mgr=getManager();
+    if (mgr == null) {
+      result.setFailure(true);
+      result.setError(true);
+      result.setFailureMessage("BSF Manager not found");
+      return result;
+    }
+    mgr.declareBean("SampleResult",response,SampleResult.class);
+    mgr.declareBean("AssertionResult",result,AssertionResult.class);
+    processFileOrScript(mgr);
+    mgr.terminate();
+    result.setError(false);
+  }
+ catch (  BSFException e) {
+    log.warn("Problem in BSF script " + e);
+    result.setError(true);
+    result.setFailureMessage(e.toString());
+  }
+  return result;
+}
