@@ -1,21 +1,13 @@
 {
   SampleResult s=e.getResult();
-  if (myName == null) {
-    myName=getName();
-  }
-  if (myTotals == null) {
-synchronized (accumulators) {
-      myTotals=(Totals)accumulators.get(myName);
-    }
-  }
-  if (s != null) {
-    myTotals.delta.addSample(s);
-  }
   long now=System.currentTimeMillis() / 1000;
   RunningSample myDelta=null;
   RunningSample myTotal=null;
   boolean reportNow=false;
 synchronized (myTotals) {
+    if (s != null) {
+      myTotals.delta.addSample(s);
+    }
     if ((now > myTotals.last + INTERVAL_WINDOW) && (now % INTERVAL <= INTERVAL_WINDOW)) {
       reportNow=true;
       myDelta=new RunningSample(myTotals.delta);
@@ -26,7 +18,7 @@ synchronized (myTotals) {
   }
   if (reportNow) {
     String str;
-    str=format(myDelta,"+");
+    str=format(myName,myDelta,"+");
     if (TOLOG) {
       log.info(str);
     }
@@ -34,7 +26,7 @@ synchronized (myTotals) {
       System.out.println(str);
     }
     if (myTotal != null && myDelta != null && myTotal.getNumSamples() != myDelta.getNumSamples()) {
-      str=format(myTotal,"=");
+      str=format(myName,myTotal,"=");
       if (TOLOG) {
         log.info(str);
       }

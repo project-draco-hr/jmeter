@@ -1,26 +1,30 @@
 {
+  Object[] totals;
 synchronized (accumulators) {
-    Totals t=(Totals)accumulators.get(myName);
-    if (t.last != -1) {
-      String str;
-      if (t.total.getNumSamples() != 0) {
-        str=format(t.delta,"+");
-        if (TOLOG) {
-          log.info(str);
-        }
-        if (TOOUT) {
-          System.out.println(str);
-        }
-      }
-      t.moveDelta();
-      str=format(t.total,"=");
+    totals=accumulators.entrySet().toArray();
+    accumulators.clear();
+  }
+  for (int i=0; i < totals.length; i++) {
+    Map.Entry me=(Map.Entry)totals[i];
+    String str;
+    String name=(String)me.getKey();
+    Totals total=(Totals)me.getValue();
+    if (total.total.getNumSamples() != 0) {
+      str=format(name,total.delta,"+");
       if (TOLOG) {
         log.info(str);
       }
       if (TOOUT) {
         System.out.println(str);
       }
-      t.last=-1;
+    }
+    total.moveDelta();
+    str=format(name,total.total,"=");
+    if (TOLOG) {
+      log.info(str);
+    }
+    if (TOOUT) {
+      System.out.println(str);
     }
   }
 }

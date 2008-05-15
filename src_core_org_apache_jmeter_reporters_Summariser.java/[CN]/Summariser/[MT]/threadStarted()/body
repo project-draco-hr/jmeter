@@ -1,0 +1,10 @@
+{
+  myName=getName();
+synchronized (accumulators) {
+    myTotals=(Totals)accumulators.get(myName);
+    if (myTotals == null) {
+      myTotals=new Totals();
+      accumulators.put(myName,myTotals);
+    }
+  }
+}
