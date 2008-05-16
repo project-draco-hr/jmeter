@@ -9,8 +9,12 @@ synchronized (tableRows) {
       model.insertRow(row,model.getRowCount() - 1);
     }
   }
-  row.addSample(res);
+synchronized (row) {
+    row.addSample(res);
+  }
   Calculator tot=((Calculator)tableRows.get(TOTAL_ROW_LABEL));
-  tot.addSample(res);
+synchronized (tot) {
+    tot.addSample(res);
+  }
   model.fireTableDataChanged();
 }
