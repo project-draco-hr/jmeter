@@ -22,6 +22,7 @@
     log.info(JMeterUtils.getJMeterCopyright());
     log.info("Version " + JMeterUtils.getJMeterVersion());
     logProperty("java.version");
+    logProperty("java.vm.name");
     logProperty("os.name");
     logProperty("os.arch");
     logProperty("os.version");
