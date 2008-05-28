@@ -108,7 +108,21 @@ synchronized (formEncodings) {
       sampler.parseArguments(postData.trim(),contentEncoding);
     }
  else     if (postData.length() > 0) {
-      sampler.addNonEncodedArgument("",postData,"");
+      if (isBinaryContent(contentType)) {
+        try {
+          File tempDir=new File(binaryDirectory);
+          File out=File.createTempFile(method,binaryFileSuffix,tempDir);
+          FileUtils.writeByteArrayToFile(out,rawPostData);
+          HTTPFileArg[] files={new HTTPFileArg(out.getPath(),"",contentType)};
+          sampler.setHTTPFiles(files);
+        }
+ catch (        IOException e) {
+          log.warn("Could not create binary file: " + e);
+        }
+      }
+ else {
+        sampler.addNonEncodedArgument("",postData,"");
+      }
     }
   }
   if (log.isDebugEnabled()) {
