@@ -17,8 +17,10 @@
   nodeCreationPanel.add(httpHeaders);
   nodeCreationPanel.add(addAssertions);
   nodeCreationPanel.add(regexMatch);
-  mainPanel.add(createTargetPanel());
-  mainPanel.add(createGroupingPanel());
+  HorizontalPanel targetPanel=new HorizontalPanel();
+  targetPanel.add(createTargetPanel());
+  targetPanel.add(createGroupingPanel());
+  mainPanel.add(targetPanel);
   mainPanel.add(nodeCreationPanel);
   return mainPanel;
 }

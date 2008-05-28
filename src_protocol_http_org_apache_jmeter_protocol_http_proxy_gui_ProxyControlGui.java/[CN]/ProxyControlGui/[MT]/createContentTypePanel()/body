@@ -1,11 +1,11 @@
 {
-  contentTypeInclude=new JTextField(30);
+  contentTypeInclude=new JTextField(35);
   contentTypeInclude.addKeyListener(this);
   contentTypeInclude.setName(ENABLE_RESTART);
   JLabel labelInclude=new JLabel(JMeterUtils.getResString("proxy_content_type_include"));
   labelInclude.setLabelFor(contentTypeInclude);
   contentTypeInclude.setText(JMeterUtils.getProperty("proxy.content_type_include"));
-  contentTypeExclude=new JTextField(30);
+  contentTypeExclude=new JTextField(35);
   contentTypeExclude.addKeyListener(this);
   contentTypeExclude.setName(ENABLE_RESTART);
   JLabel labelExclude=new JLabel(JMeterUtils.getResString("proxy_content_type_exclude"));
