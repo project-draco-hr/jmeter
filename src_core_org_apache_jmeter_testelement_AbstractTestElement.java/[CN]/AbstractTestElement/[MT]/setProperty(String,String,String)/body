@@ -1,0 +1,8 @@
+{
+  if (dflt.equals(value)) {
+    removeProperty(name);
+  }
+ else {
+    setProperty(new StringProperty(name,value));
+  }
+}
