@@ -90,6 +90,10 @@ catch (      IOException e) {
       res.setURL(conn.getURL());
     }
     saveConnectionCookies(conn,url,getCookieManager());
+    final CacheManager cacheManager=getCacheManager();
+    if (cacheManager != null) {
+      cacheManager.saveDetails(conn,res);
+    }
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
     return res;

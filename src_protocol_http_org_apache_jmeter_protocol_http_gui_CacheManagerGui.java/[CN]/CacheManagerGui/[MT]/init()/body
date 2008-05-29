@@ -1,0 +1,10 @@
+{
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  clearEachIteration=new JCheckBox(JMeterUtils.getResString("clear_cache_per_iter"),false);
+  JPanel northPanel=new JPanel();
+  northPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  northPanel.add(makeTitlePanel());
+  northPanel.add(clearEachIteration);
+  add(northPanel,BorderLayout.NORTH);
+}

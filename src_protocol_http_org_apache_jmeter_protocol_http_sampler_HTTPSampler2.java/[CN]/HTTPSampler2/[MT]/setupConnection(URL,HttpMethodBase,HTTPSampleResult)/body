@@ -50,7 +50,7 @@
  else {
     httpMethod.setRequestHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
-  setConnectionHeaders(httpMethod,u,getHeaderManager());
+  setConnectionHeaders(httpMethod,u,getHeaderManager(),getCacheManager());
   String cookies=setConnectionCookie(httpMethod,u,getCookieManager());
   setConnectionAuthorization(httpClient,u,getAuthManager());
   if (res != null) {

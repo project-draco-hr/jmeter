@@ -27,7 +27,7 @@
     conn.setRequestProperty(HEADER_CONNECTION,CONNECTION_CLOSE);
   }
   conn.setRequestMethod(method);
-  setConnectionHeaders(conn,u,getHeaderManager());
+  setConnectionHeaders(conn,u,getHeaderManager(),getCacheManager());
   String cookies=setConnectionCookie(conn,u,getCookieManager());
   setConnectionAuthorization(conn,u,getAuthManager());
   if (method.equals(POST)) {

@@ -1,0 +1,6 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("SET(both) " + url + " "+ lastModified+ " "+ etag);
+  }
+  getCache().put(url,new CacheEntry(lastModified,etag));
+}

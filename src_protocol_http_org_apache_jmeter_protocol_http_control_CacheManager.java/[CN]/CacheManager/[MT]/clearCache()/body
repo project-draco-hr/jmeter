@@ -1,0 +1,9 @@
+{
+  log.debug("Clear cache");
+  threadCache=new ThreadLocal(){
+    protected Object initialValue(){
+      return new HashMap();
+    }
+  }
+;
+}

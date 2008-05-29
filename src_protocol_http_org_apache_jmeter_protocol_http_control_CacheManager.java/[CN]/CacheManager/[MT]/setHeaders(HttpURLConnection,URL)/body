@@ -1,0 +1,16 @@
+{
+  CacheEntry entry=(CacheEntry)getCache().get(url.toString());
+  if (log.isDebugEnabled()) {
+    log.debug(conn.getRequestMethod() + "(Java) " + url.toString()+ " "+ entry);
+  }
+  if (entry != null) {
+    final String lastModified=entry.getLastModified();
+    if (lastModified != null) {
+      conn.addRequestProperty(HTTPConstantsInterface.IF_MODIFIED_SINCE,lastModified);
+    }
+    final String etag=entry.getEtag();
+    if (etag != null) {
+      conn.addRequestProperty(HTTPConstantsInterface.IF_NONE_MATCH,etag);
+    }
+  }
+}

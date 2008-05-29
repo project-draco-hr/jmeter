@@ -2,6 +2,9 @@
   if (el instanceof CookieManager) {
     setCookieManager((CookieManager)el);
   }
+ else   if (el instanceof CacheManager) {
+    setCacheManager((CacheManager)el);
+  }
  else   if (el instanceof HeaderManager) {
     setHeaderManager((HeaderManager)el);
   }

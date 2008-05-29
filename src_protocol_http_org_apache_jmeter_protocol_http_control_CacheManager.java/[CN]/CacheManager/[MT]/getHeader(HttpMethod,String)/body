@@ -1,0 +1,4 @@
+{
+  Header hdr=method.getResponseHeader(name);
+  return hdr != null ? hdr.getValue() : null;
+}

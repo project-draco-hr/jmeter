@@ -1,0 +1,4 @@
+{
+  final String responseCode=res.getResponseCode();
+  return "200".compareTo(responseCode) <= 0 && "299".compareTo(responseCode) >= 0;
+}

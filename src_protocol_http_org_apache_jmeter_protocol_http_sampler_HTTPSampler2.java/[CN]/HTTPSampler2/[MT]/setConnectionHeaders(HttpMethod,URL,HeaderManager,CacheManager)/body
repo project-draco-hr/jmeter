@@ -13,4 +13,7 @@
       }
     }
   }
+  if (cacheManager != null) {
+    cacheManager.setHeaders(u,method);
+  }
 }

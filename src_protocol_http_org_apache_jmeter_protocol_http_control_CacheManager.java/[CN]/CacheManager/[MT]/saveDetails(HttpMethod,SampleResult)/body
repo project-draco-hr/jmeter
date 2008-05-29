@@ -1,0 +1,8 @@
+{
+  if (isCacheable(res)) {
+    String lastModified=getHeader(method,HTTPConstantsInterface.LAST_MODIFIED);
+    String etag=getHeader(method,HTTPConstantsInterface.ETAG);
+    String url=method.getURI().toString();
+    setCache(lastModified,etag,url);
+  }
+}

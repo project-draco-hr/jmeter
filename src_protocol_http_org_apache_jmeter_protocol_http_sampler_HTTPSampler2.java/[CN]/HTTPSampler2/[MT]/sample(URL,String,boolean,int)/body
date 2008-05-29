@@ -80,6 +80,10 @@
       res.setURL(new URL(httpMethod.getURI().toString()));
     }
     saveConnectionCookies(httpMethod,res.getURL(),getCookieManager());
+    final CacheManager cacheManager=getCacheManager();
+    if (cacheManager != null) {
+      cacheManager.saveDetails(httpMethod,res);
+    }
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
     httpMethod.releaseConnection();
