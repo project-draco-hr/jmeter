@@ -26,6 +26,10 @@ case LESSTHANEQUAL:
 result=(resultSize <= getAllowedSize());
 comparatorErrorMessage=JMeterUtils.getResString("size_assertion_comparator_error_lessequal");
 break;
+default :
+result=false;
+comparatorErrorMessage="ERROR - invalid condition";
+break;
 }
 return result;
 }

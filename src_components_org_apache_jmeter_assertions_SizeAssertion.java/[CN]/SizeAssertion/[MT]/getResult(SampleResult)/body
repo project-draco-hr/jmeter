@@ -1,8 +1,7 @@
 {
   AssertionResult result=new AssertionResult(getName());
   result.setFailure(false);
-  resultData=response.getResponseData();
-  long resultSize=resultData.length;
+  long resultSize=response.getBytes();
   if (!(compareSize(resultSize))) {
     result.setFailure(true);
     Object[] arguments={new Long(resultSize),comparatorErrorMessage,new Long(getAllowedSize())};
