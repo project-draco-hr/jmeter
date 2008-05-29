@@ -40,7 +40,7 @@
     }
     String pageEncoding=addPageEncoding(result);
     addFormEncodings(result,pageEncoding);
-    writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
+    writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()),forcedHTTP);
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);
