@@ -1,7 +1,14 @@
 {
   ValueReplacer replacer=new ValueReplacer();
   for (Iterator vars=variables.iterator(); vars.hasNext(); ) {
-    replacer.addVariables(((Arguments)vars.next()).getArgumentsAsMap());
+    final Map map=((Arguments)vars.next()).getArgumentsAsMap();
+    for (Iterator vals=map.values().iterator(); vals.hasNext(); ) {
+      final Object next=vals.next();
+      if ("".equals(next)) {
+        vals.remove();
+      }
+    }
+    replacer.addVariables(map);
   }
   try {
     replacer.reverseReplace(sampler,regexMatch);
