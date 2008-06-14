@@ -42,7 +42,9 @@
   }
   if (myName.length() > 0) {
     JMeterVariables vars=getVariables();
-    vars.put(myName,myValue);
+    if (vars != null) {
+      vars.put(myName,myValue);
+    }
   }
   if (log.isDebugEnabled()) {
     String tn=Thread.currentThread().getName();
