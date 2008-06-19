@@ -5,6 +5,7 @@
   res.setResponseData("successfull".getBytes());
   res.setResponseMessage("Success");
   res.setResponseCode("0");
+  res.setContentType("text/xml");
   boolean isSuccessful=true;
   res.setSampleLabel(getName());
   LdapExtClient temp_client=(LdapExtClient)ldapConnections.get(getThreadName());
@@ -48,18 +49,21 @@
       res.setSamplerData("Compare " + getPropertyAsString(COMPAREFILT) + " "+ getPropertyAsString(COMPAREDN));
       xmlBuffer.tag("comparedn",getPropertyAsString(COMPAREDN));
       xmlBuffer.tag("comparefilter",getPropertyAsString(COMPAREFILT));
-      NamingEnumeration cmp;
+      NamingEnumeration cmp=null;
       try {
         res.sampleStart();
         cmp=temp_client.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
+        if (!cmp.hasMore()) {
+          res.setResponseCode("5");
+          res.setResponseMessage("compareFalse");
+          isSuccessful=false;
+        }
       }
   finally {
         res.sampleEnd();
-      }
-      if (!cmp.hasMore()) {
-        res.setResponseCode("5");
-        res.setResponseMessage("compareFalse");
-        isSuccessful=false;
+        if (cmp != null) {
+          cmp.close();
+        }
       }
     }
  else     if (testType.equals(ADD)) {
@@ -99,22 +103,28 @@
       xmlBuffer.tag("scope",scopeStr);
       xmlBuffer.tag("countlimit",countLimit);
       xmlBuffer.tag("timelimit",timeLimit);
-      NamingEnumeration srch;
+      NamingEnumeration srch=null;
       try {
         res.sampleStart();
         srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getCountlimAsLong(),getTimelimAsInt(),getRequestAttributes(getAttrs()),isRetobj(),isDeref());
+        if (isParseFlag()) {
+          try {
+            xmlBuffer.openTag("searchresults");
+            writeSearchResults(xmlBuffer,srch);
+          }
+  finally {
+            xmlBuffer.closeTag("searchresults");
+          }
+        }
+ else {
+          xmlBuffer.tag("searchresults","hasElements=" + srch.hasMoreElements());
+        }
       }
   finally {
+        if (srch != null) {
+          srch.close();
+        }
         res.sampleEnd();
-      }
-      if (isParseFlag()) {
-        try {
-          xmlBuffer.openTag("searchresults");
-          writeSearchResults(xmlBuffer,srch);
-        }
-  finally {
-          xmlBuffer.closeTag("searchresults");
-        }
       }
     }
   }
