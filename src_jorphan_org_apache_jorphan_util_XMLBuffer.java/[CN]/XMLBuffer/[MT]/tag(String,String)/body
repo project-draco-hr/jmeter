@@ -1,6 +1,11 @@
 {
-  startTag(tagname);
-  sb.append(content);
-  endTag(tagname);
+  if (content.length() == 0) {
+    emptyTag(tagname);
+  }
+ else {
+    startTag(tagname);
+    sb.append(content);
+    endTag(tagname);
+  }
   return this;
 }
