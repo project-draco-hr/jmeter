@@ -18,6 +18,7 @@
     jexlVars.put("theadName",Thread.currentThread().getName());
     jexlVars.put("sampler",currentSampler);
     jexlVars.put("sampleResult",previousResult);
+    jexlVars.put("OUT",System.out);
     Object o=e.evaluate(jc);
     if (o != null) {
       str=o.toString();
