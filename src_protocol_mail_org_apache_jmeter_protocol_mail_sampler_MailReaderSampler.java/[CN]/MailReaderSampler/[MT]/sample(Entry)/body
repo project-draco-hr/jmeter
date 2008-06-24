@@ -104,6 +104,7 @@
     store.close();
     parent.setResponseData(pdata.toString().getBytes());
     parent.setDataType(SampleResult.TEXT);
+    parent.setContentType("text/plain");
     parent.setResponseCodeOK();
     parent.setResponseMessage("OK");
     isOK=true;
