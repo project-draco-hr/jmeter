@@ -3,7 +3,7 @@
   setBorder(makeBorder());
   Box box=Box.createVerticalBox();
   box.add(makeTitlePanel());
-  box.add(createFilenamePanel());
+  box.add(createFilenamePrefixPanel());
   errorsOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_errors"));
   box.add(errorsOnly);
   successOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_success"));
