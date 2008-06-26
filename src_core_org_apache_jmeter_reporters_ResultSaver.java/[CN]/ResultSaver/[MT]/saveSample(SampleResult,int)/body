@@ -12,6 +12,15 @@
   String fileName=makeFileName(s.getContentType());
   log.debug("Saving " + s.getSampleLabel() + " in "+ fileName);
   s.setResultFileName(fileName);
+  String variable=getVariableName();
+  if (variable.length() > 0) {
+    if (num > 0) {
+      StrBuilder sb=new StrBuilder(variable);
+      sb.append(num);
+      variable=sb.toString();
+    }
+    JMeterContextService.getContext().getVariables().put(variable,fileName);
+  }
   File out=new File(fileName);
   FileOutputStream pw=null;
   try {

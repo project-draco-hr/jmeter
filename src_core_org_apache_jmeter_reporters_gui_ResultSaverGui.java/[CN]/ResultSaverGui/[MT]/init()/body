@@ -4,6 +4,7 @@
   Box box=Box.createVerticalBox();
   box.add(makeTitlePanel());
   box.add(createFilenamePrefixPanel());
+  box.add(createVariableNamePanel());
   errorsOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_errors"));
   box.add(errorsOnly);
   successOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_success"));

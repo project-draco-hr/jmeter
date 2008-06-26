@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("resultsaver_variable"));
+  variableName=new JTextField(10);
+  variableName.setName(ResultSaver.VARIABLE_NAME);
+  label.setLabelFor(variableName);
+  JPanel filenamePanel=new JPanel(new BorderLayout(5,0));
+  filenamePanel.add(label,BorderLayout.WEST);
+  filenamePanel.add(variableName,BorderLayout.CENTER);
+  return filenamePanel;
+}

@@ -3,4 +3,6 @@
   te.setProperty(ResultSaver.FILENAME,filename.getText());
   te.setProperty(ResultSaver.ERRORS_ONLY,errorsOnly.isSelected());
   te.setProperty(ResultSaver.SUCCESS_ONLY,successOnly.isSelected());
+  AbstractTestElement at=(AbstractTestElement)te;
+  at.setProperty(ResultSaver.VARIABLE_NAME,variableName.getText(),"");
 }
