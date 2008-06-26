@@ -1,5 +1,5 @@
 {
   XMLBuffer xb=new XMLBuffer();
   xb.openTag("start");
-  assertEquals("<start></start>",xb.toString());
+  assertEquals("<start></start>\n",xb.toString());
 }

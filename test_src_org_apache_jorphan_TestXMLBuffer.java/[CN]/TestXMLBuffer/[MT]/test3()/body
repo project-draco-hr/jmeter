@@ -2,5 +2,5 @@
   XMLBuffer xb=new XMLBuffer();
   xb.openTag("abc");
   xb.closeTag("abc");
-  assertEquals("<abc></abc>",xb.toString());
+  assertEquals("<abc></abc>\n",xb.toString());
 }
