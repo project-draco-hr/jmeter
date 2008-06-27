@@ -14,7 +14,7 @@
  else   if (PostProcessor.class.isAssignableFrom(testBeanClass) || PreProcessor.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultExtractorMenu();
   }
- else   if (AbstractListenerElement.class.isAssignableFrom(testBeanClass)) {
+ else   if (Visualizer.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultVisualizerMenu();
   }
  else {
