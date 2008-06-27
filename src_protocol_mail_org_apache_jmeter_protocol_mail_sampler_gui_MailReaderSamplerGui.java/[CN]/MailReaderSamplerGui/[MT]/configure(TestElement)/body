@@ -28,5 +28,6 @@
     someMessagesField.setText(mrs.getNumMessagesString());
   }
   deleteBox.setSelected(mrs.getDeleteMessages());
+  storeMimeMessageBox.setSelected(mrs.isStoreMimeMessage());
   super.configure(element);
 }

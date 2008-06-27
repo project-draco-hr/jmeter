@@ -1,0 +1,50 @@
+{
+  cdata.append("Date: ");
+  cdata.append(message.getSentDate());
+  cdata.append(NEW_LINE);
+  cdata.append("To: ");
+  Address[] recips=message.getAllRecipients();
+  for (int j=0; j < recips.length; j++) {
+    cdata.append(recips[j].toString());
+    if (j < recips.length - 1) {
+      cdata.append("; ");
+    }
+  }
+  cdata.append(NEW_LINE);
+  cdata.append("From: ");
+  Address[] from=message.getFrom();
+  for (int j=0; j < from.length; j++) {
+    cdata.append(from[j].toString());
+    if (j < from.length - 1) {
+      cdata.append("; ");
+    }
+  }
+  cdata.append(NEW_LINE);
+  cdata.append("Subject: ");
+  cdata.append(message.getSubject());
+  cdata.append(NEW_LINE);
+  cdata.append(NEW_LINE);
+  Object content=message.getContent();
+  if (content instanceof MimeMultipart) {
+    MimeMultipart mmp=(MimeMultipart)content;
+    int count=mmp.getCount();
+    cdata.append("Multipart. Count: ");
+    cdata.append(count);
+    cdata.append(NEW_LINE);
+    for (int j=0; j < count; j++) {
+      BodyPart bodyPart=mmp.getBodyPart(j);
+      cdata.append("Type: ");
+      cdata.append(bodyPart.getContentType());
+      cdata.append(NEW_LINE);
+      try {
+        cdata.append(bodyPart.getContent());
+      }
+ catch (      UnsupportedEncodingException ex) {
+        cdata.append(ex.getLocalizedMessage());
+      }
+    }
+  }
+ else {
+    cdata.append(content);
+  }
+}
