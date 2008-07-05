@@ -27,6 +27,10 @@ String delim=getDelimiter();
 if (delim.equals("\\t")) {
 delim="\t";
 }
+ else if (delim.length() == 0) {
+log.warn("Empty delimiter converted to ','");
+delim=",";
+}
 JMeterVariables threadVars=context.getVariables();
 String line=server.readLine(alias,getRecycle());
 if (line != null) {
