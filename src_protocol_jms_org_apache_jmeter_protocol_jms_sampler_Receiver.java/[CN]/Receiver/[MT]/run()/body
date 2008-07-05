@@ -21,20 +21,24 @@
       log.error("Error handling receive",e1);
     }
   }
-  if (session != null) {
+  if (consumer != null) {
     try {
-      session.close();
-      try {
-        if (conn != null) {
-          conn.close();
-        }
-      }
- catch (      JMSException e) {
-        log.error("Error closing connection",e);
-      }
+      consumer.close();
     }
  catch (    JMSException e) {
-      log.error("Error closing session",e);
+      log.error("Error closing connection",e);
     }
+  }
+  try {
+    session.close();
+  }
+ catch (  JMSException e) {
+    log.error("Error closing session",e);
+  }
+  try {
+    conn.close();
+  }
+ catch (  JMSException e) {
+    log.error("Error closing connection",e);
   }
 }
