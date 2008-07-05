@@ -1,0 +1,91 @@
+{
+  SampleResult transactionResult=null;
+  try {
+    threadContext.setCurrentSampler(current);
+    TransactionSampler transactionSampler=null;
+    if (current instanceof TransactionSampler) {
+      transactionSampler=(TransactionSampler)current;
+    }
+    SamplePackage transactionPack=null;
+    if (transactionSampler != null) {
+      transactionPack=compiler.configureTransactionSampler(transactionSampler);
+      if (transactionSampler.isTransactionDone()) {
+        transactionResult=transactionSampler.getTransactionResult();
+        transactionResult.setThreadName(threadName);
+        transactionResult.setGroupThreads(threadGroup.getNumberOfThreads());
+        transactionResult.setAllThreads(JMeterContextService.getNumberOfThreads());
+        checkAssertions(transactionPack.getAssertions(),transactionResult);
+        if (!(parent instanceof TransactionSampler)) {
+          notifyListeners(transactionPack.getSampleListeners(),transactionResult);
+        }
+        compiler.done(transactionPack);
+        current=null;
+      }
+ else {
+        Sampler prev=current;
+        current=transactionSampler.getSubSampler();
+        if (current instanceof TransactionSampler) {
+          SampleResult res=process_sampler(current,prev);
+          threadContext.setCurrentSampler(prev);
+          current=null;
+          if (res != null) {
+            transactionSampler.addSubSamplerResult(res);
+          }
+        }
+      }
+    }
+    if (current != null) {
+      SamplePackage pack=compiler.configureSampler(current);
+      threadVars.putObject(PACKAGE_OBJECT,pack);
+      delay(pack.getTimers());
+      Sampler sampler=pack.getSampler();
+      sampler.setThreadContext(threadContext);
+      sampler.setThreadName(threadName);
+      TestBeanHelper.prepare(sampler);
+      SampleResult result=sampler.sample(null);
+      if (result != null) {
+        result.setGroupThreads(threadGroup.getNumberOfThreads());
+        result.setAllThreads(JMeterContextService.getNumberOfThreads());
+        result.setThreadName(threadName);
+        threadContext.setPreviousResult(result);
+        runPostProcessors(pack.getPostProcessors());
+        checkAssertions(pack.getAssertions(),result);
+        List sampleListeners=getSampleListeners(pack,transactionPack,transactionSampler);
+        notifyListeners(sampleListeners,result);
+        compiler.done(pack);
+        if (transactionSampler != null) {
+          transactionSampler.addSubSamplerResult(result);
+        }
+        if (result.isStopThread() || (!result.isSuccessful() && onErrorStopThread)) {
+          stopThread();
+        }
+        if (result.isStopTest() || (!result.isSuccessful() && onErrorStopTest)) {
+          stopTest();
+        }
+      }
+ else {
+        compiler.done(pack);
+      }
+    }
+    if (scheduler) {
+      stopScheduler();
+    }
+  }
+ catch (  JMeterStopTestException e) {
+    log.info("Stopping Test: " + e.toString());
+    stopTest();
+  }
+catch (  JMeterStopThreadException e) {
+    log.info("Stopping Thread: " + e.toString());
+    stopThread();
+  }
+catch (  Exception e) {
+    if (current != null) {
+      log.error("Error while processing sampler '" + current.getName() + "' :",e);
+    }
+ else {
+      log.error("",e);
+    }
+  }
+  return transactionResult;
+}
