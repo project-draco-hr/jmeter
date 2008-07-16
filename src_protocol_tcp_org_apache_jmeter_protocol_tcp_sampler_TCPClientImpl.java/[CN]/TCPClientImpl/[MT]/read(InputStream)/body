@@ -10,7 +10,9 @@
       }
     }
   }
- catch (  InterruptedIOException e) {
+ catch (  SocketTimeoutException e) {
+  }
+catch (  InterruptedIOException e) {
   }
 catch (  IOException e) {
     log.warn("Read error:" + e);
