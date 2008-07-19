@@ -1,0 +1,4 @@
+{
+  String rawString=((CompoundVariable)values[0]).execute();
+  return StringEscapeUtils.escapeHtml(rawString);
+}

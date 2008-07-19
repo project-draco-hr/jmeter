@@ -1,0 +1,4 @@
+{
+  String escapedString=((CompoundVariable)values[0]).execute();
+  return StringEscapeUtils.unescapeHtml(escapedString);
+}
