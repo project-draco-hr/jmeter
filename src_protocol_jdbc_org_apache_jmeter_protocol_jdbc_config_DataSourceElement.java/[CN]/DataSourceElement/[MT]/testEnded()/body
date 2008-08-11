@@ -12,6 +12,6 @@ synchronized (this) {
       log.debug("Disposing pool: " + dsc.getInstrumentableName() + " @"+ System.identityHashCode(dsc));
       dsc.dispose();
     }
-    perThreadPoolSet.clear();
+    perThreadPoolSet=null;
   }
 }
