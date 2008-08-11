@@ -1,7 +1,7 @@
 {
   File furl=new File(path);
   try {
-    loader.addURL(furl.toURL());
+    loader.addURL(furl.toURI().toURL());
   }
  catch (  MalformedURLException e) {
     e.printStackTrace();

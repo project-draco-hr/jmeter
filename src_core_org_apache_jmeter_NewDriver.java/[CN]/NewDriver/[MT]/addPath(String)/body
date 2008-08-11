@@ -1,13 +1,9 @@
 {
   File file=new File(path);
-  URL url;
   if (file.isDirectory() && !path.endsWith("/")) {
-    url=new URL("file","",path + "/");
+    file=new File(path + "/");
   }
- else {
-    url=new URL("file","",path);
-  }
-  loader.addURL(url);
+  loader.addURL(file.toURI().toURL());
   StringBuffer sb=new StringBuffer(System.getProperty(JAVA_CLASS_PATH));
   sb.append(CLASSPATH_SEPARATOR);
   sb.append(path);
