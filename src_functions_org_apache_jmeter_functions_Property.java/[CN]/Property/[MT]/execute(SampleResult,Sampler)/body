@@ -8,7 +8,10 @@
   if (values.length > 1) {
     String variableName=((CompoundVariable)values[1]).execute();
     if (variableName.length() > 0) {
-      getVariables().put(variableName,propertyValue);
+      final JMeterVariables variables=getVariables();
+      if (variables != null) {
+        variables.put(variableName,propertyValue);
+      }
     }
   }
   return propertyValue;
