@@ -1,0 +1,7 @@
+{
+  if (!isGZIP(file)) {
+    return new BufferedReader(new FileReader(file));
+  }
+  GZIPInputStream in=new GZIPInputStream(new FileInputStream(file));
+  return new BufferedReader(new InputStreamReader(in));
+}

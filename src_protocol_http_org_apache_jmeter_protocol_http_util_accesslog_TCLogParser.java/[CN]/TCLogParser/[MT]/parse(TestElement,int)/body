@@ -1,10 +1,10 @@
 {
   if (this.SOURCE == null) {
-    this.SOURCE=this.openFile(this.FILENAME);
+    this.SOURCE=new File(this.FILENAME);
   }
   try {
     if (this.READER == null) {
-      this.READER=new BufferedReader(new FileReader(this.SOURCE));
+      this.READER=getReader(this.SOURCE);
     }
     return parse(this.READER,el,parseCount);
   }

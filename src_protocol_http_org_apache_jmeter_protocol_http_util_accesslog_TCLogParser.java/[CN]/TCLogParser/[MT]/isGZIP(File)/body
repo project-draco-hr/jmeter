@@ -1,0 +1,9 @@
+{
+  FileInputStream in=new FileInputStream(file);
+  try {
+    return in.read() == (GZIPInputStream.GZIP_MAGIC & 0xFF) && in.read() == (GZIPInputStream.GZIP_MAGIC >> 8);
+  }
+  finally {
+    in.close();
+  }
+}
