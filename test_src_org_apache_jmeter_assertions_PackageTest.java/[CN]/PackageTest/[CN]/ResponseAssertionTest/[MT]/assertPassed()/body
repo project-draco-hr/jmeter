@@ -1,7 +1,6 @@
 {
-  if (null != result.getFailureMessage()) {
-  }
   assertNull(result.getFailureMessage(),result.getFailureMessage());
-  assertFalse(result.isError());
-  assertFalse(result.isFailure());
+  assertFalse("Not expecting error: " + result.getFailureMessage(),result.isError());
+  assertFalse("Not expecting error",result.isError());
+  assertFalse("Not expecting failure",result.isFailure());
 }

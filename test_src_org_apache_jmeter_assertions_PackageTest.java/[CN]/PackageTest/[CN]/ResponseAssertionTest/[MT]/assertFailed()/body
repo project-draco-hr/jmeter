@@ -1,6 +1,6 @@
 {
   assertNotNull(result.getFailureMessage());
   assertFalse("Should not be: Response was null","Response was null".equals(result.getFailureMessage()));
-  assertFalse(result.isError());
-  assertTrue(result.isFailure());
+  assertFalse("Not expecting error: " + result.getFailureMessage(),result.isError());
+  assertTrue("Expecting failure",result.isFailure());
 }
