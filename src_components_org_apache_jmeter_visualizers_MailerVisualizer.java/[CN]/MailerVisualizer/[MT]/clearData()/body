@@ -1,5 +1,7 @@
 {
   if (getModel() != null) {
-    ((MailerResultCollector)getModel()).getMailerModel().clear();
+    MailerModel model=((MailerResultCollector)getModel()).getMailerModel();
+    model.clear();
+    updateVisualizer(model);
   }
 }
