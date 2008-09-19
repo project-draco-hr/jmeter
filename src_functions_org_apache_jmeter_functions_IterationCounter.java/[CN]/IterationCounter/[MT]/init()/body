@@ -1,4 +1,7 @@
 {
+synchronized (this) {
+    globalCounter=0;
+  }
   perThreadInt=new ThreadLocal(){
     protected synchronized Object initialValue(){
       return new Integer(0);
