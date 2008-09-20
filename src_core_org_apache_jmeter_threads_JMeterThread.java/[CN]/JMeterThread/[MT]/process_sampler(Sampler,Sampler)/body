@@ -36,6 +36,7 @@
     }
     if (current != null) {
       SamplePackage pack=compiler.configureSampler(current);
+      runPreProcessors(pack.getPreProcessors());
       threadVars.putObject(PACKAGE_OBJECT,pack);
       delay(pack.getTimers());
       Sampler sampler=pack.getSampler();

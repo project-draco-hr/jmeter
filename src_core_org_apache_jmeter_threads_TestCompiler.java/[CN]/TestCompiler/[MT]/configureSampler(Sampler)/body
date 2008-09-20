@@ -2,6 +2,5 @@
   SamplePackage pack=(SamplePackage)samplerConfigMap.get(sampler);
   pack.setSampler(sampler);
   configureWithConfigElements(sampler,pack.getConfigs());
-  runPreProcessors(pack.getPreProcessors());
   return pack;
 }
