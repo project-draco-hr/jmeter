@@ -1,0 +1,17 @@
+{
+  final String minAsString=getMinimumValue();
+  minimum=NumberUtils.toLong(minAsString);
+  final String maxAsString=getMaximumValue();
+  long maximum=NumberUtils.toLong(maxAsString);
+  long rangeL=maximum - minimum + 1;
+  if (minimum >= maximum) {
+    log.error("maximum(" + maxAsString + ") must be > minimum"+ minAsString+ ")");
+    n=0;
+    return;
+  }
+  if (rangeL > Integer.MAX_VALUE || rangeL <= 0) {
+    log.warn("maximum(" + maxAsString + ") - minimum"+ minAsString+ ") must be <="+ Integer.MAX_VALUE);
+    rangeL=Integer.MAX_VALUE;
+  }
+  n=(int)rangeL;
+}

@@ -1,0 +1,16 @@
+{
+  long seed=0;
+  if (randomSeed.length() == 0) {
+    seed=System.currentTimeMillis();
+  }
+ else {
+    try {
+      seed=Long.parseLong(randomSeed);
+    }
+ catch (    NumberFormatException e) {
+      seed=System.currentTimeMillis();
+      log.warn("Cannot parse seed " + e.getLocalizedMessage());
+    }
+  }
+  return seed;
+}

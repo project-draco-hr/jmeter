@@ -1,0 +1,21 @@
+{
+  Random randGen=null;
+  if (getPerThread()) {
+    randGen=(Random)perThreadRandom.get();
+  }
+ else {
+synchronized (this) {
+      if (globalRandom == null) {
+        init();
+        globalRandom=new Random(getRandomSeedAsLong());
+      }
+      randGen=globalRandom;
+    }
+  }
+  if (n <= 0) {
+    return;
+  }
+  long nextRand=minimum + randGen.nextInt(n);
+  JMeterVariables variables=JMeterContextService.getContext().getVariables();
+  variables.put(getVariableName(),formatNumber(nextRand));
+}
