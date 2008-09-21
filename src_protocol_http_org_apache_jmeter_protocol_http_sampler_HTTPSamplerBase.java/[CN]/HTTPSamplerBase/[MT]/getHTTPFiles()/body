@@ -3,9 +3,9 @@
     return fileList;
   }
   HTTPFileArg[] outFiles;
-  String fileName=getFilenameProperty();
-  String paramName=getFileFieldProperty();
-  String mimeType=getMimetypeProperty();
+  JMeterProperty fileName=getProperty(FILE_NAME);
+  JMeterProperty paramName=getProperty(FILE_FIELD);
+  JMeterProperty mimeType=getProperty(MIMETYPE);
   HTTPFileArg file=new HTTPFileArg(fileName,paramName,mimeType);
   if (file.isNotEmpty()) {
     final HTTPFileArgs fileArgs=getHTTPFileArgs();
