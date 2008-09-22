@@ -131,5 +131,13 @@ catch (  Exception exception) {
       throw new RuntimeException(exception);
     }
   }
+ finally {
+    if (result.getStartTime() == 0) {
+      result.sampleStart();
+    }
+    if (result.getEndTime() == 0) {
+      result.sampleEnd();
+    }
+  }
   return result;
 }
