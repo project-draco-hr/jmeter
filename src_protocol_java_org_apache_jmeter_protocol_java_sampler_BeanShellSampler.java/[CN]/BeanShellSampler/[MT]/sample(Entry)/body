@@ -52,7 +52,7 @@
     log.error("BeanShell Jar missing? " + ex.toString());
     res.setResponseCode("501");
     res.setResponseMessage(ex.toString());
-    res.setStopThread(true);
+    JMeterContextService.getContext().getThread().setOnErrorStopThread(true);
   }
 catch (  Exception ex) {
     log.warn(ex.toString());
