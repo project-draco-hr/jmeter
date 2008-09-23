@@ -43,7 +43,7 @@
     log.error("BeanShell Jar missing? " + ex.toString());
     result.setError(true);
     result.setFailureMessage("BeanShell Jar missing? " + ex.toString());
-    JMeterContextService.getContext().getThread().setOnErrorStopThread(true);
+    response.setStopThread(true);
   }
 catch (  Exception ex) {
     result.setError(true);
