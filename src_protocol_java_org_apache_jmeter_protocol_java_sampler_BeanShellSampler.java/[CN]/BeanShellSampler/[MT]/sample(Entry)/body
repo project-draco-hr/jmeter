@@ -52,7 +52,7 @@
     log.error("BeanShell Jar missing? " + ex.toString());
     res.setResponseCode("501");
     res.setResponseMessage(ex.toString());
-    response.setStopThread(true);
+    res.setStopThread(true);
   }
 catch (  Exception ex) {
     log.warn(ex.toString());
