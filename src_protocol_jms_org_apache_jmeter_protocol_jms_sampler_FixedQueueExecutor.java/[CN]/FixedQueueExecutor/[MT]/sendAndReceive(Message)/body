@@ -1,10 +1,13 @@
 {
   String id=request.getJMSCorrelationID();
-  if (id == null) {
+  if (id == null && !useReqMsgIdAsCorrelId) {
     log.error("Correlation id is null. Set the JMSCorrelationID header");
     return null;
   }
   producer.send(request);
+  if (useReqMsgIdAsCorrelId) {
+    id=request.getJMSMessageID();
+  }
   MessageAdmin.getAdmin().putRequest(id,request);
   try {
     if (log.isDebugEnabled()) {
