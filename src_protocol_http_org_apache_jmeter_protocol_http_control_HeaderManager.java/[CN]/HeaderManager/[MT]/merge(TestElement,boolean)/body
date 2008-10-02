@@ -1,0 +1,31 @@
+{
+  if (!(element instanceof HeaderManager)) {
+    throw new IllegalArgumentException("Cannot merge type:" + this.getClass().getName() + " with type:"+ element.getClass().getName());
+  }
+  HeaderManager merged=(HeaderManager)this.clone();
+  HeaderManager other=(HeaderManager)element;
+  for (int i=0; i < other.getHeaders().size(); i++) {
+    Header otherHeader=other.get(i);
+    boolean found=false;
+    for (int j=0; j < merged.getHeaders().size(); j++) {
+      Header mergedHeader=merged.get(j);
+      if (mergedHeader.getName().equalsIgnoreCase(otherHeader.getName())) {
+        found=true;
+        if (!preferLocalValues) {
+          if ((otherHeader.getValue() == null) || (otherHeader.getValue().length() == 0)) {
+            merged.remove(j);
+          }
+ else {
+            mergedHeader.setValue(otherHeader.getValue());
+          }
+        }
+        break;
+      }
+    }
+    if (!found) {
+      merged.add(otherHeader);
+    }
+  }
+  merged.setName(merged.getName() + ":" + other.getName());
+  return merged;
+}
