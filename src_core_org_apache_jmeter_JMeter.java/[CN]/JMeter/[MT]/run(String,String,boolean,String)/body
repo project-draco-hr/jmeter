@@ -49,6 +49,7 @@
       while (st.hasMoreElements()) {
         String el=(String)st.nextElement();
         println("Configuring remote engine for " + el);
+        log.info("Configuring remote engine for " + el);
         engines.add(doRemoteInit(el.trim(),tree));
       }
       println("Starting remote engines");
@@ -57,7 +58,9 @@
       Iterator iter=engines.iterator();
       while (iter.hasNext()) {
         engine=(JMeterEngine)iter.next();
-        engine.runTest();
+        if (engine != null) {
+          engine.runTest();
+        }
       }
       println("Remote engines have been started");
     }
