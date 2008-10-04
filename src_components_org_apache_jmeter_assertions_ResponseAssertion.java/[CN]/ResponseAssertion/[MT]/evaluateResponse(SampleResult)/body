@@ -1,6 +1,6 @@
 {
   boolean pass=true;
-  boolean not=(NOT & getTestType()) > 0;
+  boolean notTest=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult(getName());
   String toCheck="";
   if (getAssumeSuccess()) {
@@ -19,23 +19,27 @@
     toCheck=response.getResponseHeaders();
   }
  else {
-    toCheck=response.getSamplerData();
-    if (toCheck == null) {
-      toCheck="";
+    toCheck="";
+    final URL url=response.getURL();
+    if (url != null) {
+      toCheck=url.toString();
     }
-  }
-  if (toCheck.length() == 0) {
-    return result.setResultForNull();
   }
   result.setFailure(false);
   result.setError(false);
+  if (toCheck.length() == 0) {
+    if (notTest) {
+      return result;
+    }
+    return result.setResultForNull();
+  }
   boolean contains=isContainsType();
   boolean equals=isEqualsType();
   boolean substring=isSubstringType();
   boolean matches=isMatchType();
   boolean debugEnabled=log.isDebugEnabled();
   if (debugEnabled) {
-    log.debug("Type:" + (contains ? "Contains" : "Match") + (not ? "(not)" : ""));
+    log.debug("Type:" + (contains ? "Contains" : "Match") + (notTest ? "(not)" : ""));
   }
   try {
     Perl5Matcher localMatcher=JMeterUtils.getMatcher();
@@ -59,7 +63,7 @@
  else {
         found=localMatcher.matches(toCheck,pattern);
       }
-      pass=not ? !found : found;
+      pass=notTest ? !found : found;
       if (!pass) {
         if (debugEnabled) {
           log.debug("Failed: " + stringPattern);

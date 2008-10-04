@@ -7,7 +7,7 @@
   jmctx.setVariables(vars);
   jmctx.setPreviousResult(sample);
   sample.setResponseData(("response Data\n" + "line 2\n\nEOF").getBytes());
-  sample.setSamplerData("Sampler Label");
+  sample.setURL(new URL("http://localhost/Sampler/Data/"));
   sample.setResponseCode("401");
   sample.setResponseHeaders("X-Header: abcd");
 }
