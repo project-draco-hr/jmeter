@@ -43,7 +43,7 @@
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
       put.getRequestEntity().writeRequest(bos);
       bos.flush();
-      putBody.append(new String(bos.toByteArray(),"UTF-8"));
+      putBody.append(new String(bos.toByteArray(),put.getRequestCharSet()));
       bos.close();
     }
  else {
