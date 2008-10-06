@@ -25,14 +25,13 @@
       connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,files[0].getMimeType());
     }
     ByteArrayOutputStream bos=new ByteArrayOutputStream();
-    StringBuffer postBodyBuffer=new StringBuffer();
+    StringBuffer putBodyBuffer=new StringBuffer();
     PropertyIterator args=sampler.getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-      postBodyBuffer.append(arg.getEncodedValue(contentEncoding));
+      putBodyBuffer.append(arg.getEncodedValue(contentEncoding));
     }
-    String postBody=postBodyBuffer.toString();
-    bos.write(postBody.getBytes("UTF-8"));
+    bos.write(putBodyBuffer.toString().getBytes(contentEncoding));
     bos.flush();
     bos.close();
     formDataUrlEncoded=bos.toByteArray();
