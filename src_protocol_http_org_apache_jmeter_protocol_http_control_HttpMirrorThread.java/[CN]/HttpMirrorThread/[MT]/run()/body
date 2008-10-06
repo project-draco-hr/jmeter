@@ -22,11 +22,12 @@
       headers.append(new String(buffer,0,length,ISO_8859_1));
       positionOfBody=getPositionOfBody(headers.toString());
     }
-    String contentLengthHeaderValue=getRequestHeaderValue(headers.toString(),"Content-Length");
+    final String headerString=headers.toString();
+    String contentLengthHeaderValue=getRequestHeaderValue(headerString,"Content-Length");
     if (contentLengthHeaderValue != null) {
       contentLength=new Integer(contentLengthHeaderValue).intValue();
     }
-    String transferEncodingHeaderValue=getRequestHeaderValue(headers.toString(),"Transfer-Encoding");
+    String transferEncodingHeaderValue=getRequestHeaderValue(headerString,"Transfer-Encoding");
     if (transferEncodingHeaderValue != null) {
       isChunked=transferEncodingHeaderValue.equalsIgnoreCase("chunked");
       if (!isChunked) {
@@ -35,7 +36,7 @@
     }
     length=0;
     if (contentLength > 0) {
-      int totalReadBytes=headers.toString().length() - positionOfBody - 2;
+      int totalReadBytes=headerString.length() - positionOfBody - 2;
       while ((totalReadBytes < contentLength) && ((length=in.read(buffer)) != -1)) {
         out.write(buffer,0,length);
         totalReadBytes+=length;
