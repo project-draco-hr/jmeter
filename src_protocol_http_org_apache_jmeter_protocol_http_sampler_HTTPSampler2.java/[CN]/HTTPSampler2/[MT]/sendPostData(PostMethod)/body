@@ -39,7 +39,7 @@
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
       multiPart.writeRequest(bos);
       bos.flush();
-      postedBody.append(new String(bos.toByteArray(),post.getRequestCharSet()));
+      postedBody.append(new String(bos.toByteArray(),contentEncoding == null ? "US-ASCII" : contentEncoding));
       bos.close();
       for (int i=0; i < partNo; i++) {
         if (parts[i] instanceof ViewableFilePart) {
@@ -98,7 +98,7 @@
           }
           postBody.append(value);
         }
-        StringRequestEntity requestEntity=new StringRequestEntity(postBody.toString(),post.getRequestHeader(HEADER_CONTENT_TYPE).getValue(),post.getRequestCharSet());
+        StringRequestEntity requestEntity=new StringRequestEntity(postBody.toString(),post.getRequestHeader(HEADER_CONTENT_TYPE).getValue(),contentEncoding);
         post.setRequestEntity(requestEntity);
       }
  else {
