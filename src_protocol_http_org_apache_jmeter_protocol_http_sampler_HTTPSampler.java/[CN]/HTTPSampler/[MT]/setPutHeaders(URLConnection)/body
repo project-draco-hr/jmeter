@@ -1,4 +1,4 @@
 {
-  postWriter=new PutWriter();
-  postWriter.setHeaders(conn,this);
+  postOrPutWriter=new PutWriter();
+  postOrPutWriter.setHeaders(conn,this);
 }
