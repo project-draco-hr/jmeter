@@ -69,11 +69,14 @@
       postedBody.append("<actual file content, not shown here>");
     }
  else {
-      final String contentEncoding=getContentEncoding();
+      String contentEncoding=getContentEncoding();
       boolean haveContentEncoding=false;
       if (contentEncoding != null && contentEncoding.trim().length() > 0) {
         post.getParams().setContentCharset(contentEncoding);
         haveContentEncoding=true;
+      }
+ else       if (contentEncoding != null && contentEncoding.trim().length() == 0) {
+        contentEncoding=null;
       }
       if (getSendParameterValuesAsPostBody()) {
         if (!hasContentTypeHeader) {
