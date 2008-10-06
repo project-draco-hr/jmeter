@@ -14,8 +14,8 @@
     int content_len=setPostHeaders(httpMethod);
     client=setupConnection(url,httpMethod,res);
     res.setQueryString(sendPostData(httpMethod,content_len));
-    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     int statusCode=client.executeMethod(httpMethod);
+    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
       org.apache.commons.httpclient.Header responseHeader=httpMethod.getResponseHeader(TRANSFER_ENCODING);

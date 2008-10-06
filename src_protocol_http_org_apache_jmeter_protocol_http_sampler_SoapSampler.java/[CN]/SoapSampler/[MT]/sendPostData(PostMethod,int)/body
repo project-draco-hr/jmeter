@@ -9,14 +9,15 @@
         return true;
       }
       public void writeRequest(      OutputStream out) throws IOException {
-        byte[] buf=new byte[1024];
-        int read;
-        InputStream in=new FileInputStream(xmlFile);
-        while ((read=in.read(buf)) > 0) {
-          out.write(buf,0,read);
+        InputStream in=null;
+        try {
+          in=new FileInputStream(xmlFile);
+          IOUtils.copy(in,out);
+          out.flush();
         }
-        in.close();
-        out.flush();
+  finally {
+          IOUtils.closeQuietly(in);
+        }
       }
       public long getContentLength(){
 switch (length) {
@@ -41,15 +42,14 @@ public boolean isRepeatable(){
   return true;
 }
 public void writeRequest(OutputStream out) throws IOException {
-  PrintWriter printer=new PrintWriter(out);
-  printer.print(getXmlData());
-  printer.flush();
+  IOUtils.write(getXmlData(),out,"utf-8");
+  out.flush();
 }
 public long getContentLength(){
   return getXmlData().getBytes().length;
 }
 public String getContentType(){
-  return "text/xml";
+  return "text/xml; charset=utf-8";
 }
 }
 );
