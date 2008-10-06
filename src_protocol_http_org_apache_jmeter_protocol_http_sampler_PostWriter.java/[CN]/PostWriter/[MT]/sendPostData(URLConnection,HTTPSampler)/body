@@ -1,28 +1,32 @@
 {
   StringBuffer postedBody=new StringBuffer(1000);
   HTTPFileArg files[]=sampler.getHTTPFiles();
+  String contentEncoding=sampler.getContentEncoding();
+  if (contentEncoding == null || contentEncoding.length() == 0) {
+    contentEncoding=ENCODING;
+  }
   if (sampler.getUseMultipartForPost()) {
     OutputStream out=connection.getOutputStream();
     out.write(formDataPostBody);
-    postedBody.append(new String(formDataPostBody,"UTF-8"));
+    postedBody.append(new String(formDataPostBody,contentEncoding));
     for (int i=0; i < files.length; i++) {
       HTTPFileArg file=files[i];
       byte[] header=file.getHeader().getBytes();
       out.write(header);
-      postedBody.append(new String(header,"UTF-8"));
+      postedBody.append(new String(header));
       writeFileToStream(file.getPath(),out);
       postedBody.append("<actual file content, not shown here>");
       byte[] fileMultipartEndDivider=getFileMultipartEndDivider();
       out.write(fileMultipartEndDivider);
-      postedBody.append(new String(fileMultipartEndDivider,"UTF-8"));
+      postedBody.append(new String(fileMultipartEndDivider,ENCODING));
       if (i + 1 < files.length) {
         out.write(CRLF);
-        postedBody.append(new String(CRLF,"UTF-8"));
+        postedBody.append(new String(CRLF));
       }
     }
     byte[] multipartEndDivider=getMultipartEndDivider();
     out.write(multipartEndDivider);
-    postedBody.append(new String(multipartEndDivider,"UTF-8"));
+    postedBody.append(new String(multipartEndDivider,ENCODING));
     out.flush();
     out.close();
   }
@@ -40,7 +44,7 @@
       out.write(formDataUrlEncoded);
       out.flush();
       out.close();
-      postedBody.append(new String(formDataUrlEncoded,"UTF-8"));
+      postedBody.append(new String(formDataUrlEncoded,contentEncoding));
     }
   }
   return postedBody.toString();

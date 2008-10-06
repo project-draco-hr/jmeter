@@ -31,7 +31,7 @@
       bos=new ByteArrayOutputStream();
       writeStartFileMultipart(bos,file.getPath(),file.getParamName(),file.getMimeType());
       bos.flush();
-      String header=bos.toString();
+      String header=bos.toString(contentEncoding);
       file.setHeader(header);
       bos.close();
       contentLength+=header.length();
@@ -90,7 +90,7 @@
         }
         postBody=postBodyBuffer.toString();
       }
-      bos.write(postBody.getBytes("UTF-8"));
+      bos.write(postBody.getBytes(contentEncoding));
       bos.flush();
       bos.close();
       formDataUrlEncoded=bos.toByteArray();
