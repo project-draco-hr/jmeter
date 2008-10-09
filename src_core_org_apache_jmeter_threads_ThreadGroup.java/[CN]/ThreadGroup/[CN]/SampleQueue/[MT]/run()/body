@@ -5,8 +5,7 @@
       event=(SampleEvent)occurredQ.remove(0);
     }
  catch (    Exception ex) {
-      waitForSamples();
-      continue;
+      log.warn("Problem removing an item from the queue",ex);
     }
     try {
       if (event != null) {
@@ -20,12 +19,17 @@
             ((RemoteSampleListener)iter.next()).sampleOccurred(event);
           }
  catch (          Exception ex) {
-            log.error("",ex);
+            log.error("Could not invoke sampleOccured on remote listener",ex);
           }
         }
       }
  else {
-        waitForSamples();
+        try {
+          this.wait();
+        }
+ catch (        Exception ex) {
+          log.warn("Error occured during wait",ex);
+        }
       }
     }
  catch (    Throwable ex) {
