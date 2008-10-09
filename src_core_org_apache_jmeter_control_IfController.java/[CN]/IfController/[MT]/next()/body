@@ -1,7 +1,7 @@
 {
   boolean result=true;
   if (isEvaluateAll() || isFirst()) {
-    result=evaluateCondition(getCondition());
+    result=isUseExpression() ? evaluateExpression(getCondition()) : evaluateCondition(getCondition());
   }
   if (result) {
     return super.next();

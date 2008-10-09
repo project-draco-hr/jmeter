@@ -4,5 +4,6 @@
     IfController ifController=(IfController)controller;
     ifController.setCondition(theCondition.getText());
     ifController.setEvaluateAll(evaluateAll.isSelected());
+    ifController.setUseExpression(useExpression.isSelected());
   }
 }
