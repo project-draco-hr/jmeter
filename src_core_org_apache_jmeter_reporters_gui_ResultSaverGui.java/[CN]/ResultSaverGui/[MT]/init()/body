@@ -9,5 +9,7 @@
   box.add(errorsOnly);
   successOnly=new JCheckBox(JMeterUtils.getResString("resultsaver_success"));
   box.add(successOnly);
+  skipAutoNumber=new JCheckBox(JMeterUtils.getResString("resultsaver_skipautonumber"));
+  box.add(skipAutoNumber);
   add(box,BorderLayout.NORTH);
 }

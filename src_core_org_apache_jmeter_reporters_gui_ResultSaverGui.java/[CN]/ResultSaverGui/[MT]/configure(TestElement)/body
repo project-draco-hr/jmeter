@@ -3,5 +3,6 @@
   filename.setText(el.getPropertyAsString(ResultSaver.FILENAME));
   errorsOnly.setSelected(el.getPropertyAsBoolean(ResultSaver.ERRORS_ONLY));
   successOnly.setSelected(el.getPropertyAsBoolean(ResultSaver.SUCCESS_ONLY));
+  skipAutoNumber.setSelected(el.getPropertyAsBoolean(ResultSaver.SKIP_AUTO_NUMBER));
   variableName.setText(el.getPropertyAsString(ResultSaver.VARIABLE_NAME,""));
 }
