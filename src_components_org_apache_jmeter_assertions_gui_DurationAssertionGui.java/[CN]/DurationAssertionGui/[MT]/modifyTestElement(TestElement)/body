@@ -1,4 +1,8 @@
 {
   configureTestElement(el);
-  el.setProperty(DurationAssertion.DURATION_KEY,duration.getText());
+  if (el instanceof DurationAssertion) {
+    DurationAssertion assertion=(DurationAssertion)el;
+    assertion.setProperty(DurationAssertion.DURATION_KEY,duration.getText());
+    saveScopeSettings(assertion);
+  }
 }

@@ -3,6 +3,7 @@
   Box box=Box.createVerticalBox();
   setBorder(makeBorder());
   box.add(makeTitlePanel());
+  box.add(createScopePanel());
   box.add(createFieldPanel());
   box.add(createTypePanel());
   add(box,BorderLayout.NORTH);

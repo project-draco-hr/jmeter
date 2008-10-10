@@ -2,7 +2,8 @@
   setLayout(new BorderLayout(0,10));
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
-  JPanel mainPanel=new JPanel(new BorderLayout());
+  JPanel mainPanel=new VerticalPanel();
+  mainPanel.add(createScopePanel());
   VerticalPanel durationPanel=new VerticalPanel();
   durationPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getDurationAttributesTitle()));
   JPanel labelPanel=new JPanel(new BorderLayout(5,0));
@@ -12,6 +13,6 @@
   labelPanel.add(duration,BorderLayout.CENTER);
   durationLabel.setLabelFor(duration);
   durationPanel.add(labelPanel);
-  mainPanel.add(durationPanel,BorderLayout.NORTH);
+  mainPanel.add(durationPanel);
   add(mainPanel,BorderLayout.CENTER);
 }

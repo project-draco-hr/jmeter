@@ -1,6 +1,7 @@
 {
   super.configure(el);
   ResponseAssertion model=(ResponseAssertion)el;
+  showScopeSettings(model);
   if (model.isContainsType()) {
     containsBox.setSelected(true);
   }

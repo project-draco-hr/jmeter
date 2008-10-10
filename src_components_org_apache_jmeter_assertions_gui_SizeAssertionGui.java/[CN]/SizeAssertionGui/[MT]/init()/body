@@ -2,8 +2,9 @@
   setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
+  add(createScopePanel());
   JPanel sizePanel=new JPanel();
-  sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getSizeAttributesTitle()));
+  sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("size_assertion_size_test")));
   sizePanel.add(new JLabel(JMeterUtils.getResString("size_assertion_label")));
   size=new JTextField(5);
   size.addFocusListener(this);

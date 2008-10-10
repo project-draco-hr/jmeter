@@ -8,6 +8,8 @@
  catch (  NumberFormatException e) {
     assertionSize=Long.MAX_VALUE;
   }
-  ((SizeAssertion)el).setAllowedSize(assertionSize);
-  ((SizeAssertion)el).setCompOper(getState());
+  SizeAssertion assertion=(SizeAssertion)el;
+  assertion.setAllowedSize(assertionSize);
+  assertion.setCompOper(getState());
+  saveScopeSettings(assertion);
 }
