@@ -1,6 +1,6 @@
 {
-  hosts.remove(host);
-  if (hosts.size() == 0) {
+  instanceCount--;
+  if (instanceCount <= 0) {
     finalizeFileOutput();
     inTest=false;
   }
