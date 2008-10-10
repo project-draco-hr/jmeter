@@ -1,0 +1,5 @@
+{
+  AssertionResult assertionResult=assertion.getResult(result);
+  result.setSuccessful(result.isSuccessful() && !(assertionResult.isError() || assertionResult.isFailure()));
+  result.addAssertionResult(assertionResult);
+}

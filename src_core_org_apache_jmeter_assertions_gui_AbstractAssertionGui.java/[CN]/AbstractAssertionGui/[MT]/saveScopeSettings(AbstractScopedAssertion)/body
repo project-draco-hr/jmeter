@@ -1,0 +1,11 @@
+{
+  if (assertionScopePanel.isScopeParent()) {
+    assertion.setScopeParent();
+  }
+ else   if (assertionScopePanel.isScopeChildren()) {
+    assertion.setScopeChildren();
+  }
+ else {
+    assertion.setScopeAll();
+  }
+}
