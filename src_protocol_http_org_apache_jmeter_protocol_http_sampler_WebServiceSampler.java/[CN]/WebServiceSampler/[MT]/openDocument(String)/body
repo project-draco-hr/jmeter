@@ -7,7 +7,14 @@
       TextFile tfile=new TextFile(file);
       fileContents=tfile.getText();
     }
-    doc=XDB.parse(new FileInputStream(file));
+    FileInputStream fileInputStream=null;
+    try {
+      fileInputStream=new FileInputStream(file);
+      doc=XDB.parse(fileInputStream);
+    }
+  finally {
+      IOUtils.closeQuietly(fileInputStream);
+    }
   }
  else {
     fileContents=getXmlData();

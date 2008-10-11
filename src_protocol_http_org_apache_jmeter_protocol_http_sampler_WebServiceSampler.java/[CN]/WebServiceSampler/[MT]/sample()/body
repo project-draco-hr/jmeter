@@ -9,6 +9,10 @@
     if (rdoc == null) {
       throw new SOAPException("Could not create document",null);
     }
+    result.setDataEncoding(ENCODING);
+    result.setContentType("text/xml");
+    result.setDataType(SampleResult.TEXT);
+    result.setSamplerData(fileContents);
     Envelope msgEnv=Envelope.unmarshall(rdoc);
     Message msg=new Message();
     result.sampleStart();
@@ -60,15 +64,18 @@
       this.getHeaderManager().setSOAPHeader(spconn);
     }
     SOAPTransport st=msg.getSOAPTransport();
-    result.setDataType(SampleResult.TEXT);
     BufferedReader br=null;
     if (st != null && st.receive() != null) {
       br=st.receive();
+      SOAPContext sc=st.getResponseSOAPContext();
+      final String contentType=sc.getContentType();
+      result.setContentType(contentType);
+      result.setEncodingAndType(contentType);
       if (getReadResponse()) {
         StringWriter sw=new StringWriter();
         IOUtils.copy(br,sw);
         result.sampleEnd();
-        result.setResponseData(sw.toString().getBytes());
+        result.setResponseData(sw.toString().getBytes(result.getDataEncodingWithDefault()));
       }
  else {
         br.read();
@@ -77,19 +84,23 @@
       }
       result.setSuccessful(true);
       result.setResponseCodeOK();
-      result.setResponseHeaders(this.convertSoapHeaders(st.getHeaders()));
     }
  else {
       result.sampleEnd();
       result.setSuccessful(false);
       if (st != null) {
-        result.setResponseData(st.getResponseSOAPContext().getContentType().getBytes());
+        final String contentType=st.getResponseSOAPContext().getContentType();
+        result.setContentType(contentType);
+        result.setEncodingAndType(contentType);
+        result.setResponseData(st.getResponseSOAPContext().toString().getBytes());
       }
-      result.setResponseHeaders("error");
     }
-    result.setSamplerData(fileContents);
     if (st != null) {
-      result.setEncodingAndType(st.getResponseSOAPContext().getContentType());
+      SOAPContext sc=st.getResponseSOAPContext();
+      result.setResponseHeaders(convertSoapHeaders(sc.getRootPart().getAllHeaderLines()));
+    }
+ else {
+      result.setResponseHeaders("error");
     }
     if (br != null) {
       br.close();
