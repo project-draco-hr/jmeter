@@ -41,6 +41,8 @@
     res.setResponseCode(Integer.toString(statusCode));
     res.setSuccessful(isSuccessCode(statusCode));
     res.setResponseMessage(httpMethod.getStatusText());
+    res.setDataEncoding(ENCODING);
+    res.setContentType(DEFAULT_CONTENT_TYPE);
     String ct=null;
     org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader(HEADER_CONTENT_TYPE);
     if (h != null) {

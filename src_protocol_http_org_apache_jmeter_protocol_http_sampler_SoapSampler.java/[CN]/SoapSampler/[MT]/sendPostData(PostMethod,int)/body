@@ -30,7 +30,7 @@ default :
   }
 }
 public String getContentType(){
-  return "text/xml";
+  return DEFAULT_CONTENT_TYPE;
 }
 }
 );
@@ -42,14 +42,20 @@ public boolean isRepeatable(){
   return true;
 }
 public void writeRequest(OutputStream out) throws IOException {
-  IOUtils.write(getXmlData(),out,"utf-8");
+  IOUtils.write(getXmlData(),out,ENCODING);
   out.flush();
 }
 public long getContentLength(){
-  return getXmlData().getBytes().length;
+  try {
+    return getXmlData().getBytes(ENCODING).length;
+  }
+ catch (  UnsupportedEncodingException e) {
+    log.warn(e.getLocalizedMessage());
+    return -1;
+  }
 }
 public String getContentType(){
-  return "text/xml; charset=utf-8";
+  return DEFAULT_CONTENT_TYPE + "; charset=" + ENCODING;
 }
 }
 );
