@@ -1,3 +1,9 @@
 {
-  responseData=response.getBytes();
+  try {
+    responseData=response.getBytes(getDataEncodingWithDefault());
+  }
+ catch (  UnsupportedEncodingException e) {
+    log.warn("Could not convert string, using default encoding. " + e.getLocalizedMessage());
+    responseData=response.getBytes();
+  }
 }
