@@ -4,5 +4,9 @@
   sb.append(getQueryType());
   sb.append("] ");
   sb.append(getQuery());
+  sb.append("\n");
+  sb.append(getQueryArguments());
+  sb.append("\n");
+  sb.append(getQueryArgumentsTypes());
   return sb.toString();
 }
