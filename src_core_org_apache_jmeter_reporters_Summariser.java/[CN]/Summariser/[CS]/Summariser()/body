@@ -1,3 +1,7 @@
 {
   super();
+synchronized (accumulators) {
+    accumulators.clear();
+    instanceCount=0;
+  }
 }
