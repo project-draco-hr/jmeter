@@ -5,7 +5,11 @@
     if (item instanceof ThreadGroup) {
       log.info("num threads = " + ((ThreadGroup)item).getNumThreads());
     }
-    if (item instanceof Remoteable && (item instanceof TestListener || item instanceof SampleListener)) {
+    if (item instanceof Remoteable) {
+      if (item instanceof ThreadListener) {
+        log.error("Cannot handle ThreadListener Remotable item " + item.getClass().getName());
+        continue;
+      }
       try {
         RemoteSampleListener rtl=new RemoteSampleListenerImpl(item);
         if (item instanceof TestListener && item instanceof SampleListener) {
@@ -16,9 +20,12 @@
           RemoteTestListenerWrapper wrap=new RemoteTestListenerWrapper(rtl);
           subTree.replace(item,wrap);
         }
- else {
+ else         if (item instanceof SampleListener) {
           RemoteSampleListenerWrapper wrap=new RemoteSampleListenerWrapper(rtl);
           subTree.replace(item,wrap);
+        }
+ else {
+          log.warn("Could not replace Remotable item " + item.getClass().getName());
         }
       }
  catch (      RemoteException e) {
