@@ -139,7 +139,8 @@ catch (  Exception exception) {
       result.setResponseMessage(exception.getMessage());
     }
  else {
-      throw new RuntimeException(exception);
+      log.error("Problem processing the SOAP request",exception);
+      result.setResponseMessage(exception.toString());
     }
   }
  finally {
