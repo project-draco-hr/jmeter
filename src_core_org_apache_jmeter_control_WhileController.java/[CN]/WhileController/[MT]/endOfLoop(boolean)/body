@@ -1,5 +1,5 @@
 {
-  String cnd=getCondition();
+  String cnd=getCondition().trim();
   log.debug("Condition string:" + cnd + ".");
   boolean res;
   if ((loopEnd && cnd.length() == 0) || "LAST".equalsIgnoreCase(cnd)) {
