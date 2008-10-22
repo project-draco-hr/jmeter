@@ -1,8 +1,11 @@
 {
-  if (out != null) {
-    writeFileEnd(out,getSaveConfig());
-    out.close();
-    files.remove(getFilename());
-    out=null;
+  Iterator it=files.entrySet().iterator();
+  while (it.hasNext()) {
+    Map.Entry me=(Map.Entry)it.next();
+    log.debug("Closing: " + me.getKey());
+    FileEntry fe=(FileEntry)me.getValue();
+    writeFileEnd(fe.pw,fe.config);
+    fe.pw.close();
   }
+  files.clear();
 }

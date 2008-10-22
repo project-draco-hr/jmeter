@@ -2,9 +2,10 @@
   if (filename == null || filename.length() == 0) {
     return null;
   }
-  PrintWriter writer=(PrintWriter)files.get(filename);
+  FileEntry fe=(FileEntry)files.get(filename);
+  PrintWriter writer=null;
   boolean trimmed=true;
-  if (writer == null) {
+  if (fe == null) {
     if (saveConfig.saveAsXml()) {
       trimmed=trimLastLine(filename);
     }
@@ -18,7 +19,11 @@
       }
     }
     writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),SaveService.getFileEncoding("UTF-8")),true);
-    files.put(filename,writer);
+    log.debug("Opened file: " + filename);
+    files.put(filename,new FileEntry(writer,saveConfig));
+  }
+ else {
+    writer=fe.pw;
   }
   if (!trimmed) {
     writeFileStart(writer,saveConfig);
