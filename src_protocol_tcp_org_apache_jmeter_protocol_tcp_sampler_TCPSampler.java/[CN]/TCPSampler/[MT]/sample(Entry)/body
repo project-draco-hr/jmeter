@@ -11,6 +11,10 @@
       res.setResponseCode("500");
       res.setResponseMessage(getError());
     }
+ else     if (protocolHandler == null) {
+      res.setResponseCode("500");
+      res.setResponseMessage("Protocol handler not found");
+    }
  else {
       InputStream is=sock.getInputStream();
       OutputStream os=sock.getOutputStream();

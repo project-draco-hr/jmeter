@@ -1,5 +1,6 @@
 {
   configureTestElement(element);
+  element.setProperty(TCPSampler.CLASSNAME,classname.getText(),"");
   element.setProperty(TCPSampler.SERVER,server.getText());
   element.setProperty(TCPSampler.RE_USE_CONNECTION,reUseConnection.isSelected());
   element.setProperty(TCPSampler.PORT,port.getText());

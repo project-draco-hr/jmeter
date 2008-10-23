@@ -1,3 +1,5 @@
 {
   log.debug("Thread Started");
+  protocolHandler=getProtocol();
+  log.debug("Using Protocol Handler: " + (protocolHandler == null ? "NONE" : protocolHandler.getClass().getName()));
 }

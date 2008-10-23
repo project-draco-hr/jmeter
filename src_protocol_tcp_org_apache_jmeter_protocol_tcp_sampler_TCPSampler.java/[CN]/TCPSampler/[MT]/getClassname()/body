@@ -1,4 +1,7 @@
 {
-  String className=JMeterUtils.getPropDefault("tcp.handler","TCPClientImpl");
-  return className;
+  String clazz=getPropertyAsString(CLASSNAME,"");
+  if (clazz == null || clazz.length() == 0) {
+    clazz=JMeterUtils.getPropDefault("tcp.handler","TCPClientImpl");
+  }
+  return clazz;
 }

@@ -1,6 +1,9 @@
 {
   TCPClient TCPClient=null;
   Class javaClass=getClass(getClassname());
+  if (javaClass == null) {
+    return null;
+  }
   try {
     TCPClient=(TCPClient)javaClass.newInstance();
     if (log.isDebugEnabled()) {

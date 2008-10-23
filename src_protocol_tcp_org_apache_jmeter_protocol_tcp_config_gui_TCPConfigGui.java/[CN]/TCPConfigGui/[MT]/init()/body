@@ -5,9 +5,12 @@
     add(makeTitlePanel(),BorderLayout.NORTH);
   }
   VerticalPanel mainPanel=new VerticalPanel();
-  mainPanel.add(createServerPanel());
+  classname=new JLabeledTextField(JMeterUtils.getResString("tcp_classname"));
+  mainPanel.add(classname);
+  final JPanel serverPanel=createServerPanel();
+  serverPanel.add(createPortPanel(),BorderLayout.EAST);
+  mainPanel.add(serverPanel);
   mainPanel.add(createClosePortPanel());
-  mainPanel.add(createPortPanel());
   mainPanel.add(createTimeoutPanel());
   mainPanel.add(createNoDelayPanel());
   mainPanel.add(createRequestPanel());

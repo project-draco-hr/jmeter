@@ -8,7 +8,7 @@
       c=Class.forName(protoPrefix + className,false,Thread.currentThread().getContextClassLoader());
     }
  catch (    ClassNotFoundException e1) {
-      log.error("Could not find protocol class " + className);
+      log.error("Could not find protocol class '" + className + "'");
     }
   }
   return c;
