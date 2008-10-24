@@ -62,8 +62,8 @@ catch (  Exception e) {
       log.debug("Will deliver sample " + sampler.getName());
     }
     if (headers != null) {
-      headers.removeHeaderNamed("cookie");
-      headers.removeHeaderNamed("Authorization");
+      headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
+      headers.removeHeaderNamed(HTTPConstants.HEADER_AUTHORIZATION);
       for (int i=0; i < headersToRemove.length; i++) {
         headers.removeHeaderNamed(headersToRemove[i]);
       }
