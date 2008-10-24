@@ -71,20 +71,28 @@
       final String contentType=sc.getContentType();
       result.setContentType(contentType);
       result.setEncodingAndType(contentType);
+      int length=0;
       if (getReadResponse()) {
         StringWriter sw=new StringWriter();
-        IOUtils.copy(br,sw);
+        length=IOUtils.copy(br,sw);
         result.sampleEnd();
         result.setResponseData(sw.toString().getBytes(result.getDataEncodingWithDefault()));
       }
  else {
-        br.read();
+        length=br.read();
         result.sampleEnd();
         result.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
       }
-      result.setSuccessful(true);
-      result.setResponseCodeOK();
-      result.setResponseMessageOK();
+      if (length > 0) {
+        result.setSuccessful(true);
+        result.setResponseCodeOK();
+        result.setResponseMessageOK();
+      }
+ else {
+        result.setSuccessful(false);
+        result.setResponseCode("999");
+        result.setResponseMessage("Empty response");
+      }
     }
  else {
       result.sampleEnd();
