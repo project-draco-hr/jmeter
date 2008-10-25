@@ -1,5 +1,6 @@
 {
   CookieManager clone=(CookieManager)super.clone();
   clone.initialCookies=initialCookies;
+  clone.cookieSpec=cookieSpec;
   return clone;
 }

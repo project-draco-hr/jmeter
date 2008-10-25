@@ -1,9 +1,3 @@
 {
-  cookieSpec=CookiePolicy.getCookieSpec(policy);
-  if (DEFAULT_POLICY.equals(policy)) {
-    removeProperty(POLICY);
-  }
- else {
-    setProperty(POLICY,policy);
-  }
+  setProperty(POLICY,policy,DEFAULT_POLICY);
 }
