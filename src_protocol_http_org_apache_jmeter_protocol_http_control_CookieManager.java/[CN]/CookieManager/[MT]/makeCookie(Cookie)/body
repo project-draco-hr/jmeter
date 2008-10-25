@@ -3,5 +3,6 @@
   org.apache.commons.httpclient.Cookie ret=new org.apache.commons.httpclient.Cookie(jmc.getDomain(),jmc.getName(),jmc.getValue(),jmc.getPath(),exp > 0 ? new Date(exp) : null,jmc.getSecure());
   ret.setPathAttributeSpecified(jmc.isPathSpecified());
   ret.setDomainAttributeSpecified(jmc.isDomainSpecified());
+  ret.setVersion(jmc.getVersion());
   return ret;
 }
