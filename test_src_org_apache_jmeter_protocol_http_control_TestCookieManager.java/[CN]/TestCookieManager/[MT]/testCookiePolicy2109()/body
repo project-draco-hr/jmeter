@@ -1,5 +1,6 @@
 {
   man.setCookiePolicy(CookiePolicy.RFC_2109);
+  man.testStarted();
   URL url=new URL("http://order.now/sub1/moo.html");
   man.addCookieFromHeader("test1=moo1;",url);
   man.addCookieFromHeader("test2=moo2;path=/sub1",url);
