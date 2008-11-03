@@ -9,7 +9,7 @@
   JMeterContext jmctx=JMeterContextService.getContext();
   JMeterVariables vars=jmctx.getVariables();
   try {
-    Expression e=ExpressionFactory.createExpression(exp);
+    Script script=ScriptFactory.createScript(exp);
     JexlContext jc=JexlHelper.createContext();
     final Map jexlVars=jc.getVars();
     jexlVars.put("ctx",jmctx);
@@ -19,7 +19,7 @@
     jexlVars.put("sampler",currentSampler);
     jexlVars.put("sampleResult",previousResult);
     jexlVars.put("OUT",System.out);
-    Object o=e.evaluate(jc);
+    Object o=script.execute(jc);
     if (o != null) {
       str=o.toString();
     }
