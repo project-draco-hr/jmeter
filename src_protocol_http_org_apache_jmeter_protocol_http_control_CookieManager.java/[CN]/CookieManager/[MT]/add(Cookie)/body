@@ -12,9 +12,11 @@
       log.debug("Add cookie to store " + c.toString());
     }
     getCookies().addItem(c);
-    JMeterContext context=getThreadContext();
-    if (context.isSamplingStarted()) {
-      context.getVariables().put(cn,cv);
+    if (SAVE_COOKIES) {
+      JMeterContext context=getThreadContext();
+      if (context.isSamplingStarted()) {
+        context.getVariables().put(COOKIE_NAME_PREFIX + cn,cv);
+      }
     }
   }
 }
