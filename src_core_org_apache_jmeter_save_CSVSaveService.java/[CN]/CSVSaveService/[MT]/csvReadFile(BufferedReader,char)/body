@@ -69,8 +69,13 @@ if ((ch == '\n' || ch == '\r') && state != QUOTED) {
 break;
 }
 }
-if (ch == -1 && baos.size() > 0) {
+if (ch == -1) {
+if (state == QUOTED) {
+throw new IOException(state + " Missing trailing quote-char in quoted field:[\"" + baos.toString()+ "]");
+}
+if (baos.size() > 0) {
 list.add(baos.toString());
+}
 }
 return (String[])list.toArray(new String[]{});
 }
