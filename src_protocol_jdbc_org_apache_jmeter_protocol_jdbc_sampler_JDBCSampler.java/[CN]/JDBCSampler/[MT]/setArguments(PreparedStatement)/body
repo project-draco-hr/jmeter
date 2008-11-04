@@ -2,7 +2,7 @@
   if (getQueryArguments().trim().length() == 0) {
     return new int[]{};
   }
-  String[] arguments=getQueryArguments().split(COMMA);
+  String[] arguments=CSVSaveService.csvSplitString(getQueryArguments(),COMMA_CHAR);
   String[] argumentsTypes=getQueryArgumentsTypes().split(COMMA);
   if (arguments.length != argumentsTypes.length) {
     throw new SQLException("number of arguments (" + arguments.length + ") and number of types ("+ argumentsTypes.length+ ") are not equal");

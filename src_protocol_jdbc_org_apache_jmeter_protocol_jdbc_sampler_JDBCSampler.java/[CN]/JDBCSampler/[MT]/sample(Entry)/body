@@ -96,6 +96,11 @@ catch (  UnsupportedEncodingException ex) {
     res.setResponseCode("000");
     res.setSuccessful(false);
   }
+catch (  IOException ex) {
+    res.setResponseMessage(ex.toString());
+    res.setResponseCode("000");
+    res.setSuccessful(false);
+  }
  finally {
     close(stmt);
     close(conn);
