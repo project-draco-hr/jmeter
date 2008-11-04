@@ -1,7 +1,7 @@
 {
   super(JDBCSampler.class);
   createPropertyGroup("varName",new String[]{"dataSource"});
-  createPropertyGroup("sql",new String[]{"queryType","query","queryArguments","queryArgumentsTypes"});
+  createPropertyGroup("sql",new String[]{"queryType","query","queryArguments","queryArgumentsTypes","variableNames"});
   PropertyDescriptor p=property("dataSource");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
@@ -9,6 +9,9 @@
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
   p=property("queryArgumentsTypes");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p=property("variableNames");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
   p=property("queryType");

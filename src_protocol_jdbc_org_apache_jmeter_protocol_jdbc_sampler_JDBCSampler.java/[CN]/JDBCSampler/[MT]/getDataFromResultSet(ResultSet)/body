@@ -7,7 +7,14 @@
     dbCols[i]=meta.getColumnName(i + 1);
     data.addHeader(dbCols[i]);
   }
+  JMeterVariables jmvars=null;
+  String varnames[]=getVariableNames().split(COMMA);
+  if (varnames.length > 0) {
+    jmvars=getThreadContext().getVariables();
+  }
+  int j=0;
   while (rs.next()) {
+    j++;
     data.next();
     for (int i=0; i < numColumns; i++) {
       Object o=rs.getObject(i + 1);
@@ -15,6 +22,26 @@
         o=new String((byte[])o);
       }
       data.addColumnValue(dbCols[i],o);
+      if (jmvars != null && i < varnames.length) {
+        String name=varnames[i].trim();
+        if (name.length() > 0) {
+          jmvars.put(name + UNDERSCORE + j,o == null ? null : o.toString());
+        }
+      }
+    }
+  }
+  for (int i=0; i < varnames.length; i++) {
+    String name=varnames[i].trim();
+    if (name.length() > 0 && jmvars != null) {
+      final String varCount=name + "_#";
+      String prevCount=jmvars.get(varCount);
+      if (prevCount != null) {
+        int prev=Integer.parseInt(prevCount);
+        for (int n=j + 1; n <= prev; n++) {
+          jmvars.remove(name + UNDERSCORE + n);
+        }
+      }
+      jmvars.put(varCount,Integer.toString(j));
     }
   }
   return data;

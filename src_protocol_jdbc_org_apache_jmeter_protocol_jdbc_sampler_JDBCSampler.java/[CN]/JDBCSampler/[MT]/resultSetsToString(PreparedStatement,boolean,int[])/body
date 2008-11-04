@@ -12,6 +12,7 @@
         rs=pstmt.getResultSet();
         Data data=getDataFromResultSet(rs);
         sb.append(data.toString()).append("\n");
+        data.getDataAsText();
       }
   finally {
         close(rs);
