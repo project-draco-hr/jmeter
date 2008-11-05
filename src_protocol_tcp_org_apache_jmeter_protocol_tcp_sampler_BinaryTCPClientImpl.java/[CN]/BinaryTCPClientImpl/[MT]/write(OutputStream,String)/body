@@ -1,11 +1,11 @@
 {
   try {
-    os.write(hexStringToByteArray(s));
+    os.write(hexStringToByteArray(hexEncodedBinary));
     os.flush();
   }
  catch (  IOException e) {
     log.warn("Write error",e);
   }
-  log.debug("Wrote: " + s);
+  log.debug("Wrote: " + hexEncodedBinary);
   return;
 }
