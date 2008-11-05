@@ -5,7 +5,7 @@
   ba=BinaryTCPClientImpl.hexStringToByteArray("00");
   assertEquals(1,ba.length);
   assertEquals(0,ba[0]);
-  ba=BinaryTCPClientImpl.hexStringToByteArray("0f107f8081ff");
+  ba=BinaryTCPClientImpl.hexStringToByteArray("0f107F8081ff");
   assertEquals(6,ba.length);
   assertEquals(15,ba[0]);
   assertEquals(16,ba[1]);
@@ -13,4 +13,16 @@
   assertEquals(-128,ba[3]);
   assertEquals(-127,ba[4]);
   assertEquals(-1,ba[5]);
+  try {
+    ba=BinaryTCPClientImpl.hexStringToByteArray("0f107f8081ff1");
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
+  try {
+    ba=BinaryTCPClientImpl.hexStringToByteArray("0f107xxf8081ff");
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
 }
