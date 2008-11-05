@@ -96,4 +96,28 @@
   assertEquals(-1,ba[1]);
   assertEquals(-1,ba[2]);
   assertEquals(-1,ba[3]);
+  try {
+    ba=TCPClientDecorator.intToByteArray(0,0);
+    fail();
+  }
+ catch (  IllegalArgumentException iae) {
+  }
+  try {
+    ba=TCPClientDecorator.intToByteArray(0,1);
+    fail();
+  }
+ catch (  IllegalArgumentException iae) {
+  }
+  try {
+    ba=TCPClientDecorator.intToByteArray(0,3);
+    fail();
+  }
+ catch (  IllegalArgumentException iae) {
+  }
+  try {
+    ba=TCPClientDecorator.intToByteArray(0,5);
+    fail();
+  }
+ catch (  IllegalArgumentException iae) {
+  }
 }

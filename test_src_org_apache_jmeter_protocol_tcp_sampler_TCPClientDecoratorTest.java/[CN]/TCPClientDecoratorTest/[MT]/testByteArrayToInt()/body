@@ -20,4 +20,34 @@
   assertEquals(Integer.MIN_VALUE,TCPClientDecorator.byteArrayToInt(ba));
   ba=new byte[]{127,-1,-1,-1};
   assertEquals(Integer.MAX_VALUE,TCPClientDecorator.byteArrayToInt(ba));
+  try {
+    TCPClientDecorator.byteArrayToInt(null);
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
+  try {
+    TCPClientDecorator.byteArrayToInt(new byte[]{});
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
+  try {
+    TCPClientDecorator.byteArrayToInt(new byte[]{0});
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
+  try {
+    TCPClientDecorator.byteArrayToInt(new byte[]{0,0,0});
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
+  try {
+    TCPClientDecorator.byteArrayToInt(new byte[]{0,0,0});
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException expected) {
+  }
 }
