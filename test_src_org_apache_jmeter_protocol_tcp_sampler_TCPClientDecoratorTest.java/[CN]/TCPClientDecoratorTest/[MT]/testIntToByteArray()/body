@@ -21,22 +21,22 @@
   assertEquals(len,ba.length);
   assertEquals(-1,ba[0]);
   assertEquals(-1,ba[1]);
-  ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MAX_VALUE,len);
+  ba=TCPClientDecorator.intToByteArray(Short.MAX_VALUE,len);
   assertEquals(len,ba.length);
   assertEquals(127,ba[0]);
   assertEquals(-1,ba[1]);
-  ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MIN_VALUE,len);
+  ba=TCPClientDecorator.intToByteArray(Short.MIN_VALUE,len);
   assertEquals(len,ba.length);
   assertEquals(-128,ba[0]);
   assertEquals(0,ba[1]);
   try {
-    ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MIN_VALUE - 1,len);
+    ba=TCPClientDecorator.intToByteArray(Short.MIN_VALUE - 1,len);
     fail();
   }
  catch (  IllegalArgumentException iae) {
   }
   try {
-    ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MAX_VALUE + 1,len);
+    ba=TCPClientDecorator.intToByteArray(Short.MAX_VALUE + 1,len);
     fail();
   }
  catch (  IllegalArgumentException iae) {
