@@ -1,4 +1,7 @@
 {
   log.debug("Thread Finished");
   closeSocket();
+  if (protocolHandler != null) {
+    protocolHandler.teardownTest();
+  }
 }
