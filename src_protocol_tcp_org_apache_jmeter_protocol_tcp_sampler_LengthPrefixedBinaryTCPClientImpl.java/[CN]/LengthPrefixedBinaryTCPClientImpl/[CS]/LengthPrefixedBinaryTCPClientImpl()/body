@@ -1,6 +1,3 @@
 {
   super(new BinaryTCPClientImpl());
-  if (!eolIgnore) {
-    log.info("Using eolByte=" + eolByte);
-  }
 }
