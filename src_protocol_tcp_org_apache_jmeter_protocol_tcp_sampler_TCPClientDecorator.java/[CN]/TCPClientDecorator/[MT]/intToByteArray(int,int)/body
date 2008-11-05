@@ -1,6 +1,6 @@
 {
   if (len == 2 || len == 4) {
-    if (len == 2 && (value < SHORT_MIN_VALUE || value > SHORT_MAX_VALUE)) {
+    if (len == 2 && (value < Short.MIN_VALUE || value > Short.MAX_VALUE)) {
       throw new IllegalArgumentException("Value outside range for signed short int.");
     }
  else {
