@@ -1,0 +1,11 @@
+{
+  ByteArrayOutputStream os=new ByteArrayOutputStream();
+  LengthPrefixedBinaryTCPClientImpl lp=new LengthPrefixedBinaryTCPClientImpl();
+  final String DATA="31323334353637";
+  lp.write(os,DATA);
+  os.close();
+  final byte[] byteArray=os.toByteArray();
+  assertEquals(2 + (DATA.length() / 2),byteArray.length);
+  ByteArrayInputStream is=new ByteArrayInputStream(byteArray);
+  assertEquals(DATA,lp.read(is));
+}
