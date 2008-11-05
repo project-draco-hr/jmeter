@@ -1,0 +1,99 @@
+{
+  byte[] ba;
+  int len=2;
+  ba=TCPClientDecorator.intToByteArray(0,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(0,ba[1]);
+  ba=TCPClientDecorator.intToByteArray(15,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(15,ba[1]);
+  ba=TCPClientDecorator.intToByteArray(255,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(-1,ba[1]);
+  ba=TCPClientDecorator.intToByteArray(256,len);
+  assertEquals(len,ba.length);
+  assertEquals(1,ba[0]);
+  assertEquals(0,ba[1]);
+  ba=TCPClientDecorator.intToByteArray(-1,len);
+  assertEquals(len,ba.length);
+  assertEquals(-1,ba[0]);
+  assertEquals(-1,ba[1]);
+  ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MAX_VALUE,len);
+  assertEquals(len,ba.length);
+  assertEquals(127,ba[0]);
+  assertEquals(-1,ba[1]);
+  ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MIN_VALUE,len);
+  assertEquals(len,ba.length);
+  assertEquals(-128,ba[0]);
+  assertEquals(0,ba[1]);
+  try {
+    ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MIN_VALUE - 1,len);
+    fail();
+  }
+ catch (  IllegalArgumentException iae) {
+  }
+  try {
+    ba=TCPClientDecorator.intToByteArray(TCPClientDecorator.SHORT_MAX_VALUE + 1,len);
+    fail();
+  }
+ catch (  IllegalArgumentException iae) {
+  }
+  len=4;
+  ba=TCPClientDecorator.intToByteArray(0,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(0,ba[1]);
+  assertEquals(0,ba[2]);
+  assertEquals(0,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(15,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(0,ba[1]);
+  assertEquals(0,ba[2]);
+  assertEquals(15,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(255,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(0,ba[1]);
+  assertEquals(0,ba[2]);
+  assertEquals(-1,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(-1,len);
+  assertEquals(len,ba.length);
+  assertEquals(-1,ba[0]);
+  assertEquals(-1,ba[1]);
+  assertEquals(-1,ba[2]);
+  assertEquals(-1,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(256,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(0,ba[1]);
+  assertEquals(1,ba[2]);
+  assertEquals(0,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(65535,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(0,ba[1]);
+  assertEquals(-1,ba[2]);
+  assertEquals(-1,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(65536,len);
+  assertEquals(len,ba.length);
+  assertEquals(0,ba[0]);
+  assertEquals(1,ba[1]);
+  assertEquals(0,ba[2]);
+  assertEquals(0,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(Integer.MIN_VALUE,len);
+  assertEquals(len,ba.length);
+  assertEquals(-128,ba[0]);
+  assertEquals(0,ba[1]);
+  assertEquals(0,ba[2]);
+  assertEquals(0,ba[3]);
+  ba=TCPClientDecorator.intToByteArray(Integer.MAX_VALUE,len);
+  assertEquals(len,ba.length);
+  assertEquals(127,ba[0]);
+  assertEquals(-1,ba[1]);
+  assertEquals(-1,ba[2]);
+  assertEquals(-1,ba[3]);
+}

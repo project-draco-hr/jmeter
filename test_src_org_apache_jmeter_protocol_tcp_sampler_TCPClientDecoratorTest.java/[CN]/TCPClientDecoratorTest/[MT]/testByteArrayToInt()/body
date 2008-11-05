@@ -1,0 +1,23 @@
+{
+  byte[] ba;
+  ba=new byte[]{0,0};
+  assertEquals(0,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{0,15};
+  assertEquals(15,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{0,-1};
+  assertEquals(255,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{1,0};
+  assertEquals(256,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{-1,-1};
+  assertEquals(-1,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{0,0,-1,-1};
+  assertEquals(65535,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{0,1,0,0};
+  assertEquals(65536,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{0,0,0,0};
+  assertEquals(0,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{-128,0,0,0};
+  assertEquals(Integer.MIN_VALUE,TCPClientDecorator.byteArrayToInt(ba));
+  ba=new byte[]{127,-1,-1,-1};
+  assertEquals(Integer.MAX_VALUE,TCPClientDecorator.byteArrayToInt(ba));
+}

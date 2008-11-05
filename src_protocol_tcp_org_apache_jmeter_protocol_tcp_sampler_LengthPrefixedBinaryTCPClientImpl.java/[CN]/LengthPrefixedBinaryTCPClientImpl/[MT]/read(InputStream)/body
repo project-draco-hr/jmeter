@@ -1,0 +1,22 @@
+{
+  byte[] msg=null;
+  int msgLen=0;
+  try {
+    byte[] lengthBuffer=new byte[lengthPrefixLen];
+    if (is.read(lengthBuffer,0,lengthPrefixLen) == lengthPrefixLen) {
+      msgLen=byteArrayToInt(lengthBuffer);
+      msg=new byte[msgLen];
+      is.read(msg);
+    }
+  }
+ catch (  SocketTimeoutException e) {
+  }
+catch (  InterruptedIOException e) {
+  }
+catch (  IOException e) {
+    log.warn("Read error:" + e);
+    return JOrphanUtils.baToHexString(msg);
+  }
+  log.debug("Read: " + msgLen + "\n"+ msg.toString());
+  return JOrphanUtils.baToHexString(msg);
+}
