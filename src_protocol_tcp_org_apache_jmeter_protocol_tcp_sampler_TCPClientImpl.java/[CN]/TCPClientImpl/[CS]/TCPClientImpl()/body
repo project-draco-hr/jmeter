@@ -1,6 +1,7 @@
 {
   super();
-  if (!eolIgnore) {
+  setEolByte(eolInt);
+  if (useEolByte) {
     log.info("Using eolByte=" + eolByte);
   }
 }

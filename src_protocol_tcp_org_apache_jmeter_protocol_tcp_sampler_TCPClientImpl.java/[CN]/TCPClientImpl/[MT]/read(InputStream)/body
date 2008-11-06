@@ -5,7 +5,7 @@
   try {
     while ((x=is.read(buffer)) > -1) {
       w.write(buffer,0,x);
-      if (!eolIgnore && (buffer[x - 1] == eolByte)) {
+      if (useEolByte && (buffer[x - 1] == eolByte)) {
         break;
       }
     }
