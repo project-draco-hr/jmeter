@@ -1,5 +1,5 @@
 {
-  Receiver receiver=new Receiver(factory,receiveQueue);
+  Receiver receiver=new Receiver(factory,receiveQueue,principal,credentials);
   Thread thread=new Thread(receiver);
   thread.start();
   return receiver;

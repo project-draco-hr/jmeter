@@ -14,9 +14,20 @@
     sendQueue=queue;
     if (!useTemporyQueue()) {
       receiveQueue=(Queue)context.lookup(getReceiveQueue());
-      receiverThread=Receiver.createReceiver(factory,receiveQueue);
+      receiverThread=Receiver.createReceiver(factory,receiveQueue,getPrincipal(context),getCredentials(context));
     }
-    connection=factory.createQueueConnection();
+    String principal=null;
+    String credentials=null;
+    if (USE_SECURITY_PROPERTIES) {
+      principal=getPrincipal(context);
+      credentials=getCredentials(context);
+    }
+    if (principal != null && credentials != null) {
+      connection=factory.createQueueConnection(principal,credentials);
+    }
+ else {
+      connection=factory.createQueueConnection();
+    }
     session=connection.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);
     if (LOGGER.isDebugEnabled()) {
       LOGGER.debug("Session created");

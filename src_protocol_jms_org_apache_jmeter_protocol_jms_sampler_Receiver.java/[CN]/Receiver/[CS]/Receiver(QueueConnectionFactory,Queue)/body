@@ -1,8 +1,0 @@
-{
-  conn=factory.createQueueConnection();
-  session=conn.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);
-  consumer=session.createReceiver(receiveQueue);
-  log.debug("Receiver - ctor. Starting connection now");
-  conn.start();
-  log.info("Receiver - ctor. Connection to messaging system established");
-}
