@@ -8,7 +8,7 @@
   sampler.setTopic(jmsTopic.getText());
   sampler.setUsername(jmsUser.getText());
   sampler.setPassword(jmsPwd.getText());
-  sampler.setUseAuth(reqAuth.getText());
+  sampler.setUseAuth(useAuth.isSelected());
   sampler.setIterations(iterations.getText());
   sampler.setReadResponse(String.valueOf(readResponse.isSelected()));
   sampler.setClientChoice(clientChoice.getText());

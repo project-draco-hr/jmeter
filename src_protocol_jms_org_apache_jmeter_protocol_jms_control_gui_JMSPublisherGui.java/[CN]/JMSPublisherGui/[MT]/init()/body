@@ -21,12 +21,11 @@
   lookup.add(jndiConnFac);
   configChoice.addChangeListener(this);
   msgChoice.addChangeListener(this);
-  reqAuth.addChangeListener(this);
   JPanel commonParams=new JPanel();
   commonParams.setLayout(new VerticalLayout(6,VerticalLayout.LEFT));
   mainPanel.add(commonParams);
   commonParams.add(jmsTopic);
-  commonParams.add(reqAuth);
+  commonParams.add(useAuth);
   commonParams.add(jmsUser);
   commonParams.add(jmsPwd);
   commonParams.add(iterations);

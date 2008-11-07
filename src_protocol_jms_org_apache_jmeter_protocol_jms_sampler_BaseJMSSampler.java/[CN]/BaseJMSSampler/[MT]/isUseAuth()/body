@@ -1,0 +1,4 @@
+{
+  final String useAuth=getPropertyAsString(USE_AUTH);
+  return useAuth.equalsIgnoreCase("true") || useAuth.equals(REQUIRED);
+}

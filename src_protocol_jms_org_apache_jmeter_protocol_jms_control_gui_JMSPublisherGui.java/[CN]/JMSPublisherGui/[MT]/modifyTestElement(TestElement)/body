@@ -14,5 +14,5 @@
   sampler.setConfigChoice(configChoice.getText());
   sampler.setMessageChoice(msgChoice.getText());
   sampler.setIterations(iterations.getText());
-  sampler.setUseAuth(reqAuth.getText());
+  sampler.setUseAuth(useAuth.isSelected());
 }
