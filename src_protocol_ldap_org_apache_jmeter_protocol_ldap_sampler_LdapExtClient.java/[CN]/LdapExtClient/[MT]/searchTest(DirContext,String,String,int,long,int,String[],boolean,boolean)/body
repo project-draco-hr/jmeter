@@ -3,7 +3,7 @@
     throw new NamingException(CONTEXT_IS_NULL);
   }
   if (log.isDebugEnabled()) {
-    log.debug("searchBase=" + searchBase + " scope="+ scope+ " countlim="+ countlim+ " timelim="+ timelim+ " attrs="+ attrs+ " retobj="+ retobj+ " deref="+ deref+ " filter="+ searchFilter);
+    log.debug("searchBase=" + searchBase + " scope="+ scope+ " countlim="+ countlim+ " timelim="+ timelim+ " attrs="+ JMeterUtils.unsplit(attrs,",")+ " retobj="+ retobj+ " deref="+ deref+ " filter="+ searchFilter);
   }
   SearchControls searchcontrols=null;
   searchcontrols=new SearchControls(scope,countlim,timelim,attrs,retobj,deref);
