@@ -1,8 +1,0 @@
-{
-  if (queue == null) {
-    queue=new SampleQueue();
-    Thread thread=new Thread(queue);
-    thread.start();
-  }
-  queue.sampleOccurred(e);
-}
