@@ -1,6 +1,6 @@
 {
   log.info("SubscriberSampler.testEnded called");
-  this.RUN=false;
+  this.isRunning=false;
   this.resetCount();
   ClientPool.clearClient();
   this.BUFFER=null;

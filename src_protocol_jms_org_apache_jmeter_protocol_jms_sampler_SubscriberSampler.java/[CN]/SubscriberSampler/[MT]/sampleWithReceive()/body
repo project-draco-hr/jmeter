@@ -5,10 +5,10 @@
     this.initReceiveClient();
     this.SUBSCRIBER.start();
   }
-  this.loop=this.getIterationCount();
-  this.SUBSCRIBER.setLoop(this.loop);
+  int loop=this.getIterationCount();
+  this.SUBSCRIBER.setLoop(loop);
   result.sampleStart();
-  while (this.SUBSCRIBER.count(0) < this.loop) {
+  while (this.SUBSCRIBER.count(0) < loop) {
     try {
       Thread.sleep(0,50);
     }
@@ -27,7 +27,7 @@
   result.setSuccessful(true);
   result.setResponseCode(loop + " message(s) recieved successfully");
   result.setSamplerData("Not applicable");
-  result.setSampleCount(this.loop);
+  result.setSampleCount(loop);
   this.SUBSCRIBER.clear();
   this.SUBSCRIBER.resetCount();
   return result;
