@@ -7,7 +7,6 @@
   String filename=getFilename();
   File file=new File(filename);
   if (file.exists()) {
-    clearVisualizer();
     BufferedReader dataReader=null;
     BufferedInputStream bufferedInputStream=null;
     try {
@@ -26,7 +25,7 @@
  else {
           try {
             bufferedInputStream=new BufferedInputStream(new FileInputStream(file));
-            readSamples(SaveService.loadTestResults(bufferedInputStream),visualizer);
+            SaveService.loadTestResults(bufferedInputStream,new ResultCollectorHelper(this,visualizer));
             parsedOK=true;
           }
  catch (          Exception e) {
@@ -49,6 +48,9 @@ catch (    JMeterError e) {
       log.warn("Problem reading JTL file: " + file);
     }
 catch (    RuntimeException e) {
+      log.warn("Problem reading JTL file: " + file,e);
+    }
+catch (    OutOfMemoryError e) {
       log.warn("Problem reading JTL file: " + file,e);
     }
  finally {

@@ -1,6 +1,0 @@
-{
-  InputStreamReader inputStreamReader=getInputStreamReader(reader);
-  TestResultWrapper wrapper=(TestResultWrapper)saver.fromXML(inputStreamReader);
-  inputStreamReader.close();
-  return wrapper;
-}

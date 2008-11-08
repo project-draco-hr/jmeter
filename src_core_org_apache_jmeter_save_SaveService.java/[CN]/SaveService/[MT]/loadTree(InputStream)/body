@@ -6,7 +6,7 @@
   ScriptWrapper wrapper=null;
   try {
     InputStreamReader inputStreamReader=getInputStreamReader(reader);
-    wrapper=(ScriptWrapper)saver.fromXML(inputStreamReader);
+    wrapper=(ScriptWrapper)JMXSAVER.fromXML(inputStreamReader);
     inputStreamReader.close();
     if (wrapper == null) {
       log.error("Problem loading new style: see above.");

@@ -7,10 +7,16 @@
   }
   results.setVersion(ver);
   ConversionHelp.setInVersion(ver);
+  final ResultCollectorHelper resultCollectorHelper=(ResultCollectorHelper)context.get(SaveService.RESULTCOLLECTOR_HELPER_OBJECT);
   while (reader.hasMoreChildren()) {
     reader.moveDown();
-    SampleResult res=(SampleResult)readItem(reader,context,results);
-    samples.add(res);
+    SampleResult sample=(SampleResult)readItem(reader,context,results);
+    if (resultCollectorHelper != null) {
+      resultCollectorHelper.add(sample);
+    }
+ else {
+      samples.add(sample);
+    }
     reader.moveUp();
   }
   results.setSampleResults(samples);

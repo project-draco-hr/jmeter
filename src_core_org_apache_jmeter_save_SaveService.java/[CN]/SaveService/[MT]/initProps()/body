@@ -25,14 +25,14 @@
  else {
           key=key.substring(1);
           try {
-            if (val.trim().equals("collection")) {
-              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{Mapper.class}).newInstance(new Object[]{saver.getMapper()}));
-            }
- else             if (val.trim().equals("mapping")) {
-              saver.registerConverter((Converter)Class.forName(key).getConstructor(new Class[]{Mapper.class}).newInstance(new Object[]{saver.getMapper()}));
+            final String trimmedValue=val.trim();
+            if (trimmedValue.equals("collection") || trimmedValue.equals("mapping")) {
+              registerConverter(key,JMXSAVER,true);
+              registerConverter(key,JTLSAVER,true);
             }
  else {
-              saver.registerConverter((Converter)Class.forName(key).newInstance());
+              registerConverter(key,JMXSAVER,false);
+              registerConverter(key,JTLSAVER,false);
             }
           }
  catch (          IllegalAccessException e1) {

@@ -1,0 +1,16 @@
+{
+  return new MapperWrapper(next){
+    public Class realClass(    String alias){
+      String fullName=aliasToClass(alias);
+      return super.realClass(fullName == null ? alias : fullName);
+    }
+    public String serializedClass(    Class type){
+      if (type == null) {
+        return super.serializedClass(null);
+      }
+      String alias=classToAlias(type.getName());
+      return alias == null ? super.serializedClass(type) : alias;
+    }
+  }
+;
+}

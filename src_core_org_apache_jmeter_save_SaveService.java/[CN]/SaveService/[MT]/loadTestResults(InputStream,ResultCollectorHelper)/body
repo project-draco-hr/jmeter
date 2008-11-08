@@ -1,0 +1,7 @@
+{
+  InputStreamReader inputStreamReader=getInputStreamReader(reader);
+  DataHolder dh=JTLSAVER.newDataHolder();
+  dh.put(RESULTCOLLECTOR_HELPER_OBJECT,resultCollectorHelper);
+  JTLSAVER.unmarshal(new XppDriver().createReader(reader),null,dh);
+  inputStreamReader.close();
+}

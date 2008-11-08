@@ -1,6 +1,6 @@
 {
-  DataHolder dh=saver.newDataHolder();
+  DataHolder dh=JTLSAVER.newDataHolder();
   dh.put(SAMPLE_EVENT_OBJECT,evt);
-  saver.marshal(evt.getResult(),new XppDriver().createWriter(writer),dh);
+  JTLSAVER.marshal(evt.getResult(),new XppDriver().createWriter(writer),dh);
   writer.write('\n');
 }
