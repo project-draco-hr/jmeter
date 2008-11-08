@@ -2,12 +2,20 @@
   SampleResult result=event.getResult();
   if (isSampleWanted(result.isSuccessful())) {
     sendToVisualizer(result);
-    if (out != null) {
+    if (out != null && !isResultMarked(result) && !this.isStats) {
       SampleSaveConfiguration config=getSaveConfig();
       result.setSaveConfig(config);
       try {
         if (config.saveAsXml()) {
-          recordResult(event);
+          if (SaveService.isSaveTestLogFormat20()) {
+            if (serializer == null) {
+              serializer=new DefaultConfigurationSerializer();
+            }
+            out.write(OldSaveService.getSerializedSampleResult(result,serializer,config));
+          }
+ else {
+            SaveService.saveSampleResult(event,out);
+          }
         }
  else {
           String savee=CSVSaveService.resultToDelimitedString(event);
