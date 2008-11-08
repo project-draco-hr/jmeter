@@ -1,0 +1,3 @@
+{
+  return (!errorOnly && !successOnly) || (success && successOnly) || (!success && errorOnly);
+}

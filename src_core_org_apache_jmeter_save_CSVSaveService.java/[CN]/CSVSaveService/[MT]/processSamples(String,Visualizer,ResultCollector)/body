@@ -1,5 +1,7 @@
 {
   BufferedReader dataReader=null;
+  final boolean errorsOnly=resultCollector.isErrorLogging();
+  final boolean successOnly=resultCollector.isSuccessOnlyLogging();
   try {
     dataReader=new BufferedReader(new FileReader(filename));
     dataReader.mark(400);
@@ -21,7 +23,7 @@
       SampleEvent event=CSVSaveService.makeResultFromDelimitedString(parts,saveConfig,lineNumber);
       if (event != null) {
         final SampleResult result=event.getResult();
-        if (resultCollector.isSampleWanted(result.isSuccessful())) {
+        if (resultCollector.isSampleWanted(result.isSuccessful(),errorsOnly,successOnly)) {
           visualizer.add(result);
         }
       }
