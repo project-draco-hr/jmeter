@@ -1,0 +1,9 @@
+{
+  if (parameterName.trim().length() == 0) {
+    return true;
+  }
+  if (parameterName.trim().startsWith("${") && parameterName.endsWith("}")) {
+    return true;
+  }
+  return false;
+}

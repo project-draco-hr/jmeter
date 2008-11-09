@@ -13,7 +13,7 @@
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
       String parameterName=arg.getName();
-      if (parameterName.length() == 0) {
+      if (arg.isSkippable(parameterName)) {
         continue;
       }
       bos.write(CRLF);
