@@ -3,5 +3,8 @@
   clone.numExecutions=numExecutions;
   clone.iteration=iteration;
   clone.runThisTime=false;
+  clone.globalIteration=globalIteration;
+  clone.globalNumExecutions=globalNumExecutions;
+  clone.counterLock=counterLock;
   return clone;
 }

@@ -1,7 +1,7 @@
 {
   if (!isPerThread()) {
 synchronized (counterLock) {
-      return globalNumExecutions;
+      return globalNumExecutions.intValue();
     }
   }
   return numExecutions;

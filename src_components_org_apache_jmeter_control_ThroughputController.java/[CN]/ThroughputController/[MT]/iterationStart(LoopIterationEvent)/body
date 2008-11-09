@@ -1,10 +1,10 @@
 {
   if (!isPerThread()) {
 synchronized (counterLock) {
-      globalIteration++;
-      runThisTime=decide(globalNumExecutions,globalIteration);
+      globalIteration.incr();
+      runThisTime=decide(globalNumExecutions.intValue(),globalIteration.intValue());
       if (runThisTime) {
-        globalNumExecutions++;
+        globalNumExecutions.incr();
       }
     }
   }
