@@ -1,3 +1,24 @@
 {
-  ReceiveSubscriber.this.listen();
+  if (SUBSCRIBER == null) {
+    log.error("Subscriber has not been set up");
+    return;
+  }
+  while (RUN) {
+    try {
+      Message message=this.SUBSCRIBER.receive();
+      if (message != null && message instanceof TextMessage) {
+        TextMessage msg=(TextMessage)message;
+        String text=msg.getText();
+        if (text.trim().length() > 0) {
+synchronized (this) {
+            this.buffer.append(text);
+            count(1);
+          }
+        }
+      }
+    }
+ catch (    JMSException e) {
+      log.error("Communication error: " + e.getMessage());
+    }
+  }
 }

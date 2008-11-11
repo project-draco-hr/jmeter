@@ -1,9 +1,27 @@
 {
   Context ctx=initJNDI(useProps,jndi,url,useAuth,user,pwd);
+  TopicConnection _conn=null;
+  Topic _topic=null;
+  TopicSession _session=null;
+  TopicSubscriber _subscriber=null;
   if (ctx != null) {
-    initConnection(ctx,connfactory,topic);
+    try {
+      ConnectionFactory.getTopicConnectionFactory(ctx,connfactory);
+      _conn=ConnectionFactory.getTopicConnection();
+      _topic=InitialContextFactory.lookupTopic(ctx,topic);
+      _session=this.CONN.createTopicSession(false,TopicSession.AUTO_ACKNOWLEDGE);
+      _subscriber=this.SESSION.createSubscriber(this.TOPIC);
+      log.info("created the topic connection successfully");
+    }
+ catch (    JMSException e) {
+      log.error("Connection error: " + e.getMessage());
+    }
   }
  else {
     log.error("Could not initialize JNDI Initial Context Factory");
   }
+  this.CONN=_conn;
+  this.TOPIC=_topic;
+  this.SESSION=_session;
+  this.SUBSCRIBER=_subscriber;
 }

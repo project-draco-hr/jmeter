@@ -1,6 +1,3 @@
 {
-  if (this.buffer.length() > 0) {
-    this.RESULT=this.buffer.toString().getBytes();
-  }
-  return this.RESULT;
+  return this.buffer.toString().getBytes();
 }
