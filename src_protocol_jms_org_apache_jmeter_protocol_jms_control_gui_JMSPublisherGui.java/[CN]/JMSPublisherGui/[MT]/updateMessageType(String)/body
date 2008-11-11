@@ -1,6 +1,6 @@
 {
-  if (msgType.equals(object_msg)) {
-    if (configChoice.getText().equals(use_text)) {
+  if (msgType.equals(OBJECT_MSG_RSC)) {
+    if (configChoice.getText().equals(USE_TEXT_RSC)) {
       JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("jms_error_msg"),"Warning",JOptionPane.OK_CANCEL_OPTION,JOptionPane.ERROR_MESSAGE);
     }
   }

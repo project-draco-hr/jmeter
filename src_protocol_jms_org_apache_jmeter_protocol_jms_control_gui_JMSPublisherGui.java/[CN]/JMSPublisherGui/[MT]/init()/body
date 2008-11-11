@@ -11,7 +11,6 @@
   panelTitleLabel.setFont(new Font(curFont.getFontName(),curFont.getStyle(),curFontSize));
   mainPanel.add(panelTitleLabel);
   mainPanel.add(getNamePanel());
-  lookup=new JPanel();
   lookup.setLayout(new VerticalLayout(6,VerticalLayout.LEFT));
   mainPanel.add(lookup);
   lookup.add(useProperties);
@@ -29,7 +28,6 @@
   commonParams.add(jmsUser);
   commonParams.add(jmsPwd);
   commonParams.add(iterations);
-  messagePanel=new JPanel();
   messagePanel.setLayout(new VerticalLayout(3,VerticalLayout.LEFT));
   messagePanel.add(configChoice);
   messagePanel.add(msgChoice);

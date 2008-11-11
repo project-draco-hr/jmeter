@@ -1,10 +1,4 @@
 {
-  log.info("SubscriberSampler.testEnded called");
-  this.isRunning=false;
-  this.resetCount();
+  log.debug("SubscriberSampler.testEnded called");
   ClientPool.clearClient();
-  this.BUFFER=null;
-  if (this.SUBSCRIBER != null) {
-    this.SUBSCRIBER=null;
-  }
 }

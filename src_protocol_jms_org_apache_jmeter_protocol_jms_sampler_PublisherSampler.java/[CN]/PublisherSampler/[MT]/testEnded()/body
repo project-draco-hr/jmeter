@@ -1,8 +1,4 @@
 {
-  log.info("PublisherSampler.testEnded called");
-  Thread.currentThread().interrupt();
-  this.PUB=null;
-  this.BUFFER.setLength(0);
-  this.BUFFER=null;
+  log.debug("PublisherSampler.testEnded called");
   ClientPool.clearClient();
 }

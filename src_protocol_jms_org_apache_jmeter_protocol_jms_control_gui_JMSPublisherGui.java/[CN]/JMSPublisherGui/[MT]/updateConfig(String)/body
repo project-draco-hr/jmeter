@@ -1,10 +1,10 @@
 {
-  if (command.equals(use_text)) {
+  if (command.equals(USE_TEXT_RSC)) {
     textMessage.setEnabled(true);
     messageFile.enableFile(false);
     randomFile.enableFile(false);
   }
- else   if (command.equals(use_random)) {
+ else   if (command.equals(USE_RANDOM_RSC)) {
     textMessage.setEnabled(false);
     messageFile.enableFile(false);
     randomFile.enableFile(true);

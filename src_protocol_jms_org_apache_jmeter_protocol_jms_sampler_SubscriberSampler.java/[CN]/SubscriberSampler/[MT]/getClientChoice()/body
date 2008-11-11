@@ -1,3 +1,10 @@
 {
-  return getPropertyAsString(CLIENT_CHOICE);
+  String choice=getPropertyAsString(CLIENT_CHOICE);
+  if (choice.equals(RECEIVE_STR)) {
+    choice=JMSSubscriberGui.RECEIVE_RSC;
+  }
+ else   if (!choice.equals(JMSSubscriberGui.RECEIVE_RSC)) {
+    choice=JMSSubscriberGui.ON_MESSAGE_RSC;
+  }
+  return choice;
 }

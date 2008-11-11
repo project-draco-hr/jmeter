@@ -1,3 +1,10 @@
 {
-  return getPropertyAsString(CONFIG_CHOICE);
+  String config=getPropertyAsString(CONFIG_CHOICE);
+  if (config.equals(USE_FILE_LOCALNAME) || config.equals(JMSPublisherGui.USE_FILE_RSC)) {
+    return JMSPublisherGui.USE_FILE_RSC;
+  }
+  if (config.equals(USE_RANDOM_LOCALNAME) || config.equals(JMSPublisherGui.USE_RANDOM_RSC)) {
+    return JMSPublisherGui.USE_RANDOM_RSC;
+  }
+  return config;
 }

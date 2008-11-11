@@ -12,8 +12,8 @@
     try {
       Thread.sleep(0,50);
     }
- catch (    Exception e) {
-      log.info(e.getMessage());
+ catch (    InterruptedException e) {
+      log.debug(e.getMessage());
     }
   }
   result.sampleEnd();
@@ -28,7 +28,6 @@
   result.setResponseCode(loop + " message(s) recieved successfully");
   result.setSamplerData("Not applicable");
   result.setSampleCount(loop);
-  this.SUBSCRIBER.clear();
-  this.SUBSCRIBER.resetCount();
+  this.SUBSCRIBER.reset();
   return result;
 }

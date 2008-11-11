@@ -6,8 +6,8 @@
     sub.resume();
     ClientPool.addClient(sub);
     ClientPool.put(this,sub);
-    log.info("SubscriberSampler.initListenerClient called");
-    log.info("loop count " + this.getIterations());
+    log.debug("SubscriberSampler.initListenerClient called");
+    log.debug("loop count " + this.getIterations());
   }
   return sub;
 }

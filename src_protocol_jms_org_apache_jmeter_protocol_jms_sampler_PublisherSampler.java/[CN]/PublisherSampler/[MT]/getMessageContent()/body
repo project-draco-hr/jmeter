@@ -1,11 +1,11 @@
 {
-  if (this.getConfigChoice().equals(JMSPublisherGui.use_file)) {
+  if (this.getConfigChoice().equals(JMSPublisherGui.USE_FILE_RSC)) {
     if (this.file_contents == null) {
       this.file_contents=this.getFileContent(this.getInputFile());
     }
     return this.file_contents;
   }
- else   if (this.getConfigChoice().equals(JMSPublisherGui.use_random)) {
+ else   if (this.getConfigChoice().equals(JMSPublisherGui.USE_RANDOM_RSC)) {
     String fname=FSERVER.getRandomFile(this.getRandomPath(),new String[]{".txt",".obj"}).getAbsolutePath();
     return this.getFileContent(fname);
   }

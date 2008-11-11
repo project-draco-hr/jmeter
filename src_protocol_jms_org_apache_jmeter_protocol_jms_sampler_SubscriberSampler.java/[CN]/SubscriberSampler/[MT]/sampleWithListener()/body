@@ -2,15 +2,14 @@
   SampleResult result=new SampleResult();
   result.setSampleLabel(getName());
   initListenerClient();
-  this.isRunning=true;
   int loop=this.getIterationCount();
   result.sampleStart();
-  while (this.isRunning && this.count(0) < loop) {
+  while (this.count(0) < loop) {
     try {
       Thread.sleep(0,50);
     }
- catch (    Exception e) {
-      log.info(e.getMessage());
+ catch (    InterruptedException e) {
+      log.debug(e.getMessage());
     }
   }
   result.sampleEnd();
