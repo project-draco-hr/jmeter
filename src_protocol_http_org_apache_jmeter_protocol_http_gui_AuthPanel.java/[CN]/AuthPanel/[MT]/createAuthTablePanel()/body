@@ -1,5 +1,6 @@
 {
   authTable=new JTable(tableModel);
+  authTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   authTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   authTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   TableColumn passwordColumn=authTable.getColumnModel().getColumn(AuthManager.COL_PASSWORD);
