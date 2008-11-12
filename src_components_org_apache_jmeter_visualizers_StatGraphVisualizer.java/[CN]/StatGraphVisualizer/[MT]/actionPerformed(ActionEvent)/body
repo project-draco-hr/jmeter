@@ -20,7 +20,7 @@
     try {
       writer=new FileWriter(chooser.getSelectedFile());
       Vector data=this.getAllTableData();
-      CSVSaveService.saveCSVStats(data,writer,saveHeaders.isSelected() ? COLUMNS : null);
+      CSVSaveService.saveCSVStats(data,writer,saveHeaders.isSelected() ? model.getColumnNames() : null);
     }
  catch (    FileNotFoundException e) {
       log.warn(e.getMessage());

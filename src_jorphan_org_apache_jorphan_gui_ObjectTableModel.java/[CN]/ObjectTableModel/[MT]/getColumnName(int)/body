@@ -1,3 +1,7 @@
 {
-  return (String)headers.get(col);
+  String rawName=(String)headers.get(col);
+  if (useHeaderAsResource) {
+    return JMeterUtils.getResString(rawName);
+  }
+  return rawName;
 }
