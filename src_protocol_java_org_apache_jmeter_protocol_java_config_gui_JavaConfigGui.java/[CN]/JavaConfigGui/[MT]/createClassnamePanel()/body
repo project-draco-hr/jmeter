@@ -1,5 +1,5 @@
 {
-  List possibleClasses=null;
+  List possibleClasses=new ArrayList();
   try {
     possibleClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JavaSamplerClient.class});
     possibleClasses.remove(JavaSampler.class.getName() + "$ErrorSamplerClient");
