@@ -1,0 +1,8 @@
+{
+  if (headers.length != columnClasses.length) {
+    throw new IllegalArgumentException("Header and column array sizes differ");
+  }
+  this.model.setHeaders(headers);
+  this.columnClasses=columnClasses;
+  this.headersAreResouceNames=useAsResourceNames;
+}

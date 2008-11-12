@@ -1,3 +1,7 @@
 {
-  return model.getHeaders()[column];
+  String rawName=model.getHeaders()[column];
+  if (headersAreResouceNames) {
+    return JMeterUtils.getResString(rawName);
+  }
+  return rawName;
 }

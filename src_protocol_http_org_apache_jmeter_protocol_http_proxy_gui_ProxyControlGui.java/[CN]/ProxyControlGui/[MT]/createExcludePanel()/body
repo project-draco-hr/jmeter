@@ -1,5 +1,5 @@
 {
-  excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class});
+  excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class},true);
   excludeTable=new JTable(excludeModel);
   excludeTable.setPreferredScrollableViewportSize(new Dimension(100,30));
   JPanel panel=new JPanel(new BorderLayout());

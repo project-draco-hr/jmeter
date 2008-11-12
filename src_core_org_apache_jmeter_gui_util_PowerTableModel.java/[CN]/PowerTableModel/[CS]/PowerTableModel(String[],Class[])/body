@@ -1,7 +1,3 @@
 {
-  if (headers.length != cc.length) {
-    throw new IllegalArgumentException("Header and column array sizes differ");
-  }
-  model.setHeaders(headers);
-  columnClasses=cc;
+  this(headers,columnClasses,false);
 }

@@ -1,5 +1,5 @@
 {
-  tableModel=new PowerTableModel(new String[]{COL_NAME},new Class[]{String.class});
+  tableModel=new PowerTableModel(new String[]{COL_RESOURCE_NAME},new Class[]{String.class},true);
   stringTable=new JTable(tableModel);
   TextAreaCellRenderer renderer=new TextAreaCellRenderer();
   stringTable.setRowHeight(renderer.getPreferredHeight());

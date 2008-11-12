@@ -1,6 +1,6 @@
 {
-  tableModel=new PowerTableModel(columnNames,columnClasses);
-  clearEachIteration=new JCheckBox(JMeterUtils.getResString(clearEachIterationLabel),false);
+  tableModel=new PowerTableModel(COLUMN_RESOURCE_NAMES,columnClasses,true);
+  clearEachIteration=new JCheckBox(JMeterUtils.getResString("clear_cookies_per_iter"),false);
   policy=new JLabeledChoice(JMeterUtils.getResString("cookie_manager_policy"),policies);
   policy.setText(CookieManager.DEFAULT_POLICY);
   setLayout(new BorderLayout());
