@@ -1,11 +1,6 @@
 {
   VerticalPanel SCPanel=new VerticalPanel();
-  JPanel SC0Panel=new JPanel(new BorderLayout(5,0));
-  JLabel label0=new JLabel(JMeterUtils.getResString("scope"));
-  label0.setLabelFor(scope);
-  SC0Panel.add(label0,BorderLayout.WEST);
-  SC0Panel.add(scope,BorderLayout.CENTER);
-  SCPanel.add(SC0Panel);
+  SCPanel.add(scope);
   JPanel SC1Panel=new JPanel(new BorderLayout(5,0));
   JLabel label1=new JLabel(JMeterUtils.getResString("countlim"));
   label1.setLabelFor(countlim);
