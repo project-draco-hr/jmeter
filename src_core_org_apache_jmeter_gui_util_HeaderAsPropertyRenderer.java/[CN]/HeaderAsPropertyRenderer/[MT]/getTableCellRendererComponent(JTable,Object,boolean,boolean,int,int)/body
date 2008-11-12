@@ -6,7 +6,7 @@
       setBackground(header.getBackground());
       setFont(header.getFont());
     }
-    setText(value == null ? "" : JMeterUtils.getResString(value.toString()));
+    setText(getText(value,row,column));
     setBorder(UIManager.getBorder("TableHeader.cellBorder"));
     setHorizontalAlignment(JLabel.CENTER);
   }

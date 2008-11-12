@@ -1,0 +1,6 @@
+{
+  if (value == null) {
+    return "";
+  }
+  return JMeterUtils.getResString(value.toString());
+}
