@@ -1,6 +1,7 @@
 {
-  excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class},true);
+  excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class});
   excludeTable=new JTable(excludeModel);
+  excludeTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   excludeTable.setPreferredScrollableViewportSize(new Dimension(100,30));
   JPanel panel=new JPanel(new BorderLayout());
   panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("patterns_to_exclude")));

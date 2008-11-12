@@ -1,6 +1,7 @@
 {
   initializeTableModel();
   table=new JTable(tableModel);
+  table.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   return makeScrollPane(table);
 }

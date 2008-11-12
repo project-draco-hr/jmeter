@@ -1,8 +1,0 @@
-{
-  int rowCount=getRowCount();
-  String[] names=new String[rowCount];
-  for (int i=0; i < rowCount; i++) {
-    names[i]=getColumnName(i);
-  }
-  return names;
-}

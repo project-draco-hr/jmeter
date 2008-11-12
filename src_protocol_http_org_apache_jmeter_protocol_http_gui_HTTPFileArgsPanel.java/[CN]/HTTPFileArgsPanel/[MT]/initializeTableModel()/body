@@ -1,3 +1,3 @@
 {
-  tableModel=new ObjectTableModel(new String[]{FILEPATH,PARAMNAME,MIMETYPE},HTTPFileArg.class,new Functor[]{new Functor("getPath"),new Functor("getParamName"),new Functor("getMimeType")},new Functor[]{new Functor("setPath"),new Functor("setParamName"),new Functor("setMimeType")},new Class[]{String.class,String.class,String.class},true);
+  tableModel=new ObjectTableModel(new String[]{FILEPATH,PARAMNAME,MIMETYPE},HTTPFileArg.class,new Functor[]{new Functor("getPath"),new Functor("getParamName"),new Functor("getMimeType")},new Functor[]{new Functor("setPath"),new Functor("setParamName"),new Functor("setMimeType")},new Class[]{String.class,String.class,String.class});
 }

@@ -1,6 +1,7 @@
 {
-  tableModel=new PowerTableModel(new String[]{COL_RESOURCE_NAME},new Class[]{String.class},true);
+  tableModel=new PowerTableModel(new String[]{COL_RESOURCE_NAME},new Class[]{String.class});
   stringTable=new JTable(tableModel);
+  stringTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   TextAreaCellRenderer renderer=new TextAreaCellRenderer();
   stringTable.setRowHeight(renderer.getPreferredHeight());
   stringTable.setDefaultRenderer(String.class,renderer);

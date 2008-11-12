@@ -1,5 +1,6 @@
 {
   cookieTable=new JTable(tableModel);
+  cookieTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   cookieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   cookieTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   JPanel buttonPanel=createButtonPanel();

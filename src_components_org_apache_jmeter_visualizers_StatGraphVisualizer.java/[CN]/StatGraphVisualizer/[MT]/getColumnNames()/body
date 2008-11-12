@@ -1,0 +1,7 @@
+{
+  String[] names=new String[COLUMNS.length];
+  for (int i=0; i < COLUMNS.length; i++) {
+    names[i]=JMeterUtils.getResString(COLUMNS[i]);
+  }
+  return names;
+}
