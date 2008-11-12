@@ -2,16 +2,17 @@
   if (paramTable.isEditing()) {
     paramTable.getCellEditor().stopCellEditing();
   }
-  ((UserParameters)params).setNames(new CollectionProperty(UserParameters.NAMES,tableModel.getColumnData(JMeterUtils.getResString("name"))));
+  UserParameters userParams=((UserParameters)params);
+  userParams.setNames(new CollectionProperty(UserParameters.NAMES,tableModel.getColumnData(NAME_COL_RESOURCE)));
   CollectionProperty threadLists=new CollectionProperty(UserParameters.THREAD_VALUES,new ArrayList());
-  log.debug("making threadlists from gui = " + threadLists);
-  for (int x=1; x < tableModel.getColumnCount(); x++) {
-    threadLists.addItem(tableModel.getColumnData(THREAD_COLUMNS_PREFIX + x));
-    log.debug("Adding column to threadlist: " + tableModel.getColumnData(THREAD_COLUMNS_PREFIX + x));
+  log.debug("making threadlists from gui");
+  for (int col=1; col < tableModel.getColumnCount(); col++) {
+    threadLists.addItem(tableModel.getColumnData(getUserColName(col)));
+    log.debug("Adding column to threadlist: " + tableModel.getColumnData(getUserColName(col)));
     log.debug("Threadlists now = " + threadLists);
   }
   log.debug("In the end, threadlists = " + threadLists);
-  ((UserParameters)params).setThreadLists(threadLists);
-  ((UserParameters)params).setPerIteration(perIterationCheck.isSelected());
+  userParams.setThreadLists(threadLists);
+  userParams.setPerIteration(perIterationCheck.isSelected());
   super.configureTestElement(params);
 }
