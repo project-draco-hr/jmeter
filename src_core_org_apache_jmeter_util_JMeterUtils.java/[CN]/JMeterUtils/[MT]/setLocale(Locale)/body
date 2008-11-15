@@ -1,6 +1,5 @@
 {
   log.info("Setting Locale to " + loc.toString());
-  locale=loc;
   Locale def=null;
   if (loc.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
     def=Locale.getDefault();
@@ -11,7 +10,15 @@
       def=null;
     }
   }
-  resources=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",locale);
+  if (loc.toString().equals("ignoreResources")) {
+    log.warn("Resource bundles will be ignored");
+    ignoreResorces=true;
+  }
+ else {
+    ignoreResorces=false;
+    locale=loc;
+    resources=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",locale);
+  }
   notifyLocaleChangeListeners();
   if (def != null) {
     Locale.setDefault(def);

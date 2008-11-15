@@ -2,14 +2,20 @@
   if (key == null) {
     return null;
   }
-  key=key.replace(' ','_');
-  key=key.toLowerCase(java.util.Locale.ENGLISH);
+  String resKey=key.replace(' ','_');
+  resKey=resKey.toLowerCase(java.util.Locale.ENGLISH);
   String resString=null;
   try {
-    resString=resources.getString(key);
+    resString=resources.getString(resKey);
+    if (ignoreResorces) {
+      return "[" + key + "]";
+    }
   }
  catch (  MissingResourceException mre) {
-    log.warn("ERROR! Resource string not found: [" + key + "]",mre);
+    if (ignoreResorces) {
+      return "[?" + key + "?]";
+    }
+    log.warn("ERROR! Resource string not found: [" + resKey + "]",mre);
     resString=defaultValue;
   }
   return resString;
