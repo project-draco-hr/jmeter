@@ -1,7 +1,6 @@
 {
-  super(new TreeMap(comper));
-  comparator=comper;
+  this(comper);
   for (int x=0; x < keys.length; x++) {
-    data.put(keys[x],new SortedHashTree(comparator));
+    data.put(keys[x],new SortedHashTree(comper));
   }
 }

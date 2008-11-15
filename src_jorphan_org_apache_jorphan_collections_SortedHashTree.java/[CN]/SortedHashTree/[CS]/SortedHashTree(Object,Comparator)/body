@@ -1,5 +1,4 @@
 {
-  super(new TreeMap(comper));
-  comparator=comper;
-  data.put(key,new SortedHashTree(comparator));
+  this(comper);
+  data.put(key,new SortedHashTree(comper));
 }

@@ -1,8 +1,4 @@
 {
-  if (comparator == null) {
-    return new SortedHashTree(values);
-  }
- else {
-    return new SortedHashTree(values,comparator);
-  }
+  Comparator comparator=((TreeMap)data).comparator();
+  return new SortedHashTree(values,comparator);
 }
