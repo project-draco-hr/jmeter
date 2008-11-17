@@ -1,0 +1,7 @@
+{
+  JMenuItem menuItem=new JMenuItem(label);
+  menuItem.setName(label);
+  menuItem.setActionCommand(actionCommand);
+  menuItem.addActionListener(ActionRouter.getInstance());
+  return menuItem;
+}

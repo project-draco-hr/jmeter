@@ -1,5 +1,4 @@
 {
-  editMenu=new JMenu(JMeterUtils.getResString("edit"));
-  editMenu.setMnemonic('E');
+  editMenu=makeMenuRes("edit",'E');
   editMenu.setEnabled(false);
 }

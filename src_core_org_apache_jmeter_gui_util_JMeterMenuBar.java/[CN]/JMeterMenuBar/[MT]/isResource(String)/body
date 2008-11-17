@@ -1,0 +1,24 @@
+{
+  if (ActionNames.CHANGE_LANGUAGE.equals(actionCommand)) {
+    return false;
+  }
+  if (ActionNames.ADD.equals(actionCommand)) {
+    return false;
+  }
+  if (ActionNames.REMOTE_START.equals(actionCommand)) {
+    return false;
+  }
+  if (ActionNames.REMOTE_STOP.equals(actionCommand)) {
+    return false;
+  }
+  if (ActionNames.REMOTE_EXIT.equals(actionCommand)) {
+    return false;
+  }
+  if (ActionNames.OPEN_RECENT.equals(actionCommand)) {
+    return false;
+  }
+  if (actionCommand != null && actionCommand.startsWith(ActionNames.LAF_PREFIX)) {
+    return false;
+  }
+  return true;
+}

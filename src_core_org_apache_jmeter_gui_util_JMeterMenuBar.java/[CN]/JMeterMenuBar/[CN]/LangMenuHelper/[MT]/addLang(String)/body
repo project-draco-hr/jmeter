@@ -1,0 +1,8 @@
+{
+  String localeString=JMeterUtils.getLocaleString(locale);
+  JMenuItem language=new JMenuItem(localeString);
+  language.addActionListener(actionRouter);
+  language.setActionCommand(ActionNames.CHANGE_LANGUAGE);
+  language.setName(locale);
+  languageMenu.add(language);
+}

@@ -1,0 +1,8 @@
+{
+  JMenuItem menuItem=new JMenuItem(JMeterUtils.getResString(resource),mnemonic);
+  menuItem.setName(resource);
+  menuItem.setActionCommand(actionCommand);
+  menuItem.setAccelerator(keyStroke);
+  menuItem.addActionListener(ActionRouter.getInstance());
+  return menuItem;
+}

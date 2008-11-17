@@ -1,38 +1,23 @@
 {
-  optionsMenu=new JMenu(JMeterUtils.getResString("option"));
-  JMenuItem functionHelper=new JMenuItem(JMeterUtils.getResString("function_dialog_menu_item"),'F');
-  functionHelper.addActionListener(ActionRouter.getInstance());
-  functionHelper.setActionCommand(ActionNames.FUNCTIONS);
-  functionHelper.setAccelerator(KeyStrokes.FUNCTIONS);
-  lafMenu=new JMenu(JMeterUtils.getResString("appearance"));
+  optionsMenu=makeMenuRes("option",'O');
+  JMenuItem functionHelper=makeMenuItemRes("function_dialog_menu_item",'F',ActionNames.FUNCTIONS,KeyStrokes.FUNCTIONS);
+  lafMenu=makeMenuRes("appearance",'L');
   UIManager.LookAndFeelInfo lafs[]=UIManager.getInstalledLookAndFeels();
   for (int i=0; i < lafs.length; ++i) {
     JMenuItem laf=new JMenuItem(lafs[i].getName());
     laf.addActionListener(ActionRouter.getInstance());
     laf.setActionCommand(ActionNames.LAF_PREFIX + lafs[i].getClassName());
-    lafMenu.setMnemonic('L');
     lafMenu.add(laf);
   }
-  optionsMenu.setMnemonic('O');
   optionsMenu.add(functionHelper);
   optionsMenu.add(lafMenu);
   if (SSLManager.isSSLSupported()) {
-    sslManager=new JMenuItem(JMeterUtils.getResString("sslmanager"));
-    sslManager.addActionListener(ActionRouter.getInstance());
-    sslManager.setActionCommand(ActionNames.SSL_MANAGER);
-    sslManager.setMnemonic('S');
-    sslManager.setAccelerator(KeyStrokes.SSL_MANAGER);
+    sslManager=makeMenuItemRes("sslmanager",'S',ActionNames.SSL_MANAGER,KeyStrokes.SSL_MANAGER);
     optionsMenu.add(sslManager);
   }
   optionsMenu.add(makeLanguageMenu());
-  JMenuItem collapse=new JMenuItem(JMeterUtils.getResString("menu_collapse_all"));
-  collapse.addActionListener(ActionRouter.getInstance());
-  collapse.setActionCommand(ActionNames.COLLAPSE_ALL);
-  collapse.setAccelerator(KeyStrokes.COLLAPSE_ALL);
+  JMenuItem collapse=makeMenuItemRes("menu_collapse_all",ActionNames.COLLAPSE_ALL,KeyStrokes.COLLAPSE_ALL);
   optionsMenu.add(collapse);
-  JMenuItem expand=new JMenuItem(JMeterUtils.getResString("menu_expand_all"));
-  expand.addActionListener(ActionRouter.getInstance());
-  expand.setActionCommand(ActionNames.EXPAND_ALL);
-  expand.setAccelerator(KeyStrokes.EXPAND_ALL);
+  JMenuItem expand=makeMenuItemRes("menu_expand_all",ActionNames.EXPAND_ALL,KeyStrokes.EXPAND_ALL);
   optionsMenu.add(expand);
 }

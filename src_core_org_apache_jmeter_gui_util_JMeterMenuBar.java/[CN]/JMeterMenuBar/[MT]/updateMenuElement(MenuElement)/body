@@ -1,11 +1,21 @@
 {
   Component component=menu.getComponent();
-  if (component.getName() != null) {
+  final String compName=component.getName();
+  if (compName != null) {
     if (component instanceof JMenu) {
-      ((JMenu)component).setText(JMeterUtils.getResString(component.getName()));
+      final JMenu jMenu=(JMenu)component;
+      if (isResource(jMenu.getActionCommand())) {
+        jMenu.setText(JMeterUtils.getResString(compName));
+      }
     }
  else {
-      ((JMenuItem)component).setText(JMeterUtils.getResString(component.getName()));
+      final JMenuItem jMenuItem=(JMenuItem)component;
+      if (isResource(jMenuItem.getActionCommand())) {
+        jMenuItem.setText(JMeterUtils.getResString(compName));
+      }
+ else       if (ActionNames.CHANGE_LANGUAGE.equals(jMenuItem.getActionCommand())) {
+        jMenuItem.setText(JMeterUtils.getLocaleString(compName));
+      }
     }
   }
   MenuElement[] subelements=menu.getSubElements();

@@ -1,0 +1,9 @@
+{
+  JMenuItem newMenuChoice=new JMenuItem(JMeterUtils.getResString(resource));
+  newMenuChoice.setName(resource);
+  newMenuChoice.addActionListener(ActionRouter.getInstance());
+  if (actionCommand != null) {
+    newMenuChoice.setActionCommand(actionCommand);
+  }
+  return newMenuChoice;
+}

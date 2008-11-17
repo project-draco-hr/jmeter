@@ -1,5 +1,5 @@
 {
   addSeparator(menu);
-  menu.add(makeMenuItem(JMeterUtils.getResString("paste"),"Paste",ActionNames.PASTE,KeyStrokes.PASTE));
-  menu.add(makeMenuItem(JMeterUtils.getResString("reset_gui"),"Reset",ActionNames.RESET_GUI));
+  menu.add(makeMenuItemRes("paste",ActionNames.PASTE,KeyStrokes.PASTE));
+  menu.add(makeMenuItemRes("reset_gui",ActionNames.RESET_GUI));
 }
