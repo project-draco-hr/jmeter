@@ -1,7 +1,9 @@
 {
   log.info("Setting Locale to " + loc.toString());
   Locale def=null;
+  boolean isDefault=false;
   if (loc.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
+    isDefault=true;
     def=Locale.getDefault();
     if (!def.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
       Locale.setDefault(Locale.ENGLISH);
@@ -16,8 +18,15 @@
   }
  else {
     ignoreResorces=false;
-    locale=loc;
-    resources=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",locale);
+    ResourceBundle resBund=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",loc);
+    if (isDefault || resBund.getLocale().equals(loc)) {
+      resources=resBund;
+      locale=loc;
+    }
+ else {
+      log.error("Unable to change language to " + loc.toString());
+      throw new JMeterError("Unable to change language to " + loc.toString());
+    }
   }
   notifyLocaleChangeListeners();
   if (def != null) {
