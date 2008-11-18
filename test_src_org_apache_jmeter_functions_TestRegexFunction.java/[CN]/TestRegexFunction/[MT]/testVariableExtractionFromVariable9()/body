@@ -1,0 +1,18 @@
+{
+  params=new LinkedList();
+  params.add(new CompoundVariable("(\\d+)\\s+(\\w+)"));
+  params.add(new CompoundVariable("$1$mid$2$post"));
+  params.add(new CompoundVariable("1"));
+  params.add(new CompoundVariable("-"));
+  params.add(new CompoundVariable("default"));
+  params.add(new CompoundVariable("OUTVAR"));
+  params.add(new CompoundVariable(INPUT_VARIABLE_NAME));
+  variable.setParameters(params);
+  String match=variable.execute(result,null);
+  assertEquals("1",vars.getObject("OUTVAR_matchNr"));
+  assertEquals("123midtimespost",match);
+  assertEquals("123midtimespost",vars.getObject("OUTVAR"));
+  assertEquals("123 times",vars.getObject("OUTVAR_g0"));
+  assertEquals("123",vars.getObject("OUTVAR_g1"));
+  assertEquals("times",vars.getObject("OUTVAR_g2"));
+}

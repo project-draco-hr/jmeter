@@ -1,3 +1,3 @@
 {
-  initPattern();
+  templatePattern=JMeterUtils.getPatternCache().getPattern(TEMPLATE_PATTERN,Perl5Compiler.READ_ONLY_MASK);
 }
