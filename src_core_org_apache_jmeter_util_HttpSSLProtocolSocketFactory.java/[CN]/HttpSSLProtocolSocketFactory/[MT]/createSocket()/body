@@ -1,0 +1,6 @@
+{
+  SSLSocketFactory sslfac=getSSLSocketFactory();
+  Socket sock=sslfac.createSocket();
+  setSocket(sock);
+  return wrapSocket(sock);
+}
