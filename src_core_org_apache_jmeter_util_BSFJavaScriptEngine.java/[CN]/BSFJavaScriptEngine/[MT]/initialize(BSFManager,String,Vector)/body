@@ -1,0 +1,17 @@
+{
+  super.initialize(mgr,lang,declaredBeans);
+  try {
+    Context cx=Context.enter();
+    global=new ImporterTopLevel(cx);
+    Scriptable bsf=Context.toObject(new BSFFunctions(mgr,this),global);
+    global.put("bsf",global,bsf);
+    for (Iterator it=declaredBeans.iterator(); it.hasNext(); ) {
+      declareBean((BSFDeclaredBean)it.next());
+    }
+  }
+ catch (  Throwable t) {
+  }
+ finally {
+    Context.exit();
+  }
+}

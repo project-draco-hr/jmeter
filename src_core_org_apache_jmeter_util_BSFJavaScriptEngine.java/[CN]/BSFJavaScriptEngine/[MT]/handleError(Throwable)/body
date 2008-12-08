@@ -1,0 +1,28 @@
+{
+  if (t instanceof WrappedException)   t=((WrappedException)t).getWrappedException();
+  String message=null;
+  Throwable target=t;
+  if (t instanceof JavaScriptException) {
+    message=t.getLocalizedMessage();
+    Object value=((JavaScriptException)t).getValue();
+    if (value instanceof Throwable) {
+      target=(Throwable)value;
+    }
+  }
+ else   if (t instanceof EvaluatorException || t instanceof SecurityException) {
+    message=t.getLocalizedMessage();
+  }
+ else   if (t instanceof RuntimeException) {
+    message="Internal Error: " + t.toString();
+  }
+ else   if (t instanceof StackOverflowError) {
+    message="Stack Overflow";
+  }
+  if (message == null)   message=t.toString();
+  if (t instanceof Error && !(t instanceof StackOverflowError)) {
+    throw (Error)t;
+  }
+ else {
+    throw new BSFException(BSFException.REASON_OTHER_ERROR,"JavaScript Error: " + message,target);
+  }
+}
