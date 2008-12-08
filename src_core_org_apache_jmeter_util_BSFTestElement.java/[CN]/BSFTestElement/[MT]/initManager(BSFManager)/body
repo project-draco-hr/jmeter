@@ -16,8 +16,8 @@
   mgr.declareBean("vars",vars,vars.getClass());
   mgr.declareBean("props",props,props.getClass());
   mgr.declareBean("OUT",System.out,PrintStream.class);
-  SampleResult prev=jmctx.getPreviousResult();
-  mgr.declareBean("prev",prev,SampleResult.class);
   Sampler sampler=jmctx.getCurrentSampler();
   mgr.declareBean("sampler",sampler,Sampler.class);
+  SampleResult prev=jmctx.getPreviousResult();
+  mgr.declareBean("prev",prev,SampleResult.class);
 }
