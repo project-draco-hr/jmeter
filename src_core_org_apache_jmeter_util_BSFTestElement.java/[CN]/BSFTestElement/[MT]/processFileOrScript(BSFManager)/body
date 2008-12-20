@@ -4,5 +4,14 @@
   if (scriptFile.length() == 0) {
     bsfEngine.exec("[script]",0,0,getScript());
   }
-  bsfEngine.exec(scriptFile,0,0,scriptFile);
+ else {
+    try {
+      String script=FileUtils.readFileToString(new File(scriptFile));
+      bsfEngine.exec(scriptFile,0,0,script);
+    }
+ catch (    IOException e) {
+      log.warn(e.getLocalizedMessage());
+      throw new BSFException(BSFException.REASON_IO_ERROR,"Problem reading script file",e);
+    }
+  }
 }
