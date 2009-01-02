@@ -1,7 +1,7 @@
 {
   ResponseAssertion ra=new ResponseAssertion();
   ra.setProperty(TestElement.GUI_CLASS,ASSERTION_GUI);
-  ra.setName("Check response");
+  ra.setName(JMeterUtils.getResString("assertion_title"));
   ra.setTestFieldResponseData();
   model.addComponent(ra,node);
 }
