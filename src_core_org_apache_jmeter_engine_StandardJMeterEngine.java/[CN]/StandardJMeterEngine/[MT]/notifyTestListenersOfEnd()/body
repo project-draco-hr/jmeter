@@ -3,14 +3,19 @@
   Iterator iter=testListeners.getSearchResults().iterator();
   while (iter.hasNext()) {
     TestListener tl=(TestListener)iter.next();
-    if (tl instanceof TestBean) {
-      TestBeanHelper.prepare((TestElement)tl);
-    }
-    if (host == null) {
-      tl.testEnded();
-    }
+    try {
+      if (tl instanceof TestBean) {
+        TestBeanHelper.prepare((TestElement)tl);
+      }
+      if (host == null) {
+        tl.testEnded();
+      }
  else {
-      tl.testEnded(host);
+        tl.testEnded(host);
+      }
+    }
+ catch (    Exception e) {
+      log.warn("Error encountered during shutdown",e);
     }
   }
   log.info("Test has ended");
