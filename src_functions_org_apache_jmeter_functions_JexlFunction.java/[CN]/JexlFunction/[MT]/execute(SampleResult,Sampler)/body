@@ -12,10 +12,11 @@
     Script script=ScriptFactory.createScript(exp);
     JexlContext jc=JexlHelper.createContext();
     final Map jexlVars=jc.getVars();
+    jexlVars.put("log",log);
     jexlVars.put("ctx",jmctx);
     jexlVars.put("vars",vars);
     jexlVars.put("props",JMeterUtils.getJMeterProperties());
-    jexlVars.put("theadName",Thread.currentThread().getName());
+    jexlVars.put("threadName",Thread.currentThread().getName());
     jexlVars.put("sampler",currentSampler);
     jexlVars.put("sampleResult",previousResult);
     jexlVars.put("OUT",System.out);

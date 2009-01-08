@@ -7,10 +7,11 @@
   Context cx=Context.enter();
   try {
     Scriptable scope=cx.initStandardObjects(null);
+    scope.put("log",scope,log);
     scope.put("ctx",scope,jmctx);
     scope.put("vars",scope,vars);
     scope.put("props",scope,JMeterUtils.getJMeterProperties());
-    scope.put("theadName",scope,Thread.currentThread().getName());
+    scope.put("threadName",scope,Thread.currentThread().getName());
     scope.put("sampler",scope,currentSampler);
     scope.put("sampleResult",scope,previousResult);
     Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
