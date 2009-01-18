@@ -28,8 +28,7 @@
       ResultSet rs=null;
       try {
         rs=stmt.executeQuery(getQuery());
-        Data data=getDataFromResultSet(rs);
-        res.setResponseData(data.toString().getBytes(ENCODING));
+        res.setResponseData(getStringFromResultSet(rs).getBytes(ENCODING));
       }
   finally {
         close(rs);
