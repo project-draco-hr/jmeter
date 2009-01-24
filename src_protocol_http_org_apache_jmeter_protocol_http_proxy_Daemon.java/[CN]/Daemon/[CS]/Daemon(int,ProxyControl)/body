@@ -1,5 +1,3 @@
 {
-  this();
-  this.target=target;
-  configureProxy(port);
+  this(port,target,Proxy.class);
 }

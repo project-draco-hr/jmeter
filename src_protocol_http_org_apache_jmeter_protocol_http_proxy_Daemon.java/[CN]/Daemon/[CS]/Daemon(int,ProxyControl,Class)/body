@@ -1,4 +1,9 @@
 {
-  this(port,target);
+  super("HTTP Proxy Daemon");
+  this.target=target;
+  this.daemonPort=port;
   this.proxyClass=proxyClass;
+  log.info("Creating Daemon Socket on port: " + daemonPort);
+  mainSocket=new ServerSocket(daemonPort);
+  mainSocket.setSoTimeout(ACCEPT_TIMEOUT);
 }

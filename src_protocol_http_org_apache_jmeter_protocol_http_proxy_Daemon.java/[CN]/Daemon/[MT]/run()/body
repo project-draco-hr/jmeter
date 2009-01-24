@@ -1,13 +1,9 @@
 {
   running=true;
-  ServerSocket mainSocket=null;
-  pageEncodings=Collections.synchronizedMap(new HashMap());
-  formEncodings=Collections.synchronizedMap(new HashMap());
+  log.info("Proxy up and running!");
+  Map pageEncodings=Collections.synchronizedMap(new HashMap());
+  Map formEncodings=Collections.synchronizedMap(new HashMap());
   try {
-    log.info("Creating Daemon Socket... on port " + daemonPort);
-    mainSocket=new ServerSocket(daemonPort);
-    mainSocket.setSoTimeout(ACCEPT_TIMEOUT);
-    log.info("Proxy up and running!");
     while (running) {
       try {
         Socket clientSocket=mainSocket.accept();
