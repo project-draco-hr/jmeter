@@ -11,4 +11,10 @@
  catch (  InvalidVariableException e) {
     JOptionPane.showMessageDialog(this,JMeterUtils.getResString("invalid_variables"),"Error",JOptionPane.ERROR_MESSAGE);
   }
+catch (  BindException e) {
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_bind_error"),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+catch (  IOException e) {
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error"),"Error",JOptionPane.ERROR_MESSAGE);
+  }
 }
