@@ -4,9 +4,6 @@
   while (iter.hasNext()) {
     TestListener tl=(TestListener)iter.next();
     try {
-      if (tl instanceof TestBean) {
-        TestBeanHelper.prepare((TestElement)tl);
-      }
       if (host == null) {
         tl.testEnded();
       }
@@ -15,7 +12,7 @@
       }
     }
  catch (    Exception e) {
-      log.warn("Error encountered during shutdown",e);
+      log.warn("Error encountered during shutdown of " + tl.toString(),e);
     }
   }
   log.info("Test has ended");
