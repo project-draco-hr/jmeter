@@ -1,5 +1,11 @@
 {
   notifyTestListenersOfStart();
-  server=new Daemon(getPort(),this);
-  server.start();
+  try {
+    server=new Daemon(getPort(),this);
+    server.start();
+  }
+ catch (  IOException e) {
+    log.error("Could not create Proxy daemon",e);
+    throw e;
+  }
 }
