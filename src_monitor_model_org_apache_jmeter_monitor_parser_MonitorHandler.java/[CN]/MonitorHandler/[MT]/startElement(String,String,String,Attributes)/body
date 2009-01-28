@@ -34,7 +34,7 @@
  else   if (qName.equals(Constants.CONNECTOR)) {
     connector=factory.createConnector();
     if (stacktree.peek() instanceof Status || stacktree.peek() instanceof Connector) {
-      ((StatusImpl)status).addConnector(connector);
+      status.addConnector(connector);
       stacktree.push(connector);
       if (attributes != null) {
         for (int idx=0; idx < attributes.getLength(); idx++) {
