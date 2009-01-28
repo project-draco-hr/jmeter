@@ -1,18 +1,17 @@
 {
-  String theAddressie=getToAddress();
+  String addressees=getToAddress();
   Vector addressVector=new Vector();
-  if (theAddressie != null) {
-    String addressSep=",";
-    StringTokenizer next=new StringTokenizer(theAddressie,addressSep);
+  if (addressees != null) {
+    StringTokenizer next=new StringTokenizer(addressees,",");
     while (next.hasMoreTokens()) {
       String theToken=next.nextToken().trim();
       if (theToken.indexOf("@") > 0) {
         addressVector.addElement(theToken);
       }
-    }
-  }
  else {
-    return new Vector(0);
+        log.warn("Ignored unexpected e-mail address: " + theToken);
+      }
+    }
   }
   return addressVector;
 }
