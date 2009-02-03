@@ -3,8 +3,9 @@
   int state=INITIAL;
   List list=new ArrayList();
   ByteArrayOutputStream baos=new ByteArrayOutputStream(200);
+  boolean push=false;
   while (-1 != (ch=infile.read())) {
-    boolean push=false;
+    push=false;
 switch (state) {
 case INITIAL:
       if (ch == QUOTING_CHAR) {
@@ -73,9 +74,9 @@ if (ch == -1) {
 if (state == QUOTED) {
 throw new IOException(state + " Missing trailing quote-char in quoted field:[\"" + baos.toString()+ "]");
 }
-if (baos.size() > 0) {
+if (baos.size() > 0 || push || state == EMBEDDEDQUOTE) {
 list.add(baos.toString());
 }
 }
-return (String[])list.toArray(new String[]{});
+return (String[])list.toArray(new String[list.size()]);
 }

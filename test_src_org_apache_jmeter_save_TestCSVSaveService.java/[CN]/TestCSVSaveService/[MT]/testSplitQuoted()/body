@@ -1,0 +1,14 @@
+{
+  checkSplitString("a,bc,d,e",',',new String[]{"a","bc","d","e"});
+  checkSplitString(",bc,d,e",',',new String[]{"","bc","d","e"});
+  checkSplitString("\"\",bc,d,e",',',new String[]{"","bc","d","e"});
+  checkSplitString("a,,d,e",',',new String[]{"a","","d","e"});
+  checkSplitString("a,\"\",d,e",',',new String[]{"a","","d","e"});
+  checkSplitString("a,bc, ,e",',',new String[]{"a","bc"," ","e"});
+  checkSplitString("a,bc,\" \",e",',',new String[]{"a","bc"," ","e"});
+  checkSplitString("a,bc,d, ",',',new String[]{"a","bc","d"," "});
+  checkSplitString("a,bc,d,\" \"",',',new String[]{"a","bc","d"," "});
+  checkSplitString("a,bc,d,",',',new String[]{"a","bc","d",""});
+  checkSplitString("a,bc,d,\"\"",',',new String[]{"a","bc","d",""});
+  checkSplitString("a,bc,d,\"\"\n",',',new String[]{"a","bc","d",""});
+}

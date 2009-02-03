@@ -18,7 +18,8 @@
       lineNumber=0;
     }
     String[] parts;
-    while ((parts=csvReadFile(dataReader,saveConfig.getDelimiter().charAt(0))).length != 0) {
+    final char delim=saveConfig.getDelimiter().charAt(0);
+    while ((parts=csvReadFile(dataReader,delim)).length != 0) {
       lineNumber++;
       SampleEvent event=CSVSaveService.makeResultFromDelimitedString(parts,saveConfig,lineNumber);
       if (event != null) {

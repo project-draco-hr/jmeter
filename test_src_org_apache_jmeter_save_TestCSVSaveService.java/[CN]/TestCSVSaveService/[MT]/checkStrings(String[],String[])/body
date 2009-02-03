@@ -1,0 +1,6 @@
+{
+  assertEquals("Incorrect number of strings returned",expected.length,out.length);
+  for (int i=0; i < out.length; i++) {
+    assertEquals("Incorrect entry returned",expected[i],out[i]);
+  }
+}
