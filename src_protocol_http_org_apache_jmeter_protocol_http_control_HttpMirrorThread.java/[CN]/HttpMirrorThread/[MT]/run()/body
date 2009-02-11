@@ -27,6 +27,10 @@
     if (contentLengthHeaderValue != null) {
       contentLength=new Integer(contentLengthHeaderValue).intValue();
     }
+    String sleepHeaderValue=getRequestHeaderValue(headerString,"X-Sleep");
+    if (sleepHeaderValue != null) {
+      Thread.sleep(Integer.parseInt(sleepHeaderValue));
+    }
     String transferEncodingHeaderValue=getRequestHeaderValue(headerString,"Transfer-Encoding");
     if (transferEncodingHeaderValue != null) {
       isChunked=transferEncodingHeaderValue.equalsIgnoreCase("chunked");
@@ -55,6 +59,9 @@
     out.flush();
   }
  catch (  IOException e) {
+    log.error("",e);
+  }
+catch (  InterruptedException e) {
     log.error("",e);
   }
  finally {
