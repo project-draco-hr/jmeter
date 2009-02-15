@@ -160,4 +160,8 @@ remoteStop=true;
 break;
 }
 }
+String sample_variables=(String)jmeterProps.get(SampleEvent.SAMPLE_VARIABLES);
+if (sample_variables != null) {
+remoteProps.put(SampleEvent.SAMPLE_VARIABLES,sample_variables);
+}
 }
