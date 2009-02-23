@@ -1,0 +1,5 @@
+{
+  super.configure(el);
+  prefixField.setText(el.getPropertyAsString(CONNECTOR_PREFIX,CONNECTOR_PREFIX_DEFAULT));
+  MODEL.setPrefix(prefixField.getText());
+}

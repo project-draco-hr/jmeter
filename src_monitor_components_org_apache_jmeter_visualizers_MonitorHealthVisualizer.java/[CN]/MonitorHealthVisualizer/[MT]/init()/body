@@ -4,4 +4,6 @@
   this.setBorder(margin);
   this.add(this.makeTitlePanel(),BorderLayout.NORTH);
   this.createTabs();
+  prefixField=new JLabeledTextField(JMeterUtils.getResString("monitor_label_prefix"));
+  add(prefixField,BorderLayout.SOUTH);
 }

@@ -7,7 +7,7 @@
     double memWeight=DEFAULT_MEMORY_FACTOR * memdiv;
     double threadWeight=0;
     if (stat.getConnector().size() > 0) {
-      Connector cntr=(Connector)stat.getConnector().get(0);
+      Connector cntr=fetchConnector(stat);
       int maxThread=cntr.getThreadInfo().getMaxThreads();
       int curThread=cntr.getThreadInfo().getCurrentThreadsBusy();
       double thdiv=(double)curThread / (double)maxThread;

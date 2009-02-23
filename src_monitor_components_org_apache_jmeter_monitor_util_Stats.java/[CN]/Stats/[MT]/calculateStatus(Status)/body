@@ -1,6 +1,6 @@
 {
   if (stat != null && stat.getConnector().size() > 0) {
-    Connector cntr=(Connector)stat.getConnector().get(0);
+    Connector cntr=fetchConnector(stat);
     int max=cntr.getThreadInfo().getMaxThreads();
     int current=cntr.getThreadInfo().getCurrentThreadsBusy();
     double per=(double)current / (double)max;
