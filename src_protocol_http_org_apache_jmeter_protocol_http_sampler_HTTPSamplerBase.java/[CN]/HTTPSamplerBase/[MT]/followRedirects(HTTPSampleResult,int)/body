@@ -43,6 +43,6 @@
   totalRes.setDataType(lastRes.getDataType());
   totalRes.setResponseHeaders(lastRes.getResponseHeaders());
   totalRes.setContentType(lastRes.getContentType());
-  totalRes.setDataEncoding(lastRes.getDataEncoding());
+  totalRes.setDataEncoding(lastRes.getDataEncodingNoDefault());
   return totalRes;
 }
