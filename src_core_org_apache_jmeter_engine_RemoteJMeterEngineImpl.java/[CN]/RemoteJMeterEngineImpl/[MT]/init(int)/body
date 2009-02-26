@@ -29,7 +29,7 @@
     Registry reg=LocateRegistry.getRegistry(port);
     log.info("Creating JMeter engine on host " + hostName);
     backingEngine=new StandardJMeterEngine(hostName);
-    reg.rebind("JMeterEngine",this);
+    reg.rebind(JMETER_ENGINE_RMI_NAME,this);
     log.info("Bound to registry on port " + port);
   }
  catch (  Exception ex) {

@@ -1,7 +1,7 @@
 {
   log.info("running clientengine run method");
-  testListeners=new SearchByClass(TestListener.class);
-  sampleListeners=new ConvertListeners();
+  SearchByClass testListeners=new SearchByClass(TestListener.class);
+  ConvertListeners sampleListeners=new ConvertListeners();
   HashTree testTree=getTestTree();
   PreCompiler compiler=new PreCompiler(true);
 synchronized (testTree) {
@@ -12,8 +12,6 @@ synchronized (testTree) {
   }
   try {
     JMeterContextService.startTest();
-    remote.setHost(host);
-    log.info("sent host =" + host);
     remote.configure(test);
     log.info("sent test");
     remote.runTest();

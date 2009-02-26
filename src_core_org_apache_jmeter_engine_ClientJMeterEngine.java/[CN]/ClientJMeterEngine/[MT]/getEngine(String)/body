@@ -1,3 +1,13 @@
 {
-  return (RemoteJMeterEngine)Naming.lookup("//" + h + "/JMeterEngine");
+  final String name="//" + h + "/"+ RemoteJMeterEngineImpl.JMETER_ENGINE_RMI_NAME;
+  Remote remobj=Naming.lookup(name);
+  if (remobj instanceof RemoteJMeterEngine) {
+    final RemoteJMeterEngine rje=(RemoteJMeterEngine)remobj;
+    if (remobj instanceof RemoteObject) {
+      RemoteObject robj=(RemoteObject)remobj;
+      System.out.println("Using remote object: " + robj.getRef().remoteToString());
+    }
+    return rje;
+  }
+  throw new RemoteException("Could not find " + name);
 }

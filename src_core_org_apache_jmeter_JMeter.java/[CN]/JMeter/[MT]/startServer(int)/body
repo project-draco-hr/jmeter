@@ -1,6 +1,6 @@
 {
   try {
-    new RemoteJMeterEngineImpl(port);
+    RemoteJMeterEngineImpl.startServer(port);
   }
  catch (  Exception ex) {
     log.error("Giving up, as server failed with:",ex);

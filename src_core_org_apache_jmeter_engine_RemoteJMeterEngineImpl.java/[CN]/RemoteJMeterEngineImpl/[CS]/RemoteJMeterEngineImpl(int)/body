@@ -1,3 +1,4 @@
 {
-  init(port == 0 ? DEFAULT_RMI_PORT : port);
+  super(port);
+  System.out.println("Created remote object: " + this.getRef().remoteToString());
 }
