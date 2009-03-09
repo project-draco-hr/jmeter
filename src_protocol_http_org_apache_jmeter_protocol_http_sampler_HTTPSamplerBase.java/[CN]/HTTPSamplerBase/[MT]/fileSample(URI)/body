@@ -4,21 +4,18 @@
   res.setHTTPMethod(GET);
   res.setURL(uri.toURL());
   res.setSampleLabel(uri.toString());
-  FileReader reader=null;
+  FileInputStream fis=null;
   res.sampleStart();
   try {
     byte[] responseData;
     StringBuffer ctb=new StringBuffer("text/html");
-    reader=new FileReader(getPath());
+    fis=new FileInputStream(getPath());
     String contentEncoding=getContentEncoding();
-    if (contentEncoding.length() == 0) {
-      responseData=IOUtils.toByteArray(reader);
-    }
- else {
+    if (contentEncoding.length() > 0) {
       ctb.append("; charset=");
       ctb.append(contentEncoding);
-      responseData=IOUtils.toByteArray(reader,contentEncoding);
     }
+    responseData=IOUtils.toByteArray(fis);
     res.sampleEnd();
     res.setResponseData(responseData);
     res.setResponseCodeOK();
@@ -29,7 +26,7 @@
     res.setEncodingAndType(ct);
   }
   finally {
-    IOUtils.closeQuietly(reader);
+    IOUtils.closeQuietly(fis);
   }
   return res;
 }
