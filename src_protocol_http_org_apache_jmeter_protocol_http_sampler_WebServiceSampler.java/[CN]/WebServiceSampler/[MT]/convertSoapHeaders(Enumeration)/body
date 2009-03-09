@@ -1,7 +1,0 @@
-{
-  StringBuffer buf=new StringBuffer(100);
-  while (en.hasMoreElements()) {
-    buf.append(en.nextElement()).append("\n");
-  }
-  return buf.toString();
-}
