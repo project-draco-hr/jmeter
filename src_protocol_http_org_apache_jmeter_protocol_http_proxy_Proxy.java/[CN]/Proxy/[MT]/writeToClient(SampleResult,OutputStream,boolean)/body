@@ -1,6 +1,6 @@
 {
   try {
-    String responseHeaders=massageResponseHeaders(res,forcedHTTP);
+    String responseHeaders=massageResponseHeaders(res,forcedHTTPS);
     out.write(responseHeaders.getBytes());
     out.write(CRLF_BYTES);
     out.write(res.getResponseData());

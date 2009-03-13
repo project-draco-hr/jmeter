@@ -15,15 +15,18 @@
     request.getSampler(pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
+    boolean forcedHTTPS=false;
     if (httpsSpoof) {
       if (httpsSpoofMatch.length() > 0) {
         String url=request.getUrl();
         if (url.matches(httpsSpoofMatch)) {
           sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+          forcedHTTPS=true;
         }
       }
  else {
         sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+        forcedHTTPS=true;
       }
     }
     sampler.threadStarted();
@@ -37,7 +40,7 @@
     }
     String pageEncoding=addPageEncoding(result);
     addFormEncodings(result,pageEncoding);
-    writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()),forcedHTTP);
+    writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()),forcedHTTPS);
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);

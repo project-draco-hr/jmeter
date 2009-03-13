@@ -2,7 +2,7 @@
   String headers=res.getResponseHeaders();
   String[] headerLines=headers.split(NEW_LINE,0);
   int contentLengthIndex=-1;
-  boolean fixContentLength=forcedHTTP;
+  boolean fixContentLength=forcedHTTPS;
   for (int i=0; i < headerLines.length; i++) {
     String line=headerLines[i];
     String[] parts=line.split(":\\s+",2);
@@ -21,7 +21,7 @@
         continue;
       }
       final String HTTPS_PREFIX="https://";
-      if (forcedHTTP && HTTPConstants.HEADER_LOCATION.equalsIgnoreCase(parts[0]) && parts[1].substring(0,HTTPS_PREFIX.length()).equalsIgnoreCase(HTTPS_PREFIX)) {
+      if (forcedHTTPS && HTTPConstants.HEADER_LOCATION.equalsIgnoreCase(parts[0]) && parts[1].substring(0,HTTPS_PREFIX.length()).equalsIgnoreCase(HTTPS_PREFIX)) {
         headerLines[i]=headerLines[i].replaceFirst(HTTPS_PREFIX,"http://");
         continue;
       }
