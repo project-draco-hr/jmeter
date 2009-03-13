@@ -1,7 +1,7 @@
 {
   man.setCookiePolicy(CookiePolicy.NETSCAPE);
   man.testStarted();
-  URL url=new URL("http://order.now/sub1/moo.html");
+  URL url=new URL("http://www.order.now/sub1/moo.html");
   man.addCookieFromHeader("test1=moo1;",url);
   man.addCookieFromHeader("test2=moo2;path=/sub1",url);
   man.addCookieFromHeader("test2=moo3;path=/",url);

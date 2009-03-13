@@ -22,21 +22,33 @@ catch (  IllegalArgumentException e) {
     return;
   }
   for (int i=0; i < cookies.length; i++) {
-    Date expiryDate=cookies[i].getExpiryDate();
-    long exp=0;
-    if (expiryDate != null) {
-      exp=expiryDate.getTime();
-    }
-    Cookie newCookie=new Cookie(cookies[i].getName(),cookies[i].getValue(),cookies[i].getDomain(),cookies[i].getPath(),cookies[i].getSecure(),exp / 1000,cookies[i].isPathAttributeSpecified(),cookies[i].isDomainAttributeSpecified());
-    if (exp == 0 || exp >= System.currentTimeMillis()) {
-      newCookie.setVersion(cookies[i].getVersion());
-      add(newCookie);
-    }
- else {
-      removeMatchingCookies(newCookie);
-      if (debugEnabled) {
-        log.debug("Dropping expired Cookie: " + newCookie.toString());
+    org.apache.commons.httpclient.Cookie cookie=cookies[i];
+    try {
+      if (CHECK_COOKIES) {
+        cookieSpec.validate(host,port,path,isSecure,cookie);
       }
+      Date expiryDate=cookie.getExpiryDate();
+      long exp=0;
+      if (expiryDate != null) {
+        exp=expiryDate.getTime();
+      }
+      Cookie newCookie=new Cookie(cookie.getName(),cookie.getValue(),cookie.getDomain(),cookie.getPath(),cookie.getSecure(),exp / 1000,cookie.isPathAttributeSpecified(),cookie.isDomainAttributeSpecified());
+      if (exp == 0 || exp >= System.currentTimeMillis()) {
+        newCookie.setVersion(cookie.getVersion());
+        add(newCookie);
+      }
+ else {
+        removeMatchingCookies(newCookie);
+        if (debugEnabled) {
+          log.debug("Dropping expired Cookie: " + newCookie.toString());
+        }
+      }
+    }
+ catch (    MalformedCookieException e) {
+      log.debug("Not storing invalid cookie: <" + cookieHeader + "> for URL "+ url+ " ("+ e.getLocalizedMessage()+ ")");
+    }
+catch (    IllegalArgumentException e) {
+      log.warn(cookieHeader + e.getLocalizedMessage());
     }
   }
 }

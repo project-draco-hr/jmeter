@@ -1,0 +1,8 @@
+{
+  URL url=new URL("http://jakarta.apache.org/");
+  assertEquals(0,man.getCookieCount());
+  man.addCookieFromHeader("test=2;domain=.hc.apache.org",url);
+  assertEquals(0,man.getCookieCount());
+  man.addCookieFromHeader("test=1;domain=.jakarta.apache.org",url);
+  assertEquals(1,man.getCookieCount());
+}
