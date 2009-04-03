@@ -14,7 +14,7 @@ if (name.equalsIgnoreCase(TAG_BASE)) {
 String tmp=getValue(attrs,ATT_HREF);
 if (tmp != null) {
   try {
-    baseUrl=new URL(baseUrl,tmp);
+    baseUrl=ConversionUtils.makeRelativeURL(baseUrl,tmp);
   }
  catch (  MalformedURLException e) {
     throw new HTMLParseException(e);

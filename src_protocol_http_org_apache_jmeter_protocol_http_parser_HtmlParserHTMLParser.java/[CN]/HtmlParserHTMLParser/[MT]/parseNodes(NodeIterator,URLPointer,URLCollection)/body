@@ -15,7 +15,7 @@
       String baseref=baseHref.getBaseUrl();
       try {
         if (!baseref.equals("")) {
-          baseUrl.url=new URL(baseUrl.url,baseHref.getBaseUrl());
+          baseUrl.url=ConversionUtils.makeRelativeURL(baseUrl.url,baseHref.getBaseUrl());
         }
       }
  catch (      MalformedURLException e1) {

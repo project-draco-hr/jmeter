@@ -1,0 +1,9 @@
+{
+  URL base=new URL("http://host/a/b/c");
+  assertEquals(new URL("http://host/a/b/d"),ConversionUtils.makeRelativeURL(base,"d"));
+  assertEquals(new URL("http://host/a/d"),ConversionUtils.makeRelativeURL(base,"../d"));
+  assertEquals(new URL("http://host/d"),ConversionUtils.makeRelativeURL(base,"../../d"));
+  assertEquals(new URL("http://host/d"),ConversionUtils.makeRelativeURL(base,"../../../d"));
+  assertEquals(new URL("http://host/d"),ConversionUtils.makeRelativeURL(base,"../../../../d"));
+  assertEquals(new URL("http://host/../d"),ConversionUtils.makeRelativeURL(base,"/../d"));
+}

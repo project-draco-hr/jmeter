@@ -16,7 +16,7 @@
           log.debug("new baseUrl: " + s + " - "+ baseUrl.toString());
         }
         try {
-          baseUrl=new URL(baseUrl,s);
+          baseUrl=ConversionUtils.makeRelativeURL(baseUrl,s);
         }
  catch (        MalformedURLException e) {
           if (log.isDebugEnabled()) {

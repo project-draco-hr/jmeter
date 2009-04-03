@@ -1,0 +1,16 @@
+{
+  URL initial=new URL(baseURL,location);
+  if (!location.startsWith("../")) {
+    return initial;
+  }
+  String path=initial.getPath();
+  Pattern p=Pattern.compile("^/((?:\\.\\./)+)");
+  Matcher m=p.matcher(path);
+  if (m.lookingAt()) {
+    String prefix=m.group(1);
+    if (location.startsWith(prefix)) {
+      return new URL(baseURL,location.substring(prefix.length()));
+    }
+  }
+  return initial;
+}

@@ -5,7 +5,7 @@
   url=StringEscapeUtils.unescapeXml(url);
   boolean b=false;
   try {
-    b=this.add(new URL(baseUrl,url));
+    b=this.add(ConversionUtils.makeRelativeURL(baseUrl,url));
   }
  catch (  MalformedURLException mfue) {
     b=this.add(url);
