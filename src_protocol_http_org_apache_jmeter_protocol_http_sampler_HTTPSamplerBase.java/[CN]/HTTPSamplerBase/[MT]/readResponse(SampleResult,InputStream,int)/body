@@ -37,6 +37,9 @@
       w.write(readBuffer,0,bytesRead);
     }
   }
+  if (first) {
+    sampleResult.latencyEnd();
+  }
   in.close();
   w.flush();
   if (asMD5 && md != null) {
