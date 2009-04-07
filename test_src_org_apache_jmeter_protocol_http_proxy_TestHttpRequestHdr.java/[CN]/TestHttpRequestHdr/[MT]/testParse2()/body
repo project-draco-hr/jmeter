@@ -1,0 +1,13 @@
+{
+  HttpRequestHdr req=new HttpRequestHdr();
+  ByteArrayInputStream bis=null;
+  bis=new ByteArrayInputStream("GET xxx HTTP/1.0\r\nname:           value \r\n".getBytes("ISO-8859-1"));
+  req.parse(bis);
+  bis.close();
+  HeaderManager mgr=req.getHeaderManager();
+  Header header;
+  mgr.getHeaders();
+  header=mgr.getHeader(0);
+  assertEquals("name",header.getName());
+  assertEquals("value",header.getValue());
+}
