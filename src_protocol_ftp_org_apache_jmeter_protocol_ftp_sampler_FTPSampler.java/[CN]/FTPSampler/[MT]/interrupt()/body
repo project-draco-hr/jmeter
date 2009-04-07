@@ -1,0 +1,13 @@
+{
+  FTPClient client=savedClient;
+  if (client != null) {
+    savedClient=null;
+    try {
+      client.abort();
+      client.disconnect();
+    }
+ catch (    IOException ignored) {
+    }
+  }
+  return client != null;
+}

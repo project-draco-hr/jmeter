@@ -18,6 +18,7 @@
   res.sampleStart();
   FTPClient ftp=new FTPClient();
   try {
+    savedClient=ftp;
     ftp.connect(getServer());
     res.latencyEnd();
     int reply=ftp.getReplyCode();
@@ -107,6 +108,7 @@
     res.setResponseMessage(ex.toString());
   }
  finally {
+    savedClient=null;
     if (ftp.isConnected()) {
       try {
         ftp.logout();
