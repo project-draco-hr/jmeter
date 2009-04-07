@@ -7,6 +7,7 @@
     return NULL_BA;
   }
   boolean gzipped=ENCODING_GZIP.equals(conn.getContentEncoding());
+  savedConn=conn;
   try {
     if (gzipped) {
       in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
@@ -44,6 +45,9 @@ catch (  Exception e) {
       log.error("Cause: " + cause);
     }
     in=new BufferedInputStream(conn.getErrorStream());
+  }
+ finally {
+    savedConn=null;
   }
   return readResponse(res,in,contentLength);
 }

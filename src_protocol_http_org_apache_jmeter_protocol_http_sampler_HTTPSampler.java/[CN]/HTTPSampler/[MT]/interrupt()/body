@@ -1,0 +1,8 @@
+{
+  HttpURLConnection conn=savedConn;
+  if (conn != null) {
+    savedConn=null;
+    conn.disconnect();
+  }
+  return conn != null;
+}

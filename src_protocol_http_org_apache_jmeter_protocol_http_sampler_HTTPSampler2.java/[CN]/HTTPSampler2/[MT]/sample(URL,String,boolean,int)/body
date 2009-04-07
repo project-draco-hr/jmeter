@@ -46,6 +46,7 @@
       String putBody=sendPutData((PutMethod)httpMethod);
       res.setQueryString(putBody);
     }
+    savedClient=client;
     int statusCode=client.executeMethod(httpMethod);
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
     instream=httpMethod.getResponseBodyAsStream();
@@ -102,6 +103,7 @@ catch (  IOException e) {
     return err;
   }
  finally {
+    savedClient=null;
     JOrphanUtils.closeQuietly(instream);
     if (httpMethod != null) {
       httpMethod.releaseConnection();
