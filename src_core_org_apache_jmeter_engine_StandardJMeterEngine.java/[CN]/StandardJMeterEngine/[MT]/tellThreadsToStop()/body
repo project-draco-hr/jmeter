@@ -3,6 +3,7 @@
   while (iter.hasNext()) {
     JMeterThread item=(JMeterThread)iter.next();
     item.stop();
+    item.interrupt();
     Thread t=(Thread)allThreads.get(item);
     if (t != null) {
       t.interrupt();
