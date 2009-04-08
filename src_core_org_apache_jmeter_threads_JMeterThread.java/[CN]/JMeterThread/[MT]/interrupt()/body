@@ -1,0 +1,14 @@
+{
+  log.warn("Interrupting " + threadName);
+  Sampler samp=threadContext.getCurrentSampler();
+  if (samp instanceof Interruptible) {
+    try {
+      ((Interruptible)samp).interrupt();
+    }
+ catch (    Exception e) {
+      log.warn("Caught Exception interrupting sampler: " + e.toString());
+    }
+    return true;
+  }
+  return false;
+}
