@@ -22,11 +22,7 @@
       String key=null;
       try {
         key=(String)enumr.nextElement();
-        String val=defaultPRB.getString(key);
-        if (!resname.equalsIgnoreCase("de") && !resname.equalsIgnoreCase("fr") && val.equals(prb.getString(key))) {
-          System.out.println("Possible duplicate value for " + key + " in "+ res);
-          subTestFailures++;
-        }
+        defaultPRB.getString(key);
       }
  catch (      MissingResourceException e) {
         subTestFailures++;
