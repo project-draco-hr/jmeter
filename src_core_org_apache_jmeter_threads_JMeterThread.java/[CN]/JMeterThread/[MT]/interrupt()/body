@@ -1,5 +1,5 @@
 {
-  log.warn("Interrupting " + threadName);
+  log.warn("Interrupting: " + threadName);
   Sampler samp=threadContext.getCurrentSampler();
   if (samp instanceof Interruptible) {
     try {

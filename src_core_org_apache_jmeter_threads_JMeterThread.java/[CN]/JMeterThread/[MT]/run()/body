@@ -29,7 +29,7 @@ catch (  Error e) {
   }
  finally {
     threadContext.clear();
-    log.info("Thread " + threadName + " is done");
+    log.info("Thread finished: " + threadName);
     monitor.threadFinished(this);
     threadFinished();
   }
