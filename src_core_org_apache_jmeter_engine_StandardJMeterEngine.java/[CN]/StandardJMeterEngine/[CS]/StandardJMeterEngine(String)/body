@@ -1,4 +1,7 @@
 {
-  this();
   this.host=host;
+  this.allThreads=new HashMap();
+  engine=this;
+  allThreadNames=new HashMap();
+  allThreadsSave=Collections.unmodifiableMap(allThreads);
 }

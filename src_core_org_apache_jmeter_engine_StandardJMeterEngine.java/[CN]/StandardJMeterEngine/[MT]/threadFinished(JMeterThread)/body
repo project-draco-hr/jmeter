@@ -2,7 +2,7 @@
   try {
     allThreads.remove(thread);
     log.info("Ending thread " + thread.getThreadName());
-    if (!serialized && !schcdule_run && !startingGroups&& allThreads.size() == 0) {
+    if (!serialized && !schedule_run && !startingGroups&& allThreads.size() == 0) {
       log.info("Stopping test");
       stopTest();
     }

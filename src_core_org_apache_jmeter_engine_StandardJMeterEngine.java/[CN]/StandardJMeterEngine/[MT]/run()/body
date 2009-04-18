@@ -2,7 +2,7 @@
   log.info("Running the test!");
   running=true;
   SearchByClass testPlan=new SearchByClass(TestPlan.class);
-  getTestTree().traverse(testPlan);
+  test.traverse(testPlan);
   Object[] plan=testPlan.getSearchResults().toArray();
   if (plan.length == 0) {
     System.err.println("Could not find the TestPlan!");
@@ -14,7 +14,8 @@
   }
   JMeterContextService.startTest();
   try {
-    compileTree();
+    PreCompiler compiler=new PreCompiler();
+    test.traverse(compiler);
   }
  catch (  RuntimeException e) {
     log.error("Error occurred compiling the tree:",e);
@@ -22,25 +23,25 @@
     return;
   }
   testListeners=new SearchByClass(TestListener.class);
-  getTestTree().traverse(testListeners);
+  test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
   if (!startListenersLater) {
     notifyTestListenersOfStart();
   }
-  getTestTree().traverse(new TurnElementsOn());
+  test.traverse(new TurnElementsOn());
   if (startListenersLater) {
     notifyTestListenersOfStart();
   }
-  List testLevelElements=new LinkedList(getTestTree().list(getTestTree().getArray()[0]));
+  List testLevelElements=new LinkedList(test.list(test.getArray()[0]));
   removeThreadGroups(testLevelElements);
   SearchByClass searcher=new SearchByClass(ThreadGroup.class);
-  getTestTree().traverse(searcher);
+  test.traverse(searcher);
   TestCompiler.initialize();
   Iterator iter=searcher.getSearchResults().iterator();
   System.gc();
-  notifier=new ListenerNotifier();
-  schcdule_run=true;
+  ListenerNotifier notifier=new ListenerNotifier();
+  schedule_run=true;
   JMeterContextService.getContext().setSamplingStarted(true);
   int groupCount=0;
   JMeterContextService.clearTotalThreads();
@@ -63,7 +64,7 @@
       log.info("Thread will stop on error");
     }
  else {
-      log.info("Continue on error");
+      log.info("Thread will continue on error");
     }
     ListedHashTree threadGroupTree=(ListedHashTree)searcher.getSubTree(group);
     threadGroupTree.add(group,testLevelElements);
@@ -73,20 +74,21 @@
       jmeterThread.setThreadGroup(group);
       jmeterThread.setInitialContext(JMeterContextService.getContext());
       jmeterThread.setInitialDelay((int)(perThreadDelay * i));
-      jmeterThread.setThreadName(groupName + " " + (groupCount)+ "-"+ (i + 1));
+      final String threadName=groupName + " " + (groupCount)+ "-"+ (i + 1);
+      jmeterThread.setThreadName(threadName);
       scheduleThread(jmeterThread,group);
       jmeterThread.setEngine(this);
       jmeterThread.setOnErrorStopTest(onErrorStopTest);
       jmeterThread.setOnErrorStopThread(onErrorStopThread);
       Thread newThread=new Thread(jmeterThread);
-      newThread.setName(jmeterThread.getThreadName());
+      newThread.setName(threadName);
       allThreads.put(jmeterThread,newThread);
       if (serialized && !iter.hasNext() && i == numThreads - 1) {
         serialized=false;
       }
       newThread.start();
     }
-    schcdule_run=false;
+    schedule_run=false;
     if (serialized) {
       while (running && allThreads.size() > 0) {
         try {

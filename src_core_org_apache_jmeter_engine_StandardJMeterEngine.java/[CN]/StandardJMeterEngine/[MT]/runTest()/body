@@ -1,6 +1,6 @@
 {
   try {
-    runningThread=new Thread(new MyThreadGroup("JMeterThreadGroup"),this);
+    Thread runningThread=new Thread(new MyThreadGroup("JMeterThreadGroup"),this);
     runningThread.start();
   }
  catch (  Exception err) {
