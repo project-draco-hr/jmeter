@@ -14,7 +14,7 @@
     }
     boolean stopped=verifyThreadsStopped();
     if (stopped || now) {
-      notifyTestListenersOfEnd();
+      notifyTestListenersOfEnd(testListenersSave);
     }
   }
 }

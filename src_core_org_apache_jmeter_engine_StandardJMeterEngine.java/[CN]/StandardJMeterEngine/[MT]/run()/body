@@ -22,16 +22,17 @@
     JMeterUtils.reportErrorToUser("Error occurred compiling the tree: - see log file");
     return;
   }
-  testListeners=new SearchByClass(TestListener.class);
+  SearchByClass testListeners=new SearchByClass(TestListener.class);
   test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
+  testListenersSave=testListeners;
   if (!startListenersLater) {
-    notifyTestListenersOfStart();
+    notifyTestListenersOfStart(testListeners);
   }
   test.traverse(new TurnElementsOn());
   if (startListenersLater) {
-    notifyTestListenersOfStart();
+    notifyTestListenersOfStart(testListeners);
   }
   List testLevelElements=new LinkedList(test.list(test.getArray()[0]));
   removeThreadGroups(testLevelElements);
