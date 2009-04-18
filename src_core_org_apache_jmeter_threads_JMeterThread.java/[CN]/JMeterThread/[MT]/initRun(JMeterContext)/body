@@ -11,12 +11,6 @@
   }
   rampUpDelay();
   log.info("Thread started: " + Thread.currentThread().getName());
-  JMeterContextService.incrNumberOfThreads();
-  threadGroup.incrNumberOfThreads();
-  GuiPackage gp=GuiPackage.getInstance();
-  if (gp != null) {
-    gp.getMainFrame().updateCounts();
-  }
   if (startEarlier) {
     threadContext.setSamplingStarted(true);
   }

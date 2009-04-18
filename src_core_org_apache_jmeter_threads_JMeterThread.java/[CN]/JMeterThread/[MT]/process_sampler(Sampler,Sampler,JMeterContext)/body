@@ -2,7 +2,6 @@
   SampleResult transactionResult=null;
   try {
     threadContext.setCurrentSampler(current);
-    currentSampler=current;
     TransactionSampler transactionSampler=null;
     if (current instanceof TransactionSampler) {
       transactionSampler=(TransactionSampler)current;
@@ -28,7 +27,6 @@
         if (current instanceof TransactionSampler) {
           SampleResult res=process_sampler(current,prev,threadContext);
           threadContext.setCurrentSampler(prev);
-          currentSampler=prev;
           current=null;
           if (res != null) {
             transactionSampler.addSubSamplerResult(res);
@@ -45,7 +43,9 @@
       sampler.setThreadContext(threadContext);
       sampler.setThreadName(threadName);
       TestBeanHelper.prepare(sampler);
+      currentSampler=sampler;
       SampleResult result=sampler.sample(null);
+      currentSampler=null;
       if (result != null) {
         result.setGroupThreads(threadGroup.getNumberOfThreads());
         result.setAllThreads(JMeterContextService.getNumberOfThreads());

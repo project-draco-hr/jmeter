@@ -31,7 +31,7 @@ catch (  Error e) {
  finally {
     threadContext.clear();
     log.info("Thread finished: " + threadName);
-    monitor.threadFinished(this);
     threadFinished();
+    monitor.threadFinished(this);
   }
 }
