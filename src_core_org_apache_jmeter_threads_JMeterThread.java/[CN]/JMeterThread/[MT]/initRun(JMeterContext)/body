@@ -1,5 +1,4 @@
 {
-  threadContext=JMeterContextService.getContext();
   threadContext.setVariables(threadVars);
   threadContext.setThreadNum(getThreadNum());
   threadContext.getVariables().put(LAST_SAMPLE_OK,"true");

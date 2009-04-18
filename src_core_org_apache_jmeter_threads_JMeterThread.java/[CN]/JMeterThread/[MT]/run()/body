@@ -1,10 +1,11 @@
 {
+  JMeterContext threadContext=JMeterContextService.getContext();
   try {
-    initRun();
+    initRun(threadContext);
     while (running) {
       Sampler sam;
       while (running && (sam=controller.next()) != null) {
-        process_sampler(sam,null);
+        process_sampler(sam,null,threadContext);
       }
       if (controller.isDone()) {
         running=false;

@@ -2,6 +2,7 @@
   SampleResult transactionResult=null;
   try {
     threadContext.setCurrentSampler(current);
+    currentSampler=current;
     TransactionSampler transactionSampler=null;
     if (current instanceof TransactionSampler) {
       transactionSampler=(TransactionSampler)current;
@@ -14,7 +15,7 @@
         transactionResult.setThreadName(threadName);
         transactionResult.setGroupThreads(threadGroup.getNumberOfThreads());
         transactionResult.setAllThreads(JMeterContextService.getNumberOfThreads());
-        checkAssertions(transactionPack.getAssertions(),transactionResult);
+        checkAssertions(transactionPack.getAssertions(),transactionResult,threadContext);
         if (!(parent instanceof TransactionSampler)) {
           notifyListeners(transactionPack.getSampleListeners(),transactionResult);
         }
@@ -25,8 +26,9 @@
         Sampler prev=current;
         current=transactionSampler.getSubSampler();
         if (current instanceof TransactionSampler) {
-          SampleResult res=process_sampler(current,prev);
+          SampleResult res=process_sampler(current,prev,threadContext);
           threadContext.setCurrentSampler(prev);
+          currentSampler=prev;
           current=null;
           if (res != null) {
             transactionSampler.addSubSamplerResult(res);
@@ -50,7 +52,7 @@
         result.setThreadName(threadName);
         threadContext.setPreviousResult(result);
         runPostProcessors(pack.getPostProcessors());
-        checkAssertions(pack.getAssertions(),result);
+        checkAssertions(pack.getAssertions(),result,threadContext);
         List sampleListeners=getSampleListeners(pack,transactionPack,transactionSampler);
         notifyListeners(sampleListeners,result);
         compiler.done(pack);
