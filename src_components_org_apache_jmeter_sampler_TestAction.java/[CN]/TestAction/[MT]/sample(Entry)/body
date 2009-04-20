@@ -5,14 +5,20 @@
   if (action == PAUSE) {
     pause(getDurationAsString());
   }
- else   if (action == STOP) {
+ else   if (action == STOP || action == STOP_NOW) {
     if (target == THREAD) {
       log.info("Stopping current thread");
       context.getThread().stop();
     }
  else     if (target == TEST) {
-      log.info("Stopping all threads");
-      context.getEngine().askThreadsToStop();
+      if (action == STOP_NOW) {
+        log.info("Stopping all threads now");
+        context.getEngine().askThreadsToStopNow();
+      }
+ else {
+        log.info("Stopping all threads");
+        context.getEngine().askThreadsToStop();
+      }
     }
   }
   return null;

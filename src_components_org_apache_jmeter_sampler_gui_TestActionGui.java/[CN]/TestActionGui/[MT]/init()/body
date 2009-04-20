@@ -43,11 +43,23 @@
     }
   }
 );
+  stopNowButton=new JRadioButton(stopNowAction,false);
+  stopNowButton.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      if (stopNowButton.isSelected()) {
+        action=TestAction.STOP_NOW;
+        durationField.setEnabled(false);
+      }
+    }
+  }
+);
   actionButtons.add(pauseButton);
   actionButtons.add(stopButton);
+  actionButtons.add(stopNowButton);
   actionPanel.add(new JLabel(actionLabel));
   actionPanel.add(pauseButton);
   actionPanel.add(stopButton);
+  actionPanel.add(stopNowButton);
   add(actionPanel);
   HorizontalPanel durationPanel=new HorizontalPanel();
   durationField=new JTextField(15);

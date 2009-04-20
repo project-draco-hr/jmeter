@@ -12,6 +12,9 @@
   if (action == TestAction.PAUSE) {
     pauseButton.setSelected(true);
   }
+ else   if (action == TestAction.STOP_NOW) {
+    stopNowButton.setSelected(true);
+  }
  else {
     stopButton.setSelected(true);
   }

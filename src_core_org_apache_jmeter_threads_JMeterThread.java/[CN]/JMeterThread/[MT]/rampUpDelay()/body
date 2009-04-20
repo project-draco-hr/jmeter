@@ -1,9 +1,12 @@
 {
   if (initialDelay > 0) {
+    long start=System.currentTimeMillis();
     try {
       Thread.sleep(initialDelay);
     }
  catch (    InterruptedException e) {
+      long actual=System.currentTimeMillis() - start;
+      log.warn("Starting delay was interrupted. Waited " + actual + " milli-seconds out of "+ initialDelay);
     }
   }
 }
