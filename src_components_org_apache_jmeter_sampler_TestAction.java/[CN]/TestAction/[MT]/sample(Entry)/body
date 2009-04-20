@@ -7,9 +7,11 @@
   }
  else   if (action == STOP) {
     if (target == THREAD) {
+      log.info("Stopping current thread");
       context.getThread().stop();
     }
  else     if (target == TEST) {
+      log.info("Stopping all threads");
       context.getEngine().askThreadsToStop();
     }
   }
