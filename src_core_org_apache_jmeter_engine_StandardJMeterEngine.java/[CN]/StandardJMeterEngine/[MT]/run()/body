@@ -42,12 +42,11 @@
   Iterator iter=searcher.getSearchResults().iterator();
   System.gc();
   ListenerNotifier notifier=new ListenerNotifier();
-  schedule_run=true;
   JMeterContextService.getContext().setSamplingStarted(true);
   int groupCount=0;
   JMeterContextService.clearTotalThreads();
   startingGroups=true;
-  while (iter.hasNext()) {
+  while (running && iter.hasNext()) {
     groupCount++;
     ThreadGroup group=(ThreadGroup)iter.next();
     int numThreads=group.getNumThreads();
@@ -84,13 +83,10 @@
       Thread newThread=new Thread(jmeterThread);
       newThread.setName(threadName);
       allThreads.put(jmeterThread,newThread);
-      if (serialized && !iter.hasNext() && i == numThreads - 1) {
-        serialized=false;
-      }
       newThread.start();
     }
-    schedule_run=false;
-    if (serialized) {
+    if (serialized && !iter.hasNext()) {
+      log.info("Waiting for thread group: " + groupName + " to finish before starting next group");
       while (running && allThreads.size() > 0) {
         try {
           Thread.sleep(1000);
@@ -99,6 +95,12 @@
         }
       }
     }
+  }
+  if (running) {
+    log.info("All threads have been started");
+  }
+ else {
+    log.info("Test stopped - no more threads will be started");
   }
   startingGroups=false;
 }
