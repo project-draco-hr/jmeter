@@ -31,9 +31,6 @@ catch (      IOException e) {
         log.debug("Connection failed, giving up");
         throw e;
       }
- finally {
-        savedConn=null;
-      }
     }
     if (retry > MAX_CONN_RETRIES) {
       throw new BindException();
@@ -47,6 +44,7 @@ catch (      IOException e) {
       res.setQueryString(putBody);
     }
     byte[] responseData=readResponse(conn,res);
+    savedConn=null;
     res.sampleEnd();
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();
@@ -112,5 +110,6 @@ catch (      IOException e) {
   }
  finally {
     disconnect(conn);
+    savedConn=null;
   }
 }
