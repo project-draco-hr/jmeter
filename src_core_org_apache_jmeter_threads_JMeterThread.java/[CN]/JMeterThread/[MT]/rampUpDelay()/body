@@ -6,7 +6,7 @@
     }
  catch (    InterruptedException e) {
       long actual=System.currentTimeMillis() - start;
-      log.warn("Starting delay was interrupted. Waited " + actual + " milli-seconds out of "+ initialDelay);
+      log.warn("RampUp delay for " + threadName + " was interrupted. Waited "+ actual+ " milli-seconds out of "+ initialDelay);
     }
   }
 }
