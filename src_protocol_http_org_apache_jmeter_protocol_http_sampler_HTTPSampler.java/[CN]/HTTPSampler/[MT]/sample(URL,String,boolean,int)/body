@@ -44,7 +44,6 @@ catch (      IOException e) {
       res.setQueryString(putBody);
     }
     byte[] responseData=readResponse(conn,res);
-    savedConn=null;
     res.sampleEnd();
     res.setResponseData(responseData);
     int errorLevel=conn.getResponseCode();
