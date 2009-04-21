@@ -85,7 +85,7 @@
       allThreads.put(jmeterThread,newThread);
       newThread.start();
     }
-    if (serialized && !iter.hasNext()) {
+    if (serialized && iter.hasNext()) {
       log.info("Waiting for thread group: " + groupName + " to finish before starting next group");
       while (running && allThreads.size() > 0) {
         try {
