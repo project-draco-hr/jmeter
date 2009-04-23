@@ -1,0 +1,7 @@
+{
+  running=false;
+  log.info("Stop Test Now detected by thread: " + threadName);
+  if (engine != null) {
+    engine.stopTest();
+  }
+}
