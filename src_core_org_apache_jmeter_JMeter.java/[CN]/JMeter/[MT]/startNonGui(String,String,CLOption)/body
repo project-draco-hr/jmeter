@@ -1,5 +1,5 @@
 {
-  System.setProperty("JMeter.NonGui","true");
+  System.setProperty(JMETER_NON_GUI,"true");
   JMeter driver=new JMeter();
   driver.remoteProps=this.remoteProps;
   driver.remoteStop=this.remoteStop;
