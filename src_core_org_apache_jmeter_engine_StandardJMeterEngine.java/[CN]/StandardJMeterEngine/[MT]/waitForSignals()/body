@@ -1,0 +1,37 @@
+{
+  byte[] buf=new byte[80];
+  DatagramSocket socket=null;
+  System.out.println("Waiting for possible shutdown message on port " + UDP_PORT);
+  try {
+    socket=new DatagramSocket(UDP_PORT);
+    DatagramPacket request=new DatagramPacket(buf,buf.length);
+    while (true) {
+      socket.receive(request);
+      InetAddress address=request.getAddress();
+      if (address.isLoopbackAddress()) {
+        String command=new String(request.getData(),request.getOffset(),request.getLength(),"ASCII");
+        System.out.println("Command: " + command + " received from "+ address);
+        log.info("Command: " + command + " received from "+ address);
+        if (command.equals("StopTestNow")) {
+          stopTest();
+          break;
+        }
+ else         if (command.equals("Shutdown")) {
+          askThreadsToStop();
+          break;
+        }
+ else {
+        }
+      }
+    }
+    socket.close();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+ finally {
+    if (socket != null) {
+      socket.close();
+    }
+  }
+}
