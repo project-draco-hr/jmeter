@@ -1,5 +1,5 @@
 {
-  if (System.getProperty("JMeter.NonGui") != null && System.getProperty("JMeter.NonGui").equals("true")) {
+  if (JMeter.isNonGUI()) {
     this.setUseProxy(true);
     String port=this.getPropertyAsString(PROXY_PORT);
     String host=this.getPropertyAsString(PROXY_HOST);
