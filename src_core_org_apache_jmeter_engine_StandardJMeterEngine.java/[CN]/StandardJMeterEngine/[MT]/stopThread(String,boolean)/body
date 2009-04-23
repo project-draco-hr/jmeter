@@ -1,19 +1,22 @@
 {
-  if (allThreadNames == null) {
+  if (engine == null) {
     return false;
   }
-  JMeterThread thrd;
-  try {
-    thrd=(JMeterThread)allThreadNames.get(threadName);
-  }
- catch (  Exception e) {
-    log.warn("stopThread: " + e);
-    return false;
+  JMeterThread thrd=null;
+synchronized (engine.allThreads) {
+    Iterator iter=engine.allThreads.keySet().iterator();
+    while (iter.hasNext()) {
+      thrd=(JMeterThread)iter.next();
+      if (thrd.getThreadName().equals(threadName)) {
+        break;
+      }
+    }
   }
   if (thrd != null) {
     thrd.stop();
+    thrd.interrupt();
     if (now) {
-      Thread t=(Thread)allThreadsSave.get(thrd);
+      Thread t=(Thread)engine.allThreads.get(thrd);
       if (t != null) {
         t.interrupt();
       }

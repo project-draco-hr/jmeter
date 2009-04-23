@@ -1,7 +1,5 @@
 {
   this.host=host;
-  this.allThreads=new HashMap();
+  this.allThreads=Collections.synchronizedMap(new HashMap());
   engine=this;
-  allThreadNames=new HashMap();
-  allThreadsSave=Collections.unmodifiableMap(allThreads);
 }

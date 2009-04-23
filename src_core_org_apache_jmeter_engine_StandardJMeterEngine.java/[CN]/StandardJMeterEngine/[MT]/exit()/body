@@ -1,11 +1,7 @@
 {
   Thread t=new Thread(){
     public void run(){
-      try {
-        Thread.sleep(1000);
-      }
- catch (      InterruptedException e) {
-      }
+      pause(1000);
       log.info("Bye");
       System.exit(0);
     }

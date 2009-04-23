@@ -1,13 +1,13 @@
 {
-  try {
-    allThreads.remove(thread);
-    log.info("Ending thread " + thread.getThreadName());
-    if (!startingGroups && allThreads.size() == 0) {
-      log.info("Stopping test");
-      stopTest();
+  log.info("Ending thread " + thread.getThreadName());
+  allThreads.remove(thread);
+  if (!startingGroups && allThreads.size() == 0) {
+    new Thread(){
+      public void run(){
+        log.info("Stopping test");
+        notifyTestListenersOfEnd(testListenersSave);
+      }
     }
-  }
- catch (  Throwable e) {
-    log.fatalError("Call to threadFinished should never throw an exception - this can deadlock JMeter",e);
+.start();
   }
 }

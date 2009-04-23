@@ -1,20 +1,21 @@
 {
-  if (running) {
-    running=false;
-    if (now) {
-      tellThreadsToStop();
-    }
- else {
-      stopAllThreads();
-    }
-    try {
-      Thread.sleep(10 * allThreads.size());
-    }
- catch (    InterruptedException e) {
-    }
+  running=false;
+  engine=null;
+  if (now) {
+    tellThreadsToStop();
+    pause(10 * allThreads.size());
     boolean stopped=verifyThreadsStopped();
-    if (stopped || now) {
+    if (!stopped) {
       notifyTestListenersOfEnd(testListenersSave);
+      if (JMeter.isNonGUI()) {
+        exit();
+      }
+ else {
+        JMeterUtils.reportErrorToUser(JMeterUtils.getResString("stopping_test_failed"),JMeterUtils.getResString("stopping_test_title"));
+      }
     }
+  }
+ else {
+    stopAllThreads();
   }
 }

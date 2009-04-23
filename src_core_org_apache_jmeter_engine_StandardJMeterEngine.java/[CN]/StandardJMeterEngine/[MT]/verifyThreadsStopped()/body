@@ -1,9 +1,18 @@
 {
   boolean stoppedAll=true;
-  Iterator iter=new HashSet(allThreads.keySet()).iterator();
-  while (iter.hasNext()) {
-    Thread t=(Thread)allThreads.get(iter.next());
-    if (t != null && t.isAlive()) {
+  List threadsToCheck=new ArrayList(allThreads.size());
+synchronized (allThreads) {
+    Iterator iter=allThreads.keySet().iterator();
+    while (iter.hasNext()) {
+      Thread t=(Thread)allThreads.get(iter.next());
+      if (t != null) {
+        threadsToCheck.add(t);
+      }
+    }
+  }
+  for (int i=0; i < threadsToCheck.size(); i++) {
+    Thread t=(Thread)threadsToCheck.get(i);
+    if (t.isAlive()) {
       try {
         t.join(WAIT_TO_DIE);
       }
@@ -11,7 +20,7 @@
       }
       if (t.isAlive()) {
         stoppedAll=false;
-        log.warn("Thread won't die: " + t.getName());
+        log.warn("Thread won't exit: " + t.getName());
       }
     }
   }
