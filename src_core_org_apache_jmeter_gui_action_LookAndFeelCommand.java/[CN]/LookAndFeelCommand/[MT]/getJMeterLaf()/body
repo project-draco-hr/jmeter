@@ -5,8 +5,8 @@
   if (laf != null) {
     return laf;
   }
-  String osFamily=osName.substring(0,osName.indexOf(' '));
-  laf=JMeterUtils.getProperty(JMETER_LAF + "." + osFamily);
+  String[] osFamily=osName.split("\\s");
+  laf=JMeterUtils.getProperty(JMETER_LAF + "." + osFamily[0]);
   if (laf != null) {
     return laf;
   }
