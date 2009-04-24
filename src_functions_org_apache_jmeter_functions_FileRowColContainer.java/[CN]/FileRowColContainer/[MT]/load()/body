@@ -1,5 +1,4 @@
 {
-  fileData=new ArrayList();
   BufferedReader myBread=null;
   try {
     FileReader fis=new FileReader(fileName);
@@ -11,12 +10,12 @@
     }
   }
  catch (  FileNotFoundException e) {
-    fileData=null;
+    fileData.clear();
     log.warn(e.toString());
     throw e;
   }
 catch (  IOException e) {
-    fileData=null;
+    fileData.clear();
     log.warn(e.toString());
     throw e;
   }
