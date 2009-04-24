@@ -1,0 +1,18 @@
+{
+  String osName=System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
+  String laf;
+  laf=JMeterUtils.getProperty(JMETER_LAF + "." + osName.replace(' ','_'));
+  if (laf != null) {
+    return laf;
+  }
+  String osFamily=osName.substring(0,osName.indexOf(' '));
+  laf=JMeterUtils.getProperty(JMETER_LAF + "." + osFamily);
+  if (laf != null) {
+    return laf;
+  }
+  laf=JMeterUtils.getProperty(JMETER_LAF);
+  if (laf != null) {
+    return laf;
+  }
+  return UIManager.getCrossPlatformLookAndFeelClassName();
+}
