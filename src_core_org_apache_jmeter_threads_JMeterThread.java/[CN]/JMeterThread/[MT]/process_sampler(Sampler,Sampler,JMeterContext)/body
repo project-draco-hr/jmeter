@@ -65,6 +65,9 @@
         if (result.isStopTest() || (!result.isSuccessful() && onErrorStopTest)) {
           stopTest();
         }
+        if (result.isStopTestNow() || (!result.isSuccessful() && onErrorStopTestNow)) {
+          stopTestNow();
+        }
       }
  else {
         compiler.done(pack);

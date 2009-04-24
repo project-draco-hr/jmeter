@@ -1,4 +1,3 @@
 {
-  int value=getErrorAction();
-  return value == ON_ERROR_STOPTEST;
+  return getErrorAction() == ON_ERROR_STOPTEST;
 }

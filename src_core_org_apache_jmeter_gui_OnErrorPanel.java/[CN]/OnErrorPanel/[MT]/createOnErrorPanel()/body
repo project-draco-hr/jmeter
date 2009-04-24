@@ -12,5 +12,8 @@
   stopTestBox=new JRadioButton(JMeterUtils.getResString("sampler_on_error_stop_test"));
   group.add(stopTestBox);
   panel.add(stopTestBox);
+  stopTestNowBox=new JRadioButton(JMeterUtils.getResString("sampler_on_error_stop_test_now"));
+  group.add(stopTestNowBox);
+  panel.add(stopTestNowBox);
   return panel;
 }

@@ -52,6 +52,7 @@
     int numThreads=group.getNumThreads();
     JMeterContextService.addTotalThreads(numThreads);
     boolean onErrorStopTest=group.getOnErrorStopTest();
+    boolean onErrorStopTestNow=group.getOnErrorStopTestNow();
     boolean onErrorStopThread=group.getOnErrorStopThread();
     String groupName=group.getName();
     int rampUp=group.getRampUp();
@@ -59,6 +60,9 @@
     log.info("Starting " + numThreads + " threads for group "+ groupName+ ". Ramp up = "+ rampUp+ ".");
     if (onErrorStopTest) {
       log.info("Test will stop on error");
+    }
+ else     if (onErrorStopTestNow) {
+      log.info("Test will stop abruptly on error");
     }
  else     if (onErrorStopThread) {
       log.info("Thread will stop on error");
@@ -79,6 +83,7 @@
       scheduleThread(jmeterThread,group);
       jmeterThread.setEngine(this);
       jmeterThread.setOnErrorStopTest(onErrorStopTest);
+      jmeterThread.setOnErrorStopTestNow(onErrorStopTestNow);
       jmeterThread.setOnErrorStopThread(onErrorStopThread);
       Thread newThread=new Thread(jmeterThread);
       newThread.setName(threadName);

@@ -1,4 +1,7 @@
 {
+  if (stopTestNowBox.isSelected()) {
+    return OnErrorTestElement.ON_ERROR_STOPTEST_NOW;
+  }
   if (stopTestBox.isSelected()) {
     return OnErrorTestElement.ON_ERROR_STOPTEST;
   }
