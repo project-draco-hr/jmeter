@@ -3,7 +3,7 @@
   helpMenu.setMnemonic('H');
   JMenuItem contextHelp=new JMenuItem(JMeterUtils.getResString("help"),'H');
   contextHelp.setActionCommand("help");
-  contextHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H,KeyEvent.CTRL_MASK));
+  contextHelp.setAccelerator(KeyStrokes.HELP);
   contextHelp.addActionListener(ReportActionRouter.getInstance());
   help_about=new JMenuItem(JMeterUtils.getResString("about"),'A');
   help_about.setActionCommand("about");
