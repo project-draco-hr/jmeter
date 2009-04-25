@@ -4,5 +4,7 @@
   my.clear();
   String tname=Thread.currentThread().getName();
   log.info(tname + ": clearing container");
-  fileContainers.clear();
+synchronized (fileContainers) {
+    fileContainers.clear();
+  }
 }

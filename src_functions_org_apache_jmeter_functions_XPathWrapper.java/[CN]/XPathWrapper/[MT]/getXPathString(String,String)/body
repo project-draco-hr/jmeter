@@ -13,10 +13,14 @@ synchronized (fileContainers) {
       }
     }
     if (xpfc == null) {
-      log.error("XPathWrapper is null!");
+      log.error("XPathFileContainer is null!");
       return "";
     }
     my.put(key,xpfc);
+  }
+  if (xpfc.size() == 0) {
+    log.warn("XPathFileContainer has no nodes: " + file + " "+ xpathString);
+    return "";
   }
   int currentRow=xpfc.nextRow();
   log.debug("getting match number " + currentRow);
