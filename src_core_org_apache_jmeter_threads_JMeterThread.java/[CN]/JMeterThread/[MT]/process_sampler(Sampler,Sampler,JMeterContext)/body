@@ -1,7 +1,6 @@
 {
   SampleResult transactionResult=null;
   try {
-    threadContext.setCurrentSampler(current);
     TransactionSampler transactionSampler=null;
     if (current instanceof TransactionSampler) {
       transactionSampler=(TransactionSampler)current;
@@ -35,6 +34,7 @@
       }
     }
     if (current != null) {
+      threadContext.setCurrentSampler(current);
       SamplePackage pack=compiler.configureSampler(current);
       runPreProcessors(pack.getPreProcessors());
       threadVars.putObject(PACKAGE_OBJECT,pack);
