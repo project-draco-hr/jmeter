@@ -1,6 +1,8 @@
 {
   ConfigTestElement element=new ConfigTestElement();
-  this.configureTestElement(element);
+  element.setName(this.getName());
+  element.setProperty(TestElement.GUI_CLASS,this.getClass().getName());
+  element.setProperty(TestElement.TEST_CLASS,element.getClass().getName());
   modifyTestElement(element);
   return element;
 }

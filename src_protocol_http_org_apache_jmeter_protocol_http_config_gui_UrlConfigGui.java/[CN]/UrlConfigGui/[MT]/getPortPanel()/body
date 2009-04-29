@@ -1,6 +1,5 @@
 {
-  port=new JTextField(6);
-  port.setName(PORT);
+  port=new JTextField(4);
   JLabel label=new JLabel(JMeterUtils.getResString("web_server_port"));
   label.setLabelFor(port);
   JPanel panel=new JPanel(new BorderLayout(5,0));

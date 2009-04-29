@@ -1,21 +1,16 @@
 {
   path=new JTextField(15);
-  path.setName(PATH);
   JLabel label=new JLabel(JMeterUtils.getResString("path"));
   label.setLabelFor(path);
   if (notConfigOnly) {
     followRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects"));
-    followRedirects.setName(FOLLOW_REDIRECTS);
     followRedirects.setSelected(false);
     autoRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects_auto"));
-    autoRedirects.setName(AUTO_REDIRECTS);
     autoRedirects.addChangeListener(this);
     autoRedirects.setSelected(true);
     useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
-    useKeepAlive.setName(USE_KEEPALIVE);
     useKeepAlive.setSelected(true);
     useMultipartForPost=new JCheckBox(JMeterUtils.getResString("use_multipart_for_http_post"));
-    useMultipartForPost.setName(USE_MULTIPART_FOR_POST);
     useMultipartForPost.setSelected(false);
   }
   JPanel pathPanel=new JPanel(new BorderLayout(5,0));

@@ -10,6 +10,14 @@
   }
   HttpURLConnection conn=(HttpURLConnection)u.openConnection();
   conn.setInstanceFollowRedirects(getAutoRedirects());
+  int cto=getConnectTimeout();
+  if (cto > 0) {
+    setTimeout(setConnectTimeout,conn,cto);
+  }
+  int rto=getResponseTimeout();
+  if (rto > 0) {
+    setTimeout(setReadTimeout,conn,rto);
+  }
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
       if (null != sslmgr) {

@@ -1,0 +1,18 @@
+{
+  JPanel webServerPanel=new HorizontalPanel();
+  webServerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_server")));
+  final JPanel domainPanel=getDomainPanel();
+  final JPanel portPanel=getPortPanel();
+  webServerPanel.add(domainPanel);
+  webServerPanel.add(portPanel);
+  JPanel timeOut=new HorizontalPanel();
+  timeOut.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_server_timeout_title")));
+  final JPanel connPanel=getConnectTimeOutPanel();
+  final JPanel reqPanel=getResponseTimeOutPanel();
+  timeOut.add(connPanel);
+  timeOut.add(reqPanel);
+  JPanel webServerTimeoutPanel=new VerticalPanel();
+  webServerTimeoutPanel.add(webServerPanel,BorderLayout.CENTER);
+  webServerTimeoutPanel.add(timeOut,BorderLayout.EAST);
+  return webServerTimeoutPanel;
+}

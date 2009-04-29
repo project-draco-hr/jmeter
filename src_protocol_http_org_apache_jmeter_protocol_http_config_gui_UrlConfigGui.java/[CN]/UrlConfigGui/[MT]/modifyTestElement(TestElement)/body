@@ -4,6 +4,8 @@
   element.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
   element.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
   element.setProperty(HTTPSamplerBase.PORT,port.getText());
+  element.setProperty(HTTPSamplerBase.CONNECT_TIMEOUT,connectTimeOut.getText());
+  element.setProperty(HTTPSamplerBase.RESPONSE_TIMEOUT,responseTimeOut.getText());
   element.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());
   element.setProperty(HTTPSamplerBase.CONTENT_ENCODING,contentEncoding.getText());
   element.setProperty(HTTPSamplerBase.PATH,path.getText());

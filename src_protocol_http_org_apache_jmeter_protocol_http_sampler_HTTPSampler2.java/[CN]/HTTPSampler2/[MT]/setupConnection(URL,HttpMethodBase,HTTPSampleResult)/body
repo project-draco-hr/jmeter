@@ -43,6 +43,14 @@
       log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient));
     }
   }
+  int rto=getResponseTimeout();
+  if (rto > 0) {
+    httpMethod.getParams().setSoTimeout(1);
+  }
+  int cto=getConnectTimeout();
+  if (cto > 0) {
+    httpClient.getHttpConnectionManager().getParams().setConnectionTimeout(cto);
+  }
   httpMethod.setFollowRedirects(getAutoRedirects());
   if (getUseKeepAlive()) {
     httpMethod.setRequestHeader(HEADER_CONNECTION,KEEP_ALIVE);

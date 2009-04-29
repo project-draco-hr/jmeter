@@ -9,6 +9,8 @@
  else {
     port.setText(portString);
   }
+  connectTimeOut.setText(el.getPropertyAsString(HTTPSamplerBase.CONNECT_TIMEOUT));
+  responseTimeOut.setText(el.getPropertyAsString(HTTPSamplerBase.RESPONSE_TIMEOUT));
   protocol.setText(el.getPropertyAsString(HTTPSamplerBase.PROTOCOL));
   contentEncoding.setText(el.getPropertyAsString(HTTPSamplerBase.CONTENT_ENCODING));
   path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));

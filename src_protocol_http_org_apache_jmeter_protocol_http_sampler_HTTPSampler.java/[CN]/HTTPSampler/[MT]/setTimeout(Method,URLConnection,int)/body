@@ -1,0 +1,18 @@
+{
+  if (method == null) {
+    log.warn("Connect/Read Timeout is not supported on this JVM");
+    return;
+  }
+  try {
+    method.invoke(conn,new Integer[]{new Integer(timeout)});
+  }
+ catch (  IllegalArgumentException e1) {
+    log.warn("Failed to set timeout: " + e1);
+  }
+catch (  IllegalAccessException e1) {
+    log.warn("Failed to set timeout: " + e1);
+  }
+catch (  InvocationTargetException e1) {
+    log.warn("Failed to set timeout: " + e1);
+  }
+}

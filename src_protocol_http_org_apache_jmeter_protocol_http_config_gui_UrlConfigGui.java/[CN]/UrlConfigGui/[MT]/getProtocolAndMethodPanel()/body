@@ -1,8 +1,6 @@
 {
   protocol=new JTextField(10);
-  protocol.setName(PROTOCOL);
   contentEncoding=new JTextField(10);
-  contentEncoding.setName(CONTENT_ENCODING);
   JLabel protocolLabel=new JLabel(JMeterUtils.getResString("protocol"));
   protocolLabel.setLabelFor(protocol);
   JLabel contentEncodingLabel=new JLabel(JMeterUtils.getResString("content_encoding"));
