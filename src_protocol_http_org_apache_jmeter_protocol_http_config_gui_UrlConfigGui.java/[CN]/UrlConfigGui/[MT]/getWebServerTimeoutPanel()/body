@@ -3,8 +3,8 @@
   webServerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_server")));
   final JPanel domainPanel=getDomainPanel();
   final JPanel portPanel=getPortPanel();
-  webServerPanel.add(domainPanel);
-  webServerPanel.add(portPanel);
+  webServerPanel.add(domainPanel,BorderLayout.CENTER);
+  webServerPanel.add(portPanel,BorderLayout.EAST);
   JPanel timeOut=new HorizontalPanel();
   timeOut.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_server_timeout_title")));
   final JPanel connPanel=getConnectTimeOutPanel();
