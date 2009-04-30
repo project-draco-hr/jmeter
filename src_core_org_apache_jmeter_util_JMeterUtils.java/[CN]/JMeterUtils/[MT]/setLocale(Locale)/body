@@ -23,6 +23,11 @@
       resources=resBund;
       locale=loc;
     }
+ else     if (resBund.getLocale().getLanguage().equals(loc.getLanguage())) {
+      log.warn("Unable to change language to '" + loc.toString() + "', using '"+ loc.getLanguage()+ "'");
+      resources=resBund;
+      locale=loc;
+    }
  else {
       log.error("Unable to change language to " + loc.toString());
       throw new JMeterError("Unable to change language to " + loc.toString());
