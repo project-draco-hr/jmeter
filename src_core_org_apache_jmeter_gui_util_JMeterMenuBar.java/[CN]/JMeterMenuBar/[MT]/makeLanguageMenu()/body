@@ -1,20 +1,9 @@
 {
   final JMenu languageMenu=makeMenuRes("choose_language",'C');
   LangMenuHelper langMenu=new LangMenuHelper(languageMenu);
-  langMenu.addLang(Locale.ENGLISH.toString());
-  langMenu.addLang(Locale.FRENCH.toString());
-  langMenu.addLang(Locale.GERMAN.toString());
-  langMenu.addLang("no");
-  langMenu.addLang("pl");
-  langMenu.addLang("es");
-  langMenu.addLang("tr");
-  langMenu.addLang(Locale.JAPANESE.toString());
-  langMenu.addLang(Locale.SIMPLIFIED_CHINESE.toString());
-  langMenu.addLang(Locale.TRADITIONAL_CHINESE.toString());
-  String[] addLanguages=JMeterUtils.getPropDefault("locales.add","").split(",");
-  for (int i=0; i < addLanguages.length; i++) {
-    log.info("Adding locale " + addLanguages[i]);
-    langMenu.addLang(addLanguages[i]);
+  String lang[]=getLanguages();
+  for (int i=0; i < lang.length; i++) {
+    langMenu.addLang(lang[i]);
   }
   return languageMenu;
 }

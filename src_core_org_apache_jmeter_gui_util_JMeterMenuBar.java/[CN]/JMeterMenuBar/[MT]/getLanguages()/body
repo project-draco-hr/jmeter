@@ -1,0 +1,20 @@
+{
+  List lang=new ArrayList(20);
+  lang.add(Locale.ENGLISH.toString());
+  lang.add(Locale.FRENCH.toString());
+  lang.add(Locale.GERMAN.toString());
+  lang.add("no");
+  lang.add("pl");
+  lang.add("pt_BR");
+  lang.add("es");
+  lang.add("tr");
+  lang.add(Locale.JAPANESE.toString());
+  lang.add(Locale.SIMPLIFIED_CHINESE.toString());
+  lang.add(Locale.TRADITIONAL_CHINESE.toString());
+  String[] addLanguages=JMeterUtils.getPropDefault("locales.add","").split(",");
+  for (int i=0; i < addLanguages.length; i++) {
+    log.info("Adding locale " + addLanguages[i]);
+    lang.add(addLanguages[i]);
+  }
+  return (String[])lang.toArray(new String[lang.size()]);
+}
