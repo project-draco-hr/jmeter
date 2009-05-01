@@ -1,0 +1,9 @@
+{
+  if ("system".equalsIgnoreCase(laf)) {
+    return UIManager.getSystemLookAndFeelClassName();
+  }
+  if ("crossplatform".equalsIgnoreCase(laf)) {
+    return UIManager.getCrossPlatformLookAndFeelClassName();
+  }
+  return laf;
+}

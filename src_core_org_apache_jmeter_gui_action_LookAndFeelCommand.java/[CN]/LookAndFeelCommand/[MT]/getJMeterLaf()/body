@@ -3,16 +3,16 @@
   String laf;
   laf=JMeterUtils.getProperty(JMETER_LAF + "." + osName.replace(' ','_'));
   if (laf != null) {
-    return laf;
+    return checkLafName(laf);
   }
   String[] osFamily=osName.split("\\s");
   laf=JMeterUtils.getProperty(JMETER_LAF + "." + osFamily[0]);
   if (laf != null) {
-    return laf;
+    return checkLafName(laf);
   }
   laf=JMeterUtils.getProperty(JMETER_LAF);
   if (laf != null) {
-    return laf;
+    return checkLafName(laf);
   }
   return UIManager.getCrossPlatformLookAndFeelClassName();
 }
