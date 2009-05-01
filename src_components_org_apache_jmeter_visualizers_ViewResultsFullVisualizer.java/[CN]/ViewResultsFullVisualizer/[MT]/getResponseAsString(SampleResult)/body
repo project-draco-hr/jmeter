@@ -3,7 +3,7 @@
   if ((SampleResult.TEXT).equals(res.getDataType())) {
     int len=res.getResponseData().length;
     if (MAX_DISPLAY_SIZE > 0 && len > MAX_DISPLAY_SIZE) {
-      response="Response too large to be displayed. Size: " + len + " > Max: "+ MAX_DISPLAY_SIZE;
+      response=JMeterUtils.getResString("view_results_response_too_large_message") + len + " > Max: "+ MAX_DISPLAY_SIZE;
       log.warn(response);
     }
  else {
