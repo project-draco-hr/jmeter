@@ -1,8 +1,8 @@
 {
   if (lang.length() == 0) {
-    return "messages.properties";
+    return resourcePrefix + ".properties";
   }
  else {
-    return "messages_" + lang + ".properties";
+    return resourcePrefix + "_" + lang+ ".properties";
   }
 }

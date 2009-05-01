@@ -1,4 +1,7 @@
 {
   InputStream ras=this.getClass().getResourceAsStream(res);
+  if (ras == null) {
+    return null;
+  }
   return new PropertyResourceBundle(ras);
 }

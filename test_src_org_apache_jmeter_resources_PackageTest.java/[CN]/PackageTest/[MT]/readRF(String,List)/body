@@ -2,7 +2,12 @@
   int fails=0;
   InputStream ras=this.getClass().getResourceAsStream(res);
   if (ras == null) {
-    throw new IOException("Cannot open resource file " + res);
+    if (MESSAGES.equals(resourcePrefix) || lang.length() == 0) {
+      throw new IOException("Cannot open resource file " + res);
+    }
+ else {
+      return 0;
+    }
   }
   BufferedReader fileReader=new BufferedReader(new InputStreamReader(ras));
   String s;
@@ -10,9 +15,11 @@
     if (s.length() > 0 && !s.startsWith("#") && !s.startsWith("!")) {
       int equ=s.indexOf('=');
       String key=s.substring(0,equ);
-      if ((key.indexOf(' ') >= 0) || !key.toLowerCase(java.util.Locale.ENGLISH).equals(key)) {
-        System.out.println("Invalid key for JMeterUtils " + key);
-        fails++;
+      if (resourcePrefix.equals(MESSAGES)) {
+        if ((key.indexOf(' ') >= 0) || !key.toLowerCase(java.util.Locale.ENGLISH).equals(key)) {
+          System.out.println("Invalid key for JMeterUtils " + key);
+          fails++;
+        }
       }
       String val=s.substring(equ + 1);
       l.add(key);

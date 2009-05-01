@@ -17,6 +17,9 @@
   }
  else   if (checkUnexpected) {
     PropertyResourceBundle prb=getRAS(res);
+    if (prb == null) {
+      return;
+    }
     Enumeration enumr=prb.getKeys();
     while (enumr.hasMoreElements()) {
       String key=null;
@@ -26,7 +29,7 @@
       }
  catch (      MissingResourceException e) {
         subTestFailures++;
-        System.out.println("Locale: " + resname + " has unexpected key: "+ key);
+        System.out.println(resourcePrefix + "_" + resname+ " has unexpected key: "+ key);
       }
     }
   }

@@ -1,11 +1,16 @@
 {
   TestSuite ts=new TestSuite("Resources PackageTest");
-  ts.addTest(new PackageTest("atestDefault"));
-  String lang[]=JMeterMenuBar.getLanguages();
-  for (int i=0; i < lang.length; i++) {
-    if (!"en".equals(lang[i])) {
-      ts.addTest(new PackageTest("testLang",lang[i]));
+  for (int j=0; j < prefixList.length; j++) {
+    String prefix=prefixList[j];
+    TestSuite pfx=new TestSuite(prefix);
+    pfx.addTest(new PackageTest("testLang","",prefix));
+    String lang[]=JMeterMenuBar.getLanguages();
+    for (int i=0; i < lang.length; i++) {
+      if (!"en".equals(lang[i])) {
+        pfx.addTest(new PackageTest("testLang",lang[i],prefix));
+      }
     }
+    ts.addTest(pfx);
   }
   return ts;
 }
