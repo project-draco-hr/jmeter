@@ -14,6 +14,9 @@
   }
   if (resname.length() == 0) {
     defaultPRB=getRAS(res);
+    if (defaultPRB == null) {
+      throw new IOException("Could not find required file: " + res);
+    }
   }
  else   if (checkUnexpected) {
     PropertyResourceBundle prb=getRAS(res);
