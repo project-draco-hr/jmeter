@@ -1,5 +1,8 @@
 {
   if (endOfLoop()) {
+    if (!getContinueForever()) {
+      setDone(true);
+    }
     return null;
   }
   return super.next();
