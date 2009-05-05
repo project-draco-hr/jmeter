@@ -7,4 +7,5 @@
   result.setResponseData(readFile("testfiles/XPathAssertionTest.xml"));
   vars=new JMeterVariables();
   jmctx.setVariables(vars);
+  jmctx.setPreviousResult(result);
 }
