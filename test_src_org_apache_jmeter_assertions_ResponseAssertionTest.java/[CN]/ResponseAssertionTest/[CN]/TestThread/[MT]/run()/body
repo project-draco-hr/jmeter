@@ -12,8 +12,8 @@
       failed++;
     }
   }
-synchronized (PackageTest.this) {
+synchronized (ResponseAssertionTest.this) {
     threadsRunning--;
-    PackageTest.this.notifyAll();
+    ResponseAssertionTest.this.notifyAll();
   }
 }
