@@ -1,7 +1,8 @@
 {
-  log.debug("Classpath = " + System.getProperty("java.class.path"));
-  StringTokenizer stPaths=new StringTokenizer(System.getProperty("java.class.path"),System.getProperty("path.separator"));
+  final String javaClassPath=System.getProperty("java.class.path");
+  StringTokenizer stPaths=new StringTokenizer(javaClassPath,System.getProperty("path.separator"));
   if (log.isDebugEnabled()) {
+    log.debug("Classpath = " + javaClassPath);
     for (int i=0; i < strPathsOrJars.length; i++) {
       log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
     }
