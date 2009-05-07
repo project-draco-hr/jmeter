@@ -6,7 +6,13 @@
       TestElement item=(TestElement)o;
       if (item.isEnabled()) {
         if (item instanceof ReplaceableController) {
-          ReplaceableController rc=(ReplaceableController)item.clone();
+          ReplaceableController rc;
+          if (item instanceof ModuleController) {
+            rc=(ReplaceableController)item;
+          }
+ else {
+            rc=(ReplaceableController)item.clone();
+          }
           HashTree subTree=tree.getTree(item);
           if (subTree != null) {
             HashTree replacementTree=rc.getReplacementSubTree();
