@@ -16,9 +16,9 @@
     throw new IllegalUserActionException("Non-GUI runs require a test plan");
   }
   if (logFile == null) {
-    driver.run(testFile,null,remoteStart != null,remote_hosts_string);
+    driver.runNonGui(testFile,null,remoteStart != null,remote_hosts_string);
   }
  else {
-    driver.run(testFile,logFile,remoteStart != null,remote_hosts_string);
+    driver.runNonGui(testFile,logFile,remoteStart != null,remote_hosts_string);
   }
 }
