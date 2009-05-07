@@ -1,4 +1,8 @@
 {
   depth++;
-  string.append("\n" + getSpaces() + key+ " {");
+  string.append("\n").append(getSpaces()).append(key);
+  if (key instanceof TestElement) {
+    string.append(" ").append(((TestElement)key).getName());
+  }
+  string.append(" {");
 }

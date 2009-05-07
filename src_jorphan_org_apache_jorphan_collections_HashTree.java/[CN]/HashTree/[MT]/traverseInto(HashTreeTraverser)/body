@@ -6,8 +6,14 @@
     Iterator iter=list().iterator();
     while (iter.hasNext()) {
       Object item=iter.next();
-      visitor.addNode(item,getTree(item));
-      getTree(item).traverseInto(visitor);
+      final HashTree treeItem=getTree(item);
+      visitor.addNode(item,treeItem);
+      if (treeItem != null) {
+        treeItem.traverseInto(visitor);
+      }
+ else {
+        log.warn("Null tree for " + item,new Throwable());
+      }
     }
   }
   visitor.subtractNode();

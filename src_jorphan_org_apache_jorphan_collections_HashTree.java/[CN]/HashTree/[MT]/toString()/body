@@ -1,5 +1,10 @@
 {
   ConvertToString converter=new ConvertToString();
-  traverse(converter);
+  try {
+    traverse(converter);
+  }
+ catch (  Exception e) {
+    converter.reportError(e);
+  }
   return converter.toString();
 }
