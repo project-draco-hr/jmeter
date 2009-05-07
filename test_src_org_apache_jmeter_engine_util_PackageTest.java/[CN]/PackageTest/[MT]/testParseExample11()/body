@@ -1,7 +1,7 @@
 {
-  StringProperty prop=new StringProperty("html","\\$a \\, \\\\ jakarta.apache.org");
+  StringProperty prop=new StringProperty("html","\\$a \\, \\\\ \\x \\ jakarta.apache.org");
   JMeterProperty newProp=transformer.transformValue(prop);
   newProp.setRunningVersion(true);
   assertEquals("org.apache.jmeter.testelement.property.StringProperty",newProp.getClass().getName());
-  assertEquals("\\$a \\, \\\\ jakarta.apache.org",newProp.getStringValue());
+  assertEquals("\\$a \\, \\\\ \\x \\ jakarta.apache.org",newProp.getStringValue());
 }
