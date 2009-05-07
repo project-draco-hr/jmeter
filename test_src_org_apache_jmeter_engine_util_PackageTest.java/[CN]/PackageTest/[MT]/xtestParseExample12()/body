@@ -1,7 +1,0 @@
-{
-  StringProperty prop=new StringProperty("html","\\$a ${server}");
-  JMeterProperty newProp=transformer.transformValue(prop);
-  newProp.setRunningVersion(true);
-  assertEquals("org.apache.jmeter.testelement.property.FunctionProperty",newProp.getClass().getName());
-  assertEquals("\\$a jakarta.apache.org",newProp.getStringValue());
-}

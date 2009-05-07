@@ -1,0 +1,6 @@
+{
+  StringProperty prop=new StringProperty("html","\\$a \\, \\\\ ${__missing(a)} \\$b \\, \\\\ cd");
+  JMeterProperty newProp=transformer.transformValue(prop);
+  newProp.setRunningVersion(true);
+  assertEquals("$a , \\ ${__missing(a)} $b , \\ cd",newProp.getStringValue());
+}
