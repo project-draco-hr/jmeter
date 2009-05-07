@@ -16,7 +16,6 @@
  else       if (current[0] == '(' && previous != ' ') {
         String funcName=buffer.toString();
         function=CompoundVariable.getNamedFunction(funcName);
-        buffer.setLength(0);
         if (function instanceof Function) {
           ((Function)function).setParameters(parseParams(reader));
           if (reader.read(current) == 0 || current[0] != '}') {
@@ -29,6 +28,9 @@
             StandardJMeterEngine.register((TestListener)function);
           }
           return function;
+        }
+ else {
+          buffer.append(current[0]);
         }
         continue;
       }
