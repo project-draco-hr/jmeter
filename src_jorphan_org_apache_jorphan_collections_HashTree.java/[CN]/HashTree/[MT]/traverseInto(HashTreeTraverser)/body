@@ -8,12 +8,7 @@
       Object item=iter.next();
       final HashTree treeItem=getTree(item);
       visitor.addNode(item,treeItem);
-      if (treeItem != null) {
-        treeItem.traverseInto(visitor);
-      }
- else {
-        log.warn("Null tree for " + item,new Throwable());
-      }
+      treeItem.traverseInto(visitor);
     }
   }
   visitor.subtractNode();
