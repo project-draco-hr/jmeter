@@ -3,7 +3,7 @@
     return new FileOutputStream(filename);
   }
  catch (  FileNotFoundException e) {
-    log.warn(e.toString());
+    JMeterUtils.reportErrorToUser("Could not create file: " + e.getMessage(),"Problem creating image file");
     return null;
   }
 }

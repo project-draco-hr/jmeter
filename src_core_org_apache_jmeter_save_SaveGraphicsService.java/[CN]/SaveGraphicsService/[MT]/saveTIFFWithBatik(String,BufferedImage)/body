@@ -1,12 +1,22 @@
 {
   File outfile=new File(filename);
   OutputStream fos=createFile(outfile);
+  if (fos == null) {
+    return;
+  }
   TIFFEncodeParam param=new TIFFEncodeParam();
   TIFFImageEncoder encoder=new TIFFImageEncoder(fos,param);
   try {
     encoder.encode(image);
   }
- catch (  Exception e) {
+ catch (  IOException e) {
+    JMeterUtils.reportErrorToUser("TIFFImageEncoder reported: " + e.getMessage(),"Problem creating image file");
+  }
+catch (  Error e) {
+    JMeterUtils.reportErrorToUser("TIFFImageEncoder reported: " + e.getMessage(),"Problem creating image file");
+    if (e.getClass() != Error.class) {
+      throw e;
+    }
   }
  finally {
     JOrphanUtils.closeQuietly(fos);
