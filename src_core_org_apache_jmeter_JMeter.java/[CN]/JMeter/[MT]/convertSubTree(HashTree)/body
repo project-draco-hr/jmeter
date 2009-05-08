@@ -7,7 +7,7 @@
       if (item.isEnabled()) {
         if (item instanceof ReplaceableController) {
           ReplaceableController rc;
-          if (item instanceof ModuleController) {
+          if (item.getClass().getName().equals("org.apache.jmeter.control.ModuleController")) {
             rc=(ReplaceableController)item;
           }
  else {
