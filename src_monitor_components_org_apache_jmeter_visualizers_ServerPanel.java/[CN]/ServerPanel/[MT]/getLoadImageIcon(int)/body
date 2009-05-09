@@ -1,5 +1,8 @@
 {
-  if (load <= 10) {
+  if (load == 0) {
+    return LOAD_0;
+  }
+ else   if (load > 0 && load <= 10) {
     return LOAD_1;
   }
  else   if (load > 10 && load <= 20) {
