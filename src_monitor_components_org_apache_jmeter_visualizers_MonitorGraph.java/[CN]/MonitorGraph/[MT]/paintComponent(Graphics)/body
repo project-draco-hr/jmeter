@@ -1,8 +1,8 @@
 {
   super.paintComponent(g);
-  if (this.CURRENT != null) {
-synchronized (MODEL) {
-      List samples=MODEL.getAllSamples(this.CURRENT.getURL());
+  if (this.current != null) {
+synchronized (model) {
+      List samples=model.getAllSamples(this.current.getURL());
       int size=samples.size();
 synchronized (samples) {
         Iterator e;
