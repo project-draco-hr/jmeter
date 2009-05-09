@@ -1,3 +1,6 @@
 {
+  if (mTextField == null) {
+    return null;
+  }
   return mTextField.getToolTipText();
 }
