@@ -1,0 +1,28 @@
+{
+  StrBuilder sb=new StrBuilder(getFilename());
+  if (!skipAutoNumber) {
+    sb.append(nextNumber());
+  }
+  if (!skipSuffix) {
+    sb.append('.');
+    if (contentType != null) {
+      int i=contentType.indexOf("/");
+      if (i != -1) {
+        int j=contentType.indexOf(";");
+        if (j != -1) {
+          sb.append(contentType.substring(i + 1,j));
+        }
+ else {
+          sb.append(contentType.substring(i + 1));
+        }
+      }
+ else {
+        sb.append("unknown");
+      }
+    }
+ else {
+      sb.append("unknown");
+    }
+  }
+  return sb.toString();
+}

@@ -9,7 +9,7 @@
       return;
     }
   }
-  String fileName=makeFileName(s.getContentType(),getSkipAutoNumber());
+  String fileName=makeFileName(s.getContentType(),getSkipAutoNumber(),getSkipSuffix());
   log.debug("Saving " + s.getSampleLabel() + " in "+ fileName);
   s.setResultFileName(fileName);
   String variable=getVariableName();

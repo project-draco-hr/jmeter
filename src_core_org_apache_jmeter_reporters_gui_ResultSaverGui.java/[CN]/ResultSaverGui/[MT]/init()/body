@@ -11,5 +11,7 @@
   box.add(successOnly);
   skipAutoNumber=new JCheckBox(JMeterUtils.getResString("resultsaver_skipautonumber"));
   box.add(skipAutoNumber);
+  skipSuffix=new JCheckBox(JMeterUtils.getResString("resultsaver_skipsuffix"));
+  box.add(skipSuffix);
   add(box,BorderLayout.NORTH);
 }
