@@ -1,6 +1,6 @@
 {
-  TABPANE=new MonitorTabPane();
-  createHealthPane(TABPANE);
-  createPerformancePane(TABPANE);
-  this.add(TABPANE,BorderLayout.CENTER);
+  tabPane=new MonitorTabPane();
+  createHealthPane(tabPane);
+  createPerformancePane(tabPane);
+  this.add(tabPane,BorderLayout.CENTER);
 }

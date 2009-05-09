@@ -1,6 +1,6 @@
 {
-  Image result=GRAPH.createImage(this.getWidth(),this.getHeight());
+  Image result=graph.createImage(this.getWidth(),this.getHeight());
   Graphics image=result.getGraphics();
-  GRAPH.paintComponent(image);
+  graph.paintComponent(image);
   return result;
 }

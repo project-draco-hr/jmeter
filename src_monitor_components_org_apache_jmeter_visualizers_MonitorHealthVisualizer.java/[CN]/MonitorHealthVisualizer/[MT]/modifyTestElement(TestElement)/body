@@ -1,5 +1,5 @@
 {
   super.modifyTestElement(c);
   c.setProperty(CONNECTOR_PREFIX,prefixField.getText(),CONNECTOR_PREFIX_DEFAULT);
-  MODEL.setPrefix(prefixField.getText());
+  model.setPrefix(prefixField.getText());
 }

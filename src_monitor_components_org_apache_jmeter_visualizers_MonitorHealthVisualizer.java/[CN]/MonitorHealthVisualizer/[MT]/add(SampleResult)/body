@@ -1,7 +1,7 @@
 {
-  MODEL.addSample(res);
+  model.addSample(res);
   try {
-    collector.recordStats(this.MODEL.getLastSample().cloneMonitorStats());
+    collector.recordStats(this.model.getLastSample().cloneMonitorStats());
   }
  catch (  Exception e) {
     log.debug("StatsModel was null",e);
