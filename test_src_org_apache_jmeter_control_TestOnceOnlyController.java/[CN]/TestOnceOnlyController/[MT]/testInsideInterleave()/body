@@ -1,0 +1,61 @@
+{
+  LoopController controller=new LoopController();
+  final int outerLoopCount=4;
+  controller.setLoops(outerLoopCount);
+  OnceOnlyController sub_1=new OnceOnlyController();
+  sub_1.setName("outer OnlyOnce");
+  sub_1.addTestElement(new TestSampler("one"));
+  sub_1.addTestElement(new TestSampler("two"));
+  controller.addTestElement(sub_1);
+  controller.addIterationListener(sub_1);
+  controller.addTestElement(new TestSampler("three"));
+  LoopController sub_2=new LoopController();
+  final int innerLoopCount=5;
+  sub_2.setLoops(innerLoopCount);
+  sub_2.addTestElement(new TestSampler("four"));
+  OnceOnlyController sub_3=new OnceOnlyController();
+  sub_3.setName("In loop OnlyOnce");
+  sub_3.addTestElement(new TestSampler("five"));
+  sub_3.addTestElement(new TestSampler("six"));
+  sub_2.addTestElement(sub_3);
+  sub_2.addIterationListener(sub_3);
+  InterleaveControl sub_4=new InterleaveControl();
+  sub_4.setStyle(InterleaveControl.USE_SUB_CONTROLLERS);
+  OnceOnlyController sub_5=new OnceOnlyController();
+  sub_5.addTestElement(new TestSampler("seven"));
+  sub_5.addTestElement(new TestSampler("eight"));
+  sub_5.setName("Inside InterleaveController OnlyOnce");
+  sub_4.addTestElement(sub_5);
+  sub_4.addIterationListener(sub_5);
+  sub_4.addTestElement(new TestSampler("nine"));
+  sub_4.addTestElement(new TestSampler("ten"));
+  sub_2.addTestElement(sub_4);
+  sub_2.addTestElement(new TestSampler("eleven"));
+  controller.addTestElement(sub_2);
+  String[] onlyOnceOrder=new String[]{"one","two"};
+  String[] order=new String[]{"three","four","five","six","seven","eight","eleven","four","nine","eleven","four","ten","eleven","four","nine","eleven","four","ten","eleven"};
+  int expectedNoSamples=2 + (1 + 2 + 1+ (1 + 1 + 1) * innerLoopCount) * outerLoopCount;
+  String[] expectedSamples=new String[expectedNoSamples];
+  for (int i=0; i < onlyOnceOrder.length; i++) {
+    expectedSamples[i]=onlyOnceOrder[i];
+  }
+  final int onceOnlySamples=onlyOnceOrder.length;
+  for (int i=0; i < order.length * outerLoopCount; i++) {
+    expectedSamples[onceOnlySamples + i]=order[i % order.length];
+  }
+  controller.setRunningVersion(true);
+  sub_1.setRunningVersion(true);
+  sub_2.setRunningVersion(true);
+  sub_3.setRunningVersion(true);
+  sub_4.setRunningVersion(true);
+  sub_5.setRunningVersion(true);
+  controller.initialize();
+  int counter=0;
+  TestElement sampler=null;
+  while ((sampler=controller.next()) != null) {
+    System.out.println("ex: " + expectedSamples[counter] + " ac: "+ sampler.getPropertyAsString(TestElement.NAME));
+    assertEquals(expectedSamples[counter],sampler.getPropertyAsString(TestElement.NAME));
+    counter++;
+  }
+  assertEquals(expectedNoSamples,counter);
+}
