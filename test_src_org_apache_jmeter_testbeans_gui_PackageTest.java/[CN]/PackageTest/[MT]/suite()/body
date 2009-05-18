@@ -20,12 +20,19 @@
         continue;
       }
       errorDetected=true;
-      log.error("No default bundle found for " + className);
+      log.error("No default bundle found for " + className + " using "+ defaultLocale.toString());
       continue;
     }
     suite.addTest(new PackageTest(testBeanClass,defaultLocale,defaultBundle));
-    for (int i=0; i < locales.length; i++) {
-      suite.addTest(new PackageTest(testBeanClass,locales[i],defaultBundle));
+    String[] languages=JMeterMenuBar.getLanguages();
+    for (int i=0; i < languages.length; i++) {
+      final String[] language=languages[i].split("_");
+      if (language.length == 1) {
+        suite.addTest(new PackageTest(testBeanClass,new Locale(language[0]),defaultBundle));
+      }
+ else       if (language.length == 2) {
+        suite.addTest(new PackageTest(testBeanClass,new Locale(language[0],language[1]),defaultBundle));
+      }
     }
   }
   if (errorDetected) {
