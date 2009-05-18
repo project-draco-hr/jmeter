@@ -1,5 +1,6 @@
 {
   JMeterUtils.setLocale(TEST_LOCALE);
+  Locale.setDefault(TEST_LOCALE);
   TestSuite suite=new TestSuite("JMeterTest");
   suite.addTest(new JMeterTest("readAliases"));
   suite.addTest(new JMeterTest("createTitleSet"));
@@ -12,5 +13,6 @@
   suite.addTest(suiteFunctions());
   suite.addTest(new JMeterTest("checkGuiSet"));
   suite.addTest(new JMeterTest("checkFunctionSet"));
+  suite.addTest(new JMeterTest("resetLocale"));
   return suite;
 }
