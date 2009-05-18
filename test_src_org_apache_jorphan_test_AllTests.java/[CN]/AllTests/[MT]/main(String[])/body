@@ -15,6 +15,11 @@
   logprop("java.home",true);
   logprop("user.home");
   logprop("user.dir",true);
+  logprop("user.language");
+  logprop("user.region");
+  logprop("user.country");
+  logprop("user.variant");
+  log.info("Locale=" + Locale.getDefault().toString());
   logprop("os.name",true);
   logprop("os.version",true);
   logprop("os.arch");
