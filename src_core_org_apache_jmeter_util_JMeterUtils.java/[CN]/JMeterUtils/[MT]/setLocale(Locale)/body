@@ -2,10 +2,10 @@
   log.info("Setting Locale to " + loc.toString());
   Locale def=null;
   boolean isDefault=false;
-  if (loc.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
+  if (loc.getLanguage().equals(ENGLISH_LANGUAGE)) {
     isDefault=true;
     def=Locale.getDefault();
-    if (!def.getLanguage().equals(Locale.ENGLISH.getLanguage())) {
+    if (!def.getLanguage().equals(ENGLISH_LANGUAGE)) {
       Locale.setDefault(Locale.ENGLISH);
     }
  else {
@@ -19,18 +19,16 @@
  else {
     ignoreResorces=false;
     ResourceBundle resBund=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",loc);
-    if (isDefault || resBund.getLocale().equals(loc)) {
-      resources=resBund;
-      locale=loc;
+    resources=resBund;
+    locale=loc;
+    final Locale resBundLocale=resBund.getLocale();
+    if (isDefault || resBundLocale.equals(loc)) {
     }
- else     if (resBund.getLocale().getLanguage().equals(loc.getLanguage())) {
-      log.warn("Unable to change language to '" + loc.toString() + "', using '"+ loc.getLanguage()+ "'");
-      resources=resBund;
-      locale=loc;
+ else     if (resBundLocale.getLanguage().equals(loc.getLanguage())) {
+      log.warn("Could not find resources for '" + loc.toString() + "', using '"+ resBundLocale.toString()+ "'");
     }
  else {
-      log.error("Unable to change language to " + loc.toString());
-      throw new JMeterError("Unable to change language to " + loc.toString());
+      log.error("Could not find resources for '" + loc.toString() + "'");
     }
   }
   notifyLocaleChangeListeners();
