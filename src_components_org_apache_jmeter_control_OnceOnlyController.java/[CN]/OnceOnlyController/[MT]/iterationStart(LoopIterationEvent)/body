@@ -1,5 +1,9 @@
 {
-  if (event.getIteration() == 1) {
+  int numIteration=1;
+  if (!(event.getSource() instanceof LoopController)) {
+    numIteration=0;
+  }
+  if (event.getIteration() == numIteration) {
     reInitialize();
   }
 }
