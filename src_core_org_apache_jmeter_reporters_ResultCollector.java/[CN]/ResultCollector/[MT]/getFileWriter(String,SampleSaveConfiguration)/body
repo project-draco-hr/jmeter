@@ -14,7 +14,8 @@
     }
     File pdir=new File(filename).getParentFile();
     if (pdir != null) {
-      if (!pdir.mkdirs()) {
+      pdir.mkdirs();
+      if (!pdir.exists()) {
         log.warn("Error creating directories for " + pdir.toString());
       }
     }
