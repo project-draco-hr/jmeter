@@ -1,5 +1,6 @@
 {
-  while (factory == null) {
+  int counter=MAX_RETRY;
+  while (factory == null && counter > 0) {
     try {
       Object objfac=ctx.lookup(fac);
       if (objfac instanceof TopicConnectionFactory) {
@@ -7,7 +8,18 @@
       }
     }
  catch (    NamingException e) {
-      log.error(e.toString());
+      if (counter == MAX_RETRY) {
+        log.error("Unable to find connection factory " + fac + ", will retry. Error: "+ e.toString());
+      }
+ else       if (counter == 1) {
+        log.error("Unable to find connection factory " + fac + ", giving up. Error: "+ e.toString());
+      }
+      counter--;
+      try {
+        Thread.currentThread().sleep(PAUSE_MILLIS);
+      }
+ catch (      InterruptedException ie) {
+      }
     }
   }
   return factory;
