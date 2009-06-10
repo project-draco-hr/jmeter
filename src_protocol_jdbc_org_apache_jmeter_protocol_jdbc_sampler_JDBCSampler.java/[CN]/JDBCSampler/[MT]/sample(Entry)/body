@@ -12,8 +12,6 @@
   res.sampleStart();
   Connection conn=null;
   Statement stmt=null;
-  CallableStatement cstmt=null;
-  PreparedStatement pstmt=null;
   try {
     try {
       conn=DataSourceElement.getConnection(getDataSource());
@@ -35,7 +33,7 @@
       }
     }
  else     if (CALLABLE.equals(_queryType)) {
-      cstmt=getCallableStatement(conn);
+      CallableStatement cstmt=getCallableStatement(conn);
       int out[]=setArguments(cstmt);
       boolean hasResultSet=cstmt.execute();
       String sb=resultSetsToString(cstmt,hasResultSet,out);
@@ -49,14 +47,14 @@
       res.setResponseData(results.getBytes(ENCODING));
     }
  else     if (PREPARED_SELECT.equals(_queryType)) {
-      pstmt=getPreparedStatement(conn);
+      PreparedStatement pstmt=getPreparedStatement(conn);
       setArguments(pstmt);
       pstmt.executeQuery();
       String sb=resultSetsToString(pstmt,true,null);
       res.setResponseData(sb.getBytes(ENCODING));
     }
  else     if (PREPARED_UPDATE.equals(_queryType)) {
-      pstmt=getPreparedStatement(conn);
+      PreparedStatement pstmt=getPreparedStatement(conn);
       setArguments(pstmt);
       pstmt.executeUpdate();
       String sb=resultSetsToString(pstmt,false,null);
@@ -103,8 +101,6 @@ catch (  IOException ex) {
  finally {
     close(stmt);
     close(conn);
-    close(pstmt);
-    close(cstmt);
   }
   res.sampleEnd();
   return res;
