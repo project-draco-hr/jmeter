@@ -45,7 +45,7 @@
   }
   int rto=getResponseTimeout();
   if (rto > 0) {
-    httpMethod.getParams().setSoTimeout(1);
+    httpMethod.getParams().setSoTimeout(rto);
   }
   int cto=getConnectTimeout();
   if (cto > 0) {
