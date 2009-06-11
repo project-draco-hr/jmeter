@@ -1,7 +1,9 @@
 {
-  instanceCount--;
-  if (instanceCount <= 0) {
-    finalizeFileOutput();
-    inTest=false;
+synchronized (LOCK) {
+    instanceCount--;
+    if (instanceCount <= 0) {
+      finalizeFileOutput();
+      inTest=false;
+    }
   }
 }

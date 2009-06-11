@@ -1,13 +1,15 @@
 {
-  instanceCount++;
-  try {
-    initializeFileOutput();
-    if (getVisualizer() != null) {
-      this.isStats=getVisualizer().isStats();
+synchronized (LOCK) {
+    instanceCount++;
+    try {
+      initializeFileOutput();
+      if (getVisualizer() != null) {
+        this.isStats=getVisualizer().isStats();
+      }
     }
-  }
- catch (  Exception e) {
-    log.error("",e);
+ catch (    Exception e) {
+      log.error("",e);
+    }
   }
   inTest=true;
 }

@@ -6,6 +6,9 @@
     FileEntry fe=(FileEntry)me.getValue();
     writeFileEnd(fe.pw,fe.config);
     fe.pw.close();
+    if (fe.pw.checkError()) {
+      log.warn("Problem detected during use of " + me.getKey());
+    }
   }
   files.clear();
 }

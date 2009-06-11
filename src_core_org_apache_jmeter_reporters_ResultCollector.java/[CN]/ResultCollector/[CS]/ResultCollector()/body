@@ -2,8 +2,4 @@
   setErrorLogging(false);
   setSuccessOnlyLogging(false);
   setProperty(new ObjectProperty(SAVE_CONFIG,new SampleSaveConfiguration()));
-synchronized (this) {
-    files.clear();
-    instanceCount=0;
-  }
 }
