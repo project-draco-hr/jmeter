@@ -12,10 +12,19 @@ synchronized (testTree) {
   }
   try {
     JMeterContextService.startTest();
-    remote.configure(test);
-    log.info("sent test");
+    remote.configure(test,host);
+    log.info("sent test to " + host);
+    if (savep != null) {
+      log.info("Sending properties " + savep);
+      try {
+        remote.setProperties(savep);
+      }
+ catch (      RemoteException e) {
+        log.warn("Could not set properties: " + e.toString());
+      }
+    }
     remote.runTest();
-    log.info("sent run command");
+    log.info("sent run command to " + host);
   }
  catch (  Exception ex) {
     log.error("",ex);

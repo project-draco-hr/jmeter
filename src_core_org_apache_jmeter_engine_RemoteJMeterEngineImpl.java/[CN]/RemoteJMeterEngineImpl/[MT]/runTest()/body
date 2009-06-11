@@ -1,7 +1,4 @@
 {
   log.info("running test");
-  log.debug("This = " + this);
-  long now=System.currentTimeMillis();
-  System.out.println("Starting the test on host " + hostName + " @ "+ new Date(now)+ " ("+ now+ ")");
   backingEngine.runTest();
 }

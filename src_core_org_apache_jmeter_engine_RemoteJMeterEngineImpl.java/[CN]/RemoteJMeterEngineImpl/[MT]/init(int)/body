@@ -8,7 +8,7 @@
     throw new RemoteException("Cannot start. Unable to get local host IP address.");
   }
   log.info("IP address=" + localHost.getHostAddress());
-  hostName=localHost.getHostName();
+  String hostName=localHost.getHostName();
   if (localHost.isLoopbackAddress()) {
     throw new RemoteException("Cannot start. " + hostName + " is a loopback address.");
   }
@@ -27,8 +27,6 @@
   }
   try {
     Registry reg=LocateRegistry.getRegistry(port);
-    log.info("Creating JMeter engine on host " + hostName);
-    backingEngine=new StandardJMeterEngine(hostName);
     reg.rebind(JMETER_ENGINE_RMI_NAME,this);
     log.info("Bound to registry on port " + port);
   }
