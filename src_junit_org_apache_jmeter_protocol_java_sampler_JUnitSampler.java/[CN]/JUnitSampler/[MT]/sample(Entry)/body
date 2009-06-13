@@ -1,21 +1,20 @@
 {
   SampleResult sresult=new SampleResult();
-  String rlabel=null;
-  if (getConstructorString().length() > 0) {
-    rlabel=getConstructorString();
-  }
- else {
+  String rlabel=getConstructorString();
+  if (rlabel.length() == 0) {
     rlabel=JUnitSampler.class.getName();
   }
   sresult.setSampleLabel(getName());
-  sresult.setSamplerData(getClassname() + "." + getMethod());
+  final String methodName=getMethod();
+  final String className=getClassname();
+  sresult.setSamplerData(className + "." + methodName);
   if (this.TEST_INSTANCE == null) {
-    this.TEST_INSTANCE=(TestCase)getClassInstance(getClassname(),rlabel);
+    this.TEST_INSTANCE=(TestCase)getClassInstance(className,rlabel);
   }
   if (this.TEST_INSTANCE != null) {
     initMethodObjects(this.TEST_INSTANCE);
     TestResult tr=new TestResult();
-    this.TEST_INSTANCE.setName(getMethod());
+    this.TEST_INSTANCE.setName(methodName);
     try {
       if (!getDoNotSetUpTearDown() && SETUP_METHOD != null) {
         try {
@@ -31,7 +30,7 @@ catch (        IllegalArgumentException e) {
           tr.addFailure(this.TEST_INSTANCE,new AssertionFailedError(e.getMessage()));
         }
       }
-      final Method m=getMethod(this.TEST_INSTANCE,getMethod());
+      final Method m=getMethod(this.TEST_INSTANCE,methodName);
       final TestCase theClazz=this.TEST_INSTANCE;
       tr.startTest(this.TEST_INSTANCE);
       sresult.sampleStart();
