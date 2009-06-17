@@ -19,7 +19,13 @@
   FTPClient ftp=new FTPClient();
   try {
     savedClient=ftp;
-    ftp.connect(getServer());
+    final int port=getPortAsInt();
+    if (port > 0) {
+      ftp.connect(getServer(),port);
+    }
+ else {
+      ftp.connect(getServer());
+    }
     res.latencyEnd();
     int reply=ftp.getReplyCode();
     if (FTPReply.isPositiveCompletion(reply)) {

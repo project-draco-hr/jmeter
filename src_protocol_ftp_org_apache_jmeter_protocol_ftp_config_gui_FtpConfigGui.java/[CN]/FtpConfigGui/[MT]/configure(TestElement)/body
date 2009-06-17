@@ -1,6 +1,7 @@
 {
   super.configure(element);
   server.setText(element.getPropertyAsString(FTPSampler.SERVER));
+  port.setText(element.getPropertyAsString(FTPSampler.PORT));
   remoteFile.setText(element.getPropertyAsString(FTPSampler.REMOTE_FILENAME));
   localFile.setText(element.getPropertyAsString(FTPSampler.LOCAL_FILENAME));
   inputData.setText(element.getPropertyAsString(FTPSampler.INPUT_DATA));

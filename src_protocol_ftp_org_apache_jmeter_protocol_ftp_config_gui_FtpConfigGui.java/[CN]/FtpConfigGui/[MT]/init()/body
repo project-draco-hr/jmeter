@@ -5,7 +5,10 @@
     add(makeTitlePanel(),BorderLayout.NORTH);
   }
   VerticalPanel mainPanel=new VerticalPanel();
-  mainPanel.add(createServerPanel());
+  JPanel serverPanel=new HorizontalPanel();
+  serverPanel.add(createServerPanel(),BorderLayout.CENTER);
+  serverPanel.add(getPortPanel(),BorderLayout.EAST);
+  mainPanel.add(serverPanel);
   mainPanel.add(createRemoteFilenamePanel());
   mainPanel.add(createLocalFilenamePanel());
   mainPanel.add(createLocalFileContentsPanel());

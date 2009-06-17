@@ -3,6 +3,11 @@
   sb.setNullText("null");
   sb.append("ftp://");
   sb.append(getServer());
+  String port=getPort();
+  if (port.length() > 0) {
+    sb.append(':');
+    sb.append(port);
+  }
   sb.append("/");
   sb.append(getRemoteFilename());
   sb.append(isBinaryMode() ? " (Binary) " : " (Ascii) ");
