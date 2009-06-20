@@ -1,20 +1,31 @@
 {
-  boolean holdSamples=JMeterUtils.getPropDefault("hold_samples",false);
-  String type=JMeterUtils.getPropDefault("mode","Standard");
-  if (holdSamples || type.equalsIgnoreCase("Hold")) {
+  if (holdSamples || type.equalsIgnoreCase(MODE_HOLD)) {
     HoldSampleSender h=new HoldSampleSender(listener);
     return h;
   }
- else   if (type.equalsIgnoreCase("Batch")) {
+ else   if (type.equalsIgnoreCase(MODE_BATCH)) {
     BatchSampleSender b=new BatchSampleSender(listener);
     return b;
   }
- else   if (type.equalsIgnoreCase("Statistical")) {
+ else   if (type.equalsIgnoreCase(MODE_STATISTICAL)) {
     StatisticalSampleSender s=new StatisticalSampleSender(listener);
     return s;
   }
- else {
+ else   if (type.equalsIgnoreCase(MODE_STANDARD)) {
     StandardSampleSender s=new StandardSampleSender(listener);
+    return s;
+  }
+ else {
+    SampleSender s=null;
+    try {
+      Class clazz=Class.forName(type);
+      Constructor cons=clazz.getConstructor(new Class[]{RemoteSampleListener.class});
+      s=(SampleSender)cons.newInstance(new Object[]{listener});
+    }
+ catch (    Exception e) {
+      log.error("Unable to create a sample sender from class " + type);
+      throw new IllegalArgumentException(e.getMessage());
+    }
     return s;
   }
 }
