@@ -11,9 +11,13 @@
     getValuesForXPath(d,getXPathQuery(),vars,refName);
   }
  catch (  IOException e) {
-    final String errorMessage="error on (" + getXPathQuery() + ")";
+    final String errorMessage="IOException on (" + getXPathQuery() + ")";
     log.error(errorMessage,e);
-    throw new JMeterError(errorMessage,e);
+    AssertionResult ass=new AssertionResult("IOException");
+    ass.setFailure(true);
+    ass.setFailureMessage(e.getLocalizedMessage());
+    previousResult.addAssertionResult(ass);
+    previousResult.setSuccessful(false);
   }
 catch (  ParserConfigurationException e) {
     final String errrorMessage="error on (" + getXPathQuery() + ")";
@@ -29,7 +33,7 @@ catch (  TransformerException e) {
 catch (  TidyException e) {
     AssertionResult ass=new AssertionResult("TidyException");
     ass.setFailure(true);
-    ass.setFailureMessage(e.getMessage());
+    ass.setFailureMessage(e.getLocalizedMessage());
     previousResult.addAssertionResult(ass);
     previousResult.setSuccessful(false);
   }
