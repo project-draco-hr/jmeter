@@ -1,7 +1,8 @@
 {
   try {
     res.sampleStart();
-    ldap.createTest(dirContext,getUserAttributes(),getBaseEntryDN());
+    DirContext ctx=ldap.createTest(dirContext,getUserAttributes(),getBaseEntryDN());
+    ctx.close();
   }
   finally {
     res.sampleEnd();
