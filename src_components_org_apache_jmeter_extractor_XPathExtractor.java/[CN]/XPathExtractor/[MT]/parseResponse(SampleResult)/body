@@ -3,5 +3,5 @@
   byte[] utf8data=unicodeData.getBytes("UTF-8");
   ByteArrayInputStream in=new ByteArrayInputStream(utf8data);
   boolean isXML=JOrphanUtils.isXML(utf8data);
-  return XPathUtil.makeDocument(in,false,false,useNameSpace(),isTolerant(),isQuiet(),showWarnings(),reportErrors(),isXML);
+  return XPathUtil.makeDocument(in,false,false,useNameSpace(),isTolerant(),isQuiet(),showWarnings(),reportErrors(),isXML,isDownloadDTDs());
 }

@@ -2,7 +2,7 @@
   whitespace.setSelected(assertion.isWhitespace());
   validate.setSelected(assertion.isValidating());
   tolerant.setSelected(assertion.isTolerant());
-  namespace.setSelected(assertion.isNamespace());
+  namespace.setSelected(assertion.useNameSpace());
   quiet.setSelected(assertion.isQuiet());
   showWarnings.setSelected(assertion.showWarnings());
   reportErrors.setSelected(assertion.reportErrors());

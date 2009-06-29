@@ -1,16 +1,33 @@
 {
-  Box tidyOptions=Box.createHorizontalBox();
-  tidyOptions.setBorder(BorderFactory.createEtchedBorder());
-  tidyOptions.add(getTolerant());
   quiet=new JCheckBox(JMeterUtils.getResString("xpath_tidy_quiet"),true);
   reportErrors=new JCheckBox(JMeterUtils.getResString("xpath_tidy_report_errors"),true);
   showWarnings=new JCheckBox(JMeterUtils.getResString("xpath_tidy_show_warnings"),true);
+  namespace=new JCheckBox(JMeterUtils.getResString("xml_namespace_button"));
+  whitespace=new JCheckBox(JMeterUtils.getResString("xml_whitespace_button"));
+  validate=new JCheckBox(JMeterUtils.getResString("xml_validate_button"));
+  validate.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent e){
+      tolerant();
+    }
+  }
+);
+  tolerant=new JCheckBox(JMeterUtils.getResString("xml_tolerant_button"));
+  downloadDTDs=new JCheckBox(JMeterUtils.getResString("xml_download_dtds"));
+  Box tidyOptions=Box.createHorizontalBox();
+  tidyOptions.setBorder(BorderFactory.createEtchedBorder());
+  tidyOptions.add(tolerant);
   tidyOptions.add(quiet);
   tidyOptions.add(reportErrors);
   tidyOptions.add(showWarnings);
-  add(tidyOptions);
-  add(getNamespace());
-  add(getValidate());
-  add(getWhitespace());
+  Box untidyOptions=Box.createHorizontalBox();
+  untidyOptions.setBorder(BorderFactory.createEtchedBorder());
+  untidyOptions.add(namespace);
+  untidyOptions.add(validate);
+  untidyOptions.add(whitespace);
+  untidyOptions.add(downloadDTDs);
+  Box options=Box.createVerticalBox();
+  options.add(tidyOptions);
+  options.add(untidyOptions);
+  add(options);
   setDefaultValues();
 }

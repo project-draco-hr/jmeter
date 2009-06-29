@@ -3,13 +3,13 @@
   boolean success=true;
   try {
     if (testDoc == null) {
-      testDoc=XPathUtil.makeDocumentBuilder(false,false,false).newDocument();
+      testDoc=XPathUtil.makeDocumentBuilder(false,false,false,false).newDocument();
       Element el=testDoc.createElement("root");
       testDoc.appendChild(el);
     }
     if (XPathAPI.eval(testDoc,xpathString) == null) {
-      log.warn("xpath eval was null ");
       ret="xpath eval was null";
+      log.warn(ret + " " + xpathString);
       success=false;
     }
   }

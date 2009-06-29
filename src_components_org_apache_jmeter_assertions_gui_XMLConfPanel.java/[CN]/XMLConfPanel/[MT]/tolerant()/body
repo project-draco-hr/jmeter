@@ -1,8 +1,9 @@
 {
-  final boolean isTolerant=isTolerant();
-  getValidate().setEnabled(!isTolerant);
-  getWhitespace().setEnabled(!isTolerant);
-  getNamespace().setEnabled(!isTolerant);
+  final boolean isTolerant=tolerant.isSelected();
+  validate.setEnabled(!isTolerant);
+  whitespace.setEnabled(!isTolerant);
+  namespace.setEnabled(!isTolerant);
+  downloadDTDs.setEnabled(!isTolerant);
   quiet.setEnabled(isTolerant);
   reportErrors.setEnabled(isTolerant);
   showWarnings.setEnabled(isTolerant);

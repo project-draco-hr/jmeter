@@ -1,10 +1,11 @@
 {
-  setWhitespace(false);
-  setValidate(false);
-  setTolerant(false);
-  setNamespace(false);
+  whitespace.setSelected(false);
+  validate.setSelected(false);
+  tolerant.setSelected(false);
+  namespace.setSelected(false);
   quiet.setSelected(true);
   reportErrors.setSelected(false);
   showWarnings.setSelected(false);
+  downloadDTDs.setSelected(false);
   tolerant();
 }

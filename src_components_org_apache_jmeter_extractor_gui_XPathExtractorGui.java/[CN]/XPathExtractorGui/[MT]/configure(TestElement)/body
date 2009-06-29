@@ -4,10 +4,5 @@
   xpathQueryField.setText(xpe.getXPathQuery());
   defaultField.setText(xpe.getDefaultValue());
   refNameField.setText(xpe.getRefName());
-  tolerant.setSelected(xpe.isTolerant());
-  quiet.setSelected(xpe.isQuiet());
-  showWarnings.setSelected(xpe.showWarnings());
-  reportErrors.setSelected(xpe.reportErrors());
-  nameSpace.setSelected(xpe.useNameSpace());
-  setTidyOptions(tolerant.isSelected());
+  xml.configure(xpe);
 }

@@ -5,10 +5,6 @@
     xpath.setDefaultValue(defaultField.getText());
     xpath.setRefName(refNameField.getText());
     xpath.setXPathQuery(xpathQueryField.getText());
-    xpath.setTolerant(tolerant.isSelected());
-    xpath.setNameSpace(nameSpace.isSelected());
-    xpath.setShowWarnings(showWarnings.isSelected());
-    xpath.setReportErrors(reportErrors.isSelected());
-    xpath.setQuiet(quiet.isSelected());
+    xml.modifyTestElement(xpath);
   }
 }
