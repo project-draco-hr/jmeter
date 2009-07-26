@@ -1,5 +1,6 @@
 {
   ResultCollector clone=(ResultCollector)super.clone();
   clone.setSaveConfig((SampleSaveConfiguration)clone.getSaveConfig().clone());
+  clone.summariser=this.summariser;
   return clone;
 }

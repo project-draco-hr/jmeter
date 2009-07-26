@@ -6,4 +6,7 @@ synchronized (LOCK) {
       inTest=false;
     }
   }
+  if (summariser != null) {
+    summariser.testEnded(host);
+  }
 }

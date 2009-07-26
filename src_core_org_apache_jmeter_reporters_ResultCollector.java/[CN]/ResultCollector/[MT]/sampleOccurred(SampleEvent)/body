@@ -27,4 +27,7 @@
       }
     }
   }
+  if (summariser != null) {
+    summariser.sampleOccurred(event);
+  }
 }

@@ -12,4 +12,7 @@ synchronized (LOCK) {
     }
   }
   inTest=true;
+  if (summariser != null) {
+    summariser.testStarted(host);
+  }
 }
