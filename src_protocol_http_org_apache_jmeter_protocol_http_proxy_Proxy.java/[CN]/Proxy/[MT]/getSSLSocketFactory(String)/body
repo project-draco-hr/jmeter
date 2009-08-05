@@ -1,0 +1,52 @@
+{
+synchronized (hashHost) {
+    if (hashHost.containsKey(host)) {
+      log.debug("Good, already in map, host=" + host);
+      return (SSLSocketFactory)hashHost.get(host);
+    }
+    InputStream in=getCertificate();
+    Exception except=null;
+    if (in != null) {
+      KeyStore ks=null;
+      KeyManagerFactory kmf=null;
+      SSLContext sslcontext=null;
+      try {
+        ks=KeyStore.getInstance(KEYSTORE_TYPE);
+        ks.load(in,KEYSTORE_PASSWORD);
+        kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
+        kmf.init(ks,KEY_PASSWORD);
+        sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
+        sslcontext.init(kmf.getKeyManagers(),null,null);
+        SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
+        hashHost.put(host,sslFactory);
+        log.info("KeyStore for SSL loaded OK and put host in map (" + host + ")");
+        return sslFactory;
+      }
+ catch (      NoSuchAlgorithmException e) {
+        except=e;
+      }
+catch (      KeyManagementException e) {
+        except=e;
+      }
+catch (      KeyStoreException e) {
+        except=e;
+      }
+catch (      UnrecoverableKeyException e) {
+        except=e;
+      }
+catch (      CertificateException e) {
+        except=e;
+      }
+ finally {
+        if (except != null) {
+          log.error("Problem with SSL certificate",except);
+        }
+        IOUtils.closeQuietly(in);
+      }
+    }
+ else {
+      throw new IOException("Unable to read keystore");
+    }
+    return null;
+  }
+}

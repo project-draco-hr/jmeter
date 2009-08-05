@@ -1,0 +1,18 @@
+{
+  File certFile=new File(CERT_DIRECTORY,CERT_FILE);
+  InputStream in=null;
+  final String certPath=certFile.getAbsolutePath();
+  if (certFile.exists() && certFile.canRead()) {
+    try {
+      in=new FileInputStream(certFile);
+      log.info("Opened Keystore file: " + certPath);
+    }
+ catch (    FileNotFoundException e) {
+      log.error("No server cert file found: " + certPath,e);
+    }
+  }
+ else {
+    log.error("No server cert file found: " + certPath);
+  }
+  return in;
+}

@@ -80,7 +80,7 @@ synchronized (formEncodings) {
   if (log.isDebugEnabled()) {
     log.debug("Proxy: setting path: " + sampler.getPath());
   }
-  if (numberRequests) {
+  if (!HTTPConstants.CONNECT.equals(getMethod()) && numberRequests) {
     requestNumber++;
     sampler.setName(requestNumber + " " + sampler.getPath());
   }
@@ -90,7 +90,7 @@ synchronized (formEncodings) {
   if (contentEncoding != null) {
     sampler.setContentEncoding(contentEncoding);
   }
-  if (!HTTPConstants.GET.equals(method)) {
+  if ((!HTTPConstants.CONNECT.equals(getMethod())) && (!HTTPConstants.GET.equals(method))) {
     final String contentType=getContentType();
     MultipartUrlConfig urlConfig=getMultipartConfig(contentType);
     if (urlConfig != null) {

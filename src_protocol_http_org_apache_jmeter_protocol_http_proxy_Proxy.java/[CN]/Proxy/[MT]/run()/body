@@ -12,6 +12,21 @@
   HeaderManager headers=null;
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+    outStreamClient=clientSocket.getOutputStream();
+    if ((request.getMethod().startsWith(HTTPConstants.CONNECT)) && (outStreamClient != null)) {
+      log.debug("Method CONNECT => SSL");
+      outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes());
+      outStreamClient.flush();
+      String[] param=request.getUrl().split(":");
+      if (param.length == 2) {
+        log.debug("Start to negotiate SSL connection, host: " + param[0]);
+        clientSocket=startSSL(clientSocket,param[0]);
+      }
+ else {
+        log.warn("In SSL request, unable to find host and port in CONNECT request");
+      }
+      request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+    }
     request.getSampler(pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
@@ -52,9 +67,17 @@ catch (  IllegalArgumentException e) {
     writeErrorToClient(HttpReplyHdr.formNotImplemented("Probably used https instead of http. " + "To record https requests, see " + "<a href=\"http://jakarta.apache.org/jmeter/usermanual/component_reference.html#HTTP_Proxy_Server\">HTTP Proxy Server documentation</a>"));
     result=generateErrorResult(result,e);
   }
+catch (  IOException ioe) {
+    log.error("Problem with SSL certificate? Ensure browser is set to accept the JMeter proxy cert: " + ioe.getLocalizedMessage());
+    if (result == null) {
+      result=new SampleResult();
+      result.setSampleLabel("Sample failed");
+    }
+    result.setResponseMessage(ioe.getMessage() + "\n**ensure browser is set to accept the JMeter proxy certificate**");
+  }
 catch (  Exception e) {
     log.error("Exception when processing sample",e);
-    writeErrorToClient(HttpReplyHdr.formTimeout());
+    writeErrorToClient(HttpReplyHdr.formInternalError());
     result=generateErrorResult(result,e);
   }
  finally {
