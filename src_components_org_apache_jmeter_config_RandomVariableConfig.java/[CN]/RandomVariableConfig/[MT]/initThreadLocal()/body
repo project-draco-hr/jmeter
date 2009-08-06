@@ -1,0 +1,9 @@
+{
+  return new ThreadLocal(){
+    protected Object initialValue(){
+      init();
+      return new Random(getRandomSeedAsLong());
+    }
+  }
+;
+}
