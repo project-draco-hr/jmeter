@@ -1,6 +1,6 @@
 {
   try {
-    TestElement clonedElement=(TestElement)this.getClass().newInstance();
+    TestElement clonedElement=this.getClass().newInstance();
     PropertyIterator iter=propertyIterator();
     while (iter.hasNext()) {
       clonedElement.setProperty((JMeterProperty)iter.next().clone());
