@@ -1,8 +1,8 @@
 {
   log.debug("Clear cache");
-  threadCache=new ThreadLocal(){
-    @Override protected Object initialValue(){
-      return new HashMap();
+  threadCache=new ThreadLocal<Map<String,CacheEntry>>(){
+    @Override protected Map<String,CacheEntry> initialValue(){
+      return new HashMap<String,CacheEntry>();
     }
   }
 ;

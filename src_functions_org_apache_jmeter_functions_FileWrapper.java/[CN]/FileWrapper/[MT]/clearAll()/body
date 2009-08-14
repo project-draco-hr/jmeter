@@ -1,8 +1,8 @@
 {
   log.debug("clearAll()");
-  Map my=(Map)filePacks.get();
-  for (Iterator i=my.entrySet().iterator(); i.hasNext(); ) {
-    Object fw=i.next();
+  Map<String,FileWrapper> my=filePacks.get();
+  for (Iterator<Map.Entry<String,FileWrapper>> i=my.entrySet().iterator(); i.hasNext(); ) {
+    Map.Entry<String,FileWrapper> fw=i.next();
     log.info("Removing " + fw.toString());
     i.remove();
   }

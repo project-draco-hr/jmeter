@@ -1,7 +1,6 @@
 {
   log.debug("clearAll()");
-  Map my=(Map)filePacks.get();
-  my.clear();
+  filePacks.get().clear();
   String tname=Thread.currentThread().getName();
   log.info(tname + ": clearing container");
 synchronized (fileContainers) {

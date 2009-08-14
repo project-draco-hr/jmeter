@@ -5,7 +5,7 @@
     }
     return this.defaultContext;
   }
-  SSLContext sslContext=(SSLContext)this.threadlocal.get();
+  SSLContext sslContext=this.threadlocal.get();
   if (sslContext == null) {
     if (log.isDebugEnabled()) {
       log.debug("Creating threadLocal SSL context for: " + Thread.currentThread().getName());

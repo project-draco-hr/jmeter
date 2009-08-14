@@ -1,5 +1,5 @@
 {
-  Map cp=(Map)tp.get();
+  Map<String,Object> cp=tp.get();
   Socket con=(Socket)cp.remove(TCPKEY);
   if (con != null) {
     log.debug(this + " Closing connection " + con);

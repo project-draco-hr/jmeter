@@ -1,6 +1,6 @@
 {
-  perTheadNumber=new ThreadLocal(){
-    @Override protected synchronized Object initialValue(){
+  perTheadNumber=new ThreadLocal<Long>(){
+    @Override protected Long initialValue(){
       return new Long(getStart());
     }
   }

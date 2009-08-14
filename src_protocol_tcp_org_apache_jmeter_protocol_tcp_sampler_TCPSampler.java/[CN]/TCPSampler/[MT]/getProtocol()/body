@@ -1,6 +1,6 @@
 {
   TCPClient TCPClient=null;
-  Class javaClass=getClass(getClassname());
+  Class<?> javaClass=getClass(getClassname());
   if (javaClass == null) {
     return null;
   }

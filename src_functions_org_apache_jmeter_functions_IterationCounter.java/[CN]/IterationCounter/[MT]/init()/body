@@ -2,8 +2,8 @@
 synchronized (this) {
     globalCounter=0;
   }
-  perThreadInt=new ThreadLocal(){
-    @Override protected synchronized Object initialValue(){
+  perThreadInt=new ThreadLocal<Integer>(){
+    @Override protected Integer initialValue(){
       return new Integer(0);
     }
   }

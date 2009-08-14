@@ -1,5 +1,5 @@
 {
-  CacheEntry entry=(CacheEntry)getCache().get(url.toString());
+  CacheEntry entry=getCache().get(url.toString());
   if (log.isDebugEnabled()) {
     log.debug(method.getName() + "(OAHC) " + url.toString()+ " "+ entry);
   }

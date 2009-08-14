@@ -1,6 +1,6 @@
 {
   for (int i=0; i < nonProxyHostSuffixSize; i++) {
-    if (host.endsWith((String)nonProxyHostSuffix.get(i))) {
+    if (host.endsWith(nonProxyHostSuffix.get(i))) {
       return true;
     }
   }

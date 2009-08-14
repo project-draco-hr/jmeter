@@ -5,7 +5,7 @@
     log.error("Alias cannot be empty");
     return;
   }
-  Map m=(Map)filePacks.get();
+  Map<String,FileWrapper> m=filePacks.get();
   if (m.get(alias) == null) {
     FileRowColContainer frcc;
     try {

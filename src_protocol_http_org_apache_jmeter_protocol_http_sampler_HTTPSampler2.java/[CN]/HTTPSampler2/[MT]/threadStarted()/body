@@ -1,4 +1,4 @@
 {
   log.debug("Thread Started");
-  httpClients.set(new HashMap());
+  httpClients.set(new HashMap<HostConfiguration,HttpClient>());
 }

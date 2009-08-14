@@ -6,7 +6,7 @@
   }
   result.setFailure(false);
   String resultData=new String(getResultBody(responseData));
-  SAXBuilder builder=(SAXBuilder)myBuilder.get();
+  SAXBuilder builder=myBuilder.get();
   try {
     builder.build(new StringReader(resultData));
   }

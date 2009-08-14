@@ -1,7 +1,7 @@
 {
   Random randGen=null;
   if (getPerThread()) {
-    randGen=(Random)perThreadRandom.get();
+    randGen=perThreadRandom.get();
   }
  else {
 synchronized (this) {

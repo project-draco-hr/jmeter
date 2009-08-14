@@ -1,6 +1,6 @@
 {
   Perl5Matcher matcher=JMeterUtils.getMatcher();
-  PatternMatcherInput input=(PatternMatcherInput)localInput.get();
+  PatternMatcherInput input=localInput.get();
   input.setInput(new String(html));
   Pattern pattern=JMeterUtils.getPatternCache().getPattern(REGEXP,Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK | Perl5Compiler.READ_ONLY_MASK);
   while (matcher.contains(input,pattern)) {

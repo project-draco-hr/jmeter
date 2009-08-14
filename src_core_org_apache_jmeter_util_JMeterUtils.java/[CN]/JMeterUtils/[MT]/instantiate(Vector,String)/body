@@ -1,7 +1,7 @@
 {
   Vector i=new Vector();
   try {
-    Class c=Class.forName(className);
+    Class<?> c=Class.forName(className);
     Enumeration elements=v.elements();
     while (elements.hasMoreElements()) {
       String name=(String)elements.nextElement();

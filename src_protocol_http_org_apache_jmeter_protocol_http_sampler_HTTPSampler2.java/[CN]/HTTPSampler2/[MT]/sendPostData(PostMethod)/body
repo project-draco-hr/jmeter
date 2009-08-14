@@ -6,7 +6,7 @@
     if (contentEncoding != null && contentEncoding.length() == 0) {
       contentEncoding=null;
     }
-    ArrayList partlist=new ArrayList();
+    ArrayList<PartBase> partlist=new ArrayList<PartBase>();
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
@@ -24,7 +24,7 @@
       partlist.add(filePart);
     }
     int partNo=partlist.size();
-    Part[] parts=(Part[])partlist.toArray(new Part[partNo]);
+    Part[] parts=partlist.toArray(new Part[partNo]);
     MultipartRequestEntity multiPart=new MultipartRequestEntity(parts,post.getParams());
     post.setRequestEntity(multiPart);
     String multiPartContentType=multiPart.getContentType();

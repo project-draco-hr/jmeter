@@ -9,7 +9,7 @@
     globalCounter+=increment;
   }
  else {
-    long current=((Long)perTheadNumber.get()).longValue();
+    long current=perTheadNumber.get().longValue();
     variables.put(getVarName(),formatNumber(current));
     current+=increment;
     if (current > end) {

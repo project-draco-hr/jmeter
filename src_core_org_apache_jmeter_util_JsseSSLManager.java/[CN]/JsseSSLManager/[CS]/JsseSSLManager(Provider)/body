@@ -10,7 +10,7 @@
       this.defaultContext=createContext();
     }
  else {
-      this.threadlocal=new ThreadLocal();
+      this.threadlocal=new ThreadLocal<SSLContext>();
     }
     HttpsURLConnection.setDefaultSSLSocketFactory(new HttpSSLProtocolSocketFactory(this));
     HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier(){

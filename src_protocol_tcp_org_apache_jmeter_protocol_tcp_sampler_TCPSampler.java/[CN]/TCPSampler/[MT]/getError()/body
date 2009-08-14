@@ -1,4 +1,4 @@
 {
-  Map cp=(Map)tp.get();
+  Map<String,Object> cp=tp.get();
   return (String)cp.get(ERRKEY);
 }

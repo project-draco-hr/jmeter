@@ -6,9 +6,9 @@
     impls=impls.trim();
   }
   try {
-    Class c=Class.forName(impls);
+    Class<?> c=Class.forName(impls);
     try {
-      Class o=Class.forName(className);
+      Class<?> o=Class.forName(className);
       Object res=o.newInstance();
       if (c.isInstance(res)) {
         return res;

@@ -1,6 +1,6 @@
 {
-  Map my=(Map)filePacks.get();
-  FileWrapper fw=(FileWrapper)(my).get(file);
+  Map<String,FileWrapper> my=filePacks.get();
+  FileWrapper fw=my.get(file);
   if (fw == null) {
     return -1;
   }

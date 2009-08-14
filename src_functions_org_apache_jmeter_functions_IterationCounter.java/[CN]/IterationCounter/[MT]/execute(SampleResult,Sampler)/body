@@ -10,7 +10,7 @@
   String counterString="";
   if (perThread) {
     int threadCounter;
-    threadCounter=((Integer)perThreadInt.get()).intValue() + 1;
+    threadCounter=perThreadInt.get().intValue() + 1;
     perThreadInt.set(new Integer(threadCounter));
     counterString=String.valueOf(threadCounter);
   }

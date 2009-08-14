@@ -23,8 +23,8 @@
     }
     hc.setProxy(PROXY_HOST,PROXY_PORT);
   }
-  Map map=(Map)httpClients.get();
-  HttpClient httpClient=(HttpClient)map.get(hc);
+  Map<HostConfiguration,HttpClient> map=httpClients.get();
+  HttpClient httpClient=map.get(hc);
   if (httpClient == null) {
     httpClient=new HttpClient(new SimpleHttpConnectionManager());
     if (log.isDebugEnabled()) {

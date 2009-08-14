@@ -5,8 +5,8 @@
     dsc=sharedDSC;
   }
  else {
-    Map poolMap=(Map)perThreadPoolMap.get();
-    dsc=(ResourceLimitingJdbcDataSource)poolMap.get(getDataSource());
+    Map<String,ResourceLimitingJdbcDataSource> poolMap=(Map)perThreadPoolMap.get();
+    dsc=poolMap.get(getDataSource());
     if (dsc == null) {
       dsc=initPool("1");
       poolMap.put(getDataSource(),dsc);

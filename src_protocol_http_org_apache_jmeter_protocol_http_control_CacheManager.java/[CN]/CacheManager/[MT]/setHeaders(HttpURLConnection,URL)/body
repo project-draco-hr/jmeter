@@ -1,5 +1,5 @@
 {
-  CacheEntry entry=(CacheEntry)getCache().get(url.toString());
+  CacheEntry entry=getCache().get(url.toString());
   if (log.isDebugEnabled()) {
     log.debug(conn.getRequestMethod() + "(Java) " + url.toString()+ " "+ entry);
   }

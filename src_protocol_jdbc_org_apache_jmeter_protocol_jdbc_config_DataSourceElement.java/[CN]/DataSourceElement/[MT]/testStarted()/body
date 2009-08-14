@@ -8,7 +8,7 @@
   }
  else {
     String maxPool=getPoolMax();
-    perThreadPoolSet=Collections.synchronizedSet(new HashSet());
+    perThreadPoolSet=Collections.synchronizedSet(new HashSet<ResourceLimitingJdbcDataSource>());
     if (maxPool.equals("0")) {
       variables.putObject(poolName,new DataSourceComponentImpl());
     }

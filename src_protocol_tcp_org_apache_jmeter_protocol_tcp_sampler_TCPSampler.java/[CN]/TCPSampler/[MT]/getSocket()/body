@@ -1,5 +1,5 @@
 {
-  Map cp=(Map)tp.get();
+  Map<String,Object> cp=tp.get();
   Socket con=null;
   if (isReUseConnection()) {
     con=(Socket)cp.get(TCPKEY);

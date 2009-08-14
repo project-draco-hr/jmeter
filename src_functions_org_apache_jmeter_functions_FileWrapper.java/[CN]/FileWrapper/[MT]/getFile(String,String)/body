@@ -1,6 +1,6 @@
 {
   FileRowColContainer frcc;
-  if ((frcc=(FileRowColContainer)fileContainers.get(alias)) == null) {
+  if ((frcc=fileContainers.get(alias)) == null) {
     frcc=new FileRowColContainer(file);
     fileContainers.put(alias,frcc);
     log.info("Saved " + file + " as "+ alias+ " delimiter=<"+ frcc.getDelimiter()+ ">");

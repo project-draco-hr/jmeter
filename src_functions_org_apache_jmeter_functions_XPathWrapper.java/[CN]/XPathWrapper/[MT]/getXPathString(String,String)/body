@@ -1,10 +1,10 @@
 {
-  Map my=(Map)filePacks.get();
+  Map<String,XPathFileContainer> my=filePacks.get();
   String key=file + xpathString;
-  XPathFileContainer xpfc=(XPathFileContainer)my.get(key);
+  XPathFileContainer xpfc=my.get(key);
   if (xpfc == null) {
 synchronized (fileContainers) {
-      xpfc=(XPathFileContainer)fileContainers.get(key);
+      xpfc=fileContainers.get(key);
       if (xpfc == null) {
         xpfc=open(file,xpathString);
       }
