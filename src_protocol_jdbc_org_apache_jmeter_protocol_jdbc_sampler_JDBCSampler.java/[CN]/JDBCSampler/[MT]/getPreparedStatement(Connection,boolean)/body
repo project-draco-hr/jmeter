@@ -2,7 +2,7 @@
   Map preparedStatementMap=(Map)perConnCache.get(conn);
   if (null == preparedStatementMap) {
     preparedStatementMap=new LinkedHashMap(MAX_ENTRIES){
-      protected boolean removeEldestEntry(      java.util.Map.Entry arg0){
+      @Override protected boolean removeEldestEntry(      java.util.Map.Entry arg0){
         final int theSize=size();
         if (theSize > MAX_ENTRIES) {
           Object value=arg0.getValue();
