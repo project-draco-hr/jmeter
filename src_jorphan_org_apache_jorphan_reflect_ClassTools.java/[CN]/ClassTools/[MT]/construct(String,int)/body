@@ -1,7 +1,7 @@
 {
   Object instance=null;
   try {
-    Class clazz=ClassUtils.getClass(className);
+    Class<?> clazz=ClassUtils.getClass(className);
     clazz.getConstructor(new Class[]{Integer.TYPE});
     instance=ClassUtils.getClass(className).newInstance();
   }
