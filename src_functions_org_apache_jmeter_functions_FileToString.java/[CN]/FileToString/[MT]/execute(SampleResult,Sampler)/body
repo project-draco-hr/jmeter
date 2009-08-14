@@ -1,0 +1,26 @@
+{
+  String fileName=((CompoundVariable)values[0]).execute();
+  String myName="";
+  if (values.length >= PARAM_NAME) {
+    myName=((CompoundVariable)values[PARAM_NAME - 1]).execute().trim();
+  }
+  String myValue=ERR_IND;
+  try {
+    myValue=FileUtils.readFileToString(new File(fileName),null);
+  }
+ catch (  IOException e) {
+    log.warn("Could not read file: " + fileName + " "+ e.getMessage());
+    throw new JMeterStopThreadException("End of sequence");
+  }
+  if (myName.length() > 0) {
+    JMeterVariables vars=getVariables();
+    if (vars != null) {
+      vars.put(myName,myValue);
+    }
+  }
+  if (log.isDebugEnabled()) {
+    String tn=Thread.currentThread().getName();
+    log.debug(tn + " name:" + myName+ " value:"+ myValue);
+  }
+  return myValue;
+}
