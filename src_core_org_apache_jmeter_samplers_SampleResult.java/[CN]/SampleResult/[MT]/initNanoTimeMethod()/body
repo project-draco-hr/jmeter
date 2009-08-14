@@ -1,8 +1,0 @@
-{
-  try {
-    return System.class.getMethod("nanoTime",null);
-  }
- catch (  NoSuchMethodException e) {
-    return null;
-  }
-}

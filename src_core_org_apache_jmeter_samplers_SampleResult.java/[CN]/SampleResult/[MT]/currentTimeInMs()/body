@@ -1,9 +1,4 @@
 {
-  if (haveNanoTime()) {
-    long elapsedInMs=sampleNsClockInMs() - referenceTimeNsClock;
-    return referenceTimeMsClock + elapsedInMs;
-  }
- else {
-    return System.currentTimeMillis();
-  }
+  long elapsedInMs=sampleNsClockInMs() - referenceTimeNsClock;
+  return referenceTimeMsClock + elapsedInMs;
 }

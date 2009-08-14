@@ -6,7 +6,7 @@
   }
   subResult.setThreadName(tn);
   if (subResults == null) {
-    subResults=new ArrayList();
+    subResults=new ArrayList<SampleResult>();
   }
   subResults.add(subResult);
   setEndTime(Math.max(getEndTime(),subResult.getEndTime()));
