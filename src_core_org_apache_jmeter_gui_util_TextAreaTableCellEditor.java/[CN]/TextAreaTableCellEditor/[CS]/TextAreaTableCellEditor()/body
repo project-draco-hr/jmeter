@@ -3,10 +3,10 @@
   editorComponent.setRows(3);
   this.clickCountToStart=2;
   delegate=new EditorDelegate(){
-    public void setValue(    Object value){
+    @Override public void setValue(    Object value){
       editorComponent.setText((value != null) ? value.toString() : "");
     }
-    public Object getCellEditorValue(){
+    @Override public Object getCellEditorValue(){
       return editorComponent.getText();
     }
   }

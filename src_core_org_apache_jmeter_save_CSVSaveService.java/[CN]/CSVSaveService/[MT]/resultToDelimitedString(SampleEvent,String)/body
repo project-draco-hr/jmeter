@@ -34,7 +34,7 @@ final class StringQuoter {
       addDelim();
       sb.append(b);
     }
-    public String toString(){
+    @Override public String toString(){
       return sb.toString();
     }
   }

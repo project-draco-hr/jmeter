@@ -1,6 +1,6 @@
 {
   JTree treevar=new JTree(treeModel){
-    public String getToolTipText(    MouseEvent event){
+    @Override public String getToolTipText(    MouseEvent event){
       TreePath path=this.getPathForLocation(event.getX(),event.getY());
       if (path != null) {
         Object treeNode=path.getLastPathComponent();

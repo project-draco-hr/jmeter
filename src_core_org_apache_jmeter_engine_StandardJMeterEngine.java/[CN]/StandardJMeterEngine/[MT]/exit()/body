@@ -1,6 +1,6 @@
 {
   Thread t=new Thread(){
-    public void run(){
+    @Override public void run(){
       pause(1000);
       log.info("Bye");
       System.exit(0);

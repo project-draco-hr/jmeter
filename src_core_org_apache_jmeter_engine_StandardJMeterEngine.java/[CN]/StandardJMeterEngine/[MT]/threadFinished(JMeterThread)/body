@@ -3,7 +3,7 @@
   allThreads.remove(thread);
   if (!startingGroups && allThreads.size() == 0) {
     new Thread(){
-      public void run(){
+      @Override public void run(){
         log.info("Stopping test");
         notifyTestListenersOfEnd(testListenersSave);
       }
