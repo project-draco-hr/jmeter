@@ -1,6 +1,6 @@
 {
   return new ThreadLocal(){
-    protected Object initialValue(){
+    @Override protected Object initialValue(){
       init();
       return new Random(getRandomSeedAsLong());
     }
