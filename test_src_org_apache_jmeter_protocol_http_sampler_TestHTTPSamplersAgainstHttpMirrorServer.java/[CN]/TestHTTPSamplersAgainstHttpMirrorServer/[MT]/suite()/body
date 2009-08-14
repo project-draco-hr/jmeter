@@ -1,7 +1,7 @@
 {
   TestSetup setup=new TestSetup(new TestSuite(TestHTTPSamplersAgainstHttpMirrorServer.class)){
     private HttpMirrorServer httpServer;
-    protected void setUp() throws Exception {
+    @Override protected void setUp() throws Exception {
       httpServer=TestHTTPMirrorThread.startHttpMirror(MIRROR_PORT);
       TEST_FILE_CONTENT=new String("some foo content &?=01234+56789-\u007c\u2aa1\u266a\u0153\u20a1\u0115\u0364\u00c5\u2052\uc385%C3%85").getBytes("UTF-8");
       temporaryFile=File.createTempFile("TestHTTPSamplersAgainstHttpMirrorServer","tmp");
@@ -10,7 +10,7 @@
       output.flush();
       output.close();
     }
-    protected void tearDown() throws Exception {
+    @Override protected void tearDown() throws Exception {
       httpServer.stopServer();
       httpServer=null;
       temporaryFile.delete();

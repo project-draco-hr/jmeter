@@ -2,7 +2,7 @@
   final CLOptionDescriptor[] options1=new CLOptionDescriptor[]{YOU,ALL,CLEAR1};
   final CLOptionDescriptor[] options2=new CLOptionDescriptor[]{};
   final ParserControl control1=new AbstractParserControl(){
-    public boolean isFinished(    final int lastOptionCode){
+    @Override public boolean isFinished(    final int lastOptionCode){
       return (lastOptionCode == CLEAR1_OPT);
     }
   }
