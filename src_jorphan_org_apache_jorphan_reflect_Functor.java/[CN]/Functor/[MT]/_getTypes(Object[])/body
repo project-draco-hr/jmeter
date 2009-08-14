@@ -1,5 +1,5 @@
 {
-  Class[] _types;
+  Class<?>[] _types;
   if (_args != null) {
     _types=new Class[_args.length];
     for (int i=0; i < _args.length; i++) {

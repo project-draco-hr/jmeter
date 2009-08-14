@@ -7,7 +7,7 @@
       log.debug("strPathsOrJars[" + i + "] : "+ strPathsOrJars[i]);
     }
   }
-  ArrayList listPaths=new ArrayList();
+  ArrayList<String> listPaths=new ArrayList<String>();
   String strPath=null;
   while (stPaths.hasMoreTokens()) {
     strPath=fixPathEntry(stPaths.nextToken());
