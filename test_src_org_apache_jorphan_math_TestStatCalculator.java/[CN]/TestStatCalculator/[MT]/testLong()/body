@@ -1,0 +1,7 @@
+{
+  calc.addValue(0L);
+  calc.addValue(2L);
+  assertEquals(Long.valueOf(2),calc.getMax());
+  assertEquals(Long.valueOf(0),calc.getMin());
+  calc.getDistribution();
+}

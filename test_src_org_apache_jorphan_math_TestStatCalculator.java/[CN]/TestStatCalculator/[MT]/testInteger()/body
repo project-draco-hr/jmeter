@@ -1,0 +1,6 @@
+{
+  calc.addValue(0);
+  calc.addValue(2);
+  assertEquals(Integer.valueOf(2),calc.getMax());
+  assertEquals(Integer.valueOf(0),calc.getMin());
+}
