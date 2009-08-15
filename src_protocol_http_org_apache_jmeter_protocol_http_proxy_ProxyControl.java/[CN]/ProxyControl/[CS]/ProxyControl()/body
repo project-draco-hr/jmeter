@@ -1,6 +1,6 @@
 {
   setPort(DEFAULT_PORT);
-  setExcludeList(new HashSet());
-  setIncludeList(new HashSet());
+  setExcludeList(new HashSet<String>());
+  setIncludeList(new HashSet<String>());
   setCaptureHttpHeaders(true);
 }

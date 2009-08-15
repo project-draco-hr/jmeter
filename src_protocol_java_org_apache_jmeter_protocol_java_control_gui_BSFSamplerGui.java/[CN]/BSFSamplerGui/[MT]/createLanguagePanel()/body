@@ -2,8 +2,8 @@
   JLabel label=new JLabel(JMeterUtils.getResString("bsf_script_language"));
   Properties p=JMeterUtils.loadProperties("org/apache/bsf/Languages.properties");
   p.put("jexl","");
-  Set keySet=p.keySet();
-  String[] items=(String[])keySet.toArray(new String[]{});
+  Set<Object> keySet=p.keySet();
+  String[] items=keySet.toArray(new String[]{});
   Arrays.sort(items);
   langField=new JComboBox(items);
   langField.setEditable(true);

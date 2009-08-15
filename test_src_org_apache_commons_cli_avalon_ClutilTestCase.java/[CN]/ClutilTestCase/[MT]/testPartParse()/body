@@ -8,8 +8,8 @@
 ;
   final CLArgsParser parser=new CLArgsParser(ARGLIST1,options,control);
   assertNull(parser.getErrorString(),parser.getErrorString());
-  final List clOptions=parser.getArguments();
+  final List<CLOption> clOptions=parser.getArguments();
   final int size=clOptions.size();
   assertEquals(size,1);
-  assertEquals(((CLOption)clOptions.get(0)).getDescriptor().getId(),YOU_OPT);
+  assertEquals((clOptions.get(0)).getDescriptor().getId(),YOU_OPT);
 }

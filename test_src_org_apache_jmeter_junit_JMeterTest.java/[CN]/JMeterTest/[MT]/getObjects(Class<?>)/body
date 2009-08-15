@@ -1,18 +1,18 @@
 {
   String exName=extendsClass.getName();
   Object myThis="";
-  Iterator classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
+  Iterator<String> classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
   List objects=new LinkedList();
   String n="";
   boolean caughtError=true;
   Throwable caught=null;
   try {
     while (classes.hasNext()) {
-      n=(String)classes.next();
+      n=classes.next();
       if (n.endsWith("RemoteJMeterEngineImpl")) {
         continue;
       }
-      Class c=null;
+      Class<?> c=null;
       try {
         c=Class.forName(n);
         try {

@@ -1,4 +1,4 @@
 {
   final String ct=res.getMediaType();
-  return (String)parsersForType.get(ct);
+  return parsersForType.get(ct);
 }

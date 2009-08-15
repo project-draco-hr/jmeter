@@ -1,5 +1,5 @@
 {
-  List lang=new ArrayList(20);
+  List<String> lang=new ArrayList<String>(20);
   lang.add(Locale.ENGLISH.toString());
   lang.add(Locale.FRENCH.toString());
   lang.add(Locale.GERMAN.toString());
@@ -19,5 +19,5 @@
       lang.add(addLanguages[i]);
     }
   }
-  return (String[])lang.toArray(new String[lang.size()]);
+  return lang.toArray(new String[lang.size()]);
 }

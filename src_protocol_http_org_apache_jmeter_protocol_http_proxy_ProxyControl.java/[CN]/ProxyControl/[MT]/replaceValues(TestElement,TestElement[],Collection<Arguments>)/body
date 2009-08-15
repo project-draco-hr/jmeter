@@ -1,8 +1,8 @@
 {
   ValueReplacer replacer=new ValueReplacer();
-  for (Iterator vars=variables.iterator(); vars.hasNext(); ) {
-    final Map map=((Arguments)vars.next()).getArgumentsAsMap();
-    for (Iterator vals=map.values().iterator(); vals.hasNext(); ) {
+  for (Iterator<Arguments> vars=variables.iterator(); vars.hasNext(); ) {
+    final Map<String,String> map=vars.next().getArgumentsAsMap();
+    for (Iterator<String> vals=map.values().iterator(); vals.hasNext(); ) {
       final Object next=vals.next();
       if ("".equals(next)) {
         vals.remove();

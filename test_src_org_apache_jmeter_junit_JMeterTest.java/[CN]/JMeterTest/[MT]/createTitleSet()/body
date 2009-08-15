@@ -1,5 +1,5 @@
 {
-  guiTitles=new HashMap(90);
+  guiTitles=new HashMap<String,Boolean>(90);
   String compref="../xdocs/usermanual/component_reference.xml";
   SAXBuilder bldr=new SAXBuilder();
   Document doc;

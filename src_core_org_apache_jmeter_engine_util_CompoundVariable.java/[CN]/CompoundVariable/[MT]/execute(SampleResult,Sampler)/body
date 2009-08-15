@@ -4,7 +4,7 @@
   }
   boolean testDynamic=false;
   StringBuffer results=new StringBuffer();
-  Iterator iter=compiledComponents.iterator();
+  Iterator<Object> iter=compiledComponents.iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
     if (item instanceof Function) {

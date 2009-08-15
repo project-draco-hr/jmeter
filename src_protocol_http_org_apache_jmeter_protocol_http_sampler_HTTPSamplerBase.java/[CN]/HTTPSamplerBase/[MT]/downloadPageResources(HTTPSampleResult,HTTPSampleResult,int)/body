@@ -1,5 +1,5 @@
 {
-  Iterator urls=null;
+  Iterator<URL> urls=null;
   try {
     final byte[] responseData=res.getResponseData();
     if (responseData.length > 0) {

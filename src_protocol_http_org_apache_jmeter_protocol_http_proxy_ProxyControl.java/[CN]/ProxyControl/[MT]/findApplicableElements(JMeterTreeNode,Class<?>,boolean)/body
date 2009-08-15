@@ -1,7 +1,7 @@
 {
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
-  LinkedList elements=new LinkedList();
-  Enumeration kids=treeModel.getNodeOf(this).children();
+  LinkedList<TestElement> elements=new LinkedList<TestElement>();
+  Enumeration<?> kids=treeModel.getNodeOf(this).children();
   while (kids.hasMoreElements()) {
     JMeterTreeNode subNode=(JMeterTreeNode)kids.nextElement();
     if (subNode.isEnabled()) {

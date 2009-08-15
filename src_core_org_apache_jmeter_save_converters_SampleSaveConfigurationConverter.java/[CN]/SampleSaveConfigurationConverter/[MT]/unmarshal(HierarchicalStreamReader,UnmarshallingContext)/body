@@ -1,6 +1,6 @@
 {
-  final Class thisClass=SampleSaveConfiguration.class;
-  final Class requiredType=context.getRequiredType();
+  final Class<SampleSaveConfiguration> thisClass=SampleSaveConfiguration.class;
+  final Class<?> requiredType=context.getRequiredType();
   if (requiredType != thisClass) {
     throw new IllegalArgumentException("Unexpected class: " + requiredType.getName());
   }
@@ -12,7 +12,7 @@
     if (!"formatter".equals(nn)) {
       String fieldName=mapper.realMember(thisClass,nn);
       java.lang.reflect.Field field=reflectionProvider.getField(thisClass,fieldName);
-      Class type=field.getType();
+      Class<?> type=field.getType();
       Object value=unmarshallField(context,result,type,field);
       reflectionProvider.writeField(result,nn,value,thisClass);
     }

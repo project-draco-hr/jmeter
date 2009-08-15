@@ -6,8 +6,8 @@
     if (name.equals(TestElement.ENABLED) || name.equals(TestElement.GUI_CLASS) || name.equals(TestElement.NAME)|| name.equals(TestElement.TEST_CLASS)) {
       continue;
     }
-    for (Iterator configs=configurations.iterator(); configs.hasNext(); ) {
-      ConfigTestElement config=(ConfigTestElement)configs.next();
+    for (Iterator<ConfigTestElement> configs=configurations.iterator(); configs.hasNext(); ) {
+      ConfigTestElement config=configs.next();
       String configValue=config.getPropertyAsString(name);
       if (configValue != null && configValue.length() > 0) {
         if (configValue.equals(value)) {

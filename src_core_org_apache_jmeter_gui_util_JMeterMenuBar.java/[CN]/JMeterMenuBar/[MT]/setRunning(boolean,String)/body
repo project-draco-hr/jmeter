@@ -1,12 +1,12 @@
 {
   log.info("setRunning(" + running + ","+ host+ ")");
-  Iterator iter=remote_engine_start.iterator();
-  Iterator iter2=remote_engine_stop.iterator();
-  Iterator iter3=remote_engine_exit.iterator();
+  Iterator<JMenuItem> iter=remote_engine_start.iterator();
+  Iterator<JMenuItem> iter2=remote_engine_stop.iterator();
+  Iterator<JMenuItem> iter3=remote_engine_exit.iterator();
   while (iter.hasNext() && iter2.hasNext() && iter3.hasNext()) {
-    JMenuItem start=(JMenuItem)iter.next();
-    JMenuItem stop=(JMenuItem)iter2.next();
-    JMenuItem exit=(JMenuItem)iter3.next();
+    JMenuItem start=iter.next();
+    JMenuItem stop=iter2.next();
+    JMenuItem exit=iter3.next();
     if (start.getText().equals(host)) {
       log.debug("Found start host: " + start.getText());
       start.setEnabled(!running);

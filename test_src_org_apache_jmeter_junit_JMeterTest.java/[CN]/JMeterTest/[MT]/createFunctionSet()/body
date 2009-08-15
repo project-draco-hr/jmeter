@@ -1,5 +1,5 @@
 {
-  funcTitles=new HashMap(20);
+  funcTitles=new HashMap<String,Boolean>(20);
   String compref="../xdocs/usermanual/functions.xml";
   SAXBuilder bldr=new SAXBuilder();
   Document doc;
