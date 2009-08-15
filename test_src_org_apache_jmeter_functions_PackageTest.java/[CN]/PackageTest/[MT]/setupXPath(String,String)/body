@@ -1,5 +1,5 @@
 {
-  Collection parms=new LinkedList();
+  Collection<CompoundVariable> parms=new LinkedList<CompoundVariable>();
   parms.add(new CompoundVariable(file));
   parms.add(new CompoundVariable(expr));
   XPath xp=new XPath();

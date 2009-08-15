@@ -5,7 +5,7 @@
   vars.put("one","1");
   vars.put("two","2");
   vars.put("V","A");
-  Collection parms;
+  Collection<CompoundVariable> parms;
   String s;
   parms=MakeParams("V",null,null);
   r.setParameters(parms);

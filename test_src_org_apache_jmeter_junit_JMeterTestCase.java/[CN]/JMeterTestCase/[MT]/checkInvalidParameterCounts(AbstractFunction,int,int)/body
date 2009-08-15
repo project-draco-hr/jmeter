@@ -1,5 +1,5 @@
 {
-  Collection parms=new LinkedList();
+  Collection<CompoundVariable> parms=new LinkedList<CompoundVariable>();
   for (int count=0; count < min; count++) {
     try {
       func.setParameters(parms);
@@ -7,13 +7,13 @@
     }
  catch (    InvalidVariableException ignored) {
     }
-    parms.add("");
+    parms.add(new CompoundVariable());
   }
   for (int count=min; count <= max; count++) {
     func.setParameters(parms);
-    parms.add("");
+    parms.add(new CompoundVariable());
   }
-  parms.add("");
+  parms.add(new CompoundVariable());
   try {
     func.setParameters(parms);
     fail("Should have generated InvalidVariableException for " + parms.size() + " parameters");

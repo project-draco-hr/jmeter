@@ -3,7 +3,7 @@
   jmcx.setVariables(new JMeterVariables());
   JMeterVariables threadVars=jmcx.getVariables();
   threadVars.put("b","value");
-  CSVDataSetBeanInfo cbi=new CSVDataSetBeanInfo();
+  new CSVDataSetBeanInfo();
   CSVDataSet csv0=initCSV();
   CSVDataSet csv1=initCSV();
   assertNull(csv1.getShareMode());

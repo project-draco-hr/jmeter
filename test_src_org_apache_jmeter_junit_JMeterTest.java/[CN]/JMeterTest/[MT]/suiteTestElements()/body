@@ -1,6 +1,6 @@
 {
   TestSuite suite=new TestSuite("TestElements");
-  Iterator iter=getObjects(TestElement.class).iterator();
+  Iterator<Object> iter=getObjects(TestElement.class).iterator();
   while (iter.hasNext()) {
     TestElement item=(TestElement)iter.next();
     TestSuite ts=new TestSuite(item.getClass().getName());

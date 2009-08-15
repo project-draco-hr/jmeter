@@ -1,5 +1,5 @@
 {
-  propertyMap=(Map)map;
+  propertyMap=(Map<String,Object>)map;
   if (propertyMap.size() == 0) {
     for (int i=0; i < editors.length; i++) {
       Object value=descriptors[i].getValue(DEFAULT);

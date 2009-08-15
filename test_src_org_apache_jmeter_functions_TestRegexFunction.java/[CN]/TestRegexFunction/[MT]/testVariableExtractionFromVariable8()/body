@@ -1,5 +1,5 @@
 {
-  params=new LinkedList();
+  params=new LinkedList<CompoundVariable>();
   params.add(new CompoundVariable("(\\d+)\\s+(\\w+)"));
   params.add(new CompoundVariable("pre$1$mid$2$"));
   params.add(new CompoundVariable("1"));

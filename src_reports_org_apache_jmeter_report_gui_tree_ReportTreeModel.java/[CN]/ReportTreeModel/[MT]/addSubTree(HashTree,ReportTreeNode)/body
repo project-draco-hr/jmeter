@@ -1,7 +1,7 @@
 {
-  Iterator iter=subTree.list().iterator();
+  Iterator<TestElement> iter=subTree.list().iterator();
   while (iter.hasNext()) {
-    TestElement item=(TestElement)iter.next();
+    TestElement item=iter.next();
     if (item instanceof ReportPlan) {
       current=(ReportTreeNode)((ReportTreeNode)getRoot()).getChildAt(0);
       ((TestElement)current.getUserObject()).addTestElement(item);

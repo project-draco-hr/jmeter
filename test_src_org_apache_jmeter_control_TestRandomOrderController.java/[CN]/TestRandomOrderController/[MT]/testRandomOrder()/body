@@ -6,7 +6,7 @@
   roc.addTestElement(new TestSampler("two"));
   roc.addTestElement(new TestSampler("three"));
   TestElement sampler=null;
-  List usedSamplers=new ArrayList();
+  List<String> usedSamplers=new ArrayList<String>();
   roc.initialize();
   while ((sampler=roc.next()) != null) {
     String samplerName=sampler.getName();

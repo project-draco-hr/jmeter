@@ -1,5 +1,5 @@
 {
-  Collection parms=new LinkedList();
+  Collection<CompoundVariable> parms=new LinkedList<CompoundVariable>();
   if (p1 != null) {
     parms.add(new CompoundVariable(p1));
   }

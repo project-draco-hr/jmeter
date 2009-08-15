@@ -1,12 +1,12 @@
 {
   NodeList rootList=html.getChildNodes();
-  List urls=new LinkedList();
+  List<HTTPSamplerBase> urls=new LinkedList<HTTPSamplerBase>();
   for (int x=0; x < rootList.getLength(); x++) {
     urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),result.getURL()));
   }
-  Iterator iter=urls.iterator();
+  Iterator<HTTPSamplerBase> iter=urls.iterator();
   while (iter.hasNext()) {
-    HTTPSamplerBase newUrl=(HTTPSamplerBase)iter.next();
+    HTTPSamplerBase newUrl=iter.next();
     newUrl.setMethod(HTTPConstants.POST);
     if (log.isDebugEnabled()) {
       log.debug("Potential Form match: " + newUrl.toString());

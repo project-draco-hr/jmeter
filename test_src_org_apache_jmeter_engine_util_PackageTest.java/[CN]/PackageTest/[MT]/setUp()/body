@@ -1,6 +1,6 @@
 {
   jmctx=JMeterContextService.getContext();
-  variables=new HashMap();
+  variables=new HashMap<String,String>();
   variables.put("my_regex",".*");
   variables.put("server","jakarta.apache.org");
   result=new SampleResult();

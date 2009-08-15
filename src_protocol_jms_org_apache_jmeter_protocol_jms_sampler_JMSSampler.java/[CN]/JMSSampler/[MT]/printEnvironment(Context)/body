@@ -1,9 +1,9 @@
 {
-  Hashtable env=context.getEnvironment();
+  Hashtable<?,?> env=context.getEnvironment();
   LOGGER.debug("Initial Context Properties");
-  Enumeration keys=env.keys();
+  Enumeration<String> keys=(Enumeration<String>)env.keys();
   while (keys.hasMoreElements()) {
-    String key=(String)keys.nextElement();
+    String key=keys.nextElement();
     LOGGER.debug(key + "=" + env.get(key));
   }
 }

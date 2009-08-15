@@ -1,6 +1,6 @@
 {
   TestSuite suite=new TestSuite("BeanComponents");
-  Iterator iter=getObjects(TestBean.class).iterator();
+  Iterator<Object> iter=getObjects(TestBean.class).iterator();
   while (iter.hasNext()) {
     Class<? extends Object> c=iter.next().getClass();
     try {

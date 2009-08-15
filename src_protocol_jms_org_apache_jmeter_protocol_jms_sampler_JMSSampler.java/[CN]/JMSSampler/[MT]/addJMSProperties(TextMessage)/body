@@ -1,10 +1,10 @@
 {
-  Map map=getArguments(JMSSampler.JMS_PROPERTIES).getArgumentsAsMap();
-  Iterator argIt=map.entrySet().iterator();
+  Map<String,String> map=getArguments(JMSSampler.JMS_PROPERTIES).getArgumentsAsMap();
+  Iterator<Map.Entry<String,String>> argIt=map.entrySet().iterator();
   while (argIt.hasNext()) {
-    Map.Entry me=(Map.Entry)argIt.next();
-    String name=(String)me.getKey();
-    String value=(String)me.getValue();
+    Map.Entry<String,String> me=argIt.next();
+    String name=me.getKey();
+    String value=me.getValue();
     if (LOGGER.isDebugEnabled()) {
       LOGGER.debug("Adding property [" + name + "="+ value+ "]");
     }

@@ -3,7 +3,7 @@
   vars.put("query","select ${column} from ${table}");
   vars.put("column","name");
   vars.put("table","customers");
-  Collection parms;
+  Collection<CompoundVariable> parms;
   String s;
   parms=MakeParams("${query}",null,null);
   eval.setParameters(parms);

@@ -1,5 +1,5 @@
 {
-  PlaceHolder holder=(PlaceHolder)table.remove(id);
+  PlaceHolder holder=table.remove(id);
   if (log.isDebugEnabled()) {
     log.debug("GET_ID [" + id + "] for "+ holder);
   }

@@ -12,7 +12,7 @@
     sampler=(HTTPSamplerBase)sam;
     result=(HTTPSampleResult)res;
   }
-  List potentialLinks=new ArrayList();
+  List<HTTPSamplerBase> potentialLinks=new ArrayList<HTTPSamplerBase>();
   String responseText="";
   responseText=result.getResponseDataAsString();
   Document html;
@@ -28,7 +28,7 @@
   addFormUrls(html,result,sampler,potentialLinks);
   addFramesetUrls(html,result,sampler,potentialLinks);
   if (potentialLinks.size() > 0) {
-    HTTPSamplerBase url=(HTTPSamplerBase)potentialLinks.get(rand.nextInt(potentialLinks.size()));
+    HTTPSamplerBase url=potentialLinks.get(rand.nextInt(potentialLinks.size()));
     if (log.isDebugEnabled()) {
       log.debug("Selected: " + url.toString());
     }

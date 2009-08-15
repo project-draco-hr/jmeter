@@ -2,9 +2,9 @@
   if (userObject == node.getUserObject()) {
     return node;
   }
-  Enumeration enumNode=node.children();
+  Enumeration<ReportTreeNode> enumNode=node.children();
   while (enumNode.hasMoreElements()) {
-    ReportTreeNode child=(ReportTreeNode)enumNode.nextElement();
+    ReportTreeNode child=enumNode.nextElement();
     ReportTreeNode result=traverseAndFind(userObject,child);
     if (result != null) {
       return result;

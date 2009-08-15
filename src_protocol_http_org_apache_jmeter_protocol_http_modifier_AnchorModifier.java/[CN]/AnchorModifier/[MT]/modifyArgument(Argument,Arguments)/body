@@ -2,7 +2,7 @@
   if (log.isDebugEnabled()) {
     log.debug("Modifying argument: " + arg);
   }
-  List possibleReplacements=new ArrayList();
+  List<Argument> possibleReplacements=new ArrayList<Argument>();
   PropertyIterator iter=args.iterator();
   Argument replacementArg;
   while (iter.hasNext()) {
@@ -17,7 +17,7 @@
     }
   }
   if (possibleReplacements.size() > 0) {
-    replacementArg=(Argument)possibleReplacements.get(rand.nextInt(possibleReplacements.size()));
+    replacementArg=possibleReplacements.get(rand.nextInt(possibleReplacements.size()));
     arg.setName(replacementArg.getName());
     arg.setValue(replacementArg.getValue());
     if (log.isDebugEnabled()) {

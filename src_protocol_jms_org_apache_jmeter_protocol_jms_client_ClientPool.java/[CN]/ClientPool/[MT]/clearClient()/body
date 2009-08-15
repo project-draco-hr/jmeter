@@ -1,5 +1,5 @@
 {
-  Iterator itr=clients.iterator();
+  Iterator<Object> itr=clients.iterator();
   while (itr.hasNext()) {
     Object client=itr.next();
     if (client instanceof ReceiveSubscriber) {

@@ -1,8 +1,8 @@
 {
   ListedHashTree hashTree=new ListedHashTree(node);
-  Enumeration enumNode=node.children();
+  Enumeration<ReportTreeNode> enumNode=node.children();
   while (enumNode.hasMoreElements()) {
-    ReportTreeNode child=(ReportTreeNode)enumNode.nextElement();
+    ReportTreeNode child=enumNode.nextElement();
     hashTree.add(node,getCurrentSubTree(child));
   }
   return hashTree;

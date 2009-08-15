@@ -1,5 +1,5 @@
 {
-  ArrayList result=new ArrayList();
+  ArrayList<String> result=new ArrayList<String>();
   StringTokenizer tokener=new StringTokenizer(theLine,delim,true);
   boolean lastWasDelim=true;
   while (tokener.hasMoreTokens()) {

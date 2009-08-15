@@ -1,14 +1,14 @@
 {
   JMeterGUIComponent comp;
   if (guiClass == TestBeanGUI.class) {
-    comp=(TestBeanGUI)testBeanGUIs.get(testClass);
+    comp=testBeanGUIs.get(testClass);
     if (comp == null) {
       comp=new TestBeanGUI(testClass);
       testBeanGUIs.put(testClass,comp);
     }
   }
  else {
-    comp=(JMeterGUIComponent)guis.get(guiClass);
+    comp=guis.get(guiClass);
     if (comp == null) {
       comp=(JMeterGUIComponent)guiClass.newInstance();
       if (!(comp instanceof UnsharedComponent)) {

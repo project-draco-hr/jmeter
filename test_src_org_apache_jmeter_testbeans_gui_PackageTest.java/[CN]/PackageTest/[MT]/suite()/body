@@ -1,11 +1,11 @@
 {
   TestSuite suite=new TestSuite("Bean Resource Test Suite");
-  Iterator iter=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestBean.class}).iterator();
+  Iterator<String> iter=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestBean.class}).iterator();
   boolean errorDetected=false;
   JMeterUtils.setLocale(defaultLocale);
   while (iter.hasNext()) {
-    String className=(String)iter.next();
-    Class testBeanClass=Class.forName(className);
+    String className=iter.next();
+    Class<?> testBeanClass=Class.forName(className);
     ResourceBundle defaultBundle=null;
     try {
       defaultBundle=(ResourceBundle)Introspector.getBeanInfo(testBeanClass).getBeanDescriptor().getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);

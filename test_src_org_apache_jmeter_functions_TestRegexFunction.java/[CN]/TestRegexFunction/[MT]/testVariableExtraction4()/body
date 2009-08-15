@@ -1,5 +1,5 @@
 {
-  params=new LinkedList();
+  params=new LinkedList<CompoundVariable>();
   params.add(new CompoundVariable("<value field=\"(pinposition\\d+)\">(\\d+)</value>"));
   params.add(new CompoundVariable("$2$, "));
   params.add(new CompoundVariable(".333"));

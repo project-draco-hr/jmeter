@@ -1,6 +1,6 @@
 {
   SplitFunction split=new SplitFunction();
-  Collection parms=new LinkedList();
+  Collection<CompoundVariable> parms=new LinkedList<CompoundVariable>();
   parms.add(new CompoundVariable(p1));
   if (p2 != null) {
     parms.add(new CompoundVariable(p2));

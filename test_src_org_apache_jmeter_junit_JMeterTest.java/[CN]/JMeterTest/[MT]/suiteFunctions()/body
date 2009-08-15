@@ -1,6 +1,6 @@
 {
   TestSuite suite=new TestSuite("Functions");
-  Iterator iter=getObjects(Function.class).iterator();
+  Iterator<Object> iter=getObjects(Function.class).iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
     if (item.getClass().equals(CompoundVariable.class)) {

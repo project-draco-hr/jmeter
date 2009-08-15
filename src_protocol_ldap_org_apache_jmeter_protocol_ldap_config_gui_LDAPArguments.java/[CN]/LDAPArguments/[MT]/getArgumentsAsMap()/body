@@ -1,6 +1,6 @@
 {
   PropertyIterator iter=getArguments().iterator();
-  Map argMap=new HashMap();
+  Map<String,String> argMap=new HashMap<String,String>();
   while (iter.hasNext()) {
     LDAPArgument arg=(LDAPArgument)iter.next().getObjectValue();
     argMap.put(arg.getName(),arg.getValue());

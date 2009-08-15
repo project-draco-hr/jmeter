@@ -6,11 +6,11 @@
   doc=bldr.build(compref);
   Element root=doc.getRootElement();
   Element body=root.getChild("body");
-  List sections=body.getChildren("section");
+  List<Element> sections=body.getChildren("section");
   for (int i=0; i < sections.size(); i++) {
-    List components=((Element)sections.get(i)).getChildren("component");
+    List<Element> components=sections.get(i).getChildren("component");
     for (int j=0; j < components.size(); j++) {
-      Element comp=(Element)components.get(j);
+      Element comp=components.get(j);
       String nm=comp.getAttributeValue("name");
       if (!nm.equals("SSL Manager")) {
         guiTitles.put(nm.replace(' ','_'),Boolean.FALSE);

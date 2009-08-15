@@ -12,7 +12,7 @@
       continue;
     }
     PropertyEditor propertyEditor;
-    Class editorClass=descriptors[i].getPropertyEditorClass();
+    Class<?> editorClass=descriptors[i].getPropertyEditorClass();
     if (log.isDebugEnabled()) {
       log.debug("Property " + name + " has editor class "+ editorClass);
     }
@@ -30,7 +30,7 @@ catch (      IllegalAccessException e) {
       }
     }
  else {
-      Class c=descriptors[i].getPropertyType();
+      Class<?> c=descriptors[i].getPropertyType();
       propertyEditor=PropertyEditorManager.findEditor(c);
     }
     if (log.isDebugEnabled()) {

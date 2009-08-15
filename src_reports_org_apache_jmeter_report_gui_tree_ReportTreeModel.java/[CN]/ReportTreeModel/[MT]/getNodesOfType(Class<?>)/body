@@ -1,5 +1,5 @@
 {
-  List nodeList=new LinkedList();
+  List<ReportTreeNode> nodeList=new LinkedList<ReportTreeNode>();
   traverseAndFind(type,(ReportTreeNode)this.getRoot(),nodeList);
   return nodeList;
 }
