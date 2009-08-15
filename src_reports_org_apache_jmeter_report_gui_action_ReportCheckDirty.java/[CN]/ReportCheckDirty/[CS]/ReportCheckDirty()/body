@@ -1,4 +1,4 @@
 {
-  previousGuiItems=new HashMap();
+  previousGuiItems=new HashMap<ReportTreeNode,TestElement>();
   ReportActionRouter.getInstance().addPreActionListener(ReportExitCommand.class,this);
 }

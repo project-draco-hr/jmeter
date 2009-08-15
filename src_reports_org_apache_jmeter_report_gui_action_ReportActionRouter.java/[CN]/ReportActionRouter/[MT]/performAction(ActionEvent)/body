@@ -1,11 +1,11 @@
 {
   try {
     ReportGuiPackage.getInstance().updateCurrentNode();
-    Set commandObjects=(Set)commands.get(e.getActionCommand());
-    Iterator iter=commandObjects.iterator();
+    Set<Command> commandObjects=commands.get(e.getActionCommand());
+    Iterator<Command> iter=commandObjects.iterator();
     while (iter.hasNext()) {
       try {
-        Command c=(Command)iter.next();
+        Command c=iter.next();
         preActionPerformed(c.getClass(),e);
         c.doAction(e);
         postActionPerformed(c.getClass(),e);

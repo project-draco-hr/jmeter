@@ -1,28 +1,28 @@
 {
   log.info("populateCommandMap called");
-  List listClasses;
+  List<String> listClasses;
   Command command;
-  Iterator iterClasses;
-  Class commandClass;
+  Iterator<String> iterClasses;
+  Class<?> commandClass;
   try {
     listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Class.forName("org.apache.jmeter.gui.action.Command")});
-    commands=new HashMap(listClasses.size());
+    commands=new HashMap<String,Set<Command>>(listClasses.size());
     if (listClasses.size() == 0) {
       log.warn("!!!!!Uh-oh, didn't find any action handlers!!!!!");
     }
     iterClasses=listClasses.iterator();
     while (iterClasses.hasNext()) {
-      String strClassName=(String)iterClasses.next();
+      String strClassName=iterClasses.next();
       if (strClassName.startsWith("org.apache.jmeter.report.gui.action")) {
         commandClass=Class.forName(strClassName);
         if (!Modifier.isAbstract(commandClass.getModifiers())) {
           command=(Command)commandClass.newInstance();
-          Iterator iter=command.getActionNames().iterator();
+          Iterator<String> iter=command.getActionNames().iterator();
           while (iter.hasNext()) {
-            String commandName=(String)iter.next();
-            Set commandObjects=(Set)commands.get(commandName);
+            String commandName=iter.next();
+            Set<Command> commandObjects=commands.get(commandName);
             if (commandObjects == null) {
-              commandObjects=new HashSet();
+              commandObjects=new HashSet<Command>();
               commands.put(commandName,commandObjects);
             }
             commandObjects.add(command);
