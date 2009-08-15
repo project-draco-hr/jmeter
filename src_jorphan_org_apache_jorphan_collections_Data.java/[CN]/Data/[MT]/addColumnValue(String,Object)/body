@@ -1,7 +1,7 @@
 {
-  ArrayList tempList;
-  if ((tempList=(ArrayList)data.get(column)) == null) {
-    tempList=new ArrayList();
+  ArrayList<Object> tempList;
+  if ((tempList=(ArrayList<Object>)data.get(column)) == null) {
+    tempList=new ArrayList<Object>();
     data.put(column,tempList);
   }
   int s=tempList.size();

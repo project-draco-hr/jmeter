@@ -38,7 +38,7 @@
         tree.add(tree.getArray()[0],summer);
       }
     }
-    List engines=new LinkedList();
+    List<JMeterEngine> engines=new LinkedList<JMeterEngine>();
     tree.add(tree.getArray()[0],new ListenToTest(parent,(remoteStart && remoteStop) ? engines : null));
     println("Created the tree successfully using " + testFile);
     JMeterEngine engine=null;
@@ -60,9 +60,9 @@
       println("Starting remote engines");
       long now=System.currentTimeMillis();
       println("Starting the test @ " + new Date(now) + " ("+ now+ ")");
-      Iterator iter=engines.iterator();
+      Iterator<JMeterEngine> iter=engines.iterator();
       while (iter.hasNext()) {
-        engine=(JMeterEngine)iter.next();
+        engine=iter.next();
         if (engine != null) {
           engine.runTest();
         }

@@ -1,5 +1,5 @@
 {
-  List list=this.getColumnAsObjectArray(colName);
+  List<Object> list=this.getColumnAsObjectArray(colName);
   while (list.size() < size()) {
     list.add(value);
   }

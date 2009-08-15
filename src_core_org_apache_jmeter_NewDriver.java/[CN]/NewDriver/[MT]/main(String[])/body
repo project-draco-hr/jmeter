@@ -5,7 +5,7 @@
     System.setProperty("log4j.configuration","file:" + conf);
   }
   try {
-    Class initialClass;
+    Class<?> initialClass;
     if (args != null && args.length > 0 && args[0].equals("report")) {
       initialClass=loader.loadClass("org.apache.jmeter.JMeterReport");
     }

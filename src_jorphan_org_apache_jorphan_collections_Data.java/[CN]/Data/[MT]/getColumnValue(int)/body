@@ -1,8 +1,8 @@
 {
-  String columnName=(String)header.get(column);
+  String columnName=header.get(column);
   try {
     if (currentPos < size) {
-      return ((List)data.get(columnName)).get(currentPos);
+      return ((List<?>)data.get(columnName)).get(currentPos);
     }
  else {
       return null;

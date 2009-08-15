@@ -1,5 +1,5 @@
 {
-  String columnName=(String)header.get(col);
+  String columnName=header.get(col);
   data.remove(columnName);
   header.remove(columnName);
 }

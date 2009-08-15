@@ -1,7 +1,7 @@
 {
-  List tempList;
+  List<Object> tempList;
   int index=header.indexOf(oldHeader);
   header.set(index,newHeader);
-  tempList=(List)data.remove(oldHeader);
+  tempList=data.remove(oldHeader);
   data.put(newHeader,tempList);
 }

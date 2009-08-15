@@ -1,7 +1,7 @@
 {
   reset();
-  Iterator iter=data.iterator();
-  String columnName=(String)header.get(col);
+  Iterator<?> iter=data.iterator();
+  String columnName=header.get(col);
   while (iter.hasNext()) {
     next();
     setColumnValue(columnName,iter.next());

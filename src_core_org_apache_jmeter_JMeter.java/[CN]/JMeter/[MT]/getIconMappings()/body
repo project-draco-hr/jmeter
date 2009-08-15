@@ -13,7 +13,7 @@
   }
   log.info("Loaded icon properties from " + iconProp);
   String[][] iconlist=new String[p.size()][3];
-  Enumeration pe=p.keys();
+  Enumeration<?> pe=p.keys();
   int i=0;
   while (pe.hasMoreElements()) {
     String key=(String)pe.nextElement();

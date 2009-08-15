@@ -1,8 +1,8 @@
 {
-  List tempList;
+  List<Object> tempList;
   String[] h=getHeaders();
   for (int count=0; count < h.length; count++) {
-    tempList=(List)data.get(h[count]);
+    tempList=data.get(h[count]);
     if (count < line.length && line[count].length() > 0) {
       tempList.add(line[count]);
     }
