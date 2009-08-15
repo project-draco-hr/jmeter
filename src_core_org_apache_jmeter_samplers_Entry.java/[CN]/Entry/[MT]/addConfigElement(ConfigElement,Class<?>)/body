@@ -1,6 +1,6 @@
 {
   if (config != null) {
-    ConfigElement current=(ConfigElement)configSet.get(asClass);
+    ConfigElement current=configSet.get(asClass);
     if (current == null) {
       configSet.put(asClass,cloneIfNecessary(config));
     }

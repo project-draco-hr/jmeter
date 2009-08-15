@@ -1,0 +1,9 @@
+{
+  Enumeration<String> en=ht.keys();
+  StringBuffer buf=new StringBuffer();
+  while (en.hasMoreElements()) {
+    String key=en.nextElement();
+    buf.append(key).append("=").append(ht.get(key)).append("\n");
+  }
+  return buf.toString();
+}
