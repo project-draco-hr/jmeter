@@ -8,7 +8,7 @@
   SwingUtilities.invokeLater(new Runnable(){
     public void run(){
       if (stoppingMessage != null) {
-        stoppingMessage.show();
+        stoppingMessage.setVisible(true);
       }
     }
   }
