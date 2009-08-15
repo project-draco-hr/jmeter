@@ -1,6 +1,6 @@
 {
   JMeterGUIComponent comp;
-  Class c;
+  Class<?> c;
   try {
     c=Class.forName(objClass);
     if (TestBean.class.isAssignableFrom(c)) {

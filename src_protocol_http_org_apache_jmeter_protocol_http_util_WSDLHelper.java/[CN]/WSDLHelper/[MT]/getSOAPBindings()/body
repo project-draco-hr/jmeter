@@ -1,5 +1,5 @@
 {
-  ArrayList list=new ArrayList();
+  ArrayList<Element> list=new ArrayList<Element>();
   NodeList bindings=WSDLDOC.getElementsByTagName("binding");
   String soapBind="soap:binding";
   if (bindings.getLength() == 0) {

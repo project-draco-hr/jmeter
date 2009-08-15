@@ -1,8 +1,8 @@
 {
   threadVars.incIteration();
-  Iterator iter=testListeners.iterator();
+  Iterator<TestListener> iter=testListeners.iterator();
   while (iter.hasNext()) {
-    TestListener listener=(TestListener)iter.next();
+    TestListener listener=iter.next();
     if (listener instanceof TestElement) {
       listener.testIterationStart(new LoopIterationEvent(controller,threadVars.getIteration()));
       ((TestElement)listener).recoverRunningVersion();

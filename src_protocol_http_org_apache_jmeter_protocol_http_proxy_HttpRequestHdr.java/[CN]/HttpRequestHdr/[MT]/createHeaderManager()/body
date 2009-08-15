@@ -1,10 +1,10 @@
 {
   HeaderManager manager=new HeaderManager();
-  Iterator keys=headers.keySet().iterator();
+  Iterator<String> keys=headers.keySet().iterator();
   while (keys.hasNext()) {
-    String key=(String)keys.next();
+    String key=keys.next();
     if (!key.equals(PROXY_CONNECTION) && !key.equals(CONTENT_LENGTH) && !key.equalsIgnoreCase(HTTPConstants.HEADER_CONNECTION)) {
-      manager.add((Header)headers.get(key));
+      manager.add(headers.get(key));
     }
   }
   manager.setName(JMeterUtils.getResString("header_manager_title"));

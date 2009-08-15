@@ -1,8 +1,8 @@
 {
-  Collections.sort(sortedAttrs,new Comparator(){
-    public int compare(    Object o1,    Object o2){
-      String nm1=((Attribute)o1).getID();
-      String nm2=((Attribute)o2).getID();
+  Collections.sort(sortedAttrs,new Comparator<Attribute>(){
+    public int compare(    Attribute o1,    Attribute o2){
+      String nm1=o1.getID();
+      String nm2=o2.getID();
       return nm1.compareTo(nm2);
     }
   }

@@ -1,0 +1,20 @@
+{
+  ArrayList<SamplingStatCalculator> dset=new ArrayList<SamplingStatCalculator>();
+  ArrayList<String> xlabels=new ArrayList<String>();
+  Iterator<DataSet> itr=data.iterator();
+  while (itr.hasNext()) {
+    DataSet item=itr.next();
+    SamplingStatCalculator ss=item.getStatistics(this.getURL());
+    if (ss != null) {
+      dset.add(ss);
+      if (getXLabel().equals(X_DATA_FILENAME_LABEL)) {
+        xlabels.add(item.getDataSourceName());
+      }
+ else {
+        xlabels.add(item.getMonthDayYearDate());
+      }
+    }
+  }
+  double[][] dbset=convertToDouble(dset);
+  return renderGraphics(dbset,xlabels.toArray(new String[xlabels.size()]));
+}

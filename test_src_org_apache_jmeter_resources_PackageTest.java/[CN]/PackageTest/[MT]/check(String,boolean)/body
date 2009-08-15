@@ -1,11 +1,11 @@
 {
-  ArrayList alf=new ArrayList(500);
+  ArrayList<String> alf=new ArrayList<String>(500);
   String res=getResName(resname);
   subTestFailures+=readRF(res,alf);
   Collections.sort(alf);
   String last="";
   for (int i=0; i < alf.size(); i++) {
-    String curr=(String)alf.get(i);
+    String curr=alf.get(i);
     if (curr.equals(last)) {
       subTestFailures++;
       System.out.println("\nDuplicate key =" + curr + " in "+ res);
@@ -23,11 +23,10 @@
     if (prb == null) {
       return;
     }
-    Enumeration enumr=prb.getKeys();
+    Enumeration<String> enumr=prb.getKeys();
     while (enumr.hasMoreElements()) {
-      String key=null;
+      String key=enumr.nextElement();
       try {
-        key=(String)enumr.nextElement();
         defaultPRB.getString(key);
       }
  catch (      MissingResourceException e) {

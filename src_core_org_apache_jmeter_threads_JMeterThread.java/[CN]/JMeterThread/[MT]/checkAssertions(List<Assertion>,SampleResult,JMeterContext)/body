@@ -1,0 +1,34 @@
+{
+  Iterator<Assertion> iter=assertions.iterator();
+  while (iter.hasNext()) {
+    Assertion assertion=iter.next();
+    TestBeanHelper.prepare((TestElement)assertion);
+    if (assertion instanceof AbstractScopedAssertion) {
+      AbstractScopedAssertion scopedAssertion=(AbstractScopedAssertion)assertion;
+      String scope=scopedAssertion.fetchScope();
+      if (scopedAssertion.isScopeParent(scope) || scopedAssertion.isScopeAll(scope)) {
+        processAssertion(parent,assertion);
+      }
+      if (scopedAssertion.isScopeChildren(scope) || scopedAssertion.isScopeAll(scope)) {
+        SampleResult children[]=parent.getSubResults();
+        boolean childError=false;
+        for (int i=0; i < children.length; i++) {
+          processAssertion(children[i],assertion);
+          if (!children[i].isSuccessful()) {
+            childError=true;
+          }
+        }
+        if (childError && parent.isSuccessful()) {
+          AssertionResult assertionResult=new AssertionResult(((AbstractTestElement)assertion).getName());
+          assertionResult.setResultForFailure("One or more sub-samples failed");
+          parent.addAssertionResult(assertionResult);
+          parent.setSuccessful(false);
+        }
+      }
+    }
+ else {
+      processAssertion(parent,assertion);
+    }
+  }
+  threadContext.getVariables().put(LAST_SAMPLE_OK,Boolean.toString(parent.isSuccessful()));
+}

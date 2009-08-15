@@ -1,8 +1,8 @@
 {
-  Map preparedStatementMap=(Map)perConnCache.get(conn);
+  Map<String,PreparedStatement> preparedStatementMap=perConnCache.get(conn);
   if (null == preparedStatementMap) {
-    preparedStatementMap=new LinkedHashMap(MAX_ENTRIES){
-      @Override protected boolean removeEldestEntry(      java.util.Map.Entry arg0){
+    preparedStatementMap=new LinkedHashMap<String,PreparedStatement>(MAX_ENTRIES){
+      @Override protected boolean removeEldestEntry(      Map.Entry<String,PreparedStatement> arg0){
         final int theSize=size();
         if (theSize > MAX_ENTRIES) {
           Object value=arg0.getValue();
@@ -18,7 +18,7 @@
 ;
     perConnCache.put(conn,preparedStatementMap);
   }
-  PreparedStatement pstmt=(PreparedStatement)preparedStatementMap.get(getQuery());
+  PreparedStatement pstmt=preparedStatementMap.get(getQuery());
   if (null == pstmt) {
     if (callable) {
       pstmt=conn.prepareCall(getQuery());

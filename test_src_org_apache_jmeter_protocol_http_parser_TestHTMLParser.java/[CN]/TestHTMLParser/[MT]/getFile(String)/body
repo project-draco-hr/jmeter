@@ -1,5 +1,5 @@
 {
-  ArrayList al=new ArrayList();
+  ArrayList<String> al=new ArrayList<String>();
   if (file != null && file.length() > 0) {
     BufferedReader br=new BufferedReader(new FileReader(findTestFile(file)));
     String line=br.readLine();

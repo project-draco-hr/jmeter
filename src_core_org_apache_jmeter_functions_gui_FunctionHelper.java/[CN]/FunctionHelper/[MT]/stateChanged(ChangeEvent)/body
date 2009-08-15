@@ -1,11 +1,11 @@
 {
   try {
     Arguments args=new Arguments();
-    Function function=(Function)((Class)functionMap.get(functionList.getText())).newInstance();
-    List argumentDesc=function.getArgumentDesc();
-    Iterator iter=argumentDesc.iterator();
+    Function function=(Function)((Class<?>)functionMap.get(functionList.getText())).newInstance();
+    List<String> argumentDesc=function.getArgumentDesc();
+    Iterator<String> iter=argumentDesc.iterator();
     while (iter.hasNext()) {
-      String help=(String)iter.next();
+      String help=iter.next();
       args.addArgument(help,"");
     }
     parameterPanel.configure(args);

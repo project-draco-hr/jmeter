@@ -1,14 +1,14 @@
 {
   try {
-    List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
-    controllers=new LinkedList();
-    configElements=new LinkedList();
-    listeners=new LinkedList();
-    postProcessors=new LinkedList();
-    preProcessors=new LinkedList();
-    tables=new LinkedList();
-    reportPage=new LinkedList();
-    nonTestElements=new LinkedList();
+    List<String> guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
+    controllers=new LinkedList<MenuInfo>();
+    configElements=new LinkedList<MenuInfo>();
+    listeners=new LinkedList<MenuInfo>();
+    postProcessors=new LinkedList<MenuInfo>();
+    preProcessors=new LinkedList<MenuInfo>();
+    tables=new LinkedList<MenuInfo>();
+    reportPage=new LinkedList<MenuInfo>();
+    nonTestElements=new LinkedList<MenuInfo>();
     menuMap.put(CONFIG_ELEMENTS,configElements);
     menuMap.put(CONTROLLERS,controllers);
     menuMap.put(LISTENERS,listeners);
@@ -18,15 +18,15 @@
     menuMap.put(REPORT_PAGE,reportPage);
     menuMap.put(TABLES,tables);
     Collections.sort(guiClasses);
-    Iterator iter=guiClasses.iterator();
+    Iterator<String> iter=guiClasses.iterator();
     while (iter.hasNext()) {
-      String name=(String)iter.next();
+      String name=iter.next();
       if (name.endsWith("JMeterTreeNode") || name.endsWith("TestBeanGUI")) {
         continue;
       }
       JMeterGUIComponent item;
       try {
-        Class c=Class.forName(name);
+        Class<?> c=Class.forName(name);
         if (TestBean.class.isAssignableFrom(c)) {
           item=new TestBeanGUI(c);
         }
@@ -49,7 +49,7 @@ catch (      Throwable e) {
  else {
         elementsToSkip.add(name);
       }
-      Collection categories=item.getMenuCategories();
+      Collection<String> categories=item.getMenuCategories();
       if (categories == null) {
         log.debug(name + " participates in no menus.");
         continue;

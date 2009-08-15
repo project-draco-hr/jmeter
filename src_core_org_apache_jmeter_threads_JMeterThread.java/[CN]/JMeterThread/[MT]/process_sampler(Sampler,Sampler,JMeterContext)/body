@@ -53,7 +53,7 @@
         threadContext.setPreviousResult(result);
         runPostProcessors(pack.getPostProcessors());
         checkAssertions(pack.getAssertions(),result,threadContext);
-        List sampleListeners=getSampleListeners(pack,transactionPack,transactionSampler);
+        List<SampleListener> sampleListeners=getSampleListeners(pack,transactionPack,transactionSampler);
         notifyListeners(sampleListeners,result);
         compiler.done(pack);
         if (transactionSampler != null) {

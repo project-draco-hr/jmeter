@@ -1,6 +1,6 @@
 {
   Object[] res=this.getSOAPBindings();
-  ArrayList ops=new ArrayList();
+  ArrayList<Element> ops=new ArrayList<Element>();
   for (int idx=0; idx < res.length; idx++) {
     Element one=(Element)res[idx];
     NodeList opnodes=one.getElementsByTagName("operation");

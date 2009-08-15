@@ -1,0 +1,19 @@
+{
+  ListIterator<PostProcessor> iter;
+  if (reversePostProcessors) {
+    iter=extractors.listIterator(extractors.size());
+    while (iter.hasPrevious()) {
+      PostProcessor ex=iter.previous();
+      TestBeanHelper.prepare((TestElement)ex);
+      ex.process();
+    }
+  }
+ else {
+    iter=extractors.listIterator();
+    while (iter.hasNext()) {
+      PostProcessor ex=iter.next();
+      TestBeanHelper.prepare((TestElement)ex);
+      ex.process();
+    }
+  }
+}

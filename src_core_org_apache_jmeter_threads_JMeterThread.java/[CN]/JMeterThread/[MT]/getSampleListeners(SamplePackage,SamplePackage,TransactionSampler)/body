@@ -1,12 +1,12 @@
 {
-  List sampleListeners=samplePack.getSampleListeners();
+  List<SampleListener> sampleListeners=samplePack.getSampleListeners();
   if (transactionSampler != null) {
-    ArrayList onlySubSamplerListeners=new ArrayList();
-    List transListeners=transactionPack.getSampleListeners();
-    for (Iterator i=sampleListeners.iterator(); i.hasNext(); ) {
-      SampleListener listener=(SampleListener)i.next();
+    ArrayList<SampleListener> onlySubSamplerListeners=new ArrayList<SampleListener>();
+    List<SampleListener> transListeners=transactionPack.getSampleListeners();
+    for (Iterator<SampleListener> i=sampleListeners.iterator(); i.hasNext(); ) {
+      SampleListener listener=i.next();
       boolean found=false;
-      for (Iterator j=transListeners.iterator(); j.hasNext(); ) {
+      for (Iterator<SampleListener> j=transListeners.iterator(); j.hasNext(); ) {
         if (j.next() == listener) {
           found=true;
           break;

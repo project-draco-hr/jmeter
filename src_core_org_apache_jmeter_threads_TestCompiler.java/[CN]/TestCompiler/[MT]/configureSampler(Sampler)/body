@@ -1,5 +1,5 @@
 {
-  SamplePackage pack=(SamplePackage)samplerConfigMap.get(sampler);
+  SamplePackage pack=samplerConfigMap.get(sampler);
   pack.setSampler(sampler);
   configureWithConfigElements(sampler,pack.getConfigs());
   return pack;

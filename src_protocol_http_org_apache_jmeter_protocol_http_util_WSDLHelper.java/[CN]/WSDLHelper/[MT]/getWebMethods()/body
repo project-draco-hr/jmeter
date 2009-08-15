@@ -22,7 +22,7 @@
     String key=((Element)act).getAttribute("name");
     this.ACTIONS.put(key,value);
   }
-  Set keys=this.ACTIONS.keySet();
+  Set<String> keys=this.ACTIONS.keySet();
   String[] stringmeth=new String[keys.size()];
   Object[] stringKeys=keys.toArray();
   System.arraycopy(stringKeys,0,stringmeth,0,keys.size());

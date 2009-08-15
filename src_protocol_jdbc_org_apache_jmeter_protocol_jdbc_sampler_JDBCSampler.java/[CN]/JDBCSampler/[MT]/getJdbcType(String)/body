@@ -1,5 +1,5 @@
 {
-  Integer entry=(Integer)mapJdbcNameToInt.get(jdbcType.toLowerCase(java.util.Locale.ENGLISH));
+  Integer entry=mapJdbcNameToInt.get(jdbcType.toLowerCase(java.util.Locale.ENGLISH));
   if (entry == null) {
     try {
       entry=Integer.decode(jdbcType);

@@ -1,8 +1,8 @@
 {
-  Enumeration en=this.bGroup.getElements();
+  Enumeration<AbstractButton> en=this.bGroup.getElements();
   while (en.hasMoreElements()) {
-    JComponent comp=(JComponent)en.nextElement();
-    this.bGroup.remove((JRadioButton)comp);
+    AbstractButton comp=en.nextElement();
+    this.bGroup.remove(comp);
     this.remove(comp);
   }
   init(items,null);

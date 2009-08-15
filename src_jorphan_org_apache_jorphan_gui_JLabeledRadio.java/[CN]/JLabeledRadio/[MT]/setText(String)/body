@@ -1,7 +1,7 @@
 {
-  Enumeration en=this.bGroup.getElements();
+  Enumeration<AbstractButton> en=this.bGroup.getElements();
   while (en.hasMoreElements()) {
-    JRadioButton jrb=(JRadioButton)en.nextElement();
+    AbstractButton jrb=en.nextElement();
     if (jrb.getText().equals(text)) {
       this.bGroup.setSelected(jrb.getModel(),true);
     }

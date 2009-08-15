@@ -1,5 +1,5 @@
 {
-  Configuration config=(Configuration)getConfigsFromTree(subTree).get(0);
+  Configuration config=getConfigsFromTree(subTree).get(0);
   DefaultConfigurationSerializer saver=new DefaultConfigurationSerializer();
   saver.setIndent(true);
   try {
