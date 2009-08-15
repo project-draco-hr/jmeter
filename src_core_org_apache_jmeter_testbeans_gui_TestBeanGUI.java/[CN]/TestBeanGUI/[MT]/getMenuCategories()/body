@@ -1,5 +1,5 @@
 {
-  List menuCategories=new LinkedList();
+  List<String> menuCategories=new LinkedList<String>();
   BeanDescriptor bd=beanInfo.getBeanDescriptor();
   if (bd.isExpert() && !JMeterUtils.isExpertMode()) {
     return null;

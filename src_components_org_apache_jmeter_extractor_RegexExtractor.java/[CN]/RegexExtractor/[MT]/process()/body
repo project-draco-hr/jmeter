@@ -25,7 +25,7 @@
   }
   try {
     Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
-    List matches=new ArrayList();
+    List<MatchResult> matches=new ArrayList<MatchResult>();
     int x=0;
     boolean done=false;
     do {

@@ -2,8 +2,8 @@
   if (template != null) {
     return;
   }
-  List pieces=new ArrayList();
-  List combined=new LinkedList();
+  List<String> pieces=new ArrayList<String>();
+  List<Object> combined=new LinkedList<Object>();
   String rawTemplate=getTemplate();
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Pattern templatePattern=JMeterUtils.getPatternCache().getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
@@ -16,7 +16,7 @@
   if (startsWith) {
     pieces.remove(0);
   }
-  Iterator iter=pieces.iterator();
+  Iterator<String> iter=pieces.iterator();
   while (iter.hasNext()) {
     boolean matchExists=matcher.contains(input,templatePattern);
     if (startsWith) {

@@ -15,7 +15,7 @@
     if (initialized) {
       remove(customizerIndexInPanel);
     }
-    Customizer c=(Customizer)customizers.get(element);
+    Customizer c=customizers.get(element);
     if (c == null) {
       c=createCustomizer();
       c.setObject(propertyMap);

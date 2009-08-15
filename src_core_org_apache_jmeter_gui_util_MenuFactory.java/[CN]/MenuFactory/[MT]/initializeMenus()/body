@@ -1,16 +1,16 @@
 {
   try {
-    List guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
+    List<String> guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
     Collections.sort(guiClasses);
-    Iterator iter=guiClasses.iterator();
+    Iterator<String> iter=guiClasses.iterator();
     while (iter.hasNext()) {
-      String name=(String)iter.next();
+      String name=iter.next();
       if (name.endsWith("JMeterTreeNode") || name.endsWith("TestBeanGUI")) {
         continue;
       }
       JMeterGUIComponent item;
       try {
-        Class c=Class.forName(name);
+        Class<?> c=Class.forName(name);
         if (TestBean.class.isAssignableFrom(c)) {
           item=new TestBeanGUI(c);
         }
@@ -33,7 +33,7 @@ catch (      Throwable e) {
  else {
         elementsToSkip.add(name);
       }
-      Collection categories=item.getMenuCategories();
+      Collection<String> categories=item.getMenuCategories();
       if (categories == null) {
         log.debug(name + " participates in no menus.");
         continue;

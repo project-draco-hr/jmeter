@@ -4,7 +4,7 @@
     return null;
   }
   if (entry == 0) {
-    return (MatchResult)matches.get(JMeterUtils.getRandomInt(matchSize));
+    return matches.get(JMeterUtils.getRandomInt(matchSize));
   }
-  return (MatchResult)matches.get(entry - 1);
+  return matches.get(entry - 1);
 }
