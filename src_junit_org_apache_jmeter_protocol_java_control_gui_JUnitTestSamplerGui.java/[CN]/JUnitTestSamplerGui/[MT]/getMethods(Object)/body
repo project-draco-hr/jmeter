@@ -1,5 +1,6 @@
 {
   Method[] meths=obj.getClass().getMethods();
+  List<Method> list=new ArrayList<Method>();
   for (int idx=0; idx < meths.length; idx++) {
     if (meths[idx].getName().startsWith(PREFIX) || meths[idx].getName().equals(ONETIMESETUP) || meths[idx].getName().equals(ONETIMETEARDOWN)|| meths[idx].getName().equals(SUITE)) {
       list.add(meths[idx]);
@@ -7,7 +8,7 @@
   }
   if (list.size() > 0) {
     Method[] rmeth=new Method[list.size()];
-    return (Method[])list.toArray(rmeth);
+    return list.toArray(rmeth);
   }
   return new Method[0];
 }

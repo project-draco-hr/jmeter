@@ -1,5 +1,5 @@
 {
-  METHODLIST=new java.util.ArrayList();
+  METHODLIST=new ArrayList<String>();
   try {
     CLASSLIST=ClassFinder.findClassesThatExtend(SPATHS,new Class[]{TestCase.class});
   }
