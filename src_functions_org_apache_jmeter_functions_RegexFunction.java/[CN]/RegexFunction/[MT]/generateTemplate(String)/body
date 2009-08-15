@@ -1,6 +1,6 @@
 {
-  List pieces=new ArrayList();
-  List combined=new LinkedList();
+  List<String> pieces=new ArrayList<String>();
+  List<Object> combined=new LinkedList<Object>();
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Util.split(pieces,matcher,templatePattern,rawTemplate);
   PatternMatcherInput input=new PatternMatcherInput(rawTemplate);
@@ -8,7 +8,7 @@
   if (startsWith) {
     pieces.remove(0);
   }
-  Iterator iter=pieces.iterator();
+  Iterator<String> iter=pieces.iterator();
   while (iter.hasNext()) {
     boolean matchExists=matcher.contains(input,templatePattern);
     if (startsWith) {

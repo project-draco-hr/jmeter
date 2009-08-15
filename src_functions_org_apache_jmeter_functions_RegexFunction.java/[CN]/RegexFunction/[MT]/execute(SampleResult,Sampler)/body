@@ -49,7 +49,7 @@
   if (textToMatch == null || textToMatch.length() == 0) {
     return defaultValue;
   }
-  List collectAllMatches=new ArrayList();
+  List<MatchResult> collectAllMatches=new ArrayList<MatchResult>();
   try {
     PatternMatcher matcher=JMeterUtils.getMatcher();
     PatternMatcherInput input=new PatternMatcherInput(textToMatch);
@@ -72,7 +72,7 @@
   }
   if (valueIndex.equals(ALL)) {
     StringBuffer value=new StringBuffer();
-    Iterator it=collectAllMatches.iterator();
+    Iterator<MatchResult> it=collectAllMatches.iterator();
     boolean first=true;
     while (it.hasNext()) {
       if (!first) {
@@ -81,23 +81,23 @@
  else {
         first=false;
       }
-      value.append(generateResult((MatchResult)it.next(),name,tmplt,vars));
+      value.append(generateResult(it.next(),name,tmplt,vars));
     }
     return value.toString();
   }
  else   if (valueIndex.equals(RAND)) {
-    MatchResult result=(MatchResult)collectAllMatches.get(rand.nextInt(collectAllMatches.size()));
+    MatchResult result=collectAllMatches.get(rand.nextInt(collectAllMatches.size()));
     return generateResult(result,name,tmplt,vars);
   }
  else {
     try {
       int index=Integer.parseInt(valueIndex) - 1;
-      MatchResult result=(MatchResult)collectAllMatches.get(index);
+      MatchResult result=collectAllMatches.get(index);
       return generateResult(result,name,tmplt,vars);
     }
  catch (    NumberFormatException e) {
       float ratio=Float.parseFloat(valueIndex);
-      MatchResult result=(MatchResult)collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1);
+      MatchResult result=collectAllMatches.get((int)(collectAllMatches.size() * ratio + .5) - 1);
       return generateResult(result,name,tmplt,vars);
     }
 catch (    IndexOutOfBoundsException e) {

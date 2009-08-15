@@ -4,7 +4,7 @@
     datetime=Long.toString(System.currentTimeMillis());
   }
  else {
-    String fmt=(String)aliases.get(format);
+    String fmt=aliases.get(format);
     if (fmt == null) {
       fmt=format;
     }
