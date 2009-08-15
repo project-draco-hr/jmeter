@@ -12,7 +12,7 @@
     writer.write(LINE_SEP);
   }
   for (int idx=0; idx < data.size(); idx++) {
-    Vector row=(Vector)data.elementAt(idx);
+    Vector<?> row=(Vector<?>)data.elementAt(idx);
     for (int idy=0; idy < row.size(); idy++) {
       if (idy > 0) {
         writer.write(DELIM);

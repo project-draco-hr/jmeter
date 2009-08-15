@@ -1,7 +1,7 @@
 {
   int ch;
   int state=INITIAL;
-  List list=new ArrayList();
+  List<String> list=new ArrayList<String>();
   ByteArrayOutputStream baos=new ByteArrayOutputStream(200);
   boolean push=false;
   while (-1 != (ch=infile.read())) {
@@ -78,5 +78,5 @@ if (baos.size() > 0 || push || state == EMBEDDEDQUOTE) {
 list.add(baos.toString());
 }
 }
-return (String[])list.toArray(new String[list.size()]);
+return list.toArray(new String[list.size()]);
 }
