@@ -1,5 +1,5 @@
 {
-  List newArguments=new LinkedList();
+  List<Argument> newArguments=new LinkedList<Argument>();
   PropertyIterator iter=args.getArguments().iterator();
   while (iter.hasNext()) {
     Argument arg=(Argument)iter.next().getObjectValue();

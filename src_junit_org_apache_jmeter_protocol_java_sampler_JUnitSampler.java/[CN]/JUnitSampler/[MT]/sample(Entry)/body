@@ -87,7 +87,7 @@ catch (    Throwable e) {
       sresult.setSuccessful(false);
       StringBuffer buf=new StringBuffer();
       buf.append(getFailure());
-      Enumeration en=tr.errors();
+      Enumeration<?> en=tr.errors();
       while (en.hasMoreElements()) {
         Object item=en.nextElement();
         if (getAppendError() && item instanceof TestFailure) {

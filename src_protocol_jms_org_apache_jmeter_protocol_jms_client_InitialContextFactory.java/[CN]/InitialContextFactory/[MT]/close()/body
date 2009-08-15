@@ -1,7 +1,7 @@
 {
-  Iterator itr=MAP.keySet().iterator();
+  Iterator<?> itr=MAP.keySet().iterator();
   while (itr.hasNext()) {
-    Context ctx=(Context)MAP.get(itr.next());
+    Context ctx=MAP.get(itr.next());
     try {
       ctx.close();
     }

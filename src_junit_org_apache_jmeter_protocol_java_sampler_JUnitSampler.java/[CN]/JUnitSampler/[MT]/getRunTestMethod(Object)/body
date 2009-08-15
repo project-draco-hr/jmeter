@@ -1,7 +1,7 @@
 {
   if (clazz != null) {
     try {
-      Class[] param={TestResult.class};
+      Class<?>[] param={TestResult.class};
       return clazz.getClass().getMethod(RUNTEST,param);
     }
  catch (    NoSuchMethodException e) {

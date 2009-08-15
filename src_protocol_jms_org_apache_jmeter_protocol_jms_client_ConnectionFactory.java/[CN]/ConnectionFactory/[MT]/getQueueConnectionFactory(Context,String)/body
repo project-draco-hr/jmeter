@@ -16,7 +16,7 @@
       }
       counter--;
       try {
-        Thread.currentThread().sleep(PAUSE_MILLIS);
+        Thread.sleep(PAUSE_MILLIS);
       }
  catch (      InterruptedException ie) {
       }

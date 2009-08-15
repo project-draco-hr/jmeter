@@ -1,7 +1,7 @@
 {
-  Enumeration en=this.bGroup.getElements();
+  Enumeration<AbstractButton> en=this.bGroup.getElements();
   while (en.hasMoreElements()) {
-    ButtonModel model=((JRadioButton)en.nextElement()).getModel();
+    ButtonModel model=en.nextElement().getModel();
     if (model.getActionCommand().equals(resourcename)) {
       this.bGroup.setSelected(model,true);
     }

@@ -1,9 +1,9 @@
 {
   Object testclass=null;
   if (className != null) {
-    Constructor con=null;
-    Constructor strCon=null;
-    Class theclazz=null;
+    Constructor<?> con=null;
+    Constructor<?> strCon=null;
+    Class<?> theclazz=null;
     Object[] strParams=null;
     Object[] params=null;
     try {

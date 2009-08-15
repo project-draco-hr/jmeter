@@ -1,5 +1,5 @@
 {
-  Context ctx=(Context)MAP.get(jndi + url);
+  Context ctx=MAP.get(jndi + url);
   if (ctx == null) {
     Properties props=new Properties();
     props.setProperty(Context.INITIAL_CONTEXT_FACTORY,jndi);

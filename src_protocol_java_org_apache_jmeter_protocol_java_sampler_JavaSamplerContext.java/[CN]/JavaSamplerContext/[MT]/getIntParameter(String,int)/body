@@ -3,7 +3,7 @@
     return defaultValue;
   }
   try {
-    return Integer.decode((String)params.get(name)).intValue();
+    return Integer.decode(params.get(name)).intValue();
   }
  catch (  NumberFormatException e) {
     log.warn("Value for parameter '" + name + "' not an integer: '"+ params.get(name)+ "'.  Using default: '"+ defaultValue+ "'.",e);

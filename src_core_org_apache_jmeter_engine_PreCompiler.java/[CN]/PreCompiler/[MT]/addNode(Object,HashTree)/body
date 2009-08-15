@@ -20,7 +20,7 @@
   }
   if (node instanceof TestPlan) {
     ((TestPlan)node).prepareForPreCompile();
-    Map args=((TestPlan)node).getUserDefinedVariables();
+    Map<String,String> args=((TestPlan)node).getUserDefinedVariables();
     replacer.setUserDefinedVariables(args);
     JMeterVariables vars=new JMeterVariables();
     vars.putAll(args);
@@ -28,7 +28,7 @@
   }
   if (node instanceof Arguments) {
     ((Arguments)node).setRunningVersion(true);
-    Map args=((Arguments)node).getArgumentsAsMap();
+    Map<String,String> args=((Arguments)node).getArgumentsAsMap();
     replacer.addVariables(args);
     JMeterContextService.getContext().getVariables().putAll(args);
   }

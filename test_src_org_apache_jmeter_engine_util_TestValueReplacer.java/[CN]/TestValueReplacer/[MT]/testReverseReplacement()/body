@@ -4,13 +4,13 @@
   assertTrue(replacer.containsKey("server"));
   TestElement element=new TestPlan();
   element.setProperty(new StringProperty("domain","jakarta.apache.org"));
-  List<Object> args=new ArrayList<Object>();
-  args.add("username is jack");
-  args.add("his_password");
-  element.setProperty(new CollectionProperty("args",args));
+  List<Object> argsin=new ArrayList<Object>();
+  argsin.add("username is jack");
+  argsin.add("his_password");
+  element.setProperty(new CollectionProperty("args",argsin));
   replacer.reverseReplace(element);
   assertEquals("${server}",element.getPropertyAsString("domain"));
-  args=(List<Object>)element.getProperty("args").getObjectValue();
-  assertEquals("username is ${username}",((JMeterProperty)args.get(0)).getStringValue());
-  assertEquals("${password}",((JMeterProperty)args.get(1)).getStringValue());
+  List<JMeterProperty> args=(List<JMeterProperty>)element.getProperty("args").getObjectValue();
+  assertEquals("username is ${username}",args.get(0).getStringValue());
+  assertEquals("${password}",args.get(1).getStringValue());
 }
