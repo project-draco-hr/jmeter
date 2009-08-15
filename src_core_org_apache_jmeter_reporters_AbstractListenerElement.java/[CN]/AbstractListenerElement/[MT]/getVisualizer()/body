@@ -2,5 +2,5 @@
   if (listener == null) {
     return null;
   }
-  return (Visualizer)listener.get();
+  return listener.get();
 }

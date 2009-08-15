@@ -1,5 +1,5 @@
 {
-  Vector removeIndices=new Vector();
+  Vector<Integer> removeIndices=new Vector<Integer>();
   for (int i=getHeaders().size() - 1; i >= 0; i--) {
     Header header=(Header)getHeaders().get(i).getObjectValue();
     if (header == null) {
@@ -9,7 +9,7 @@
       removeIndices.addElement(new Integer(i));
     }
   }
-  for (Enumeration e=removeIndices.elements(); e.hasMoreElements(); ) {
-    getHeaders().remove(((Integer)e.nextElement()).intValue());
+  for (Enumeration<Integer> e=removeIndices.elements(); e.hasMoreElements(); ) {
+    getHeaders().remove(e.nextElement().intValue());
   }
 }

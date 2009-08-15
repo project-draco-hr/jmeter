@@ -2,7 +2,7 @@
   Calculator row=null;
   final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());
 synchronized (tableRows) {
-    row=(Calculator)tableRows.get(sampleLabel);
+    row=tableRows.get(sampleLabel);
     if (row == null) {
       row=new Calculator(sampleLabel);
       tableRows.put(row.getLabel(),row);
@@ -12,7 +12,7 @@ synchronized (tableRows) {
 synchronized (row) {
     row.addSample(res);
   }
-  Calculator tot=((Calculator)tableRows.get(TOTAL_ROW_LABEL));
+  Calculator tot=tableRows.get(TOTAL_ROW_LABEL);
 synchronized (tot) {
     tot.addSample(res);
   }

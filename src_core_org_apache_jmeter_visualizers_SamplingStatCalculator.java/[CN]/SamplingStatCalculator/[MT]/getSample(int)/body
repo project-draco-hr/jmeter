@@ -1,7 +1,7 @@
 {
 synchronized (storedValues) {
     if (index < storedValues.size()) {
-      return (Sample)storedValues.get(index);
+      return storedValues.get(index);
     }
     return null;
   }

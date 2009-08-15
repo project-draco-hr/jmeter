@@ -1,7 +1,7 @@
 {
   m_optionDescriptors=optionDescriptors;
   m_control=control;
-  m_options=new Vector();
+  m_options=new Vector<CLOption>();
   m_args=args;
   try {
     parse();

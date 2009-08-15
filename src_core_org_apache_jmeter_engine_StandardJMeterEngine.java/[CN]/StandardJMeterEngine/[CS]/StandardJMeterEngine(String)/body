@@ -1,5 +1,5 @@
 {
   this.host=host;
-  this.allThreads=Collections.synchronizedMap(new HashMap());
+  this.allThreads=Collections.synchronizedMap(new HashMap<JMeterThread,Thread>());
   engine=this;
 }

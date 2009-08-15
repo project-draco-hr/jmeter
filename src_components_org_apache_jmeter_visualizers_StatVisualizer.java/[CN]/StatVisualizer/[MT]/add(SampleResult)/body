@@ -2,7 +2,7 @@
   SamplingStatCalculator row=null;
   final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());
 synchronized (tableRows) {
-    row=(SamplingStatCalculator)tableRows.get(sampleLabel);
+    row=tableRows.get(sampleLabel);
     if (row == null) {
       row=new SamplingStatCalculator(sampleLabel);
       tableRows.put(row.getLabel(),row);
@@ -12,7 +12,7 @@ synchronized (tableRows) {
 synchronized (row) {
     row.addSample(res);
   }
-  SamplingStatCalculator tot=(SamplingStatCalculator)tableRows.get(TOTAL_ROW_LABEL);
+  SamplingStatCalculator tot=tableRows.get(TOTAL_ROW_LABEL);
 synchronized (tot) {
     tot.addSample(res);
   }

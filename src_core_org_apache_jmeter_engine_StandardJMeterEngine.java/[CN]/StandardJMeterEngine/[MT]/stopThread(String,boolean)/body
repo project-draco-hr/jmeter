@@ -4,9 +4,9 @@
   }
   JMeterThread thrd=null;
 synchronized (engine.allThreads) {
-    Iterator iter=engine.allThreads.keySet().iterator();
+    Iterator<JMeterThread> iter=engine.allThreads.keySet().iterator();
     while (iter.hasNext()) {
-      thrd=(JMeterThread)iter.next();
+      thrd=iter.next();
       if (thrd.getThreadName().equals(threadName)) {
         break;
       }
@@ -16,7 +16,7 @@ synchronized (engine.allThreads) {
     thrd.stop();
     thrd.interrupt();
     if (now) {
-      Thread t=(Thread)engine.allThreads.get(thrd);
+      Thread t=engine.allThreads.get(thrd);
       if (t != null) {
         t.interrupt();
       }

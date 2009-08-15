@@ -1,8 +1,8 @@
 {
   final int size=m_options.size();
-  m_optionIndex=new Hashtable(size * 2);
+  m_optionIndex=new Hashtable<Object,CLOption>(size * 2);
   for (int i=0; i < size; i++) {
-    final CLOption option=(CLOption)m_options.get(i);
+    final CLOption option=m_options.get(i);
     final CLOptionDescriptor optionDescriptor=getDescriptorFor(option.getDescriptor().getId());
     m_optionIndex.put(new Integer(option.getDescriptor().getId()),option);
     if (null != optionDescriptor && null != optionDescriptor.getName()) {

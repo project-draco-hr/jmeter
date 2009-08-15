@@ -1,8 +1,8 @@
 {
   running=true;
   log.info("Proxy up and running!");
-  Map pageEncodings=Collections.synchronizedMap(new HashMap());
-  Map formEncodings=Collections.synchronizedMap(new HashMap());
+  Map<String,String> pageEncodings=Collections.synchronizedMap(new HashMap<String,String>());
+  Map<String,String> formEncodings=Collections.synchronizedMap(new HashMap<String,String>());
   try {
     while (running) {
       try {

@@ -1,4 +1,4 @@
 {
-  serverListMap=new HashMap();
-  listeners=new LinkedList();
+  serverListMap=new HashMap<String,List<MonitorModel>>();
+  listeners=new LinkedList<MonitorListener>();
 }

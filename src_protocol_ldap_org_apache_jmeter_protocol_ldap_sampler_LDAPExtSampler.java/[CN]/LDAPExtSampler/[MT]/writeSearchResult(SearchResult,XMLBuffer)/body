@@ -1,33 +1,33 @@
 {
   final Attributes attrs=sr.getAttributes();
   final int size=attrs.size();
-  final ArrayList sortedAttrs=new ArrayList(size);
+  final ArrayList<Attribute> sortedAttrs=new ArrayList<Attribute>(size);
   xmlb.openTag("searchresult");
   xmlb.tag("dn",sr.getName());
   xmlb.tag("returnedattr",Integer.toString(size));
   xmlb.openTag("attributes");
   try {
-    for (NamingEnumeration en=attrs.getAll(); en.hasMore(); ) {
-      final Attribute attr=(Attribute)en.next();
+    for (NamingEnumeration<? extends Attribute> en=attrs.getAll(); en.hasMore(); ) {
+      final Attribute attr=en.next();
       sortedAttrs.add(attr);
     }
     sortAttributes(sortedAttrs);
-    for (Iterator ait=sortedAttrs.iterator(); ait.hasNext(); ) {
-      final Attribute attr=(Attribute)ait.next();
+    for (Iterator<Attribute> ait=sortedAttrs.iterator(); ait.hasNext(); ) {
+      final Attribute attr=ait.next();
       StringBuffer sb=new StringBuffer();
       if (attr.size() == 1) {
         sb.append(getWriteValue(attr.get()));
       }
  else {
-        final ArrayList sortedVals=new ArrayList(attr.size());
+        final ArrayList<String> sortedVals=new ArrayList<String>(attr.size());
         boolean first=true;
         for (NamingEnumeration ven=attr.getAll(); ven.hasMore(); ) {
           final Object value=getWriteValue(ven.next());
           sortedVals.add(value.toString());
         }
         Collections.sort(sortedVals);
-        for (Iterator vit=sortedVals.iterator(); vit.hasNext(); ) {
-          final String value=(String)vit.next();
+        for (Iterator<String> vit=sortedVals.iterator(); vit.hasNext(); ) {
+          final String value=vit.next();
           if (first) {
             first=false;
           }

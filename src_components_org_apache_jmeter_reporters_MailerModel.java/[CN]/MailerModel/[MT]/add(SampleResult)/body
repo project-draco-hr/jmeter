@@ -7,7 +7,7 @@
     successCount++;
   }
   if ((failureCount > getFailureLimit()) && !siteDown && !failureMsgSent) {
-    Vector addressVector=getAddressVector();
+    Vector<String> addressVector=getAddressVector();
     if (addressVector.size() != 0) {
       try {
         sendMail(getFromAddress(),addressVector,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost());
@@ -23,7 +23,7 @@
   }
   if (siteDown && (sample.getTime() != -1) && !successMsgSent) {
     if (successCount > getSuccessLimit()) {
-      Vector addressVector=getAddressVector();
+      Vector<String> addressVector=getAddressVector();
       try {
         sendMail(getFromAddress(),addressVector,getSuccessSubject(),"URL Restarted: " + sample.getSampleLabel(),getSmtpHost());
       }

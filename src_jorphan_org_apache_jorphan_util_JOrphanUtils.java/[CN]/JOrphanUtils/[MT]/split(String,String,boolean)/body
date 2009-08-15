@@ -18,7 +18,7 @@
       splittee=splittee.substring(0,splittee.length() - splitLength);
     }
   }
-  Vector returns=new Vector();
+  Vector<String> returns=new Vector<String>();
   final int length=splittee.length();
   int start=0;
   spot=0;

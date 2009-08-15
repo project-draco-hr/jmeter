@@ -26,9 +26,9 @@
  else {
           value=new Integer(line.substring(splitter + 1));
         }
-        Vector v=getData(key);
+        Vector<Integer> v=getData(key);
         if (v == null) {
-          v=new Vector();
+          v=new Vector<Integer>();
           this.data.put(key,v);
         }
         v.addElement(value);

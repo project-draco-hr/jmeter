@@ -1,0 +1,24 @@
+{
+  final ArrayList<SearchResult> sortedResults=new ArrayList<SearchResult>(MAX_SORTED_RESULTS);
+  final String searchBase=getPropertyAsString(SEARCHBASE);
+  final String rootDn=getRootdn();
+  try {
+    while (srch.hasMore() && (sortedResults.size() < MAX_SORTED_RESULTS)) {
+      final SearchResult sr=srch.next();
+      normaliseSearchDN(sr,searchBase,rootDn);
+      sortedResults.add(sr);
+    }
+  }
+  finally {
+    sortResults(sortedResults);
+    for (Iterator<SearchResult> it=sortedResults.iterator(); it.hasNext(); ) {
+      final SearchResult sr=it.next();
+      writeSearchResult(sr,xmlb);
+    }
+  }
+  while (srch.hasMore()) {
+    final SearchResult sr=srch.next();
+    normaliseSearchDN(sr,searchBase,rootDn);
+    writeSearchResult(sr,xmlb);
+  }
+}

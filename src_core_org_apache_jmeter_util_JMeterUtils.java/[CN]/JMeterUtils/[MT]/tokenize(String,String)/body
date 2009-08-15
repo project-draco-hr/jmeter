@@ -1,5 +1,5 @@
 {
-  Vector v=new Vector();
+  Vector<String> v=new Vector<String>();
   StringTokenizer s=new StringTokenizer(string,separator);
   while (s.hasMoreTokens()) {
     v.addElement(s.nextToken());

@@ -1,6 +1,6 @@
 {
   for (int idx=0; idx < listeners.size(); idx++) {
-    MonitorListener ml=(MonitorListener)listeners.get(idx);
+    MonitorListener ml=listeners.get(idx);
     ml.addSample(model);
   }
 }

@@ -1,6 +1,6 @@
 {
   log.debug("Start : GraphAccumModel1");
-  listeners=new LinkedList();
-  samples=Collections.synchronizedList(new LinkedList());
+  listeners=new LinkedList<GraphAccumListener>();
+  samples=Collections.synchronizedList(new LinkedList<SampleResult>());
   log.debug("End : GraphAccumModel1");
 }

@@ -8,8 +8,8 @@
   res.setContentType("text/xml");
   boolean isSuccessful=true;
   res.setSampleLabel(getName());
-  LdapExtClient temp_client=(LdapExtClient)ldapConnections.get(getThreadName());
-  DirContext dirContext=(DirContext)ldapContexts.get(getThreadName());
+  LdapExtClient temp_client=ldapConnections.get(getThreadName());
+  DirContext dirContext=ldapContexts.get(getThreadName());
   if (temp_client == null) {
     temp_client=new LdapExtClient();
     try {
@@ -49,7 +49,7 @@
       res.setSamplerData("Compare " + getPropertyAsString(COMPAREFILT) + " "+ getPropertyAsString(COMPAREDN));
       xmlBuffer.tag("comparedn",getPropertyAsString(COMPAREDN));
       xmlBuffer.tag("comparefilter",getPropertyAsString(COMPAREFILT));
-      NamingEnumeration cmp=null;
+      NamingEnumeration<SearchResult> cmp=null;
       try {
         res.sampleStart();
         cmp=temp_client.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
@@ -103,7 +103,7 @@
       xmlBuffer.tag("scope",scopeStr);
       xmlBuffer.tag("countlimit",countLimit);
       xmlBuffer.tag("timelimit",timeLimit);
-      NamingEnumeration srch=null;
+      NamingEnumeration<SearchResult> srch=null;
       try {
         res.sampleStart();
         srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getCountlimAsLong(),getTimelimAsInt(),getRequestAttributes(getAttrs()),isRetobj(),isDeref());

@@ -1,9 +1,9 @@
 {
   if (cookieManagers == null) {
-    cookieManagers=Collections.synchronizedMap(new HashMap());
+    cookieManagers=Collections.synchronizedMap(new HashMap<String,CookieManager>());
   }
   if (managersInUse == null) {
-    managersInUse=Collections.synchronizedSet(new HashSet());
+    managersInUse=Collections.synchronizedSet(new HashSet<CookieManager>());
   }
   SessionFilter f=new SessionFilter();
   f.cookieManagers=cookieManagers;

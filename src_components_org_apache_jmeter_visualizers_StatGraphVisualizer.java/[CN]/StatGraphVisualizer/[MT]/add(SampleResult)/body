@@ -2,7 +2,7 @@
   SamplingStatCalculator row=null;
   final String sampleLabel=res.getSampleLabel();
 synchronized (tableRows) {
-    row=(SamplingStatCalculator)tableRows.get(sampleLabel);
+    row=tableRows.get(sampleLabel);
     if (row == null) {
       row=new SamplingStatCalculator(sampleLabel);
       tableRows.put(row.getLabel(),row);
@@ -10,6 +10,6 @@ synchronized (tableRows) {
     }
   }
   row.addSample(res);
-  ((SamplingStatCalculator)tableRows.get(TOTAL_ROW_LABEL)).addSample(res);
+  tableRows.get(TOTAL_ROW_LABEL).addSample(res);
   model.fireTableDataChanged();
 }

@@ -1,8 +1,7 @@
 {
-  Iterator itr=this.serverListMap.keySet().iterator();
+  Iterator<String> itr=this.serverListMap.keySet().iterator();
   while (itr.hasNext()) {
-    List lt=(List)this.serverListMap.get(itr.next());
-    lt.clear();
+    this.serverListMap.get(itr.next()).clear();
   }
   this.serverListMap.clear();
 }

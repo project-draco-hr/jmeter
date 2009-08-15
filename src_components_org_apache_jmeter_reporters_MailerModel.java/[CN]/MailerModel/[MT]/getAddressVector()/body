@@ -1,6 +1,6 @@
 {
   String addressees=getToAddress();
-  Vector addressVector=new Vector();
+  Vector<String> addressVector=new Vector<String>();
   if (addressees != null) {
     StringTokenizer next=new StringTokenizer(addressees,",");
     while (next.hasMoreTokens()) {

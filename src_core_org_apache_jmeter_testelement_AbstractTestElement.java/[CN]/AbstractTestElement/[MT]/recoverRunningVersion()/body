@@ -1,8 +1,8 @@
 {
-  Iterator iter=propMap.entrySet().iterator();
+  Iterator<Map.Entry<String,JMeterProperty>> iter=propMap.entrySet().iterator();
   while (iter.hasNext()) {
-    Map.Entry entry=(Map.Entry)iter.next();
-    JMeterProperty prop=(JMeterProperty)entry.getValue();
+    Map.Entry<String,JMeterProperty> entry=iter.next();
+    JMeterProperty prop=entry.getValue();
     if (isTemporary(prop)) {
       iter.remove();
       clearTemporary(prop);

@@ -2,7 +2,7 @@
 synchronized (hashHost) {
     if (hashHost.containsKey(host)) {
       log.debug("Good, already in map, host=" + host);
-      return (SSLSocketFactory)hashHost.get(host);
+      return hashHost.get(host);
     }
     InputStream in=getCertificate();
     Exception except=null;

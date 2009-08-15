@@ -1,8 +1,8 @@
 {
-  Vector vparams=this.parseParameters(stringparams);
+  Vector<String> vparams=this.parseParameters(stringparams);
   NVPair[] nvparams=new NVPair[vparams.size()];
   for (int idx=0; idx < nvparams.length; idx++) {
-    nvparams[idx]=this.parseOneParameter((String)vparams.get(idx));
+    nvparams[idx]=this.parseOneParameter(vparams.get(idx));
   }
   return nvparams;
 }

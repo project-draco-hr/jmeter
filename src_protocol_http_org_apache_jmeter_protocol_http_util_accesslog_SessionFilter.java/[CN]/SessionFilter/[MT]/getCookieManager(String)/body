@@ -10,7 +10,7 @@ synchronized (managersInUse) {
     Thread.yield();
   }
 synchronized (managersInUse) {
-    cm=(CookieManager)cookieManagers.get(ipAddr);
+    cm=cookieManagers.get(ipAddr);
     if (cm == null) {
       cm=new CookieManager();
       cookieManagers.put(ipAddr,cm);

@@ -1,5 +1,5 @@
 {
-  JMeterProperty prop=(JMeterProperty)propMap.get(key);
+  JMeterProperty prop=propMap.get(key);
   if (prop == null) {
     prop=new NullProperty(key);
   }

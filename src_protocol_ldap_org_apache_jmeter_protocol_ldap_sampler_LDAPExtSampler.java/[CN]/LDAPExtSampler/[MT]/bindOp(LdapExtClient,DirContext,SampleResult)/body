@@ -1,5 +1,5 @@
 {
-  DirContext ctx=(DirContext)ldapContexts.remove(getThreadName());
+  DirContext ctx=ldapContexts.remove(getThreadName());
   if (ctx != null) {
     log.warn("Closing previous context for thread: " + getThreadName());
     ctx.close();

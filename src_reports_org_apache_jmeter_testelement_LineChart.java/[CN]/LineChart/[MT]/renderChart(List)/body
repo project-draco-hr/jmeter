@@ -1,9 +1,9 @@
 {
-  ArrayList dset=new ArrayList();
-  ArrayList xlabels=new ArrayList();
-  Iterator itr=dataset.iterator();
+  ArrayList<DataSet> dset=new ArrayList<DataSet>();
+  ArrayList<String> xlabels=new ArrayList<String>();
+  Iterator<DataSet> itr=dataset.iterator();
   while (itr.hasNext()) {
-    DataSet item=(DataSet)itr.next();
+    DataSet item=itr.next();
     if (item != null) {
       dset.add(item);
       if (getXLabel().equals(X_DATA_FILENAME_LABEL)) {
@@ -15,5 +15,5 @@
     }
   }
   double[][] dbset=convertToDouble(dset);
-  return renderGraphics(dbset,(String[])xlabels.toArray(new String[xlabels.size()]));
+  return renderGraphics(dbset,xlabels.toArray(new String[xlabels.size()]));
 }

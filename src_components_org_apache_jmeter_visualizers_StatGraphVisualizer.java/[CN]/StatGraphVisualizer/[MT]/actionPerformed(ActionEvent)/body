@@ -19,8 +19,7 @@
     FileWriter writer=null;
     try {
       writer=new FileWriter(chooser.getSelectedFile());
-      Vector data=this.getAllTableData();
-      CSVSaveService.saveCSVStats(data,writer,saveHeaders.isSelected() ? COLUMNS : null);
+      CSVSaveService.saveCSVStats(getAllTableData(),writer,saveHeaders.isSelected() ? COLUMNS : null);
     }
  catch (    FileNotFoundException e) {
       log.warn(e.getMessage());

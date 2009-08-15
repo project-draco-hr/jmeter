@@ -1,9 +1,9 @@
 {
-  Iterator it=ldapContexts.entrySet().iterator();
+  Iterator<Map.Entry<String,DirContext>> it=ldapContexts.entrySet().iterator();
   while (it.hasNext()) {
-    Map.Entry entry=(Map.Entry)it.next();
-    String key=(String)entry.getKey();
-    DirContext dc=(DirContext)entry.getValue();
+    Map.Entry<String,DirContext> entry=it.next();
+    String key=entry.getKey();
+    DirContext dc=entry.getValue();
     try {
       log.warn("Tidying old Context for thread: " + key);
       dc.close();

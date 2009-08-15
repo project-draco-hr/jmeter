@@ -1,8 +1,8 @@
 {
   if (!serverListMap.containsKey(url)) {
-    return Collections.synchronizedList(new LinkedList());
+    return Collections.synchronizedList(new LinkedList<MonitorModel>());
   }
  else {
-    return (List)serverListMap.get(url);
+    return serverListMap.get(url);
   }
 }

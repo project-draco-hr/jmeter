@@ -1,11 +1,11 @@
 {
   this.current=model;
   if (serverListMap.containsKey(model.getURL())) {
-    List newlist=updateArray(model,(List)serverListMap.get(model.getURL()));
+    List<MonitorModel> newlist=updateArray(model,serverListMap.get(model.getURL()));
     serverListMap.put(model.getURL(),newlist);
   }
  else {
-    List samples=Collections.synchronizedList(new LinkedList());
+    List<MonitorModel> samples=Collections.synchronizedList(new LinkedList<MonitorModel>());
     samples.add(model);
     serverListMap.put(model.getURL(),samples);
   }

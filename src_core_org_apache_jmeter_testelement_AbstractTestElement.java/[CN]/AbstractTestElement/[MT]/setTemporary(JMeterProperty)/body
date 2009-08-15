@@ -1,6 +1,6 @@
 {
   if (temporaryProperties == null) {
-    temporaryProperties=new LinkedHashSet();
+    temporaryProperties=new LinkedHashSet<JMeterProperty>();
   }
   temporaryProperties.add(property);
   if (property instanceof MultiProperty) {

@@ -1,7 +1,6 @@
 {
   if (serverListMap.containsKey(url)) {
-    ArrayList list=(ArrayList)serverListMap.get(url);
-    return (MonitorModel)list.get(0);
+    return serverListMap.get(url).get(0);
   }
  else {
     return null;

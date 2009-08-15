@@ -1,8 +1,8 @@
 {
-  Vector parsedParams=new Vector();
+  Vector<String> parsedParams=new Vector<String>();
   StringTokenizer paramtokens=this.tokenize(parameters,"&");
   while (paramtokens.hasMoreElements()) {
-    parsedParams.add(paramtokens.nextElement());
+    parsedParams.add(paramtokens.nextToken());
   }
   return parsedParams;
 }

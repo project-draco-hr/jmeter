@@ -1,7 +1,7 @@
 {
   StringTokenizer tokens=new StringTokenizer(splittee,delims,def != null);
   boolean lastWasDelim=false;
-  List strList=new ArrayList();
+  List<String> strList=new ArrayList<String>();
   while (tokens.hasMoreTokens()) {
     String tok=tokens.nextToken();
     if (tok.length() == 1 && delims.indexOf(tok) != -1) {
@@ -18,5 +18,5 @@
   if (lastWasDelim) {
     strList.add(def);
   }
-  return (String[])strList.toArray(new String[0]);
+  return strList.toArray(new String[0]);
 }
