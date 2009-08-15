@@ -1,5 +1,5 @@
 {
-  LinkedList newRecentFiles=new LinkedList();
+  LinkedList<String> newRecentFiles=new LinkedList<String>();
   boolean alreadyExists=false;
   for (int i=0; i < NUMBER_OF_MENU_ITEMS; i++) {
     String recentFilePath=getRecentFile(i);
@@ -15,7 +15,7 @@
     newRecentFiles.removeLast();
   }
   for (int i=0; i < NUMBER_OF_MENU_ITEMS; i++) {
-    String fileName=(String)newRecentFiles.get(i);
+    String fileName=newRecentFiles.get(i);
     if (fileName != null) {
       setRecentFile(i,fileName);
     }

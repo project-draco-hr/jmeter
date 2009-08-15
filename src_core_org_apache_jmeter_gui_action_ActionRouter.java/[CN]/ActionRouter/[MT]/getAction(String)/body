@@ -1,7 +1,7 @@
 {
-  Set set=new HashSet();
-  Set commandObjects=(Set)commands.get(actionName);
-  Iterator iter=commandObjects.iterator();
+  Set<Command> set=new HashSet<Command>();
+  Set<Command> commandObjects=commands.get(actionName);
+  Iterator<Command> iter=commandObjects.iterator();
   while (iter.hasNext()) {
     try {
       set.add(iter.next());

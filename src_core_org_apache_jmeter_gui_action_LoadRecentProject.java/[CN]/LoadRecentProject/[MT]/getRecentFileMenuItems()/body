@@ -1,5 +1,5 @@
 {
-  LinkedList menuItems=new LinkedList();
+  LinkedList<JComponent> menuItems=new LinkedList<JComponent>();
   for (int i=0; i < NUMBER_OF_MENU_ITEMS; i++) {
     JMenuItem recentFile=new JMenuItem();
     recentFile.setName(Integer.toString(i));

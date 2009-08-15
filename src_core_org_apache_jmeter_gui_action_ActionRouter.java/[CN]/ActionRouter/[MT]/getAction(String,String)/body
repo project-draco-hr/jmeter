@@ -1,9 +1,9 @@
 {
-  Set commandObjects=(Set)commands.get(actionName);
-  Iterator iter=commandObjects.iterator();
+  Set<Command> commandObjects=commands.get(actionName);
+  Iterator<Command> iter=commandObjects.iterator();
   while (iter.hasNext()) {
     try {
-      Command com=(Command)iter.next();
+      Command com=iter.next();
       if (com.getClass().getName().equals(className)) {
         return com;
       }

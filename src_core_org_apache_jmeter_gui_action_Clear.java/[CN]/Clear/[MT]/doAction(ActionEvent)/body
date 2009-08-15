@@ -17,8 +17,7 @@
       JMeterTreeNode node=null;
       JMeterGUIComponent guiComp=null;
       try {
-        Object next=iter.next();
-        node=(JMeterTreeNode)next;
+        node=(JMeterTreeNode)iter.next();
         guiComp=guiPackage.getGui(node.getTestElement());
         if (guiComp instanceof Clearable) {
           Clearable item=(Clearable)guiComp;

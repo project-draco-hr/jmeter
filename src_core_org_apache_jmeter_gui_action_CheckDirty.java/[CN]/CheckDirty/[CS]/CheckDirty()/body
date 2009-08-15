@@ -1,4 +1,4 @@
 {
-  previousGuiItems=new HashMap();
+  previousGuiItems=new HashMap<JMeterTreeNode,TestElement>();
   ActionRouter.getInstance().addPreActionListener(ExitCommand.class,this);
 }
