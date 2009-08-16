@@ -1,5 +1,5 @@
 {
-  Iterator props=appProperties.keySet().iterator();
+  Iterator<?> props=appProperties.keySet().iterator();
   while (props.hasNext()) {
     String prop=(String)props.next();
     if (prop.startsWith(LOG_PRIORITY + ".")) {
