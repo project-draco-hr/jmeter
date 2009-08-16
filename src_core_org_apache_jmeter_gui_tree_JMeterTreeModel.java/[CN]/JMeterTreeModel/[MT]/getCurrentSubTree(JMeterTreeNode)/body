@@ -1,8 +1,8 @@
 {
   ListedHashTree hashTree=new ListedHashTree(node);
-  Enumeration enumNode=node.children();
+  Enumeration<JMeterTreeNode> enumNode=node.children();
   while (enumNode.hasMoreElements()) {
-    JMeterTreeNode child=(JMeterTreeNode)enumNode.nextElement();
+    JMeterTreeNode child=enumNode.nextElement();
     hashTree.add(node,getCurrentSubTree(child));
   }
   return hashTree;

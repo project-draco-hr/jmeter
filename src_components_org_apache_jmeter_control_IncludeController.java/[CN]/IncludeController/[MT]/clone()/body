@@ -4,9 +4,9 @@
   clone.setIncludePath(this.getIncludePath());
   if (this.SUBTREE != null) {
     if (this.SUBTREE.keySet().size() == 1) {
-      Iterator itr=this.SUBTREE.keySet().iterator();
+      Iterator<TestElement> itr=this.SUBTREE.keySet().iterator();
       while (itr.hasNext()) {
-        this.SUB=(TestElement)itr.next();
+        this.SUB=itr.next();
       }
     }
     clone.SUBTREE=(HashTree)this.SUBTREE.clone();

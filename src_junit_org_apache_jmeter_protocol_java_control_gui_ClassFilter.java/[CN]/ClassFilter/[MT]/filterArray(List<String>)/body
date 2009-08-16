@@ -1,0 +1,16 @@
+{
+  Iterator<String> itr=items.iterator();
+  ArrayList<Object> newlist=new ArrayList<Object>();
+  while (itr.hasNext()) {
+    String item=itr.next();
+    if (include(item)) {
+      newlist.add(item);
+    }
+  }
+  if (newlist.size() > 0) {
+    return newlist.toArray();
+  }
+ else {
+    return new Object[0];
+  }
+}

@@ -2,11 +2,11 @@
   PatternMatcher pm=JMeterUtils.getMatcher();
   Pattern pattern=null;
   PatternCompiler compiler=new Perl5Compiler();
-  Iterator iter=getVariables().keySet().iterator();
+  Iterator<String> iter=getVariables().keySet().iterator();
   String input=prop.getStringValue();
   while (iter.hasNext()) {
-    String key=(String)iter.next();
-    String value=(String)getVariables().get(key);
+    String key=iter.next();
+    String value=getVariables().get(key);
     if (regexMatch) {
       try {
         pattern=compiler.compile(value);

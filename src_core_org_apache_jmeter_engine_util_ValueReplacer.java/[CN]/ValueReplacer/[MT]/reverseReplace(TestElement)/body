@@ -1,4 +1,4 @@
 {
-  Collection newProps=replaceValues(el.propertyIterator(),new ReplaceFunctionsWithStrings(masterFunction,variables));
+  Collection<JMeterProperty> newProps=replaceValues(el.propertyIterator(),new ReplaceFunctionsWithStrings(masterFunction,variables));
   setProperties(el,newProps);
 }

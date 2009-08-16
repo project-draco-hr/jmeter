@@ -2,7 +2,7 @@
   if (row < objects.size()) {
     Object value=objects.get(row);
     if (col < writeFunctors.size()) {
-      Functor setMethod=(Functor)writeFunctors.get(col);
+      Functor setMethod=writeFunctors.get(col);
       if (setMethod != null) {
         setMethod.invoke(value,new Object[]{cellValue});
         super.fireTableDataChanged();

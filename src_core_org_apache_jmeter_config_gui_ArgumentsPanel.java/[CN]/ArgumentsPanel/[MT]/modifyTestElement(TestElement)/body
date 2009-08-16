@@ -1,12 +1,12 @@
 {
   stopTableEditing();
-  Iterator modelData=tableModel.iterator();
   Arguments arguments=null;
   if (args instanceof Arguments) {
     arguments=(Arguments)args;
     arguments.clear();
+    Iterator<Argument> modelData=(Iterator<Argument>)tableModel.iterator();
     while (modelData.hasNext()) {
-      Argument arg=(Argument)modelData.next();
+      Argument arg=modelData.next();
       arg.setMetaData("=");
       arguments.addArgument(arg);
     }

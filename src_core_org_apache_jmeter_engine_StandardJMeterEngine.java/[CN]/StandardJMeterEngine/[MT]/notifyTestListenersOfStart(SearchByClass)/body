@@ -1,7 +1,7 @@
 {
-  Iterator iter=testListeners.getSearchResults().iterator();
+  Iterator<TestListener> iter=testListeners.getSearchResults().iterator();
   while (iter.hasNext()) {
-    TestListener tl=(TestListener)iter.next();
+    TestListener tl=iter.next();
     if (tl instanceof TestBean) {
       TestBeanHelper.prepare((TestElement)tl);
     }

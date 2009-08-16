@@ -1,9 +1,9 @@
 {
   try {
     Properties nameMap=loadProperties();
-    Iterator it=nameMap.entrySet().iterator();
+    Iterator<Entry<Object,Object>> it=nameMap.entrySet().iterator();
     while (it.hasNext()) {
-      Map.Entry me=(Map.Entry)it.next();
+      Map.Entry<Object,Object> me=it.next();
       String key=(String)me.getKey();
       String val=(String)me.getValue();
       if (!key.startsWith("_")) {

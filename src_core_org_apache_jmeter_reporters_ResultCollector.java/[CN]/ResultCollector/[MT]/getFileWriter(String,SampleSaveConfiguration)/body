@@ -2,7 +2,7 @@
   if (filename == null || filename.length() == 0) {
     return null;
   }
-  FileEntry fe=(FileEntry)files.get(filename);
+  FileEntry fe=files.get(filename);
   PrintWriter writer=null;
   boolean trimmed=true;
   if (fe == null) {

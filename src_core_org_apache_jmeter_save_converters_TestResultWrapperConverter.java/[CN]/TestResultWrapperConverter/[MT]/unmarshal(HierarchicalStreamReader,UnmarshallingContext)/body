@@ -1,6 +1,6 @@
 {
   TestResultWrapper results=new TestResultWrapper();
-  Collection samples=new ArrayList();
+  Collection<SampleResult> samples=new ArrayList<SampleResult>();
   String ver=reader.getAttribute("version");
   if (ver == null || ver.length() == 0) {
     ver="1.0";

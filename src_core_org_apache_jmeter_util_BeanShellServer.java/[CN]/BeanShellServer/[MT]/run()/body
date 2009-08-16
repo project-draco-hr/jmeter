@@ -1,10 +1,10 @@
 {
   ClassLoader loader=Thread.currentThread().getContextClassLoader();
   try {
-    Class Interpreter=loader.loadClass("bsh.Interpreter");
+    Class<?> Interpreter=loader.loadClass("bsh.Interpreter");
     Object instance=Interpreter.newInstance();
-    Class string=String.class;
-    Class object=Object.class;
+    Class<String> string=String.class;
+    Class<Object> object=Object.class;
     Method eval=Interpreter.getMethod("eval",new Class[]{string});
     Method setObj=Interpreter.getMethod("set",new Class[]{string,object});
     Method setInt=Interpreter.getMethod("set",new Class[]{string,int.class});

@@ -1,9 +1,9 @@
 {
-  Iterator iter=getVariables().keySet().iterator();
+  Iterator<String> iter=getVariables().keySet().iterator();
   String input=prop.getStringValue();
   while (iter.hasNext()) {
-    String key=(String)iter.next();
-    String value=(String)getVariables().get(key);
+    String key=iter.next();
+    String value=getVariables().get(key);
     input=StringUtilities.substitute(input,"${" + key + "}",value);
   }
   StringProperty newProp=new StringProperty(prop.getName(),input);

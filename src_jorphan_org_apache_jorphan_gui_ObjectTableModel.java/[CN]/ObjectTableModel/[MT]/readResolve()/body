@@ -1,8 +1,8 @@
 {
-  objects=new ArrayList();
-  headers=new ArrayList();
-  classes=new ArrayList();
-  readFunctors=new ArrayList();
-  writeFunctors=new ArrayList();
+  objects=new ArrayList<Object>();
+  headers=new ArrayList<String>();
+  classes=new ArrayList<Class<?>>();
+  readFunctors=new ArrayList<Functor>();
+  writeFunctors=new ArrayList<Functor>();
   return this;
 }

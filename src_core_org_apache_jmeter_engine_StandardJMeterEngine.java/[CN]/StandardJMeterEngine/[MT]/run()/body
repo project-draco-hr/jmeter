@@ -39,7 +39,7 @@
   SearchByClass searcher=new SearchByClass(ThreadGroup.class);
   test.traverse(searcher);
   TestCompiler.initialize();
-  Iterator iter=searcher.getSearchResults().iterator();
+  Iterator<ThreadGroup> iter=searcher.getSearchResults().iterator();
   System.gc();
   ListenerNotifier notifier=new ListenerNotifier();
   JMeterContextService.getContext().setSamplingStarted(true);
@@ -48,7 +48,7 @@
   startingGroups=true;
   while (running && iter.hasNext()) {
     groupCount++;
-    ThreadGroup group=(ThreadGroup)iter.next();
+    ThreadGroup group=iter.next();
     int numThreads=group.getNumThreads();
     JMeterContextService.addTotalThreads(numThreads);
     boolean onErrorStopTest=group.getOnErrorStopTest();

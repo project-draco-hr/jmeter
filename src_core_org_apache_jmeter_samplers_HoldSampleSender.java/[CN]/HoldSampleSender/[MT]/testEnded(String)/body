@@ -1,13 +1,13 @@
 {
   log.info("Test Ended on " + host);
   try {
-    Iterator i=sampleStore.iterator();
+    Iterator<SampleEvent> i=sampleStore.iterator();
     while (i.hasNext()) {
-      SampleEvent se=(SampleEvent)i.next();
+      SampleEvent se=i.next();
       listener.sampleOccurred(se);
     }
     listener.testEnded(host);
-    sampleStore=null;
+    sampleStore.clear();
   }
  catch (  Throwable ex) {
     log.error("testEnded(host)",ex);

@@ -1,0 +1,7 @@
+{
+  el.clear();
+  Iterator<JMeterProperty> iter=newProps.iterator();
+  while (iter.hasNext()) {
+    el.setProperty(iter.next());
+  }
+}

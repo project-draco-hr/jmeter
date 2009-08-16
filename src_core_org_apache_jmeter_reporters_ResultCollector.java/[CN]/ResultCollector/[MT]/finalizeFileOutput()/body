@@ -1,9 +1,9 @@
 {
-  Iterator it=files.entrySet().iterator();
+  Iterator<Map.Entry<String,ResultCollector.FileEntry>> it=files.entrySet().iterator();
   while (it.hasNext()) {
-    Map.Entry me=(Map.Entry)it.next();
+    Map.Entry<String,ResultCollector.FileEntry> me=it.next();
     log.debug("Closing: " + me.getKey());
-    FileEntry fe=(FileEntry)me.getValue();
+    FileEntry fe=me.getValue();
     writeFileEnd(fe.pw,fe.config);
     fe.pw.close();
     if (fe.pw.checkError()) {

@@ -1,7 +1,7 @@
 {
 synchronized (sampleStore) {
     String key=StatisticalSampleResult.getKey(e);
-    StatisticalSampleResult statResult=(StatisticalSampleResult)sampleTable.get(key);
+    StatisticalSampleResult statResult=sampleTable.get(key);
     if (statResult == null) {
       statResult=new StatisticalSampleResult(e.getResult());
       sampleTable.put(key,statResult);

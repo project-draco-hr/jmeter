@@ -15,9 +15,9 @@
     treeModel.addSubTree(tree,root);
     SearchByClass replaceableControllers=new SearchByClass(ReplaceableController.class);
     tree.traverse(replaceableControllers);
-    Collection replaceableControllersRes=replaceableControllers.getSearchResults();
-    for (Iterator iter=replaceableControllersRes.iterator(); iter.hasNext(); ) {
-      ReplaceableController replaceableController=(ReplaceableController)iter.next();
+    Collection<ReplaceableController> replaceableControllersRes=replaceableControllers.getSearchResults();
+    for (Iterator<ReplaceableController> iter=replaceableControllersRes.iterator(); iter.hasNext(); ) {
+      ReplaceableController replaceableController=iter.next();
       replaceableController.resolveReplacementSubTree(root);
     }
     convertSubTree(tree);

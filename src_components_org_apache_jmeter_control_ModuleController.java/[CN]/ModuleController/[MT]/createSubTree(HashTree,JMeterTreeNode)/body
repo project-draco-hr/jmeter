@@ -1,7 +1,7 @@
 {
-  Enumeration e=node.children();
+  Enumeration<JMeterTreeNode> e=node.children();
   while (e.hasMoreElements()) {
-    JMeterTreeNode subNode=(JMeterTreeNode)e.nextElement();
+    JMeterTreeNode subNode=e.nextElement();
     tree.add(subNode);
     createSubTree(tree.getTree(subNode),subNode);
   }

@@ -1,7 +1,7 @@
 {
-  Enumeration enumr=from.children();
+  Enumeration<JMeterTreeNode> enumr=from.children();
   while (enumr.hasMoreElements()) {
-    JMeterTreeNode child=(JMeterTreeNode)enumr.nextElement();
+    JMeterTreeNode child=enumr.nextElement();
     JMeterTreeNode childClone=(JMeterTreeNode)child.clone();
     childClone.setUserObject(((TestElement)child.getUserObject()).clone());
     to.add(childClone);

@@ -1,5 +1,5 @@
 {
-  List props=new LinkedList();
+  List<JMeterProperty> props=new LinkedList<JMeterProperty>();
   while (iter.hasNext()) {
     JMeterProperty val=iter.next();
     if (log.isDebugEnabled()) {
@@ -15,11 +15,11 @@
     }
  else     if (val instanceof MultiProperty) {
       MultiProperty multiVal=(MultiProperty)val;
-      Collection newValues=replaceValues(multiVal.iterator(),transform);
+      Collection<JMeterProperty> newValues=replaceValues(multiVal.iterator(),transform);
       multiVal.clear();
-      Iterator propIter=newValues.iterator();
+      Iterator<JMeterProperty> propIter=newValues.iterator();
       while (propIter.hasNext()) {
-        multiVal.addProperty((JMeterProperty)propIter.next());
+        multiVal.addProperty(propIter.next());
       }
       if (log.isDebugEnabled()) {
         log.debug("Replacement result: " + multiVal);

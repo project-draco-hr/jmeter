@@ -4,7 +4,7 @@
   if (headers.size() == 1 && col >= readFunctors.size()) {
     return value;
   }
-  Functor getMethod=(Functor)readFunctors.get(col);
+  Functor getMethod=readFunctors.get(col);
   if (getMethod != null && value != null) {
     return getMethod.invoke(value);
   }

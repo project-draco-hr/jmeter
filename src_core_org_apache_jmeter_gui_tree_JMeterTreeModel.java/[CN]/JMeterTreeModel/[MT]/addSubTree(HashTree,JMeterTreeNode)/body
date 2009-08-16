@@ -1,7 +1,7 @@
 {
-  Iterator iter=subTree.list().iterator();
+  Iterator<TestElement> iter=subTree.list().iterator();
   while (iter.hasNext()) {
-    TestElement item=(TestElement)iter.next();
+    TestElement item=iter.next();
     if (item instanceof TestPlan) {
       TestPlan tp=(TestPlan)item;
       current=(JMeterTreeNode)((JMeterTreeNode)getRoot()).getChildAt(0);

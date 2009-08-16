@@ -2,7 +2,7 @@
   TestElement testElement=getTestElement();
   try {
     if (testElement instanceof TestBean) {
-      Class testClass=testElement.getClass();
+      Class<?> testClass=testElement.getClass();
       try {
         Image img=Introspector.getBeanInfo(testClass).getIcon(BeanInfo.ICON_COLOR_16x16);
         if (img == null) {
