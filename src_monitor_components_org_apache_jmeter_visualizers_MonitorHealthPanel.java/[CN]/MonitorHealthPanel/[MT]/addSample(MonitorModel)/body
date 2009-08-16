@@ -2,7 +2,7 @@
   if (serverPanelMap.containsKey(model.getURL())) {
     ServerPanel pane=null;
     if (serverPanelMap.get(model.getURL()) != null) {
-      pane=(ServerPanel)serverPanelMap.get((model.getURL()));
+      pane=serverPanelMap.get((model.getURL()));
     }
  else {
       pane=new ServerPanel(model);

@@ -1,6 +1,6 @@
 {
   super();
-  this.SERVERMAP=new HashMap();
+  this.SERVERMAP=new HashMap<String,DefaultMutableTreeNode>();
   this.MODEL=model;
   this.MODEL.addListener(this);
   this.GRAPH=graph;
