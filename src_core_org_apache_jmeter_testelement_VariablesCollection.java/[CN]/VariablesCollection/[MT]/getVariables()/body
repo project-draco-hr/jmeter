@@ -1,3 +1,3 @@
 {
-  return (JMeterVariables)varMap.get(Thread.currentThread().getName());
+  return varMap.get(Thread.currentThread().getName());
 }
