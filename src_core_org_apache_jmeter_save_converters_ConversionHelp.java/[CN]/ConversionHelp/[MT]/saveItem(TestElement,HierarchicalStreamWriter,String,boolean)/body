@@ -4,6 +4,6 @@
     if (encode) {
       item=ConversionHelp.encode(item);
     }
-    writer.addAttribute((String)propertyToAttribute.get(prop),item);
+    writer.addAttribute(propertyToAttribute.get(prop),item);
   }
 }

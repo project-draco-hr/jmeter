@@ -1,5 +1,5 @@
 {
-  String att=(String)propertyToAttribute.get(prop);
+  String att=propertyToAttribute.get(prop);
   String value=reader.getAttribute(att);
   if (value != null) {
     if (decode) {
