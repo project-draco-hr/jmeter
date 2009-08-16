@@ -1,7 +1,7 @@
 {
 synchronized (accumulators) {
     myName=getName();
-    myTotals=(Totals)accumulators.get(myName);
+    myTotals=accumulators.get(myName);
     if (myTotals == null) {
       myTotals=new Totals();
       accumulators.put(myName,myTotals);

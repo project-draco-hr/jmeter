@@ -1,19 +1,18 @@
 {
-  Object[] totals=null;
+  Set<Entry<String,Totals>> totals=null;
 synchronized (accumulators) {
     instanceCount--;
     if (instanceCount <= 0) {
-      totals=accumulators.entrySet().toArray();
+      totals=accumulators.entrySet();
     }
   }
   if (totals == null) {
     return;
   }
-  for (int i=0; i < totals.length; i++) {
-    Map.Entry me=(Map.Entry)totals[i];
+  for (  Map.Entry<String,Totals> entry : totals) {
     String str;
-    String name=(String)me.getKey();
-    Totals total=(Totals)me.getValue();
+    String name=entry.getKey();
+    Totals total=entry.getValue();
     if (total.delta.getNumSamples() > 0 && total.total.getNumSamples() > 0) {
       str=format(name,total.delta,"+");
       if (TOLOG) {

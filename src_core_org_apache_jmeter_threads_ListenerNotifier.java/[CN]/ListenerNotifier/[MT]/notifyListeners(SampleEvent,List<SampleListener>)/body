@@ -1,8 +1,8 @@
 {
-  Iterator iter=listeners.iterator();
+  Iterator<SampleListener> iter=listeners.iterator();
   while (iter.hasNext()) {
     try {
-      SampleListener sampleListener=((SampleListener)iter.next());
+      SampleListener sampleListener=iter.next();
       TestBeanHelper.prepare((TestElement)sampleListener);
       sampleListener.sampleOccurred(res);
     }

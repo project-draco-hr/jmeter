@@ -1,7 +1,7 @@
 {
-  Iterator iter=files.values().iterator();
+  Iterator<FileEntry> iter=files.values().iterator();
   while (iter.hasNext()) {
-    FileEntry fileEntry=(FileEntry)iter.next();
+    FileEntry fileEntry=iter.next();
     if (fileEntry.inputOutputObject != null) {
       return true;
     }

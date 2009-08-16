@@ -1,5 +1,5 @@
 {
-  FileEntry fileEntry=(FileEntry)files.get(filename);
+  FileEntry fileEntry=files.get(filename);
   if (fileEntry != null) {
     if (fileEntry.inputOutputObject == null) {
       fileEntry.inputOutputObject=createBufferedWriter(fileEntry,filename);
