@@ -1,6 +1,6 @@
 {
   this(comper);
-  Iterator it=keys.iterator();
+  Iterator<?> it=keys.iterator();
   while (it.hasNext()) {
     data.put(it.next(),new SortedHashTree(comper));
   }

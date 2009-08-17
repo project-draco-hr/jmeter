@@ -3,7 +3,7 @@
     visitor.processPath();
   }
  else {
-    Iterator iter=list().iterator();
+    Iterator<?> iter=list().iterator();
     while (iter.hasNext()) {
       Object item=iter.next();
       final HashTree treeItem=getTree(item);

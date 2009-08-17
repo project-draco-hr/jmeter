@@ -1,5 +1,5 @@
 {
-  data=new HashMap();
+  data=new HashMap<Object,HashTree>();
   for (int x=0; x < keys.length; x++) {
     data.put(keys[x],new HashTree());
   }

@@ -1,6 +1,6 @@
 {
-  data=new HashMap();
-  Iterator it=keys.iterator();
+  data=new HashMap<Object,HashTree>();
+  Iterator<?> it=keys.iterator();
   while (it.hasNext()) {
     data.put(it.next(),new HashTree());
   }

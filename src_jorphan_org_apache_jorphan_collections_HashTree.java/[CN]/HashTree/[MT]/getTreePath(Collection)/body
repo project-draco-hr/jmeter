@@ -1,6 +1,6 @@
 {
   HashTree tree=this;
-  Iterator iter=treePath.iterator();
+  Iterator<?> iter=treePath.iterator();
   while (iter.hasNext()) {
     if (tree == null) {
       return null;

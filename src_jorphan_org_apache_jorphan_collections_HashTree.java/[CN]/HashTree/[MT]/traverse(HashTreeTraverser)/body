@@ -1,5 +1,5 @@
 {
-  Iterator iter=list().iterator();
+  Iterator<?> iter=list().iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
     visitor.addNode(item,getTree(item));

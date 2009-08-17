@@ -1,6 +1,5 @@
 {
-  super();
-  order=new LinkedList();
+  this();
   for (int x=0; x < keys.length; x++) {
     data.put(keys[x],new ListedHashTree());
     order.add(keys[x]);

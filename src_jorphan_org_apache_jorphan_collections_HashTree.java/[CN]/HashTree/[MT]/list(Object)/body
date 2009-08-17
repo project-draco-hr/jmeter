@@ -1,5 +1,5 @@
 {
-  HashTree temp=(HashTree)data.get(key);
+  HashTree temp=data.get(key);
   if (temp != null) {
     return temp.list();
   }
