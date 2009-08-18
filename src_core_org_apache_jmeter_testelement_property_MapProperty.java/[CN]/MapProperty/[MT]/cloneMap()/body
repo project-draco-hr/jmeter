@@ -1,10 +1,10 @@
 {
   try {
-    Map newCol=value.getClass().newInstance();
+    Map<String,JMeterProperty> newCol=value.getClass().newInstance();
     PropertyIterator iter=valueIterator();
     while (iter.hasNext()) {
       JMeterProperty item=iter.next();
-      newCol.put(item.getName(),item.clone());
+      newCol.put(item.getName(),(JMeterProperty)item.clone());
     }
     return newCol;
   }

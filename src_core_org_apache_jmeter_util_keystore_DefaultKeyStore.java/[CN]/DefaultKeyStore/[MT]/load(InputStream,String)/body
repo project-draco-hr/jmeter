@@ -3,9 +3,9 @@
   PrivateKey _key=null;
   X509Certificate[] _certChain=null;
   if (null != is) {
-    Enumeration aliases=store.aliases();
+    Enumeration<String> aliases=store.aliases();
     while (aliases.hasMoreElements()) {
-      this.alias=(String)aliases.nextElement();
+      this.alias=aliases.nextElement();
       if (store.isKeyEntry(alias)) {
         _key=(PrivateKey)store.getKey(alias,pword.toCharArray());
         Certificate[] chain=store.getCertificateChain(alias);
