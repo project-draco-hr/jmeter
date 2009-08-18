@@ -12,11 +12,11 @@
   conn.setInstanceFollowRedirects(getAutoRedirects());
   int cto=getConnectTimeout();
   if (cto > 0) {
-    setTimeout(setConnectTimeout,conn,cto);
+    conn.setConnectTimeout(cto);
   }
   int rto=getResponseTimeout();
   if (rto > 0) {
-    setTimeout(setReadTimeout,conn,rto);
+    conn.setReadTimeout(rto);
   }
   if (PROTOCOL_HTTPS.equalsIgnoreCase(u.getProtocol())) {
     try {
