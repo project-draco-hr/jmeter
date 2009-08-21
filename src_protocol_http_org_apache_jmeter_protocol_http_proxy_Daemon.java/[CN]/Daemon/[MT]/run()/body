@@ -8,7 +8,7 @@
       try {
         Socket clientSocket=mainSocket.accept();
         if (running) {
-          Proxy thd=(Proxy)proxyClass.newInstance();
+          Proxy thd=proxyClass.newInstance();
           thd.configure(clientSocket,target,pageEncodings,formEncodings);
           thd.start();
         }
