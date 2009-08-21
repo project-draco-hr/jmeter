@@ -1,8 +1,8 @@
 {
   if (filterContentType(result) && filterUrl(sampler)) {
     JMeterTreeNode myTarget=findTargetControllerNode();
-    Collection defaultConfigurations=findApplicableElements(myTarget,ConfigTestElement.class,false);
-    Collection userDefinedVariables=findApplicableElements(myTarget,Arguments.class,true);
+    Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
+    Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
     removeValuesFromSampler(sampler,defaultConfigurations);
     replaceValues(sampler,subConfigs,userDefinedVariables);
     sampler.setAutoRedirects(samplerRedirectAutomatically);
