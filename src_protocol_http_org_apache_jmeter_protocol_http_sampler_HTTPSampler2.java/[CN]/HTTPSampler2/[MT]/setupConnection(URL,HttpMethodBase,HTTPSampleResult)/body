@@ -16,12 +16,22 @@
   if (localAddress != null) {
     hc.setLocalAddress(localAddress);
   }
-  boolean useProxy=PROXY_DEFINED && !isNonProxy(host);
-  if (useProxy) {
-    if (log.isDebugEnabled()) {
-      log.debug("Setting proxy: " + PROXY_HOST + ":"+ PROXY_PORT);
+  boolean useStaticProxy=PROXY_DEFINED && !isNonProxy(host);
+  boolean useDynamicProxy=false;
+  final String proxyHost=getProxyHost();
+  final int proxyPort=getProxyPortInt();
+  if (proxyHost.length() > 0 && proxyPort > 0) {
+    hc.setProxy(proxyHost,proxyPort);
+    useStaticProxy=false;
+    useDynamicProxy=true;
+  }
+ else {
+    if (useStaticProxy) {
+      if (log.isDebugEnabled()) {
+        log.debug("Setting proxy: " + PROXY_HOST + ":"+ PROXY_PORT);
+      }
+      hc.setProxy(PROXY_HOST,PROXY_PORT);
     }
-    hc.setProxy(PROXY_HOST,PROXY_PORT);
   }
   Map<HostConfiguration,HttpClient> map=httpClients.get();
   HttpClient httpClient=map.get(hc);
@@ -32,15 +42,29 @@
     }
     httpClient.setHostConfiguration(hc);
     map.put(hc,httpClient);
-    if (useProxy) {
-      if (PROXY_USER.length() > 0) {
-        httpClient.getState().setProxyCredentials(new AuthScope(PROXY_HOST,PROXY_PORT,null,AuthScope.ANY_SCHEME),new NTCredentials(PROXY_USER,PROXY_PASS,localHost,PROXY_DOMAIN));
-      }
-    }
   }
  else {
     if (log.isDebugEnabled()) {
       log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient));
+    }
+  }
+  if (useDynamicProxy) {
+    String user=getProxyUser();
+    if (user.length() > 0) {
+      httpClient.getState().setProxyCredentials(new AuthScope(proxyHost,proxyPort,null,AuthScope.ANY_SCHEME),new NTCredentials(user,getProxyPass(),localHost,PROXY_DOMAIN));
+    }
+ else {
+      httpClient.getState().clearProxyCredentials();
+    }
+  }
+ else {
+    if (useStaticProxy) {
+      if (PROXY_USER.length() > 0) {
+        httpClient.getState().setProxyCredentials(new AuthScope(PROXY_HOST,PROXY_PORT,null,AuthScope.ANY_SCHEME),new NTCredentials(PROXY_USER,PROXY_PASS,localHost,PROXY_DOMAIN));
+      }
+    }
+ else {
+      httpClient.getState().clearProxyCredentials();
     }
   }
   int rto=getResponseTimeout();

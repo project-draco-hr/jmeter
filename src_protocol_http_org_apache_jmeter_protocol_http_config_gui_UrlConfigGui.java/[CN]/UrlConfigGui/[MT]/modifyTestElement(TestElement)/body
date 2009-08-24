@@ -4,6 +4,10 @@
   element.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
   element.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
   element.setProperty(HTTPSamplerBase.PORT,port.getText());
+  element.setProperty(HTTPSamplerBase.PROXYHOST,proxyHost.getText(),"");
+  element.setProperty(HTTPSamplerBase.PROXYPORT,proxyPort.getText(),"");
+  element.setProperty(HTTPSamplerBase.PROXYUSER,proxyUser.getText(),"");
+  element.setProperty(HTTPSamplerBase.PROXYPASS,proxyPass.getText(),"");
   element.setProperty(HTTPSamplerBase.CONNECT_TIMEOUT,connectTimeOut.getText());
   element.setProperty(HTTPSamplerBase.RESPONSE_TIMEOUT,responseTimeOut.getText());
   element.setProperty(HTTPSamplerBase.PROTOCOL,protocol.getText());

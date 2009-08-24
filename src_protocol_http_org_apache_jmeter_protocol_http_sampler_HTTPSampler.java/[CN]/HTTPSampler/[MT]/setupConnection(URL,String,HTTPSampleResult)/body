@@ -8,7 +8,16 @@
       log.warn("Problem creating the SSLManager: ",e);
     }
   }
-  HttpURLConnection conn=(HttpURLConnection)u.openConnection();
+  final HttpURLConnection conn;
+  final String proxyHost=getProxyHost();
+  final int proxyPort=getProxyPortInt();
+  if (proxyHost.length() > 0 && proxyPort > 0) {
+    Proxy proxy=new Proxy(Proxy.Type.HTTP,new InetSocketAddress(proxyHost,proxyPort));
+    conn=(HttpURLConnection)u.openConnection(proxy);
+  }
+ else {
+    conn=(HttpURLConnection)u.openConnection();
+  }
   conn.setInstanceFollowRedirects(getAutoRedirects());
   int cto=getConnectTimeout();
   if (cto > 0) {

@@ -1,0 +1,9 @@
+{
+  proxyUser=new JTextField(5);
+  JLabel label=new JLabel(JMeterUtils.getResString("username"));
+  label.setLabelFor(proxyUser);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  panel.add(label,BorderLayout.WEST);
+  panel.add(proxyUser,BorderLayout.CENTER);
+  return panel;
+}
