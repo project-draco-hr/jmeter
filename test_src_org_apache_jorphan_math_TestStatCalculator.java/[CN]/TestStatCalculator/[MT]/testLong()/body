@@ -1,7 +1,12 @@
 {
   calc.addValue(0L);
   calc.addValue(2L);
-  assertEquals(Long.valueOf(2),calc.getMax());
-  assertEquals(Long.valueOf(0),calc.getMin());
-  calc.getDistribution();
+  calc.addValue(2L);
+  final Long long0=Long.valueOf(0);
+  final Long long2=Long.valueOf(2);
+  assertEquals(long2,calc.getMax());
+  assertEquals(long0,calc.getMin());
+  Map<Number,Number[]> map=calc.getDistribution();
+  assertTrue(map.containsKey(long0));
+  assertTrue(map.containsKey(long2));
 }

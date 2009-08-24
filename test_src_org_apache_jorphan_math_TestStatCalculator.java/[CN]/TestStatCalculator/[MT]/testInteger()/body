@@ -1,6 +1,11 @@
 {
-  calc.addValue(0);
-  calc.addValue(2);
-  assertEquals(Integer.valueOf(2),calc.getMax());
-  assertEquals(Integer.valueOf(0),calc.getMin());
+  StatCalculatorInteger calci=new StatCalculatorInteger();
+  calci.addValue(0);
+  calci.addValue(2);
+  calci.addValue(2);
+  assertEquals(Integer.valueOf(2),calci.getMax());
+  assertEquals(Integer.valueOf(0),calci.getMin());
+  Map<Number,Number[]> map=calci.getDistribution();
+  assertTrue(map.containsKey(Integer.valueOf(0)));
+  assertTrue(map.containsKey(Integer.valueOf(2)));
 }

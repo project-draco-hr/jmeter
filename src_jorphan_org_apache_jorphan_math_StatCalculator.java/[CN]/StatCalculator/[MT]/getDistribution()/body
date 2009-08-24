@@ -1,10 +1,12 @@
 {
-  HashMap<Long,Number[]> items=new HashMap<Long,Number[]>();
-  Iterator<Number> itr=this.values.iterator();
+  HashMap<Number,Number[]> items=new HashMap<Number,Number[]>();
+  Iterator<T> itr=this.values.iterator();
   Number[] dis;
   while (itr.hasNext()) {
-    Number num=itr.next();
-    Long nx=new Long(itr.next().longValue());
+    Number nx=itr.next();
+    if (!(nx instanceof Integer || nx instanceof Long)) {
+      nx=new Long(nx.longValue());
+    }
     if (items.containsKey(nx)) {
       dis=items.get(nx);
       dis[1]=new Integer(dis[1].intValue() + 1);
