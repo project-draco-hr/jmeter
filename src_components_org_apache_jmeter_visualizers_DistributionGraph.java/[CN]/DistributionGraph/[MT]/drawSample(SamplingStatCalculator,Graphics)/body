@@ -15,13 +15,13 @@
     Number ninety=p_model.getPercentPoint(0.90);
     Number fifty=p_model.getPercentPoint(0.50);
     int total=p_model.getCount();
-    Collection<?> values=p_model.getDistribution().values();
-    Object[] objval=new Object[values.size()];
+    Collection<Number[]> values=p_model.getDistribution().values();
+    Number[][] objval=(Number[][])new Object[values.size()];
     objval=values.toArray(objval);
     Arrays.sort(objval,new NumberComparator());
     int len=objval.length;
     for (int count=0; count < len; count++) {
-      Number[] num=(Number[])objval[count];
+      Number[] num=objval[count];
       double iper=(double)num[1].intValue() / (double)total;
       double iheight=height * iper;
       if (iheight < 1) {
