@@ -1,0 +1,14 @@
+{
+  String val=getStringValue();
+  String val2=arg0.getStringValue();
+  if (val == null) {
+    log.warn("Warning: Unexpected null value for property: " + name);
+    if (val2 == null) {
+      return 0;
+    }
+ else {
+      return -1;
+    }
+  }
+  return val.compareTo(val2);
+}
