@@ -1,6 +1,6 @@
 {
-  Iterator iter=coll.iterator();
-  Collection newColl=null;
+  Iterator<?> iter=coll.iterator();
+  Collection<JMeterProperty> newColl=null;
   while (iter.hasNext()) {
     Object item=iter.next();
     if (newColl == null) {

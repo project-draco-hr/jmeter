@@ -1,6 +1,6 @@
 {
   try {
-    JMeterProperty prop=(JMeterProperty)getPropertyType().newInstance();
+    JMeterProperty prop=getPropertyType().newInstance();
     if (prop instanceof NullProperty) {
       return new StringProperty();
     }

@@ -1,6 +1,6 @@
 {
-  if (value instanceof List) {
-    return (JMeterProperty)((List)value).get(row);
+  if (value instanceof List<?>) {
+    return ((List<JMeterProperty>)value).get(row);
   }
   return null;
 }

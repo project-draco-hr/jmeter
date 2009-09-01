@@ -15,7 +15,7 @@
     Number ninety=p_model.getPercentPoint(0.90);
     Number fifty=p_model.getPercentPoint(0.50);
     int total=p_model.getCount();
-    Collection values=p_model.getDistribution().values();
+    Collection<?> values=p_model.getDistribution().values();
     Object[] objval=new Object[values.size()];
     objval=values.toArray(objval);
     Arrays.sort(objval,new NumberComparator());
