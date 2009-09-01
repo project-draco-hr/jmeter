@@ -1,9 +1,9 @@
 {
   JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
-  List nodes=treeModel.getNodesOfType(type);
-  Iterator iter=nodes.iterator();
+  List<JMeterTreeNode> nodes=treeModel.getNodesOfType(type);
+  Iterator<JMeterTreeNode> iter=nodes.iterator();
   while (iter.hasNext()) {
-    JMeterTreeNode node=(JMeterTreeNode)iter.next();
+    JMeterTreeNode node=iter.next();
     if (node.isEnabled()) {
       return node;
     }

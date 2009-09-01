@@ -3,9 +3,9 @@
   variables.addParameter("T",Long.toString(deltaT));
   ValueReplacer replacer=new ValueReplacer(variables);
   JMeterTreeNode mySelf=model.getNodeOf(this);
-  Enumeration children=mySelf.children();
+  Enumeration<JMeterTreeNode> children=mySelf.children();
   while (children.hasMoreElements()) {
-    JMeterTreeNode templateNode=(JMeterTreeNode)children.nextElement();
+    JMeterTreeNode templateNode=children.nextElement();
     if (templateNode.isEnabled()) {
       TestElement template=templateNode.getTestElement();
       if (template instanceof Timer) {
