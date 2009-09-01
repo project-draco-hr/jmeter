@@ -3,12 +3,12 @@
   String connectorPrefix=stat.getConnectorPrefix();
   if (connectorPrefix != null && connectorPrefix.length() > 0) {
     for (int i=0; i < stat.getConnector().size(); i++) {
-      cntr=(Connector)stat.getConnector().get(i);
+      cntr=stat.getConnector().get(i);
       if (cntr.getName().startsWith(connectorPrefix)) {
         return cntr;
       }
     }
   }
-  cntr=(Connector)stat.getConnector().get(0);
+  cntr=stat.getConnector().get(0);
   return cntr;
 }

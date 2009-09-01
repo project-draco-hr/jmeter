@@ -4,12 +4,12 @@
     return;
   }
   HTTPSamplerBase config=(HTTPSamplerBase)entry;
-  Map currentUser=allAvailableUsers.getNextUserMods();
+  Map<String,String> currentUser=allAvailableUsers.getNextUserMods();
   PropertyIterator iter=config.getArguments().iterator();
   while (iter.hasNext()) {
     Argument arg=(Argument)iter.next().getObjectValue();
     if (currentUser.containsKey(arg.getName())) {
-      arg.setValue((String)currentUser.get(arg.getName()));
+      arg.setValue(currentUser.get(arg.getName()));
     }
   }
 }

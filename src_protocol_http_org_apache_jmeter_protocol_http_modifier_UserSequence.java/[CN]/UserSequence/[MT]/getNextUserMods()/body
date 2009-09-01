@@ -2,13 +2,13 @@
   if (!indexOfUsers.hasNext()) {
     indexOfUsers=allUsers.iterator();
   }
-  Map user;
+  Map<String,String> user;
   if (indexOfUsers.hasNext()) {
-    user=(Map)indexOfUsers.next();
+    user=indexOfUsers.next();
     log.debug("UserSequence.getNextuserMods(): current parameters will be " + "changed to: " + user);
   }
  else {
-    user=new HashMap();
+    user=new HashMap<String,String>();
   }
   return user;
 }

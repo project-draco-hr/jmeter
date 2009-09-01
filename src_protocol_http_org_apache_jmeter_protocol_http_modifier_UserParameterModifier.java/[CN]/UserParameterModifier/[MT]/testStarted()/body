@@ -1,5 +1,5 @@
 {
-  List allUsers=new LinkedList();
+  List<Map<String,String>> allUsers=new LinkedList<Map<String,String>>();
   try {
     UserParameterXMLParser readXMLParameters=new UserParameterXMLParser();
     allUsers=readXMLParameters.getXMLParameters(getXmlUri());
