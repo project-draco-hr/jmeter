@@ -1,0 +1,17 @@
+{
+  SampleResult result=event.getResult();
+  if (result.isSuccessful()) {
+    result.setResponseData(new byte[0]);
+  }
+  if (decoratedSender == null) {
+    try {
+      listener.sampleOccurred(event);
+    }
+ catch (    RemoteException e) {
+      log.error("Error sending sample result over network ",e);
+    }
+  }
+ else {
+    decoratedSender.sampleOccurred(event);
+  }
+}

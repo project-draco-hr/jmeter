@@ -15,6 +15,12 @@
     StandardSampleSender s=new StandardSampleSender(listener);
     return s;
   }
+ else   if (type.equalsIgnoreCase(MODE_STRIPPED_BATCH)) {
+    return new DataStrippingSampleSender(new BatchSampleSender(listener));
+  }
+ else   if (type.equalsIgnoreCase(MODE_STRIPPED)) {
+    return new DataStrippingSampleSender(listener);
+  }
  else {
     SampleSender s=null;
     try {
