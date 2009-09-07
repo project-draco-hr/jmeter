@@ -1,0 +1,9 @@
+{
+  String setter="set" + propName;
+  for (  Method m : c.getMethods()) {
+    if (m.getName().equals(setter)) {
+      return m.getParameterTypes()[0];
+    }
+  }
+  return null;
+}

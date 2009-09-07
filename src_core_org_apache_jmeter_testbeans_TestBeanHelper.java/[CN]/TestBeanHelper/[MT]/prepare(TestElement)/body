@@ -12,7 +12,7 @@
     for (int x=0; x < desc.length; x++) {
       JMeterProperty jprop=el.getProperty(desc[x].getName());
       Class<?> type=desc[x].getPropertyType();
-      Object value=Converter.convert(jprop.getStringValue(),type);
+      Object value=unwrapProperty(desc[x],jprop,type);
       if (log.isDebugEnabled()) {
         log.debug("Setting " + jprop.getName() + "="+ value);
       }

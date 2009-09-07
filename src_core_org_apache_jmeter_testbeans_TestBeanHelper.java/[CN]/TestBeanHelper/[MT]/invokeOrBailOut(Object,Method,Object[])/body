@@ -3,7 +3,7 @@
     return method.invoke(invokee,params);
   }
  catch (  IllegalArgumentException e) {
-    log.error("This should never happen.",e);
+    log.error("This should never happen. " + invokee.getClass().getName() + " "+ method.getName()+ " "+ params.length+ " "+ params[0].getClass().getName(),e);
     throw new Error(e.toString());
   }
 catch (  IllegalAccessException e) {
