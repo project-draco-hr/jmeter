@@ -1,0 +1,12 @@
+{
+  final String samplerData=result.getSamplerData();
+  if (samplerData != null) {
+    buf.append(samplerData.trim());
+  }
+  buf.append("\n");
+  final String requestHeaders=result.getRequestHeaders();
+  if (requestHeaders != null) {
+    buf.append(requestHeaders);
+  }
+  buf.append("\n\n");
+}

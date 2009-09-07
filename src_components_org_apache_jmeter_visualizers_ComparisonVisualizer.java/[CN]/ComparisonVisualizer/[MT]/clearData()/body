@@ -1,0 +1,7 @@
+{
+  while (root.getChildCount() > 0) {
+    treeModel.removeNodeFromParent((DefaultMutableTreeNode)root.getChildAt(0));
+    base.setText("");
+    secondary.setText("");
+  }
+}

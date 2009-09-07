@@ -1,0 +1,10 @@
+{
+  responses.add(response);
+  if (responses.size() > 1) {
+    CompareAssertionResult result=new CompareAssertionResult(getName());
+    compareContent(result);
+    compareTime(result);
+    return result;
+  }
+ else   return new AssertionResult(getName());
+}

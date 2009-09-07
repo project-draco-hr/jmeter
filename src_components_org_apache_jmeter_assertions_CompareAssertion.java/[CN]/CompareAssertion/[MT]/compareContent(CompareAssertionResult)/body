@@ -1,0 +1,31 @@
+{
+  if (compareContent) {
+    Iterator<SampleResult> iter=responses.iterator();
+    String prevContent=null;
+    SampleResult prevResult=null;
+    boolean success=true;
+    while (iter.hasNext()) {
+      SampleResult sResult=iter.next();
+      String currentContent=sResult.getResponseDataAsString();
+      currentContent=filterString(currentContent);
+      if (prevContent != null) {
+        success=prevContent.equals(currentContent);
+      }
+      if (!success) {
+        result.setFailure(true);
+        StringBuffer buf=new StringBuffer();
+        appendResultDetails(buf,prevResult);
+        buf.append(prevContent);
+        result.addToBaseResult(buf.toString());
+        buf=new StringBuffer();
+        appendResultDetails(buf,sResult);
+        buf.append(currentContent);
+        result.addToSecondaryResult(buf.toString());
+        result.setFailureMessage("Responses differ in content");
+        break;
+      }
+      prevResult=sResult;
+      prevContent=currentContent;
+    }
+  }
+}

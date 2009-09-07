@@ -1,0 +1,31 @@
+{
+  if (compareTime >= 0) {
+    Iterator<SampleResult> iter=responses.iterator();
+    long prevTime=-1;
+    SampleResult prevResult=null;
+    boolean success=true;
+    while (iter.hasNext()) {
+      SampleResult sResult=iter.next();
+      long currentTime=sResult.getTime();
+      if (prevTime != -1) {
+        success=Math.abs(prevTime - currentTime) <= compareTime;
+        prevResult=sResult;
+      }
+      if (!success) {
+        result.setFailure(true);
+        StringBuffer buf=new StringBuffer();
+        appendResultDetails(buf,prevResult);
+        buf.append("Response Time: ").append(prevTime);
+        result.addToBaseResult(buf.toString());
+        buf=new StringBuffer();
+        appendResultDetails(buf,sResult);
+        buf.append("Response Time: ").append(currentTime);
+        result.addToSecondaryResult(buf.toString());
+        result.setFailureMessage("Responses differ in response time by more than " + compareTime + " ms");
+        break;
+      }
+      prevResult=sResult;
+      prevTime=currentTime;
+    }
+  }
+}

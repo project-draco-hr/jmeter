@@ -1,0 +1,9 @@
+{
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  JSplitPane split=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+  split.add(getTreePanel());
+  split.add(getSideBySidePanel());
+  add(split,BorderLayout.CENTER);
+}
