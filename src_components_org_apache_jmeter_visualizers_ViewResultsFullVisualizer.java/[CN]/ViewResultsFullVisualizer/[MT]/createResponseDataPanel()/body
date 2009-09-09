@@ -3,8 +3,15 @@
   results.setEditable(false);
   resultsScrollPane=makeScrollPane(results);
   imageLabel=new JLabel();
+  searchTextExtension=new SearchTextExtension();
+  searchPanel=searchTextExtension.createSearchTextPanel();
+  searchTextExtension.setResults(results);
+  searchPanel.setVisible(false);
+  JPanel panelSouth=new JPanel(new BorderLayout());
+  panelSouth.add(createHtmlOrTextPane(),BorderLayout.CENTER);
+  panelSouth.add(searchPanel,BorderLayout.SOUTH);
   JPanel panel=new JPanel(new BorderLayout());
   panel.add(resultsScrollPane,BorderLayout.CENTER);
-  panel.add(createHtmlOrTextPane(),BorderLayout.SOUTH);
+  panel.add(panelSouth,BorderLayout.SOUTH);
   return panel;
 }

@@ -1,0 +1,13 @@
+{
+  renderLabel.setEnabled(b);
+  textButton.setEnabled(b);
+  htmlButton.setEnabled(b);
+  jsonButton.setEnabled(b);
+  xmlButton.setEnabled(b);
+  if (b && command.equals(HTML_COMMAND)) {
+    downloadAll.setEnabled(b);
+  }
+ else {
+    downloadAll.setEnabled(false);
+  }
+}

@@ -1,0 +1,34 @@
+{
+  if (results != null && results.getText().length() > 0 && this.textToFindField.getText().length() > 0) {
+    String textToFind=textToFindField.getText();
+    if (lastTextTofind != null && !lastTextTofind.equals(textToFind)) {
+      lastPosition=LAST_POSITION_DEFAULT;
+    }
+    log.debug("lastPosition=" + lastPosition);
+    Matcher matcher=null;
+    try {
+      Pattern pattern=createPattern(textToFind);
+      Document contentDoc=results.getDocument();
+      String body=contentDoc.getText(lastPosition,(contentDoc.getLength() - lastPosition));
+      matcher=pattern.matcher(body);
+      if ((matcher != null) && (matcher.find())) {
+        selection.removeAllHighlights();
+        selection.addHighlight(lastPosition + matcher.start(),lastPosition + matcher.end(),painter);
+        results.setCaretPosition(lastPosition + matcher.end());
+        lastPosition=lastPosition + matcher.end();
+        findButton.setText(JMeterUtils.getResString("search_text_button_next"));
+        lastTextTofind=textToFind;
+        newSearch=true;
+      }
+ else {
+        JOptionPane.showMessageDialog(null,JMeterUtils.getResString("search_text_msg_not_found"),JMeterUtils.getResString("search_text_title_not_found"),JOptionPane.INFORMATION_MESSAGE);
+        lastPosition=LAST_POSITION_DEFAULT;
+        findButton.setText(JMeterUtils.getResString("search_text_button_find"));
+        results.setCaretPosition(0);
+      }
+    }
+ catch (    BadLocationException ble) {
+      log.error("Location exception in text find",ble);
+    }
+  }
+}

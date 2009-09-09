@@ -1,0 +1,13 @@
+{
+  if (searchPanel != null) {
+    resetTextToFind();
+    if (searchPanel.isVisible()) {
+      searchPanel.setVisible(false);
+      showSearch.setSelected(false);
+    }
+ else {
+      searchPanel.setVisible(true);
+      showSearch.setSelected(true);
+    }
+  }
+}

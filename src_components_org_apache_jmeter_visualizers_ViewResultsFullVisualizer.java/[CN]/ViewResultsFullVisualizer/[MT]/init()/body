@@ -9,4 +9,5 @@
   resultsPane=createResponseDataPanel();
   JSplitPane mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,leftSide,rightSide);
   add(mainSplit,BorderLayout.CENTER);
+  searchTextExtension.init(resultsPane);
 }

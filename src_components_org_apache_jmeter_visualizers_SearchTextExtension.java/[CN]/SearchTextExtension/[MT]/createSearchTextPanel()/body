@@ -1,0 +1,29 @@
+{
+  Font font=new Font("SansSerif",Font.PLAIN,10);
+  searchPanel=new JPanel();
+  searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
+  searchPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+  label=new JLabel(JMeterUtils.getResString("search_text_field"));
+  label.setBorder(BorderFactory.createEmptyBorder(0,0,0,5));
+  searchPanel.add(label);
+  textToFindField=new JTextField();
+  searchPanel.add(textToFindField);
+  searchPanel.add(Box.createRigidArea(new Dimension(5,0)));
+  textToFindField.getDocument().addDocumentListener(this);
+  findButton=new JButton(JMeterUtils.getResString("search_text_button_find"));
+  findButton.setFont(font);
+  findButton.setActionCommand(SEARCH_TEXT_COMMAND);
+  findButton.addActionListener(this);
+  searchPanel.add(findButton);
+  caseChkBox=new JCheckBox(JMeterUtils.getResString("search_text_chkbox_case"),false);
+  caseChkBox.setFont(font);
+  searchPanel.add(caseChkBox);
+  regexpChkBox=new JCheckBox(JMeterUtils.getResString("search_text_chkbox_regexp"),false);
+  regexpChkBox.setFont(font);
+  searchPanel.add(regexpChkBox);
+  InputMap im=textToFindField.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  im.put(KeyStroke.getKeyStroke("ENTER"),SEARCH_TEXT_COMMAND);
+  ActionMap am=textToFindField.getActionMap();
+  am.put(SEARCH_TEXT_COMMAND,new EnterAction());
+  return searchPanel;
+}

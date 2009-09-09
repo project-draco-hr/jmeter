@@ -1,0 +1,11 @@
+{
+  if (newSearch) {
+    log.debug("reset pass");
+    lastPosition=LAST_POSITION_DEFAULT;
+    lastTextTofind=null;
+    findButton.setText(JMeterUtils.getResString("search_text_button_find"));
+    selection.removeAllHighlights();
+    results.setCaretPosition(0);
+    newSearch=false;
+  }
+}

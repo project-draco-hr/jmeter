@@ -1,0 +1,7 @@
+{
+  JPanel pane=new JPanel();
+  pane.setLayout(new BoxLayout(pane,BoxLayout.X_AXIS));
+  pane.add(createShowSearchPanel());
+  pane.add(createSearchTextPanel());
+  return pane;
+}

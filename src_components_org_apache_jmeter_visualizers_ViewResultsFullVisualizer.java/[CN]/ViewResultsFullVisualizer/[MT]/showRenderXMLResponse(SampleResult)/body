@@ -21,8 +21,5 @@
   JPanel domTreePanel=new DOMTreePanel(document);
   view=domTreePanel;
   resultsScrollPane.setViewportView(view);
-  textButton.setEnabled(true);
-  htmlButton.setEnabled(true);
-  jsonButton.setEnabled(true);
-  xmlButton.setEnabled(true);
+  setEnabledButtons(true);
 }

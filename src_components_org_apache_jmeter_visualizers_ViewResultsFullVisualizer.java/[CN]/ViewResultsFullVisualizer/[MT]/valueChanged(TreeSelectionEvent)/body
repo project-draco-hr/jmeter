@@ -81,6 +81,7 @@ statsBuff.append("ContentType: ").append(res.getContentType()).append(NL);
 statsBuff.append("DataEncoding: ").append(res.getDataEncodingNoDefault()).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
 statsBuff=null;
+searchTextExtension.resetTextToFind();
 if ((SampleResult.TEXT).equals(res.getDataType())) {
 String response=getResponseAsString(res);
 if (command.equals(TEXT_COMMAND)) {
@@ -95,11 +96,17 @@ showRenderJSONResponse(response);
  else if (command.equals(XML_COMMAND)) {
 showRenderXMLResponse(res);
 }
+if (!searchTextExtension.isEnabled()) {
+searchTextExtension.setEnabled(true);
+}
 }
  else {
 byte[] responseBytes=res.getResponseData();
 if (responseBytes != null) {
 showImage(new ImageIcon(responseBytes));
+if (searchTextExtension.isEnabled()) {
+  searchTextExtension.setEnabled(false);
+}
 }
 }
 }
