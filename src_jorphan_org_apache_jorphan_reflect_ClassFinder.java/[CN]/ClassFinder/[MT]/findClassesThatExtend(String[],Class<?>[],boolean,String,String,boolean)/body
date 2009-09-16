@@ -1,0 +1,31 @@
+{
+  if (log.isDebugEnabled()) {
+    for (int i=0; i < classNames.length; i++) {
+      log.debug("superclass: " + classNames[i].getName());
+    }
+  }
+  strPathsOrJars=addJarsInPath(strPathsOrJars);
+  for (int k=0; k < strPathsOrJars.length; k++) {
+    strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
+    if (log.isDebugEnabled()) {
+      log.debug("strPathsOrJars : " + strPathsOrJars[k]);
+    }
+  }
+  List<String> listPaths=getClasspathMatches(strPathsOrJars);
+  if (log.isDebugEnabled()) {
+    Iterator<String> tIter=listPaths.iterator();
+    while (tIter.hasNext()) {
+      log.debug("listPaths : " + tIter.next());
+    }
+  }
+  Set<String> listClasses=annotations ? new AnnoFilterTreeSet((Class<? extends Annotation>[])classNames,innerClasses) : new FilterTreeSet(classNames,innerClasses,contains,notContains);
+  findClassesInPaths(listPaths,listClasses);
+  if (log.isDebugEnabled()) {
+    log.debug("listClasses.size()=" + listClasses.size());
+    Iterator<String> tIter=listClasses.iterator();
+    while (tIter.hasNext()) {
+      log.debug("listClasses : " + tIter.next());
+    }
+  }
+  return new ArrayList<String>(listClasses);
+}

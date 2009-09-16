@@ -1,0 +1,11 @@
+{
+  if (contains(s)) {
+    return false;
+  }
+  if ((s.indexOf("$") == -1) || inner) {
+    if (hasAnnotationOnMethod(annotations,s,contextClassLoader)) {
+      return super.add(s);
+    }
+  }
+  return false;
+}

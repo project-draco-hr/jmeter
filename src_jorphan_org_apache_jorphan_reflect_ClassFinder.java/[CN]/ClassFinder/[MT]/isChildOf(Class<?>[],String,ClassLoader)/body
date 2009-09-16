@@ -9,7 +9,7 @@
       }
     }
   }
- catch (  Throwable ignored) {
+ catch (  ClassNotFoundException ignored) {
     log.debug(ignored.getLocalizedMessage());
   }
   return false;
