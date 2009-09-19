@@ -10,7 +10,10 @@
       }
     }
   }
- catch (  ClassNotFoundException ignored) {
+ catch (  NoClassDefFoundError ignored) {
+    log.debug(ignored.getLocalizedMessage());
+  }
+catch (  ClassNotFoundException ignored) {
     log.debug(ignored.getLocalizedMessage());
   }
   return false;
