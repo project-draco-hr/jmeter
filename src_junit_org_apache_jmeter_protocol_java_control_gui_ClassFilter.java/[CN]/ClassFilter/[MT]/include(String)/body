@@ -1,4 +1,5 @@
 {
+  if (pkgs.length == 0)   return true;
   boolean inc=false;
   for (int idx=0; idx < pkgs.length; idx++) {
     if (text.startsWith(pkgs[idx])) {
