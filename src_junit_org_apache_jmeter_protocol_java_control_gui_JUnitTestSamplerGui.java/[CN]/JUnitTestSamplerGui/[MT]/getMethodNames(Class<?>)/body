@@ -1,0 +1,14 @@
+{
+  Method[] meths=clazz.getMethods();
+  List<String> list=new ArrayList<String>();
+  for (int idx=0; idx < meths.length; idx++) {
+    final String method=meths[idx].getName();
+    if (method.startsWith(TESTMETHOD_PREFIX) || method.equals(ONETIMESETUP) || method.equals(ONETIMETEARDOWN)|| method.equals(SUITE)) {
+      list.add(method);
+    }
+  }
+  if (list.size() > 0) {
+    return list.toArray(new String[list.size()]);
+  }
+  return new String[0];
+}

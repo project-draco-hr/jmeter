@@ -1,0 +1,16 @@
+{
+  String className=((String)classnameCombo.getSelectedItem());
+  methodName.removeAllItems();
+  if (className != null) {
+    try {
+      Class<?> testClass=Class.forName(className,false,contextClassLoader);
+      String[] names=getMethodNames(testClass);
+      for (int idx=0; idx < names.length; idx++) {
+        methodName.addItem(names[idx]);
+      }
+      methodName.repaint();
+    }
+ catch (    ClassNotFoundException e) {
+    }
+  }
+}

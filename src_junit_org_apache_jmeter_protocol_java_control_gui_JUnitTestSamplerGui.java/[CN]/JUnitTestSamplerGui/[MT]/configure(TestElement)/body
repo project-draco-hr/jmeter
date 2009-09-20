@@ -2,7 +2,7 @@
   super.configure(el);
   JUnitSampler sampler=(JUnitSampler)el;
   classnameCombo.setSelectedItem(sampler.getClassname());
-  instantiateClass();
+  setupMethods();
   methodName.setSelectedItem(sampler.getMethod());
   filterpkg.setText(sampler.getFilterString());
   constructorLabel.setText(sampler.getConstructorString());

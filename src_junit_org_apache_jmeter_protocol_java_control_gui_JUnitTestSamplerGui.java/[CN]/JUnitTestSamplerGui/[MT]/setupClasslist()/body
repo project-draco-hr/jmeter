@@ -1,0 +1,16 @@
+{
+  classnameCombo.removeAllItems();
+  methodName.removeAllItems();
+  try {
+    List<String> CLASSLIST=ClassFinder.findClassesThatExtend(SPATHS,new Class[]{TestCase.class});
+    ClassFilter filter=new ClassFilter();
+    filter.setPackges(JOrphanUtils.split(filterpkg.getText(),","));
+    Object[] clist=filter.filterArray(CLASSLIST);
+    for (int idx=0; idx < clist.length; idx++) {
+      classnameCombo.addItem(clist[idx]);
+    }
+  }
+ catch (  IOException e) {
+    log.error("Exception getting interfaces.",e);
+  }
+}
