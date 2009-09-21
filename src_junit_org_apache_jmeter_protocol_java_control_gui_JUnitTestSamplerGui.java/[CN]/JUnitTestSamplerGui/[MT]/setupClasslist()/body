@@ -2,10 +2,16 @@
   classnameCombo.removeAllItems();
   methodName.removeAllItems();
   try {
-    List<String> CLASSLIST=ClassFinder.findClassesThatExtend(SPATHS,new Class[]{TestCase.class});
+    List<String> classList;
+    if (junit4.isSelected()) {
+      classList=ClassFinder.findAnnotatedClasses(SPATHS,new Class[]{Test.class},false);
+    }
+ else {
+      classList=ClassFinder.findClassesThatExtend(SPATHS,new Class[]{TestCase.class});
+    }
     ClassFilter filter=new ClassFilter();
     filter.setPackges(JOrphanUtils.split(filterpkg.getText(),","));
-    Object[] clist=filter.filterArray(CLASSLIST);
+    Object[] clist=filter.filterArray(classList);
     for (int idx=0; idx < clist.length; idx++) {
       classnameCombo.addItem(clist[idx]);
     }

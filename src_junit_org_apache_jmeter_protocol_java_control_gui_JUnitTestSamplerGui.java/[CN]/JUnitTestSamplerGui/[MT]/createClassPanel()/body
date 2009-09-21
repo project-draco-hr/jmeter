@@ -9,6 +9,8 @@
   methodLabel.setLabelFor(methodName);
   setupClasslist();
   VerticalPanel panel=new VerticalPanel();
+  panel.add(junit4);
+  junit4.addItemListener(this);
   panel.add(filterpkg);
   filterpkg.addChangeListener(this);
   panel.add(label);

@@ -1,10 +1,11 @@
 {
   super.configure(el);
   JUnitSampler sampler=(JUnitSampler)el;
+  junit4.setSelected(sampler.getJunit4());
+  filterpkg.setText(sampler.getFilterString());
   classnameCombo.setSelectedItem(sampler.getClassname());
   setupMethods();
   methodName.setSelectedItem(sampler.getMethod());
-  filterpkg.setText(sampler.getFilterString());
   constructorLabel.setText(sampler.getConstructorString());
   if (sampler.getSuccessCode().length() > 0) {
     successCode.setText(sampler.getSuccessCode());

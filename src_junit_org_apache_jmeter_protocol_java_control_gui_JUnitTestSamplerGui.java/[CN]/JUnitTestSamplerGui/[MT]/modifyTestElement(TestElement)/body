@@ -4,10 +4,16 @@
   if (classnameCombo.getSelectedItem() != null && classnameCombo.getSelectedItem() instanceof String) {
     sampler.setClassname((String)classnameCombo.getSelectedItem());
   }
+ else {
+    sampler.setClassname(null);
+  }
   sampler.setConstructorString(constructorLabel.getText());
   if (methodName.getSelectedItem() != null) {
     Object mobj=methodName.getSelectedItem();
     sampler.setMethod((String)mobj);
+  }
+ else {
+    sampler.setMethod(null);
   }
   sampler.setFilterString(filterpkg.getText());
   sampler.setSuccess(successMsg.getText());
@@ -17,4 +23,5 @@
   sampler.setDoNotSetUpTearDown(doSetup.isSelected());
   sampler.setAppendError(appendError.isSelected());
   sampler.setAppendException(appendExc.isSelected());
+  sampler.setJunit4(junit4.isSelected());
 }
