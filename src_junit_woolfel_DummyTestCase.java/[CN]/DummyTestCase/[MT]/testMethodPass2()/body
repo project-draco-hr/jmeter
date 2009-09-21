@@ -1,0 +1,9 @@
+{
+  try {
+    Thread.sleep(100);
+    assertEquals("one","one");
+  }
+ catch (  InterruptedException e) {
+    e.printStackTrace();
+  }
+}
