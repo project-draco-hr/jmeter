@@ -1,0 +1,10 @@
+{
+  if (null != clazz && null != annotation) {
+    for (    Method m : clazz.getClass().getMethods()) {
+      if (m.isAnnotationPresent(annotation)) {
+        return m;
+      }
+    }
+  }
+  return null;
+}
