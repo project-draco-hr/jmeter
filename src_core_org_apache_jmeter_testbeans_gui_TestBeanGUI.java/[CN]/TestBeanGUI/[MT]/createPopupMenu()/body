@@ -5,7 +5,7 @@
  else   if (Sampler.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultSamplerMenu();
   }
- else   if (ConfigTestElement.class.isAssignableFrom(testBeanClass)) {
+ else   if (ConfigElement.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultConfigElementMenu();
   }
  else   if (Assertion.class.isAssignableFrom(testBeanClass)) {
@@ -17,7 +17,11 @@
  else   if (Visualizer.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultVisualizerMenu();
   }
- else {
+ else   if (Controller.class.isAssignableFrom(testBeanClass)) {
     return MenuFactory.getDefaultControllerMenu();
+  }
+ else {
+    log.warn("Cannot determine PopupMenu for " + testBeanClass.getName());
+    return MenuFactory.getDefaultMenu();
   }
 }
