@@ -1,8 +1,8 @@
 {
-  SETUP_METHOD=null;
-  TDOWN_METHOD=null;
+  setUpMethod=null;
+  tearDownMethod=null;
   if (!getDoNotSetUpTearDown()) {
-    SETUP_METHOD=getJunit4() ? getMethodWithAnnotation(testObject,Before.class) : getMethod(testObject,SETUP);
-    TDOWN_METHOD=getJunit4() ? getMethodWithAnnotation(testObject,After.class) : getMethod(testObject,TEARDOWN);
+    setUpMethod=getJunit4() ? getMethodWithAnnotation(testObject,Before.class) : getMethod(testObject,SETUP);
+    tearDownMethod=getJunit4() ? getMethodWithAnnotation(testObject,After.class) : getMethod(testObject,TEARDOWN);
   }
 }

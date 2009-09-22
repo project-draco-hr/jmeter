@@ -1,6 +1,6 @@
 {
-  TEST_OBJECT=null;
-  TEST_INSTANCE=null;
+  testObject=null;
+  testCase=null;
   methodName=getMethod();
   className=getClassname();
   final Method m;
@@ -9,10 +9,10 @@
   if (rlabel.length() == 0) {
     rlabel=JUnitSampler.class.getName();
   }
-  this.TEST_OBJECT=getClassInstance(className,rlabel);
-  if (this.TEST_OBJECT != null) {
-    initMethodObjects(this.TEST_OBJECT);
-    m=getMethod(this.TEST_OBJECT,methodName);
+  this.testObject=getClassInstance(className,rlabel);
+  if (this.testObject != null) {
+    initMethodObjects(this.testObject);
+    m=getMethod(this.testObject,methodName);
     if (getJunit4()) {
       Class<? extends Throwable> expectedException=None.class;
       long timeout=0;
@@ -22,7 +22,7 @@
         timeout=annotation.timeout();
       }
       final AnnotatedTestCase at=new AnnotatedTestCase(m,expectedException,timeout);
-      TEST_INSTANCE=at;
+      testCase=at;
       protectable=new Protectable(){
         public void protect() throws Throwable {
           at.runTest();
@@ -31,8 +31,8 @@
 ;
     }
  else {
-      this.TEST_INSTANCE=(TestCase)this.TEST_OBJECT;
-      final Object theClazz=this.TEST_OBJECT;
+      this.testCase=(TestCase)this.testObject;
+      final Object theClazz=this.testObject;
       protectable=new Protectable(){
         public void protect() throws Throwable {
           try {
@@ -49,8 +49,8 @@
       }
 ;
     }
-    if (this.TEST_INSTANCE != null) {
-      this.TEST_INSTANCE.setName(methodName);
+    if (this.testCase != null) {
+      this.testCase.setName(methodName);
     }
   }
 }

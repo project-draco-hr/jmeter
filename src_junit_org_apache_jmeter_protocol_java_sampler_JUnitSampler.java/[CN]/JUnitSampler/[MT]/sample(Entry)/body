@@ -6,20 +6,20 @@
   sresult.setSuccessful(true);
   sresult.setResponseMessage(getSuccess());
   sresult.setResponseCode(getSuccessCode());
-  if (this.TEST_INSTANCE != null) {
+  if (this.testCase != null) {
     TestResult tr=new TestResult();
-    final TestCase theClazz=this.TEST_INSTANCE;
+    final TestCase theClazz=this.testCase;
     try {
-      if (SETUP_METHOD != null) {
-        SETUP_METHOD.invoke(this.TEST_OBJECT,new Object[0]);
+      if (setUpMethod != null) {
+        setUpMethod.invoke(this.testObject,new Object[0]);
       }
       sresult.sampleStart();
-      tr.startTest(this.TEST_INSTANCE);
+      tr.startTest(this.testCase);
       tr.runProtected(theClazz,protectable);
-      tr.endTest(this.TEST_INSTANCE);
+      tr.endTest(this.testCase);
       sresult.sampleEnd();
-      if (TDOWN_METHOD != null) {
-        TDOWN_METHOD.invoke(TEST_OBJECT,new Object[0]);
+      if (tearDownMethod != null) {
+        tearDownMethod.invoke(testObject,new Object[0]);
       }
     }
  catch (    InvocationTargetException e) {

@@ -1,7 +1,7 @@
 {
   try {
     long start=System.currentTimeMillis();
-    method.invoke(TEST_OBJECT,(Object[])null);
+    method.invoke(testObject,(Object[])null);
     if (expectedException != None.class) {
       throw new AssertionFailedError("No error was generated for a test case which specifies an error.");
     }
