@@ -1,0 +1,56 @@
+{
+  TEST_OBJECT=null;
+  TEST_INSTANCE=null;
+  methodName=getMethod();
+  className=getClassname();
+  final Method m;
+  protectable=null;
+  String rlabel=getConstructorString();
+  if (rlabel.length() == 0) {
+    rlabel=JUnitSampler.class.getName();
+  }
+  this.TEST_OBJECT=getClassInstance(className,rlabel);
+  if (this.TEST_OBJECT != null) {
+    initMethodObjects(this.TEST_OBJECT);
+    m=getMethod(this.TEST_OBJECT,methodName);
+    if (getJunit4()) {
+      Class<? extends Throwable> expectedException=None.class;
+      long timeout=0;
+      Test annotation=m.getAnnotation(Test.class);
+      if (null != annotation) {
+        expectedException=annotation.expected();
+        timeout=annotation.timeout();
+      }
+      final AnnotatedTestCase at=new AnnotatedTestCase(m,expectedException,timeout);
+      TEST_INSTANCE=at;
+      protectable=new Protectable(){
+        public void protect() throws Throwable {
+          at.runTest();
+        }
+      }
+;
+    }
+ else {
+      this.TEST_INSTANCE=(TestCase)this.TEST_OBJECT;
+      final Object theClazz=this.TEST_OBJECT;
+      protectable=new Protectable(){
+        public void protect() throws Throwable {
+          try {
+            m.invoke(theClazz,new Object[0]);
+          }
+ catch (          InvocationTargetException e) {
+            Throwable t=e.getCause();
+            if (t != null) {
+              throw t;
+            }
+            throw e;
+          }
+        }
+      }
+;
+    }
+    if (this.TEST_INSTANCE != null) {
+      this.TEST_INSTANCE.setName(methodName);
+    }
+  }
+}

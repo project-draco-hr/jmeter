@@ -1,3 +1,27 @@
 {
-  m.invoke(TEST_OBJECT,(Object[])null);
+  try {
+    long start=System.currentTimeMillis();
+    method.invoke(TEST_OBJECT,(Object[])null);
+    if (expectedException != None.class) {
+      throw new AssertionFailedError("No error was generated for a test case which specifies an error.");
+    }
+    if (timeout > 0) {
+      long elapsed=System.currentTimeMillis() - start;
+      if (elapsed > timeout) {
+        throw new AssertionFailedError("Test took longer than the specified timeout.");
+      }
+    }
+  }
+ catch (  InvocationTargetException e) {
+    Throwable thrown=e.getCause();
+    if (thrown == null) {
+      throw e;
+    }
+    if (expectedException == None.class) {
+      throw thrown;
+    }
+    if (!expectedException.isAssignableFrom(thrown.getClass())) {
+      throw new AssertionFailedError("The wrong exception was thrown from the test case");
+    }
+  }
 }
