@@ -9,7 +9,10 @@
       }
     }
   }
- catch (  NoClassDefFoundError ignored) {
+ catch (  UnsupportedClassVersionError ignored) {
+    log.debug(ignored.getLocalizedMessage());
+  }
+catch (  NoClassDefFoundError ignored) {
     log.debug(ignored.getLocalizedMessage());
   }
 catch (  ClassNotFoundException ignored) {
