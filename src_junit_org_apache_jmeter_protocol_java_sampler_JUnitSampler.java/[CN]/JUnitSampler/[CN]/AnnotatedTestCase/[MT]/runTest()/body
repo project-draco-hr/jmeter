@@ -18,6 +18,11 @@
       throw e;
     }
     if (expectedException == None.class) {
+      if (thrown instanceof AssertionError && !(thrown instanceof AssertionFailedError)) {
+        AssertionFailedError afe=new AssertionFailedError(thrown.toString());
+        afe.setStackTrace(thrown.getStackTrace());
+        throw afe;
+      }
       throw thrown;
     }
     if (!expectedException.isAssignableFrom(thrown.getClass())) {
