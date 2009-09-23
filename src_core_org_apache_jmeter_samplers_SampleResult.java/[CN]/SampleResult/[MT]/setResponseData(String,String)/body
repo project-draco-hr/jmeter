@@ -1,0 +1,13 @@
+{
+  String defaultEncodingName=Charset.defaultCharset().name();
+  String encodeUsing=encoding != null ? encoding : defaultEncodingName;
+  try {
+    responseData=response.getBytes(encodeUsing);
+    setDataEncoding(encodeUsing);
+  }
+ catch (  UnsupportedEncodingException e) {
+    log.warn("Could not convert string using " + encodeUsing + ", using default encoding: "+ defaultEncodingName+ " "+ e.getLocalizedMessage());
+    responseData=response.getBytes();
+    setDataEncoding(defaultEncodingName);
+  }
+}
