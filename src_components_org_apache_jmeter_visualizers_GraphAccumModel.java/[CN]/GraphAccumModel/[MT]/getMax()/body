@@ -1,4 +1,6 @@
 {
-  log.debug("getMax1 : Returning - " + max);
+  if (log.isDebugEnabled()) {
+    log.debug("getMax1 : Returning - " + max);
+  }
   return max;
 }

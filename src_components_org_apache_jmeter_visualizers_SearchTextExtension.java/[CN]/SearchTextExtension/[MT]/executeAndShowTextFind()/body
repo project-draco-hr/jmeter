@@ -4,7 +4,9 @@
     if (lastTextTofind != null && !lastTextTofind.equals(textToFind)) {
       lastPosition=LAST_POSITION_DEFAULT;
     }
-    log.debug("lastPosition=" + lastPosition);
+    if (log.isDebugEnabled()) {
+      log.debug("lastPosition=" + lastPosition);
+    }
     Matcher matcher=null;
     try {
       Pattern pattern=createPattern(textToFind);

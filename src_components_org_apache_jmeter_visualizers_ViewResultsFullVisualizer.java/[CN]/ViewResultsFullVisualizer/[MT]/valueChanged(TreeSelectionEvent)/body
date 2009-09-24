@@ -16,8 +16,8 @@
         setupTabPaneForSampleResult();
         if (log.isDebugEnabled()) {
           log.debug("valueChanged1 : sample result - " + res);
+          log.debug("valueChanged1 : load time - " + res.getTime());
         }
-        log.debug("valueChanged1 : load time - " + res.getTime());
         String sd=res.getSamplerData();
         if (sd != null) {
           String rh=res.getRequestHeaders();
@@ -44,7 +44,9 @@
         statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
         statsBuff=new StringBuffer();
         String responseCode=res.getResponseCode();
-        log.debug("valueChanged1 : response code - " + responseCode);
+        if (log.isDebugEnabled()) {
+          log.debug("valueChanged1 : response code - " + responseCode);
+        }
         int responseLevel=0;
         if (responseCode != null) {
           try {
@@ -69,7 +71,9 @@ statsBuff.append(JMeterUtils.getResString("view_results_response_code")).append(
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),style);
 statsBuff=new StringBuffer(100);
 String responseMsgStr=res.getResponseMessage();
+if (log.isDebugEnabled()) {
 log.debug("valueChanged1 : response message - " + responseMsgStr);
+}
 statsBuff.append(JMeterUtils.getResString("view_results_response_message")).append(responseMsgStr).append(NL);
 statsBuff.append(NL);
 statsBuff.append(JMeterUtils.getResString("view_results_response_headers")).append(NL);

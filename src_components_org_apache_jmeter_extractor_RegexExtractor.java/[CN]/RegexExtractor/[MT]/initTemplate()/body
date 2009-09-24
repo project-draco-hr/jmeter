@@ -7,12 +7,16 @@
   String rawTemplate=getTemplate();
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Pattern templatePattern=JMeterUtils.getPatternCache().getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
-  log.debug("Pattern = " + templatePattern);
-  log.debug("template = " + rawTemplate);
+  if (log.isDebugEnabled()) {
+    log.debug("Pattern = " + templatePattern);
+    log.debug("template = " + rawTemplate);
+  }
   Util.split(pieces,matcher,templatePattern,rawTemplate);
   PatternMatcherInput input=new PatternMatcherInput(rawTemplate);
   boolean startsWith=isFirstElementGroup(rawTemplate);
-  log.debug("template split into " + pieces.size() + " pieces, starts with = "+ startsWith);
+  if (log.isDebugEnabled()) {
+    log.debug("template split into " + pieces.size() + " pieces, starts with = "+ startsWith);
+  }
   if (startsWith) {
     pieces.remove(0);
   }
