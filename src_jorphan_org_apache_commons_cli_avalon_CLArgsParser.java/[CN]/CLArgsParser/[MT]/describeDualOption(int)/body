@@ -4,7 +4,7 @@
     return "<parameter>";
   }
  else {
-    final StringBuffer sb=new StringBuffer();
+    final StringBuilder sb=new StringBuilder();
     boolean hasCharOption=false;
     if (Character.isLetter((char)id)) {
       sb.append('-');

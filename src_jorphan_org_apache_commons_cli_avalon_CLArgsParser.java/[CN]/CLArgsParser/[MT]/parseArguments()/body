@@ -51,7 +51,7 @@
       }
     }
  else {
-      final StringBuffer sb=new StringBuffer();
+      final StringBuilder sb=new StringBuilder();
       m_ch=getChar();
       while (!isSeparator(m_ch,NULL_SEPARATORS)) {
         sb.append(m_ch);

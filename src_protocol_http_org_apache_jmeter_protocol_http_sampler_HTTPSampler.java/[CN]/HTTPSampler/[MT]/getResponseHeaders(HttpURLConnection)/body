@@ -1,5 +1,5 @@
 {
-  StringBuffer headerBuf=new StringBuffer();
+  StringBuilder headerBuf=new StringBuilder();
   headerBuf.append(conn.getHeaderField(0));
   headerBuf.append("\n");
   String hfk;

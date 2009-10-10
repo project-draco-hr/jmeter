@@ -2,8 +2,8 @@
   SampleResult res=new SampleResult();
   res.setSampleLabel(getName());
   res.sampleStart();
-  StringBuffer sb=new StringBuffer(100);
-  StringBuffer rd=new StringBuffer(20);
+  StringBuilder sb=new StringBuilder(100);
+  StringBuilder rd=new StringBuilder(20);
   if (isDisplayJMeterVariables()) {
     rd.append("JMeterVariables\n");
     sb.append("JMeterVariables:\n");

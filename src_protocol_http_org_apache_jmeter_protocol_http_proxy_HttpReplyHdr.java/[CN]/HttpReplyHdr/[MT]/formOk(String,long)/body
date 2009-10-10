@@ -1,5 +1,5 @@
 {
-  StringBuffer out=new StringBuffer();
+  StringBuilder out=new StringBuilder();
   out.append(HTTP_PROTOCOL).append(" 200 Ok").append(CR);
   out.append("Server: ").append(HTTP_SERVER).append(CR);
   out.append("MIME-version: 1.0").append(CR);

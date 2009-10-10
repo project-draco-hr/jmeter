@@ -1,5 +1,5 @@
 {
-  StringBuffer sb=new StringBuffer();
+  StringBuilder sb=new StringBuilder();
   sb.append(Thread.currentThread().toString());
   sb.append("@");
   sb.append(Integer.toHexString(hashCode()));

@@ -1,5 +1,5 @@
 {
-  StringBuffer newValue=new StringBuffer();
+  StringBuilder newValue=new StringBuilder();
   for (int i=0; i < value.length(); i++) {
     char charAt=value.charAt(i);
     if (charAt == '\\') {

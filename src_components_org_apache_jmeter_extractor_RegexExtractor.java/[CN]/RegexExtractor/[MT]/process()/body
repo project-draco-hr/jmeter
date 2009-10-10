@@ -70,14 +70,14 @@
         for (int i=1; i <= matchCount; i++) {
           match=getCorrectMatch(matches,i);
           if (match != null) {
-            final String refName_n=new StringBuffer(refName).append(UNDERSCORE).append(i).toString();
+            final String refName_n=new StringBuilder(refName).append(UNDERSCORE).append(i).toString();
             vars.put(refName_n,generateResult(match));
             saveGroups(vars,refName_n,match);
           }
         }
       }
       for (int i=matchCount + 1; i <= prevCount; i++) {
-        final String refName_n=new StringBuffer(refName).append(UNDERSCORE).append(i).toString();
+        final String refName_n=new StringBuilder(refName).append(UNDERSCORE).append(i).toString();
         vars.remove(refName_n);
         removeGroups(vars,refName_n);
       }

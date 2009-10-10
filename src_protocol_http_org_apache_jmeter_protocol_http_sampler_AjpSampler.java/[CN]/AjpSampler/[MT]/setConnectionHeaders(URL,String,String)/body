@@ -1,7 +1,7 @@
 {
   HeaderManager headers=getHeaderManager();
   AuthManager auth=getAuthManager();
-  StringBuffer hbuf=new StringBuffer();
+  StringBuilder hbuf=new StringBuilder();
   hbuf.append("Host").append(COLON_SPACE).append(host).append(NEWLINE);
   setInt(0xA00b);
   setString(host);
@@ -41,7 +41,7 @@
       hbuf.append(HEADER_CONTENT_TYPE).append(COLON_SPACE).append(APPLICATION_X_WWW_FORM_URLENCODED).append(NEWLINE);
       setInt(0xA007);
       setString(APPLICATION_X_WWW_FORM_URLENCODED);
-      StringBuffer sb=new StringBuffer();
+      StringBuilder sb=new StringBuilder();
       boolean first=true;
       PropertyIterator args=getArguments().iterator();
       while (args.hasNext()) {

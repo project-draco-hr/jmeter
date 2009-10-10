@@ -25,7 +25,7 @@
       connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,files[0].getMimeType());
     }
     ByteArrayOutputStream bos=new ByteArrayOutputStream();
-    StringBuffer putBodyBuffer=new StringBuffer();
+    StringBuilder putBodyBuffer=new StringBuilder();
     PropertyIterator args=sampler.getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

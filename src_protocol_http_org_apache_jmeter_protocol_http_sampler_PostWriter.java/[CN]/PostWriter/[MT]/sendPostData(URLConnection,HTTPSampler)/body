@@ -1,5 +1,5 @@
 {
-  StringBuffer postedBody=new StringBuffer(1000);
+  StringBuilder postedBody=new StringBuilder(1000);
   HTTPFileArg files[]=sampler.getHTTPFiles();
   String contentEncoding=sampler.getContentEncoding();
   if (contentEncoding == null || contentEncoding.length() == 0) {

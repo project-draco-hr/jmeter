@@ -13,11 +13,11 @@
       }
       if (!success) {
         result.setFailure(true);
-        StringBuffer buf=new StringBuffer();
+        StringBuilder buf=new StringBuilder();
         appendResultDetails(buf,prevResult);
         buf.append("Response Time: ").append(prevTime);
         result.addToBaseResult(buf.toString());
-        buf=new StringBuffer();
+        buf=new StringBuilder();
         appendResultDetails(buf,sResult);
         buf.append("Response Time: ").append(currentTime);
         result.addToSecondaryResult(buf.toString());

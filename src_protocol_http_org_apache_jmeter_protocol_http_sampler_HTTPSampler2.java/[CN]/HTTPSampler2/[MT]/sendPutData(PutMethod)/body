@@ -1,5 +1,5 @@
 {
-  StringBuffer putBody=new StringBuffer(1000);
+  StringBuilder putBody=new StringBuilder(1000);
   boolean hasPutBody=false;
   Header contentTypeHeader=put.getRequestHeader(HEADER_CONTENT_TYPE);
   boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
@@ -18,7 +18,7 @@
       put.getParams().setContentCharset(contentEncoding);
       haveContentEncoding=true;
     }
-    StringBuffer putBodyContent=new StringBuffer();
+    StringBuilder putBodyContent=new StringBuilder();
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

@@ -1,6 +1,6 @@
 {
   String body=formErrorBody(error,description);
-  StringBuffer header=new StringBuffer();
+  StringBuilder header=new StringBuilder();
   header.append(HTTP_PROTOCOL).append(" ").append(error).append(CR);
   header.append("Server: ").append(HTTP_SERVER).append(CR);
   header.append("MIME-version: 1.0").append(CR);

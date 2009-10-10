@@ -1,6 +1,6 @@
 {
   final String lSep=System.getProperty("line.separator");
-  final StringBuffer sb=new StringBuffer();
+  final StringBuilder sb=new StringBuilder();
   for (int i=0; i < options.length; i++) {
     final char ch=(char)options[i].getId();
     final String name=options[i].getName();

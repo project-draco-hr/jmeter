@@ -1,5 +1,5 @@
 {
-  StringBuffer temp=new StringBuffer("");
+  StringBuilder temp=new StringBuilder("");
   String[] line=new String[size + 1];
   String[] elements=getHeaders();
   for (int count=0; count < elements.length; count++) {
@@ -12,7 +12,7 @@
   reset();
   int index=1;
   while (next()) {
-    temp=new StringBuffer("");
+    temp=new StringBuilder("");
     for (int count=0; count < elements.length; count++) {
       temp.append(getColumnValue(count));
       if (count + 1 < elements.length) {

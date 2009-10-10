@@ -1,5 +1,5 @@
 {
-  StringBuffer buf=new StringBuffer();
+  StringBuilder buf=new StringBuilder();
   buf.append("<");
   buf.append(node.getNodeName());
   NamedNodeMap atts=node.getAttributes();

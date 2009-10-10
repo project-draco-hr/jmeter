@@ -5,7 +5,7 @@
     m_ch=getChar();
     return new Token(TOKEN_SEPARATOR,null);
   }
-  final StringBuffer sb=new StringBuffer();
+  final StringBuilder sb=new StringBuilder();
   do {
     sb.append(m_ch);
     m_ch=getChar();

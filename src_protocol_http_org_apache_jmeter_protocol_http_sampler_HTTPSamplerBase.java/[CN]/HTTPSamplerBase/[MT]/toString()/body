@@ -1,6 +1,6 @@
 {
   try {
-    StringBuffer stringBuffer=new StringBuffer();
+    StringBuilder stringBuffer=new StringBuilder();
     stringBuffer.append(this.getUrl().toString());
     if (POST.equals(getMethod()) || PUT.equals(getMethod())) {
       stringBuffer.append("\nQuery Data: ");

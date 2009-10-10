@@ -1,6 +1,6 @@
 {
   String tn=Thread.currentThread().getName();
-  StringBuffer sb=new StringBuffer(80);
+  StringBuilder sb=new StringBuilder(80);
   sb.append("Log: ");
   sb.append(tn);
   if (c.length() > 0) {

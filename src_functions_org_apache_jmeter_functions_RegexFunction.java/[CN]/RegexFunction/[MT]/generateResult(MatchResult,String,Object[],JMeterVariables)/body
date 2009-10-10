@@ -1,6 +1,6 @@
 {
   saveGroups(match,namep,vars);
-  StringBuffer result=new StringBuffer();
+  StringBuilder result=new StringBuilder();
   for (int a=0; a < template.length; a++) {
     if (template[a] instanceof String) {
       result.append(template[a]);

@@ -1,5 +1,5 @@
 {
-  StringBuffer headerBuf=new StringBuffer();
+  StringBuilder headerBuf=new StringBuilder();
   org.apache.commons.httpclient.Header rh[]=method.getResponseHeaders();
   headerBuf.append(method.getStatusLine());
   headerBuf.append("\n");

@@ -1,6 +1,6 @@
 {
 final class StringQuoter {
-    final StringBuffer sb=new StringBuffer();
+    final StringBuilder sb=new StringBuilder();
     private final char[] specials;
     private boolean addDelim;
     public StringQuoter(    char delim){

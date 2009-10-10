@@ -19,7 +19,7 @@
     }
     Message messages[]=folder.getMessages();
     Message message;
-    StringBuffer pdata=new StringBuffer();
+    StringBuilder pdata=new StringBuilder();
     pdata.append(messages.length);
     pdata.append(" messages found\n");
     int n=getNumMessages();
@@ -27,7 +27,7 @@
       n=messages.length;
     }
     for (int i=0; i < n; i++) {
-      StringBuffer cdata=new StringBuffer();
+      StringBuilder cdata=new StringBuilder();
       SampleResult child=new SampleResult();
       child.sampleStart();
       message=messages[i];

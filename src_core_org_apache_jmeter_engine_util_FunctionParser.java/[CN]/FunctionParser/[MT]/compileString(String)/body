@@ -1,7 +1,7 @@
 {
   StringReader reader=new StringReader(value);
   LinkedList<Object> result=new LinkedList<Object>();
-  StringBuffer buffer=new StringBuffer();
+  StringBuilder buffer=new StringBuilder();
   char previous=' ';
   char[] current=new char[1];
   try {

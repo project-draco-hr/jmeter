@@ -82,7 +82,7 @@
             connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
           }
         }
-        StringBuffer postBodyBuffer=new StringBuffer();
+        StringBuilder postBodyBuffer=new StringBuilder();
         PropertyIterator args=sampler.getArguments().iterator();
         while (args.hasNext()) {
           HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

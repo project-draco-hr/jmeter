@@ -3,7 +3,7 @@
   try {
     String lineEnd=System.getProperty("line.separator");
     fileReader=new BufferedReader(new InputStreamReader(JMeterUtils.class.getClassLoader().getResourceAsStream(name)));
-    StringBuffer text=new StringBuffer();
+    StringBuilder text=new StringBuilder();
     String line="NOTNULL";
     while (line != null) {
       line=fileReader.readLine();

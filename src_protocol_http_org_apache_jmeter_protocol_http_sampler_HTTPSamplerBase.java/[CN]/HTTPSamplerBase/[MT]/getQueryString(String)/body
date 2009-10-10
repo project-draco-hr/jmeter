@@ -2,7 +2,7 @@
   if (contentEncoding == null || contentEncoding.trim().length() == 0) {
     contentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;
   }
-  StringBuffer buf=new StringBuffer();
+  StringBuilder buf=new StringBuilder();
   PropertyIterator iter=getArguments().iterator();
   boolean first=true;
   while (iter.hasNext()) {

@@ -1,5 +1,5 @@
 {
-  StringBuffer postedBody=new StringBuffer(1000);
+  StringBuilder postedBody=new StringBuilder(1000);
   final String xmlFile=getXmlFile();
   if (xmlFile != null && xmlFile.length() > 0) {
     postedBody.append("Filename: ").append(xmlFile).append("\n");

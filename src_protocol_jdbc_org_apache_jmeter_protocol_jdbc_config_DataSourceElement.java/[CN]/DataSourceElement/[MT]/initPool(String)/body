@@ -3,7 +3,7 @@
   source=new ResourceLimitingJdbcDataSource();
   DefaultConfiguration config=new DefaultConfiguration("rl-jdbc");
   if (log.isDebugEnabled()) {
-    StringBuffer sb=new StringBuffer(40);
+    StringBuilder sb=new StringBuilder(40);
     sb.append("MaxPool: ");
     sb.append(maxPool);
     sb.append(" Timeout: ");
@@ -25,7 +25,7 @@
   autoCommit.setValue(String.valueOf(isAutocommit()));
   config.addChild(autoCommit);
   if (log.isDebugEnabled()) {
-    StringBuffer sb=new StringBuffer(40);
+    StringBuilder sb=new StringBuilder(40);
     sb.append("KeepAlive: ");
     sb.append(isKeepAlive());
     sb.append(" Age: ");
@@ -41,7 +41,7 @@
   poolController.addChild(cfgKeepAlive);
   String _username=getUsername();
   if (log.isDebugEnabled()) {
-    StringBuffer sb=new StringBuffer(40);
+    StringBuilder sb=new StringBuilder(40);
     sb.append("Driver: ");
     sb.append(getDriver());
     sb.append(" DbUrl: ");

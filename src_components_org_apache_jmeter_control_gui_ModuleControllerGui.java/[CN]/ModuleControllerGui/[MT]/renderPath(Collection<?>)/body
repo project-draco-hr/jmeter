@@ -1,6 +1,6 @@
 {
   Iterator<?> iter=path.iterator();
-  StringBuffer buf=new StringBuffer();
+  StringBuilder buf=new StringBuilder();
   boolean first=true;
   while (iter.hasNext()) {
     if (first) {

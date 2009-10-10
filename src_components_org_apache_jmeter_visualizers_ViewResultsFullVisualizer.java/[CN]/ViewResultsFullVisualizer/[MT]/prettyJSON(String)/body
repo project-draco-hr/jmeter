@@ -1,7 +1,7 @@
 {
-  StringBuffer pretty=new StringBuffer(json.length() * 2);
+  StringBuilder pretty=new StringBuilder(json.length() * 2);
   final String tab=":   ";
-  StringBuffer index=new StringBuffer();
+  StringBuilder index=new StringBuilder();
   String nl="";
   Matcher valueOrPair=VALUE_OR_PAIR_PATTERN.matcher(json);
   boolean misparse=false;

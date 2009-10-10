@@ -1,5 +1,5 @@
 {
-  StringBuffer hdrs=new StringBuffer(100);
+  StringBuilder hdrs=new StringBuilder(100);
   Map<String,List<String>> requestHeaders=conn.getRequestProperties();
   Set<Map.Entry<String,List<String>>> headerFields=requestHeaders.entrySet();
   for (Iterator<Map.Entry<String,List<String>>> i=headerFields.iterator(); i.hasNext(); ) {

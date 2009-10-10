@@ -1,7 +1,7 @@
 {
   char[] current=new char[1];
   char previous=' ';
-  StringBuffer buffer=new StringBuffer();
+  StringBuilder buffer=new StringBuilder();
   Object function;
   try {
     while (reader.read(current) == 1) {

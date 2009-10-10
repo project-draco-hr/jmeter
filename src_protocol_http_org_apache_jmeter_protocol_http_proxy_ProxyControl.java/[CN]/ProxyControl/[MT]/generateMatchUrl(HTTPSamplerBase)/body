@@ -1,5 +1,5 @@
 {
-  StringBuffer buf=new StringBuffer(sampler.getDomain());
+  StringBuilder buf=new StringBuilder(sampler.getDomain());
   buf.append(':');
   buf.append(sampler.getPort());
   buf.append(sampler.getPath());

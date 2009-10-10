@@ -1,5 +1,5 @@
 {
-  StringBuffer postedBody=new StringBuffer(1000);
+  StringBuilder postedBody=new StringBuilder(1000);
   HTTPFileArg files[]=getHTTPFiles();
   if (getUseMultipartForPost()) {
     String contentEncoding=getContentEncoding();
@@ -87,7 +87,7 @@
             post.setRequestHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
           }
         }
-        StringBuffer postBody=new StringBuffer();
+        StringBuilder postBody=new StringBuilder();
         PropertyIterator args=getArguments().iterator();
         while (args.hasNext()) {
           HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

@@ -8,7 +8,7 @@
   res.sampleStart();
   try {
     byte[] responseData;
-    StringBuffer ctb=new StringBuffer("text/html");
+    StringBuilder ctb=new StringBuilder("text/html");
     fis=new FileInputStream(getPath());
     String contentEncoding=getContentEncoding();
     if (contentEncoding.length() > 0) {

@@ -2,7 +2,7 @@
   if (StringUtils.containsNone(input,specialChars)) {
     return input;
   }
-  StringBuffer buffer=new StringBuffer(input.length() + 10);
+  StringBuilder buffer=new StringBuilder(input.length() + 10);
   final char quote=specialChars[1];
   buffer.append(quote);
   for (int i=0; i < input.length(); i++) {

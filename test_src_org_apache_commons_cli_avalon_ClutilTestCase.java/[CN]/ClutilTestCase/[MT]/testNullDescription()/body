@@ -7,7 +7,7 @@
   final CLOption optionByID=parser.getArgumentById('n');
   assertNotNull(optionByID);
   assertEquals('n',optionByID.getDescriptor().getId());
-  final StringBuffer sb=CLUtil.describeOptions(options);
+  final StringBuilder sb=CLUtil.describeOptions(options);
   final String lineSeparator=System.getProperty("line.separator");
   assertEquals("Testing display of null description","\t-n, --nulltest" + lineSeparator,sb.toString());
 }

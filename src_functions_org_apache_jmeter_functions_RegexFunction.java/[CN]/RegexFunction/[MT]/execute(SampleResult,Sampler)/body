@@ -71,7 +71,7 @@
     return defaultValue;
   }
   if (valueIndex.equals(ALL)) {
-    StringBuffer value=new StringBuffer();
+    StringBuilder value=new StringBuilder();
     Iterator<MatchResult> it=collectAllMatches.iterator();
     boolean first=true;
     while (it.hasNext()) {

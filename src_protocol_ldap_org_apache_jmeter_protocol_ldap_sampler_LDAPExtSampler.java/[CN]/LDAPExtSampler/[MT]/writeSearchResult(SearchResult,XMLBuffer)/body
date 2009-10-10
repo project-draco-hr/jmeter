@@ -14,7 +14,7 @@
     sortAttributes(sortedAttrs);
     for (Iterator<Attribute> ait=sortedAttrs.iterator(); ait.hasNext(); ) {
       final Attribute attr=ait.next();
-      StringBuffer sb=new StringBuffer();
+      StringBuilder sb=new StringBuilder();
       if (attr.size() == 1) {
         sb.append(getWriteValue(attr.get()));
       }

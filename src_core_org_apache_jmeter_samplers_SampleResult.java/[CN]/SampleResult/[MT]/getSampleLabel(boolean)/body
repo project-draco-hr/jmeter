@@ -1,6 +1,6 @@
 {
   if (includeGroup) {
-    StringBuffer sb=new StringBuffer(threadName.substring(0,threadName.lastIndexOf(" ")));
+    StringBuilder sb=new StringBuilder(threadName.substring(0,threadName.lastIndexOf(" ")));
     return sb.append(":").append(label).toString();
   }
   return label;

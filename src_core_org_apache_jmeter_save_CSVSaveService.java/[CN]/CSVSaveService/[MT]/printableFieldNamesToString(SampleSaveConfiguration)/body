@@ -1,5 +1,5 @@
 {
-  StringBuffer text=new StringBuffer();
+  StringBuilder text=new StringBuilder();
   String delim=saveConfig.getDelimiter();
   if (saveConfig.saveTimestamp()) {
     text.append(TIME_STAMP);

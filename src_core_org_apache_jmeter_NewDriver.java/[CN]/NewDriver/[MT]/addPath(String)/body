@@ -4,7 +4,7 @@
     file=new File(path + "/");
   }
   loader.addURL(file.toURI().toURL());
-  StringBuffer sb=new StringBuffer(System.getProperty(JAVA_CLASS_PATH));
+  StringBuilder sb=new StringBuilder(System.getProperty(JAVA_CLASS_PATH));
   sb.append(CLASSPATH_SEPARATOR);
   sb.append(path);
   System.setProperty(JAVA_CLASS_PATH,sb.toString());
