@@ -1,0 +1,22 @@
+{
+  ScriptEngine scriptEngine=sem.getEngineByName(getScriptLanguage());
+  if (scriptEngine == null) {
+    log.warn("Not supported scripting engine");
+    setScriptLanguage("groovy");
+    scriptEngine=sem.getEngineByName(getScriptLanguage());
+  }
+ else {
+    System.out.println("Script engine found : " + getScriptLanguage());
+  }
+  File scriptFile=new File(getFilename());
+  if (scriptFile.exists()) {
+    BufferedReader fileReader=new BufferedReader(new FileReader(scriptFile));
+    String line;
+    while ((line=fileReader.readLine()) != null) {
+      scriptEngine.eval(line);
+    }
+  }
+ else {
+    scriptEngine.eval(getScript());
+  }
+}

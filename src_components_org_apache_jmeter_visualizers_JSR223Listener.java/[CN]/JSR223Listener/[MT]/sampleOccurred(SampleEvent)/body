@@ -1,0 +1,16 @@
+{
+  try {
+    ScriptEngineManager sem=getManager();
+    if (sem == null) {
+      log.error("Problem creating JSR 223 manager");
+      return;
+    }
+    sem.put("sampleEvent",SampleEvent.class);
+    SampleResult result=event.getResult();
+    sem.put("sampleResult",SampleResult.class);
+    processFileOrScript(sem);
+  }
+ catch (  Exception e) {
+    log.warn("Problem in JSR 223 script " + e);
+  }
+}

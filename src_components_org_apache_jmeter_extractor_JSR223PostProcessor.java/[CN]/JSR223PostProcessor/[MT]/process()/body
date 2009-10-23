@@ -1,0 +1,18 @@
+{
+  ScriptEngineManager sem=null;
+  try {
+    sem=getManager();
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+  if (sem == null) {
+    return;
+  }
+  try {
+    processFileOrScript(sem);
+  }
+ catch (  Exception e) {
+    e.printStackTrace();
+  }
+}

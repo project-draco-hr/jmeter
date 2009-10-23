@@ -1,0 +1,23 @@
+{
+  final String label=getName();
+  final String fileName=getFilename();
+  final String scriptParameters=getParameters();
+  final Logger logger=LoggingManager.getLoggerForShortName(getClass().getName());
+  sem.put("log",logger);
+  sem.put("Label",label);
+  sem.put("FileName",fileName);
+  sem.put("Parameters",scriptParameters);
+  String[] args=JOrphanUtils.split(scriptParameters," ");
+  sem.put("args",args);
+  JMeterContext jmctx=JMeterContextService.getContext();
+  sem.put("ctx",jmctx);
+  JMeterVariables vars=jmctx.getVariables();
+  sem.put("vars",vars);
+  Properties props=JMeterUtils.getJMeterProperties();
+  sem.put("props",props);
+  sem.put("OUT",System.out);
+  Sampler sampler=jmctx.getCurrentSampler();
+  sem.put("sampler",sampler);
+  SampleResult prev=jmctx.getPreviousResult();
+  sem.put("prev",prev);
+}

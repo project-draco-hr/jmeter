@@ -1,0 +1,12 @@
+{
+  try {
+    ScriptEngineManager sem=getManager();
+    if (sem == null) {
+      return;
+    }
+    processFileOrScript(sem);
+  }
+ catch (  Exception e) {
+    log.warn("Problem in JSR223 script " + e);
+  }
+}
