@@ -1,19 +1,19 @@
 {
-  ScriptEngine scriptEngine=sem.getEngineByName(getScriptLanguage());
+  final String lang=getScriptLanguage();
+  ScriptEngine scriptEngine=sem.getEngineByName(lang);
   if (scriptEngine == null) {
-    log.warn("Not supported scripting engine");
-    setScriptLanguage("groovy");
-    scriptEngine=sem.getEngineByName(getScriptLanguage());
-  }
- else {
-    System.out.println("Script engine found : " + getScriptLanguage());
+    log.error("Unsupported scripting engine: " + lang);
+    return;
   }
   File scriptFile=new File(getFilename());
   if (scriptFile.exists()) {
-    BufferedReader fileReader=new BufferedReader(new FileReader(scriptFile));
-    String line;
-    while ((line=fileReader.readLine()) != null) {
-      scriptEngine.eval(line);
+    BufferedReader fileReader=null;
+    try {
+      fileReader=new BufferedReader(new FileReader(scriptFile));
+      scriptEngine.eval(fileReader);
+    }
+  finally {
+      IOUtils.closeQuietly(fileReader);
     }
   }
  else {
