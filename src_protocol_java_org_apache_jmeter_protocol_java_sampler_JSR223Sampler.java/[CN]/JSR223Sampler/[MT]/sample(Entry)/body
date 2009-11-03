@@ -22,7 +22,9 @@
     result.setSuccessful(true);
     result.setResponseCodeOK();
     result.setResponseMessageOK();
-    result.setResponseData(ret.toString().getBytes());
+    if (ret != null) {
+      result.setResponseData(ret.toString().getBytes());
+    }
   }
  catch (  IOException e) {
     log.warn("Problem in JSR223 script " + e);
