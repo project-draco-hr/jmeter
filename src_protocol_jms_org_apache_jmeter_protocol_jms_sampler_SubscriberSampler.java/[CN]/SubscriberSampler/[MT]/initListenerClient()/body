@@ -1,4 +1,5 @@
 {
+  interrupted=false;
   OnMessageSubscriber sub=(OnMessageSubscriber)ClientPool.get(this);
   if (sub == null) {
     sub=new OnMessageSubscriber(this.getUseJNDIPropertiesAsBoolean(),this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.isUseAuth(),this.getUsername(),this.getPassword());

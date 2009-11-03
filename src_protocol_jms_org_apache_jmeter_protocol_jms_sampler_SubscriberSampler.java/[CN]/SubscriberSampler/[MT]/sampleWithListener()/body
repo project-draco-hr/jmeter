@@ -4,7 +4,7 @@
   initListenerClient();
   int loop=this.getIterationCount();
   result.sampleStart();
-  while (this.count(0) < loop) {
+  while (this.count(0) < loop && interrupted == false) {
     try {
       Thread.sleep(0,50);
     }
@@ -13,7 +13,7 @@
     }
   }
   result.sampleEnd();
-  result.setResponseMessage(loop + " samples messages recieved");
+  result.setResponseMessage(loop + " samples messages received");
 synchronized (this) {
     if (this.getReadResponseAsBoolean()) {
       result.setResponseData(this.BUFFER.toString().getBytes());
@@ -23,7 +23,7 @@ synchronized (this) {
     }
   }
   result.setSuccessful(true);
-  result.setResponseCode(loop + " message(s) recieved successfully");
+  result.setResponseCode(loop + " message(s) received successfully");
   result.setSamplerData("Not applicable");
   result.setSampleCount(loop);
   this.resetCount();

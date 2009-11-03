@@ -8,7 +8,7 @@
   int loop=this.getIterationCount();
   this.SUBSCRIBER.setLoop(loop);
   result.sampleStart();
-  while (this.SUBSCRIBER.count(0) < loop) {
+  while (this.SUBSCRIBER.count(0) < loop && interrupted == false) {
     try {
       Thread.sleep(0,50);
     }
@@ -17,7 +17,7 @@
     }
   }
   result.sampleEnd();
-  result.setResponseMessage(loop + " samples messages recieved");
+  result.setResponseMessage(loop + " samples messages received");
   if (this.getReadResponseAsBoolean()) {
     result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
   }
@@ -25,7 +25,7 @@
     result.setBytes(this.SUBSCRIBER.getMessage().getBytes().length);
   }
   result.setSuccessful(true);
-  result.setResponseCode(loop + " message(s) recieved successfully");
+  result.setResponseCode(loop + " message(s) received successfully");
   result.setSamplerData("Not applicable");
   result.setSampleCount(loop);
   this.SUBSCRIBER.reset();

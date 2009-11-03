@@ -1,4 +1,5 @@
 {
+  interrupted=false;
   this.SUBSCRIBER=new ReceiveSubscriber(this.getUseJNDIPropertiesAsBoolean(),this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.isUseAuth(),this.getUsername(),this.getPassword());
   this.SUBSCRIBER.resume();
   ClientPool.addClient(this.SUBSCRIBER);
