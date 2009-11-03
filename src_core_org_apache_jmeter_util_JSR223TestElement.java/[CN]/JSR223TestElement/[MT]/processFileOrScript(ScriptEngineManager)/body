@@ -3,20 +3,20 @@
   ScriptEngine scriptEngine=sem.getEngineByName(lang);
   if (scriptEngine == null) {
     log.error("Unsupported scripting engine: " + lang);
-    return;
+    return null;
   }
   File scriptFile=new File(getFilename());
   if (scriptFile.exists()) {
     BufferedReader fileReader=null;
     try {
       fileReader=new BufferedReader(new FileReader(scriptFile));
-      scriptEngine.eval(fileReader);
+      return scriptEngine.eval(fileReader);
     }
   finally {
       IOUtils.closeQuietly(fileReader);
     }
   }
  else {
-    scriptEngine.eval(getScript());
+    return scriptEngine.eval(getScript());
   }
 }
