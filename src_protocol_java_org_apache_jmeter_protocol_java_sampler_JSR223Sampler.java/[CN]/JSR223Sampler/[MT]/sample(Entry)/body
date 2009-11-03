@@ -1,0 +1,41 @@
+{
+  SampleResult result=new SampleResult();
+  result.setSampleLabel(getName());
+  final String filename=getFilename();
+  if (filename.length() > 0) {
+    result.setSamplerData("File: " + filename);
+  }
+ else {
+    result.setSamplerData(getScript());
+  }
+  result.setDataType(SampleResult.TEXT);
+  result.sampleStart();
+  try {
+    ScriptEngineManager mgr=getManager();
+    if (mgr == null) {
+      result.setSuccessful(false);
+      result.setResponseCode("500");
+      result.setResponseMessage("Could not instantiate ScriptManager");
+      return result;
+    }
+    Object ret=processFileOrScript(mgr);
+    result.setSuccessful(true);
+    result.setResponseCodeOK();
+    result.setResponseMessageOK();
+    result.setResponseData(ret.toString().getBytes());
+  }
+ catch (  IOException e) {
+    log.warn("Problem in JSR223 script " + e);
+    result.setSuccessful(false);
+    result.setResponseCode("500");
+    result.setResponseMessage(e.toString());
+  }
+catch (  ScriptException e) {
+    log.warn("Problem in JSR223 script " + e);
+    result.setSuccessful(false);
+    result.setResponseCode("500");
+    result.setResponseMessage(e.toString());
+  }
+  result.sampleEnd();
+  return result;
+}

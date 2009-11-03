@@ -1,0 +1,21 @@
+{
+  long delay=0;
+  try {
+    ScriptEngineManager mgr=getManager();
+    if (mgr == null) {
+      return 0;
+    }
+    Object o=processFileOrScript(mgr);
+    delay=Long.valueOf(o.toString()).longValue();
+  }
+ catch (  NumberFormatException e) {
+    log.warn("Problem in JSR223 script " + e);
+  }
+catch (  IOException e) {
+    log.warn("Problem in JSR223 script " + e);
+  }
+catch (  ScriptException e) {
+    log.warn("Problem in JSR223 script " + e);
+  }
+  return delay;
+}
