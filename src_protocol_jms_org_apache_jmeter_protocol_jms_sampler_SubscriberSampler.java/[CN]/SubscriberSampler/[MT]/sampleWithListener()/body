@@ -14,7 +14,6 @@
     }
   }
   result.sampleEnd();
-  result.setResponseMessage(read + " samples messages received");
 synchronized (this) {
     if (this.getReadResponseAsBoolean()) {
       result.setResponseData(this.BUFFER.toString().getBytes());
@@ -22,10 +21,12 @@ synchronized (this) {
  else {
       result.setBytes(this.BUFFER.toString().getBytes().length);
     }
+    read=this.count(0);
   }
   result.setSuccessful(true);
-  result.setResponseCode(read + " message(s) received successfully");
-  result.setSamplerData("Not applicable");
+  result.setResponseCodeOK();
+  result.setResponseMessage(read + " messages received");
+  result.setSamplerData(loop + " messages expected");
   result.setSampleCount(read);
   this.resetCount();
   return result;
