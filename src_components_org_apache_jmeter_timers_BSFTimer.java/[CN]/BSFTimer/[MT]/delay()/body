@@ -1,0 +1,18 @@
+{
+  long delay=0;
+  try {
+    BSFManager mgr=getManager();
+    if (mgr == null) {
+      return 0;
+    }
+    Object o=evalFileOrScript(mgr);
+    delay=Long.valueOf(o.toString()).longValue();
+  }
+ catch (  NumberFormatException e) {
+    log.warn("Problem in BSF script " + e);
+  }
+catch (  BSFException e) {
+    log.warn("Problem in BSF script " + e);
+  }
+  return delay;
+}
