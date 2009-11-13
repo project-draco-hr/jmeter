@@ -1,0 +1,5 @@
+{
+  saveDetailsWithConnectionAndSampleResultWithResponseCode("404");
+  setHeadersWithHttpUrlConnectionAndUrl();
+  assertNull("Saving SampleResult with HttpMethod & 404 response should not make cache entry.",getThreadCacheEntry(this.url.toString()));
+}

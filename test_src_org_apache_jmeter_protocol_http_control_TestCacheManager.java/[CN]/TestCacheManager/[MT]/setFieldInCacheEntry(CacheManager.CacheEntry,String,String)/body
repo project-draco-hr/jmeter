@@ -1,0 +1,5 @@
+{
+  Field field=CacheManager.CacheEntry.class.getDeclaredField(fieldName);
+  field.setAccessible(true);
+  field.set(cacheEntry,expectedValue);
+}

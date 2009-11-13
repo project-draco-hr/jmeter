@@ -1,0 +1,5 @@
+{
+  Header header=this.httpMethod.getRequestHeader(requestHeader);
+  assertEquals("Wrong name in header for " + requestHeader,requestHeader,header.getName());
+  assertEquals("Wrong value for header " + header,expectedValue,header.getValue());
+}

@@ -1,0 +1,13 @@
+{
+  super.setUp();
+  this.cacheManager=new CacheManager();
+  SimpleDateFormat simpleDateFormat=new SimpleDateFormat();
+  simpleDateFormat.setTimeZone(new SimpleTimeZone(0,"GMT"));
+  simpleDateFormat.applyPattern("EEE, dd MMM yyyy HH:mm:ss z");
+  this.currentTimeInGMT=simpleDateFormat.format(new Date());
+  this.uri=new URI(APACHE,false);
+  this.url=new URL(APACHE);
+  this.urlConnection=this.url.openConnection();
+  this.httpMethod=new PostMethod();
+  this.httpUrlConnection=new HttpURLConnection(this.httpMethod,this.url);
+}

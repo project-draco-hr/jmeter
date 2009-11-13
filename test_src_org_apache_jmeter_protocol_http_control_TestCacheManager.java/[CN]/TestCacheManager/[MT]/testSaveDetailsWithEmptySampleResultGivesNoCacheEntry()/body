@@ -1,0 +1,4 @@
+{
+  saveDetailsWithConnectionAndSampleResultWithResponseCode("");
+  assertTrue("Saving details with empty SampleResult should not make cache entry.",getThreadCache().isEmpty());
+}

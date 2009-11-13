@@ -1,0 +1,10 @@
+{
+  saveDetailsWithConnectionAndSampleResultWithResponseCode("200");
+  CacheManager.CacheEntry cacheEntry=getThreadCacheEntry(httpUrlConnection.getURL().toString());
+  setFieldInCacheEntry(cacheEntry,"etag",EXPECTED_ETAG);
+  setFieldInCacheEntry(cacheEntry,"lastModified",this.currentTimeInGMT);
+  setHeadersWithHttpUrlConnectionAndUrl();
+  Map<String,List<String>> properties=this.httpUrlConnection.getRequestProperties();
+  checkProperty(properties,HTTPConstantsInterface.IF_NONE_MATCH,EXPECTED_ETAG);
+  checkProperty(properties,HTTPConstantsInterface.IF_MODIFIED_SINCE,this.currentTimeInGMT);
+}

@@ -1,0 +1,7 @@
+{
+  assertFalse("Should default not to clear after each iteration.",this.cacheManager.getClearEachIteration());
+  this.cacheManager.setClearEachIteration(true);
+  assertTrue("Should be settable to clear after each iteration.",this.cacheManager.getClearEachIteration());
+  this.cacheManager.setClearEachIteration(false);
+  assertFalse("Should be settable not to clear after each iteration.",this.cacheManager.getClearEachIteration());
+}

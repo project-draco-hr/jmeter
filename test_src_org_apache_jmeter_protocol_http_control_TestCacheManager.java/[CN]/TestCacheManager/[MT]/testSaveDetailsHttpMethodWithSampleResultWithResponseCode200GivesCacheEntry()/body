@@ -1,0 +1,7 @@
+{
+  saveDetailsWithHttpMethodAndSampleResultWithResponseCode("200");
+  CacheManager.CacheEntry cacheEntry=getThreadCacheEntry(this.httpMethod.getURI().toString());
+  assertNotNull("Saving SampleResult with HttpMethod & 200 response should make cache entry.",cacheEntry);
+  assertNull("Saving details with SampleResult & HttpMethod with 200 response should make cache entry with no etag.",cacheEntry.getEtag());
+  assertNull("Saving details with SampleResult & HttpMethod with 200 response should make cache entry with no last modified date.",cacheEntry.getLastModified());
+}
