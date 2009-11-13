@@ -1,6 +1,6 @@
 {
   Field threadLocalfield=CacheManager.class.getDeclaredField("threadCache");
   threadLocalfield.setAccessible(true);
-  ThreadLocal<Map<String,CacheEntry>> threadLocal=(ThreadLocal<Map<String,CacheManager.CacheEntry>>)threadLocalfield.get(this.cacheManager);
-  return (Map<String,CacheManager.CacheEntry>)threadLocal.get();
+  @SuppressWarnings("unchecked") ThreadLocal<Map<String,CacheEntry>> threadLocal=(ThreadLocal<Map<String,CacheManager.CacheEntry>>)threadLocalfield.get(this.cacheManager);
+  return threadLocal.get();
 }
