@@ -15,13 +15,13 @@
         result.setFailure(true);
         StringBuilder buf=new StringBuilder();
         appendResultDetails(buf,prevResult);
-        buf.append("Response Time: ").append(prevTime);
+        buf.append(JMeterUtils.getResString("comparison_response_time")).append(prevTime);
         result.addToBaseResult(buf.toString());
         buf=new StringBuilder();
         appendResultDetails(buf,sResult);
-        buf.append("Response Time: ").append(currentTime);
+        buf.append(JMeterUtils.getResString("comparison_response_time")).append(currentTime);
         result.addToSecondaryResult(buf.toString());
-        result.setFailureMessage("Responses differ in response time by more than " + compareTime + " ms");
+        result.setFailureMessage(JMeterUtils.getResString("comparison_differ_time") + compareTime + JMeterUtils.getResString("comparison_unit"));
         break;
       }
       prevResult=sResult;

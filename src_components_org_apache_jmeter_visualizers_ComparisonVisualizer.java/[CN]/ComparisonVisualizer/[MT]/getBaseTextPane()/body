@@ -1,4 +1,6 @@
 {
   base=new JTextPane();
+  base.setEditable(false);
+  base.setBackground(getBackground());
   return base;
 }

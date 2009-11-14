@@ -13,7 +13,7 @@
   p=property("stringsToSkip");
   p.setPropertyEditorClass(TableEditor.class);
   p.setValue(TableEditor.CLASSNAME,SubstitutionElement.class.getName());
-  p.setValue(TableEditor.HEADERS,new String[]{"Regex String","Substitution"});
+  p.setValue(TableEditor.HEADERS,new String[]{JMeterUtils.getResString("comparison_regex_string"),JMeterUtils.getResString("comparison_regex_substitution")});
   p.setValue(TableEditor.OBJECT_PROPERTIES,new String[]{SubstitutionElement.REGEX,SubstitutionElement.SUBSTITUTE});
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,new ArrayList<Object>());

@@ -15,8 +15,8 @@
     secondary.setText(result.getSecondaryResult());
   }
  catch (  Exception err) {
-    base.setText("Invalid Node " + err);
-    secondary.setText("Invalid Node " + err);
+    base.setText(JMeterUtils.getResString("comparison_invalid_node") + err);
+    secondary.setText(JMeterUtils.getResString("comparison_invalid_node") + err);
   }
   base.setCaretPosition(0);
   secondary.setCaretPosition(0);

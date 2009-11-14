@@ -4,6 +4,10 @@
   if (obj instanceof SampleResult) {
     if (!((SampleResult)obj).isSuccessful()) {
       this.setForeground(Color.red);
+      this.setIcon(imageFailure);
+    }
+ else {
+      this.setIcon(imageSuccess);
     }
   }
   return this;

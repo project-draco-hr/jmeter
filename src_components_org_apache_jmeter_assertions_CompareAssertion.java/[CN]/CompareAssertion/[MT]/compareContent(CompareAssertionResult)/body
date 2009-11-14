@@ -21,7 +21,7 @@
         appendResultDetails(buf,sResult);
         buf.append(currentContent);
         result.addToSecondaryResult(buf.toString());
-        result.setFailureMessage("Responses differ in content");
+        result.setFailureMessage(JMeterUtils.getResString("comparison_differ_content"));
         break;
       }
       prevResult=sResult;
