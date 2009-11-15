@@ -47,7 +47,7 @@
         if (isNonPersistent()) {
           producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
         }
-        executor=new FixedQueueExecutor(producer,getTimeout(),isUseReqMsgIdAsCorrelId());
+        executor=new FixedQueueExecutor(producer,getTimeoutAsInt(),isUseReqMsgIdAsCorrelId());
       }
     }
     if (LOGGER.isDebugEnabled()) {

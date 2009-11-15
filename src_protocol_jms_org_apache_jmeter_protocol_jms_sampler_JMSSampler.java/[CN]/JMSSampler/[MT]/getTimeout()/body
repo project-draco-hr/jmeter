@@ -1,6 +1,3 @@
 {
-  if (getPropertyAsInt(TIMEOUT) < 1) {
-    return DEFAULT_TIMEOUT;
-  }
-  return getPropertyAsInt(TIMEOUT);
+  return getPropertyAsString(TIMEOUT,DEFAULT_TIMEOUT_STRING);
 }

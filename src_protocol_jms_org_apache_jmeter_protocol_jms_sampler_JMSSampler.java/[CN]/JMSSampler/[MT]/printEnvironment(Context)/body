@@ -1,7 +1,7 @@
 {
   Hashtable<?,?> env=context.getEnvironment();
   LOGGER.debug("Initial Context Properties");
-  Enumeration<String> keys=(Enumeration<String>)env.keys();
+  @SuppressWarnings("unchecked") Enumeration<String> keys=(Enumeration<String>)env.keys();
   while (keys.hasMoreElements()) {
     String key=keys.nextElement();
     LOGGER.debug(key + "=" + env.get(key));
