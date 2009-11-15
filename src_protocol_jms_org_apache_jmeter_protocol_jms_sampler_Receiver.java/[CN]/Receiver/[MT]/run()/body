@@ -1,7 +1,7 @@
 {
-  activate();
+  active=true;
   Message reply;
-  while (isActive()) {
+  while (active) {
     reply=null;
     try {
       reply=consumer.receive(5000);
