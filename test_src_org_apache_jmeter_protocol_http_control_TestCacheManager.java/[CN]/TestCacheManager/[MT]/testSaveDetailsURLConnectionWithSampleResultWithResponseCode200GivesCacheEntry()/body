@@ -2,6 +2,6 @@
   saveDetailsWithConnectionAndSampleResultWithResponseCode("200");
   CacheManager.CacheEntry cacheEntry=getThreadCacheEntry(this.url.toString());
   assertNotNull("Saving details with SampleResult & connection with 200 response should make cache entry.",cacheEntry);
-  assertNotNull("Saving details with SampleResult & connection with 200 response should make cache entry with an etag.",cacheEntry.getEtag());
-  assertNotNull("Saving details with SampleResult & connection with 200 response should make cache entry with last modified date.",cacheEntry.getLastModified());
+  assertEquals("Saving details with SampleResult & connection with 200 response should make cache entry with an etag.",EXPECTED_ETAG,cacheEntry.getEtag());
+  assertEquals("Saving details with SampleResult & connection with 200 response should make cache entry with last modified date.",this.currentTimeInGMT,cacheEntry.getLastModified());
 }

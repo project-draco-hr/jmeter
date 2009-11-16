@@ -5,9 +5,9 @@
   simpleDateFormat.setTimeZone(new SimpleTimeZone(0,"GMT"));
   simpleDateFormat.applyPattern("EEE, dd MMM yyyy HH:mm:ss z");
   this.currentTimeInGMT=simpleDateFormat.format(new Date());
-  this.uri=new URI(APACHE,false);
-  this.url=new URL(APACHE);
-  this.urlConnection=this.url.openConnection();
-  this.httpMethod=new PostMethod();
-  this.httpUrlConnection=new HttpURLConnection(this.httpMethod,this.url);
+  this.uri=new URI(LOCAL_HOST,false);
+  this.url=new URL(LOCAL_HOST);
+  this.urlConnection=new URLConnectionStub(this.url.openConnection());
+  this.httpMethod=new HttpMethodStub();
+  this.httpUrlConnection=new HttpURLConnectionStub(this.httpMethod,this.url);
 }

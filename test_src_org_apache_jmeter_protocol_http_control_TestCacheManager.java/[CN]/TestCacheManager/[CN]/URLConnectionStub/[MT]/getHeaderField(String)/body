@@ -1,0 +1,9 @@
+{
+  if (HTTPConstantsInterface.LAST_MODIFIED.equals(name)) {
+    return currentTimeInGMT;
+  }
+ else   if (HTTPConstantsInterface.ETAG.equals(name)) {
+    return EXPECTED_ETAG;
+  }
+  return super.getHeaderField(name);
+}

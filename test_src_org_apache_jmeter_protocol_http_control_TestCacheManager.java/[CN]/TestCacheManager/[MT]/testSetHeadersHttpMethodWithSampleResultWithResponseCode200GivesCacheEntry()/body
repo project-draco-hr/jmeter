@@ -3,7 +3,6 @@
   this.httpMethod.addRequestHeader(new Header(HTTPConstantsInterface.IF_MODIFIED_SINCE,this.currentTimeInGMT,false));
   this.httpMethod.addRequestHeader(new Header(HTTPConstantsInterface.ETAG,EXPECTED_ETAG,false));
   saveDetailsWithHttpMethodAndSampleResultWithResponseCode("200");
-  setFieldInCacheEntry(getThreadCacheEntry(this.httpMethod.getURI().toString()),"etag",EXPECTED_ETAG);
   setHeadersWithUrlAndHttpMethod();
   checkRequestHeader(HTTPConstantsInterface.IF_NONE_MATCH,EXPECTED_ETAG);
   checkRequestHeader(HTTPConstantsInterface.IF_MODIFIED_SINCE,this.currentTimeInGMT);
