@@ -7,6 +7,7 @@
   res.setMonitor(false);
   res.setSampleLabel(urlStr);
   res.setHTTPMethod(HTTPConstants.POST);
+  res.setURL(url);
   res.sampleStart();
   HttpClient client=null;
   InputStream instream=null;
