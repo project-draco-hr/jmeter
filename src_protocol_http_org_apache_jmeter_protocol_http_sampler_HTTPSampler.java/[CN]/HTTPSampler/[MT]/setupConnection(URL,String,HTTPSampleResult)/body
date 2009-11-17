@@ -54,8 +54,6 @@
     setPutHeaders(conn);
   }
   if (res != null) {
-    res.setURL(u);
-    res.setHTTPMethod(method);
     res.setRequestHeaders(getConnectionHeaders(conn));
     res.setCookies(cookies);
   }

@@ -86,7 +86,6 @@
   String cookies=setConnectionCookie(httpMethod,u,getCookieManager());
   setConnectionAuthorization(httpClient,u,getAuthManager());
   if (res != null) {
-    res.setURL(u);
     res.setCookies(cookies);
   }
   return httpClient;
