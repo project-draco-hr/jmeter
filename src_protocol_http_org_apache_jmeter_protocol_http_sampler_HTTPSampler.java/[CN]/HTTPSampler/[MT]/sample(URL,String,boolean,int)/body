@@ -6,6 +6,16 @@
   res.setMonitor(isMonitor());
   res.setSampleLabel(urlStr);
   res.sampleStart();
+  final CacheManager cacheManager=getCacheManager();
+  if (cacheManager != null && GET.equalsIgnoreCase(method)) {
+    if (cacheManager.inCache(url)) {
+      res.sampleEnd();
+      res.setResponseCodeOK();
+      res.setResponseMessage("Cached");
+      res.setSuccessful(true);
+      return res;
+    }
+  }
   try {
     int retry;
     for (retry=0; retry <= MAX_CONN_RETRIES; retry++) {
@@ -91,7 +101,6 @@ catch (      IOException e) {
       res.setURL(conn.getURL());
     }
     saveConnectionCookies(conn,url,getCookieManager());
-    final CacheManager cacheManager=getCacheManager();
     if (cacheManager != null) {
       cacheManager.saveDetails(conn,res);
     }

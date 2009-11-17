@@ -1,4 +1,6 @@
 {
   setProperty(new BooleanProperty(CLEAR,false));
+  setProperty(new BooleanProperty(USE_EXPIRES,false));
   clearCache();
+  useExpires=false;
 }

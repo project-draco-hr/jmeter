@@ -1,4 +1,6 @@
 {
   super.configure(element);
-  clearEachIteration.setSelected(((CacheManager)element).getClearEachIteration());
+  final CacheManager cacheManager=(CacheManager)element;
+  clearEachIteration.setSelected(cacheManager.getClearEachIteration());
+  useExpires.setSelected(cacheManager.getUseExpires());
 }

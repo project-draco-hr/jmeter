@@ -1,0 +1,21 @@
+{
+  CacheEntry entry=getCache().get(url.toString());
+  if (log.isDebugEnabled()) {
+    log.debug("inCache " + url.toString() + " "+ entry);
+  }
+  if (entry != null) {
+    final Date expiresDate=entry.getExpires();
+    if (expiresDate != null) {
+      if (expiresDate.after(new Date())) {
+        if (log.isDebugEnabled()) {
+          log.debug("Expires= " + expiresDate + " (Valid)");
+        }
+        return true;
+      }
+ else       if (log.isDebugEnabled()) {
+        log.debug("Expires= " + expiresDate + " (Expired)");
+      }
+    }
+  }
+  return false;
+}

@@ -1,0 +1,18 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("SET(both) " + url + " "+ lastModified+ " "+ " "+ expires+ " "+ etag);
+  }
+  Date expiresDate=null;
+  if (expires != null && useExpires) {
+    try {
+      expiresDate=DateUtil.parseDate(expires);
+    }
+ catch (    DateParseException e) {
+      if (log.isDebugEnabled()) {
+        log.debug("Unable to parse Expires: '" + expires + "' "+ e);
+      }
+      expiresDate=new Date(0L);
+    }
+  }
+  getCache().put(url,new CacheEntry(lastModified,expiresDate,etag));
+}

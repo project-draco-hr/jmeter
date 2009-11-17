@@ -1,4 +1,6 @@
 {
   configureTestElement(element);
-  ((CacheManager)element).setClearEachIteration(clearEachIteration.isSelected());
+  final CacheManager cacheManager=(CacheManager)element;
+  cacheManager.setClearEachIteration(clearEachIteration.isSelected());
+  cacheManager.setUseExpires(useExpires.isSelected());
 }
