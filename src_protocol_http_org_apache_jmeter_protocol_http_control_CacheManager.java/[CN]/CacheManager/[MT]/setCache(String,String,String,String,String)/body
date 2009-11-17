@@ -1,0 +1,25 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("SET(both) " + url + " "+ cacheControl+ " "+ lastModified+ " "+ " "+ expires+ " "+ etag);
+  }
+  Date expiresDate=null;
+  if (useExpires) {
+    final String MAX_AGE="max-age=";
+    if (cacheControl != null && cacheControl.contains("public") && cacheControl.contains(MAX_AGE)) {
+      long maxAge=Long.parseLong(cacheControl.substring(cacheControl.indexOf(MAX_AGE) + MAX_AGE.length())) * 1000;
+      expiresDate=new Date(System.currentTimeMillis() + maxAge);
+    }
+ else     if (expires != null) {
+      try {
+        expiresDate=DateUtil.parseDate(expires);
+      }
+ catch (      DateParseException e) {
+        if (log.isDebugEnabled()) {
+          log.debug("Unable to parse Expires: '" + expires + "' "+ e);
+        }
+        expiresDate=new Date(0L);
+      }
+    }
+  }
+  getCache().put(url,new CacheEntry(lastModified,expiresDate,etag));
+}

@@ -4,6 +4,7 @@
     String expires=getHeader(method,HTTPConstantsInterface.EXPIRES);
     String etag=getHeader(method,HTTPConstantsInterface.ETAG);
     String url=method.getURI().toString();
-    setCache(lastModified,expires,etag,url);
+    String cacheControl=getHeader(method,HTTPConstantsInterface.CACHE_CONTROL);
+    setCache(lastModified,cacheControl,expires,etag,url);
   }
 }

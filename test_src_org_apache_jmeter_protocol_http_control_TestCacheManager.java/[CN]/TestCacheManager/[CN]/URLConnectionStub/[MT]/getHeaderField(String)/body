@@ -5,5 +5,11 @@
  else   if (HTTPConstantsInterface.ETAG.equals(name)) {
     return EXPECTED_ETAG;
   }
+ else   if (HTTPConstantsInterface.EXPIRES.equals(name)) {
+    return expires;
+  }
+ else   if (HTTPConstantsInterface.CACHE_CONTROL.equals(name)) {
+    return cacheControl;
+  }
   return super.getHeaderField(name);
 }

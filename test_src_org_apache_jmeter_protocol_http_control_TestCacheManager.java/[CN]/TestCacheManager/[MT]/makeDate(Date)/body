@@ -1,0 +1,6 @@
+{
+  SimpleDateFormat simpleDateFormat=new SimpleDateFormat();
+  simpleDateFormat.setTimeZone(new SimpleTimeZone(0,"GMT"));
+  simpleDateFormat.applyPattern("EEE, dd MMM yyyy HH:mm:ss z");
+  return simpleDateFormat.format(d);
+}

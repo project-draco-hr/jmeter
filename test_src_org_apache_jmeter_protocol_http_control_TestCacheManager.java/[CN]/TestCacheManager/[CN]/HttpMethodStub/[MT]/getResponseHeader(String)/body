@@ -5,5 +5,11 @@
  else   if (HTTPConstantsInterface.ETAG.equals(headerName)) {
     return this.etagHeader;
   }
+ else   if (HTTPConstantsInterface.EXPIRES.equals(headerName)) {
+    return expires == null ? null : new Header(HTTPConstantsInterface.EXPIRES,expires);
+  }
+ else   if (HTTPConstantsInterface.CACHE_CONTROL.equals(headerName)) {
+    return cacheControl == null ? null : new Header(HTTPConstantsInterface.CACHE_CONTROL,cacheControl);
+  }
   return null;
 }

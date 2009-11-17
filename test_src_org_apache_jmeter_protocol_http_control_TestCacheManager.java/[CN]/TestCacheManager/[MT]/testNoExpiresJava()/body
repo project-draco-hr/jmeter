@@ -1,0 +1,10 @@
+{
+  this.cacheManager.setUseExpires(false);
+  this.cacheManager.testIterationStart(null);
+  assertNull("Should not find entry",getThreadCacheEntry(LOCAL_HOST));
+  assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
+  ((URLConnectionStub)urlConnection).expires=makeDate(new Date(System.currentTimeMillis() + 2000));
+  this.cacheManager.saveDetails(this.urlConnection,sampleResultOK);
+  assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
+  assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
+}
