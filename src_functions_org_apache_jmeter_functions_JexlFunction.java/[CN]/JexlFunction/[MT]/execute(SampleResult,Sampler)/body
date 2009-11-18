@@ -11,7 +11,7 @@
   try {
     Script script=ScriptFactory.createScript(exp);
     JexlContext jc=JexlHelper.createContext();
-    final Map<String,Object> jexlVars=jc.getVars();
+    @SuppressWarnings("unchecked") final Map<String,Object> jexlVars=jc.getVars();
     jexlVars.put("log",log);
     jexlVars.put("ctx",jmctx);
     jexlVars.put("vars",vars);

@@ -10,7 +10,7 @@
   element.setProperty(new CollectionProperty("args",argsin));
   replacer.reverseReplace(element);
   assertEquals("${server}",element.getPropertyAsString("domain"));
-  List<JMeterProperty> args=(List<JMeterProperty>)element.getProperty("args").getObjectValue();
+  @SuppressWarnings("unchecked") List<JMeterProperty> args=(List<JMeterProperty>)element.getProperty("args").getObjectValue();
   assertEquals("username is ${username}",args.get(0).getStringValue());
   assertEquals("${password}",args.get(1).getStringValue());
 }

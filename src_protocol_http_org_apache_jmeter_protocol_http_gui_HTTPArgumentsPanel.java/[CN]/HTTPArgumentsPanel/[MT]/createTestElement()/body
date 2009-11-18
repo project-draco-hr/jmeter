@@ -1,6 +1,6 @@
 {
   stopTableEditing();
-  Iterator<HTTPArgument> modelData=(Iterator<HTTPArgument>)tableModel.iterator();
+  @SuppressWarnings("unchecked") Iterator<HTTPArgument> modelData=(Iterator<HTTPArgument>)tableModel.iterator();
   Arguments args=new Arguments();
   while (modelData.hasNext()) {
     HTTPArgument arg=modelData.next();

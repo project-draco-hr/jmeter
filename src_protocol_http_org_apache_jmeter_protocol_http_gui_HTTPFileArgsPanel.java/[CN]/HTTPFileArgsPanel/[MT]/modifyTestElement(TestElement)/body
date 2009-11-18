@@ -3,7 +3,7 @@
   if (testElement instanceof HTTPSamplerBase) {
     HTTPSamplerBase base=(HTTPSamplerBase)testElement;
     int rows=tableModel.getRowCount();
-    Iterator<HTTPFileArg> modelData=(Iterator<HTTPFileArg>)tableModel.iterator();
+    @SuppressWarnings("unchecked") Iterator<HTTPFileArg> modelData=(Iterator<HTTPFileArg>)tableModel.iterator();
     HTTPFileArg[] files=new HTTPFileArg[rows];
     int row=0;
     while (modelData.hasNext()) {

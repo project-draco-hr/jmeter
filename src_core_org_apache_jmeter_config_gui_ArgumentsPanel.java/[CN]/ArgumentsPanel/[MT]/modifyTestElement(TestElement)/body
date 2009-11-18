@@ -4,7 +4,7 @@
   if (args instanceof Arguments) {
     arguments=(Arguments)args;
     arguments.clear();
-    Iterator<Argument> modelData=(Iterator<Argument>)tableModel.iterator();
+    @SuppressWarnings("unchecked") Iterator<Argument> modelData=(Iterator<Argument>)tableModel.iterator();
     while (modelData.hasNext()) {
       Argument arg=modelData.next();
       arg.setMetaData("=");

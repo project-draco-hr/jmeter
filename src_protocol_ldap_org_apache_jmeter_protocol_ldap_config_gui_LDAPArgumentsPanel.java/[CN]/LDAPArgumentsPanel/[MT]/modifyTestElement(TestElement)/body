@@ -4,7 +4,7 @@
   if (args instanceof LDAPArguments) {
     arguments=(LDAPArguments)args;
     arguments.clear();
-    Iterator<LDAPArgument> modelData=(Iterator<LDAPArgument>)tableModel.iterator();
+    @SuppressWarnings("unchecked") Iterator<LDAPArgument> modelData=(Iterator<LDAPArgument>)tableModel.iterator();
     while (modelData.hasNext()) {
       LDAPArgument arg=modelData.next();
       arg.setMetaData("=");
