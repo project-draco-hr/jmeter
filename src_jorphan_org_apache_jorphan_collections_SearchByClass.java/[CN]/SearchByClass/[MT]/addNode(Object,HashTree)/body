@@ -1,6 +1,6 @@
 {
   if (searchClass.isAssignableFrom(node.getClass())) {
-    objectsOfClass.add(node);
+    objectsOfClass.add((T)node);
     ListedHashTree tree=new ListedHashTree(node);
     tree.set(node,subTree);
     subTrees.put(node,tree);

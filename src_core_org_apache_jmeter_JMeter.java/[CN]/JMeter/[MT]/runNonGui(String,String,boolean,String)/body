@@ -13,7 +13,7 @@
     JMeterTreeModel treeModel=new JMeterTreeModel(new Object());
     JMeterTreeNode root=(JMeterTreeNode)treeModel.getRoot();
     treeModel.addSubTree(tree,root);
-    SearchByClass replaceableControllers=new SearchByClass(ReplaceableController.class);
+    SearchByClass<ReplaceableController> replaceableControllers=new SearchByClass<ReplaceableController>(ReplaceableController.class);
     tree.traverse(replaceableControllers);
     Collection<ReplaceableController> replaceableControllersRes=replaceableControllers.getSearchResults();
     for (Iterator<ReplaceableController> iter=replaceableControllersRes.iterator(); iter.hasNext(); ) {

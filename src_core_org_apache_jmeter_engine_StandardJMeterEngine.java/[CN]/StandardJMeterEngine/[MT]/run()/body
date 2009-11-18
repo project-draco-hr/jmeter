@@ -1,7 +1,7 @@
 {
   log.info("Running the test!");
   running=true;
-  SearchByClass testPlan=new SearchByClass(TestPlan.class);
+  SearchByClass<TestPlan> testPlan=new SearchByClass<TestPlan>(TestPlan.class);
   test.traverse(testPlan);
   Object[] plan=testPlan.getSearchResults().toArray();
   if (plan.length == 0) {
@@ -22,7 +22,7 @@
     JMeterUtils.reportErrorToUser("Error occurred compiling the tree: - see log file");
     return;
   }
-  SearchByClass testListeners=new SearchByClass(TestListener.class);
+  SearchByClass<TestListener> testListeners=new SearchByClass<TestListener>(TestListener.class);
   test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
@@ -36,7 +36,7 @@
   }
   List<?> testLevelElements=new LinkedList<Object>(test.list(test.getArray()[0]));
   removeThreadGroups(testLevelElements);
-  SearchByClass searcher=new SearchByClass(ThreadGroup.class);
+  SearchByClass<ThreadGroup> searcher=new SearchByClass<ThreadGroup>(ThreadGroup.class);
   test.traverse(searcher);
   TestCompiler.initialize();
   Iterator<ThreadGroup> iter=searcher.getSearchResults().iterator();
