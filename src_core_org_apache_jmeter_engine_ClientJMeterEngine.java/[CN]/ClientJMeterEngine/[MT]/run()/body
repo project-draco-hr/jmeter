@@ -1,6 +1,6 @@
 {
   log.info("running clientengine run method");
-  SearchByClass testListeners=new SearchByClass(TestListener.class);
+  SearchByClass<TestListener> testListeners=new SearchByClass<TestListener>(TestListener.class);
   ConvertListeners sampleListeners=new ConvertListeners();
   HashTree testTree=test;
   PreCompiler compiler=new PreCompiler(true);
