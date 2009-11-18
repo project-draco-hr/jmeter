@@ -6,9 +6,9 @@
   doc=bldr.build(compref);
   Element root=doc.getRootElement();
   Element body=root.getChild("body");
-  List<Element> sections=body.getChildren("section");
+  @SuppressWarnings("unchecked") List<Element> sections=body.getChildren("section");
   for (int i=0; i < sections.size(); i++) {
-    List<Element> components=sections.get(i).getChildren("component");
+    @SuppressWarnings("unchecked") List<Element> components=sections.get(i).getChildren("component");
     for (int j=0; j < components.size(); j++) {
       Element comp=components.get(j);
       String nm=comp.getAttributeValue("name");

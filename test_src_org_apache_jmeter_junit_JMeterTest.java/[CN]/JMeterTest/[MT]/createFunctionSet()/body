@@ -7,9 +7,9 @@
   Element root=doc.getRootElement();
   Element body=root.getChild("body");
   Element section=body.getChild("section");
-  List<Element> sections=section.getChildren("subsection");
+  @SuppressWarnings("unchecked") List<Element> sections=section.getChildren("subsection");
   for (int i=0; i < sections.size(); i++) {
-    List<Element> components=sections.get(i).getChildren("component");
+    @SuppressWarnings("unchecked") List<Element> components=sections.get(i).getChildren("component");
     for (int j=0; j < components.size(); j++) {
       Element comp=components.get(j);
       funcTitles.put(comp.getAttributeValue("name"),Boolean.FALSE);
