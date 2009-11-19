@@ -11,7 +11,7 @@
   }
   SamplingStatCalculator row=data.get(url);
   if (row == null) {
-    row=new SamplingStatCalculator();
+    row=new SamplingStatCalculator(url);
     this.data.put(url,row);
   }
   row.addSample(sample);
