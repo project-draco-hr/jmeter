@@ -3,5 +3,5 @@
   if (temp != null) {
     return temp.list();
   }
-  return new LinkedList();
+  return new HashTree().list();
 }

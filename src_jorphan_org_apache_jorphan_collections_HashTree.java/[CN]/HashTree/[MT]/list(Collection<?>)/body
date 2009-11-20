@@ -3,5 +3,5 @@
   if (tree != null) {
     return tree.list();
   }
-  return new LinkedList();
+  return new HashTree().list();
 }
