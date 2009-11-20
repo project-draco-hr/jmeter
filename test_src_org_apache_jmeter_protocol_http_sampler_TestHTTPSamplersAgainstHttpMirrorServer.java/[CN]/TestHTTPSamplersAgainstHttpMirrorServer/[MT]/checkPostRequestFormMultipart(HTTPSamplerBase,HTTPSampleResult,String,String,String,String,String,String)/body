@@ -11,7 +11,7 @@
   String dataSentToMirrorServer=new String(res.getResponseData(),contentEncoding);
   int posDividerHeadersAndBody=getPositionOfBody(dataSentToMirrorServer);
   String headersSent=null;
-  String bodySent=null;
+  String bodySent="";
   if (posDividerHeadersAndBody >= 0) {
     headersSent=dataSentToMirrorServer.substring(0,posDividerHeadersAndBody);
     bodySent=dataSentToMirrorServer.substring(posDividerHeadersAndBody + 2);
