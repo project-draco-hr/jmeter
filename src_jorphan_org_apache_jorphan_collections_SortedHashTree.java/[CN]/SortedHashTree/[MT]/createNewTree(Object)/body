@@ -1,4 +1,4 @@
 {
-  Comparator<?> comparator=((TreeMap<?,?>)data).comparator();
+  Comparator<? super Object> comparator=((TreeMap<Object,HashTree>)data).comparator();
   return new SortedHashTree(key,comparator);
 }
