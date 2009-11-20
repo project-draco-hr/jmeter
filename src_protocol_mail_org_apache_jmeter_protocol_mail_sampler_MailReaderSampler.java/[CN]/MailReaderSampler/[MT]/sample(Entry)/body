@@ -3,13 +3,24 @@
   boolean isOK=false;
   boolean deleteMessages=getDeleteMessages();
   parent.setSampleLabel(getName());
-  parent.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
+  int port=getPortAsInt();
+  if (port > 0) {
+    parent.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer()+ ":"+ port);
+  }
+ else {
+    parent.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
+  }
   parent.sampleStart();
   try {
     Properties props=new Properties();
     Session session=Session.getDefaultInstance(props,null);
     Store store=session.getStore(getServerType());
-    store.connect(getServer(),getUserName(),getPassword());
+    if (port > 0) {
+      store.connect(getServer(),port,getUserName(),getPassword());
+    }
+ else {
+      store.connect(getServer(),getUserName(),getPassword());
+    }
     Folder folder=store.getFolder(getFolder());
     if (deleteMessages) {
       folder.open(Folder.READ_WRITE);

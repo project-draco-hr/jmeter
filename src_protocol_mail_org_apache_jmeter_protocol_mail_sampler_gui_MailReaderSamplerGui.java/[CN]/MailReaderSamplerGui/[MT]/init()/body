@@ -32,6 +32,11 @@
   serverBox=new JTextField(20);
   serverPanel.add(serverBox);
   add(serverPanel);
+  JPanel portPanel=new JPanel();
+  portPanel.add(new JLabel(PortLabel));
+  portBox=new JTextField(20);
+  portPanel.add(portBox);
+  add(portPanel);
   JPanel accountNamePanel=new JPanel();
   accountNamePanel.add(new JLabel(AccountLabel));
   usernameBox=new JTextField(20);

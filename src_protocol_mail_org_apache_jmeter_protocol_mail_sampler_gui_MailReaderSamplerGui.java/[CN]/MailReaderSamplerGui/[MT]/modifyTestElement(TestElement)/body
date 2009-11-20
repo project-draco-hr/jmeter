@@ -17,6 +17,7 @@
   }
   mrs.setFolder(folderBox.getText());
   mrs.setServer(serverBox.getText());
+  mrs.setPort(portBox.getText());
   mrs.setUserName(usernameBox.getText());
   mrs.setPassword(passwordBox.getText());
   if (allMessagesButton.isSelected()) {

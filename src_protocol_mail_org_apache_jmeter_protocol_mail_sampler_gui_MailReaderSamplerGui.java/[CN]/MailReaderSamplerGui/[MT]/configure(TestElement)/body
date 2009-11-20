@@ -17,6 +17,7 @@
     folderBox.setText(mrs.getFolder());
   }
   serverBox.setText(mrs.getServer());
+  portBox.setText(mrs.getPort());
   usernameBox.setText(mrs.getUserName());
   passwordBox.setText(mrs.getPassword());
   if (mrs.getNumMessages() == MailReaderSampler.ALL_MESSAGES) {
