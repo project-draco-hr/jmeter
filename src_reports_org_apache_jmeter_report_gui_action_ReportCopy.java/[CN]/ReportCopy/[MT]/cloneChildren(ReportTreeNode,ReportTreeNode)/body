@@ -1,5 +1,5 @@
 {
-  Enumeration<ReportTreeNode> enumFrom=from.children();
+  @SuppressWarnings("unchecked") Enumeration<ReportTreeNode> enumFrom=from.children();
   while (enumFrom.hasMoreElements()) {
     ReportTreeNode child=enumFrom.nextElement();
     ReportTreeNode childClone=(ReportTreeNode)child.clone();

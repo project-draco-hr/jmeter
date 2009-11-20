@@ -1,5 +1,5 @@
 {
-  Iterator<TestElement> iter=subTree.list().iterator();
+  @SuppressWarnings("unchecked") Iterator<TestElement> iter=subTree.list().iterator();
   while (iter.hasNext()) {
     TestElement item=iter.next();
     if (item instanceof ReportPlan) {

@@ -2,7 +2,7 @@
   if (type.isInstance(node.getUserObject())) {
     nodeList.add(node);
   }
-  Enumeration<ReportTreeNode> enumNode=node.children();
+  @SuppressWarnings("unchecked") Enumeration<ReportTreeNode> enumNode=node.children();
   while (enumNode.hasMoreElements()) {
     ReportTreeNode child=enumNode.nextElement();
     traverseAndFind(type,child,nodeList);
