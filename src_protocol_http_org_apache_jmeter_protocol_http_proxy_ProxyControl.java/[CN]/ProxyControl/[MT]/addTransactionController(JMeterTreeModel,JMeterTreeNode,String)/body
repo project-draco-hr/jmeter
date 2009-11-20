@@ -1,0 +1,6 @@
+{
+  TransactionController sc=new TransactionController();
+  sc.setProperty(TestElement.GUI_CLASS,TRANSACTION_CONTROLLER_GUI);
+  sc.setName(name);
+  model.addComponent(sc,node);
+}

@@ -4,6 +4,7 @@
   m.addElement(JMeterUtils.getResString("grouping_add_separators"));
   m.addElement(JMeterUtils.getResString("grouping_in_controllers"));
   m.addElement(JMeterUtils.getResString("grouping_store_first_only"));
+  m.addElement(JMeterUtils.getResString("grouping_in_transaction_controllers"));
   groupingMode=new JComboBox(m);
   groupingMode.setSelectedIndex(0);
   groupingMode.addItemListener(this);

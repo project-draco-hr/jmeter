@@ -8,8 +8,11 @@
       if (!myTarget.isLeaf() && groupingMode == GROUPING_ADD_SEPARATORS) {
         addDivider(treeModel,myTarget);
       }
-      if (groupingMode == GROUPING_IN_CONTROLLERS) {
+      if (groupingMode == GROUPING_IN_SIMPLE_CONTROLLERS) {
         addSimpleController(treeModel,myTarget,sampler.getName());
+      }
+      if (groupingMode == GROUPING_IN_TRANSACTION_CONTROLLERS) {
+        addTransactionController(treeModel,myTarget,sampler.getName());
       }
       firstInBatch=true;
     }
@@ -24,7 +27,7 @@
       sampler.setFollowRedirects(true);
       sampler.setImageParser(true);
     }
-    if (groupingMode == GROUPING_IN_CONTROLLERS) {
+    if (groupingMode == GROUPING_IN_SIMPLE_CONTROLLERS || groupingMode == GROUPING_IN_TRANSACTION_CONTROLLERS) {
       for (int i=myTarget.getChildCount() - 1; i >= 0; i--) {
         JMeterTreeNode c=(JMeterTreeNode)myTarget.getChildAt(i);
         if (c.getTestElement() instanceof GenericController) {
