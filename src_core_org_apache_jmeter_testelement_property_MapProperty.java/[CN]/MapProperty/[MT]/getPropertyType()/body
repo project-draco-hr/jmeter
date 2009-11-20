@@ -1,6 +1,6 @@
 {
   if (value.size() > 0) {
-    return (Class<? extends AbstractProperty>)valueIterator().next().getClass();
+    return valueIterator().next().getClass();
   }
   return NullProperty.class;
 }

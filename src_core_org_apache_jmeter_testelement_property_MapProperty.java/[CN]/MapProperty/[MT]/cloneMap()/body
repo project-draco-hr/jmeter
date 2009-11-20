@@ -1,6 +1,6 @@
 {
   try {
-    Map<String,JMeterProperty> newCol=value.getClass().newInstance();
+    @SuppressWarnings("unchecked") Map<String,JMeterProperty> newCol=value.getClass().newInstance();
     PropertyIterator iter=valueIterator();
     while (iter.hasNext()) {
       JMeterProperty item=iter.next();
