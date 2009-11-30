@@ -10,6 +10,6 @@
   checkBoxPanel.add(useMD5);
   optionalTasksPanel.add(checkBoxPanel);
   embeddedRE=new JLabeledTextField(JMeterUtils.getResString("web_testing_embedded_url_pattern"),30);
-  optionalTasksPanel.add(embeddedRE);
+  optionalTasksPanel.add(embeddedRE,BorderLayout.CENTER);
   return optionalTasksPanel;
 }

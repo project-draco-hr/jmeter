@@ -1,0 +1,5 @@
+{
+  super.configure(element);
+  final HTTPSampler2 samplerBase=(HTTPSampler2)element;
+  sourceIpAddr.setText(samplerBase.getIpSource());
+}

@@ -16,6 +16,13 @@
   if (localAddress != null) {
     hc.setLocalAddress(localAddress);
   }
+ else {
+    final String ipSource=getIpSource();
+    if (ipSource.length() > 0) {
+      InetAddress inetAddr=InetAddress.getByName(ipSource);
+      hc.setLocalAddress(inetAddr);
+    }
+  }
   boolean useStaticProxy=PROXY_DEFINED && !isNonProxy(host);
   boolean useDynamicProxy=false;
   final String proxyHost=getProxyHost();
