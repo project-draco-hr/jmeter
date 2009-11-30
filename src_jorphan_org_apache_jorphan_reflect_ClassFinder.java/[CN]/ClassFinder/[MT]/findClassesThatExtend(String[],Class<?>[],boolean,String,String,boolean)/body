@@ -18,7 +18,8 @@
       log.debug("listPaths : " + tIter.next());
     }
   }
-  Set<String> listClasses=annotations ? new AnnoFilterTreeSet((Class<? extends Annotation>[])classNames,innerClasses) : new FilterTreeSet(classNames,innerClasses,contains,notContains);
+  @SuppressWarnings("unchecked") final Class<? extends Annotation>[] annoclassNames=(Class<? extends Annotation>[])classNames;
+  Set<String> listClasses=annotations ? new AnnoFilterTreeSet(annoclassNames,innerClasses) : new FilterTreeSet(classNames,innerClasses,contains,notContains);
   findClassesInPaths(listPaths,listClasses);
   if (log.isDebugEnabled()) {
     log.debug("listClasses.size()=" + listClasses.size());
