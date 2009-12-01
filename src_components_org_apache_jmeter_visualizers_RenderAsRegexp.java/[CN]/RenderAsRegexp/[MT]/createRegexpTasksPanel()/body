@@ -1,6 +1,6 @@
 {
   JPanel regexpActionPanel=new JPanel();
-  regexpField=new JLabeledTextField(JMeterUtils.getResString("regexp_tester_field"),30);
+  regexpField=new JLabeledTextField(JMeterUtils.getResString("regexp_tester_field"));
   regexpActionPanel.add(regexpField,BorderLayout.WEST);
   JButton regexpTester=new JButton(JMeterUtils.getResString("regexp_tester_button_test"));
   regexpTester.setActionCommand(REGEXP_TESTER_COMMAND);
