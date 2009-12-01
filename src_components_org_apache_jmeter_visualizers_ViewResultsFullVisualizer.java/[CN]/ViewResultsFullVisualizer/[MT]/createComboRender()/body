@@ -1,0 +1,23 @@
+{
+  ComboBoxModel nodesModel=new DefaultComboBoxModel();
+  selectRenderPanel=new JComboBox(nodesModel);
+  selectRenderPanel.setActionCommand(COMBO_CHANGE_COMMAND);
+  selectRenderPanel.addActionListener(this);
+  List<String> classesToAdd=Collections.<String>emptyList();
+  try {
+    classesToAdd=ClassFinder.findClassesThatExtend(ResultRenderer.class);
+  }
+ catch (  IOException e1) {
+  }
+  for (  String clazz : classesToAdd) {
+    try {
+      final ResultRenderer renderer=(ResultRenderer)Class.forName(clazz).newInstance();
+      renderer.setBackgroundColor(getBackground());
+      selectRenderPanel.addItem(renderer);
+    }
+ catch (    Exception e) {
+      log.warn("Error in load result render:" + clazz,e);
+    }
+  }
+  return selectRenderPanel;
+}

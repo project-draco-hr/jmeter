@@ -1,0 +1,6 @@
+{
+  byte[] responseBytes=sampleResult.getResponseData();
+  if (responseBytes != null) {
+    showImage(new ImageIcon(responseBytes));
+  }
+}

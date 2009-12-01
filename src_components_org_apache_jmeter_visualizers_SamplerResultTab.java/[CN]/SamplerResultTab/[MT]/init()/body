@@ -1,0 +1,5 @@
+{
+  rightSide.addTab(JMeterUtils.getResString("view_results_tab_sampler"),createResponseMetadataPanel());
+  requestPane=createRequestPanel();
+  resultsPane=createResponseDataPanel();
+}

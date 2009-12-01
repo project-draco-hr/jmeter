@@ -1,0 +1,17 @@
+{
+  results=new JEditorPane();
+  results.setEditable(false);
+  resultsScrollPane=GuiUtils.makeScrollPane(results);
+  imageLabel=new JLabel();
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.add(resultsScrollPane,BorderLayout.CENTER);
+  if (activateSearchExtension) {
+    searchTextExtension=new SearchTextExtension();
+    searchTextExtension.init(panel);
+    searchPanel=searchTextExtension.createSearchTextExtensionPane();
+    searchTextExtension.setResults(results);
+    searchPanel.setVisible(true);
+    panel.add(searchPanel,BorderLayout.PAGE_END);
+  }
+  return panel;
+}

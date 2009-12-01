@@ -1,6 +1,6 @@
 {
-  if (results != null && results.getText().length() > 0 && this.textToFindField.getText().length() > 0) {
-    String textToFind=textToFindField.getText();
+  String textToFind=textToFindField.getText();
+  if (results != null && results.getText().length() > 0 && textToFind.length() > 0) {
     if (lastTextTofind != null && !lastTextTofind.equals(textToFind)) {
       lastPosition=LAST_POSITION_DEFAULT;
     }

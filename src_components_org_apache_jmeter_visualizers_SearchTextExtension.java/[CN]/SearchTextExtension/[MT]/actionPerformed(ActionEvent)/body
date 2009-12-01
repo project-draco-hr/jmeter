@@ -1,9 +1,6 @@
 {
-  command=e.getActionCommand();
-  if (command != null && (command.equals(SearchTextExtension.SEARCH_TEXT_COMMAND))) {
+  String command=e.getActionCommand();
+  if (SEARCH_TEXT_COMMAND.equals(command)) {
     executeAndShowTextFind();
-  }
- else   if (command != null && command.equals(SearchTextExtension.DIALOG_SEARCH_HIDE_COMMAND)) {
-    hideSearchBox();
   }
 }

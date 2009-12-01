@@ -1,0 +1,6 @@
+{
+  if (rightSide.indexOfTab(JMeterUtils.getResString("regexp_tester_title")) < 0) {
+    rightSide.addTab(JMeterUtils.getResString("regexp_tester_title"),regexpPane);
+  }
+  clearData();
+}

@@ -25,5 +25,6 @@
   im.put(KeyStroke.getKeyStroke("ENTER"),SEARCH_TEXT_COMMAND);
   ActionMap am=textToFindField.getActionMap();
   am.put(SEARCH_TEXT_COMMAND,new EnterAction());
+  searchPanel.setVisible(true);
   return searchPanel;
 }

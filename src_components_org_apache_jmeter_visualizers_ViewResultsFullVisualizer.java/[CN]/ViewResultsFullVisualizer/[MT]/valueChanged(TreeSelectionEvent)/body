@@ -1,137 +1,24 @@
 {
-  log.debug("Start : valueChanged1");
+  lastSelectionEvent=e;
   DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-  if (log.isDebugEnabled()) {
-    log.debug("valueChanged : selected node - " + node);
-  }
-  StyledDocument statsDoc=stats.getStyledDocument();
-  try {
-    statsDoc.remove(0,statsDoc.getLength());
-    sampleDataField.setText("");
-    results.setText("");
-    if (node != null) {
-      Object userObject=node.getUserObject();
-      if (userObject instanceof SampleResult) {
-        SampleResult res=(SampleResult)userObject;
-        setupTabPaneForSampleResult();
-        if (log.isDebugEnabled()) {
-          log.debug("valueChanged1 : sample result - " + res);
-          log.debug("valueChanged1 : load time - " + res.getTime());
-        }
-        String sd=res.getSamplerData();
-        if (sd != null) {
-          String rh=res.getRequestHeaders();
-          if (rh != null) {
-            StringBuilder sb=new StringBuilder(sd.length() + rh.length() + 20);
-            sb.append(sd);
-            sb.append("\n");
-            sb.append(JMeterUtils.getResString("view_results_request_headers"));
-            sb.append("\n");
-            sb.append(rh);
-            sd=sb.toString();
-          }
-          sampleDataField.setText(sd);
-        }
-        StringBuilder statsBuff=new StringBuilder(200);
-        statsBuff.append(JMeterUtils.getResString("view_results_thread_name")).append(res.getThreadName()).append(NL);
-        String startTime=dateFormat.format(new Date(res.getStartTime()));
-        statsBuff.append(JMeterUtils.getResString("view_results_sample_start")).append(startTime).append(NL);
-        statsBuff.append(JMeterUtils.getResString("view_results_load_time")).append(res.getTime()).append(NL);
-        statsBuff.append(JMeterUtils.getResString("view_results_latency")).append(res.getLatency()).append(NL);
-        statsBuff.append(JMeterUtils.getResString("view_results_size_in_bytes")).append(res.getBytes()).append(NL);
-        statsBuff.append(JMeterUtils.getResString("view_results_sample_count")).append(res.getSampleCount()).append(NL);
-        statsBuff.append(JMeterUtils.getResString("view_results_error_count")).append(res.getErrorCount()).append(NL);
-        statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
-        statsBuff=new StringBuilder();
-        String responseCode=res.getResponseCode();
-        if (log.isDebugEnabled()) {
-          log.debug("valueChanged1 : response code - " + responseCode);
-        }
-        int responseLevel=0;
-        if (responseCode != null) {
-          try {
-            responseLevel=Integer.parseInt(responseCode) / 100;
-          }
- catch (          NumberFormatException numberFormatException) {
-          }
-        }
-        Style style=null;
-switch (responseLevel) {
-case 3:
-          style=statsDoc.getStyle(STYLE_REDIRECT);
-        break;
-case 4:
-      style=statsDoc.getStyle(STYLE_CLIENT_ERROR);
-    break;
-case 5:
-  style=statsDoc.getStyle(STYLE_SERVER_ERROR);
-break;
-}
-statsBuff.append(JMeterUtils.getResString("view_results_response_code")).append(responseCode).append(NL);
-statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),style);
-statsBuff=new StringBuilder(100);
-String responseMsgStr=res.getResponseMessage();
-if (log.isDebugEnabled()) {
-log.debug("valueChanged1 : response message - " + responseMsgStr);
-}
-statsBuff.append(JMeterUtils.getResString("view_results_response_message")).append(responseMsgStr).append(NL);
-statsBuff.append(NL);
-statsBuff.append(JMeterUtils.getResString("view_results_response_headers")).append(NL);
-statsBuff.append(res.getResponseHeaders()).append(NL);
-statsBuff.append(NL);
-final String samplerClass=res.getClass().getName();
-statsBuff.append(samplerClass.substring(1 + samplerClass.lastIndexOf('.'))).append(" " + JMeterUtils.getResString("view_results_fields")).append(NL);
-statsBuff.append("ContentType: ").append(res.getContentType()).append(NL);
-statsBuff.append("DataEncoding: ").append(res.getDataEncodingNoDefault()).append(NL);
-statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
-statsBuff=null;
-searchTextExtension.resetTextToFind();
-if ((SampleResult.TEXT).equals(res.getDataType())) {
-String response=getResponseAsString(res);
-if (command.equals(TEXT_COMMAND)) {
-showTextResponse(response);
-}
- else if (command.equals(HTML_COMMAND)) {
-showRenderedResponse(response,res);
-}
- else if (command.equals(JSON_COMMAND)) {
-showRenderJSONResponse(response);
-}
- else if (command.equals(XML_COMMAND)) {
-showRenderXMLResponse(res);
-}
-if (!searchTextExtension.isEnabled()) {
-searchTextExtension.setEnabled(true);
-}
-}
+  if (node != null) {
+    if (rightSide.getTabCount() > selectedTab) {
+      resultsRender.setLastSelectedTab(rightSide.getSelectedIndex());
+    }
+    Object userObject=node.getUserObject();
+    resultsRender.setSamplerResult(userObject);
+    resultsRender.setupTabPane();
+    if (userObject instanceof SampleResult) {
+      SampleResult sampleResult=(SampleResult)userObject;
+      if ((SampleResult.TEXT).equals(sampleResult.getDataType())) {
+        resultsRender.renderResult(sampleResult);
+      }
  else {
-byte[] responseBytes=res.getResponseData();
-if (responseBytes != null) {
-showImage(new ImageIcon(responseBytes));
-if (searchTextExtension.isEnabled()) {
-  searchTextExtension.setEnabled(false);
-}
-}
-}
-}
- else if (userObject instanceof AssertionResult) {
-AssertionResult res=(AssertionResult)userObject;
-setupTabPaneForAssertionResult();
-if (log.isDebugEnabled()) {
-log.debug("valueChanged1 : sample result - " + res);
-}
-StringBuilder statsBuff=new StringBuilder(100);
-statsBuff.append(JMeterUtils.getResString("view_results_assertion_error")).append(res.isError()).append(NL);
-statsBuff.append(JMeterUtils.getResString("view_results_assertion_failure")).append(res.isFailure()).append(NL);
-statsBuff.append(JMeterUtils.getResString("view_results_assertion_failure_message")).append(res.getFailureMessage()).append(NL);
-statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
-statsBuff=null;
-}
-}
-}
- catch (BadLocationException exc) {
-log.error("Error setting statistics text",exc);
-stats.setText("");
-}
-log.debug("End : valueChanged1");
+        byte[] responseBytes=sampleResult.getResponseData();
+        if (responseBytes != null) {
+          resultsRender.renderImage(sampleResult);
+        }
+      }
+    }
+  }
 }

@@ -12,5 +12,8 @@
   jTree.setShowsRootHandles(true);
   JScrollPane treePane=new JScrollPane(jTree);
   treePane.setPreferredSize(new Dimension(200,300));
-  return treePane;
+  VerticalPanel leftPane=new VerticalPanel();
+  leftPane.add(treePane,BorderLayout.CENTER);
+  leftPane.add(createComboRender(),BorderLayout.SOUTH);
+  return leftPane;
 }

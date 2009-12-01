@@ -1,0 +1,11 @@
+{
+  this.clearFields();
+  if ((SampleResult.TEXT).equals(sampleResult.getDataType())) {
+    String response=ViewResultsFullVisualizer.getResponseAsString(sampleResult);
+    regexpDataField.setText(response);
+    regexpDataField.setCaretPosition(0);
+  }
+ else {
+    regexpDataField.setText(JMeterUtils.getResString("regexp_render_no_text"));
+  }
+}

@@ -1,0 +1,17 @@
+{
+  JPanel regexpActionPanel=new JPanel();
+  regexpField=new JLabeledTextField(JMeterUtils.getResString("regexp_tester_field"),30);
+  regexpActionPanel.add(regexpField,BorderLayout.WEST);
+  JButton regexpTester=new JButton(JMeterUtils.getResString("regexp_tester_button_test"));
+  regexpTester.setActionCommand(REGEXP_TESTER_COMMAND);
+  regexpTester.addActionListener(this);
+  regexpActionPanel.add(regexpTester,BorderLayout.EAST);
+  regexpResultField=new JTextArea();
+  regexpResultField.setEditable(false);
+  regexpResultField.setLineWrap(true);
+  regexpResultField.setWrapStyleWord(true);
+  JPanel regexpTasksPanel=new JPanel(new BorderLayout(0,5));
+  regexpTasksPanel.add(regexpActionPanel,BorderLayout.NORTH);
+  regexpTasksPanel.add(GuiUtils.makeScrollPane(regexpResultField),BorderLayout.CENTER);
+  return regexpTasksPanel;
+}

@@ -1,0 +1,7 @@
+{
+  String command=e.getActionCommand();
+  if ((sampleResult != null) && (REGEXP_TESTER_COMMAND.equals(command))) {
+    String response=ViewResultsFullVisualizer.getResponseAsString(sampleResult);
+    executeAndShowRegexpTester(response);
+  }
+}
