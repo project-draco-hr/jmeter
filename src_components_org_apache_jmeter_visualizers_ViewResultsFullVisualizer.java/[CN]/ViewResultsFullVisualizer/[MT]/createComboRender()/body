@@ -9,9 +9,14 @@
   }
  catch (  IOException e1) {
   }
+  String textRenderer=JMeterUtils.getResString("view_results_render_text");
+  Object textObject=null;
   for (  String clazz : classesToAdd) {
     try {
       final ResultRenderer renderer=(ResultRenderer)Class.forName(clazz).newInstance();
+      if (textRenderer.equals(renderer.toString())) {
+        textObject=renderer;
+      }
       renderer.setBackgroundColor(getBackground());
       selectRenderPanel.addItem(renderer);
     }
@@ -19,5 +24,6 @@
       log.warn("Error in load result render:" + clazz,e);
     }
   }
+  nodesModel.setSelectedItem(textObject);
   return selectRenderPanel;
 }
