@@ -5,7 +5,7 @@
   selectRenderPanel.addActionListener(this);
   List<String> classesToAdd=Collections.<String>emptyList();
   try {
-    classesToAdd=ClassFinder.findClassesThatExtend(ResultRenderer.class);
+    classesToAdd=JMeterUtils.findClassesThatExtend(ResultRenderer.class);
   }
  catch (  IOException e1) {
   }
