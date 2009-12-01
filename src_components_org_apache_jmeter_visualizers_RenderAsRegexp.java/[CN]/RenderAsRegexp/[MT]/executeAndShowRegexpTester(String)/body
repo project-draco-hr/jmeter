@@ -1,6 +1,5 @@
 {
   if (textToParse != null && textToParse.length() > 0 && this.regexpField.getText().length() > 0) {
-    log.debug("regexpField = " + this.regexpField.getText());
     this.regexpResultField.setText(process(textToParse));
   }
 }

@@ -4,24 +4,17 @@
   PatternCacheLRU pcLRU=new PatternCacheLRU();
   Pattern pattern=pcLRU.getPattern(regexpField.getText(),Perl5Compiler.READ_ONLY_MASK);
   List<MatchResult> matches=new LinkedList<MatchResult>();
-  int x=0;
-  boolean done=false;
-  do {
-    if (matcher.contains(input,pattern)) {
-      matches.add(matcher.getMatch());
-    }
- else {
-      done=true;
-    }
-    x++;
+  while (matcher.contains(input,pattern)) {
+    matches.add(matcher.getMatch());
   }
- while (!done);
-  StringBuffer sb=new StringBuffer();
-  for (int j=0; j < matches.size(); j++) {
+  StringBuilder sb=new StringBuilder();
+  final int size=matches.size();
+  sb.append("Match count: ").append(size).append("\n");
+  for (int j=0; j < size; j++) {
     MatchResult mr=matches.get(j);
     final int groups=mr.groups();
     for (int i=0; i < groups; i++) {
-      sb.append(" group[" + j + "]["+ i+ "]="+ mr.group(i)+ "\n");
+      sb.append("Match[").append(j + 1).append("][").append(i).append("]=").append(mr.group(i)).append("\n");
     }
   }
   return sb.toString();
