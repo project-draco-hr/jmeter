@@ -7,7 +7,6 @@
     if (userObject instanceof SampleResult) {
       sampleResult=(SampleResult)userObject;
       setupTabPaneForSampleResult();
-      log.debug("valueChanged1 : load time - " + sampleResult.getTime());
       String sd=sampleResult.getSamplerData();
       if (sd != null) {
         String rh=sampleResult.getRequestHeaders();
@@ -34,7 +33,6 @@
       statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
       statsBuff=new StringBuffer();
       String responseCode=sampleResult.getResponseCode();
-      log.debug("valueChanged1 : response code - " + responseCode);
       int responseLevel=0;
       if (responseCode != null) {
         try {
@@ -59,7 +57,6 @@ statsBuff.append(JMeterUtils.getResString("view_results_response_code")).append(
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),style);
 statsBuff=new StringBuffer(100);
 String responseMsgStr=sampleResult.getResponseMessage();
-log.debug("valueChanged1 : response message - " + responseMsgStr);
 statsBuff.append(JMeterUtils.getResString("view_results_response_message")).append(responseMsgStr).append(NL);
 statsBuff.append(NL);
 statsBuff.append(JMeterUtils.getResString("view_results_response_headers")).append(NL);
@@ -78,9 +75,6 @@ searchTextExtension.resetTextToFind();
  else if (userObject instanceof AssertionResult) {
 assertionResult=(AssertionResult)userObject;
 setupTabPaneForAssertionResult();
-if (log.isDebugEnabled()) {
-log.debug("valueChanged1 : sample result - " + assertionResult);
-}
 StringBuffer statsBuff=new StringBuffer(100);
 statsBuff.append(JMeterUtils.getResString("view_results_assertion_error")).append(assertionResult.isError()).append(NL);
 statsBuff.append(JMeterUtils.getResString("view_results_assertion_failure")).append(assertionResult.isFailure()).append(NL);
@@ -90,7 +84,6 @@ statsBuff=null;
 }
 }
  catch (BadLocationException exc) {
-log.error("Error setting statistics text",exc);
-stats.setText("");
+stats.setText(exc.getLocalizedMessage());
 }
 }

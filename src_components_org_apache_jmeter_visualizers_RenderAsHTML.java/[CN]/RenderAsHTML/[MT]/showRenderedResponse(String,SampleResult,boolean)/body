@@ -11,7 +11,6 @@
     htmlIndex=0;
   }
   String html=response.substring(htmlIndex);
-  log.debug("html embedded=" + embedded);
   results.setEditorKitForContentType(TEXT_HTML,embedded ? defaultHtmlEditor : customisedEditor);
   results.setContentType(TEXT_HTML);
   if (embedded) {

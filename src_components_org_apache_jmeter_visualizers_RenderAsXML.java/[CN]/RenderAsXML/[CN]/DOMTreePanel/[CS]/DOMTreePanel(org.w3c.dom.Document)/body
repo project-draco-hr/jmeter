@@ -13,6 +13,6 @@
     domJTree.setCellRenderer(new DomTreeRenderer());
   }
  catch (  SAXException e) {
-    log.warn("",e);
+    log.warn("Error trying to parse document",e);
   }
 }
