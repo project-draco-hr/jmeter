@@ -20,15 +20,7 @@
       vars.put(varName,resultStr);
     }
   }
- catch (  WrappedException e) {
-    log.error("Error processing Javascript",e);
-    throw new InvalidVariableException();
-  }
-catch (  EcmaError e) {
-    log.error("Error processing Javascript",e);
-    throw new InvalidVariableException();
-  }
-catch (  JavaScriptException e) {
+ catch (  RhinoException e) {
     log.error("Error processing Javascript",e);
     throw new InvalidVariableException();
   }
