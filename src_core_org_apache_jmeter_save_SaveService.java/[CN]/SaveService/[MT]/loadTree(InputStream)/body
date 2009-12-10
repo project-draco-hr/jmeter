@@ -9,15 +9,14 @@
     wrapper=(ScriptWrapper)JMXSAVER.fromXML(inputStreamReader);
     inputStreamReader.close();
     if (wrapper == null) {
-      log.error("Problem loading new style: see above.");
+      log.error("Problem loading XML: see above.");
       return null;
     }
     return wrapper.testPlan;
   }
  catch (  CannotResolveClassException e) {
-    log.warn("Problem loading new style: " + e.getLocalizedMessage());
-    reader.reset();
-    return OldSaveService.loadSubTree(reader);
+    log.warn("Problem loading XML: " + e.getLocalizedMessage());
+    return null;
   }
 catch (  NoClassDefFoundError e) {
     log.error("Missing class " + e);

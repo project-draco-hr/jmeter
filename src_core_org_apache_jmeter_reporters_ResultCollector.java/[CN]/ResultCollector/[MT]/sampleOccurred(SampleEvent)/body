@@ -7,15 +7,7 @@
       result.setSaveConfig(config);
       try {
         if (config.saveAsXml()) {
-          if (SaveService.isSaveTestLogFormat20()) {
-            if (serializer == null) {
-              serializer=new DefaultConfigurationSerializer();
-            }
-            out.write(OldSaveService.getSerializedSampleResult(result,serializer,config));
-          }
- else {
-            SaveService.saveSampleResult(event,out);
-          }
+          SaveService.saveSampleResult(event,out);
         }
  else {
           String savee=CSVSaveService.resultToDelimitedString(event);

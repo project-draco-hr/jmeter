@@ -29,14 +29,8 @@
   FileOutputStream ostream=null;
   try {
     ostream=new FileOutputStream(updateFile);
-    if (SaveService.isSaveTestPlanFormat20()) {
-      OldSaveService.saveSubTree(subTree,ostream);
-      log.info("saveSubTree");
-    }
- else {
-      SaveService.saveTree(subTree,ostream);
-      log.info("saveTree");
-    }
+    SaveService.saveTree(subTree,ostream);
+    log.info("saveTree");
   }
  catch (  Throwable ex) {
     ReportGuiPackage.getInstance().setReportPlanFile(null);

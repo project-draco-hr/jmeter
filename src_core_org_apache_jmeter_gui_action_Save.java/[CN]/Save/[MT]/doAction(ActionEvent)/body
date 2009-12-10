@@ -44,12 +44,7 @@
   FileOutputStream ostream=null;
   try {
     ostream=new FileOutputStream(updateFile);
-    if (SaveService.isSaveTestPlanFormat20()) {
-      OldSaveService.saveSubTree(subTree,ostream);
-    }
- else {
-      SaveService.saveTree(subTree,ostream);
-    }
+    SaveService.saveTree(subTree,ostream);
   }
  catch (  Throwable ex) {
     GuiPackage.getInstance().setTestPlanFile(null);
