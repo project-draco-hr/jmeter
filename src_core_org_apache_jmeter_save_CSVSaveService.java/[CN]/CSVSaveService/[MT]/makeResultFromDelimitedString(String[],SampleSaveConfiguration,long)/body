@@ -119,6 +119,11 @@
       field=CSV_HOSTNAME;
       hostname=parts[i++];
     }
+    if (saveConfig.saveIdleTime()) {
+      field=CSV_IDLETIME;
+      text=parts[i++];
+      result.setIdleTime(Long.parseLong(text));
+    }
     if (i + saveConfig.getVarCount() < parts.length) {
       log.warn("Line: " + lineNumber + ". Found "+ parts.length+ " fields, expected "+ i+ ". Extra fields have been ignored.");
     }

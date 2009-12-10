@@ -7,4 +7,5 @@
   createNode(writer,prop.saveHostname(),NODE_HOSTNAME);
   createNode(writer,prop.saveThreadCounts(),NODE_THREAD_COUNT);
   createNode(writer,prop.saveSampleCount(),NODE_SAMPLE_COUNT);
+  createNode(writer,prop.saveIdleTime(),NODE_IDLE_TIME);
 }

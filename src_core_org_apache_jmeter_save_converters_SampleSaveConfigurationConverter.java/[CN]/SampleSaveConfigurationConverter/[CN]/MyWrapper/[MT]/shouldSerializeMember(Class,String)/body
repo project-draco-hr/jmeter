@@ -20,6 +20,9 @@
   if (fieldName.equals(NODE_SAMPLE_COUNT)) {
     return false;
   }
+  if (fieldName.equals(NODE_IDLE_TIME)) {
+    return false;
+  }
   if (fieldName.equals(NODE_DELIMITER)) {
     return false;
   }
