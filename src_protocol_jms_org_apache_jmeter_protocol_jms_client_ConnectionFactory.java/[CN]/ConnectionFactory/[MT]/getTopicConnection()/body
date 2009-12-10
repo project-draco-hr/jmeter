@@ -1,11 +1,6 @@
 {
   if (factory != null) {
-    try {
-      return factory.createTopicConnection();
-    }
- catch (    JMSException e) {
-      log.error(e.getMessage());
-    }
+    return factory.createTopicConnection();
   }
-  return null;
+  throw new JMSException("Factory has not been initialised");
 }
