@@ -1,5 +1,6 @@
 {
   SampleResult result=new SampleResult();
+  result.setDataType(SampleResult.TEXT);
   result.setSampleLabel(getName());
   initListenerClient();
   int loop=this.getIterationCount();

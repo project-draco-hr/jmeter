@@ -4,6 +4,8 @@
       TextMessage msg=(TextMessage)message;
       String content=msg.getText();
       if (content != null) {
+        this.BUFFER.append(getMessageHeaders(message));
+        this.BUFFER.append("JMS Message Text:\n\n");
         this.BUFFER.append(content);
         count(1);
       }

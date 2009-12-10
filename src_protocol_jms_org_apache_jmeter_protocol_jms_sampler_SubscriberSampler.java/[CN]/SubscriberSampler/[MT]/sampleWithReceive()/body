@@ -1,5 +1,6 @@
 {
   SampleResult result=new SampleResult();
+  result.setDataType(SampleResult.TEXT);
   result.setSampleLabel(getName());
   if (this.SUBSCRIBER == null) {
     this.initReceiveClient();
@@ -17,7 +18,7 @@
     }
   }
   result.sampleEnd();
-  result.setResponseMessage(loop + " samples messages received");
+  int read=this.SUBSCRIBER.count(0);
   if (this.getReadResponseAsBoolean()) {
     result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
   }
@@ -25,9 +26,10 @@
     result.setBytes(this.SUBSCRIBER.getMessage().getBytes().length);
   }
   result.setSuccessful(true);
-  result.setResponseCode(loop + " message(s) received successfully");
-  result.setSamplerData("Not applicable");
-  result.setSampleCount(loop);
+  result.setResponseCodeOK();
+  result.setResponseMessage(read + " message(s) received successfully");
+  result.setSamplerData(loop + " messages expected");
+  result.setSampleCount(read);
   this.SUBSCRIBER.reset();
   return result;
 }
