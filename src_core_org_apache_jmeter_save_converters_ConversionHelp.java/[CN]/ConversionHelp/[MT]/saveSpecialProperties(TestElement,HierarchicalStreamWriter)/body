@@ -1,6 +1,6 @@
 {
-  saveClass(el,writer,TestElement.GUI_CLASS);
-  saveClass(el,writer,TestElement.TEST_CLASS);
-  saveItem(el,writer,TestElement.NAME,true);
-  saveItem(el,writer,TestElement.ENABLED,false);
+  saveClass(testElement,writer,TestElement.GUI_CLASS);
+  saveClass(testElement,writer,TestElement.TEST_CLASS);
+  saveItem(testElement,writer,TestElement.NAME,true);
+  saveItem(testElement,writer,TestElement.ENABLED,false);
 }
