@@ -1,4 +1,5 @@
 {
+  assertNotNull(parent + ": " + testFile.getName()+ " caused null tree: ",tree);
   final Object object=tree.getArray()[0];
   final String name=testFile.getName();
   if (!(object instanceof org.apache.jmeter.testelement.TestPlan) && !notTestPlan.contains(name)) {
