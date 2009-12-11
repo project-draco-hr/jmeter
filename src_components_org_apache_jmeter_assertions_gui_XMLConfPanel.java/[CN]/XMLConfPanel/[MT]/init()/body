@@ -5,13 +5,13 @@
   namespace=new JCheckBox(JMeterUtils.getResString("xml_namespace_button"));
   whitespace=new JCheckBox(JMeterUtils.getResString("xml_whitespace_button"));
   validate=new JCheckBox(JMeterUtils.getResString("xml_validate_button"));
-  validate.addActionListener(new ActionListener(){
+  tolerant=new JCheckBox(JMeterUtils.getResString("xml_tolerant_button"));
+  tolerant.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
       tolerant();
     }
   }
 );
-  tolerant=new JCheckBox(JMeterUtils.getResString("xml_tolerant_button"));
   downloadDTDs=new JCheckBox(JMeterUtils.getResString("xml_download_dtds"));
   Box tidyOptions=Box.createHorizontalBox();
   tidyOptions.setBorder(BorderFactory.createEtchedBorder());
