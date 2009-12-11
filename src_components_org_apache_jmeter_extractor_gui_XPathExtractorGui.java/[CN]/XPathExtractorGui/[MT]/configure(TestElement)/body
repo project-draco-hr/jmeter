@@ -4,5 +4,6 @@
   xpathQueryField.setText(xpe.getXPathQuery());
   defaultField.setText(xpe.getDefaultValue());
   refNameField.setText(xpe.getRefName());
+  getFragment.setSelected(xpe.getFragment());
   xml.configure(xpe);
 }

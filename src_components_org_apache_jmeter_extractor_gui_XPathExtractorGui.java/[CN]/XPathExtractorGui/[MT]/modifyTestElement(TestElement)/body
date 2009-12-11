@@ -5,6 +5,7 @@
     xpath.setDefaultValue(defaultField.getText());
     xpath.setRefName(refNameField.getText());
     xpath.setXPathQuery(xpathQueryField.getText());
+    xpath.setFragment(getFragment.isSelected());
     xml.modifyTestElement(xpath);
   }
 }

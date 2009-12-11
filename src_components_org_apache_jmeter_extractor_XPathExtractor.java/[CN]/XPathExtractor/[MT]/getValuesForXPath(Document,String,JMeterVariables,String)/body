@@ -9,12 +9,17 @@
     for (int i=0; i < length; i++) {
       Node match=matches.item(i);
       if (match instanceof Element) {
-        final Node firstChild=match.getFirstChild();
-        if (firstChild != null) {
-          val=firstChild.getNodeValue();
+        if (getFragment()) {
+          val=getValueForNode(match);
         }
  else {
-          val=match.getNodeValue();
+          final Node firstChild=match.getFirstChild();
+          if (firstChild != null) {
+            val=firstChild.getNodeValue();
+          }
+ else {
+            val=match.getNodeValue();
+          }
         }
       }
  else {

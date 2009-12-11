@@ -6,6 +6,8 @@
   xml=new XMLConfPanel();
   xml.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("xpath_assertion_option")));
   box.add(xml);
+  getFragment=new JCheckBox(JMeterUtils.getResString("xpath_extractor_fragment"));
+  box.add(getFragment);
+  box.add(makeParameterPanel());
   add(box,BorderLayout.NORTH);
-  add(makeParameterPanel(),BorderLayout.CENTER);
 }
