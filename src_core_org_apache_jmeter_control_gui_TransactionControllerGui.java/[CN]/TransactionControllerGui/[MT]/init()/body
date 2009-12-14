@@ -4,4 +4,6 @@
   add(makeTitlePanel());
   parent=new JCheckBox(JMeterUtils.getResString("transaction_controller_parent"));
   add(parent);
+  includeTimers=new JCheckBox(JMeterUtils.getResString("transaction_controller_include_timers"),true);
+  add(includeTimers);
 }

@@ -1,4 +1,5 @@
 {
   super.configure(el);
   parent.setSelected(((TransactionController)el).isParent());
+  includeTimers.setSelected(((TransactionController)el).isIncludeTimers());
 }

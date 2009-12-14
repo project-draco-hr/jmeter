@@ -6,10 +6,13 @@
     res.setSampleLabel(getName());
     res.setSuccessful(true);
     res.sampleStart();
+    prevEndTime=res.getStartTime();
+    pauseTime=0;
   }
   Sampler returnValue=super.next();
   if (returnValue == null) {
     if (res != null) {
+      res.setIdleTime(pauseTime + res.getIdleTime());
       res.sampleEnd();
       res.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
       if (res.isSuccessful()) {

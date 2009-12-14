@@ -4,6 +4,10 @@
       SampleResult sampleResult=se.getResult();
       res.setThreadName(sampleResult.getThreadName());
       res.setBytes(res.getBytes() + sampleResult.getBytes());
+      if (!isIncludeTimers()) {
+        pauseTime+=sampleResult.getEndTime() - sampleResult.getTime() - prevEndTime;
+        prevEndTime=sampleResult.getEndTime();
+      }
       if (!sampleResult.isSuccessful()) {
         res.setSuccessful(false);
         noFailingSamples++;
