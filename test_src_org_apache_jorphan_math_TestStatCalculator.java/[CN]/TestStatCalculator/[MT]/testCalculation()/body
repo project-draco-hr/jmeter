@@ -1,4 +1,6 @@
 {
+  assertEquals(Long.MIN_VALUE,calc.getMax().longValue());
+  assertEquals(Long.MAX_VALUE,calc.getMin().longValue());
   calc.addValue(18);
   calc.addValue(10);
   calc.addValue(9);

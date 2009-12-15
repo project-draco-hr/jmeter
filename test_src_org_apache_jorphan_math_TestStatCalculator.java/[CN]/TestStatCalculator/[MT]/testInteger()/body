@@ -1,5 +1,7 @@
 {
   StatCalculatorInteger calci=new StatCalculatorInteger();
+  assertEquals(Integer.MIN_VALUE,calci.getMax().intValue());
+  assertEquals(Integer.MAX_VALUE,calci.getMin().intValue());
   calci.addValue(0);
   calci.addValue(2);
   calci.addValue(2);
