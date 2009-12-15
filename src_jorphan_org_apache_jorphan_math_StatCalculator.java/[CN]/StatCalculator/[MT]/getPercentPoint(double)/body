@@ -1,6 +1,19 @@
 {
-  if (count > 0) {
-    return values.get((int)(values.size() * percent));
+  if (count <= 0) {
+    return ZERO;
+  }
+  if (percent >= 1.0) {
+    return getMax();
+  }
+  long target=Math.round(count * percent);
+  if (sortedKeys == null) {
+    sortedKeys=new TreeSet<T>(valuesMap.keySet());
+  }
+  for (  T val : sortedKeys) {
+    target-=valuesMap.get(val).longValue();
+    if (target <= 0) {
+      return val;
+    }
   }
   return ZERO;
 }

@@ -1,0 +1,9 @@
+{
+  MutableLong count=valuesMap.get(val);
+  if (count != null) {
+    count.increment();
+  }
+ else {
+    valuesMap.put(val,new MutableLong(1L));
+  }
+}

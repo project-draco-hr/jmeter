@@ -1,6 +1,3 @@
 {
-  if (count > 0) {
-    return values.get((int)(values.size() * .5));
-  }
-  return ZERO;
+  return getPercentPoint(0.5);
 }

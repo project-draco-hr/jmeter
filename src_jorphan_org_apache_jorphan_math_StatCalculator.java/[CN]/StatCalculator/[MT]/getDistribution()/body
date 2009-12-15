@@ -1,23 +1,11 @@
 {
   HashMap<Number,Number[]> items=new HashMap<Number,Number[]>();
-  Iterator<T> itr=this.values.iterator();
   Number[] dis;
-  while (itr.hasNext()) {
-    Number nx=itr.next();
-    if (!(nx instanceof Integer || nx instanceof Long)) {
-      nx=new Long(nx.longValue());
-    }
-    if (items.containsKey(nx)) {
-      dis=items.get(nx);
-      dis[1]=new Integer(dis[1].intValue() + 1);
-      items.put(nx,dis);
-    }
- else {
-      dis=new Number[2];
-      dis[0]=nx;
-      dis[1]=new Integer(1);
-      items.put(nx,dis);
-    }
+  for (  T nx : valuesMap.keySet()) {
+    dis=new Number[2];
+    dis[0]=nx;
+    dis[1]=valuesMap.get(nx);
+    items.put(nx,dis);
   }
   return items;
 }

@@ -1,6 +1,5 @@
 {
-  Iterator<T> iter=calc.values.iterator();
-  while (iter.hasNext()) {
-    addValue(iter.next());
+  for (  T val : calc.valuesMap.keySet()) {
+    addValue(val);
   }
 }
