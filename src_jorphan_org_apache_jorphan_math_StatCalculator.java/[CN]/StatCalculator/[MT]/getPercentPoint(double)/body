@@ -6,14 +6,15 @@
     return getMax();
   }
   long target=Math.round(count * percent);
-  if (sortedKeys == null) {
-    sortedKeys=new TreeSet<T>(valuesMap.keySet());
-  }
-  for (  T val : sortedKeys) {
-    target-=valuesMap.get(val).longValue();
-    if (target <= 0) {
-      return val;
+  try {
+    for (    Entry<T,MutableLong> val : valuesMap.entrySet()) {
+      target-=val.getValue().longValue();
+      if (target <= 0) {
+        return val.getKey();
+      }
     }
+  }
+ catch (  ConcurrentModificationException ignored) {
   }
   return ZERO;
 }
