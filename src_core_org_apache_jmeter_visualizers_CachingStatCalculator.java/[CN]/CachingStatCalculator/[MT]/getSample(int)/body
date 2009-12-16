@@ -3,6 +3,6 @@ synchronized (storedValues) {
     if (index < storedValues.size()) {
       return storedValues.get(index);
     }
-    return null;
   }
+  return null;
 }
