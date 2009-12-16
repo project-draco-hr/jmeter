@@ -1,0 +1,25 @@
+{
+  final char DELIM=',';
+  final char SPECIALS[]=new char[]{DELIM,QUOTING_CHAR};
+  final int columns=model.getColumnCount();
+  final int rows=model.getRowCount();
+  if (saveHeaders) {
+    for (int i=0; i < columns; i++) {
+      if (i > 0) {
+        writer.write(DELIM);
+      }
+      writer.write(quoteDelimiters(model.getColumnName(i),SPECIALS));
+    }
+    writer.write(LINE_SEP);
+  }
+  for (int row=0; row < rows; row++) {
+    for (int column=0; column < columns; column++) {
+      if (column > 0) {
+        writer.write(DELIM);
+      }
+      Object item=model.getValueAt(row,column);
+      writer.write(quoteDelimiters(String.valueOf(item),SPECIALS));
+    }
+    writer.write(LINE_SEP);
+  }
+}

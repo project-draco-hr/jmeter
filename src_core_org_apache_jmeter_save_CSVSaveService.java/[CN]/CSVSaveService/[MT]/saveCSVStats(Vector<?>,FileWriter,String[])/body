@@ -1,6 +1,5 @@
 {
   final char DELIM=',';
-  final String LINE_SEP=System.getProperty("line.separator");
   final char SPECIALS[]=new char[]{DELIM,QUOTING_CHAR};
   if (headers != null) {
     for (int i=0; i < headers.length; i++) {
