@@ -7,7 +7,7 @@
     FileWriter writer=null;
     try {
       writer=new FileWriter(chooser.getSelectedFile());
-      CSVSaveService.saveCSVStats(model,writer);
+      CSVSaveService.saveCSVStats(model,writer,saveHeaders.isSelected());
     }
  catch (    FileNotFoundException e) {
       log.warn(e.getMessage());

@@ -1,4 +1,5 @@
 {
   super.configure(el);
   useGroupName.setSelected(el.getPropertyAsBoolean(USE_GROUP_NAME,false));
+  saveHeaders.setSelected(el.getPropertyAsBoolean(SAVE_HEADERS,true));
 }

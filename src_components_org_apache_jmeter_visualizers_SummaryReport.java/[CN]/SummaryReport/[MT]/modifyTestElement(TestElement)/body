@@ -1,4 +1,5 @@
 {
   super.modifyTestElement(c);
   c.setProperty(USE_GROUP_NAME,useGroupName.isSelected(),false);
+  c.setProperty(SAVE_HEADERS,saveHeaders.isSelected(),true);
 }
