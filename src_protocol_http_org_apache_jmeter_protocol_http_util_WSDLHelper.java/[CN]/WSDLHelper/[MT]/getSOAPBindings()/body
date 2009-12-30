@@ -15,7 +15,7 @@
     Element nd=(Element)bindings.item(idx);
     NodeList slist=nd.getElementsByTagName(soapBind);
     if (slist.getLength() > 0) {
-      this.BINDNAME=nd.getAttribute("name");
+      nd.getAttribute("name");
       list.add(nd);
     }
   }
