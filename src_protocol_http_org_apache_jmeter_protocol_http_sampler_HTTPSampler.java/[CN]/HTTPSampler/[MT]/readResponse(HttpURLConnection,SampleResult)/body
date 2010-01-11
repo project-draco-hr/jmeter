@@ -1,9 +1,10 @@
 {
   BufferedInputStream in;
   final int contentLength=conn.getContentLength();
-  if ((contentLength == 0) && JMeterUtils.getPropDefault("httpsampler.obey_contentlength",false)) {
+  if ((contentLength == 0) && OBEY_CONTENT_LENGTH) {
     log.info("Content-Length: 0, not reading http-body");
     res.setResponseHeaders(getResponseHeaders(conn));
+    res.latencyEnd();
     return NULL_BA;
   }
   boolean gzipped=ENCODING_GZIP.equals(conn.getContentEncoding());
@@ -27,6 +28,7 @@
     if (errorStream == null) {
       log.info("Error Response Code: " + conn.getResponseCode() + ", Server sent no Errorpage");
       res.setResponseHeaders(getResponseHeaders(conn));
+      res.latencyEnd();
       return NULL_BA;
     }
     log.info("Error Response Code: " + conn.getResponseCode());
