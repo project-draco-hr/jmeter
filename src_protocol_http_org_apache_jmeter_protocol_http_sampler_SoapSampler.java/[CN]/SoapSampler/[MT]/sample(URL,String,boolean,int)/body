@@ -20,7 +20,7 @@
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
-      org.apache.commons.httpclient.Header responseHeader=httpMethod.getResponseHeader(TRANSFER_ENCODING);
+      org.apache.commons.httpclient.Header responseHeader=httpMethod.getResponseHeader(HEADER_CONTENT_ENCODING);
       if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
         instream=new GZIPInputStream(instream);
       }
