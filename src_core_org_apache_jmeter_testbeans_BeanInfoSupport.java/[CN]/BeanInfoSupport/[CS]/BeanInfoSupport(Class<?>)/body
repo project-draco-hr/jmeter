@@ -6,6 +6,7 @@
     log.error("Can't introspect.",e);
     throw new Error(e.toString());
   }
+  beanDescriptor=rootBeanInfo.getBeanDescriptor();
   try {
     ResourceBundle resourceBundle=ResourceBundle.getBundle(beanClass.getName() + "Resources",JMeterUtils.getLocale());
     getBeanDescriptor().setValue(RESOURCE_BUNDLE,resourceBundle);
