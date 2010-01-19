@@ -1,11 +1,14 @@
 {
+  String cookieHeader=null;
   if (cookies != null) {
+    cookieHeader=cookies.getCookieHeaderForURL(url);
     CollectionProperty coll=cookies.getCookies();
     PropertyIterator i=coll.iterator();
     while (i.hasNext()) {
-      JMeterProperty header=i.next();
+      Cookie cookie=(Cookie)(i.next().getObjectValue());
       setInt(0xA009);
-      setString(header.getName() + "=" + header.getStringValue());
+      setString(cookie.getName() + "=" + cookie.getValue());
     }
   }
+  return cookieHeader;
 }

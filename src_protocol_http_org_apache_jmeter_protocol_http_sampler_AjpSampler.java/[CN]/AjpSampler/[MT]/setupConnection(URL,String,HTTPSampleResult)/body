@@ -44,6 +44,6 @@
   setInt(getHeaderSize(method,url));
   String hdr=setConnectionHeaders(url,host,method);
   res.setRequestHeaders(hdr);
-  setConnectionCookies(url,getCookieManager());
+  res.setCookies(setConnectionCookies(url,getCookieManager()));
   setByte((byte)0xff);
 }
