@@ -1,9 +1,0 @@
-{
-  try {
-    res.sampleStart();
-    ldap.deleteTest(dirContext,getPropertyAsString(DELETE));
-  }
-  finally {
-    res.sampleEnd();
-  }
-}

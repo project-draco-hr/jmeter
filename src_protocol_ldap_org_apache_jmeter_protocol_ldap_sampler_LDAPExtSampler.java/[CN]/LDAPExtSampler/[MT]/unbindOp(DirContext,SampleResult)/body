@@ -1,12 +1,11 @@
 {
   try {
     res.sampleStart();
-    ldap.disconnect(dirContext);
+    LdapExtClient.disconnect(dirContext);
   }
   finally {
     res.sampleEnd();
   }
-  ldapConnections.remove(getThreadName());
   ldapContexts.remove(getThreadName());
   log.info("context and LdapExtClients removed");
 }

@@ -1,7 +1,7 @@
 {
   try {
     res.sampleStart();
-    ldap.modifyTest(dirContext,getUserModAttributes(),getBaseEntryDN());
+    LdapExtClient.deleteTest(dirContext,getPropertyAsString(DELETE));
   }
   finally {
     res.sampleEnd();

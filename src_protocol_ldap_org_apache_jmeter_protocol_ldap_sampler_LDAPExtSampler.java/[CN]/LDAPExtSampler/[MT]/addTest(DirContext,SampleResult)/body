@@ -1,0 +1,10 @@
+{
+  try {
+    res.sampleStart();
+    DirContext ctx=LdapExtClient.createTest(dirContext,getUserAttributes(),getBaseEntryDN());
+    ctx.close();
+  }
+  finally {
+    res.sampleEnd();
+  }
+}

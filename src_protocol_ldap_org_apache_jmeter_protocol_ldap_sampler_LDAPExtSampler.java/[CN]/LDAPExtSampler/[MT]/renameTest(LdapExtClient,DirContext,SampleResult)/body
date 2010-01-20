@@ -1,9 +1,0 @@
-{
-  try {
-    res.sampleStart();
-    ldap.moddnOp(dirContext,getPropertyAsString(MODDDN),getPropertyAsString(NEWDN));
-  }
-  finally {
-    res.sampleEnd();
-  }
-}

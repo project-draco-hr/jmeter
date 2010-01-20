@@ -6,7 +6,7 @@
   }
   try {
     res.sampleStart();
-    ctx=ldap.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw(),getConnTimeOut(),isSecure());
+    ctx=LdapExtClient.connect(getServername(),getPort(),getRootdn(),getUserDN(),getUserPw(),getConnTimeOut(),isSecure());
   }
   finally {
     res.sampleEnd();

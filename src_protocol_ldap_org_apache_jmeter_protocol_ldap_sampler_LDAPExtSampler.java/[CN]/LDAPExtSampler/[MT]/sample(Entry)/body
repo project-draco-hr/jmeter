@@ -8,18 +8,7 @@
   res.setContentType("text/xml");
   boolean isSuccessful=true;
   res.setSampleLabel(getName());
-  LdapExtClient temp_client=ldapConnections.get(getThreadName());
   DirContext dirContext=ldapContexts.get(getThreadName());
-  if (temp_client == null) {
-    temp_client=new LdapExtClient();
-    try {
-      dirContext=new InitialDirContext();
-    }
- catch (    NamingException err) {
-      log.error("Ldap client context creation - ",err);
-    }
-    ldapConnections.put(getThreadName(),temp_client);
-  }
   try {
     xmlBuffer.openTag("operation");
     final String testType=getTest();
@@ -29,14 +18,14 @@
       res.setSamplerData("Unbind");
       xmlBuffer.tag("baseobj",getRootdn());
       xmlBuffer.tag("binddn",getUserDN());
-      unbindOp(temp_client,dirContext,res);
+      unbindOp(dirContext,res);
     }
  else     if (testType.equals(BIND)) {
       res.setSamplerData("Bind as " + getUserDN());
       xmlBuffer.tag("baseobj",getRootdn());
       xmlBuffer.tag("binddn",getUserDN());
       xmlBuffer.tag("connectionTO",getConnTimeOut());
-      bindOp(temp_client,dirContext,res);
+      bindOp(dirContext,res);
     }
  else     if (testType.equals(SBIND)) {
       res.setSamplerData("SingleBind as " + getUserDN());
@@ -52,7 +41,7 @@
       NamingEnumeration<SearchResult> cmp=null;
       try {
         res.sampleStart();
-        cmp=temp_client.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
+        cmp=LdapExtClient.compare(dirContext,getPropertyAsString(COMPAREFILT),getPropertyAsString(COMPAREDN));
         if (!cmp.hasMore()) {
           res.setResponseCode("5");
           res.setResponseMessage("compareFalse");
@@ -70,24 +59,24 @@
       res.setSamplerData("Add object " + getBaseEntryDN());
       xmlBuffer.tag("attributes",getArguments().toString());
       xmlBuffer.tag("dn",getBaseEntryDN());
-      addTest(temp_client,dirContext,res);
+      addTest(dirContext,res);
     }
  else     if (testType.equals(DELETE)) {
       res.setSamplerData("Delete object " + getBaseEntryDN());
       xmlBuffer.tag("dn",getBaseEntryDN());
-      deleteTest(temp_client,dirContext,res);
+      deleteTest(dirContext,res);
     }
  else     if (testType.equals(MODIFY)) {
       res.setSamplerData("Modify object " + getBaseEntryDN());
       xmlBuffer.tag("dn",getBaseEntryDN());
       xmlBuffer.tag("attributes",getLDAPArguments().toString());
-      modifyTest(temp_client,dirContext,res);
+      modifyTest(dirContext,res);
     }
  else     if (testType.equals(RENAME)) {
       res.setSamplerData("ModDN object " + getPropertyAsString(MODDDN) + " to "+ getPropertyAsString(NEWDN));
       xmlBuffer.tag("dn",getPropertyAsString(MODDDN));
       xmlBuffer.tag("newdn",getPropertyAsString(NEWDN));
-      renameTest(temp_client,dirContext,res);
+      renameTest(dirContext,res);
     }
  else     if (testType.equals(SEARCH)) {
       final String scopeStr=getScope();
@@ -106,7 +95,7 @@
       NamingEnumeration<SearchResult> srch=null;
       try {
         res.sampleStart();
-        srch=temp_client.searchTest(dirContext,searchBase,searchFilter,scope,getCountlimAsLong(),getTimelimAsInt(),getRequestAttributes(getAttrs()),isRetobj(),isDeref());
+        srch=LdapExtClient.searchTest(dirContext,searchBase,searchFilter,scope,getCountlimAsLong(),getTimelimAsInt(),getRequestAttributes(getAttrs()),isRetobj(),isDeref());
         if (isParseFlag()) {
           try {
             xmlBuffer.openTag("searchresults");
