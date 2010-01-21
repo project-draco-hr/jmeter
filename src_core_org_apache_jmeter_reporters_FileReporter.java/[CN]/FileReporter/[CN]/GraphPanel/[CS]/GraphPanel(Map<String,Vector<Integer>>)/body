@@ -1,8 +1,6 @@
 {
   this.data=data;
-  Enumeration<String> e=data.keys();
-  while (e.hasMoreElements()) {
-    String key=e.nextElement();
+  for (  String key : data.keySet()) {
     keys.addElement(key);
   }
   for (int a=0x33; a < 0xFF; a+=0x66) {
