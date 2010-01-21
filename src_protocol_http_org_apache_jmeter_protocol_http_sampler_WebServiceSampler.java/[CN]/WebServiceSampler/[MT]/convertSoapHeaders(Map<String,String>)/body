@@ -1,0 +1,7 @@
+{
+  StringBuilder buf=new StringBuilder();
+  for (  Entry<String,String> entry : ht.entrySet()) {
+    buf.append(entry.getKey()).append("=").append(entry.getValue()).append("\n");
+  }
+  return buf.toString();
+}

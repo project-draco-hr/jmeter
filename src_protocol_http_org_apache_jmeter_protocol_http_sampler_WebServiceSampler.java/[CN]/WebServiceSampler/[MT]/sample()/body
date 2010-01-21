@@ -60,7 +60,7 @@
     spconn.setMaintainSession(true);
     msg.setSOAPTransport(spconn);
     msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
-    @SuppressWarnings("unchecked") final Hashtable<String,String> headers=spconn.getHeaders();
+    @SuppressWarnings("unchecked") final Map<String,String> headers=spconn.getHeaders();
     result.setResponseHeaders(convertSoapHeaders(headers));
     if (this.getHeaderManager() != null) {
       this.getHeaderManager().setSOAPHeader(spconn);
