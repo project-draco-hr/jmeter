@@ -1,6 +1,6 @@
 {
   if (cookieManagers == null) {
-    cookieManagers=Collections.synchronizedMap(new HashMap<String,CookieManager>());
+    cookieManagers=new ConcurrentHashMap<String,CookieManager>();
   }
   if (managersInUse == null) {
     managersInUse=Collections.synchronizedSet(new HashSet<CookieManager>());
