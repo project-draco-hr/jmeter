@@ -1,0 +1,9 @@
+{
+  AssertionResult ass=new AssertionResult(thrown.getClass().getSimpleName());
+  ass.setFailure(true);
+  ass.setFailureMessage(getXPathQuery() + " => " + thrown.getLocalizedMessage());
+  previousResult.addAssertionResult(ass);
+  if (setFailed) {
+    previousResult.setSuccessful(false);
+  }
+}

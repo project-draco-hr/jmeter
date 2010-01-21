@@ -20,21 +20,19 @@
     previousResult.setSuccessful(false);
   }
 catch (  ParserConfigurationException e) {
-    final String errrorMessage="error on (" + getXPathQuery() + ")";
+    final String errrorMessage="ParserConfigurationException while processing (" + getXPathQuery() + ")";
     log.error(errrorMessage,e);
     throw new JMeterError(errrorMessage,e);
   }
 catch (  SAXException e) {
-    log.warn("error on (" + getXPathQuery() + ")"+ e.getLocalizedMessage());
+    log.warn("SAXException while processing (" + getXPathQuery() + ") "+ e.getLocalizedMessage());
+    addAssertionFailure(previousResult,e,false);
   }
 catch (  TransformerException e) {
-    log.warn("error on (" + getXPathQuery() + ")"+ e.getLocalizedMessage());
+    log.warn("TransformerException while processing (" + getXPathQuery() + ") "+ e.getLocalizedMessage());
+    addAssertionFailure(previousResult,e,false);
   }
 catch (  TidyException e) {
-    AssertionResult ass=new AssertionResult("TidyException");
-    ass.setFailure(true);
-    ass.setFailureMessage(e.getLocalizedMessage());
-    previousResult.addAssertionResult(ass);
-    previousResult.setSuccessful(false);
+    addAssertionFailure(previousResult,e,true);
   }
 }
