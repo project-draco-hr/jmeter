@@ -1,6 +1,7 @@
 {
   send();
   if (method.equals(POST)) {
+    res.setQueryString(stringBody);
     sendPostBody();
   }
   handshake(res);

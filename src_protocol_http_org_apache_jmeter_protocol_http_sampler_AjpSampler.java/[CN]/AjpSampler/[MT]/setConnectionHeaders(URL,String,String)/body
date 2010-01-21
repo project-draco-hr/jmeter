@@ -52,9 +52,10 @@
  else {
           sb.append('&');
         }
-        sb.append(arg.getName()).append('=').append(arg.getStringValue());
+        sb.append(arg.getStringValue());
       }
-      byte[] sbody=sb.toString().getBytes();
+      stringBody=sb.toString();
+      byte[] sbody=stringBody.getBytes();
       cl=sbody.length;
       body=new ByteArrayInputStream(sbody);
     }

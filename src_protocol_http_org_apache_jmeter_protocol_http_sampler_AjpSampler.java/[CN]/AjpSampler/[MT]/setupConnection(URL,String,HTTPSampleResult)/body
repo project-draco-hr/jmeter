@@ -35,7 +35,7 @@
  else {
     setString(HTTP_1_1);
   }
-  setString(url.getFile());
+  setString(url.getPath());
   setString(localAddress);
   setString(localName);
   setString(host);
@@ -45,5 +45,10 @@
   String hdr=setConnectionHeaders(url,host,method);
   res.setRequestHeaders(hdr);
   res.setCookies(setConnectionCookies(url,getCookieManager()));
+  String query=url.getQuery();
+  if (query != null) {
+    setByte((byte)0x05);
+    setString(query);
+  }
   setByte((byte)0xff);
 }
