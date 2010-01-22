@@ -5,5 +5,11 @@
   }
  catch (  Throwable ex) {
     log.warn("testStarted()",ex);
+    if (ex instanceof Error) {
+      throw (Error)ex;
+    }
+    if (ex instanceof RuntimeException) {
+      throw (RuntimeException)ex;
+    }
   }
 }

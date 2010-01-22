@@ -11,5 +11,11 @@
   }
  catch (  Throwable ex) {
     log.error("testEnded(host)",ex);
+    if (ex instanceof Error) {
+      throw (Error)ex;
+    }
+    if (ex instanceof RuntimeException) {
+      throw (RuntimeException)ex;
+    }
   }
 }

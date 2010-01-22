@@ -13,5 +13,11 @@ synchronized (sampleStore) {
   }
  catch (  Throwable ex) {
     log.warn("testEnded()",ex);
+    if (ex instanceof Error) {
+      throw (Error)ex;
+    }
+    if (ex instanceof RuntimeException) {
+      throw (RuntimeException)ex;
+    }
   }
 }
