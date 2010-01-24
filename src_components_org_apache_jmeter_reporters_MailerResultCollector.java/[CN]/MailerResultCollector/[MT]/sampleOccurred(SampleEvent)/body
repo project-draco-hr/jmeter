@@ -1,4 +1,4 @@
 {
   super.sampleOccurred(e);
-  getMailerModel().add(e.getResult());
+  getMailerModel().add(e.getResult(),true);
 }
