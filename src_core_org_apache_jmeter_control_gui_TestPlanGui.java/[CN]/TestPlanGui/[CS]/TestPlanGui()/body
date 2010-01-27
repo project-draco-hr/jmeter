@@ -1,3 +1,7 @@
 {
+  browseJar=new FileListPanel(JMeterUtils.getResString("test_plan_classpath_browse"),".jar");
+  argsPanel=new ArgumentsPanel(JMeterUtils.getResString("user_defined_variables"));
+  serializedMode=new JCheckBox(JMeterUtils.getResString("testplan.serialized"));
+  functionalMode=new JCheckBox(JMeterUtils.getResString("functional_mode"));
   init();
 }
