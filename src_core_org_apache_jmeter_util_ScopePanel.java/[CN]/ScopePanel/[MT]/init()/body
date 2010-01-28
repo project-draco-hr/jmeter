@@ -1,10 +1,7 @@
 {
   setLayout(new BorderLayout(5,0));
-  setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("assertion_scope")));
-  allButton=new JRadioButton(JMeterUtils.getResString("assertion_scope_all"));
-  parentButton=new JRadioButton(JMeterUtils.getResString("assertion_scope_parent"));
+  setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("sample_scope_title")));
   parentButton.setSelected(true);
-  childButton=new JRadioButton(JMeterUtils.getResString("assertion_scope_children"));
   ButtonGroup group=new ButtonGroup();
   group.add(allButton);
   group.add(parentButton);
