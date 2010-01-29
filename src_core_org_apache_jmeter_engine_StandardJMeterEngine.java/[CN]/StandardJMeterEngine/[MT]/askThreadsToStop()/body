@@ -1,3 +1,5 @@
 {
-  engine.stopTest(false);
+  if (engine == null) {
+    engine.stopTest(false);
+  }
 }
