@@ -15,6 +15,7 @@
   }
  else   if (command.equals(ENABLE_RESTART)) {
     enableRestart();
+    httpsMatch.setEnabled(httpsSpoof.isSelected());
   }
  else   if (command.equals(ADD_EXCLUDE)) {
     excludeModel.addNewRow();

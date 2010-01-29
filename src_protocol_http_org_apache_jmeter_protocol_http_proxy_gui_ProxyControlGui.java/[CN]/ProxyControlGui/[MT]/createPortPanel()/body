@@ -11,6 +11,7 @@
   httpsMatch=new JTextField(40);
   httpsMatch.addKeyListener(this);
   httpsMatch.setName(ENABLE_RESTART);
+  httpsMatch.setEnabled(false);
   JLabel matchlabel=new JLabel(JMeterUtils.getResString("proxy_httpsspoofing_match"));
   matchlabel.setLabelFor(httpsMatch);
   HorizontalPanel panel=new HorizontalPanel();

@@ -14,6 +14,7 @@
   regexMatch.setSelected(model.getRegexMatch());
   httpsSpoof.setSelected(model.getHttpsSpoof());
   httpsMatch.setText(model.getHttpsSpoofMatch());
+  httpsMatch.setEnabled(httpsSpoof.isSelected());
   contentTypeInclude.setText(model.getContentTypeInclude());
   contentTypeExclude.setText(model.getContentTypeExclude());
   reinitializeTargetCombo();
