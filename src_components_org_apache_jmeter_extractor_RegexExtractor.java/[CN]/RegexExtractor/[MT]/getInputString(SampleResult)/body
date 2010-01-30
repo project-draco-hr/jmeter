@@ -1,0 +1,7 @@
+{
+  String inputString=useUrl() ? result.getUrlAsString() : useHeaders() ? result.getResponseHeaders() : useCode() ? result.getResponseCode() : useMessage() ? result.getResponseMessage() : useUnescapedBody() ? StringEscapeUtils.unescapeHtml(result.getResponseDataAsString()) : result.getResponseDataAsString();
+  if (log.isDebugEnabled()) {
+    log.debug("Input = " + inputString);
+  }
+  return inputString;
+}

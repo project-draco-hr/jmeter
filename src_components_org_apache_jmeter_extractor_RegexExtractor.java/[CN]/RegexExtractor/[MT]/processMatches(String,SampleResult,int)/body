@@ -1,0 +1,37 @@
+{
+  List<SampleResult> sampleList=new ArrayList<SampleResult>();
+  String scope=fetchScope();
+  if (isScopeParent(scope) || isScopeAll(scope)) {
+    sampleList.add(result);
+  }
+  if (isScopeChildren(scope) || isScopeAll(scope)) {
+    for (    SampleResult subResult : result.getSubResults()) {
+      sampleList.add(subResult);
+    }
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Regex = " + regex);
+  }
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
+  Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
+  List<MatchResult> matches=new ArrayList<MatchResult>();
+  int found=0;
+  for (  SampleResult sr : sampleList) {
+    String inputString=getInputString(sr);
+    PatternMatcherInput input=new PatternMatcherInput(inputString);
+    while (matchNumber <= 0 || found != matchNumber) {
+      if (matcher.contains(input,pattern)) {
+        log.debug("RegexExtractor: Match found!");
+        matches.add(matcher.getMatch());
+        found++;
+      }
+ else {
+        break;
+      }
+    }
+    if (matchNumber > 0 && found == matchNumber) {
+      break;
+    }
+  }
+  return matches;
+}

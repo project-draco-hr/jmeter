@@ -1,0 +1,16 @@
+{
+  result.setResponseData("<title>ONE</title>","ISO-8859-1");
+  extractor.setScopeParent();
+  extractor.setTemplate("$1$");
+  extractor.setMatchNumber(1);
+  extractor.setRegex("<title>([^<]+)<");
+  extractor.setDefaultValue("NOTFOUND");
+  extractor.process();
+  assertEquals("ONE",vars.get("regVal"));
+  extractor.setScopeAll();
+  extractor.process();
+  assertEquals("ONE",vars.get("regVal"));
+  extractor.setScopeChildren();
+  extractor.process();
+  assertEquals("NOTFOUND",vars.get("regVal"));
+}

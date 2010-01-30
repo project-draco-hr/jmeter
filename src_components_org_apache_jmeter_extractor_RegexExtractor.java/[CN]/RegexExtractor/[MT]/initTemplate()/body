@@ -8,7 +8,7 @@
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Pattern templatePattern=JMeterUtils.getPatternCache().getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
   if (log.isDebugEnabled()) {
-    log.debug("Pattern = " + templatePattern);
+    log.debug("Pattern = " + templatePattern.getPattern());
     log.debug("template = " + rawTemplate);
   }
   Util.split(pieces,matcher,templatePattern,rawTemplate);
@@ -18,19 +18,27 @@
     log.debug("template split into " + pieces.size() + " pieces, starts with = "+ startsWith);
   }
   if (startsWith) {
-    pieces.remove(0);
+    String dropped=pieces.remove(0);
+    if (log.isDebugEnabled()) {
+      log.debug("Dropped leading: '" + dropped + "'");
+    }
   }
   Iterator<String> iter=pieces.iterator();
   while (iter.hasNext()) {
+    final String next=iter.next();
     boolean matchExists=matcher.contains(input,templatePattern);
     if (startsWith) {
       if (matchExists) {
         combined.add(new Integer(matcher.getMatch().group(1)));
       }
-      combined.add(iter.next());
+      if (next.length() > 0) {
+        combined.add(next);
+      }
     }
  else {
-      combined.add(iter.next());
+      if (next.length() > 0) {
+        combined.add(next);
+      }
       if (matchExists) {
         combined.add(new Integer(matcher.getMatch().group(1)));
       }

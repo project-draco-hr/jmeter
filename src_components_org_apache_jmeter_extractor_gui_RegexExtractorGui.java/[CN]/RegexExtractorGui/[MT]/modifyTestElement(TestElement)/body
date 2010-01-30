@@ -2,6 +2,7 @@
   super.configureTestElement(extractor);
   if (extractor instanceof RegexExtractor) {
     RegexExtractor regex=(RegexExtractor)extractor;
+    saveScopeSettings(regex);
     regex.setUseField(group.getSelection().getActionCommand());
     regex.setRefName(refNameField.getText());
     regex.setRegex(regexField.getText());

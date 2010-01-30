@@ -13,32 +13,9 @@
   if (defaultValue.length() > 0) {
     vars.put(refName,defaultValue);
   }
-  Perl5Matcher matcher=JMeterUtils.getMatcher();
-  String inputString=useUrl() ? previousResult.getUrlAsString() : useHeaders() ? previousResult.getResponseHeaders() : useCode() ? previousResult.getResponseCode() : useMessage() ? previousResult.getResponseMessage() : useUnescapedBody() ? StringEscapeUtils.unescapeHtml(previousResult.getResponseDataAsString()) : previousResult.getResponseDataAsString();
-  if (log.isDebugEnabled()) {
-    log.debug("Input = " + inputString);
-  }
-  PatternMatcherInput input=new PatternMatcherInput(inputString);
   String regex=getRegex();
-  if (log.isDebugEnabled()) {
-    log.debug("Regex = " + regex);
-  }
   try {
-    Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
-    List<MatchResult> matches=new ArrayList<MatchResult>();
-    int x=0;
-    boolean done=false;
-    do {
-      if (matcher.contains(input,pattern)) {
-        log.debug("RegexExtractor: Match found!");
-        matches.add(matcher.getMatch());
-      }
- else {
-        done=true;
-      }
-      x++;
-    }
- while (x != matchNumber && !done);
+    List<MatchResult> matches=processMatches(regex,previousResult,matchNumber);
     int prevCount=0;
     String prevString=vars.get(refName + REF_MATCH_NR);
     if (prevString != null) {

@@ -2,7 +2,7 @@
   StringBuilder result=new StringBuilder();
   for (int a=0; a < template.length; a++) {
     if (log.isDebugEnabled()) {
-      log.debug("RegexExtractor: Template piece #" + a + " = "+ template[a]);
+      log.debug("RegexExtractor: Template piece #" + a + " = "+ template[a]+ " "+ template[a].getClass().getSimpleName());
     }
     if (template[a] instanceof String) {
       result.append(template[a]);

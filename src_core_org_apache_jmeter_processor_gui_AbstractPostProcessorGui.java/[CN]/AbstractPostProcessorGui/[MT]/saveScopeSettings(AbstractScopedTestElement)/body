@@ -1,0 +1,11 @@
+{
+  if (scopePanel.isScopeParent()) {
+    testElement.setScopeParent();
+  }
+ else   if (scopePanel.isScopeChildren()) {
+    testElement.setScopeChildren();
+  }
+ else {
+    testElement.setScopeAll();
+  }
+}
