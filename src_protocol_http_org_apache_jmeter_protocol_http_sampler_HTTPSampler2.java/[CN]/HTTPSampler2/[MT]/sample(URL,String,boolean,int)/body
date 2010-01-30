@@ -48,6 +48,7 @@
     }
     setDefaultRequestHeaders(httpMethod);
     client=setupConnection(url,httpMethod,res);
+    savedClient=client;
     if (method.equals(POST)) {
       String postBody=sendPostData((PostMethod)httpMethod);
       res.setQueryString(postBody);
@@ -56,7 +57,6 @@
       String putBody=sendPutData((PutMethod)httpMethod);
       res.setQueryString(putBody);
     }
-    savedClient=client;
     int statusCode=client.executeMethod(httpMethod);
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
     instream=httpMethod.getResponseBodyAsStream();
