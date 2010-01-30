@@ -33,6 +33,7 @@
         }
         log.debug("Bind exception, try again");
         if (conn != null) {
+          savedConn=null;
           conn.disconnect();
         }
         this.setUseKeepAlive(false);
@@ -112,13 +113,15 @@ catch (      IOException e) {
  catch (  IOException e) {
     res.sampleEnd();
     if (conn != null) {
+      savedConn=null;
       conn.disconnect();
     }
+    savedConn=null;
     conn=null;
     return errorResult(e,res);
   }
  finally {
-    disconnect(conn);
     savedConn=null;
+    disconnect(conn);
   }
 }
