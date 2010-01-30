@@ -1,0 +1,7 @@
+{
+  extractor.setRegex("<(value) field=\"");
+  extractor.setTemplate("$1$");
+  extractor.setMatchNumber(0);
+  extractor.process();
+  assertEquals("value",vars.get("regVal"));
+}
