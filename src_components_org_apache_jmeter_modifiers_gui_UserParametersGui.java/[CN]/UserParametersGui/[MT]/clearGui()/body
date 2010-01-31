@@ -3,6 +3,7 @@
   initTableModel();
   paramTable.setModel(tableModel);
   HeaderAsPropertyRenderer defaultRenderer=new HeaderAsPropertyRenderer(){
+    private static final long serialVersionUID=240L;
     @Override protected String getText(    Object value,    int row,    int column){
       if (column >= 1) {
         String val=value.toString();
