@@ -2,6 +2,7 @@
   Map<String,PreparedStatement> preparedStatementMap=perConnCache.get(conn);
   if (null == preparedStatementMap) {
     preparedStatementMap=new LinkedHashMap<String,PreparedStatement>(MAX_ENTRIES){
+      private static final long serialVersionUID=240L;
       @Override protected boolean removeEldestEntry(      Map.Entry<String,PreparedStatement> arg0){
         final int theSize=size();
         if (theSize > MAX_ENTRIES) {
