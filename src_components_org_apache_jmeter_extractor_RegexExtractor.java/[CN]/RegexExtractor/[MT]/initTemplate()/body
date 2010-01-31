@@ -2,8 +2,7 @@
   if (template != null) {
     return;
   }
-  List<String> pieces=new ArrayList<String>();
-  List<Object> combined=new LinkedList<Object>();
+  List<Object> combined=new ArrayList<Object>();
   String rawTemplate=getTemplate();
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Pattern templatePattern=JMeterUtils.getPatternCache().getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);
@@ -11,42 +10,26 @@
     log.debug("Pattern = " + templatePattern.getPattern());
     log.debug("template = " + rawTemplate);
   }
-  Util.split(pieces,matcher,templatePattern,rawTemplate);
-  PatternMatcherInput input=new PatternMatcherInput(rawTemplate);
-  boolean startsWith=isFirstElementGroup(rawTemplate);
+  int beginOffset=0;
+  MatchResult currentResult;
+  PatternMatcherInput pinput=new PatternMatcherInput(rawTemplate);
+  while (matcher.contains(pinput,templatePattern)) {
+    currentResult=matcher.getMatch();
+    final int beginMatch=currentResult.beginOffset(0);
+    if (beginMatch > beginOffset) {
+      combined.add(rawTemplate.substring(beginOffset,beginMatch));
+    }
+    combined.add(new Integer(currentResult.group(1)));
+    beginOffset=currentResult.endOffset(0);
+  }
+  if (beginOffset < rawTemplate.length()) {
+    combined.add(rawTemplate.substring(beginOffset,rawTemplate.length()));
+  }
   if (log.isDebugEnabled()) {
-    log.debug("template split into " + pieces.size() + " pieces, starts with = "+ startsWith);
-  }
-  if (startsWith) {
-    String dropped=pieces.remove(0);
-    if (log.isDebugEnabled()) {
-      log.debug("Dropped leading: '" + dropped + "'");
+    log.debug("Template item count: " + combined.size());
+    for (    Object o : combined) {
+      log.debug(o.getClass().getSimpleName() + " '" + o.toString()+ "'");
     }
   }
-  Iterator<String> iter=pieces.iterator();
-  while (iter.hasNext()) {
-    final String next=iter.next();
-    boolean matchExists=matcher.contains(input,templatePattern);
-    if (startsWith) {
-      if (matchExists) {
-        combined.add(new Integer(matcher.getMatch().group(1)));
-      }
-      if (next.length() > 0) {
-        combined.add(next);
-      }
-    }
- else {
-      if (next.length() > 0) {
-        combined.add(next);
-      }
-      if (matchExists) {
-        combined.add(new Integer(matcher.getMatch().group(1)));
-      }
-    }
-  }
-  if (matcher.contains(input,templatePattern)) {
-    log.debug("Template does end with template pattern");
-    combined.add(new Integer(matcher.getMatch().group(1)));
-  }
-  template=combined.toArray();
+  template=combined;
 }

@@ -1,14 +1,14 @@
 {
   StringBuilder result=new StringBuilder();
-  for (int a=0; a < template.length; a++) {
+  for (  Object obj : template) {
     if (log.isDebugEnabled()) {
-      log.debug("RegexExtractor: Template piece #" + a + " = "+ template[a]+ " "+ template[a].getClass().getSimpleName());
+      log.debug("RegexExtractor: Template piece " + obj + " ("+ obj.getClass().getSimpleName()+ ")");
     }
-    if (template[a] instanceof String) {
-      result.append(template[a]);
+    if (obj instanceof Integer) {
+      result.append(match.group(((Integer)obj).intValue()));
     }
  else {
-      result.append(match.group(((Integer)template[a]).intValue()));
+      result.append(obj);
     }
   }
   if (log.isDebugEnabled()) {
