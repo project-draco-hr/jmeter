@@ -1,5 +1,6 @@
 {
   JTree treevar=new JTree(treeModel){
+    private static final long serialVersionUID=240L;
     @Override public String getToolTipText(    MouseEvent event){
       TreePath path=this.getPathForLocation(event.getX(),event.getY());
       if (path != null) {
