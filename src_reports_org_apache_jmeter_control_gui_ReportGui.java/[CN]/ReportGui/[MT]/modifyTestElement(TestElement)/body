@@ -3,7 +3,7 @@
   if (plan instanceof ReportPlan) {
     ReportPlan rp=(ReportPlan)plan;
     rp.setUserDefinedVariables((Arguments)argsPanel.createTestElement());
-    rp.setProperty(ReportPlan.COMMENTS,commentPanel.getText());
+    rp.setProperty(ReportPlan.REPORT_COMMENTS,commentPanel.getText());
     rp.setBasedir(baseDir.getFilename());
   }
 }
