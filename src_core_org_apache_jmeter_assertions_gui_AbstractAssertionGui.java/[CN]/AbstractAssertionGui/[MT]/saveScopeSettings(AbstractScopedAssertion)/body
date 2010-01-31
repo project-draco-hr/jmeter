@@ -5,7 +5,10 @@
  else   if (assertionScopePanel.isScopeChildren()) {
     assertion.setScopeChildren();
   }
- else {
+ else   if (assertionScopePanel.isScopeAll()) {
     assertion.setScopeAll();
+  }
+ else {
+    throw new IllegalArgumentException("Unexpected scope panel state");
   }
 }

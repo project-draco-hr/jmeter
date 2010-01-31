@@ -6,7 +6,10 @@
  else   if (assertion.isScopeChildren(scope)) {
     assertionScopePanel.setScopeChildren();
   }
- else {
+ else   if (assertion.isScopeAll(scope)) {
     assertionScopePanel.setScopeAll();
+  }
+ else {
+    throw new IllegalArgumentException("Invalid scope: " + scope);
   }
 }

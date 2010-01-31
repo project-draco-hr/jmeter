@@ -5,7 +5,10 @@
  else   if (scopePanel.isScopeChildren()) {
     testElement.setScopeChildren();
   }
- else {
+ else   if (scopePanel.isScopeAll()) {
     testElement.setScopeAll();
+  }
+ else {
+    throw new IllegalArgumentException("Unexpected scope panel state");
   }
 }
