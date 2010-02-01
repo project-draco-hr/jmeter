@@ -1,6 +1,5 @@
 {
   setupFormData(httpSampler,isEncoded,titleField,titleValue,descriptionField,descriptionValue);
-  httpSampler.setFileField(fileField);
-  httpSampler.setFilename(fileValue.getAbsolutePath());
-  httpSampler.setMimetype(fileMimeType);
+  HTTPFileArg[] hfa={new HTTPFileArg(fileValue == null ? "" : fileValue.getAbsolutePath(),fileField,fileMimeType)};
+  httpSampler.setHTTPFiles(hfa);
 }
