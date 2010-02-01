@@ -16,7 +16,8 @@
   assertTrue(s.getDoMultipartPost());
   Arguments arguments=s.getArguments();
   assertEquals(0,arguments.getArgumentCount());
-  assertEquals(fileFieldValue,s.getFileField());
-  assertEquals(fileName,s.getFilename());
-  assertEquals(mimeType,s.getMimetype());
+  HTTPFileArg hfa=s.getHTTPFiles()[0];
+  assertEquals(fileFieldValue,hfa.getParamName());
+  assertEquals(fileName,hfa.getPath());
+  assertEquals(mimeType,hfa.getMimeType());
 }
