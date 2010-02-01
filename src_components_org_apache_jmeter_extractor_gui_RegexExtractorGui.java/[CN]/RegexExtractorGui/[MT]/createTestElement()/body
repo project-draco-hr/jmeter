@@ -1,5 +1,5 @@
 {
-  RegexExtractor extractor=new RegexExtractor();
+  AbstractScopedTestElement extractor=new RegexExtractor();
   modifyTestElement(extractor);
   return extractor;
 }

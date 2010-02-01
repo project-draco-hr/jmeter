@@ -2,6 +2,7 @@
   super.configureTestElement(extractor);
   if (extractor instanceof XPathExtractor) {
     XPathExtractor xpath=(XPathExtractor)extractor;
+    saveScopeSettings(xpath);
     xpath.setDefaultValue(defaultField.getText());
     xpath.setRefName(refNameField.getText());
     xpath.setXPathQuery(xpathQueryField.getText());

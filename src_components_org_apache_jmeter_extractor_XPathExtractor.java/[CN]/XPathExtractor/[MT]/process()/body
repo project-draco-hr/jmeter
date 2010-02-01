@@ -7,11 +7,40 @@
   JMeterVariables vars=context.getVariables();
   String refName=getRefName();
   vars.put(refName,getDefaultValue());
-  vars.put(concat(refName,MATCH_NR),"0");
-  vars.remove(concat(refName,"1"));
+  final String matchNR=concat(refName,MATCH_NR);
+  int prevCount=0;
   try {
-    Document d=parseResponse(previousResult);
-    getValuesForXPath(d,getXPathQuery(),vars,refName);
+    prevCount=Integer.parseInt(vars.get(matchNR));
+  }
+ catch (  NumberFormatException e) {
+  }
+  vars.put(matchNR,"0");
+  vars.remove(concat(refName,"1"));
+  List<SampleResult> samples=getSampleList(previousResult);
+  try {
+    List<String> matches=new ArrayList<String>();
+    for (    SampleResult res : samples) {
+      Document d=parseResponse(res);
+      getValuesForXPath(d,getXPathQuery(),matches);
+    }
+    final int matchCount=matches.size();
+    vars.put(matchNR,String.valueOf(matchCount));
+    if (matchCount > 0) {
+      String value=matches.get(0);
+      if (value != null) {
+        vars.put(refName,value);
+      }
+      for (int i=0; i < matchCount; i++) {
+        value=matches.get(i);
+        if (value != null) {
+          vars.put(concat(refName,i + 1),matches.get(i));
+        }
+      }
+    }
+    vars.remove(concat(refName,matchCount + 1));
+    for (int i=matchCount + 2; i <= prevCount; i++) {
+      vars.remove(concat(refName,i));
+    }
   }
  catch (  IOException e) {
     final String errorMessage="IOException on (" + getXPathQuery() + ")";
