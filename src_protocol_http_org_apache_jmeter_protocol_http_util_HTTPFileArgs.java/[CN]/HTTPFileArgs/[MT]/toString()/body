@@ -3,9 +3,9 @@
   PropertyIterator iter=getHTTPFileArgsCollection().iterator();
   while (iter.hasNext()) {
     HTTPFileArg file=(HTTPFileArg)iter.next().getObjectValue();
-    str.append(file.getPath());
+    str.append(file.toString());
     if (iter.hasNext()) {
-      str.append("&");
+      str.append("\n");
     }
   }
   return str.toString();
