@@ -4,8 +4,8 @@
   AuthManager auth=getAuthManager();
   int hsz=1;
   if (method.equals(POST)) {
-    String fn=getFilename();
-    if (fn != null && fn.trim().length() > 0) {
+    HTTPFileArg[] hfa=getHTTPFiles();
+    if (hfa.length > 0) {
       hsz+=3;
     }
  else {
