@@ -1,11 +1,9 @@
 {
   HTTPSamplerBase sampler=new HTTPNullSampler();
-  sampler.setFileField("param");
-  assertEquals("param",sampler.getFileField());
+  sampler.setHTTPFiles(new HTTPFileArg[]{new HTTPFileArg("","param","")});
   HTTPFileArg file=sampler.getHTTPFiles()[0];
   assertEquals("param",file.getParamName());
-  sampler.setFileField("param2");
-  assertEquals("param2",sampler.getFileField());
+  sampler.setHTTPFiles(new HTTPFileArg[]{new HTTPFileArg("","param2","")});
   file=sampler.getHTTPFiles()[0];
   assertEquals("param2",file.getParamName());
 }
