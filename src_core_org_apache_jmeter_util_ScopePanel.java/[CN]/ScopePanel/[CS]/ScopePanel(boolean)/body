@@ -1,0 +1,14 @@
+{
+  allButton=new JRadioButton(JMeterUtils.getResString("sample_scope_all"));
+  parentButton=new JRadioButton(JMeterUtils.getResString("sample_scope_parent"));
+  childButton=new JRadioButton(JMeterUtils.getResString("sample_scope_children"));
+  if (enableVariableButton) {
+    variableButton=new JRadioButton(JMeterUtils.getResString("sample_scope_variable"));
+    variableName=new JTextField(10);
+  }
+ else {
+    variableButton=null;
+    variableName=null;
+  }
+  init();
+}

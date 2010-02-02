@@ -1,0 +1,18 @@
+{
+  String scope=testElement.fetchScope();
+  if (testElement.isScopeParent(scope)) {
+    scopePanel.setScopeParent();
+  }
+ else   if (testElement.isScopeChildren(scope)) {
+    scopePanel.setScopeChildren();
+  }
+ else   if (testElement.isScopeAll(scope)) {
+    scopePanel.setScopeAll();
+  }
+ else   if (testElement.isScopeVariable(scope)) {
+    scopePanel.setScopeVariable(testElement.getVariableName());
+  }
+ else {
+    throw new IllegalArgumentException("Invalid scope: " + scope);
+  }
+}

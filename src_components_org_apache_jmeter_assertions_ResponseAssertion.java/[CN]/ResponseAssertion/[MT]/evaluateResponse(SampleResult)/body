@@ -6,7 +6,10 @@
   if (getAssumeSuccess()) {
     response.setSuccessful(true);
   }
-  if (isTestFieldResponseData()) {
+  if (isScopeVariable()) {
+    toCheck=getThreadContext().getVariables().get(getVariableName());
+  }
+ else   if (isTestFieldResponseData()) {
     toCheck=response.getResponseDataAsString();
   }
  else   if (isTestFieldResponseCode()) {
