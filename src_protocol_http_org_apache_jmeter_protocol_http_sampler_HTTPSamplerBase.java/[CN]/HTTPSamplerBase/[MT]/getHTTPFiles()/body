@@ -1,29 +1,4 @@
 {
-  if (fileList != null) {
-    return fileList;
-  }
-  HTTPFileArg[] outFiles;
-  JMeterProperty fileName=getProperty(FILE_NAME);
-  JMeterProperty paramName=getProperty(FILE_FIELD);
-  JMeterProperty mimeType=getProperty(MIMETYPE);
-  HTTPFileArg file=new HTTPFileArg(fileName,paramName,mimeType);
-  if (file.isNotEmpty()) {
-    final HTTPFileArgs fileArgs=getHTTPFileArgs();
-    if (fileArgs != null) {
-      outFiles=new HTTPFileArg[1 + fileArgs.getHTTPFileArgCount()];
-      outFiles[0]=file;
-      HTTPFileArg[] infiles=fileArgs.asArray();
-      for (int i=0; i < infiles.length; i++) {
-        outFiles[i + 1]=infiles[i];
-      }
-    }
- else {
-      outFiles=new HTTPFileArg[]{file};
-    }
-  }
- else {
-    outFiles=new HTTPFileArg[]{};
-  }
-  fileList=outFiles;
-  return fileList;
+  final HTTPFileArgs fileArgs=getHTTPFileArgs();
+  return fileArgs == null ? new HTTPFileArg[]{} : fileArgs.asArray();
 }

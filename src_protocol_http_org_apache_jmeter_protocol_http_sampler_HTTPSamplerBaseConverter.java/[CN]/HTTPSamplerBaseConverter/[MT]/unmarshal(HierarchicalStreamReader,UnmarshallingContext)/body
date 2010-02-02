@@ -1,0 +1,5 @@
+{
+  final HTTPSamplerBase httpSampler=(HTTPSamplerBase)super.unmarshal(reader,context);
+  httpSampler.mergeFileProperties();
+  return httpSampler;
+}

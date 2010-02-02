@@ -1,6 +1,5 @@
 {
   HTTPSamplerBase base=(HTTPSamplerBase)super.clone();
   base.dynamicPath=dynamicPath;
-  base.fileList=null;
   return base;
 }

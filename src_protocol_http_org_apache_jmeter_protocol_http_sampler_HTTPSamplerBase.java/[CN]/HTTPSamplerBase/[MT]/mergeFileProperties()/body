@@ -1,0 +1,26 @@
+{
+  JMeterProperty fileName=getProperty(FILE_NAME);
+  JMeterProperty paramName=getProperty(FILE_FIELD);
+  JMeterProperty mimeType=getProperty(MIMETYPE);
+  HTTPFileArg oldStyleFile=new HTTPFileArg(fileName,paramName,mimeType);
+  HTTPFileArgs fileArgs=getHTTPFileArgs();
+  HTTPFileArgs allFileArgs=new HTTPFileArgs();
+  if (oldStyleFile.isNotEmpty()) {
+    allFileArgs.addHTTPFileArg(oldStyleFile);
+    if (fileArgs != null) {
+      HTTPFileArg[] infiles=fileArgs.asArray();
+      for (int i=0; i < infiles.length; i++) {
+        allFileArgs.addHTTPFileArg(infiles[i]);
+      }
+    }
+  }
+ else {
+    if (fileArgs != null) {
+      allFileArgs=fileArgs;
+    }
+  }
+  setHTTPFileArgs(allFileArgs);
+  removeProperty(FILE_FIELD);
+  removeProperty(FILE_NAME);
+  removeProperty(MIMETYPE);
+}
