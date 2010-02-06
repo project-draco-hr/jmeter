@@ -4,10 +4,11 @@
   label.setLabelFor(path);
   if (notConfigOnly) {
     followRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects"));
-    followRedirects.setSelected(false);
+    followRedirects.setSelected(true);
+    followRedirects.addChangeListener(this);
     autoRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects_auto"));
     autoRedirects.addChangeListener(this);
-    autoRedirects.setSelected(true);
+    autoRedirects.setSelected(false);
     useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
     useKeepAlive.setSelected(true);
     useMultipartForPost=new JCheckBox(JMeterUtils.getResString("use_multipart_for_http_post"));

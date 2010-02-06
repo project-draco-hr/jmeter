@@ -12,4 +12,5 @@
   webRequestPanel.add(getHTTPFileArgsPanel(),BorderLayout.SOUTH);
   this.add(getWebServerTimeoutPanel(),BorderLayout.NORTH);
   this.add(webRequestPanel,BorderLayout.CENTER);
+  this.add(getProxyServerPanel(),BorderLayout.SOUTH);
 }

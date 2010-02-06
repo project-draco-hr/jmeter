@@ -1,8 +1,8 @@
 {
   domain.setText("");
   if (notConfigOnly) {
-    followRedirects.setSelected(false);
-    autoRedirects.setSelected(true);
+    followRedirects.setSelected(true);
+    autoRedirects.setSelected(false);
     method.setText(HTTPSamplerBase.DEFAULT_METHOD);
     useKeepAlive.setSelected(true);
     useMultipartForPost.setSelected(false);

@@ -14,18 +14,7 @@
   JPanel webServerTimeoutPanel=new VerticalPanel();
   webServerTimeoutPanel.add(webServerPanel,BorderLayout.CENTER);
   webServerTimeoutPanel.add(timeOut,BorderLayout.EAST);
-  JPanel proxyServer=new HorizontalPanel();
-  proxyServer.add(getProxyHostPanel(),BorderLayout.CENTER);
-  proxyServer.add(getProxyPortPanel(),BorderLayout.EAST);
-  JPanel proxyLogin=new HorizontalPanel();
-  proxyLogin.add(getProxyUserPanel());
-  proxyLogin.add(getProxyPassPanel());
-  JPanel proxyServerPanel=new HorizontalPanel();
-  proxyServerPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_proxy_server_title")));
-  proxyServerPanel.add(proxyServer,BorderLayout.CENTER);
-  proxyServerPanel.add(proxyLogin,BorderLayout.EAST);
   JPanel bigPanel=new VerticalPanel();
   bigPanel.add(webServerTimeoutPanel);
-  bigPanel.add(proxyServerPanel);
   return bigPanel;
 }
