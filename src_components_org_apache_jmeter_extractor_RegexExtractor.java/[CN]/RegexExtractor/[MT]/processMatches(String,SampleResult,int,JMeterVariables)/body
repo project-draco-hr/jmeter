@@ -1,0 +1,24 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("Regex = " + regex);
+  }
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
+  Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
+  List<MatchResult> matches=new ArrayList<MatchResult>();
+  int found=0;
+  if (isScopeVariable()) {
+    String inputString=vars.get(getVariableName());
+    matchStrings(matchNumber,matcher,pattern,matches,found,inputString);
+  }
+ else {
+    List<SampleResult> sampleList=getSampleList(result);
+    for (    SampleResult sr : sampleList) {
+      String inputString=getInputString(sr);
+      found=matchStrings(matchNumber,matcher,pattern,matches,found,inputString);
+      if (matchNumber > 0 && found == matchNumber) {
+        break;
+      }
+    }
+  }
+  return matches;
+}

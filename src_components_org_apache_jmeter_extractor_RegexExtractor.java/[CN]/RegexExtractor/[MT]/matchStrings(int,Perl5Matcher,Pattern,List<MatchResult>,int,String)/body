@@ -1,0 +1,14 @@
+{
+  PatternMatcherInput input=new PatternMatcherInput(inputString);
+  while (matchNumber <= 0 || found != matchNumber) {
+    if (matcher.contains(input,pattern)) {
+      log.debug("RegexExtractor: Match found!");
+      matches.add(matcher.getMatch());
+      found++;
+    }
+ else {
+      break;
+    }
+  }
+  return found;
+}
