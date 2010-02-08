@@ -1,0 +1,10 @@
+{
+  URL base=new URL("http://192.168.0.1/a/b/c/");
+  assertEquals(new URL("http://192.168.0.1/a/b/c/d"),ConversionUtils.makeRelativeURL(base,"d"));
+  assertEquals(new URL("http://192.168.0.1/a/b/d"),ConversionUtils.makeRelativeURL(base,"../d"));
+  assertEquals(new URL("http://192.168.0.1/a/d"),ConversionUtils.makeRelativeURL(base,"../../d"));
+  assertEquals(new URL("http://192.168.0.1/d"),ConversionUtils.makeRelativeURL(base,"../../../d"));
+  assertEquals(new URL("http://192.168.0.1/d"),ConversionUtils.makeRelativeURL(base,"../../../../d"));
+  assertEquals(new URL("http://192.168.0.1/../d"),ConversionUtils.makeRelativeURL(base,"/../d"));
+  assertEquals(new URL("http://192.168.0.1/a/b/c/d"),ConversionUtils.makeRelativeURL(base,"./d"));
+}
