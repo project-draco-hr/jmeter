@@ -1,0 +1,20 @@
+{
+  HTTPSamplerBase config=new HTTPNullSampler();
+  config.setProtocol("http");
+  config.setMethod(HTTPSamplerBase.GET);
+  config.setDomain("192.168.0.1");
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.sampleStart();
+  res.setURL(config.getUrl());
+  res.setResponseCode("301");
+  res.sampleEnd();
+  res.setRedirectLocation("./");
+  config.followRedirects(res,0);
+  assertEquals("http://192.168.0.1/",config.getUrl().toString());
+  res.setRedirectLocation(".");
+  config.followRedirects(res,0);
+  assertEquals("http://192.168.0.1/",config.getUrl().toString());
+  res.setRedirectLocation("../");
+  config.followRedirects(res,0);
+  assertEquals("http://192.168.0.1/",config.getUrl().toString());
+}
