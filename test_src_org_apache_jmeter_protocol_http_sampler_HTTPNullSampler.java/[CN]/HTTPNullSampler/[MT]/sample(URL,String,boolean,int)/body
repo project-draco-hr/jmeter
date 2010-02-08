@@ -1,3 +1,7 @@
 {
-  throw new UnsupportedOperationException("For test purposes only");
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.sampleStart();
+  res.setURL(u);
+  res.sampleEnd();
+  return res;
 }
