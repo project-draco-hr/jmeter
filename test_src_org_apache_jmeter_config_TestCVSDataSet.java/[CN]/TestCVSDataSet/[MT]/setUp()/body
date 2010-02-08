@@ -1,0 +1,6 @@
+{
+  JMeterContext jmcx=JMeterContextService.getContext();
+  jmcx.setVariables(new JMeterVariables());
+  threadVars=jmcx.getVariables();
+  threadVars.put("b","value");
+}

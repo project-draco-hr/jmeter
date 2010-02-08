@@ -1,0 +1,29 @@
+{
+  if (filename == null) {
+    throw new IllegalArgumentException("Filename must not be null");
+  }
+  if (alias == null) {
+    throw new IllegalArgumentException("Alias must not be null");
+  }
+  FileEntry fileEntry=files.get(alias);
+  if (fileEntry == null) {
+    File f=new File(filename);
+    fileEntry=new FileEntry(f.isAbsolute() ? f : new File(base,filename),null,charsetName);
+    if (filename.equals(alias)) {
+      log.info("Stored: " + filename);
+    }
+ else {
+      log.info("Stored: " + filename + " Alias: "+ alias);
+    }
+    files.put(alias,fileEntry);
+    if (hasHeader) {
+      try {
+        fileEntry.headerLine=readLine(alias,false);
+      }
+ catch (      IOException e) {
+        throw new IllegalArgumentException("Could not read file header line",e);
+      }
+    }
+  }
+  return fileEntry.headerLine;
+}

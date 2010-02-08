@@ -1,8 +1,4 @@
 {
-  JMeterContext jmcx=JMeterContextService.getContext();
-  jmcx.setVariables(new JMeterVariables());
-  JMeterVariables threadVars=jmcx.getVariables();
-  threadVars.put("b","value");
   CSVDataSet csv=new CSVDataSet();
   csv.setFilename("No.such.filename");
   csv.setVariableNames("a,b,c");
