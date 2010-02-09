@@ -9,5 +9,6 @@
       log.error(e.getMessage());
     }
   }
+  MAP.clear();
   log.info("InitialContextFactory.close() called and Context instances cleaned up");
 }
