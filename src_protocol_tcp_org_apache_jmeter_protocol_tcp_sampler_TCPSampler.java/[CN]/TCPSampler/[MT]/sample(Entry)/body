@@ -55,6 +55,12 @@
     res.setResponseMessage(ex.toString());
     closeSocket();
   }
+catch (  Exception ex) {
+    log.error("",ex);
+    isSuccessful=false;
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+  }
  finally {
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
