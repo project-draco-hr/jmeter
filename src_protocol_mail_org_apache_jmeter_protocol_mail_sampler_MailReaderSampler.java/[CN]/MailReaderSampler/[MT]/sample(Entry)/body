@@ -30,7 +30,8 @@
       n=messages.length;
     }
     parent.setSampleCount(n);
-    for (int i=0; i < n; i++) {
+    busy=true;
+    for (int i=0; busy && i < n; i++) {
       StringBuilder cdata=new StringBuilder();
       SampleResult child=new SampleResult();
       child.sampleStart();
@@ -96,6 +97,9 @@ catch (  IOException ex) {
     log.debug("",ex);
     parent.setResponseCode("500");
     parent.setResponseMessage(ex.toString());
+  }
+ finally {
+    busy=false;
   }
   if (parent.getEndTime() == 0) {
     parent.sampleEnd();
