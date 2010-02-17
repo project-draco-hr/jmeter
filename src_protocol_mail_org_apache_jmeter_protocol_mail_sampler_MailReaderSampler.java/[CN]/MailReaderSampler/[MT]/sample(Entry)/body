@@ -71,7 +71,9 @@
         message.setFlag(Flags.Flag.DELETED,true);
       }
       child.setResponseOK();
-      child.sampleEnd();
+      if (child.getEndTime() == 0) {
+        child.sampleEnd();
+      }
       parent.addSubResult(child);
     }
     folder.close(true);
