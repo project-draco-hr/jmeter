@@ -12,8 +12,11 @@
  else   if (item.equals(IMAPSLabel)) {
     mrs.setServerType(MailReaderSampler.TYPE_IMAPS);
   }
- else {
+ else   if (item.equals(IMAPLabel)) {
     mrs.setServerType(MailReaderSampler.TYPE_IMAP);
+  }
+ else {
+    mrs.setServerType(item);
   }
   mrs.setFolder(folderBox.getText());
   mrs.setServer(serverBox.getText());

@@ -10,6 +10,7 @@
   serverTypeModel.addElement(IMAPLabel);
   serverTypeModel.addElement(IMAPSLabel);
   serverTypeBox=new JComboBox(serverTypeModel);
+  serverTypeBox.setEditable(true);
   serverTypeBox.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent e){
       final String item=(String)serverTypeBox.getSelectedItem();
