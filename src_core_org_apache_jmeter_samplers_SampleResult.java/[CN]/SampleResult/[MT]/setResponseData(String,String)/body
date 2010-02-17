@@ -5,7 +5,7 @@
     setDataEncoding(encodeUsing);
   }
  catch (  UnsupportedEncodingException e) {
-    log.warn("Could not convert string using " + encodeUsing + ", using default encoding: "+ DEFAULT_CHARSET+ " "+ e.getLocalizedMessage());
+    log.warn("Could not convert string using '" + encodeUsing + "', using default encoding: "+ DEFAULT_CHARSET+ " "+ e.getLocalizedMessage());
     responseData=response.getBytes();
     setDataEncoding(DEFAULT_CHARSET);
   }
