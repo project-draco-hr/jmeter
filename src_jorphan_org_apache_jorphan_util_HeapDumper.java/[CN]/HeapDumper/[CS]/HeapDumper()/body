@@ -1,0 +1,18 @@
+{
+  server=ManagementFactory.getPlatformMBeanServer();
+  ObjectName on=null;
+  Exception ex=null;
+  try {
+    on=new ObjectName(HOTSPOT_BEAN_NAME);
+    server.getObjectInstance(on);
+  }
+ catch (  MalformedObjectNameException e) {
+    throw new AssertionError("Could not establish the HotSpotDiagnostic Bean Name: " + e);
+  }
+catch (  InstanceNotFoundException e) {
+    ex=e;
+    on=null;
+  }
+  exception=ex;
+  hotspotDiagnosticBean=on;
+}

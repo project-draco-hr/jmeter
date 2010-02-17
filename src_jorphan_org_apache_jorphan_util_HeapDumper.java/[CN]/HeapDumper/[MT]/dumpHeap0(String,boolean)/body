@@ -1,0 +1,24 @@
+{
+  try {
+    if (exception == null) {
+      server.invoke(hotspotDiagnosticBean,"dumpHeap",new Object[]{fileName,Boolean.valueOf(live)},new String[]{"java.lang.String","boolean"});
+    }
+ else {
+      throw exception;
+    }
+  }
+ catch (  RuntimeMBeanException e) {
+    Throwable f=e.getCause();
+    if (f instanceof Exception) {
+      throw (Exception)f;
+    }
+    throw (e);
+  }
+catch (  MBeanException e) {
+    Throwable f=e.getCause();
+    if (f instanceof Exception) {
+      throw (Exception)f;
+    }
+    throw (e);
+  }
+}

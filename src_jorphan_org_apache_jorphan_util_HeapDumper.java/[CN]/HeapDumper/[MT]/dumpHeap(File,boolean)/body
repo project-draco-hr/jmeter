@@ -1,0 +1,7 @@
+{
+  String stamp=TIME_STAMP_FORMAT.format(new Date());
+  File temp=new File(basedir,"dump_" + stamp + ".hprof");
+  final String path=temp.getPath();
+  dumpHeap(path,live);
+  return path;
+}
