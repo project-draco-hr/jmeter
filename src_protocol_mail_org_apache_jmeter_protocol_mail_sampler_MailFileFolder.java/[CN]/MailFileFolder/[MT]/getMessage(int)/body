@@ -1,0 +1,16 @@
+{
+  File f=new File(folderPath,String.format(FILENAME_FORMAT,Integer.valueOf(index)));
+  try {
+    FileInputStream fis=new FileInputStream(f);
+    try {
+      Message m=new MailFileMessage(this,fis,index);
+      return m;
+    }
+  finally {
+      IOUtils.closeQuietly(fis);
+    }
+  }
+ catch (  FileNotFoundException e) {
+    throw new MessagingException("Cannot open folder: " + e.getMessage());
+  }
+}

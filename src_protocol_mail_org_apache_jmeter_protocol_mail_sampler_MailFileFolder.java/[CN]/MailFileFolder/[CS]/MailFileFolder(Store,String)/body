@@ -1,0 +1,5 @@
+{
+  super(store);
+  String base=store.getURLName().getHost();
+  folderPath=new File(base,path);
+}
