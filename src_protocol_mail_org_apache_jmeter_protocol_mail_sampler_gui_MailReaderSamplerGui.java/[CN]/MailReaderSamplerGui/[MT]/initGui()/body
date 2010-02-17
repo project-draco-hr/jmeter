@@ -3,7 +3,7 @@
   deleteBox.setSelected(false);
   storeMimeMessageBox.setSelected(false);
   folderBox.setText(INBOX);
-  serverTypeBox.setSelectedIndex(0);
+  serverTypeBox.setText(MailReaderSampler.DEFAULT_PROTOCOL);
   passwordBox.setText("");
   serverBox.setText("");
   portBox.setText("");

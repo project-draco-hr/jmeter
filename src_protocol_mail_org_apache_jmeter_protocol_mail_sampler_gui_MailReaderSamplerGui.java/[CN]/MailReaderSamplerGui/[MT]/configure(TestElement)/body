@@ -1,26 +1,7 @@
 {
   MailReaderSampler mrs=(MailReaderSampler)element;
-  final String serverType=mrs.getServerType();
-  if (serverType.equals(MailReaderSampler.TYPE_POP3)) {
-    serverTypeBox.setSelectedItem(POP3Label);
-    folderBox.setText(INBOX);
-  }
- else   if (serverType.equals(MailReaderSampler.TYPE_POP3S)) {
-    serverTypeBox.setSelectedItem(POP3SLabel);
-    folderBox.setText(INBOX);
-  }
- else   if (serverType.equals(MailReaderSampler.TYPE_IMAPS)) {
-    serverTypeBox.setSelectedItem(IMAPSLabel);
-    folderBox.setText(mrs.getFolder());
-  }
- else   if (serverType.equals(MailReaderSampler.TYPE_IMAP)) {
-    serverTypeBox.setSelectedItem(IMAPLabel);
-    folderBox.setText(mrs.getFolder());
-  }
- else {
-    serverTypeBox.setSelectedItem(serverType);
-    folderBox.setText(mrs.getFolder());
-  }
+  serverTypeBox.setText(mrs.getServerType());
+  folderBox.setText(mrs.getFolder());
   serverBox.setText(mrs.getServer());
   portBox.setText(mrs.getPort());
   usernameBox.setText(mrs.getUserName());

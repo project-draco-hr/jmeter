@@ -4,28 +4,9 @@
   add(makeTitlePanel());
   JPanel serverTypePanel=new JPanel();
   serverTypePanel.add(new JLabel(ServerTypeLabel));
-  DefaultComboBoxModel serverTypeModel=new DefaultComboBoxModel();
-  serverTypeModel.addElement(POP3Label);
-  serverTypeModel.addElement(POP3SLabel);
-  serverTypeModel.addElement(IMAPLabel);
-  serverTypeModel.addElement(IMAPSLabel);
-  serverTypeBox=new JComboBox(serverTypeModel);
-  serverTypeBox.setEditable(true);
-  serverTypeBox.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
-      final String item=(String)serverTypeBox.getSelectedItem();
-      if (item.equals(POP3Label) || item.equals(POP3SLabel)) {
-        folderLabel.setEnabled(false);
-        folderBox.setText(INBOX);
-        folderBox.setEnabled(false);
-      }
- else {
-        folderLabel.setEnabled(true);
-        folderBox.setEnabled(true);
-      }
-    }
-  }
-);
+  serverTypeBox=new JTextField(20);
+  serverTypeBox.addActionListener(this);
+  serverTypeBox.addFocusListener(this);
   serverTypePanel.add(serverTypeBox);
   add(serverTypePanel);
   JPanel serverPanel=new JPanel();
