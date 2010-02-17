@@ -43,6 +43,7 @@
       sr.setContentType(contentType);
       sr.setEncodingAndType(contentType);
       sr.setResponseHeaders(bodyPart.getClass().getName());
+      sr.sampleStart();
       if (bodyPartContent instanceof InputStream) {
         sr.setResponseData(IOUtils.toByteArray((InputStream)bodyPartContent));
       }
