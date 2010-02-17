@@ -3,24 +3,14 @@
   boolean isOK=false;
   boolean deleteMessages=getDeleteMessages();
   parent.setSampleLabel(getName());
-  int port=getPortAsInt();
-  if (port > 0) {
-    parent.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer()+ ":"+ port);
-  }
- else {
-    parent.setSamplerData(getServerType() + "://" + getUserName()+ "@"+ getServer());
-  }
+  String samplerString=toString();
+  parent.setSamplerData(samplerString);
   parent.sampleStart();
   try {
     Properties props=new Properties();
     Session session=Session.getDefaultInstance(props,null);
     Store store=session.getStore(getServerType());
-    if (port > 0) {
-      store.connect(getServer(),port,getUserName(),getPassword());
-    }
- else {
-      store.connect(getServer(),getUserName(),getPassword());
-    }
+    store.connect(getServer(),getPortAsInt(),getUserName(),getPassword());
     Folder folder=store.getFolder(getFolder());
     if (deleteMessages) {
       folder.open(Folder.READ_WRITE);
@@ -29,51 +19,65 @@
       folder.open(Folder.READ_ONLY);
     }
     Message messages[]=folder.getMessages();
-    Message message;
     StringBuilder pdata=new StringBuilder();
     pdata.append(messages.length);
     pdata.append(" messages found\n");
+    parent.setResponseData(pdata.toString(),null);
+    parent.setDataType(SampleResult.TEXT);
+    parent.setContentType("text/plain");
     int n=getNumMessages();
     if (n == ALL_MESSAGES || n > messages.length) {
       n=messages.length;
     }
+    parent.setSampleCount(n);
     for (int i=0; i < n; i++) {
       StringBuilder cdata=new StringBuilder();
       SampleResult child=new SampleResult();
       child.sampleStart();
-      message=messages[i];
-{
-        child.setContentType(message.getContentType());
-      }
+      Message message=messages[i];
       cdata.append("Message ");
       cdata.append(message.getMessageNumber());
       child.setSampleLabel(cdata.toString());
       child.setSamplerData(cdata.toString());
       cdata.setLength(0);
+      final String contentType=message.getContentType();
+      child.setContentType(contentType);
       if (isStoreMimeMessage()) {
-        appendMessageAsMime(cdata,message);
+        ByteArrayOutputStream bout=new ByteArrayOutputStream();
+        message.writeTo(bout);
+        child.setResponseData(bout.toByteArray());
+        child.setDataType(SampleResult.TEXT);
+        child.setDataEncoding("iso-8859-1");
+        child.setEncodingAndType(contentType);
       }
  else {
-        appendMessageData(cdata,message);
+        child.setEncodingAndType(contentType);
+        @SuppressWarnings("unchecked") Enumeration<Header> hdrs=message.getAllHeaders();
+        while (hdrs.hasMoreElements()) {
+          Header hdr=hdrs.nextElement();
+          String value=hdr.getValue();
+          try {
+            value=MimeUtility.decodeText(value);
+          }
+ catch (          UnsupportedEncodingException uce) {
+          }
+          cdata.append(hdr.getName()).append(": ").append(value).append("\n");
+        }
+        child.setResponseHeaders(cdata.toString());
+        cdata.setLength(0);
+        appendMessageData(child,message);
       }
       if (deleteMessages) {
         message.setFlag(Flags.Flag.DELETED,true);
       }
-      child.setResponseData(cdata.toString().getBytes());
-      child.setDataType(SampleResult.TEXT);
-      child.setResponseCodeOK();
-      child.setResponseMessage("OK");
-      child.setSuccessful(true);
+      child.setResponseOK();
       child.sampleEnd();
       parent.addSubResult(child);
     }
     folder.close(true);
     store.close();
-    parent.setResponseData(pdata.toString().getBytes());
-    parent.setDataType(SampleResult.TEXT);
-    parent.setContentType("text/plain");
     parent.setResponseCodeOK();
-    parent.setResponseMessage("OK");
+    parent.setResponseMessageOK();
     isOK=true;
   }
  catch (  NoClassDefFoundError ex) {
