@@ -1,0 +1,33 @@
+{
+  String preamble=mmp.getPreamble();
+  if (preamble != null) {
+    cdata.append(preamble);
+  }
+  child.setResponseData(cdata.toString(),child.getDataEncodingNoDefault());
+  int count=mmp.getCount();
+  for (int j=0; j < count; j++) {
+    BodyPart bodyPart=mmp.getBodyPart(j);
+    final Object bodyPartContent=bodyPart.getContent();
+    final String contentType=bodyPart.getContentType();
+    SampleResult sr=new SampleResult();
+    sr.setSampleLabel("Part: " + j);
+    sr.setContentType(contentType);
+    sr.setDataEncoding(RFC_822_DEFAULT_ENCODING);
+    sr.setEncodingAndType(contentType);
+    sr.sampleStart();
+    if (bodyPartContent instanceof InputStream) {
+      sr.setResponseData(IOUtils.toByteArray((InputStream)bodyPartContent));
+    }
+ else     if (bodyPartContent instanceof MimeMultipart) {
+      appendMultiPart(sr,cdata,(MimeMultipart)bodyPartContent);
+    }
+ else {
+      sr.setResponseData(bodyPartContent.toString(),sr.getDataEncodingNoDefault());
+    }
+    sr.setResponseOK();
+    if (sr.getEndTime() == 0) {
+      sr.sampleEnd();
+    }
+    child.addSubResult(sr);
+  }
+}

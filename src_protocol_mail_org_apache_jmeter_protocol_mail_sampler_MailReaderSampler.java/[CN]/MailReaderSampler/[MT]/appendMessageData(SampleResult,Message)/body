@@ -27,40 +27,13 @@
   cdata.append(NEW_LINE);
   Object content=message.getContent();
   if (content instanceof MimeMultipart) {
-    MimeMultipart mmp=(MimeMultipart)content;
-    String preamble=mmp.getPreamble();
-    if (preamble != null) {
-      cdata.append(preamble);
-    }
-    child.setResponseData(cdata.toString(),child.getDataEncodingNoDefault());
-    int count=mmp.getCount();
-    for (int j=0; j < count; j++) {
-      BodyPart bodyPart=mmp.getBodyPart(j);
-      final Object bodyPartContent=bodyPart.getContent();
-      final String contentType=bodyPart.getContentType();
-      SampleResult sr=new SampleResult();
-      sr.setSampleLabel("Part: " + j);
-      sr.setContentType(contentType);
-      sr.setEncodingAndType(contentType);
-      sr.sampleStart();
-      if (bodyPartContent instanceof InputStream) {
-        sr.setResponseData(IOUtils.toByteArray((InputStream)bodyPartContent));
-      }
- else {
-        sr.setResponseData(bodyPartContent.toString(),sr.getDataEncodingNoDefault());
-      }
-      sr.setResponseOK();
-      sr.sampleEnd();
-      child.addSubResult(sr);
-    }
+    appendMultiPart(child,cdata,(MimeMultipart)content);
+  }
+ else   if (content instanceof InputStream) {
+    child.setResponseData(IOUtils.toByteArray((InputStream)content));
   }
  else {
-    if (content instanceof InputStream) {
-      child.setResponseData(IOUtils.toByteArray((InputStream)content));
-    }
- else {
-      cdata.append(content);
-      child.setResponseData(cdata.toString(),child.getDataEncodingNoDefault());
-    }
+    cdata.append(content);
+    child.setResponseData(cdata.toString(),child.getDataEncodingNoDefault());
   }
 }

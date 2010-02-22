@@ -2,8 +2,11 @@
   StringBuilder sb=new StringBuilder();
   sb.append(getServerType());
   sb.append("://");
-  sb.append(getUserName());
-  sb.append("@");
+  String name=getUserName();
+  if (name.length() > 0) {
+    sb.append(name);
+    sb.append("@");
+  }
   sb.append(getServer());
   int port=getPortAsInt();
   if (port != -1) {

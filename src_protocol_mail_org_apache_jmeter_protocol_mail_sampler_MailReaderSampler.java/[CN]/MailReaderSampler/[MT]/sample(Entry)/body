@@ -43,16 +43,15 @@
       cdata.setLength(0);
       final String contentType=message.getContentType();
       child.setContentType(contentType);
+      child.setDataEncoding(RFC_822_DEFAULT_ENCODING);
+      child.setEncodingAndType(contentType);
       if (isStoreMimeMessage()) {
         ByteArrayOutputStream bout=new ByteArrayOutputStream();
         message.writeTo(bout);
         child.setResponseData(bout.toByteArray());
         child.setDataType(SampleResult.TEXT);
-        child.setDataEncoding("iso-8859-1");
-        child.setEncodingAndType(contentType);
       }
  else {
-        child.setEncodingAndType(contentType);
         @SuppressWarnings("unchecked") Enumeration<Header> hdrs=message.getAllHeaders();
         while (hdrs.hasMoreElements()) {
           Header hdr=hdrs.nextElement();
