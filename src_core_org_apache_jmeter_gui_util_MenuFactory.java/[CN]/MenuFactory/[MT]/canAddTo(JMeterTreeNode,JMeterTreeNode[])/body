@@ -13,12 +13,12 @@
     return true;
   }
   if (parent instanceof TestPlan) {
-    if (foundClass(nodes,new Class[]{Sampler.class,Controller.class},org.apache.jmeter.threads.ThreadGroup.class)) {
+    if (foundClass(nodes,new Class[]{Sampler.class,Controller.class},org.apache.jmeter.threads.AbstractThreadGroup.class)) {
       return false;
     }
     return true;
   }
-  if (foundClass(nodes,new Class[]{org.apache.jmeter.threads.ThreadGroup.class})) {
+  if (foundClass(nodes,new Class[]{org.apache.jmeter.threads.AbstractThreadGroup.class})) {
     return false;
   }
   if (parent instanceof Controller) {

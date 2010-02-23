@@ -7,7 +7,7 @@
   if (myTarget != null) {
     return myTarget;
   }
-  myTarget=findFirstNodeOfType(ThreadGroup.class);
+  myTarget=findFirstNodeOfType(AbstractThreadGroup.class);
   if (myTarget != null) {
     return myTarget;
   }

@@ -1,0 +1,6 @@
+{
+  int rampUp=getRampUp();
+  float perThreadDelay=((float)(rampUp * 1000) / (float)getNumThreads());
+  thread.setInitialDelay((int)(perThreadDelay * thread.getThreadNum()));
+  scheduleThread(thread,this);
+}

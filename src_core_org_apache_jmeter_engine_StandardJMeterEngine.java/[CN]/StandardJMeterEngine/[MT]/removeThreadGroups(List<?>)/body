@@ -2,7 +2,7 @@
   Iterator<?> iter=elements.iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
-    if (item instanceof ThreadGroup) {
+    if (item instanceof AbstractThreadGroup) {
       iter.remove();
     }
  else     if (!(item instanceof TestElement)) {

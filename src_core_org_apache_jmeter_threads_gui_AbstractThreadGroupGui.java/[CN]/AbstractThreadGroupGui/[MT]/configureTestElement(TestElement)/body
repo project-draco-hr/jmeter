@@ -1,0 +1,4 @@
+{
+  super.configureTestElement(tg);
+  tg.setProperty(new StringProperty(AbstractThreadGroup.ON_SAMPLE_ERROR,onSampleError()));
+}

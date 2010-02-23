@@ -8,7 +8,7 @@
       StringBuilder name=new StringBuilder();
       JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
       TestElement te=cur.getTestElement();
-      if (te instanceof ThreadGroup) {
+      if (te instanceof AbstractThreadGroup) {
         name.append(parent_name);
         name.append(cur.getName());
         name.append(seperator);

@@ -36,10 +36,10 @@
   }
   List<?> testLevelElements=new LinkedList<Object>(test.list(test.getArray()[0]));
   removeThreadGroups(testLevelElements);
-  SearchByClass<ThreadGroup> searcher=new SearchByClass<ThreadGroup>(ThreadGroup.class);
+  SearchByClass<AbstractThreadGroup> searcher=new SearchByClass<AbstractThreadGroup>(AbstractThreadGroup.class);
   test.traverse(searcher);
   TestCompiler.initialize();
-  Iterator<ThreadGroup> iter=searcher.getSearchResults().iterator();
+  Iterator<AbstractThreadGroup> iter=searcher.getSearchResults().iterator();
   System.gc();
   ListenerNotifier notifier=new ListenerNotifier();
   JMeterContextService.getContext().setSamplingStarted(true);
@@ -48,16 +48,14 @@
   startingGroups=true;
   while (running && iter.hasNext()) {
     groupCount++;
-    ThreadGroup group=iter.next();
+    AbstractThreadGroup group=iter.next();
     int numThreads=group.getNumThreads();
     JMeterContextService.addTotalThreads(numThreads);
     boolean onErrorStopTest=group.getOnErrorStopTest();
     boolean onErrorStopTestNow=group.getOnErrorStopTestNow();
     boolean onErrorStopThread=group.getOnErrorStopThread();
     String groupName=group.getName();
-    int rampUp=group.getRampUp();
-    float perThreadDelay=((float)(rampUp * 1000) / (float)numThreads);
-    log.info("Starting " + numThreads + " threads for group "+ groupName+ ". Ramp up = "+ rampUp+ ".");
+    log.info("Starting " + numThreads + " threads for group "+ groupName+ ".");
     if (onErrorStopTest) {
       log.info("Test will stop on error");
     }
@@ -77,14 +75,13 @@
       jmeterThread.setThreadNum(i);
       jmeterThread.setThreadGroup(group);
       jmeterThread.setInitialContext(JMeterContextService.getContext());
-      jmeterThread.setInitialDelay((int)(perThreadDelay * i));
       final String threadName=groupName + " " + (groupCount)+ "-"+ (i + 1);
       jmeterThread.setThreadName(threadName);
-      scheduleThread(jmeterThread,group);
       jmeterThread.setEngine(this);
       jmeterThread.setOnErrorStopTest(onErrorStopTest);
       jmeterThread.setOnErrorStopTestNow(onErrorStopTestNow);
       jmeterThread.setOnErrorStopThread(onErrorStopThread);
+      group.scheduleThread(jmeterThread);
       Thread newThread=new Thread(jmeterThread);
       newThread.setName(threadName);
       allThreads.put(jmeterThread,newThread);

@@ -44,6 +44,9 @@ catch (      Throwable e) {
         log.debug(name + " participates in no menus.");
         continue;
       }
+      if (categories.contains(THREADS)) {
+        threads.add(new MenuInfo(item,name));
+      }
       if (categories.contains(TIMERS)) {
         timers.add(new MenuInfo(item,name));
       }

@@ -1,7 +1,7 @@
 {
   JPopupMenu pop=new JPopupMenu();
   JMenu addMenu=new JMenu(JMeterUtils.getResString("add"));
-  addMenu.add(MenuFactory.makeMenuItem(new ThreadGroupGui().getStaticLabel(),ThreadGroupGui.class.getName(),ActionNames.ADD));
+  addMenu.add(MenuFactory.makeMenu(MenuFactory.THREADS,ActionNames.ADD));
   addMenu.add(MenuFactory.makeMenu(MenuFactory.CONFIG_ELEMENTS,ActionNames.ADD));
   addMenu.add(MenuFactory.makeMenu(MenuFactory.TIMERS,ActionNames.ADD));
   addMenu.add(MenuFactory.makeMenu(MenuFactory.PRE_PROCESSORS,ActionNames.ADD));

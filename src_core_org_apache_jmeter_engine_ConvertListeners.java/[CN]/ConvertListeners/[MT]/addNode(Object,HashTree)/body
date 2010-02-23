@@ -2,8 +2,8 @@
   Iterator<?> iter=subTree.list().iterator();
   while (iter.hasNext()) {
     Object item=iter.next();
-    if (item instanceof ThreadGroup) {
-      log.info("num threads = " + ((ThreadGroup)item).getNumThreads());
+    if (item instanceof AbstractThreadGroup) {
+      log.info("num threads = " + ((AbstractThreadGroup)item).getNumThreads());
     }
     if (item instanceof Remoteable) {
       if (item instanceof ThreadListener) {
