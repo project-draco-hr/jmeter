@@ -1,5 +1,11 @@
 {
-  File f=new File(folderPath,String.format(FILENAME_FORMAT,Integer.valueOf(index)));
+  File f;
+  if (isFile) {
+    f=folderPath;
+  }
+ else {
+    f=new File(folderPath,String.format(FILENAME_FORMAT,Integer.valueOf(index)));
+  }
   try {
     FileInputStream fis=new FileInputStream(f);
     try {

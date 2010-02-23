@@ -1,5 +1,12 @@
 {
   super(store);
   String base=store.getURLName().getHost();
-  folderPath=new File(base,path);
+  File parentFolder=new File(base);
+  isFile=parentFolder.isFile();
+  if (isFile) {
+    folderPath=new File(base);
+  }
+ else {
+    folderPath=new File(base,path);
+  }
 }
