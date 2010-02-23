@@ -97,11 +97,17 @@
       }
     }
   }
-  if (running) {
-    log.info("All threads have been started");
+  startingGroups=false;
+  if (groupCount == 0) {
+    log.info("No enabled thread groups found");
+    notifyTestListenersOfEnd(testListenersSave);
   }
  else {
-    log.info("Test stopped - no more threads will be started");
+    if (running) {
+      log.info("All threads have been started");
+    }
+ else {
+      log.info("Test stopped - no more threads will be started");
+    }
   }
-  startingGroups=false;
 }
