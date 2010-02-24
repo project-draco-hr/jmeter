@@ -1,0 +1,11 @@
+{
+  gbc.fill=GridBagConstraints.NONE;
+  gbc.anchor=GridBagConstraints.LINE_END;
+  panel.add(label,gbc);
+  gbc.gridx++;
+  gbc.weightx=1;
+  gbc.fill=GridBagConstraints.HORIZONTAL;
+  gbc.anchor=GridBagConstraints.LINE_START;
+  panel.add(field,gbc);
+  nextLine(gbc);
+}
