@@ -1,7 +1,4 @@
 {
-  int resizeMode=table.getAutoResizeMode();
-  table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-  fixSize(table.getColumn(PARAMNAME));
-  fixSize(table.getColumn(MIMETYPE));
-  table.setAutoResizeMode(resizeMode);
+  GuiUtils.fixSize(table.getColumn(PARAMNAME),table);
+  GuiUtils.fixSize(table.getColumn(MIMETYPE),table);
 }

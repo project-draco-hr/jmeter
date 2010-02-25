@@ -1,0 +1,12 @@
+{
+  TableCellRenderer rndr;
+  rndr=column.getHeaderRenderer();
+  if (rndr == null) {
+    rndr=table.getTableHeader().getDefaultRenderer();
+  }
+  Component c=rndr.getTableCellRendererComponent(table,column.getHeaderValue(),false,false,-1,column.getModelIndex());
+  int width=c.getPreferredSize().width + 10;
+  column.setMaxWidth(width);
+  column.setPreferredWidth(width);
+  column.setResizable(false);
+}
