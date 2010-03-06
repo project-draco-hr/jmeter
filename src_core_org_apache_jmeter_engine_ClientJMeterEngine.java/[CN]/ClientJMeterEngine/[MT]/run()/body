@@ -12,7 +12,9 @@ synchronized (testTree) {
   }
   try {
     JMeterContextService.startTest();
-    remote.configure(test,host);
+synchronized (LOCK) {
+      remote.configure(testTree,host);
+    }
     log.info("sent test to " + host);
     if (savep != null) {
       log.info("Sending properties " + savep);
