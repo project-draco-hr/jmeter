@@ -17,9 +17,10 @@
  else {
     resultSize=response.getBytes();
   }
-  if (!(compareSize(resultSize))) {
+  final String msg=compareSize(resultSize);
+  if (msg.length() > 0) {
     result.setFailure(true);
-    Object[] arguments={new Long(resultSize),comparatorErrorMessage,new Long(getAllowedSize())};
+    Object[] arguments={new Long(resultSize),msg,new Long(getAllowedSize())};
     String message=MessageFormat.format(JMeterUtils.getResString("size_assertion_failure"),arguments);
     result.setFailureMessage(message);
   }

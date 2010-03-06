@@ -1,4 +1,5 @@
 {
+  String comparatorErrorMessage;
   boolean result=false;
   int comp=getCompOper();
 switch (comp) {
@@ -31,5 +32,5 @@ result=false;
 comparatorErrorMessage="ERROR - invalid condition";
 break;
 }
-return result;
+return result ? "" : comparatorErrorMessage;
 }
