@@ -1,9 +1,9 @@
 {
-  MutableLong count=valuesMap.get(val);
+  MutableLong count=valuesMap.get(actualValue);
   if (count != null) {
     count.add(sampleCount);
   }
  else {
-    valuesMap.put(val,new MutableLong(sampleCount));
+    valuesMap.put(actualValue,new MutableLong(sampleCount));
   }
 }

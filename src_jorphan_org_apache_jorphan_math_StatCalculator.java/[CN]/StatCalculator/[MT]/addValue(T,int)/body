@@ -1,5 +1,4 @@
 {
-  updateValueCount(val,sampleCount);
   count+=sampleCount;
   double currentVal=val.doubleValue();
   sum+=currentVal;
@@ -12,6 +11,7 @@
     sumOfSquares+=currentVal * currentVal;
     actualValue=val;
   }
+  updateValueCount(actualValue,sampleCount);
   mean=sum / count;
   deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
   if (actualValue.compareTo(max) > 0) {
