@@ -9,35 +9,34 @@ synchronized (sampleStore) {
     }
     statResult.add(e.getResult());
     sampleCount++;
-    if (numSamplesThreshold != -1) {
-      if (sampleCount >= numSamplesThreshold) {
-        try {
-          if (log.isDebugEnabled()) {
-            log.debug("Firing sample");
-          }
-          sendBatch();
-        }
- catch (        RemoteException err) {
-          log.warn("sampleOccurred",err);
-        }
+    boolean sendNow=false;
+    if (NUM_SAMPLES_THRESHOLD != -1) {
+      if (sampleCount >= NUM_SAMPLES_THRESHOLD) {
+        sendNow=true;
       }
     }
+    long now=0;
     if (TIME_THRESHOLD_MS != -1) {
-      long now=System.currentTimeMillis();
+      now=System.currentTimeMillis();
       if (batchSendTime == -1) {
         this.batchSendTime=now + TIME_THRESHOLD_MS;
       }
       if (batchSendTime < now) {
-        try {
-          if (log.isDebugEnabled()) {
-            log.debug("Firing time");
-          }
-          sendBatch();
+        sendNow=true;
+      }
+    }
+    if (sendNow) {
+      try {
+        if (log.isDebugEnabled()) {
+          log.debug("Firing sample");
+        }
+        sendBatch();
+        if (TIME_THRESHOLD_MS != -1) {
           this.batchSendTime=now + TIME_THRESHOLD_MS;
         }
- catch (        RemoteException err) {
-          log.warn("sampleOccurred",err);
-        }
+      }
+ catch (      RemoteException err) {
+        log.warn("sampleOccurred",err);
       }
     }
   }

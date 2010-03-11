@@ -1,36 +1,34 @@
 {
 synchronized (sampleStore) {
     sampleStore.add(e);
-    if (numSamplesThreshold != -1) {
-      if (sampleStore.size() >= numSamplesThreshold) {
-        try {
-          log.debug("Firing sample");
-          listener.processBatch(sampleStore);
-          sampleStore.clear();
-        }
- catch (        RemoteException err) {
-          log.error("sampleOccurred",err);
-        }
+    final int sampleCount=sampleStore.size();
+    boolean sendNow=false;
+    if (NUM_SAMPLES_THRESHOLD != -1) {
+      if (sampleCount >= NUM_SAMPLES_THRESHOLD) {
+        sendNow=true;
       }
     }
+    long now=0;
     if (TIME_THRESHOLD_MS != -1) {
-      SampleResult sr=e.getResult();
-      long timestamp=sr.getTimeStamp();
+      now=System.currentTimeMillis();
       if (batchSendTime == -1) {
-        this.batchSendTime=timestamp + TIME_THRESHOLD_MS;
+        this.batchSendTime=now + TIME_THRESHOLD_MS;
       }
-      if (batchSendTime < timestamp) {
-        try {
-          log.debug("Firing time");
-          if (sampleStore.size() > 0) {
-            listener.processBatch(sampleStore);
-            sampleStore.clear();
-          }
-          this.batchSendTime=timestamp + TIME_THRESHOLD_MS;
+      if (batchSendTime < now && sampleCount > 0) {
+        sendNow=true;
+      }
+    }
+    if (sendNow) {
+      try {
+        log.debug("Firing sample");
+        listener.processBatch(sampleStore);
+        sampleStore.clear();
+        if (TIME_THRESHOLD_MS != -1) {
+          this.batchSendTime=now + TIME_THRESHOLD_MS;
         }
- catch (        RemoteException err) {
-          log.error("sampleOccurred",err);
-        }
+      }
+ catch (      RemoteException err) {
+        log.error("sampleOccurred",err);
       }
     }
   }
