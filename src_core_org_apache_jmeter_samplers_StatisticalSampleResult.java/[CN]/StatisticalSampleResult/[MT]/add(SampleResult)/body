@@ -13,4 +13,5 @@
   }
   this.setEndTime(Math.max(getEndTime(),res.getEndTime()));
   setLatency(getLatency() + res.getLatency());
+  elapsed+=res.getTime();
 }
