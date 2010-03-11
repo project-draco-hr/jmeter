@@ -2,8 +2,11 @@
   SampleResult results=new SampleResult();
   try {
     results.sampleStart();
-    long start=System.currentTimeMillis();
-    long sleep=getSleepTime() + (start % getSleepMask());
+    long sleep=sleepTime;
+    if (sleepTime > 0 && sleepMask > 0) {
+      long start=System.currentTimeMillis();
+      sleep=sleepTime + (start % sleepMask);
+    }
     results.setSampleLabel("Sleep Test: time = " + sleep);
     Thread.sleep(sleep);
     results.setSuccessful(true);
