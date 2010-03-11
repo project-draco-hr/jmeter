@@ -13,11 +13,11 @@ synchronized (sampleStore) {
         }
       }
     }
-    if (timeThreshold != -1) {
+    if (TIME_THRESHOLD_MS != -1) {
       SampleResult sr=e.getResult();
       long timestamp=sr.getTimeStamp();
       if (batchSendTime == -1) {
-        this.batchSendTime=timestamp + timeThreshold;
+        this.batchSendTime=timestamp + TIME_THRESHOLD_MS;
       }
       if (batchSendTime < timestamp) {
         try {
@@ -26,7 +26,7 @@ synchronized (sampleStore) {
             listener.processBatch(sampleStore);
             sampleStore.clear();
           }
-          this.batchSendTime=timestamp + timeThreshold;
+          this.batchSendTime=timestamp + TIME_THRESHOLD_MS;
         }
  catch (        RemoteException err) {
           log.error("sampleOccurred",err);
