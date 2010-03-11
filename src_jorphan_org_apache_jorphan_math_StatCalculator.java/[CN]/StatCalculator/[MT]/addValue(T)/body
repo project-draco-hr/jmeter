@@ -1,15 +1,3 @@
 {
-  updateValueCount(val);
-  count++;
-  double currentVal=val.doubleValue();
-  sum+=currentVal;
-  sumOfSquares+=currentVal * currentVal;
-  mean=sum / count;
-  deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
-  if (val.compareTo(max) > 0) {
-    max=val;
-  }
-  if (val.compareTo(min) < 0) {
-    min=val;
-  }
+  addValue(val,1);
 }

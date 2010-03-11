@@ -1,0 +1,23 @@
+{
+  updateValueCount(val,sampleCount);
+  count+=sampleCount;
+  double currentVal=val.doubleValue();
+  sum+=currentVal;
+  T actualValue=val;
+  if (sampleCount > 1) {
+    sumOfSquares+=currentVal * currentVal / sampleCount;
+    actualValue=divide(val,sampleCount);
+  }
+ else {
+    sumOfSquares+=currentVal * currentVal;
+    actualValue=val;
+  }
+  mean=sum / count;
+  deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
+  if (actualValue.compareTo(max) > 0) {
+    max=actualValue;
+  }
+  if (actualValue.compareTo(min) < 0) {
+    min=actualValue;
+  }
+}
