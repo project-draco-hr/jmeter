@@ -1,3 +1,8 @@
 {
-  return values[i];
+  try {
+    return values[i];
+  }
+ catch (  ArrayIndexOutOfBoundsException e) {
+    throw new JMeterError("Check the sample_variable settings!",e);
+  }
 }
