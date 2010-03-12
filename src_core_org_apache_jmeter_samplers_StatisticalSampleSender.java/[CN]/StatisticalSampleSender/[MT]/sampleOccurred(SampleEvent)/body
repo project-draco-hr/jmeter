@@ -1,9 +1,9 @@
 {
 synchronized (sampleStore) {
-    String key=StatisticalSampleResult.getKey(e);
+    String key=StatisticalSampleResult.getKey(e,KEY_ON_THREADNAME);
     StatisticalSampleResult statResult=sampleTable.get(key);
     if (statResult == null) {
-      statResult=new StatisticalSampleResult(e.getResult());
+      statResult=new StatisticalSampleResult(e.getResult(),KEY_ON_THREADNAME);
       sampleTable.put(key,statResult);
       sampleStore.add(new SampleEvent(statResult,e.getThreadGroup()));
     }

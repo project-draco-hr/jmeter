@@ -1,6 +1,0 @@
-{
-  StringBuilder sb=new StringBuilder(80);
-  sb.append(event.getResult().getSampleLabel());
-  sb.append('-').append(event.getResult().getThreadName());
-  return sb.toString();
-}

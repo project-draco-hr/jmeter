@@ -1,6 +1,8 @@
 {
   setSampleLabel(res.getSampleLabel());
-  setThreadName(res.getThreadName());
+  if (keyOnThreadName) {
+    setThreadName(res.getThreadName());
+  }
   setSuccessful(true);
   setSampleCount(0);
   elapsed=0;
