@@ -14,7 +14,6 @@ synchronized (sync) {
         log.warn(e.getLocalizedMessage());
       }
     }
-    timerCounter[0]=0;
   }
   return 0;
 }
