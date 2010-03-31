@@ -1,0 +1,6 @@
+{
+  if (dataEncoding != null && dataEncoding.length() > 0) {
+    return dataEncoding;
+  }
+  return defaultEncoding;
+}
