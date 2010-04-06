@@ -1,15 +1,15 @@
 {
-  if (this.getConfigChoice().equals(JMSPublisherGui.USE_FILE_RSC)) {
-    if (this.file_contents == null) {
-      this.file_contents=this.getFileContent(this.getInputFile());
+  if (getConfigChoice().equals(JMSPublisherGui.USE_FILE_RSC)) {
+    if (file_contents == null) {
+      file_contents=getFileContent(getInputFile());
     }
-    return this.file_contents;
+    return file_contents;
   }
- else   if (this.getConfigChoice().equals(JMSPublisherGui.USE_RANDOM_RSC)) {
-    String fname=FSERVER.getRandomFile(this.getRandomPath(),new String[]{".txt",".obj"}).getAbsolutePath();
-    return this.getFileContent(fname);
+ else   if (getConfigChoice().equals(JMSPublisherGui.USE_RANDOM_RSC)) {
+    String fname=FSERVER.getRandomFile(getRandomPath(),new String[]{".txt",".obj"}).getAbsolutePath();
+    return getFileContent(fname);
   }
  else {
-    return this.getTextMessage();
+    return getTextMessage();
   }
 }

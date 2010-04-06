@@ -1,16 +1,16 @@
 {
   SampleResult result=new SampleResult();
   result.setSampleLabel(getName());
-  if (this.PUB == null) {
-    this.initClient();
+  if (publisher == null) {
+    initClient();
   }
   StringBuilder buffer=new StringBuilder();
-  int loop=this.getIterationCount();
-  if (this.PUB != null) {
+  int loop=getIterationCount();
+  if (publisher != null) {
     result.sampleStart();
     for (int idx=0; idx < loop; idx++) {
-      String tmsg=this.getMessageContent();
-      this.PUB.publish(tmsg);
+      String tmsg=getMessageContent();
+      publisher.publish(tmsg);
       buffer.append(tmsg);
     }
     result.sampleEnd();
