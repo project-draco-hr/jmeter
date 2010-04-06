@@ -1,12 +1,15 @@
 {
   SampleResult result=new SampleResult();
   result.setSampleLabel(getName());
+  result.setSuccessful(false);
+  result.setResponseCode("000");
+  result.setResponseMessage("See log file for details");
   if (publisher == null) {
     initClient();
   }
   StringBuilder buffer=new StringBuilder();
   int loop=getIterationCount();
-  if (publisher != null) {
+  if (publisher != null && publisher.isValid) {
     result.sampleStart();
     for (int idx=0; idx < loop; idx++) {
       String tmsg=getMessageContent();

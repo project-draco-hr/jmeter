@@ -7,4 +7,5 @@
  else {
     log.error("Could not initialize JNDI Initial Context Factory");
   }
+  isValid=publisher != null;
 }
