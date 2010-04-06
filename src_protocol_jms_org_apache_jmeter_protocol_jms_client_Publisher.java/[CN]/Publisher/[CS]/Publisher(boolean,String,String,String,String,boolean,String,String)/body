@@ -1,6 +1,6 @@
 {
   super();
-  Context ctx=initJNDI(useProps,jndi,url,useAuth,user,pwd);
+  Context ctx=initJNDI(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
   if (ctx != null) {
     initConnection(ctx,connfactory,topic);
   }

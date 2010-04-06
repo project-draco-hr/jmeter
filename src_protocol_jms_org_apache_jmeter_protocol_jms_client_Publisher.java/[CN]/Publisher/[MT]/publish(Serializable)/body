@@ -1,7 +1,7 @@
 {
   try {
-    ObjectMessage msg=this.SESSION.createObjectMessage(contents);
-    this.PUBLISHER.publish(msg);
+    ObjectMessage msg=session.createObjectMessage(contents);
+    publisher.publish(msg);
   }
  catch (  JMSException e) {
     log.error(e.getMessage());

@@ -1,12 +1,18 @@
 {
   try {
-    log.info("Publisher closed");
-    this.PUBLISHER.close();
-    this.SESSION.close();
-    this.CONN.close();
-    this.PUBLISHER=null;
-    this.SESSION=null;
-    this.CONN=null;
+    log.info("Publisher close()");
+    if (publisher != null) {
+      publisher.close();
+    }
+    if (session != null) {
+      session.close();
+    }
+    if (connection != null) {
+      connection.close();
+    }
+    publisher=null;
+    session=null;
+    connection=null;
   }
  catch (  JMSException e) {
     log.error(e.getMessage());
