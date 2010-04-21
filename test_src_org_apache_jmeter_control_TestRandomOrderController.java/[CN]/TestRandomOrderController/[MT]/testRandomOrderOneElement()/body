@@ -11,5 +11,5 @@
     }
     usedSamplers.add(samplerName);
   }
-  assertTrue("All samplers were returned",usedSamplers.size() == 1);
+  assertEquals("All samplers were returned",1,usedSamplers.size());
 }
