@@ -1,0 +1,6 @@
+{
+  assertEquals("arrays must be same length",expected.length,actual.length);
+  for (int i=0; i < expected.length; i++) {
+    assertEquals("values must be the same for index: " + i,expected[i],actual[i]);
+  }
+}

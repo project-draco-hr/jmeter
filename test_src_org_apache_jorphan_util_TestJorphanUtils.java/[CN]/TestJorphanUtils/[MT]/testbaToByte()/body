@@ -1,0 +1,5 @@
+{
+  assertEqualsArray(new byte[]{},JOrphanUtils.baToHexBytes(new byte[]{}));
+  assertEqualsArray(new byte[]{'0','0'},JOrphanUtils.baToHexBytes(new byte[]{0}));
+  assertEqualsArray("0f107f8081ff".getBytes("UTF-8"),JOrphanUtils.baToHexBytes(new byte[]{15,16,127,-128,-127,-1}));
+}
