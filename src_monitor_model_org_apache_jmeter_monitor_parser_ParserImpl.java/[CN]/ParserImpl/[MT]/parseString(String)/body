@@ -1,3 +1,16 @@
 {
-  return parseBytes(content.getBytes());
+  try {
+    InputSource is=new InputSource();
+    is.setCharacterStream(new StringReader(content));
+    PARSER.parse(is,DOCHANDLER);
+    return DOCHANDLER.getContents();
+  }
+ catch (  SAXException e) {
+    log.error("Failed to parse the String",e);
+    return DOCHANDLER.getContents();
+  }
+catch (  IOException e) {
+    log.error("Failed to read the String",e);
+    return DOCHANDLER.getContents();
+  }
 }
