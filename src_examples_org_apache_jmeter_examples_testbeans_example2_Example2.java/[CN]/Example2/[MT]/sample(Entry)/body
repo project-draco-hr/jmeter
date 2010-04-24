@@ -3,7 +3,7 @@
   res.setSampleLabel(getName());
   res.setSamplerData(myStringProperty);
   res.sampleStart();
-  res.setResponseData(myStringProperty.toLowerCase().getBytes());
+  res.setResponseData(myStringProperty.toLowerCase(),null);
   res.setDataType(SampleResult.TEXT);
   res.sampleEnd();
   res.setSuccessful(true);

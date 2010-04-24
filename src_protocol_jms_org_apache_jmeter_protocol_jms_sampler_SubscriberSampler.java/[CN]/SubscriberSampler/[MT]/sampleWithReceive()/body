@@ -20,10 +20,10 @@
   result.sampleEnd();
   int read=this.SUBSCRIBER.count(0);
   if (this.getReadResponseAsBoolean()) {
-    result.setResponseData(this.SUBSCRIBER.getMessage().getBytes());
+    result.setResponseData(this.SUBSCRIBER.getMessage(),null);
   }
  else {
-    result.setBytes(this.SUBSCRIBER.getMessage().getBytes().length);
+    result.setBytes(this.SUBSCRIBER.getMessage().length());
   }
   result.setSuccessful(true);
   result.setResponseCodeOK();

@@ -21,12 +21,12 @@
     if (getPropertyAsString(TEST).equals(SEARCHBASE) && !searchFoundEntries) {
       res.setResponseCode("201");
       res.setResponseMessage("OK - no results");
-      res.setResponseData("successful - no results".getBytes());
+      res.setResponseData("successful - no results",null);
     }
  else {
       res.setResponseCodeOK();
       res.setResponseMessage("OK");
-      res.setResponseData("successful".getBytes());
+      res.setResponseData("successful",null);
     }
     res.setDataType(SampleResult.TEXT);
     isSuccessful=true;

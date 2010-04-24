@@ -9,7 +9,7 @@
   try {
     response=Thread.currentThread().getName();
     res.setSamplerData(data);
-    res.setResponseData(response.getBytes());
+    res.setResponseData(response,null);
     res.setDataType(SampleResult.TEXT);
     res.setResponseCodeOK();
     res.setResponseMessage("OK");

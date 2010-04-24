@@ -1,7 +1,7 @@
 {
   String html="location: http://server.com/index.html" + "?session_id=jfdkjdkf%20jddkfdfjkdjfdf%22;";
   response=new SampleResult();
-  response.setResponseData(html.getBytes());
+  response.setResponseData(html,null);
   mod.setArgumentName("session_id");
   HTTPSamplerBase sampler=createSampler();
   sampler.addArgument("session_id","adfasdfdsafasdfasd");

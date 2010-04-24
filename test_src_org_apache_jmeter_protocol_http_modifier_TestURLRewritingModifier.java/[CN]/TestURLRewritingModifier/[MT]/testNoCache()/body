@@ -7,7 +7,7 @@
   newMod.setShouldCache(false);
   for (int i=0; i < html.length / 2; i++) {
     response=new SampleResult();
-    response.setResponseData(html[i * 2].getBytes());
+    response.setResponseData(html[i * 2],null);
     HTTPSamplerBase sampler=createSampler();
     context.setCurrentSampler(sampler);
     context.setPreviousResult(response);

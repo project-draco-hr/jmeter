@@ -7,7 +7,7 @@
   HTTPSamplerBase context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<form action=\"index.html\" method=\"POST\">" + "<input type=\"hidden\" name=\"test\""+ " value=\"" + htmlEncodedFixture + "\">Goto index page</form></body></html>";
   HTTPSampleResult result=new HTTPSampleResult();
-  result.setResponseData(responseText.getBytes());
+  result.setResponseData(responseText,null);
   result.setSampleLabel(context.toString());
   result.setURL(context.getUrl());
   jmctx.setCurrentSampler(context);

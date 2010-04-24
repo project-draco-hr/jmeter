@@ -23,7 +23,7 @@
     result.setResponseCodeOK();
     result.setResponseMessageOK();
     if (ret != null) {
-      result.setResponseData(ret.toString().getBytes());
+      result.setResponseData(ret.toString(),null);
     }
   }
  catch (  IOException e) {

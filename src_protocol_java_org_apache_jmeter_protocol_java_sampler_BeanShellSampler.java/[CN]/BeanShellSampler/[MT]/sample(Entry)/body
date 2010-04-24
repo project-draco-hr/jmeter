@@ -42,7 +42,7 @@
     }
     if (bshOut != null) {
       String out=bshOut.toString();
-      res.setResponseData(out.getBytes());
+      res.setResponseData(out,null);
     }
     res.setResponseCode(bshInterpreter.get("ResponseCode").toString());
     res.setResponseMessage(bshInterpreter.get("ResponseMessage").toString());

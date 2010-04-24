@@ -5,7 +5,7 @@
   HTTPSampleResult result=new HTTPSampleResult();
   jmctx.setCurrentSampler(context);
   jmctx.setCurrentSampler(config);
-  result.setResponseData(responseText.getBytes());
+  result.setResponseData(responseText,null);
   result.setSampleLabel(context.toString());
   result.setSamplerData(context.toString());
   result.setURL(context.getUrl());

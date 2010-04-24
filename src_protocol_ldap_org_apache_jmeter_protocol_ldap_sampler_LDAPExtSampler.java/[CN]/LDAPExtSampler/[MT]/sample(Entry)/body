@@ -2,7 +2,7 @@
   XMLBuffer xmlBuffer=new XMLBuffer();
   xmlBuffer.openTag("ldapanswer");
   SampleResult res=new SampleResult();
-  res.setResponseData("successfull".getBytes());
+  res.setResponseData("successfull",null);
   res.setResponseMessage("Success");
   res.setResponseCode("0");
   res.setContentType("text/xml");
@@ -134,7 +134,7 @@
     xmlBuffer.closeTag("operation");
     xmlBuffer.tag("responsecode",res.getResponseCode());
     xmlBuffer.tag("responsemessage",res.getResponseMessage());
-    res.setResponseData(xmlBuffer.toString().getBytes());
+    res.setResponseData(xmlBuffer.toString(),null);
     res.setDataType(SampleResult.TEXT);
     res.setSuccessful(isSuccessful);
   }

@@ -28,7 +28,7 @@
       bsfOut=bsfEngine.eval("script",0,0,request);
     }
     if (bsfOut != null) {
-      res.setResponseData(bsfOut.toString().getBytes());
+      res.setResponseData(bsfOut.toString(),null);
     }
   }
  catch (  BSFException ex) {

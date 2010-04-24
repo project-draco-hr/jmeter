@@ -1,5 +1,5 @@
 {
-  sample.setResponseData("value=\"${ID}\" Group$ctl00$drpEmails".getBytes());
+  sample.setResponseData("value=\"${ID}\" Group$ctl00$drpEmails",null);
   assertion.unsetNotType();
   assertion.setToContainsType();
   assertion.setTestFieldResponseData();

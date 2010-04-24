@@ -1,7 +1,7 @@
 {
   String html="location: http://server.com/index.html" + "?session[33]=jfdkjdkf%20jddkfdfjkdjfdf%22;";
   response=new SampleResult();
-  response.setResponseData(html.getBytes());
+  response.setResponseData(html,null);
   mod.setArgumentName("session[33]");
   HTTPSamplerBase sampler=createSampler();
   sampler.addArgument("session[33]","adfasdfdsafasdfasd");

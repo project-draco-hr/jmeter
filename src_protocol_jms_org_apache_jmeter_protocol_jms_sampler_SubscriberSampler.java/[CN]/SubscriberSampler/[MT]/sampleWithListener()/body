@@ -17,10 +17,10 @@
   result.sampleEnd();
 synchronized (this) {
     if (this.getReadResponseAsBoolean()) {
-      result.setResponseData(this.BUFFER.toString().getBytes());
+      result.setResponseData(this.BUFFER.toString(),null);
     }
  else {
-      result.setBytes(this.BUFFER.toString().getBytes().length);
+      result.setBytes(this.BUFFER.toString().length());
     }
     read=this.count(0);
   }

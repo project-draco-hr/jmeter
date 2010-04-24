@@ -82,7 +82,7 @@
  else {
         length=br.read();
         result.sampleEnd();
-        result.setResponseData(JMeterUtils.getResString("read_response_message").getBytes());
+        result.setResponseData(JMeterUtils.getResString("read_response_message"),null);
       }
       if (length > 0) {
         result.setSuccessful(true);

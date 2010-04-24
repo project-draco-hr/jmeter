@@ -3,7 +3,7 @@
   HTTPSamplerBase context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"/index.html\">Goto index page</a>" + "hfdfjiudfjdfjkjfkdjf"+ "<b>bold text</b><a href=lowerdir/index.html>lower</a>"+ "</body></html>";
   HTTPSampleResult result=new HTTPSampleResult();
-  result.setResponseData(responseText.getBytes());
+  result.setResponseData(responseText,null);
   result.setSampleLabel(context.toString());
   result.setURL(context.getUrl());
   jmctx.setCurrentSampler(context);

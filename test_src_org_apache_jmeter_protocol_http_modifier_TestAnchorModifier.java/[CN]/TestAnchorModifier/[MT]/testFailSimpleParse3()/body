@@ -4,7 +4,7 @@
   String responseText="<html><head><title>Test page</title></head><body>" + "<a href=\"/home/index.html?param1=value1\">" + "Goto index page</a></body></html>";
   HTTPSampleResult result=new HTTPSampleResult();
   String newUrl=config.getUrl().toString();
-  result.setResponseData(responseText.getBytes());
+  result.setResponseData(responseText,null);
   result.setSampleLabel(context.toString());
   result.setURL(context.getUrl());
   jmctx.setCurrentSampler(context);

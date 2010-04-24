@@ -1,7 +1,7 @@
 {
   String html="<a href=\"#\" onclick=\"$(\'frame\').src=\'/index?param1=bla&sessionid=xyzxyzxyz\\'";
   response=new SampleResult();
-  response.setResponseData(html.getBytes());
+  response.setResponseData(html,null);
   mod.setArgumentName("sessionid");
   HTTPSamplerBase sampler=createSampler();
   sampler.addArgument("sessionid","xyzxyzxyz");
