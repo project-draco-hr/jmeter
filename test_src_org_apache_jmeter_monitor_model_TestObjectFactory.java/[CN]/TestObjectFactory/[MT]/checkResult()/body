@@ -1,0 +1,15 @@
+{
+  assertNotNull(status);
+  final Jvm jvm=status.getJvm();
+  assertNotNull(jvm);
+  final Memory memory=jvm.getMemory();
+  assertNotNull(memory);
+  assertEquals(10807352,memory.getFree());
+  assertEquals(16318464,memory.getTotal());
+  assertEquals(259522560,memory.getMax());
+  final List<Connector> connector=status.getConnector();
+  assertNotNull(connector);
+  assertEquals(2,connector.size());
+  Connector conn=connector.get(0);
+  assertEquals(200,conn.getThreadInfo().getMaxThreads());
+}
