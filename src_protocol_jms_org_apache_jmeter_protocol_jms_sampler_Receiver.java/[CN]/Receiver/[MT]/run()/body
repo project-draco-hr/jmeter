@@ -6,15 +6,22 @@
     try {
       reply=consumer.receive(5000);
       if (reply != null) {
-        final String jmsCorrelationID=reply.getJMSCorrelationID();
-        if (jmsCorrelationID == null) {
-          log.warn("Received message with correlation id null. Discarding message ...");
+        String messageKey;
+        final MessageAdmin admin=MessageAdmin.getAdmin();
+        if (useReqMsgIdAsCorrelId) {
+          messageKey=reply.getJMSMessageID();
+synchronized (admin) {
+            admin.putReply(messageKey,reply);
+          }
         }
  else {
-          if (log.isDebugEnabled()) {
-            log.debug("Received message, correlation id:" + jmsCorrelationID);
+          messageKey=reply.getJMSCorrelationID();
+          if (messageKey == null) {
+            log.warn("Received message with correlation id null. Discarding message ...");
           }
-          MessageAdmin.getAdmin().putReply(reply.getJMSCorrelationID(),reply);
+ else {
+            admin.putReply(messageKey,reply);
+          }
         }
       }
     }

@@ -4,13 +4,16 @@
     log.error("Correlation id is null. Set the JMSCorrelationID header");
     return null;
   }
+  final MessageAdmin admin=MessageAdmin.getAdmin();
   if (useReqMsgIdAsCorrelId) {
-    producer.send(request);
-    id=request.getJMSMessageID();
-    MessageAdmin.getAdmin().putRequest(id,request);
+synchronized (admin) {
+      producer.send(request);
+      id=request.getJMSMessageID();
+      admin.putRequest(id,request);
+    }
   }
  else {
-    MessageAdmin.getAdmin().putRequest(id,request);
+    admin.putRequest(id,request);
     producer.send(request);
   }
   try {
@@ -27,5 +30,5 @@ synchronized (request) {
  catch (  InterruptedException e) {
     log.warn("Interrupt exception caught",e);
   }
-  return MessageAdmin.getAdmin().get(id);
+  return admin.get(id);
 }
