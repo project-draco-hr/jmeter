@@ -4,11 +4,15 @@
     log.error("Correlation id is null. Set the JMSCorrelationID header");
     return null;
   }
-  producer.send(request);
   if (useReqMsgIdAsCorrelId) {
+    producer.send(request);
     id=request.getJMSMessageID();
+    MessageAdmin.getAdmin().putRequest(id,request);
   }
-  MessageAdmin.getAdmin().putRequest(id,request);
+ else {
+    MessageAdmin.getAdmin().putRequest(id,request);
+    producer.send(request);
+  }
   try {
     if (log.isDebugEnabled()) {
       log.debug("wait for reply " + id + " started on "+ System.currentTimeMillis());
