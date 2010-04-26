@@ -1,5 +1,5 @@
 {
-  String content=FileUtils.readFileToString(new File("bin/testfiles/monitorStatus.xml"));
+  String content=FileUtils.readFileToString(new File("testfiles/monitorStatus.xml"));
   status=of.parseString(content);
   checkResult();
 }

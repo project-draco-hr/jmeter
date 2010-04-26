@@ -1,5 +1,5 @@
 {
-  byte[] bytes=FileUtils.readFileToByteArray(new File("bin/testfiles/monitorStatus.xml"));
+  byte[] bytes=FileUtils.readFileToByteArray(new File("testfiles/monitorStatus.xml"));
   status=of.parseBytes(bytes);
   checkResult();
 }
