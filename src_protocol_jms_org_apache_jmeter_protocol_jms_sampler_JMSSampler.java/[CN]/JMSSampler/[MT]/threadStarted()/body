@@ -1,6 +1,7 @@
 {
   logThreadStart();
   Context context=null;
+  thrown=null;
   try {
     context=getInitialContext();
     Object obj=context.lookup(getQueueConnectionFactory());
@@ -58,11 +59,13 @@
       LOGGER.debug("Connection started");
     }
   }
- catch (  JMSException e) {
-    LOGGER.warn(e.getLocalizedMessage(),e);
+ catch (  Exception e) {
+    thrown=e;
+    LOGGER.error(e.getLocalizedMessage(),e);
   }
-catch (  NamingException e) {
-    LOGGER.warn(e.getLocalizedMessage(),e);
+catch (  NoClassDefFoundError e) {
+    thrown=e;
+    LOGGER.error(e.getLocalizedMessage(),e);
   }
  finally {
     if (context != null) {
