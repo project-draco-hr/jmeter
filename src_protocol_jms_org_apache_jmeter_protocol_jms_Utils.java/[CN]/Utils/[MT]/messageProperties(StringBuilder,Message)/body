@@ -1,4 +1,5 @@
 {
+  requestHeaders(sb,msg);
   sb.append("Properties:\n");
   Enumeration<?> rme;
   try {
@@ -9,7 +10,6 @@
       String value=msg.getStringProperty(name);
       sb.append(value).append('\n');
     }
-    requestHeaders(sb,msg);
   }
  catch (  JMSException e) {
     sb.append("\nError: " + e.toString());
