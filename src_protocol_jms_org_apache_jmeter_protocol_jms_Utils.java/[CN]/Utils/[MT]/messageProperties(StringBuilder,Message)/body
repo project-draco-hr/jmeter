@@ -1,0 +1,18 @@
+{
+  sb.append("Properties:\n");
+  Enumeration<?> rme;
+  try {
+    rme=msg.getPropertyNames();
+    while (rme.hasMoreElements()) {
+      String name=(String)rme.nextElement();
+      sb.append(name).append('\t');
+      String value=msg.getStringProperty(name);
+      sb.append(value).append('\n');
+    }
+    requestHeaders(sb,msg);
+  }
+ catch (  JMSException e) {
+    sb.append("\nError: " + e.toString());
+  }
+  return sb;
+}

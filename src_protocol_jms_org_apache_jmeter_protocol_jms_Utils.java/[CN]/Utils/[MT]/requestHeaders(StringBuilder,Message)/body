@@ -1,0 +1,15 @@
+{
+  try {
+    sb.append("JMSCorrelationId ").append(msg.getJMSCorrelationID()).append('\n');
+    sb.append("JMSMessageId     ").append(msg.getJMSMessageID()).append('\n');
+    sb.append("JMSTimestamp     ").append(msg.getJMSTimestamp()).append('\n');
+    sb.append("JMSType          ").append(msg.getJMSType()).append('\n');
+    sb.append("JMSExpiration    ").append(msg.getJMSExpiration()).append('\n');
+    sb.append("JMSPriority      ").append(msg.getJMSPriority()).append('\n');
+    sb.append("JMSDestination   ").append(msg.getJMSDestination()).append('\n');
+  }
+ catch (  JMSException e) {
+    sb.append("\nError: " + e.toString());
+  }
+  return sb;
+}
