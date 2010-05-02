@@ -1,6 +1,9 @@
 {
   SampleResult result=new SampleResult();
   result.setDataType(SampleResult.TEXT);
+  StringBuffer buffer=new StringBuffer();
+  StringBuffer propBuffer=new StringBuffer();
+  int cnt;
   result.setSampleLabel(getName());
   if (this.SUBSCRIBER == null) {
     this.initReceiveClient();
@@ -18,18 +21,38 @@
     }
   }
   result.sampleEnd();
-  int read=this.SUBSCRIBER.count(0);
+  result.setResponseMessage(loop + " samples messages received");
+  for (cnt=0; cnt < loop; cnt++) {
+    TextMessage msg=this.SUBSCRIBER.getMessage();
+    if (msg != null) {
+      try {
+        buffer.append(msg.getText());
+        Enumeration<?> props=msg.getPropertyNames();
+        while (props.hasMoreElements()) {
+          String name=(String)props.nextElement();
+          propBuffer.append("PROPERTY: ");
+          propBuffer.append(name);
+          propBuffer.append("=");
+          propBuffer.append(msg.getObjectProperty(name));
+          propBuffer.append("\n");
+        }
+      }
+ catch (      JMSException e) {
+        log.error(e.getMessage());
+      }
+    }
+  }
   if (this.getReadResponseAsBoolean()) {
-    result.setResponseData(this.SUBSCRIBER.getMessage(),null);
+    result.setResponseData(buffer.toString().getBytes());
   }
  else {
-    result.setBytes(this.SUBSCRIBER.getMessage().length());
+    result.setBytes(buffer.toString().getBytes().length);
   }
+  result.setResponseHeaders(propBuffer.toString());
   result.setSuccessful(true);
   result.setResponseCodeOK();
-  result.setResponseMessage(read + " message(s) received successfully");
+  result.setResponseMessage(loop + " message(s) received successfully");
   result.setSamplerData(loop + " messages expected");
-  result.setSampleCount(read);
-  this.SUBSCRIBER.reset();
+  result.setSampleCount(loop);
   return result;
 }

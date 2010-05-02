@@ -7,7 +7,7 @@
     this.CONN.close();
     this.CLIENTTHREAD.interrupt();
     this.CLIENTTHREAD=null;
-    this.buffer.setLength(0);
+    queue.clear();
   }
  catch (  JMSException e) {
     log.error(e.getMessage());

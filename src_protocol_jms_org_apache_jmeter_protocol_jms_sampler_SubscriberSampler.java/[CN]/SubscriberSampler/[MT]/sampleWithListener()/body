@@ -1,12 +1,14 @@
 {
   SampleResult result=new SampleResult();
   result.setDataType(SampleResult.TEXT);
+  StringBuffer buffer=new StringBuffer();
+  StringBuffer propBuffer=new StringBuffer();
+  int cnt;
   result.setSampleLabel(getName());
   initListenerClient();
   int loop=this.getIterationCount();
   result.sampleStart();
-  int read;
-  while ((read=this.count(0)) < loop && interrupted == false) {
+  while (queue.size() < loop && interrupted == false) {
     try {
       Thread.sleep(0,50);
     }
@@ -15,20 +17,38 @@
     }
   }
   result.sampleEnd();
-synchronized (this) {
-    if (this.getReadResponseAsBoolean()) {
-      result.setResponseData(this.BUFFER.toString(),null);
+  for (cnt=0; cnt < loop; cnt++) {
+    TextMessage msg=queue.poll();
+    if (msg != null) {
+      try {
+        buffer.append(msg.getText());
+        Enumeration<?> props=msg.getPropertyNames();
+        while (props.hasMoreElements()) {
+          String name=(String)props.nextElement();
+          propBuffer.append("PROPERTY: ");
+          propBuffer.append(name);
+          propBuffer.append("=");
+          propBuffer.append(msg.getObjectProperty(name));
+          propBuffer.append("\n");
+        }
+      }
+ catch (      JMSException e) {
+        log.error(e.getMessage());
+      }
     }
- else {
-      result.setBytes(this.BUFFER.toString().length());
-    }
-    read=this.count(0);
   }
+  if (this.getReadResponseAsBoolean()) {
+    result.setResponseData(buffer.toString().getBytes());
+  }
+ else {
+    result.setBytes(buffer.toString().getBytes().length);
+  }
+  result.setResponseHeaders(propBuffer.toString());
+  result.setDataType(SampleResult.TEXT);
   result.setSuccessful(true);
   result.setResponseCodeOK();
-  result.setResponseMessage(read + " messages received");
+  result.setResponseMessage(loop + " messages received");
   result.setSamplerData(loop + " messages expected");
-  result.setSampleCount(read);
-  this.resetCount();
+  result.setSampleCount(loop);
   return result;
 }
