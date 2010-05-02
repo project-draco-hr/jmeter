@@ -1,8 +1,7 @@
 {
   String id=request.getJMSCorrelationID();
   if (id == null && !useReqMsgIdAsCorrelId) {
-    log.error("Correlation id is null. Set the JMSCorrelationID header");
-    return null;
+    throw new IllegalArgumentException("Correlation id is null. Set the JMSCorrelationID header.");
   }
   final MessageAdmin admin=MessageAdmin.getAdmin();
   if (useReqMsgIdAsCorrelId) {
