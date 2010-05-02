@@ -2,13 +2,15 @@
   SampleResult res=new SampleResult();
   res.setSampleLabel(getName());
   res.setSamplerData(getContent());
+  res.setSuccessful(false);
   res.setDataType(SampleResult.TEXT);
   res.sampleStart();
   try {
     TextMessage msg=createMessage();
     if (isOneway()) {
       producer.send(msg);
-      res.setSuccessful(true);
+      res.setRequestHeaders(Utils.messageProperties(msg));
+      res.setResponseOK();
       res.setResponseData("Oneway request has no response data",null);
     }
  else {
@@ -16,8 +18,8 @@
         msg.setJMSReplyTo(receiveQueue);
       }
       Message replyMsg=executor.sendAndReceive(msg);
+      res.setRequestHeaders(Utils.messageProperties(msg));
       if (replyMsg == null) {
-        res.setSuccessful(false);
         res.setResponseMessage("No reply message received");
       }
  else {
@@ -27,6 +29,7 @@
  else {
           res.setResponseData(replyMsg.toString(),null);
         }
+        res.setResponseHeaders(Utils.messageProperties(replyMsg));
         res.setResponseOK();
       }
     }
@@ -39,7 +42,6 @@
  else {
       res.setResponseMessage(e.getLocalizedMessage());
     }
-    res.setSuccessful(false);
   }
   res.sampleEnd();
   return res;
