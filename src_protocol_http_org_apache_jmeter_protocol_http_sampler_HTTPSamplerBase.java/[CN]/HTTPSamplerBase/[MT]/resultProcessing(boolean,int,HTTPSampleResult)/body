@@ -15,8 +15,8 @@
       res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),res));
     }
  else {
-      HTTPSampleResult container=(HTTPSampleResult)(areFollowingRedirect ? res.getParent() : res);
       if (!wasRedirected) {
+        HTTPSampleResult container=(HTTPSampleResult)(areFollowingRedirect ? res.getParent() : res);
         res=downloadPageResources(res,container,frameDepth);
       }
     }
