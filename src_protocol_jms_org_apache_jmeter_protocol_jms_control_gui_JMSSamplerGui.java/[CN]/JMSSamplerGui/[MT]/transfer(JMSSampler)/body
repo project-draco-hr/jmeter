@@ -6,6 +6,7 @@
   element.setIsOneway(isOneway);
   element.setNonPersistent(useNonPersistentDelivery.isSelected());
   element.setUseReqMsgIdAsCorrelId(useReqMsgIdAsCorrelId.isSelected());
+  element.setUseResMsgIdAsCorrelId(useResMsgIdAsCorrelId.isSelected());
   element.setTimeout(timeout.getText());
   element.setContent(soapXml.getText());
   element.setInitialContextFactory(initialContextFactory.getText());

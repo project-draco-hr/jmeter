@@ -1,5 +1,6 @@
 {
   super.configure(el);
+  if (!(el instanceof JMSSampler))   return;
   JMSSampler sampler=(JMSSampler)el;
   queueuConnectionFactory.setText(sampler.getQueueConnectionFactory());
   sendQueue.setText(sampler.getSendQueue());
@@ -15,6 +16,7 @@
   box.setSelectedItem(selected);
   useNonPersistentDelivery.setSelected(sampler.isNonPersistent());
   useReqMsgIdAsCorrelId.setSelected(sampler.isUseReqMsgIdAsCorrelId());
+  useResMsgIdAsCorrelId.setSelected(sampler.isUseResMsgIdAsCorrelId());
   timeout.setText(sampler.getTimeout());
   soapXml.setText(sampler.getContent());
   initialContextFactory.setText(sampler.getInitialContextFactory());

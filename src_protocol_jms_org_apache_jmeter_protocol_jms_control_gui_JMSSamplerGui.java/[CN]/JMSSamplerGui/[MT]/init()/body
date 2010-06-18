@@ -17,11 +17,16 @@
   JPanel jndiPanel=createJNDIPanel();
   JPanel messagePanel=new JPanel(new BorderLayout());
   messagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_message_title")));
+  JPanel correlationPanel=new HorizontalPanel();
+  correlationPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_correlation_title")));
   useReqMsgIdAsCorrelId=new JCheckBox(JMeterUtils.getResString("jms_use_req_msgid_as_correlid"),false);
+  useResMsgIdAsCorrelId=new JCheckBox(JMeterUtils.getResString("jms_use_res_msgid_as_correlid"),false);
+  correlationPanel.add(useReqMsgIdAsCorrelId);
+  correlationPanel.add(useResMsgIdAsCorrelId);
   JPanel messageNorthPanel=new JPanel(new BorderLayout());
   JPanel onewayPanel=new HorizontalPanel();
   onewayPanel.add(oneWay);
-  onewayPanel.add(useReqMsgIdAsCorrelId);
+  onewayPanel.add(correlationPanel);
   messageNorthPanel.add(onewayPanel,BorderLayout.NORTH);
   useNonPersistentDelivery=new JCheckBox(JMeterUtils.getResString("jms_use_non_persistent_delivery"),false);
   JPanel timeoutPanel=new HorizontalPanel();

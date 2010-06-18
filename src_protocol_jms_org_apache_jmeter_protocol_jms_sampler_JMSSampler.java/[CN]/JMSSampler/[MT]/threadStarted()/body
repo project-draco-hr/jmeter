@@ -14,7 +14,7 @@
     Queue sendQueue=(Queue)context.lookup(getSendQueue());
     if (!useTemporyQueue()) {
       receiveQueue=(Queue)context.lookup(getReceiveQueue());
-      receiverThread=Receiver.createReceiver(factory,receiveQueue,getPrincipal(context),getCredentials(context),isUseReqMsgIdAsCorrelId());
+      receiverThread=Receiver.createReceiver(factory,receiveQueue,getPrincipal(context),getCredentials(context),isUseResMsgIdAsCorrelId());
     }
     String principal=null;
     String credentials=null;

@@ -1,5 +1,6 @@
 {
+  this.configureTestElement(element);
+  if (!(element instanceof JMSSampler))   return;
   JMSSampler sampler=(JMSSampler)element;
-  this.configureTestElement(sampler);
   transfer(sampler);
 }
