@@ -8,7 +8,7 @@
       if (reply != null) {
         String messageKey;
         final MessageAdmin admin=MessageAdmin.getAdmin();
-        if (useReqMsgIdAsCorrelId) {
+        if (useResMsgIdAsCorrelId) {
           messageKey=reply.getJMSMessageID();
 synchronized (admin) {
             admin.putReply(messageKey,reply);

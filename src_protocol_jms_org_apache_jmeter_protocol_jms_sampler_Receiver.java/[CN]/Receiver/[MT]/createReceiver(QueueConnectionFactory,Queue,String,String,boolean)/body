@@ -1,5 +1,5 @@
 {
-  Receiver receiver=new Receiver(factory,receiveQueue,principal,credentials,useReqMsgIdAsCorrelId);
+  Receiver receiver=new Receiver(factory,receiveQueue,principal,credentials,useResMsgIdAsCorrelId);
   Thread thread=new Thread(receiver);
   thread.start();
   return receiver;
