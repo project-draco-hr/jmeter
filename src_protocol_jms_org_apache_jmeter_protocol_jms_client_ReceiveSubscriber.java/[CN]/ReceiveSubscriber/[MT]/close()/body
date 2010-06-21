@@ -1,10 +1,10 @@
 {
+  this.RUN=false;
   try {
-    this.RUN=false;
     this.CONN.stop();
-    this.SUBSCRIBER.close();
-    this.SESSION.close();
-    this.CONN.close();
+    Utils.close(SUBSCRIBER,log);
+    Utils.close(SESSION,log);
+    Utils.close(CONN,log);
     this.CLIENTTHREAD.interrupt();
     this.CLIENTTHREAD=null;
     queue.clear();

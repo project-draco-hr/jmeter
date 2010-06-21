@@ -29,24 +29,7 @@ synchronized (admin) {
       log.error("Error handling receive",e1);
     }
   }
-  if (consumer != null) {
-    try {
-      consumer.close();
-    }
- catch (    JMSException e) {
-      log.error("Error closing connection",e);
-    }
-  }
-  try {
-    session.close();
-  }
- catch (  JMSException e) {
-    log.error("Error closing session",e);
-  }
-  try {
-    conn.close();
-  }
- catch (  JMSException e) {
-    log.error("Error closing connection",e);
-  }
+  Utils.close(consumer,log);
+  Utils.close(session,log);
+  Utils.close(conn,log);
 }

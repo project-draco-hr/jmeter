@@ -1,11 +1,6 @@
 {
-  try {
-    log.info("Subscriber closed");
-    this.SUBSCRIBER.close();
-    this.SESSION.close();
-    this.CONN.close();
-  }
- catch (  JMSException e) {
-    log.error(e.getMessage());
-  }
+  log.info("Subscriber closed");
+  Utils.close(SUBSCRIBER,log);
+  Utils.close(SESSION,log);
+  Utils.close(CONN,log);
 }
