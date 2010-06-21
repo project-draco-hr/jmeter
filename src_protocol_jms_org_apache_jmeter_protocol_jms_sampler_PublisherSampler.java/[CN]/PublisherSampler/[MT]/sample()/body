@@ -5,13 +5,18 @@
   result.setResponseCode("000");
   result.setResponseMessage("See log file for details");
   if (publisher == null) {
-    initClient();
+    try {
+      initClient();
+    }
+ catch (    JMSException e) {
+      log.warn("Could not create client",e);
+    }
   }
   StringBuilder buffer=new StringBuilder();
   int loop=getIterationCount();
   result.sampleStart();
   try {
-    if (publisher != null && publisher.isValid) {
+    if (publisher != null) {
       for (int idx=0; idx < loop; idx++) {
         String tmsg=getMessageContent();
         publisher.publish(tmsg);

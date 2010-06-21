@@ -1,29 +1,5 @@
 {
-  try {
-    log.info("Publisher close()");
-    if (publisher != null) {
-      publisher.close();
-    }
-    if (session != null) {
-      session.close();
-    }
-    if (connection != null) {
-      connection.close();
-    }
-    publisher=null;
-    session=null;
-    connection=null;
-  }
- catch (  JMSException e) {
-    log.error(e.getMessage());
-  }
-catch (  Throwable e) {
-    log.error(e.getMessage());
-    if (e instanceof Error) {
-      throw (Error)e;
-    }
-    if (e instanceof RuntimeException) {
-      throw (RuntimeException)e;
-    }
-  }
+  Utils.close(publisher,log);
+  Utils.close(session,log);
+  Utils.close(connection,log);
 }

@@ -1,11 +1,13 @@
 {
   super();
   Context ctx=initJNDI(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
-  if (ctx != null) {
-    initConnection(ctx,connfactory,topic);
+  if (ctx == null) {
+    throw new JMSException("Could not initialize JNDI Initial Context Factory");
   }
- else {
-    log.error("Could not initialize JNDI Initial Context Factory");
-  }
-  isValid=publisher != null;
+  ConnectionFactory.getTopicConnectionFactory(ctx,connfactory);
+  connection=ConnectionFactory.getTopicConnection();
+  topic=InitialContextFactory.lookupTopic(ctx,topicName);
+  session=connection.createTopicSession(false,TopicSession.AUTO_ACKNOWLEDGE);
+  publisher=session.createPublisher(topic);
+  log.info("created the topic connection successfully");
 }
