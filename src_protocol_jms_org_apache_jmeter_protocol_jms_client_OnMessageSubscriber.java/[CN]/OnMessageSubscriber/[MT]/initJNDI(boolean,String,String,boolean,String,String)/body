@@ -9,6 +9,6 @@
     }
   }
  else {
-    return InitialContextFactory.lookupContext(jndi,url,useAuth,user,pwd);
+    return InitialContextFactory.lookupContext(initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
   }
 }
