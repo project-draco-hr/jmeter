@@ -1,0 +1,10 @@
+{
+  if (closeable != null) {
+    try {
+      closeable.close();
+    }
+ catch (    JMSException e) {
+      log.error("Error during close: ",e);
+    }
+  }
+}
