@@ -11,6 +11,9 @@
  catch (    JMSException e) {
       log.warn("Could not create client",e);
     }
+catch (    NamingException e) {
+      log.warn("Could not create client",e);
+    }
   }
   StringBuilder buffer=new StringBuilder();
   int loop=getIterationCount();

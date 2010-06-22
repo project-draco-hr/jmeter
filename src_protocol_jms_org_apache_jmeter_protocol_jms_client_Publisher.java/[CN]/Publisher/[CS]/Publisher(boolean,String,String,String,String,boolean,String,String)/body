@@ -6,7 +6,7 @@
   }
   ConnectionFactory.getTopicConnectionFactory(ctx,connfactory);
   connection=ConnectionFactory.getTopicConnection();
-  topic=InitialContextFactory.lookupTopic(ctx,topicName);
+  topic=Utils.lookupTopic(ctx,topicName);
   session=connection.createTopicSession(false,TopicSession.AUTO_ACKNOWLEDGE);
   publisher=session.createPublisher(topic);
   log.info("created the topic connection successfully");

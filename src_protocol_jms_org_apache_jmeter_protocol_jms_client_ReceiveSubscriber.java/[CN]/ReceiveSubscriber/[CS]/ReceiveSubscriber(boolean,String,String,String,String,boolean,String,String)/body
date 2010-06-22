@@ -8,7 +8,7 @@
     try {
       ConnectionFactory.getTopicConnectionFactory(ctx,connfactory);
       _conn=ConnectionFactory.getTopicConnection();
-      _topic=InitialContextFactory.lookupTopic(ctx,topic);
+      _topic=Utils.lookupTopic(ctx,topic);
       if (_topic == null) {
         log.warn("topic <" + topic + "> could not be found.");
       }
