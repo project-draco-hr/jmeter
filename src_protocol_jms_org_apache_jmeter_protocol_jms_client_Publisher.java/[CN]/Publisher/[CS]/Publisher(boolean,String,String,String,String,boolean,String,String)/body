@@ -2,8 +2,8 @@
   super();
   Context ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
   connection=Utils.getConnection(ctx,connfactory);
-  Destination topic=Utils.lookupDestination(ctx,topicName);
   session=connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-  producer=session.createProducer(topic);
+  Destination dest=Utils.lookupDestination(ctx,destinationName);
+  producer=session.createProducer(dest);
   log.info("created the topic connection successfully");
 }
