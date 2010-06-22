@@ -1,8 +1,4 @@
 {
-  if (SUBSCRIBER == null) {
-    log.error("Subscriber has not been set up");
-    return;
-  }
   this.CLIENTTHREAD=new Thread(this,"Subscriber2");
   this.CLIENTTHREAD.start();
 }
