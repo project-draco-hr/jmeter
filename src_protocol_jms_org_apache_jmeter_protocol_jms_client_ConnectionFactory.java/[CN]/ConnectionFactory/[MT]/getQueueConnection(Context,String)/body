@@ -1,7 +1,0 @@
-{
-  Object objfac=ctx.lookup(factoryName);
-  if (objfac instanceof QueueConnectionFactory) {
-    return ((QueueConnectionFactory)objfac).createQueueConnection();
-  }
-  throw new NamingException("Expected QueueConnectionFactory, found " + objfac.getClass().getName());
-}
