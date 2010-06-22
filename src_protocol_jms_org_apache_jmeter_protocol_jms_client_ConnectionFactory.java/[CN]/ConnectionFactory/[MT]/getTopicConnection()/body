@@ -2,5 +2,5 @@
   if (factory != null) {
     return factory.createTopicConnection();
   }
-  throw new JMSException("Factory has not been initialised");
+  throw new JMSException("Topic Factory has not been initialised");
 }

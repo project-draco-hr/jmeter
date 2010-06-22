@@ -1,0 +1,6 @@
+{
+  if (qfactory != null) {
+    return qfactory.createQueueConnection();
+  }
+  throw new JMSException("Queue Factory has not been initialised");
+}

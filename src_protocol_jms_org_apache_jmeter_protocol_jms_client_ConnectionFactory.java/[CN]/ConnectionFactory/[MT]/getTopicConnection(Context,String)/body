@@ -1,0 +1,7 @@
+{
+  Object objfac=ctx.lookup(factoryName);
+  if (objfac instanceof TopicConnectionFactory) {
+    return ((TopicConnectionFactory)objfac).createTopicConnection();
+  }
+  throw new NamingException("Expected TopicConnectionFactory, found " + objfac.getClass().getName());
+}

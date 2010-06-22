@@ -1,11 +1,7 @@
 {
-  if (qfactory != null) {
-    try {
-      return qfactory.createQueueConnection();
-    }
- catch (    JMSException e) {
-      log.error(e.getMessage());
-    }
+  Object objfac=ctx.lookup(factoryName);
+  if (objfac instanceof QueueConnectionFactory) {
+    return ((QueueConnectionFactory)objfac).createQueueConnection();
   }
-  return null;
+  throw new NamingException("Expected QueueConnectionFactory, found " + objfac.getClass().getName());
 }
