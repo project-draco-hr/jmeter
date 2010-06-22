@@ -1,9 +1,6 @@
 {
   super();
-  Context ctx=initJNDI(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
-  if (ctx == null) {
-    throw new JMSException("Could not initialize JNDI Initial Context Factory");
-  }
+  Context ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
   ConnectionFactory.getTopicConnectionFactory(ctx,connfactory);
   connection=ConnectionFactory.getTopicConnection();
   topic=Utils.lookupTopic(ctx,topicName);

@@ -1,0 +1,8 @@
+{
+  if (useProps) {
+    return new InitialContext();
+  }
+ else {
+    return lookupContext(initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
+  }
+}
