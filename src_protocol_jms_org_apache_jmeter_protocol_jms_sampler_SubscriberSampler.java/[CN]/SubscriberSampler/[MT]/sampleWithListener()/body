@@ -11,17 +11,15 @@
     initListenerClient();
   }
  catch (  JMSException ex) {
-    log.warn("",ex);
     result.sampleEnd();
     result.setResponseCode("000");
-    result.setResponseMessage(ex.getMessage());
+    result.setResponseMessage(ex.toString());
     return result;
   }
 catch (  NamingException ex) {
-    log.warn("",ex);
     result.sampleEnd();
     result.setResponseCode("000");
-    result.setResponseMessage(ex.getMessage());
+    result.setResponseMessage(ex.toString());
     return result;
   }
   while (queue.size() < loop && interrupted == false) {
