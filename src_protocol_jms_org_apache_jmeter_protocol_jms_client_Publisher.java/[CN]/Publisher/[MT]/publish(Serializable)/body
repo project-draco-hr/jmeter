@@ -1,9 +1,5 @@
 {
-  try {
-    ObjectMessage msg=session.createObjectMessage(contents);
-    producer.send(msg);
-  }
- catch (  JMSException e) {
-    log.error(e.getMessage());
-  }
+  ObjectMessage msg=session.createObjectMessage(contents);
+  producer.send(msg);
+  return msg;
 }

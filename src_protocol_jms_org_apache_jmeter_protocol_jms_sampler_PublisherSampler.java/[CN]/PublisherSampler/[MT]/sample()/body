@@ -17,19 +17,22 @@ catch (    NamingException e) {
     }
   }
   StringBuilder buffer=new StringBuilder();
+  StringBuilder propBuffer=new StringBuilder();
   int loop=getIterationCount();
   result.sampleStart();
   try {
     for (int idx=0; idx < loop; idx++) {
       String tmsg=getMessageContent();
-      publisher.publish(tmsg);
+      Message msg=publisher.publish(tmsg);
       buffer.append(tmsg);
+      Utils.messageProperties(propBuffer,msg);
     }
     result.setResponseCodeOK();
     result.setResponseMessage(loop + " messages published");
     result.setSuccessful(true);
     result.setSamplerData(buffer.toString());
     result.setSampleCount(loop);
+    result.setRequestHeaders(propBuffer.toString());
   }
  catch (  Exception e) {
     result.setResponseMessage(e.toString());
