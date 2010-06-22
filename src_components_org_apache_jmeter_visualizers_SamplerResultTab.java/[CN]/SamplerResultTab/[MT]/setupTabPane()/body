@@ -11,7 +11,7 @@
       if (sd != null) {
         String rh=sampleResult.getRequestHeaders();
         if (rh != null) {
-          StringBuffer sb=new StringBuffer(sd.length() + rh.length() + 20);
+          StringBuilder sb=new StringBuilder(sd.length() + rh.length() + 20);
           sb.append(sd);
           sb.append("\n");
           sb.append(JMeterUtils.getResString("view_results_request_headers"));
@@ -21,7 +21,7 @@
         }
         sampleDataField.setText(sd);
       }
-      StringBuffer statsBuff=new StringBuffer(200);
+      StringBuilder statsBuff=new StringBuilder(200);
       statsBuff.append(JMeterUtils.getResString("view_results_thread_name")).append(sampleResult.getThreadName()).append(NL);
       String startTime=dateFormat.format(new Date(sampleResult.getStartTime()));
       statsBuff.append(JMeterUtils.getResString("view_results_sample_start")).append(startTime).append(NL);
@@ -31,7 +31,7 @@
       statsBuff.append(JMeterUtils.getResString("view_results_sample_count")).append(sampleResult.getSampleCount()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_error_count")).append(sampleResult.getErrorCount()).append(NL);
       statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
-      statsBuff=new StringBuffer();
+      statsBuff.setLength(0);
       String responseCode=sampleResult.getResponseCode();
       int responseLevel=0;
       if (responseCode != null) {
@@ -55,7 +55,7 @@ break;
 }
 statsBuff.append(JMeterUtils.getResString("view_results_response_code")).append(responseCode).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),style);
-statsBuff=new StringBuffer(100);
+statsBuff.setLength(0);
 String responseMsgStr=sampleResult.getResponseMessage();
 statsBuff.append(JMeterUtils.getResString("view_results_response_message")).append(responseMsgStr).append(NL);
 statsBuff.append(NL);
@@ -75,12 +75,11 @@ searchTextExtension.resetTextToFind();
  else if (userObject instanceof AssertionResult) {
 assertionResult=(AssertionResult)userObject;
 setupTabPaneForAssertionResult();
-StringBuffer statsBuff=new StringBuffer(100);
+StringBuilder statsBuff=new StringBuilder(100);
 statsBuff.append(JMeterUtils.getResString("view_results_assertion_error")).append(assertionResult.isError()).append(NL);
 statsBuff.append(JMeterUtils.getResString("view_results_assertion_failure")).append(assertionResult.isFailure()).append(NL);
 statsBuff.append(JMeterUtils.getResString("view_results_assertion_failure_message")).append(assertionResult.getFailureMessage()).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
-statsBuff=null;
 }
 }
  catch (BadLocationException exc) {
