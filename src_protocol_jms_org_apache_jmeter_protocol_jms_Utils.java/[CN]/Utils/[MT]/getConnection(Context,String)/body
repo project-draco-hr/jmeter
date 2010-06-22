@@ -1,0 +1,7 @@
+{
+  Object objfac=ctx.lookup(factoryName);
+  if (objfac instanceof javax.jms.ConnectionFactory) {
+    return ((javax.jms.ConnectionFactory)objfac).createConnection();
+  }
+  throw new NamingException("Expected javax.jms.ConnectionFactory, found " + objfac.getClass().getName());
+}

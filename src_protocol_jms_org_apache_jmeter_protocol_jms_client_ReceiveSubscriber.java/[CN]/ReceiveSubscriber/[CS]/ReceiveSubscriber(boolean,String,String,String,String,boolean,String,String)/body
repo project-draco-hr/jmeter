@@ -1,7 +1,7 @@
 {
   Context ctx=InitialContextFactory.getContext(useProps,jndi,url,useAuth,user,pwd);
-  CONN=ConnectionFactory.getTopicConnection(ctx,connfactory);
-  Destination _topic=Utils.lookupTopic(ctx,topic);
-  SESSION=CONN.createTopicSession(false,TopicSession.AUTO_ACKNOWLEDGE);
+  CONN=Utils.getConnection(ctx,connfactory);
+  Destination _topic=Utils.lookupDestination(ctx,topic);
+  SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
   SUBSCRIBER=SESSION.createConsumer(_topic);
 }

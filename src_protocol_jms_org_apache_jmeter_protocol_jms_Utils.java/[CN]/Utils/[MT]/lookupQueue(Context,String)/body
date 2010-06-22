@@ -1,7 +1,0 @@
-{
-  Object o=context.lookup(name);
-  if (o instanceof Queue) {
-    return (Queue)o;
-  }
-  throw new NamingException("Found: " + name + "; expected Queue, but was: "+ o.getClass().getName());
-}

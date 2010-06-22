@@ -1,14 +1,14 @@
 {
   if (null != principal && null != credentials) {
     log.info("creating receiver WITH authorisation credentials. UseResMsgId=" + useResMsgIdAsCorrelId);
-    conn=factory.createQueueConnection(principal,credentials);
+    conn=factory.createConnection(principal,credentials);
   }
  else {
     log.info("creating receiver without authorisation credentials. UseResMsgId=" + useResMsgIdAsCorrelId);
-    conn=factory.createQueueConnection();
+    conn=factory.createConnection();
   }
-  session=conn.createQueueSession(false,Session.AUTO_ACKNOWLEDGE);
-  consumer=session.createReceiver(receiveQueue);
+  session=conn.createSession(false,Session.AUTO_ACKNOWLEDGE);
+  consumer=session.createConsumer(receiveQueue);
   this.useResMsgIdAsCorrelId=useResMsgIdAsCorrelId;
   log.debug("Receiver - ctor. Starting connection now");
   conn.start();
