@@ -39,16 +39,8 @@ catch (    JMSException ex) {
   int read=SUBSCRIBER.count(0);
   result.setResponseMessage(read + " samples messages received");
   for (cnt=0; cnt < read; cnt++) {
-    TextMessage msg=this.SUBSCRIBER.getMessage();
-    if (msg != null) {
-      try {
-        buffer.append(msg.getText());
-        Utils.messageProperties(propBuffer,msg);
-      }
- catch (      JMSException e) {
-        log.error(e.getMessage());
-      }
-    }
+    Message msg=this.SUBSCRIBER.getMessage();
+    extractContent(buffer,propBuffer,msg);
   }
   if (this.getReadResponseAsBoolean()) {
     result.setResponseData(buffer.toString().getBytes());

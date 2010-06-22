@@ -1,0 +1,27 @@
+{
+  if (msg != null) {
+    try {
+      if (msg instanceof TextMessage) {
+        buffer.append(((TextMessage)msg).getText());
+      }
+ else       if (msg instanceof MapMessage) {
+        MapMessage mapm=(MapMessage)msg;
+        @SuppressWarnings("unchecked") Enumeration<String> enumb=mapm.getMapNames();
+        while (enumb.hasMoreElements()) {
+          String name=enumb.nextElement();
+          Object obj=mapm.getObject(name);
+          buffer.append(name);
+          buffer.append("(");
+          buffer.append(obj.getClass().getCanonicalName());
+          buffer.append(")");
+          buffer.append(obj);
+          buffer.append("\n");
+        }
+      }
+      Utils.messageProperties(propBuffer,msg);
+    }
+ catch (    JMSException e) {
+      log.error(e.getMessage());
+    }
+  }
+}

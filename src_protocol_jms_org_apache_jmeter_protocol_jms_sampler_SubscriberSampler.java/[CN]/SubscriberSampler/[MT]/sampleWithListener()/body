@@ -33,16 +33,10 @@ catch (  NamingException ex) {
   result.sampleEnd();
   int read=0;
   for (cnt=0; cnt < loop; cnt++) {
-    TextMessage msg=queue.poll();
+    Message msg=queue.poll();
     if (msg != null) {
       read++;
-      try {
-        buffer.append(msg.getText());
-        Utils.messageProperties(propBuffer,msg);
-      }
- catch (      JMSException e) {
-        log.error(e.getMessage());
-      }
+      extractContent(buffer,propBuffer,msg);
     }
   }
   if (this.getReadResponseAsBoolean()) {

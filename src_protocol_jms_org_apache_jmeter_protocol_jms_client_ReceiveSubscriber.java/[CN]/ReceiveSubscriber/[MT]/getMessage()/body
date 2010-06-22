@@ -1,5 +1,7 @@
 {
-  TextMessage msg=queue.poll();
-  this.counter--;
+  Message msg=queue.poll();
+  if (msg != null) {
+    counter--;
+  }
   return msg;
 }
