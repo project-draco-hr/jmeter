@@ -1,5 +1,5 @@
 {
-  final StringBuffer response=new StringBuffer(256);
+  final StringBuilder response=new StringBuilder(256);
   try {
     response.append("JMS Message Header Attributes:");
     response.append("\n   Correlation ID: ");
