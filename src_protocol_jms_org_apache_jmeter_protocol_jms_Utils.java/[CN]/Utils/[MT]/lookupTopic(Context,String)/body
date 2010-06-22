@@ -1,0 +1,7 @@
+{
+  Object o=context.lookup(name);
+  if (o instanceof Topic) {
+    return (Topic)o;
+  }
+  throw new NamingException("Found: " + name + "; expected Topic, but was: "+ o.getClass().getName());
+}
