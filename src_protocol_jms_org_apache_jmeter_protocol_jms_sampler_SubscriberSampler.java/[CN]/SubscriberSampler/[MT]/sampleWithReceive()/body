@@ -1,8 +1,8 @@
 {
   SampleResult result=new SampleResult();
   result.setDataType(SampleResult.TEXT);
-  StringBuffer buffer=new StringBuffer();
-  StringBuffer propBuffer=new StringBuffer();
+  StringBuilder buffer=new StringBuilder();
+  StringBuilder propBuffer=new StringBuilder();
   int cnt;
   result.setSampleLabel(getName());
   if (this.SUBSCRIBER == null) {
@@ -37,21 +37,14 @@ catch (    JMSException ex) {
     }
   }
   result.sampleEnd();
-  result.setResponseMessage(loop + " samples messages received");
-  for (cnt=0; cnt < loop; cnt++) {
+  int read=SUBSCRIBER.count(0);
+  result.setResponseMessage(read + " samples messages received");
+  for (cnt=0; cnt < read; cnt++) {
     TextMessage msg=this.SUBSCRIBER.getMessage();
     if (msg != null) {
       try {
         buffer.append(msg.getText());
-        Enumeration<?> props=msg.getPropertyNames();
-        while (props.hasMoreElements()) {
-          String name=(String)props.nextElement();
-          propBuffer.append("PROPERTY: ");
-          propBuffer.append(name);
-          propBuffer.append("=");
-          propBuffer.append(msg.getObjectProperty(name));
-          propBuffer.append("\n");
-        }
+        Utils.messageProperties(propBuffer,msg);
       }
  catch (      JMSException e) {
         log.error(e.getMessage());
@@ -66,9 +59,14 @@ catch (    JMSException ex) {
   }
   result.setResponseHeaders(propBuffer.toString());
   result.setSuccessful(true);
-  result.setResponseCodeOK();
-  result.setResponseMessage(loop + " message(s) received successfully");
+  if (read == 0) {
+    result.setResponseCode("404");
+  }
+ else {
+    result.setResponseCodeOK();
+  }
+  result.setResponseMessage(read + " message(s) received successfully");
   result.setSamplerData(loop + " messages expected");
-  result.setSampleCount(loop);
+  result.setSampleCount(read);
   return result;
 }

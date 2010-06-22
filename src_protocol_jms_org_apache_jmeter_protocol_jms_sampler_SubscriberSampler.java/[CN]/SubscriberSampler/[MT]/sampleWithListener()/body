@@ -1,8 +1,8 @@
 {
   SampleResult result=new SampleResult();
   result.setDataType(SampleResult.TEXT);
-  StringBuffer buffer=new StringBuffer();
-  StringBuffer propBuffer=new StringBuffer();
+  StringBuilder buffer=new StringBuilder();
+  StringBuilder propBuffer=new StringBuilder();
   int cnt;
   int loop=this.getIterationCount();
   result.setSampleLabel(getName());
@@ -38,15 +38,7 @@ catch (  NamingException ex) {
       read++;
       try {
         buffer.append(msg.getText());
-        Enumeration<?> props=msg.getPropertyNames();
-        while (props.hasMoreElements()) {
-          String name=(String)props.nextElement();
-          propBuffer.append("PROPERTY: ");
-          propBuffer.append(name);
-          propBuffer.append("=");
-          propBuffer.append(msg.getObjectProperty(name));
-          propBuffer.append("\n");
-        }
+        Utils.messageProperties(propBuffer,msg);
       }
  catch (      JMSException e) {
         log.error(e.getMessage());
@@ -62,7 +54,12 @@ catch (  NamingException ex) {
   result.setResponseHeaders(propBuffer.toString());
   result.setDataType(SampleResult.TEXT);
   result.setSuccessful(true);
-  result.setResponseCodeOK();
+  if (read == 0) {
+    result.setResponseCode("404");
+  }
+ else {
+    result.setResponseCodeOK();
+  }
   result.setResponseMessage(read + " messages received");
   result.setSamplerData(loop + " messages expected");
   result.setSampleCount(read);
