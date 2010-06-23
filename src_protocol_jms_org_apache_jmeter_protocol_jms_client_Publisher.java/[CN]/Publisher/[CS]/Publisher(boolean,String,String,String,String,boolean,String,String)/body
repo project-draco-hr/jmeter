@@ -5,5 +5,4 @@
   session=connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
   Destination dest=Utils.lookupDestination(ctx,destinationName);
   producer=session.createProducer(dest);
-  log.info("created the topic connection successfully");
 }

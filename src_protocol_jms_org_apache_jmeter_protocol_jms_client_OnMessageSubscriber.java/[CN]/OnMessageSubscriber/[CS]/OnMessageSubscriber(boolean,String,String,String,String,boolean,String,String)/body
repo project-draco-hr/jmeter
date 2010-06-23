@@ -4,5 +4,4 @@
   SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
   Destination dest=Utils.lookupDestination(ctx,destinationName);
   SUBSCRIBER=SESSION.createConsumer(dest);
-  log.info("created the topic connection successfully");
 }
