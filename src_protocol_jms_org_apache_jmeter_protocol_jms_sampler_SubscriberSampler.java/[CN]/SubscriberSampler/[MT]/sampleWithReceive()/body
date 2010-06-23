@@ -5,9 +5,9 @@
   StringBuilder propBuffer=new StringBuilder();
   int cnt;
   result.setSampleLabel(getName());
-  if (this.SUBSCRIBER == null) {
+  if (SUBSCRIBER == null) {
     try {
-      this.initReceiveClient();
+      initReceiveClient();
     }
  catch (    NamingException ex) {
       result.sampleStart();
@@ -23,11 +23,11 @@ catch (    JMSException ex) {
       result.setResponseMessage(ex.toString());
       return result;
     }
-    this.SUBSCRIBER.start();
+    SUBSCRIBER.start();
   }
-  int loop=this.getIterationCount();
+  int loop=getIterationCount();
   result.sampleStart();
-  while (this.SUBSCRIBER.count(0) < loop && interrupted == false) {
+  while (SUBSCRIBER.count(0) < loop && interrupted == false) {
     try {
       Thread.sleep(0,50);
     }
@@ -39,10 +39,10 @@ catch (    JMSException ex) {
   int read=SUBSCRIBER.count(0);
   result.setResponseMessage(read + " samples messages received");
   for (cnt=0; cnt < read; cnt++) {
-    Message msg=this.SUBSCRIBER.getMessage();
+    Message msg=SUBSCRIBER.getMessage();
     extractContent(buffer,propBuffer,msg);
   }
-  if (this.getReadResponseAsBoolean()) {
+  if (getReadResponseAsBoolean()) {
     result.setResponseData(buffer.toString().getBytes());
   }
  else {

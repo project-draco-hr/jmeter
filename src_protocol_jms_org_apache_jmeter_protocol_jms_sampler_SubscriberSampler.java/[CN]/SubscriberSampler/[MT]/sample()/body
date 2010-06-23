@@ -1,5 +1,5 @@
 {
-  if (this.getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC)) {
+  if (getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC)) {
     return sampleWithReceive();
   }
  else {

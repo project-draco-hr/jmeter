@@ -1,7 +1,7 @@
 {
   interrupted=false;
-  this.SUBSCRIBER=new ReceiveSubscriber(this.getUseJNDIPropertiesAsBoolean(),this.getJNDIInitialContextFactory(),this.getProviderUrl(),this.getConnectionFactory(),this.getTopic(),this.isUseAuth(),this.getUsername(),this.getPassword());
-  this.SUBSCRIBER.resume();
-  ClientPool.addClient(this.SUBSCRIBER);
+  SUBSCRIBER=new ReceiveSubscriber(getUseJNDIPropertiesAsBoolean(),this.getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),isUseAuth(),getUsername(),getPassword());
+  SUBSCRIBER.resume();
+  ClientPool.addClient(SUBSCRIBER);
   log.debug("SubscriberSampler.initReceiveClient called");
 }

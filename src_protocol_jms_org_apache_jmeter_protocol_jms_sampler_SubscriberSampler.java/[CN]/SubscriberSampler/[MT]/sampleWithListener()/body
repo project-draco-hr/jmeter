@@ -4,7 +4,7 @@
   StringBuilder buffer=new StringBuilder();
   StringBuilder propBuffer=new StringBuilder();
   int cnt;
-  int loop=this.getIterationCount();
+  int loop=getIterationCount();
   result.setSampleLabel(getName());
   result.sampleStart();
   try {
@@ -39,7 +39,7 @@ catch (  NamingException ex) {
       extractContent(buffer,propBuffer,msg);
     }
   }
-  if (this.getReadResponseAsBoolean()) {
+  if (getReadResponseAsBoolean()) {
     result.setResponseData(buffer.toString().getBytes());
   }
  else {

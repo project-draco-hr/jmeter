@@ -5,7 +5,7 @@
   sampler.setJNDIIntialContextFactory(jndiICF.getText());
   sampler.setProviderUrl(urlField.getText());
   sampler.setConnectionFactory(jndiConnFac.getText());
-  sampler.setTopic(jmsTopic.getText());
+  sampler.setDestination(jmsDestination.getText());
   sampler.setUsername(jmsUser.getText());
   sampler.setPassword(jmsPwd.getText());
   sampler.setTextMessage(textMessage.getText());

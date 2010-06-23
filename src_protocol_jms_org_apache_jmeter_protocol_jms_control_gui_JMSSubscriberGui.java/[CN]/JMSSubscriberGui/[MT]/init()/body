@@ -21,7 +21,7 @@
   JPanel commonParams=new JPanel();
   commonParams.setLayout(new VerticalLayout(6,VerticalLayout.LEFT));
   mainPanel.add(commonParams);
-  commonParams.add(jmsTopic);
+  commonParams.add(jmsDestination);
   commonParams.add(useAuth);
   commonParams.add(jmsUser);
   commonParams.add(jmsPwd);

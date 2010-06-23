@@ -5,7 +5,7 @@
   jndiICF.setText(sampler.getJNDIInitialContextFactory());
   urlField.setText(sampler.getProviderUrl());
   jndiConnFac.setText(sampler.getConnectionFactory());
-  jmsTopic.setText(sampler.getTopic());
+  jmsDestination.setText(sampler.getDestination());
   jmsUser.setText(sampler.getUsername());
   jmsPwd.setText(sampler.getPassword());
   textMessage.setText(sampler.getTextMessage());
