@@ -1,4 +1,5 @@
 {
+  timeout=getTimeoutAsLong();
   interrupted=false;
   OnMessageSubscriber sub=(OnMessageSubscriber)ClientPool.get(this);
   if (sub == null) {

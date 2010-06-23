@@ -26,8 +26,12 @@ catch (    JMSException ex) {
     SUBSCRIBER.start();
   }
   int loop=getIterationCount();
+  long until=0L;
+  if (timeout > 0) {
+    until=timeout + System.currentTimeMillis();
+  }
   result.sampleStart();
-  while (SUBSCRIBER.count(0) < loop && interrupted == false) {
+  while (!interrupted && (until == 0 || System.currentTimeMillis() < until) && SUBSCRIBER.count(0) < loop) {
     try {
       Thread.sleep(0,50);
     }
