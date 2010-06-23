@@ -1,18 +1,16 @@
 {
-  if (event.getSource() == this.configChoice) {
-    updateConfig(this.configChoice.getText());
+  if (event.getSource() == configChoice) {
+    updateConfig(configChoice.getText());
   }
- else   if (event.getSource() == this.msgChoice) {
-    updateMessageType(this.msgChoice.getText());
+ else   if (event.getSource() == msgChoice) {
+    updateMessageType(msgChoice.getText());
   }
  else   if (event.getSource() == useProperties) {
-    if (useProperties.isSelected()) {
-      this.jndiICF.setEnabled(false);
-      this.urlField.setEnabled(false);
-    }
- else {
-      this.jndiICF.setEnabled(true);
-      this.urlField.setEnabled(true);
-    }
+    jndiICF.setEnabled(!useProperties.isSelected());
+    urlField.setEnabled(!useProperties.isSelected());
+  }
+ else   if (event.getSource() == useAuth) {
+    jmsUser.setEnabled(!useAuth.isSelected());
+    jmsPwd.setEnabled(!useAuth.isSelected());
   }
 }
