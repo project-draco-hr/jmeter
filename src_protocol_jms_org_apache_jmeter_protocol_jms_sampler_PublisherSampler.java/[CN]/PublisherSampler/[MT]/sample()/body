@@ -20,12 +20,26 @@ catch (    NamingException e) {
   StringBuilder propBuffer=new StringBuilder();
   int loop=getIterationCount();
   result.sampleStart();
+  String type=getMessageChoice();
   try {
     for (int idx=0; idx < loop; idx++) {
-      String tmsg=getMessageContent();
-      Message msg=publisher.publish(tmsg);
-      buffer.append(tmsg);
-      Utils.messageProperties(propBuffer,msg);
+      if (JMSPublisherGui.TEXT_MSG_RSC.equals(type)) {
+        String tmsg=getMessageContent();
+        Message msg=publisher.publish(tmsg);
+        buffer.append(tmsg);
+        Utils.messageProperties(propBuffer,msg);
+      }
+ else       if (JMSPublisherGui.MAP_MSG_RSC.equals(type)) {
+        Map<String,Object> m=getMapContent();
+        Message msg=publisher.publish(m);
+        Utils.messageProperties(propBuffer,msg);
+      }
+ else       if (JMSPublisherGui.OBJECT_MSG_RSC.equals(type)) {
+        throw new JMSException(type + " is not yet supported");
+      }
+ else {
+        throw new JMSException(type + " is not recognised");
+      }
     }
     result.setResponseCodeOK();
     result.setResponseMessage(loop + " messages published");
