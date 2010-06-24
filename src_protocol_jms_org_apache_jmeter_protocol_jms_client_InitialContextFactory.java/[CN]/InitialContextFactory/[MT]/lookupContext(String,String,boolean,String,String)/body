@@ -9,7 +9,15 @@
       props.setProperty(Context.SECURITY_CREDENTIALS,securityCredentials);
       log.info("authentication properties set");
     }
-    ctx=new InitialContext(props);
+    try {
+      ctx=new InitialContext(props);
+    }
+ catch (    NoClassDefFoundError e) {
+      throw new NamingException(e.toString());
+    }
+catch (    Exception e) {
+      throw new NamingException(e.toString());
+    }
     MAP.put(initialContextFactory + providerUrl,ctx);
   }
   return ctx;

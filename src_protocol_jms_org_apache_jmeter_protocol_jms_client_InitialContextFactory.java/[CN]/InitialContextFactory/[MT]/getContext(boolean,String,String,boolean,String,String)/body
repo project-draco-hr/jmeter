@@ -1,6 +1,14 @@
 {
   if (useProps) {
-    return new InitialContext();
+    try {
+      return new InitialContext();
+    }
+ catch (    NoClassDefFoundError e) {
+      throw new NamingException(e.toString());
+    }
+catch (    Exception e) {
+      throw new NamingException(e.toString());
+    }
   }
  else {
     return lookupContext(initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
