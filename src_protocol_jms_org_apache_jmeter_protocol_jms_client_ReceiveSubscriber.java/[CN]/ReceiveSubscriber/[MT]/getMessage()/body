@@ -1,7 +1,0 @@
-{
-  Message msg=queue.poll();
-  if (msg != null) {
-    counter--;
-  }
-  return msg;
-}

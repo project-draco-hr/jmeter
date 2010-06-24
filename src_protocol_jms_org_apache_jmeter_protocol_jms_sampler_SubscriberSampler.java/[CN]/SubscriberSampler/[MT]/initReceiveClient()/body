@@ -1,8 +1,6 @@
 {
-  timeout=getTimeoutAsLong();
-  interrupted=false;
   SUBSCRIBER=new ReceiveSubscriber(getUseJNDIPropertiesAsBoolean(),getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),isUseAuth(),getUsername(),getPassword());
-  SUBSCRIBER.resume();
+  SUBSCRIBER.start();
   ClientPool.addClient(SUBSCRIBER);
   log.debug("SubscriberSampler.initReceiveClient called");
 }

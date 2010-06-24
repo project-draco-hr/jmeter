@@ -1,8 +1,0 @@
-{
-  try {
-    this.CONN.start();
-  }
- catch (  JMSException e) {
-    log.error("failed to start recieving");
-  }
-}

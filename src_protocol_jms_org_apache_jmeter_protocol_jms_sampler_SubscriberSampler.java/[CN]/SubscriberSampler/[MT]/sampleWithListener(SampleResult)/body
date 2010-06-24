@@ -1,0 +1,44 @@
+{
+  StringBuilder buffer=new StringBuilder();
+  StringBuilder propBuffer=new StringBuilder();
+  int loop=getIterationCount();
+  int read=0;
+  long until=0L;
+  long now=System.currentTimeMillis();
+  if (timeout > 0) {
+    until=timeout + now;
+  }
+  while (!interrupted && (until == 0 || now < until) && read < loop) {
+    try {
+      Message msg=queue.poll(calculateWait(until,now),TimeUnit.MILLISECONDS);
+      if (msg != null) {
+        read++;
+        extractContent(buffer,propBuffer,msg);
+      }
+    }
+ catch (    InterruptedException e) {
+    }
+    now=System.currentTimeMillis();
+  }
+  result.sampleEnd();
+  if (getReadResponseAsBoolean()) {
+    result.setResponseData(buffer.toString().getBytes());
+  }
+ else {
+    result.setBytes(buffer.toString().getBytes().length);
+  }
+  result.setResponseHeaders(propBuffer.toString());
+  result.setDataType(SampleResult.TEXT);
+  if (read == 0) {
+    result.setResponseCode("404");
+    result.setSuccessful(false);
+  }
+ else {
+    result.setResponseCodeOK();
+    result.setSuccessful(true);
+  }
+  result.setResponseMessage(read + " messages received");
+  result.setSamplerData(loop + " messages expected");
+  result.setSampleCount(read);
+  return result;
+}

@@ -1,8 +1,19 @@
 {
-  if (getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC)) {
-    return sampleWithReceive();
+  SampleResult result=new SampleResult();
+  result.setDataType(SampleResult.TEXT);
+  result.setSampleLabel(getName());
+  result.sampleStart();
+  if (exceptionDuringInit != null) {
+    result.sampleEnd();
+    result.setSuccessful(false);
+    result.setResponseCode("000");
+    result.setResponseMessage(exceptionDuringInit.toString());
+    return result;
+  }
+  if (useReceive) {
+    return sampleWithReceive(result);
   }
  else {
-    return sampleWithListener();
+    return sampleWithListener(result);
   }
 }

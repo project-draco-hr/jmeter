@@ -1,16 +1,13 @@
 {
-  timeout=getTimeoutAsLong();
-  interrupted=false;
   OnMessageSubscriber sub=(OnMessageSubscriber)ClientPool.get(this);
   if (sub == null) {
     sub=new OnMessageSubscriber(getUseJNDIPropertiesAsBoolean(),getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),isUseAuth(),getUsername(),getPassword());
-    queue.clear();
+    queue=new LinkedBlockingQueue<Message>();
     sub.setMessageListener(this);
-    sub.resume();
+    sub.start();
     ClientPool.addClient(sub);
     ClientPool.put(this,sub);
     log.debug("SubscriberSampler.initListenerClient called");
     log.debug("loop count " + getIterations());
   }
-  return sub;
 }

@@ -1,18 +1,12 @@
 {
-  this.RUN=false;
+  log.debug("close()");
   try {
-    this.CONN.stop();
-    Utils.close(SUBSCRIBER,log);
-    Utils.close(SESSION,log);
-    Utils.close(CONN,log);
-    this.CLIENTTHREAD.interrupt();
-    this.CLIENTTHREAD=null;
-    queue.clear();
+    CONN.stop();
   }
  catch (  JMSException e) {
     log.error(e.getMessage());
   }
-catch (  Exception e) {
-    log.error(e.getMessage());
-  }
+  Utils.close(SUBSCRIBER,log);
+  Utils.close(SESSION,log);
+  Utils.close(CONN,log);
 }

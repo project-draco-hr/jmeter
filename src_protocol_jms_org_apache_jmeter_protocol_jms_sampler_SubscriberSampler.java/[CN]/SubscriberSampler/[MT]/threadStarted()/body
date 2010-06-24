@@ -1,0 +1,31 @@
+{
+  timeout=getTimeoutAsLong();
+  interrupted=false;
+  exceptionDuringInit=null;
+  useReceive=getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC);
+  if (useReceive) {
+    try {
+      initReceiveClient();
+    }
+ catch (    NamingException e) {
+      exceptionDuringInit=e;
+    }
+catch (    JMSException e) {
+      exceptionDuringInit=e;
+    }
+  }
+ else {
+    try {
+      initListenerClient();
+    }
+ catch (    JMSException e) {
+      exceptionDuringInit=e;
+    }
+catch (    NamingException e) {
+      exceptionDuringInit=e;
+    }
+  }
+  if (exceptionDuringInit != null) {
+    log.error("Could not initialise client",exceptionDuringInit);
+  }
+}

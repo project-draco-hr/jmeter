@@ -1,5 +1,5 @@
 {
-  if (message instanceof TextMessage || message instanceof MapMessage) {
-    queue.add(message);
+  if (!queue.offer(message)) {
+    log.warn("Could not add message to queue");
   }
 }

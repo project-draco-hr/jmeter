@@ -1,0 +1,10 @@
+{
+  Message message=null;
+  if (timeout < 10) {
+    message=SUBSCRIBER.receiveNoWait();
+  }
+ else {
+    message=SUBSCRIBER.receive(timeout);
+  }
+  return message;
+}
