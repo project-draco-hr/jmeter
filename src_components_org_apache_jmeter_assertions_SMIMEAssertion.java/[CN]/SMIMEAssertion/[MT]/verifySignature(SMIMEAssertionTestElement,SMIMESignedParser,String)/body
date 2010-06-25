@@ -3,10 +3,10 @@
   try {
     CertStore certs=s.getCertificatesAndCRLs("Collection","BC");
     SignerInformationStore signers=s.getSignerInfos();
-    Iterator signerIt=signers.getSigners().iterator();
+    Iterator<?> signerIt=signers.getSigners().iterator();
     if (signerIt.hasNext()) {
       SignerInformation signer=(SignerInformation)signerIt.next();
-      Iterator certIt=certs.getCertificates(signer.getSID()).iterator();
+      Iterator<?> certIt=certs.getCertificates(signer.getSID()).iterator();
       if (certIt.hasNext()) {
         X509Certificate cert=(X509Certificate)certIt.next();
         if (testElement.isVerifySignature()) {
@@ -27,7 +27,7 @@
           }
           String email=testElement.getSignerEmail();
           if (email.trim().length() > 0) {
-            List emailfromCert=getEmailFromCert(cert);
+            List<String> emailfromCert=getEmailFromCert(cert);
             if (!emailfromCert.contains(email)) {
               res.setFailure(true);
               failureMessage.append("Email address \"").append(email).append("\" not present in signer certificate\n");
