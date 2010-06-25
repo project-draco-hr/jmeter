@@ -1,0 +1,50 @@
+{
+  checkForBouncycastle();
+  AssertionResult res=new AssertionResult(name);
+  try {
+    MimeMessage msg=getMessageFromResponse(response,0);
+    SMIMESignedParser s=null;
+    if (msg.isMimeType("multipart/signed")) {
+      MimeMultipart multipart=(MimeMultipart)msg.getContent();
+      s=new SMIMESignedParser(multipart);
+    }
+ else     if (msg.isMimeType("application/pkcs7-mime") || msg.isMimeType("application/x-pkcs7-mime")) {
+      s=new SMIMESignedParser(msg);
+    }
+    if (null != s) {
+      if (testElement.isNotSigned()) {
+        res.setFailure(true);
+        res.setFailureMessage("Mime message is signed");
+      }
+ else       if (testElement.isVerifySignature() || !testElement.isSignerNoCheck()) {
+        res=verifySignature(testElement,s,name);
+      }
+    }
+ else {
+      if (!testElement.isNotSigned()) {
+        res.setFailure(true);
+        res.setFailureMessage("Mime message is not signed");
+      }
+    }
+  }
+ catch (  MessagingException e) {
+    String msg="Cannot parse mime msg: " + e.getMessage();
+    log.warn(msg,e);
+    res.setFailure(true);
+    res.setFailureMessage(msg);
+  }
+catch (  CMSException e) {
+    res.setFailure(true);
+    res.setFailureMessage("Error reading the signature: " + e.getMessage());
+  }
+catch (  SMIMEException e) {
+    res.setFailure(true);
+    res.setFailureMessage("Cannot extract signed body part from signature: " + e.getMessage());
+  }
+catch (  IOException e) {
+    log.error("Cannot read mime message content: " + e.getMessage(),e);
+    res.setError(true);
+    res.setFailureMessage(e.getMessage());
+  }
+  return res;
+}

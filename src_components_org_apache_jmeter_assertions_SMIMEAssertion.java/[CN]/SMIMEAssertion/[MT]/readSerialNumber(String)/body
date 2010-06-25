@@ -1,0 +1,6 @@
+{
+  if (serialString.startsWith("0x") || serialString.startsWith("0X")) {
+    return new BigInteger(serialString.substring(2),16);
+  }
+  return new BigInteger(serialString);
+}

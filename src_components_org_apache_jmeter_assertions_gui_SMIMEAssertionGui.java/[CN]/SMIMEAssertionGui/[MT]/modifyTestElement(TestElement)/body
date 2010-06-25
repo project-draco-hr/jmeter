@@ -1,0 +1,14 @@
+{
+  configureTestElement(el);
+  SMIMEAssertionTestElement smimeAssertion=(SMIMEAssertionTestElement)el;
+  smimeAssertion.setVerifySignature(verifySignature.isSelected());
+  smimeAssertion.setNotSigned(notSigned.isSelected());
+  smimeAssertion.setIssuerDn(issuerDnField.getText());
+  smimeAssertion.setSignerDn(signerDnField.getText());
+  smimeAssertion.setSignerSerial(signerSerialNumberField.getText());
+  smimeAssertion.setSignerEmail(signerEmailField.getText());
+  smimeAssertion.setSignerCertFile(signerCertFile.getText());
+  smimeAssertion.setSignerNoCheck(signerNoCheck.isSelected());
+  smimeAssertion.setSignerCheckConstraints(signerCheckConstraints.isSelected());
+  smimeAssertion.setSignerCheckByFile(signerCheckByFile.isSelected());
+}

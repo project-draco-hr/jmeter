@@ -1,0 +1,8 @@
+{
+  SampleResult subResults[]=response.getSubResults();
+  byte[] data=subResults[messageNumber].getResponseData();
+  Session session=Session.getDefaultInstance(new Properties());
+  MimeMessage msg=new MimeMessage(session,new ByteArrayInputStream(data));
+  log.debug("msg.getSize() = " + msg.getSize());
+  return msg;
+}

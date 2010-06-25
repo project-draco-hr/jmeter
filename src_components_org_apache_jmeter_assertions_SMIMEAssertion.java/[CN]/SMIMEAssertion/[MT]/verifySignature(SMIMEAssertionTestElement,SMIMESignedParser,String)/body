@@ -1,0 +1,84 @@
+{
+  AssertionResult res=new AssertionResult(name);
+  try {
+    CertStore certs=s.getCertificatesAndCRLs("Collection","BC");
+    SignerInformationStore signers=s.getSignerInfos();
+    Iterator signerIt=signers.getSigners().iterator();
+    if (signerIt.hasNext()) {
+      SignerInformation signer=(SignerInformation)signerIt.next();
+      Iterator certIt=certs.getCertificates(signer.getSID()).iterator();
+      if (certIt.hasNext()) {
+        X509Certificate cert=(X509Certificate)certIt.next();
+        if (testElement.isVerifySignature()) {
+          if (!signer.verify(cert.getPublicKey(),"BC")) {
+            res.setFailure(true);
+            res.setFailureMessage("Signature is invalid");
+          }
+        }
+        if (testElement.isSignerCheckConstraints()) {
+          StringBuffer failureMessage=new StringBuffer();
+          String serial=testElement.getSignerSerial();
+          if (serial.trim().length() > 0) {
+            BigInteger serialNbr=readSerialNumber(serial);
+            if (!serialNbr.equals(cert.getSerialNumber())) {
+              res.setFailure(true);
+              failureMessage.append("Serial number ").append(serialNbr).append(" does not match serial from signer certificate: ").append(cert.getSerialNumber()).append("\n");
+            }
+          }
+          String email=testElement.getSignerEmail();
+          if (email.trim().length() > 0) {
+            List emailfromCert=getEmailFromCert(cert);
+            if (!emailfromCert.contains(email)) {
+              res.setFailure(true);
+              failureMessage.append("Email address \"").append(email).append("\" not present in signer certificate\n");
+            }
+          }
+          String subject=testElement.getSignerDn();
+          if (subject.length() > 0) {
+            X500Principal principal=new X500Principal(subject);
+            if (!principal.equals(cert.getSubjectX500Principal())) {
+              res.setFailure(true);
+              failureMessage.append("Distinguished name of signer certificate does not match \"").append(subject).append("\"\n");
+            }
+          }
+          String issuer=testElement.getIssuerDn();
+          if (issuer.length() > 0) {
+            X500Principal principal=new X500Principal(issuer);
+            if (!principal.equals(cert.getIssuerX500Principal())) {
+              res.setFailure(true);
+              failureMessage.append("Issuer distinguished name of signer certificate does not match \"").append(subject).append("\"\n");
+            }
+          }
+          if (failureMessage.length() > 0) {
+            res.setFailureMessage(failureMessage.toString());
+          }
+        }
+        if (testElement.isSignerCheckByFile()) {
+          CertificateFactory cf=CertificateFactory.getInstance("X.509");
+          X509Certificate certFromFile=(X509Certificate)cf.generateCertificate(new FileInputStream(testElement.getSignerCertFile()));
+          if (!certFromFile.equals(cert)) {
+            res.setFailure(true);
+            res.setFailureMessage("Signer certificate does not match certificate " + testElement.getSignerCertFile());
+          }
+        }
+      }
+ else {
+        res.setFailure(true);
+        res.setFailureMessage("No signer certificate found in signature");
+      }
+    }
+    if (signerIt.hasNext()) {
+      log.warn("SMIME message contains multiple signers! Checking multiple signers is not supported.");
+    }
+  }
+ catch (  GeneralSecurityException e) {
+    log.error(e.getMessage(),e);
+    res.setError(true);
+    res.setFailureMessage(e.getMessage());
+  }
+catch (  FileNotFoundException e) {
+    res.setFailure(true);
+    res.setFailureMessage("certificate file not found: " + e.getMessage());
+  }
+  return res;
+}

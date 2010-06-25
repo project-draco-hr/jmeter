@@ -1,0 +1,15 @@
+{
+  JPanel panel=new JPanel();
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("smime_assertion_signature")));
+  verifySignature=new JCheckBox(JMeterUtils.getResString("smime_assertion_verify_signature"));
+  notSigned=new JCheckBox(JMeterUtils.getResString("smime_assertion_not_signed"));
+  notSigned.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      verifySignature.setEnabled(!notSigned.isSelected());
+    }
+  }
+);
+  panel.add(verifySignature);
+  panel.add(notSigned);
+  return panel;
+}

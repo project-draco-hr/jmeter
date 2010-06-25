@@ -1,0 +1,5 @@
+{
+  if (null == Security.getProvider("BC")) {
+    Security.addProvider(new BouncyCastleProvider());
+  }
+}
