@@ -4,5 +4,6 @@
   SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
   Destination dest=Utils.lookupDestination(ctx,destinationName);
   SUBSCRIBER=SESSION.createConsumer(dest);
+  queue=null;
   log.debug("<init> complete");
 }

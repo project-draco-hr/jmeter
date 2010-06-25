@@ -1,5 +1,18 @@
 {
   Message message=null;
+  if (queue != null) {
+    try {
+      if (timeout < 10) {
+        message=queue.poll();
+      }
+ else {
+        message=queue.poll(timeout,TimeUnit.MILLISECONDS);
+      }
+    }
+ catch (    InterruptedException e) {
+    }
+    return message;
+  }
   if (timeout < 10) {
     message=SUBSCRIBER.receiveNoWait();
   }

@@ -4,5 +4,12 @@
   SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
   Destination dest=Utils.lookupDestination(ctx,destinationName);
   SUBSCRIBER=SESSION.createConsumer(dest);
+  if (queueSize <= 0) {
+    queue=new LinkedBlockingQueue<Message>();
+  }
+ else {
+    queue=new LinkedBlockingQueue<Message>(queueSize);
+  }
+  SUBSCRIBER.setMessageListener(this);
   log.debug("<init> complete");
 }

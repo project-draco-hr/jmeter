@@ -1,6 +1,4 @@
 {
   SUBSCRIBER=new ReceiveSubscriber(getUseJNDIPropertiesAsBoolean(),getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),isUseAuth(),getUsername(),getPassword());
-  SUBSCRIBER.start();
-  ClientPool.addClient(SUBSCRIBER);
   log.debug("SubscriberSampler.initReceiveClient called");
 }
