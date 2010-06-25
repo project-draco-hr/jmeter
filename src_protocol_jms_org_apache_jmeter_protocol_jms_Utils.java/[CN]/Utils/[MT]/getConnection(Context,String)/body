@@ -1,5 +1,11 @@
 {
-  Object objfac=ctx.lookup(factoryName);
+  Object objfac=null;
+  try {
+    objfac=ctx.lookup(factoryName);
+  }
+ catch (  NoClassDefFoundError e) {
+    throw new NamingException("Lookup failed: " + e.toString());
+  }
   if (objfac instanceof javax.jms.ConnectionFactory) {
     return ((javax.jms.ConnectionFactory)objfac).createConnection();
   }
