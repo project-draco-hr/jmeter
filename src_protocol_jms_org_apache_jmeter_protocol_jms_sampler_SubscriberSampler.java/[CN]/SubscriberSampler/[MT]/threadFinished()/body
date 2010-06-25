@@ -1,3 +1,5 @@
 {
-  SUBSCRIBER.close();
+  if (SUBSCRIBER != null) {
+    SUBSCRIBER.close();
+  }
 }

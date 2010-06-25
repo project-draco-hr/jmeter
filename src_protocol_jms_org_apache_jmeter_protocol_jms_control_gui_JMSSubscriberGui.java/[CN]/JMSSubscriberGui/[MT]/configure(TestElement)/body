@@ -12,5 +12,6 @@
   useAuth.setSelected(sampler.isUseAuth());
   readResponse.setSelected(sampler.getReadResponseAsBoolean());
   clientChoice.setText(sampler.getClientChoice());
+  stopBetweenSamples.setSelected(sampler.isStopBetweenSamples());
   timeout.setText(sampler.getTimeout());
 }

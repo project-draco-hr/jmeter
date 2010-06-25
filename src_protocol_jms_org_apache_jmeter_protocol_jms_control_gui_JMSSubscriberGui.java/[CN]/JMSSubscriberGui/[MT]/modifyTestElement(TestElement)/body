@@ -12,5 +12,6 @@
   sampler.setIterations(iterations.getText());
   sampler.setReadResponse(String.valueOf(readResponse.isSelected()));
   sampler.setClientChoice(clientChoice.getText());
+  sampler.setStopBetweenSamples(stopBetweenSamples.isSelected());
   sampler.setTimeout(timeout.getText());
 }

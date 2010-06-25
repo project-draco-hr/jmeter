@@ -3,10 +3,13 @@
   interrupted=false;
   exceptionDuringInit=null;
   useReceive=getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC);
+  stopBetweenSamples=isStopBetweenSamples();
   if (useReceive) {
     try {
       initReceiveClient();
-      SUBSCRIBER.start();
+      if (!stopBetweenSamples) {
+        SUBSCRIBER.start();
+      }
     }
  catch (    NamingException e) {
       exceptionDuringInit=e;
@@ -18,7 +21,9 @@ catch (    JMSException e) {
  else {
     try {
       initListenerClient();
-      SUBSCRIBER.start();
+      if (!stopBetweenSamples) {
+        SUBSCRIBER.start();
+      }
     }
  catch (    JMSException e) {
       exceptionDuringInit=e;

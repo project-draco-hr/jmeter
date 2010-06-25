@@ -10,6 +10,14 @@
     result.setResponseMessage(exceptionDuringInit.toString());
     return result;
   }
+  if (stopBetweenSamples) {
+    try {
+      SUBSCRIBER.start();
+    }
+ catch (    JMSException e) {
+      log.warn("Problem starting subscriber",e);
+    }
+  }
   StringBuilder buffer=new StringBuilder();
   StringBuilder propBuffer=new StringBuilder();
   int loop=getIterationCount();
@@ -53,5 +61,13 @@
   result.setResponseMessage(read + " message(s) received successfully");
   result.setSamplerData(loop + " messages expected");
   result.setSampleCount(read);
+  if (stopBetweenSamples) {
+    try {
+      SUBSCRIBER.stop();
+    }
+ catch (    JMSException e) {
+      log.warn("Problem stopping subscriber",e);
+    }
+  }
   return result;
 }

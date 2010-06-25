@@ -4,6 +4,10 @@
   add(makeTitlePanel(),BorderLayout.NORTH);
   JPanel mainPanel=new VerticalPanel();
   add(mainPanel,BorderLayout.CENTER);
+  jndiICF.setToolTipText(Context.INITIAL_CONTEXT_FACTORY);
+  urlField.setToolTipText(Context.PROVIDER_URL);
+  jmsUser.setToolTipText(Context.SECURITY_PRINCIPAL);
+  jmsPwd.setToolTipText(Context.SECURITY_CREDENTIALS);
   mainPanel.add(useProperties);
   mainPanel.add(jndiICF);
   mainPanel.add(urlField);
@@ -15,7 +19,10 @@
   mainPanel.add(iterations);
   mainPanel.add(readResponse);
   mainPanel.add(timeout);
-  mainPanel.add(clientChoice);
+  JPanel choice=new HorizontalPanel();
+  choice.add(clientChoice);
+  choice.add(stopBetweenSamples);
+  mainPanel.add(choice);
   useProperties.addChangeListener(this);
   useAuth.addChangeListener(this);
 }
