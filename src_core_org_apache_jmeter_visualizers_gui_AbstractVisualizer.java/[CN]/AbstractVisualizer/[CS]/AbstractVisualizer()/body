@@ -28,7 +28,7 @@
     }
   }
 );
-  filePanel=new FilePanel(JMeterUtils.getResString("file_visualizer_output_file"),".jtl");
+  filePanel=new FilePanel(JMeterUtils.getResString("file_visualizer_output_file"),EXTS);
   filePanel.addChangeListener(this);
   filePanel.add(new JLabel(JMeterUtils.getResString("log_only")));
   filePanel.add(errorLogging);

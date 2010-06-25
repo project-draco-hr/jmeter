@@ -1,5 +1,10 @@
 {
   this.title=title;
-  this.filetype=filetype;
+  if (filetype == null) {
+    this.filetypes=null;
+  }
+ else {
+    this.filetypes=new String[]{filetype};
+  }
   init();
 }

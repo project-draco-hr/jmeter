@@ -1,11 +1,11 @@
 {
   if (e.getActionCommand().equals(ACTION_BROWSE)) {
     JFileChooser chooser;
-    if (filetype == null) {
+    if (filetypes == null || filetypes.length == 0) {
       chooser=FileDialoger.promptToOpenFile();
     }
  else {
-      chooser=FileDialoger.promptToOpenFile(new String[]{filetype});
+      chooser=FileDialoger.promptToOpenFile(filetypes);
     }
     if (chooser != null && chooser.getSelectedFile() != null) {
       filename.setText(chooser.getSelectedFile().getPath());

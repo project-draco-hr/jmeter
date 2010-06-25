@@ -1,0 +1,6 @@
+{
+  title=resString;
+  this.filetypes=new String[exts.length];
+  System.arraycopy(exts,0,this.filetypes,0,exts.length);
+  init();
+}
