@@ -4,7 +4,7 @@
       String fullName=aliasToClass(alias);
       return super.realClass(fullName == null ? alias : fullName);
     }
-    @SuppressWarnings("unchecked") @Override public String serializedClass(    Class type){
+    @Override public String serializedClass(    @SuppressWarnings("rawtypes") Class type){
       if (type == null) {
         return super.serializedClass(null);
       }
