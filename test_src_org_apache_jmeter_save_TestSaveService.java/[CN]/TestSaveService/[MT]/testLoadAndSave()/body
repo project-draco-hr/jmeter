@@ -2,7 +2,7 @@
   byte[] original=new byte[1000000];
   boolean failed=false;
   for (int i=0; i < FILES.length; i++) {
-    InputStream in=new FileInputStream(new File("testfiles/" + FILES[i]));
+    InputStream in=new FileInputStream(findTestFile("testfiles/" + FILES[i]));
     int len=in.read(original);
     in.close();
     in=new ByteArrayInputStream(original,0,len);

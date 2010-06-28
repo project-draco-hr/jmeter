@@ -1,0 +1,15 @@
+{
+  SaveService.loadProperties();
+  List<String> testClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{TestElement.class,JMeterGUIComponent.class,TestBean.class});
+  boolean failed=false;
+  for (  String className : testClasses) {
+    String alias=SaveService.classToAlias(className);
+    if (alias.equals(className)) {
+      System.out.println("Missing alias for " + alias);
+      failed=true;
+    }
+  }
+  if (failed) {
+    fail("One or more classes don't have aliases");
+  }
+}
