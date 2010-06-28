@@ -2,8 +2,7 @@
   final String lang=getScriptLanguage();
   ScriptEngine scriptEngine=sem.getEngineByName(lang);
   if (scriptEngine == null) {
-    log.error("Unsupported scripting engine: " + lang);
-    return null;
+    throw new ScriptException("Cannot find engine named: " + lang);
   }
   File scriptFile=new File(getFilename());
   if (scriptFile.exists()) {
