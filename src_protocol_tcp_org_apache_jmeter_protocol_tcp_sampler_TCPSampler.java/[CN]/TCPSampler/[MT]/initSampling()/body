@@ -1,0 +1,7 @@
+{
+  protocolHandler=getProtocol();
+  log.debug("Using Protocol Handler: " + (protocolHandler == null ? "NONE" : protocolHandler.getClass().getName()));
+  if (protocolHandler != null) {
+    protocolHandler.setupTest();
+  }
+}

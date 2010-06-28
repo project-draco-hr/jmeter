@@ -1,4 +1,8 @@
 {
+  if (firstSample) {
+    initSampling();
+    firstSample=false;
+  }
   log.debug(getLabel() + " " + getFilename()+ " "+ getUsername()+ " "+ getPassword());
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
