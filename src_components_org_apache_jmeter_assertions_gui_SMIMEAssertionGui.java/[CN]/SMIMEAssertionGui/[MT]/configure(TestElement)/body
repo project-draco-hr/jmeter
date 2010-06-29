@@ -3,12 +3,19 @@
   SMIMEAssertionTestElement smimeAssertion=(SMIMEAssertionTestElement)el;
   verifySignature.setSelected(smimeAssertion.isVerifySignature());
   notSigned.setSelected(smimeAssertion.isNotSigned());
-  if (smimeAssertion.isSignerNoCheck())   signerNoCheck.setSelected(true);
-  if (smimeAssertion.isSignerCheckConstraints())   signerCheckConstraints.setSelected(true);
-  if (smimeAssertion.isSignerCheckByFile())   signerCheckByFile.setSelected(true);
+  if (smimeAssertion.isSignerNoCheck()) {
+    signerNoCheck.setSelected(true);
+  }
+  if (smimeAssertion.isSignerCheckConstraints()) {
+    signerCheckConstraints.setSelected(true);
+  }
+  if (smimeAssertion.isSignerCheckByFile()) {
+    signerCheckByFile.setSelected(true);
+  }
   issuerDnField.setText(smimeAssertion.getIssuerDn());
   signerDnField.setText(smimeAssertion.getSignerDn());
   signerSerialNumberField.setText(smimeAssertion.getSignerSerial());
   signerEmailField.setText(smimeAssertion.getSignerEmail());
   signerCertFile.setText(smimeAssertion.getSignerCertFile());
+  messagePositionTf.setText(smimeAssertion.getSpecificMessagePosition());
 }

@@ -2,7 +2,15 @@
   checkForBouncycastle();
   AssertionResult res=new AssertionResult(name);
   try {
-    MimeMessage msg=getMessageFromResponse(response,0);
+    MimeMessage msg=null;
+    final int msgPos=testElement.getSpecificMessagePositionAsInt();
+    if (msgPos < 0) {
+      SampleResult subResults[]=response.getSubResults();
+      msg=getMessageFromResponse(response,subResults.length + msgPos);
+    }
+ else {
+      msg=getMessageFromResponse(response,msgPos);
+    }
     SMIMESignedParser s=null;
     if (msg.isMimeType("multipart/signed")) {
       MimeMultipart multipart=(MimeMultipart)msg.getContent();

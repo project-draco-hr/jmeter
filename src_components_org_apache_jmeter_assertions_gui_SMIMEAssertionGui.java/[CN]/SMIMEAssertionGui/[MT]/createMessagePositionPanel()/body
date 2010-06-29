@@ -1,0 +1,6 @@
+{
+  JPanel panel=new JPanel();
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("smime_assertion_message_position")));
+  panel.add(messagePositionTf);
+  return panel;
+}

@@ -11,4 +11,5 @@
   smimeAssertion.setSignerNoCheck(signerNoCheck.isSelected());
   smimeAssertion.setSignerCheckConstraints(signerCheckConstraints.isSelected());
   smimeAssertion.setSignerCheckByFile(signerCheckByFile.isSelected());
+  smimeAssertion.setSpecificMessagePosition(messagePositionTf.getText());
 }
