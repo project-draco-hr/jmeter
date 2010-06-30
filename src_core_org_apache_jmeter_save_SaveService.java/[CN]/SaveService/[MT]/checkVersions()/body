@@ -3,9 +3,6 @@
   if (!PROPVERSION.equalsIgnoreCase(propertiesVersion)) {
     log.warn("Bad _version - expected " + PROPVERSION + ", found "+ propertiesVersion+ ".");
   }
-  if (!FILEVERSION.equalsIgnoreCase(fileVersion)) {
-    log.warn("Bad _file_version - expected " + FILEVERSION + ", found "+ fileVersion+ ".");
-  }
   if (versionsOK) {
     log.info("All converter versions present and correct");
   }
