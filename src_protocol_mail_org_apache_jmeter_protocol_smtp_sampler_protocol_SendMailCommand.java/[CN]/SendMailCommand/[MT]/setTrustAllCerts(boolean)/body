@@ -1,0 +1,11 @@
+{
+  if (useSSL) {
+    if (trustAllCerts) {
+      Security.setProperty("ssl.SocketFactory.provider",TRUST_ALL_SOCKET_FACTORY);
+    }
+ else {
+      Security.setProperty("ssl.SocketFactory.provider","");
+    }
+  }
+  this.trustAllCerts=trustAllCerts;
+}

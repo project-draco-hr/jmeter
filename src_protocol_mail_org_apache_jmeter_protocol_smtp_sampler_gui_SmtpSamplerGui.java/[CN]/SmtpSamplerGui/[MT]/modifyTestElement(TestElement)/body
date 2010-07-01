@@ -1,0 +1,26 @@
+{
+  te.clear();
+  super.configureTestElement(te);
+  te.setProperty(SmtpSampler.SERVER,smtpPanel.getServer());
+  te.setProperty(SmtpSampler.SERVER_PORT,smtpPanel.getPort());
+  te.setProperty(SmtpSampler.MAIL_FROM,smtpPanel.getMailFrom());
+  te.setProperty(SmtpSampler.RECEIVER_TO,smtpPanel.getReceiverTo());
+  te.setProperty(SmtpSampler.RECEIVER_CC,smtpPanel.getReceiverCC());
+  te.setProperty(SmtpSampler.RECEIVER_BCC,smtpPanel.getReceiverBCC());
+  te.setProperty(SmtpSampler.SUBJECT,smtpPanel.getSubject());
+  te.setProperty(SmtpSampler.INCLUDE_TIMESTAMP,Boolean.toString(smtpPanel.isIncludeTimestamp()));
+  te.setProperty(SmtpSampler.MESSAGE,smtpPanel.getBody());
+  te.setProperty(SmtpSampler.ATTACH_FILE,smtpPanel.getAttachments());
+  te.setProperty(SmtpSampler.USE_SSL,Boolean.toString(smtpPanel.isUseSSL()));
+  te.setProperty(SmtpSampler.USE_STARTTLS,Boolean.toString(smtpPanel.isUseStartTLS()));
+  te.setProperty(SmtpSampler.SSL_TRUST_ALL_CERTS,Boolean.toString(smtpPanel.isTrustAllCerts()));
+  te.setProperty(SmtpSampler.ENFORCE_STARTTLS,Boolean.toString(smtpPanel.isEnforceStartTLS()));
+  te.setProperty(SmtpSampler.USE_LOCAL_TRUSTSTORE,Boolean.toString(smtpPanel.isUseLocalTrustStore()));
+  te.setProperty(SmtpSampler.TRUSTSTORE_TO_USE,smtpPanel.getTrustStoreToUse());
+  te.setProperty(SmtpSampler.USE_EML,smtpPanel.isUseEmlMessage());
+  te.setProperty(SmtpSampler.EML_MESSAGE_TO_SEND,smtpPanel.getEmlMessage());
+  te.setProperty(SmtpSampler.USE_AUTH,Boolean.toString(smtpPanel.isUseAuth()));
+  te.setProperty(SmtpSampler.PASSWORD,smtpPanel.getPassword());
+  te.setProperty(SmtpSampler.USERNAME,smtpPanel.getUsername());
+  te.setProperty(SmtpSampler.MESSAGE_SIZE_STATS,Boolean.toString(smtpPanel.isMessageSizeStatistics()));
+}

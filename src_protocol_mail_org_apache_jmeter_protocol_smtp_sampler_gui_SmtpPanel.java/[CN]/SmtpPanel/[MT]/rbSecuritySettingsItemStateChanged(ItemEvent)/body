@@ -1,0 +1,27 @@
+{
+  final Object source=evt.getSource();
+  if (source == rbUseNone) {
+    cbTrustAllCerts.setEnabled(false);
+    cbTrustAllCerts.setSelected(false);
+    cbEnforceStartTLS.setEnabled(false);
+    cbEnforceStartTLS.setSelected(false);
+    cbUseLocalTrustStore.setSelected(false);
+    cbUseLocalTrustStore.setEnabled(false);
+    tfTrustStoreToUse.setEditable(false);
+  }
+ else   if (source == rbUseSSL) {
+    cbTrustAllCerts.setEnabled(true);
+    cbEnforceStartTLS.setEnabled(false);
+    cbEnforceStartTLS.setSelected(false);
+    cbUseLocalTrustStore.setEnabled(true);
+    tfTrustStoreToUse.setEditable(false);
+  }
+ else   if (source == rbUseStartTLS) {
+    cbTrustAllCerts.setEnabled(false);
+    cbTrustAllCerts.setSelected(false);
+    cbEnforceStartTLS.setEnabled(true);
+    cbUseLocalTrustStore.setEnabled(true);
+    cbUseLocalTrustStore.setSelected(false);
+    tfTrustStoreToUse.setEditable(false);
+  }
+}

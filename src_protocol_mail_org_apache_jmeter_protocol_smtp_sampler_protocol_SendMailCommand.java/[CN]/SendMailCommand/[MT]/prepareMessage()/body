@@ -1,0 +1,58 @@
+{
+  java.util.Properties props=new java.util.Properties();
+  String protocol=getProtocol();
+  props.put("mail." + protocol + ".host",smtpServer);
+  props.put("mail." + protocol + ".port",smtpPort);
+  props.put("mail." + protocol + ".auth",Boolean.toString(useAuthentication));
+  if (useStartTLS) {
+    props.put("mail.smtp.starttls.enable","true");
+  }
+  if (trustAllCerts && protocol.equalsIgnoreCase("smtps")) {
+    props.setProperty("mail.smtps.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
+    props.setProperty("mail.smtps.socketFactory.fallback","false");
+  }
+  session=Session.getInstance(props,null);
+  if (sendEmlMessage) {
+    message=new MimeMessage(session,new FileInputStream(emlMessage));
+  }
+ else {
+    message=new MimeMessage(session);
+    Multipart multipart=new MimeMultipart();
+    BodyPart body=new MimeBodyPart();
+    body.setText(mbProvider.getMailBody());
+    multipart.addBodyPart(body);
+    for (    File f : attachments) {
+      BodyPart attach=new MimeBodyPart();
+      attach.setFileName(f.getName());
+      attach.setDataHandler(new DataHandler(new FileDataSource(f)));
+      multipart.addBodyPart(attach);
+    }
+    message.setContent(multipart);
+  }
+  if (null != sender) {
+    message.setFrom(new InternetAddress(sender));
+  }
+  if (null != subject) {
+    message.setSubject(subject);
+  }
+  if (receiverTo != null) {
+    InternetAddress[] to=new InternetAddress[receiverTo.size()];
+    receiverTo.toArray(to);
+    message.setRecipients(Message.RecipientType.TO,to);
+  }
+  if (receiverCC != null) {
+    InternetAddress[] cc=new InternetAddress[receiverCC.size()];
+    receiverCC.toArray(cc);
+    message.setRecipients(Message.RecipientType.CC,cc);
+  }
+  if (receiverBCC != null) {
+    InternetAddress[] bcc=new InternetAddress[receiverBCC.size()];
+    receiverBCC.toArray(bcc);
+    message.setRecipients(Message.RecipientType.BCC,bcc);
+  }
+  for (  String key : headers.keySet()) {
+    message.setHeader(key,headers.get(key));
+  }
+  message.saveChanges();
+  return message;
+}

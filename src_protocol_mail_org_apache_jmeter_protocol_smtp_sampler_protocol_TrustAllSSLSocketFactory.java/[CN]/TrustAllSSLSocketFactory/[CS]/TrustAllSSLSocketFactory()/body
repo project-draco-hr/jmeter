@@ -1,0 +1,20 @@
+{
+  SSLContext sslcontext=null;
+  try {
+    sslcontext=SSLContext.getInstance("TLS");
+    sslcontext.init(null,new TrustManager[]{new X509TrustManager(){
+      public java.security.cert.X509Certificate[] getAcceptedIssuers(){
+        return null;
+      }
+      public void checkClientTrusted(      java.security.cert.X509Certificate[] certs,      String authType){
+      }
+      public void checkServerTrusted(      java.security.cert.X509Certificate[] certs,      String authType){
+      }
+    }
+},new java.security.SecureRandom());
+  }
+ catch (  Exception e) {
+    throw new RuntimeException("Could not create the SSL context",e);
+  }
+  factory=sslcontext.getSocketFactory();
+}

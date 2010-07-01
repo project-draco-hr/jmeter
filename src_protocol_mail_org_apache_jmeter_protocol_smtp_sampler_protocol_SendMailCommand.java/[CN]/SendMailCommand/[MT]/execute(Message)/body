@@ -1,0 +1,61 @@
+{
+  System.clearProperty("javax.net.ssl.trustStore");
+  if (useLocalTrustStore) {
+    File truststore=new File(trustStoreToUse);
+    logger.info("load local truststore - try to load truststore from: " + truststore.getAbsolutePath());
+    if (!truststore.exists()) {
+      logger.info("load local truststore -Failed to load truststore from: " + truststore.getAbsolutePath());
+      truststore=new File(FileServer.getFileServer().getBaseDir(),trustStoreToUse);
+      logger.info("load local truststore -Attempting to read truststore from:  " + truststore.getAbsolutePath());
+      if (!truststore.exists()) {
+        logger.info("load local truststore -Failed to load truststore from: " + truststore.getAbsolutePath() + ". Local truststore not available, aborting execution.");
+        throw new IOException("Local truststore file not found. Also not available under : " + truststore.getAbsolutePath());
+      }
+    }
+    System.setProperty("javax.net.ssl.trustStore",truststore.getAbsolutePath());
+  }
+  ByteArrayOutputStream debugOutputStream=new ByteArrayOutputStream();
+  debugOutStream=new PrintStream(debugOutputStream);
+  session.setDebugOut(debugOutStream);
+  session.setDebug(true);
+  Transport tr=session.getTransport(getProtocol());
+  SynchronousTransportListener listener=null;
+  if (synchronousMode) {
+    listener=new SynchronousTransportListener();
+    tr.addTransportListener(listener);
+  }
+  if (useAuthentication) {
+    tr.connect(smtpServer,username,password);
+  }
+ else {
+    tr.connect();
+  }
+  tr.sendMessage(message,message.getAllRecipients());
+  if (synchronousMode) {
+    listener.attend();
+  }
+  tr.close();
+  logger.debug("transport closed");
+  debugOutStream.flush();
+  debugReader=new BufferedReader(new InputStreamReader(new ByteArrayInputStream(debugOutputStream.toByteArray())));
+  String line;
+  int i=0;
+  while ((line=debugReader.readLine()) != null) {
+    logger.debug("server line " + i + ": "+ line);
+    if (line.matches(".*Ready to start TLS.*")) {
+      if (useStartTLS && enforceStartTLS) {
+        startTLSSuccessful=true;
+      }
+    }
+  }
+  debugReader.close();
+  debugOutStream.close();
+  session.setDebugOut(System.out);
+  if (useStartTLS && enforceStartTLS) {
+    if (!startTLSSuccessful) {
+      throw new MessagingException("StartTLS failed");
+    }
+  }
+  logger.debug("message sent");
+  return;
+}

@@ -1,0 +1,9 @@
+{
+  final String attachments=tfAttachment.getText().trim();
+  if (null != attachments && attachments.length() > 0) {
+    tfAttachment.setText(attachments + SmtpSampler.FILENAME_SEPARATOR + attachmentFileChooser.getSelectedFile().getAbsolutePath());
+  }
+ else {
+    tfAttachment.setText(attachmentFileChooser.getSelectedFile().getAbsolutePath());
+  }
+}

@@ -1,0 +1,16 @@
+{
+  if (cbUseEmlMessage.isSelected()) {
+    tfEmlMessage.setEnabled(true);
+    emlBrowseButton.setEnabled(true);
+    taMessage.setEnabled(false);
+    tfAttachment.setEnabled(false);
+    browseButton.setEnabled(false);
+  }
+ else {
+    tfEmlMessage.setEnabled(false);
+    emlBrowseButton.setEnabled(false);
+    taMessage.setEnabled(true);
+    tfAttachment.setEnabled(true);
+    browseButton.setEnabled(true);
+  }
+}

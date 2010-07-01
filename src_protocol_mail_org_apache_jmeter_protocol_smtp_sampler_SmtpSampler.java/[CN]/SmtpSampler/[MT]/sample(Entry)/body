@@ -1,0 +1,173 @@
+{
+  Message message=null;
+  SampleResult res=new SampleResult();
+  res.setSampleLabel(getName());
+  boolean isOK=false;
+  SendMailCommand instance=new SendMailCommand();
+  instance.setSmtpServer(getPropertyAsString(SmtpSampler.SERVER));
+  instance.setSmtpPort(getPropertyAsString(SmtpSampler.SERVER_PORT));
+  instance.setUseSSL(getPropertyAsBoolean(USE_SSL));
+  instance.setUseStartTLS(getPropertyAsBoolean(USE_STARTTLS));
+  instance.setTrustAllCerts(getPropertyAsBoolean(SSL_TRUST_ALL_CERTS));
+  instance.setEnforceStartTLS(getPropertyAsBoolean(ENFORCE_STARTTLS));
+  instance.setUseAuthentication(getPropertyAsBoolean(USE_AUTH));
+  instance.setUsername(getPropertyAsString(USERNAME));
+  instance.setPassword(getPropertyAsString(PASSWORD));
+  instance.setUseLocalTrustStore(getPropertyAsBoolean(USE_LOCAL_TRUSTSTORE));
+  instance.setTrustStoreToUse(getPropertyAsString(TRUSTSTORE_TO_USE));
+  instance.setEmlMessage(getPropertyAsString(EML_MESSAGE_TO_SEND));
+  instance.setUseEmlMessage(getPropertyAsBoolean(USE_EML));
+  if (getMailFrom().matches(".*@.*")) {
+    instance.setSender(getMailFrom());
+  }
+  try {
+    if (!getPropertyAsBoolean(USE_EML)) {
+      List<InternetAddress> receiversTo=new Vector<InternetAddress>();
+      if (getPropertyAsString(SmtpSampler.RECEIVER_TO).matches(".*@.*")) {
+        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_TO)).split(";");
+        for (int i=0; i < strReceivers.length; i++) {
+          receiversTo.add(new InternetAddress(strReceivers[i].trim()));
+        }
+      }
+ else {
+        receiversTo.add(new InternetAddress(getMailFrom()));
+      }
+      instance.setReceiverTo(receiversTo);
+      if (getPropertyAsString(SmtpSampler.RECEIVER_CC).matches(".*@.*")) {
+        List<InternetAddress> receiversCC=new Vector<InternetAddress>();
+        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_CC)).split(";");
+        for (int i=0; i < strReceivers.length; i++) {
+          receiversCC.add(new InternetAddress(strReceivers[i].trim()));
+        }
+        instance.setReceiverCC(receiversCC);
+      }
+      if (getPropertyAsString(SmtpSampler.RECEIVER_BCC).matches(".*@.*")) {
+        List<InternetAddress> receiversBCC=new Vector<InternetAddress>();
+        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_BCC)).split(";");
+        for (int i=0; i < strReceivers.length; i++) {
+          receiversBCC.add(new InternetAddress(strReceivers[i].trim()));
+        }
+        instance.setReceiverBCC(receiversBCC);
+      }
+      MailBodyProvider mb=new MailBodyProvider();
+      if (getPropertyAsString(MESSAGE) != null && !getPropertyAsString(MESSAGE).equals(""))       mb.setBody(getPropertyAsString(MESSAGE));
+      instance.setMbProvider(mb);
+      if (!getAttachments().equals("")) {
+        String[] attachments=getAttachments().split(FILENAME_SEPARATOR);
+        for (        String attachment : attachments) {
+          instance.addAttachment(new File(attachment));
+        }
+      }
+      instance.setSubject(getPropertyAsString(SUBJECT) + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
+    }
+ else {
+      if (getPropertyAsString(SmtpSampler.RECEIVER_TO).matches(".*@.*")) {
+        List<InternetAddress> receiversTo=new Vector<InternetAddress>();
+        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_TO)).split(";");
+        for (int i=0; i < strReceivers.length; i++) {
+          receiversTo.add(new InternetAddress(strReceivers[i].trim()));
+        }
+        instance.setReceiverTo(receiversTo);
+      }
+      if (getPropertyAsString(SmtpSampler.RECEIVER_CC).matches(".*@.*")) {
+        List<InternetAddress> receiversCC=new Vector<InternetAddress>();
+        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_CC)).split(";");
+        for (int i=0; i < strReceivers.length; i++) {
+          receiversCC.add(new InternetAddress(strReceivers[i].trim()));
+        }
+        instance.setReceiverCC(receiversCC);
+      }
+      if (getPropertyAsString(SmtpSampler.RECEIVER_BCC).matches(".*@.*")) {
+        List<InternetAddress> receiversBCC=new Vector<InternetAddress>();
+        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_BCC)).split(";");
+        for (int i=0; i < strReceivers.length; i++) {
+          receiversBCC.add(new InternetAddress(strReceivers[i].trim()));
+        }
+        instance.setReceiverBCC(receiversBCC);
+      }
+      String subj=getPropertyAsString(SUBJECT);
+      if (subj.trim().length() > 0) {
+        instance.setSubject(subj + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
+      }
+    }
+    instance.setSynchronousMode(true);
+    message=instance.prepareMessage();
+    if (getPropertyAsBoolean(MESSAGE_SIZE_STATS)) {
+      CounterOutputStream cs=new CounterOutputStream();
+      message.writeTo(cs);
+      res.setBytes(cs.getCount());
+    }
+ else {
+      res.setBytes(-1);
+    }
+  }
+ catch (  AddressException ex) {
+    log.warn("Error while preparing message",ex);
+    return res;
+  }
+catch (  IOException ex) {
+    ex.printStackTrace();
+  }
+catch (  MessagingException ex) {
+    ex.printStackTrace();
+  }
+  res.sampleStart();
+  try {
+    instance.execute(message);
+    res.setSamplerData("To: " + getPropertyAsString(SmtpSampler.RECEIVER_TO) + "\nCC: "+ getPropertyAsString(SmtpSampler.RECEIVER_CC)+ "\nBCC: "+ getPropertyAsString(SmtpSampler.RECEIVER_BCC));
+    res.setDataType(SampleResult.TEXT);
+    res.setResponseCodeOK();
+    res.setResponseMessage("Message successfully sent!\n" + instance.getServerResponse());
+    isOK=true;
+  }
+ catch (  AuthenticationFailedException afex) {
+    log.warn("",afex);
+    res.setResponseCode("500");
+    res.setResponseMessage("AuthenticationFailedException: authentication failed - wrong username / password!\n" + afex);
+  }
+catch (  MessagingException mex) {
+    log.warn("",mex);
+    res.setResponseCode("500");
+    if (mex.getMessage().matches(".*Could not connect to SMTP host.*465.*") && mex.getCause().getMessage().matches(".*Connection timed out.*")) {
+      res.setResponseMessage("MessagingException: Probably, SSL is not supported by the SMTP-Server!\n" + mex);
+    }
+ else     if (mex.getMessage().matches(".*StartTLS failed.*")) {
+      res.setResponseMessage("MessagingException: StartTLS not supported by server or initializing failed!\n" + mex);
+    }
+ else     if (mex.getMessage().matches(".*send command to.*") && mex.getCause().getMessage().matches(".*unable to find valid certification path to requested target.*")) {
+      res.setResponseMessage("MessagingException: Server certificate not trusted - perhaps you have to restart JMeter!\n" + mex);
+    }
+ else {
+      res.setResponseMessage("Other MessagingException: " + mex.toString());
+    }
+  }
+catch (  Exception ex) {
+    res.setResponseCode("500");
+    if (null != ex.getMessage() && ex.getMessage().matches("Failed to build truststore")) {
+      res.setResponseMessage("Failed to build truststore - did not try to send mail!");
+    }
+ else {
+      res.setResponseMessage("Other Exception: " + ex.toString());
+    }
+  }
+  res.sampleEnd();
+  try {
+    InputStream is=message.getInputStream();
+    StringBuffer sb=new StringBuffer();
+    byte[] buf=new byte[1024];
+    int read=is.read(buf);
+    while (read > 0) {
+      sb.append(new String(buf,0,read));
+      read=is.read(buf);
+    }
+    res.setResponseData(sb.toString().getBytes());
+  }
+ catch (  IOException ex) {
+    log.warn("",ex);
+  }
+catch (  MessagingException ex) {
+    log.warn("",ex);
+  }
+  res.setSuccessful(isOK);
+  return res;
+}
