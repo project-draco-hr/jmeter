@@ -6,12 +6,18 @@
     final int msgPos=testElement.getSpecificMessagePositionAsInt();
     if (msgPos < 0) {
       SampleResult subResults[]=response.getSubResults();
-      msg=getMessageFromResponse(response,subResults.length + msgPos);
+      final int pos=subResults.length + msgPos;
+      log.debug("Getting message number: " + pos + " of "+ subResults.length);
+      msg=getMessageFromResponse(response,pos);
     }
  else {
+      log.debug("Getting message number: " + msgPos);
       msg=getMessageFromResponse(response,msgPos);
     }
     SMIMESignedParser s=null;
+    if (log.isDebugEnabled()) {
+      log.debug("Content-type: " + msg.getContentType());
+    }
     if (msg.isMimeType("multipart/signed")) {
       MimeMultipart multipart=(MimeMultipart)msg.getContent();
       s=new SMIMESignedParser(multipart);
@@ -20,6 +26,7 @@
       s=new SMIMESignedParser(msg);
     }
     if (null != s) {
+      log.debug("Found signature");
       if (testElement.isNotSigned()) {
         res.setFailure(true);
         res.setFailureMessage("Mime message is signed");
@@ -29,6 +36,7 @@
       }
     }
  else {
+      log.debug("Did not find signature");
       if (!testElement.isNotSigned()) {
         res.setFailure(true);
         res.setFailureMessage("Mime message is not signed");

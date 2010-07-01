@@ -1,7 +1,13 @@
 {
   SampleResult subResults[]=response.getSubResults();
-  if (messageNumber >= subResults.length)   throw new MessagingException("Message number not present in results: " + messageNumber);
-  byte[] data=subResults[messageNumber].getResponseData();
+  if (messageNumber >= subResults.length || messageNumber < 0) {
+    throw new MessagingException("Message number not present in results: " + messageNumber);
+  }
+  final SampleResult sampleResult=subResults[messageNumber];
+  if (log.isDebugEnabled()) {
+    log.debug("Bytes: " + sampleResult.getBytes() + " CT: "+ sampleResult.getContentType());
+  }
+  byte[] data=sampleResult.getResponseData();
   Session session=Session.getDefaultInstance(new Properties());
   MimeMessage msg=new MimeMessage(session,new ByteArrayInputStream(data));
   log.debug("msg.getSize() = " + msg.getSize());
