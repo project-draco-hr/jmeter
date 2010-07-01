@@ -1,5 +1,4 @@
 {
-  System.clearProperty("javax.net.ssl.trustStore");
   if (useLocalTrustStore) {
     File truststore=new File(trustStoreToUse);
     logger.info("load local truststore - try to load truststore from: " + truststore.getAbsolutePath());
@@ -12,6 +11,7 @@
         throw new IOException("Local truststore file not found. Also not available under : " + truststore.getAbsolutePath());
       }
     }
+    logger.warn("Setting javax.net.ssl.trustStore - may affect the behaviour of other threads");
     System.setProperty("javax.net.ssl.trustStore",truststore.getAbsolutePath());
   }
   ByteArrayOutputStream debugOutputStream=new ByteArrayOutputStream();
