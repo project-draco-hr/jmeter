@@ -21,70 +21,17 @@
     instance.setSender(getMailFrom());
   }
   try {
+    instance.setReceiverTo(getPropNameAsAddresses(SmtpSampler.RECEIVER_TO));
+    instance.setReceiverCC(getPropNameAsAddresses(SmtpSampler.RECEIVER_CC));
+    instance.setReceiverBCC(getPropNameAsAddresses(SmtpSampler.RECEIVER_BCC));
+    instance.setSubject(getPropertyAsString(SUBJECT) + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
     if (!getPropertyAsBoolean(USE_EML)) {
-      List<InternetAddress> receiversTo=new Vector<InternetAddress>();
-      if (getPropertyAsString(SmtpSampler.RECEIVER_TO).matches(".*@.*")) {
-        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_TO)).split(";");
-        for (int i=0; i < strReceivers.length; i++) {
-          receiversTo.add(new InternetAddress(strReceivers[i].trim()));
-        }
-        instance.setReceiverTo(receiversTo);
-      }
-      if (getPropertyAsString(SmtpSampler.RECEIVER_CC).matches(".*@.*")) {
-        List<InternetAddress> receiversCC=new Vector<InternetAddress>();
-        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_CC)).split(";");
-        for (int i=0; i < strReceivers.length; i++) {
-          receiversCC.add(new InternetAddress(strReceivers[i].trim()));
-        }
-        instance.setReceiverCC(receiversCC);
-      }
-      if (getPropertyAsString(SmtpSampler.RECEIVER_BCC).matches(".*@.*")) {
-        List<InternetAddress> receiversBCC=new Vector<InternetAddress>();
-        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_BCC)).split(";");
-        for (int i=0; i < strReceivers.length; i++) {
-          receiversBCC.add(new InternetAddress(strReceivers[i].trim()));
-        }
-        instance.setReceiverBCC(receiversBCC);
-      }
-      MailBodyProvider mb=new MailBodyProvider();
-      if (getPropertyAsString(MESSAGE) != null && !getPropertyAsString(MESSAGE).equals(""))       mb.setBody(getPropertyAsString(MESSAGE));
-      instance.setMbProvider(mb);
+      instance.setMailBody(getPropertyAsString(MESSAGE));
       if (!getAttachments().equals("")) {
         String[] attachments=getAttachments().split(FILENAME_SEPARATOR);
         for (        String attachment : attachments) {
           instance.addAttachment(new File(attachment));
         }
-      }
-      instance.setSubject(getPropertyAsString(SUBJECT) + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
-    }
- else {
-      if (getPropertyAsString(SmtpSampler.RECEIVER_TO).matches(".*@.*")) {
-        List<InternetAddress> receiversTo=new Vector<InternetAddress>();
-        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_TO)).split(";");
-        for (int i=0; i < strReceivers.length; i++) {
-          receiversTo.add(new InternetAddress(strReceivers[i].trim()));
-        }
-        instance.setReceiverTo(receiversTo);
-      }
-      if (getPropertyAsString(SmtpSampler.RECEIVER_CC).matches(".*@.*")) {
-        List<InternetAddress> receiversCC=new Vector<InternetAddress>();
-        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_CC)).split(";");
-        for (int i=0; i < strReceivers.length; i++) {
-          receiversCC.add(new InternetAddress(strReceivers[i].trim()));
-        }
-        instance.setReceiverCC(receiversCC);
-      }
-      if (getPropertyAsString(SmtpSampler.RECEIVER_BCC).matches(".*@.*")) {
-        List<InternetAddress> receiversBCC=new Vector<InternetAddress>();
-        String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_BCC)).split(";");
-        for (int i=0; i < strReceivers.length; i++) {
-          receiversBCC.add(new InternetAddress(strReceivers[i].trim()));
-        }
-        instance.setReceiverBCC(receiversBCC);
-      }
-      String subj=getPropertyAsString(SUBJECT);
-      if (subj.trim().length() > 0) {
-        instance.setSubject(subj + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
       }
     }
     instance.setSynchronousMode(true);
@@ -100,13 +47,21 @@
   }
  catch (  AddressException ex) {
     log.warn("Error while preparing message",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
     return res;
   }
 catch (  IOException ex) {
-    ex.printStackTrace();
+    log.warn("Error while preparing message",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+    return res;
   }
 catch (  MessagingException ex) {
-    ex.printStackTrace();
+    log.warn("Error while preparing message",ex);
+    res.setResponseCode("500");
+    res.setResponseMessage(ex.toString());
+    return res;
   }
   res.sampleStart();
   try {
@@ -139,6 +94,7 @@ catch (  MessagingException mex) {
     }
   }
 catch (  Exception ex) {
+    log.warn("",ex);
     res.setResponseCode("500");
     if (null != ex.getMessage() && ex.getMessage().matches("Failed to build truststore")) {
       res.setResponseMessage("Failed to build truststore - did not try to send mail!");

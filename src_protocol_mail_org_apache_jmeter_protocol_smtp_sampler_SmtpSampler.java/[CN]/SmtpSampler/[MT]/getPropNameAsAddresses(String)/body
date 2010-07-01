@@ -1,0 +1,13 @@
+{
+  final String propValue=getPropertyAsString(propName).trim();
+  if (propValue.length() > 0) {
+    List<InternetAddress> addresses=new ArrayList<InternetAddress>();
+    for (    String address : propValue.split(";")) {
+      addresses.add(new InternetAddress(address.trim()));
+    }
+    return addresses;
+  }
+ else {
+    return null;
+  }
+}

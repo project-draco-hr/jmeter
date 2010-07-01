@@ -1,5 +1,5 @@
 {
-  java.util.Properties props=new java.util.Properties();
+  Properties props=new Properties();
   String protocol=getProtocol();
   props.put("mail." + protocol + ".host",smtpServer);
   props.put("mail." + protocol + ".port",smtpPort);
@@ -19,7 +19,7 @@
     message=new MimeMessage(session);
     Multipart multipart=new MimeMultipart();
     BodyPart body=new MimeBodyPart();
-    body.setText(mbProvider.getMailBody());
+    body.setText(mailBody);
     multipart.addBodyPart(body);
     for (    File f : attachments) {
       BodyPart attach=new MimeBodyPart();
