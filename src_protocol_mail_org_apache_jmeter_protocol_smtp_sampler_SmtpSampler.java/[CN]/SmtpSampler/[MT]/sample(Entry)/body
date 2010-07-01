@@ -28,11 +28,8 @@
         for (int i=0; i < strReceivers.length; i++) {
           receiversTo.add(new InternetAddress(strReceivers[i].trim()));
         }
+        instance.setReceiverTo(receiversTo);
       }
- else {
-        receiversTo.add(new InternetAddress(getMailFrom()));
-      }
-      instance.setReceiverTo(receiversTo);
       if (getPropertyAsString(SmtpSampler.RECEIVER_CC).matches(".*@.*")) {
         List<InternetAddress> receiversCC=new Vector<InternetAddress>();
         String[] strReceivers=(getPropertyAsString(SmtpSampler.RECEIVER_CC)).split(";");
