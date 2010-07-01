@@ -4,6 +4,10 @@
     int cset=ct.toLowerCase(java.util.Locale.ENGLISH).indexOf(CS_PFX);
     if (cset >= 0) {
       String charSet=ct.substring(cset + CS_PFX.length());
+      int semiColon=charSet.indexOf(';');
+      if (semiColon >= 0) {
+        charSet=charSet.substring(0,semiColon);
+      }
       if (charSet.startsWith("\"")) {
         setDataEncoding(charSet.substring(1,charSet.length() - 1));
       }
