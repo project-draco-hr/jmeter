@@ -4,7 +4,11 @@
   int redirect;
   for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {
     boolean invalidRedirectUrl=false;
-    String location=encodeSpaces(lastRes.getRedirectLocation());
+    String location=lastRes.getRedirectLocation();
+    if (REMOVESLASHDOTDOT) {
+      location=ConversionUtils.removeSlashDotDot(location);
+    }
+    location=encodeSpaces(location);
     try {
       lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),GET,true,frameDepth);
     }

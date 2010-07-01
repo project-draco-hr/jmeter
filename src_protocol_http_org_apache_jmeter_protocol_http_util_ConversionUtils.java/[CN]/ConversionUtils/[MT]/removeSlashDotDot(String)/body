@@ -1,0 +1,59 @@
+{
+  if (url == null || (url=url.trim()).length() < 4 || !url.contains(SLASHDOTDOT)) {
+    return url;
+  }
+  int dotSlashSlashIndex=url.indexOf(COLONSLASHSLASH);
+  final int pathStartIndex;
+  if (dotSlashSlashIndex >= 0) {
+    pathStartIndex=url.indexOf(SLASH,dotSlashSlashIndex + COLONSLASHSLASH.length());
+  }
+ else {
+    pathStartIndex=0;
+  }
+  int pathEndIndex=url.length();
+  int questionMarkIdx=url.indexOf('?');
+  if (questionMarkIdx > 0) {
+    pathEndIndex=questionMarkIdx;
+  }
+ else {
+    int anchorIdx=url.indexOf('#');
+    if (anchorIdx > 0) {
+      pathEndIndex=anchorIdx;
+    }
+  }
+  String currentPath=url.substring(pathStartIndex,pathEndIndex);
+  final boolean startsWithSlash=currentPath.startsWith(SLASH);
+  final boolean endsWithSlash=currentPath.endsWith(SLASH);
+  StringTokenizer st=new StringTokenizer(currentPath,SLASH);
+  List<String> tokens=new ArrayList<String>();
+  while (st.hasMoreTokens()) {
+    tokens.add(st.nextToken());
+  }
+  for (int i=0; i < tokens.size(); i++) {
+    if (i < tokens.size() - 1) {
+      final String thisToken=tokens.get(i);
+      if (thisToken.length() > 0 && !thisToken.equals(DOTDOT) && tokens.get(i + 1).equals(DOTDOT)) {
+        tokens.remove(i);
+        tokens.remove(i);
+        i=i - 2;
+        if (i < -1) {
+          i=-1;
+        }
+      }
+    }
+  }
+  StringBuilder newPath=new StringBuilder();
+  if (startsWithSlash) {
+    newPath.append(SLASH);
+  }
+  for (int i=0; i < tokens.size(); i++) {
+    newPath.append(tokens.get(i));
+    boolean appendSlash=i < (tokens.size() - 1) ? true : endsWithSlash;
+    if (appendSlash) {
+      newPath.append(SLASH);
+    }
+  }
+  StringBuilder s=new StringBuilder(url);
+  s.replace(pathStartIndex,pathEndIndex,newPath.toString());
+  return s.toString();
+}
