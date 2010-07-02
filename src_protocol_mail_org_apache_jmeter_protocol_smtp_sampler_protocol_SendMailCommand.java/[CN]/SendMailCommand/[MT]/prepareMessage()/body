@@ -2,12 +2,12 @@
   Properties props=new Properties();
   String protocol=getProtocol();
   props.put("mail." + protocol + ".host",smtpServer);
-  props.put("mail." + protocol + ".port",smtpPort);
+  props.put("mail." + protocol + ".port",getPort());
   props.put("mail." + protocol + ".auth",Boolean.toString(useAuthentication));
   if (useStartTLS) {
     props.put("mail.smtp.starttls.enable","true");
   }
-  if (trustAllCerts && protocol.equalsIgnoreCase("smtps")) {
+  if (trustAllCerts && useSSL) {
     props.setProperty("mail.smtps.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
     props.setProperty("mail.smtps.socketFactory.fallback","false");
   }

@@ -1,0 +1,13 @@
+{
+  String port=smtpPort.trim();
+  if (port.length() > 0) {
+    return port;
+  }
+  if (useSSL) {
+    return "465";
+  }
+  if (useStartTLS) {
+    return "587";
+  }
+  return "25";
+}
