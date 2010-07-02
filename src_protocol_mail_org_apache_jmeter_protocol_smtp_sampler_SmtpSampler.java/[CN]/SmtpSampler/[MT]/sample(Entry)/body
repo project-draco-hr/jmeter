@@ -17,18 +17,22 @@
   instance.setTrustStoreToUse(getPropertyAsString(TRUSTSTORE_TO_USE));
   instance.setEmlMessage(getPropertyAsString(EML_MESSAGE_TO_SEND));
   instance.setUseEmlMessage(getPropertyAsBoolean(USE_EML));
-  if (getMailFrom().matches(".*@.*")) {
-    instance.setSender(getMailFrom());
+  if (getPropertyAsString(MAIL_FROM).matches(".*@.*")) {
+    instance.setSender(getPropertyAsString(MAIL_FROM));
   }
+  final String receiverTo=getPropertyAsString(SmtpSampler.RECEIVER_TO).trim();
+  final String receiverCC=getPropertyAsString(SmtpSampler.RECEIVER_CC).trim();
+  final String receiverBcc=getPropertyAsString(SmtpSampler.RECEIVER_BCC).trim();
   try {
-    instance.setReceiverTo(getPropNameAsAddresses(SmtpSampler.RECEIVER_TO));
-    instance.setReceiverCC(getPropNameAsAddresses(SmtpSampler.RECEIVER_CC));
-    instance.setReceiverBCC(getPropNameAsAddresses(SmtpSampler.RECEIVER_BCC));
+    instance.setReceiverTo(getPropNameAsAddresses(receiverTo));
+    instance.setReceiverCC(getPropNameAsAddresses(receiverCC));
+    instance.setReceiverBCC(getPropNameAsAddresses(receiverBcc));
     instance.setSubject(getPropertyAsString(SUBJECT) + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
     if (!getPropertyAsBoolean(USE_EML)) {
       instance.setMailBody(getPropertyAsString(MESSAGE));
-      if (!getAttachments().equals("")) {
-        String[] attachments=getAttachments().split(FILENAME_SEPARATOR);
+      final String filesToAttach=getPropertyAsString(ATTACH_FILE);
+      if (!filesToAttach.equals("")) {
+        String[] attachments=filesToAttach.split(FILENAME_SEPARATOR);
         for (        String attachment : attachments) {
           instance.addAttachment(new File(attachment));
         }
@@ -66,7 +70,7 @@ catch (  MessagingException ex) {
   res.sampleStart();
   try {
     instance.execute(message);
-    res.setSamplerData("To: " + getPropertyAsString(SmtpSampler.RECEIVER_TO) + "\nCC: "+ getPropertyAsString(SmtpSampler.RECEIVER_CC)+ "\nBCC: "+ getPropertyAsString(SmtpSampler.RECEIVER_BCC));
+    res.setSamplerData("To: " + receiverTo + "\nCC: "+ receiverCC+ "\nBCC: "+ receiverBcc);
     res.setDataType(SampleResult.TEXT);
     res.setResponseCodeOK();
     res.setResponseMessage("Message successfully sent!\n" + instance.getServerResponse());
