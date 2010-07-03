@@ -184,6 +184,12 @@
   cbTrustAllCerts.setMargin(new java.awt.Insets(0,0,0,0));
   cbTrustAllCerts.setEnabled(false);
   cbTrustAllCerts.setToolTipText(JMeterUtils.getResString("smtp_trustall_tooltip"));
+  cbTrustAllCerts.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent evt){
+      cbTrustAllCertsActionPerformed(evt);
+    }
+  }
+);
   gridBagConstraints.gridx=1;
   gridBagConstraints.gridy=1;
   panelSecuritySettings.add(cbTrustAllCerts,gridBagConstraints);
