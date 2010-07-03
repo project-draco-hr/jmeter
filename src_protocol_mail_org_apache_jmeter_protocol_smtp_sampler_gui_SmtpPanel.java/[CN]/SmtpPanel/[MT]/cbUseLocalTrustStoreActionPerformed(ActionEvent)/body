@@ -1,6 +1,7 @@
 {
-  if (cbUseLocalTrustStore.isSelected()) {
-    tfTrustStoreToUse.setEditable(true);
+  final boolean selected=cbUseLocalTrustStore.isSelected();
+  tfTrustStoreToUse.setEditable(selected);
+  if (selected) {
     cbTrustAllCerts.setSelected(false);
   }
 }
