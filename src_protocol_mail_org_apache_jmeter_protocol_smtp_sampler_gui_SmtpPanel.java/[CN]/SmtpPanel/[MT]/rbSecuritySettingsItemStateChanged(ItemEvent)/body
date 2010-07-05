@@ -17,7 +17,7 @@
     tfTrustStoreToUse.setEditable(false);
   }
  else   if (source == rbUseStartTLS) {
-    cbTrustAllCerts.setEnabled(false);
+    cbTrustAllCerts.setEnabled(true);
     cbTrustAllCerts.setSelected(false);
     cbEnforceStartTLS.setEnabled(true);
     cbUseLocalTrustStore.setEnabled(true);
