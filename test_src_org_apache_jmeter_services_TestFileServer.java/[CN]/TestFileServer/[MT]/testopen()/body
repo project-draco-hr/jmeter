@@ -56,5 +56,5 @@
   FS.closeFile(infile);
   FS.setBasedir("y");
   FS.closeFiles();
-  FS.setBasedir(JMeterUtils.getProperty("user.dir"));
+  FS.setBasedir(System.getProperty("user.dir"));
 }
