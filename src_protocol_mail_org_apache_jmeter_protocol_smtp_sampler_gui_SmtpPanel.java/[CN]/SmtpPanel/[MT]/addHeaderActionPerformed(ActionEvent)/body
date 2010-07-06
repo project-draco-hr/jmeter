@@ -1,0 +1,35 @@
+{
+  if (headerFields.size() == 0) {
+    headerFieldName.setVisible(true);
+    headerFieldValue.setVisible(true);
+  }
+  JTextField nameTF=new JTextField();
+  JTextField valueTF=new JTextField();
+  JButton removeButton=new JButton(JMeterUtils.getResString("smtp_header_remove"));
+  headerFields.put(nameTF,valueTF);
+  removeButtons.put(removeButton,nameTF);
+  removeButton.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent evt){
+      removeHeaderActionPerformed(evt);
+    }
+  }
+);
+  GridBagConstraints gridBagConstraints=new GridBagConstraints();
+  gridBagConstraints.insets=new java.awt.Insets(2,2,2,2);
+  gridBagConstraints.weightx=0.5;
+  gridBagConstraints.anchor=GridBagConstraints.WEST;
+  gridBagConstraints.gridx=0;
+  gridBagConstraints.gridy=headerGridY;
+  gridBagConstraints.fill=GridBagConstraints.HORIZONTAL;
+  headerFieldsPanel.add(nameTF,gridBagConstraints);
+  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridy=headerGridY;
+  gridBagConstraints.fill=GridBagConstraints.HORIZONTAL;
+  headerFieldsPanel.add(valueTF,gridBagConstraints);
+  gridBagConstraints.gridx=2;
+  gridBagConstraints.gridy=headerGridY++;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
+  headerFieldsPanel.add(removeButton,gridBagConstraints);
+  validate();
+  return removeButton;
+}

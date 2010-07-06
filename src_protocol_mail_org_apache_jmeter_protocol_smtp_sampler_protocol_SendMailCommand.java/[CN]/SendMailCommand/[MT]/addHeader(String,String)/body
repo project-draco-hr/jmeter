@@ -1,4 +1,7 @@
 {
-  if (this.headers == null)   this.headers=new HashMap<String,String>();
-  this.headers.put(headerName,headerValue);
+  if (this.headerFields == null) {
+    this.headerFields=new CollectionProperty();
+  }
+  Argument argument=new Argument(headerName,headerValue);
+  this.headerFields.addItem(argument);
 }

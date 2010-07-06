@@ -62,6 +62,7 @@
   gridBagConstraints.insets=new java.awt.Insets(2,2,2,2);
   gridBagConstraints.fill=GridBagConstraints.NONE;
   gridBagConstraints.anchor=GridBagConstraints.WEST;
+  gridBagConstraints.weightx=0.5;
   JPanel panelServerSettings=new JPanel(new GridBagLayout());
   panelServerSettings.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("smtp_server_settings")));
   gridBagConstraints.gridx=0;
@@ -128,21 +129,25 @@
   gridBagConstraints.gridx=0;
   gridBagConstraints.gridy=0;
   panelAuthSettings.add(cbUseAuth,gridBagConstraints);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=1;
-  gridBagConstraints.gridwidth=1;
-  panelAuthSettings.add(jlUsername,gridBagConstraints);
   gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=1;
+  gridBagConstraints.gridy=0;
+  gridBagConstraints.gridwidth=1;
+  gridBagConstraints.weightx=0;
+  panelAuthSettings.add(jlUsername,gridBagConstraints);
+  gridBagConstraints.gridx=2;
+  gridBagConstraints.gridy=0;
   gridBagConstraints.gridwidth=2;
+  gridBagConstraints.weightx=0.5;
   panelAuthSettings.add(tfAuthUsername,gridBagConstraints);
   tfAuthUsername.setEditable(false);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=2;
-  gridBagConstraints.gridwidth=1;
-  panelAuthSettings.add(jlPassword,gridBagConstraints);
   gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=2;
+  gridBagConstraints.gridy=1;
+  gridBagConstraints.gridwidth=1;
+  gridBagConstraints.weightx=0;
+  panelAuthSettings.add(jlPassword,gridBagConstraints);
+  gridBagConstraints.gridx=2;
+  gridBagConstraints.gridy=1;
+  gridBagConstraints.weightx=0.5;
   panelAuthSettings.add(tfAuthPassword,gridBagConstraints);
   tfAuthPassword.setEditable(false);
   gridBagConstraintsMain.gridx=0;
@@ -158,11 +163,11 @@
   gridBagConstraints.gridx=0;
   gridBagConstraints.gridy=0;
   panelSecuritySettings.add(rbUseNone,gridBagConstraints);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=1;
+  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridy=0;
   panelSecuritySettings.add(rbUseSSL,gridBagConstraints);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=2;
+  gridBagConstraints.gridx=2;
+  gridBagConstraints.gridy=0;
   panelSecuritySettings.add(rbUseStartTLS,gridBagConstraints);
   rbUseNone.addItemListener(new ItemListener(){
     public void itemStateChanged(    ItemEvent evt){
@@ -192,7 +197,7 @@
     }
   }
 );
-  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridx=0;
   gridBagConstraints.gridy=1;
   panelSecuritySettings.add(cbTrustAllCerts,gridBagConstraints);
   cbEnforceStartTLS.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
@@ -205,8 +210,8 @@
   }
 );
   cbEnforceStartTLS.setToolTipText(JMeterUtils.getResString("smtp_enforcestarttls_tooltip"));
-  gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=2;
+  gridBagConstraints.gridx=2;
+  gridBagConstraints.gridy=1;
   panelSecuritySettings.add(cbEnforceStartTLS,gridBagConstraints);
   cbUseLocalTrustStore.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
   cbUseLocalTrustStore.setMargin(new java.awt.Insets(0,0,0,0));
@@ -218,16 +223,16 @@
   }
 );
   cbUseLocalTrustStore.setToolTipText(JMeterUtils.getResString("smtp_usetruststore_tooltip"));
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=5;
+  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridy=1;
   gridBagConstraints.gridwidth=2;
   panelSecuritySettings.add(cbUseLocalTrustStore,gridBagConstraints);
   gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=6;
+  gridBagConstraints.gridy=2;
   gridBagConstraints.gridwidth=1;
   panelSecuritySettings.add(jlTrustStoreToUse,gridBagConstraints);
   gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=6;
+  gridBagConstraints.gridy=2;
   panelSecuritySettings.add(tfTrustStoreToUse,gridBagConstraints);
   gridBagConstraintsMain.gridx=0;
   gridBagConstraintsMain.gridy=3;
@@ -239,24 +244,54 @@
   panelMessageSettings.add(jlSubject,gridBagConstraints);
   gridBagConstraints.gridx=1;
   gridBagConstraints.gridy=0;
+  gridBagConstraints.fill=GridBagConstraints.HORIZONTAL;
   panelMessageSettings.add(tfSubject,gridBagConstraints);
   cbIncludeTimestamp.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
   cbIncludeTimestamp.setMargin(new java.awt.Insets(0,0,0,0));
   gridBagConstraints.gridx=2;
   gridBagConstraints.gridy=0;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
   panelMessageSettings.add(cbIncludeTimestamp,gridBagConstraints);
+  addHeaderFieldButton=new JButton(JMeterUtils.getResString("smtp_header_add"));
+  addHeaderFieldButton.addActionListener(new ActionListener(){
+    public void actionPerformed(    ActionEvent evt){
+      addHeaderActionPerformed(evt);
+    }
+  }
+);
+  headerFieldName=new JLabel(JMeterUtils.getResString("smtp_header_name"));
+  headerFieldValue=new JLabel(JMeterUtils.getResString("smtp_header_value"));
+  headerFieldsPanel=new JPanel(new GridBagLayout());
+  headerFieldName.setVisible(false);
+  headerFieldValue.setVisible(false);
+  headerGridY=0;
   gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=1;
+  gridBagConstraints.gridy=headerGridY++;
+  headerFieldsPanel.add(addHeaderFieldButton,gridBagConstraints);
+  gridBagConstraints.gridx=0;
+  gridBagConstraints.gridy=headerGridY;
+  headerFieldsPanel.add(headerFieldName,gridBagConstraints);
+  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridy=headerGridY++;
+  headerFieldsPanel.add(headerFieldValue,gridBagConstraints);
+  gridBagConstraintsMain.gridx=1;
+  gridBagConstraintsMain.gridy=1;
+  panelMessageSettings.add(headerFieldsPanel,gridBagConstraintsMain);
+  gridBagConstraints.gridx=0;
+  gridBagConstraints.gridy=2;
   panelMessageSettings.add(jlMessage,gridBagConstraints);
   taMessage.setBorder(BorderFactory.createBevelBorder(1));
   gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=1;
+  gridBagConstraints.gridy=2;
+  gridBagConstraints.fill=GridBagConstraints.BOTH;
   panelMessageSettings.add(taMessage,gridBagConstraints);
   gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=2;
+  gridBagConstraints.gridy=3;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
   panelMessageSettings.add(jlAttachFile,gridBagConstraints);
   gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=2;
+  gridBagConstraints.gridy=3;
+  gridBagConstraints.fill=GridBagConstraints.HORIZONTAL;
   panelMessageSettings.add(tfAttachment,gridBagConstraints);
   tfAttachment.setToolTipText(JMeterUtils.getResString("smtp_attach_file_tooltip"));
   browseButton.addActionListener(new ActionListener(){
@@ -266,7 +301,8 @@
   }
 );
   gridBagConstraints.gridx=2;
-  gridBagConstraints.gridy=2;
+  gridBagConstraints.gridy=3;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
   panelMessageSettings.add(browseButton,gridBagConstraints);
   cbUseEmlMessage.setSelected(false);
   cbUseEmlMessage.addActionListener(new ActionListener(){
@@ -276,10 +312,12 @@
   }
 );
   gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=3;
+  gridBagConstraints.gridy=4;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
   panelMessageSettings.add(cbUseEmlMessage,gridBagConstraints);
   gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=3;
+  gridBagConstraints.gridy=4;
+  gridBagConstraints.fill=GridBagConstraints.HORIZONTAL;
   tfEmlMessage.setEnabled(false);
   panelMessageSettings.add(tfEmlMessage,gridBagConstraints);
   emlBrowseButton.addActionListener(new ActionListener(){
@@ -290,10 +328,11 @@
 );
   emlBrowseButton.setEnabled(false);
   gridBagConstraints.gridx=2;
-  gridBagConstraints.gridy=3;
+  gridBagConstraints.gridy=4;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
   panelMessageSettings.add(emlBrowseButton,gridBagConstraints);
   gridBagConstraintsMain.gridx=0;
-  gridBagConstraintsMain.gridy=4;
+  gridBagConstraintsMain.gridy=5;
   add(panelMessageSettings,gridBagConstraintsMain);
   JPanel panelAdditionalSettings=new JPanel(new GridBagLayout());
   panelAdditionalSettings.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("smtp_additional_settings")));
@@ -306,6 +345,6 @@
   gridBagConstraints.gridy=0;
   panelAdditionalSettings.add(cbEnableDebug,gridBagConstraints);
   gridBagConstraintsMain.gridx=0;
-  gridBagConstraintsMain.gridy=5;
+  gridBagConstraintsMain.gridy=6;
   add(panelAdditionalSettings,gridBagConstraintsMain);
 }

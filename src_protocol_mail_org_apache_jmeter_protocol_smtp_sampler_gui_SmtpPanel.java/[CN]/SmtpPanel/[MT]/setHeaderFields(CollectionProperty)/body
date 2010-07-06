@@ -1,0 +1,13 @@
+{
+  clearHeaderFields();
+  for (int i=0; i < fields.size(); i++) {
+    Argument argument=(Argument)((TestElementProperty)fields.get(i)).getObjectValue();
+    String name=argument.getName();
+    JButton removeButton=addHeaderActionPerformed(null);
+    JTextField nameTF=removeButtons.get(removeButton);
+    nameTF.setText(name);
+    JTextField valueTF=headerFields.get(nameTF);
+    valueTF.setText(argument.getValue());
+  }
+  validate();
+}

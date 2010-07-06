@@ -1,0 +1,12 @@
+{
+  CollectionProperty result=new CollectionProperty();
+  result.setName(SmtpSampler.HEADER_FIELDS);
+  for (Iterator<JTextField> iterator=headerFields.keySet().iterator(); iterator.hasNext(); ) {
+    JTextField headerName=iterator.next();
+    String name=headerName.getText();
+    String value=headerFields.get(headerName).getText();
+    Argument argument=new Argument(name,value);
+    result.addItem(argument);
+  }
+  return result;
+}

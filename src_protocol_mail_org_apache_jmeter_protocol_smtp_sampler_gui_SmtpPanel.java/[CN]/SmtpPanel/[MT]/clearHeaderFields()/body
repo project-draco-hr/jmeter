@@ -1,0 +1,16 @@
+{
+  headerFieldName.setVisible(false);
+  headerFieldValue.setVisible(false);
+  for (Iterator<JButton> iterator=removeButtons.keySet().iterator(); iterator.hasNext(); ) {
+    JButton removeButton=iterator.next();
+    JTextField headerName=removeButtons.get(removeButton);
+    JTextField headerValue=headerFields.get(headerName);
+    headerFieldsPanel.remove(headerName);
+    if (headerValue != null) {
+      headerFieldsPanel.remove(headerValue);
+    }
+    headerFieldsPanel.remove(removeButton);
+    headerFields.remove(headerName);
+    iterator.remove();
+  }
+}

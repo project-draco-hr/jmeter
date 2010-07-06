@@ -18,4 +18,6 @@
   tfSubject.setText("");
   tfTrustStoreToUse.setText("");
   rbUseNone.setSelected(true);
+  clearHeaderFields();
+  validate();
 }

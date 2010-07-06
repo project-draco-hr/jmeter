@@ -40,6 +40,7 @@
       }
     }
     instance.setSynchronousMode(true);
+    instance.setHeaderFields((CollectionProperty)getProperty(SmtpSampler.HEADER_FIELDS));
     message=instance.prepareMessage();
     if (getPropertyAsBoolean(MESSAGE_SIZE_STATS)) {
       CounterOutputStream cs=new CounterOutputStream();

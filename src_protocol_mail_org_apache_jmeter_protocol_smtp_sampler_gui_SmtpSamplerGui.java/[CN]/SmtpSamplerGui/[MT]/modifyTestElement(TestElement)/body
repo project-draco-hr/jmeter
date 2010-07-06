@@ -24,4 +24,5 @@
   te.setProperty(SmtpSampler.USERNAME,smtpPanel.getUsername());
   te.setProperty(SmtpSampler.MESSAGE_SIZE_STATS,Boolean.toString(smtpPanel.isMessageSizeStatistics()));
   te.setProperty(SmtpSampler.ENABLE_DEBUG,Boolean.toString(smtpPanel.isEnableDebug()));
+  te.setProperty(smtpPanel.getHeaderFields());
 }

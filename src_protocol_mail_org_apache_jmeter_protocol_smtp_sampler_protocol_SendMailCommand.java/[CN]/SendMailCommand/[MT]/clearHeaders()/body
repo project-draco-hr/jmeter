@@ -1,4 +1,8 @@
 {
-  if (this.headers == null)   this.headers=new HashMap<String,String>();
- else   this.headers.clear();
+  if (this.headerFields == null) {
+    this.headerFields=new CollectionProperty();
+  }
+ else {
+    this.headerFields.clear();
+  }
 }

@@ -1,0 +1,16 @@
+{
+  final Object source=evt.getSource();
+  if (source != null && source instanceof JButton) {
+    if (headerFields.size() == 1) {
+      headerFieldName.setVisible(false);
+      headerFieldValue.setVisible(false);
+    }
+    JTextField nameTF=removeButtons.get(source);
+    JTextField valueTF=headerFields.get(nameTF);
+    headerFields.remove(nameTF);
+    headerFieldsPanel.remove(nameTF);
+    headerFieldsPanel.remove(valueTF);
+    headerFieldsPanel.remove((JButton)source);
+    validate();
+  }
+}

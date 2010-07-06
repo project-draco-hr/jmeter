@@ -83,8 +83,9 @@
     receiverBCC.toArray(bcc);
     message.setRecipients(Message.RecipientType.BCC,bcc);
   }
-  for (  String key : headers.keySet()) {
-    message.setHeader(key,headers.get(key));
+  for (int i=0; i < headerFields.size(); i++) {
+    Argument argument=(Argument)((TestElementProperty)headerFields.get(i)).getObjectValue();
+    message.setHeader(argument.getName(),argument.getValue());
   }
   message.saveChanges();
   return message;

@@ -1,5 +1,7 @@
 {
-  if (smtpPanel == null)   smtpPanel=new SmtpPanel();
+  if (smtpPanel == null) {
+    smtpPanel=new SmtpPanel();
+  }
   smtpPanel.setServer(element.getPropertyAsString(SmtpSampler.SERVER));
   smtpPanel.setPort(element.getPropertyAsString(SmtpSampler.SERVER_PORT));
   smtpPanel.setMailFrom(element.getPropertyAsString(SmtpSampler.MAIL_FROM));
@@ -9,6 +11,13 @@
   smtpPanel.setBody(element.getPropertyAsString(SmtpSampler.MESSAGE));
   smtpPanel.setSubject(element.getPropertyAsString(SmtpSampler.SUBJECT));
   smtpPanel.setIncludeTimestamp(element.getPropertyAsBoolean(SmtpSampler.INCLUDE_TIMESTAMP));
+  JMeterProperty headers=element.getProperty(SmtpSampler.HEADER_FIELDS);
+  if (headers instanceof CollectionProperty) {
+    smtpPanel.setHeaderFields((CollectionProperty)headers);
+  }
+ else {
+    smtpPanel.setHeaderFields(new CollectionProperty());
+  }
   smtpPanel.setAttachments(element.getPropertyAsString(SmtpSampler.ATTACH_FILE));
   smtpPanel.setUseEmlMessage(element.getPropertyAsBoolean(SmtpSampler.USE_EML));
   smtpPanel.setEmlMessage(element.getPropertyAsString(SmtpSampler.EML_MESSAGE_TO_SEND));
