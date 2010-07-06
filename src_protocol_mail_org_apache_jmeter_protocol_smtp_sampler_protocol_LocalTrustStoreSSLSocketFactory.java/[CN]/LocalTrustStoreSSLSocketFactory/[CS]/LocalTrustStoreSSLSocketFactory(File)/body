@@ -1,0 +1,23 @@
+{
+  SSLContext sslcontext=null;
+  try {
+    KeyStore ks=KeyStore.getInstance("JKS");
+    FileInputStream stream=null;
+    try {
+      stream=new FileInputStream(truststore);
+      ks.load(stream,null);
+    }
+  finally {
+      IOUtils.closeQuietly(stream);
+    }
+    TrustManagerFactory tmf=TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+    tmf.init(ks);
+    TrustManager[] trustmanagers=tmf.getTrustManagers();
+    sslcontext=SSLContext.getInstance("TLS");
+    sslcontext.init(null,trustmanagers,new SecureRandom());
+  }
+ catch (  Exception e) {
+    throw new RuntimeException("Could not create the SSL context",e);
+  }
+  factory=sslcontext.getSocketFactory();
+}
