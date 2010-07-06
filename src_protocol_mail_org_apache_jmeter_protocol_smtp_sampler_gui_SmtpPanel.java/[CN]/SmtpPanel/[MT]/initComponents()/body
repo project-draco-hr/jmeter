@@ -34,6 +34,7 @@
   cbEnforceStartTLS=new JCheckBox(JMeterUtils.getResString("smtp_enforcestarttls"));
   cbIncludeTimestamp=new JCheckBox(JMeterUtils.getResString("smtp_timestamp"));
   cbMessageSizeStats=new JCheckBox(JMeterUtils.getResString("smtp_messagesize"));
+  cbEnableDebug=new JCheckBox(JMeterUtils.getResString("smtp_enabledebug"));
   cbUseLocalTrustStore=new JCheckBox(JMeterUtils.getResString("smtp_usetruststore"));
   cbUseEmlMessage=new JCheckBox(JMeterUtils.getResString("smtp_eml"));
   attachmentFileChooser=new JFileChooser();
@@ -301,6 +302,9 @@
   gridBagConstraints.gridx=0;
   gridBagConstraints.gridy=0;
   panelAdditionalSettings.add(cbMessageSizeStats,gridBagConstraints);
+  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridy=0;
+  panelAdditionalSettings.add(cbEnableDebug,gridBagConstraints);
   gridBagConstraintsMain.gridx=0;
   gridBagConstraintsMain.gridy=5;
   add(panelAdditionalSettings,gridBagConstraintsMain);

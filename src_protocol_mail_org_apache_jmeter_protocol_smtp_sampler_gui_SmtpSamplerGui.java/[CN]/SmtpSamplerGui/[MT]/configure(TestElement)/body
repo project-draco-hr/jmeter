@@ -25,5 +25,6 @@
   smtpPanel.setUsername(element.getPropertyAsString(SmtpSampler.USERNAME));
   smtpPanel.setPassword(element.getPropertyAsString(SmtpSampler.PASSWORD));
   smtpPanel.setMessageSizeStatistic(element.getPropertyAsBoolean(SmtpSampler.MESSAGE_SIZE_STATS));
+  smtpPanel.setEnableDebug(element.getPropertyAsBoolean(SmtpSampler.ENABLE_DEBUG));
   super.configure(element);
 }

@@ -17,6 +17,7 @@
   instance.setTrustStoreToUse(getPropertyAsString(TRUSTSTORE_TO_USE));
   instance.setEmlMessage(getPropertyAsString(EML_MESSAGE_TO_SEND));
   instance.setUseEmlMessage(getPropertyAsBoolean(USE_EML));
+  instance.setEnableDebug(getPropertyAsBoolean(ENABLE_DEBUG));
   if (getPropertyAsString(MAIL_FROM).matches(".*@.*")) {
     instance.setSender(getPropertyAsString(MAIL_FROM));
   }

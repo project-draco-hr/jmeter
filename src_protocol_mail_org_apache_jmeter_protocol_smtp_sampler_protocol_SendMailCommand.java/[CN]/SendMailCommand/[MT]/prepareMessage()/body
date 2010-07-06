@@ -1,15 +1,48 @@
 {
   Properties props=new Properties();
   String protocol=getProtocol();
-  props.put("mail." + protocol + ".host",smtpServer);
-  props.put("mail." + protocol + ".port",getPort());
-  props.put("mail." + protocol + ".auth",Boolean.toString(useAuthentication));
-  if (useStartTLS) {
-    props.put("mail.smtp.starttls.enable","true");
+  props.setProperty("mail." + protocol + ".host",smtpServer);
+  props.setProperty("mail." + protocol + ".port",getPort());
+  props.setProperty("mail." + protocol + ".auth",Boolean.toString(useAuthentication));
+  if (enableDebug) {
+    props.setProperty("mail.debug","true");
   }
-  if (trustAllCerts && useSSL) {
-    props.setProperty("mail.smtps.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
-    props.setProperty("mail.smtps.socketFactory.fallback","false");
+  if (useStartTLS) {
+    props.setProperty("mail.smtp.starttls.enable","true");
+    if (enforceStartTLS) {
+      props.setProperty("mail.smtp.starttls.require","true");
+    }
+  }
+  if (trustAllCerts) {
+    if (useSSL) {
+      props.setProperty("mail.smtps.ssl.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
+      props.setProperty("mail.smtps.ssl.socketFactory.fallback","false");
+    }
+ else     if (useStartTLS) {
+      props.setProperty("mail.smtp.ssl.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
+      props.setProperty("mail.smtp.ssl.socketFactory.fallback","false");
+    }
+  }
+ else   if (useLocalTrustStore) {
+    File truststore=new File(trustStoreToUse);
+    logger.info("load local truststore - try to load truststore from: " + truststore.getAbsolutePath());
+    if (!truststore.exists()) {
+      logger.info("load local truststore -Failed to load truststore from: " + truststore.getAbsolutePath());
+      truststore=new File(FileServer.getFileServer().getBaseDir(),trustStoreToUse);
+      logger.info("load local truststore -Attempting to read truststore from:  " + truststore.getAbsolutePath());
+      if (!truststore.exists()) {
+        logger.info("load local truststore -Failed to load truststore from: " + truststore.getAbsolutePath() + ". Local truststore not available, aborting execution.");
+        throw new IOException("Local truststore file not found. Also not available under : " + truststore.getAbsolutePath());
+      }
+    }
+    if (useSSL) {
+      props.put("mail.smtps.ssl.socketFactory",new LocalTrustStoreSSLSocketFactory(truststore));
+      props.put("mail.smtps.ssl.socketFactory.fallback","false");
+    }
+ else     if (useStartTLS) {
+      props.put("mail.smtp.ssl.socketFactory",new LocalTrustStoreSSLSocketFactory(truststore));
+      props.put("mail.smtp.ssl.socketFactory.fallback","false");
+    }
   }
   session=Session.getInstance(props,null);
   if (sendEmlMessage) {
