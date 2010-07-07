@@ -1,5 +1,6 @@
 {
   HTTPSampleResult totalRes=new HTTPSampleResult(res);
+  totalRes.addRawSubResult(res);
   HTTPSampleResult lastRes=res;
   int redirect;
   for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {

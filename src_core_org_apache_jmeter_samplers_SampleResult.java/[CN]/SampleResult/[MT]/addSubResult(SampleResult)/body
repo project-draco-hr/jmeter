@@ -5,11 +5,7 @@
     this.setThreadName(tn);
   }
   subResult.setThreadName(tn);
-  if (subResults == null) {
-    subResults=new ArrayList<SampleResult>();
-  }
-  subResults.add(subResult);
   setEndTime(Math.max(getEndTime(),subResult.getEndTime()));
   setBytes(getBytes() + subResult.getBytes());
-  subResult.setParent(this);
+  addRawSubResult(subResult);
 }
