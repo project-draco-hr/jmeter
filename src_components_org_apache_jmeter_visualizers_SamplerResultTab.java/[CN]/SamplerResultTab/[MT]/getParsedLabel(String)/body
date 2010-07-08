@@ -1,0 +1,4 @@
+{
+  String value=JMeterUtils.getResString(key);
+  return value.replaceFirst("(?m)\\s*?:\\s*$","");
+}

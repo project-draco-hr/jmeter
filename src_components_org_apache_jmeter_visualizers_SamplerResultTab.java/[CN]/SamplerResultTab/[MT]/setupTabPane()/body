@@ -21,6 +21,8 @@
         }
         sampleDataField.setText(sd);
       }
+      final String samplerClass=sampleResult.getClass().getName();
+      String typeResult=samplerClass.substring(1 + samplerClass.lastIndexOf('.'));
       StringBuilder statsBuff=new StringBuilder(200);
       statsBuff.append(JMeterUtils.getResString("view_results_thread_name")).append(sampleResult.getThreadName()).append(NL);
       String startTime=dateFormat.format(new Date(sampleResult.getStartTime()));
@@ -62,12 +64,31 @@ statsBuff.append(NL);
 statsBuff.append(JMeterUtils.getResString("view_results_response_headers")).append(NL);
 statsBuff.append(sampleResult.getResponseHeaders()).append(NL);
 statsBuff.append(NL);
-final String samplerClass=sampleResult.getClass().getName();
-statsBuff.append(samplerClass.substring(1 + samplerClass.lastIndexOf('.'))).append(" " + JMeterUtils.getResString("view_results_fields")).append(NL);
+statsBuff.append(typeResult + " " + JMeterUtils.getResString("view_results_fields")).append(NL);
 statsBuff.append("ContentType: ").append(sampleResult.getContentType()).append(NL);
 statsBuff.append("DataEncoding: ").append(sampleResult.getDataEncodingNoDefault()).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
 statsBuff=null;
+resultModel.clearData();
+resultModel.addRow(new RowResult(getParsedLabel("view_results_thread_name"),sampleResult.getThreadName()));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_sample_start"),startTime));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_load_time"),sampleResult.getTime()));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_latency"),sampleResult.getLatency()));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_size_in_bytes"),sampleResult.getBytes()));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_sample_count"),sampleResult.getSampleCount()));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_error_count"),sampleResult.getErrorCount()));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_response_code"),responseCode));
+resultModel.addRow(new RowResult(getParsedLabel("view_results_response_message"),responseMsgStr));
+resHeadersModel.clearData();
+LinkedHashMap<String,String> lhm=parseResponseHeaders(sampleResult.getResponseHeaders());
+Set<String> keySet=lhm.keySet();
+for (String key : keySet) {
+resHeadersModel.addRow(new RowResult(key,lhm.get(key)));
+}
+resFieldsModel.clearData();
+resFieldsModel.addRow(new RowResult("Type Result ",typeResult));
+resFieldsModel.addRow(new RowResult("ContentType",sampleResult.getContentType()));
+resFieldsModel.addRow(new RowResult("DataEncoding",sampleResult.getDataEncodingNoDefault()));
 if (activateSearchExtension) {
 searchTextExtension.resetTextToFind();
 }

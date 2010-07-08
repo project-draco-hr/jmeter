@@ -1,4 +1,8 @@
 {
+  if (tabbedResult.getTabCount() < 2) {
+    tabbedResult.insertTab(JMeterUtils.getResString("view_results_table_result_tab_parsed"),null,paneParsed,null,1);
+    tabbedResult.setSelectedIndex(lastResultTabIndex);
+  }
   rightSide.setTitleAt(0,JMeterUtils.getResString("view_results_tab_sampler"));
   if (rightSide.indexOfTab(JMeterUtils.getResString("view_results_tab_request")) < 0) {
     rightSide.addTab(JMeterUtils.getResString("view_results_tab_request"),requestPane);

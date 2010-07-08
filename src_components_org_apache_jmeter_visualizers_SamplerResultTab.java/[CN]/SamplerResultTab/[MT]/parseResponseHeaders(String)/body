@@ -1,0 +1,14 @@
+{
+  LinkedHashMap<String,String> linkedHeaders=new LinkedHashMap<String,String>();
+  String[] list=responseHeaders.split(NL);
+  for (  String header : list) {
+    int colon=header.indexOf(':');
+    if (colon <= 0) {
+      linkedHeaders.put(header,"");
+    }
+ else {
+      linkedHeaders.put(header.substring(0,colon).trim(),header.substring(colon + 1).trim());
+    }
+  }
+  return linkedHeaders;
+}

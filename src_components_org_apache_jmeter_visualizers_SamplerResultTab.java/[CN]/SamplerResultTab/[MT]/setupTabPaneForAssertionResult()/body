@@ -1,4 +1,11 @@
 {
+  if (tabbedResult.getTabCount() >= 2) {
+    lastResultTabIndex=tabbedResult.getSelectedIndex();
+    int parsedTabIndex=tabbedResult.indexOfTab(JMeterUtils.getResString("view_results_table_result_tab_parsed"));
+    if (parsedTabIndex >= 0) {
+      tabbedResult.removeTabAt(parsedTabIndex);
+    }
+  }
   rightSide.setTitleAt(0,JMeterUtils.getResString("view_results_tab_assertion"));
   int requestTabIndex=rightSide.indexOfTab(JMeterUtils.getResString("view_results_tab_request"));
   if (requestTabIndex >= 0) {
