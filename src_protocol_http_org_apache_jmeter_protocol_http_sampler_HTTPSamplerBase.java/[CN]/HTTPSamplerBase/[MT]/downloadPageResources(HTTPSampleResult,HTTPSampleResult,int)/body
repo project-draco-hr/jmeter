@@ -15,7 +15,9 @@
     res.setSuccessful(false);
   }
   if (urls != null && urls.hasNext()) {
-    res=container;
+    if (container != null) {
+      res=container;
+    }
     String re=getEmbeddedUrlRE();
     Perl5Matcher localMatcher=null;
     Pattern pattern=null;
