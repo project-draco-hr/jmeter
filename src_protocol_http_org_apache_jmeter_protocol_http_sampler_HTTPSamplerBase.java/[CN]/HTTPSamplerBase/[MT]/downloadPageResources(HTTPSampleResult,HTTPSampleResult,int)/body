@@ -15,9 +15,11 @@
     res.setSuccessful(false);
   }
   if (urls != null && urls.hasNext()) {
-    if (container != null) {
-      res=container;
+    if (container == null) {
+      container=new HTTPSampleResult(res);
+      container.addRawSubResult(res);
     }
+    res=container;
     String re=getEmbeddedUrlRE();
     Perl5Matcher localMatcher=null;
     Pattern pattern=null;
