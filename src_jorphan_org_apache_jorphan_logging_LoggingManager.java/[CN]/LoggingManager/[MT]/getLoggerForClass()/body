@@ -1,4 +1,4 @@
 {
-  String className=getCallerClassName();
+  String className=(new Exception()).getStackTrace()[1].getClassName();
   return Hierarchy.getDefaultHierarchy().getLoggerFor(removePrefix(className));
 }
