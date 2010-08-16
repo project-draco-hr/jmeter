@@ -1,0 +1,16 @@
+{
+  CSVDataSet csv=new CSVDataSet();
+  csv.setFilename("testfiles/testheader.csv");
+  csv.setDelimiter("|");
+  csv.setRecycle(true);
+  assertNull(csv.getVariableNames());
+  csv.iterationStart(null);
+  csv.iterationStart(null);
+  csv.iterationStart(null);
+  csv.iterationStart(null);
+  csv.iterationStart(null);
+  assertEquals("a1",threadVars.get("A"));
+  assertEquals("b1",threadVars.get("B"));
+  assertEquals("c1",threadVars.get("C"));
+  assertEquals("d1",threadVars.get("D|1"));
+}
