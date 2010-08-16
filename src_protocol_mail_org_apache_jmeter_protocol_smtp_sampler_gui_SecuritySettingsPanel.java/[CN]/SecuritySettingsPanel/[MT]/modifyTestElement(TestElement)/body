@@ -1,0 +1,8 @@
+{
+  te.setProperty(USE_SSL,Boolean.toString(isUseSSL()));
+  te.setProperty(USE_STARTTLS,Boolean.toString(isUseStartTLS()));
+  te.setProperty(SSL_TRUST_ALL_CERTS,Boolean.toString(isTrustAllCerts()));
+  te.setProperty(ENFORCE_STARTTLS,Boolean.toString(isEnforceStartTLS()));
+  te.setProperty(USE_LOCAL_TRUSTSTORE,Boolean.toString(isUseLocalTrustStore()));
+  te.setProperty(TRUSTSTORE_TO_USE,getTrustStoreToUse());
+}

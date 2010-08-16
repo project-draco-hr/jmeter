@@ -8,7 +8,44 @@
   parent.sampleStart();
   try {
     Properties props=new Properties();
-    Session session=Session.getDefaultInstance(props,null);
+    if (isUseStartTLS()) {
+      props.setProperty("mail.pop3s.starttls.enable","true");
+      if (isEnforceStartTLS()) {
+        props.setProperty("mail.pop3s.starttls.require","true");
+      }
+    }
+    if (isTrustAllCerts()) {
+      if (isUseSSL()) {
+        props.setProperty("mail.pop3s.ssl.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
+        props.setProperty("mail.pop3s.ssl.socketFactory.fallback","false");
+      }
+ else       if (isUseStartTLS()) {
+        props.setProperty("mail.pop3s.ssl.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
+        props.setProperty("mail.pop3s.ssl.socketFactory.fallback","false");
+      }
+    }
+ else     if (isUseLocalTrustStore()) {
+      File truststore=new File(getTrustStoreToUse());
+      log.info("load local truststore - try to load truststore from: " + truststore.getAbsolutePath());
+      if (!truststore.exists()) {
+        log.info("load local truststore -Failed to load truststore from: " + truststore.getAbsolutePath());
+        truststore=new File(FileServer.getFileServer().getBaseDir(),getTrustStoreToUse());
+        log.info("load local truststore -Attempting to read truststore from:  " + truststore.getAbsolutePath());
+        if (!truststore.exists()) {
+          log.info("load local truststore -Failed to load truststore from: " + truststore.getAbsolutePath() + ". Local truststore not available, aborting execution.");
+          throw new IOException("Local truststore file not found. Also not available under : " + truststore.getAbsolutePath());
+        }
+      }
+      if (isUseSSL()) {
+        props.put("mail.pop3s.ssl.socketFactory",new LocalTrustStoreSSLSocketFactory(truststore));
+        props.put("mail.pop3s.ssl.socketFactory.fallback","false");
+      }
+ else       if (isUseStartTLS()) {
+        props.put("mail.pop3s.ssl.socketFactory",new LocalTrustStoreSSLSocketFactory(truststore));
+        props.put("mail.pop3s.ssl.socketFactory.fallback","false");
+      }
+    }
+    Session session=Session.getInstance(props,null);
     Store store=session.getStore(getServerType());
     store.connect(getServer(),getPortAsInt(),getUserName(),getPassword());
     Folder folder=store.getFolder(getFolder());

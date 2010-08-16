@@ -12,12 +12,8 @@
   te.setProperty(SmtpSampler.INCLUDE_TIMESTAMP,Boolean.toString(smtpPanel.isIncludeTimestamp()));
   te.setProperty(SmtpSampler.MESSAGE,smtpPanel.getBody());
   te.setProperty(SmtpSampler.ATTACH_FILE,smtpPanel.getAttachments());
-  te.setProperty(SmtpSampler.USE_SSL,Boolean.toString(smtpPanel.isUseSSL()));
-  te.setProperty(SmtpSampler.USE_STARTTLS,Boolean.toString(smtpPanel.isUseStartTLS()));
-  te.setProperty(SmtpSampler.SSL_TRUST_ALL_CERTS,Boolean.toString(smtpPanel.isTrustAllCerts()));
-  te.setProperty(SmtpSampler.ENFORCE_STARTTLS,Boolean.toString(smtpPanel.isEnforceStartTLS()));
-  te.setProperty(SmtpSampler.USE_LOCAL_TRUSTSTORE,Boolean.toString(smtpPanel.isUseLocalTrustStore()));
-  te.setProperty(SmtpSampler.TRUSTSTORE_TO_USE,smtpPanel.getTrustStoreToUse());
+  SecuritySettingsPanel secPanel=smtpPanel.getSecuritySettingsPanel();
+  secPanel.modifyTestElement(te);
   te.setProperty(SmtpSampler.USE_EML,smtpPanel.isUseEmlMessage());
   te.setProperty(SmtpSampler.EML_MESSAGE_TO_SEND,smtpPanel.getEmlMessage());
   te.setProperty(SmtpSampler.USE_AUTH,Boolean.toString(smtpPanel.isUseAuth()));

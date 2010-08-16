@@ -48,12 +48,14 @@
   numMessagesPanel.add(someMessagesField);
   deleteBox=new JCheckBox(DeleteLabel);
   storeMimeMessageBox=new JCheckBox(STOREMIME);
+  securitySettingsPanel=new SecuritySettingsPanel();
   JPanel settings=new VerticalPanel();
   settings.add(Box.createVerticalStrut(5));
   settings.add(settingsPanel);
   settings.add(numMessagesPanel);
   settings.add(deleteBox);
   settings.add(storeMimeMessageBox);
+  settings.add(securitySettingsPanel);
   add(makeTitlePanel(),BorderLayout.NORTH);
   add(settings,BorderLayout.CENTER);
 }

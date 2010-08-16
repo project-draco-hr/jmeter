@@ -16,5 +16,6 @@
   }
   deleteBox.setSelected(mrs.getDeleteMessages());
   storeMimeMessageBox.setSelected(mrs.isStoreMimeMessage());
+  securitySettingsPanel.configure(element);
   super.configure(element);
 }

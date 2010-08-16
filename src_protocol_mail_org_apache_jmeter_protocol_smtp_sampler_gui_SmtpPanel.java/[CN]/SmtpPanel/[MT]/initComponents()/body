@@ -10,12 +10,10 @@
   jlDutPortStandard=new JLabel(JMeterUtils.getResString("smtp_default_port"));
   jlUsername=new JLabel(JMeterUtils.getResString("smtp_username"));
   jlPassword=new JLabel(JMeterUtils.getResString("smtp_password"));
-  jlTrustStoreToUse=new JLabel(JMeterUtils.getResString("smtp_truststore"));
   jlSubject=new JLabel(JMeterUtils.getResString("smtp_subject"));
   jlMessage=new JLabel(JMeterUtils.getResString("smtp_message"));
   tfMailServer=new JTextField(30);
   tfMailServerPort=new JTextField(6);
-  tfTrustStoreToUse=new JTextField(20);
   tfMailFrom=new JTextField(25);
   tfMailTo=new JTextField(25);
   tfMailToCC=new JTextField(25);
@@ -34,15 +32,9 @@
   }
 );
   cbUseAuth=new JCheckBox(JMeterUtils.getResString("smtp_useauth"));
-  rbUseNone=new JRadioButton(JMeterUtils.getResString("smtp_usenone"));
-  rbUseSSL=new JRadioButton(JMeterUtils.getResString("smtp_usessl"));
-  rbUseStartTLS=new JRadioButton(JMeterUtils.getResString("smtp_usestarttls"));
-  cbTrustAllCerts=new JCheckBox(JMeterUtils.getResString("smtp_trustall"));
-  cbEnforceStartTLS=new JCheckBox(JMeterUtils.getResString("smtp_enforcestarttls"));
   cbIncludeTimestamp=new JCheckBox(JMeterUtils.getResString("smtp_timestamp"));
   cbMessageSizeStats=new JCheckBox(JMeterUtils.getResString("smtp_messagesize"));
   cbEnableDebug=new JCheckBox(JMeterUtils.getResString("smtp_enabledebug"));
-  cbUseLocalTrustStore=new JCheckBox(JMeterUtils.getResString("smtp_usetruststore"));
   cbUseEmlMessage=new JCheckBox(JMeterUtils.getResString("smtp_eml"));
   attachmentFileChooser=new JFileChooser();
   emlFileChooser=new JFileChooser();
@@ -160,92 +152,10 @@
   gridBagConstraintsMain.gridx=0;
   gridBagConstraintsMain.gridy=2;
   add(panelAuthSettings,gridBagConstraintsMain);
-  JPanel panelSecuritySettings=new JPanel(new GridBagLayout());
-  panelSecuritySettings.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("smtp_security_settings")));
-  rbUseNone.setSelected(true);
-  bgSecuritySettings=new ButtonGroup();
-  bgSecuritySettings.add(rbUseNone);
-  bgSecuritySettings.add(rbUseSSL);
-  bgSecuritySettings.add(rbUseStartTLS);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=0;
-  panelSecuritySettings.add(rbUseNone,gridBagConstraints);
-  gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=0;
-  panelSecuritySettings.add(rbUseSSL,gridBagConstraints);
-  gridBagConstraints.gridx=2;
-  gridBagConstraints.gridy=0;
-  panelSecuritySettings.add(rbUseStartTLS,gridBagConstraints);
-  rbUseNone.addItemListener(new ItemListener(){
-    public void itemStateChanged(    ItemEvent evt){
-      rbSecuritySettingsItemStateChanged(evt);
-    }
-  }
-);
-  rbUseSSL.addItemListener(new ItemListener(){
-    public void itemStateChanged(    ItemEvent evt){
-      rbSecuritySettingsItemStateChanged(evt);
-    }
-  }
-);
-  rbUseStartTLS.addItemListener(new ItemListener(){
-    public void itemStateChanged(    ItemEvent evt){
-      rbSecuritySettingsItemStateChanged(evt);
-    }
-  }
-);
-  cbTrustAllCerts.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-  cbTrustAllCerts.setMargin(new java.awt.Insets(0,0,0,0));
-  cbTrustAllCerts.setEnabled(false);
-  cbTrustAllCerts.setToolTipText(JMeterUtils.getResString("smtp_trustall_tooltip"));
-  cbTrustAllCerts.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
-      cbTrustAllCertsActionPerformed(evt);
-    }
-  }
-);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=1;
-  panelSecuritySettings.add(cbTrustAllCerts,gridBagConstraints);
-  cbEnforceStartTLS.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-  cbEnforceStartTLS.setMargin(new java.awt.Insets(0,0,0,0));
-  cbEnforceStartTLS.setEnabled(false);
-  cbEnforceStartTLS.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
-      cbEnforceStartTLSActionPerformed(evt);
-    }
-  }
-);
-  cbEnforceStartTLS.setToolTipText(JMeterUtils.getResString("smtp_enforcestarttls_tooltip"));
-  gridBagConstraints.gridx=2;
-  gridBagConstraints.gridy=1;
-  panelSecuritySettings.add(cbEnforceStartTLS,gridBagConstraints);
-  cbUseLocalTrustStore.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-  cbUseLocalTrustStore.setMargin(new java.awt.Insets(0,0,0,0));
-  cbUseLocalTrustStore.setEnabled(false);
-  cbUseLocalTrustStore.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
-      cbUseLocalTrustStoreActionPerformed(evt);
-    }
-  }
-);
-  cbUseLocalTrustStore.setToolTipText(JMeterUtils.getResString("smtp_usetruststore_tooltip"));
-  gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=1;
-  gridBagConstraints.gridwidth=2;
-  panelSecuritySettings.add(cbUseLocalTrustStore,gridBagConstraints);
-  gridBagConstraints.gridx=0;
-  gridBagConstraints.gridy=2;
-  gridBagConstraints.gridwidth=1;
-  jlTrustStoreToUse.setToolTipText(JMeterUtils.getResString("smtp_truststore_tooltip"));
-  panelSecuritySettings.add(jlTrustStoreToUse,gridBagConstraints);
-  gridBagConstraints.gridx=1;
-  gridBagConstraints.gridy=2;
-  tfTrustStoreToUse.setToolTipText(JMeterUtils.getResString("smtp_truststore_tooltip"));
-  panelSecuritySettings.add(tfTrustStoreToUse,gridBagConstraints);
+  securitySettingsPanel=new SecuritySettingsPanel();
   gridBagConstraintsMain.gridx=0;
   gridBagConstraintsMain.gridy=3;
-  add(panelSecuritySettings,gridBagConstraintsMain);
+  add(securitySettingsPanel,gridBagConstraintsMain);
   JPanel panelMessageSettings=new JPanel(new GridBagLayout());
   panelMessageSettings.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("smtp_message_settings")));
   gridBagConstraints.gridx=0;

@@ -1,0 +1,11 @@
+{
+  setUseSSL(element.getPropertyAsBoolean(USE_SSL));
+  setUseStartTLS(element.getPropertyAsBoolean(USE_STARTTLS));
+  if (!element.getPropertyAsBoolean(USE_STARTTLS) && !element.getPropertyAsBoolean(USE_SSL)) {
+    setUseNoSecurity(true);
+  }
+  setTrustAllCerts(element.getPropertyAsBoolean(SSL_TRUST_ALL_CERTS));
+  setEnforceStartTLS(element.getPropertyAsBoolean(ENFORCE_STARTTLS));
+  setUseLocalTrustStore(element.getPropertyAsBoolean(USE_LOCAL_TRUSTSTORE));
+  setTrustStoreToUse(element.getPropertyAsString(TRUSTSTORE_TO_USE));
+}

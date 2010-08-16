@@ -16,9 +16,8 @@
   tfMailToBCC.setText("");
   tfMailToCC.setText("");
   tfSubject.setText("");
-  tfTrustStoreToUse.setText("");
-  rbUseNone.setSelected(true);
   cbSuppressSubject.setSelected(false);
+  securitySettingsPanel.clear();
   clearHeaderFields();
   validate();
 }
