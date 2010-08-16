@@ -8,6 +8,7 @@
   te.setProperty(SmtpSampler.RECEIVER_CC,smtpPanel.getReceiverCC());
   te.setProperty(SmtpSampler.RECEIVER_BCC,smtpPanel.getReceiverBCC());
   te.setProperty(SmtpSampler.SUBJECT,smtpPanel.getSubject());
+  te.setProperty(SmtpSampler.SUPPRESS_SUBJECT,Boolean.toString(smtpPanel.isSuppressSubject()));
   te.setProperty(SmtpSampler.INCLUDE_TIMESTAMP,Boolean.toString(smtpPanel.isIncludeTimestamp()));
   te.setProperty(SmtpSampler.MESSAGE,smtpPanel.getBody());
   te.setProperty(SmtpSampler.ATTACH_FILE,smtpPanel.getAttachments());

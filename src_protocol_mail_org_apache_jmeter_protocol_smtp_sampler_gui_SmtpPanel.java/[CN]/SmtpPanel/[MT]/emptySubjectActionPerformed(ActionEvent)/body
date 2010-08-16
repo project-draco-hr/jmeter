@@ -1,0 +1,13 @@
+{
+  final Object source=evt.getSource();
+  if (source != null && source instanceof JCheckBox) {
+    if (cbSuppressSubject.isSelected()) {
+      tfSubject.setEnabled(false);
+      cbIncludeTimestamp.setEnabled(false);
+    }
+ else {
+      tfSubject.setEnabled(true);
+      cbIncludeTimestamp.setEnabled(true);
+    }
+  }
+}

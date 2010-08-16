@@ -65,9 +65,7 @@
   if (null != sender) {
     message.setFrom(new InternetAddress(sender));
   }
-  if (null != subject) {
-    message.setSubject(subject);
-  }
+  message.setSubject(subject);
   if (receiverTo != null) {
     InternetAddress[] to=new InternetAddress[receiverTo.size()];
     receiverTo.toArray(to);

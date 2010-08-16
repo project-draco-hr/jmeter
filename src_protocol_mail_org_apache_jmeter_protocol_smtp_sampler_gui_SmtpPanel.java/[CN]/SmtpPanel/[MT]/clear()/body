@@ -18,6 +18,7 @@
   tfSubject.setText("");
   tfTrustStoreToUse.setText("");
   rbUseNone.setSelected(true);
+  cbSuppressSubject.setSelected(false);
   clearHeaderFields();
   validate();
 }

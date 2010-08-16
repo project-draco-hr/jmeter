@@ -28,7 +28,20 @@
     instance.setReceiverTo(getPropNameAsAddresses(receiverTo));
     instance.setReceiverCC(getPropNameAsAddresses(receiverCC));
     instance.setReceiverBCC(getPropNameAsAddresses(receiverBcc));
-    instance.setSubject(getPropertyAsString(SUBJECT) + (getPropertyAsBoolean(INCLUDE_TIMESTAMP) ? " <<< current timestamp: " + new Date().getTime() + " >>>" : ""));
+    if (getPropertyAsBoolean(SUPPRESS_SUBJECT)) {
+      instance.setSubject(null);
+    }
+ else {
+      String subject=getPropertyAsString(SUBJECT);
+      if (getPropertyAsBoolean(INCLUDE_TIMESTAMP)) {
+        StringBuffer sb=new StringBuffer(subject);
+        sb.append(" <<< current timestamp: ");
+        sb.append(new Date().getTime());
+        sb.append(" >>>");
+        subject=sb.toString();
+      }
+      instance.setSubject(subject);
+    }
     if (!getPropertyAsBoolean(USE_EML)) {
       instance.setMailBody(getPropertyAsString(MESSAGE));
       final String filesToAttach=getPropertyAsString(ATTACH_FILE);

@@ -10,6 +10,7 @@
   smtpPanel.setReceiverBCC(element.getPropertyAsString(SmtpSampler.RECEIVER_BCC));
   smtpPanel.setBody(element.getPropertyAsString(SmtpSampler.MESSAGE));
   smtpPanel.setSubject(element.getPropertyAsString(SmtpSampler.SUBJECT));
+  smtpPanel.setSuppressSubject(element.getPropertyAsBoolean(SmtpSampler.SUPPRESS_SUBJECT));
   smtpPanel.setIncludeTimestamp(element.getPropertyAsBoolean(SmtpSampler.INCLUDE_TIMESTAMP));
   JMeterProperty headers=element.getProperty(SmtpSampler.HEADER_FIELDS);
   if (headers instanceof CollectionProperty) {
