@@ -6,7 +6,9 @@ synchronized (allThreads) {
       item.stop();
       item.interrupt();
       Thread t=allThreads.get(item);
-      t.interrupt();
+      if (t != null) {
+        t.interrupt();
+      }
     }
   }
 }
