@@ -1,9 +1,0 @@
-{
-  Enumeration<AbstractButton> en=this.bGroup.getElements();
-  while (en.hasMoreElements()) {
-    AbstractButton comp=en.nextElement();
-    this.bGroup.remove(comp);
-    this.remove(comp);
-  }
-  init(items,null);
-}
