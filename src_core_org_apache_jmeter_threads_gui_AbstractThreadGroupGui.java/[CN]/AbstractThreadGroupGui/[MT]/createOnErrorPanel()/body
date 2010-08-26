@@ -5,6 +5,9 @@
   continueBox=new JRadioButton(JMeterUtils.getResString("sampler_on_error_continue"));
   group.add(continueBox);
   panel.add(continueBox);
+  startNextLoop=new JRadioButton(JMeterUtils.getResString("sampler_on_error_start_next_loop"));
+  group.add(startNextLoop);
+  panel.add(startNextLoop);
   stopThrdBox=new JRadioButton(JMeterUtils.getResString("sampler_on_error_stop_thread"));
   group.add(stopThrdBox);
   panel.add(stopThrdBox);

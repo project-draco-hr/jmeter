@@ -3,9 +3,27 @@
   try {
     initRun(threadContext);
     while (running) {
-      Sampler sam;
-      while (running && (sam=controller.next()) != null) {
-        process_sampler(sam,null,threadContext);
+      Sampler firstSampler=controller.next();
+      Sampler sam=firstSampler;
+      while (running && sam != null) {
+        if (onErrorStartNextLoop) {
+          if (sam.equals(firstSampler)) {
+            threadContext.getVariables().put(LAST_SAMPLE_OK,"true");
+          }
+          if (threadContext.getVariables().get(LAST_SAMPLE_OK) == "true") {
+            process_sampler(sam,null,threadContext);
+            sam=controller.next();
+          }
+ else {
+            while (!sam.equals(firstSampler)) {
+              sam=controller.next();
+            }
+          }
+        }
+ else {
+          process_sampler(sam,null,threadContext);
+          sam=controller.next();
+        }
       }
       if (controller.isDone()) {
         running=false;

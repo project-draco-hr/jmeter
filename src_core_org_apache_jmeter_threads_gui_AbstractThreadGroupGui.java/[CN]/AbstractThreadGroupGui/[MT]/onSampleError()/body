@@ -8,5 +8,8 @@
   if (stopThrdBox.isSelected()) {
     return AbstractThreadGroup.ON_SAMPLE_ERROR_STOPTHREAD;
   }
+  if (startNextLoop.isSelected()) {
+    return AbstractThreadGroup.ON_SAMPLE_ERROR_START_NEXT_LOOP;
+  }
   return AbstractThreadGroup.ON_SAMPLE_ERROR_CONTINUE;
 }

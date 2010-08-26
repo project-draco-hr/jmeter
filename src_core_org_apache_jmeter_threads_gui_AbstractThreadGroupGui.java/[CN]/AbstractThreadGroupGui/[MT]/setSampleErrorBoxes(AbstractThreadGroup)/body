@@ -8,6 +8,9 @@
  else   if (te.getOnErrorStopThread()) {
     stopThrdBox.setSelected(true);
   }
+ else   if (te.getOnErrorStartNextLoop()) {
+    startNextLoop.setSelected(true);
+  }
  else {
     continueBox.setSelected(true);
   }
