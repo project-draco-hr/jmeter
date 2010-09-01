@@ -1,9 +1,13 @@
 {
+  File chosen=attachmentFileChooser.getSelectedFile();
+  if (chosen == null) {
+    return;
+  }
   final String attachments=tfAttachment.getText().trim();
   if (null != attachments && attachments.length() > 0) {
-    tfAttachment.setText(attachments + SmtpSampler.FILENAME_SEPARATOR + attachmentFileChooser.getSelectedFile().getAbsolutePath());
+    tfAttachment.setText(attachments + SmtpSampler.FILENAME_SEPARATOR + chosen.getAbsolutePath());
   }
  else {
-    tfAttachment.setText(attachmentFileChooser.getSelectedFile().getAbsolutePath());
+    tfAttachment.setText(chosen.getAbsolutePath());
   }
 }

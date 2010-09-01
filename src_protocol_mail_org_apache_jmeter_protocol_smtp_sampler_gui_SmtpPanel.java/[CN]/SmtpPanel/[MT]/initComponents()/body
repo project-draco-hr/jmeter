@@ -24,6 +24,7 @@
   tfAttachment=new JTextField(30);
   tfEmlMessage=new JTextField(30);
   taMessage=new JTextArea(5,20);
+  cbPlainBody=new JCheckBox(JMeterUtils.getResString("smtp_plainbody"));
   cbSuppressSubject=new JCheckBox(JMeterUtils.getResString("smtp_suppresssubj"));
   cbSuppressSubject.addActionListener(new ActionListener(){
     public void actionPerformed(    ActionEvent evt){
@@ -210,6 +211,12 @@
   gridBagConstraints.gridy=3;
   gridBagConstraints.fill=GridBagConstraints.BOTH;
   panelMessageSettings.add(taMessage,gridBagConstraints);
+  cbPlainBody.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+  cbPlainBody.setMargin(new java.awt.Insets(0,0,0,0));
+  gridBagConstraints.gridx=2;
+  gridBagConstraints.gridy=3;
+  gridBagConstraints.fill=GridBagConstraints.NONE;
+  panelMessageSettings.add(cbPlainBody,gridBagConstraints);
   gridBagConstraints.gridx=0;
   gridBagConstraints.gridy=4;
   gridBagConstraints.fill=GridBagConstraints.NONE;

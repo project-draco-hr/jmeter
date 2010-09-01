@@ -11,6 +11,7 @@
   te.setProperty(SmtpSampler.SUPPRESS_SUBJECT,Boolean.toString(smtpPanel.isSuppressSubject()));
   te.setProperty(SmtpSampler.INCLUDE_TIMESTAMP,Boolean.toString(smtpPanel.isIncludeTimestamp()));
   te.setProperty(SmtpSampler.MESSAGE,smtpPanel.getBody());
+  te.setProperty(SmtpSampler.PLAIN_BODY,Boolean.toString(smtpPanel.isPlainBody()));
   te.setProperty(SmtpSampler.ATTACH_FILE,smtpPanel.getAttachments());
   SecuritySettingsPanel secPanel=smtpPanel.getSecuritySettingsPanel();
   secPanel.modifyTestElement(te);

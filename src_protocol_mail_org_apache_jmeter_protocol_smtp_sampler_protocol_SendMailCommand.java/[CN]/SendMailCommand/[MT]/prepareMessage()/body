@@ -45,22 +45,42 @@
     }
   }
   session=Session.getInstance(props,null);
+  Message message;
   if (sendEmlMessage) {
     message=new MimeMessage(session,new FileInputStream(emlMessage));
   }
  else {
     message=new MimeMessage(session);
     Multipart multipart=new MimeMultipart();
-    BodyPart body=new MimeBodyPart();
-    body.setText(mailBody);
-    multipart.addBodyPart(body);
-    for (    File f : attachments) {
-      BodyPart attach=new MimeBodyPart();
-      attach.setFileName(f.getName());
-      attach.setDataHandler(new DataHandler(new FileDataSource(f)));
-      multipart.addBodyPart(attach);
+    final int attachmentCount=attachments.size();
+    if (plainBody && (attachmentCount == 0 || (mailBody.length() == 0 && attachmentCount == 1))) {
+      if (attachmentCount == 1) {
+        File first=attachments.get(0);
+        InputStream is=null;
+        try {
+          is=new FileInputStream(first);
+          message.setText(IOUtils.toString(is));
+        }
+  finally {
+          IOUtils.closeQuietly(is);
+        }
+      }
+ else {
+        message.setText(mailBody);
+      }
     }
-    message.setContent(multipart);
+ else {
+      BodyPart body=new MimeBodyPart();
+      body.setText(mailBody);
+      multipart.addBodyPart(body);
+      for (      File f : attachments) {
+        BodyPart attach=new MimeBodyPart();
+        attach.setFileName(f.getName());
+        attach.setDataHandler(new DataHandler(new FileDataSource(f.getAbsolutePath())));
+        multipart.addBodyPart(attach);
+      }
+      message.setContent(multipart);
+    }
   }
   if (null != sender) {
     message.setFrom(new InternetAddress(sender));
