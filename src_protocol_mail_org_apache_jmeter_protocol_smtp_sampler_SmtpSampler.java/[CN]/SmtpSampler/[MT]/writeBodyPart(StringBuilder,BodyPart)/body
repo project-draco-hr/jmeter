@@ -1,0 +1,13 @@
+{
+  @SuppressWarnings("unchecked") Enumeration<Header> allHeaders=bodyPart.getAllHeaders();
+  writeHeaders(allHeaders,sb);
+  String disposition=bodyPart.getDisposition();
+  sb.append("\n");
+  if (BodyPart.ATTACHMENT.equals(disposition)) {
+    sb.append("<attachment content not shown>");
+  }
+ else {
+    sb.append(bodyPart.getContent());
+  }
+  sb.append("\n");
+}

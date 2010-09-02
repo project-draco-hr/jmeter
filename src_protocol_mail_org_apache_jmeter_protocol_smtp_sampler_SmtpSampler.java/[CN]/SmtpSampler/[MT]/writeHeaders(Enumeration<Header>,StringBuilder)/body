@@ -1,0 +1,9 @@
+{
+  while (headers.hasMoreElements()) {
+    Header header=headers.nextElement();
+    sb.append(header.getName());
+    sb.append(": ");
+    sb.append(header.getValue());
+    sb.append("\n");
+  }
+}
