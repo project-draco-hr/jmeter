@@ -5,6 +5,7 @@
   smtpPanel.setServer(element.getPropertyAsString(SmtpSampler.SERVER));
   smtpPanel.setPort(element.getPropertyAsString(SmtpSampler.SERVER_PORT));
   smtpPanel.setMailFrom(element.getPropertyAsString(SmtpSampler.MAIL_FROM));
+  smtpPanel.setMailReplyTo(element.getPropertyAsString(SmtpSampler.MAIL_REPLYTO));
   smtpPanel.setReceiverTo(element.getPropertyAsString(SmtpSampler.RECEIVER_TO));
   smtpPanel.setReceiverCC(element.getPropertyAsString(SmtpSampler.RECEIVER_CC));
   smtpPanel.setReceiverBCC(element.getPropertyAsString(SmtpSampler.RECEIVER_BCC));

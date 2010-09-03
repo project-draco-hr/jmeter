@@ -24,10 +24,12 @@
   final String receiverTo=getPropertyAsString(SmtpSampler.RECEIVER_TO).trim();
   final String receiverCC=getPropertyAsString(SmtpSampler.RECEIVER_CC).trim();
   final String receiverBcc=getPropertyAsString(SmtpSampler.RECEIVER_BCC).trim();
+  final String replyTo=getPropertyAsString(SmtpSampler.MAIL_REPLYTO).trim();
   try {
     instance.setReceiverTo(getPropNameAsAddresses(receiverTo));
     instance.setReceiverCC(getPropNameAsAddresses(receiverCC));
     instance.setReceiverBCC(getPropNameAsAddresses(receiverBcc));
+    instance.setReplyTo(getPropNameAsAddresses(replyTo));
     if (getPropertyAsBoolean(SUPPRESS_SUBJECT)) {
       instance.setSubject(null);
     }

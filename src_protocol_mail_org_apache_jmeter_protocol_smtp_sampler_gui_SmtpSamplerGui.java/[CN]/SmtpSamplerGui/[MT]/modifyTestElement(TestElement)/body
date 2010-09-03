@@ -4,6 +4,7 @@
   te.setProperty(SmtpSampler.SERVER,smtpPanel.getServer());
   te.setProperty(SmtpSampler.SERVER_PORT,smtpPanel.getPort());
   te.setProperty(SmtpSampler.MAIL_FROM,smtpPanel.getMailFrom());
+  te.setProperty(SmtpSampler.MAIL_REPLYTO,smtpPanel.getMailReplyTo());
   te.setProperty(SmtpSampler.RECEIVER_TO,smtpPanel.getReceiverTo());
   te.setProperty(SmtpSampler.RECEIVER_CC,smtpPanel.getReceiverCC());
   te.setProperty(SmtpSampler.RECEIVER_BCC,smtpPanel.getReceiverBCC());

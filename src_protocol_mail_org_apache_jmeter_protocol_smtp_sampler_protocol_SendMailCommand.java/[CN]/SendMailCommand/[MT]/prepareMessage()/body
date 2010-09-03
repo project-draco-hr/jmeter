@@ -85,6 +85,10 @@
   if (null != sender) {
     message.setFrom(new InternetAddress(sender));
   }
+  if (null != replyTo) {
+    InternetAddress[] to=new InternetAddress[replyTo.size()];
+    message.setReplyTo(replyTo.toArray(to));
+  }
   message.setSubject(subject);
   if (receiverTo != null) {
     InternetAddress[] to=new InternetAddress[receiverTo.size()];

@@ -1,5 +1,6 @@
 {
   GridBagConstraints gridBagConstraints, gridBagConstraintsMain;
+  jlAddressReplyTo=new JLabel(JMeterUtils.getResString("smtp_replyto"));
   jlAddressFrom=new JLabel(JMeterUtils.getResString("smtp_from"));
   jlAddressTo=new JLabel(JMeterUtils.getResString("smtp_to"));
   jlAddressToCC=new JLabel(JMeterUtils.getResString("smtp_cc"));
@@ -15,6 +16,7 @@
   tfMailServer=new JTextField(30);
   tfMailServerPort=new JTextField(6);
   tfMailFrom=new JTextField(25);
+  tfMailReplyTo=new JTextField(25);
   tfMailTo=new JTextField(25);
   tfMailToCC=new JTextField(25);
   tfMailToBCC=new JTextField(25);
@@ -113,6 +115,12 @@
   gridBagConstraints.gridx=1;
   gridBagConstraints.gridy=3;
   panelMailSettings.add(tfMailToBCC,gridBagConstraints);
+  gridBagConstraints.gridx=0;
+  gridBagConstraints.gridy=4;
+  panelMailSettings.add(jlAddressReplyTo,gridBagConstraints);
+  gridBagConstraints.gridx=1;
+  gridBagConstraints.gridy=4;
+  panelMailSettings.add(tfMailReplyTo,gridBagConstraints);
   gridBagConstraintsMain.gridx=0;
   gridBagConstraintsMain.gridy=1;
   add(panelMailSettings,gridBagConstraintsMain);
