@@ -3,7 +3,7 @@
   res.setSampleLabel(getName());
   res.setSamplerData(myStringProperty);
   res.sampleStart();
-  res.setResponseData(myStringProperty.toUpperCase(),null);
+  res.setResponseData(myStringProperty.toUpperCase(Locale.ENGLISH),null);
   res.setDataType(SampleResult.TEXT);
   res.sampleEnd();
   res.setSuccessful(true);

@@ -10,7 +10,7 @@
     Class<?>[] editors=new Class[props.length];
     int count=0;
     for (    String propName : props) {
-      propName=propName.substring(0,1).toUpperCase() + propName.substring(1);
+      propName=propName.substring(0,1).toUpperCase(Locale.ENGLISH) + propName.substring(1);
       writers[count]=createWriter(clazz,propName);
       readers[count]=createReader(clazz,propName);
       editors[count]=getArgForWriter(clazz,propName);
