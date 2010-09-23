@@ -3,13 +3,11 @@
   if (currentSampler != null) {
     name=currentSampler.getName();
   }
-  log.info("execute: ***********************************************");
   if (values.length > 0) {
     JMeterVariables vars=getVariables();
     if (vars != null) {
       String varName=((CompoundVariable)values[0]).execute().trim();
       if (varName.length() > 0) {
-        log.info("name=" + name + ", varName="+ varName+ ".");
         vars.put(varName,name);
       }
     }
