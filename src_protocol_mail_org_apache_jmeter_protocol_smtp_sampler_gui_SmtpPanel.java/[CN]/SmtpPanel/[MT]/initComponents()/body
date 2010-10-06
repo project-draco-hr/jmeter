@@ -28,8 +28,8 @@
   taMessage=new JTextArea(5,20);
   cbPlainBody=new JCheckBox(JMeterUtils.getResString("smtp_plainbody"));
   cbSuppressSubject=new JCheckBox(JMeterUtils.getResString("smtp_suppresssubj"));
-  cbSuppressSubject.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+  cbSuppressSubject.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent evt){
       emptySubjectActionPerformed(evt);
     }
   }
