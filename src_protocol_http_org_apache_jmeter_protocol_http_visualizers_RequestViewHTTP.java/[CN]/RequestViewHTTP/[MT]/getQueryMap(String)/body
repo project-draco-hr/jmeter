@@ -1,0 +1,21 @@
+{
+  Map<String,String> map=new HashMap<String,String>();
+  if (query.trim().startsWith("<?")) {
+    map.put(" ",query);
+    return map;
+  }
+  String[] params=query.split(PARAM_CONCATENATE);
+  for (  String param : params) {
+    String[] paramSplit=param.split("=");
+    String name=null;
+    if (paramSplit.length > 0) {
+      name=paramSplit[0];
+    }
+    String value="";
+    if (paramSplit.length > 1) {
+      value=paramSplit[1];
+    }
+    map.put(name,value);
+  }
+  return map;
+}

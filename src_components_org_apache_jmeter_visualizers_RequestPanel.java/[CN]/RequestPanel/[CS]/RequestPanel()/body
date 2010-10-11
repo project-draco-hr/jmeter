@@ -1,0 +1,35 @@
+{
+  listRequestView=new LinkedList<RequestView>();
+  List<String> classesToAdd=Collections.<String>emptyList();
+  try {
+    classesToAdd=JMeterUtils.findClassesThatExtend(RequestView.class);
+  }
+ catch (  IOException e1) {
+  }
+  String rawTab=JMeterUtils.getResString(RequestViewRaw.KEY_LABEL);
+  Object rawObject=null;
+  for (  String clazz : classesToAdd) {
+    try {
+      final RequestView requestView=(RequestView)Class.forName(clazz).newInstance();
+      if (rawTab.equals(requestView.getLabel())) {
+        rawObject=requestView;
+      }
+ else {
+        listRequestView.add(requestView);
+      }
+    }
+ catch (    Exception e) {
+      log.warn("Error in load result render:" + clazz,e);
+    }
+  }
+  if (rawObject != null) {
+    listRequestView.addFirst((RequestView)rawObject);
+  }
+  tabbedRequest=new JTabbedPane(JTabbedPane.BOTTOM);
+  for (  RequestView requestView : listRequestView) {
+    requestView.init();
+    tabbedRequest.addTab(requestView.getLabel(),requestView.getPanel());
+  }
+  panel=new JPanel(new BorderLayout());
+  panel.add(tabbedRequest);
+}

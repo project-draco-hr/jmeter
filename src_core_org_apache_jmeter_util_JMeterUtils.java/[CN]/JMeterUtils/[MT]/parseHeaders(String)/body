@@ -1,6 +1,6 @@
 {
   LinkedHashMap<String,String> linkedHeaders=new LinkedHashMap<String,String>();
-  String[] list=responseHeaders.split(NL);
+  String[] list=headers.split("\n");
   for (  String header : list) {
     int colon=header.indexOf(':');
     if (colon <= 0) {

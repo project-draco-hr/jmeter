@@ -5,7 +5,7 @@
   }
   rightSide.setTitleAt(0,JMeterUtils.getResString("view_results_tab_sampler"));
   if (rightSide.indexOfTab(JMeterUtils.getResString("view_results_tab_request")) < 0) {
-    rightSide.addTab(JMeterUtils.getResString("view_results_tab_request"),requestPane);
+    rightSide.addTab(JMeterUtils.getResString("view_results_tab_request"),requestPanel.getPanel());
   }
   if (rightSide.indexOfTab(JMeterUtils.getResString("view_results_tab_response")) < 0) {
     rightSide.addTab(JMeterUtils.getResString("view_results_tab_response"),resultsPane);

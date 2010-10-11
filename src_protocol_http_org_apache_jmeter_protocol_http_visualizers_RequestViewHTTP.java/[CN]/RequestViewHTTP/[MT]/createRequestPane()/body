@@ -1,0 +1,28 @@
+{
+  tableRequest=new JTable(requestModel);
+  tableRequest.setToolTipText(JMeterUtils.getResString("textbox_tooltip_cell"));
+  tableRequest.addMouseListener(new TextBoxDoubleClick(tableRequest));
+  setFirstColumnPreferredSize(tableRequest);
+  RendererUtils.applyRenderers(tableRequest,RENDERERS_REQUEST);
+  tableParams=new JTable(paramsModel);
+  tableParams.setToolTipText(JMeterUtils.getResString("textbox_tooltip_cell"));
+  tableParams.addMouseListener(new TextBoxDoubleClick(tableParams));
+  setFirstColumnPreferredSize(tableParams);
+  tableParams.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
+  RendererUtils.applyRenderers(tableParams,RENDERERS_PARAMS);
+  tableHeaders=new JTable(headersModel);
+  tableHeaders.setToolTipText(JMeterUtils.getResString("textbox_tooltip_cell"));
+  tableHeaders.addMouseListener(new TextBoxDoubleClick(tableHeaders));
+  setFirstColumnPreferredSize(tableHeaders);
+  tableHeaders.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
+  RendererUtils.applyRenderers(tableHeaders,RENDERERS_HEADERS);
+  JSplitPane topSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableParams),GuiUtils.makeScrollPane(tableHeaders));
+  topSplit.setOneTouchExpandable(true);
+  topSplit.setResizeWeight(0.50);
+  JSplitPane paneParsed=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableRequest),topSplit);
+  paneParsed.setOneTouchExpandable(true);
+  paneParsed.setResizeWeight(0.25);
+  JPanel panel=new JPanel(new BorderLayout());
+  panel.add(paneParsed);
+  return panel;
+}

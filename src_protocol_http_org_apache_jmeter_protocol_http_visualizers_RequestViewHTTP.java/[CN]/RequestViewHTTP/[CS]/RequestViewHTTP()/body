@@ -1,0 +1,5 @@
+{
+  requestModel=new ObjectTableModel(COLUMNS_REQUEST,RowResult.class,new Functor[]{new Functor("getKey"),new Functor("getValue")},new Functor[]{null,null},new Class[]{String.class,String.class},false);
+  paramsModel=new ObjectTableModel(COLUMNS_PARAMS,RowResult.class,new Functor[]{new Functor("getKey"),new Functor("getValue")},new Functor[]{null,null},new Class[]{String.class,String.class},false);
+  headersModel=new ObjectTableModel(COLUMNS_HEADERS,RowResult.class,new Functor[]{new Functor("getKey"),new Functor("getValue")},new Functor[]{null,null},new Class[]{String.class,String.class},false);
+}

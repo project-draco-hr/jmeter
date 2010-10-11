@@ -1,0 +1,13 @@
+{
+  if (query != null && query.length() > 0) {
+    try {
+      query=URLDecoder.decode(query,CHARSET_DECODE);
+    }
+ catch (    UnsupportedEncodingException uee) {
+      log.warn("Error in parse query:" + query,uee);
+      return null;
+    }
+    return query;
+  }
+  return null;
+}

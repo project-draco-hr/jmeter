@@ -1,0 +1,40 @@
+{
+  if (objectResult instanceof HTTPSampleResult) {
+    HTTPSampleResult sampleResult=(HTTPSampleResult)objectResult;
+    URL hUrl=sampleResult.getURL();
+    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_method"),sampleResult.getHTTPMethod()));
+    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_protocol"),hUrl.getProtocol()));
+    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_host"),hUrl.getHost()));
+    int port=hUrl.getPort() == -1 ? hUrl.getDefaultPort() : hUrl.getPort();
+    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_port"),port));
+    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_path"),hUrl.getPath()));
+    String queryGet=hUrl.getQuery() == null ? "" : hUrl.getQuery();
+    String queryPost=sampleResult.getQueryString();
+    if (queryPost != null && queryPost.length() > 0) {
+      if (queryGet.length() > 0) {
+        queryGet+=PARAM_CONCATENATE;
+      }
+      queryGet+=queryPost;
+    }
+    queryGet=RequestViewHTTP.decodeQuery(queryGet);
+    if (queryGet != null) {
+      Map<String,String> mapQuery=RequestViewHTTP.getQueryMap(queryGet);
+      Set<String> keys=mapQuery.keySet();
+      for (      String key : keys) {
+        paramsModel.addRow(new RowResult(key,mapQuery.get(key)));
+      }
+    }
+    String cookie=sampleResult.getCookies();
+    if (cookie != null && cookie.length() > 0) {
+      headersModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_table_request_http_cookie"),sampleResult.getCookies()));
+    }
+    LinkedHashMap<String,String> lhm=JMeterUtils.parseHeaders(sampleResult.getRequestHeaders());
+    Set<String> keySet=lhm.keySet();
+    for (    String key : keySet) {
+      headersModel.addRow(new RowResult(key,lhm.get(key)));
+    }
+  }
+ else {
+    requestModel.addRow(new RowResult("",JMeterUtils.getResString("view_results_table_request_http_nohttp")));
+  }
+}
