@@ -1,0 +1,35 @@
+{
+  JFrame mainFrame=GuiPackage.getInstance().getMainFrame();
+  String title=editable ? JMeterUtils.getResString("textbox_title_edit") : JMeterUtils.getResString("textbox_title_view");
+  dialog=new JDialog(mainFrame,title,true);
+  textBox=new JEditorPane();
+  textBox.setEditable(editable);
+  JScrollPane textBoxScrollPane=GuiUtils.makeScrollPane(textBox);
+  JPanel btnBar=new JPanel();
+  btnBar.setLayout(new FlowLayout(FlowLayout.RIGHT));
+  if (editable) {
+    JButton cancelBtn=new JButton(JMeterUtils.getResString("textbox_cancel"));
+    cancelBtn.setActionCommand(CANCEL_COMMAND);
+    cancelBtn.addActionListener(this);
+    JButton saveBtn=new JButton(JMeterUtils.getResString("textbox_save_close"));
+    saveBtn.setActionCommand(SAVE_CLOSE_COMMAND);
+    saveBtn.addActionListener(this);
+    btnBar.add(cancelBtn);
+    btnBar.add(saveBtn);
+  }
+ else {
+    JButton closeBtn=new JButton(JMeterUtils.getResString("textbox_close"));
+    closeBtn.setActionCommand(CLOSE_COMMAND);
+    closeBtn.addActionListener(this);
+    btnBar.add(closeBtn);
+  }
+  Container panel=dialog.getContentPane();
+  dialog.setMinimumSize(new Dimension(400,250));
+  panel.add(textBoxScrollPane,BorderLayout.CENTER);
+  panel.add(btnBar,BorderLayout.SOUTH);
+  Point p=mainFrame.getLocationOnScreen();
+  Dimension d1=mainFrame.getSize();
+  Dimension d2=dialog.getSize();
+  dialog.setLocation(p.x + (d1.width - d2.width) / 2,p.y + (d1.height - d2.height) / 2);
+  dialog.pack();
+}

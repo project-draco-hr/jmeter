@@ -1,0 +1,7 @@
+{
+  if (e.getClickCount() == 2) {
+    TableModel tm=table.getModel();
+    Object value=tm.getValueAt(table.getSelectedRow(),table.getSelectedColumn());
+    new TextBoxDialoger(value.toString(),false);
+  }
+}

@@ -1,0 +1,10 @@
+{
+  String command=e.getActionCommand();
+  if (CANCEL_COMMAND.equals(command)) {
+    closeDialog();
+    setTextBox(originalText);
+  }
+ else {
+    closeDialog();
+  }
+}
