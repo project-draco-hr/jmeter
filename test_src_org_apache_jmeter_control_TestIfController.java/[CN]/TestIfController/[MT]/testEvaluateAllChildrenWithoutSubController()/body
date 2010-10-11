@@ -1,0 +1,27 @@
+{
+  LoopController controller=new LoopController();
+  controller.setLoops(2);
+  controller.addTestElement(new TestSampler("Sample1"));
+  IfController ifCont=new IfController("true==true");
+  ifCont.setEvaluateAll(true);
+  controller.addTestElement(ifCont);
+  ifCont.addTestElement(new TestSampler("Sample2"));
+  TestSampler sample3=new TestSampler("Sample3");
+  ifCont.addTestElement(sample3);
+  TestSampler sample4=new TestSampler("Sample4");
+  ifCont.addTestElement(sample4);
+  String[] order=new String[]{"Sample1","Sample2","Sample3","Sample1","Sample2","Sample3"};
+  int counter=0;
+  controller.setRunningVersion(true);
+  ifCont.setRunningVersion(true);
+  Sampler sampler=null;
+  while ((sampler=controller.next()) != null) {
+    sampler.sample(null);
+    if (sampler.getName().equals("Sample3")) {
+      ifCont.setCondition("true==false");
+    }
+    assertEquals(order[counter],sampler.getName());
+    counter++;
+  }
+  assertEquals(counter,6);
+}
