@@ -1,0 +1,13 @@
+{
+  if (e.getClickCount() == 2) {
+    TableModel tm=table.getModel();
+    Object value=tm.getValueAt(table.getSelectedRow(),table.getSelectedColumn());
+    if (value instanceof String) {
+      if (table.getCellEditor() != null) {
+        table.getCellEditor().cancelCellEditing();
+      }
+      TextBoxDialoger tbd=new TextBoxDialoger(value.toString(),true);
+      tm.setValueAt(tbd.getTextBox(),table.getSelectedRow(),table.getSelectedColumn());
+    }
+  }
+}
