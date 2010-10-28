@@ -5,4 +5,5 @@
     noFailingSamples++;
   }
   transactionSampleResult.addSubResult(res);
+  totalTime+=res.getTime();
 }

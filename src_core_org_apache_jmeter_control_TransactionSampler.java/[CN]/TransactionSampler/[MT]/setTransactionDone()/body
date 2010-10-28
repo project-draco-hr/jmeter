@@ -4,4 +4,9 @@
   if (transactionSampleResult.isSuccessful()) {
     transactionSampleResult.setResponseCodeOK();
   }
+  if (!transactionController.isIncludeTimers()) {
+    long end=SampleResult.currentTimeInMs();
+    transactionSampleResult.setIdleTime(end - transactionSampleResult.getStartTime() - totalTime);
+    transactionSampleResult.setEndTime(end);
+  }
 }
