@@ -2,6 +2,7 @@
   if (filename == null || filename.length() == 0) {
     return null;
   }
+  filename=FileServer.resolveBaseRelativeName(filename);
   FileEntry fe=files.get(filename);
   PrintWriter writer=null;
   boolean trimmed=true;

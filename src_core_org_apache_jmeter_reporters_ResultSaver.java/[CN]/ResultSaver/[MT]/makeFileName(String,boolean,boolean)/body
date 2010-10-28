@@ -1,5 +1,5 @@
 {
-  StrBuilder sb=new StrBuilder(getFilename());
+  StrBuilder sb=new StrBuilder(FileServer.resolveBaseRelativeName(getFilename()));
   if (!skipAutoNumber) {
     sb.append(nextNumber());
   }

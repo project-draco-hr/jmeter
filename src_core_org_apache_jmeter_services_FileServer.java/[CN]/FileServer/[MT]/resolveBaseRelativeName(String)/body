@@ -1,0 +1,7 @@
+{
+  if (relativeName.startsWith(BASE_PREFIX)) {
+    String newName=relativeName.substring(BASE_PREFIX.length());
+    return new File(getFileServer().getBaseDir(),newName).getAbsolutePath();
+  }
+  return relativeName;
+}
