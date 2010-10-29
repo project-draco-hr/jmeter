@@ -1,6 +1,6 @@
 {
   CSVDataSet csv=new CSVDataSet();
-  csv.setFilename("testfiles/testheader.csv");
+  csv.setFilename(findTestPath("testfiles/testheader.csv"));
   csv.setDelimiter("|");
   csv.setRecycle(true);
   assertNull(csv.getVariableNames());

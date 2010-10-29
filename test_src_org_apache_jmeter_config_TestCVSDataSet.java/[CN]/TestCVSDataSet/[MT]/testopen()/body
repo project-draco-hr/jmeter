@@ -8,7 +8,7 @@
   assertEquals("value",threadVars.get("b"));
   assertNull(threadVars.get("c"));
   csv=new CSVDataSet();
-  csv.setFilename("testfiles/testempty.csv");
+  csv.setFilename(findTestPath("testfiles/testempty.csv"));
   csv.setVariableNames("a,b,c");
   csv.setDelimiter(",");
   csv.iterationStart(null);
