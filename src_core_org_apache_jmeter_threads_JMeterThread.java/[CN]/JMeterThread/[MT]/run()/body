@@ -8,9 +8,9 @@
       while (running && sam != null) {
         if (onErrorStartNextLoop) {
           if (sam.equals(firstSampler)) {
-            threadContext.getVariables().put(LAST_SAMPLE_OK,"true");
+            threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
           }
-          if (threadContext.getVariables().get(LAST_SAMPLE_OK) == "true") {
+          if (TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK))) {
             process_sampler(sam,null,threadContext);
             sam=controller.next();
           }

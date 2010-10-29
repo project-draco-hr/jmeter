@@ -1,7 +1,7 @@
 {
   threadContext.setVariables(threadVars);
   threadContext.setThreadNum(getThreadNum());
-  threadContext.getVariables().put(LAST_SAMPLE_OK,"true");
+  threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
   threadContext.setThread(this);
   threadContext.setThreadGroup(threadGroup);
   threadContext.setEngine(engine);
