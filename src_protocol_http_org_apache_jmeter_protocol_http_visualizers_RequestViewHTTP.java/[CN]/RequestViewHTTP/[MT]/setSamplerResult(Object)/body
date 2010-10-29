@@ -6,7 +6,7 @@
     requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_protocol"),hUrl.getProtocol()));
     requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_host"),hUrl.getHost()));
     int port=hUrl.getPort() == -1 ? hUrl.getDefaultPort() : hUrl.getPort();
-    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_port"),port));
+    requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_port"),Integer.valueOf(port)));
     requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_path"),hUrl.getPath()));
     String queryGet=hUrl.getQuery() == null ? "" : hUrl.getQuery();
     String queryPost=sampleResult.getQueryString();
