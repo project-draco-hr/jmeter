@@ -1,5 +1,5 @@
 {
-  FileRowColContainer f=new FileRowColContainer("testfiles/test.csv");
+  FileRowColContainer f=new FileRowColContainer(findTestPath("testfiles/test.csv"));
   assertNotNull(f);
   assertTrue("Not empty",f.getSize() > 0);
   int myRow=f.nextRow();
