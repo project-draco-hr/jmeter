@@ -1,6 +1,6 @@
 {
   if (!isParent()) {
-    if (res != null) {
+    if (res != null && !se.isTransactionSampleEvent()) {
       SampleResult sampleResult=se.getResult();
       res.setThreadName(sampleResult.getThreadName());
       res.setBytes(res.getBytes() + sampleResult.getBytes());

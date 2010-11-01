@@ -1,7 +1,3 @@
 {
-  this.result=result;
-  this.threadGroup=threadGroup;
-  this.hostname=HOSTNAME;
-  values=new String[variableNames.length];
-  saveVars(jmvars);
+  this(result,threadGroup,jmvars,false);
 }
