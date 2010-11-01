@@ -1,5 +1,5 @@
 {
-  Object previous=data.get(key);
+  HashTree previous=data.get(key);
   add(key,value);
   return previous;
 }
