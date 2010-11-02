@@ -1,5 +1,5 @@
 {
-  Iterator<TestElement> iter=(Iterator<TestElement>)list.iterator();
+  Iterator<? extends TestElement> iter=list.iterator();
   while (iter.hasNext()) {
     iter.next().setRunningVersion(running);
   }

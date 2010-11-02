@@ -1,12 +1,10 @@
 {
   recoverRunningVersion(configs);
-  recoverRunningVersion(modifiers);
-  recoverRunningVersion(sampleListeners);
-  recoverRunningVersion(assertions);
-  recoverRunningVersion(timers);
-  recoverRunningVersion(responseModifiers);
-  recoverRunningVersion(postProcessors);
-  recoverRunningVersion(preProcessors);
+  recoverRunningVersion((List<? extends TestElement>)sampleListeners);
+  recoverRunningVersion((List<? extends TestElement>)assertions);
+  recoverRunningVersion((List<? extends TestElement>)timers);
+  recoverRunningVersion((List<? extends TestElement>)postProcessors);
+  recoverRunningVersion((List<? extends TestElement>)preProcessors);
   recoverRunningVersion(controllers);
   sampler.recoverRunningVersion();
 }

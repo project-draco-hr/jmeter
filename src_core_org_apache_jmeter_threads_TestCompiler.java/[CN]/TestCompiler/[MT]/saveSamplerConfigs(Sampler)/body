@@ -1,8 +1,6 @@
 {
   List<ConfigTestElement> configs=new LinkedList<ConfigTestElement>();
-  List<?> modifiers=new LinkedList<Object>();
   List<TestElement> controllers=new LinkedList<TestElement>();
-  List<?> responseModifiers=new LinkedList<Object>();
   List<SampleListener> listeners=new LinkedList<SampleListener>();
   List<Timer> timers=new LinkedList<Timer>();
   List<Assertion> assertions=new LinkedList<Assertion>();
@@ -37,7 +35,7 @@
     pres.addAll(0,tempPre);
     posts.addAll(0,tempPost);
   }
-  SamplePackage pack=new SamplePackage(configs,modifiers,responseModifiers,listeners,timers,assertions,posts,pres,controllers);
+  SamplePackage pack=new SamplePackage(configs,listeners,timers,assertions,posts,pres,controllers);
   pack.setSampler(sam);
   pack.setRunningVersion(true);
   samplerConfigMap.put(sam,pack);
