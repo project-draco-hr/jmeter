@@ -1,7 +1,10 @@
 {
   boolean typeOK=isInRequestHeaders(requestHeaders,HTTPSamplerBase.HEADER_CONTENT_TYPE,contentType);
   boolean lengOK=isInRequestHeaders(requestHeaders,HTTPSamplerBase.HEADER_CONTENT_LENGTH,Integer.toString(contentLen));
-  if (!typeOK || !lengOK) {
-    fail("Expected type:" + contentType + " & length: "+ contentLen+ " in:\n"+ requestHeaders);
+  if (!typeOK) {
+    fail("Expected type:" + contentType + " in:\n"+ requestHeaders);
+  }
+  if (!lengOK) {
+    fail("Expected & length: " + contentLen + " +");
   }
 }

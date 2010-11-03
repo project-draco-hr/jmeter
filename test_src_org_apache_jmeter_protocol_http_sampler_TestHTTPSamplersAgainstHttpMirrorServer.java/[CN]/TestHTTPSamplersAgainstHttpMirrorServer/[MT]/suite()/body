@@ -9,11 +9,13 @@
       output.write(TEST_FILE_CONTENT);
       output.flush();
       output.close();
+      System.setProperty("sun.net.http.allowRestrictedHeaders","true");
     }
     @Override protected void tearDown() throws Exception {
       httpServer.stopServer();
       httpServer=null;
       temporaryFile.delete();
+      System.setProperty("sun.net.http.allowRestrictedHeaders","false");
     }
   }
 ;
