@@ -1,0 +1,6 @@
+{
+  @SuppressWarnings("unchecked") Iterator<? extends TestElement> iter=(Iterator<? extends TestElement>)list.iterator();
+  while (iter.hasNext()) {
+    iter.next().setRunningVersion(running);
+  }
+}

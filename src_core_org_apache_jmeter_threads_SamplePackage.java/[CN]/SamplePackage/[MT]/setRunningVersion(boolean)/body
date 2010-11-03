@@ -1,10 +1,10 @@
 {
   setRunningVersion(configs,running);
-  setRunningVersion((List<? extends TestElement>)sampleListeners,running);
-  setRunningVersion((List<? extends TestElement>)assertions,running);
-  setRunningVersion((List<? extends TestElement>)timers,running);
-  setRunningVersion((List<? extends TestElement>)postProcessors,running);
-  setRunningVersion((List<? extends TestElement>)preProcessors,running);
+  setRunningVersion(sampleListeners,running);
+  setRunningVersion(assertions,running);
+  setRunningVersion(timers,running);
+  setRunningVersion(postProcessors,running);
+  setRunningVersion(preProcessors,running);
   setRunningVersion(controllers,running);
   sampler.setRunningVersion(running);
 }
