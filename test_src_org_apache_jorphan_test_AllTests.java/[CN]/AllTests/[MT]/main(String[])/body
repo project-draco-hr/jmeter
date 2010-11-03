@@ -47,6 +47,6 @@
   TestSuite suite=suite(args[0]);
   int countTestCases=suite.countTestCases();
   System.out.println("Starting test run, test count = " + countTestCases);
-  TestRunner.run(suite);
-  System.exit(0);
+  TestResult result=TestRunner.run(suite);
+  System.exit(result.wasSuccessful() ? 0 : 1);
 }
