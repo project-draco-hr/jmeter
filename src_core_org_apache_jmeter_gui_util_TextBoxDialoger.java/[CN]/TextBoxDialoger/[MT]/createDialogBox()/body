@@ -2,6 +2,9 @@
   JFrame mainFrame=GuiPackage.getInstance().getMainFrame();
   String title=editable ? JMeterUtils.getResString("textbox_title_edit") : JMeterUtils.getResString("textbox_title_view");
   dialog=new JDialog(mainFrame,title,true);
+  JPanel content=(JPanel)dialog.getContentPane();
+  KeyStroke stroke=KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE,0);
+  content.registerKeyboardAction(this,stroke,JComponent.WHEN_IN_FOCUSED_WINDOW);
   textBox=new JEditorPane();
   textBox.setEditable(editable);
   JScrollPane textBoxScrollPane=GuiUtils.makeScrollPane(textBox);
