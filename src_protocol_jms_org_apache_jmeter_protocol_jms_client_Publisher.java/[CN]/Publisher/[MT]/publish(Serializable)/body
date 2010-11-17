@@ -1,5 +1,3 @@
 {
-  ObjectMessage msg=session.createObjectMessage(contents);
-  producer.send(msg);
-  return msg;
+  return publish(contents,null);
 }

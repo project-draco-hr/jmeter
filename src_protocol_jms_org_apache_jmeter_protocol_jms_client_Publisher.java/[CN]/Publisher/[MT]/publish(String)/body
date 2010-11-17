@@ -1,5 +1,3 @@
 {
-  TextMessage msg=session.createTextMessage(text);
-  producer.send(msg);
-  return msg;
+  return publish(text,null);
 }

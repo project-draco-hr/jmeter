@@ -16,4 +16,5 @@
   updateConfig(sampler.getConfigChoice());
   iterations.setText(sampler.getIterations());
   useAuth.setSelected(sampler.isUseAuth());
+  destSetup.setText(sampler.getDestinationSetup());
 }

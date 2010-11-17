@@ -1,8 +1,3 @@
 {
-  MapMessage msg=session.createMapMessage();
-  for (  Entry<String,Object> me : map.entrySet()) {
-    msg.setObject(me.getKey(),me.getValue());
-  }
-  producer.send(msg);
-  return msg;
+  return publish(map,null);
 }

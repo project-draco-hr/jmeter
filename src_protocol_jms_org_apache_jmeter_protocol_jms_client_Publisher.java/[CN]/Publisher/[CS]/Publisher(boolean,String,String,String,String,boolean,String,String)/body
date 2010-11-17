@@ -1,8 +1,3 @@
 {
-  super();
-  Context ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
-  connection=Utils.getConnection(ctx,connfactory);
-  session=connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-  Destination dest=Utils.lookupDestination(ctx,destinationName);
-  producer=session.createProducer(dest);
+  this(useProps,initialContextFactory,providerUrl,connfactory,destinationName,useAuth,securityPrincipal,securityCredentials,JMSPublisherGui.DEST_SETUP_STATIC);
 }
