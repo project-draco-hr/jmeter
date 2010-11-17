@@ -3,7 +3,7 @@
   ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
   connection=Utils.getConnection(ctx,connfactory);
   session=connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
-  staticDest=destinationSetup.equals(JMSPublisherGui.DEST_SETUP_STATIC) ? true : false;
+  staticDest=staticDestination;
   if (staticDest) {
     Destination dest=Utils.lookupDestination(ctx,destinationName);
     producer=session.createProducer(dest);

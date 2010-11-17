@@ -15,5 +15,5 @@
   sampler.setMessageChoice(msgChoice.getText());
   sampler.setIterations(iterations.getText());
   sampler.setUseAuth(useAuth.isSelected());
-  sampler.setDestinationSetup(destSetup.getText());
+  sampler.setDestinationStatic(destSetup.getText().equals(DEST_SETUP_STATIC));
 }
