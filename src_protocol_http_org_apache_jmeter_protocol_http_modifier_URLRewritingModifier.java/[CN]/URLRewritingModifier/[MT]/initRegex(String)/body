@@ -1,8 +1,8 @@
 {
   String quotedArg=Perl5Compiler.quotemeta(argName);
-  pathExtensionEqualsQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "=([^\"'<>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
-  pathExtensionEqualsNoQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "=([^\"'<>&\\s;?]*)[&\\s\"'>;?]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
-  pathExtensionNoEqualsQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "([^\"'<>&\\s;]*)[&\\s\"'>;]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
-  pathExtensionNoEqualsNoQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "([^\"'<>&\\s;?]*)[&\\s\"'>;?]?$?",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
-  parameterRegexp=JMeterUtils.getPatternCache().getPattern("[;\\?&]" + quotedArg + "=([^\"'>&\\s;\\\\]*)[&\\s\"'>;]?$?"+ "|\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ quotedArg+ "[\"']"+ "[^>]*"+ "\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "|\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "[^>]*"+ "\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ quotedArg+ "[\"']",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionEqualsQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "=([^\"'<>&\\s;]*)",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionEqualsNoQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "=([^\"'<>&\\s;?]*)",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionNoEqualsQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "([^\"'<>&\\s;]*)",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  pathExtensionNoEqualsNoQuestionmarkRegexp=JMeterUtils.getPatternCache().getPattern(SEMI_COLON + quotedArg + "([^\"'<>&\\s;?]*)",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+  parameterRegexp=JMeterUtils.getPatternCache().getPattern("[;\\?&]" + quotedArg + "=([^\"'>&\\s;\\\\]*)"+ "|\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ quotedArg+ "[\"']"+ "[^>]*"+ "\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "|\\s[vV][Aa][Ll][Uu][Ee]\\s*=\\s*[\"']"+ "([^\"']*)"+ "[\"']"+ "[^>]*"+ "\\s[Nn][Aa][Mm][Ee]\\s*=\\s*[\"']"+ quotedArg+ "[\"']",Perl5Compiler.MULTILINE_MASK | Perl5Compiler.READ_ONLY_MASK);
 }
