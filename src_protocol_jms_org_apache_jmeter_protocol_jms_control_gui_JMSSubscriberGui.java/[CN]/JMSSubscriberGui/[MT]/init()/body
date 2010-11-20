@@ -12,7 +12,7 @@
   mainPanel.add(jndiICF);
   mainPanel.add(urlField);
   mainPanel.add(jndiConnFac);
-  mainPanel.add(jmsDestination);
+  mainPanel.add(createDestinationPane());
   mainPanel.add(useAuth);
   mainPanel.add(jmsUser);
   mainPanel.add(jmsPwd);

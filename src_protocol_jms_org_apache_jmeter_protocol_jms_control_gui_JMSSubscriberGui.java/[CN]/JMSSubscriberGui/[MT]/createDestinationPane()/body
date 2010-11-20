@@ -1,0 +1,7 @@
+{
+  JPanel pane=new JPanel(new BorderLayout(3,0));
+  pane.add(jmsDestination,BorderLayout.CENTER);
+  destSetup.setLayout(new BoxLayout(destSetup,BoxLayout.X_AXIS));
+  pane.add(destSetup,BorderLayout.EAST);
+  return pane;
+}

@@ -1,4 +1,7 @@
 {
+  if (!isDestinationStatic()) {
+    threadStarted(true);
+  }
   SampleResult result=new SampleResult();
   result.setDataType(SampleResult.TEXT);
   result.setSampleLabel(getName());
@@ -68,6 +71,9 @@
  catch (    JMSException e) {
       log.warn("Problem stopping subscriber",e);
     }
+  }
+  if (!isDestinationStatic()) {
+    threadFinished(true);
   }
   return result;
 }

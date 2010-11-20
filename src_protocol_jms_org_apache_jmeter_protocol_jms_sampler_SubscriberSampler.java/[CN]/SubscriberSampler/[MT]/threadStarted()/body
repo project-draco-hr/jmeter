@@ -1,38 +1,40 @@
 {
-  timeout=getTimeoutAsLong();
-  interrupted=false;
-  exceptionDuringInit=null;
-  useReceive=getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC);
-  stopBetweenSamples=isStopBetweenSamples();
-  if (useReceive) {
-    try {
-      initReceiveClient();
-      if (!stopBetweenSamples) {
-        SUBSCRIBER.start();
+  if (isDestinationStatic() || START_ON_SAMPLE) {
+    timeout=getTimeoutAsLong();
+    interrupted=false;
+    exceptionDuringInit=null;
+    useReceive=getClientChoice().equals(JMSSubscriberGui.RECEIVE_RSC);
+    stopBetweenSamples=isStopBetweenSamples();
+    if (useReceive) {
+      try {
+        initReceiveClient();
+        if (!stopBetweenSamples) {
+          SUBSCRIBER.start();
+        }
+      }
+ catch (      NamingException e) {
+        exceptionDuringInit=e;
+      }
+catch (      JMSException e) {
+        exceptionDuringInit=e;
       }
     }
- catch (    NamingException e) {
-      exceptionDuringInit=e;
-    }
-catch (    JMSException e) {
-      exceptionDuringInit=e;
-    }
-  }
  else {
-    try {
-      initListenerClient();
-      if (!stopBetweenSamples) {
-        SUBSCRIBER.start();
+      try {
+        initListenerClient();
+        if (!stopBetweenSamples) {
+          SUBSCRIBER.start();
+        }
+      }
+ catch (      JMSException e) {
+        exceptionDuringInit=e;
+      }
+catch (      NamingException e) {
+        exceptionDuringInit=e;
       }
     }
- catch (    JMSException e) {
-      exceptionDuringInit=e;
+    if (exceptionDuringInit != null) {
+      log.error("Could not initialise client",exceptionDuringInit);
     }
-catch (    NamingException e) {
-      exceptionDuringInit=e;
-    }
-  }
-  if (exceptionDuringInit != null) {
-    log.error("Could not initialise client",exceptionDuringInit);
   }
 }
