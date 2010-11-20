@@ -1,0 +1,12 @@
+{
+  String html="<url>/some/path;jsessionid=123456789</url>";
+  response=new SampleResult();
+  response.setResponseData(html,null);
+  mod.setArgumentName("jsessionid");
+  HTTPSamplerBase sampler=createSampler();
+  context.setCurrentSampler(sampler);
+  context.setPreviousResult(response);
+  mod.process();
+  Arguments args=sampler.getArguments();
+  assertEquals("123456789",((Argument)args.getArguments().get(0).getObjectValue()).getValue());
+}
