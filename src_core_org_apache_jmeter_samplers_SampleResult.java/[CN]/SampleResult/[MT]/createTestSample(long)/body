@@ -1,4 +1,4 @@
 {
-  long now=currentTimeInMs();
+  long now=System.currentTimeMillis();
   return createTestSample(now,now + elapsed);
 }

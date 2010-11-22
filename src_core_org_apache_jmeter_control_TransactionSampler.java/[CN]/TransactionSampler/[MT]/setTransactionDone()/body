@@ -5,7 +5,7 @@
     transactionSampleResult.setResponseCodeOK();
   }
   if (!transactionController.isIncludeTimers()) {
-    long end=SampleResult.currentTimeInMs();
+    long end=transactionSampleResult.currentTimeInMillis();
     transactionSampleResult.setIdleTime(end - transactionSampleResult.getStartTime() - totalTime);
     transactionSampleResult.setEndTime(end);
   }
