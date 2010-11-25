@@ -5,6 +5,7 @@
   res.sampleStart();
   try {
     setupConnection(url,method,res);
+    activeChannel=channel;
     execute(method,res);
     res.sampleEnd();
     res.setResponseData(responseData.toByteArray());
@@ -16,5 +17,8 @@
     lastPort=-1;
     channel=null;
     return err;
+  }
+ finally {
+    activeChannel=null;
   }
 }

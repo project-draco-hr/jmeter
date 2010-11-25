@@ -1,0 +1,12 @@
+{
+  Socket chan=activeChannel;
+  if (chan != null) {
+    activeChannel=null;
+    try {
+      chan.close();
+    }
+ catch (    Exception e) {
+    }
+  }
+  return chan != null;
+}
