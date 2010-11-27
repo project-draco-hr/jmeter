@@ -1,0 +1,17 @@
+{
+  boolean OK=true;
+  for (  Object clazz : classToAlias.keySet()) {
+    String name=(String)clazz;
+    if (name.endsWith("JMSConfigGui")) {
+      continue;
+    }
+    try {
+      Class.forName(name,false,SaveService.class.getClassLoader());
+    }
+ catch (    ClassNotFoundException e) {
+      log.error(e.toString());
+      OK=false;
+    }
+  }
+  return OK;
+}
