@@ -1,9 +1,7 @@
 {
+  this.clearData();
   StyledDocument statsDoc=stats.getStyledDocument();
   try {
-    statsDoc.remove(0,statsDoc.getLength());
-    requestPanel.clearData();
-    results.setText("");
     if (userObject instanceof SampleResult) {
       sampleResult=(SampleResult)userObject;
       setupTabPaneForSampleResult();
@@ -56,7 +54,6 @@ statsBuff.append("ContentType: ").append(sampleResult.getContentType()).append(N
 statsBuff.append("DataEncoding: ").append(sampleResult.getDataEncodingNoDefault()).append(NL);
 statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
 statsBuff=null;
-resultModel.clearData();
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_thread_name"),sampleResult.getThreadName()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_sample_start"),startTime));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_load_time"),sampleResult.getTime()));
@@ -66,13 +63,11 @@ resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_sample
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_error_count"),sampleResult.getErrorCount()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_response_code"),responseCode));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_response_message"),responseMsgStr));
-resHeadersModel.clearData();
 LinkedHashMap<String,String> lhm=JMeterUtils.parseHeaders(sampleResult.getResponseHeaders());
 Set<String> keySet=lhm.keySet();
 for (String key : keySet) {
 resHeadersModel.addRow(new RowResult(key,lhm.get(key)));
 }
-resFieldsModel.clearData();
 resFieldsModel.addRow(new RowResult("Type Result ",typeResult));
 resFieldsModel.addRow(new RowResult("ContentType",sampleResult.getContentType()));
 resFieldsModel.addRow(new RowResult("DataEncoding",sampleResult.getDataEncodingNoDefault()));
