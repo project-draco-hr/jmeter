@@ -1,8 +1,0 @@
-{
-  if (hideFileData) {
-    out.write("<actual file content, not shown here>".getBytes());
-  }
- else {
-    super.sendData(out);
-  }
-}

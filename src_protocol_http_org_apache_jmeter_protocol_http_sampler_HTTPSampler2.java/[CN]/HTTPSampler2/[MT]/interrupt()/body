@@ -1,11 +1,3 @@
 {
-  HttpClient client=savedClient;
-  if (client != null) {
-    savedClient=null;
-    final HttpConnectionManager httpConnectionManager=client.getHttpConnectionManager();
-    if (httpConnectionManager instanceof SimpleHttpConnectionManager) {
-      ((SimpleHttpConnectionManager)httpConnectionManager).shutdown();
-    }
-  }
-  return client != null;
+  return hc.interrupt();
 }

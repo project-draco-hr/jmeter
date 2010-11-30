@@ -1,8 +1,0 @@
-{
-  if (cookieManager != null) {
-    Header hdr[]=method.getResponseHeaders(HEADER_SET_COOKIE);
-    for (int i=0; i < hdr.length; i++) {
-      cookieManager.addCookieFromHeader(hdr[i].getValue(),u);
-    }
-  }
-}
