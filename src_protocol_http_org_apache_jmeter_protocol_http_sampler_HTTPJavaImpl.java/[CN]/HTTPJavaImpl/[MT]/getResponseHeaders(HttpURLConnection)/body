@@ -1,0 +1,13 @@
+{
+  StringBuilder headerBuf=new StringBuilder();
+  headerBuf.append(conn.getHeaderField(0));
+  headerBuf.append("\n");
+  String hfk;
+  for (int i=1; (hfk=conn.getHeaderFieldKey(i)) != null; i++) {
+    headerBuf.append(hfk);
+    headerBuf.append(": ");
+    headerBuf.append(conn.getHeaderField(i));
+    headerBuf.append("\n");
+  }
+  return headerBuf.toString();
+}
