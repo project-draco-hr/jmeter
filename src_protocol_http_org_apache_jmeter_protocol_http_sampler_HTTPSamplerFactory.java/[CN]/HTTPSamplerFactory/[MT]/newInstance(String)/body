@@ -2,11 +2,14 @@
   if (alias.length() == 0) {
     alias=DEFAULT_CLASSNAME;
   }
-  if (alias.equals(HTTP_SAMPLER_JAVA)) {
-    return new HTTPSampler();
+  if (alias.equals(HTTP_SAMPLER_JAVA) || alias.equals(IMPL_JAVA)) {
+    return new HTTPSamplerProxy(IMPL_JAVA);
   }
-  if (alias.equals(HTTP_SAMPLER_APACHE)) {
-    return new HTTPSampler2();
+  if (alias.equals(HTTP_SAMPLER_APACHE) || alias.equals(IMPL_HTTP_CLIENT3_1)) {
+    return new HTTPSamplerProxy(IMPL_HTTP_CLIENT3_1);
   }
-  throw new UnsupportedOperationException("Cannot create class: " + alias);
+  if (alias.equals(IMPL_HTTP_CLIENT4)) {
+    return new HTTPSamplerProxy(IMPL_HTTP_CLIENT3_1);
+  }
+  throw new IllegalArgumentException("Unknown sampler type: '" + alias + "'");
 }

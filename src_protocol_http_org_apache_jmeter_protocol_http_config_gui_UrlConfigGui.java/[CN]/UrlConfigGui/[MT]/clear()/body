@@ -7,6 +7,9 @@
     useKeepAlive.setSelected(true);
     useMultipartForPost.setSelected(false);
   }
+  if (showImplementation) {
+    httpImplementation.setText("");
+  }
   path.setText("");
   port.setText("");
   proxyHost.setText("");

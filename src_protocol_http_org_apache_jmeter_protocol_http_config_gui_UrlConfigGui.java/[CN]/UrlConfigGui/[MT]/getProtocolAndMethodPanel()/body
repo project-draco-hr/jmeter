@@ -1,5 +1,9 @@
 {
-  protocol=new JTextField(10);
+  if (showImplementation) {
+    httpImplementation=new JLabeledChoice(JMeterUtils.getResString("http_implementation"),HTTPSamplerFactory.getImplementations());
+    httpImplementation.addValue("");
+  }
+  protocol=new JTextField(4);
   contentEncoding=new JTextField(10);
   JLabel protocolLabel=new JLabel(JMeterUtils.getResString("protocol"));
   protocolLabel.setLabelFor(protocol);
@@ -9,6 +13,9 @@
     method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
   }
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  if (showImplementation) {
+    panel.add(httpImplementation);
+  }
   panel.add(protocolLabel);
   panel.add(protocol);
   panel.add(Box.createHorizontalStrut(5));

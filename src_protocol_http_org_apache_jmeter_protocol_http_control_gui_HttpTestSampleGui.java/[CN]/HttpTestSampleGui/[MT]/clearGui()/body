@@ -5,4 +5,7 @@
   useMD5.setSelected(false);
   urlConfigGui.clear();
   embeddedRE.setText("");
+  if (!isAJP) {
+    sourceIpAddr.setText("");
+  }
 }

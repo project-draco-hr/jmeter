@@ -6,4 +6,7 @@
   isMon.setSelected(samplerBase.isMonitor());
   useMD5.setSelected(samplerBase.useMD5());
   embeddedRE.setText(samplerBase.getEmbeddedUrlRE());
+  if (!isAJP) {
+    sourceIpAddr.setText(samplerBase.getIpSource());
+  }
 }

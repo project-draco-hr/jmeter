@@ -1,11 +1,5 @@
 {
-  HttpTestSampleGui tempGui=null;
-  if (sampler instanceof HTTPSampler2) {
-    tempGui=new HttpTestSampleGui2();
-  }
- else {
-    tempGui=new HttpTestSampleGui();
-  }
+  HttpTestSampleGui tempGui=new HttpTestSampleGui();
   sampler.setProperty(TestElement.GUI_CLASS,tempGui.getClass().getName());
   populateSampler(pageEncodings,formEncodings);
   tempGui.configure(sampler);

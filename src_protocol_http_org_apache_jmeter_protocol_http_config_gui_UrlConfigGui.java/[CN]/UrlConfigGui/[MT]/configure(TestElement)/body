@@ -25,4 +25,7 @@
     useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
     useMultipartForPost.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
   }
+  if (showImplementation) {
+    httpImplementation.setText(el.getPropertyAsString(HTTPSamplerBase.IMPLEMENTATION));
+  }
 }

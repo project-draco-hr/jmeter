@@ -11,5 +11,8 @@
   samplerBase.setMonitor(isMon.isSelected());
   samplerBase.setMD5(useMD5.isSelected());
   samplerBase.setEmbeddedUrlRE(embeddedRE.getText());
+  if (!isAJP) {
+    samplerBase.setIpSource(sourceIpAddr.getText());
+  }
   this.configureTestElement(sampler);
 }
