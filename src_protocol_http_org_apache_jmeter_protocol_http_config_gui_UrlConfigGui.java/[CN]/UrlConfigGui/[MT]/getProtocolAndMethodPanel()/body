@@ -4,11 +4,11 @@
     httpImplementation.addValue("");
   }
   protocol=new JTextField(4);
-  contentEncoding=new JTextField(10);
   JLabel protocolLabel=new JLabel(JMeterUtils.getResString("protocol"));
   protocolLabel.setLabelFor(protocol);
+  contentEncoding=new JTextField(10);
   JLabel contentEncodingLabel=new JLabel(JMeterUtils.getResString("content_encoding"));
-  protocolLabel.setLabelFor(contentEncoding);
+  contentEncodingLabel.setLabelFor(contentEncoding);
   if (notConfigOnly) {
     method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
   }
@@ -26,5 +26,6 @@
   panel.add(Box.createHorizontalStrut(5));
   panel.add(contentEncodingLabel);
   panel.add(contentEncoding);
+  panel.setMinimumSize(panel.getPreferredSize());
   return panel;
 }
