@@ -1,7 +1,8 @@
 {
   DefaultComboBoxModel m=new DefaultComboBoxModel();
-  m.addElement(JMeterUtils.getResString("web_testing_title"));
-  m.addElement(JMeterUtils.getResString("web_testing2_title"));
+  for (  String s : HTTPSamplerFactory.getImplementations()) {
+    m.addElement(s);
+  }
   samplerTypeName=new JComboBox(m);
   samplerTypeName.setSelectedIndex(0);
   samplerTypeName.addItemListener(this);

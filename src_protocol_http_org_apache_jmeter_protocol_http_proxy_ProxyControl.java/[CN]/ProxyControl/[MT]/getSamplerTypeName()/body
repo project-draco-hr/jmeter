@@ -1,3 +1,10 @@
 {
-  return getPropertyAsInt(SAMPLER_TYPE_NAME);
+  String type=getPropertyAsString(SAMPLER_TYPE_NAME);
+  if (SAMPLER_TYPE_HTTP_SAMPLER.equals(type)) {
+    type=HTTPSamplerFactory.IMPL_JAVA;
+  }
+ else   if (SAMPLER_TYPE_HTTP_SAMPLER2.equals(type)) {
+    type=HTTPSamplerFactory.IMPL_HTTP_CLIENT3_1;
+  }
+  return type;
 }

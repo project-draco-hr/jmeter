@@ -6,7 +6,7 @@
   httpHeaders.setSelected(model.getCaptureHttpHeaders());
   groupingMode.setSelectedIndex(model.getGroupingMode());
   addAssertions.setSelected(model.getAssertions());
-  samplerTypeName.setSelectedIndex(model.getSamplerTypeName());
+  samplerTypeName.setSelectedItem(model.getSamplerTypeName());
   samplerRedirectAutomatically.setSelected(model.getSamplerRedirectAutomatically());
   samplerFollowRedirects.setSelected(model.getSamplerFollowRedirects());
   useKeepAlive.setSelected(model.getUseKeepalive());
