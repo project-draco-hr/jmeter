@@ -1,0 +1,4 @@
+{
+  org.apache.http.Header hdr=method.getLastHeader(name);
+  return hdr != null ? hdr.getValue() : null;
+}
