@@ -9,8 +9,6 @@
   res.setHTTPMethod(method);
   res.setURL(url);
   res.sampleStart();
-  HttpClient client=null;
-  InputStream instream=null;
   try {
     if (method.equals(POST)) {
       httpMethod=new PostMethod(urlStr);
@@ -47,7 +45,7 @@
       httpMethod=new GetMethod(urlStr);
     }
     setDefaultRequestHeaders(httpMethod);
-    client=setupConnection(url,httpMethod,res);
+    HttpClient client=setupConnection(url,httpMethod,res);
     savedClient=client;
     if (method.equals(POST)) {
       String postBody=sendPostData((PostMethod)httpMethod);
@@ -59,13 +57,18 @@
     }
     int statusCode=client.executeMethod(httpMethod);
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
-    instream=httpMethod.getResponseBodyAsStream();
+    InputStream instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
-      Header responseHeader=httpMethod.getResponseHeader(HEADER_CONTENT_ENCODING);
-      if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
-        instream=new GZIPInputStream(instream);
+      try {
+        Header responseHeader=httpMethod.getResponseHeader(HEADER_CONTENT_ENCODING);
+        if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
+          instream=new GZIPInputStream(instream);
+        }
+        res.setResponseData(readResponse(res,instream,(int)httpMethod.getResponseContentLength()));
       }
-      res.setResponseData(readResponse(res,instream,(int)httpMethod.getResponseContentLength()));
+  finally {
+        JOrphanUtils.closeQuietly(instream);
+      }
     }
     res.sampleEnd();
     res.setSampleLabel(httpMethod.getURI().toString());
@@ -114,7 +117,6 @@ catch (  IOException e) {
   }
  finally {
     savedClient=null;
-    JOrphanUtils.closeQuietly(instream);
     if (httpMethod != null) {
       httpMethod.releaseConnection();
     }
