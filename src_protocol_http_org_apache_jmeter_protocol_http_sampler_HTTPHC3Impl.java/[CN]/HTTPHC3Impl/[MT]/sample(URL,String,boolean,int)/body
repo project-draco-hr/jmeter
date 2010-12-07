@@ -30,19 +30,18 @@
     }
  else     if (method.equals(GET)) {
       httpMethod=new GetMethod(urlStr);
-      final CacheManager cacheManager=getCacheManager();
-      if (cacheManager != null && GET.equalsIgnoreCase(method)) {
-        if (cacheManager.inCache(url)) {
-          res.sampleEnd();
-          res.setResponseNoContent();
-          res.setSuccessful(true);
-          return res;
-        }
-      }
     }
  else {
-      log.error("Unexpected method (converted to GET): " + method);
-      httpMethod=new GetMethod(urlStr);
+      throw new IllegalArgumentException("Unexpected method: " + method);
+    }
+    final CacheManager cacheManager=getCacheManager();
+    if (cacheManager != null && GET.equalsIgnoreCase(method)) {
+      if (cacheManager.inCache(url)) {
+        res.sampleEnd();
+        res.setResponseNoContent();
+        res.setSuccessful(true);
+        return res;
+      }
     }
     setDefaultRequestHeaders(httpMethod);
     HttpClient client=setupConnection(url,httpMethod,res);
@@ -94,7 +93,6 @@
       res.setURL(new URL(httpMethod.getURI().toString()));
     }
     saveConnectionCookies(httpMethod,res.getURL(),getCookieManager());
-    final CacheManager cacheManager=getCacheManager();
     if (cacheManager != null) {
       cacheManager.saveDetails(httpMethod,res);
     }
