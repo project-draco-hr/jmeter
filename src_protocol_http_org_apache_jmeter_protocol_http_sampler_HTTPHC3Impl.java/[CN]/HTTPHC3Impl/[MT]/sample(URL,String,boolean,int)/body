@@ -100,7 +100,6 @@
     }
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
     log.debug("End : sample");
-    httpMethod.releaseConnection();
     return res;
   }
  catch (  IllegalArgumentException e) {
