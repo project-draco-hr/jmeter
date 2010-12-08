@@ -2,9 +2,7 @@
   log.debug("Thread Finished");
   Map<HostConfiguration,HttpClient> map=httpClients.get();
   if (map != null) {
-    for (Iterator<Map.Entry<HostConfiguration,HttpClient>> it=map.entrySet().iterator(); it.hasNext(); ) {
-      Map.Entry<HostConfiguration,HttpClient> entry=it.next();
-      HttpClient cl=entry.getValue();
+    for (    HttpClient cl : map.values()) {
       cl.getHttpConnectionManager().closeIdleConnections(-1000);
     }
     map.clear();
