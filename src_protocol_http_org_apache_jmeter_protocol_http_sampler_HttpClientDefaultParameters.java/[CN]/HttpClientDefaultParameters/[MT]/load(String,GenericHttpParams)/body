@@ -27,10 +27,10 @@
             params.setParameter(name,Boolean.valueOf(value));
           }
  else           if (type.equals("HttpVersion")) {
-            params.setParameter(name,HttpVersion.parse("HTTP/" + value));
+            params.setParameter(name,org.apache.commons.httpclient.HttpVersion.parse("HTTP/" + value));
           }
  else {
-            log.warn("Unexpected type: " + type);
+            log.warn("Unexpected type: " + type + " for name "+ name);
           }
         }
  else {
@@ -38,10 +38,7 @@
           params.setParameter(key,value);
         }
       }
- catch (      NumberFormatException e) {
-        log.error("Error in property: " + key + "="+ value+ " "+ e.toString());
-      }
-catch (      ProtocolException e) {
+ catch (      Exception e) {
         log.error("Error in property: " + key + "="+ value+ " "+ e.toString());
       }
     }

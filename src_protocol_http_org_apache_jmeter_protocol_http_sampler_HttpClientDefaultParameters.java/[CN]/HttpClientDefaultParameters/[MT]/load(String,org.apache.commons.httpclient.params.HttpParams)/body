@@ -1,0 +1,8 @@
+{
+  load(file,new GenericHttpParams(){
+    @Override public void setParameter(    String name,    Object value){
+      params.setParameter(name,value);
+    }
+  }
+);
+}
