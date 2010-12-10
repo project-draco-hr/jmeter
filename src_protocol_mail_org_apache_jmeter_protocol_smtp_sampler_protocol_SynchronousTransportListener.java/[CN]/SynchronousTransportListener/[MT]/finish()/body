@@ -1,4 +1,6 @@
 {
   finished=true;
-  notify();
+synchronized (LOCK) {
+    LOCK.notify();
+  }
 }

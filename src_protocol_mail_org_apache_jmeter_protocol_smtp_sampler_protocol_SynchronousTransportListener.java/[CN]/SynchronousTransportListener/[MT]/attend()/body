@@ -1,3 +1,7 @@
 {
-  if (!finished)   wait();
+synchronized (LOCK) {
+    while (!finished) {
+      LOCK.wait();
+    }
+  }
 }
