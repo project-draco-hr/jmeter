@@ -1,3 +1,7 @@
 {
-  return SingletonHolder.INSTANCE;
+  if (router == null) {
+    router=new ActionRouter();
+    router.populateCommandMap();
+  }
+  return router;
 }
