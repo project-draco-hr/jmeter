@@ -18,7 +18,7 @@
     return Integer.valueOf(getInt(value));
   }
  else   if (toType.equals(char.class) || toType.equals(Character.class)) {
-    return new Character(getChar(value));
+    return Character.valueOf(getChar(value));
   }
  else   if (toType.equals(long.class) || toType.equals(Long.class)) {
     return Long.valueOf(getLong(value));
