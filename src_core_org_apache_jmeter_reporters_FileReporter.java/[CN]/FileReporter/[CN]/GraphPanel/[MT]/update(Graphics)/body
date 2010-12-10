@@ -11,11 +11,11 @@
   int increment=Math.round((float)(width - 1) / (dataWidth - 1));
   int yIncrement=Math.round(((float)height - (1 + base)) / (10 - 1));
   for (int t=1; t < dataWidth; t+=(dataWidth / 25 + 1)) {
-    g.drawString((new Integer(t)).toString(),t * increment + 2,height - 2);
+    g.drawString((Integer.valueOf(t)).toString(),t * increment + 2,height - 2);
   }
   float incrementValue=(maxValue - minValue) / (10 - 1);
   for (int t=0; t < 10; t++) {
-    g.drawString(new Integer(Math.round(minValue + (t * incrementValue))).toString(),2,height - t * yIncrement - 2 - base);
+    g.drawString(Integer.valueOf(Math.round(minValue + (t * incrementValue))).toString(),2,height - t * yIncrement - 2 - base);
   }
   int start=0;
   for (int t=0; t < keys.size(); t++) {

@@ -1,7 +1,7 @@
 {
   Integer order=(Integer)d.getValue(ORDER);
   if (order == null) {
-    order=new Integer(0);
+    order=Integer.valueOf(0);
   }
   return order;
 }

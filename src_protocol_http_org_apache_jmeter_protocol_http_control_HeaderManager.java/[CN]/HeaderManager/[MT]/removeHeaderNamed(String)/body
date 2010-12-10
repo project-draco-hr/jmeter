@@ -6,7 +6,7 @@
       continue;
     }
     if (header.getName().equalsIgnoreCase(name)) {
-      removeIndices.addElement(new Integer(i));
+      removeIndices.addElement(Integer.valueOf(i));
     }
   }
   for (Enumeration<Integer> e=removeIndices.elements(); e.hasMoreElements(); ) {

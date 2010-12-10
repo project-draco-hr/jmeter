@@ -1,7 +1,7 @@
 {
   perTheadNumber=new ThreadLocal<Long>(){
     @Override protected Long initialValue(){
-      return new Long(getStart());
+      return Long.valueOf(getStart());
     }
   }
 ;

@@ -1,6 +1,6 @@
 {
   if (calculator.getMin().longValue() < 0) {
-    return new Long(0);
+    return Long.valueOf(0);
   }
   return calculator.getMin();
 }

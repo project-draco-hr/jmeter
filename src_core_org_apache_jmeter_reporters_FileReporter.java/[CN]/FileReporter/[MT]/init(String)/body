@@ -21,10 +21,10 @@
         int len=line.length() - 1;
         Integer value=null;
         if (line.charAt(len) == ',') {
-          value=new Integer(line.substring(splitter + 1,len));
+          value=Integer.valueOf(line.substring(splitter + 1,len));
         }
  else {
-          value=new Integer(line.substring(splitter + 1));
+          value=Integer.valueOf(line.substring(splitter + 1));
         }
         Vector<Integer> v=getData(key);
         if (v == null) {

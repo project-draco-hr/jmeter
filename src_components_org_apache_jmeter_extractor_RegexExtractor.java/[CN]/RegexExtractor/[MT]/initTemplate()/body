@@ -19,7 +19,7 @@
     if (beginMatch > beginOffset) {
       combined.add(rawTemplate.substring(beginOffset,beginMatch));
     }
-    combined.add(new Integer(currentResult.group(1)));
+    combined.add(Integer.valueOf(currentResult.group(1)));
     beginOffset=currentResult.endOffset(0);
   }
   if (beginOffset < rawTemplate.length()) {

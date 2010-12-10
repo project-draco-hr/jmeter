@@ -1,7 +1,7 @@
 {
   Integer order=(Integer)beanInfo.getBeanDescriptor().getValue(ORDER(group));
   if (order == null) {
-    order=new Integer(0);
+    order=Integer.valueOf(0);
   }
   return order;
 }

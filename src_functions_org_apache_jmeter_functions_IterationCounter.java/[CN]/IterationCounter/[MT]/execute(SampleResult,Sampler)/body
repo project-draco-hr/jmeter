@@ -1,5 +1,5 @@
 {
-  new Integer(1);
+  Integer.valueOf(1);
   globalCounter++;
   JMeterVariables vars=getVariables();
   boolean perThread=Boolean.valueOf(((CompoundVariable)variables[0]).execute()).booleanValue();
@@ -11,7 +11,7 @@
   if (perThread) {
     int threadCounter;
     threadCounter=perThreadInt.get().intValue() + 1;
-    perThreadInt.set(new Integer(threadCounter));
+    perThreadInt.set(Integer.valueOf(threadCounter));
     counterString=String.valueOf(threadCounter);
   }
  else {

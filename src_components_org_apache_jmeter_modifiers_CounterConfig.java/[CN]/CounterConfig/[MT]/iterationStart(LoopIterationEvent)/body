@@ -15,6 +15,6 @@
     if (current > end) {
       current=start;
     }
-    perTheadNumber.set(new Long(current));
+    perTheadNumber.set(Long.valueOf(current));
   }
 }

@@ -25,7 +25,7 @@
     final String headerString=headers.toString();
     String contentLengthHeaderValue=getRequestHeaderValue(headerString,"Content-Length");
     if (contentLengthHeaderValue != null) {
-      contentLength=new Integer(contentLengthHeaderValue).intValue();
+      contentLength=Integer.valueOf(contentLengthHeaderValue).intValue();
     }
     String sleepHeaderValue=getRequestHeaderValue(headerString,"X-Sleep");
     if (sleepHeaderValue != null) {

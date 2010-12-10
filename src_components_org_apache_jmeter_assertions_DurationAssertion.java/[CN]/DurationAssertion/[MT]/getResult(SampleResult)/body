@@ -6,7 +6,7 @@
     long responseTime=response.getTime();
     if (responseTime > duration) {
       result.setFailure(true);
-      Object[] arguments={new Long(responseTime),new Long(duration)};
+      Object[] arguments={Long.valueOf(responseTime),Long.valueOf(duration)};
       String message=MessageFormat.format(JMeterUtils.getResString("duration_assertion_failure"),arguments);
       result.setFailureMessage(message);
     }

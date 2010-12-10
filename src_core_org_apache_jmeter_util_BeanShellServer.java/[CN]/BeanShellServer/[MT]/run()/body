@@ -10,7 +10,7 @@
     Method setInt=Interpreter.getMethod("set",new Class[]{string,int.class});
     Method source=Interpreter.getMethod("source",new Class[]{string});
     setObj.invoke(instance,new Object[]{"t",this});
-    setInt.invoke(instance,new Object[]{"portnum",new Integer(serverport)});
+    setInt.invoke(instance,new Object[]{"portnum",Integer.valueOf(serverport)});
     if (serverfile.length() > 0) {
       try {
         source.invoke(instance,new Object[]{serverfile});
