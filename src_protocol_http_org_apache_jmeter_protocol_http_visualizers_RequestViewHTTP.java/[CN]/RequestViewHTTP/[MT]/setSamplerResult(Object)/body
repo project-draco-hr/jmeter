@@ -19,10 +19,9 @@
       }
       queryGet=RequestViewHTTP.decodeQuery(queryGet);
       if (queryGet != null) {
-        Map<String,String> mapQuery=RequestViewHTTP.getQueryMap(queryGet);
-        Set<String> keys=mapQuery.keySet();
-        for (        String key : keys) {
-          paramsModel.addRow(new RowResult(key,mapQuery.get(key)));
+        Set<Entry<String,String>> keys=RequestViewHTTP.getQueryMap(queryGet).entrySet();
+        for (        Entry<String,String> entry : keys) {
+          paramsModel.addRow(new RowResult(entry.getKey(),entry.getValue()));
         }
       }
     }

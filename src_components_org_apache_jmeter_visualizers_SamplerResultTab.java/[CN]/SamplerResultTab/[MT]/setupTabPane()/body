@@ -64,9 +64,9 @@ resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_error_
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_response_code"),responseCode));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_response_message"),responseMsgStr));
 LinkedHashMap<String,String> lhm=JMeterUtils.parseHeaders(sampleResult.getResponseHeaders());
-Set<String> keySet=lhm.keySet();
-for (String key : keySet) {
-resHeadersModel.addRow(new RowResult(key,lhm.get(key)));
+Set<Entry<String,String>> keySet=lhm.entrySet();
+for (Entry<String,String> entry : keySet) {
+resHeadersModel.addRow(new RowResult(entry.getKey(),entry.getValue()));
 }
 resFieldsModel.addRow(new RowResult("Type Result ",typeResult));
 resFieldsModel.addRow(new RowResult("ContentType",sampleResult.getContentType()));
