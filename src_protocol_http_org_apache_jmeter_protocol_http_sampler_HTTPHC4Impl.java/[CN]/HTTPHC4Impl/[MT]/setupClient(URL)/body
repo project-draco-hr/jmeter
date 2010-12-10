@@ -1,0 +1,46 @@
+{
+  Map<HttpClientKey,HttpClient> map=HTTPCLIENTS.get();
+  final String host=url.getHost();
+  final String proxyHost=getProxyHost();
+  final int proxyPort=getProxyPortInt();
+  boolean useStaticProxy=isStaticProxy(host);
+  boolean useDynamicProxy=isDynamicProxy(proxyHost,proxyPort);
+  HttpClientKey key=new HttpClientKey(url,(useStaticProxy || useDynamicProxy),useDynamicProxy ? proxyHost : PROXY_HOST,useDynamicProxy ? proxyPort : PROXY_PORT,useDynamicProxy ? getProxyUser() : PROXY_USER,useDynamicProxy ? getProxyPass() : PROXY_PASS);
+  HttpClient httpClient=map.get(key);
+  if (httpClient == null) {
+    HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
+    httpClient=new DefaultHttpClient(clientParams);
+    if (SLOW_HTTP != null) {
+      SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
+      schemeRegistry.register(SLOW_HTTP);
+    }
+    if (SLOW_HTTPS != null) {
+      SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
+      schemeRegistry.register(SLOW_HTTPS);
+    }
+    if (useDynamicProxy) {
+      HttpHost proxy=new HttpHost(proxyHost,proxyPort);
+      clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+      String proxyUser=getProxyUser();
+      if (proxyUser.length() > 0) {
+        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(proxyHost,proxyPort),new UsernamePasswordCredentials(proxyUser,getProxyPass()));
+      }
+    }
+ else     if (useStaticProxy) {
+      HttpHost proxy=new HttpHost(PROXY_HOST,PROXY_PORT);
+      clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+      if (PROXY_USER.length() > 0)       ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(PROXY_HOST,PROXY_PORT),new UsernamePasswordCredentials(PROXY_USER,PROXY_PASS));
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Created new HttpClient: @" + System.identityHashCode(httpClient));
+    }
+    map.put(key,httpClient);
+  }
+ else {
+    if (log.isDebugEnabled()) {
+      log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient));
+    }
+  }
+  setConnectionAuthorization(httpClient,url,getAuthManager());
+  return httpClient;
+}

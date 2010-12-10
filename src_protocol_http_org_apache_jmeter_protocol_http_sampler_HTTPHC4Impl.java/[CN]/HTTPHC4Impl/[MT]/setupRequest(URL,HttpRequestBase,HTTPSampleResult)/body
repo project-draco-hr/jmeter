@@ -1,0 +1,34 @@
+{
+  HttpParams requestParams=httpRequest.getParams();
+  final String ipSource=getIpSource();
+  if (ipSource.length() > 0) {
+    InetAddress inetAddr=InetAddress.getByName(ipSource);
+    requestParams.setParameter(ConnRoutePNames.LOCAL_ADDRESS,inetAddr);
+  }
+ else   if (localAddress != null) {
+    requestParams.setParameter(ConnRoutePNames.LOCAL_ADDRESS,localAddress);
+  }
+ else {
+    requestParams.removeParameter(ConnRoutePNames.LOCAL_ADDRESS);
+  }
+  int rto=getResponseTimeout();
+  if (rto > 0) {
+    requestParams.setIntParameter(CoreConnectionPNames.SO_TIMEOUT,rto);
+  }
+  int cto=getConnectTimeout();
+  if (cto > 0) {
+    requestParams.setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,cto);
+  }
+  requestParams.setBooleanParameter(ClientPNames.HANDLE_REDIRECTS,getAutoRedirects());
+  if (getUseKeepAlive()) {
+    httpRequest.setHeader(HEADER_CONNECTION,KEEP_ALIVE);
+  }
+ else {
+    httpRequest.setHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
+  }
+  setConnectionHeaders(httpRequest,url,getHeaderManager(),getCacheManager());
+  String cookies=setConnectionCookie(httpRequest,url,getCookieManager());
+  if (res != null) {
+    res.setCookies(cookies);
+  }
+}

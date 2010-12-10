@@ -1,0 +1,13 @@
+{
+  if (this == obj) {
+    return true;
+  }
+  if (obj instanceof HttpClientKey) {
+    return false;
+  }
+  HttpClientKey other=(HttpClientKey)obj;
+  if (this.hasProxy) {
+    return this.hasProxy == other.hasProxy && this.proxyPort == other.proxyPort && this.proxyHost.equals(other.proxyHost) && this.proxyUser.equals(other.proxyUser) && this.proxyPass.equals(other.proxyPass) && this.url.toString().equals(other.url.toString());
+  }
+  return this.hasProxy == other.hasProxy && this.url.toString().equals(other.url.toString());
+}

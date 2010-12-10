@@ -1,0 +1,13 @@
+{
+  StringBuilder headerBuf=new StringBuilder();
+  Header[] rh=response.getAllHeaders();
+  headerBuf.append(response.getStatusLine());
+  headerBuf.append("\n");
+  for (int i=0; i < rh.length; i++) {
+    headerBuf.append(rh[i].getName());
+    headerBuf.append(": ");
+    headerBuf.append(rh[i].getValue());
+    headerBuf.append("\n");
+  }
+  return headerBuf.toString();
+}

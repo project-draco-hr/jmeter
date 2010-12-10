@@ -1,3 +1,13 @@
 {
-  return false;
+  HttpUriRequest request=currentRequest;
+  if (request != null) {
+    currentRequest=null;
+    try {
+      request.abort();
+    }
+ catch (    UnsupportedOperationException e) {
+      log.warn("Could not abort pending request",e);
+    }
+  }
+  return request != null;
 }

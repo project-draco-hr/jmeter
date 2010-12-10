@@ -1,0 +1,21 @@
+{
+  CredentialsProvider credentialsProvider=((AbstractHttpClient)client).getCredentialsProvider();
+  if (authManager != null) {
+    Authorization auth=authManager.getAuthForURL(url);
+    if (auth != null) {
+      String username=auth.getUser();
+      String realm=auth.getRealm();
+      String domain=auth.getDomain();
+      if (log.isDebugEnabled()) {
+        log.debug(username + " > D=" + domain+ " R="+ realm);
+      }
+      credentialsProvider.setCredentials(new AuthScope(url.getHost(),url.getPort(),realm.length() == 0 ? null : realm),new NTCredentials(username,auth.getPass(),localHost,domain));
+    }
+ else {
+      credentialsProvider.clear();
+    }
+  }
+ else {
+    credentialsProvider.clear();
+  }
+}

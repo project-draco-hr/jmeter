@@ -1,0 +1,8 @@
+{
+  if (cookieManager != null) {
+    Header[] hdrs=method.getHeaders(HEADER_SET_COOKIE);
+    for (    Header hdr : hdrs) {
+      cookieManager.addCookieFromHeader(hdr.getValue(),u);
+    }
+  }
+}

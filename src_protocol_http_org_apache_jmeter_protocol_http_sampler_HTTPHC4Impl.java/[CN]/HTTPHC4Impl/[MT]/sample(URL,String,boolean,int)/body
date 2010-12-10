@@ -1,3 +1,112 @@
 {
-  throw new NotImplementedException();
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setMonitor(isMonitor());
+  res.setSampleLabel(url.toString());
+  res.setHTTPMethod(method);
+  res.setURL(url);
+  HttpClient httpClient=setupClient(url);
+  HttpRequestBase httpRequest=null;
+  try {
+    URI uri=url.toURI();
+    if (method.equals(POST)) {
+      httpRequest=new HttpPost(uri);
+    }
+ else     if (method.equals(PUT)) {
+      httpRequest=new HttpPut(uri);
+    }
+ else     if (method.equals(HEAD)) {
+      httpRequest=new HttpHead(uri);
+    }
+ else     if (method.equals(TRACE)) {
+      httpRequest=new HttpTrace(uri);
+    }
+ else     if (method.equals(OPTIONS)) {
+      httpRequest=new HttpOptions(uri);
+    }
+ else     if (method.equals(DELETE)) {
+      httpRequest=new HttpDelete(uri);
+    }
+ else     if (method.equals(GET)) {
+      httpRequest=new HttpGet(uri);
+    }
+ else {
+      throw new IllegalArgumentException("Unexpected method: " + method);
+    }
+    setupRequest(url,httpRequest,res);
+  }
+ catch (  Exception e) {
+    res.sampleStart();
+    res.sampleEnd();
+    HTTPSampleResult err=errorResult(e,res);
+    err.setSampleLabel("Error: " + url.toString());
+    return err;
+  }
+  HttpContext localContext=new BasicHttpContext();
+  res.sampleStart();
+  final CacheManager cacheManager=getCacheManager();
+  if (cacheManager != null && GET.equalsIgnoreCase(method)) {
+    if (cacheManager.inCache(url)) {
+      res.sampleEnd();
+      res.setResponseNoContent();
+      res.setSuccessful(true);
+      return res;
+    }
+  }
+  try {
+    currentRequest=httpRequest;
+    HttpResponse httpResponse=httpClient.execute(httpRequest,localContext);
+    res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
+    HttpEntity entity=httpResponse.getEntity();
+    if (entity != null) {
+      InputStream instream=entity.getContent();
+      res.setResponseData(readResponse(res,instream,(int)entity.getContentLength()));
+      Header contentType=entity.getContentType();
+      if (contentType != null) {
+        String ct=contentType.getValue();
+        res.setContentType(ct);
+        res.setEncodingAndType(ct);
+      }
+    }
+    res.sampleEnd();
+    currentRequest=null;
+    StatusLine statusLine=httpResponse.getStatusLine();
+    int statusCode=statusLine.getStatusCode();
+    res.setResponseCode(Integer.toString(statusCode));
+    res.setResponseMessage(statusLine.getReasonPhrase());
+    res.setSuccessful(isSuccessCode(statusCode));
+    res.setResponseHeaders(getResponseHeaders(httpResponse));
+    if (res.isRedirect()) {
+      final Header headerLocation=httpResponse.getLastHeader(HEADER_LOCATION);
+      if (headerLocation == null) {
+        throw new IllegalArgumentException("Missing location header");
+      }
+      res.setRedirectLocation(headerLocation.getValue());
+    }
+    if (getAutoRedirects()) {
+      HttpUriRequest req=(HttpUriRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST);
+      HttpHost target=(HttpHost)localContext.getAttribute(ExecutionContext.HTTP_TARGET_HOST);
+      URI redirectURI=req.getURI();
+      if (redirectURI.isAbsolute()) {
+        res.setURL(redirectURI.toURL());
+      }
+ else {
+        res.setURL(new URL(new URL(target.toURI()),redirectURI.toString()));
+      }
+    }
+    saveConnectionCookies(httpResponse,res.getURL(),getCookieManager());
+    if (cacheManager != null) {
+      cacheManager.saveDetails(httpResponse,res);
+    }
+    res=resultProcessing(areFollowingRedirect,frameDepth,res);
+  }
+ catch (  IOException e) {
+    res.sampleEnd();
+    HTTPSampleResult err=errorResult(e,res);
+    err.setSampleLabel("Error: " + url.toString());
+    return err;
+  }
+ finally {
+    currentRequest=null;
+  }
+  return res;
 }
