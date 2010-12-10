@@ -3,6 +3,13 @@
     @Override public void setParameter(    String name,    Object value){
       params.setParameter(name,value);
     }
+    @Override public void setVersion(    String name,    String value){
+      String parts[]=value.split("\\.");
+      if (parts.length != 2) {
+        throw new IllegalArgumentException("Version must have form m.n");
+      }
+      params.setParameter(name,new org.apache.http.HttpVersion(Integer.parseInt(parts[0]),Integer.parseInt(parts[1])));
+    }
   }
 );
 }

@@ -3,6 +3,9 @@
     @Override public void setParameter(    String name,    Object value){
       params.setParameter(name,value);
     }
+    @Override public void setVersion(    String name,    String value) throws Exception {
+      params.setParameter(name,org.apache.commons.httpclient.HttpVersion.parse("HTTP/" + value));
+    }
   }
 );
 }
