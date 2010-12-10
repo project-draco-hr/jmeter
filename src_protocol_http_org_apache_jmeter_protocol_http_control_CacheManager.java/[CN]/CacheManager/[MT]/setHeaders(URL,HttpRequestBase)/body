@@ -1,16 +1,16 @@
 {
   CacheEntry entry=getCache().get(url.toString());
   if (log.isDebugEnabled()) {
-    log.debug(method.getName() + "(OACH) " + url.toString()+ " "+ entry);
+    log.debug(request.getMethod() + "(OAH) " + url.toString()+ " "+ entry);
   }
   if (entry != null) {
     final String lastModified=entry.getLastModified();
     if (lastModified != null) {
-      method.setRequestHeader(HTTPConstantsInterface.IF_MODIFIED_SINCE,lastModified);
+      request.setHeader(HTTPConstantsInterface.IF_MODIFIED_SINCE,lastModified);
     }
     final String etag=entry.getEtag();
     if (etag != null) {
-      method.setRequestHeader(HTTPConstantsInterface.IF_NONE_MATCH,etag);
+      request.setHeader(HTTPConstantsInterface.IF_NONE_MATCH,etag);
     }
   }
 }
