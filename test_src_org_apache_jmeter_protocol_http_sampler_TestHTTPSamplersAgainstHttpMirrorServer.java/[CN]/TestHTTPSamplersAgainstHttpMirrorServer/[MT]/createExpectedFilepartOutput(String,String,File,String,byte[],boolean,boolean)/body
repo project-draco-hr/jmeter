@@ -1,5 +1,5 @@
 {
-  final byte[] DASH_DASH=new String("--").getBytes(ISO_8859_1);
+  final byte[] DASH_DASH="--".getBytes(ISO_8859_1);
   final ByteArrayOutputStream output=new ByteArrayOutputStream();
   if (firstMultipart) {
     output.write(DASH_DASH);
