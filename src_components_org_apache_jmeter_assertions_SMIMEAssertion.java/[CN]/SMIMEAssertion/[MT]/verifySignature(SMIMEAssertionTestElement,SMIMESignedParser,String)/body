@@ -61,7 +61,15 @@
         }
         if (testElement.isSignerCheckByFile()) {
           CertificateFactory cf=CertificateFactory.getInstance("X.509");
-          X509Certificate certFromFile=(X509Certificate)cf.generateCertificate(new FileInputStream(testElement.getSignerCertFile()));
+          X509Certificate certFromFile;
+          FileInputStream inStream=null;
+          try {
+            inStream=new FileInputStream(testElement.getSignerCertFile());
+            certFromFile=(X509Certificate)cf.generateCertificate(inStream);
+          }
+  finally {
+            IOUtils.closeQuietly(inStream);
+          }
           if (!certFromFile.equals(cert)) {
             res.setFailure(true);
             res.setFailureMessage("Signer certificate does not match certificate " + testElement.getSignerCertFile());

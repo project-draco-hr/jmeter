@@ -21,24 +21,29 @@
 switch (option.getDescriptor().getId()) {
 case PROPFILE2_OPT:
       File f=new File(name);
-    try {
-      jmeterProps.load(new FileInputStream(f));
-    }
- catch (    FileNotFoundException e) {
-      log.warn("Can't find additional property file: " + name,e);
-    }
-catch (    IOException e) {
-      log.warn("Error loading additional property file: " + name,e);
-    }
-  break;
+    FileInputStream inStream=null;
+  try {
+    inStream=new FileInputStream(f);
+    jmeterProps.load(inStream);
+  }
+ catch (  FileNotFoundException e) {
+    log.warn("Can't find additional property file: " + name,e);
+  }
+catch (  IOException e) {
+    log.warn("Error loading additional property file: " + name,e);
+  }
+ finally {
+    IOUtils.closeQuietly(inStream);
+  }
+break;
 case SYSTEM_PROPERTY:
 if (value.length() > 0) {
-  log.info("Setting System property: " + name + "="+ value);
-  System.getProperties().setProperty(name,value);
+log.info("Setting System property: " + name + "="+ value);
+System.getProperties().setProperty(name,value);
 }
  else {
-  log.warn("Removing System property: " + name);
-  System.getProperties().remove(name);
+log.warn("Removing System property: " + name);
+System.getProperties().remove(name);
 }
 break;
 case JMETER_PROPERTY:
