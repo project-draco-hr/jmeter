@@ -1,9 +1,5 @@
 {
-synchronized (allThreads) {
-    Iterator<JMeterThread> iter=new HashSet<JMeterThread>(allThreads.keySet()).iterator();
-    while (iter.hasNext()) {
-      JMeterThread item=iter.next();
-      item.stop();
-    }
+  for (  JMeterThread item : allThreads.keySet()) {
+    item.stop();
   }
 }

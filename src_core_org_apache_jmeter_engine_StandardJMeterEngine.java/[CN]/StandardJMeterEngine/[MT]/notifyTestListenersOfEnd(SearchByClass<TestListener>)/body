@@ -1,8 +1,6 @@
 {
   log.info("Notifying test listeners of end of test");
-  Iterator<TestListener> iter=testListeners.getSearchResults().iterator();
-  while (iter.hasNext()) {
-    TestListener tl=iter.next();
+  for (  TestListener tl : testListeners.getSearchResults()) {
     try {
       if (host == null) {
         tl.testEnded();

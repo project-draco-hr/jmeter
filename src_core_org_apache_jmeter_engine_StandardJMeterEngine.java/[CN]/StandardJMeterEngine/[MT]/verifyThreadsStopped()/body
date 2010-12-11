@@ -1,26 +1,17 @@
 {
   boolean stoppedAll=true;
-  List<Thread> threadsToCheck=new ArrayList<Thread>(allThreads.size());
-synchronized (allThreads) {
-    Iterator<JMeterThread> iter=allThreads.keySet().iterator();
-    while (iter.hasNext()) {
-      Thread t=allThreads.get(iter.next());
-      if (t != null) {
-        threadsToCheck.add(t);
-      }
-    }
-  }
-  for (int i=0; i < threadsToCheck.size(); i++) {
-    Thread t=threadsToCheck.get(i);
-    if (t.isAlive()) {
-      try {
-        t.join(WAIT_TO_DIE);
-      }
- catch (      InterruptedException e) {
-      }
+  for (  Thread t : allThreads.values()) {
+    if (t != null) {
       if (t.isAlive()) {
-        stoppedAll=false;
-        log.warn("Thread won't exit: " + t.getName());
+        try {
+          t.join(WAIT_TO_DIE);
+        }
+ catch (        InterruptedException e) {
+        }
+        if (t.isAlive()) {
+          stoppedAll=false;
+          log.warn("Thread won't exit: " + t.getName());
+        }
       }
     }
   }

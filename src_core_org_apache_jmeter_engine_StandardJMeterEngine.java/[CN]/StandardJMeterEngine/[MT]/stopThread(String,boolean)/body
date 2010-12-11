@@ -2,26 +2,19 @@
   if (engine == null) {
     return false;
   }
-  JMeterThread thrd=null;
-synchronized (engine.allThreads) {
-    Iterator<JMeterThread> iter=engine.allThreads.keySet().iterator();
-    while (iter.hasNext()) {
-      thrd=iter.next();
-      if (thrd.getThreadName().equals(threadName)) {
-        break;
+  for (  Entry<JMeterThread,Thread> entry : engine.allThreads.entrySet()) {
+    JMeterThread thrd=entry.getKey();
+    if (thrd.getThreadName().equals(threadName)) {
+      thrd.stop();
+      thrd.interrupt();
+      if (now) {
+        Thread t=entry.getValue();
+        if (t != null) {
+          t.interrupt();
+        }
       }
+      return true;
     }
-  }
-  if (thrd != null) {
-    thrd.stop();
-    thrd.interrupt();
-    if (now) {
-      Thread t=engine.allThreads.get(thrd);
-      if (t != null) {
-        t.interrupt();
-      }
-    }
-    return true;
   }
   return false;
 }

@@ -1,7 +1,5 @@
 {
-  Iterator<TestListener> iter=testListeners.getSearchResults().iterator();
-  while (iter.hasNext()) {
-    TestListener tl=iter.next();
+  for (  TestListener tl : testListeners.getSearchResults()) {
     if (tl instanceof TestBean) {
       TestBeanHelper.prepare((TestElement)tl);
     }

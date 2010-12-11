@@ -1,14 +1,11 @@
 {
-synchronized (allThreads) {
-    Iterator<JMeterThread> iter=new HashSet<JMeterThread>(allThreads.keySet()).iterator();
-    while (iter.hasNext()) {
-      JMeterThread item=iter.next();
-      item.stop();
-      item.interrupt();
-      Thread t=allThreads.get(item);
-      if (t != null) {
-        t.interrupt();
-      }
+  for (  Entry<JMeterThread,Thread> entry : allThreads.entrySet()) {
+    JMeterThread item=entry.getKey();
+    item.stop();
+    item.interrupt();
+    Thread t=entry.getValue();
+    if (t != null) {
+      t.interrupt();
     }
   }
 }
