@@ -54,6 +54,14 @@
   }
   try {
     currentRequest=httpRequest;
+    if (method.equals(POST)) {
+      String postBody=sendPostData((HttpPost)httpRequest);
+      res.setQueryString(postBody);
+    }
+ else     if (method.equals(PUT)) {
+      String putBody=sendPutData((HttpPut)httpRequest);
+      res.setQueryString(putBody);
+    }
     HttpResponse httpResponse=httpClient.execute(httpRequest,localContext);
     res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
     HttpEntity entity=httpResponse.getEntity();
