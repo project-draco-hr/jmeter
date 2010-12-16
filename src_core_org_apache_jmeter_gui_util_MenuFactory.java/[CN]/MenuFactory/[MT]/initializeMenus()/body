@@ -47,6 +47,9 @@ catch (      Throwable e) {
       if (categories.contains(THREADS)) {
         threads.add(new MenuInfo(item,name));
       }
+      if (categories.contains(FRAGMENTS)) {
+        fragments.add(new MenuInfo(item,name));
+      }
       if (categories.contains(TIMERS)) {
         timers.add(new MenuInfo(item,name));
       }

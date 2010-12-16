@@ -19,6 +19,7 @@
       }
       reader=new FileInputStream(file);
       tree=SaveService.loadTree(reader);
+      tree=getProperBranch(tree);
       removeDisabledItems(tree);
       return tree;
     }

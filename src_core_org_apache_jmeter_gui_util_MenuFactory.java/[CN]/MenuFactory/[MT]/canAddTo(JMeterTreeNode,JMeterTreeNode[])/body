@@ -9,6 +9,10 @@
     return false;
   }
   TestElement parent=parentNode.getTestElement();
+  if (foundClass(nodes,new Class[]{org.apache.jmeter.control.TestFragmentController.class})) {
+    if (parent instanceof TestPlan)     return true;
+    return false;
+  }
   if (parent instanceof WorkBench) {
     return true;
   }

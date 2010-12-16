@@ -1,0 +1,13 @@
+{
+  Iterator<Object> iter=new LinkedList<Object>(tree.list()).iterator();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    if (item instanceof TestPlan) {
+      return getProperBranch(tree.getTree(item));
+    }
+    if (item instanceof TestFragmentController) {
+      return tree.getTree(item);
+    }
+  }
+  return tree;
+}
