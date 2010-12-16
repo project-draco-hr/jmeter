@@ -1,8 +1,11 @@
 {
-  if (samplerType == HTTP_SAMPLER2) {
-    return new HTTPSampler2();
-  }
- else {
+switch (samplerType) {
+case HTTP_SAMPLER:
     return new HTTPSampler();
-  }
+case HTTP_SAMPLER2:
+  return new HTTPSampler2();
+case HTTP_SAMPLER3:
+return new HTTPSampler3();
+}
+throw new IllegalArgumentException("Unexpected type: " + samplerType);
 }
