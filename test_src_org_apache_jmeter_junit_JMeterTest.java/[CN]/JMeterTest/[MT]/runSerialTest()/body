@@ -1,5 +1,5 @@
 {
-  if (!(serObj instanceof JComponent)) {
+  if (!(serObj instanceof Component)) {
     try {
       ByteArrayOutputStream bytes=new ByteArrayOutputStream();
       ObjectOutputStream out=new ObjectOutputStream(bytes);
