@@ -1,3 +1,139 @@
 {
-  return null;
+  StringBuilder postedBody=new StringBuilder(1000);
+  HTTPFileArg files[]=getHTTPFiles();
+  if (getUseMultipartForPost()) {
+    String contentEncoding=getContentEncoding();
+    if (contentEncoding != null && contentEncoding.length() == 0) {
+      contentEncoding=null;
+    }
+    ByteArrayOutputStream bos=new ByteArrayOutputStream();
+    MultipartEntity multiPart=new MultipartEntity();
+    PropertyIterator args=getArguments().iterator();
+    while (args.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      String parameterName=arg.getName();
+      if (arg.isSkippable(parameterName)) {
+        continue;
+      }
+      FormBodyPart formPart;
+      if (contentEncoding != null) {
+        formPart=new FormBodyPart(arg.getName(),new StringBody(arg.getValue(),Charset.forName(contentEncoding)));
+      }
+ else {
+        formPart=new FormBodyPart(arg.getName(),new StringBody(arg.getValue(),Charset.forName("US-ASCII")));
+      }
+      multiPart.addPart(formPart);
+    }
+    if (multiPart.isRepeatable()) {
+      multiPart.writeTo(bos);
+    }
+    for (int i=0; i < files.length; i++) {
+      HTTPFileArg file=files[i];
+      FileBody fileBody=new FileBody(new File(file.getPath()),file.getMimeType());
+      multiPart.addPart(file.getParamName(),fileBody);
+      bos.write("<actual file content, not shown here>".getBytes());
+    }
+    bos.flush();
+    postedBody.append(new String(bos.toByteArray(),contentEncoding == null ? "US-ASCII" : contentEncoding));
+    bos.close();
+    post.setEntity(multiPart);
+  }
+ else {
+    Header contentTypeHeader=post.getFirstHeader(HEADER_CONTENT_TYPE);
+    boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
+    if (!hasArguments() && getSendFileAsPostBody()) {
+      HTTPFileArg file=files[0];
+      if (!hasContentTypeHeader) {
+        if (file.getMimeType() != null && file.getMimeType().length() > 0) {
+          post.setHeader(HEADER_CONTENT_TYPE,file.getMimeType());
+        }
+ else {
+          post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+        }
+      }
+      FileEntity fileRequestEntity=new FileEntity(new File(file.getPath()),null);
+      post.setEntity(fileRequestEntity);
+      postedBody.append("<actual file content, not shown here>");
+    }
+ else {
+      String contentEncoding=getContentEncoding();
+      boolean haveContentEncoding=false;
+      if (contentEncoding != null && contentEncoding.trim().length() > 0) {
+        post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,contentEncoding);
+        haveContentEncoding=true;
+      }
+ else       if (contentEncoding != null && contentEncoding.trim().length() == 0) {
+        contentEncoding=null;
+      }
+      if (getSendParameterValuesAsPostBody()) {
+        if (!hasContentTypeHeader) {
+          HTTPFileArg file=files.length > 0 ? files[0] : null;
+          if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
+            post.setHeader(HEADER_CONTENT_TYPE,file.getMimeType());
+          }
+ else {
+            post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+          }
+        }
+        StringBuilder postBody=new StringBuilder();
+        PropertyIterator args=getArguments().iterator();
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          String value;
+          if (haveContentEncoding) {
+            value=arg.getEncodedValue(contentEncoding);
+          }
+ else {
+            value=arg.getEncodedValue();
+          }
+          postBody.append(value);
+        }
+        StringEntity requestEntity=new StringEntity(postBody.toString(),post.getFirstHeader(HEADER_CONTENT_TYPE).getValue(),contentEncoding);
+        post.setEntity(requestEntity);
+        postedBody.append(postBody.toString());
+      }
+ else {
+        if (!hasContentTypeHeader) {
+          post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+        }
+        PropertyIterator args=getArguments().iterator();
+        List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+        String urlContentEncoding=contentEncoding;
+        if (urlContentEncoding == null || urlContentEncoding.length() == 0) {
+          urlContentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;
+        }
+        while (args.hasNext()) {
+          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+          String parameterName=arg.getName();
+          if (arg.isSkippable(parameterName)) {
+            continue;
+          }
+          String parameterValue=arg.getValue();
+          if (!arg.isAlwaysEncoded()) {
+            parameterName=URLDecoder.decode(parameterName,urlContentEncoding);
+            parameterValue=URLDecoder.decode(parameterValue,urlContentEncoding);
+          }
+          nvps.add(new BasicNameValuePair(parameterName,parameterValue));
+        }
+        UrlEncodedFormEntity entity=new UrlEncodedFormEntity(nvps,urlContentEncoding);
+        post.setEntity(entity);
+        if (entity.isRepeatable()) {
+          ByteArrayOutputStream bos=new ByteArrayOutputStream();
+          post.getEntity().writeTo(bos);
+          bos.flush();
+          if (contentEncoding != null) {
+            postedBody.append(new String(bos.toByteArray(),contentEncoding));
+          }
+ else {
+            postedBody.append(new String(bos.toByteArray()));
+          }
+          bos.close();
+        }
+ else {
+          postedBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
+        }
+      }
+    }
+  }
+  return postedBody.toString();
 }
