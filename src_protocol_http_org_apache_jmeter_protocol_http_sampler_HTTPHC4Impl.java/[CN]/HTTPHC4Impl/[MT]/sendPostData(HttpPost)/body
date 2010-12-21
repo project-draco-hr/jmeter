@@ -6,7 +6,6 @@
     if (contentEncoding != null && contentEncoding.length() == 0) {
       contentEncoding=null;
     }
-    ByteArrayOutputStream bos=new ByteArrayOutputStream();
     MultipartEntity multiPart=new MultipartEntity();
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
@@ -16,27 +15,33 @@
         continue;
       }
       FormBodyPart formPart;
-      if (contentEncoding != null) {
-        formPart=new FormBodyPart(arg.getName(),new StringBody(arg.getValue(),Charset.forName(contentEncoding)));
-      }
- else {
-        formPart=new FormBodyPart(arg.getName(),new StringBody(arg.getValue(),Charset.forName("US-ASCII")));
-      }
+      StringBody stringBody=new StringBody(arg.getValue(),Charset.forName(contentEncoding == null ? "US-ASCII" : contentEncoding));
+      formPart=new FormBodyPart(arg.getName(),stringBody);
       multiPart.addPart(formPart);
     }
-    if (multiPart.isRepeatable()) {
-      multiPart.writeTo(bos);
-    }
+    ViewableFileBody[] fileBodies=new ViewableFileBody[files.length];
     for (int i=0; i < files.length; i++) {
       HTTPFileArg file=files[i];
-      FileBody fileBody=new FileBody(new File(file.getPath()),file.getMimeType());
-      multiPart.addPart(file.getParamName(),fileBody);
-      bos.write("<actual file content, not shown here>".getBytes());
+      fileBodies[i]=new ViewableFileBody(new File(file.getPath()),file.getMimeType());
+      multiPart.addPart(file.getParamName(),fileBodies[i]);
     }
-    bos.flush();
-    postedBody.append(new String(bos.toByteArray(),contentEncoding == null ? "US-ASCII" : contentEncoding));
-    bos.close();
     post.setEntity(multiPart);
+    if (multiPart.isRepeatable()) {
+      ByteArrayOutputStream bos=new ByteArrayOutputStream();
+      for (      ViewableFileBody fileBody : fileBodies) {
+        fileBody.hideFileData=true;
+      }
+      multiPart.writeTo(bos);
+      for (      ViewableFileBody fileBody : fileBodies) {
+        fileBody.hideFileData=false;
+      }
+      bos.flush();
+      postedBody.append(new String(bos.toByteArray(),contentEncoding == null ? "US-ASCII" : contentEncoding));
+      bos.close();
+    }
+ else {
+      postedBody.append("<Multipart was not repeatable, cannot view what was sent>");
+    }
   }
  else {
     Header contentTypeHeader=post.getFirstHeader(HEADER_CONTENT_TYPE);
