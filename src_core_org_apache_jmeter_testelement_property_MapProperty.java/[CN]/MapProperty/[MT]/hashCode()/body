@@ -1,0 +1,7 @@
+{
+  int hash=super.hashCode();
+  if (value != null) {
+    hash=hash * 37 + value.hashCode();
+  }
+  return hash;
+}
