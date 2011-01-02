@@ -1,5 +1,5 @@
 {
-  if (useNanoTime) {
+  if (USENANOTIME) {
     return System.currentTimeMillis() - sampleNsClockInMs();
   }
  else {
