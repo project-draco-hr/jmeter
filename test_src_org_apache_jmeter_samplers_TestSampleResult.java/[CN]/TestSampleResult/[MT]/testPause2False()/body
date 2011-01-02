@@ -1,6 +1,6 @@
 {
   divertLog();
-  SampleResult res=new SampleResult();
+  SampleResult res=new SampleResult(false);
   res.sampleStart();
   res.samplePause();
   assertEquals(0,wr.toString().length());

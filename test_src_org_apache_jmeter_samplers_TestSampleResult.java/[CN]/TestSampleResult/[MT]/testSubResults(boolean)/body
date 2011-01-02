@@ -1,6 +1,6 @@
 {
-  SampleResult resWithSubResults=new SampleResult();
-  long beginTest=sampleClock();
+  SampleResult resWithSubResults=new SampleResult(nanoTime);
+  long beginTest=resWithSubResults.currentTimeInMillis();
   resWithSubResults.sampleStart();
   Thread.sleep(100);
   resWithSubResults.setBytes(300);
@@ -8,7 +8,7 @@
   resWithSubResults.setSuccessful(true);
   resWithSubResults.sampleEnd();
   long sampleWithSubResultsTime=resWithSubResults.getTime();
-  SampleResult resNoSubResults1=new SampleResult();
+  SampleResult resNoSubResults1=new SampleResult(nanoTime);
   resNoSubResults1.sampleStart();
   Thread.sleep(100);
   resNoSubResults1.setBytes(100);
@@ -21,7 +21,7 @@
   assertEquals("sample with no subresults",resNoSubResults1.getSampleLabel());
   assertEquals(1,resNoSubResults1.getSampleCount());
   assertEquals(0,resNoSubResults1.getSubResults().length);
-  SampleResult resNoSubResults2=new SampleResult();
+  SampleResult resNoSubResults2=new SampleResult(nanoTime);
   resNoSubResults2.sampleStart();
   Thread.sleep(100);
   resNoSubResults2.setBytes(200);
@@ -29,7 +29,6 @@
   resNoSubResults2.setSuccessful(true);
   resNoSubResults2.sampleEnd();
   long sample2Time=resNoSubResults2.getTime();
-  long overallTime=sampleClock() - beginTest;
   assertTrue(resNoSubResults2.isSuccessful());
   assertEquals(200,resNoSubResults2.getBytes());
   assertEquals("sample with no subresults",resNoSubResults2.getSampleLabel());
@@ -43,6 +42,7 @@
   assertEquals(1,resWithSubResults.getSampleCount());
   assertEquals(2,resWithSubResults.getSubResults().length);
   long totalTime=resWithSubResults.getTime();
+  long overallTime=resWithSubResults.currentTimeInMillis() - beginTest;
   long allsamplesTime=sampleWithSubResultsTime + sample1Time + sample2Time;
   if (totalTime < allsamplesTime) {
     fail("Total: " + totalTime + " < sum(samples): "+ allsamplesTime);
