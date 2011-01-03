@@ -47,8 +47,8 @@
   if (totalTime < allsamplesTime) {
     fail("Total: " + totalTime + " < sum(samples): "+ allsamplesTime);
   }
-  if (totalTime > overallTime) {
-    fail("Total: " + totalTime + " > overall time: "+ overallTime);
+  if (totalTime > overallTime + 3) {
+    fail("Total: " + totalTime + " > 3 + overall time: "+ overallTime);
   }
   Calculator calculator=new Calculator();
   calculator.addSample(resWithSubResults);
