@@ -9,11 +9,7 @@
     log.error("BeanShell not found");
     return;
   }
-  JMeterVariables vars=jmctx.getVariables();
   try {
-    bshInterpreter.set("ctx",jmctx);
-    bshInterpreter.set("vars",vars);
-    bshInterpreter.set("prev",prev);
     bshInterpreter.set("data",prev.getResponseData());
     processFileOrScript(bshInterpreter);
   }

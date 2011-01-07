@@ -7,11 +7,17 @@
       log.error("Cannot reset BeanShell: " + e.toString());
     }
   }
+  JMeterContext jmctx=JMeterContextService.getContext();
+  JMeterVariables vars=jmctx.getVariables();
   try {
+    bshInterpreter.set("ctx",jmctx);
+    bshInterpreter.set("Label",getName());
+    bshInterpreter.set("prev",jmctx.getPreviousResult());
     bshInterpreter.set("props",JMeterUtils.getJMeterProperties());
+    bshInterpreter.set("vars",vars);
   }
  catch (  JMeterException e) {
-    log.error("Cannot set 'props' object: " + e.toString());
+    log.warn("Problem setting one or more BeanShell variables " + e);
   }
   return bshInterpreter;
 }
