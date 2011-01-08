@@ -13,8 +13,7 @@ delay=calculateSharedDelay(allThreadsInfo,(long)msPerRequest);
 break;
 case 4:
 final org.apache.jmeter.threads.AbstractThreadGroup group=JMeterContextService.getContext().getThreadGroup();
-ThroughputInfo groupInfo;
-groupInfo=threadGroupsInfoMap.get(group);
+ThroughputInfo groupInfo=threadGroupsInfoMap.get(group);
 if (groupInfo == null) {
 groupInfo=new ThroughputInfo();
 ThroughputInfo previous=threadGroupsInfoMap.putIfAbsent(group,groupInfo);
