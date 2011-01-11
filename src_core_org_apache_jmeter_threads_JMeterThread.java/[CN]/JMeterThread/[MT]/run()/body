@@ -7,17 +7,24 @@
       Sampler sam=firstSampler;
       while (running && sam != null) {
         if (onErrorStartNextLoop) {
-          if (sam.equals(firstSampler)) {
-            threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
+          if (!TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK)) && sam instanceof TransactionSampler) {
+            TransactionSampler ts=(TransactionSampler)sam;
+            while (!ts.isTransactionDone()) {
+              sam=controller.next();
+              ts=(TransactionSampler)sam;
+            }
+            process_sampler(sam,null,threadContext);
           }
           if (TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK))) {
             process_sampler(sam,null,threadContext);
             sam=controller.next();
           }
  else {
-            while (!sam.equals(firstSampler)) {
+            sam=controller.next();
+            while (sam != null && !sam.equals(firstSampler)) {
               sam=controller.next();
             }
+            threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
           }
         }
  else {
