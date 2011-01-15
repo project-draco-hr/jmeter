@@ -23,7 +23,7 @@ synchronized (calculator) {
     cpercent=calculator.getPercentPoint(0.500).longValue();
     rbool=res.isSuccessful();
   }
-  int count=calculator.getCount();
+  long count=calculator.getCount();
   Sample s=new Sample(null,rtime,cmean,cstdv,cmedian,cpercent,throughput,eCount,rbool,count,endTime);
   currentSample=s;
   return s;

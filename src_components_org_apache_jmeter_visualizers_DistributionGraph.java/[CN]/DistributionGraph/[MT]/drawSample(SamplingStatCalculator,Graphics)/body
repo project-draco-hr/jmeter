@@ -14,7 +14,7 @@
   if (p_model != null && p_model.getCount() > 50) {
     Number ninety=p_model.getPercentPoint(0.90);
     Number fifty=p_model.getPercentPoint(0.50);
-    int total=p_model.getCount();
+    long total=p_model.getCount();
     Collection<Number[]> values=p_model.getDistribution().values();
     Number[][] objval=values.toArray(new Number[][]{});
     Arrays.sort(objval,new NumberComparator());
