@@ -1,4 +1,9 @@
 {
-  log.info("Reset");
-  backingEngine.reset();
+  if (backingEngine != null) {
+    log.info("Reset");
+    backingEngine.reset();
+  }
+ else {
+    log.warn("Backing engine is null, ignoring reset");
+  }
 }
