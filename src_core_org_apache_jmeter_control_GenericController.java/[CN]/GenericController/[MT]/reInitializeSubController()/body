@@ -1,18 +1,16 @@
 {
-  Sampler returnValue=null;
   try {
     TestElement currentElement=getCurrentElement();
     if (currentElement != null) {
       if (currentElement instanceof Sampler) {
-        returnValue=nextIsASampler((Sampler)currentElement);
+        nextIsASampler((Sampler)currentElement);
       }
  else {
-        returnValue=nextIsAController((Controller)currentElement);
+        nextIsAController((Controller)currentElement);
         reInitializeSubController();
       }
     }
   }
  catch (  NextIsNullException e) {
   }
-  return returnValue;
 }

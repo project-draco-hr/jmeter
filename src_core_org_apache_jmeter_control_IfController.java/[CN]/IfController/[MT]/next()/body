@@ -7,7 +7,7 @@
     return super.next();
   }
   try {
-    super.reInitializeSubController();
+    reInitializeSubController();
     return nextIsNull();
   }
  catch (  NextIsNullException e1) {
