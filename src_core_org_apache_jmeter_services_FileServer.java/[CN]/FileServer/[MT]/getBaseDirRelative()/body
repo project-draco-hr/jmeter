@@ -1,0 +1,20 @@
+{
+  File parent=new File(DEFAULT_BASE).getAbsoluteFile();
+  File f=base.getAbsoluteFile();
+  ArrayStack l=new ArrayStack();
+  while (f != null) {
+    if (f.equals(parent)) {
+      if (l.isEmpty()) {
+        break;
+      }
+      File rel=new File((String)l.pop());
+      while (!l.isEmpty()) {
+        rel=new File(rel,(String)l.pop());
+      }
+      return rel;
+    }
+    l.push(f.getName());
+    f=f.getParentFile();
+  }
+  return new File(".");
+}

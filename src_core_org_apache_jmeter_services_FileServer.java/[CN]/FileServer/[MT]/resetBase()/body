@@ -1,3 +1,4 @@
 {
-  setBasedir(DEFAULT_BASE);
+  base=new File(DEFAULT_BASE);
+  log.info("Reset base to'" + base + "'");
 }

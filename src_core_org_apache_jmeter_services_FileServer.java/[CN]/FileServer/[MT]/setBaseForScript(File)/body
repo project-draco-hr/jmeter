@@ -1,0 +1,10 @@
+{
+  if (filesOpen()) {
+    throw new IllegalStateException("Files are still open, cannot change base directory");
+  }
+  files.clear();
+  if (scriptPath != null) {
+    base=scriptPath.getAbsoluteFile().getParentFile();
+    log.info("Set new base '" + base + "'");
+  }
+}
