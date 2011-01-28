@@ -1,0 +1,13 @@
+{
+  final String base=FileServer.getDefaultBase();
+  final File basefile=new File(base);
+  FS.setBaseForScript(basefile);
+  assertEquals(".",FS.getBaseDirRelative().toString());
+  FS.setBaseForScript(basefile.getParentFile());
+  assertEquals(".",FS.getBaseDirRelative().toString());
+  FS.setBaseForScript(new File(basefile.getParentFile(),"abcd/defg.jmx"));
+  assertEquals(".",FS.getBaseDirRelative().toString());
+  File file=new File(basefile,"abcd/defg.jmx");
+  FS.setBaseForScript(file);
+  assertEquals("abcd",FS.getBaseDirRelative().toString());
+}
