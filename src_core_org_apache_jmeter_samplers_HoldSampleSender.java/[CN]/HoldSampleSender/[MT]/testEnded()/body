@@ -1,5 +1,5 @@
 {
-  log.info("Test ended()");
+  log.debug("Test ended()");
   try {
 synchronized (sampleStore) {
       Iterator<SampleEvent> i=sampleStore.iterator();
