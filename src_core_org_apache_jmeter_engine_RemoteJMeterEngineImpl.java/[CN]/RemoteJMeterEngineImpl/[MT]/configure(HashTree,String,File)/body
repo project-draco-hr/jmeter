@@ -1,0 +1,6 @@
+{
+  log.info("Creating JMeter engine on host " + host + " base '"+ jmxBase+ "'");
+  backingEngine=new StandardJMeterEngine(host);
+  backingEngine.configure(testTree);
+  FileServer.getFileServer().setBase(jmxBase);
+}
