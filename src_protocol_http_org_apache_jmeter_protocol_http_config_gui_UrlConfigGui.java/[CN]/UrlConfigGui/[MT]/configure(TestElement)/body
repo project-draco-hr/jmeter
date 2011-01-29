@@ -20,10 +20,11 @@
   path.setText(el.getPropertyAsString(HTTPSamplerBase.PATH));
   if (notConfigOnly) {
     method.setText(el.getPropertyAsString(HTTPSamplerBase.METHOD));
-    followRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
-    autoRedirects.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
-    useKeepAlive.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
-    useMultipartForPost.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
+    followRedirects.setSelected(el.getPropertyAsBoolean(HTTPSamplerBase.FOLLOW_REDIRECTS));
+    autoRedirects.setSelected(el.getPropertyAsBoolean(HTTPSamplerBase.AUTO_REDIRECTS));
+    useKeepAlive.setSelected(el.getPropertyAsBoolean(HTTPSamplerBase.USE_KEEPALIVE));
+    useMultipartForPost.setSelected(el.getPropertyAsBoolean(HTTPSamplerBase.DO_MULTIPART_POST));
+    useBrowserCompatibleMultipartMode.setSelected(el.getPropertyAsBoolean(HTTPSamplerBase.BROWSER_COMPATIBLE_MULTIPART,HTTPSamplerBase.BROWSER_COMPATIBLE_MULTIPART_MODE_DEFAULT));
   }
   if (showImplementation) {
     httpImplementation.setText(el.getPropertyAsString(HTTPSamplerBase.IMPLEMENTATION));

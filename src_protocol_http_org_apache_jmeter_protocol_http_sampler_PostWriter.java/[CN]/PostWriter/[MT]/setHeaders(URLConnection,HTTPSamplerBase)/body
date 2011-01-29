@@ -17,7 +17,7 @@
         continue;
       }
       bos.write(CRLF);
-      writeFormMultipart(bos,parameterName,arg.getValue(),contentEncoding);
+      writeFormMultipart(bos,parameterName,arg.getValue(),contentEncoding,sampler.getDoBrowserCompatibleMultipart());
     }
     if (files.length > 0) {
       bos.write(CRLF);

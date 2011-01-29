@@ -13,6 +13,8 @@
     useKeepAlive.setSelected(true);
     useMultipartForPost=new JCheckBox(JMeterUtils.getResString("use_multipart_for_http_post"));
     useMultipartForPost.setSelected(false);
+    useBrowserCompatibleMultipartMode=new JCheckBox(JMeterUtils.getResString("use_multipart_mode_browser"));
+    useBrowserCompatibleMultipartMode.setSelected(HTTPSamplerBase.BROWSER_COMPATIBLE_MULTIPART_MODE_DEFAULT);
   }
   JPanel pathPanel=new JPanel(new BorderLayout(5,0));
   pathPanel.add(label,BorderLayout.WEST);
@@ -27,6 +29,7 @@
     optionPanel.add(followRedirects);
     optionPanel.add(useKeepAlive);
     optionPanel.add(useMultipartForPost);
+    optionPanel.add(useBrowserCompatibleMultipartMode);
     optionPanel.setMinimumSize(optionPanel.getPreferredSize());
     panel.add(optionPanel);
   }

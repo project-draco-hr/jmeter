@@ -6,7 +6,7 @@
     if (contentEncoding != null && contentEncoding.length() == 0) {
       contentEncoding=null;
     }
-    MultipartEntity multiPart=new MultipartEntity();
+    MultipartEntity multiPart=new MultipartEntity(getDoBrowserCompatibleMultipart() ? HttpMultipartMode.BROWSER_COMPATIBLE : HttpMultipartMode.STRICT);
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

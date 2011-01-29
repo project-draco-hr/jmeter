@@ -6,6 +6,7 @@
     method.setText(HTTPSamplerBase.DEFAULT_METHOD);
     useKeepAlive.setSelected(true);
     useMultipartForPost.setSelected(false);
+    useBrowserCompatibleMultipartMode.setSelected(HTTPSamplerBase.BROWSER_COMPATIBLE_MULTIPART_MODE_DEFAULT);
   }
   if (showImplementation) {
     httpImplementation.setText("");
