@@ -5,6 +5,7 @@
       JMeterGUIComponent comp=getGui(currentNode.getTestElement());
       TestElement el=currentNode.getTestElement();
       comp.modifyTestElement(el);
+      currentNode.nameChanged();
     }
     currentNodeUpdated=true;
     currentNode=treeListener.getCurrentNode();
