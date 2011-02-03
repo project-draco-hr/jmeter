@@ -1,5 +1,5 @@
 {
-  started++;
+  started.incrementAndGet();
   long now=System.currentTimeMillis();
   log.info("Started remote host:  " + host + " ("+ now+ ")");
 }

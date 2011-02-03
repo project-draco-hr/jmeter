@@ -2,7 +2,7 @@
   long now=System.currentTimeMillis();
   println("Tidying up ...    @ " + new Date(now) + " ("+ now+ ")");
   if (engines != null) {
-    System.out.println("Exitting remote servers");
+    println("Exitting remote servers");
     Iterator<JMeterEngine> it=engines.iterator();
     while (it.hasNext()) {
       JMeterEngine e=it.next();
@@ -15,5 +15,4 @@
  catch (  InterruptedException ignored) {
   }
   println("... end of run");
-  System.exit(0);
 }
