@@ -1,6 +1,7 @@
 {
   if (backingEngine != null) {
     log.info("Reset");
+    checkOwner("reset");
     backingEngine.reset();
   }
  else {
