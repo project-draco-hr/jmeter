@@ -1,5 +1,5 @@
 {
-  if (ownerThread != Thread.currentThread()) {
+  if (ownerThread != null && ownerThread != Thread.currentThread()) {
     String msg="The engine is not owned by this thread - cannot call " + methodName;
     log.warn(msg);
     throw new IllegalStateException(msg);
