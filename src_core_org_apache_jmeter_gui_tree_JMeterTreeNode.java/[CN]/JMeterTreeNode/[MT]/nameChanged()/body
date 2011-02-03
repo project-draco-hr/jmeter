@@ -1,3 +1,5 @@
 {
-  treeModel.nodeChanged(this);
+  if (treeModel != null) {
+    treeModel.nodeChanged(this);
+  }
 }
