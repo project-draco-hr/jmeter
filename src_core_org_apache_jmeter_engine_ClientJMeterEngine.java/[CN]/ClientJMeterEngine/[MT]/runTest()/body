@@ -1,5 +1,42 @@
 {
-  log.info("about to run remote test on " + host);
-  new Thread(this).start();
-  log.info("done initiating run command");
+  log.info("running clientengine run method");
+  SearchByClass<TestListener> testListeners=new SearchByClass<TestListener>(TestListener.class);
+  ConvertListeners sampleListeners=new ConvertListeners();
+  HashTree testTree=test;
+  PreCompiler compiler=new PreCompiler(true);
+synchronized (testTree) {
+    testTree.traverse(compiler);
+    testTree.traverse(new TurnElementsOn());
+    testTree.traverse(testListeners);
+    testTree.traverse(sampleListeners);
+  }
+  try {
+    JMeterContextService.startTest();
+    File baseDirRelative=FileServer.getFileServer().getBaseDirRelative();
+synchronized (LOCK) {
+      remote.configure(testTree,host,baseDirRelative);
+    }
+    log.info("sent test to " + host + " basedir='"+ baseDirRelative+ "'");
+    if (savep != null) {
+      log.info("Sending properties " + savep);
+      try {
+        remote.setProperties(savep);
+      }
+ catch (      RemoteException e) {
+        log.warn("Could not set properties: " + e.toString());
+      }
+    }
+    remote.runTest();
+    log.info("sent run command to " + host);
+  }
+ catch (  IllegalStateException ex) {
+    log.error("Error in run() method " + ex);
+    tidyRMI(log);
+    throw ex;
+  }
+catch (  Exception ex) {
+    log.error("Error in run() method " + ex);
+    tidyRMI(log);
+    throw new JMeterEngineException("Error in run() method " + ex,ex);
+  }
 }

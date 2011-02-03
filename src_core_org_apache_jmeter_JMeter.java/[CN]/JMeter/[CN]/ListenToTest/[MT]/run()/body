@@ -1,6 +1,6 @@
 {
   long now=System.currentTimeMillis();
-  println("Tidying up ...    @ " + new Date(now) + " ("+ now+ ")");
+  println("Tidying up remote @ " + new Date(now) + " ("+ now+ ")");
   if (engines != null) {
     println("Exitting remote servers");
     Iterator<JMeterEngine> it=engines.iterator();
@@ -14,5 +14,6 @@
   }
  catch (  InterruptedException ignored) {
   }
+  ClientJMeterEngine.tidyRMI(log);
   println("... end of run");
 }

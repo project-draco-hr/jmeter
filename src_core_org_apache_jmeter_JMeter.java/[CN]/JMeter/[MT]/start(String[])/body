@@ -57,7 +57,14 @@
       System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
     }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
-      startServer(JMeterUtils.getPropDefault("server_port",0));
+      try {
+        RemoteJMeterEngineImpl.startServer(JMeterUtils.getPropDefault("server_port",0));
+      }
+ catch (      Exception ex) {
+        System.err.println("Server failed to start: " + ex);
+        log.error("Giving up, as server failed with:",ex);
+        throw ex;
+      }
       startOptionalServers();
     }
  else {

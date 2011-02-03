@@ -4,11 +4,12 @@
       remote.reset();
     }
  catch (    java.rmi.ConnectException e) {
+      log.info("Retry reset after: " + e);
       remote=getEngine(host);
       remote.reset();
     }
   }
  catch (  Exception ex) {
-    log.error("",ex);
+    log.error("Failed to reset remote engine",ex);
   }
 }

@@ -1,0 +1,10 @@
+{
+  for (  Thread t : Thread.getAllStackTraces().keySet()) {
+    String reaperRE=JMeterUtils.getPropDefault("rmi.thread.name","^RMI Reaper$");
+    String name=t.getName();
+    if (name.matches(reaperRE)) {
+      logger.info("Interrupting " + name);
+      t.interrupt();
+    }
+  }
+}
