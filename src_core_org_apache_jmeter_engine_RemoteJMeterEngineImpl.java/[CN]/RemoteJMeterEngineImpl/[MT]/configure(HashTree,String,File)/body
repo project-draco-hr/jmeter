@@ -1,11 +1,13 @@
 {
   log.info("Creating JMeter engine on host " + host + " base '"+ jmxBase+ "'");
-  if (backingEngine != null && backingEngine.isActive()) {
-    log.warn("Engine is busy - cannot create JMeter engine");
-    throw new IllegalStateException("Engine is busy - please try later");
+synchronized (LOCK) {
+    if (backingEngine != null && backingEngine.isActive()) {
+      log.warn("Engine is busy - cannot create JMeter engine");
+      throw new IllegalStateException("Engine is busy - please try later");
+    }
+    ownerThread=Thread.currentThread();
+    backingEngine=new StandardJMeterEngine(host);
+    backingEngine.configure(testTree);
   }
-  ownerThread=Thread.currentThread();
-  backingEngine=new StandardJMeterEngine(host);
-  backingEngine.configure(testTree);
   FileServer.getFileServer().setBase(jmxBase);
 }
