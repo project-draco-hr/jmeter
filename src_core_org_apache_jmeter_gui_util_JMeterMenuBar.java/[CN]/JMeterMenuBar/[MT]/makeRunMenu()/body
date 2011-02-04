@@ -20,6 +20,11 @@
   }
   remote_stop_all=makeMenuItemRes("remote_stop_all",'X',ActionNames.REMOTE_STOP_ALL,KeyStrokes.REMOTE_STOP_ALL);
   runMenu.add(remote_stop_all);
+  if (remote_shut != null) {
+    runMenu.add(remote_shut);
+  }
+  remote_shut_all=makeMenuItemRes("remote_shut_all",'X',ActionNames.REMOTE_SHUT_ALL,KeyStrokes.REMOTE_SHUT_ALL);
+  runMenu.add(remote_shut_all);
   if (remote_exit != null) {
     runMenu.add(remote_exit);
   }

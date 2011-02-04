@@ -11,6 +11,9 @@
   if (ActionNames.REMOTE_STOP.equals(actionCommand)) {
     return false;
   }
+  if (ActionNames.REMOTE_SHUT.equals(actionCommand)) {
+    return false;
+  }
   if (ActionNames.REMOTE_EXIT.equals(actionCommand)) {
     return false;
   }

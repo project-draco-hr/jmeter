@@ -1,0 +1,10 @@
+{
+  if (now) {
+    log.info("Stopping test ...");
+  }
+ else {
+    log.info("Shutting test ...");
+  }
+  backingEngine.stopTest(now);
+  log.info("... stopped");
+}

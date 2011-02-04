@@ -1,9 +1,0 @@
-{
-  log.info("about to stop remote test on " + host);
-  try {
-    remote.stopTest();
-  }
- catch (  Exception ex) {
-    log.error("",ex);
-  }
-}

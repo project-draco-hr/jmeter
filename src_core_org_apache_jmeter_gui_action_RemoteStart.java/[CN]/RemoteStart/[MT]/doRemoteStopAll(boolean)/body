@@ -1,0 +1,8 @@
+{
+  String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
+  java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
+  while (st.hasMoreElements()) {
+    String el=(String)st.nextElement();
+    doRemoteStop(el.trim(),now);
+  }
+}

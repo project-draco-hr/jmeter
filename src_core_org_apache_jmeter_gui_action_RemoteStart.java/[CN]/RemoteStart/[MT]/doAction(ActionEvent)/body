@@ -5,7 +5,10 @@
   }
   String action=e.getActionCommand();
   if (action.equals(ActionNames.REMOTE_STOP)) {
-    doRemoteStop(name);
+    doRemoteStop(name,true);
+  }
+ else   if (action.equals(ActionNames.REMOTE_SHUT)) {
+    doRemoteStop(name,false);
   }
  else   if (action.equals(ActionNames.REMOTE_START)) {
     popupShouldSave(e);
@@ -27,12 +30,10 @@
     }
   }
  else   if (action.equals(ActionNames.REMOTE_STOP_ALL)) {
-    String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
-    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
-    while (st.hasMoreElements()) {
-      String el=(String)st.nextElement();
-      doRemoteStop(el.trim());
-    }
+    doRemoteStopAll(true);
+  }
+ else   if (action.equals(ActionNames.REMOTE_SHUT_ALL)) {
+    doRemoteStopAll(false);
   }
  else   if (action.equals(ActionNames.REMOTE_EXIT)) {
     doRemoteExit(name);
