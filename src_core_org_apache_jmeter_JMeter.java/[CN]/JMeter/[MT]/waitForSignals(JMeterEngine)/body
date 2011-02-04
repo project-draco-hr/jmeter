@@ -13,10 +13,10 @@
         System.out.println("Command: " + command + " received from "+ address);
         log.info("Command: " + command + " received from "+ address);
         if (command.equals("StopTestNow")) {
-          stopTest();
+          engine.stopTest(true);
         }
  else         if (command.equals("Shutdown")) {
-          askThreadsToStop();
+          engine.stopTest(false);
         }
  else {
         }

@@ -1,0 +1,12 @@
+{
+  if (UDP_PORT > 1000) {
+    Thread waiter=new Thread(){
+      @Override public void run(){
+        waitForSignals(engine);
+      }
+    }
+;
+    waiter.setDaemon(true);
+    waiter.start();
+  }
+}

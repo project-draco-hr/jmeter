@@ -6,16 +6,6 @@
   try {
     Thread runningThread=new Thread(new MyThreadGroup("JMeterThreadGroup"),this);
     runningThread.start();
-    if (JMeter.isNonGUI() && UDP_PORT > 1000) {
-      Thread waiter=new Thread(){
-        @Override public void run(){
-          waitForSignals();
-        }
-      }
-;
-      waiter.setDaemon(true);
-      waiter.start();
-    }
   }
  catch (  Exception err) {
     stopTest();

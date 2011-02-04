@@ -71,6 +71,7 @@
       println("Remote engines have been started");
       log.info("Remote engines have been started");
     }
+    startUdpDdaemon(engine);
   }
  catch (  Exception e) {
     System.out.println("Error in NonGUIDriver " + e.toString());
