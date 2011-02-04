@@ -1,12 +1,18 @@
 {
   if (UDP_PORT > 1000) {
-    Thread waiter=new Thread(){
-      @Override public void run(){
-        waitForSignals(engine);
+    final DatagramSocket socket=getSocket(UDP_PORT,UDP_PORT_MAX);
+    if (socket != null) {
+      Thread waiter=new Thread(){
+        @Override public void run(){
+          waitForSignals(engine,socket);
+        }
       }
-    }
 ;
-    waiter.setDaemon(true);
-    waiter.start();
+      waiter.setDaemon(true);
+      waiter.start();
+    }
+ else {
+      System.out.println("Failed to create UDP port");
+    }
   }
 }

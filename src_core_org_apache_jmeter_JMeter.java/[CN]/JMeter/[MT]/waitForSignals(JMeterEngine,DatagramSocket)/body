@@ -1,10 +1,8 @@
 {
   byte[] buf=new byte[80];
-  DatagramSocket socket=null;
-  System.out.println("Waiting for possible shutdown message on port " + UDP_PORT);
+  System.out.println("Waiting for possible shutdown message on port " + socket.getLocalPort());
+  DatagramPacket request=new DatagramPacket(buf,buf.length);
   try {
-    socket=new DatagramSocket(UDP_PORT);
-    DatagramPacket request=new DatagramPacket(buf,buf.length);
     while (true) {
       socket.receive(request);
       InetAddress address=request.getAddress();
@@ -24,11 +22,9 @@
     }
   }
  catch (  Exception e) {
-    e.printStackTrace();
+    System.out.println(e);
   }
  finally {
-    if (socket != null) {
-      socket.close();
-    }
+    socket.close();
   }
 }
