@@ -6,6 +6,7 @@
   urlField.setText(sampler.getProviderUrl());
   jndiConnFac.setText(sampler.getConnectionFactory());
   jmsDestination.setText(sampler.getDestination());
+  jmsDurableSubscriptionId.setText(sampler.getDurableSubscriptionId());
   jmsUser.setText(sampler.getUsername());
   jmsPwd.setText(sampler.getPassword());
   iterations.setText(sampler.getIterations());

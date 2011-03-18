@@ -1,0 +1,8 @@
+{
+  if (isEmpty(durableSubscriptionId)) {
+    return session.createConsumer(destination);
+  }
+ else {
+    return session.createDurableSubscriber((Topic)destination,durableSubscriptionId);
+  }
+}

@@ -3,7 +3,7 @@
   CONN=Utils.getConnection(ctx,connfactory);
   SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
   Destination dest=Utils.lookupDestination(ctx,destinationName);
-  SUBSCRIBER=SESSION.createConsumer(dest);
+  SUBSCRIBER=createSubscriber(SESSION,dest,durableSubscriptionId);
   queue=null;
   log.debug("<init> complete");
 }
