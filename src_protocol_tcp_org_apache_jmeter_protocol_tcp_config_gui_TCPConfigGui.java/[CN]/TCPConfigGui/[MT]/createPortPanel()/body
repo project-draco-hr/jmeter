@@ -1,9 +1,0 @@
-{
-  JLabel label=new JLabel(JMeterUtils.getResString("tcp_port"));
-  port=new JTextField(10);
-  label.setLabelFor(port);
-  JPanel PortPanel=new JPanel(new BorderLayout(5,0));
-  PortPanel.add(label,BorderLayout.WEST);
-  PortPanel.add(port,BorderLayout.CENTER);
-  return PortPanel;
-}

@@ -10,7 +10,9 @@
   }
   try {
     closeSocket();
-    con=new Socket(getServer(),getPort());
+    SocketAddress sockaddr=new InetSocketAddress(getServer(),getPort());
+    con=new Socket();
+    con.connect(sockaddr,getConnectTimeout());
     con.setSoTimeout(getTimeout());
     con.setTcpNoDelay(getNoDelay());
     log.debug(this + "  Timeout " + getTimeout()+ " NoDelay "+ getNoDelay());

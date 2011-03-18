@@ -1,5 +1,6 @@
 {
   setLayout(new BorderLayout(0,5));
+  serverPanel=new ServerPanel();
   if (displayName) {
     setBorder(makeBorder());
     add(makeTitlePanel(),BorderLayout.NORTH);
@@ -7,12 +8,11 @@
   VerticalPanel mainPanel=new VerticalPanel();
   classname=new JLabeledTextField(JMeterUtils.getResString("tcp_classname"));
   mainPanel.add(classname);
-  final JPanel serverPanel=createServerPanel();
-  serverPanel.add(createPortPanel(),BorderLayout.EAST);
   mainPanel.add(serverPanel);
-  mainPanel.add(createClosePortPanel());
-  mainPanel.add(createTimeoutPanel());
-  mainPanel.add(createNoDelayPanel());
+  HorizontalPanel optionsPanel=new HorizontalPanel();
+  optionsPanel.add(createClosePortPanel());
+  optionsPanel.add(createNoDelayPanel());
+  mainPanel.add(optionsPanel);
   mainPanel.add(createRequestPanel());
   add(mainPanel,BorderLayout.CENTER);
 }

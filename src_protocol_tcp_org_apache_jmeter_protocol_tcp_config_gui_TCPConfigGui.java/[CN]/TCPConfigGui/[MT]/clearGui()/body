@@ -1,9 +1,7 @@
 {
   super.clearGui();
+  serverPanel.clear();
   classname.setText("");
-  server.setText("");
-  port.setText("");
-  timeout.setText("");
   requestData.setText("");
   reUseConnection.setSelected(true);
   setNoDelay.setSelected(false);

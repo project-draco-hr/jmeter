@@ -1,10 +1,11 @@
 {
   super.configure(element);
   classname.setText(element.getPropertyAsString(TCPSampler.CLASSNAME));
-  server.setText(element.getPropertyAsString(TCPSampler.SERVER));
+  serverPanel.setServer(element.getPropertyAsString(TCPSampler.SERVER));
   reUseConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.RE_USE_CONNECTION,true));
-  port.setText(element.getPropertyAsString(TCPSampler.PORT));
-  timeout.setText(element.getPropertyAsString(TCPSampler.TIMEOUT));
+  serverPanel.setPort(element.getPropertyAsString(TCPSampler.PORT));
+  serverPanel.setResponseTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT));
+  serverPanel.setConnectTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT_CONNECT));
   setNoDelay.setSelected(element.getPropertyAsBoolean(TCPSampler.NODELAY));
   requestData.setText(element.getPropertyAsString(TCPSampler.REQUEST));
 }

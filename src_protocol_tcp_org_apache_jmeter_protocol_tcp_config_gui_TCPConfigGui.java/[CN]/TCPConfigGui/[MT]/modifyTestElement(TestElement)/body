@@ -1,10 +1,11 @@
 {
   configureTestElement(element);
   element.setProperty(TCPSampler.CLASSNAME,classname.getText(),"");
-  element.setProperty(TCPSampler.SERVER,server.getText());
+  element.setProperty(TCPSampler.SERVER,serverPanel.getServer());
   element.setProperty(TCPSampler.RE_USE_CONNECTION,reUseConnection.isSelected());
-  element.setProperty(TCPSampler.PORT,port.getText());
+  element.setProperty(TCPSampler.PORT,serverPanel.getPort());
   element.setProperty(TCPSampler.NODELAY,setNoDelay.isSelected());
-  element.setProperty(TCPSampler.TIMEOUT,timeout.getText());
+  element.setProperty(TCPSampler.TIMEOUT,serverPanel.getResponseTimeout());
+  element.setProperty(TCPSampler.TIMEOUT_CONNECT,serverPanel.getConnectTimeout(),"");
   element.setProperty(TCPSampler.REQUEST,requestData.getText());
 }
