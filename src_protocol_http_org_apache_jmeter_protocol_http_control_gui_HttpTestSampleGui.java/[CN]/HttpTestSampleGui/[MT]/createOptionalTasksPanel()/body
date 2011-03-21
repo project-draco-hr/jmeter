@@ -1,11 +1,38 @@
 {
-  JPanel optionalTasksPanel=new VerticalPanel();
+  final JPanel optionalTasksPanel=new VerticalPanel();
   optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
-  JPanel checkBoxPanel=new HorizontalPanel();
+  final JPanel checkBoxPanel=new HorizontalPanel();
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
+  getImages.addItemListener(new ItemListener(){
+    public void itemStateChanged(    final ItemEvent e){
+      if (e.getStateChange() == ItemEvent.SELECTED) {
+        enableConcurrentDwn(true);
+      }
+ else {
+        enableConcurrentDwn(false);
+      }
+    }
+  }
+);
+  concurrentDwn=new JCheckBox(JMeterUtils.getResString("web_testing_concurrent_download"));
+  concurrentDwn.addItemListener(new ItemListener(){
+    public void itemStateChanged(    final ItemEvent e){
+      if (e.getStateChange() == ItemEvent.SELECTED) {
+        concurrentPool.setEnabled(true);
+      }
+ else {
+        concurrentPool.setEnabled(false);
+      }
+    }
+  }
+);
+  concurrentPool=new JTextField(2);
+  concurrentPool.setMaximumSize(new Dimension(30,20));
   isMon=new JCheckBox(JMeterUtils.getResString("monitor_is_title"));
   useMD5=new JCheckBox(JMeterUtils.getResString("response_save_as_md5"));
   checkBoxPanel.add(getImages);
+  checkBoxPanel.add(concurrentDwn);
+  checkBoxPanel.add(concurrentPool);
   checkBoxPanel.add(isMon);
   checkBoxPanel.add(useMD5);
   optionalTasksPanel.add(checkBoxPanel);

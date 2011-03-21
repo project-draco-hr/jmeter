@@ -6,8 +6,17 @@
   super.configureTestElement(config);
   if (imageParser.isSelected()) {
     config.setProperty(new BooleanProperty(HTTPSamplerBase.IMAGE_PARSER,true));
+    enableConcurrentDwn(true);
   }
  else {
     config.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
+    enableConcurrentDwn(false);
   }
+  if (concurrentDwn.isSelected()) {
+    config.setProperty(new BooleanProperty(HTTPSamplerBase.CONCURRENT_DWN,true));
+  }
+ else {
+    config.removeProperty(HTTPSamplerBase.CONCURRENT_DWN);
+  }
+  config.setProperty(new StringProperty(HTTPSamplerBase.CONCURRENT_POOL,String.valueOf(HTTPSamplerBase.CONCURRENT_POOL_SIZE)));
 }

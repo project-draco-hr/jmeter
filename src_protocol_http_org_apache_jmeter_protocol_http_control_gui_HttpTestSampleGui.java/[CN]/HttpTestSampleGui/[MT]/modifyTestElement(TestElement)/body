@@ -4,10 +4,19 @@
   final HTTPSamplerBase samplerBase=(HTTPSamplerBase)sampler;
   if (getImages.isSelected()) {
     samplerBase.setImageParser(true);
+    enableConcurrentDwn(true);
   }
  else {
     sampler.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
+    enableConcurrentDwn(false);
   }
+  if (concurrentDwn.isSelected()) {
+    samplerBase.setConcurrentDwn(true);
+  }
+ else {
+    sampler.removeProperty(HTTPSamplerBase.CONCURRENT_DWN);
+  }
+  samplerBase.setConcurrentPool(concurrentPool.getText());
   samplerBase.setMonitor(isMon.isSelected());
   samplerBase.setMD5(useMD5.isSelected());
   samplerBase.setEmbeddedUrlRE(embeddedRE.getText());

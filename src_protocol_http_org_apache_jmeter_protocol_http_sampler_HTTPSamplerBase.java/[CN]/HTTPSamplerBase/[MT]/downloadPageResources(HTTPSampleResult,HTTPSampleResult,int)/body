@@ -32,6 +32,7 @@
         log.warn("Ignoring embedded URL match string: " + e.getMessage());
       }
     }
+    final ArrayList<ASyncSample> liste=new ArrayList<ASyncSample>();
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {
@@ -55,15 +56,46 @@
           if (pattern != null && localMatcher != null && !localMatcher.matches(urlStrEnc,pattern)) {
             continue;
           }
-          HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
-          res.addSubResult(binRes);
-          res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+          if (isConcurrentDwn()) {
+            liste.add(new ASyncSample(url,GET,false,frameDepth + 1));
+          }
+ else {
+            HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
+            res.addSubResult(binRes);
+            res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+          }
         }
       }
  catch (      ClassCastException e) {
         res.addSubResult(errorResult(new Exception(binURL + " is not a correct URI"),res));
         res.setSuccessful(false);
         continue;
+      }
+    }
+    if (isConcurrentDwn()) {
+      int poolSize=CONCURRENT_POOL_SIZE;
+      try {
+        poolSize=Integer.parseInt(getConcurrentPool());
+      }
+ catch (      NumberFormatException nfe) {
+        log.warn("Concurrent download resources selected, " + "but pool size value is bad. Use default value");
+      }
+      final ThreadPoolExecutor exec=new ThreadPoolExecutor(poolSize,poolSize,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>());
+      try {
+        final List<Future<HTTPSampleResult>> retExec=exec.invokeAll(liste);
+        exec.shutdown();
+        exec.awaitTermination(AWAIT_TERMINATION_TIMEOUT,TimeUnit.SECONDS);
+        for (        Future<HTTPSampleResult> future : retExec) {
+          final HTTPSampleResult binRes=future.get();
+          res.addSubResult(binRes);
+          res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+        }
+      }
+ catch (      InterruptedException ie) {
+        log.warn("Interruped fetching embedded resources",ie);
+      }
+catch (      ExecutionException ee) {
+        log.warn("Execution issue when fetching embedded resources",ee);
       }
     }
   }

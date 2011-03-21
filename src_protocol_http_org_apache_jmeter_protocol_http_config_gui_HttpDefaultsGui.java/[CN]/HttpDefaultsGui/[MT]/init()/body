@@ -4,6 +4,38 @@
   add(makeTitlePanel(),BorderLayout.NORTH);
   urlConfig=new UrlConfigGui(false);
   add(urlConfig,BorderLayout.CENTER);
+  final JPanel optionalTasksPanel=new HorizontalPanel();
+  optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
+  final JPanel checkBoxPanel=new HorizontalPanel();
   imageParser=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
-  add(imageParser,BorderLayout.SOUTH);
+  checkBoxPanel.add(imageParser);
+  imageParser.addItemListener(new ItemListener(){
+    public void itemStateChanged(    final ItemEvent e){
+      if (e.getStateChange() == ItemEvent.SELECTED) {
+        enableConcurrentDwn(true);
+      }
+ else {
+        enableConcurrentDwn(false);
+      }
+    }
+  }
+);
+  concurrentDwn=new JCheckBox(JMeterUtils.getResString("web_testing_concurrent_download"));
+  concurrentDwn.addItemListener(new ItemListener(){
+    public void itemStateChanged(    final ItemEvent e){
+      if (e.getStateChange() == ItemEvent.SELECTED) {
+        concurrentPool.setEnabled(true);
+      }
+ else {
+        concurrentPool.setEnabled(false);
+      }
+    }
+  }
+);
+  concurrentPool=new JTextField(2);
+  concurrentPool.setMaximumSize(new Dimension(30,20));
+  checkBoxPanel.add(concurrentDwn);
+  checkBoxPanel.add(concurrentPool);
+  optionalTasksPanel.add(checkBoxPanel);
+  add(optionalTasksPanel,BorderLayout.SOUTH);
 }

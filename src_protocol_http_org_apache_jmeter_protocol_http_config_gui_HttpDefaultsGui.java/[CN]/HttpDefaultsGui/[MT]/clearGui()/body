@@ -2,4 +2,6 @@
   super.clearGui();
   urlConfig.clear();
   imageParser.setSelected(false);
+  concurrentDwn.setSelected(false);
+  concurrentPool.setText(String.valueOf(HTTPSamplerBase.CONCURRENT_POOL_SIZE));
 }

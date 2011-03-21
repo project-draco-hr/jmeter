@@ -1,0 +1,8 @@
+{
+  if (event.getStateChange() == ItemEvent.SELECTED) {
+    enableConcurrentDwn(true);
+  }
+ else {
+    enableConcurrentDwn(false);
+  }
+}

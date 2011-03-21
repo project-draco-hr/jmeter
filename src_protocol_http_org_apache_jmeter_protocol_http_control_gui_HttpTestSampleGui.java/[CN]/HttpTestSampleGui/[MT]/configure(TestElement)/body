@@ -3,6 +3,8 @@
   final HTTPSamplerBase samplerBase=(HTTPSamplerBase)element;
   urlConfigGui.configure(element);
   getImages.setSelected(samplerBase.isImageParser());
+  concurrentDwn.setSelected(samplerBase.isConcurrentDwn());
+  concurrentPool.setText(samplerBase.getConcurrentPool());
   isMon.setSelected(samplerBase.isMonitor());
   useMD5.setSelected(samplerBase.useMD5());
   embeddedRE.setText(samplerBase.getEmbeddedUrlRE());

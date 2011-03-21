@@ -1,0 +1,12 @@
+{
+  if (enable) {
+    concurrentDwn.setEnabled(true);
+    if (concurrentDwn.isSelected()) {
+      concurrentPool.setEnabled(true);
+    }
+  }
+ else {
+    concurrentDwn.setEnabled(false);
+    concurrentPool.setEnabled(false);
+  }
+}
