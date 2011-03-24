@@ -12,6 +12,7 @@
     int thn=peekInt();
     if ((thn & 0xff00) == AJP_HEADER_BASE) {
       name=headerTransArray[(thn & 0xff) - 1];
+      getInt();
     }
  else {
       name=getString();
