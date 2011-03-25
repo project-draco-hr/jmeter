@@ -1,15 +1,7 @@
 {
   configureTestElement(el);
-  String sizeString=size.getText();
-  long assertionSize=0;
-  try {
-    assertionSize=Long.parseLong(sizeString);
-  }
- catch (  NumberFormatException e) {
-    assertionSize=Long.MAX_VALUE;
-  }
   SizeAssertion assertion=(SizeAssertion)el;
-  assertion.setAllowedSize(assertionSize);
+  assertion.setAllowedSize(size.getText());
   assertion.setCompOper(getState());
   saveScopeSettings(assertion);
 }

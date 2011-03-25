@@ -6,8 +6,7 @@
   JPanel sizePanel=new JPanel();
   sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("size_assertion_size_test")));
   sizePanel.add(new JLabel(JMeterUtils.getResString("size_assertion_label")));
-  size=new JTextField(5);
-  size.addFocusListener(this);
+  size=new JTextField(12);
   sizePanel.add(size);
   sizePanel.add(createComparatorButtonPanel());
   add(sizePanel);
