@@ -5,27 +5,34 @@
     con=(Socket)cp.get(TCPKEY);
     if (con != null) {
       log.debug(this + " Reusing connection " + con);
-      return con;
+    }
+  }
+  if (con == null) {
+    try {
+      closeSocket();
+      SocketAddress sockaddr=new InetSocketAddress(getServer(),getPort());
+      con=new Socket();
+      con.connect(sockaddr,getConnectTimeout());
+      log.debug("Created new connection " + con);
+      cp.put(TCPKEY,con);
+    }
+ catch (    UnknownHostException e) {
+      log.warn("Unknown host for " + getLabel(),e);
+      cp.put(ERRKEY,e.toString());
+    }
+catch (    IOException e) {
+      log.warn("Could not create socket for " + getLabel(),e);
+      cp.put(ERRKEY,e.toString());
     }
   }
   try {
-    closeSocket();
-    SocketAddress sockaddr=new InetSocketAddress(getServer(),getPort());
-    con=new Socket();
-    con.connect(sockaddr,getConnectTimeout());
     con.setSoTimeout(getTimeout());
     con.setTcpNoDelay(getNoDelay());
     log.debug(this + "  Timeout " + getTimeout()+ " NoDelay "+ getNoDelay());
-    log.debug("Created new connection " + con);
-    cp.put(TCPKEY,con);
   }
- catch (  UnknownHostException e) {
-    log.warn("Unknown host for " + getLabel(),e);
-    cp.put(ERRKEY,e.toString());
-  }
-catch (  IOException e) {
-    log.warn("Could not create socket for " + getLabel(),e);
-    cp.put(ERRKEY,e.toString());
+ catch (  SocketException se) {
+    log.warn("Could not set timeout or nodelay for " + getLabel(),se);
+    cp.put(ERRKEY,se.toString());
   }
   return con;
 }
