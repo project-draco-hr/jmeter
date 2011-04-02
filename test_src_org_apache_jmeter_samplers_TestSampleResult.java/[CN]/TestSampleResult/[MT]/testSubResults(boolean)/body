@@ -44,8 +44,8 @@
   long totalTime=resWithSubResults.getTime();
   long overallTime=resWithSubResults.currentTimeInMillis() - beginTest;
   long allsamplesTime=sampleWithSubResultsTime + sample1Time + sample2Time;
-  if (totalTime < allsamplesTime) {
-    fail("Total: " + totalTime + " < sum(samples): "+ allsamplesTime);
+  if (totalTime + 3 < allsamplesTime) {
+    fail("Total+3: " + totalTime + " < sum(samples): "+ allsamplesTime);
   }
   if (totalTime > overallTime + 3) {
     fail("Total: " + totalTime + " > 3 + overall time: "+ overallTime);
