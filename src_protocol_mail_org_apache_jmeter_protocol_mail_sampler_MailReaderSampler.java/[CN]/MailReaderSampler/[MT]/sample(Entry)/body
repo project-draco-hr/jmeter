@@ -127,7 +127,7 @@
 catch (  MessagingException ex) {
     log.debug("",ex);
     parent.setResponseCode("500");
-    parent.setResponseMessage(ex.toString());
+    parent.setResponseMessage(ex.toString() + "\n" + samplerString);
   }
 catch (  IOException ex) {
     log.debug("",ex);
