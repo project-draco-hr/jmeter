@@ -1,0 +1,9 @@
+{
+  if (GETBYTES_TYPE.equals(GETBYTES_TYPE_HEAD_CONTENTLENGTH)) {
+    return calculateHeadersSize() + JMeterUtils.getHeaderContentLength(this.getResponseHeaders());
+  }
+  if (GETBYTES_TYPE.equals(GETBYTES_TYPE_HEAD_DEFAULT)) {
+    return calculateHeadersSize() + super.getBytes();
+  }
+  return super.getBytes();
+}
