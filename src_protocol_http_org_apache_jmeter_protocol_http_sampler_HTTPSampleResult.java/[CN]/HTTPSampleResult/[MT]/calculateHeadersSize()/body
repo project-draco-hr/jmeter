@@ -1,6 +1,0 @@
-{
-  int headersSize=0;
-  headersSize+=9 + String.valueOf(this.getResponseCode()).length() + this.getResponseMessage().length();
-  headersSize+=this.getResponseHeaders().length();
-  return headersSize;
-}

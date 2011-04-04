@@ -89,6 +89,11 @@
       }
       res.setRedirectLocation(headerLocation.getValue());
     }
+    res.setContentLength((int)httpMethod.getResponseContentLength());
+    res.setHeadersSize(calculateHeadersSize(httpMethod));
+    if (log.isDebugEnabled()) {
+      log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getContentLength()+ " Total="+ (res.getHeadersSize() + res.getContentLength()));
+    }
     if (getAutoRedirects()) {
       res.setURL(new URL(httpMethod.getURI().toString()));
     }

@@ -1,0 +1,3 @@
+{
+  return contentLength == 0 ? super.getBytes() : contentLength;
+}

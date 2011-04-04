@@ -90,6 +90,11 @@
       }
       res.setRedirectLocation(headerLocation.getValue());
     }
+    res.setContentLength((int)entity.getContentLength());
+    res.setHeadersSize(res.getResponseHeaders().replaceAll("\n","\r\n").length() + 2);
+    if (log.isDebugEnabled()) {
+      log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getContentLength()+ " Total="+ (res.getHeadersSize() + res.getContentLength()));
+    }
     if (getAutoRedirects()) {
       HttpUriRequest req=(HttpUriRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST);
       HttpHost target=(HttpHost)localContext.getAttribute(ExecutionContext.HTTP_TARGET_HOST);

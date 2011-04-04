@@ -95,9 +95,16 @@ catch (      IOException e) {
       res.setContentType(ct);
       res.setEncodingAndType(ct);
     }
-    res.setResponseHeaders(getResponseHeaders(conn));
+    String responseHeaders=getResponseHeaders(conn);
+    res.setResponseHeaders(responseHeaders);
     if (res.isRedirect()) {
       res.setRedirectLocation(conn.getHeaderField(HEADER_LOCATION));
+    }
+    String contentLength=conn.getHeaderField(HEADER_CONTENT_LENGTH);
+    res.setContentLength(contentLength != null ? Integer.parseInt(contentLength) : 0);
+    res.setHeadersSize(responseHeaders.replaceAll("\n","\r\n").length() + 2);
+    if (log.isDebugEnabled()) {
+      log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getContentLength()+ " Total="+ (res.getHeadersSize() + res.getContentLength()));
     }
     if (getAutoRedirects()) {
       res.setURL(conn.getURL());

@@ -1,0 +1,10 @@
+{
+  int headerSize=0;
+  headerSize+=9 + String.valueOf(httpMethod.getStatusCode()).length() + 1+ httpMethod.getStatusText().length()+ 2;
+  Header[] rh=httpMethod.getResponseHeaders();
+  for (int i=0; i < rh.length; i++) {
+    headerSize+=(rh[i]).toString().length();
+  }
+  headerSize+=2;
+  return headerSize;
+}
