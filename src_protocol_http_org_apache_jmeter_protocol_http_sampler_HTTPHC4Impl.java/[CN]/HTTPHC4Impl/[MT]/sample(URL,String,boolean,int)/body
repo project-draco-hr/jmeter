@@ -91,7 +91,7 @@
       res.setRedirectLocation(headerLocation.getValue());
     }
     res.setContentLength((int)entity.getContentLength());
-    res.setHeadersSize(res.getResponseHeaders().replaceAll("\n","\r\n").length() + 2);
+    res.setHeadersSize(res.getResponseHeaders().length() + httpResponse.getAllHeaders().length + 1+ 2);
     if (log.isDebugEnabled()) {
       log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getContentLength()+ " Total="+ (res.getHeadersSize() + res.getContentLength()));
     }
