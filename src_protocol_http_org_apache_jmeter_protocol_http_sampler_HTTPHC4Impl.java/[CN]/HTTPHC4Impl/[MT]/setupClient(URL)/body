@@ -13,14 +13,8 @@
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
     SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
     try {
-      TrustStrategy trustAll=new TrustStrategy(){
-        public boolean isTrusted(        X509Certificate[] chain,        String authType){
-          return true;
-        }
-      }
-;
-      SSLSocketFactory socketFactory=new SSLSocketFactory(trustAll,new AllowAllHostnameVerifier());
-      Scheme sch=new Scheme(PROTOCOL_HTTPS,443,socketFactory);
+      SSLSocketFactory socketFactory=new SSLSocketFactory(TRUSTALL,ALLOW_ALL_HOSTNAMES);
+      Scheme sch=new Scheme(PROTOCOL_HTTPS,DEFAULT_HTTPS_PORT,socketFactory);
       schemeRegistry.register(sch);
     }
  catch (    GeneralSecurityException e) {
