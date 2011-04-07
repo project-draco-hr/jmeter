@@ -17,12 +17,25 @@
       }
     }
 ;
+    SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
+    try {
+      TrustStrategy trustAll=new TrustStrategy(){
+        public boolean isTrusted(        X509Certificate[] chain,        String authType){
+          return true;
+        }
+      }
+;
+      SSLSocketFactory socketFactory=new SSLSocketFactory(trustAll,new AllowAllHostnameVerifier());
+      Scheme sch=new Scheme(PROTOCOL_HTTPS,443,socketFactory);
+      schemeRegistry.register(sch);
+    }
+ catch (    GeneralSecurityException e) {
+      log.warn("Failed to register trust-all socket factory",e);
+    }
     if (SLOW_HTTP != null) {
-      SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
       schemeRegistry.register(SLOW_HTTP);
     }
     if (SLOW_HTTPS != null) {
-      SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
       schemeRegistry.register(SLOW_HTTPS);
     }
     if (useDynamicProxy) {
