@@ -11,6 +11,7 @@
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
     httpClient=new DefaultHttpClient(clientParams);
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
+    ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
     SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
     try {
       SSLSocketFactory socketFactory=new SSLSocketFactory(TRUSTALL,ALLOW_ALL_HOSTNAMES);
