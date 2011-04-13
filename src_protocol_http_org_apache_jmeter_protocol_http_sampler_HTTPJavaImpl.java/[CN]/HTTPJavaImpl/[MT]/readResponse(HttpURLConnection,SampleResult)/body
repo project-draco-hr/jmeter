@@ -8,12 +8,14 @@
     return NULL_BA;
   }
   boolean gzipped=ENCODING_GZIP.equals(conn.getContentEncoding());
+  InputStream instream=null;
   try {
+    instream=new CountingInputStream(conn.getInputStream());
     if (gzipped) {
-      in=new BufferedInputStream(new GZIPInputStream(conn.getInputStream()));
+      in=new BufferedInputStream(new GZIPInputStream(instream));
     }
  else {
-      in=new BufferedInputStream(conn.getInputStream());
+      in=new BufferedInputStream(instream);
     }
   }
  catch (  IOException e) {
@@ -47,5 +49,7 @@ catch (  Exception e) {
     }
     in=new BufferedInputStream(conn.getErrorStream());
   }
-  return readResponse(res,in,contentLength);
+  byte[] responseData=readResponse(res,in,contentLength);
+  res.setBodySize(((CountingInputStream)instream).getCount());
+  return responseData;
 }

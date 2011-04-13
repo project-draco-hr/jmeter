@@ -1,6 +1,21 @@
 {
   configureTestElement(el);
   SizeAssertion assertion=(SizeAssertion)el;
+  if (responseHeadersButton.isSelected()) {
+    assertion.setTestFieldResponseHeaders();
+  }
+ else   if (responseBodyButton.isSelected()) {
+    assertion.setTestFieldResponseBody();
+  }
+ else   if (responseCodeButton.isSelected()) {
+    assertion.setTestFieldResponseCode();
+  }
+ else   if (responseMessageButton.isSelected()) {
+    assertion.setTestFieldResponseMessage();
+  }
+ else {
+    assertion.setTestFieldNetworkSize();
+  }
   assertion.setAllowedSize(size.getText());
   assertion.setCompOper(getState());
   saveScopeSettings(assertion);

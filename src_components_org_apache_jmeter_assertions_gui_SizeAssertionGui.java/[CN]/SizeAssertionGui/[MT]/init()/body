@@ -3,6 +3,7 @@
   setBorder(makeBorder());
   add(makeTitlePanel());
   add(createScopePanel(true));
+  add(createFieldPanel());
   JPanel sizePanel=new JPanel();
   sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("size_assertion_size_test")));
   sizePanel.add(new JLabel(JMeterUtils.getResString("size_assertion_label")));

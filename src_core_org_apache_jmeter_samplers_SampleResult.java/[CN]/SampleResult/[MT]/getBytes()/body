@@ -1,3 +1,13 @@
 {
+  if (GETBYTES_NETWORK_SIZE) {
+    int tmpSum=this.getHeadersSize() + this.getBodySize();
+    return tmpSum == 0 ? bytes : tmpSum;
+  }
+ else   if (GETBYTES_HEADERS_SIZE) {
+    return this.getHeadersSize();
+  }
+ else   if (GETBYTES_BODY_REALSIZE) {
+    return this.getBodySize();
+  }
   return bytes == 0 ? responseData.length : bytes;
 }

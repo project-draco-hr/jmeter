@@ -94,9 +94,9 @@
     }
     long totalBytes=metrics.getReceivedBytesCount();
     res.setHeadersSize((int)headerBytes);
-    res.setContentLength((int)(totalBytes - headerBytes));
+    res.setBodySize((int)(totalBytes - headerBytes));
     if (log.isDebugEnabled()) {
-      log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getContentLength()+ " Total="+ (res.getHeadersSize() + res.getContentLength()));
+      log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getBodySize()+ " Total="+ (res.getHeadersSize() + res.getBodySize()));
     }
     if (getAutoRedirects()) {
       HttpUriRequest req=(HttpUriRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST);

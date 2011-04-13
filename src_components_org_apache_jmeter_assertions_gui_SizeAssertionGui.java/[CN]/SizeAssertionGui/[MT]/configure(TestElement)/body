@@ -4,4 +4,19 @@
   size.setText(assertion.getAllowedSize());
   setState(assertion.getCompOper());
   showScopeSettings(assertion);
+  if (assertion.isTestFieldResponseHeaders()) {
+    responseHeadersButton.setSelected(true);
+  }
+ else   if (assertion.isTestFieldResponseBody()) {
+    responseBodyButton.setSelected(true);
+  }
+ else   if (assertion.isTestFieldResponseCode()) {
+    responseCodeButton.setSelected(true);
+  }
+ else   if (assertion.isTestFieldResponseMessage()) {
+    responseMessageButton.setSelected(true);
+  }
+ else {
+    responseNetworkButton.setSelected(true);
+  }
 }

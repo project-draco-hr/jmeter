@@ -14,6 +14,18 @@
       return result;
     }
   }
+ else   if (isTestFieldResponseHeaders()) {
+    resultSize=response.getHeadersSize();
+  }
+ else   if (isTestFieldResponseBody()) {
+    resultSize=response.getBodySize();
+  }
+ else   if (isTestFieldResponseCode()) {
+    resultSize=response.getResponseCode().length();
+  }
+ else   if (isTestFieldResponseMessage()) {
+    resultSize=response.getResponseMessage().length();
+  }
  else {
     resultSize=response.getBytes();
   }

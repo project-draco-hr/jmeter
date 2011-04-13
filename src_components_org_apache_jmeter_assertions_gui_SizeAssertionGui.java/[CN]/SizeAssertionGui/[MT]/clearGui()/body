@@ -1,5 +1,10 @@
 {
   super.clearGui();
+  responseNetworkButton.setSelected(true);
+  responseHeadersButton.setSelected(false);
+  responseBodyButton.setSelected(false);
+  responseCodeButton.setSelected(false);
+  responseMessageButton.setSelected(false);
   size.setText("");
   equalButton.setSelected(true);
   notequalButton.setSelected(false);
