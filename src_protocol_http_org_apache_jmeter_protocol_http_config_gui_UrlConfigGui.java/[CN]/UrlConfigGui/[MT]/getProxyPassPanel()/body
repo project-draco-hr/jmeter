@@ -1,5 +1,5 @@
 {
-  proxyPass=new JTextField(5);
+  proxyPass=new JPasswordField(5);
   JLabel label=new JLabel(JMeterUtils.getResString("password"));
   label.setLabelFor(proxyPass);
   JPanel panel=new JPanel(new BorderLayout(5,0));
