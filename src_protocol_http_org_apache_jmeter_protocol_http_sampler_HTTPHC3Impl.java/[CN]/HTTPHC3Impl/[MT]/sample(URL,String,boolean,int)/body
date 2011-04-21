@@ -56,8 +56,9 @@
     }
     int statusCode=client.executeMethod(httpMethod);
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
-    InputStream instream=new CountingInputStream(httpMethod.getResponseBodyAsStream());
+    InputStream instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
+      instream=new CountingInputStream(instream);
       try {
         Header responseHeader=httpMethod.getResponseHeader(HEADER_CONTENT_ENCODING);
         if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
@@ -92,7 +93,9 @@
       }
       res.setRedirectLocation(headerLocation.getValue());
     }
-    res.setBodySize(((CountingInputStream)instream).getCount());
+    if (instream != null) {
+      res.setBodySize(((CountingInputStream)instream).getCount());
+    }
     res.setHeadersSize(calculateHeadersSize(httpMethod));
     if (log.isDebugEnabled()) {
       log.debug("Response headersSize=" + res.getHeadersSize() + " bodySize="+ res.getBodySize()+ " Total="+ (res.getHeadersSize() + res.getBodySize()));
