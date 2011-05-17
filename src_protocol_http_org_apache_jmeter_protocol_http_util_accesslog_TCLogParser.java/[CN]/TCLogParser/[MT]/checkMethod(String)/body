@@ -7,6 +7,10 @@
     this.RMETHOD=POST;
     return true;
   }
+ else   if (text.indexOf("HEAD") > -1) {
+    this.RMETHOD=HEAD;
+    return true;
+  }
  else {
     return false;
   }

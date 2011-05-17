@@ -1,0 +1,5 @@
+{
+  String res=tclp.cleanURL(TEST3);
+  assertEquals("/addrbook/",res);
+  assertNull(tclp.stripFile(res,new HTTPNullSampler()));
+}

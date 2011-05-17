@@ -15,6 +15,9 @@
  else           if (t.equalsIgnoreCase(POST)) {
             RMETHOD=POST;
           }
+ else           if (t.equalsIgnoreCase(HEAD)) {
+            RMETHOD=HEAD;
+          }
           if (t.startsWith("/")) {
             url=t;
             break;
