@@ -10,13 +10,7 @@
     res.setSampleLabel(getName());
     return res;
   }
- catch (  MalformedURLException e) {
-    return errorResult(e,new HTTPSampleResult());
-  }
-catch (  IOException e) {
-    return errorResult(e,new HTTPSampleResult());
-  }
-catch (  URISyntaxException e) {
+ catch (  Exception e) {
     return errorResult(e,new HTTPSampleResult());
   }
 }
