@@ -1,4 +1,7 @@
 {
-  super(TRUSTALL,ALLOW_ALL_HOSTS);
+  super();
+  if (cps <= 0) {
+    throw new IllegalArgumentException("CPS must be > 0, but is " + cps);
+  }
   CPS=cps;
 }

@@ -13,19 +13,11 @@
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
     ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
     SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
-    try {
-      SSLSocketFactory socketFactory=new SSLSocketFactory(TRUSTALL,ALLOW_ALL_HOSTNAMES);
-      Scheme sch=new Scheme(PROTOCOL_HTTPS,DEFAULT_HTTPS_PORT,socketFactory);
-      schemeRegistry.register(sch);
-    }
- catch (    GeneralSecurityException e) {
-      log.warn("Failed to register trust-all socket factory",e);
-    }
     if (SLOW_HTTP != null) {
       schemeRegistry.register(SLOW_HTTP);
     }
-    if (SLOW_HTTPS != null) {
-      schemeRegistry.register(SLOW_HTTPS);
+    if (HTTPS_SCHEME != null) {
+      schemeRegistry.register(HTTPS_SCHEME);
     }
     if (useDynamicProxy) {
       HttpHost proxy=new HttpHost(proxyHost,proxyPort);
