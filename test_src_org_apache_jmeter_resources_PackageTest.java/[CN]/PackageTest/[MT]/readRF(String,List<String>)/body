@@ -32,6 +32,10 @@
           System.out.println(m);
         }
       }
+      if (!isPureAscii(val)) {
+        fails++;
+        System.out.println("Incorrect char value in: " + s);
+      }
     }
   }
   return fails;
