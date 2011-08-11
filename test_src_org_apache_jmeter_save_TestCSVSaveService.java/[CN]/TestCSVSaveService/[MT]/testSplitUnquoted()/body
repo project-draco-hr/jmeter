@@ -9,4 +9,5 @@
   checkSplitString("a,bc,,",',',new String[]{"a","bc","",""});
   checkSplitString("a,,,",',',new String[]{"a","","",""});
   checkSplitString("a,bc,d,\n",',',new String[]{"a","bc","d",""});
+  checkSplitString("a,b\u00e7,d,\u00e9",',',new String[]{"a","b\u00e7","d","\u00e9"});
 }

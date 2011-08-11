@@ -2,7 +2,7 @@
   int ch;
   int state=INITIAL;
   List<String> list=new ArrayList<String>();
-  ByteArrayOutputStream baos=new ByteArrayOutputStream(200);
+  CharArrayWriter baos=new CharArrayWriter(200);
   boolean push=false;
   while (-1 != (ch=infile.read())) {
     push=false;
