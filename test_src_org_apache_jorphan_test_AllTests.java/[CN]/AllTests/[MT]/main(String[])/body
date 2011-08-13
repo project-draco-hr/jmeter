@@ -14,7 +14,7 @@
   logprop("java.vendor");
   logprop("java.home",true);
   logprop("file.encoding",true);
-  String msg="default encoding=" + new OutputStreamWriter(System.out).getEncoding();
+  String msg="default encoding=" + Charset.defaultCharset();
   System.out.println(msg);
   log.info(msg);
   logprop("user.home");
