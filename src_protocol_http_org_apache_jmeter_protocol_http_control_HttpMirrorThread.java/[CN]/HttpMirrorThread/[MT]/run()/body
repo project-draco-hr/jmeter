@@ -1,5 +1,5 @@
 {
-  log.info("Starting thread");
+  log.debug("Starting thread");
   BufferedInputStream in=null;
   BufferedOutputStream out=null;
   try {
@@ -78,5 +78,5 @@ catch (  InterruptedException e) {
     JOrphanUtils.closeQuietly(in);
     JOrphanUtils.closeQuietly(clientSocket);
   }
-  log.info("End of Thread");
+  log.debug("End of Thread");
 }

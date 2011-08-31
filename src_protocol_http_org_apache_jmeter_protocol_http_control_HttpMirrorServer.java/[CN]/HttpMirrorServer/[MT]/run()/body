@@ -12,7 +12,7 @@
         Socket clientSocket=mainSocket.accept();
         if (running) {
           HttpMirrorThread thd=new HttpMirrorThread(clientSocket);
-          log.info("Starting new Mirror thread");
+          log.debug("Starting new Mirror thread");
           thd.start();
         }
  else {

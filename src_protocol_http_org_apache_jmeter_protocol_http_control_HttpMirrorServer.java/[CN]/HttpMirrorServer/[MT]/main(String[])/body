@@ -3,6 +3,8 @@
   if (args.length > 0) {
     port=Integer.parseInt(args[0]);
   }
+  LoggingManager.setPriority("INFO");
+  LoggingManager.setLoggingLevels(System.getProperties());
   HttpMirrorServer serv=new HttpMirrorServer(port);
   serv.start();
 }
