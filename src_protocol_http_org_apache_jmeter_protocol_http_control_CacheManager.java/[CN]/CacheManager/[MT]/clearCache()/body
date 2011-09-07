@@ -1,6 +1,6 @@
 {
   log.debug("Clear cache");
-  threadCache=new ThreadLocal<Map<String,CacheEntry>>(){
+  threadCache=new InheritableThreadLocal<Map<String,CacheEntry>>(){
     @Override protected Map<String,CacheEntry> initialValue(){
       return new HashMap<String,CacheEntry>();
     }
