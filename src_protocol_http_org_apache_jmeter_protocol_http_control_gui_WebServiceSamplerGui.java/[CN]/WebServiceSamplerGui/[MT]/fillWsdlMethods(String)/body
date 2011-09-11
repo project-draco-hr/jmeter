@@ -1,0 +1,7 @@
+{
+  String[] wsdlData=browseWSDL(wsdlText);
+  if (wsdlData != null) {
+    wsdlMethods.setValues(wsdlData);
+    wsdlMethods.repaint();
+  }
+}

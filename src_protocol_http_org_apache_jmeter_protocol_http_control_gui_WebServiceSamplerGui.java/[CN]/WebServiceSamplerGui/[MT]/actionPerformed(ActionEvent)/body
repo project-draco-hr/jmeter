@@ -17,11 +17,7 @@
  else   if (eventSource == wsdlButton) {
     final String wsdlText=wsdlField.getText();
     if (wsdlText != null && wsdlText.length() > 0) {
-      String[] wsdlData=browseWSDL(wsdlText);
-      if (wsdlData != null) {
-        wsdlMethods.setValues(wsdlData);
-        wsdlMethods.repaint();
-      }
+      fillWsdlMethods(wsdlText);
     }
  else {
       JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_url_error"),"Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);

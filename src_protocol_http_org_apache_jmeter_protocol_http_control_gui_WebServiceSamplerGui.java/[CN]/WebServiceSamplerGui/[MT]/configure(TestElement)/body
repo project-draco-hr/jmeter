@@ -2,6 +2,10 @@
   super.configure(el);
   WebServiceSampler sampler=(WebServiceSampler)el;
   wsdlField.setText(sampler.getWsdlURL());
+  final String wsdlText=wsdlField.getText();
+  if (wsdlText != null && wsdlText.length() > 0) {
+    fillWsdlMethods(wsdlField.getText());
+  }
   protocol.setText(sampler.getProtocol());
   domain.setText(sampler.getDomain());
   port.setText(sampler.getPropertyAsString(HTTPSamplerBase.PORT));
