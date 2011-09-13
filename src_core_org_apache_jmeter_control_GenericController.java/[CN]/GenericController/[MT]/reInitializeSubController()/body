@@ -6,8 +6,9 @@
         nextIsASampler((Sampler)currentElement);
       }
  else {
-        nextIsAController((Controller)currentElement);
-        reInitializeSubController();
+        if (nextIsAController((Controller)currentElement) != null) {
+          reInitializeSubController();
+        }
       }
     }
   }
