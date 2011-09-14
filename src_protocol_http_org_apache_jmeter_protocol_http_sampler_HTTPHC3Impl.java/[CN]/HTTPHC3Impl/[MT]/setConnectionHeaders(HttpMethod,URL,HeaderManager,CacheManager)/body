@@ -9,7 +9,7 @@
         if (!HEADER_CONTENT_LENGTH.equalsIgnoreCase(n)) {
           String v=header.getValue();
           if (HEADER_HOST.equalsIgnoreCase(n)) {
-            v=removePortInHostHeader(v,u.getPort());
+            v=v.replaceFirst(":\\d+$","");
             method.getParams().setVirtualHost(v);
           }
  else {

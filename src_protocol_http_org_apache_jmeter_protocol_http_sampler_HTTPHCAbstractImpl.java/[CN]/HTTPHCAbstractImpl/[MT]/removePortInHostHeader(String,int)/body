@@ -1,7 +1,0 @@
-{
-  String rePort=":" + String.valueOf(port);
-  if (hostHeader.trim().endsWith(rePort)) {
-    return hostHeader.replaceFirst(rePort + "$","");
-  }
-  return hostHeader;
-}

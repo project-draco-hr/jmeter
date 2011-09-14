@@ -10,7 +10,7 @@
           String v=header.getValue();
           if (HEADER_HOST.equalsIgnoreCase(n)) {
             int port=url.getPort();
-            v=removePortInHostHeader(v,port);
+            v=v.replaceFirst(":\\d+$","");
             if (port != -1) {
               if (port == url.getDefaultPort()) {
                 port=-1;
