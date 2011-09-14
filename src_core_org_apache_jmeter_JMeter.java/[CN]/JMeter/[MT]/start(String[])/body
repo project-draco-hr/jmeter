@@ -3,9 +3,9 @@
   String error=parser.getErrorString();
   if (error == null) {
     boolean gui=parser.getArgumentById(NONGUI_OPT) == null;
-    boolean remoteStart=parser.getArgumentById(REMOTE_OPT) != null || parser.getArgumentById(REMOTE_OPT_PARAM) != null;
-    if (gui && remoteStart) {
-      error="-r and -R are only valid in non-GUI mode";
+    boolean nonGuiOnly=parser.getArgumentById(REMOTE_OPT) != null || parser.getArgumentById(REMOTE_OPT_PARAM) != null || parser.getArgumentById(REMOTE_STOP) != null;
+    if (gui && nonGuiOnly) {
+      error="-r and -R and -X are only valid in non-GUI mode";
     }
   }
   if (null != error) {
