@@ -1,0 +1,8 @@
+{
+  for (Iterator<Stoppable> iterator=stoppables.iterator(); iterator.hasNext(); ) {
+    Stoppable stopable=iterator.next();
+    if (stopable == stoppable) {
+      iterator.remove();
+    }
+  }
+}

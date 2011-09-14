@@ -1,6 +1,7 @@
 {
   if (server != null) {
     server.stopServer();
+    GuiPackage.getInstance().unregister(server);
     try {
       server.join(1000);
     }

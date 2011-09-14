@@ -1,4 +1,8 @@
 {
   server=new HttpMirrorServer(getPort());
   server.start();
+  GuiPackage instance=GuiPackage.getInstance();
+  if (instance != null) {
+    instance.register(server);
+  }
 }

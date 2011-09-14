@@ -1,0 +1,8 @@
+{
+  GuiPackage instance=GuiPackage.getInstance();
+  List<Stoppable> stopables=instance.getStoppables();
+  for (  Stoppable element : stopables) {
+    instance.unregister(element);
+    element.stopServer();
+  }
+}

@@ -1,6 +1,10 @@
 {
   if (server != null) {
     server.stopServer();
+    GuiPackage instance=GuiPackage.getInstance();
+    if (instance != null) {
+      instance.unregister(server);
+    }
     try {
       server.join(1000);
     }

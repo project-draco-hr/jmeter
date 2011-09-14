@@ -3,6 +3,7 @@
   try {
     server=new Daemon(getPort(),this);
     server.start();
+    GuiPackage.getInstance().register(server);
   }
  catch (  IOException e) {
     log.error("Could not create Proxy daemon",e);
