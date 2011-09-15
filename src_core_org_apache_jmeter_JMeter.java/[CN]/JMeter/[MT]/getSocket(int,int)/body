@@ -1,14 +1,14 @@
 {
   DatagramSocket socket=null;
   int i=udpPort;
-  do {
+  while (i <= udpPortMax) {
     try {
       socket=new DatagramSocket(i);
       break;
     }
  catch (    SocketException e) {
+      i++;
     }
   }
- while (++i <= udpPortMax);
   return socket;
 }
