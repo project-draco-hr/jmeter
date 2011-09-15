@@ -7,7 +7,9 @@
     return HELPER.getWebMethods();
   }
  catch (  Exception exception) {
-    JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_helper_error") + "\n" + exception,"Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+    if (!silent) {
+      JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("wsdl_helper_error") + "\n" + exception,"Warning",JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+    }
     return ArrayUtils.EMPTY_STRING_ARRAY;
   }
 }

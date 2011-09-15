@@ -4,7 +4,7 @@
   wsdlField.setText(sampler.getWsdlURL());
   final String wsdlText=wsdlField.getText();
   if (wsdlText != null && wsdlText.length() > 0) {
-    fillWsdlMethods(wsdlField.getText());
+    fillWsdlMethods(wsdlField.getText(),true);
   }
   protocol.setText(sampler.getProtocol());
   domain.setText(sampler.getDomain());
