@@ -1,5 +1,5 @@
 {
-  int port=JMeterUtils.getPropDefault("jmeterengine.nongui.port",4445);
+  int port=JMeterUtils.getPropDefault("jmeterengine.nongui.port",UDP_PORT_DEFAULT);
   int maxPort=JMeterUtils.getPropDefault("jmeterengine.nongui.maxport",4455);
   if (port > 1000) {
     final DatagramSocket socket=getSocket(port,maxPort);
