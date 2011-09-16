@@ -12,7 +12,7 @@
   wsdlEntry.add(wsdlButton);
   wsdlButton.addActionListener(this);
   JPanel listPanel=new JPanel();
-  JLabel selectLabel=new JLabel("Web Methods");
+  JLabel selectLabel=new JLabel(JMeterUtils.getResString("webservice_methods"));
   wsdlMethods=new JLabeledChoice();
   mainPanel.add(listPanel);
   listPanel.add(selectLabel);
