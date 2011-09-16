@@ -3,8 +3,6 @@
   backingEngine.exit();
   Registry reg=LocateRegistry.getRegistry(this.rmiPort);
   try {
-    Remote lRemoteObj=reg.lookup(JMETER_ENGINE_RMI_NAME);
-    UnicastRemoteObject.unexportObject(lRemoteObj,true);
     reg.unbind(JMETER_ENGINE_RMI_NAME);
   }
  catch (  NotBoundException e) {
