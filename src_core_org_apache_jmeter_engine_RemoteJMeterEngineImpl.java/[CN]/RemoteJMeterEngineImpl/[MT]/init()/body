@@ -1,5 +1,5 @@
 {
-  log.info("Starting backing engine on " + port);
+  log.info("Starting backing engine on " + this.rmiPort);
   InetAddress localHost=null;
   try {
     String host=System.getProperties().getProperty("java.rmi.server.hostname");
@@ -22,7 +22,7 @@
   if (createServer) {
     log.info("Creating RMI registry (server.rmi.create=true)");
     try {
-      LocateRegistry.createRegistry(port);
+      LocateRegistry.createRegistry(this.rmiPort);
     }
  catch (    RemoteException e) {
       String msg="Problem creating registry: " + e;
@@ -32,9 +32,9 @@
     }
   }
   try {
-    Registry reg=LocateRegistry.getRegistry(port);
+    Registry reg=LocateRegistry.getRegistry(this.rmiPort);
     reg.rebind(JMETER_ENGINE_RMI_NAME,this);
-    log.info("Bound to registry on port " + port);
+    log.info("Bound to registry on port " + this.rmiPort);
   }
  catch (  Exception ex) {
     log.error("rmiregistry needs to be running to start JMeter in server " + "mode\n\t" + ex.toString());

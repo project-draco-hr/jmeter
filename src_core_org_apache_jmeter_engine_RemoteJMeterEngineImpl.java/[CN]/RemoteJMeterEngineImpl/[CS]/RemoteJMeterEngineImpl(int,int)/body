@@ -1,4 +1,5 @@
 {
-  super(port);
+  super(localPort);
+  this.rmiPort=rmiPort;
   System.out.println("Created remote object: " + this.getRef().remoteToString());
 }
