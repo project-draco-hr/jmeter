@@ -1,12 +1,16 @@
 {
-  Thread t=new Thread(){
-    @Override public void run(){
-      pause(1000);
-      log.info("Bye");
-      System.exit(0);
+  ClientJMeterEngine.tidyRMI(log);
+  if (REMOTE_SYSTEM_EXIT) {
+    log.warn("About to run System.exit(0) on " + host);
+    Thread t=new Thread(){
+      @Override public void run(){
+        pause(1000);
+        log.info("Bye from " + host);
+        System.out.println("Bye from " + host);
+        System.exit(0);
+      }
     }
-  }
 ;
-  log.info("Starting Closedown");
-  t.start();
+    t.start();
+  }
 }
