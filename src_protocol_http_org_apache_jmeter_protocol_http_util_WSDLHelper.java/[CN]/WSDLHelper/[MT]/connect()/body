@@ -1,6 +1,8 @@
 {
   try {
     CONN=WSDLURL.openConnection();
+    CONN.setConnectTimeout(GET_WDSL_TIMEOUT);
+    CONN.setReadTimeout(GET_WDSL_TIMEOUT);
     if (CONN instanceof HttpURLConnection && this.AUTH != null && this.AUTH.getAuthHeaderForURL(this.WSDLURL) != null) {
       CONN.setRequestProperty("Authorization",this.AUTH.getAuthHeaderForURL(this.WSDLURL));
     }
