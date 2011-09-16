@@ -14,6 +14,10 @@
   treePane.setPreferredSize(new Dimension(200,300));
   VerticalPanel leftPane=new VerticalPanel();
   leftPane.add(treePane,BorderLayout.CENTER);
-  leftPane.add(createComboRender(),BorderLayout.SOUTH);
+  VerticalPanel leftDownPane=new VerticalPanel();
+  leftDownPane.add(createComboRender(),BorderLayout.NORTH);
+  autoScrollCB=createASCheckBox("view_results_autoscroll",Color.BLACK);
+  leftDownPane.add(autoScrollCB,BorderLayout.SOUTH);
+  leftPane.add(leftDownPane,BorderLayout.SOUTH);
   return leftPane;
 }
