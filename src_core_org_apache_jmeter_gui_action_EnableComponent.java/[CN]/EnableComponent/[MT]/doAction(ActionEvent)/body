@@ -8,4 +8,8 @@
     log.debug("disabling currently selected gui objects");
     enableComponents(nodes,false);
   }
+ else   if (e.getActionCommand().equals(ActionNames.TOGGLE)) {
+    log.debug("toggling currently selected gui objects");
+    toggleComponents(nodes);
+  }
 }

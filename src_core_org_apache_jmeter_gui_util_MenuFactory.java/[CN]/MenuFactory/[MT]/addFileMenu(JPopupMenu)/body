@@ -25,6 +25,8 @@
   }
   menu.add(enabled);
   menu.add(disabled);
+  JMenuItem toggle=makeMenuItemRes("toggle",ActionNames.TOGGLE,KeyStrokes.TOGGLE);
+  menu.add(toggle);
   addSeparator(menu);
   menu.add(makeMenuItemRes("help",ActionNames.HELP));
 }
