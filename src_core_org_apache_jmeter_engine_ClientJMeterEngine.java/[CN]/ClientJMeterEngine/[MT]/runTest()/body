@@ -14,19 +14,19 @@ synchronized (testTree) {
     JMeterContextService.startTest();
     File baseDirRelative=FileServer.getFileServer().getBaseDirRelative();
 synchronized (LOCK) {
-      remote.configure(testTree,host,baseDirRelative);
+      remote.rconfigure(testTree,host,baseDirRelative);
     }
     log.info("sent test to " + host + " basedir='"+ baseDirRelative+ "'");
     if (savep != null) {
       log.info("Sending properties " + savep);
       try {
-        remote.setProperties(savep);
+        remote.rsetProperties(savep);
       }
  catch (      RemoteException e) {
         log.warn("Could not set properties: " + e.toString());
       }
     }
-    remote.runTest();
+    remote.rrunTest();
     log.info("sent run command to " + host);
   }
  catch (  IllegalStateException ex) {

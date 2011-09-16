@@ -1,7 +1,7 @@
 {
   log.info("about to " + (now ? "stop" : "shutdown") + " remote test on "+ host);
   try {
-    remote.stopTest(now);
+    remote.rstopTest(now);
   }
  catch (  Exception ex) {
     log.error("",ex);

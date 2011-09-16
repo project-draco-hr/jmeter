@@ -1,12 +1,12 @@
 {
   try {
     try {
-      remote.reset();
+      remote.rreset();
     }
  catch (    java.rmi.ConnectException e) {
       log.info("Retry reset after: " + e);
       remote=getEngine(host);
-      remote.reset();
+      remote.rreset();
     }
   }
  catch (  Exception ex) {

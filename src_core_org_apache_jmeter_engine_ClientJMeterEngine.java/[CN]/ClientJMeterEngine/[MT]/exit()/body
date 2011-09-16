@@ -1,7 +1,7 @@
 {
   log.info("about to exit remote server on " + host);
   try {
-    remote.exit();
+    remote.rexit();
   }
  catch (  RemoteException e) {
     log.warn("Could not perform remote exit: " + e.toString());
