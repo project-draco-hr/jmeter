@@ -1,0 +1,9 @@
+{
+  for (Iterator<LoopIterationListener> iterator=iterationListeners.iterator(); iterator.hasNext(); ) {
+    LoopIterationListener listener=iterator.next();
+    if (listener == iterationListener) {
+      iterator.remove();
+      break;
+    }
+  }
+}

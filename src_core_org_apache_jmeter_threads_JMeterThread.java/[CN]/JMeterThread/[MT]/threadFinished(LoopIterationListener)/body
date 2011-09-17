@@ -7,4 +7,7 @@
   if (gp != null) {
     gp.getMainFrame().updateCounts();
   }
+  if (iterationListener != null) {
+    controller.removeIterationListener(iterationListener);
+  }
 }

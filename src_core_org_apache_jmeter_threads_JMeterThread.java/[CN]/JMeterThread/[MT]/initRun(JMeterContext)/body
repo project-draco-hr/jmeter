@@ -15,9 +15,11 @@
     threadContext.setSamplingStarted(true);
   }
   controller.initialize();
-  controller.addIterationListener(new IterationListener());
+  IterationListener iterationListener=new IterationListener();
+  controller.addIterationListener(iterationListener);
   if (!startEarlier) {
     threadContext.setSamplingStarted(true);
   }
   threadStarted();
+  return iterationListener;
 }

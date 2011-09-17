@@ -1,7 +1,8 @@
 {
   JMeterContext threadContext=JMeterContextService.getContext();
+  LoopIterationListener iterationListener=null;
   try {
-    initRun(threadContext);
+    iterationListener=initRun(threadContext);
     while (running) {
       Sampler firstSampler=controller.next();
       Sampler sam=firstSampler;
@@ -60,7 +61,7 @@ catch (  Error e) {
  finally {
     threadContext.clear();
     log.info("Thread finished: " + threadName);
-    threadFinished();
+    threadFinished(iterationListener);
     monitor.threadFinished(this);
     JMeterContextService.removeContext();
   }
