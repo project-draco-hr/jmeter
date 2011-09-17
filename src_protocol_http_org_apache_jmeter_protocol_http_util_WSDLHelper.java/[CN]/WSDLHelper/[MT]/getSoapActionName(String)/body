@@ -1,0 +1,8 @@
+{
+  for (  Map.Entry<String,String> entry : ACTIONS.entrySet()) {
+    if (entry.getValue().equals(soapAction)) {
+      return entry.getKey();
+    }
+  }
+  return null;
+}

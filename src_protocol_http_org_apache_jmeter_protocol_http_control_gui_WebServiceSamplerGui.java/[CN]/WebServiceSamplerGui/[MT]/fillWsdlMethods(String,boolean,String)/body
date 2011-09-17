@@ -1,0 +1,13 @@
+{
+  String[] wsdlData=browseWSDL(wsdlText,silent);
+  if (wsdlData != null) {
+    wsdlMethods.setValues(wsdlData);
+    if (HELPER != null && soapAction != null) {
+      String selected=HELPER.getSoapActionName(soapAction);
+      if (selected != null) {
+        wsdlMethods.setText(selected);
+      }
+    }
+    wsdlMethods.repaint();
+  }
+}
