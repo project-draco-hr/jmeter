@@ -1,4 +1,5 @@
 {
+  boolean wasFlagSet=getThreadContext().setIsReinitializingSubControllers();
   try {
     TestElement currentElement=getCurrentElement();
     if (currentElement != null) {
@@ -13,5 +14,10 @@
     }
   }
  catch (  NextIsNullException e) {
+  }
+ finally {
+    if (wasFlagSet) {
+      getThreadContext().unsetIsReinitializingSubControllers();
+    }
   }
 }
