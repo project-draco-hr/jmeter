@@ -1,2 +1,7 @@
 {
+  if (!USE_CACHED_SSL_CONTEXT) {
+    JsseSSLManager sslMgr=(JsseSSLManager)SSLManager.getInstance();
+    sslMgr.resetContext();
+    notifySSLContextWasReset();
+  }
 }

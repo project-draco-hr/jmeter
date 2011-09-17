@@ -1,0 +1,9 @@
+{
+  Map<HostConfiguration,HttpClient> map=httpClients.get();
+  if (map != null) {
+    for (    HttpClient cl : map.values()) {
+      cl.getHttpConnectionManager().closeIdleConnections(-1000);
+    }
+    map.clear();
+  }
+}
