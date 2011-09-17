@@ -1,7 +1,9 @@
 {
   log.debug("close()");
   try {
-    CONN.stop();
+    if (CONN != null) {
+      CONN.stop();
+    }
   }
  catch (  JMSException e) {
     log.error(e.getMessage());
