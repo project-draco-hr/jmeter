@@ -1,8 +1,9 @@
 {
   GuiPackage guiPackage=GuiPackage.getInstance();
-  guiPackage.getMainFrame().setMainPanel((javax.swing.JComponent)guiPackage.getCurrentGui());
+  JMeterGUIComponent currentGui=guiPackage.getCurrentGui();
+  guiPackage.getMainFrame().setMainPanel((javax.swing.JComponent)currentGui);
   guiPackage.getMainFrame().setEditMenu(guiPackage.getTreeListener().getCurrentNode().createPopupMenu());
-  if (!(guiPackage.getCurrentGui() instanceof NamePanel)) {
+  if (!(currentGui instanceof NamePanel)) {
     guiPackage.getMainFrame().setFileLoadEnabled(true);
     guiPackage.getMainFrame().setFileSaveEnabled(true);
   }
