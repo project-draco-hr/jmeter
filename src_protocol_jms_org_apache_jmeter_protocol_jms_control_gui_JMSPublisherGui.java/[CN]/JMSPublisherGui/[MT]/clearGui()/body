@@ -15,5 +15,7 @@
   updateConfig(USE_TEXT_RSC);
   iterations.setText("1");
   useAuth.setSelected(false);
+  jmsUser.setEnabled(false);
+  jmsPwd.setEnabled(false);
   destSetup.setText(DEST_SETUP_STATIC);
 }

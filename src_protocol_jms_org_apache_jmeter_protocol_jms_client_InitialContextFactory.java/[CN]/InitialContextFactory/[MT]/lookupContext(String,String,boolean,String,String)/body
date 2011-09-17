@@ -1,5 +1,6 @@
 {
-  Context ctx=MAP.get(initialContextFactory + providerUrl);
+  String cacheKey=createKey(initialContextFactory,providerUrl,securityPrincipal,securityCredentials);
+  Context ctx=MAP.get(cacheKey);
   if (ctx == null) {
     Properties props=new Properties();
     props.setProperty(Context.INITIAL_CONTEXT_FACTORY,initialContextFactory);
@@ -18,7 +19,7 @@
 catch (    Exception e) {
       throw new NamingException(e.toString());
     }
-    MAP.put(initialContextFactory + providerUrl,ctx);
+    MAP.put(cacheKey,ctx);
   }
   return ctx;
 }

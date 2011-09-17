@@ -1,0 +1,15 @@
+{
+  StringBuilder builder=new StringBuilder();
+  builder.append(initialContextFactory);
+  builder.append("#");
+  builder.append(providerUrl);
+  builder.append("#");
+  if (!StringUtils.isEmpty(securityPrincipal)) {
+    builder.append(securityPrincipal);
+    builder.append("#");
+  }
+  if (!StringUtils.isEmpty(securityCredentials)) {
+    builder.append(securityCredentials);
+  }
+  return builder.toString();
+}

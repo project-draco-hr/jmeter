@@ -11,6 +11,8 @@
   jmsPwd.setText(sampler.getPassword());
   iterations.setText(sampler.getIterations());
   useAuth.setSelected(sampler.isUseAuth());
+  jmsUser.setEnabled(useAuth.isSelected());
+  jmsPwd.setEnabled(useAuth.isSelected());
   readResponse.setSelected(sampler.getReadResponseAsBoolean());
   clientChoice.setText(sampler.getClientChoice());
   stopBetweenSamples.setSelected(sampler.isStopBetweenSamples());

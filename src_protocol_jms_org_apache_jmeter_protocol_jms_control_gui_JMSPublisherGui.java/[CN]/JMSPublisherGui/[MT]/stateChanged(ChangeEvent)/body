@@ -10,7 +10,7 @@
     urlField.setEnabled(!useProperties.isSelected());
   }
  else   if (event.getSource() == useAuth) {
-    jmsUser.setEnabled(!useAuth.isSelected());
-    jmsPwd.setEnabled(!useAuth.isSelected());
+    jmsUser.setEnabled(useAuth.isSelected());
+    jmsPwd.setEnabled(useAuth.isSelected());
   }
 }
