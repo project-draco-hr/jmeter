@@ -1,11 +1,10 @@
 {
   running=false;
   engine=null;
-  boolean stopped=false;
   if (now) {
     tellThreadsToStop();
     pause(10 * allThreads.size());
-    stopped=verifyThreadsStopped();
+    boolean stopped=verifyThreadsStopped();
     if (!stopped) {
       if (JMeter.isNonGUI()) {
         log.fatalError(JMeterUtils.getResString("stopping_test_failed"));
@@ -25,8 +24,5 @@
   }
  else {
     stopAllThreads();
-  }
-  if (serialized || !stopped) {
-    notifyTestListenersOfEnd(testListenersSave);
   }
 }
