@@ -1,0 +1,12 @@
+{
+  if (savedBsh != null) {
+    try {
+      savedBsh.evalNoLog("interrupt()");
+    }
+ catch (    JMeterException ignored) {
+      log.debug(getClass().getName() + " : " + ignored.getLocalizedMessage());
+    }
+    return true;
+  }
+  return false;
+}

@@ -25,7 +25,9 @@
     bshInterpreter.set("ResponseMessage","OK");
     bshInterpreter.set("IsSuccess",true);
     res.setDataType(SampleResult.TEXT);
+    savedBsh=bshInterpreter;
     Object bshOut=processFileOrScript(bshInterpreter);
+    savedBsh=null;
     if (bshOut != null) {
       String out=bshOut.toString();
       res.setResponseData(out,null);
@@ -44,6 +46,9 @@ catch (  Exception ex) {
     log.warn(ex.toString());
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
+  }
+ finally {
+    savedBsh=null;
   }
   res.sampleEnd();
   res.setSuccessful(isSuccessful);
