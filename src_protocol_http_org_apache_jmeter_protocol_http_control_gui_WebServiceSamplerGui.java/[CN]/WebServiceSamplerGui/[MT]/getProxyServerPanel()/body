@@ -1,0 +1,12 @@
+{
+  JPanel proxyServer=new JPanel();
+  proxyServer.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  proxyServer.add(useProxy);
+  useProxy.addActionListener(this);
+  useProxy.setToolTipText(proxyToolTip);
+  proxyServer.add(Box.createRigidArea(new Dimension(5,0)));
+  proxyServer.add(getProxyHostPanel());
+  proxyServer.add(Box.createRigidArea(new Dimension(5,0)));
+  proxyServer.add(getProxyPortPanel());
+  return proxyServer;
+}

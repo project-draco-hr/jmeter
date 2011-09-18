@@ -12,6 +12,7 @@
   path.setText(sampler.getPath());
   soapAction.setText(sampler.getSoapAction());
   soapXml.setText(sampler.getXmlData());
+  soapXml.setCaretPosition(0);
   soapXmlFile.setFilename(sampler.getXmlFile());
   randomXmlFile.setText(sampler.getXmlPathLoc());
   connectTimeout.setText(sampler.getTimeout());

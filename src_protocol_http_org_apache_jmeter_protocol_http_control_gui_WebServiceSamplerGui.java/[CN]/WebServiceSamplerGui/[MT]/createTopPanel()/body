@@ -1,0 +1,38 @@
+{
+  JPanel topPanel=new JPanel();
+  topPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  JPanel wsdlHelper=new JPanel();
+  wsdlHelper.setLayout(new BoxLayout(wsdlHelper,BoxLayout.Y_AXIS));
+  wsdlHelper.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("webservice_configuration_wizard")));
+  JPanel wsdlEntry=new JPanel();
+  wsdlEntry.setLayout(new BoxLayout(wsdlEntry,BoxLayout.X_AXIS));
+  Border margin=new EmptyBorder(0,5,0,5);
+  wsdlEntry.setBorder(margin);
+  wsdlHelper.add(wsdlEntry);
+  wsdlEntry.add(wsdlField);
+  wsdlEntry.add(wsdlButton);
+  wsdlButton.addActionListener(this);
+  JPanel listPanel=new JPanel();
+  listPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+  JLabel selectLabel=new JLabel(JMeterUtils.getResString("webservice_methods"));
+  wsdlMethods=new JLabeledChoice();
+  wsdlHelper.add(listPanel);
+  listPanel.add(selectLabel);
+  listPanel.add(wsdlMethods);
+  listPanel.add(selectButton);
+  selectButton.addActionListener(this);
+  topPanel.add(wsdlHelper);
+  JPanel urlPane=new JPanel();
+  urlPane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  urlPane.add(protocol);
+  urlPane.add(Box.createRigidArea(new Dimension(5,0)));
+  urlPane.add(domain);
+  urlPane.add(Box.createRigidArea(new Dimension(5,0)));
+  urlPane.add(port);
+  urlPane.add(Box.createRigidArea(new Dimension(5,0)));
+  urlPane.add(connectTimeout);
+  topPanel.add(urlPane);
+  topPanel.add(path);
+  topPanel.add(soapAction);
+  return topPanel;
+}

@@ -1,0 +1,25 @@
+{
+  JPanel msgPanel=new JPanel();
+  msgPanel.setLayout(new BorderLayout(5,0));
+  msgPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("webservice_message_soap")));
+  JPanel soapXmlPane=new JPanel();
+  soapXmlPane.setLayout(new BorderLayout(5,0));
+  soapXmlPane.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("soap_data_title")));
+  soapXmlPane.setPreferredSize(new Dimension(4,4));
+  soapXml=new JTextArea();
+  soapXml.setLineWrap(true);
+  soapXml.setWrapStyleWord(true);
+  soapXml.setTabSize(4);
+  soapXmlPane.add(new JScrollPane(soapXml),BorderLayout.CENTER);
+  msgPanel.add(soapXmlPane,BorderLayout.CENTER);
+  JPanel southPane=new JPanel();
+  southPane.setLayout(new BoxLayout(southPane,BoxLayout.Y_AXIS));
+  southPane.add(soapXmlFile);
+  JPanel randomXmlPane=new JPanel();
+  randomXmlPane.setLayout(new BorderLayout(5,0));
+  randomXmlPane.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("webservice_get_xml_from_random_title")));
+  randomXmlPane.add(randomXmlFile,BorderLayout.CENTER);
+  southPane.add(randomXmlPane);
+  msgPanel.add(southPane,BorderLayout.SOUTH);
+  return msgPanel;
+}

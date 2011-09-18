@@ -1,0 +1,12 @@
+{
+  JPanel optionPane=new JPanel();
+  optionPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("option")));
+  optionPane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  JPanel ckboxPane=new HorizontalPanel();
+  ckboxPane.add(memCache,BorderLayout.WEST);
+  ckboxPane.add(readResponse,BorderLayout.CENTER);
+  readResponse.setToolTipText(readToolTip);
+  optionPane.add(ckboxPane);
+  optionPane.add(getProxyServerPanel());
+  return optionPane;
+}

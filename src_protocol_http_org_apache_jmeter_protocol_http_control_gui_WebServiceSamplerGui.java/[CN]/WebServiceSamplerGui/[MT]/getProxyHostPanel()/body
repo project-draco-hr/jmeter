@@ -1,0 +1,9 @@
+{
+  proxyHost=new JTextField(12);
+  JLabel label=new JLabel(JMeterUtils.getResString("web_server_domain"));
+  label.setLabelFor(proxyHost);
+  JPanel panel=new JPanel(new BorderLayout(5,0));
+  panel.add(label,BorderLayout.WEST);
+  panel.add(proxyHost,BorderLayout.CENTER);
+  return panel;
+}
