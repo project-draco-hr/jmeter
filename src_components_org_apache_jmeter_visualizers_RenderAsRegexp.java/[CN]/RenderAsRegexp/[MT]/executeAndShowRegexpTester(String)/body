@@ -1,5 +1,6 @@
 {
   if (textToParse != null && textToParse.length() > 0 && this.regexpField.getText().length() > 0) {
     this.regexpResultField.setText(process(textToParse));
+    this.regexpResultField.setCaretPosition(0);
   }
 }
