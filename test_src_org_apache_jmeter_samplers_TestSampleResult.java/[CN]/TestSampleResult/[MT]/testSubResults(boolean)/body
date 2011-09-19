@@ -43,12 +43,14 @@
   assertEquals(2,resWithSubResults.getSubResults().length);
   long totalTime=resWithSubResults.getTime();
   long overallTime=resWithSubResults.currentTimeInMillis() - beginTest;
+  final long fudge1=15;
   long allsamplesTime=sampleWithSubResultsTime + sample1Time + sample2Time;
-  if (totalTime + 3 < allsamplesTime) {
-    fail("Total+3: " + totalTime + " < sum(samples): "+ allsamplesTime);
+  if (totalTime + fudge1 < allsamplesTime) {
+    fail("Total: " + totalTime + " "+ fudge1+ " < sum(samples): "+ allsamplesTime);
   }
-  if (totalTime > overallTime + 3) {
-    fail("Total: " + totalTime + " > 3 + overall time: "+ overallTime);
+  long fudge2=13;
+  if (totalTime > overallTime + fudge2) {
+    fail("Total: " + totalTime + " > overall time: "+ overallTime+ " + "+ fudge2);
   }
   Calculator calculator=new Calculator();
   calculator.addSample(resWithSubResults);
