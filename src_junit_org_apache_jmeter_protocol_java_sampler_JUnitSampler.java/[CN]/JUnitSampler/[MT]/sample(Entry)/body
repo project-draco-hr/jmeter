@@ -1,4 +1,7 @@
 {
+  if (getCreateOneInstancePerSample()) {
+    initializeTestObject();
+  }
   SampleResult sresult=new SampleResult();
   sresult.setSampleLabel(getName());
   sresult.setSamplerData(className + "." + methodName);

@@ -25,5 +25,6 @@
   sampler.setDoNotSetUpTearDown(doSetup.isSelected());
   sampler.setAppendError(appendError.isSelected());
   sampler.setAppendException(appendExc.isSelected());
+  sampler.setCreateOneInstancePerSample(createInstancePerSample.isSelected());
   sampler.setJunit4(junit4.isSelected());
 }
