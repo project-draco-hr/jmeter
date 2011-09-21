@@ -43,14 +43,15 @@
   assertEquals(2,parent.getSubResults().length);
   long parentElapsedTotal=parent.getTime();
   long overallTime=parent.currentTimeInMillis() - beginTest;
-  final long fudge1=15;
   long sumSamplesTimes=parentElapsed + child1Elapsed + child2Elapsed;
-  if (parentElapsedTotal + fudge1 < sumSamplesTimes) {
-    fail("Total: " + parentElapsedTotal + " "+ fudge1+ " < sum(samples): "+ sumSamplesTimes);
+  long diff=parentElapsedTotal - sumSamplesTimes;
+  long maxDiff=nanoTime ? 1 : 16;
+  if (diff < 0 || diff > maxDiff) {
+    fail("ParentElapsed: " + parentElapsedTotal + " - "+ " sum(samples): "+ sumSamplesTimes+ " = "+ diff+ " not in [0,"+ maxDiff+ "]; nanotime="+ nanoTime);
   }
-  long fudge2=13;
-  if (parentElapsedTotal > overallTime + fudge2) {
-    fail("Total: " + parentElapsedTotal + " > overall time: "+ overallTime+ " + "+ fudge2);
+  diff=overallTime - parentElapsedTotal;
+  if (diff < 0 || diff > maxDiff) {
+    fail("TestElapsed: " + overallTime + " - "+ " ParentElapsed: "+ parentElapsedTotal+ " = "+ diff+ " not in [0,"+ maxDiff+ "]; nanotime="+ nanoTime);
   }
   Calculator calculator=new Calculator();
   calculator.addSample(parent);
@@ -58,4 +59,5 @@
   assertEquals(1,calculator.getCount());
   assertEquals(1d / (parentElapsedTotal / 1000d),calculator.getRate(),0.0001d);
   assertFalse(1d / (parentElapsed / 1000d) <= calculator.getRate());
+  System.out.print(nanoTime ? 'T' : 'F');
 }

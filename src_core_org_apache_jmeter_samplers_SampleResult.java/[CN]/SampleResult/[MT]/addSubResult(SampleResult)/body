@@ -5,7 +5,7 @@
     this.setThreadName(tn);
   }
   subResult.setThreadName(tn);
-  setEndTime(Math.max(getEndTime(),subResult.getEndTime()));
+  setEndTime(Math.max(getEndTime(),subResult.getEndTime() + nanoTimeOffset - subResult.nanoTimeOffset));
   setBytes(getBytes() + subResult.getBytes());
   addRawSubResult(subResult);
 }
