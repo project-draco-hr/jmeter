@@ -21,6 +21,12 @@
   assertEquals("Child1 Sample",child1.getSampleLabel());
   assertEquals(1,child1.getSampleCount());
   assertEquals(0,child1.getSubResults().length);
+  long actualPause=0;
+  if (pause > 0) {
+    long t1=parent.currentTimeInMillis();
+    Thread.sleep(pause);
+    actualPause=parent.currentTimeInMillis() - t1;
+  }
   SampleResult child2=new SampleResult(nanoTime);
   child2.sampleStart();
   Thread.sleep(100);
@@ -43,9 +49,9 @@
   assertEquals(2,parent.getSubResults().length);
   long parentElapsedTotal=parent.getTime();
   long overallTime=parent.currentTimeInMillis() - beginTest;
-  long sumSamplesTimes=parentElapsed + child1Elapsed + child2Elapsed;
+  long sumSamplesTimes=parentElapsed + child1Elapsed + actualPause+ child2Elapsed;
   long diff=parentElapsedTotal - sumSamplesTimes;
-  long maxDiff=nanoTime ? 1 : 16;
+  long maxDiff=nanoTime ? 2 : 16;
   if (diff < 0 || diff > maxDiff) {
     fail("ParentElapsed: " + parentElapsedTotal + " - "+ " sum(samples): "+ sumSamplesTimes+ " = "+ diff+ " not in [0,"+ maxDiff+ "]; nanotime="+ nanoTime);
   }
@@ -59,5 +65,4 @@
   assertEquals(1,calculator.getCount());
   assertEquals(1d / (parentElapsedTotal / 1000d),calculator.getRate(),0.0001d);
   assertFalse(1d / (parentElapsed / 1000d) <= calculator.getRate());
-  System.out.print(nanoTime ? 'T' : 'F');
 }
