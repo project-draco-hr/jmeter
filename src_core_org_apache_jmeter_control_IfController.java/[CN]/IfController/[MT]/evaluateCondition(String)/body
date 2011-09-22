@@ -19,7 +19,7 @@
     logger.debug("    >> evaluate Condition -  [ " + cond + "] results is  ["+ result+ "]");
   }
  catch (  Exception e) {
-    logger.error(e.getMessage(),e);
+    logger.error(getName() + ": error while processing " + "["+ cond+ "]\n",e);
   }
  finally {
     Context.exit();
