@@ -1,5 +1,5 @@
 {
-  this.url=url;
+  this.target=url.getProtocol() + "://" + url.getAuthority();
   this.hasProxy=b;
   this.proxyHost=proxyHost;
   this.proxyPort=proxyPort;
