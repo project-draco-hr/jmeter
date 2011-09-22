@@ -21,7 +21,7 @@
     }
   }
  catch (  RhinoException e) {
-    log.error("Error processing Javascript",e);
+    log.error("Error processing Javascript: [" + script + "]\n",e);
     throw new InvalidVariableException();
   }
  finally {
