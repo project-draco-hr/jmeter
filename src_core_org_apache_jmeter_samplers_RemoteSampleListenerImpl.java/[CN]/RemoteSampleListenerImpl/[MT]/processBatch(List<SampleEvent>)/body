@@ -1,9 +1,7 @@
 {
-  if (samples != null) {
-    Iterator<SampleEvent> iter=samples.iterator();
-    while (iter.hasNext()) {
-      SampleEvent e=iter.next();
-      sampleOccurred(e);
+  if (samples != null && sampleListener != null) {
+    for (    SampleEvent e : samples) {
+      sampleListener.sampleOccurred(e);
     }
   }
 }
