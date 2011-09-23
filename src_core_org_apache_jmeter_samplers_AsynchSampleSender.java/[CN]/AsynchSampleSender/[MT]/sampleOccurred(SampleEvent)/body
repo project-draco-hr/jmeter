@@ -1,0 +1,14 @@
+{
+  try {
+    if (!queue.offer(e)) {
+      queueWaits++;
+      long t1=System.nanoTime();
+      queue.put(e);
+      long t2=System.nanoTime();
+      queueWaitTime+=t2 - t1;
+    }
+  }
+ catch (  Exception err) {
+    log.error("sampleOccurred; failed to queue the sample",err);
+  }
+}

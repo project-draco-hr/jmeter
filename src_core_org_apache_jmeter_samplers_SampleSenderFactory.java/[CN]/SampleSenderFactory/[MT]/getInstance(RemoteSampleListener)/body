@@ -21,6 +21,9 @@
  else   if (type.equalsIgnoreCase(MODE_STRIPPED)) {
     return new DataStrippingSampleSender(listener);
   }
+ else   if (type.equalsIgnoreCase(MODE_ASYNCH)) {
+    return new AsynchSampleSender(listener);
+  }
  else {
     SampleSender s=null;
     try {

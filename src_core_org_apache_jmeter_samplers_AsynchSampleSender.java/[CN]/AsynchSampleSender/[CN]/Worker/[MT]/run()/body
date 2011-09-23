@@ -1,0 +1,28 @@
+{
+  try {
+    boolean eof=false;
+    while (!eof) {
+      List<SampleEvent> l=new ArrayList<SampleEvent>();
+      SampleEvent e=queue.take();
+      while (!(eof=(e == FINAL_EVENT)) && e != null) {
+        l.add(e);
+        e=queue.poll();
+      }
+      int size=l.size();
+      if (size > 0) {
+        try {
+          listener.processBatch(l);
+        }
+ catch (        RemoteException err) {
+          if (err.getCause() instanceof java.net.ConnectException) {
+            throw new JMeterError("Could not return sample",err);
+          }
+          log.error("Failed to return sample",err);
+        }
+      }
+    }
+  }
+ catch (  InterruptedException e) {
+  }
+  log.debug("Worker ended");
+}

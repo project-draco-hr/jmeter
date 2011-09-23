@@ -1,0 +1,8 @@
+{
+  log.debug("Using batch queue size (asynch.batch.queue.size): " + capacity);
+  queue=new ArrayBlockingQueue<SampleEvent>(capacity);
+  Worker worker=new Worker(queue,listener);
+  worker.setDaemon(true);
+  worker.start();
+  return this;
+}
