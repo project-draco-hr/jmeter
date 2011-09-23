@@ -11,7 +11,15 @@
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
     httpClient=new DefaultHttpClient(clientParams){
       @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
-        return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false);
+        return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false){
+          @Override public boolean retryRequest(          IOException ex,          int count,          HttpContext ctx){
+            if (interrupted) {
+              return false;
+            }
+            return super.retryRequest(ex,count,ctx);
+          }
+        }
+;
       }
     }
 ;
