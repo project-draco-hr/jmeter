@@ -41,6 +41,7 @@
   HttpClient httpClient=map.get(hc);
   if (httpClient == null) {
     httpClient=new HttpClient(new SimpleHttpConnectionManager());
+    httpClient.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,new DefaultHttpMethodRetryHandler(RETRY_COUNT,false));
     if (log.isDebugEnabled()) {
       log.debug("Created new HttpClient: @" + System.identityHashCode(httpClient));
     }
