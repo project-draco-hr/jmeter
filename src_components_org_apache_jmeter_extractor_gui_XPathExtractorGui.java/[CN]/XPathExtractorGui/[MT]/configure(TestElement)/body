@@ -1,7 +1,7 @@
 {
   super.configure(el);
   XPathExtractor xpe=(XPathExtractor)el;
-  showScopeSettings(xpe);
+  showScopeSettings(xpe,true);
   xpathQueryField.setText(xpe.getXPathQuery());
   defaultField.setText(xpe.getDefaultValue());
   refNameField.setText(xpe.getRefName());

@@ -3,7 +3,7 @@
   setBorder(makeBorder());
   Box box=Box.createVerticalBox();
   box.add(makeTitlePanel());
-  box.add(createScopePanel());
+  box.add(createScopePanel(true));
   xml.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("xpath_assertion_option")));
   box.add(xml);
   box.add(getFragment);
