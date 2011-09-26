@@ -13,8 +13,14 @@
       @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
         return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false){
           @Override public boolean retryRequest(          IOException ex,          int count,          HttpContext ctx){
-            if (interrupted) {
-              return false;
+            HttpRequest request=(HttpRequest)ctx.getAttribute(ExecutionContext.HTTP_REQUEST);
+            if (request instanceof HttpUriRequest) {
+              if (request instanceof RequestWrapper) {
+                request=((RequestWrapper)request).getOriginal();
+              }
+              if (((HttpUriRequest)request).isAborted()) {
+                return false;
+              }
             }
             return super.retryRequest(ex,count,ctx);
           }
