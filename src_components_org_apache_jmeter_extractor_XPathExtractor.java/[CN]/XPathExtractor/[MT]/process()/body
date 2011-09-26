@@ -16,12 +16,19 @@
   }
   vars.put(matchNR,"0");
   vars.remove(concat(refName,"1"));
-  List<SampleResult> samples=getSampleList(previousResult);
+  List<String> matches=new ArrayList<String>();
   try {
-    List<String> matches=new ArrayList<String>();
-    for (    SampleResult res : samples) {
-      Document d=parseResponse(res);
+    if (isScopeVariable()) {
+      String inputString=vars.get(getVariableName());
+      Document d=parseResponse(inputString);
       getValuesForXPath(d,getXPathQuery(),matches);
+    }
+ else {
+      List<SampleResult> samples=getSampleList(previousResult);
+      for (      SampleResult res : samples) {
+        Document d=parseResponse(res.getResponseDataAsString());
+        getValuesForXPath(d,getXPathQuery(),matches);
+      }
     }
     final int matchCount=matches.size();
     vars.put(matchNR,String.valueOf(matchCount));

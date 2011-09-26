@@ -1,5 +1,4 @@
 {
-  String unicodeData=result.getResponseDataAsString();
   byte[] utf8data=unicodeData.getBytes("UTF-8");
   ByteArrayInputStream in=new ByteArrayInputStream(utf8data);
   boolean isXML=JOrphanUtils.isXML(utf8data);
