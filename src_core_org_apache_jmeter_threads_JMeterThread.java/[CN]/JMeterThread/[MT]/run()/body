@@ -59,6 +59,8 @@ catch (  Error e) {
     log.error("Test failed!",e);
   }
  finally {
+    currentSampler=null;
+    interruptLock.lock();
     threadContext.clear();
     log.info("Thread finished: " + threadName);
     threadFinished(iterationListener);
