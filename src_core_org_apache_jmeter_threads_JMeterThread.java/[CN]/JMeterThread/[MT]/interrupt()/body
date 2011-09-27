@@ -1,25 +1,26 @@
 {
-  Sampler samp=currentSampler;
-  if (samp instanceof Interruptible) {
-    log.warn("Interrupting: " + threadName + " sampler: "+ samp.getName());
-    try {
-      interruptLock.lock();
-      samp=currentSampler;
-      boolean found=((Interruptible)samp).interrupt();
-      if (!found) {
-        log.warn("No operation pending");
+  try {
+    interruptLock.lock();
+    Sampler samp=currentSampler;
+    if (samp instanceof Interruptible) {
+      log.warn("Interrupting: " + threadName + " sampler: "+ samp.getName());
+      try {
+        boolean found=((Interruptible)samp).interrupt();
+        if (!found) {
+          log.warn("No operation pending");
+        }
+        return found;
       }
-      return found;
+ catch (      Exception e) {
+        log.warn("Caught Exception interrupting sampler: " + e.toString());
+      }
     }
- catch (    Exception e) {
-      log.warn("Caught Exception interrupting sampler: " + e.toString());
-    }
- finally {
-      interruptLock.unlock();
+ else     if (samp != null) {
+      log.warn("Sampler is not Interruptible: " + samp.getName());
     }
   }
- else   if (samp != null) {
-    log.warn("Sampler is not Interruptible: " + samp.getName());
+  finally {
+    interruptLock.unlock();
   }
   return false;
 }
