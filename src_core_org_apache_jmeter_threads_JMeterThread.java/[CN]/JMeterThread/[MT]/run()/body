@@ -66,5 +66,6 @@ catch (  Error e) {
     threadFinished(iterationListener);
     monitor.threadFinished(this);
     JMeterContextService.removeContext();
+    interruptLock.unlock();
   }
 }
