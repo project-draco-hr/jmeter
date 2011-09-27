@@ -60,12 +60,16 @@ catch (  Error e) {
   }
  finally {
     currentSampler=null;
-    interruptLock.lock();
-    threadContext.clear();
-    log.info("Thread finished: " + threadName);
-    threadFinished(iterationListener);
-    monitor.threadFinished(this);
-    JMeterContextService.removeContext();
-    interruptLock.unlock();
+    try {
+      interruptLock.lock();
+      threadContext.clear();
+      log.info("Thread finished: " + threadName);
+      threadFinished(iterationListener);
+      monitor.threadFinished(this);
+      JMeterContextService.removeContext();
+    }
+  finally {
+      interruptLock.unlock();
+    }
   }
 }
