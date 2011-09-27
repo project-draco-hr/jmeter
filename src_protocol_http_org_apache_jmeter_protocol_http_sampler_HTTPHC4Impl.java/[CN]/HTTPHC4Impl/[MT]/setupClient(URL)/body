@@ -23,11 +23,9 @@
                 return false;
               }
             }
-            if (ex instanceof java.net.BindException) {
-              if (ex.getMessage().contains("Address already in use: connect")) {
-                log.warn("Workround for HTTPCLIENT-1120 connect retry: " + ex);
-                return false;
-              }
+            if ((ex instanceof java.net.BindException && ex.getMessage().contains("Address already in use: connect")) || ex.getMessage().contains("Request aborted")) {
+              log.warn("Workround for HTTPCLIENT-1120 connect retry: " + ex);
+              return false;
             }
             return super.retryRequest(ex,count,ctx);
           }
