@@ -1,7 +1,7 @@
 {
   StringWriter sw=new StringWriter();
   Tidy tidy=makeTidyParser(quiet,showWarnings,isXML,sw);
-  Document doc=tidy.parseDOM(stream,null);
+  Document doc=tidy.parseDOM(stream,out);
   doc.normalize();
   if (tidy.getParseErrors() > 0) {
     if (report_errors) {

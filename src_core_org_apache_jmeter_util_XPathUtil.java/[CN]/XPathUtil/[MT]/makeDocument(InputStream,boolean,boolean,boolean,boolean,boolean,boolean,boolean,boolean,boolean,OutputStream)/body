@@ -1,0 +1,10 @@
+{
+  Document doc;
+  if (tolerant) {
+    doc=tidyDoc(stream,quiet,showWarnings,report_errors,isXml,tidyOut);
+  }
+ else {
+    doc=makeDocumentBuilder(validate,whitespace,namespace,downloadDTDs).parse(stream);
+  }
+  return doc;
+}
