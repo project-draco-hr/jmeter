@@ -1,11 +1,5 @@
 {
-  stopTableEditing();
-  @SuppressWarnings("unchecked") Iterator<HTTPArgument> modelData=(Iterator<HTTPArgument>)tableModel.iterator();
-  Arguments args=new Arguments();
-  while (modelData.hasNext()) {
-    HTTPArgument arg=modelData.next();
-    args.addArgument(arg);
-  }
+  Arguments args=getUnclonedParameters();
   this.configureTestElement(args);
   return (TestElement)args.clone();
 }
