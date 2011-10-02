@@ -1,5 +1,5 @@
 {
-  byte[] readBuffer=getThreadContext().getReadBuffer();
+  byte[] readBuffer=new byte[8192];
   int bufferSize=32;
   MessageDigest md=null;
   boolean asMD5=useMD5();
