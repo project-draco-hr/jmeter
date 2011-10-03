@@ -10,33 +10,37 @@ synchronized (testTree) {
     testTree.traverse(testListeners);
     testTree.traverse(sampleListeners);
   }
+  String methodName="unknown";
   try {
     JMeterContextService.startTest();
     File baseDirRelative=FileServer.getFileServer().getBaseDirRelative();
 synchronized (LOCK) {
+      methodName="rconfigure()";
       remote.rconfigure(testTree,host,baseDirRelative);
     }
     log.info("sent test to " + host + " basedir='"+ baseDirRelative+ "'");
     if (savep != null) {
       log.info("Sending properties " + savep);
       try {
+        methodName="rsetProperties()";
         remote.rsetProperties(savep);
       }
  catch (      RemoteException e) {
         log.warn("Could not set properties: " + e.toString());
       }
     }
+    methodName="rrunTest()";
     remote.rrunTest();
     log.info("sent run command to " + host);
   }
  catch (  IllegalStateException ex) {
-    log.error("Error in run() method " + ex);
+    log.error("Error in " + methodName + " method "+ ex);
     tidyRMI(log);
     throw ex;
   }
 catch (  Exception ex) {
-    log.error("Error in run() method " + ex);
+    log.error("Error in " + methodName + " method "+ ex);
     tidyRMI(log);
-    throw new JMeterEngineException("Error in run() method " + ex,ex);
+    throw new JMeterEngineException("Error in " + methodName + " method "+ ex,ex);
   }
 }
