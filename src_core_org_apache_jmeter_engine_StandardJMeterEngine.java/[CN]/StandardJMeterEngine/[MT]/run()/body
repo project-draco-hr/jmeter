@@ -1,17 +1,6 @@
 {
   log.info("Running the test!");
   running=true;
-  SearchByClass<TestPlan> testPlan=new SearchByClass<TestPlan>(TestPlan.class);
-  test.traverse(testPlan);
-  Object[] plan=testPlan.getSearchResults().toArray();
-  if (plan.length == 0) {
-    System.err.println("Could not find the TestPlan!");
-    log.error("Could not find the TestPlan!");
-    System.exit(1);
-  }
-  if (((TestPlan)plan[0]).isSerialized()) {
-    serialized=true;
-  }
   JMeterContextService.startTest();
   try {
     PreCompiler compiler=new PreCompiler();
