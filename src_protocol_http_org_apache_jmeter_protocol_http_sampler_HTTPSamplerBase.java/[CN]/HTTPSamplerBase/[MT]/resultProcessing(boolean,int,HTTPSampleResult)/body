@@ -16,7 +16,7 @@
     }
  else {
       if (!wasRedirected) {
-        HTTPSampleResult container=(HTTPSampleResult)(areFollowingRedirect ? res.getParent() : res);
+        HTTPSampleResult container=(HTTPSampleResult)(areFollowingRedirect ? res.getParent() : SEPARATE_CONTAINER ? null : res);
         res=downloadPageResources(res,container,frameDepth);
       }
     }
