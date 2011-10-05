@@ -81,6 +81,7 @@
         log.warn("Concurrent download resources selected, " + "but pool size value is bad. Use default value");
       }
       final ThreadPoolExecutor exec=new ThreadPoolExecutor(poolSize,poolSize,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>());
+      boolean tasksCompleted=false;
       try {
         final List<Future<HTTPSampleResult>> retExec=exec.invokeAll(liste);
         exec.shutdown();
@@ -96,12 +97,18 @@
             errorResult(e,res);
           }
         }
+        tasksCompleted=exec.awaitTermination(1,TimeUnit.MILLISECONDS);
       }
  catch (      InterruptedException ie) {
         log.warn("Interruped fetching embedded resources",ie);
       }
 catch (      ExecutionException ee) {
         log.warn("Execution issue when fetching embedded resources",ee);
+      }
+ finally {
+        if (!tasksCompleted) {
+          exec.shutdownNow();
+        }
       }
     }
   }
