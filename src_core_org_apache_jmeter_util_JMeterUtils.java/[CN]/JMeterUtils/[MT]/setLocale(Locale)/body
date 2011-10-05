@@ -25,7 +25,7 @@
     if (isDefault || resBundLocale.equals(loc)) {
     }
  else     if (resBundLocale.getLanguage().equals(loc.getLanguage())) {
-      log.warn("Could not find resources for '" + loc.toString() + "', using '"+ resBundLocale.toString()+ "'");
+      log.info("Could not find resources for '" + loc.toString() + "', using '"+ resBundLocale.toString()+ "'");
     }
  else {
       log.error("Could not find resources for '" + loc.toString() + "'");
