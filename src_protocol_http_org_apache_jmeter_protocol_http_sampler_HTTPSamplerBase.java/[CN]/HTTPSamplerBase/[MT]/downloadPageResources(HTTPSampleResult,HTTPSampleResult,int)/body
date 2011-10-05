@@ -86,9 +86,15 @@
         exec.shutdown();
         exec.awaitTermination(AWAIT_TERMINATION_TIMEOUT,TimeUnit.SECONDS);
         for (        Future<HTTPSampleResult> future : retExec) {
-          final HTTPSampleResult binRes=future.get();
-          res.addSubResult(binRes);
-          res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+          HTTPSampleResult binRes;
+          try {
+            binRes=future.get(1,TimeUnit.MILLISECONDS);
+            res.addSubResult(binRes);
+            res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+          }
+ catch (          TimeoutException e) {
+            errorResult(e,res);
+          }
         }
       }
  catch (      InterruptedException ie) {
