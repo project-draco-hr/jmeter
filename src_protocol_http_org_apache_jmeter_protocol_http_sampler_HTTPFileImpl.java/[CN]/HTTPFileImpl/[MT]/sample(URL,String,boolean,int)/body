@@ -1,0 +1,39 @@
+{
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setHTTPMethod(GET);
+  res.setURL(url);
+  res.setSampleLabel(url.toString());
+  InputStream is=null;
+  res.sampleStart();
+  try {
+    byte[] responseData;
+    URLConnection conn=url.openConnection();
+    is=conn.getInputStream();
+    responseData=IOUtils.toByteArray(is);
+    res.sampleEnd();
+    res.setResponseData(responseData);
+    res.setResponseCodeOK();
+    res.setResponseMessageOK();
+    res.setSuccessful(true);
+    StringBuilder ctb=new StringBuilder("text/html");
+    String contentEncoding=getContentEncoding();
+    if (contentEncoding.length() > 0) {
+      ctb.append("; charset=");
+      ctb.append(contentEncoding);
+    }
+    String ct=ctb.toString();
+    res.setContentType(ct);
+    res.setEncodingAndType(ct);
+    res=resultProcessing(areFollowingRedirect,frameDepth,res);
+    return res;
+  }
+ catch (  FileNotFoundException e) {
+    return errorResult(e,res);
+  }
+catch (  IOException e) {
+    return errorResult(e,res);
+  }
+ finally {
+    IOUtils.closeQuietly(is);
+  }
+}

@@ -1,12 +1,7 @@
 {
   SampleResult res=null;
   try {
-    if (PROTOCOL_FILE.equalsIgnoreCase(getProtocol())) {
-      res=fileSample(new URI(PROTOCOL_FILE,getPath(),null));
-    }
- else {
-      res=sample(getUrl(),getMethod(),false,0);
-    }
+    res=sample(getUrl(),getMethod(),false,0);
     res.setSampleLabel(getName());
     return res;
   }

@@ -1,4 +1,7 @@
 {
+  if (HTTPSamplerBase.PROTOCOL_FILE.equals(base.getProtocol())) {
+    return new HTTPFileImpl(base);
+  }
   if (impl.trim().length() == 0) {
     impl=DEFAULT_CLASSNAME;
   }

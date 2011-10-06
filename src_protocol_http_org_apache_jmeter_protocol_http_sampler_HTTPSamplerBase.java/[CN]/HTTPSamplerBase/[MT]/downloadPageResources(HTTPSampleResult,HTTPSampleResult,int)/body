@@ -16,6 +16,7 @@
   }
   if (urls != null && urls.hasNext()) {
     if (container == null) {
+      res.setThreadName(Thread.currentThread().getName());
       container=new HTTPSampleResult(res);
       container.addRawSubResult(res);
     }
