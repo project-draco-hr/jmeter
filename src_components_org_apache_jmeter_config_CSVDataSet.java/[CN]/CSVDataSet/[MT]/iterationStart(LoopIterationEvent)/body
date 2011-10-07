@@ -2,7 +2,7 @@
   FileServer server=FileServer.getFileServer();
   final JMeterContext context=getThreadContext();
   String delim=getDelimiter();
-  if (delim.startsWith("\\t")) {
+  if (delim.equals("\\t")) {
     delim="\t";
   }
  else   if (delim.length() == 0) {
