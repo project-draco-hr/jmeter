@@ -4,8 +4,15 @@
   log.debug("file   " + file);
   File f=findTestFile(file);
   byte[] buffer=new byte[(int)f.length()];
-  int len=new FileInputStream(f).read(buffer);
-  assertEquals(len,buffer.length);
+  InputStream is=null;
+  try {
+    is=new FileInputStream(f);
+    int len=is.read(buffer);
+    assertEquals(len,buffer.length);
+  }
+  finally {
+    IOUtils.closeQuietly(is);
+  }
   Iterator<URL> result;
   if (c == null) {
     result=p.getEmbeddedResourceURLs(buffer,new URL(url));
