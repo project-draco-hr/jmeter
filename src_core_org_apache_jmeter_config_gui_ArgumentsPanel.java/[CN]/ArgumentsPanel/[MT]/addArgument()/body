@@ -2,6 +2,10 @@
   stopTableEditing();
   tableModel.addRow(makeNewArgument());
   delete.setEnabled(true);
+  if (tableModel.getRowCount() > 1) {
+    up.setEnabled(true);
+    down.setEnabled(true);
+  }
   int rowToSelect=tableModel.getRowCount() - 1;
   table.setRowSelectionInterval(rowToSelect,rowToSelect);
 }

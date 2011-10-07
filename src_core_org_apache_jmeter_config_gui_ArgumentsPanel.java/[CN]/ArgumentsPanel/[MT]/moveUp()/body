@@ -1,0 +1,8 @@
+{
+  cancelEditing();
+  int rowSelected=table.getSelectedRow();
+  if (rowSelected > 0) {
+    tableModel.moveRow(rowSelected,rowSelected + 1,rowSelected - 1);
+    table.setRowSelectionInterval(rowSelected - 1,rowSelected - 1);
+  }
+}

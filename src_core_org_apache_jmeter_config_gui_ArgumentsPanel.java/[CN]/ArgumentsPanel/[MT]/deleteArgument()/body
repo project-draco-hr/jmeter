@@ -1,14 +1,15 @@
 {
-  if (table.isEditing()) {
-    TableCellEditor cellEditor=table.getCellEditor(table.getEditingRow(),table.getEditingColumn());
-    cellEditor.cancelCellEditing();
-  }
+  cancelEditing();
   int rowSelected=table.getSelectedRow();
   if (rowSelected >= 0) {
     tableModel.removeRow(rowSelected);
     tableModel.fireTableDataChanged();
     if (tableModel.getRowCount() == 0) {
       delete.setEnabled(false);
+    }
+    if (tableModel.getRowCount() > 1) {
+      up.setEnabled(true);
+      down.setEnabled(true);
     }
  else {
       int rowToSelect=rowSelected;

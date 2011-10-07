@@ -5,4 +5,8 @@
  else {
     delete.setEnabled(true);
   }
+  if (tableModel.getRowCount() > 1) {
+    up.setEnabled(true);
+    down.setEnabled(true);
+  }
 }

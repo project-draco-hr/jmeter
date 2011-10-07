@@ -6,4 +6,10 @@
  else   if (action.equals(ADD)) {
     addArgument();
   }
+ else   if (action.equals(UP)) {
+    moveUp();
+  }
+ else   if (action.equals(DOWN)) {
+    moveDown();
+  }
 }
