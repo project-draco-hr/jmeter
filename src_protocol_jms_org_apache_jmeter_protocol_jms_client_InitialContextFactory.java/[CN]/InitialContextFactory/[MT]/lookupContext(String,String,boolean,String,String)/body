@@ -19,7 +19,15 @@
 catch (    Exception e) {
       throw new NamingException(e.toString());
     }
-    ctx=MAP.putIfAbsent(cacheKey,ctx);
+    Context oldCtx=MAP.putIfAbsent(cacheKey,ctx);
+    if (oldCtx != null) {
+      try {
+        ctx.close();
+      }
+ catch (      Exception e) {
+      }
+      ctx=oldCtx;
+    }
   }
   return ctx;
 }
