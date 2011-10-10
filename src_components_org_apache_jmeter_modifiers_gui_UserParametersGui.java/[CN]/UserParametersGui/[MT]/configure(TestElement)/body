@@ -16,6 +16,7 @@
     tableModel.setColumnData(count,(List<?>)iter.next().getObjectValue());
     count++;
   }
+  setColumnWidths();
   perIterationCheck.setSelected(params.isPerIteration());
   super.configure(el);
 }
