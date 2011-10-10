@@ -1,0 +1,32 @@
+{
+  int length=Integer.valueOf(values[0].execute());
+  String charsToUse=null;
+  if (values.length >= CHARS) {
+    charsToUse=(values[CHARS - 1]).execute().trim();
+    if (charsToUse.length() <= 0) {
+      charsToUse=null;
+    }
+  }
+  String myName="";
+  if (values.length >= PARAM_NAME) {
+    myName=(values[PARAM_NAME - 1]).execute().trim();
+  }
+  String myValue=null;
+  if (StringUtils.isEmpty(charsToUse)) {
+    myValue=RandomStringUtils.random(length);
+  }
+ else {
+    myValue=RandomStringUtils.random(length,charsToUse);
+  }
+  if (myName.length() > 0) {
+    JMeterVariables vars=getVariables();
+    if (vars != null) {
+      vars.put(myName,myValue);
+    }
+  }
+  if (log.isDebugEnabled()) {
+    String tn=Thread.currentThread().getName();
+    log.debug(tn + " name:" + myName+ " value:"+ myValue);
+  }
+  return myValue;
+}
