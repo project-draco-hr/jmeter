@@ -3,23 +3,27 @@
   GuiPackage guiPackage=GuiPackage.getInstance();
   JMeterTreeModel jMeterTreeModel=guiPackage.getTreeModel();
   Iterator<?> iter=jMeterTreeModel.getNodesOfType(Searchable.class).iterator();
+  Set<JMeterTreeNode> nodes=new HashSet<JMeterTreeNode>();
   while (iter.hasNext()) {
     try {
       JMeterTreeNode jMeterTreeNode=(JMeterTreeNode)iter.next();
       if (jMeterTreeNode.getUserObject() instanceof Searchable) {
         Searchable searchable=(Searchable)jMeterTreeNode.getUserObject();
         boolean result=searchable.searchContent(wordToSearch);
+        jMeterTreeNode.setMarkedBySearch(false);
         if (result) {
-          jMeterTreeNode.setMarkedBySearch(true);
-        }
- else {
-          jMeterTreeNode.setMarkedBySearch(false);
+          List<JMeterTreeNode> matchingNodes=jMeterTreeNode.getPathToThreadGroup();
+          nodes.addAll(matchingNodes);
         }
       }
     }
  catch (    Exception ex) {
       logger.error("Error occured searching for word:" + wordToSearch,ex);
     }
+  }
+  for (Iterator<JMeterTreeNode> iterator=nodes.iterator(); iterator.hasNext(); ) {
+    JMeterTreeNode jMeterTreeNode=iterator.next();
+    jMeterTreeNode.setMarkedBySearch(true);
   }
   GuiPackage.getInstance().getMainFrame().repaint();
 }

@@ -1,0 +1,17 @@
+{
+  List<JMeterTreeNode> nodes=new ArrayList<JMeterTreeNode>();
+  if (treeModel != null) {
+    TreeNode[] nodesToRoot=treeModel.getPathToRoot(this);
+    for (int i=0; i < nodesToRoot.length; i++) {
+      JMeterTreeNode jMeterTreeNode=(JMeterTreeNode)nodesToRoot[i];
+      int level=jMeterTreeNode.getLevel();
+      if (level < TEST_PLAN_LEVEL) {
+        continue;
+      }
+ else {
+        nodes.add(jMeterTreeNode);
+      }
+    }
+  }
+  return nodes;
+}
