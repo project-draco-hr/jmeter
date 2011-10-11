@@ -1,7 +1,8 @@
 {
-  super.getTreeCellRendererComponent(tree,((JMeterTreeNode)value).getName(),sel,expanded,leaf,row,p_hasFocus);
-  boolean enabled=((JMeterTreeNode)value).isEnabled();
-  ImageIcon ic=((JMeterTreeNode)value).getIcon(enabled);
+  JMeterTreeNode node=(JMeterTreeNode)value;
+  super.getTreeCellRendererComponent(tree,node.getName(),sel,expanded,leaf,row,p_hasFocus);
+  boolean enabled=node.isEnabled();
+  ImageIcon ic=node.getIcon(enabled);
   if (ic != null) {
     if (enabled) {
       setIcon(ic);
@@ -12,12 +13,18 @@
   }
  else {
     if (!enabled) {
-      ic=((JMeterTreeNode)value).getIcon();
+      ic=node.getIcon();
       if (ic != null) {
         setIcon(ic);
       }
     }
   }
   this.setEnabled(enabled);
+  if (node.isMarkedBySearch()) {
+    setBorder(BorderFactory.createLineBorder(Color.red));
+  }
+ else {
+    setBorder(null);
+  }
   return this;
 }

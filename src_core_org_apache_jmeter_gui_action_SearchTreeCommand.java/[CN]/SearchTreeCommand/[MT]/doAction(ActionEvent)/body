@@ -1,0 +1,25 @@
+{
+  String wordToSearch=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("search_word"),JMeterUtils.getResString("search_tree_title"),JOptionPane.QUESTION_MESSAGE);
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  JMeterTreeModel jMeterTreeModel=guiPackage.getTreeModel();
+  Iterator<?> iter=jMeterTreeModel.getNodesOfType(Searchable.class).iterator();
+  while (iter.hasNext()) {
+    try {
+      JMeterTreeNode jMeterTreeNode=(JMeterTreeNode)iter.next();
+      if (jMeterTreeNode.getUserObject() instanceof Searchable) {
+        Searchable searchable=(Searchable)jMeterTreeNode.getUserObject();
+        boolean result=searchable.searchContent(wordToSearch);
+        if (result) {
+          jMeterTreeNode.setMarkedBySearch(true);
+        }
+ else {
+          jMeterTreeNode.setMarkedBySearch(false);
+        }
+      }
+    }
+ catch (    Exception ex) {
+      logger.error("Error occured searching for word:" + wordToSearch,ex);
+    }
+  }
+  GuiPackage.getInstance().getMainFrame().repaint();
+}

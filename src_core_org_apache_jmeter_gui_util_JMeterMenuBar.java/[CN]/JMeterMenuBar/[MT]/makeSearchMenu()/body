@@ -1,0 +1,6 @@
+{
+  searchMenu=makeMenuRes("menu_search");
+  JMenuItem search=makeMenuItemRes("menu_search",ActionNames.SEARCH_TREE);
+  searchMenu.add(search);
+  searchMenu.setEnabled(true);
+}

@@ -4,8 +4,10 @@
   makeRunMenu();
   makeOptionsMenu();
   makeHelpMenu();
+  makeSearchMenu();
   this.add(fileMenu);
   this.add(editMenu);
+  this.add(searchMenu);
   this.add(runMenu);
   this.add(optionsMenu);
   this.add(helpMenu);
