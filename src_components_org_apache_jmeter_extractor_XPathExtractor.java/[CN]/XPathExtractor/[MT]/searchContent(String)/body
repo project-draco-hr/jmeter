@@ -1,0 +1,19 @@
+{
+  String searchedTextLowerCase=textToSearch.toLowerCase();
+  if (testField(getComment(),searchedTextLowerCase)) {
+    return true;
+  }
+  if (testField(getVariableName(),searchedTextLowerCase)) {
+    return true;
+  }
+  if (testField(getRefName(),searchedTextLowerCase)) {
+    return true;
+  }
+  if (testField(getDefaultValue(),searchedTextLowerCase)) {
+    return true;
+  }
+  if (testField(getXPathQuery(),searchedTextLowerCase)) {
+    return true;
+  }
+  return false;
+}
