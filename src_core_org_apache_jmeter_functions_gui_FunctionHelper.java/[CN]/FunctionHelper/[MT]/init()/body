@@ -1,5 +1,5 @@
 {
-  parameterPanel=new ArgumentsPanel(JMeterUtils.getResString("function_params"));
+  parameterPanel=new ArgumentsPanel(JMeterUtils.getResString("function_params"),false);
   initializeFunctionList();
   this.getContentPane().setLayout(new BorderLayout(10,10));
   JPanel comboPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));

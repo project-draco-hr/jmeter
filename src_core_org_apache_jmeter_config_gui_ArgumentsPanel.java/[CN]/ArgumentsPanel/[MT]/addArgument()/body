@@ -2,7 +2,7 @@
   stopTableEditing();
   tableModel.addRow(makeNewArgument());
   delete.setEnabled(true);
-  if (tableModel.getRowCount() > 1) {
+  if (enableUpDown && tableModel.getRowCount() > 1) {
     up.setEnabled(true);
     down.setEnabled(true);
   }

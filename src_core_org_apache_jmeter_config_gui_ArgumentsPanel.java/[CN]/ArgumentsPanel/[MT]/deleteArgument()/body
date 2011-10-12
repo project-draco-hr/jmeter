@@ -7,7 +7,7 @@
     if (tableModel.getRowCount() == 0) {
       delete.setEnabled(false);
     }
-    if (tableModel.getRowCount() > 1) {
+    if (enableUpDown && tableModel.getRowCount() > 1) {
       up.setEnabled(true);
       down.setEnabled(true);
     }

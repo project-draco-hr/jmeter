@@ -4,10 +4,12 @@
   add.setEnabled(true);
   delete=new JButton(JMeterUtils.getResString("delete"));
   delete.setActionCommand(DELETE);
-  up=new JButton(JMeterUtils.getResString("up"));
-  up.setActionCommand(UP);
-  down=new JButton(JMeterUtils.getResString("down"));
-  down.setActionCommand(DOWN);
+  if (enableUpDown) {
+    up=new JButton(JMeterUtils.getResString("up"));
+    up.setActionCommand(UP);
+    down=new JButton(JMeterUtils.getResString("down"));
+    down.setActionCommand(DOWN);
+  }
   checkDeleteStatus();
   JPanel buttonPanel=new JPanel();
   buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
@@ -16,11 +18,13 @@
   }
   add.addActionListener(this);
   delete.addActionListener(this);
-  up.addActionListener(this);
-  down.addActionListener(this);
   buttonPanel.add(add);
   buttonPanel.add(delete);
-  buttonPanel.add(up);
-  buttonPanel.add(down);
+  if (enableUpDown) {
+    up.addActionListener(this);
+    down.addActionListener(this);
+    buttonPanel.add(up);
+    buttonPanel.add(down);
+  }
   return buttonPanel;
 }
