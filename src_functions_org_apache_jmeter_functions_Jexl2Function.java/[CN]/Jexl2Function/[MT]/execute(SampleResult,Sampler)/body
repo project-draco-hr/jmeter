@@ -1,0 +1,34 @@
+{
+  String str="";
+  CompoundVariable var=(CompoundVariable)values[0];
+  String exp=var.execute();
+  String varName="";
+  if (values.length > 1) {
+    varName=((CompoundVariable)values[1]).execute().trim();
+  }
+  JMeterContext jmctx=JMeterContextService.getContext();
+  JMeterVariables vars=jmctx.getVariables();
+  try {
+    JexlContext jc=new MapContext();
+    jc.set("log",log);
+    jc.set("ctx",jmctx);
+    jc.set("vars",vars);
+    jc.set("props",JMeterUtils.getJMeterProperties());
+    jc.set("threadName",Thread.currentThread().getName());
+    jc.set("sampler",currentSampler);
+    jc.set("sampleResult",previousResult);
+    jc.set("OUT",System.out);
+    Expression e=jexl.createExpression(exp);
+    Object o=e.evaluate(jc);
+    if (o != null) {
+      str=o.toString();
+    }
+    if (vars != null && varName.length() > 0) {
+      vars.put(varName,str);
+    }
+  }
+ catch (  Exception e) {
+    log.error("An error occurred while evaluating the expression \"" + exp + "\"\n",e);
+  }
+  return str;
+}
