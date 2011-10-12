@@ -3,4 +3,7 @@
   JMenuItem search=makeMenuItemRes("menu_search",ActionNames.SEARCH_TREE);
   searchMenu.add(search);
   searchMenu.setEnabled(true);
+  JMenuItem searchReset=makeMenuItemRes("menu_search_reset",ActionNames.SEARCH_RESET);
+  searchMenu.add(searchReset);
+  searchMenu.setEnabled(true);
 }

@@ -1,0 +1,16 @@
+{
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  JMeterTreeModel jMeterTreeModel=guiPackage.getTreeModel();
+  Iterator<?> iter=jMeterTreeModel.getNodesOfType(Searchable.class).iterator();
+  while (iter.hasNext()) {
+    JMeterTreeNode jMeterTreeNode=(JMeterTreeNode)iter.next();
+    if (jMeterTreeNode.getUserObject() instanceof Searchable) {
+      List<JMeterTreeNode> matchingNodes=jMeterTreeNode.getPathToThreadGroup();
+      for (Iterator<JMeterTreeNode> iterator=matchingNodes.iterator(); iterator.hasNext(); ) {
+        JMeterTreeNode jMeterTreeNode2=iterator.next();
+        jMeterTreeNode2.setMarkedBySearch(false);
+      }
+    }
+  }
+  GuiPackage.getInstance().getMainFrame().repaint();
+}
