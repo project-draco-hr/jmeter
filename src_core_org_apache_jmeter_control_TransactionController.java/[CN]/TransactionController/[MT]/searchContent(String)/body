@@ -1,0 +1,10 @@
+{
+  String searchedTextLowerCase=textToSearch.toLowerCase();
+  if (testField(getComment(),searchedTextLowerCase)) {
+    return true;
+  }
+  if (testField(getName(),searchedTextLowerCase)) {
+    return true;
+  }
+  return false;
+}
