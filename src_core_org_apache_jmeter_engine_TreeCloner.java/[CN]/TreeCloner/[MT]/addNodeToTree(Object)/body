@@ -1,0 +1,10 @@
+{
+  if ((node instanceof TestElement) && (!honourNoThreadClone || !(node instanceof NoThreadClone))) {
+    node=((TestElement)node).clone();
+    newTree.add(objects,node);
+  }
+ else {
+    newTree.add(objects,node);
+  }
+  return node;
+}
