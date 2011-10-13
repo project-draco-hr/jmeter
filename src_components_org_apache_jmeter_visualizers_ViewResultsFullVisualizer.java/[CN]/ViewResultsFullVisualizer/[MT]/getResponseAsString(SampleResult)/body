@@ -3,7 +3,9 @@
   if ((SampleResult.TEXT).equals(res.getDataType())) {
     int len=res.getResponseData().length;
     if (MAX_DISPLAY_SIZE > 0 && len > MAX_DISPLAY_SIZE) {
-      response=JMeterUtils.getResString("view_results_response_too_large_message") + len + " > Max: "+ MAX_DISPLAY_SIZE;
+      StringBuilder builder=new StringBuilder(MAX_DISPLAY_SIZE + 100);
+      builder.append(JMeterUtils.getResString("view_results_response_too_large_message")).append(len).append(" > Max: ").append(MAX_DISPLAY_SIZE).append(", ").append(JMeterUtils.getResString("view_results_response_partial_message")).append("\n").append(res.getResponseDataAsString().substring(0,MAX_DISPLAY_SIZE)).append("\n...");
+      response=builder.toString();
       log.warn(response);
     }
  else {
