@@ -1,11 +1,8 @@
 {
+  if (super.searchContent(textToSearch)) {
+    return true;
+  }
   String searchedTextLowerCase=textToSearch.toLowerCase();
-  if (testField(getComment(),searchedTextLowerCase)) {
-    return true;
-  }
-  if (testField(getVariableName(),searchedTextLowerCase)) {
-    return true;
-  }
   if (testField(getRefName(),searchedTextLowerCase)) {
     return true;
   }

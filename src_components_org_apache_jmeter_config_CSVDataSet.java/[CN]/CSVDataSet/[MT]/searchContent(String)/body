@@ -1,0 +1,10 @@
+{
+  if (super.searchContent(textToSearch)) {
+    return true;
+  }
+  String searchedTextLowerCase=textToSearch.toLowerCase();
+  if (testField(getPropertyAsString("variableNames"),searchedTextLowerCase)) {
+    return true;
+  }
+  return false;
+}

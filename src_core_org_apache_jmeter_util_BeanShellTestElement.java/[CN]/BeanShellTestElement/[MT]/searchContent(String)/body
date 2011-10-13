@@ -1,8 +1,8 @@
 {
-  String searchedTextLowerCase=textToSearch.toLowerCase();
-  if (testField(getComment(),searchedTextLowerCase)) {
+  if (super.searchContent(textToSearch)) {
     return true;
   }
+  String searchedTextLowerCase=textToSearch.toLowerCase();
   if (testField(getScript(),searchedTextLowerCase)) {
     return true;
   }
