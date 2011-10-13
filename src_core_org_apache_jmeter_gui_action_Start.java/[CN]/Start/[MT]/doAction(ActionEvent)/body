@@ -1,7 +1,11 @@
 {
   if (e.getActionCommand().equals(ActionNames.ACTION_START)) {
     popupShouldSave(e);
-    startEngine();
+    startEngine(false);
+  }
+ else   if (e.getActionCommand().equals(ActionNames.ACTION_START_NO_TIMERS)) {
+    popupShouldSave(e);
+    startEngine(true);
   }
  else   if (e.getActionCommand().equals(ActionNames.ACTION_STOP)) {
     if (engine != null) {

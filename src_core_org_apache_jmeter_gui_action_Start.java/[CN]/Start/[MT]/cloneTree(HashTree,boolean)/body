@@ -1,0 +1,11 @@
+{
+  TreeCloner cloner=null;
+  if (!removeTimers) {
+    cloner=new TreeCloner(false);
+  }
+ else {
+    cloner=new TreeClonerNoTimer(false);
+  }
+  testTree.traverse(cloner);
+  return cloner;
+}

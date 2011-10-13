@@ -1,6 +1,7 @@
 {
   runMenu=makeMenuRes("run",'R');
   run_start=makeMenuItemRes("start",'S',ActionNames.ACTION_START,KeyStrokes.ACTION_START);
+  run_start_no_timers=makeMenuItemRes("start_no_timers",ActionNames.ACTION_START_NO_TIMERS);
   run_stop=makeMenuItemRes("stop",'T',ActionNames.ACTION_STOP,KeyStrokes.ACTION_STOP);
   run_stop.setEnabled(false);
   run_shut=makeMenuItemRes("shutdown",'Y',ActionNames.ACTION_SHUTDOWN,KeyStrokes.ACTION_SHUTDOWN);
@@ -8,6 +9,7 @@
   run_clear=makeMenuItemRes("clear",'C',ActionNames.CLEAR,KeyStrokes.CLEAR);
   run_clearAll=makeMenuItemRes("clear_all",'a',ActionNames.CLEAR_ALL,KeyStrokes.CLEAR_ALL);
   runMenu.add(run_start);
+  runMenu.add(run_start_no_timers);
   if (remote_start != null) {
     runMenu.add(remote_start);
   }
