@@ -7,6 +7,7 @@
     JMenuItem laf=new JMenuItem(lafs[i].getName());
     laf.addActionListener(ActionRouter.getInstance());
     laf.setActionCommand(ActionNames.LAF_PREFIX + lafs[i].getClassName());
+    laf.setToolTipText(lafs[i].getClassName());
     lafMenu.add(laf);
   }
   optionsMenu.add(functionHelper);
