@@ -11,10 +11,14 @@
         System.out.println("Command: " + command + " received from "+ address);
         log.info("Command: " + command + " received from "+ address);
         if (command.equals("StopTestNow")) {
-          engine.stopTest(true);
+          for (          JMeterEngine engine : engines) {
+            engine.stopTest(true);
+          }
         }
  else         if (command.equals("Shutdown")) {
-          engine.stopTest(false);
+          for (          JMeterEngine engine : engines) {
+            engine.stopTest(false);
+          }
         }
  else {
           System.out.println("Command: " + command + " not recognised ");

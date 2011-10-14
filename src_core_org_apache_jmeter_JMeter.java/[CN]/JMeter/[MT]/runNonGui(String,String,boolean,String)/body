@@ -41,13 +41,13 @@
     List<JMeterEngine> engines=new LinkedList<JMeterEngine>();
     tree.add(tree.getArray()[0],new ListenToTest(parent,(remoteStart && remoteStop) ? engines : null));
     println("Created the tree successfully using " + testFile);
-    JMeterEngine engine=null;
     if (!remoteStart) {
-      engine=new StandardJMeterEngine();
+      JMeterEngine engine=new StandardJMeterEngine();
       engine.configure(tree);
       long now=System.currentTimeMillis();
       println("Starting the test @ " + new Date(now) + " ("+ now+ ")");
       engine.runTest();
+      engines.add(engine);
     }
  else {
       java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
@@ -71,15 +71,13 @@
       log.info("Starting remote engines");
       long now=System.currentTimeMillis();
       println("Starting the test @ " + new Date(now) + " ("+ now+ ")");
-      Iterator<JMeterEngine> iter=engines.iterator();
-      while (iter.hasNext()) {
-        engine=iter.next();
+      for (      JMeterEngine engine : engines) {
         engine.runTest();
       }
       println("Remote engines have been started");
       log.info("Remote engines have been started");
     }
-    startUdpDdaemon(engine);
+    startUdpDdaemon(engines);
   }
  catch (  Exception e) {
     System.out.println("Error in NonGUIDriver " + e.toString());
