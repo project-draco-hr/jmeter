@@ -2,7 +2,7 @@
   optionsMenu=makeMenuRes("option",'O');
   JMenuItem functionHelper=makeMenuItemRes("function_dialog_menu_item",'F',ActionNames.FUNCTIONS,KeyStrokes.FUNCTIONS);
   lafMenu=makeMenuRes("appearance",'L');
-  UIManager.LookAndFeelInfo lafs[]=UIManager.getInstalledLookAndFeels();
+  UIManager.LookAndFeelInfo lafs[]=getAllLAFs();
   for (int i=0; i < lafs.length; ++i) {
     JMenuItem laf=new JMenuItem(lafs[i].getName());
     laf.addActionListener(ActionRouter.getInstance());
