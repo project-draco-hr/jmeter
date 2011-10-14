@@ -58,7 +58,7 @@
             continue;
           }
           if (isConcurrentDwn()) {
-            liste.add(new ASyncSample(url,GET,false,frameDepth + 1));
+            liste.add(new ASyncSample(url,GET,false,frameDepth + 1,this));
           }
  else {
             HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
