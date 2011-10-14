@@ -1,11 +1,11 @@
 {
-  if (!(node instanceof Timer)) {
-    return super.addNodeToTree(node);
-  }
- else {
+  if (node instanceof Timer) {
     if (logger.isDebugEnabled()) {
       logger.debug("Ignoring timer node:" + node);
     }
     return node;
+  }
+ else {
+    return super.addNodeToTree(node);
   }
 }
