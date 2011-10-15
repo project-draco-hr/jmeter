@@ -8,7 +8,7 @@
     }
     SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
     Destination dest=Utils.lookupDestination(ctx,destinationName);
-    SUBSCRIBER=createSubscriber(SESSION,dest,durableSubscriptionId);
+    SUBSCRIBER=createSubscriber(SESSION,dest,durableSubscriptionId,jmsSelector);
     if (useMessageListener) {
       if (queueSize <= 0) {
         queue=new LinkedBlockingQueue<Message>();

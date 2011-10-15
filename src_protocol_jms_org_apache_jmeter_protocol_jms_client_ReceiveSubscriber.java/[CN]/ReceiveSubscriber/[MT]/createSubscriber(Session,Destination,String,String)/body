@@ -1,0 +1,18 @@
+{
+  if (isEmpty(durableSubscriptionId)) {
+    if (isEmpty(jmsSelector)) {
+      return session.createConsumer(destination);
+    }
+ else {
+      return session.createConsumer(destination,jmsSelector);
+    }
+  }
+ else {
+    if (isEmpty(jmsSelector)) {
+      return session.createDurableSubscriber((Topic)destination,durableSubscriptionId);
+    }
+ else {
+      return session.createDurableSubscriber((Topic)destination,durableSubscriptionId,jmsSelector,false);
+    }
+  }
+}

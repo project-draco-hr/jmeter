@@ -8,6 +8,7 @@
   sampler.setDestination(jmsDestination.getText());
   sampler.setDurableSubscriptionId(jmsDurableSubscriptionId.getText());
   sampler.setClientID(jmsClientId.getText());
+  sampler.setJmsSelector(jmsSelector.getText());
   sampler.setUsername(jmsUser.getText());
   sampler.setPassword(jmsPwd.getText());
   sampler.setUseAuth(useAuth.isSelected());
