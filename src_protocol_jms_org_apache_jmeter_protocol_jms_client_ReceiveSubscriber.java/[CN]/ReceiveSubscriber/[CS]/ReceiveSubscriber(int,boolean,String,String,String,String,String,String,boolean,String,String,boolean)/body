@@ -3,16 +3,24 @@
   try {
     Context ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
     CONN=Utils.getConnection(ctx,connfactory);
+    if (!isEmpty(clientId)) {
+      CONN.setClientID(clientId);
+    }
     SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
     Destination dest=Utils.lookupDestination(ctx,destinationName);
     SUBSCRIBER=createSubscriber(SESSION,dest,durableSubscriptionId);
-    if (queueSize <= 0) {
-      queue=new LinkedBlockingQueue<Message>();
+    if (useMessageListener) {
+      if (queueSize <= 0) {
+        queue=new LinkedBlockingQueue<Message>();
+      }
+ else {
+        queue=new LinkedBlockingQueue<Message>(queueSize);
+      }
+      SUBSCRIBER.setMessageListener(this);
     }
  else {
-      queue=new LinkedBlockingQueue<Message>(queueSize);
+      queue=null;
     }
-    SUBSCRIBER.setMessageListener(this);
     log.debug("<init> complete");
     initSuccess=true;
   }
