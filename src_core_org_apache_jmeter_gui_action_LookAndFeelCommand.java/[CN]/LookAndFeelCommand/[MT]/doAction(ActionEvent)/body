@@ -3,6 +3,7 @@
     String className=ev.getActionCommand().substring(ActionNames.LAF_PREFIX.length()).replace('/','.');
     UIManager.setLookAndFeel(className);
     SwingUtilities.updateComponentTreeUI(GuiPackage.getInstance().getMainFrame());
+    PREFS.put(USER_PREFS_KEY,className);
   }
  catch (  javax.swing.UnsupportedLookAndFeelException e) {
     JMeterUtils.reportErrorToUser("Look and Feel unavailable:" + e.toString());

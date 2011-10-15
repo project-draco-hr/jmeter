@@ -1,6 +1,10 @@
 {
-  String osName=System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
   String laf;
+  laf=PREFS.get(USER_PREFS_KEY,null);
+  if (laf != null) {
+    return checkLafName(laf);
+  }
+  String osName=System.getProperty("os.name").toLowerCase(Locale.ENGLISH);
   laf=JMeterUtils.getProperty(JMETER_LAF + "." + osName.replace(' ','_'));
   if (laf != null) {
     return checkLafName(laf);
