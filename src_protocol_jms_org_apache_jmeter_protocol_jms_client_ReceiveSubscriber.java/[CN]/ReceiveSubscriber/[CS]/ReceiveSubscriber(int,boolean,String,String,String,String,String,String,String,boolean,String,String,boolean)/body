@@ -1,7 +1,8 @@
 {
   boolean initSuccess=false;
+  Context ctx=null;
   try {
-    Context ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
+    ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
     CONN=Utils.getConnection(ctx,connfactory);
     if (!isEmpty(clientId)) {
       CONN.setClientID(clientId);
@@ -28,5 +29,6 @@
     if (!initSuccess) {
       close();
     }
+    Utils.close(ctx,log);
   }
 }
