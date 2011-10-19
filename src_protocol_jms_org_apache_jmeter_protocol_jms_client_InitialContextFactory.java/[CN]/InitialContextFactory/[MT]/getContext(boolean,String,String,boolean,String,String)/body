@@ -11,6 +11,6 @@ catch (    Exception e) {
     }
   }
  else {
-    return lookupContextNoCache(initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
+    return lookupContext(initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
   }
 }
