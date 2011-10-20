@@ -1,12 +1,17 @@
 {
-  boolean noArgumentsHasName=true;
-  PropertyIterator args=getArguments().iterator();
-  while (args.hasNext()) {
-    HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-    if (arg.getName() != null && arg.getName().length() > 0) {
-      noArgumentsHasName=false;
-      break;
-    }
+  if (getPostBodyRaw()) {
+    return true;
   }
-  return noArgumentsHasName;
+ else {
+    boolean noArgumentsHasName=true;
+    PropertyIterator args=getArguments().iterator();
+    while (args.hasNext()) {
+      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+      if (arg.getName() != null && arg.getName().length() > 0) {
+        noArgumentsHasName=false;
+        break;
+      }
+    }
+    return noArgumentsHasName;
+  }
 }

@@ -1,0 +1,9 @@
+{
+  Arguments arguments=(Arguments)argsPanel.createTestElement();
+  for (int i=0; i < arguments.getArgumentCount(); i++) {
+    if (!StringUtils.isEmpty(arguments.getArgument(i).getName())) {
+      return false;
+    }
+  }
+  return true;
+}

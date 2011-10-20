@@ -1,6 +1,16 @@
 {
   setName(el.getName());
-  argsPanel.configure((TestElement)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue());
+  Arguments arguments=(Arguments)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue();
+  boolean useRaw=el.getPropertyAsBoolean(HTTPSamplerBase.POST_BODY_RAW,HTTPSamplerBase.POST_BODY_RAW_DEFAULT);
+  if (useRaw) {
+    String postBody=computePostBody(arguments);
+    postBodyContent.setText(postBody);
+    postContentTabbedPane.setSelectedIndex(TAB_RAW_BODY,false);
+  }
+ else {
+    argsPanel.configure(arguments);
+    postContentTabbedPane.setSelectedIndex(TAB_PARAMETERS,false);
+  }
   domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
   String portString=el.getPropertyAsString(HTTPSamplerBase.PORT);
   if (portString.equals(HTTPSamplerBase.UNSPECIFIED_PORT_AS_STRING)) {

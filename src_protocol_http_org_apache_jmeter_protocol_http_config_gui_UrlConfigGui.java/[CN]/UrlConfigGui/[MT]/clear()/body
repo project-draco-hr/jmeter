@@ -22,4 +22,8 @@
   protocol.setText("");
   contentEncoding.setText("");
   argsPanel.clear();
+  if (showRawBodyPane) {
+    postBodyContent.setText("");
+  }
+  postContentTabbedPane.setSelectedIndex(TAB_PARAMETERS,false);
 }

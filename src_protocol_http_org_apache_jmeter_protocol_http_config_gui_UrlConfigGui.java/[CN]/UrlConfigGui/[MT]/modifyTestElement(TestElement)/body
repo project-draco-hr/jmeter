@@ -1,6 +1,17 @@
 {
-  Arguments args=(Arguments)argsPanel.createTestElement();
-  HTTPArgument.convertArgumentsToHTTP(args);
+  boolean useRaw=postContentTabbedPane.getSelectedIndex() == TAB_RAW_BODY;
+  Arguments args;
+  if (useRaw) {
+    args=new Arguments();
+    HTTPArgument arg=new HTTPArgument("",postBodyContent.getText(),true);
+    arg.setAlwaysEncoded(false);
+    args.addArgument(arg);
+  }
+ else {
+    args=(Arguments)argsPanel.createTestElement();
+    HTTPArgument.convertArgumentsToHTTP(args);
+  }
+  element.setProperty(HTTPSamplerBase.POST_BODY_RAW,useRaw,HTTPSamplerBase.POST_BODY_RAW_DEFAULT);
   element.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
   element.setProperty(HTTPSamplerBase.DOMAIN,domain.getText());
   element.setProperty(HTTPSamplerBase.PORT,port.getText());

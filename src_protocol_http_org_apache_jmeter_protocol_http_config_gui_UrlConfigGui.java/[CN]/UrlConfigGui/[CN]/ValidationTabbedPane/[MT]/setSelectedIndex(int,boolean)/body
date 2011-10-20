@@ -1,0 +1,41 @@
+{
+  int oldSelectedIndex=getSelectedIndex();
+  if (!check || oldSelectedIndex == -1) {
+    super.setSelectedIndex(index);
+  }
+ else   if (index != this.getSelectedIndex()) {
+    if (noData(getSelectedIndex())) {
+      argsPanel.clear();
+      postBodyContent.setText("");
+      super.setSelectedIndex(index);
+    }
+ else {
+      if (oldSelectedIndex == TAB_RAW_BODY) {
+        if (postBodyContent.getText().equals(computePostBody((Arguments)argsPanel.createTestElement()).trim())) {
+          super.setSelectedIndex(index);
+        }
+ else {
+          JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("web_cannot_switch_tab"),JMeterUtils.getResString("warning"),JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+          return;
+        }
+      }
+ else {
+        if (canConvertParameters()) {
+          Object[] options={JMeterUtils.getResString("confirm"),JMeterUtils.getResString("cancel")};
+          int n=JOptionPane.showOptionDialog(this,JMeterUtils.getResString("web_parameters_lost_message"),JMeterUtils.getResString("warning"),JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
+          if (n == JOptionPane.YES_OPTION) {
+            convertParametersToRaw();
+            super.setSelectedIndex(index);
+          }
+ else {
+            return;
+          }
+        }
+ else {
+          JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("web_cannot_convert_parameters_to_raw"),JMeterUtils.getResString("warning"),JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+          return;
+        }
+      }
+    }
+  }
+}

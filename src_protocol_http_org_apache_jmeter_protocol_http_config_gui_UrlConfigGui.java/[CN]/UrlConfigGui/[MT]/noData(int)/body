@@ -1,0 +1,9 @@
+{
+  if (oldSelectedIndex == TAB_RAW_BODY) {
+    return StringUtils.isEmpty(postBodyContent.getText().trim());
+  }
+ else {
+    Arguments element=(Arguments)argsPanel.createTestElement();
+    return StringUtils.isEmpty(computePostBody(element));
+  }
+}

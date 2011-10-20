@@ -2,7 +2,7 @@
   setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
-  urlConfig=new UrlConfigGui(false);
+  urlConfig=new UrlConfigGui(false,true,false);
   add(urlConfig,BorderLayout.CENTER);
   final JPanel optionalTasksPanel=new HorizontalPanel();
   optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));

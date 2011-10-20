@@ -1,4 +1,10 @@
 {
+  postContentTabbedPane=new ValidationTabbedPane();
   argsPanel=new HTTPArgumentsPanel();
-  return argsPanel;
+  postContentTabbedPane.add(JMeterUtils.getResString("post_as_parameters"),argsPanel);
+  if (showRawBodyPane) {
+    postBodyContent=new JLabeledTextArea(JMeterUtils.getResString("post_body_raw"));
+    postContentTabbedPane.add(JMeterUtils.getResString("post_body"),postBodyContent);
+  }
+  return postContentTabbedPane;
 }
