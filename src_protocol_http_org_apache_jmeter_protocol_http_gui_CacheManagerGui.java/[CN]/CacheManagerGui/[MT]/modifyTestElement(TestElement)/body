@@ -3,4 +3,9 @@
   final CacheManager cacheManager=(CacheManager)element;
   cacheManager.setClearEachIteration(clearEachIteration.isSelected());
   cacheManager.setUseExpires(useExpires.isSelected());
+  try {
+    cacheManager.setMaxSize(Integer.parseInt(maxCacheSize.getText()));
+  }
+ catch (  NumberFormatException e) {
+  }
 }
