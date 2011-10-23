@@ -1,7 +1,6 @@
 {
   log.debug("keyType: " + keyType[0]);
-  int aliasCount=this.store.getAliasCount();
-  String alias=this.store.getAlias(getNextIndex(aliasCount));
+  String alias=this.store.getAlias();
   if (alias == null || alias.length() == 0) {
     log.debug("ClientAlias not found.");
   }
