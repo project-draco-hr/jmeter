@@ -1,0 +1,11 @@
+{
+  final String aName;
+  try {
+    aName=(String)(ActionNames.class.getField(this.actionName).get(null));
+  }
+ catch (  Exception e) {
+    log.warn("Toolbar icon Action names error: " + this.actionName + ", use unknown action.");
+    return this.actionName;
+  }
+  return aName;
+}

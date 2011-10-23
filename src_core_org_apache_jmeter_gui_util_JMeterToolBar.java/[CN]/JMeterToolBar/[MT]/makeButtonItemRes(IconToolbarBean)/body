@@ -1,0 +1,10 @@
+{
+  final URL imageURL=JMeterUtils.class.getClassLoader().getResource(iconBean.getIconPath());
+  JButton button=new JButton(new ImageIcon(imageURL));
+  button.setToolTipText(JMeterUtils.getResString(iconBean.getI18nKey()));
+  final URL imageURLPressed=JMeterUtils.class.getClassLoader().getResource(iconBean.getIconPathPressed());
+  button.setPressedIcon(new ImageIcon(imageURLPressed));
+  button.addActionListener(ActionRouter.getInstance());
+  button.setActionCommand(iconBean.getActionNameResolve());
+  return button;
+}

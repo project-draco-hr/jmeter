@@ -1,0 +1,8 @@
+{
+  JCheckBoxMenuItem cbkMenuItem=new JCheckBoxMenuItem(JMeterUtils.getResString(resource));
+  cbkMenuItem.setName(resource);
+  cbkMenuItem.setActionCommand(actionCommand);
+  cbkMenuItem.setAccelerator(keyStroke);
+  cbkMenuItem.addActionListener(ActionRouter.getInstance());
+  return cbkMenuItem;
+}

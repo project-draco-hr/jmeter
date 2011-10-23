@@ -12,6 +12,12 @@
   }
   optionsMenu.add(functionHelper);
   optionsMenu.add(lafMenu);
+  JCheckBoxMenuItem menuToolBar=makeCheckBoxMenuItemRes("menu_toolbar",ActionNames.TOOLBAR);
+  GuiPackage guiInstance=GuiPackage.getInstance();
+  if (guiInstance != null) {
+    guiInstance.setMenuItemToolbar(menuToolBar);
+  }
+  optionsMenu.add(menuToolBar);
   if (SSLManager.isSSLSupported()) {
     sslManager=makeMenuItemRes("sslmanager",'S',ActionNames.SSL_MANAGER,KeyStrokes.SSL_MANAGER);
     optionsMenu.add(sslManager);

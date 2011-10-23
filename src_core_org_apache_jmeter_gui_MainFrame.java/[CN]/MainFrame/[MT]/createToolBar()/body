@@ -1,5 +1,10 @@
 {
   Box toolPanel=new Box(BoxLayout.X_AXIS);
+  JToolBar toolbar=JMeterToolBar.createToolbar(DISPLAY_TOOLBAR);
+  GuiPackage guiInstance=GuiPackage.getInstance();
+  guiInstance.setMainToolbar(toolbar);
+  guiInstance.getMenuItemToolbar().getModel().setSelected(DISPLAY_TOOLBAR);
+  toolPanel.add(toolbar);
   toolPanel.add(Box.createRigidArea(new Dimension(10,15)));
   toolPanel.add(Box.createGlue());
   toolPanel.add(activeThreads);
