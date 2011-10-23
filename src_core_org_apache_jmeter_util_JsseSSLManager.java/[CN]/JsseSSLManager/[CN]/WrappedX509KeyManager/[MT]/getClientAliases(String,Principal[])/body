@@ -1,5 +1,9 @@
 {
   log.debug("WrappedX509Manager: getClientAliases: ");
-  log.debug(this.store.getAlias());
-  return new String[]{this.store.getAlias()};
+  int count=this.store.getAliasCount();
+  String[] aliases=new String[count];
+  for (int i=0; i < aliases.length; i++) {
+    aliases[i]=this.store.getAlias(i);
+  }
+  return aliases;
 }

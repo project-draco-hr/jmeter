@@ -1,0 +1,7 @@
+{
+  int entry=findAlias(alias);
+  if (entry >= 0) {
+    return this.keys[entry];
+  }
+  return null;
+}

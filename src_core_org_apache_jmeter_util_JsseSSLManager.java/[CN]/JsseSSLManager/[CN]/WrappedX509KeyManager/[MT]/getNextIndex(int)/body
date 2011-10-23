@@ -1,0 +1,12 @@
+{
+  if (aliasCount == 1) {
+    return 0;
+  }
+synchronized (this) {
+    last_user++;
+    if (last_user >= aliasCount) {
+      last_user=0;
+    }
+    return last_user;
+  }
+}

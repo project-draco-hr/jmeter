@@ -1,4 +1,5 @@
 {
-  log.debug("WrappedX509Manager: getPrivateKey: " + this.store.getPrivateKey());
-  return this.store.getPrivateKey();
+  PrivateKey privateKey=this.store.getPrivateKey(alias);
+  log.debug("WrappedX509Manager: getPrivateKey: " + privateKey);
+  return privateKey;
 }

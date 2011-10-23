@@ -1,28 +1,40 @@
 {
   store.load(is,pword.toCharArray());
-  PrivateKey _key=null;
-  X509Certificate[] _certChain=null;
+  ArrayList<String> v_names=new ArrayList<String>();
+  ArrayList<PrivateKey> v_keys=new ArrayList<PrivateKey>();
+  ArrayList<X509Certificate[]> v_certChains=new ArrayList<X509Certificate[]>();
   if (null != is) {
+    PrivateKey _key=null;
+    int index=0;
     Enumeration<String> aliases=store.aliases();
     while (aliases.hasMoreElements()) {
-      this.alias=aliases.nextElement();
+      String alias=aliases.nextElement();
       if (store.isKeyEntry(alias)) {
-        _key=(PrivateKey)store.getKey(alias,pword.toCharArray());
-        Certificate[] chain=store.getCertificateChain(alias);
-        _certChain=new X509Certificate[chain.length];
-        for (int i=0; i < chain.length; i++) {
-          _certChain[i]=(X509Certificate)chain[i];
+        if ((index >= startIndex && index <= endIndex)) {
+          _key=(PrivateKey)store.getKey(alias,pword.toCharArray());
+          if (null == _key) {
+            throw new Exception("No key found for alias: " + alias);
+          }
+          Certificate[] chain=store.getCertificateChain(alias);
+          if (null == chain) {
+            throw new Exception("No certificate chain found for alias: " + alias);
+          }
+          v_names.add(alias);
+          v_keys.add(_key);
+          v_certChains.add((X509Certificate[])chain);
         }
-        break;
       }
+      index++;
     }
     if (null == _key) {
-      throw new Exception("No key found");
-    }
-    if (null == _certChain) {
-      throw new Exception("No certificate chain found");
+      throw new Exception("No key(s) found");
     }
   }
-  this.key=_key;
-  this.certChain=_certChain;
+  int v_size=v_names.size();
+  this.names=new String[v_size];
+  this.names=v_names.toArray(names);
+  this.keys=new PrivateKey[v_size];
+  this.keys=v_keys.toArray(keys);
+  this.certChains=new X509Certificate[v_size][];
+  this.certChains=v_certChains.toArray(certChains);
 }
