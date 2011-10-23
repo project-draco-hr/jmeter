@@ -1,0 +1,11 @@
+{
+  this.url=url;
+  this.method=method;
+  this.areFollowingRedirect=areFollowingRedirect;
+  this.depth=depth;
+  this.sampler=(HTTPSamplerBase)base.clone();
+  if (cookieManager != null) {
+    CookieManager clonedCookieManager=(CookieManager)cookieManager.clone();
+    this.sampler.setCookieManager(clonedCookieManager);
+  }
+}

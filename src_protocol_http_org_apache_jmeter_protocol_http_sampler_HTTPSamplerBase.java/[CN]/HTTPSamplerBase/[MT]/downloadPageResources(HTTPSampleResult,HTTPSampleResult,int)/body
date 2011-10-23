@@ -33,7 +33,7 @@
         log.warn("Ignoring embedded URL match string: " + e.getMessage());
       }
     }
-    final List<Callable<HTTPSampleResult>> liste=new ArrayList<Callable<HTTPSampleResult>>();
+    final List<Callable<AsynSamplerResultHolder>> liste=new ArrayList<Callable<AsynSamplerResultHolder>>();
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {
@@ -58,7 +58,7 @@
             continue;
           }
           if (isConcurrentDwn()) {
-            liste.add(new ASyncSample(url,GET,false,frameDepth + 1,this));
+            liste.add(new ASyncSample(url,GET,false,frameDepth + 1,getCookieManager(),this));
           }
  else {
             HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
@@ -81,18 +81,43 @@
  catch (      NumberFormatException nfe) {
         log.warn("Concurrent download resources selected, " + "but pool size value is bad. Use default value");
       }
-      final ThreadPoolExecutor exec=new ThreadPoolExecutor(poolSize,poolSize,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>());
+      final ThreadPoolExecutor exec=new ThreadPoolExecutor(poolSize,poolSize,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(),new ThreadFactory(){
+        public Thread newThread(        final Runnable r){
+          Thread t=new CleanerThread(new Runnable(){
+            public void run(){
+              try {
+                r.run();
+              }
+  finally {
+                ((CleanerThread)Thread.currentThread()).notifyThreadEnd();
+              }
+            }
+          }
+);
+          return t;
+        }
+      }
+);
       boolean tasksCompleted=false;
       try {
-        final List<Future<HTTPSampleResult>> retExec=exec.invokeAll(liste);
+        final List<Future<AsynSamplerResultHolder>> retExec=exec.invokeAll(liste);
         exec.shutdown();
         exec.awaitTermination(AWAIT_TERMINATION_TIMEOUT,TimeUnit.SECONDS);
-        for (        Future<HTTPSampleResult> future : retExec) {
-          HTTPSampleResult binRes;
+        CookieManager cookieManager=getCookieManager();
+        for (        Future<AsynSamplerResultHolder> future : retExec) {
+          AsynSamplerResultHolder binRes;
           try {
             binRes=future.get(1,TimeUnit.MILLISECONDS);
-            res.addSubResult(binRes);
-            res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+            if (cookieManager != null) {
+              CollectionProperty cookies=binRes.getCookies();
+              PropertyIterator iter=cookies.iterator();
+              while (iter.hasNext()) {
+                Cookie cookie=(Cookie)iter.next().getObjectValue();
+                cookieManager.add(cookie);
+              }
+            }
+            res.addSubResult(binRes.getResult());
+            res.setSuccessful(res.isSuccessful() && binRes.getResult().isSuccessful());
           }
  catch (          TimeoutException e) {
             errorResult(e,res);

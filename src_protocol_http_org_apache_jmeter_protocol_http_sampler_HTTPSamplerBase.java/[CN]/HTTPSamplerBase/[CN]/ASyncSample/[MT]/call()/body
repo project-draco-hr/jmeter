@@ -1,3 +1,11 @@
 {
-  return base.sample(url,method,areFollowingRedirect,depth);
+  ((CleanerThread)Thread.currentThread()).registerSamplerForEndNotification(sampler);
+  HTTPSampleResult httpSampleResult=sampler.sample(url,method,areFollowingRedirect,depth);
+  if (sampler.getCookieManager() != null) {
+    CollectionProperty cookies=sampler.getCookieManager().getCookies();
+    return new AsynSamplerResultHolder(httpSampleResult,cookies);
+  }
+ else {
+    return new AsynSamplerResultHolder(httpSampleResult,new CollectionProperty());
+  }
 }
