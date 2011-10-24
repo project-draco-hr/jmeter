@@ -1,8 +1,7 @@
 {
   LocaleChangeEvent event=new LocaleChangeEvent(JMeterUtils.class,locale);
-  @SuppressWarnings("unchecked") Iterator<LocaleChangeListener> iterator=((Vector<LocaleChangeListener>)localeChangeListeners.clone()).iterator();
-  while (iterator.hasNext()) {
-    LocaleChangeListener listener=iterator.next();
+  @SuppressWarnings("unchecked") Vector<LocaleChangeListener> listeners=(Vector<LocaleChangeListener>)localeChangeListeners.clone();
+  for (  LocaleChangeListener listener : listeners) {
     listener.localeChanged(event);
   }
 }
