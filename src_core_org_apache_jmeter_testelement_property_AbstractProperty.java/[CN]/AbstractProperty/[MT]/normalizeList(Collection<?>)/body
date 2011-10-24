@@ -1,0 +1,17 @@
+{
+  if (coll.isEmpty()) {
+    @SuppressWarnings("unchecked") Collection<JMeterProperty> okColl=(Collection<JMeterProperty>)coll;
+    return okColl;
+  }
+  try {
+    @SuppressWarnings("unchecked") Collection<JMeterProperty> newColl=coll.getClass().newInstance();
+    for (    Object item : coll) {
+      newColl.add(convertObject(item));
+    }
+    return newColl;
+  }
+ catch (  Exception e) {
+    log.error("Cannot create copy of " + coll.getClass().getName(),e);
+    return null;
+  }
+}
