@@ -1,9 +1,8 @@
 {
   log.debug("Start : fireDataChanged1");
-  Iterator<GraphAccumListener> iter=listeners.iterator();
   if (bigChange) {
-    while (iter.hasNext()) {
-      iter.next().updateGui();
+    for (    GraphAccumListener gal : listeners) {
+      gal.updateGui();
     }
     bigChange=false;
   }

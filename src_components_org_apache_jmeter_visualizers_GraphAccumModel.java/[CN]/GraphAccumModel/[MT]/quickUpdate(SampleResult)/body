@@ -1,8 +1,5 @@
 {
-  Iterator<GraphAccumListener> iter=listeners.iterator();
-{
-    while (iter.hasNext()) {
-      iter.next().updateGui(s);
-    }
+  for (  GraphAccumListener gal : listeners) {
+    gal.updateGui(s);
   }
 }

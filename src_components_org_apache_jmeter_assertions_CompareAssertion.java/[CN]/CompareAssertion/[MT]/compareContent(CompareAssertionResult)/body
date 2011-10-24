@@ -1,11 +1,9 @@
 {
   if (compareContent) {
-    Iterator<SampleResult> iter=responses.iterator();
     String prevContent=null;
     SampleResult prevResult=null;
     boolean success=true;
-    while (iter.hasNext()) {
-      SampleResult sResult=iter.next();
+    for (    SampleResult sResult : responses) {
       String currentContent=sResult.getResponseDataAsString();
       currentContent=filterString(currentContent);
       if (prevContent != null) {

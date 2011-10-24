@@ -1,11 +1,9 @@
 {
   if (compareTime >= 0) {
-    Iterator<SampleResult> iter=responses.iterator();
     long prevTime=-1;
     SampleResult prevResult=null;
     boolean success=true;
-    while (iter.hasNext()) {
-      SampleResult sResult=iter.next();
+    for (    SampleResult sResult : responses) {
       long currentTime=sResult.getTime();
       if (prevTime != -1) {
         success=Math.abs(prevTime - currentTime) <= compareTime;

@@ -9,9 +9,7 @@
     }
   }
 );
-  Iterator<Map.Entry<Object,Object>> i=al.iterator();
-  while (i.hasNext()) {
-    Map.Entry<Object,Object> me=i.next();
+  for (  Map.Entry<Object,Object> me : al) {
     sb.append(me.getKey());
     sb.append("=");
     sb.append(me.getValue());
