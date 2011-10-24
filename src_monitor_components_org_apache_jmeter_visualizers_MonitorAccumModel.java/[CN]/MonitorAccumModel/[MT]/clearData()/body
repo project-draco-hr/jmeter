@@ -1,7 +1,6 @@
 {
-  Iterator<String> itr=this.serverListMap.keySet().iterator();
-  while (itr.hasNext()) {
-    this.serverListMap.get(itr.next()).clear();
+  for (  List<MonitorModel> modelList : this.serverListMap.values()) {
+    modelList.clear();
   }
   this.serverListMap.clear();
 }
