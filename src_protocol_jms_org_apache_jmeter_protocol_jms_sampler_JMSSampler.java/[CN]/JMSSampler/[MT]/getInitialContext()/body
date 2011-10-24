@@ -21,9 +21,7 @@
       LOGGER.debug("Number of JNDI properties: " + map.size());
     }
   }
-  Iterator<Map.Entry<String,String>> it=map.entrySet().iterator();
-  while (it.hasNext()) {
-    Map.Entry<String,String> me=it.next();
+  for (  Map.Entry<String,String> me : map.entrySet()) {
     table.put(me.getKey(),me.getValue());
   }
   Context context=new InitialContext(table);

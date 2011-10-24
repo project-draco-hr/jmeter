@@ -1,7 +1,5 @@
 {
-  Iterator<Closeable> itr=clients.iterator();
-  while (itr.hasNext()) {
-    Closeable client=itr.next();
+  for (  Closeable client : clients) {
     try {
       client.close();
     }

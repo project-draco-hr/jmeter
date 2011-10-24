@@ -1,8 +1,6 @@
 {
   Map<String,String> map=getArguments(JMSSampler.JMS_PROPERTIES).getArgumentsAsMap();
-  Iterator<Map.Entry<String,String>> argIt=map.entrySet().iterator();
-  while (argIt.hasNext()) {
-    Map.Entry<String,String> me=argIt.next();
+  for (  Map.Entry<String,String> me : map.entrySet()) {
     String name=me.getKey();
     String value=me.getValue();
     if (LOGGER.isDebugEnabled()) {

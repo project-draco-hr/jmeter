@@ -6,9 +6,7 @@ synchronized (this) {
     excaliburSource=null;
   }
   if (perThreadPoolSet != null) {
-    Iterator<ResourceLimitingJdbcDataSource> it=perThreadPoolSet.iterator();
-    while (it.hasNext()) {
-      ResourceLimitingJdbcDataSource dsc=it.next();
+    for (    ResourceLimitingJdbcDataSource dsc : perThreadPoolSet) {
       log.debug("Disposing pool: " + dsc.getInstrumentableName() + " @"+ System.identityHashCode(dsc));
       dsc.dispose();
     }

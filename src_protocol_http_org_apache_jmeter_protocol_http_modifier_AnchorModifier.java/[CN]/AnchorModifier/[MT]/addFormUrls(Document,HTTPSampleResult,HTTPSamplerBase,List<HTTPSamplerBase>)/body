@@ -4,9 +4,7 @@
   for (int x=0; x < rootList.getLength(); x++) {
     urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),result.getURL()));
   }
-  Iterator<HTTPSamplerBase> iter=urls.iterator();
-  while (iter.hasNext()) {
-    HTTPSamplerBase newUrl=iter.next();
+  for (  HTTPSamplerBase newUrl : urls) {
     newUrl.setMethod(HTTPConstants.POST);
     if (log.isDebugEnabled()) {
       log.debug("Potential Form match: " + newUrl.toString());
