@@ -1,0 +1,32 @@
+{
+  Properties p=new Properties(defaultProps);
+  InputStream is=null;
+  try {
+    File f=new File(file);
+    is=new FileInputStream(f);
+    p.load(is);
+  }
+ catch (  IOException e) {
+    try {
+      final URL resource=JMeterUtils.class.getClassLoader().getResource(file);
+      if (resource == null) {
+        log.warn("Cannot find " + file);
+        return defaultProps;
+      }
+      is=resource.openStream();
+      if (is == null) {
+        log.warn("Cannot open " + file);
+        return defaultProps;
+      }
+      p.load(is);
+    }
+ catch (    IOException ex) {
+      log.warn("Error reading " + file + " "+ ex.toString());
+      return defaultProps;
+    }
+  }
+ finally {
+    JOrphanUtils.closeQuietly(is);
+  }
+  return p;
+}
