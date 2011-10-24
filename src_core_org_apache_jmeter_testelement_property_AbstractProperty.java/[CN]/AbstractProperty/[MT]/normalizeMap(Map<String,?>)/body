@@ -1,0 +1,19 @@
+{
+  if (coll.isEmpty()) {
+    @SuppressWarnings("unchecked") Map<String,JMeterProperty> emptyColl=(Map<String,JMeterProperty>)coll;
+    return emptyColl;
+  }
+  try {
+    @SuppressWarnings("unchecked") Map<String,JMeterProperty> newColl=coll.getClass().newInstance();
+    for (    Map.Entry<String,?> entry : ((Map<String,?>)coll).entrySet()) {
+      String item=entry.getKey();
+      Object prop=entry.getValue();
+      newColl.put(item,convertObject(prop));
+    }
+    return newColl;
+  }
+ catch (  Exception e) {
+    log.error("Cannot create copy of " + coll.getClass().getName(),e);
+    return null;
+  }
+}
