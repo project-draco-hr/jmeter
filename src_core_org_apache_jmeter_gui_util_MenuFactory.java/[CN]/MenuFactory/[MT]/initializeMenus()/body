@@ -2,9 +2,7 @@
   try {
     List<String> guiClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{JMeterGUIComponent.class,TestBean.class});
     Collections.sort(guiClasses);
-    Iterator<String> iter=guiClasses.iterator();
-    while (iter.hasNext()) {
-      String name=iter.next();
+    for (    String name : guiClasses) {
       if (name.endsWith("JMeterTreeNode") || name.endsWith("TestBeanGUI")) {
         continue;
       }

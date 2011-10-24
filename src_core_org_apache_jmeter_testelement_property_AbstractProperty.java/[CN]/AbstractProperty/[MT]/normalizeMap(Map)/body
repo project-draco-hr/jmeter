@@ -1,8 +1,6 @@
 {
-  Iterator<Map.Entry<?,?>> iter=coll.entrySet().iterator();
   Map<Object,JMeterProperty> newColl=null;
-  while (iter.hasNext()) {
-    Map.Entry<?,?> entry=iter.next();
+  for (  Map.Entry<?,?> entry : ((Map<?,?>)coll).entrySet()) {
     Object item=entry.getKey();
     Object prop=entry.getValue();
     if (newColl == null) {

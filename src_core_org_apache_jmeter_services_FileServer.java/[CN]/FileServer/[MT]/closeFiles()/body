@@ -1,7 +1,5 @@
 {
-  Iterator<Map.Entry<String,FileEntry>> iter=files.entrySet().iterator();
-  while (iter.hasNext()) {
-    Map.Entry<String,FileEntry> me=iter.next();
+  for (  Map.Entry<String,FileEntry> me : files.entrySet()) {
     closeFile(me.getKey(),me.getValue());
   }
   files.clear();

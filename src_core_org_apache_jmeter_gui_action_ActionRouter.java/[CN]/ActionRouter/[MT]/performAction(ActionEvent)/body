@@ -8,11 +8,8 @@
       log.error("performAction(" + actionCommand + ") updateCurrentGui() on"+ e.toString()+ " caused",err);
       JMeterUtils.reportErrorToUser("Problem updating GUI - see log file for details");
     }
-    Set<Command> commandObjects=commands.get(actionCommand);
-    Iterator<Command> iter=commandObjects.iterator();
-    while (iter.hasNext()) {
+    for (    Command c : commands.get(actionCommand)) {
       try {
-        Command c=iter.next();
         preActionPerformed(c.getClass(),e);
         c.doAction(e);
         postActionPerformed(c.getClass(),e);

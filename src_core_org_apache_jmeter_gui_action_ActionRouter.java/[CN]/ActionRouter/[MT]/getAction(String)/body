@@ -1,13 +1,11 @@
 {
   Set<Command> set=new HashSet<Command>();
-  Set<Command> commandObjects=commands.get(actionName);
-  Iterator<Command> iter=commandObjects.iterator();
-  while (iter.hasNext()) {
+  for (  Command c : commands.get(actionName)) {
     try {
-      set.add(iter.next());
+      set.add(c);
     }
  catch (    Exception err) {
-      log.error("",err);
+      log.error("Could not add Command",err);
     }
   }
   return set;

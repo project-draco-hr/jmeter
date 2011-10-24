@@ -1,8 +1,6 @@
 {
   HashTree tree=(HashTree)arg0;
-  Iterator<?> iter=tree.list().iterator();
-  while (iter.hasNext()) {
-    Object item=iter.next();
+  for (  Object item : tree.list()) {
     writeItem(item,context,writer);
     writeItem(tree.getTree(item),context,writer);
   }

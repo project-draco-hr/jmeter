@@ -1,7 +1,5 @@
 {
-  Iterator<List<MenuInfo>> it=menuMap.values().iterator();
-  while (it.hasNext()) {
-    List<MenuInfo> menuToSort=it.next();
+  for (  List<MenuInfo> menuToSort : menuMap.values()) {
     Collections.sort(menuToSort,new MenuInfoComparator());
   }
 }

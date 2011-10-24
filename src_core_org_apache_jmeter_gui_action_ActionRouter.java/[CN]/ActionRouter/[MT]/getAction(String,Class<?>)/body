@@ -1,15 +1,7 @@
 {
-  Set<Command> commandObjects=commands.get(actionName);
-  Iterator<Command> iter=commandObjects.iterator();
-  while (iter.hasNext()) {
-    try {
-      Command com=iter.next();
-      if (com.getClass().equals(actionClass)) {
-        return com;
-      }
-    }
- catch (    Exception err) {
-      log.error("",err);
+  for (  Command com : commands.get(actionName)) {
+    if (com.getClass().equals(actionClass)) {
+      return com;
     }
   }
   return null;
