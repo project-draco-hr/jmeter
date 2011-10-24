@@ -17,9 +17,8 @@
       MultiProperty multiVal=(MultiProperty)val;
       Collection<JMeterProperty> newValues=replaceValues(multiVal.iterator(),transform);
       multiVal.clear();
-      Iterator<JMeterProperty> propIter=newValues.iterator();
-      while (propIter.hasNext()) {
-        multiVal.addProperty(propIter.next());
+      for (      JMeterProperty jmp : newValues) {
+        multiVal.addProperty(jmp);
       }
       if (log.isDebugEnabled()) {
         log.debug("Replacement result: " + multiVal);

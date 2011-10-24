@@ -1,9 +1,8 @@
 {
-  Iterator<String> iter=getVariables().keySet().iterator();
   String input=prop.getStringValue();
-  while (iter.hasNext()) {
-    String key=iter.next();
-    String value=getVariables().get(key);
+  for (  Map.Entry<String,String> entry : getVariables().entrySet()) {
+    String key=entry.getKey();
+    String value=entry.getValue();
     input=StringUtilities.substitute(input,"${" + key + "}",value);
   }
   StringProperty newProp=new StringProperty(prop.getName(),input);

@@ -1,7 +1,6 @@
 {
   el.clear();
-  Iterator<JMeterProperty> iter=newProps.iterator();
-  while (iter.hasNext()) {
-    el.setProperty(iter.next());
+  for (  JMeterProperty jmp : newProps) {
+    el.setProperty(jmp);
   }
 }
