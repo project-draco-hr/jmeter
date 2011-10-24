@@ -2,7 +2,8 @@
   log.debug("Clear cache");
   threadCache=new InheritableThreadLocal<Map<String,CacheEntry>>(){
     @Override protected Map<String,CacheEntry> initialValue(){
-      return Collections.<String,CacheEntry>synchronizedMap(new LRUMap(getMaxSize()));
+      @SuppressWarnings("unchecked") Map<String,CacheEntry> map=new LRUMap(getMaxSize());
+      return Collections.<String,CacheEntry>synchronizedMap(map);
     }
   }
 ;
