@@ -11,20 +11,19 @@
     return null;
   }
   log.info("Loading toolbar icons properties from " + iconProp);
-  String order=p.getProperty("toolbar");
-  p.remove("toolbar");
-  String[] oList=order.split(",");
-  LinkedHashMap<String,IconToolbarBean> listIcons=new LinkedHashMap<String,IconToolbarBean>();
-  int ctr=1;
+  String order=p.getProperty(TOOLBAR_PROP_NAME);
+  p.remove(TOOLBAR_PROP_NAME);
+  String[] oList=order.split(TOOLBAR_ENTRY_SEP);
+  List<IconToolbarBean> listIcons=new ArrayList<IconToolbarBean>();
   for (  String key : oList) {
     log.debug("Toolbar icon key: " + key);
     if (key.trim().equals("|")) {
-      listIcons.put("space" + ctr++,null);
+      listIcons.add(null);
     }
  else {
       try {
         IconToolbarBean itb=new IconToolbarBean(p.getProperty(key));
-        listIcons.put(key,itb);
+        listIcons.add(itb);
       }
  catch (      JMeterException je) {
         log.error("Toolbar icon loading error - key: " + key);

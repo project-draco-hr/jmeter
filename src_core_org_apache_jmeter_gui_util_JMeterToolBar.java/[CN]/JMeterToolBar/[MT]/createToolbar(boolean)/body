@@ -2,10 +2,9 @@
   JToolBar toolBar=new JToolBar();
   toolBar.setFloatable(false);
   toolBar.setVisible(visible);
-  LinkedHashMap<String,IconToolbarBean> icons=getIconMappings();
+  List<IconToolbarBean> icons=getIconMappings();
   if (icons != null) {
-    Collection<IconToolbarBean> enumIcons=icons.values();
-    for (    IconToolbarBean iconToolbarBean : enumIcons) {
+    for (    IconToolbarBean iconToolbarBean : icons) {
       if (iconToolbarBean == null) {
         toolBar.addSeparator();
       }
