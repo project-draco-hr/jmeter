@@ -3,9 +3,7 @@
     Arguments args=new Arguments();
     Function function=(Function)((Class<?>)functionMap.get(functionList.getText())).newInstance();
     List<String> argumentDesc=function.getArgumentDesc();
-    Iterator<String> iter=argumentDesc.iterator();
-    while (iter.hasNext()) {
-      String help=iter.next();
+    for (    String help : argumentDesc) {
       args.addArgument(help,"");
     }
     parameterPanel.configure(args);

@@ -1,7 +1,6 @@
 {
-  Iterator<Object> iter=new LinkedList<Object>(tree.list()).iterator();
-  while (iter.hasNext()) {
-    Object o=iter.next();
+  LinkedList<Object> copyList=new LinkedList<Object>(tree.list());
+  for (  Object o : copyList) {
     if (o instanceof TestElement) {
       TestElement item=(TestElement)o;
       if (item.isEnabled()) {

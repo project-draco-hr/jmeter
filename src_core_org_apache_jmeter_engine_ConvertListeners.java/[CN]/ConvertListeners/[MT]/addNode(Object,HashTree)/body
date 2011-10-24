@@ -1,7 +1,5 @@
 {
-  Iterator<?> iter=subTree.list().iterator();
-  while (iter.hasNext()) {
-    Object item=iter.next();
+  for (  Object item : subTree.list()) {
     if (item instanceof AbstractThreadGroup) {
       log.debug("num threads = " + ((AbstractThreadGroup)item).getNumThreads());
     }

@@ -1,11 +1,10 @@
 {
   try {
     List<String> functionClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Function.class},true);
-    Iterator<String> iter=functionClasses.iterator();
     String[] functionNames=new String[functionClasses.size()];
     int count=0;
-    while (iter.hasNext()) {
-      Class<?> cl=Class.forName(iter.next());
+    for (    String clazz : functionClasses) {
+      Class<?> cl=Class.forName(clazz);
       functionNames[count]=((Function)cl.newInstance()).getReferenceKey();
       functionMap.put(functionNames[count],cl);
       count++;

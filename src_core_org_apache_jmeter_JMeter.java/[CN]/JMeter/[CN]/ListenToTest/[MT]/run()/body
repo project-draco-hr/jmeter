@@ -3,9 +3,7 @@
   println("Tidying up remote @ " + new Date(now) + " ("+ now+ ")");
   if (engines != null) {
     println("Exitting remote servers");
-    Iterator<JMeterEngine> it=engines.iterator();
-    while (it.hasNext()) {
-      JMeterEngine e=it.next();
+    for (    JMeterEngine e : engines) {
       e.exit();
     }
   }
