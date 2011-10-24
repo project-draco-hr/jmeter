@@ -6,9 +6,8 @@
   if (tmp.length > 2) {
     this.i18nKey=tmp[0];
     this.actionName=tmp[1];
-    final String icons[]=tmp[2].split(" ");
-    this.iconPath=icons[0];
-    this.iconPathPressed=(icons.length > 1) ? icons[1] : icons[0];
+    this.iconPath=tmp[2];
+    this.iconPathPressed=(tmp.length > 3) ? tmp[3] : tmp[2];
   }
  else {
     throw new IllegalArgumentException("Incorrect argument format - expected at least 2 fields separated by " + ICON_FIELD_SEP);
