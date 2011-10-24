@@ -1,6 +1,8 @@
 {
+  Iterator<?> iter=coll.iterator();
   Collection<JMeterProperty> newColl=null;
-  for (  Object item : coll) {
+  while (iter.hasNext()) {
+    Object item=iter.next();
     if (newColl == null) {
       try {
         @SuppressWarnings("unchecked") final Class<Collection<JMeterProperty>> class1=(Class<Collection<JMeterProperty>>)coll.getClass();
