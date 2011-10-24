@@ -1,7 +1,6 @@
 {
   this();
-  Iterator<?> it=keys.iterator();
-  while (it.hasNext()) {
-    data.put(it.next(),new SortedHashTree());
+  for (  Object key : keys) {
+    data.put(key,new SortedHashTree());
   }
 }

@@ -1,8 +1,6 @@
 {
   HashTree tree=this;
-  Iterator<?> iter=treePath.iterator();
-  while (iter.hasNext()) {
-    Object temp=iter.next();
+  for (  Object temp : treePath) {
     tree.add(temp);
     tree=tree.getTree(temp);
   }

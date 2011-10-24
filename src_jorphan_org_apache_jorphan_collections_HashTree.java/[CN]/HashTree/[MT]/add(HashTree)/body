@@ -1,7 +1,5 @@
 {
-  Iterator<?> iter=newTree.list().iterator();
-  while (iter.hasNext()) {
-    Object item=iter.next();
+  for (  Object item : newTree.list()) {
     add(item);
     getTree(item).add(newTree.getTree(item));
   }

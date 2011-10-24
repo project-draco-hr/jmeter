@@ -1,8 +1,6 @@
 {
-  Iterator<String> itr=items.iterator();
   ArrayList<Object> newlist=new ArrayList<Object>();
-  while (itr.hasNext()) {
-    String item=itr.next();
+  for (  String item : items) {
     if (include(item)) {
       newlist.add(item);
     }

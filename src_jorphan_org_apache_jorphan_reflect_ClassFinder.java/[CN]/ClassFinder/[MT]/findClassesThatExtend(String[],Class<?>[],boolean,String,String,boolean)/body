@@ -13,9 +13,8 @@
   }
   List<String> listPaths=getClasspathMatches(strPathsOrJars);
   if (log.isDebugEnabled()) {
-    Iterator<String> tIter=listPaths.iterator();
-    while (tIter.hasNext()) {
-      log.debug("listPaths : " + tIter.next());
+    for (    String path : listPaths) {
+      log.debug("listPaths : " + path);
     }
   }
   @SuppressWarnings("unchecked") final Class<? extends Annotation>[] annoclassNames=(Class<? extends Annotation>[])classNames;
@@ -23,9 +22,8 @@
   findClassesInPaths(listPaths,listClasses);
   if (log.isDebugEnabled()) {
     log.debug("listClasses.size()=" + listClasses.size());
-    Iterator<String> tIter=listClasses.iterator();
-    while (tIter.hasNext()) {
-      log.debug("listClasses : " + tIter.next());
+    for (    String clazz : listClasses) {
+      log.debug("listClasses : " + clazz);
     }
   }
   return new ArrayList<String>(listClasses);
