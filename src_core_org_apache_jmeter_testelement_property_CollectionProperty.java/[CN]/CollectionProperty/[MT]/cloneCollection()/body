@@ -1,6 +1,6 @@
 {
   try {
-    Collection newCol=value.getClass().newInstance();
+    @SuppressWarnings("unchecked") Collection<JMeterProperty> newCol=value.getClass().newInstance();
     PropertyIterator iter=iterator();
     while (iter.hasNext()) {
       newCol.add(iter.next().clone());
