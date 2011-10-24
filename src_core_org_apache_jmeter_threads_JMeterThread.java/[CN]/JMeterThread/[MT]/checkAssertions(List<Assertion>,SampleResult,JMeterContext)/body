@@ -1,7 +1,5 @@
 {
-  Iterator<Assertion> iter=assertions.iterator();
-  while (iter.hasNext()) {
-    Assertion assertion=iter.next();
+  for (  Assertion assertion : assertions) {
     TestBeanHelper.prepare((TestElement)assertion);
     if (assertion instanceof AbstractScopedAssertion) {
       AbstractScopedAssertion scopedAssertion=(AbstractScopedAssertion)assertion;

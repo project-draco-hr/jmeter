@@ -1,8 +1,6 @@
 {
   long sum=0;
-  Iterator<Timer> iter=timers.iterator();
-  while (iter.hasNext()) {
-    Timer timer=iter.next();
+  for (  Timer timer : timers) {
     TestBeanHelper.prepare((TestElement)timer);
     sum+=timer.delay();
   }

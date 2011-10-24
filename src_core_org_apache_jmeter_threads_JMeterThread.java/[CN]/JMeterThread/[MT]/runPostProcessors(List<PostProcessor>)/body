@@ -9,9 +9,7 @@
     }
   }
  else {
-    iter=extractors.listIterator();
-    while (iter.hasNext()) {
-      PostProcessor ex=iter.next();
+    for (    PostProcessor ex : extractors) {
       TestBeanHelper.prepare((TestElement)ex);
       ex.process();
     }

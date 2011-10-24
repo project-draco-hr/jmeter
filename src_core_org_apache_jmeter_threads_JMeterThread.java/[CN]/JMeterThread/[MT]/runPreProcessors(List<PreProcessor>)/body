@@ -1,7 +1,5 @@
 {
-  Iterator<PreProcessor> iter=preProcessors.iterator();
-  while (iter.hasNext()) {
-    PreProcessor ex=iter.next();
+  for (  PreProcessor ex : preProcessors) {
     if (log.isDebugEnabled()) {
       log.debug("Running preprocessor: " + ((AbstractTestElement)ex).getName());
     }
