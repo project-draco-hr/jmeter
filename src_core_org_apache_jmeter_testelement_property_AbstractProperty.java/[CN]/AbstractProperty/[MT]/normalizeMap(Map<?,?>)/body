@@ -5,9 +5,19 @@
   }
   try {
     @SuppressWarnings("unchecked") Map<String,JMeterProperty> newColl=coll.getClass().newInstance();
-    for (    Map.Entry<String,?> entry : ((Map<String,?>)coll).entrySet()) {
-      String item=entry.getKey();
+    for (    Map.Entry<?,?> entry : ((Map<?,?>)coll).entrySet()) {
+      Object key=entry.getKey();
       Object prop=entry.getValue();
+      String item=null;
+      if (key instanceof String) {
+        item=(String)key;
+      }
+ else {
+        if (key != null) {
+          log.error("Expected key type String, found: " + key.getClass().getName());
+          item=key.toString();
+        }
+      }
       newColl.put(item,convertObject(prop));
     }
     return newColl;
