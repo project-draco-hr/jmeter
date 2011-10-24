@@ -1,5 +1,5 @@
 {
-  JMeterProperty jmp=(JMeterProperty)prop.clone();
+  JMeterProperty jmp=prop.clone();
   jmp.setName(name);
   setProperty(jmp);
 }

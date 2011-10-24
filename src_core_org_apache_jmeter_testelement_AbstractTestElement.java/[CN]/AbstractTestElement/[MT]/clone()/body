@@ -3,7 +3,7 @@
     TestElement clonedElement=this.getClass().newInstance();
     PropertyIterator iter=propertyIterator();
     while (iter.hasNext()) {
-      clonedElement.setProperty((JMeterProperty)iter.next().clone());
+      clonedElement.setProperty(iter.next().clone());
     }
     clonedElement.setRunningVersion(runningVersion);
     return clonedElement;
