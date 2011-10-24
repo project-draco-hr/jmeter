@@ -1,5 +1,5 @@
 {
-  int length=Integer.valueOf(values[0].execute());
+  int length=Integer.parseInt(values[0].execute());
   String charsToUse=null;
   if (values.length >= CHARS) {
     charsToUse=(values[CHARS - 1]).execute().trim();
