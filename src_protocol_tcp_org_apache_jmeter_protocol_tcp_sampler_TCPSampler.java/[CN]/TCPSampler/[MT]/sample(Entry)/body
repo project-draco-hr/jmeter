@@ -55,6 +55,7 @@
   }
  catch (  IOException ex) {
     log.debug("",ex);
+    isSuccessful=false;
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
     closeSocket();
@@ -64,6 +65,7 @@ catch (  Exception ex) {
     isSuccessful=false;
     res.setResponseCode("500");
     res.setResponseMessage(ex.toString());
+    closeSocket();
   }
  finally {
     res.sampleEnd();
