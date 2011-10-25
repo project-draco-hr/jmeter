@@ -19,5 +19,6 @@
   clientChoice.setText(sampler.getClientChoice());
   stopBetweenSamples.setSelected(sampler.isStopBetweenSamples());
   timeout.setText(sampler.getTimeout());
+  separator.setText(sampler.getSeparator());
   destSetup.setText(sampler.isDestinationStatic() ? DEST_SETUP_STATIC : DEST_SETUP_DYNAMIC);
 }

@@ -19,6 +19,7 @@
         }
       }
       Utils.messageProperties(propBuffer,msg);
+      propBuffer.append(getSeparator());
     }
  catch (    JMSException e) {
       log.error(e.getMessage());

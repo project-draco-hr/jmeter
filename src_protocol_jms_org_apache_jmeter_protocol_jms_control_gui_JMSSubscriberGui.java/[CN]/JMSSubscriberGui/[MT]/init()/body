@@ -26,6 +26,7 @@
   choice.add(clientChoice);
   choice.add(stopBetweenSamples);
   mainPanel.add(choice);
+  mainPanel.add(separator);
   useProperties.addChangeListener(this);
   useAuth.addChangeListener(this);
 }

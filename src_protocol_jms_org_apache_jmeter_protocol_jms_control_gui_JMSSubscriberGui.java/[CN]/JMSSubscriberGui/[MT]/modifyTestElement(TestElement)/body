@@ -18,4 +18,5 @@
   sampler.setStopBetweenSamples(stopBetweenSamples.isSelected());
   sampler.setTimeout(timeout.getText());
   sampler.setDestinationStatic(destSetup.getText().equals(DEST_SETUP_STATIC));
+  sampler.setSeparator(separator.getText());
 }
