@@ -18,6 +18,7 @@
   useReqMsgIdAsCorrelId.setSelected(sampler.isUseReqMsgIdAsCorrelId());
   useResMsgIdAsCorrelId.setSelected(sampler.isUseResMsgIdAsCorrelId());
   timeout.setText(sampler.getTimeout());
+  jmsSelector.setText(sampler.getJMSSelector());
   soapXml.setText(sampler.getContent());
   initialContextFactory.setText(sampler.getInitialContextFactory());
   providerUrl.setText(sampler.getContextProvider());

@@ -8,7 +8,15 @@
     conn=factory.createConnection();
   }
   session=conn.createSession(false,Session.AUTO_ACKNOWLEDGE);
-  consumer=session.createConsumer(receiveQueue);
+  if (log.isDebugEnabled()) {
+    log.debug("Receiver - ctor. Creating consumer with JMS Selector:" + jmsSelector);
+  }
+  if (StringUtils.isEmpty(jmsSelector)) {
+    consumer=session.createConsumer(receiveQueue);
+  }
+ else {
+    consumer=session.createConsumer(receiveQueue,jmsSelector);
+  }
   this.useResMsgIdAsCorrelId=useResMsgIdAsCorrelId;
   log.debug("Receiver - ctor. Starting connection now");
   conn.start();

@@ -8,6 +8,7 @@
   element.setUseReqMsgIdAsCorrelId(useReqMsgIdAsCorrelId.isSelected());
   element.setUseResMsgIdAsCorrelId(useResMsgIdAsCorrelId.isSelected());
   element.setTimeout(timeout.getText());
+  element.setJMSSelector(jmsSelector.getText());
   element.setContent(soapXml.getText());
   element.setInitialContextFactory(initialContextFactory.getText());
   element.setContextProvider(providerUrl.getText());

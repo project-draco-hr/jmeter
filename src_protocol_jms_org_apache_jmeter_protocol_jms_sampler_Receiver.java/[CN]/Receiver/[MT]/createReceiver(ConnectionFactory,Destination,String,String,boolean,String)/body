@@ -1,5 +1,5 @@
 {
-  Receiver receiver=new Receiver(factory,receiveQueue,principal,credentials,useResMsgIdAsCorrelId);
+  Receiver receiver=new Receiver(factory,receiveQueue,principal,credentials,useResMsgIdAsCorrelId,jmsSelector);
   Thread thread=new Thread(receiver,Thread.currentThread().getName() + "-JMS-Receiver");
   thread.start();
   return receiver;

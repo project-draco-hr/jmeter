@@ -11,7 +11,8 @@
   sendQueuePanel.add(sendQueue);
   jmsQueueingPanel.add(sendQueuePanel,BorderLayout.CENTER);
   JPanel receiveQueuePanel=new JPanel(new BorderLayout(5,0));
-  receiveQueuePanel.add(receiveQueue);
+  receiveQueuePanel.add(jmsSelector,BorderLayout.EAST);
+  receiveQueuePanel.add(receiveQueue,BorderLayout.WEST);
   jmsQueueingPanel.add(receiveQueuePanel,BorderLayout.SOUTH);
   JPanel messagePanel=new JPanel(new BorderLayout());
   messagePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_message_title")));
