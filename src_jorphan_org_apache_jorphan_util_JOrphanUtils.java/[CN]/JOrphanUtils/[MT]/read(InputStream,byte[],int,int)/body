@@ -1,0 +1,12 @@
+{
+  int remaining=length;
+  while (remaining > 0) {
+    int location=(length - remaining);
+    int count=is.read(buffer,location,remaining);
+    if (-1 == count) {
+      break;
+    }
+    remaining-=count;
+  }
+  return length - remaining;
+}
