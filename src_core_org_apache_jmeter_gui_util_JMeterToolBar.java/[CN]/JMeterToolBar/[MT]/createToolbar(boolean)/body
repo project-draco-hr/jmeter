@@ -1,17 +1,8 @@
 {
-  JToolBar toolBar=new JToolBar();
+  JMeterToolBar toolBar=new JMeterToolBar();
   toolBar.setFloatable(false);
   toolBar.setVisible(visible);
-  List<IconToolbarBean> icons=getIconMappings();
-  if (icons != null) {
-    for (    IconToolbarBean iconToolbarBean : icons) {
-      if (iconToolbarBean == null) {
-        toolBar.addSeparator();
-      }
- else {
-        toolBar.add(makeButtonItemRes(iconToolbarBean));
-      }
-    }
-  }
+  setupToolbarContent(toolBar);
+  JMeterUtils.addLocaleChangeListener(toolBar);
   return toolBar;
 }

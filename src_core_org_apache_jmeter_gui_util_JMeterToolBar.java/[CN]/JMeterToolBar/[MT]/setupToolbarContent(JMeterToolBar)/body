@@ -1,0 +1,13 @@
+{
+  List<IconToolbarBean> icons=getIconMappings();
+  if (icons != null) {
+    for (    IconToolbarBean iconToolbarBean : icons) {
+      if (iconToolbarBean == null) {
+        toolBar.addSeparator();
+      }
+ else {
+        toolBar.add(makeButtonItemRes(iconToolbarBean));
+      }
+    }
+  }
+}
