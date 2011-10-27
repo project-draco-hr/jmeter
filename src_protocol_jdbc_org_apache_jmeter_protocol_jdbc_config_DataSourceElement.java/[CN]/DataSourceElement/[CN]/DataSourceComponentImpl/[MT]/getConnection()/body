@@ -16,6 +16,16 @@
   }
   if (dsc != null) {
     conn=dsc.getConnection();
+    int transactionIsolation=DataSourceElementBeanInfo.getTransactionIsolationMode(getTransactionIsolation());
+    if (transactionIsolation >= 0 && conn.getTransactionIsolation() != transactionIsolation) {
+      try {
+        conn.setTransactionIsolation(transactionIsolation);
+        log.debug("Setting transaction isolation: " + transactionIsolation + " @"+ System.identityHashCode(dsc));
+      }
+ catch (      SQLException ex) {
+        log.error("Could not set transaction isolation: " + transactionIsolation + " @"+ System.identityHashCode(dsc));
+      }
+    }
   }
   return conn;
 }

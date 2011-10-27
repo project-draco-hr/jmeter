@@ -1,7 +1,7 @@
 {
   super(DataSourceElement.class);
   createPropertyGroup("varName",new String[]{"dataSource"});
-  createPropertyGroup("pool",new String[]{"poolMax","timeout","trimInterval","autocommit"});
+  createPropertyGroup("pool",new String[]{"poolMax","timeout","trimInterval","autocommit","transactionIsolation"});
   createPropertyGroup("keep-alive",new String[]{"keepAlive","connectionAge","checkQuery"});
   createPropertyGroup("database",new String[]{"dbUrl","driver","username","password"});
   PropertyDescriptor p=property("dataSource");
@@ -19,6 +19,14 @@
   p=property("autocommit");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,Boolean.TRUE);
+  p=property("transactionIsolation");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"DEFAULT");
+  p.setValue(NOT_EXPRESSION,true);
+  p.setValue(NOT_OTHER,true);
+  Set<String> modesSet=TRANSACTION_ISOLATION_MAP.keySet();
+  String[] modes=modesSet.toArray(new String[modesSet.size()]);
+  p.setValue(TAGS,modes);
   p=property("keepAlive");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,Boolean.TRUE);

@@ -1,0 +1,6 @@
+{
+  if (!StringUtils.isEmpty(tag)) {
+    return TRANSACTION_ISOLATION_MAP.get(tag);
+  }
+  return -1;
+}
