@@ -10,6 +10,7 @@
   RendererUtils.applyRenderers(table,RENDERERS);
   tableScrollPanel=new JScrollPane(table);
   tableScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+  autoscroll=new JCheckBox(JMeterUtils.getResString("view_results_autoscroll"));
   JPanel dataPanel=new JPanel();
   JLabel dataLabel=new JLabel(JMeterUtils.getResString("graph_results_latest_sample"));
   dataLabel.setForeground(Color.black);
@@ -56,10 +57,14 @@
   tableInfoPanel.add(dataPanel);
   tableInfoPanel.add(averagePanel);
   tableInfoPanel.add(deviationPanel);
+  JPanel tableControlsPanel=new JPanel(new BorderLayout());
+  tableControlsPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+  tableControlsPanel.add(autoscroll,BorderLayout.WEST);
+  tableControlsPanel.add(tableInfoPanel,BorderLayout.CENTER);
   JPanel tablePanel=new JPanel();
   tablePanel.setLayout(new BorderLayout());
   tablePanel.add(tableScrollPanel,BorderLayout.CENTER);
-  tablePanel.add(tableInfoPanel,BorderLayout.SOUTH);
+  tablePanel.add(tableControlsPanel,BorderLayout.SOUTH);
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(tablePanel,BorderLayout.CENTER);
 }
