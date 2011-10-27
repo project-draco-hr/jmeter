@@ -1,11 +1,7 @@
 {
-  try {
-    os.write(intToByteArray(s.length() / 2,lengthPrefixLen));
+  os.write(intToByteArray(s.length() / 2,lengthPrefixLen));
+  if (log.isDebugEnabled()) {
     log.debug("Wrote: " + s.length() / 2 + " bytes");
-    this.tcpClient.write(os,s);
   }
- catch (  IOException e) {
-    log.warn("Write error",e);
-  }
-  return;
+  this.tcpClient.write(os,s);
 }

@@ -1,11 +1,7 @@
 {
-  try {
-    os.write(s.getBytes());
-    os.flush();
+  os.write(s.getBytes());
+  os.flush();
+  if (log.isDebugEnabled()) {
+    log.debug("Wrote: " + s);
   }
- catch (  IOException e) {
-    log.warn("Write error",e);
-  }
-  log.debug("Wrote: " + s);
-  return;
 }

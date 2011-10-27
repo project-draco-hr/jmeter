@@ -1,25 +1,18 @@
 {
   byte[] msg=new byte[0];
   int msgLen=0;
-  try {
-    byte[] lengthBuffer=new byte[lengthPrefixLen];
-    if (is.read(lengthBuffer,0,lengthPrefixLen) == lengthPrefixLen) {
-      msgLen=byteArrayToInt(lengthBuffer);
-      msg=new byte[msgLen];
-      int bytes=JOrphanUtils.read(is,msg,0,msgLen);
-      if (bytes < msgLen) {
-        log.warn("Incomplete message read, expected: " + msgLen + " got: "+ bytes);
-      }
+  byte[] lengthBuffer=new byte[lengthPrefixLen];
+  if (is.read(lengthBuffer,0,lengthPrefixLen) == lengthPrefixLen) {
+    msgLen=byteArrayToInt(lengthBuffer);
+    msg=new byte[msgLen];
+    int bytes=JOrphanUtils.read(is,msg,0,msgLen);
+    if (bytes < msgLen) {
+      log.warn("Incomplete message read, expected: " + msgLen + " got: "+ bytes);
     }
   }
- catch (  SocketTimeoutException e) {
-  }
-catch (  InterruptedIOException e) {
-  }
-catch (  IOException e) {
-    log.warn("Read error:" + e);
-  }
   String buffer=JOrphanUtils.baToHexString(msg);
-  log.debug("Read: " + msgLen + "\n"+ buffer);
+  if (log.isDebugEnabled()) {
+    log.debug("Read: " + msgLen + "\n"+ buffer);
+  }
   return buffer;
 }

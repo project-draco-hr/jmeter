@@ -2,24 +2,16 @@
   byte[] buffer=new byte[4096];
   ByteArrayOutputStream w=new ByteArrayOutputStream();
   int x=0;
-  try {
-    while ((x=is.read(buffer)) > -1) {
-      w.write(buffer,0,x);
-      if (useEolByte && (buffer[x - 1] == eolByte)) {
-        break;
-      }
+  while ((x=is.read(buffer)) > -1) {
+    w.write(buffer,0,x);
+    if (useEolByte && (buffer[x - 1] == eolByte)) {
+      break;
     }
-  }
- catch (  SocketTimeoutException e) {
-  }
-catch (  InterruptedIOException e) {
-  }
-catch (  IOException e) {
-    log.warn("Read error:" + e);
-    return "";
   }
   IOUtils.closeQuietly(w);
   final String hexString=JOrphanUtils.baToHexString(w.toByteArray());
-  log.debug("Read: " + w.size() + "\n"+ hexString);
+  if (log.isDebugEnabled()) {
+    log.debug("Read: " + w.size() + "\n"+ hexString);
+  }
   return hexString;
 }

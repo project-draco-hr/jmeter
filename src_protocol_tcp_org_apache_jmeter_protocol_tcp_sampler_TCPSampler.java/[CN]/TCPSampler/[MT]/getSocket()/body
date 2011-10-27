@@ -13,22 +13,28 @@
       SocketAddress sockaddr=new InetSocketAddress(getServer(),getPort());
       con=new Socket();
       con.connect(sockaddr,getConnectTimeout());
-      log.debug("Created new connection " + con);
+      if (log.isDebugEnabled()) {
+        log.debug("Created new connection " + con);
+      }
       cp.put(TCPKEY,con);
     }
  catch (    UnknownHostException e) {
       log.warn("Unknown host for " + getLabel(),e);
       cp.put(ERRKEY,e.toString());
+      return null;
     }
 catch (    IOException e) {
       log.warn("Could not create socket for " + getLabel(),e);
       cp.put(ERRKEY,e.toString());
+      return null;
     }
   }
   try {
     con.setSoTimeout(getTimeout());
     con.setTcpNoDelay(getNoDelay());
-    log.debug(this + "  Timeout " + getTimeout()+ " NoDelay "+ getNoDelay());
+    if (log.isDebugEnabled()) {
+      log.debug(this + "  Timeout " + getTimeout()+ " NoDelay "+ getNoDelay());
+    }
   }
  catch (  SocketException se) {
     log.warn("Could not set timeout or nodelay for " + getLabel(),se);
