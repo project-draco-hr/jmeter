@@ -1,8 +1,13 @@
 {
   cancelEditing();
-  int rowSelected=table.getSelectedRow();
-  if (rowSelected > 0) {
-    tableModel.moveRow(rowSelected,rowSelected + 1,rowSelected - 1);
-    table.setRowSelectionInterval(rowSelected - 1,rowSelected - 1);
+  int[] rowsSelected=table.getSelectedRows();
+  if (rowsSelected.length > 0 && rowsSelected[0] > 0) {
+    table.clearSelection();
+    for (    int rowSelected : rowsSelected) {
+      tableModel.moveRow(rowSelected,rowSelected + 1,rowSelected - 1);
+    }
+    for (    int rowSelected : rowsSelected) {
+      table.addRowSelectionInterval(rowSelected - 1,rowSelected - 1);
+    }
   }
 }

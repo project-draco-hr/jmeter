@@ -2,7 +2,7 @@
   initializeTableModel();
   table=new JTable(tableModel);
   table.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
-  table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  table.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
   if (this.background != null) {
     table.setBackground(this.background);
   }
