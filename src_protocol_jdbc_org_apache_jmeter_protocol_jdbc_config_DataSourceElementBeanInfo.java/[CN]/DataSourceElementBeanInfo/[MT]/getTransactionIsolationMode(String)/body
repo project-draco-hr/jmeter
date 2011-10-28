@@ -1,6 +1,14 @@
 {
   if (!StringUtils.isEmpty(tag)) {
-    return TRANSACTION_ISOLATION_MAP.get(tag);
+    Integer isolationMode=TRANSACTION_ISOLATION_MAP.get(tag);
+    if (isolationMode == null) {
+      try {
+        return Integer.parseInt(tag);
+      }
+ catch (      NumberFormatException e) {
+        log.warn("Illegal transaction isolation configuration '" + tag + "'");
+      }
+    }
   }
   return -1;
 }
