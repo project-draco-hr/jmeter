@@ -30,9 +30,9 @@
       headersModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_table_request_http_cookie"),sampleResult.getCookies()));
     }
     LinkedHashMap<String,String> lhm=JMeterUtils.parseHeaders(sampleResult.getRequestHeaders());
-    Set<String> keySet=lhm.keySet();
-    for (    String key : keySet) {
-      headersModel.addRow(new RowResult(key,lhm.get(key)));
+    for (Iterator<Map.Entry<String,String>> iterator=lhm.entrySet().iterator(); iterator.hasNext(); ) {
+      Map.Entry<String,String> entry=iterator.next();
+      headersModel.addRow(new RowResult(entry.getKey(),entry.getValue()));
     }
   }
  else {
