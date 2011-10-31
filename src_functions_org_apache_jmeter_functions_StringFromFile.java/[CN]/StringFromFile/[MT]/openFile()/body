@@ -46,8 +46,7 @@
   }
   log.info(tn + " opening file " + fileName);
   try {
-    fis=new FileReader(fileName);
-    myBread=new BufferedReader(fis);
+    myBread=new BufferedReader(new FileReader(fileName));
   }
  catch (  Exception e) {
     log.error("openFile() error: " + e.toString());
