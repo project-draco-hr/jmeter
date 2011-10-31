@@ -1,0 +1,9 @@
+{
+  if (stopRecording) {
+    return;
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Subtracting node, stack size = " + stack.size());
+  }
+  stack.removeLast();
+}

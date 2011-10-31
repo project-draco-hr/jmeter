@@ -21,10 +21,20 @@
             sam=controller.next();
           }
  else {
-            sam=controller.next();
-            while (sam != null && !sam.equals(firstSampler)) {
-              sam=controller.next();
+            FindTestElementsUpToRootTraverser pathToRootTraverser=new FindTestElementsUpToRootTraverser(sam);
+            testTree.traverse(pathToRootTraverser);
+            List<Controller> controllersToReinit=pathToRootTraverser.getControllersToRoot();
+            for (Iterator<Controller> iterator=controllersToReinit.iterator(); iterator.hasNext(); ) {
+              Controller parentController=iterator.next();
+              if (parentController instanceof ThreadGroup) {
+                ThreadGroup tg=(ThreadGroup)parentController;
+                tg.startNextLoop();
+              }
+ else {
+                parentController.triggerEndOfLoop();
+              }
             }
+            sam=null;
             threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
           }
         }

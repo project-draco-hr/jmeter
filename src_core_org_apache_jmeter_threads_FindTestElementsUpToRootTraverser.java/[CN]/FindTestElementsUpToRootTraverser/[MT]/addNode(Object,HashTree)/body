@@ -1,0 +1,9 @@
+{
+  if (stopRecording) {
+    return;
+  }
+  if (node == nodeToFind) {
+    this.stopRecording=true;
+  }
+  stack.addLast((TestElement)node);
+}
