@@ -6,6 +6,7 @@
   String text=null;
   String field=null;
   int i=0;
+  final DateFormat DEFAULT_DATE_FORMAT=new SimpleDateFormat(DEFAULT_DATE_FORMAT_STRING);
   try {
     if (saveConfig.saveTimestamp()) {
       field=TIME_STAMP;
