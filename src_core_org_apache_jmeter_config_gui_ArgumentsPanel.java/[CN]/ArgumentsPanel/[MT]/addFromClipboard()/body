@@ -1,0 +1,39 @@
+{
+  stopTableEditing();
+  int rowCount=table.getRowCount();
+  Clipboard clipboard=Toolkit.getDefaultToolkit().getSystemClipboard();
+  Transferable trans=clipboard.getContents(null);
+  DataFlavor[] flavourList=trans.getTransferDataFlavors();
+  Collection<DataFlavor> flavours=new ArrayList<DataFlavor>(flavourList.length);
+  if (Collections.addAll(flavours,flavourList) && flavours.contains(DataFlavor.stringFlavor)) {
+    try {
+      String clipboardContent=(String)trans.getTransferData(DataFlavor.stringFlavor);
+      String[] clipboardLines=clipboardContent.split("\n");
+      for (      String clipboardLine : clipboardLines) {
+        String[] clipboardCols=clipboardLine.split("\t");
+        if (clipboardCols.length > 0) {
+          Argument argument=makeNewArgument();
+          argument.setName(clipboardCols[0]);
+          if (clipboardCols.length > 1) {
+            argument.setValue(clipboardCols[1]);
+            if (clipboardCols.length > 2) {
+              argument.setDescription(clipboardCols[2]);
+            }
+          }
+          tableModel.addRow(argument);
+        }
+      }
+    }
+ catch (    IOException ioe) {
+      JOptionPane.showMessageDialog(this,"Could not add read arguments from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    }
+catch (    UnsupportedFlavorException ufe) {
+      JOptionPane.showMessageDialog(this,"Could not add retrieve " + DataFlavor.stringFlavor.getHumanPresentableName() + " from clipboard"+ ufe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    }
+    if (table.getRowCount() > rowCount) {
+      delete.setEnabled(true);
+      int rowToSelect=tableModel.getRowCount() - 1;
+      table.setRowSelectionInterval(rowCount,rowToSelect);
+    }
+  }
+}

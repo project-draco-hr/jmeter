@@ -2,6 +2,9 @@
   add=new JButton(JMeterUtils.getResString("add"));
   add.setActionCommand(ADD);
   add.setEnabled(true);
+  addFromClipboard=new JButton(JMeterUtils.getResString("add_from_clipboard"));
+  addFromClipboard.setActionCommand(ADD_FROM_CLIPBOARD);
+  addFromClipboard.setEnabled(true);
   delete=new JButton(JMeterUtils.getResString("delete"));
   delete.setActionCommand(DELETE);
   if (enableUpDown) {
@@ -17,8 +20,10 @@
     buttonPanel.setBackground(this.background);
   }
   add.addActionListener(this);
+  addFromClipboard.addActionListener(this);
   delete.addActionListener(this);
   buttonPanel.add(add);
+  buttonPanel.add(addFromClipboard);
   buttonPanel.add(delete);
   if (enableUpDown) {
     up.addActionListener(this);
