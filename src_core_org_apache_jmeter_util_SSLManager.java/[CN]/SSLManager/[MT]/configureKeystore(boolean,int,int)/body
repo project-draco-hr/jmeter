@@ -1,0 +1,7 @@
+{
+  this.keystoreAliasStartIndex=startIndex;
+  this.keystoreAliasEndIndex=endIndex;
+  if (preload) {
+    keyStore=getKeyStore();
+  }
+}

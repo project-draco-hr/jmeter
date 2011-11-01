@@ -1,0 +1,4 @@
+{
+  log.info("Configuring Keystore with (preload:" + preload + ", startIndex:"+ startIndex+ ", endIndex:"+ endIndex);
+  SSLManager.getInstance().configureKeystore(Boolean.valueOf(preload),Integer.parseInt(startIndex),Integer.parseInt(endIndex));
+}

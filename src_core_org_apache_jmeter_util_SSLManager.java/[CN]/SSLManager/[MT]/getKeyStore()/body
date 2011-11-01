@@ -18,6 +18,8 @@
       this.keyStore=null;
       throw new RuntimeException("Could not create keystore: " + e.getMessage());
     }
+    this.keyStore.setAliasStartIndex(keystoreAliasStartIndex);
+    this.keyStore.setAliasEndIndex(keystoreAliasEndIndex);
     FileInputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
@@ -35,7 +37,7 @@
       }
     }
  catch (    Exception e) {
-      log.error("Problem loading keystore: " + e.getMessage());
+      log.error("Problem loading keystore: " + e.getMessage(),e);
     }
  finally {
       JOrphanUtils.closeQuietly(fileInputStream);
