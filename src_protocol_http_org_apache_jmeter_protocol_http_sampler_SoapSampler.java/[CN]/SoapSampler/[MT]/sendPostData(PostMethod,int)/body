@@ -2,6 +2,10 @@
   StringBuilder postedBody=new StringBuilder(1000);
   final String xmlFile=getXmlFile();
   if (xmlFile != null && xmlFile.length() > 0) {
+    File xmlFileAsFile=new File(xmlFile);
+    if (!(xmlFileAsFile.exists() && xmlFileAsFile.canRead())) {
+      throw new IllegalArgumentException(JMeterUtils.getResString("soap_sampler_file_invalid") + xmlFileAsFile.getAbsolutePath());
+    }
     postedBody.append("Filename: ").append(xmlFile).append("\n");
     postedBody.append("<actual file content, not shown here>");
     post.setRequestEntity(new RequestEntity(){
