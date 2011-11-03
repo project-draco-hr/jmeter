@@ -1,4 +1,25 @@
 {
-  log.info("Configuring Keystore with (preload:" + preload + ", startIndex:"+ startIndex+ ", endIndex:"+ endIndex);
-  SSLManager.getInstance().configureKeystore(Boolean.valueOf(preload),Integer.parseInt(startIndex),Integer.parseInt(endIndex));
+  int startIndexAsInt=JMeterUtils.getPropDefault(KEY_STORE_START_INDEX,0);
+  int endIndexAsInt=JMeterUtils.getPropDefault(KEY_STORE_END_INDEX,0);
+  if (!StringUtils.isEmpty(this.startIndex)) {
+    try {
+      startIndexAsInt=Integer.parseInt(this.startIndex);
+    }
+ catch (    NumberFormatException e) {
+      log.warn("Failed parsing startIndex :'" + this.startIndex + "', will default to:'"+ startIndexAsInt+ "', error message:"+ e.getMessage(),e);
+    }
+  }
+  if (!StringUtils.isEmpty(this.endIndex)) {
+    try {
+      endIndexAsInt=Integer.parseInt(this.endIndex);
+    }
+ catch (    NumberFormatException e) {
+      log.warn("Failed parsing endIndex :'" + this.endIndex + "', will default to:'"+ endIndexAsInt+ "', error message:"+ e.getMessage(),e);
+    }
+  }
+  if (startIndexAsInt > endIndexAsInt) {
+    throw new JMeterStopTestException("Keystore Config error : Alias start index must be lower than Alias end index");
+  }
+  log.info("Configuring Keystore with (preload:" + preload + ", startIndex:"+ startIndexAsInt+ ", endIndex:"+ endIndexAsInt+ ")");
+  SSLManager.getInstance().configureKeystore(Boolean.valueOf(preload),startIndexAsInt,endIndexAsInt);
 }
