@@ -36,6 +36,7 @@
 ;
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
     ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
+    ((AbstractHttpClient)httpClient).addRequestInterceptor(METRICS_RESETTER);
     SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
     if (SLOW_HTTP != null) {
       schemeRegistry.register(SLOW_HTTP);
