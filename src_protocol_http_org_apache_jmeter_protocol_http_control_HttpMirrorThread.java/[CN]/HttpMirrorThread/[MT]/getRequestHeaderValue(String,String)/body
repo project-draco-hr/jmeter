@@ -1,6 +1,6 @@
 {
   Perl5Matcher localMatcher=JMeterUtils.getMatcher();
-  String expression="^" + headerName + ":\\s+(\\w+)";
+  String expression="^" + headerName + ":\\s+([^\\r\\n]+)";
   Pattern pattern=JMeterUtils.getPattern(expression,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.MULTILINE_MASK);
   if (localMatcher.contains(requestHeaders,pattern)) {
     return localMatcher.getMatch().group(1);
