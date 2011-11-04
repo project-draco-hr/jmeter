@@ -1,32 +1,3 @@
 {
-  String wordToSearch=JOptionPane.showInputDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("search_word"),JMeterUtils.getResString("search_tree_title"),JOptionPane.QUESTION_MESSAGE);
-  if (wordToSearch == null) {
-    return;
-  }
-  ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.SEARCH_RESET));
-  GuiPackage guiPackage=GuiPackage.getInstance();
-  JMeterTreeModel jMeterTreeModel=guiPackage.getTreeModel();
-  Set<JMeterTreeNode> nodes=new HashSet<JMeterTreeNode>();
-  for (  JMeterTreeNode jMeterTreeNode : jMeterTreeModel.getNodesOfType(Searchable.class)) {
-    try {
-      if (jMeterTreeNode.getUserObject() instanceof Searchable) {
-        Searchable searchable=(Searchable)jMeterTreeNode.getUserObject();
-        List<JMeterTreeNode> matchingNodes=jMeterTreeNode.getPathToThreadGroup();
-        if (!StringUtils.isEmpty(wordToSearch)) {
-          boolean result=searchable.searchContent(wordToSearch);
-          if (result) {
-            nodes.addAll(matchingNodes);
-          }
-        }
-      }
-    }
- catch (    Exception ex) {
-      logger.error("Error occured searching for word:" + wordToSearch,ex);
-    }
-  }
-  for (Iterator<JMeterTreeNode> iterator=nodes.iterator(); iterator.hasNext(); ) {
-    JMeterTreeNode jMeterTreeNode=iterator.next();
-    jMeterTreeNode.setMarkedBySearch(true);
-  }
-  GuiPackage.getInstance().getMainFrame().repaint();
+  new SearchTreeDialog().setVisible(true);
 }

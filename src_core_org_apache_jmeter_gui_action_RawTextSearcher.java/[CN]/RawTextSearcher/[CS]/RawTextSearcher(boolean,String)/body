@@ -1,0 +1,10 @@
+{
+  super();
+  this.caseSensitive=caseSensitive;
+  if (caseSensitive) {
+    this.textToSearch=textToSearch;
+  }
+ else {
+    this.textToSearch=textToSearch.toLowerCase();
+  }
+}

@@ -1,0 +1,17 @@
+{
+  for (  String searchableToken : textTokens) {
+    if (!StringUtils.isEmpty(searchableToken)) {
+      Matcher matcher=null;
+      if (caseSensitive) {
+        matcher=pattern.matcher(searchableToken);
+      }
+ else {
+        matcher=pattern.matcher(searchableToken.toLowerCase());
+      }
+      if (matcher.find()) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

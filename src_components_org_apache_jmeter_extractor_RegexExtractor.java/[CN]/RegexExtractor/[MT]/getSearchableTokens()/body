@@ -1,0 +1,7 @@
+{
+  List<String> result=super.getSearchableTokens();
+  result.add(getRefName());
+  result.add(getDefaultValue());
+  result.add(getRegex());
+  return result;
+}
