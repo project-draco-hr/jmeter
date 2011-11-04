@@ -4,6 +4,7 @@
   this.areFollowingRedirect=areFollowingRedirect;
   this.depth=depth;
   this.sampler=(HTTPSamplerBase)base.clone();
+  this.sampler.setCacheManager(base.getCacheManager());
   if (cookieManager != null) {
     CookieManager clonedCookieManager=(CookieManager)cookieManager.clone();
     this.sampler.setCookieManager(clonedCookieManager);
