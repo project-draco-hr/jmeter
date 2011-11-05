@@ -33,6 +33,9 @@
     if (null == _key) {
       throw new Exception("No key(s) found");
     }
+    if (index <= endIndex - startIndex) {
+      LOG.warn("Did not find all requested aliases. Start=" + startIndex + ", end="+ endIndex+ ", found="+ index);
+    }
   }
   int v_size=v_names.size();
   this.names=new String[v_size];

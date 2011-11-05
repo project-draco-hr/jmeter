@@ -1,25 +1,16 @@
 {
   if (null == this.keyStore) {
-    String defaultName=JMeterUtils.getJMeterProperties().getProperty("user.home") + File.separator + ".keystore";
-    String fileName=System.getProperty(JAVAX_NET_SSL_KEY_STORE,defaultName);
-    log.info("JmeterKeyStore Location: " + fileName);
+    String fileName=System.getProperty(JAVAX_NET_SSL_KEY_STORE);
+    String fileType=System.getProperty(JAVAX_NET_SSL_KEY_STORE_TYPE,fileName.toLowerCase(Locale.UK).endsWith(".p12") ? PKCS12 : "JKS");
+    log.info("JmeterKeyStore Location: " + fileName + " type "+ fileType);
     try {
-      if (fileName.endsWith(".p12") || fileName.endsWith(".P12")) {
-        this.keyStore=JmeterKeyStore.getInstance(PKCS12);
-        log.info("KeyStore created OK, Type: PKCS 12");
-        System.setProperty("javax.net.ssl.keyStoreType",PKCS12);
-      }
- else {
-        this.keyStore=JmeterKeyStore.getInstance("JKS");
-        log.info("KeyStore created OK, Type: JKS");
-      }
+      this.keyStore=JmeterKeyStore.getInstance(fileType,keystoreAliasStartIndex,keystoreAliasEndIndex);
+      log.info("KeyStore created OK");
     }
  catch (    Exception e) {
       this.keyStore=null;
       throw new RuntimeException("Could not create keystore: " + e.getMessage());
     }
-    this.keyStore.setAliasStartIndex(keystoreAliasStartIndex);
-    this.keyStore.setAliasEndIndex(keystoreAliasEndIndex);
     FileInputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);

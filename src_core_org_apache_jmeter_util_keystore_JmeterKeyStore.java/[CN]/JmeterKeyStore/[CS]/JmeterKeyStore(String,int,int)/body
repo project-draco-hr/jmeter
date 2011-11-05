@@ -1,0 +1,8 @@
+{
+  if (startIndex < 0 || endIndex < 0 || endIndex < startIndex) {
+    throw new IllegalArgumentException("Invalid index(es). Start=" + startIndex + ", end="+ endIndex);
+  }
+  this.store=KeyStore.getInstance(type);
+  this.startIndex=startIndex;
+  this.endIndex=endIndex;
+}
