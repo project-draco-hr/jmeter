@@ -11,7 +11,6 @@
   res.setResponseCodeOK();
   res.sampleStart();
   Connection conn=null;
-  Statement stmt=null;
   try {
     try {
       conn=DataSourceElement.getConnection(getDataSource());
@@ -20,67 +19,7 @@
       res.latencyEnd();
     }
     res.setResponseHeaders(conn.toString());
-    String _queryType=getQueryType();
-    if (SELECT.equals(_queryType)) {
-      stmt=conn.createStatement();
-      ResultSet rs=null;
-      try {
-        rs=stmt.executeQuery(getQuery());
-        res.setResponseData(getStringFromResultSet(rs).getBytes(ENCODING));
-      }
-  finally {
-        close(rs);
-      }
-    }
- else     if (CALLABLE.equals(_queryType)) {
-      CallableStatement cstmt=getCallableStatement(conn);
-      int out[]=setArguments(cstmt);
-      boolean hasResultSet=cstmt.execute();
-      String sb=resultSetsToString(cstmt,hasResultSet,out);
-      res.setResponseData(sb.getBytes(ENCODING));
-    }
- else     if (UPDATE.equals(_queryType)) {
-      stmt=conn.createStatement();
-      stmt.executeUpdate(getQuery());
-      int updateCount=stmt.getUpdateCount();
-      String results=updateCount + " updates";
-      res.setResponseData(results.getBytes(ENCODING));
-    }
- else     if (PREPARED_SELECT.equals(_queryType)) {
-      PreparedStatement pstmt=getPreparedStatement(conn);
-      setArguments(pstmt);
-      boolean hasResultSet=pstmt.execute();
-      String sb=resultSetsToString(pstmt,hasResultSet,null);
-      res.setResponseData(sb.getBytes(ENCODING));
-    }
- else     if (PREPARED_UPDATE.equals(_queryType)) {
-      PreparedStatement pstmt=getPreparedStatement(conn);
-      setArguments(pstmt);
-      pstmt.executeUpdate();
-      String sb=resultSetsToString(pstmt,false,null);
-      res.setResponseData(sb.getBytes(ENCODING));
-    }
- else     if (ROLLBACK.equals(_queryType)) {
-      conn.rollback();
-      res.setResponseData(ROLLBACK.getBytes(ENCODING));
-    }
- else     if (COMMIT.equals(_queryType)) {
-      conn.commit();
-      res.setResponseData(COMMIT.getBytes(ENCODING));
-    }
- else     if (AUTOCOMMIT_FALSE.equals(_queryType)) {
-      conn.setAutoCommit(false);
-      res.setResponseData(AUTOCOMMIT_FALSE.getBytes(ENCODING));
-    }
- else     if (AUTOCOMMIT_TRUE.equals(_queryType)) {
-      conn.setAutoCommit(true);
-      res.setResponseData(AUTOCOMMIT_TRUE.getBytes(ENCODING));
-    }
- else {
-      String results="Unexpected query type: " + _queryType;
-      res.setResponseMessage(results);
-      res.setSuccessful(false);
-    }
+    res.setResponseData(execute(conn));
   }
  catch (  SQLException ex) {
     final String errCode=Integer.toString(ex.getErrorCode());
@@ -88,7 +27,7 @@
     res.setResponseCode(ex.getSQLState() + " " + errCode);
     res.setSuccessful(false);
   }
-catch (  UnsupportedEncodingException ex) {
+catch (  UnsupportedOperationException ex) {
     res.setResponseMessage(ex.toString());
     res.setResponseCode("000");
     res.setSuccessful(false);
@@ -99,7 +38,6 @@ catch (  IOException ex) {
     res.setSuccessful(false);
   }
  finally {
-    close(stmt);
     close(conn);
   }
   res.sampleEnd();

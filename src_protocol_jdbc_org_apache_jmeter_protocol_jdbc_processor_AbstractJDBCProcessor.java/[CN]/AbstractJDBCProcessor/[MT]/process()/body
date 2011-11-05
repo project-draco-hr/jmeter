@@ -1,0 +1,19 @@
+{
+  Connection conn=null;
+  try {
+    conn=DataSourceElement.getConnection(getDataSource());
+    execute(conn);
+  }
+ catch (  SQLException ex) {
+    log.warn("SQL Problem in  " + getName() + ": "+ ex.toString());
+  }
+catch (  IOException ex) {
+    log.warn("IO Problem in  " + getName() + ": "+ ex.toString());
+  }
+catch (  UnsupportedOperationException ex) {
+    log.warn("Execution Problem in " + getName() + ": "+ ex.toString());
+  }
+ finally {
+    close(conn);
+  }
+}
