@@ -1,15 +1,3 @@
 {
-  if (isRunningVersion()) {
-    setTemporary(property);
-  }
- else {
-    clearTemporary(property);
-  }
-  JMeterProperty prop=getProperty(property.getName());
-  if (prop instanceof NullProperty || (prop instanceof StringProperty && prop.getStringValue().equals(""))) {
-    propMap.put(property.getName(),property);
-  }
- else {
-    prop.mergeIn(property);
-  }
+  addProperty(property,false);
 }

@@ -1,0 +1,19 @@
+{
+  JMeterProperty propertyToPut=property;
+  if (clone) {
+    propertyToPut=property.clone();
+  }
+  if (isRunningVersion()) {
+    setTemporary(propertyToPut);
+  }
+ else {
+    clearTemporary(property);
+  }
+  JMeterProperty prop=getProperty(property.getName());
+  if (prop instanceof NullProperty || (prop instanceof StringProperty && prop.getStringValue().equals(""))) {
+    propMap.put(property.getName(),propertyToPut);
+  }
+ else {
+    prop.mergeIn(propertyToPut);
+  }
+}
