@@ -1,4 +1,4 @@
 {
-  String testPlanFile=GuiPackage.getInstance().getTestPlanFile();
+  String testPlanFile=FileServer.getFileServer().getScriptName();
   return testPlanFile;
 }

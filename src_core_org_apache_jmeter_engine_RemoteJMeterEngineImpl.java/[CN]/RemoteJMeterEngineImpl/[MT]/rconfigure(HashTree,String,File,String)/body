@@ -9,5 +9,6 @@ synchronized (LOCK) {
     backingEngine=new StandardJMeterEngine(host);
     backingEngine.configure(testTree);
   }
+  FileServer.getFileServer().setScriptName(scriptName);
   FileServer.getFileServer().setBase(jmxBase);
 }

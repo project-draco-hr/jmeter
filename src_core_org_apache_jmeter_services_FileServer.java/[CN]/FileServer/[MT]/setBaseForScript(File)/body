@@ -6,6 +6,7 @@
     throw new IllegalStateException("Files are still open, cannot change base directory");
   }
   files.clear();
+  setScriptName(scriptPath.getName());
   base=scriptPath.getAbsoluteFile().getParentFile();
   log.info("Set new base '" + base + "'");
 }

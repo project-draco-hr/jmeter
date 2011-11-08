@@ -14,9 +14,10 @@ synchronized (testTree) {
   try {
     JMeterContextService.startTest();
     File baseDirRelative=FileServer.getFileServer().getBaseDirRelative();
+    String scriptName=FileServer.getFileServer().getScriptName();
 synchronized (LOCK) {
       methodName="rconfigure()";
-      remote.rconfigure(testTree,host,baseDirRelative);
+      remote.rconfigure(testTree,host,baseDirRelative,scriptName);
     }
     log.info("sent test to " + host + " basedir='"+ baseDirRelative+ "'");
     if (savep != null) {
