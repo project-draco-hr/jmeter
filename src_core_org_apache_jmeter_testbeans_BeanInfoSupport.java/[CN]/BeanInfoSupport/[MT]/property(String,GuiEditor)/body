@@ -1,0 +1,7 @@
+{
+  PropertyDescriptor property=property(name);
+  if (property != null) {
+    property.setValue(GenericTestBeanCustomizer.GUITYPE,editor);
+  }
+  return property;
+}

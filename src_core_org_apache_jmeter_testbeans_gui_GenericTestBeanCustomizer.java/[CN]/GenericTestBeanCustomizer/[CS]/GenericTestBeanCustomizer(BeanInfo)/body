@@ -37,7 +37,7 @@ catch (      IllegalAccessException e) {
       log.debug("Property " + name + " has property editor "+ propertyEditor);
     }
     if (propertyEditor == null) {
-      log.debug("No editor for property " + name);
+      log.warn("No editor for property " + name);
       editors[i]=null;
       continue;
     }

@@ -18,19 +18,25 @@
       tags[j++]=additionalTags[i];
     }
   }
-  boolean notNull=Boolean.TRUE.equals(descriptor.getValue(NOT_UNDEFINED));
-  boolean notExpression=Boolean.TRUE.equals(descriptor.getValue(NOT_EXPRESSION));
-  boolean notOther=Boolean.TRUE.equals(descriptor.getValue(NOT_OTHER));
+  boolean notNull=notNull(descriptor);
+  boolean notExpression=notExpression(descriptor);
+  boolean notOther=notOther(descriptor);
   PropertyEditor guiEditor;
-  if (notNull && tags == null) {
-    guiEditor=new FieldStringEditor();
+  Object guiType=descriptor.getValue(GUITYPE);
+  if (guiType instanceof GuiEditor) {
+    guiEditor=((GuiEditor)guiType).getInstance(descriptor);
   }
  else {
-    ComboStringEditor e=new ComboStringEditor();
-    e.setNoUndefined(notNull);
-    e.setNoEdit(notExpression && notOther);
-    e.setTags(tags);
-    guiEditor=e;
+    if (notNull && tags == null) {
+      guiEditor=new FieldStringEditor();
+    }
+ else {
+      ComboStringEditor e=new ComboStringEditor();
+      e.setNoUndefined(notNull);
+      e.setNoEdit(notExpression && notOther);
+      e.setTags(tags);
+      guiEditor=e;
+    }
   }
   WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!notNull,!notExpression,!notOther,descriptor.getValue(DEFAULT));
   return wrapper;
