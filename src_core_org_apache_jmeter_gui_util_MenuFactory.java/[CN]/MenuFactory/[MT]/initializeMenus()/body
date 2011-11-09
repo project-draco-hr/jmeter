@@ -6,6 +6,10 @@
       if (name.endsWith("JMeterTreeNode") || name.endsWith("TestBeanGUI")) {
         continue;
       }
+      if (elementsToSkip.contains(name)) {
+        log.info("Skipping " + name);
+        continue;
+      }
       JMeterGUIComponent item;
       try {
         Class<?> c=Class.forName(name);
@@ -30,7 +34,7 @@ catch (      Throwable e) {
         }
         continue;
       }
-      if (elementsToSkip.contains(name) || elementsToSkip.contains(item.getStaticLabel())) {
+      if (elementsToSkip.contains(item.getStaticLabel())) {
         log.info("Skipping " + name);
         continue;
       }
