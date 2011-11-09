@@ -1,0 +1,15 @@
+{
+  JButton button=new JButton("Browse...");
+  button.addActionListener(this);
+  boolean notNull=descriptor == null ? false : GenericTestBeanCustomizer.notNull(descriptor);
+  boolean notExpression=descriptor == null ? false : GenericTestBeanCustomizer.notExpression(descriptor);
+  boolean notOther=descriptor == null ? false : GenericTestBeanCustomizer.notOther(descriptor);
+  Object defaultValue=descriptor == null ? null : descriptor.getValue(GenericTestBeanCustomizer.DEFAULT);
+  ComboStringEditor cse=new ComboStringEditor();
+  cse.setNoUndefined(notNull);
+  cse.setNoEdit(notExpression && notOther);
+  editor=new WrapperEditor(this,new SimpleFileEditor(),cse,!notNull,!notExpression,!notOther,defaultValue);
+  panel=new JPanel(new BorderLayout(5,0));
+  panel.add(editor.getCustomEditor(),BorderLayout.CENTER);
+  panel.add(button,BorderLayout.EAST);
+}
