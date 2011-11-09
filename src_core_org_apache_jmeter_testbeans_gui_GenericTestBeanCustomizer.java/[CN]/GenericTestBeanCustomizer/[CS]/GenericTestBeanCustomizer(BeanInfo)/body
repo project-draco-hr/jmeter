@@ -13,34 +13,40 @@
       continue;
     }
     PropertyEditor propertyEditor;
-    Class<?> editorClass=descriptor.getPropertyEditorClass();
-    if (log.isDebugEnabled()) {
-      log.debug("Property " + name + " has editor class "+ editorClass);
-    }
-    if (editorClass != null) {
-      try {
-        propertyEditor=(PropertyEditor)editorClass.newInstance();
-      }
- catch (      InstantiationException e) {
-        log.error("Can't create property editor.",e);
-        throw new Error(e.toString());
-      }
-catch (      IllegalAccessException e) {
-        log.error("Can't create property editor.",e);
-        throw new Error(e.toString());
-      }
+    Object guiType=descriptor.getValue(GUITYPE);
+    if (guiType instanceof GuiEditor) {
+      propertyEditor=((GuiEditor)guiType).getInstance(descriptor);
     }
  else {
-      Class<?> c=descriptor.getPropertyType();
-      propertyEditor=PropertyEditorManager.findEditor(c);
-    }
-    if (log.isDebugEnabled()) {
-      log.debug("Property " + name + " has property editor "+ propertyEditor);
+      Class<?> editorClass=descriptor.getPropertyEditorClass();
+      if (log.isDebugEnabled()) {
+        log.debug("Property " + name + " has editor class "+ editorClass);
+      }
+      if (editorClass != null) {
+        try {
+          propertyEditor=(PropertyEditor)editorClass.newInstance();
+        }
+ catch (        InstantiationException e) {
+          log.error("Can't create property editor.",e);
+          throw new Error(e.toString());
+        }
+catch (        IllegalAccessException e) {
+          log.error("Can't create property editor.",e);
+          throw new Error(e.toString());
+        }
+      }
+ else {
+        Class<?> c=descriptor.getPropertyType();
+        propertyEditor=PropertyEditorManager.findEditor(c);
+      }
     }
     if (propertyEditor == null) {
       log.warn("No editor for property: " + name + " type: "+ descriptor.getPropertyType()+ " in bean: "+ beanInfo.getBeanDescriptor().getDisplayName());
       editors[i]=null;
       continue;
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Property " + name + " has property editor "+ propertyEditor);
     }
     if (!propertyEditor.supportsCustomEditor()) {
       propertyEditor=createWrapperEditor(propertyEditor,descriptor);

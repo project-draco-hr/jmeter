@@ -22,21 +22,15 @@
   boolean notExpression=notExpression(descriptor);
   boolean notOther=notOther(descriptor);
   PropertyEditor guiEditor;
-  Object guiType=descriptor.getValue(GUITYPE);
-  if (guiType instanceof GuiEditor) {
-    guiEditor=((GuiEditor)guiType).getInstance(descriptor);
+  if (notNull && tags == null) {
+    guiEditor=new FieldStringEditor();
   }
  else {
-    if (notNull && tags == null) {
-      guiEditor=new FieldStringEditor();
-    }
- else {
-      ComboStringEditor e=new ComboStringEditor();
-      e.setNoUndefined(notNull);
-      e.setNoEdit(notExpression && notOther);
-      e.setTags(tags);
-      guiEditor=e;
-    }
+    ComboStringEditor e=new ComboStringEditor();
+    e.setNoUndefined(notNull);
+    e.setNoEdit(notExpression && notOther);
+    e.setTags(tags);
+    guiEditor=e;
   }
   WrapperEditor wrapper=new WrapperEditor(typeEditor,guiEditor,!notNull,!notExpression,!notOther,descriptor.getValue(DEFAULT));
   return wrapper;
