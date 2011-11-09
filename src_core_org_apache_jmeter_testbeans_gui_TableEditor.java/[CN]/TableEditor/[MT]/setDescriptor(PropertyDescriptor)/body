@@ -1,10 +1,14 @@
 {
+  this.descriptor=descriptor;
+  String value=(String)descriptor.getValue(CLASSNAME);
+  if (value == null) {
+    throw new RuntimeException("The Table Editor requires the CLASSNAME atttribute be set - the name of the object to represent a row");
+  }
   try {
-    this.descriptor=descriptor;
-    clazz=Class.forName((String)descriptor.getValue(CLASSNAME));
+    clazz=Class.forName(value);
     initializeModel();
   }
  catch (  ClassNotFoundException e) {
-    throw new RuntimeException("The Table Editor requires one TAG be set - the name of the object to represent a row",e);
+    throw new RuntimeException("Could not find the CLASSNAME class " + value,e);
   }
 }

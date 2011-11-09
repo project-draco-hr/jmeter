@@ -1,7 +1,6 @@
 {
   if (clazz == String.class) {
     model=new ObjectTableModel((String[])descriptor.getValue(HEADERS),new Functor[0],new Functor[0],new Class[]{String.class});
-    model.addTableModelListener(this);
   }
  else {
     String[] props=(String[])descriptor.getValue(OBJECT_PROPERTIES);
@@ -17,8 +16,8 @@
       count++;
     }
     model=new ObjectTableModel((String[])descriptor.getValue(HEADERS),readers,writers,editors);
-    model.addTableModelListener(this);
   }
+  model.addTableModelListener(this);
   table=new JTable(model);
   table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   table.addFocusListener(this);
