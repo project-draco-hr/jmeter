@@ -1,15 +1,20 @@
 {
-  byte[] buffer=new byte[4096];
   ByteArrayOutputStream w=new ByteArrayOutputStream();
-  int x=0;
-  while ((x=is.read(buffer)) > -1) {
-    w.write(buffer,0,x);
-    if (useEolByte && (buffer[x - 1] == eolByte)) {
-      break;
+  try {
+    byte[] buffer=new byte[4096];
+    int x=0;
+    while ((x=is.read(buffer)) > -1) {
+      w.write(buffer,0,x);
+      if (useEolByte && (buffer[x - 1] == eolByte)) {
+        break;
+      }
     }
+    if (log.isDebugEnabled()) {
+      log.debug("Read: " + w.size() + "\n"+ w.toString());
+    }
+    return w.toString();
   }
-  if (log.isDebugEnabled()) {
-    log.debug("Read: " + w.size() + "\n"+ w.toString());
+ catch (  IOException e) {
+    throw new ReadException("",e,w.toString());
   }
-  return w.toString();
 }

@@ -1,0 +1,34 @@
+{
+  sampleResult.setResponseData(readResponse,null);
+  sampleResult.setDataType(SampleResult.TEXT);
+  if (exception == null) {
+    sampleResult.setResponseCodeOK();
+    sampleResult.setResponseMessage("OK");
+  }
+ else {
+    sampleResult.setResponseCode("500");
+    sampleResult.setResponseMessage(exception.toString());
+  }
+  boolean isSuccessful=exception == null;
+  if (!StringUtils.isEmpty(readResponse) && STATUS_PREFIX.length() > 0) {
+    int i=readResponse.indexOf(STATUS_PREFIX);
+    int j=readResponse.indexOf(STATUS_SUFFIX,i + STATUS_PREFIX.length());
+    if (i != -1 && j > i) {
+      String rc=readResponse.substring(i + STATUS_PREFIX.length(),j);
+      sampleResult.setResponseCode(rc);
+      isSuccessful=isSuccessful && checkResponseCode(rc);
+      if (haveStatusProps) {
+        sampleResult.setResponseMessage(statusProps.getProperty(rc,"Status code not found in properties"));
+      }
+ else {
+        sampleResult.setResponseMessage("No status property file");
+      }
+    }
+ else {
+      sampleResult.setResponseCode("999");
+      sampleResult.setResponseMessage("Status value not found");
+      isSuccessful=false;
+    }
+  }
+  return isSuccessful;
+}

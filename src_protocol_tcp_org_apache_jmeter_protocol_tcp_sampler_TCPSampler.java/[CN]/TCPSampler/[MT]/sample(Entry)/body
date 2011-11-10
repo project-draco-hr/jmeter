@@ -26,45 +26,17 @@
       res.setSamplerData(req);
       protocolHandler.write(os,req);
       String in=protocolHandler.read(is);
-      res.setResponseData(in,null);
-      res.setDataType(SampleResult.TEXT);
-      res.setResponseCodeOK();
-      res.setResponseMessage("OK");
-      isSuccessful=true;
-      if (STATUS_PREFIX.length() > 0) {
-        int i=in.indexOf(STATUS_PREFIX);
-        int j=in.indexOf(STATUS_SUFFIX,i + STATUS_PREFIX.length());
-        if (i != -1 && j > i) {
-          String rc=in.substring(i + STATUS_PREFIX.length(),j);
-          res.setResponseCode(rc);
-          isSuccessful=checkResponseCode(rc);
-          if (haveStatusProps) {
-            res.setResponseMessage(statusProps.getProperty(rc,"Status code not found in properties"));
-          }
- else {
-            res.setResponseMessage("No status property file");
-          }
-        }
- else {
-          res.setResponseCode("999");
-          res.setResponseMessage("Status value not found");
-          isSuccessful=false;
-        }
-      }
+      isSuccessful=setupSampleResult(res,in,null);
     }
   }
- catch (  IOException ex) {
-    log.debug("",ex);
-    isSuccessful=false;
-    res.setResponseCode("500");
-    res.setResponseMessage(ex.toString());
+ catch (  ReadException ex) {
+    log.error("",ex);
+    isSuccessful=setupSampleResult(res,ex.getPartialResponse(),ex);
     closeSocket();
   }
 catch (  Exception ex) {
     log.error("",ex);
-    isSuccessful=false;
-    res.setResponseCode("500");
-    res.setResponseMessage(ex.toString());
+    isSuccessful=setupSampleResult(res,"",ex);
     closeSocket();
   }
  finally {
