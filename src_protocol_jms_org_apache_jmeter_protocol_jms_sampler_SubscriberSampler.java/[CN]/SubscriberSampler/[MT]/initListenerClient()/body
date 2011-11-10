@@ -1,4 +1,5 @@
 {
   SUBSCRIBER=new ReceiveSubscriber(0,getUseJNDIPropertiesAsBoolean(),getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),getDurableSubscriptionId(),getClientId(),getJmsSelector(),isUseAuth(),getUsername(),getPassword());
+  setupSeparator();
   log.debug("SubscriberSampler.initListenerClient called");
 }

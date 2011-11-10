@@ -19,7 +19,10 @@
         }
       }
       Utils.messageProperties(propBuffer,msg);
-      propBuffer.append(separator);
+      if (!StringUtils.isEmpty(separator)) {
+        propBuffer.append(separator);
+        buffer.append(separator);
+      }
     }
  catch (    JMSException e) {
       log.error(e.getMessage());
