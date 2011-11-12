@@ -1,9 +1,13 @@
 {
+  if (filesOpen()) {
+    throw new IOException("Files are still open, cannot change base directory");
+  }
+  files.clear();
   if (basedir != null) {
-    File base=new File(basedir);
+    base=new File(basedir);
     if (!base.isDirectory()) {
       base=base.getParentFile();
     }
-    setBase(base);
+    log.info("Set new base='" + base + "'");
   }
 }

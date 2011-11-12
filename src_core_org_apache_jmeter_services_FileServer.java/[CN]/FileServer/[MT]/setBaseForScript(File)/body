@@ -2,7 +2,11 @@
   if (scriptPath == null) {
     throw new IllegalArgumentException("scriptPath must not be null");
   }
-  File parentFolder=scriptPath.getAbsoluteFile().getParentFile();
-  setBase(parentFolder);
+  if (filesOpen()) {
+    throw new IllegalStateException("Files are still open, cannot change base directory");
+  }
+  files.clear();
   setScriptName(scriptPath.getName());
+  base=scriptPath.getAbsoluteFile().getParentFile();
+  log.info("Set new base '" + base + "'");
 }
