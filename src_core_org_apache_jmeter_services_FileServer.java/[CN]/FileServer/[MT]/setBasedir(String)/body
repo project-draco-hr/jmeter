@@ -1,6 +1,6 @@
 {
   if (filesOpen()) {
-    throw new IOException("Files are still open, cannot change base directory");
+    throw new IllegalStateException("Files are still open, cannot change base directory");
   }
   files.clear();
   if (basedir != null) {

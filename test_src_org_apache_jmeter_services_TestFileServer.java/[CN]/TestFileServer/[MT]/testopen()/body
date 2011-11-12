@@ -48,9 +48,9 @@
   assertEquals("a1,b1,c1,d1",FS.readLine(infile));
   try {
     FS.setBasedir("x");
-    fail("Expected IOException");
+    fail("Expected IllegalStateException");
   }
- catch (  IOException ignored) {
+ catch (  IllegalStateException ignored) {
   }
   FS.closeFile(infile);
   FS.setBasedir("y");

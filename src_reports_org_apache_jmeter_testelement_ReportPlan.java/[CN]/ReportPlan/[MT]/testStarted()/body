@@ -3,7 +3,7 @@
     try {
       FileServer.getFileServer().setBasedir(FileServer.getFileServer().getBaseDir() + getBasedir());
     }
- catch (    IOException e) {
+ catch (    IllegalStateException e) {
       log.error("Failed to set file server base dir with " + getBasedir(),e);
     }
   }
