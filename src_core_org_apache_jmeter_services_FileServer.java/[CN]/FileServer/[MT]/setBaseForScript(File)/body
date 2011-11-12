@@ -2,8 +2,6 @@
   if (scriptPath == null) {
     throw new IllegalArgumentException("scriptPath must not be null");
   }
-  checkForOpenFiles();
   setScriptName(scriptPath.getName());
-  base=scriptPath.getAbsoluteFile().getParentFile();
-  log.info("Set new base '" + base + "'");
+  setBase(scriptPath.getAbsoluteFile().getParentFile());
 }
