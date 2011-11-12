@@ -2,10 +2,7 @@
   if (jmxBase == null) {
     throw new IllegalArgumentException("jmxBase must not be null");
   }
-  if (filesOpen()) {
-    throw new IllegalStateException("Files are still open, cannot change base directory");
-  }
-  files.clear();
+  checkForOpenFiles();
   base=jmxBase;
   log.info("Set new base='" + base + "'");
 }

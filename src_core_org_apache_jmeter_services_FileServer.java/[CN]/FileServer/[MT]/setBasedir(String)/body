@@ -1,8 +1,5 @@
 {
-  if (filesOpen()) {
-    throw new IllegalStateException("Files are still open, cannot change base directory");
-  }
-  files.clear();
+  checkForOpenFiles();
   if (basedir != null) {
     base=new File(basedir);
     if (!base.isDirectory()) {
