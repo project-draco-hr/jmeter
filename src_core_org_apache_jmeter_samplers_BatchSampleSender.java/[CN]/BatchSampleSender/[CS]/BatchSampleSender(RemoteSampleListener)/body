@@ -1,3 +1,4 @@
 {
   this.listener=listener;
+  log.info("Using batching for this run." + " Thresholds: num=" + getNumSamplesThreshold() + ", time="+ getTimeThresholdMs());
 }

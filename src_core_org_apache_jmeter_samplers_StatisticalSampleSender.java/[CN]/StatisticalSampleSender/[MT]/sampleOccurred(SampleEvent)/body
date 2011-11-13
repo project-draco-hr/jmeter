@@ -1,25 +1,28 @@
 {
+  int numSamplesThreshold=getNumSamplesThreshold();
+  long timeThresholdMs=getTimeThresholdMs();
+  boolean keyOnThreadName=getKeyOnThreadName();
 synchronized (sampleStore) {
-    String key=StatisticalSampleResult.getKey(e,KEY_ON_THREADNAME);
+    String key=StatisticalSampleResult.getKey(e,keyOnThreadName);
     StatisticalSampleResult statResult=sampleTable.get(key);
     if (statResult == null) {
-      statResult=new StatisticalSampleResult(e.getResult(),KEY_ON_THREADNAME);
+      statResult=new StatisticalSampleResult(e.getResult(),keyOnThreadName);
       sampleTable.put(key,statResult);
       sampleStore.add(new SampleEvent(statResult,e.getThreadGroup()));
     }
     statResult.add(e.getResult());
     sampleCount++;
     boolean sendNow=false;
-    if (NUM_SAMPLES_THRESHOLD != -1) {
-      if (sampleCount >= NUM_SAMPLES_THRESHOLD) {
+    if (numSamplesThreshold != -1) {
+      if (sampleCount >= numSamplesThreshold) {
         sendNow=true;
       }
     }
     long now=0;
-    if (TIME_THRESHOLD_MS != -1) {
+    if (timeThresholdMs != -1) {
       now=System.currentTimeMillis();
       if (batchSendTime == -1) {
-        this.batchSendTime=now + TIME_THRESHOLD_MS;
+        this.batchSendTime=now + timeThresholdMs;
       }
       if (batchSendTime < now) {
         sendNow=true;
@@ -31,8 +34,8 @@ synchronized (sampleStore) {
           log.debug("Firing sample");
         }
         sendBatch();
-        if (TIME_THRESHOLD_MS != -1) {
-          this.batchSendTime=now + TIME_THRESHOLD_MS;
+        if (timeThresholdMs != -1) {
+          this.batchSendTime=now + timeThresholdMs;
         }
       }
  catch (      RemoteException err) {

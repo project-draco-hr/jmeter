@@ -1,3 +1,4 @@
 {
   this.listener=listener;
+  log.info("Using statistical sampling for this run." + " Thresholds: num=" + getNumSamplesThreshold() + ", time="+ getTimeThresholdMs()+ ". Key uses ThreadName: "+ getKeyOnThreadName());
 }

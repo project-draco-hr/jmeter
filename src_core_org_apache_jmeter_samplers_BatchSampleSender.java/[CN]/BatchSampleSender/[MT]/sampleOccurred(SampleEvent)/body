@@ -1,18 +1,20 @@
 {
+  int numSamplesThreshold=getNumSamplesThreshold();
+  long timeThresholdMs=getTimeThresholdMs();
 synchronized (sampleStore) {
     sampleStore.add(e);
     final int sampleCount=sampleStore.size();
     boolean sendNow=false;
-    if (NUM_SAMPLES_THRESHOLD != -1) {
-      if (sampleCount >= NUM_SAMPLES_THRESHOLD) {
+    if (numSamplesThreshold != -1) {
+      if (sampleCount >= numSamplesThreshold) {
         sendNow=true;
       }
     }
     long now=0;
-    if (TIME_THRESHOLD_MS != -1) {
+    if (timeThresholdMs != -1) {
       now=System.currentTimeMillis();
       if (batchSendTime == -1) {
-        this.batchSendTime=now + TIME_THRESHOLD_MS;
+        this.batchSendTime=now + timeThresholdMs;
       }
       if (batchSendTime < now && sampleCount > 0) {
         sendNow=true;
@@ -23,8 +25,8 @@ synchronized (sampleStore) {
         log.debug("Firing sample");
         listener.processBatch(sampleStore);
         sampleStore.clear();
-        if (TIME_THRESHOLD_MS != -1) {
-          this.batchSendTime=now + TIME_THRESHOLD_MS;
+        if (timeThresholdMs != -1) {
+          this.batchSendTime=now + timeThresholdMs;
         }
       }
  catch (      RemoteException err) {
