@@ -5,6 +5,7 @@
     JMeterContextService.endTest();
   }
   menuBar.setRunning(false,host);
+  toolbar.setTestStarted(false);
   if (stoppingMessage != null) {
     stoppingMessage.dispose();
     stoppingMessage=null;
