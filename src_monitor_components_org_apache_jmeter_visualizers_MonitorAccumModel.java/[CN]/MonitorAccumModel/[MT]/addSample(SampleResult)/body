@@ -12,9 +12,6 @@
         this.addSample(mo);
         notifyListeners(mo);
       }
- else {
-        noResponse(surl);
-      }
     }
  else     if (((HTTPSampleResult)sample).isMonitor()) {
       noResponse(surl);
