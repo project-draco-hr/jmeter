@@ -1,6 +1,5 @@
 {
-  StrBuilder sb=new StrBuilder();
-  sb.setNullText("null");
+  StringBuilder sb=new StringBuilder();
   sb.append("ftp://");
   sb.append(getServer());
   String port=getPort();
