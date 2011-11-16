@@ -1,5 +1,5 @@
 {
-  StrBuilder sb=new StrBuilder();
+  StringBuilder sb=new StringBuilder();
   int updateCount=0;
   if (!result) {
     updateCount=pstmt.getUpdateCount();

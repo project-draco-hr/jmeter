@@ -1,6 +1,6 @@
 {
   ResultSetMetaData meta=rs.getMetaData();
-  StrBuilder sb=new StrBuilder();
+  StringBuilder sb=new StringBuilder();
   int numColumns=meta.getColumnCount();
   for (int i=1; i <= numColumns; i++) {
     sb.append(meta.getColumnName(i));

@@ -1,5 +1,5 @@
 {
-  StrBuilder sb=new StrBuilder(80);
+  StringBuilder sb=new StringBuilder(80);
   sb.append("[");
   sb.append(getQueryType());
   sb.append("] ");

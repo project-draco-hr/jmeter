@@ -15,7 +15,7 @@
   String variable=getVariableName();
   if (variable.length() > 0) {
     if (num > 0) {
-      StrBuilder sb=new StrBuilder(variable);
+      StringBuilder sb=new StringBuilder(variable);
       sb.append(num);
       variable=sb.toString();
     }
