@@ -1,5 +1,5 @@
 {
-  StrBuilder sb=new StrBuilder(values.length);
+  StringBuilder sb=new StringBuilder(values.length);
   for (int i=0; i < values.length; i++) {
     String numberString=((CompoundVariable)values[i]).execute().trim();
     long value=0;
