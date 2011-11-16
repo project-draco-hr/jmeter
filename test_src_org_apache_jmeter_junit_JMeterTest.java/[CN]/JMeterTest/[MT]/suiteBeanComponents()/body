@@ -11,7 +11,7 @@
       suite.addTest(ts);
     }
  catch (    IllegalArgumentException e) {
-      System.out.println("Cannot create test for " + c.getName() + " "+ e);
+      System.out.println("o.a.j.junit.JMeterTest Cannot create test for " + c.getName() + " "+ e);
       e.printStackTrace(System.out);
     }
   }
