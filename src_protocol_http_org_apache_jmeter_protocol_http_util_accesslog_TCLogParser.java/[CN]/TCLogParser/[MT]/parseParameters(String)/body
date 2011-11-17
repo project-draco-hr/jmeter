@@ -1,5 +1,5 @@
 {
-  Vector<String> parsedParams=new Vector<String>();
+  List<String> parsedParams=new ArrayList<String>();
   StringTokenizer paramtokens=this.tokenize(parameters,"&");
   while (paramtokens.hasMoreElements()) {
     parsedParams.add(paramtokens.nextToken());
