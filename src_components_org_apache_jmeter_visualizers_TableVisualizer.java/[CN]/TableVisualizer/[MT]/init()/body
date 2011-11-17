@@ -11,6 +11,7 @@
   tableScrollPanel=new JScrollPane(table);
   tableScrollPanel.setViewportBorder(BorderFactory.createEmptyBorder(2,2,2,2));
   autoscroll=new JCheckBox(JMeterUtils.getResString("view_results_autoscroll"));
+  childSamples=new JCheckBox(JMeterUtils.getResString("view_results_childsamples"));
   JPanel dataPanel=new JPanel();
   JLabel dataLabel=new JLabel(JMeterUtils.getResString("graph_results_latest_sample"));
   dataLabel.setForeground(Color.black);
@@ -43,7 +44,7 @@
   deviationPanel.add(deviationField);
   JPanel noSamplesPanel=new JPanel();
   JLabel noSamplesLabel=new JLabel(JMeterUtils.getResString("graph_results_no_samples"));
-  noSamplesField=new JTextField(10);
+  noSamplesField=new JTextField(8);
   noSamplesField.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
   noSamplesField.setEditable(false);
   noSamplesField.setForeground(Color.black);
@@ -59,7 +60,10 @@
   tableInfoPanel.add(deviationPanel);
   JPanel tableControlsPanel=new JPanel(new BorderLayout());
   tableControlsPanel.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
-  tableControlsPanel.add(autoscroll,BorderLayout.WEST);
+  JPanel jp=new HorizontalPanel();
+  jp.add(autoscroll);
+  jp.add(childSamples);
+  tableControlsPanel.add(jp,BorderLayout.WEST);
   tableControlsPanel.add(tableInfoPanel,BorderLayout.CENTER);
   JPanel tablePanel=new JPanel();
   tablePanel.setLayout(new BorderLayout());

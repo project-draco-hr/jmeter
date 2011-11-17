@@ -1,4 +1,13 @@
 {
+  if (childSamples.isSelected()) {
+    SampleResult[] subResults=res.getSubResults();
+    if (subResults.length > 0) {
+      for (      SampleResult sr : subResults) {
+        add(sr);
+      }
+      return;
+    }
+  }
   currentData=res.getTime();
 synchronized (calc) {
     calc.addValue(currentData);
