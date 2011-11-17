@@ -1,10 +1,10 @@
 {
   float minValue=9999999;
   for (int t=0; t < keys.size(); t++) {
-    String key=keys.elementAt(t);
-    Vector<Integer> temp=data.get(key);
+    String key=keys.get(t);
+    List<Integer> temp=data.get(key);
     for (int j=0; j < temp.size(); j++) {
-      float f=temp.elementAt(j).intValue();
+      float f=temp.get(j).intValue();
       minValue=Math.min(f,minValue);
     }
   }

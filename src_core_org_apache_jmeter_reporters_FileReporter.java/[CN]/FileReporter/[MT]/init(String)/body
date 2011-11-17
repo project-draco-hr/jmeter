@@ -26,12 +26,12 @@
  else {
           value=Integer.valueOf(line.substring(splitter + 1));
         }
-        Vector<Integer> v=getData(key);
+        List<Integer> v=getData(key);
         if (v == null) {
-          v=new Vector<Integer>();
+          v=Collections.synchronizedList(new ArrayList<Integer>());
           this.data.put(key,v);
         }
-        v.addElement(value);
+        v.add(value);
       }
  catch (      NumberFormatException nfe) {
         log.error("This line could not be parsed: " + line,nfe);
@@ -42,7 +42,7 @@ catch (      Exception e) {
     }
   }
   finally {
-    if (reader != null)     reader.close();
+    JOrphanUtils.closeQuietly(reader);
   }
   showPanel();
 }

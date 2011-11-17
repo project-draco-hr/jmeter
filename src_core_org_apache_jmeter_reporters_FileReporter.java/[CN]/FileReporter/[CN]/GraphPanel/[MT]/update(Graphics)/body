@@ -19,13 +19,13 @@
   }
   int start=0;
   for (int t=0; t < keys.size(); t++) {
-    String key=keys.elementAt(t);
-    Vector<Integer> v=data.get(key);
+    String key=keys.get(t);
+    List<Integer> v=data.get(key);
     start=0;
-    g.setColor(colorList.elementAt(t % colorList.size()));
+    g.setColor(colorList.get(t % colorList.size()));
     for (int i=0; i < v.size() - 1; i++) {
-      float y1=v.elementAt(i).intValue();
-      float y2=v.elementAt(i + 1).intValue();
+      float y1=v.get(i).intValue();
+      float y2=v.get(i + 1).intValue();
       y1=y1 - minValue;
       y2=y2 - minValue;
       int Y1=Math.round((height * y1) / (maxValue - minValue));

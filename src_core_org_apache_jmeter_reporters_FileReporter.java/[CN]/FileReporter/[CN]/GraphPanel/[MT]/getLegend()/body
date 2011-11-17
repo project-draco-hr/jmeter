@@ -8,9 +8,9 @@
   c.gridwidth=1;
   c.gridheight=1;
   for (int t=0; t < keys.size(); t++) {
-    String key=keys.elementAt(t);
+    String key=keys.get(t);
     JLabel colorSwatch=new JLabel("  ");
-    colorSwatch.setBackground(colorList.elementAt(t % colorList.size()));
+    colorSwatch.setBackground(colorList.get(t % colorList.size()));
     colorSwatch.setOpaque(true);
     c.gridx=1;
     c.gridy=t;
