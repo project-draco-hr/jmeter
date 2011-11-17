@@ -1,15 +1,15 @@
 {
-  Vector<Integer> removeIndices=new Vector<Integer>();
+  List<Integer> removeIndices=new ArrayList<Integer>();
   for (int i=getHeaders().size() - 1; i >= 0; i--) {
     Header header=(Header)getHeaders().get(i).getObjectValue();
     if (header == null) {
       continue;
     }
     if (header.getName().equalsIgnoreCase(name)) {
-      removeIndices.addElement(Integer.valueOf(i));
+      removeIndices.add(Integer.valueOf(i));
     }
   }
-  for (Enumeration<Integer> e=removeIndices.elements(); e.hasMoreElements(); ) {
-    getHeaders().remove(e.nextElement().intValue());
+  for (  Integer indice : removeIndices) {
+    getHeaders().remove(indice.intValue());
   }
 }
