@@ -18,16 +18,16 @@
       splittee=splittee.substring(0,splittee.length() - splitLength);
     }
   }
-  Vector<String> returns=new Vector<String>();
+  List<String> returns=new ArrayList<String>();
   final int length=splittee.length();
   int start=0;
   spot=0;
   while (start < length && (spot=splittee.indexOf(splitChar,start)) > -1) {
     if (spot > 0) {
-      returns.addElement(splittee.substring(start,spot));
+      returns.add(splittee.substring(start,spot));
     }
  else {
-      returns.addElement(EMPTY_ELEMENT);
+      returns.add(EMPTY_ELEMENT);
     }
     start=spot + splitLength;
   }
@@ -35,9 +35,7 @@
     returns.add(splittee.substring(start));
   }
  else   if (spot == length - splitLength) {
-    returns.addElement(EMPTY_ELEMENT);
+    returns.add(EMPTY_ELEMENT);
   }
-  String[] values=new String[returns.size()];
-  returns.copyInto(values);
-  return values;
+  return returns.toArray(new String[returns.size()]);
 }
