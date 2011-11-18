@@ -5,6 +5,7 @@
   }
   menu.add(makeMenuItemRes("copy",ActionNames.COPY,KeyStrokes.COPY));
   menu.add(makeMenuItemRes("paste",ActionNames.PASTE,KeyStrokes.PASTE));
+  menu.add(makeMenuItemRes("duplicate",ActionNames.DUPLICATE,KeyStrokes.DUPLICATE));
   menu.add(makeMenuItemRes("reset_gui",ActionNames.RESET_GUI));
   if (removable) {
     menu.add(makeMenuItemRes("remove",ActionNames.REMOVE,KeyStrokes.REMOVE));
