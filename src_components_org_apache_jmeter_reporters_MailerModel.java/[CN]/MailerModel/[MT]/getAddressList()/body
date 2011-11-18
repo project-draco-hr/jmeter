@@ -1,17 +1,17 @@
 {
   String addressees=getToAddress();
-  Vector<String> addressVector=new Vector<String>();
+  List<String> addressList=new ArrayList<String>();
   if (addressees != null) {
     StringTokenizer next=new StringTokenizer(addressees,",");
     while (next.hasMoreTokens()) {
       String theToken=next.nextToken().trim();
       if (theToken.indexOf("@") > 0) {
-        addressVector.addElement(theToken);
+        addressList.add(theToken);
       }
  else {
         log.warn("Ignored unexpected e-mail address: " + theToken);
       }
     }
   }
-  return addressVector;
+  return addressList;
 }

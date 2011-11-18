@@ -7,10 +7,10 @@
     successCount++;
   }
   if (sendMails && (failureCount > getFailureLimit()) && !siteDown&& !failureMsgSent) {
-    Vector<String> addressVector=getAddressVector();
-    if (addressVector.size() != 0) {
+    List<String> addressList=getAddressList();
+    if (addressList.size() != 0) {
       try {
-        sendMail(getFromAddress(),addressVector,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost());
+        sendMail(getFromAddress(),addressList,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost());
       }
  catch (      Exception e) {
         log.error("Problem sending mail: " + e);
@@ -23,9 +23,9 @@
   }
   if (sendMails && siteDown && (sample.getTime() != -1)&& !successMsgSent) {
     if (successCount > getSuccessLimit()) {
-      Vector<String> addressVector=getAddressVector();
+      List<String> addressList=getAddressList();
       try {
-        sendMail(getFromAddress(),addressVector,getSuccessSubject(),"URL Restarted: " + sample.getSampleLabel(),getSmtpHost());
+        sendMail(getFromAddress(),addressList,getSuccessSubject(),"URL Restarted: " + sample.getSampleLabel(),getSmtpHost());
       }
  catch (      Exception e) {
         log.error("Problem sending mail",e);
