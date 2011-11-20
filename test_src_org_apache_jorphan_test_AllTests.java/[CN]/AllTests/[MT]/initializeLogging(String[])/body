@@ -1,9 +1,11 @@
 {
   if (args.length >= 2) {
     Properties props=new Properties();
+    InputStream inputStream=null;
     try {
       System.out.println("Setting up logging props using file: " + args[1]);
-      props.load(new FileInputStream(args[1]));
+      inputStream=new FileInputStream(args[1]);
+      props.load(inputStream);
       LoggingManager.initializeLogging(props);
     }
  catch (    FileNotFoundException e) {
@@ -11,6 +13,9 @@
     }
 catch (    IOException e) {
       System.out.println(e.getLocalizedMessage());
+    }
+ finally {
+      JOrphanUtils.closeQuietly(inputStream);
     }
   }
 }
