@@ -1,37 +1,3 @@
 {
-  String val=null;
-  XObject xObject=XPathAPI.eval(d,query);
-  final int objectType=xObject.getType();
-  if (objectType == XObject.CLASS_NODESET) {
-    NodeList matches=xObject.nodelist();
-    int length=matches.getLength();
-    for (int i=0; i < length; i++) {
-      Node match=matches.item(i);
-      if (match instanceof Element) {
-        if (getFragment()) {
-          val=getValueForNode(match);
-        }
- else {
-          final Node firstChild=match.getFirstChild();
-          if (firstChild != null) {
-            val=firstChild.getNodeValue();
-          }
- else {
-            val=match.getNodeValue();
-          }
-        }
-      }
- else {
-        val=match.getNodeValue();
-      }
-      matchStrings.add(val);
-    }
-  }
- else   if (objectType == XObject.CLASS_NULL || objectType == XObject.CLASS_UNKNOWN || objectType == XObject.CLASS_UNRESOLVEDVARIABLE) {
-    log.warn("Unexpected object type: " + xObject.getTypeString() + " returned for: "+ getXPathQuery());
-  }
- else {
-    val=xObject.toString();
-    matchStrings.add(val);
-  }
+  XPathUtil.putValuesForXPathInList(d,query,matchStrings,getFragment());
 }

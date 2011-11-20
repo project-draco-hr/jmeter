@@ -4,7 +4,7 @@
   try {
     DocumentBuilder builder=DocumentBuilderFactory.newInstance().newDocumentBuilder();
     fis=new FileInputStream(fileName);
-    nl=XPathAPI.selectNodeList(builder.parse(fis),xpath);
+    nl=XPathUtil.selectNodeList(builder.parse(fis),xpath);
     log.debug("found " + nl.getLength());
   }
  catch (  FileNotFoundException e) {

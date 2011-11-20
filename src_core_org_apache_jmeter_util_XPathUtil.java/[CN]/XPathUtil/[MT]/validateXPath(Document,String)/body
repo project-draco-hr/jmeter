@@ -1,0 +1,5 @@
+{
+  if (XPathAPI.eval(document,xpathString) == null) {
+    throw new IllegalArgumentException("xpath eval of '" + xpathString + "' was null");
+  }
+}

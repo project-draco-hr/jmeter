@@ -7,13 +7,14 @@
       Element el=testDoc.createElement("root");
       testDoc.appendChild(el);
     }
-    if (XPathAPI.eval(testDoc,xpathString) == null) {
-      ret="xpath eval was null";
-      log.warn(ret + " " + xpathString);
-      success=false;
-    }
+    XPathUtil.validateXPath(testDoc,xpathString);
   }
- catch (  ParserConfigurationException e) {
+ catch (  IllegalArgumentException e) {
+    log.warn(e.getLocalizedMessage());
+    success=false;
+    ret=e.getLocalizedMessage();
+  }
+catch (  ParserConfigurationException e) {
     success=false;
     ret=e.getLocalizedMessage();
   }
