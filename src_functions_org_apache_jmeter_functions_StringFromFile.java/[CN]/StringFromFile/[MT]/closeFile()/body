@@ -8,6 +8,6 @@
     myBread.close();
   }
  catch (  IOException e) {
-    log.error("closeFile() error: " + e.toString());
+    log.error("closeFile() error: " + e.toString(),e);
   }
 }
