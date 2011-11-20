@@ -1,3 +1,4 @@
 {
-  return XPathAPI.selectNodeList(document,xPathExpression);
+  XObject xObject=XPathAPI.eval(document,xPathExpression,getPrefixResolver(document));
+  return xObject.nodelist();
 }

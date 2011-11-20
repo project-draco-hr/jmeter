@@ -1,5 +1,5 @@
 {
-  if (XPathAPI.eval(document,xpathString) == null) {
+  if (XPathAPI.eval(document,xpathString,getPrefixResolver(document)) == null) {
     throw new IllegalArgumentException("xpath eval of '" + xpathString + "' was null");
   }
 }

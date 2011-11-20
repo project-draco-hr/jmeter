@@ -1,0 +1,9 @@
+{
+  String namespace=NAMESPACE_MAP.get(prefix);
+  if (namespace == null) {
+    return super.getNamespaceForPrefix(prefix,namespaceContext);
+  }
+ else {
+    return namespace;
+  }
+}

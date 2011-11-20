@@ -1,6 +1,6 @@
 {
   String val=null;
-  XObject xObject=XPathAPI.eval(document,xPathQuery);
+  XObject xObject=XPathAPI.eval(document,xPathQuery,getPrefixResolver(document));
   final int objectType=xObject.getType();
   if (objectType == XObject.CLASS_NODESET) {
     NodeList matches=xObject.nodelist();

@@ -1,6 +1,6 @@
 {
   try {
-    XObject xObject=XPathAPI.eval(doc,xPathExpression);
+    XObject xObject=XPathAPI.eval(doc,xPathExpression,getPrefixResolver(doc));
 switch (xObject.getType()) {
 case XObject.CLASS_NODESET:
       NodeList nodeList=xObject.nodelist();
