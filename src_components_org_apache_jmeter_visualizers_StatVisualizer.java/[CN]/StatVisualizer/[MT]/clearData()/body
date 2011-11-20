@@ -1,5 +1,5 @@
 {
-synchronized (tableRows) {
+synchronized (lock) {
     model.clearData();
     tableRows.clear();
     tableRows.put(TOTAL_ROW_LABEL,new SamplingStatCalculator(TOTAL_ROW_LABEL));

@@ -1,7 +1,7 @@
 {
   SamplingStatCalculator row=null;
   final String sampleLabel=res.getSampleLabel();
-synchronized (tableRows) {
+synchronized (lock) {
     row=tableRows.get(sampleLabel);
     if (row == null) {
       row=new SamplingStatCalculator(sampleLabel);

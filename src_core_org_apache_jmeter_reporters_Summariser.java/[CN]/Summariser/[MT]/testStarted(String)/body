@@ -1,5 +1,5 @@
 {
-synchronized (accumulators) {
+synchronized (lock) {
     myName=getName();
     myTotals=accumulators.get(myName);
     if (myTotals == null) {
