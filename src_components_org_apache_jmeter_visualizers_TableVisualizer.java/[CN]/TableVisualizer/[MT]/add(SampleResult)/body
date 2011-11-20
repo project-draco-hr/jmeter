@@ -8,14 +8,13 @@
       return;
     }
   }
-  currentData=res.getTime();
 synchronized (calc) {
-    calc.addValue(currentData);
+    calc.addValue(res.getTime());
     int count=calc.getCount();
     Sample newS=new Sample(res.getSampleLabel(),res.getTime(),0,0,0,0,0,0,res.isSuccessful(),count,res.getEndTime(),res.getBytes(),res.getThreadName());
     model.addRow(newS);
   }
-  updateTextFields();
+  updateTextFields(res);
   if (autoscroll.isSelected()) {
     table.scrollRectToVisible(table.getCellRect(table.getRowCount() - 1,0,true));
   }
