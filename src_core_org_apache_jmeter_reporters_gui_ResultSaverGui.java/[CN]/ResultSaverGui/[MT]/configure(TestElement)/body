@@ -6,4 +6,6 @@
   skipAutoNumber.setSelected(el.getPropertyAsBoolean(ResultSaver.SKIP_AUTO_NUMBER));
   skipSuffix.setSelected(el.getPropertyAsBoolean(ResultSaver.SKIP_SUFFIX));
   variableName.setText(el.getPropertyAsString(ResultSaver.VARIABLE_NAME,""));
+  addTimestamp.setSelected(el.getPropertyAsBoolean(ResultSaver.ADD_TIMESTAMP));
+  numberPadLength.setText(el.getPropertyAsString(ResultSaver.NUMBER_PAD_LENGTH,""));
 }

@@ -1,7 +1,12 @@
 {
   StringBuilder sb=new StringBuilder(FileServer.resolveBaseRelativeName(getFilename()));
+  sb.append(timeStamp);
   if (!skipAutoNumber) {
-    sb.append(nextNumber());
+    String number=Long.toString(nextNumber());
+    for (int i=number.length(); i < numberPadLength; i++) {
+      sb.append('0');
+    }
+    sb.append(number);
   }
   if (!skipSuffix) {
     sb.append('.');

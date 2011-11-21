@@ -13,5 +13,9 @@
   box.add(skipAutoNumber);
   skipSuffix=new JCheckBox(JMeterUtils.getResString("resultsaver_skipsuffix"));
   box.add(skipSuffix);
+  addTimestamp=new JCheckBox(JMeterUtils.getResString("resultsaver_addtimestamp"));
+  box.add(addTimestamp);
+  numberPadLength=new JLabeledTextField(JMeterUtils.getResString("resultsaver_numberpadlen"));
+  box.add(numberPadLength);
   add(box,BorderLayout.NORTH);
 }
