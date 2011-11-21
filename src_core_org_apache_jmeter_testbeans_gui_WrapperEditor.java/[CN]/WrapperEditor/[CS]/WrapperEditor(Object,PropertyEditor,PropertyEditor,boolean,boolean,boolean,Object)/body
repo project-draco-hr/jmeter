@@ -1,4 +1,9 @@
 {
   super(source);
-  initialize(typeEditor,guiEditor,acceptsNull,acceptsExpressions,acceptsOther,defaultValue);
+  this.typeEditor=typeEditor;
+  this.guiEditor=guiEditor;
+  this.acceptsNull=acceptsNull;
+  this.acceptsExpressions=acceptsExpressions;
+  this.acceptsOther=acceptsOther;
+  initialize(defaultValue);
 }
