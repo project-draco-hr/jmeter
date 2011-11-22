@@ -10,6 +10,9 @@
  else   if (jprop instanceof MultiProperty) {
     value=unwrapCollection((MultiProperty)jprop,(String)desc.getValue(TableEditor.CLASSNAME));
   }
+ else   if (jprop instanceof NullProperty && Boolean.FALSE.equals(desc.getValue(GenericTestBeanCustomizer.NOT_UNDEFINED))) {
+    value=null;
+  }
  else   value=Converter.convert(jprop.getStringValue(),type);
   return value;
 }
