@@ -1,3 +1,5 @@
 {
-  temporaryFile.delete();
+  if (!temporaryFile.delete()) {
+    fail("Could not delete file:" + temporaryFile.getAbsolutePath());
+  }
 }
