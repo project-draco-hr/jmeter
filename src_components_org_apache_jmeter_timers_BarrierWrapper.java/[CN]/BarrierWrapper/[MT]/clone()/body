@@ -1,0 +1,10 @@
+{
+  BarrierWrapper barrierWrapper=null;
+  try {
+    barrierWrapper=(BarrierWrapper)super.clone();
+    barrierWrapper.barrier=this.barrier;
+  }
+ catch (  CloneNotSupportedException e) {
+  }
+  return barrierWrapper;
+}

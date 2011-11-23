@@ -1,6 +1,5 @@
 {
   SyncTimer newTimer=(SyncTimer)super.clone();
-  newTimer.timerCounter=timerCounter;
-  newTimer.sync=sync;
+  newTimer.barrier=barrier;
   return newTimer;
 }
