@@ -13,7 +13,9 @@
     @Override protected void tearDown() throws Exception {
       httpServer.stopServer();
       httpServer=null;
-      temporaryFile.delete();
+      if (!temporaryFile.delete()) {
+        fail("Could not delete file:" + temporaryFile.getAbsolutePath());
+      }
     }
   }
 ;
