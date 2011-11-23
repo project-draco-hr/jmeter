@@ -1,6 +1,8 @@
 {
   File output=new File(getTargetDirectory());
   if (output.exists() && output.isDirectory()) {
-    output.renameTo(new File("archive." + getDayString()));
+    if (!output.renameTo(new File("archive." + getDayString()))) {
+      throw new IllegalStateException("Could not rename directory:" + output.getAbsolutePath() + " to archive."+ getDayString());
+    }
   }
 }
