@@ -11,7 +11,7 @@
     if (value == null) {
       Object valueNotUnDefined=desc.getValue(GenericTestBeanCustomizer.NOT_UNDEFINED);
       if (Boolean.TRUE.equals(valueNotUnDefined)) {
-        setPropertyInElement(element,name,desc.getValue(BeanInfoSupport.DEFAULT));
+        setPropertyInElement(element,name,desc.getValue(GenericTestBeanCustomizer.DEFAULT));
       }
  else {
         element.removeProperty(name);
