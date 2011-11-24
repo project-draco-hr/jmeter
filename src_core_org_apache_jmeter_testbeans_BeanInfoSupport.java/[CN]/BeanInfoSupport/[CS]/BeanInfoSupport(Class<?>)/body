@@ -1,10 +1,10 @@
 {
+  this.beanClass=beanClass;
   try {
     rootBeanInfo=Introspector.getBeanInfo(beanClass,Introspector.IGNORE_IMMEDIATE_BEANINFO);
   }
  catch (  IntrospectionException e) {
-    log.error("Can't introspect.",e);
-    throw new Error(e.toString());
+    throw new Error("Can't introspect " + beanClass,e);
   }
   beanDescriptor=rootBeanInfo.getBeanDescriptor();
   try {
@@ -14,7 +14,7 @@
       getBeanDescriptor().setDisplayName(resourceBundle.getString("displayName"));
     }
  catch (    MissingResourceException e) {
-      log.debug("Localized display name not available for bean " + beanClass.getName());
+      log.debug("Localized display name not available for bean " + beanClass);
     }
     PropertyDescriptor[] properties=getPropertyDescriptors();
     for (int i=0; i < properties.length; i++) {
@@ -23,13 +23,13 @@
         properties[i].setDisplayName(resourceBundle.getString(name + ".displayName"));
       }
  catch (      MissingResourceException e) {
-        log.debug("Localized display name not available for property " + name);
+        log.debug("Localized display name not available for property " + name + " in "+ beanClass);
       }
       try {
         properties[i].setShortDescription(resourceBundle.getString(name + ".shortDescription"));
       }
  catch (      MissingResourceException e) {
-        log.debug("Localized short description not available for property " + name);
+        log.debug("Localized short description not available for property " + name + " in "+ beanClass);
       }
     }
   }
@@ -37,6 +37,6 @@
     log.warn("Localized strings not available for bean " + beanClass,e);
   }
 catch (  Exception e) {
-    log.warn("Something bad happened when loading bean info",e);
+    log.warn("Something bad happened when loading bean info for bean " + beanClass,e);
   }
 }
