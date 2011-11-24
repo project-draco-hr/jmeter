@@ -1,0 +1,8 @@
+{
+  if (getGroupSize() == 0) {
+    this.barrier=new BarrierWrapper();
+  }
+ else {
+    this.barrier=new BarrierWrapper(getGroupSize());
+  }
+}
