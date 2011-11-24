@@ -1,6 +1,0 @@
-{
-  int numThreadsInGroup=JMeterContextService.getContext().getThreadGroup().getNumThreads();
-  if (getGroupSize() == 0) {
-    this.barrier.setup(numThreadsInGroup);
-  }
-}
