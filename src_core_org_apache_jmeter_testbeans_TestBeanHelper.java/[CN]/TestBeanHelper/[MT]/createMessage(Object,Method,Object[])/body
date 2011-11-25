@@ -1,0 +1,16 @@
+{
+  StringBuilder sb=new StringBuilder();
+  sb.append("This should never happen. Tried to invoke:\n");
+  sb.append(invokee.getClass().getName());
+  sb.append("#");
+  sb.append(method.getName());
+  sb.append("(");
+  for (  Object o : params) {
+    sb.append(o.getClass().getSimpleName());
+    sb.append(' ');
+    sb.append(o);
+    sb.append(' ');
+  }
+  sb.append(")");
+  return sb.toString();
+}
