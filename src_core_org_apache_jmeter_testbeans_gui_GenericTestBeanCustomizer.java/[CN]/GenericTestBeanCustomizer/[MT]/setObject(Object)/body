@@ -1,9 +1,9 @@
 {
   propertyMap=(Map<String,Object>)map;
   if (propertyMap.size() == 0) {
-    for (int i=0; i < editors.length; i++) {
-      Object value=descriptors[i].getValue(DEFAULT);
-      String name=descriptors[i].getName();
+    for (    PropertyDescriptor descriptor : descriptors) {
+      Object value=descriptor.getValue(DEFAULT);
+      String name=descriptor.getName();
       if (value != null) {
         propertyMap.put(name,value);
         log.debug("Set " + name + "= "+ value);
