@@ -1,6 +1,5 @@
 {
-  setValue(defaultValue);
-  lastValidValue=getAsText();
+  resetValue();
   if (guiEditor instanceof ComboStringEditor) {
     String[] tags=((ComboStringEditor)guiEditor).getTags();
     String v;

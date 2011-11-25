@@ -10,7 +10,7 @@
             we.setAsText(tags[0]);
           }
  else {
-            we.setValue("");
+            we.resetValue();
           }
         }
  else         if (propertyEditor instanceof ComboStringEditor) {
