@@ -1,0 +1,25 @@
+{
+  SampleResult res=new SampleResult();
+  res.setSampleLabel(getName());
+  res.sampleStart();
+  StringBuilder bld=new StringBuilder();
+  for (  Field field : this.getClass().getDeclaredFields()) {
+    try {
+      String name=field.getName();
+      if (name.startsWith("my")) {
+        Object value=field.get(this);
+        bld.append(name).append('=');
+        bld.append(value);
+        bld.append("\n");
+      }
+    }
+ catch (    IllegalAccessException e) {
+      bld.append(e.toString());
+    }
+  }
+  res.setResponseData(bld.toString(),null);
+  res.setDataType(SampleResult.TEXT);
+  res.sampleEnd();
+  res.setSuccessful(true);
+  return res;
+}
