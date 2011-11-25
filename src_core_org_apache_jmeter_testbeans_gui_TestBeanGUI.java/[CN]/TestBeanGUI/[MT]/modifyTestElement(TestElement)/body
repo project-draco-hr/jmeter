@@ -9,8 +9,7 @@
     Object value=propertyMap.get(name);
     log.debug("Modify " + name + " to "+ value);
     if (value == null) {
-      Object valueNotUnDefined=desc.getValue(GenericTestBeanCustomizer.NOT_UNDEFINED);
-      if (Boolean.TRUE.equals(valueNotUnDefined)) {
+      if (GenericTestBeanCustomizer.notNull(desc)) {
         setPropertyInElement(element,name,desc.getValue(GenericTestBeanCustomizer.DEFAULT));
       }
  else {
