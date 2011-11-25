@@ -1,0 +1,11 @@
+{
+  if (value instanceof String) {
+    super.setValue(Integer.decode((String)value));
+  }
+ else   if (value == null || value instanceof Integer) {
+    super.setValue(value);
+  }
+ else {
+    throw new java.lang.IllegalArgumentException("Unexpected type: " + value.getClass().getName());
+  }
+}

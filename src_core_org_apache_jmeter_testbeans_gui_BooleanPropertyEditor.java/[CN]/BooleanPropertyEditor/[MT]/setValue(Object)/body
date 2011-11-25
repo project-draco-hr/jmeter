@@ -1,0 +1,11 @@
+{
+  if (value instanceof String) {
+    super.setValue(Boolean.valueOf((String)value));
+  }
+ else   if (value == null || value instanceof Boolean) {
+    super.setValue(value);
+  }
+ else {
+    throw new java.lang.IllegalArgumentException("Unexpected type: " + value.getClass().getName());
+  }
+}
