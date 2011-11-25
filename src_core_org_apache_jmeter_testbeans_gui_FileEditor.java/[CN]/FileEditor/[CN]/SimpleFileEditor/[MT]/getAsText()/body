@@ -1,3 +1,7 @@
 {
-  return ((File)super.getValue()).getPath();
+  Object value=super.getValue();
+  if (value instanceof File) {
+    return ((File)value).getPath();
+  }
+  return (String)value;
 }

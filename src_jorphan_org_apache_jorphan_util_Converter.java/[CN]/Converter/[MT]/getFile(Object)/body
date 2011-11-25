@@ -1,0 +1,9 @@
+{
+  if (o instanceof File) {
+    return (File)o;
+  }
+  if (o instanceof String) {
+    return new File((String)o);
+  }
+  throw new IllegalArgumentException("Expected String or file, actual " + o.getClass().getName());
+}

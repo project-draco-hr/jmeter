@@ -32,6 +32,9 @@
  else   if (toType.equals(Calendar.class)) {
     return getCalendar(value);
   }
+ else   if (toType.equals(File.class)) {
+    return getFile(value);
+  }
  else   if (toType.equals(Class.class)) {
     try {
       return Class.forName(value.toString());
