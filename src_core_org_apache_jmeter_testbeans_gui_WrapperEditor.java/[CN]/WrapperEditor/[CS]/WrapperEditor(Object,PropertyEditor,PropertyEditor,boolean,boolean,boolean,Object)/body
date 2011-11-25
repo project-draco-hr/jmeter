@@ -1,5 +1,8 @@
 {
-  super(source);
+  super();
+  if (source != null) {
+    super.setSource(source);
+  }
   this.typeEditor=typeEditor;
   this.guiEditor=guiEditor;
   this.acceptsNull=acceptsNull;
