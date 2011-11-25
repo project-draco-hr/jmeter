@@ -1,10 +1,13 @@
 {
+  if (descriptor == null) {
+    throw new NullPointerException("Descriptor must not be null");
+  }
   JButton button=new JButton("Browse...");
   button.addActionListener(this);
-  boolean notNull=descriptor == null ? false : GenericTestBeanCustomizer.notNull(descriptor);
-  boolean notExpression=descriptor == null ? false : GenericTestBeanCustomizer.notExpression(descriptor);
-  boolean notOther=descriptor == null ? false : GenericTestBeanCustomizer.notOther(descriptor);
-  Object defaultValue=descriptor == null ? null : descriptor.getValue(GenericTestBeanCustomizer.DEFAULT);
+  boolean notNull=GenericTestBeanCustomizer.notNull(descriptor);
+  boolean notExpression=GenericTestBeanCustomizer.notExpression(descriptor);
+  boolean notOther=GenericTestBeanCustomizer.notOther(descriptor);
+  Object defaultValue=descriptor.getValue(GenericTestBeanCustomizer.DEFAULT);
   ComboStringEditor cse=new ComboStringEditor();
   cse.setNoUndefined(notNull);
   cse.setNoEdit(notExpression && notOther);
