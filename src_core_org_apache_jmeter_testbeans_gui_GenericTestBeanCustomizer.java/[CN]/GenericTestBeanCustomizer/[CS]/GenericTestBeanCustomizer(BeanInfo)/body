@@ -12,7 +12,6 @@
       editors[i]=null;
       continue;
     }
-    validateAttributes(descriptor);
     PropertyEditor propertyEditor;
     Object guiType=descriptor.getValue(GUITYPE);
     if (guiType instanceof GuiEditor) {
@@ -49,6 +48,7 @@ catch (        IllegalAccessException e) {
     if (log.isDebugEnabled()) {
       log.debug("Property " + name + " has property editor "+ propertyEditor);
     }
+    validateAttributes(descriptor,propertyEditor);
     if (!propertyEditor.supportsCustomEditor()) {
       propertyEditor=createWrapperEditor(propertyEditor,descriptor);
       if (log.isDebugEnabled()) {
