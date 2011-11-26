@@ -14,8 +14,8 @@
     }
     PropertyEditor propertyEditor;
     Object guiType=descriptor.getValue(GUITYPE);
-    if (guiType instanceof GuiEditor) {
-      propertyEditor=((GuiEditor)guiType).getInstance(descriptor);
+    if (guiType instanceof TypeEditor) {
+      propertyEditor=((TypeEditor)guiType).getInstance(descriptor);
     }
  else {
       Class<?> editorClass=descriptor.getPropertyEditorClass();
