@@ -12,6 +12,7 @@
       editors[i]=null;
       continue;
     }
+    validateAttributes(descriptor);
     PropertyEditor propertyEditor;
     Object guiType=descriptor.getValue(GUITYPE);
     if (guiType instanceof GuiEditor) {

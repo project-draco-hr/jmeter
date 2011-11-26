@@ -1,0 +1,14 @@
+{
+  if (notNull(pd) && pd.getValue(DEFAULT) == null) {
+    log.warn(getDetails(pd) + " requires a value but does not provide a default.");
+  }
+  if (notOther(pd) && pd.getValue(TAGS) == null) {
+    log.warn(getDetails(pd) + " does not have tags but other values are not allowed.");
+  }
+  if (!notNull(pd)) {
+    Class<?> propertyType=pd.getPropertyType();
+    if (propertyType.isPrimitive()) {
+      log.warn(getDetails(pd) + " allows null but is a primitive type");
+    }
+  }
+}
