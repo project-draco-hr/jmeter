@@ -81,8 +81,8 @@ catch (  Exception e) {
     if (headers != null) {
       headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
       headers.removeHeaderNamed(HTTPConstants.HEADER_AUTHORIZATION);
-      for (int i=0; i < headersToRemove.length; i++) {
-        headers.removeHeaderNamed(headersToRemove[i]);
+      for (      String hdr : headersToRemove) {
+        headers.removeHeaderNamed(hdr);
       }
     }
     target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);

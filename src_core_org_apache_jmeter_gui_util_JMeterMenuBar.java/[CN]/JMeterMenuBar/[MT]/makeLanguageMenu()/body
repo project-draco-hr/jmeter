@@ -1,9 +1,8 @@
 {
   final JMenu languageMenu=makeMenuRes("choose_language",'C');
   LangMenuHelper langMenu=new LangMenuHelper(languageMenu);
-  String lang[]=getLanguages();
-  for (int i=0; i < lang.length; i++) {
-    langMenu.addLang(lang[i]);
+  for (  String lang : getLanguages()) {
+    langMenu.addLang(lang);
   }
   return languageMenu;
 }

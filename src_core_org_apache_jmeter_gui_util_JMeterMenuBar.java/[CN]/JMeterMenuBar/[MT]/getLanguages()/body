@@ -14,9 +14,9 @@
   final String addedLocales=JMeterUtils.getProperty("locales.add");
   if (addedLocales != null) {
     String[] addLanguages=addedLocales.split(",");
-    for (int i=0; i < addLanguages.length; i++) {
-      log.info("Adding locale " + addLanguages[i]);
-      lang.add(addLanguages[i]);
+    for (    String newLang : addLanguages) {
+      log.info("Adding locale " + newLang);
+      lang.add(newLang);
     }
   }
   return lang.toArray(new String[lang.size()]);
