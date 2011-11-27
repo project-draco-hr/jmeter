@@ -24,8 +24,8 @@
   fileMenu.add(file_revert);
   fileMenu.addSeparator();
   file_load_recent_files=LoadRecentProject.getRecentFileMenuItems();
-  for (Iterator<JComponent> i=file_load_recent_files.iterator(); i.hasNext(); ) {
-    fileMenu.add(i.next());
+  for (  JComponent jc : file_load_recent_files) {
+    fileMenu.add(jc);
   }
   fileMenu.add(file_exit);
 }

@@ -3,11 +3,10 @@
   if (transactionSampler != null) {
     ArrayList<SampleListener> onlySubSamplerListeners=new ArrayList<SampleListener>();
     List<SampleListener> transListeners=transactionPack.getSampleListeners();
-    for (Iterator<SampleListener> i=sampleListeners.iterator(); i.hasNext(); ) {
-      SampleListener listener=i.next();
+    for (    SampleListener listener : sampleListeners) {
       boolean found=false;
-      for (Iterator<SampleListener> j=transListeners.iterator(); j.hasNext(); ) {
-        if (j.next() == listener) {
+      for (      SampleListener trans : transListeners) {
+        if (trans == listener) {
           found=true;
           break;
         }

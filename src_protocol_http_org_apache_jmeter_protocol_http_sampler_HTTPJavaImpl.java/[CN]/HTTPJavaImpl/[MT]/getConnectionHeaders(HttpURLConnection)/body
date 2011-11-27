@@ -1,16 +1,13 @@
 {
   StringBuilder hdrs=new StringBuilder(100);
   Map<String,List<String>> requestHeaders=conn.getRequestProperties();
-  Set<Map.Entry<String,List<String>>> headerFields=requestHeaders.entrySet();
-  for (Iterator<Map.Entry<String,List<String>>> i=headerFields.iterator(); i.hasNext(); ) {
-    Map.Entry<String,List<String>> entry=i.next();
+  for (  Map.Entry<String,List<String>> entry : requestHeaders.entrySet()) {
     String headerKey=entry.getKey();
     if (!HEADER_COOKIE.equalsIgnoreCase(headerKey)) {
-      List<String> values=entry.getValue();
-      for (int j=0; j < values.size(); j++) {
+      for (      String value : entry.getValue()) {
         hdrs.append(headerKey);
         hdrs.append(": ");
-        hdrs.append(values.get(j));
+        hdrs.append(value);
         hdrs.append("\n");
       }
     }
