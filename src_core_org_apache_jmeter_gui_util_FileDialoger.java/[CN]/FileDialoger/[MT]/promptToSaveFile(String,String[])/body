@@ -8,6 +8,7 @@
   }
   String ext=".jmx";
   if (filename != null) {
+    jfc.setDialogTitle(filename);
     jfc.setSelectedFile(filename.lastIndexOf(System.getProperty("file.separator")) > 0 ? new File(filename) : new File(lastJFCDirectory,filename));
     int i=-1;
     if ((i=filename.lastIndexOf(".")) > -1) {
@@ -22,6 +23,7 @@
     jfc.addChoosableFileFilter(new JMeterFileFilter(new String[]{ext}));
   }
   int retVal=jfc.showSaveDialog(GuiPackage.getInstance().getMainFrame());
+  jfc.setDialogTitle(null);
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
   if (retVal == JFileChooser.APPROVE_OPTION) {
     return jfc;
