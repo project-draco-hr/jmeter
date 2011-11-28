@@ -117,11 +117,10 @@ catch (      IOException e) {
   }
  catch (  IOException e) {
     res.sampleEnd();
+    savedConn=null;
     if (conn != null) {
-      savedConn=null;
       conn.disconnect();
     }
-    savedConn=null;
     conn=null;
     return errorResult(e,res);
   }
