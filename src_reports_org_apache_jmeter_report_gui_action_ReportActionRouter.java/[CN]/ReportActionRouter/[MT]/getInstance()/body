@@ -1,7 +1,11 @@
 {
   if (router == null) {
-    router=new ReportActionRouter();
-    router.populateCommandMap();
+synchronized (LOCK) {
+      if (router == null) {
+        router=new ReportActionRouter();
+        router.populateCommandMap();
+      }
+    }
   }
   return router;
 }
