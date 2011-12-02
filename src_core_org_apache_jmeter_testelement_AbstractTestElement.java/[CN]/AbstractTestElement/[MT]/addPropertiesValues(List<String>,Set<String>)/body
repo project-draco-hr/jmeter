@@ -1,0 +1,9 @@
+{
+  PropertyIterator iterator=propertyIterator();
+  while (iterator.hasNext()) {
+    JMeterProperty jMeterProperty=iterator.next();
+    if (propertyNames.contains(jMeterProperty.getName())) {
+      result.add(jMeterProperty.getStringValue());
+    }
+  }
+}
