@@ -1,0 +1,45 @@
+{
+  int matches=0;
+  BeanDescriptor bd=beanInfo.getBeanDescriptor();
+  if (Assertion.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.ASSERTIONS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractAssertionGui.class.getName());
+    matches++;
+  }
+  if (ConfigElement.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.CONFIG_ELEMENTS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractConfigGui.class.getName());
+    matches++;
+  }
+  if (Controller.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.CONTROLLERS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractControllerGui.class.getName());
+    matches++;
+  }
+  if (Visualizer.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.LISTENERS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractVisualizer.class.getName());
+    matches++;
+  }
+  if (PostProcessor.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.POST_PROCESSORS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractPostProcessorGui.class.getName());
+    matches++;
+  }
+  if (PreProcessor.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.PRE_PROCESSORS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractPreProcessorGui.class.getName());
+    matches++;
+  }
+  if (Sampler.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.SAMPLERS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractSamplerGui.class.getName());
+    matches++;
+  }
+  if (Timer.class.isAssignableFrom(testBeanClass)) {
+    menuCategories.add(MenuFactory.TIMERS);
+    bd.setValue(TestElement.GUI_CLASS,AbstractTimerGui.class.getName());
+    matches++;
+  }
+  return matches;
+}
