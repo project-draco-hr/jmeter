@@ -3,11 +3,17 @@
   searchTF=new JLabeledTextField(JMeterUtils.getResString("search_text_field"),20);
   isRegexpCB=new JCheckBox(JMeterUtils.getResString("search_text_chkbox_regexp"),false);
   isCaseSensitiveCB=new JCheckBox(JMeterUtils.getResString("search_text_chkbox_case"),false);
+  Font font=new Font("SansSerif",Font.PLAIN,10);
+  isRegexpCB.setFont(font);
+  isCaseSensitiveCB.setFont(font);
   JPanel searchCriterionPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   searchCriterionPanel.add(isCaseSensitiveCB);
   searchCriterionPanel.add(isRegexpCB);
-  this.getContentPane().add(searchTF,BorderLayout.NORTH);
-  this.getContentPane().add(searchCriterionPanel,BorderLayout.CENTER);
+  JPanel searchPanel=new JPanel();
+  searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.Y_AXIS));
+  searchPanel.setBorder(BorderFactory.createEmptyBorder(7,3,3,3));
+  searchPanel.add(searchTF,BorderLayout.NORTH);
+  searchPanel.add(searchCriterionPanel,BorderLayout.CENTER);
   JPanel buttonsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   searchButton=new JButton(JMeterUtils.getResString("search"));
   searchButton.addActionListener(this);
@@ -15,7 +21,8 @@
   cancelButton.addActionListener(this);
   buttonsPanel.add(searchButton);
   buttonsPanel.add(cancelButton);
-  this.getContentPane().add(buttonsPanel,BorderLayout.SOUTH);
+  searchPanel.add(buttonsPanel,BorderLayout.SOUTH);
+  this.getContentPane().add(searchPanel);
   this.pack();
   ComponentUtil.centerComponentInWindow(this);
 }
