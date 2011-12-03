@@ -1,0 +1,18 @@
+{
+  int numLines=mTextArea.getLineCount();
+  String[] lines=new String[numLines];
+  for (int i=0; i < numLines; i++) {
+    try {
+      int start=mTextArea.getLineStartOffset(i);
+      int end=mTextArea.getLineEndOffset(i);
+      if (i == numLines - 1) {
+        end++;
+      }
+      lines[i]=mTextArea.getText(start,end - start - 1);
+    }
+ catch (    BadLocationException e) {
+      throw new IllegalStateException("Could not read line " + i,e);
+    }
+  }
+  return lines;
+}
