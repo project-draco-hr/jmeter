@@ -1,0 +1,42 @@
+{
+  String wordToSearch=searchTF.getText();
+  if (StringUtils.isEmpty(wordToSearch)) {
+    return;
+  }
+ else {
+    this.lastSearch=wordToSearch;
+  }
+  ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.SEARCH_RESET));
+  Searcher searcher=null;
+  if (isRegexpCB.isSelected()) {
+    searcher=new RegexpSearcher(isCaseSensitiveCB.isSelected(),searchTF.getText());
+  }
+ else {
+    searcher=new RawTextSearcher(isCaseSensitiveCB.isSelected(),searchTF.getText());
+  }
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  JMeterTreeModel jMeterTreeModel=guiPackage.getTreeModel();
+  Set<JMeterTreeNode> nodes=new HashSet<JMeterTreeNode>();
+  for (  JMeterTreeNode jMeterTreeNode : jMeterTreeModel.getNodesOfType(Searchable.class)) {
+    try {
+      if (jMeterTreeNode.getUserObject() instanceof Searchable) {
+        Searchable searchable=(Searchable)jMeterTreeNode.getUserObject();
+        List<JMeterTreeNode> matchingNodes=jMeterTreeNode.getPathToThreadGroup();
+        List<String> searchableTokens=searchable.getSearchableTokens();
+        boolean result=searcher.search(searchableTokens);
+        if (result) {
+          nodes.addAll(matchingNodes);
+        }
+      }
+    }
+ catch (    Exception ex) {
+      logger.error("Error occured searching for word:" + wordToSearch,ex);
+    }
+  }
+  for (Iterator<JMeterTreeNode> iterator=nodes.iterator(); iterator.hasNext(); ) {
+    JMeterTreeNode jMeterTreeNode=iterator.next();
+    jMeterTreeNode.setMarkedBySearch(true);
+  }
+  GuiPackage.getInstance().getMainFrame().repaint();
+  this.setVisible(false);
+}
