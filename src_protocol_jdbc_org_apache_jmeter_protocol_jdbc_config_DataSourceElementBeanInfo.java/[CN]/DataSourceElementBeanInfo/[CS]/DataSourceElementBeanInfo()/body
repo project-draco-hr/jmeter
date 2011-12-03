@@ -44,7 +44,7 @@
   p=property("username");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
-  p=property("password");
+  p=property("password",TypeEditor.PasswordEditor);
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
 }

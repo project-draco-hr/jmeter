@@ -13,7 +13,7 @@
   addField(settingsPanel,PortLabel,portBox,gbc);
   usernameBox=new JTextField(20);
   addField(settingsPanel,AccountLabel,usernameBox,gbc);
-  passwordBox=new JTextField(20);
+  passwordBox=new JPasswordField(20);
   addField(settingsPanel,PasswordLabel,passwordBox,gbc);
   folderLabel=new JLabel(FolderLabel);
   folderBox=new JTextField(INBOX,20);
