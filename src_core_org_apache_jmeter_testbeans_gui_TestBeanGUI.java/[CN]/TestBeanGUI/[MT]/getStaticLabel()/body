@@ -2,5 +2,10 @@
   if (beanInfo == null) {
     return "null";
   }
-  return beanInfo.getBeanDescriptor().getDisplayName();
+  try {
+    return Introspector.getBeanInfo(testBeanClass).getBeanDescriptor().getDisplayName();
+  }
+ catch (  IntrospectionException e) {
+    return beanInfo.getBeanDescriptor().getDisplayName();
+  }
 }
