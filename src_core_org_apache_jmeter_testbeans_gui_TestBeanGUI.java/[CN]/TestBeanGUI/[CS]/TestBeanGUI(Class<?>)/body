@@ -16,4 +16,5 @@
   }
   customizerClass=beanInfo.getBeanDescriptor().getCustomizerClass();
   initialized=false;
+  JMeterUtils.addLocaleChangeListener(this);
 }
