@@ -4,7 +4,6 @@
     comp=testBeanGUIs.get(testClass);
     if (comp == null) {
       comp=new TestBeanGUI(testClass);
-      ((TestBeanGUI)comp).setupGuiClasses();
       testBeanGUIs.put(testClass,comp);
     }
   }
