@@ -23,7 +23,7 @@
   concurrentDwn=new JCheckBox(JMeterUtils.getResString("web_testing_concurrent_download"));
   concurrentDwn.addItemListener(new ItemListener(){
     public void itemStateChanged(    final ItemEvent e){
-      if (e.getStateChange() == ItemEvent.SELECTED) {
+      if (imageParser.isSelected() && e.getStateChange() == ItemEvent.SELECTED) {
         concurrentPool.setEnabled(true);
       }
  else {
