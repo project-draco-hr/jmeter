@@ -1,10 +1,3 @@
 {
-  StringBuilder postBody=new StringBuilder();
-  PropertyIterator args=arguments.iterator();
-  while (args.hasNext()) {
-    HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-    String value=arg.getValue();
-    postBody.append(value);
-  }
-  return postBody.toString();
+  return computePostBody(arguments,false);
 }

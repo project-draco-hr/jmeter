@@ -3,7 +3,7 @@
   Arguments arguments=(Arguments)el.getProperty(HTTPSamplerBase.ARGUMENTS).getObjectValue();
   boolean useRaw=el.getPropertyAsBoolean(HTTPSamplerBase.POST_BODY_RAW,HTTPSamplerBase.POST_BODY_RAW_DEFAULT);
   if (useRaw) {
-    String postBody=computePostBody(arguments);
+    String postBody=computePostBody(arguments,true);
     postBodyContent.setText(postBody);
     postContentTabbedPane.setSelectedIndex(TAB_RAW_BODY,false);
   }
