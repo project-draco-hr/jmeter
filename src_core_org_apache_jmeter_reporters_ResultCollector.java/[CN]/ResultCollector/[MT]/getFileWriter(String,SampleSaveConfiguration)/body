@@ -15,7 +15,9 @@
     }
     File pdir=new File(filename).getParentFile();
     if (pdir != null) {
-      pdir.mkdirs();
+      if (pdir.mkdirs()) {
+        log.info("Folder " + pdir.getAbsolutePath() + " was created");
+      }
       if (!pdir.exists()) {
         log.warn("Error creating directories for " + pdir.toString());
       }
