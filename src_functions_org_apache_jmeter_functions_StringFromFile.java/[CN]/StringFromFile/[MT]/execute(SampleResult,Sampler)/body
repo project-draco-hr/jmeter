@@ -13,7 +13,7 @@
       if (line == null) {
         String tn=Thread.currentThread().getName();
         log.info(tn + " EOF on  file " + fileName);
-        closeFile();
+        JOrphanUtils.closeQuietly(myBread);
         openFile();
         if (myBread != null) {
           line=myBread.readLine();
