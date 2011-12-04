@@ -1,8 +1,9 @@
 {
+  String myValue=ERR_IND;
+  String myName="StringFromFile_";
   if (values.length >= PARAM_NAME) {
     myName=((CompoundVariable)values[PARAM_NAME - 1]).execute().trim();
   }
-  myValue=ERR_IND;
   if (firstTime) {
     openFile();
     firstTime=false;
