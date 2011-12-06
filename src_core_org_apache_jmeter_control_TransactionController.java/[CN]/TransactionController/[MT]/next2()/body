@@ -10,7 +10,7 @@
     pauseTime=0;
   }
   Sampler returnValue=super.next();
-  if (returnValue == null) {
+  if (returnValue == null && !(calls == 0)) {
     if (res != null) {
       res.setIdleTime(pauseTime + res.getIdleTime());
       res.sampleEnd();
