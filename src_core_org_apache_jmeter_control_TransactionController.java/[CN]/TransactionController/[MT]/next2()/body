@@ -9,8 +9,9 @@
     prevEndTime=res.getStartTime();
     pauseTime=0;
   }
+  boolean isLast=current == super.subControllersAndSamplers.size();
   Sampler returnValue=super.next();
-  if (returnValue == null) {
+  if (returnValue == null && isLast) {
     if (res != null) {
       res.setIdleTime(pauseTime + res.getIdleTime());
       res.sampleEnd();
