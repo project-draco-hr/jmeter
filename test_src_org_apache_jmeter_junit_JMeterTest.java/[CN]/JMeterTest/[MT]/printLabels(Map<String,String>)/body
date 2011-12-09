@@ -1,0 +1,8 @@
+{
+  StringBuilder builder=new StringBuilder();
+  for (Iterator<Map.Entry<String,String>> iterator=missingLabels.entrySet().iterator(); iterator.hasNext(); ) {
+    Map.Entry<String,String> entry=iterator.next();
+    builder.append(entry.getKey() + "=" + entry.getValue()+ "\r\n");
+  }
+  return builder.toString();
+}

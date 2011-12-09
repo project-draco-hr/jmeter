@@ -1,0 +1,13 @@
+{
+  Properties messagesFr=new Properties();
+  messagesFr.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("org/apache/jmeter/resources/messages_" + language + ".properties"));
+  Map<String,String> missingLabels=new TreeMap<String,String>();
+  for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
+    Map.Entry<Object,Object> entry=iterator.next();
+    String key=(String)entry.getKey();
+    if (!messagesFr.containsKey(key)) {
+      missingLabels.put(key,(String)entry.getValue());
+    }
+  }
+  assertEquals(missingLabels.size() + " missing labels in language :" + language+ ", labels missing:"+ printLabels(missingLabels),0,missingLabels.size());
+}
