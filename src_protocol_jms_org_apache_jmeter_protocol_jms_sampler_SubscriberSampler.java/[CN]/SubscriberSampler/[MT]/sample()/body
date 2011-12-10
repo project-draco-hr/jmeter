@@ -36,7 +36,7 @@
       msg=SUBSCRIBER.getMessage(calculateWait(until,now));
       if (msg != null) {
         read++;
-        extractContent(buffer,propBuffer,msg);
+        extractContent(buffer,propBuffer,msg,(read == loop));
       }
     }
  catch (    JMSException e) {

@@ -19,7 +19,7 @@
         }
       }
       Utils.messageProperties(propBuffer,msg);
-      if (!StringUtils.isEmpty(separator)) {
+      if (!isLast && !StringUtils.isEmpty(separator)) {
         propBuffer.append(separator);
         buffer.append(separator);
       }
