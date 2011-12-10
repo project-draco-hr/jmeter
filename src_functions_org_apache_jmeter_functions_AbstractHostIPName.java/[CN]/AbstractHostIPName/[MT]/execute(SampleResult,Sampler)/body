@@ -1,13 +1,13 @@
 {
-  String machineName=JMeterUtils.getLocalHostName();
+  String value=compute();
   if (values.length >= 1) {
     JMeterVariables vars=getVariables();
     if (vars != null) {
       String varName=((CompoundVariable)values[0]).execute().trim();
       if (varName.length() > 0) {
-        vars.put(varName,machineName);
+        vars.put(varName,value);
       }
     }
   }
-  return machineName;
+  return value;
 }
