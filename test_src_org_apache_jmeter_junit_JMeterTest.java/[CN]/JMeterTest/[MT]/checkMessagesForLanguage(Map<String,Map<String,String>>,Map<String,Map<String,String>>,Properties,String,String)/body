@@ -1,6 +1,8 @@
 {
   Properties messagesFr=new Properties();
-  messagesFr.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("org/apache/jmeter/resources/messages_" + language + ".properties"));
+  int index=bundlePath.lastIndexOf(".");
+  String languageBundle=bundlePath.substring(0,index) + "_" + language+ ".properties";
+  messagesFr.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(languageBundle));
   Map<String,String> missingLabels=new TreeMap<String,String>();
   for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
     Map.Entry<Object,Object> entry=iterator.next();
@@ -9,5 +11,7 @@
       missingLabels.put(key,(String)entry.getValue());
     }
   }
-  assertEquals(missingLabels.size() + " missing labels in language :" + language+ ", labels missing:"+ printLabels(missingLabels),0,missingLabels.size());
+  if (!missingLabels.isEmpty()) {
+    missingLabelsPerBundle.put(languageBundle,missingLabels);
+  }
 }

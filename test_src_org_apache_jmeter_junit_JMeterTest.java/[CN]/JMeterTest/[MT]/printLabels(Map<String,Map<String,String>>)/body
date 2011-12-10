@@ -1,0 +1,13 @@
+{
+  StringBuilder builder=new StringBuilder();
+  for (Iterator<Map.Entry<String,Map<String,String>>> iterator=missingLabelsPerBundle.entrySet().iterator(); iterator.hasNext(); ) {
+    Map.Entry<String,Map<String,String>> entry=iterator.next();
+    builder.append("Missing labels in bundle:" + entry.getKey() + "\r\n");
+    for (Iterator<Map.Entry<String,String>> it2=entry.getValue().entrySet().iterator(); it2.hasNext(); ) {
+      Map.Entry<String,String> entry2=it2.next();
+      builder.append(entry2.getKey() + "=" + entry2.getValue()+ "\r\n");
+    }
+    builder.append("======================================================\r\n");
+  }
+  return builder.toString();
+}
