@@ -1,7 +1,6 @@
 {
   Properties messagesFr=new Properties();
-  int index=bundlePath.lastIndexOf(".");
-  String languageBundle=bundlePath.substring(0,index) + "_" + language+ ".properties";
+  String languageBundle=bundlePath + "_" + language+ ".properties";
   messagesFr.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(languageBundle));
   Map<String,String> missingLabels=new TreeMap<String,String>();
   for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {

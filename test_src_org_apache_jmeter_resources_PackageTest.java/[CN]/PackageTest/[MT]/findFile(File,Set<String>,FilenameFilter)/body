@@ -1,0 +1,13 @@
+{
+  File[] foundFIles=file.listFiles(filenameFilter);
+  for (  File file2 : foundFIles) {
+    if (file2.isDirectory()) {
+      findFile(file2,set,filenameFilter);
+    }
+ else {
+      int indexOfOrg=file2.getAbsolutePath().indexOf("/org");
+      int lastIndex=file2.getAbsolutePath().lastIndexOf(".");
+      set.add(file2.getAbsolutePath().substring(indexOfOrg,lastIndex));
+    }
+  }
+}

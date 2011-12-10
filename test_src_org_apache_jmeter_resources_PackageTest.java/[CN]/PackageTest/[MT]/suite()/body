@@ -12,5 +12,6 @@
     }
     ts.addTest(pfx);
   }
+  ts.addTest(new PackageTest("checkI18n","fr"));
   return ts;
 }
