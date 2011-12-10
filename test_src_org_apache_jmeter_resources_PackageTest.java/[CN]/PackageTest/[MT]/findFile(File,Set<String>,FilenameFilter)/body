@@ -1,6 +1,6 @@
 {
-  File[] foundFIles=file.listFiles(filenameFilter);
-  for (  File file2 : foundFIles) {
+  File[] foundFiles=file.listFiles(filenameFilter);
+  for (  File file2 : foundFiles) {
     if (file2.isDirectory()) {
       findFile(file2,set,filenameFilter);
     }

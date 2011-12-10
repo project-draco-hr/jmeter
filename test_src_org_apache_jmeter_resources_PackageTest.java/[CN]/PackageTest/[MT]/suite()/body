@@ -1,13 +1,12 @@
 {
   TestSuite ts=new TestSuite("Resources PackageTest");
-  for (int j=0; j < prefixList.length; j++) {
-    String prefix=prefixList[j];
+  String languages[]=JMeterMenuBar.getLanguages();
+  for (  String prefix : prefixList) {
     TestSuite pfx=new TestSuite(prefix);
     pfx.addTest(new PackageTest("testLang","",prefix));
-    String lang[]=JMeterMenuBar.getLanguages();
-    for (int i=0; i < lang.length; i++) {
-      if (!"en".equals(lang[i])) {
-        pfx.addTest(new PackageTest("testLang",lang[i],prefix));
+    for (    String language : languages) {
+      if (!"en".equals(language)) {
+        pfx.addTest(new PackageTest("testLang",language,prefix));
       }
     }
     ts.addTest(pfx);

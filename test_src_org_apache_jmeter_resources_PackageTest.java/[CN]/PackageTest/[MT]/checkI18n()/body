@@ -1,9 +1,9 @@
 {
   Map<String,Map<String,String>> missingLabelsPerBundle=new HashMap<String,Map<String,String>>();
-  for (int i=0; i < prefixList.length; i++) {
+  for (  String prefix : prefixList) {
     Properties messages=new Properties();
-    messages.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(prefixList[i].substring(1) + ".properties"));
-    checkMessagesForLanguage(missingLabelsPerBundle,missingLabelsPerBundle,messages,prefixList[i].substring(1),"fr");
+    messages.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(prefix.substring(1) + ".properties"));
+    checkMessagesForLanguage(missingLabelsPerBundle,missingLabelsPerBundle,messages,prefix.substring(1),"fr");
   }
   assertEquals(missingLabelsPerBundle.size() + " missing labels, labels missing:" + printLabels(missingLabelsPerBundle),0,missingLabelsPerBundle.size());
 }
