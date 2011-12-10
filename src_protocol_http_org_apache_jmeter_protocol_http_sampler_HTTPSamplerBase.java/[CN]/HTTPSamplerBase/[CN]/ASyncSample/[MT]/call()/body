@@ -1,4 +1,5 @@
 {
+  JMeterContextService.replaceContext(jmeterContextOfParentThread);
   ((CleanerThread)Thread.currentThread()).registerSamplerForEndNotification(sampler);
   HTTPSampleResult httpSampleResult=sampler.sample(url,method,areFollowingRedirect,depth);
   if (sampler.getCookieManager() != null) {
