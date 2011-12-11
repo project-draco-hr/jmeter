@@ -1,5 +1,5 @@
 {
-  for (  List<MenuInfo> menuToSort : menuMap.values()) {
-    Collections.sort(menuToSort,new MenuInfoComparator());
+  for (  Entry<String,List<MenuInfo>> me : menuMap.entrySet()) {
+    Collections.sort(me.getValue(),new MenuInfoComparator(!me.getKey().equals(THREADS)));
   }
 }
