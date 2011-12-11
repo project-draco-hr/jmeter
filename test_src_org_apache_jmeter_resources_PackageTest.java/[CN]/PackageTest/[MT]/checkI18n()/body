@@ -3,7 +3,7 @@
   for (  String prefix : prefixList) {
     Properties messages=new Properties();
     messages.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(prefix.substring(1) + ".properties"));
-    checkMessagesForLanguage(missingLabelsPerBundle,missingLabelsPerBundle,messages,prefix.substring(1),"fr");
+    checkMessagesForLanguage(missingLabelsPerBundle,missingLabelsPerBundle,messages,prefix.substring(1),lang);
   }
   assertEquals(missingLabelsPerBundle.size() + " missing labels, labels missing:" + printLabels(missingLabelsPerBundle),0,missingLabelsPerBundle.size());
 }
