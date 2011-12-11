@@ -5,4 +5,10 @@
     }
   }
 ;
+  perTheadLastIterationNumber=new ThreadLocal<Long>(){
+    @Override protected Long initialValue(){
+      return Long.valueOf(1);
+    }
+  }
+;
 }

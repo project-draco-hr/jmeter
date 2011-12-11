@@ -7,6 +7,7 @@
   varNameField=new JLabeledTextField(JMeterUtils.getResString("var_name"));
   formatField=new JLabeledTextField(JMeterUtils.getResString("format"));
   perUserField=new JCheckBox(JMeterUtils.getResString("counter_per_user"));
+  resetCounterOnEachThreadGroupIteration=new JCheckBox(JMeterUtils.getResString("counter_reset_per_tg_iteration"));
   add(makeTitlePanel());
   add(startField);
   add(incrField);
@@ -14,4 +15,6 @@
   add(formatField);
   add(varNameField);
   add(perUserField);
+  add(resetCounterOnEachThreadGroupIteration);
+  perUserField.addActionListener(this);
 }

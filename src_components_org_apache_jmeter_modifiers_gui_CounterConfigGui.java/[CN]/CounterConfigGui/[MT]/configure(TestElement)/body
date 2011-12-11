@@ -7,4 +7,11 @@
   formatField.setText(config.getFormat());
   varNameField.setText(config.getVarName());
   perUserField.setSelected(config.isPerUser());
+  if (config.isPerUser()) {
+    resetCounterOnEachThreadGroupIteration.setEnabled(true);
+    resetCounterOnEachThreadGroupIteration.setSelected(config.isResetOnThreadGroupIteration());
+  }
+ else {
+    resetCounterOnEachThreadGroupIteration.setEnabled(false);
+  }
 }

@@ -9,6 +9,7 @@
     config.setVarName(varNameField.getText());
     config.setFormat(formatField.getText());
     config.setIsPerUser(perUserField.isSelected());
+    config.setResetOnThreadGroupIteration(resetCounterOnEachThreadGroupIteration.isEnabled() && resetCounterOnEachThreadGroupIteration.isSelected());
   }
   super.configureTestElement(c);
 }

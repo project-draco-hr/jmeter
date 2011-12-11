@@ -10,6 +10,14 @@
   }
  else {
     long current=perTheadNumber.get().longValue();
+    if (isResetOnThreadGroupIteration()) {
+      int iteration=JMeterContextService.getContext().getVariables().getIteration();
+      Long lastIterationNumber=perTheadLastIterationNumber.get();
+      if (iteration != lastIterationNumber.longValue()) {
+        current=getStart();
+      }
+      perTheadLastIterationNumber.set(Long.valueOf(iteration));
+    }
     variables.put(getVarName(),formatNumber(current));
     current+=increment;
     if (current > end) {
