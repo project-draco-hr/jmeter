@@ -1,4 +1,5 @@
 {
+  log.info("Test Ended on " + host);
   try {
     if (sampleStore.size() != 0) {
       listener.processBatch(sampleStore);

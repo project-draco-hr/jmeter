@@ -1,9 +1,0 @@
-{
-  log.debug("Test ended()");
-  try {
-    listener.testEnded();
-  }
- catch (  RemoteException ex) {
-    log.warn("testEnded()" + ex);
-  }
-}
