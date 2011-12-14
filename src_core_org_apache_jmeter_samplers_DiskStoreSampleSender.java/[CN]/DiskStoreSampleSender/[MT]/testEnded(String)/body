@@ -1,0 +1,62 @@
+{
+  log.info("Test Ended on " + host);
+  singleExecutor.submit(new Runnable(){
+    public void run(){
+      try {
+        oos.close();
+      }
+ catch (      IOException e) {
+        log.error("Failed to close data file ",e);
+      }
+    }
+  }
+);
+  singleExecutor.shutdown();
+  try {
+    if (!singleExecutor.awaitTermination(3,TimeUnit.SECONDS)) {
+      log.error("Executor did not terminate in a timely fashion");
+    }
+  }
+ catch (  InterruptedException e1) {
+    log.error("Executor did not terminate in a timely fashion",e1);
+  }
+  ObjectInputStream ois=null;
+  try {
+    ois=new ObjectInputStream(new FileInputStream(temporaryFile));
+    Object obj=null;
+    while ((obj=ois.readObject()) != null) {
+      if (obj instanceof SampleEvent) {
+        try {
+          listener.sampleOccurred((SampleEvent)obj);
+        }
+ catch (        RemoteException err) {
+          if (err.getCause() instanceof java.net.ConnectException) {
+            throw new JMeterError("Could not return sample",err);
+          }
+          log.error("returning sample",err);
+        }
+      }
+ else {
+        log.error("Unexpected object type found in data file " + obj.getClass().getName());
+      }
+    }
+  }
+ catch (  EOFException err) {
+  }
+catch (  IOException err) {
+    log.error("returning sample",err);
+  }
+catch (  ClassNotFoundException err) {
+    log.error("returning sample",err);
+  }
+ finally {
+    try {
+      listener.testEnded(host);
+    }
+ catch (    RemoteException e) {
+      log.error("returning sample",e);
+    }
+    IOUtils.closeQuietly(ois);
+    temporaryFile.delete();
+  }
+}

@@ -1,0 +1,13 @@
+{
+  singleExecutor.submit(new Runnable(){
+    public void run(){
+      try {
+        oos.writeObject(e);
+      }
+ catch (      IOException err) {
+        log.error("sampleOccurred",err);
+      }
+    }
+  }
+);
+}

@@ -1,0 +1,25 @@
+{
+  log.info("Using DiskStoreSampleSender for this test run");
+  singleExecutor=Executors.newSingleThreadExecutor();
+  try {
+    temporaryFile=File.createTempFile("SerialisedSampleSender",".ser");
+    temporaryFile.deleteOnExit();
+    singleExecutor.submit(new Runnable(){
+      public void run(){
+        OutputStream anOutputStream;
+        try {
+          anOutputStream=new FileOutputStream(temporaryFile);
+          oos=new ObjectOutputStream(anOutputStream);
+        }
+ catch (        IOException e) {
+          log.error("Failed to create output Stream",e);
+        }
+      }
+    }
+);
+  }
+ catch (  IOException e) {
+    log.error("Failed to create output file",e);
+  }
+  return this;
+}

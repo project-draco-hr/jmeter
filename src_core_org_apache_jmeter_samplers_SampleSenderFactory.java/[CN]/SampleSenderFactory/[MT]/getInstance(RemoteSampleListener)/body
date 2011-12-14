@@ -24,6 +24,9 @@
  else   if (type.equalsIgnoreCase(MODE_ASYNCH)) {
     return new AsynchSampleSender(listener);
   }
+ else   if (type.equalsIgnoreCase(MODE_DISKSTORE)) {
+    return new DiskStoreSampleSender(listener);
+  }
  else {
     SampleSender s=null;
     try {
