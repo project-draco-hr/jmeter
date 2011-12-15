@@ -1,4 +1,6 @@
 {
+  final boolean holdSamples=JMeterUtils.getPropDefault("hold_samples",false);
+  final String type=JMeterUtils.getPropDefault("mode",MODE_STANDARD);
   if (holdSamples || type.equalsIgnoreCase(MODE_HOLD)) {
     HoldSampleSender h=new HoldSampleSender(listener);
     return h;
