@@ -1,4 +1,9 @@
 {
   this.listener=listener;
-  log.info("Using batching for this run." + " Thresholds: num=" + getNumSamplesThreshold() + ", time="+ getTimeThresholdMs());
+  if (isClientConfigured()) {
+    log.info("Using batching (client settings) for this run." + " Thresholds: num=" + clientConfiguredNumSamplesThreshold + ", time="+ clientConfiguredTimeThresholdMs);
+  }
+ else {
+    log.info("Using batching (server settings) for this run.");
+  }
 }

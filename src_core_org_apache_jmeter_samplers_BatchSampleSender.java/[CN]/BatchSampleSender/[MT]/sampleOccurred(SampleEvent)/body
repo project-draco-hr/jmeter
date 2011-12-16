@@ -1,6 +1,4 @@
 {
-  int numSamplesThreshold=getNumSamplesThreshold();
-  long timeThresholdMs=getTimeThresholdMs();
 synchronized (sampleStore) {
     sampleStore.add(e);
     final int sampleCount=sampleStore.size();

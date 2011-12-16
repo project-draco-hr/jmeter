@@ -1,4 +1,12 @@
 {
-  log.info("Using batching for this run." + " Thresholds: num=" + getNumSamplesThreshold() + ", time="+ getTimeThresholdMs());
+  if (isClientConfigured()) {
+    numSamplesThreshold=clientConfiguredNumSamplesThreshold;
+    timeThresholdMs=clientConfiguredTimeThresholdMs;
+  }
+ else {
+    numSamplesThreshold=NUM_SAMPLES_THRESHOLD;
+    timeThresholdMs=TIME_THRESHOLD_MS;
+  }
+  log.info("Using batching for this run." + " Thresholds: num=" + numSamplesThreshold + ", time="+ timeThresholdMs);
   return this;
 }
