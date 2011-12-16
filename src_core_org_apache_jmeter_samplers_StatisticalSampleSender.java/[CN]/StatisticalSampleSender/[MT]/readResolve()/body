@@ -1,4 +1,14 @@
 {
-  log.info("Using StatisticalSampleSender for this run." + " Thresholds: num=" + getNumSamplesThreshold() + ", time="+ getTimeThresholdMs()+ ". Key uses ThreadName: "+ getKeyOnThreadName());
+  if (isClientConfigured()) {
+    numSamplesThreshold=clientConfiguredNumSamplesThreshold;
+    timeThresholdMs=clientConfiguredTimeThresholdMs;
+    keyOnThreadName=clientConfiguredKeyOnThreadName;
+  }
+ else {
+    numSamplesThreshold=NUM_SAMPLES_THRESHOLD;
+    timeThresholdMs=TIME_THRESHOLD_MS;
+    keyOnThreadName=KEY_ON_THREADNAME;
+  }
+  log.info("Using StatisticalSampleSender for this run." + (isClientConfigured() ? " Client config: " : " Server config: ") + " Thresholds: num="+ numSamplesThreshold+ ", time="+ timeThresholdMs+ ". Key uses ThreadName: "+ keyOnThreadName);
   return this;
 }

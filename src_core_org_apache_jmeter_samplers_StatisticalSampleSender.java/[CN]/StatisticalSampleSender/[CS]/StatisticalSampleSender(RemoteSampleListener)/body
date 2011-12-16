@@ -1,4 +1,9 @@
 {
   this.listener=listener;
-  log.info("Using StatisticalSampleSender for this run." + " Thresholds: num=" + getNumSamplesThreshold() + ", time="+ getTimeThresholdMs()+ ". Key uses ThreadName: "+ getKeyOnThreadName());
+  if (isClientConfigured()) {
+    log.info("Using StatisticalSampleSender (client settings) for this run." + " Thresholds: num=" + clientConfiguredNumSamplesThreshold + ", time="+ clientConfiguredTimeThresholdMs+ ". Key uses ThreadName: "+ clientConfiguredKeyOnThreadName);
+  }
+ else {
+    log.info("Using StatisticalSampleSender (server settings) for this run.");
+  }
 }

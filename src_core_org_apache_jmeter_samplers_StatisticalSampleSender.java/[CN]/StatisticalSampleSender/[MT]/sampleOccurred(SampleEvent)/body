@@ -1,7 +1,4 @@
 {
-  int numSamplesThreshold=getNumSamplesThreshold();
-  long timeThresholdMs=getTimeThresholdMs();
-  boolean keyOnThreadName=getKeyOnThreadName();
 synchronized (sampleStore) {
     String key=StatisticalSampleResult.getKey(e,keyOnThreadName);
     StatisticalSampleResult statResult=sampleTable.get(key);
