@@ -7,20 +7,13 @@
       Sampler firstSampler=controller.next();
       Sampler sam=firstSampler;
       while (running && sam != null) {
+        process_sampler(sam,null,threadContext);
         if (onErrorStartNextLoop) {
-          if (!TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK)) && sam instanceof TransactionSampler) {
-            TransactionSampler ts=(TransactionSampler)sam;
-            while (!ts.isTransactionDone()) {
-              sam=controller.next();
-              ts=(TransactionSampler)sam;
+          boolean lastSampleFailed=!TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK));
+          if (lastSampleFailed) {
+            if (log.isDebugEnabled()) {
+              log.debug("StartNextLoop option is on, Last sample failed, starting next loop");
             }
-            process_sampler(sam,null,threadContext);
-          }
-          if (TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK))) {
-            process_sampler(sam,null,threadContext);
-            sam=controller.next();
-          }
- else {
             FindTestElementsUpToRootTraverser pathToRootTraverser=new FindTestElementsUpToRootTraverser(sam);
             testTree.traverse(pathToRootTraverser);
             List<Controller> controllersToReinit=pathToRootTraverser.getControllersToRoot();
@@ -37,9 +30,11 @@
             sam=null;
             threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
           }
+ else {
+            sam=controller.next();
+          }
         }
  else {
-          process_sampler(sam,null,threadContext);
           sam=controller.next();
         }
       }
