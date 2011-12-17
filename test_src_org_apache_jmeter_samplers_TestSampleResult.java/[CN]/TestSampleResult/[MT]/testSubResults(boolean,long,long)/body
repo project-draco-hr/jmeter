@@ -1,0 +1,70 @@
+{
+  SampleResult parent=new SampleResult(nanoTime,nanoThreadSleep);
+  assertEquals(nanoTime,parent.useNanoTime);
+  assertEquals(nanoThreadSleep,parent.nanoThreadSleep);
+  long beginTest=parent.currentTimeInMillis();
+  parent.sampleStart();
+  Thread.sleep(100);
+  parent.setBytes(300);
+  parent.setSampleLabel("Parent Sample");
+  parent.setSuccessful(true);
+  parent.sampleEnd();
+  long parentElapsed=parent.getTime();
+  SampleResult child1=new SampleResult(nanoTime);
+  child1.sampleStart();
+  Thread.sleep(100);
+  child1.setBytes(100);
+  child1.setSampleLabel("Child1 Sample");
+  child1.setSuccessful(true);
+  child1.sampleEnd();
+  long child1Elapsed=child1.getTime();
+  assertTrue(child1.isSuccessful());
+  assertEquals(100,child1.getBytes());
+  assertEquals("Child1 Sample",child1.getSampleLabel());
+  assertEquals(1,child1.getSampleCount());
+  assertEquals(0,child1.getSubResults().length);
+  long actualPause=0;
+  if (pause > 0) {
+    long t1=parent.currentTimeInMillis();
+    Thread.sleep(pause);
+    actualPause=parent.currentTimeInMillis() - t1;
+  }
+  SampleResult child2=new SampleResult(nanoTime);
+  child2.sampleStart();
+  Thread.sleep(100);
+  child2.setBytes(200);
+  child2.setSampleLabel("Child2 Sample");
+  child2.setSuccessful(true);
+  child2.sampleEnd();
+  long child2Elapsed=child2.getTime();
+  assertTrue(child2.isSuccessful());
+  assertEquals(200,child2.getBytes());
+  assertEquals("Child2 Sample",child2.getSampleLabel());
+  assertEquals(1,child2.getSampleCount());
+  assertEquals(0,child2.getSubResults().length);
+  parent.addSubResult(child1);
+  parent.addSubResult(child2);
+  assertTrue(parent.isSuccessful());
+  assertEquals(600,parent.getBytes());
+  assertEquals("Parent Sample",parent.getSampleLabel());
+  assertEquals(1,parent.getSampleCount());
+  assertEquals(2,parent.getSubResults().length);
+  long parentElapsedTotal=parent.getTime();
+  long overallTime=parent.currentTimeInMillis() - beginTest;
+  long sumSamplesTimes=parentElapsed + child1Elapsed + actualPause+ child2Elapsed;
+  long diff=parentElapsedTotal - sumSamplesTimes;
+  long maxDiff=nanoTime ? 2 : 16;
+  if (diff < 0 || diff > maxDiff) {
+    fail("ParentElapsed: " + parentElapsedTotal + " - "+ " sum(samples): "+ sumSamplesTimes+ " = "+ diff+ " not in [0,"+ maxDiff+ "]; nanotime="+ nanoTime);
+  }
+  diff=overallTime - parentElapsedTotal;
+  if (diff < 0 || diff > maxDiff) {
+    fail("TestElapsed: " + overallTime + " - "+ " ParentElapsed: "+ parentElapsedTotal+ " = "+ diff+ " not in [0,"+ maxDiff+ "]; nanotime="+ nanoTime);
+  }
+  Calculator calculator=new Calculator();
+  calculator.addSample(parent);
+  assertEquals(600,calculator.getTotalBytes());
+  assertEquals(1,calculator.getCount());
+  assertEquals(1d / (parentElapsedTotal / 1000d),calculator.getRate(),0.0001d);
+  assertFalse(1d / (parentElapsed / 1000d) <= calculator.getRate());
+}

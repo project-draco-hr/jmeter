@@ -1,0 +1,10 @@
+{
+  try {
+    Thread.sleep(wait);
+    long clock=System.currentTimeMillis();
+    long nano=SampleResult.sampleNsClockInMs();
+    nanoOffset=clock - nano;
+  }
+ catch (  InterruptedException ignore) {
+  }
+}

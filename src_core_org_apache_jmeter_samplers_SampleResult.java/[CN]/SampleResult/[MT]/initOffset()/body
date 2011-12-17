@@ -1,6 +1,6 @@
 {
   if (useNanoTime) {
-    return System.currentTimeMillis() - sampleNsClockInMs();
+    return nanoThreadSleep > 0 ? NanoOffset.getNanoOffset() : System.currentTimeMillis() - sampleNsClockInMs();
   }
  else {
     return Long.MIN_VALUE;

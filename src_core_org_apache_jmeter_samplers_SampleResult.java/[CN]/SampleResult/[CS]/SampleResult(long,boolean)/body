@@ -1,6 +1,5 @@
 {
-  useNanoTime=USENANOTIME;
-  nanoTimeOffset=initOffset();
+  this();
   long now=currentTimeInMillis();
   if (atend) {
     setTimes(now - elapsed,now);

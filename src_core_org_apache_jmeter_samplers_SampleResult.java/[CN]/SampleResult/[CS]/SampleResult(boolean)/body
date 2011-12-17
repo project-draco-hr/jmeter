@@ -1,5 +1,3 @@
 {
-  time=0;
-  useNanoTime=nanoTime;
-  nanoTimeOffset=initOffset();
+  this(nanoTime,NANOTHREAD_SLEEP);
 }
