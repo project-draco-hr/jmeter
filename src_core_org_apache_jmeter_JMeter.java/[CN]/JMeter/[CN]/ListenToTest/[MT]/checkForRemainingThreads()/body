@@ -1,0 +1,16 @@
+{
+  Thread daemon=new Thread(){
+    @Override public void run(){
+      try {
+        Thread.sleep(2000);
+      }
+ catch (      InterruptedException ignored) {
+      }
+      System.out.println("JVM did not exit; following threads are still running (DestroyJavaVM is OK):");
+      JOrphanUtils.displayThreads(false);
+    }
+  }
+;
+  daemon.setDaemon(true);
+  daemon.start();
+}

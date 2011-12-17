@@ -1,0 +1,9 @@
+{
+  Map<Thread,StackTraceElement[]> m=Thread.getAllStackTraces();
+  for (  Thread t : m.keySet()) {
+    boolean daemon=t.isDaemon();
+    if (includeDaemons || !daemon) {
+      System.out.println(t.toString() + ((daemon ? " (deamon)" : "")));
+    }
+  }
+}
