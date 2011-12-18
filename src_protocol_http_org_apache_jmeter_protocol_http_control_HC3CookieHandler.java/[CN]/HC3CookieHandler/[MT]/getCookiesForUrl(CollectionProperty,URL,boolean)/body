@@ -1,14 +1,13 @@
 {
-  CollectionProperty jar=getCookies();
-  org.apache.commons.httpclient.Cookie cookies[]=new org.apache.commons.httpclient.Cookie[jar.size()];
+  org.apache.commons.httpclient.Cookie cookies[]=new org.apache.commons.httpclient.Cookie[cookiesCP.size()];
   int i=0;
-  for (PropertyIterator iter=getCookies().iterator(); iter.hasNext(); ) {
+  for (PropertyIterator iter=cookiesCP.iterator(); iter.hasNext(); ) {
     Cookie jmcookie=(Cookie)iter.next().getObjectValue();
-    if (ALLOW_VARIABLE_COOKIES) {
+    if (allowVariableCookie) {
       jmcookie.setRunningVersion(true);
     }
     cookies[i++]=makeCookie(jmcookie);
-    if (ALLOW_VARIABLE_COOKIES) {
+    if (allowVariableCookie) {
       jmcookie.setRunningVersion(false);
     }
   }

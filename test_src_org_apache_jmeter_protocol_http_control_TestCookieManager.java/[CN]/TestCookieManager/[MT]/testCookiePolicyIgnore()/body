@@ -19,6 +19,7 @@
   assertEquals("/",man.get(2).getPath());
   String s=man.getCookieHeaderForURL(url);
   assertNull(s);
-  org.apache.commons.httpclient.Cookie[] c=man.getCookiesForUrl(url);
+  HC3CookieHandler hc3CookieHandler=(HC3CookieHandler)man.getCookieHandler();
+  org.apache.commons.httpclient.Cookie[] c=(org.apache.commons.httpclient.Cookie[])hc3CookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
   assertEquals(0,c.length);
 }

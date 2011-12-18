@@ -1,6 +1,6 @@
 {
   initialCookies=getCookies();
-  cookieSpec=CookiePolicy.getCookieSpec(getPolicy());
+  cookieHandler=new HC3CookieHandler(getPolicy());
   if (log.isDebugEnabled()) {
     log.debug("Policy: " + getPolicy() + " Clear: "+ getClearEachIteration());
   }
