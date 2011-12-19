@@ -1,0 +1,10 @@
+{
+  this.totalSamples=totalSamples;
+  this.sampleCount=sampleCount;
+  this.startTime=startTime;
+  this.threadName=threadName;
+  this.label=label;
+  this.elapsed=elapsed / sampleCount;
+  this.success=success;
+  this.bytes=bytes / sampleCount;
+}

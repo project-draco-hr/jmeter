@@ -1,0 +1,9 @@
+{
+  StringBuilder sb=new StringBuilder();
+  if (sampleCount > 1) {
+    sb.append(totalSamples - sampleCount + 1);
+    sb.append('-');
+  }
+  sb.append(totalSamples);
+  return sb.toString();
+}
