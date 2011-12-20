@@ -10,7 +10,7 @@
   String s=man.getCookieHeaderForURL(url);
   assertNotNull(s);
   HC3CookieHandler hc3CookieHandler=(HC3CookieHandler)man.getCookieHandler();
-  org.apache.commons.httpclient.Cookie[] c=(org.apache.commons.httpclient.Cookie[])hc3CookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
+  org.apache.commons.httpclient.Cookie[] c=hc3CookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
   assertEquals("/sub1",c[0].getPath());
   assertFalse(c[0].isPathAttributeSpecified());
   assertEquals("/sub1",c[1].getPath());
