@@ -1,0 +1,8 @@
+{
+  count+=sampleCount;
+  double currentVal=val.doubleValue();
+  sum+=currentVal * sampleCount;
+  sumOfSquares+=currentVal * currentVal * sampleCount;
+  updateValueCount(val,sampleCount);
+  calculateDerivedValues(val);
+}

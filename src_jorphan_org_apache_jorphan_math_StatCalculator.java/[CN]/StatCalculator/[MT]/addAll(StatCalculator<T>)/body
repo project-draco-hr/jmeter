@@ -1,5 +1,5 @@
 {
   for (  Entry<T,MutableLong> ent : calc.valuesMap.entrySet()) {
-    addValue(ent.getKey(),ent.getValue().longValue());
+    addEachValue(ent.getKey(),ent.getValue().longValue());
   }
 }

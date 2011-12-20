@@ -1,15 +1,15 @@
 {
   count+=sampleCount;
   double currentVal=val.doubleValue();
-  sum+=currentVal * sampleCount;
-  sumOfSquares+=currentVal * currentVal * sampleCount;
-  updateValueCount(val,sampleCount);
-  mean=sum / count;
-  deviation=Math.sqrt((sumOfSquares / count) - (mean * mean));
-  if (val.compareTo(max) > 0) {
-    max=val;
+  sum+=currentVal;
+  T actualValue=val;
+  if (sampleCount > 1) {
+    sumOfSquares+=currentVal * currentVal / sampleCount;
+    actualValue=divide(val,sampleCount);
   }
-  if (val.compareTo(min) < 0) {
-    min=val;
+ else {
+    sumOfSquares+=currentVal * currentVal;
   }
+  updateValueCount(actualValue,sampleCount);
+  calculateDerivedValues(actualValue);
 }
