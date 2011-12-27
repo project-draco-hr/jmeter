@@ -1,0 +1,6 @@
+{
+  for (  Map.Entry<Connection,Map<String,PreparedStatement>> element : perConnCache.entrySet()) {
+    closeAllStatements(element.getValue().values());
+  }
+  perConnCache.clear();
+}
