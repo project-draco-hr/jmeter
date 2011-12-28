@@ -15,10 +15,10 @@
   }
   Iterator<URL> result;
   if (c == null) {
-    result=p.getEmbeddedResourceURLs(buffer,new URL(url));
+    result=p.getEmbeddedResourceURLs(buffer,new URL(url),System.getProperty("file.encoding"));
   }
  else {
-    result=p.getEmbeddedResourceURLs(buffer,new URL(url),c);
+    result=p.getEmbeddedResourceURLs(buffer,new URL(url),c,System.getProperty("file.encoding"));
   }
   Iterator<String> expected;
   if (orderMatters) {
