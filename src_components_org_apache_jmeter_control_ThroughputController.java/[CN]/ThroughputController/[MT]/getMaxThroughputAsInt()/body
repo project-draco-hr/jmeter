@@ -9,6 +9,7 @@
       retVal=Integer.parseInt(prop.getStringValue());
     }
  catch (    NumberFormatException e) {
+      log.warn("Error parsing " + prop.getStringValue(),e);
     }
   }
   return retVal;
