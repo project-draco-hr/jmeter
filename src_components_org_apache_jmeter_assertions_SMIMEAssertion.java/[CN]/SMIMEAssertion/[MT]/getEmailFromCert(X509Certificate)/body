@@ -1,7 +1,7 @@
 {
   List<String> res=new ArrayList<String>();
   X509Principal subject=PrincipalUtil.getSubjectX509Principal(cert);
-  Iterator<?> addressIt=subject.getValues(X509Principal.EmailAddress).iterator();
+  Iterator<?> addressIt=subject.getValues(X509Name.EmailAddress).iterator();
   while (addressIt.hasNext()) {
     String address=(String)addressIt.next();
     res.add(address);
