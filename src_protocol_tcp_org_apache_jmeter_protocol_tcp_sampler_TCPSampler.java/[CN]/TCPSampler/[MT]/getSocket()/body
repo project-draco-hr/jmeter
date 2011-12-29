@@ -2,7 +2,7 @@
   Map<String,Object> cp=tp.get();
   Socket con=null;
   if (isReUseConnection()) {
-    con=(Socket)cp.get(TCPKEY);
+    con=(Socket)cp.get(getSocketKey());
     if (con != null) {
       log.debug(this + " Reusing connection " + con);
     }
@@ -16,7 +16,7 @@
       if (log.isDebugEnabled()) {
         log.debug("Created new connection " + con);
       }
-      cp.put(TCPKEY,con);
+      cp.put(getSocketKey(),con);
     }
  catch (    UnknownHostException e) {
       log.warn("Unknown host for " + getLabel(),e);
