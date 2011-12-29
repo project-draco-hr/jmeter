@@ -1,17 +1,21 @@
 {
   JMeterVariables variables=JMeterContextService.getContext().getVariables();
-  long start=getStart(), end=getEnd(), increment=getIncrement();
+  long start=getStart();
+  long end=getEnd();
+  long increment=getIncrement();
   if (!isPerUser()) {
-    if (globalCounter == Long.MIN_VALUE || globalCounter > end) {
-      globalCounter=start;
+synchronized (this) {
+      if (globalCounter == Long.MIN_VALUE || globalCounter > end) {
+        globalCounter=start;
+      }
+      variables.put(getVarName(),formatNumber(globalCounter));
+      globalCounter+=increment;
     }
-    variables.put(getVarName(),formatNumber(globalCounter));
-    globalCounter+=increment;
   }
  else {
     long current=perTheadNumber.get().longValue();
     if (isResetOnThreadGroupIteration()) {
-      int iteration=JMeterContextService.getContext().getVariables().getIteration();
+      int iteration=variables.getIteration();
       Long lastIterationNumber=perTheadLastIterationNumber.get();
       if (iteration != lastIterationNumber.longValue()) {
         current=getStart();
