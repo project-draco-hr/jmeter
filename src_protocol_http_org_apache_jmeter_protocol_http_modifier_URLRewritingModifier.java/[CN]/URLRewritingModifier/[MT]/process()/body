@@ -9,7 +9,7 @@
     return;
   }
   initRegex(getArgumentName());
-  String text=new String(responseText.getResponseData());
+  String text=responseText.getResponseDataAsString();
   Perl5Matcher matcher=JMeterUtils.getMatcher();
   String value="";
   if (isPathExtension() && isPathExtensionNoEquals() && isPathExtensionNoQuestionmark()) {
