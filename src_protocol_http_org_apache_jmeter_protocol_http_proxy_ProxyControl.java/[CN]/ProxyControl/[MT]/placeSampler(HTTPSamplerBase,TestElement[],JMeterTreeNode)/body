@@ -1,6 +1,6 @@
 {
   try {
-    JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
+    final JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
     boolean firstInBatch=false;
     long now=System.currentTimeMillis();
     long deltaT=now - lastTime;
@@ -36,22 +36,35 @@
         }
       }
     }
-    JMeterTreeNode newNode=treeModel.addComponent(sampler,myTarget);
-    if (firstInBatch) {
-      if (addAssertions) {
-        addAssertion(treeModel,newNode);
+    final long deltaTFinal=deltaT;
+    final boolean firstInBatchFinal=firstInBatch;
+    final JMeterTreeNode myTargetFinal=myTarget;
+    SwingUtilities.invokeAndWait(new Runnable(){
+      public void run(){
+        try {
+          final JMeterTreeNode newNode=treeModel.addComponent(sampler,myTargetFinal);
+          if (firstInBatchFinal) {
+            if (addAssertions) {
+              addAssertion(treeModel,newNode);
+            }
+            addTimers(treeModel,newNode,deltaTFinal);
+          }
+          for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
+            if (subConfigs[i] instanceof HeaderManager) {
+              final TestElement headerManager=subConfigs[i];
+              headerManager.setProperty(TestElement.GUI_CLASS,HEADER_PANEL);
+              treeModel.addComponent(headerManager,newNode);
+            }
+          }
+        }
+ catch (        IllegalUserActionException e) {
+          JMeterUtils.reportErrorToUser(e.getMessage());
+        }
       }
-      addTimers(treeModel,newNode,deltaT);
-      firstInBatch=false;
     }
-    for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
-      if (subConfigs[i] instanceof HeaderManager) {
-        subConfigs[i].setProperty(TestElement.GUI_CLASS,HEADER_PANEL);
-        treeModel.addComponent(subConfigs[i],newNode);
-      }
-    }
+);
   }
- catch (  IllegalUserActionException e) {
+ catch (  Exception e) {
     JMeterUtils.reportErrorToUser(e.getMessage());
   }
 }

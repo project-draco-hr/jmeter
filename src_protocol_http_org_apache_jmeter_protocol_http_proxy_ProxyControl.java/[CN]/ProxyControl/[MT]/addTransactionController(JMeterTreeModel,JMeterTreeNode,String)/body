@@ -1,6 +1,17 @@
 {
-  TransactionController sc=new TransactionController();
+  final TransactionController sc=new TransactionController();
   sc.setProperty(TestElement.GUI_CLASS,TRANSACTION_CONTROLLER_GUI);
   sc.setName(name);
-  model.addComponent(sc,node);
+  SwingUtilities.invokeAndWait(new Runnable(){
+    public void run(){
+      try {
+        model.addComponent(sc,node);
+      }
+ catch (      IllegalUserActionException e) {
+        log.error("Program error",e);
+        throw new Error(e);
+      }
+    }
+  }
+);
 }
