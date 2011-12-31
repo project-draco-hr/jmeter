@@ -1,9 +1,0 @@
-{
-  te.clear();
-  this.configureTestElement(te);
-  BSFSampler sampler=(BSFSampler)te;
-  sampler.setFilename(filename.getText());
-  sampler.setScriptLanguage((String)langField.getSelectedItem());
-  sampler.setParameters(parameters.getText());
-  sampler.setScript(scriptField.getText());
-}
