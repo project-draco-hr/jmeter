@@ -1,6 +1,6 @@
 {
   log.debug("Thread Finished");
-  closeSocket();
+  tearDown();
   if (protocolHandler != null) {
     protocolHandler.teardownTest();
   }

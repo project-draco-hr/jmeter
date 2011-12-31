@@ -1,0 +1,14 @@
+{
+  Map<String,Object> cp=tp.get();
+  for (  Map.Entry<String,Object> element : cp.entrySet()) {
+    if (element.getKey().startsWith(TCPKEY)) {
+      try {
+        ((Socket)element.getValue()).close();
+      }
+ catch (      IOException e) {
+      }
+    }
+  }
+  cp.clear();
+  tp.remove();
+}
