@@ -1,8 +1,0 @@
-{
-  super.configure(element);
-  BSFSampler sampler=(BSFSampler)element;
-  scriptField.setText(sampler.getScript());
-  langField.setSelectedItem(sampler.getScriptLanguage());
-  filename.setText(sampler.getFilename());
-  parameters.setText(sampler.getParameters());
-}
