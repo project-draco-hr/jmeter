@@ -1,0 +1,13 @@
+{
+  setLayout(new BorderLayout(0,5));
+  setBorder(makeBorder());
+  Box box=Box.createVerticalBox();
+  box.add(makeTitlePanel());
+  box.add(createLanguagePanel());
+  box.add(createFilenamePanel());
+  box.add(createParameterPanel());
+  add(box,BorderLayout.NORTH);
+  JPanel panel=createScriptPanel();
+  add(panel,BorderLayout.CENTER);
+  add(Box.createVerticalStrut(panel.getPreferredSize().height),BorderLayout.WEST);
+}

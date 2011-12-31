@@ -4,7 +4,6 @@
   p=property("scriptLanguage");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
-  p.setValue(TAGS,LANGUAGE_TAGS);
   createPropertyGroup("scriptingLanguage",new String[]{"scriptLanguage"});
   p=property("parameters");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
@@ -13,7 +12,6 @@
   p=property("filename");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
-  p.setPropertyEditorClass(FileEditor.class);
   createPropertyGroup("filenameGroup",new String[]{"filename"});
   p=property("script");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
