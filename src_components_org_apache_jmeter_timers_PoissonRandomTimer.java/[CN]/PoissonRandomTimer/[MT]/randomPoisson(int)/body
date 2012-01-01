@@ -1,0 +1,8 @@
+{
+  if (lambda <= 30) {
+    return poissonRandomNumberLowEq30(lambda);
+  }
+ else {
+    return poissonRandomNumberSup30(lambda);
+  }
+}

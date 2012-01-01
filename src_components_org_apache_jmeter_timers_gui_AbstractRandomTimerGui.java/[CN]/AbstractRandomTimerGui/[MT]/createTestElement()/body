@@ -1,5 +1,5 @@
 {
-  RandomTimer timer=new GaussianRandomTimer();
+  RandomTimer timer=createRandomTimer();
   modifyTestElement(timer);
   return timer;
 }

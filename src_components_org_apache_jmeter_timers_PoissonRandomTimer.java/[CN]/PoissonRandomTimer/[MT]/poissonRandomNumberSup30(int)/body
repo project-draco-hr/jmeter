@@ -1,0 +1,21 @@
+{
+  double c=0.767 - 3.36 / lambda;
+  double beta=Math.PI / Math.sqrt(3.0 * lambda);
+  double alpha=beta * lambda;
+  double k=Math.log(c) - lambda - Math.log(beta);
+  while (true) {
+    double u=Math.random();
+    double x=(alpha - Math.log((1.0 - u) / u)) / beta;
+    int n=(int)Math.floor(x + 0.5);
+    if (n < 0) {
+      continue;
+    }
+    double v=Math.random();
+    double y=alpha - beta * x;
+    double lhs=y + Math.log(v / Math.pow((1.0 + Math.exp(y)),2));
+    double rhs=k + n * Math.log(lambda) - logFactorial(n);
+    if (lhs <= rhs) {
+      return n;
+    }
+  }
+}
