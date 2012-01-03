@@ -1,9 +1,4 @@
 {
-synchronized (LoggingManager.class) {
-    if (logManager == null) {
-      logManager=new LoggingManager();
-    }
-  }
   setFormat(properties);
   setTarget(makeWriter(properties.getProperty(LOG_FILE,"jmeter.log"),LOG_FILE));
   setPriority(properties.getProperty(LOG_PRIORITY,"INFO"));
