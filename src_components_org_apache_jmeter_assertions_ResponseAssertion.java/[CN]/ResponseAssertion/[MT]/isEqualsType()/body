@@ -1,3 +1,3 @@
 {
-  return (getTestType() & EQUALS) > 0;
+  return (getTestType() & EQUALS) != 0;
 }
