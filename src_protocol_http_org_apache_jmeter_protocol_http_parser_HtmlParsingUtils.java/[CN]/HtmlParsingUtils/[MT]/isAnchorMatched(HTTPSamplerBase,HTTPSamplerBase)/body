@@ -8,9 +8,6 @@
     throw new Error("Should not happen: " + e.toString());
   }
   final Arguments arguments=config.getArguments();
-  if (query == null && arguments.getArgumentCount() > 0) {
-    return false;
-  }
   final Perl5Matcher matcher=JMeterUtils.getMatcher();
   final PatternCacheLRU patternCache=JMeterUtils.getPatternCache();
   if (!isEqualOrMatches(newLink.getProtocol(),config.getProtocol(),matcher,patternCache)) {
