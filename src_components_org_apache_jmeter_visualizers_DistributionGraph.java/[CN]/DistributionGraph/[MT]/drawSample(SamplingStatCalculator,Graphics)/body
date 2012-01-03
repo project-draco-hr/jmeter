@@ -16,7 +16,7 @@
     Number fifty=p_model.getPercentPoint(0.50);
     long total=p_model.getCount();
     Collection<Number[]> values=p_model.getDistribution().values();
-    Number[][] objval=values.toArray(new Number[][]{});
+    Number[][] objval=values.toArray(new Number[values.size()][]);
     Arrays.sort(objval,new NumberComparator());
     int len=objval.length;
     for (int count=0; count < len; count++) {

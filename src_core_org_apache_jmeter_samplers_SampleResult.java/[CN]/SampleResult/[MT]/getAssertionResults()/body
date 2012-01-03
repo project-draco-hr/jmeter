@@ -2,5 +2,5 @@
   if (assertionResults == null) {
     return EMPTY_AR;
   }
-  return assertionResults.toArray(new AssertionResult[0]);
+  return assertionResults.toArray(new AssertionResult[assertionResults.size()]);
 }

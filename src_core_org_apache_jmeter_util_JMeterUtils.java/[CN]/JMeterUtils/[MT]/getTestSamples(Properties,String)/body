@@ -1,3 +1,4 @@
 {
-  return getVector(properties,name + ".testsample").toArray(new String[0]);
+  Vector<String> vector=getVector(properties,name + ".testsample");
+  return vector.toArray(new String[vector.size()]);
 }
