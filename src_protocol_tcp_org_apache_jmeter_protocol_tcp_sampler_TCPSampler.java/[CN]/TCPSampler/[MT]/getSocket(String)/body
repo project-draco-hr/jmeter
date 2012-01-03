@@ -2,21 +2,21 @@
   Map<String,Object> cp=tp.get();
   Socket con=null;
   if (isReUseConnection()) {
-    con=(Socket)cp.get(getSocketKey());
+    con=(Socket)cp.get(socketKey);
     if (con != null) {
       log.debug(this + " Reusing connection " + con);
     }
   }
   if (con == null) {
     try {
-      closeSocket();
+      closeSocket(socketKey);
       SocketAddress sockaddr=new InetSocketAddress(getServer(),getPort());
       con=new Socket();
       con.connect(sockaddr,getConnectTimeout());
       if (log.isDebugEnabled()) {
         log.debug("Created new connection " + con);
       }
-      cp.put(getSocketKey(),con);
+      cp.put(socketKey,con);
     }
  catch (    UnknownHostException e) {
       log.warn("Unknown host for " + getLabel(),e);

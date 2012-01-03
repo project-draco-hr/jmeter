@@ -3,6 +3,7 @@
     initSampling();
     firstSample=false;
   }
+  String socketKey=getSocketKey();
   log.debug(getLabel() + " " + getFilename()+ " "+ getUsername()+ " "+ getPassword());
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
@@ -10,7 +11,7 @@
   res.setSamplerData("Host: " + getServer() + " Port: "+ getPort());
   res.sampleStart();
   try {
-    Socket sock=getSocket();
+    Socket sock=getSocket(socketKey);
     if (sock == null) {
       res.setResponseCode("500");
       res.setResponseMessage(getError());
@@ -32,18 +33,18 @@
  catch (  ReadException ex) {
     log.error("",ex);
     isSuccessful=setupSampleResult(res,ex.getPartialResponse(),ex);
-    closeSocket();
+    closeSocket(socketKey);
   }
 catch (  Exception ex) {
     log.error("",ex);
     isSuccessful=setupSampleResult(res,"",ex);
-    closeSocket();
+    closeSocket(socketKey);
   }
  finally {
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
     if (!isReUseConnection()) {
-      closeSocket();
+      closeSocket(socketKey);
     }
   }
   return res;
