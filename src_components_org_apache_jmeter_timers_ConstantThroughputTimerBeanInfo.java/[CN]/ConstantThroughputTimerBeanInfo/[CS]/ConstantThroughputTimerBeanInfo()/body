@@ -9,7 +9,7 @@
   createPropertyGroup("delay",new String[]{"throughput","calcMode"});
   PropertyDescriptor p=property("throughput");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
-  p.setValue(DEFAULT,new Double(0.0));
+  p.setValue(DEFAULT,Double.valueOf(0.0));
   p=property("calcMode");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,tags[0]);
