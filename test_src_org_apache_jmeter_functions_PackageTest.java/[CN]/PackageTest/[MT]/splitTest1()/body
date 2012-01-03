@@ -2,13 +2,13 @@
   SplitFunction split=null;
   String src="";
   try {
-    split=SplitParams("a,b,c",null,null);
+    split=splitParams("a,b,c",null,null);
     fail("Expected InvalidVariableException (wrong number of parameters)");
   }
  catch (  InvalidVariableException e) {
   }
   src="a,b,c";
-  split=SplitParams(src,"VAR1",null);
+  split=splitParams(src,"VAR1",null);
   assertEquals(src,split.execute());
   assertEquals(src,vars.get("VAR1"));
   assertEquals("3",vars.get("VAR1_n"));
@@ -16,7 +16,7 @@
   assertEquals("b",vars.get("VAR1_2"));
   assertEquals("c",vars.get("VAR1_3"));
   assertNull(vars.get("VAR1_4"));
-  split=SplitParams(src,"VAR2",",");
+  split=splitParams(src,"VAR2",",");
   assertEquals(src,split.execute());
   assertEquals(src,vars.get("VAR2"));
   assertEquals("3",vars.get("VAR2_n"));
@@ -25,7 +25,7 @@
   assertEquals("c",vars.get("VAR2_3"));
   assertNull(vars.get("VAR2_4"));
   src="a|b|c";
-  split=SplitParams(src,"VAR3","|");
+  split=splitParams(src,"VAR3","|");
   assertEquals(src,split.execute());
   assertEquals(src,vars.get("VAR3"));
   assertEquals("3",vars.get("VAR3_n"));
@@ -34,7 +34,7 @@
   assertEquals("c",vars.get("VAR3_3"));
   assertNull(vars.get("VAR3_4"));
   src="a|b||";
-  split=SplitParams(src,"VAR4","|");
+  split=splitParams(src,"VAR4","|");
   assertEquals(src,split.execute());
   assertEquals(src,vars.get("VAR4"));
   assertEquals("4",vars.get("VAR4_n"));
@@ -44,7 +44,7 @@
   assertNull(vars.get("VAR4_5"));
   src="a,,c";
   vars.put("VAR",src);
-  split=SplitParams("${VAR}","VAR",null);
+  split=splitParams("${VAR}","VAR",null);
   assertEquals(src,split.execute());
   assertEquals("3",vars.get("VAR_n"));
   assertEquals("a",vars.get("VAR_1"));
@@ -53,7 +53,7 @@
   assertNull(vars.get("VAR_4"));
   src="a,b";
   vars.put("VAR",src);
-  split=SplitParams("${VAR}","VAR",null);
+  split=splitParams("${VAR}","VAR",null);
   assertEquals(src,split.execute());
   assertEquals("2",vars.get("VAR_n"));
   assertEquals("a",vars.get("VAR_1"));
@@ -61,7 +61,7 @@
   assertNull(vars.get("VAR_3"));
   src="a,,c,";
   vars.put("VAR",src);
-  split=SplitParams("${VAR}","VAR5",null);
+  split=splitParams("${VAR}","VAR5",null);
   assertEquals(src,split.execute());
   assertEquals("4",vars.get("VAR5_n"));
   assertEquals("a",vars.get("VAR5_1"));

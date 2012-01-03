@@ -5,7 +5,7 @@
   vars.put("table","customers");
   Collection<CompoundVariable> parms;
   String s;
-  parms=MakeParams("query",null,null);
+  parms=makeParams("query",null,null);
   evalVar.setParameters(parms);
   s=evalVar.execute(null,null);
   assertEquals("select name from customers",s);
