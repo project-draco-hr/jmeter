@@ -13,6 +13,8 @@ break;
 case '\"':
 toReturn="&quot;";
 break;
+default :
+break;
 }
 return toReturn;
 }

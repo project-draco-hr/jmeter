@@ -158,6 +158,8 @@ break;
 case REMOTE_STOP:
 remoteStop=true;
 break;
+default :
+break;
 }
 }
 String sample_variables=(String)jmeterProps.get(SampleEvent.SAMPLE_VARIABLES);
