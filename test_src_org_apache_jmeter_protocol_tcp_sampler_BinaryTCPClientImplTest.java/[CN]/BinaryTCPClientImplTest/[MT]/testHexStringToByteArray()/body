@@ -20,7 +20,7 @@
  catch (  IllegalArgumentException expected) {
   }
   try {
-    ba=BinaryTCPClientImpl.hexStringToByteArray("0f107xxf8081ff");
+    BinaryTCPClientImpl.hexStringToByteArray("0f107xxf8081ff");
     fail("Expected IllegalArgumentException");
   }
  catch (  IllegalArgumentException expected) {
