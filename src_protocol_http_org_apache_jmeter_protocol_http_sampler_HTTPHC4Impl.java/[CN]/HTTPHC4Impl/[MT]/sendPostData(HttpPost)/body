@@ -130,7 +130,7 @@
             postedBody.append(new String(bos.toByteArray(),contentEncoding));
           }
  else {
-            postedBody.append(new String(bos.toByteArray()));
+            postedBody.append(new String(bos.toByteArray(),SampleResult.DEFAULT_HTTP_ENCODING));
           }
           bos.close();
         }

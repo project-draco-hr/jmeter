@@ -9,7 +9,7 @@
     outStreamClient=clientSocket.getOutputStream();
     if ((request.getMethod().startsWith(HTTPConstants.CONNECT)) && (outStreamClient != null)) {
       log.debug("Method CONNECT => SSL");
-      outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes());
+      outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes(SampleResult.DEFAULT_HTTP_ENCODING));
       outStreamClient.flush();
       String[] param=request.getUrl().split(":");
       if (param.length == 2) {
