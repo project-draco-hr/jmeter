@@ -13,10 +13,9 @@
   }
  catch (  IOException iex) {
     res.sampleEnd();
-    HTTPSampleResult err=errorResult(iex,res);
     lastPort=-1;
     channel=null;
-    return err;
+    return errorResult(iex,res);
   }
  finally {
     activeChannel=null;
