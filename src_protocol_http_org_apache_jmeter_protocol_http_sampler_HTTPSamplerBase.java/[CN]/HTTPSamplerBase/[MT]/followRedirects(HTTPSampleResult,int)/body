@@ -14,7 +14,7 @@
       lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),GET,true,frameDepth);
     }
  catch (    MalformedURLException e) {
-      lastRes=errorResult(e,lastRes);
+      errorResult(e,lastRes);
       invalidRedirectUrl=true;
     }
     if (lastRes.getSubResults() != null && lastRes.getSubResults().length > 0) {
@@ -33,7 +33,7 @@
     }
   }
   if (redirect >= MAX_REDIRECTS) {
-    lastRes=errorResult(new IOException("Exceeeded maximum number of redirects: " + MAX_REDIRECTS),lastRes);
+    lastRes=errorResult(new IOException("Exceeeded maximum number of redirects: " + MAX_REDIRECTS),new HTTPSampleResult(lastRes));
     totalRes.addSubResult(lastRes);
   }
   totalRes.setSampleLabel(totalRes.getSampleLabel() + "->" + lastRes.getSampleLabel());

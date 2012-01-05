@@ -12,7 +12,7 @@
   }
   if (isImageParser() && (HTTPSampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
     if (frameDepth > MAX_FRAME_DEPTH) {
-      res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),res));
+      res.addSubResult(errorResult(new Exception("Maximum frame/iframe nesting depth exceeded."),new HTTPSampleResult(res)));
     }
  else {
       if (!wasRedirected) {
