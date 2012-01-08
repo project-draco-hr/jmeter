@@ -12,7 +12,7 @@
   }
  catch (  HTMLParseException e) {
     res.addSubResult(errorResult(e,new HTTPSampleResult(res)));
-    res.setSuccessful(false);
+    setParentSampleSuccess(res,false);
   }
   if (urls != null && urls.hasNext()) {
     if (container == null) {
@@ -50,7 +50,7 @@
             }
  catch (            MalformedURLException e) {
               res.addSubResult(errorResult(new Exception(urlStrEnc + " is not a correct URI"),new HTTPSampleResult(res)));
-              res.setSuccessful(false);
+              setParentSampleSuccess(res,false);
               continue;
             }
           }
@@ -63,13 +63,13 @@
  else {
             HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
             res.addSubResult(binRes);
-            res.setSuccessful(res.isSuccessful() && binRes.isSuccessful());
+            setParentSampleSuccess(res,res.isSuccessful() && binRes.isSuccessful());
           }
         }
       }
  catch (      ClassCastException e) {
         res.addSubResult(errorResult(new Exception(binURL + " is not a correct URI"),new HTTPSampleResult(res)));
-        res.setSuccessful(false);
+        setParentSampleSuccess(res,false);
         continue;
       }
     }
@@ -117,7 +117,7 @@
               }
             }
             res.addSubResult(binRes.getResult());
-            res.setSuccessful(res.isSuccessful() && binRes.getResult().isSuccessful());
+            setParentSampleSuccess(res,res.isSuccessful() && binRes.getResult().isSuccessful());
           }
  catch (          TimeoutException e) {
             errorResult(e,res);
