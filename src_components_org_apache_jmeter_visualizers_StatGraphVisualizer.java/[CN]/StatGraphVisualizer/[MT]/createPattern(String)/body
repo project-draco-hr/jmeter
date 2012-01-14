@@ -1,0 +1,19 @@
+{
+  String textToFindQ=Pattern.quote(textToFind);
+  if (regexpChkBox.isSelected()) {
+    textToFindQ=textToFind;
+  }
+  Pattern pattern=null;
+  try {
+    if (caseChkBox.isSelected()) {
+      pattern=Pattern.compile(textToFindQ);
+    }
+ else {
+      pattern=Pattern.compile(textToFindQ,Pattern.CASE_INSENSITIVE);
+    }
+  }
+ catch (  PatternSyntaxException pse) {
+    return null;
+  }
+  return pattern;
+}

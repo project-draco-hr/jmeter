@@ -1,0 +1,7 @@
+{
+  Map<String,Integer> fontStyleMap=new HashMap<String,Integer>();
+  fontStyleMap.put(JMeterUtils.getResString("fontstyle.normal"),Font.PLAIN);
+  fontStyleMap.put(JMeterUtils.getResString("fontstyle.bold"),Font.BOLD);
+  fontStyleMap.put(JMeterUtils.getResString("fontstyle.italic"),Font.ITALIC);
+  return fontStyleMap;
+}

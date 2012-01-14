@@ -1,0 +1,22 @@
+{
+  Font font=new Font("SansSerif",Font.PLAIN,10);
+  JPanel searchPanel=new JPanel();
+  searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
+  searchPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+  searchPanel.add(columnSelection);
+  columnMatchLabel.setEnabled(false);
+  reloadButton.setEnabled(false);
+  caseChkBox.setEnabled(false);
+  regexpChkBox.setEnabled(false);
+  columnSelection.addActionListener(this);
+  searchPanel.add(columnMatchLabel);
+  searchPanel.add(Box.createRigidArea(new Dimension(5,0)));
+  reloadButton.setFont(font);
+  reloadButton.addActionListener(this);
+  searchPanel.add(reloadButton);
+  caseChkBox.setFont(font);
+  searchPanel.add(caseChkBox);
+  regexpChkBox.setFont(font);
+  searchPanel.add(regexpChkBox);
+  return searchPanel;
+}

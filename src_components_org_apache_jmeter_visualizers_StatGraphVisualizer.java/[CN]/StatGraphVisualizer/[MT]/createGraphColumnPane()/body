@@ -1,0 +1,24 @@
+{
+  JPanel barPanel=new JPanel();
+  barPanel.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  barPanel.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_column"),columnsList));
+  currentColor.setBorder(new EmptyBorder(2,5,2,5));
+  currentColor.setOpaque(true);
+  currentColor.setBackground(colorBarGraph);
+  barPanel.add(Box.createRigidArea(new Dimension(5,0)));
+  barPanel.add(currentColor);
+  barPanel.add(Box.createRigidArea(new Dimension(5,0)));
+  barPanel.add(chooseBarColor);
+  chooseBarColor.addActionListener(this);
+  barPanel.add(Box.createRigidArea(new Dimension(5,0)));
+  barPanel.add(chooseForeColor);
+  chooseForeColor.addActionListener(this);
+  barPanel.add(drawOutlinesBar);
+  barPanel.add(numberShowGrouping);
+  JPanel columnPane=new JPanel(new BorderLayout());
+  columnPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_column_settings")));
+  columnPane.add(barPanel,BorderLayout.NORTH);
+  columnPane.add(Box.createRigidArea(new Dimension(5,0)),BorderLayout.CENTER);
+  columnPane.add(createGraphSelectionSubPane(),BorderLayout.SOUTH);
+  return columnPane;
+}

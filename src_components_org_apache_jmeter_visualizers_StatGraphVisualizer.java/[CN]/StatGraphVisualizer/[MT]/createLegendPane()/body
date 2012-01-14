@@ -1,0 +1,14 @@
+{
+  JPanel legendPanel=new JPanel();
+  legendPanel.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  legendPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_legend")));
+  legendPanel.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_legend_placement"),legendPlacementList));
+  legendPlacementList.setSelectedItem(JMeterUtils.getResString("aggregate_graph_legend.placement.right"));
+  legendPanel.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_font"),fontNameList));
+  fontNameList.setSelectedIndex(0);
+  legendPanel.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_size"),fontSizeList));
+  fontSizeList.setSelectedItem(StatGraphProperties.fontSize[2]);
+  legendPanel.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_style"),fontStyleList));
+  fontStyleList.setSelectedItem(JMeterUtils.getResString("fontstyle.normal"));
+  return legendPanel;
+}

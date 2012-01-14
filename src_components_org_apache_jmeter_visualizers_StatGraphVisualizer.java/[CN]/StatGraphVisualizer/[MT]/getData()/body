@@ -1,7 +1,7 @@
 {
   if (model.getRowCount() > 1) {
     int count=model.getRowCount() - 1;
-    int col=model.findColumn(columns.getText());
+    int col=model.findColumn((String)columnsList.getSelectedItem());
     double[][] data=new double[1][count];
     for (int idx=0; idx < count; idx++) {
       data[0][idx]=((Number)model.getValueAt(idx,col)).doubleValue();

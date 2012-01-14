@@ -1,8 +1,10 @@
 {
-  if (event.getSource() == displayButton) {
+  final Object eventSource=event.getSource();
+  if (eventSource == displayButton) {
     makeGraph();
+    tabbedGraph.setSelectedIndex(1);
   }
- else   if (event.getSource() == saveGraph) {
+ else   if (eventSource == saveGraph) {
     saveGraphToFile=true;
     try {
       ActionRouter.getInstance().getAction(ActionNames.SAVE_GRAPHICS,SaveGraphics.class.getName()).doAction(new ActionEvent(this,1,ActionNames.SAVE_GRAPHICS));
@@ -11,7 +13,7 @@
       log.error(e.getMessage());
     }
   }
- else   if (event.getSource() == saveTable) {
+ else   if (eventSource == saveTable) {
     JFileChooser chooser=FileDialoger.promptToSaveFile("statistics.csv");
     if (chooser == null) {
       return;
@@ -29,6 +31,48 @@ catch (    IOException e) {
     }
  finally {
       JOrphanUtils.closeQuietly(writer);
+    }
+  }
+ else   if (eventSource == chooseBarColor) {
+    colorBarGraph=JColorChooser.showDialog(null,JMeterUtils.getResString("aggregate_graph_choose_color"),colorBarGraph);
+    currentColor.setBackground(colorBarGraph);
+  }
+ else   if (eventSource == chooseForeColor) {
+    colorForeGraph=JColorChooser.showDialog(null,JMeterUtils.getResString("aggregate_graph_choose_color"),colorBarGraph);
+    currentColor.setForeground(colorForeGraph);
+  }
+ else   if (eventSource == syncWithName) {
+    graphTitle.setText(namePanel.getName());
+  }
+ else   if (eventSource == dynamicGraphSize) {
+    if (dynamicGraphSize.isSelected()) {
+      graphWidth.setEnabled(false);
+      graphHeight.setEnabled(false);
+    }
+ else {
+      graphWidth.setEnabled(true);
+      graphHeight.setEnabled(true);
+    }
+  }
+ else   if (eventSource == columnSelection) {
+    if (columnSelection.isSelected()) {
+      columnMatchLabel.setEnabled(true);
+      reloadButton.setEnabled(true);
+      caseChkBox.setEnabled(true);
+      regexpChkBox.setEnabled(true);
+    }
+ else {
+      columnMatchLabel.setEnabled(false);
+      reloadButton.setEnabled(false);
+      caseChkBox.setEnabled(false);
+      regexpChkBox.setEnabled(false);
+    }
+  }
+ else   if (eventSource == reloadButton) {
+    if (getFile() != null && getFile().length() > 0) {
+      clearData();
+      FilePanel filePanel=(FilePanel)getFilePanel();
+      filePanel.actionPerformed(event);
     }
   }
 }
