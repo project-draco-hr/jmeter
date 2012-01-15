@@ -1,8 +1,8 @@
 {
   log.info("Starting backing engine on " + this.rmiPort);
   InetAddress localHost=null;
+  String host=System.getProperties().getProperty("java.rmi.server.hostname");
   try {
-    String host=System.getProperties().getProperty("java.rmi.server.hostname");
     if (host == null) {
       localHost=InetAddress.getLocalHost();
     }
@@ -15,7 +15,7 @@
   }
   log.info("IP address=" + localHost.getHostAddress());
   String hostName=localHost.getHostName();
-  if (localHost.isLoopbackAddress()) {
+  if (localHost.isLoopbackAddress() && host == null) {
     throw new RemoteException("Cannot start. " + hostName + " is a loopback address.");
   }
   if (localHost.isSiteLocalAddress()) {

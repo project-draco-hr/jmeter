@@ -1,5 +1,5 @@
 {
-  super();
+  super(DEFAULT_LOCAL_PORT);
   if (listener instanceof TestListener) {
     testListener=(TestListener)listener;
   }
