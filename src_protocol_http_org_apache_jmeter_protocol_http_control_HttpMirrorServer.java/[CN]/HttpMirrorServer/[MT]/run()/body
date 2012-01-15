@@ -2,6 +2,9 @@
   except=null;
   running=true;
   ServerSocket mainSocket=null;
+  final ArrayBlockingQueue<Runnable> queue=new ArrayBlockingQueue<Runnable>(25);
+  ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(maxThreadPoolSize / 2,maxThreadPoolSize,KEEP_ALIVE_TIME,TimeUnit.SECONDS,queue);
+  threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
   try {
     log.info("Creating HttpMirror ... on port " + daemonPort);
     mainSocket=new ServerSocket(daemonPort);
@@ -11,9 +14,8 @@
       try {
         Socket clientSocket=mainSocket.accept();
         if (running) {
-          HttpMirrorThread thd=new HttpMirrorThread(clientSocket);
+          threadPoolExecutor.execute(new HttpMirrorThread(clientSocket));
           log.debug("Starting new Mirror thread");
-          thd.start();
         }
  else {
           log.warn("Server not running");
@@ -30,6 +32,7 @@
     log.warn("HttpMirror Server stopped",e);
   }
  finally {
+    threadPoolExecutor.shutdownNow();
     JOrphanUtils.closeQuietly(mainSocket);
   }
 }

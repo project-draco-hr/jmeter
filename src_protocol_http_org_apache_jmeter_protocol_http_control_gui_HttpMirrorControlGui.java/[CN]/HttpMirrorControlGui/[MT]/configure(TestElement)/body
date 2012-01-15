@@ -3,5 +3,6 @@
   super.configure(element);
   mirrorController=(HttpMirrorControl)element;
   portField.setText(mirrorController.getPortString());
+  maxPoolSizeField.setText(mirrorController.getMaxPoolSizeAsString());
   repaint();
 }

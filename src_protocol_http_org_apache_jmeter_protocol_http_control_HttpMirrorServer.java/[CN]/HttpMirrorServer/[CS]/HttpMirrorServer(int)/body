@@ -1,4 +1,3 @@
 {
-  super("HttpMirrorServer");
-  this.daemonPort=port;
+  this(port,HttpMirrorControl.DEFAULT_MAX_POOL_SIZE);
 }

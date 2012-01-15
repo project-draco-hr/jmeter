@@ -1,4 +1,5 @@
 {
   super.clearGui();
   portField.setText(HttpMirrorControl.DEFAULT_PORT_S);
+  maxPoolSizeField.setText(Integer.toString(HttpMirrorControl.DEFAULT_MAX_POOL_SIZE));
 }
