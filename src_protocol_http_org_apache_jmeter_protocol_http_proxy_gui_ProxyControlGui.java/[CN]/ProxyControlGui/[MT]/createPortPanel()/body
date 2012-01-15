@@ -15,6 +15,7 @@
   JLabel matchlabel=new JLabel(JMeterUtils.getResString("proxy_httpsspoofing_match"));
   matchlabel.setLabelFor(httpsMatch);
   HorizontalPanel panel=new HorizontalPanel();
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_general_settings")));
   panel.add(label);
   panel.add(portField);
   panel.add(Box.createHorizontalStrut(10));
