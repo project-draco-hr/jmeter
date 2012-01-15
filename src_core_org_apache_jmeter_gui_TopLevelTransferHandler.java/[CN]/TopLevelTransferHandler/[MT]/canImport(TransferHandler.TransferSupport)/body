@@ -1,0 +1,6 @@
+{
+  if (!support.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
+    return false;
+  }
+  return true;
+}

@@ -1,0 +1,6 @@
+{
+  if (!Close.performAction(e)) {
+    return;
+  }
+  Load.loadProjectFile(e,file,false);
+}
