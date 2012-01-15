@@ -7,6 +7,6 @@
   tree=makeTree(treeModel,treeListener);
   GuiPackage.getInstance().setMainFrame(this);
   init();
-  initTransferHandler();
+  initTopLevelDndHandler();
   setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 }

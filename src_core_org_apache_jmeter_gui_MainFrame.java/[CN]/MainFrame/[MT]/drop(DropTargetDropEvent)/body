@@ -1,0 +1,34 @@
+{
+  try {
+    Transferable tr=dtde.getTransferable();
+    DataFlavor[] flavors=tr.getTransferDataFlavors();
+    for (int i=0; i < flavors.length; i++) {
+      if (flavors[i].isFlavorJavaFileListType()) {
+        dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
+        try {
+          @SuppressWarnings("unchecked") List<File> files=(List<File>)tr.getTransferData(DataFlavor.javaFileListFlavor);
+          if (files.isEmpty()) {
+            return;
+          }
+          File file=files.get(0);
+          if (!file.getName().endsWith(".jmx")) {
+            log.warn("Importing file:" + file.getName() + "from DnD failed because file extension does not end with .jmx");
+            return;
+          }
+          ActionEvent fakeEvent=new ActionEvent(this,ActionEvent.ACTION_PERFORMED,ActionNames.OPEN);
+          LoadDraggedFile.loadProject(fakeEvent,file);
+        }
+  finally {
+          dtde.dropComplete(true);
+        }
+        return;
+      }
+    }
+  }
+ catch (  UnsupportedFlavorException e) {
+    log.warn("Dnd failed",e);
+  }
+catch (  IOException e) {
+    log.warn("Dnd failed",e);
+  }
+}
