@@ -22,7 +22,9 @@
     while (reader.hasMoreChildren()) {
       reader.moveDown();
       JMeterProperty prop=(JMeterProperty)readItem(reader,context,el);
-      el.setProperty(prop);
+      if (prop != null) {
+        el.setProperty(prop);
+      }
       reader.moveUp();
     }
     return el;

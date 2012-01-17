@@ -4,7 +4,9 @@
   while (reader.hasMoreChildren()) {
     reader.moveDown();
     JMeterProperty subProp=(JMeterProperty)readItem(reader,context,prop);
-    prop.addProperty(subProp);
+    if (subProp != null) {
+      prop.addProperty(subProp);
+    }
     reader.moveUp();
   }
   return prop;

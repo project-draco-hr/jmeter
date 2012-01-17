@@ -10,13 +10,15 @@
     while (reader.hasMoreChildren()) {
       reader.moveDown();
       JMeterProperty subProp=(JMeterProperty)readItem(reader,context,prop);
-      if (isHeader) {
-        String name=subProp.getName();
-        if (TestElement.NAME.equals(name)) {
-          subProp.setName("Header.name");
+      if (subProp != null) {
+        if (isHeader) {
+          String name=subProp.getName();
+          if (TestElement.NAME.equals(name)) {
+            subProp.setName("Header.name");
+          }
         }
+        prop.addProperty(subProp);
       }
-      prop.addProperty(subProp);
       reader.moveUp();
     }
     return prop;
