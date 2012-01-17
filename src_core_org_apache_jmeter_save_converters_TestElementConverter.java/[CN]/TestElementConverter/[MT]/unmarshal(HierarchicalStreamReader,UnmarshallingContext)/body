@@ -7,9 +7,18 @@
  else {
     type=mapper().realClass(classAttribute);
   }
+  String inputName=type.getName();
+  String targetName=inputName;
+  String guiClassName=SaveService.aliasToClass(reader.getAttribute(ConversionHelp.ATT_TE_GUICLASS));
+  targetName=NameUpdater.getCurrentTestName(inputName,guiClassName);
+  if (!targetName.equals(inputName)) {
+    type=mapper().realClass(targetName);
+  }
+  context.put(SaveService.TEST_CLASS_NAME,targetName);
   try {
     TestElement el=(TestElement)type.newInstance();
     ConversionHelp.restoreSpecialProperties(el,reader);
+    el.setProperty(TestElement.TEST_CLASS,targetName);
     while (reader.hasMoreChildren()) {
       reader.moveDown();
       JMeterProperty prop=(JMeterProperty)readItem(reader,context,el);

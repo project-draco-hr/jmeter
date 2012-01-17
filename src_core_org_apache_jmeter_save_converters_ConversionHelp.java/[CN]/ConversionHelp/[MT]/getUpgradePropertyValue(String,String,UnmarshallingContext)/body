@@ -1,0 +1,4 @@
+{
+  String testClass=(String)context.get(SaveService.TEST_CLASS_NAME);
+  return NameUpdater.getCurrentName(value,name,testClass);
+}

@@ -2,6 +2,10 @@
   String att=propertyToAttribute.get(prop);
   String alias=reader.getAttribute(att);
   if (alias != null) {
-    el.setProperty(prop,SaveService.aliasToClass(alias));
+    alias=SaveService.aliasToClass(alias);
+    if (TestElement.GUI_CLASS.equals(prop)) {
+      alias=NameUpdater.getCurrentName(alias);
+    }
+    el.setProperty(prop,alias);
   }
 }

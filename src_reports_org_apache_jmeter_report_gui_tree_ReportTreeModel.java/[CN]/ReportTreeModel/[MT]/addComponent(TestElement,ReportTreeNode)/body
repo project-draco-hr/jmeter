@@ -2,7 +2,6 @@
   if (node.getUserObject() instanceof AbstractConfigGui) {
     throw new IllegalUserActionException("This node cannot hold sub-elements");
   }
-  component.setProperty(TestElement.GUI_CLASS,NameUpdater.getCurrentName(component.getPropertyAsString(TestElement.GUI_CLASS)));
   ReportGuiPackage.getInstance().updateCurrentNode();
   JMeterGUIComponent guicomp=ReportGuiPackage.getInstance().getGui(component);
   guicomp.configure(component);

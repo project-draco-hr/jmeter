@@ -1,4 +1,9 @@
 {
-  StringProperty prop=new StringProperty(ConversionHelp.decode(reader.getAttribute(ConversionHelp.ATT_NAME)),ConversionHelp.decode(reader.getValue()));
+  final String name=ConversionHelp.getPropertyName(reader,context);
+  if (name == null) {
+    return null;
+  }
+  final String value=ConversionHelp.getPropertyValue(reader,context,name);
+  StringProperty prop=new StringProperty(name,value);
   return prop;
 }
