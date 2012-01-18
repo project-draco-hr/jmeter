@@ -28,7 +28,18 @@
             SaveService.loadTestResults(bufferedInputStream,new ResultCollectorHelper(this,visualizer));
             parsedOK=true;
           }
- catch (          Exception e) {
+ catch (          ConversionException e) {
+            final String message=e.getShortMessage();
+            if (message.startsWith("sampleResult")) {
+              log.info("Failed to load " + filename + " using XStream. Assuming Avalon format, as message was: "+ message);
+              OldSaveService.processSamples(filename,visualizer,this);
+              parsedOK=true;
+            }
+ else {
+              log.warn("Failed to load " + filename + " using XStream. Error was: "+ e);
+            }
+          }
+catch (          Exception e) {
             log.warn("Failed to load " + filename + " using XStream. Error was: "+ e);
           }
         }
@@ -45,6 +56,12 @@ catch (    RuntimeException e) {
     }
 catch (    OutOfMemoryError e) {
       log.warn("Problem reading JTL file: " + file,e);
+    }
+catch (    ConfigurationException e) {
+      log.warn("Problem reading Avalon JTL file: " + file,e);
+    }
+catch (    SAXException e) {
+      log.warn("Problem reading Avalon JTL file: " + file,e);
     }
  finally {
       JOrphanUtils.closeQuietly(dataReader);

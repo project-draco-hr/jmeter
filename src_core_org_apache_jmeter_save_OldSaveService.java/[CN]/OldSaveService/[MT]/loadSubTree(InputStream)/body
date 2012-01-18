@@ -1,0 +1,17 @@
+{
+  try {
+    Configuration config=builder.build(in);
+    HashTree loadedTree=generateNode(config);
+    return loadedTree;
+  }
+ catch (  ConfigurationException e) {
+    String message="Problem loading using Avalon Configuration tools";
+    log.error(message,e);
+    throw new IOException(message);
+  }
+catch (  SAXException e) {
+    String message="Problem with SAX implementation";
+    log.error(message,e);
+    throw new IOException(message);
+  }
+}
