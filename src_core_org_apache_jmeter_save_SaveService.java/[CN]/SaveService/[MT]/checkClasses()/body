@@ -1,12 +1,13 @@
 {
+  final ClassLoader classLoader=SaveService.class.getClassLoader();
   boolean OK=true;
   for (  Object clazz : classToAlias.keySet()) {
     String name=(String)clazz;
-    if (name.endsWith("JMSConfigGui")) {
+    if (name.endsWith("JMSConfigGui") || name.endsWith("BSFSamplerGui")) {
       continue;
     }
     try {
-      Class.forName(name,false,SaveService.class.getClassLoader());
+      Class.forName(name,false,classLoader);
     }
  catch (    ClassNotFoundException e) {
       log.error(e.toString());
