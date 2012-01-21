@@ -3,15 +3,14 @@
   boolean OK=true;
   for (  Object clazz : classToAlias.keySet()) {
     String name=(String)clazz;
-    if (name.endsWith("JMSConfigGui") || name.endsWith("BSFSamplerGui")) {
-      continue;
-    }
-    try {
-      Class.forName(name,false,classLoader);
-    }
- catch (    ClassNotFoundException e) {
-      log.error(e.toString());
-      OK=false;
+    if (!NameUpdater.isMapped(name)) {
+      try {
+        Class.forName(name,false,classLoader);
+      }
+ catch (      ClassNotFoundException e) {
+        log.error("Unexpected entry in saveservice.properties; class does not exist and is not upgraded: " + name);
+        OK=false;
+      }
     }
   }
   return OK;
