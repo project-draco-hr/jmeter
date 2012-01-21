@@ -4,5 +4,6 @@
   mirrorController=(HttpMirrorControl)element;
   portField.setText(mirrorController.getPortString());
   maxPoolSizeField.setText(mirrorController.getMaxPoolSizeAsString());
+  maxQueueSizeField.setText(mirrorController.getMaxQueueSizeAsString());
   repaint();
 }

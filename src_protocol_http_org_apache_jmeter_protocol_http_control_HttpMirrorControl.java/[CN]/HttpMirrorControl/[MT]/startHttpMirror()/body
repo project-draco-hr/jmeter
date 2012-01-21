@@ -1,5 +1,5 @@
 {
-  server=new HttpMirrorServer(getPort(),getMaxPoolSize());
+  server=new HttpMirrorServer(getPort(),getMaxPoolSize(),getMaxQueueSize());
   server.start();
   GuiPackage instance=GuiPackage.getInstance();
   if (instance != null) {

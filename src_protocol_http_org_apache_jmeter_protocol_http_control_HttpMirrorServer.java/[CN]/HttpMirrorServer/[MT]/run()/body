@@ -4,9 +4,9 @@
   ServerSocket mainSocket=null;
   ThreadPoolExecutor threadPoolExecutor=null;
   if (maxThreadPoolSize > 0) {
-    final ArrayBlockingQueue<Runnable> queue=new ArrayBlockingQueue<Runnable>(25);
+    final ArrayBlockingQueue<Runnable> queue=new ArrayBlockingQueue<Runnable>(maxQueueSize);
     threadPoolExecutor=new ThreadPoolExecutor(maxThreadPoolSize / 2,maxThreadPoolSize,KEEP_ALIVE_TIME,TimeUnit.SECONDS,queue);
-    threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardOldestPolicy());
+    threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
   }
   try {
     log.info("Creating HttpMirror ... on port " + daemonPort);
