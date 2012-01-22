@@ -13,11 +13,14 @@
   optionsMenu.add(functionHelper);
   optionsMenu.add(lafMenu);
   JCheckBoxMenuItem menuToolBar=makeCheckBoxMenuItemRes("menu_toolbar",ActionNames.TOOLBAR);
+  JCheckBoxMenuItem menuLoggerPanel=makeCheckBoxMenuItemRes("menu_logger_panel",ActionNames.LOGGER_PANEL_ENABLE_DISABLE);
   GuiPackage guiInstance=GuiPackage.getInstance();
   if (guiInstance != null) {
     guiInstance.setMenuItemToolbar(menuToolBar);
+    guiInstance.setMenuItemLoggerPanel(menuLoggerPanel);
   }
   optionsMenu.add(menuToolBar);
+  optionsMenu.add(menuLoggerPanel);
   if (SSLManager.isSSLSupported()) {
     sslManager=makeMenuItemRes("sslmanager",'S',ActionNames.SSL_MANAGER,KeyStrokes.SSL_MANAGER);
     optionsMenu.add(sslManager);

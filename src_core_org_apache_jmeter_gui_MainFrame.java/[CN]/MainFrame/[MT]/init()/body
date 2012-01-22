@@ -6,8 +6,16 @@
   JSplitPane treeAndMain=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
   treePanel=createTreePanel();
   treeAndMain.setLeftComponent(treePanel);
+  JSplitPane topAndDown=new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+  topAndDown.setOneTouchExpandable(true);
+  topAndDown.setDividerLocation(0.8);
+  topAndDown.setResizeWeight(.8);
+  topAndDown.setContinuousLayout(true);
   mainPanel=createMainPanel();
-  treeAndMain.setRightComponent(mainPanel);
+  logPanel=createLoggerPanel();
+  topAndDown.setTopComponent(mainPanel);
+  topAndDown.setBottomComponent(logPanel);
+  treeAndMain.setRightComponent(topAndDown);
   treeAndMain.setResizeWeight(.2);
   treeAndMain.setContinuousLayout(true);
   all.add(treeAndMain,BorderLayout.CENTER);

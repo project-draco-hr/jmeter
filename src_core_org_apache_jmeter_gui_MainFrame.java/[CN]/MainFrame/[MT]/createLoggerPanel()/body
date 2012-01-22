@@ -1,0 +1,11 @@
+{
+  LoggerPanel loggerPanel=new LoggerPanel();
+  loggerPanel.setMinimumSize(new Dimension(0,100));
+  loggerPanel.setPreferredSize(new Dimension(0,150));
+  LoggingManager.addLogTargetToRootLogger(loggerPanel);
+  GuiPackage guiInstance=GuiPackage.getInstance();
+  guiInstance.setLoggerPanel(loggerPanel);
+  guiInstance.getMenuItemLoggerPanel().getModel().setSelected(DISPLAY_LOGGER_PANEL);
+  loggerPanel.setVisible(DISPLAY_LOGGER_PANEL);
+  return loggerPanel;
+}

@@ -1,0 +1,13 @@
+{
+  if (ActionNames.LOGGER_PANEL_ENABLE_DISABLE.equals(e.getActionCommand())) {
+    GuiPackage guiInstance=GuiPackage.getInstance();
+    if (guiInstance.getMenuItemLoggerPanel().getModel().isSelected()) {
+      guiInstance.getLoggerPanel().setVisible(true);
+      JSplitPane splitPane=((JSplitPane)guiInstance.getLoggerPanel().getParent());
+      splitPane.setDividerLocation(0.8);
+    }
+ else {
+      guiInstance.getLoggerPanel().setVisible(false);
+    }
+  }
+}
