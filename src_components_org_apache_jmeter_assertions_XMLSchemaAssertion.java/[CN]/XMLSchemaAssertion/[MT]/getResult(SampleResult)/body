@@ -1,10 +1,9 @@
 {
   AssertionResult result=new AssertionResult(getName());
-  byte data[]=response.getResponseData();
-  if (data.length == 0) {
+  String resultData=response.getResponseDataAsString();
+  if (resultData.length() == 0) {
     return result.setResultForNull();
   }
-  String resultData=new String(getResultBody(data));
   String xsdFileName=getXsdFileName();
   if (log.isDebugEnabled()) {
     log.debug("xmlString: " + resultData);
