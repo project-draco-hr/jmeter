@@ -7,6 +7,11 @@
   String[] params=query.split(PARAM_CONCATENATE);
   for (  String param : params) {
     String[] paramSplit=param.split("=");
+    if (paramSplit.length > 2) {
+      map.clear();
+      map.put(" ",query);
+      return map;
+    }
     String name=null;
     if (paramSplit.length > 0) {
       name=paramSplit[0];
