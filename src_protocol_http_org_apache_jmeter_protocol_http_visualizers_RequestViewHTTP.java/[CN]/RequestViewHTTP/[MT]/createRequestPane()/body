@@ -19,9 +19,11 @@
   JSplitPane topSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableParams),GuiUtils.makeScrollPane(tableHeaders));
   topSplit.setOneTouchExpandable(true);
   topSplit.setResizeWeight(0.50);
+  topSplit.setBorder(null);
   JSplitPane paneParsed=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableRequest),topSplit);
   paneParsed.setOneTouchExpandable(true);
   paneParsed.setResizeWeight(0.25);
+  paneParsed.setBorder(null);
   JPanel panel=new JPanel(new BorderLayout());
   panel.add(paneParsed);
   return panel;

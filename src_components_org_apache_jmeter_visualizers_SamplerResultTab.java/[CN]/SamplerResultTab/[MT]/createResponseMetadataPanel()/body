@@ -32,9 +32,11 @@
   JSplitPane topSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableResHeaders),GuiUtils.makeScrollPane(tableResFields));
   topSplit.setOneTouchExpandable(true);
   topSplit.setResizeWeight(0.80);
+  topSplit.setBorder(null);
   paneParsed=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableResult),topSplit);
   paneParsed.setOneTouchExpandable(true);
   paneParsed.setResizeWeight(0.40);
+  paneParsed.setBorder(null);
   tabbedResult.addTab(JMeterUtils.getResString("view_results_table_result_tab_raw"),paneRaw);
   tabbedResult.addTab(JMeterUtils.getResString("view_results_table_result_tab_parsed"),paneParsed);
   JPanel panel=new JPanel(new BorderLayout());
