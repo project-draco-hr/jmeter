@@ -11,6 +11,7 @@
   topAndDown.setDividerLocation(0.8);
   topAndDown.setResizeWeight(.8);
   topAndDown.setContinuousLayout(true);
+  topAndDown.setBorder(null);
   mainPanel=createMainPanel();
   logPanel=createLoggerPanel();
   topAndDown.setTopComponent(mainPanel);
