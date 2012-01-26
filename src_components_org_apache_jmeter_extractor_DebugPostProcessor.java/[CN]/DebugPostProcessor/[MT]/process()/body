@@ -1,19 +1,38 @@
 {
   StringBuilder sb=new StringBuilder(100);
+  StringBuilder rd=new StringBuilder(20);
+  SampleResult sr=new SampleResult();
+  sr.setSampleLabel(getName());
+  sr.sampleStart();
   JMeterContext threadContext=getThreadContext();
-  PropertyIterator i=threadContext.getCurrentSampler().propertyIterator();
-  while (i.hasNext()) {
-    JMeterProperty prop=i.next();
-    sb.append(prop.getName());
-    sb.append("=");
-    sb.append(prop.getStringValue());
+  if (isDisplaySamplerProperties()) {
+    rd.append("SamplerProperties\n");
+    sb.append("SamplerProperties:\n");
+    formatPropertyIterator(sb,threadContext.getCurrentSampler().propertyIterator());
     sb.append("\n");
   }
-  SampleResult sr=new SampleResult();
+  if (isDisplayJMeterVariables()) {
+    rd.append("JMeterVariables\n");
+    sb.append("JMeterVariables:\n");
+    formatSet(sb,threadContext.getVariables().entrySet());
+    sb.append("\n");
+  }
+  if (isDisplayJMeterProperties()) {
+    rd.append("JMeterProperties\n");
+    sb.append("JMeterProperties:\n");
+    formatSet(sb,JMeterUtils.getJMeterProperties().entrySet());
+    sb.append("\n");
+  }
+  if (isDisplaySystemProperties()) {
+    rd.append("SystemProperties\n");
+    sb.append("SystemProperties:\n");
+    formatSet(sb,System.getProperties().entrySet());
+    sb.append("\n");
+  }
   sr.setResponseData(sb.toString(),null);
   sr.setDataType(SampleResult.TEXT);
-  sr.setSampleLabel(getName());
-  sr.setSuccessful(true);
-  sr.setSamplerData("SamplerPropertyValues");
+  sr.setSamplerData(rd.toString());
+  sr.setResponseOK();
+  sr.sampleEnd();
   threadContext.getPreviousResult().addSubResult(sr);
 }
