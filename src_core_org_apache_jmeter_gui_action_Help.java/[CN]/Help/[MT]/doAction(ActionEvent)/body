@@ -2,18 +2,24 @@
   if (helpWindow == null) {
     helpWindow=new JDialog(new Frame(),JMeterUtils.getResString("help"),false);
     helpWindow.getContentPane().setLayout(new GridLayout(1,1));
+    helpWindow.getContentPane().removeAll();
+    helpWindow.getContentPane().add(scroller);
     ComponentUtil.centerComponentInWindow(helpWindow,60);
   }
-  helpWindow.getContentPane().removeAll();
-  helpWindow.getContentPane().add(scroller);
   helpWindow.setVisible(true);
+  StringBuilder url=new StringBuilder();
   if (e.getSource() instanceof String[]) {
     String[] source=(String[])e.getSource();
-    resetPage(source[0]);
-    helpDoc.scrollToReference(source[1]);
+    url.append(source[0]).append('#').append(source[1]);
   }
  else {
-    resetPage(HELP_PAGE);
-    helpDoc.scrollToReference(GuiPackage.getInstance().getTreeListener().getCurrentNode().getDocAnchor());
+    url.append(HELP_PAGE).append('#').append(GuiPackage.getInstance().getTreeListener().getCurrentNode().getDocAnchor());
+  }
+  try {
+    helpDoc.setPage(url.toString());
+  }
+ catch (  IOException ioe) {
+    log.error(ioe.toString());
+    JMeterUtils.reportErrorToUser("Problem loading a help page - see log for details");
   }
 }
