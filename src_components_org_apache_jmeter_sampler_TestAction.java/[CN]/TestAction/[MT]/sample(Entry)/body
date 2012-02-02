@@ -5,10 +5,16 @@
   if (action == PAUSE) {
     pause(getDurationAsString());
   }
- else   if (action == STOP || action == STOP_NOW) {
+ else   if (action == STOP || action == STOP_NOW || action == RESTART_NEXT_LOOP) {
     if (target == THREAD) {
-      log.info("Stopping current thread");
-      context.getThread().stop();
+      if (action == STOP || action == STOP_NOW) {
+        log.info("Stopping current thread");
+        context.getThread().stop();
+      }
+ else {
+        log.info("Restarting next loop");
+        context.setRestartNextLoop(true);
+      }
     }
  else     if (target == TEST) {
       if (action == STOP_NOW) {

@@ -29,6 +29,7 @@
       if (pauseButton.isSelected()) {
         action=TestAction.PAUSE;
         durationField.setEnabled(true);
+        targetBox.setEnabled(true);
       }
     }
   }
@@ -39,6 +40,7 @@
       if (stopButton.isSelected()) {
         action=TestAction.STOP;
         durationField.setEnabled(false);
+        targetBox.setEnabled(true);
       }
     }
   }
@@ -49,6 +51,19 @@
       if (stopNowButton.isSelected()) {
         action=TestAction.STOP_NOW;
         durationField.setEnabled(false);
+        targetBox.setEnabled(true);
+      }
+    }
+  }
+);
+  restartNextLoopButton=new JRadioButton(restartNextLoopAction,false);
+  restartNextLoopButton.addChangeListener(new ChangeListener(){
+    public void stateChanged(    ChangeEvent e){
+      if (restartNextLoopButton.isSelected()) {
+        action=TestAction.RESTART_NEXT_LOOP;
+        durationField.setEnabled(false);
+        targetBox.setSelectedIndex(TestAction.THREAD);
+        targetBox.setEnabled(false);
       }
     }
   }
@@ -56,10 +71,12 @@
   actionButtons.add(pauseButton);
   actionButtons.add(stopButton);
   actionButtons.add(stopNowButton);
+  actionButtons.add(restartNextLoopButton);
   actionPanel.add(new JLabel(actionLabel));
   actionPanel.add(pauseButton);
   actionPanel.add(stopButton);
   actionPanel.add(stopNowButton);
+  actionPanel.add(restartNextLoopButton);
   add(actionPanel);
   HorizontalPanel durationPanel=new HorizontalPanel();
   durationField=new JTextField(15);

@@ -15,8 +15,11 @@
  else   if (action == TestAction.STOP_NOW) {
     stopNowButton.setSelected(true);
   }
- else {
+ else   if (action == TestAction.STOP) {
     stopButton.setSelected(true);
+  }
+ else {
+    restartNextLoopButton.setSelected(true);
   }
   durationString=ta.getDurationAsString();
   durationField.setText(durationString);

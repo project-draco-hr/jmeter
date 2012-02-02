@@ -1,0 +1,15 @@
+{
+  FindTestElementsUpToRootTraverser pathToRootTraverser=new FindTestElementsUpToRootTraverser(sam);
+  testTree.traverse(pathToRootTraverser);
+  List<Controller> controllersToReinit=pathToRootTraverser.getControllersToRoot();
+  for (Iterator<Controller> iterator=controllersToReinit.iterator(); iterator.hasNext(); ) {
+    Controller parentController=iterator.next();
+    if (parentController instanceof ThreadGroup) {
+      ThreadGroup tg=(ThreadGroup)parentController;
+      tg.startNextLoop();
+    }
+ else {
+      parentController.triggerEndOfLoop();
+    }
+  }
+}
