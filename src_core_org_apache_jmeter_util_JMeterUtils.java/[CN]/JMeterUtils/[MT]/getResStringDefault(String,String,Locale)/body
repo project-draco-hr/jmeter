@@ -1,0 +1,26 @@
+{
+  if (key == null) {
+    return null;
+  }
+  String resKey=key.replace(' ','_');
+  resKey=resKey.toLowerCase(java.util.Locale.ENGLISH);
+  String resString=null;
+  try {
+    ResourceBundle bundle=resources;
+    if (forcedLocale != null) {
+      bundle=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",forcedLocale);
+    }
+    resString=bundle.getString(resKey);
+    if (ignoreResorces) {
+      return "[" + key + "]";
+    }
+  }
+ catch (  MissingResourceException mre) {
+    if (ignoreResorces) {
+      return "[?" + key + "?]";
+    }
+    log.warn("ERROR! Resource string not found: [" + resKey + "]",mre);
+    resString=defaultValue;
+  }
+  return resString;
+}

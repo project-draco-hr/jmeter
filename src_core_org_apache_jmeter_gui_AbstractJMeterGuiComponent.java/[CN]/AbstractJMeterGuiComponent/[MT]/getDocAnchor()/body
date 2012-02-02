@@ -1,3 +1,4 @@
 {
-  return getStaticLabel().replace(' ','_');
+  String label=JMeterUtils.getResString(getLabelResource(),new Locale("",""));
+  return label.replace(' ','_');
 }
