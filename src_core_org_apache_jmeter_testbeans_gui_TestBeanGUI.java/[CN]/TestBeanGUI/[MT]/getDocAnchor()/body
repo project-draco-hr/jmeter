@@ -1,0 +1,5 @@
+{
+  ResourceBundle resourceBundle=ResourceBundle.getBundle(testBeanClass.getName() + "Resources",new Locale("",""));
+  String name=resourceBundle.getString("displayName");
+  return name.replace(' ','_');
+}
