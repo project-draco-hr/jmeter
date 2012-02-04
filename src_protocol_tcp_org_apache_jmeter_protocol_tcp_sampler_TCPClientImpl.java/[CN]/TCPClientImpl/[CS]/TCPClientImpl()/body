@@ -4,4 +4,11 @@
   if (useEolByte) {
     log.info("Using eolByte=" + eolByte);
   }
+  String charset=JMeterUtils.getProperty("tcp.charset");
+  if (StringUtils.isEmpty(charset)) {
+    log.info("Using platform default charset:" + charset);
+  }
+ else {
+    log.info("Using charset:" + charset);
+  }
 }
