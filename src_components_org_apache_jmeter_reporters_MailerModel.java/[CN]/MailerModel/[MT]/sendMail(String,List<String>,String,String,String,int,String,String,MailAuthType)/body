@@ -7,9 +7,7 @@
   }
   Properties props=new Properties();
   props.put(MAIL_SMTP_HOST,host);
-  if (smtpPort != null) {
-    props.put(MAIL_SMTP_PORT,smtpPort);
-  }
+  props.put(MAIL_SMTP_PORT,smtpPort);
   Authenticator authenticator=null;
   if (mailAuthType != MailAuthType.NONE) {
     props.put(MAIL_SMTP_AUTH,"true");

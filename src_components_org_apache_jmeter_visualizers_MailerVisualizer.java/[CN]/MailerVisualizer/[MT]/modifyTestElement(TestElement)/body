@@ -5,7 +5,7 @@
   mailerModel.setFailureSubject(failureSubjectField.getText());
   mailerModel.setFromAddress(fromField.getText());
   mailerModel.setSmtpHost(smtpHostField.getText());
-  mailerModel.setSmtpPort(StringUtils.isEmpty(smtpPortField.getText()) ? null : Integer.valueOf(smtpPortField.getText()));
+  mailerModel.setSmtpPort(smtpPortField.getText());
   mailerModel.setLogin(smtpLoginField.getText());
   mailerModel.setPassword(smtpPasswordField.getText());
   mailerModel.setMailAuthType(authTypeCombo.getSelectedItem().toString());

@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isEmpty(value)) {
+    value=DEFAULT_SMTP_PORT;
+  }
+  setProperty(PORT_KEY,value,DEFAULT_SMTP_PORT);
+}
