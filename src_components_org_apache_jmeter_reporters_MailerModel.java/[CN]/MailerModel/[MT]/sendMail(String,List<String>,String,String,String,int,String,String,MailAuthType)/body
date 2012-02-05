@@ -24,7 +24,7 @@ break;
 }
 if (!StringUtils.isEmpty(user)) {
 authenticator=new javax.mail.Authenticator(){
-protected PasswordAuthentication getPasswordAuthentication(){
+@Override protected PasswordAuthentication getPasswordAuthentication(){
 return new PasswordAuthentication(user,password);
 }
 }
