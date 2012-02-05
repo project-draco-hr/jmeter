@@ -10,7 +10,7 @@
     List<String> addressList=getAddressList();
     if (addressList.size() != 0) {
       try {
-        sendMail(getFromAddress(),addressList,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost());
+        sendMail(getFromAddress(),addressList,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost(),getSmtpPort(),getLogin(),getPassword(),getMailAuthType());
       }
  catch (      Exception e) {
         log.error("Problem sending mail: " + e);

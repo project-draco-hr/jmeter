@@ -1,0 +1,43 @@
+{
+  String host=smtpHost;
+  boolean debug=Boolean.valueOf(host).booleanValue();
+  InternetAddress[] address=new InternetAddress[vEmails.size()];
+  for (int k=0; k < vEmails.size(); k++) {
+    address[k]=new InternetAddress(vEmails.get(k));
+  }
+  Properties props=new Properties();
+  props.put(MAIL_SMTP_HOST,host);
+  if (smtpPort != null) {
+    props.put(MAIL_SMTP_PORT,smtpPort);
+  }
+  Authenticator authenticator=null;
+  if (mailAuthType != MailAuthType.NONE) {
+    props.put(MAIL_SMTP_AUTH,"true");
+switch (mailAuthType) {
+case SSL:
+      props.put(MAIL_SMTP_SOCKETFACTORY_CLASS,"javax.net.ssl.SSLSocketFactory");
+    break;
+case TLS:
+  props.put(MAIL_SMTP_STARTTLS,"true");
+break;
+default :
+break;
+}
+}
+if (!StringUtils.isEmpty(user)) {
+authenticator=new javax.mail.Authenticator(){
+protected PasswordAuthentication getPasswordAuthentication(){
+return new PasswordAuthentication(user,password);
+}
+}
+;
+}
+Session session=Session.getInstance(props,authenticator);
+session.setDebug(debug);
+Message msg=new MimeMessage(session);
+msg.setFrom(new InternetAddress(from));
+msg.setRecipients(Message.RecipientType.TO,address);
+msg.setSubject(subject);
+msg.setText(attText);
+Transport.send(msg);
+}

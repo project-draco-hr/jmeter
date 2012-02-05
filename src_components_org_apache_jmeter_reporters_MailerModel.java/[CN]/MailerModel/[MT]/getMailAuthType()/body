@@ -1,0 +1,4 @@
+{
+  String authType=getPropertyAsString(MAIL_AUTH_TYPE,MailAuthType.NONE.toString());
+  return MailAuthType.valueOf(authType);
+}
