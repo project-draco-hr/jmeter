@@ -4,7 +4,7 @@
   if (useRaw) {
     args=new Arguments();
     String text=postBodyContent.getText();
-    HTTPArgument arg=new HTTPArgument("",text.replaceAll("\n","\r\n"),true);
+    HTTPArgument arg=new HTTPArgument("",text.replaceAll("\n","\r\n"),false);
     arg.setAlwaysEncoded(false);
     args.addArgument(arg);
   }
