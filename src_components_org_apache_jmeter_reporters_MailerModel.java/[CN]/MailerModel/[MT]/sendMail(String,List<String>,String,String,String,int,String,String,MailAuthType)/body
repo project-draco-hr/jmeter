@@ -1,12 +1,11 @@
 {
-  String host=smtpHost;
-  boolean debug=Boolean.valueOf(host).booleanValue();
+  boolean debug=Boolean.valueOf(smtpHost).booleanValue();
   InternetAddress[] address=new InternetAddress[vEmails.size()];
   for (int k=0; k < vEmails.size(); k++) {
     address[k]=new InternetAddress(vEmails.get(k));
   }
   Properties props=new Properties();
-  props.put(MAIL_SMTP_HOST,host);
+  props.put(MAIL_SMTP_HOST,smtpHost);
   props.put(MAIL_SMTP_PORT,Integer.toString(smtpPort));
   Authenticator authenticator=null;
   if (mailAuthType != MailAuthType.NONE) {
