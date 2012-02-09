@@ -1,5 +1,4 @@
 {
-  boolean debug=Boolean.valueOf(smtpHost).booleanValue();
   InternetAddress[] address=new InternetAddress[vEmails.size()];
   for (int k=0; k < vEmails.size(); k++) {
     address[k]=new InternetAddress(vEmails.get(k));

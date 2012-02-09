@@ -10,7 +10,7 @@
     List<String> addressList=getAddressList();
     if (addressList.size() != 0) {
       try {
-        sendMail(getFromAddress(),addressList,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost(),getSmtpPort(),getLogin(),getPassword(),getMailAuthType());
+        sendMail(getFromAddress(),addressList,getFailureSubject(),"URL Failed: " + sample.getSampleLabel(),getSmtpHost(),getSmtpPort(),getLogin(),getPassword(),getMailAuthType(),false);
       }
  catch (      Exception e) {
         log.error("Problem sending mail: " + e);
@@ -25,7 +25,7 @@
     if (successCount > getSuccessLimit()) {
       List<String> addressList=getAddressList();
       try {
-        sendMail(getFromAddress(),addressList,getSuccessSubject(),"URL Restarted: " + sample.getSampleLabel(),getSmtpHost(),getSmtpPort(),getLogin(),getPassword(),getMailAuthType());
+        sendMail(getFromAddress(),addressList,getSuccessSubject(),"URL Restarted: " + sample.getSampleLabel(),getSmtpHost(),getSmtpPort(),getLogin(),getPassword(),getMailAuthType(),false);
       }
  catch (      Exception e) {
         log.error("Problem sending mail",e);

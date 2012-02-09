@@ -5,6 +5,6 @@
   String smtpHost=getSmtpHost();
   String attText="JMeter-Testmail" + "\n" + "To:  " + to + "\n"+ "From: "+ from+ "\n"+ "Via:  "+ smtpHost+ "\n"+ "Fail Subject:  "+ getFailureSubject()+ "\n"+ "Success Subject:  "+ getSuccessSubject();
   log.info(attText);
-  sendMail(from,getAddressList(),subject,attText,smtpHost,getSmtpPort(),getLogin(),getPassword(),getMailAuthType());
+  sendMail(from,getAddressList(),subject,attText,smtpHost,getSmtpPort(),getLogin(),getPassword(),getMailAuthType(),true);
   log.info("Test mail sent successfully!!");
 }
