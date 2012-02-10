@@ -41,7 +41,7 @@
       }
     }
  catch (    MalformedCachePatternException e) {
-      log.warn("Skipped invalid content exclude pattern: " + includeExp,e);
+      log.warn("Skipped invalid content exclude pattern: " + excludeExp,e);
     }
   }
   return true;
