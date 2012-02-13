@@ -1,6 +1,6 @@
 {
   try {
-    String responseHeaders=massageResponseHeaders(res,forcedHTTPS);
+    String responseHeaders=messageResponseHeaders(res,forcedHTTPS);
     out.write(responseHeaders.getBytes(SampleResult.DEFAULT_HTTP_ENCODING));
     out.write(CRLF_BYTES);
     out.write(res.getResponseData());
