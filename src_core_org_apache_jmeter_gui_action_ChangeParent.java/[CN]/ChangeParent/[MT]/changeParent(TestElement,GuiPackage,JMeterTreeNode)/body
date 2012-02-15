@@ -5,9 +5,9 @@
   int index=parentNode.getIndex(currentNode);
   treeModel.insertNodeInto(newNode,parentNode,index);
   treeModel.removeNodeFromParent(currentNode);
-  Enumeration<JMeterTreeNode> nodes=currentNode.children();
-  while (nodes.hasMoreElements()) {
-    JMeterTreeNode node=nodes.nextElement();
+  int childCount=currentNode.getChildCount();
+  for (int i=0; i < childCount; i++) {
+    JMeterTreeNode node=(JMeterTreeNode)currentNode.getChildAt(0);
     treeModel.removeNodeFromParent(node);
     treeModel.insertNodeInto(node,newNode,newNode.getChildCount());
   }
