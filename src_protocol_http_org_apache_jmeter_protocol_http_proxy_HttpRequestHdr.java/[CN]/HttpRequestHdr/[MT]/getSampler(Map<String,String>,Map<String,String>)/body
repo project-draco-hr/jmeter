@@ -1,7 +1,8 @@
 {
+  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance(httpSamplerName);
   HttpTestSampleGui tempGui=new HttpTestSampleGui();
   sampler.setProperty(TestElement.GUI_CLASS,tempGui.getClass().getName());
-  populateSampler(pageEncodings,formEncodings);
+  populateSampler(sampler,pageEncodings,formEncodings);
   tempGui.configure(sampler);
   tempGui.modifyTestElement(sampler);
   sampler.setFollowRedirects(false);

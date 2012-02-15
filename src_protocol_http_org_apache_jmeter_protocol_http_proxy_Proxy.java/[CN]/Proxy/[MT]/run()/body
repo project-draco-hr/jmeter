@@ -1,9 +1,9 @@
 {
   String httpSamplerName=target.getSamplerTypeName();
-  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance(httpSamplerName);
-  HttpRequestHdr request=new HttpRequestHdr(sampler);
+  HttpRequestHdr request=new HttpRequestHdr(httpSamplerName);
   SampleResult result=null;
   HeaderManager headers=null;
+  HTTPSamplerBase sampler=null;
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     outStreamClient=clientSocket.getOutputStream();
@@ -21,7 +21,7 @@
       }
       request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     }
-    request.getSampler(pageEncodings,formEncodings);
+    sampler=request.getSampler(pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     boolean forcedHTTPS=false;
@@ -75,8 +75,11 @@ catch (  Exception e) {
     result=generateErrorResult(result,e);
   }
  finally {
+    boolean samplerAvailable=sampler != null;
     if (log.isDebugEnabled()) {
-      log.debug("Will deliver sample " + sampler.getName());
+      if (samplerAvailable) {
+        log.debug("Will deliver sample " + sampler.getName());
+      }
     }
     if (headers != null) {
       headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
@@ -85,13 +88,17 @@ catch (  Exception e) {
         headers.removeHeaderNamed(hdr);
       }
     }
-    target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
+    if (samplerAvailable) {
+      target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
+    }
     try {
       clientSocket.close();
     }
  catch (    Exception e) {
       log.error("",e);
     }
-    sampler.threadFinished();
+    if (samplerAvailable) {
+      sampler.threadFinished();
+    }
   }
 }
