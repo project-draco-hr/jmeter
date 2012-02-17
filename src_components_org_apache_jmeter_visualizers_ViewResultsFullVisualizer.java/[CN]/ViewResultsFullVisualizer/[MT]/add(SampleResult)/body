@@ -1,3 +1,8 @@
 {
-  updateGui(sample);
+  JMeterUtils.runSafe(new Runnable(){
+    public void run(){
+      updateGui(sample);
+    }
+  }
+);
 }

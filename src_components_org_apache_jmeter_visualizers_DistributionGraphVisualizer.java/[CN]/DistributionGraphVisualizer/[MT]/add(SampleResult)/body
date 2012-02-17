@@ -1,4 +1,9 @@
 {
-  model.addSample(res);
-  updateGui(model.getCurrentSample());
+  JMeterUtils.runSafe(new Runnable(){
+    public void run(){
+      model.addSample(res);
+      updateGui(model.getCurrentSample());
+    }
+  }
+);
 }

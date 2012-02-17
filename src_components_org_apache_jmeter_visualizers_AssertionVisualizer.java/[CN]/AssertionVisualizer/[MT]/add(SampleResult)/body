@@ -1,10 +1,15 @@
 {
-  StringBuilder sb=new StringBuilder(100);
+  final StringBuilder sb=new StringBuilder(100);
   sb.append(sample.getSampleLabel());
   sb.append(getAssertionResult(sample));
   sb.append("\n");
+  JMeterUtils.runSafe(new Runnable(){
+    public void run(){
 synchronized (textArea) {
-    textArea.append(sb.toString());
-    textArea.setCaretPosition(textArea.getText().length());
+        textArea.append(sb.toString());
+        textArea.setCaretPosition(textArea.getText().length());
+      }
+    }
   }
+);
 }

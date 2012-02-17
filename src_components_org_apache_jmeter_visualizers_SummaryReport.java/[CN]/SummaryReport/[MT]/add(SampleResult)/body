@@ -1,20 +1,25 @@
 {
-  Calculator row=null;
   final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());
+  JMeterUtils.runSafe(new Runnable(){
+    public void run(){
+      Calculator row=null;
 synchronized (lock) {
-    row=tableRows.get(sampleLabel);
-    if (row == null) {
-      row=new Calculator(sampleLabel);
-      tableRows.put(row.getLabel(),row);
-      model.insertRow(row,model.getRowCount() - 1);
+        row=tableRows.get(sampleLabel);
+        if (row == null) {
+          row=new Calculator(sampleLabel);
+          tableRows.put(row.getLabel(),row);
+          model.insertRow(row,model.getRowCount() - 1);
+        }
+      }
+synchronized (row) {
+        row.addSample(res);
+      }
+      Calculator tot=tableRows.get(TOTAL_ROW_LABEL);
+synchronized (tot) {
+        tot.addSample(res);
+      }
+      model.fireTableDataChanged();
     }
   }
-synchronized (row) {
-    row.addSample(res);
-  }
-  Calculator tot=tableRows.get(TOTAL_ROW_LABEL);
-synchronized (tot) {
-    tot.addSample(res);
-  }
-  model.fireTableDataChanged();
+);
 }

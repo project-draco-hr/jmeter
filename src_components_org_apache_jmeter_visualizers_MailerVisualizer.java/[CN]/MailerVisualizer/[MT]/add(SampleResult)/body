@@ -1,7 +1,12 @@
 {
   if (getModel() != null) {
-    MailerModel model=((MailerResultCollector)getModel()).getMailerModel();
-    model.add(res);
-    updateVisualizer(model);
+    JMeterUtils.runSafe(new Runnable(){
+      public void run(){
+        MailerModel model=((MailerResultCollector)getModel()).getMailerModel();
+        model.add(res);
+        updateVisualizer(model);
+      }
+    }
+);
   }
 }
