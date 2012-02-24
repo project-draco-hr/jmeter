@@ -3,7 +3,6 @@
   for (  ConfigTestElement config : configs) {
     if (!(config instanceof NoConfigMerge)) {
       sam.addTestElement(config);
-      System.out.println(config.getName() + " " + config.getPropertyAsString(TestElement.GUI_CLASS));
     }
   }
 }
