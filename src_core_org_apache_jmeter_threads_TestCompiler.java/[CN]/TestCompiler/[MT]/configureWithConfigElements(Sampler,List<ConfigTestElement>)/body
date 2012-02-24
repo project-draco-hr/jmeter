@@ -1,6 +1,9 @@
 {
   sam.clearTestElementChildren();
   for (  ConfigTestElement config : configs) {
-    sam.addTestElement(config);
+    if (!(config instanceof NoConfigMerge)) {
+      sam.addTestElement(config);
+      System.out.println(config.getName() + " " + config.getPropertyAsString(TestElement.GUI_CLASS));
+    }
   }
 }
