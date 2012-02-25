@@ -3,5 +3,5 @@
   if (length == 0) {
     return null;
   }
-  return this.names[getNextIndex(length)];
+  return this.names[getIndexAndIncrement(length)];
 }

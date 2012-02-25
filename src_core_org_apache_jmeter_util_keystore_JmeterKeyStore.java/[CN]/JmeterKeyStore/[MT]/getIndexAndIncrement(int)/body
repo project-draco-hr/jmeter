@@ -1,9 +1,9 @@
 {
 synchronized (this) {
-    last_user++;
+    int result=last_user++;
     if (last_user >= length) {
       last_user=0;
     }
-    return last_user;
+    return result;
   }
 }
