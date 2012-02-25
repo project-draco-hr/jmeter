@@ -1,6 +1,9 @@
 {
   try {
     TestElement element=(TestElement)testBeanClass.newInstance();
+    if (initialized) {
+      setValues(element);
+    }
     modifyTestElement(element);
     return element;
   }
