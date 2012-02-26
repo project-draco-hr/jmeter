@@ -16,4 +16,5 @@
   sampler.setIterations(iterations.getText());
   sampler.setUseAuth(useAuth.isSelected());
   sampler.setDestinationStatic(destSetup.getText().equals(DEST_SETUP_STATIC));
+  sampler.setUseNonPersistentDelivery(useNonPersistentDelivery.isSelected());
 }

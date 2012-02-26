@@ -1,5 +1,5 @@
 {
-  publisher=new Publisher(getUseJNDIPropertiesAsBoolean(),getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),isUseAuth(),getUsername(),getPassword(),isDestinationStatic());
+  publisher=new Publisher(getUseJNDIPropertiesAsBoolean(),getJNDIInitialContextFactory(),getProviderUrl(),getConnectionFactory(),getDestination(),isUseAuth(),getUsername(),getPassword(),isDestinationStatic(),getUseNonPersistentDelivery());
   ClientPool.addClient(publisher);
   log.debug("PublisherSampler.initClient called");
 }

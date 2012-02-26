@@ -15,5 +15,6 @@
   sampler.setMessageChoice(msgChoice.getText());
   sampler.setIterations(iterations.getText());
   sampler.setUseAuth(useAuth.isSelected());
+  sampler.setUseNonPersistentDelivery(useNonPersistentDelivery.isSelected());
   return sampler;
 }
