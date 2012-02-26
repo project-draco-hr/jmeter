@@ -39,7 +39,7 @@
     final long deltaTFinal=deltaT;
     final boolean firstInBatchFinal=firstInBatch;
     final JMeterTreeNode myTargetFinal=myTarget;
-    SwingUtilities.invokeAndWait(new Runnable(){
+    JMeterUtils.runSafe(new Runnable(){
       public void run(){
         try {
           final JMeterTreeNode newNode=treeModel.addComponent(sampler,myTargetFinal);

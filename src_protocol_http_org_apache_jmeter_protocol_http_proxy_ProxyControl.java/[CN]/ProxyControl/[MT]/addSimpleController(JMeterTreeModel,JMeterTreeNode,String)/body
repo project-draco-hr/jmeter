@@ -2,7 +2,7 @@
   final GenericController sc=new GenericController();
   sc.setProperty(TestElement.GUI_CLASS,LOGIC_CONTROLLER_GUI);
   sc.setName(name);
-  SwingUtilities.invokeAndWait(new Runnable(){
+  JMeterUtils.runSafe(new Runnable(){
     public void run(){
       try {
         model.addComponent(sc,node);

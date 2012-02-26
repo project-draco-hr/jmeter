@@ -2,7 +2,7 @@
   final TransactionController sc=new TransactionController();
   sc.setProperty(TestElement.GUI_CLASS,TRANSACTION_CONTROLLER_GUI);
   sc.setName(name);
-  SwingUtilities.invokeAndWait(new Runnable(){
+  JMeterUtils.runSafe(new Runnable(){
     public void run(){
       try {
         model.addComponent(sc,node);
