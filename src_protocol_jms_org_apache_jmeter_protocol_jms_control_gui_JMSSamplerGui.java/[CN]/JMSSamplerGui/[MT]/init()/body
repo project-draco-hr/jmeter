@@ -5,7 +5,7 @@
   JPanel jmsQueueingPanel=new JPanel(new BorderLayout());
   jmsQueueingPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_queueing")));
   JPanel qcfPanel=new JPanel(new BorderLayout(5,0));
-  qcfPanel.add(queueuConnectionFactory,BorderLayout.CENTER);
+  qcfPanel.add(queueConnectionFactory,BorderLayout.CENTER);
   jmsQueueingPanel.add(qcfPanel,BorderLayout.NORTH);
   JPanel sendQueuePanel=new JPanel(new BorderLayout(5,0));
   sendQueuePanel.add(sendQueue);

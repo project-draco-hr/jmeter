@@ -1,5 +1,5 @@
 {
-  element.setQueueConnectionFactory(queueuConnectionFactory.getText());
+  element.setQueueConnectionFactory(queueConnectionFactory.getText());
   element.setSendQueue(sendQueue.getText());
   element.setReceiveQueue(receiveQueue.getText());
   boolean isOneway=oneWay.getText().equals(JMeterUtils.getResString("jms_request"));

@@ -2,7 +2,7 @@
   super.configure(el);
   if (!(el instanceof JMSSampler))   return;
   JMSSampler sampler=(JMSSampler)el;
-  queueuConnectionFactory.setText(sampler.getQueueConnectionFactory());
+  queueConnectionFactory.setText(sampler.getQueueConnectionFactory());
   sendQueue.setText(sampler.getSendQueue());
   receiveQueue.setText(sampler.getReceiveQueue());
   JComboBox box=(JComboBox)oneWay.getComponentList().get(1);

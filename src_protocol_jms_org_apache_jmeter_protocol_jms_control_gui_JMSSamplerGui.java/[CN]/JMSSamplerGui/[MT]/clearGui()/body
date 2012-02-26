@@ -1,6 +1,6 @@
 {
   super.clearGui();
-  queueuConnectionFactory.setText("");
+  queueConnectionFactory.setText("");
   sendQueue.setText("");
   receiveQueue.setText("");
   ((JComboBox)oneWay.getComponentList().get(1)).setSelectedItem(JMeterUtils.getResString("jms_request"));
