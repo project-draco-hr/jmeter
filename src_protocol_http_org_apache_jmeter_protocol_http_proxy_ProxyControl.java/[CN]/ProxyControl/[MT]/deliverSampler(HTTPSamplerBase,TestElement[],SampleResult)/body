@@ -1,36 +1,21 @@
 {
-  try {
-    SwingUtilities.invokeAndWait(new Runnable(){
-      public void run(){
-        if (filterContentType(result) && filterUrl(sampler)) {
-          JMeterTreeNode myTarget=findTargetControllerNode();
-          @SuppressWarnings("unchecked") Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
-          @SuppressWarnings("unchecked") Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
-          removeValuesFromSampler(sampler,defaultConfigurations);
-          replaceValues(sampler,subConfigs,userDefinedVariables);
-          sampler.setAutoRedirects(samplerRedirectAutomatically);
-          sampler.setFollowRedirects(samplerFollowRedirects);
-          sampler.setUseKeepAlive(useKeepAlive);
-          sampler.setImageParser(samplerDownloadImages);
-          placeSampler(sampler,subConfigs,myTarget);
-        }
+  if (filterContentType(result) && filterUrl(sampler)) {
+    JMeterTreeNode myTarget=findTargetControllerNode();
+    @SuppressWarnings("unchecked") Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
+    @SuppressWarnings("unchecked") Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
+    removeValuesFromSampler(sampler,defaultConfigurations);
+    replaceValues(sampler,subConfigs,userDefinedVariables);
+    sampler.setAutoRedirects(samplerRedirectAutomatically);
+    sampler.setFollowRedirects(samplerFollowRedirects);
+    sampler.setUseKeepAlive(useKeepAlive);
+    sampler.setImageParser(samplerDownloadImages);
+    placeSampler(sampler,subConfigs,myTarget);
+  }
  else {
-          if (log.isDebugEnabled()) {
-            log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
-          }
-          result.setSampleLabel("[" + result.getSampleLabel() + "]");
-        }
-        notifySampleListeners(new SampleEvent(result,"WorkBench"));
-      }
+    if (log.isDebugEnabled()) {
+      log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
     }
-);
+    result.setSampleLabel("[" + result.getSampleLabel() + "]");
   }
- catch (  InterruptedException e) {
-    log.error("Program error",e);
-    throw new Error(e);
-  }
-catch (  InvocationTargetException e) {
-    log.error("Program error",e);
-    throw new Error(e);
-  }
+  notifySampleListeners(new SampleEvent(result,"WorkBench"));
 }
