@@ -1,4 +1,5 @@
 {
   status=of.parseString("<status></status>");
   assertNotNull(status);
+  printStatus("testStatus",status);
 }

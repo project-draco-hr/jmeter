@@ -1,5 +1,6 @@
 {
   String content=FileUtils.readFileToString(findTestFile("testfiles/monitorStatus.xml"));
   status=of.parseString(content);
+  printStatus("testStringData",status);
   checkResult();
 }
