@@ -1,4 +1,7 @@
 {
   super();
   connectors=new LinkedList<Connector>();
+  if (isGump) {
+    new Throwable("\nGUMP DEBUG: " + this).printStackTrace();
+  }
 }
