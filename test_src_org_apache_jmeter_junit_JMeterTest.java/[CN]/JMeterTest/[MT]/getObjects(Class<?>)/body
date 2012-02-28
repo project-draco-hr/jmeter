@@ -24,7 +24,7 @@
             objects.add(c.getConstructor(new Class[]{Object.class}).newInstance(new Object[]{myThis}));
           }
  catch (          NoSuchMethodException f) {
-            System.out.println("o.a.j.junit.JMeterTest WARN: " + exName + ": NoSuchMethodException  "+ n);
+            System.out.println("o.a.j.junit.JMeterTest WARN: " + exName + ": NoSuchMethodException  "+ n+ ", missing empty Constructor or Constructor with Object parameter");
           }
         }
       }
