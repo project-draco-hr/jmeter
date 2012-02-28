@@ -17,7 +17,7 @@
       value="";
     }
     if (name.length() > 0) {
-      if (contentEncoding != null) {
+      if (!StringUtils.isEmpty(contentEncoding)) {
         addEncodedArgument(name,value,metaData,contentEncoding);
       }
  else {
