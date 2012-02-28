@@ -4,7 +4,7 @@
   Header contentTypeHeader=put.getFirstHeader(HEADER_CONTENT_TYPE);
   boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
   final String contentEncoding=getContentEncoding();
-  boolean haveContentEncoding=(contentEncoding != null && contentEncoding.trim().length() > 0);
+  boolean haveContentEncoding=!isNullOrEmptyTrimmed(contentEncoding);
   HttpParams putParams=put.getParams();
   HTTPFileArg files[]=getHTTPFiles();
   if (!hasArguments() && getSendFileAsPostBody()) {

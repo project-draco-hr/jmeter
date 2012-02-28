@@ -3,7 +3,7 @@
   HTTPFileArg files[]=getHTTPFiles();
   if (getUseMultipartForPost()) {
     String contentEncoding=getContentEncoding();
-    if (contentEncoding != null && contentEncoding.length() == 0) {
+    if (isNullOrEmptyTrimmed(contentEncoding)) {
       contentEncoding=null;
     }
     Charset charset=null;
@@ -67,12 +67,12 @@
  else {
       String contentEncoding=getContentEncoding();
       boolean haveContentEncoding=false;
-      if (contentEncoding != null && contentEncoding.trim().length() > 0) {
+      if (isNullOrEmptyTrimmed(contentEncoding)) {
+        contentEncoding=null;
+      }
+ else {
         post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,contentEncoding);
         haveContentEncoding=true;
-      }
- else       if (contentEncoding != null && contentEncoding.trim().length() == 0) {
-        contentEncoding=null;
       }
       if (getSendParameterValuesAsPostBody()) {
         if (!hasContentTypeHeader) {
