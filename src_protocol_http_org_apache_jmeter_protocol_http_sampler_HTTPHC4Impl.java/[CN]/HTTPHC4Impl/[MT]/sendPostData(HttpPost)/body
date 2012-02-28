@@ -6,7 +6,11 @@
     if (contentEncoding != null && contentEncoding.length() == 0) {
       contentEncoding=null;
     }
-    MultipartEntity multiPart=new MultipartEntity(getDoBrowserCompatibleMultipart() ? HttpMultipartMode.BROWSER_COMPATIBLE : HttpMultipartMode.STRICT,null,Charset.forName(contentEncoding));
+    Charset charset=null;
+    if (contentEncoding != null) {
+      charset=Charset.forName(contentEncoding);
+    }
+    MultipartEntity multiPart=new MultipartEntity(getDoBrowserCompatibleMultipart() ? HttpMultipartMode.BROWSER_COMPATIBLE : HttpMultipartMode.STRICT,null,charset);
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
