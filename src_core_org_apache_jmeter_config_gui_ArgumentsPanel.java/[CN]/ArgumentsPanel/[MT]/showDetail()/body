@@ -1,0 +1,9 @@
+{
+  cancelEditing();
+  int[] rowsSelected=table.getSelectedRows();
+  if (rowsSelected.length == 1) {
+    table.clearSelection();
+    RowDetailDialog detailDialog=new RowDetailDialog(tableModel,rowsSelected[0]);
+    detailDialog.setVisible(true);
+  }
+}

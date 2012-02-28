@@ -1,0 +1,6 @@
+{
+  super((JFrame)null,JMeterUtils.getResString("search_tree_title"),true);
+  this.tableModel=tableModel;
+  this.selectedRow=selectedRow;
+  init();
+}

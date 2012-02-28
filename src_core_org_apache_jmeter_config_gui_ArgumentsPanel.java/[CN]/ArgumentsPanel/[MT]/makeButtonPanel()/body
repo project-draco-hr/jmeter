@@ -1,4 +1,7 @@
 {
+  showDetail=new JButton(JMeterUtils.getResString("detail"));
+  showDetail.setActionCommand(DETAIL);
+  showDetail.setEnabled(true);
   add=new JButton(JMeterUtils.getResString("add"));
   add.setActionCommand(ADD);
   add.setEnabled(true);
@@ -19,9 +22,11 @@
   if (this.background != null) {
     buttonPanel.setBackground(this.background);
   }
+  showDetail.addActionListener(this);
   add.addActionListener(this);
   addFromClipboard.addActionListener(this);
   delete.addActionListener(this);
+  buttonPanel.add(showDetail);
   buttonPanel.add(add);
   buttonPanel.add(addFromClipboard);
   buttonPanel.add(delete);

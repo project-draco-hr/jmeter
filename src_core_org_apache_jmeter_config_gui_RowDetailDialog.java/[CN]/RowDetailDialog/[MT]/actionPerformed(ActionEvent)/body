@@ -1,0 +1,21 @@
+{
+  String action=e.getActionCommand();
+  if (action.equals(CLOSE)) {
+    this.setVisible(false);
+  }
+ else   if (action.equals(NEXT)) {
+    selectedRow++;
+    previousButton.setEnabled(true);
+    nextButton.setEnabled(selectedRow < tableModel.getRowCount() - 1);
+    setValues(selectedRow);
+  }
+ else   if (action.equals(PREVIOUS)) {
+    selectedRow--;
+    nextButton.setEnabled(true);
+    previousButton.setEnabled(selectedRow > 0);
+    setValues(selectedRow);
+  }
+ else   if (action.equals(UPDATE)) {
+    doUpdate(e);
+  }
+}
