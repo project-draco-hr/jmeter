@@ -1,6 +1,4 @@
 {
   status=of.parseString("<a></a>");
-  if (status != null) {
-    fail("Expected null status, but was " + formatStatus(status));
-  }
+  assertNotNull(status);
 }
