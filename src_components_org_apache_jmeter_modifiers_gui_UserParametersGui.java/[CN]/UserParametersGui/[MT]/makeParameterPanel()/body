@@ -4,7 +4,7 @@
   paramTable=new JTable(tableModel);
   paramTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   paramTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-  JPanel paramPanel=new JPanel(new BorderLayout());
+  paramPanel=new JPanel(new BorderLayout());
   paramPanel.add(tableLabel,BorderLayout.NORTH);
   JScrollPane scroll=new JScrollPane(paramTable);
   scroll.setPreferredSize(scroll.getMinimumSize());

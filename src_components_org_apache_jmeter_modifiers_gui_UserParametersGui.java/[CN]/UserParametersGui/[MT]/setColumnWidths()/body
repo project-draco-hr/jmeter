@@ -1,5 +1,11 @@
 {
+  int margin=10;
+  int minwidth=150;
+  JTableHeader tableHeader=paramTable.getTableHeader();
+  FontMetrics headerFontMetrics=tableHeader.getFontMetrics(tableHeader.getFont());
   for (int i=0; i < tableModel.getColumnCount(); i++) {
-    paramTable.getColumnModel().getColumn(i).setPreferredWidth(200);
+    int headerWidth=headerFontMetrics.stringWidth(paramTable.getColumnName(i));
+    int maxWidth=getMaximalRequiredColumnWidth(i,headerWidth);
+    paramTable.getColumnModel().getColumn(i).setPreferredWidth(Math.max(maxWidth + margin,minwidth));
   }
 }

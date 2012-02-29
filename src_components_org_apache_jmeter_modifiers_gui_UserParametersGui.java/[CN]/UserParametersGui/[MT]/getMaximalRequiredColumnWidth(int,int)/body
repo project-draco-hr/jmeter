@@ -1,0 +1,14 @@
+{
+  int maxWidth=headerWidth;
+  TableColumn column=paramTable.getColumnModel().getColumn(columnIndex);
+  TableCellRenderer cellRenderer=column.getCellRenderer();
+  if (cellRenderer == null) {
+    cellRenderer=new DefaultTableCellRenderer();
+  }
+  for (int row=0; row < paramTable.getModel().getRowCount(); row++) {
+    Component rendererComponent=cellRenderer.getTableCellRendererComponent(paramTable,paramTable.getModel().getValueAt(row,columnIndex),false,false,row,columnIndex);
+    double valueWidth=rendererComponent.getPreferredSize().getWidth();
+    maxWidth=(int)Math.max(maxWidth,valueWidth);
+  }
+  return maxWidth;
+}
