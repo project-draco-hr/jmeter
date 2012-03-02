@@ -14,5 +14,9 @@
   if (url != null && contentEncoding != null) {
     pageEncodings.put(url,contentEncoding);
   }
-  return req.getSampler(pageEncodings,formEncodings);
+  SamplerCreatorFactory creatorFactory=new SamplerCreatorFactory();
+  SamplerCreator creator=creatorFactory.getSamplerCreator(req,pageEncodings,formEncodings);
+  HTTPSamplerBase sampler=creator.createSampler(req,pageEncodings,formEncodings);
+  creator.populateSampler(sampler,req,pageEncodings,formEncodings);
+  return sampler;
 }
