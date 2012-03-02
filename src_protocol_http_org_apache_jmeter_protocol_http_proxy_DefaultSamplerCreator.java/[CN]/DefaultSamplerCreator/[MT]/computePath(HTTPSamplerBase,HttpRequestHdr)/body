@@ -1,0 +1,11 @@
+{
+  if (sampler.getContentEncoding() != null) {
+    sampler.setPath(request.getPath(),sampler.getContentEncoding());
+  }
+ else {
+    sampler.setPath(request.getPath(),null);
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("Proxy: setting path: " + sampler.getPath());
+  }
+}

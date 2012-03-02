@@ -1,0 +1,53 @@
+{
+  if ((!HTTPConstants.CONNECT.equals(request.getMethod())) && (!HTTPConstants.GET.equals(request.getMethod()))) {
+    final String contentType=request.getContentType();
+    MultipartUrlConfig urlConfig=request.getMultipartConfig(contentType);
+    String contentEncoding=sampler.getContentEncoding();
+    String postData=null;
+    if (log.isDebugEnabled()) {
+      if (!StringUtils.isEmpty(contentEncoding)) {
+        log.debug("Using encoding " + contentEncoding + " for request body");
+      }
+ else {
+        log.debug("No encoding found, using JRE default encoding for request body");
+      }
+    }
+    if (!StringUtils.isEmpty(contentEncoding)) {
+      postData=new String(request.getRawPostData(),contentEncoding);
+    }
+ else {
+      postData=new String(request.getRawPostData(),PostWriter.ENCODING);
+    }
+    if (urlConfig != null) {
+      urlConfig.parseArguments(postData);
+      sampler.setDoMultipartPost(true);
+      request.getHeaderManager().removeHeaderNamed(HttpRequestHdr.CONTENT_TYPE);
+      request.getHeaderManager().removeHeaderNamed(HttpRequestHdr.CONTENT_LENGTH);
+      sampler.setArguments(urlConfig.getArguments());
+      sampler.setHTTPFiles(urlConfig.getHTTPFileArgs().asArray());
+    }
+ else     if (postData.trim().startsWith("<?") || "PUT".equals(sampler.getMethod())) {
+      sampler.addNonEncodedArgument("",postData,"");
+    }
+ else     if (contentType == null || contentType.startsWith(HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED)) {
+      sampler.parseArguments(postData.trim(),contentEncoding);
+    }
+ else     if (postData.length() > 0) {
+      if (isBinaryContent(contentType)) {
+        try {
+          File tempDir=new File(getBinaryDirectory());
+          File out=File.createTempFile(request.getMethod(),getBinaryFileSuffix(),tempDir);
+          FileUtils.writeByteArrayToFile(out,request.getRawPostData());
+          HTTPFileArg[] files={new HTTPFileArg(out.getPath(),"",contentType)};
+          sampler.setHTTPFiles(files);
+        }
+ catch (        IOException e) {
+          log.warn("Could not create binary file: " + e);
+        }
+      }
+ else {
+        sampler.addNonEncodedArgument("",postData,"");
+      }
+    }
+  }
+}

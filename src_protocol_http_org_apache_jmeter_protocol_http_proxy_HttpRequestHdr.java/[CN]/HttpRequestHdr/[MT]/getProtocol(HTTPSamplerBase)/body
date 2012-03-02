@@ -1,0 +1,21 @@
+{
+  if (url.indexOf("//") > -1) {
+    String protocol=url.substring(0,url.indexOf(":"));
+    if (log.isDebugEnabled()) {
+      log.debug("Proxy: setting protocol to : " + protocol);
+    }
+    return protocol;
+  }
+ else   if (sampler.getPort() == HTTPConstants.DEFAULT_HTTPS_PORT) {
+    if (log.isDebugEnabled()) {
+      log.debug("Proxy: setting protocol to https");
+    }
+    return HTTPS;
+  }
+ else {
+    if (log.isDebugEnabled()) {
+      log.debug("Proxy setting default protocol to: http");
+    }
+    return HTTP;
+  }
+}

@@ -1,0 +1,23 @@
+{
+  String contentEncoding=null;
+  String requestContentEncoding=ConversionUtils.getEncodingFromContentType(request.getContentType());
+  if (requestContentEncoding != null) {
+    contentEncoding=requestContentEncoding;
+  }
+ else {
+    if (pageEncodings != null) {
+synchronized (pageEncodings) {
+        contentEncoding=pageEncodings.get(urlWithoutQuery);
+      }
+    }
+    if (formEncodings != null) {
+synchronized (formEncodings) {
+        String formEncoding=formEncodings.get(urlWithoutQuery);
+        if (formEncoding != null) {
+          contentEncoding=formEncoding;
+        }
+      }
+    }
+  }
+  return contentEncoding;
+}

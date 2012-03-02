@@ -1,7 +1,6 @@
 {
-  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance(httpSamplerName);
+  HTTPSamplerBase sampler=HTTPSamplerFactory.newInstance(request.getHttpSamplerName());
   sampler.setProperty(TestElement.GUI_CLASS,HttpTestSampleGui.class.getName());
-  populateSampler(sampler,pageEncodings,formEncodings);
   sampler.setFollowRedirects(false);
   sampler.setUseKeepAlive(true);
   if (log.isDebugEnabled()) {

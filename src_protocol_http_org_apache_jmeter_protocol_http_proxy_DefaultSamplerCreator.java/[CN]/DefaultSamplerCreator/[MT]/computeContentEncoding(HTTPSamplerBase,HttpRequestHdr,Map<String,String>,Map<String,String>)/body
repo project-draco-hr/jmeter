@@ -1,0 +1,14 @@
+{
+  URL pageUrl=null;
+  if (sampler.isProtocolDefaultPort()) {
+    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),request.getPath());
+  }
+ else {
+    pageUrl=new URL(sampler.getProtocol(),sampler.getDomain(),sampler.getPort(),request.getPath());
+  }
+  String urlWithoutQuery=request.getUrlWithoutQuery(pageUrl);
+  String contentEncoding=computeContentEncoding(request,pageEncodings,formEncodings,urlWithoutQuery);
+  if (!StringUtils.isEmpty(contentEncoding)) {
+    sampler.setContentEncoding(contentEncoding);
+  }
+}

@@ -21,7 +21,9 @@
       }
       request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     }
-    sampler=request.getSampler(pageEncodings,formEncodings);
+    SamplerCreator samplerCreator=factory.getSamplerCreator(request,pageEncodings,formEncodings);
+    sampler=samplerCreator.createSampler(request,pageEncodings,formEncodings);
+    samplerCreator.populateSampler(sampler,request,pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     boolean forcedHTTPS=false;

@@ -1,4 +1,6 @@
 {
-  if (contentType == null)   return false;
+  if (contentType == null) {
+    return false;
+  }
   return binaryContentTypes.contains(contentType);
 }

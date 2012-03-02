@@ -1,0 +1,6 @@
+{
+  sampler.setPort(request.serverPort());
+  if (log.isDebugEnabled()) {
+    log.debug("Proxy: setting port: " + sampler.getPort());
+  }
+}

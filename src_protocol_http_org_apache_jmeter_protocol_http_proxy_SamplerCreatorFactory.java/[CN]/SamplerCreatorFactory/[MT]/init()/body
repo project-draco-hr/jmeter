@@ -1,0 +1,28 @@
+{
+  try {
+    List<String> listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{SamplerCreator.class});
+    for (    String strClassName : listClasses) {
+      try {
+        log.info("Loading class:" + strClassName);
+        Class<?> commandClass=Class.forName(strClassName);
+        if (!Modifier.isAbstract(commandClass.getModifiers())) {
+          log.info("Instantiating :" + commandClass.getName());
+          SamplerCreator creator=(SamplerCreator)commandClass.newInstance();
+          String[] contentTypes=creator.getManagedContentTypes();
+          for (          String contentType : contentTypes) {
+            if (log.isInfoEnabled()) {
+              log.info("Registering samplerCreator " + commandClass.getName() + " for content type:"+ contentType);
+            }
+            samplerCreatorMap.put(contentType,creator);
+          }
+        }
+      }
+ catch (      Exception e) {
+        log.error("Exception registering " + SamplerCreator.class.getName() + " with implementation:"+ strClassName,e);
+      }
+    }
+  }
+ catch (  Exception e) {
+    log.error("Exception finding implementations of " + SamplerCreator.class,e);
+  }
+}

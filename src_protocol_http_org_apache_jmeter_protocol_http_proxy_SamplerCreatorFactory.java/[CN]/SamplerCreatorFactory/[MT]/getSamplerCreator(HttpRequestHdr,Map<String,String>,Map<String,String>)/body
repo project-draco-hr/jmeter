@@ -1,0 +1,7 @@
+{
+  SamplerCreator creator=samplerCreatorMap.get(request.getContentType());
+  if (creator == null) {
+    return DEFAULT_SAMPLER_CREATOR;
+  }
+  return creator;
+}

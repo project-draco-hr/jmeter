@@ -1,0 +1,6 @@
+{
+  sampler.setDomain(request.serverName());
+  if (log.isDebugEnabled()) {
+    log.debug("Proxy: setting server: " + sampler.getDomain());
+  }
+}
