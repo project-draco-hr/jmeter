@@ -4,9 +4,9 @@
   try {
     if (testDoc == null) {
       Document doc=XPathUtil.makeDocumentBuilder(false,false,false,false).newDocument();
+      testDoc=doc;
       Element el=testDoc.createElement("root");
       doc.appendChild(el);
-      testDoc=doc;
     }
     XPathUtil.validateXPath(testDoc,xpathString);
   }
