@@ -1,7 +1,7 @@
 {
   long aTimeInMillis=res.getTime();
-  boolean aSuccessFlag=res.isSuccessful();
   counter+=res.getSampleCount();
+  errorCount+=res.getErrorCount();
   long startTime=res.getStartTime();
   long endTime=res.getEndTime();
   if (firstTime > startTime) {
@@ -16,8 +16,5 @@
   }
   if (aTimeInMillis < min) {
     min=aTimeInMillis;
-  }
-  if (!aSuccessFlag) {
-    errorCount+=res.getErrorCount();
   }
 }
