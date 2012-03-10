@@ -1,0 +1,5 @@
+{
+  SSLSocket sslSocket=(SSLSocket)this.factory.createSocket(socket,host,port,autoClose);
+  ALLOW_ALL_HOSTNAME_VERIFIER.verify(host,sslSocket);
+  return sslSocket;
+}

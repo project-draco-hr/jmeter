@@ -1,7 +1,3 @@
 {
-  super();
-  if (cps <= 0) {
-    throw new IllegalArgumentException("CPS must be > 0, but is " + cps);
-  }
-  CPS=cps;
+  super(new HttpSSLProtocolSocketFactory((JsseSSLManager)JsseSSLManager.getInstance(),cps));
 }
