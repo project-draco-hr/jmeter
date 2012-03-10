@@ -1,6 +1,6 @@
 {
   if (null == SSLManager.manager) {
-    SSLManager.manager=new JsseSSLManager(SSLManager.sslProvider);
+    SSLManager.manager=new JsseSSLManager(null);
   }
   return SSLManager.manager;
 }
