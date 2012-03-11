@@ -1,0 +1,8 @@
+{
+  Arguments arguments=getArguments(JMS_PROPERTIES);
+  if (arguments == null) {
+    arguments=new Arguments();
+    setArguments(arguments);
+  }
+  return arguments;
+}

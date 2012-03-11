@@ -1,11 +1,3 @@
 {
-  ObjectMessage msg=session.createObjectMessage(contents);
-  if (staticDest || destinationName == null) {
-    producer.send(msg);
-  }
- else {
-    Destination dest=Utils.lookupDestination(ctx,destinationName);
-    producer.send(dest,msg);
-  }
-  return msg;
+  return publish(contents,destinationName,null);
 }

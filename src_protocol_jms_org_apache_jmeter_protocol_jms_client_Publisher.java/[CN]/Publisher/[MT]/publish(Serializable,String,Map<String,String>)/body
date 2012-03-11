@@ -1,0 +1,12 @@
+{
+  ObjectMessage msg=session.createObjectMessage(contents);
+  Utils.addJMSProperties(msg,properties);
+  if (staticDest || destinationName == null) {
+    producer.send(msg);
+  }
+ else {
+    Destination dest=Utils.lookupDestination(ctx,destinationName);
+    producer.send(dest,msg);
+  }
+  return msg;
+}

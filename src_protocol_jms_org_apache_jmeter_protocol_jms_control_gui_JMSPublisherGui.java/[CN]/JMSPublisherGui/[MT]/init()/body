@@ -9,10 +9,10 @@
   mainPanel.add(urlField);
   mainPanel.add(jndiConnFac);
   mainPanel.add(createDestinationPane());
-  mainPanel.add(useAuth);
-  mainPanel.add(jmsUser);
-  mainPanel.add(jmsPwd);
+  mainPanel.add(createAuthPane());
   mainPanel.add(iterations);
+  jmsPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_props"));
+  mainPanel.add(jmsPropertiesPanel);
   configChoice.setLayout(new BoxLayout(configChoice,BoxLayout.X_AXIS));
   mainPanel.add(configChoice);
   msgChoice.setLayout(new BoxLayout(msgChoice,BoxLayout.X_AXIS));

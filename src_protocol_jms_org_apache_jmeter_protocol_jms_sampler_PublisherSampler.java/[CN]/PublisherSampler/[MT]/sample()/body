@@ -25,13 +25,13 @@ catch (    NamingException e) {
     for (int idx=0; idx < loop; idx++) {
       if (JMSPublisherGui.TEXT_MSG_RSC.equals(type)) {
         String tmsg=getMessageContent();
-        Message msg=publisher.publish(tmsg,getDestination());
+        Message msg=publisher.publish(tmsg,getDestination(),getJMSProperties().getArgumentsAsMap());
         buffer.append(tmsg);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.MAP_MSG_RSC.equals(type)) {
         Map<String,Object> m=getMapContent();
-        Message msg=publisher.publish(m,getDestination());
+        Message msg=publisher.publish(m,getDestination(),getJMSProperties().getArgumentsAsMap());
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.OBJECT_MSG_RSC.equals(type)) {

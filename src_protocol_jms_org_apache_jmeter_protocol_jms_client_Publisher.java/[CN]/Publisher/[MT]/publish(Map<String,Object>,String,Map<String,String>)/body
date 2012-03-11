@@ -1,0 +1,15 @@
+{
+  MapMessage msg=session.createMapMessage();
+  Utils.addJMSProperties(msg,properties);
+  for (  Entry<String,Object> me : map.entrySet()) {
+    msg.setObject(me.getKey(),me.getValue());
+  }
+  if (staticDest || destinationName == null) {
+    producer.send(msg);
+  }
+ else {
+    Destination dest=Utils.lookupDestination(ctx,destinationName);
+    producer.send(dest,msg);
+  }
+  return msg;
+}

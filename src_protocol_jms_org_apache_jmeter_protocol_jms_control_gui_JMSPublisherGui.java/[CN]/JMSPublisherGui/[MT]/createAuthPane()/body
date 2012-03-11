@@ -1,0 +1,10 @@
+{
+  JPanel pane=new JPanel();
+  pane.setLayout(new BoxLayout(pane,BoxLayout.X_AXIS));
+  pane.add(useAuth);
+  pane.add(Box.createHorizontalStrut(10));
+  pane.add(jmsUser);
+  pane.add(Box.createHorizontalStrut(10));
+  pane.add(jmsPwd);
+  return pane;
+}

@@ -20,4 +20,5 @@
   jmsPwd.setEnabled(useAuth.isSelected());
   destSetup.setText(sampler.isDestinationStatic() ? DEST_SETUP_STATIC : DEST_SETUP_DYNAMIC);
   useNonPersistentDelivery.setSelected(sampler.getUseNonPersistentDelivery());
+  jmsPropertiesPanel.configure(sampler.getJMSProperties());
 }

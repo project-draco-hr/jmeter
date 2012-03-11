@@ -1,0 +1,18 @@
+{
+  if (map == null) {
+    return;
+  }
+  for (  Map.Entry<String,String> me : map.entrySet()) {
+    String name=me.getKey();
+    String value=me.getValue();
+    if (log.isDebugEnabled()) {
+      log.debug("Adding property [" + name + "="+ value+ "]");
+    }
+    if ("JMSCorrelationID".equalsIgnoreCase(name)) {
+      msg.setJMSCorrelationID(value);
+    }
+ else {
+      msg.setStringProperty(name,value);
+    }
+  }
+}
