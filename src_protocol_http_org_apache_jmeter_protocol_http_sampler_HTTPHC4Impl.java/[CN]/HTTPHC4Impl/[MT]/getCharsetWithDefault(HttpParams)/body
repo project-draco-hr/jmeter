@@ -1,0 +1,7 @@
+{
+  String charset=(String)putParams.getParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET);
+  if (StringUtils.isEmpty(charset)) {
+    charset=Charset.defaultCharset().name();
+  }
+  return charset;
+}

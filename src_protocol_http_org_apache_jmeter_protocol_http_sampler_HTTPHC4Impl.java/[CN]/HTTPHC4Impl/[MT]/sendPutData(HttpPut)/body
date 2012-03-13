@@ -18,6 +18,7 @@
     if (haveContentEncoding) {
       putParams.setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,contentEncoding);
     }
+    String charset=getCharsetWithDefault(putParams);
     StringBuilder putBodyContent=new StringBuilder();
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
@@ -35,7 +36,7 @@
     if (hasContentTypeHeader) {
       contentTypeValue=put.getFirstHeader(HEADER_CONTENT_TYPE).getValue();
     }
-    StringEntity requestEntity=new StringEntity(putBodyContent.toString(),contentTypeValue,(String)putParams.getParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET));
+    StringEntity requestEntity=new StringEntity(putBodyContent.toString(),contentTypeValue,(String)charset);
     put.setEntity(requestEntity);
   }
   if (hasPutBody) {
@@ -43,7 +44,8 @@
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
       put.getEntity().writeTo(bos);
       bos.flush();
-      putBody.append(new String(bos.toByteArray(),(String)putParams.getParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET)));
+      String charset=getCharsetWithDefault(putParams);
+      putBody.append(new String(bos.toByteArray(),charset));
       bos.close();
     }
  else {
