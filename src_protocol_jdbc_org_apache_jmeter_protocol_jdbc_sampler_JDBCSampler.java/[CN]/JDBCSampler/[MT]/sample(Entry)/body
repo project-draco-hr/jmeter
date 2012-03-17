@@ -25,16 +25,13 @@
     final String errCode=Integer.toString(ex.getErrorCode());
     res.setResponseMessage(ex.toString());
     res.setResponseCode(ex.getSQLState() + " " + errCode);
+    res.setResponseData(ex.getMessage().getBytes());
     res.setSuccessful(false);
   }
-catch (  UnsupportedOperationException ex) {
+catch (  Exception ex) {
     res.setResponseMessage(ex.toString());
     res.setResponseCode("000");
-    res.setSuccessful(false);
-  }
-catch (  IOException ex) {
-    res.setResponseMessage(ex.toString());
-    res.setResponseCode("000");
+    res.setResponseData(ex.getMessage().getBytes());
     res.setSuccessful(false);
   }
  finally {
