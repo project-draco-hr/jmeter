@@ -7,6 +7,9 @@
     @SuppressWarnings("unchecked") Iterator<Argument> modelData=(Iterator<Argument>)tableModel.iterator();
     while (modelData.hasNext()) {
       Argument arg=modelData.next();
+      if (StringUtils.isEmpty(arg.getName()) && StringUtils.isEmpty(arg.getValue())) {
+        continue;
+      }
       arg.setMetaData("=");
       arguments.addArgument(arg);
     }
