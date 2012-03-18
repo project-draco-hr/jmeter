@@ -23,5 +23,4 @@
   threadDelayPropsPanel.add(avgDelayPanel);
   threadDelayPropsPanel.setMaximumSize(new Dimension(threadDelayPropsPanel.getMaximumSize().width,threadDelayPropsPanel.getPreferredSize().height));
   add(threadDelayPropsPanel);
-  new FocusRequester(rangeField);
 }

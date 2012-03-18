@@ -31,11 +31,17 @@
     actionEvent=new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,ActionNames.SUB_TREE_MERGED);
   }
   ActionRouter.getInstance().actionPerformed(actionEvent);
+  JTree jTree=guiInstance.getMainFrame().getTree();
   if (expandTree && !merging) {
-    JTree jTree=guiInstance.getMainFrame().getTree();
     for (int i=0; i < jTree.getRowCount(); i++) {
       jTree.expandRow(i);
     }
   }
+ else {
+    jTree.expandRow(0);
+  }
+  TreePath path=jTree.getPathForRow(1);
+  jTree.setSelectionPath(path);
+  new FocusRequester(jTree);
   return isTestPlan;
 }

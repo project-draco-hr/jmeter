@@ -5,7 +5,6 @@
   theCondition=new JTextField("");
   conditionLabel.setLabelFor(theCondition);
   conditionPanel.add(theCondition,BorderLayout.CENTER);
-  theCondition.addActionListener(this);
   conditionPanel.add(Box.createHorizontalStrut(conditionLabel.getPreferredSize().width + theCondition.getPreferredSize().width),BorderLayout.NORTH);
   JPanel optionPanel=new JPanel();
   useExpression=new JCheckBox(JMeterUtils.getResString("if_controller_expression"));

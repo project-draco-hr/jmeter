@@ -1,6 +1,8 @@
 {
   GuiPackage guiPackage=GuiPackage.getInstance();
   guiPackage.clearTestPlan();
-  guiPackage.getTreeListener().getJTree().setSelectionRow(1);
+  JTree tree=guiPackage.getTreeListener().getJTree();
+  tree.setSelectionRow(0);
+  new FocusRequester(tree);
   ActionRouter.getInstance().actionPerformed(new ActionEvent(e.getSource(),e.getID(),ActionNames.ADD_ALL));
 }

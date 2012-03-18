@@ -9,7 +9,6 @@
   threadLabel.setLabelFor(threadInput);
   threadPanel.add(threadInput,BorderLayout.CENTER);
   threadPropsPanel.add(threadPanel);
-  new FocusRequester(threadInput);
   JPanel rampPanel=new JPanel(new BorderLayout(5,0));
   JLabel rampLabel=new JLabel(JMeterUtils.getResString("ramp_up"));
   rampPanel.add(rampLabel,BorderLayout.WEST);

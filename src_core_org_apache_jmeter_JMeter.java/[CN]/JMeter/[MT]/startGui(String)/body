@@ -31,4 +31,10 @@ catch (    Exception e) {
       JOrphanUtils.closeQuietly(reader);
     }
   }
+ else {
+    JTree jTree=GuiPackage.getInstance().getMainFrame().getTree();
+    TreePath path=jTree.getPathForRow(0);
+    jTree.setSelectionPath(path);
+    new FocusRequester(jTree);
+  }
 }

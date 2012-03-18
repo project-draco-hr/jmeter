@@ -6,7 +6,6 @@
   theCondition.setName(CONDITION);
   conditionLabel.setLabelFor(theCondition);
   conditionPanel.add(theCondition,BorderLayout.CENTER);
-  theCondition.addActionListener(this);
   conditionPanel.add(Box.createHorizontalStrut(conditionLabel.getPreferredSize().width + theCondition.getPreferredSize().width),BorderLayout.NORTH);
   return conditionPanel;
 }
