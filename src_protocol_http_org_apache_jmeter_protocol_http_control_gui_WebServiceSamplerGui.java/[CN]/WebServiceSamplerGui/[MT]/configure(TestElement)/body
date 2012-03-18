@@ -11,6 +11,7 @@
   port.setText(sampler.getPropertyAsString(HTTPSamplerBase.PORT));
   path.setText(sampler.getPath());
   soapAction.setText(sampler.getSoapAction());
+  maintainSession.setSelected(sampler.getMaintainSession());
   soapXml.setText(sampler.getXmlData());
   soapXml.setCaretPosition(0);
   soapXmlFile.setFilename(sampler.getXmlFile());

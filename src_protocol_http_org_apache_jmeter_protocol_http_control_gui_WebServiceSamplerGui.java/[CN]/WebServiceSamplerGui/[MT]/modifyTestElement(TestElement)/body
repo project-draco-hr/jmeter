@@ -8,6 +8,7 @@
   sampler.setWsdlURL(wsdlField.getText());
   sampler.setMethod(HTTPSamplerBase.POST);
   sampler.setSoapAction(soapAction.getText());
+  sampler.setMaintainSession(maintainSession.isSelected());
   sampler.setXmlData(soapXml.getText());
   sampler.setXmlFile(soapXmlFile.getFilename());
   sampler.setXmlPathLoc(randomXmlFile.getText());

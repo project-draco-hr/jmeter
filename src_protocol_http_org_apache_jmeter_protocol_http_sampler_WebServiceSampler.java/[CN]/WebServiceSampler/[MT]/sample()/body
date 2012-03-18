@@ -57,7 +57,7 @@
         }
       }
     }
-    spconn.setMaintainSession(true);
+    spconn.setMaintainSession(getMaintainSession());
     msg.setSOAPTransport(spconn);
     msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
     @SuppressWarnings("unchecked") final Map<String,String> headers=spconn.getHeaders();

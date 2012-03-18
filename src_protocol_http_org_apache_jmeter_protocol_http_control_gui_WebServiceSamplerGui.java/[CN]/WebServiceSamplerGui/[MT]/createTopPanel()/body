@@ -32,7 +32,6 @@
   urlPane.add(Box.createRigidArea(new Dimension(5,0)));
   urlPane.add(connectTimeout);
   topPanel.add(urlPane);
-  topPanel.add(path);
-  topPanel.add(soapAction);
+  topPanel.add(createParametersPanel());
   return topPanel;
 }

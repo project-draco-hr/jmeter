@@ -1,0 +1,10 @@
+{
+  JPanel paramsPanel=new JPanel();
+  paramsPanel.setLayout(new BoxLayout(paramsPanel,BoxLayout.X_AXIS));
+  paramsPanel.add(path);
+  paramsPanel.add(Box.createHorizontalGlue());
+  paramsPanel.add(soapAction);
+  paramsPanel.add(Box.createHorizontalGlue());
+  paramsPanel.add(maintainSession);
+  return paramsPanel;
+}
