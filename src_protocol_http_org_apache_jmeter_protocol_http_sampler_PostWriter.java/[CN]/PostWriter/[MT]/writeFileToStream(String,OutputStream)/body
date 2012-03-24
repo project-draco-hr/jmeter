@@ -2,12 +2,19 @@
   byte[] buf=new byte[1024];
   InputStream in=new BufferedInputStream(new FileInputStream(filename));
   int read;
+  boolean noException=false;
   try {
     while ((read=in.read(buf)) > 0) {
       out.write(buf,0,read);
     }
+    noException=true;
   }
   finally {
-    JOrphanUtils.closeQuietly(in);
+    if (!noException) {
+      JOrphanUtils.closeQuietly(in);
+    }
+ else {
+      in.close();
+    }
   }
 }
