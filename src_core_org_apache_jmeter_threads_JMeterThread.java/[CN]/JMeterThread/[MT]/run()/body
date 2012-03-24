@@ -10,7 +10,7 @@
         process_sampler(sam,null,threadContext);
         if (onErrorStartNextLoop || threadContext.isRestartNextLoop()) {
           if (threadContext.isRestartNextLoop()) {
-            triggerEndOfLoopOnParentControllers(sam);
+            triggerEndOfLoopOnParentControllers(sam,threadContext);
             sam=null;
             threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
             threadContext.setRestartNextLoop(false);
@@ -21,7 +21,7 @@
               if (log.isDebugEnabled()) {
                 log.debug("StartNextLoop option is on, Last sample failed, starting next loop");
               }
-              triggerEndOfLoopOnParentControllers(sam);
+              triggerEndOfLoopOnParentControllers(sam,threadContext);
               sam=null;
               threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
             }

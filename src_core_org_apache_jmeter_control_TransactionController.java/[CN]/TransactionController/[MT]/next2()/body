@@ -19,19 +19,7 @@
       if (res.isSuccessful()) {
         res.setResponseCodeOK();
       }
-      JMeterContext threadContext=getThreadContext();
-      JMeterVariables threadVars=threadContext.getVariables();
-      SamplePackage pack=(SamplePackage)threadVars.getObject(JMeterThread.PACKAGE_OBJECT);
-      if (pack == null) {
-        log.warn("Could not fetch SamplePackage");
-      }
- else {
-        SampleEvent event=new SampleEvent(res,threadContext.getThreadGroup().getName(),threadVars,true);
-        res=null;
-        if (!getThreadContext().isReinitializingSubControllers()) {
-          lnf.notifyListeners(event,pack.getSampleListeners());
-        }
-      }
+      notifyListeners();
     }
   }
  else {

@@ -1,0 +1,16 @@
+{
+  if (!isParent()) {
+    if (res != null) {
+      res.setIdleTime(pauseTime + res.getIdleTime());
+      res.sampleEnd();
+      res.setSuccessful(TRUE.equals(JMeterContextService.getContext().getVariables().get(JMeterThread.LAST_SAMPLE_OK)));
+      res.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
+      notifyListeners();
+    }
+  }
+ else {
+    transactionSampler.setTransactionDone();
+    transactionSampler=null;
+  }
+  super.triggerEndOfLoop();
+}
