@@ -2,7 +2,12 @@
   sam.clearTestElementChildren();
   for (  ConfigTestElement config : configs) {
     if (!(config instanceof NoConfigMerge)) {
-      if (sam.applies(config)) {
+      if (sam instanceof ConfigMergabilityIndicator) {
+        if (((ConfigMergabilityIndicator)sam).applies(config)) {
+          sam.addTestElement(config);
+        }
+      }
+ else {
         sam.addTestElement(config);
       }
     }
