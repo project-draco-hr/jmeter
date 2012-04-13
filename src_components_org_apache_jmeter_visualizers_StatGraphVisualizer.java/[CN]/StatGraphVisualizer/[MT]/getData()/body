@@ -1,12 +1,21 @@
 {
   if (model.getRowCount() > 1) {
     int count=model.getRowCount() - 1;
-    int col=model.findColumn((String)columnsList.getSelectedItem());
-    double[][] data=new double[1][count];
-    for (int idx=0; idx < count; idx++) {
-      data[0][idx]=((Number)model.getValueAt(idx,col)).doubleValue();
+    int size=nbColToGraph;
+    double[][] data=new double[size][count];
+    int s=0;
+    int cpt=0;
+    for (    BarGraph bar : eltList) {
+      if (bar.getChkBox().isSelected()) {
+        int col=model.findColumn((String)columnsList.getItemAt(cpt));
+        for (int idx=0; idx < count; idx++) {
+          data[s][idx]=((Number)model.getValueAt(idx,col)).doubleValue();
+        }
+        s++;
+      }
+      cpt++;
     }
     return data;
   }
-  return new double[][]{{250,45,36,66,145,80,55}};
+  return null;
 }

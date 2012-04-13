@@ -1,0 +1,9 @@
+{
+  int i=0;
+  for (  BarGraph bar : eltList) {
+    if (bar.getChkBox().isSelected()) {
+      i++;
+    }
+  }
+  return i;
+}

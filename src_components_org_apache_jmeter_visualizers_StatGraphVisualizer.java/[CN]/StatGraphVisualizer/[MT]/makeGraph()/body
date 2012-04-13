@@ -1,15 +1,18 @@
 {
+  nbColToGraph=getNbColumns();
   Dimension size=graphPanel.getSize();
-  String wstr=graphWidth.getText();
-  String hstr=graphHeight.getText();
   String lstr=maxLengthXAxisLabel.getText();
   int width=(int)size.getWidth();
-  if (wstr.length() != 0) {
-    width=Integer.parseInt(wstr);
-  }
   int height=(int)size.getHeight();
-  if (hstr.length() != 0) {
-    height=Integer.parseInt(hstr);
+  if (!dynamicGraphSize.isSelected()) {
+    String wstr=graphWidth.getText();
+    String hstr=graphHeight.getText();
+    if (wstr.length() != 0) {
+      width=Integer.parseInt(wstr);
+    }
+    if (hstr.length() != 0) {
+      height=Integer.parseInt(hstr);
+    }
   }
   if (lstr.length() == 0) {
     lstr="20";
@@ -25,13 +28,16 @@
   graphPanel.setXAxisTitle((String)columnsList.getSelectedItem());
   graphPanel.setYAxisLabels(this.yAxisLabel);
   graphPanel.setYAxisTitle(this.yAxisTitle);
-  graphPanel.setColor(colorBarGraph);
+  graphPanel.setLegendLabels(getLegendLabels());
+  graphPanel.setColor(getBackColors());
   graphPanel.setForeColor(colorForeGraph);
   graphPanel.setOutlinesBarFlag(drawOutlinesBar.isSelected());
   graphPanel.setShowGrouping(numberShowGrouping.isSelected());
+  graphPanel.setValueOrientation(valueLabelsVertical.isSelected());
   graphPanel.setLegendPlacement(StatGraphProperties.getPlacementNameMap().get(legendPlacementList.getSelectedItem()).intValue());
   graphPanel.setTitleFont(new Font(StatGraphProperties.getFontNameMap().get(titleFontNameList.getSelectedItem()),StatGraphProperties.getFontStyleMap().get(titleFontStyleList.getSelectedItem()).intValue(),Integer.parseInt((String)titleFontSizeList.getSelectedItem())));
   graphPanel.setLegendFont(new Font(StatGraphProperties.getFontNameMap().get(fontNameList.getSelectedItem()),StatGraphProperties.getFontStyleMap().get(fontStyleList.getSelectedItem()).intValue(),Integer.parseInt((String)fontSizeList.getSelectedItem())));
+  graphPanel.setValueFont(new Font(StatGraphProperties.getFontNameMap().get(valueFontNameList.getSelectedItem()),StatGraphProperties.getFontStyleMap().get(valueFontStyleList.getSelectedItem()).intValue(),Integer.parseInt((String)valueFontSizeList.getSelectedItem())));
   graphPanel.setHeight(height);
   graphPanel.setWidth(width);
   spane.repaint();

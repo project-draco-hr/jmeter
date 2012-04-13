@@ -1,0 +1,6 @@
+{
+  super();
+  this.label=JMeterUtils.getResString(resString);
+  this.chkBox=new JCheckBox(this.label,checked);
+  this.backColor=backColor;
+}

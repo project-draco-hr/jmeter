@@ -1,6 +1,11 @@
 {
   super();
   model=new ObjectTableModel(COLUMNS,SamplingStatCalculator.class,new Functor[]{new Functor("getLabel"),new Functor("getCount"),new Functor("getMeanAsNumber"),new Functor("getMedian"),new Functor("getPercentPoint",new Object[]{new Float(.900)}),new Functor("getMin"),new Functor("getMax"),new Functor("getErrorPercentage"),new Functor("getRate"),new Functor("getKBPerSecond")},new Functor[]{null,null,null,null,null,null,null,null,null,null},new Class[]{String.class,Long.class,Long.class,Long.class,Long.class,Long.class,Long.class,String.class,String.class,String.class});
+  eltList.add(new BarGraph("average",true,new Color(202,0,0)));
+  eltList.add(new BarGraph("aggregate_report_median",false,new Color(49,49,181)));
+  eltList.add(new BarGraph("aggregate_report_90%_line",false,new Color(42,121,42)));
+  eltList.add(new BarGraph("aggregate_report_min",false,Color.LIGHT_GRAY));
+  eltList.add(new BarGraph("aggregate_report_max",false,Color.DARK_GRAY));
   clearData();
   init();
 }

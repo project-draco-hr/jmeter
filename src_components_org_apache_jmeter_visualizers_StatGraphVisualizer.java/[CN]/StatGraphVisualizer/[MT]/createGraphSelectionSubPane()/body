@@ -2,7 +2,7 @@
   Font font=new Font("SansSerif",Font.PLAIN,10);
   JPanel searchPanel=new JPanel();
   searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
-  searchPanel.setBorder(BorderFactory.createEmptyBorder(3,3,3,3));
+  searchPanel.setBorder(BorderFactory.createEmptyBorder(3,0,3,0));
   searchPanel.add(columnSelection);
   columnMatchLabel.setEnabled(false);
   reloadButton.setEnabled(false);

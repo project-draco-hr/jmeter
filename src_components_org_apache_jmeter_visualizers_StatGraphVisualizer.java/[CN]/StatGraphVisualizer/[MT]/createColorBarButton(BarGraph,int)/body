@@ -1,0 +1,8 @@
+{
+  JButton colorBtn=new JButton();
+  colorBtn.setName(String.valueOf(index));
+  colorBtn.setFont(FONT_SMALL);
+  colorBtn.addActionListener(this);
+  colorBtn.setBackground(barGraph.getBackColor());
+  return colorBtn;
+}

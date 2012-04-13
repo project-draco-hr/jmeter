@@ -12,19 +12,19 @@
       _xAxisLabels[i]=squeeze(label,_maxLength);
     }
     this.setPreferredSize(new Dimension(_width,_height));
-    DataSeries dataSeries=new DataSeries(_xAxisLabels,_xAxisTitle,_yAxisTitle,_title);
-    String[] legendLabels={yAxisLabel};
-    BarChartProperties barChartProperties=new BarChartProperties();
-    barChartProperties.setShowOutlinesFlag(outlinesBarFlag);
+    DataSeries dataSeries=new DataSeries(_xAxisLabels,null,_yAxisTitle,_title);
+    ClusteredBarChartProperties clusteredBarChartProperties=new ClusteredBarChartProperties();
+    clusteredBarChartProperties.setShowOutlinesFlag(outlinesBarFlag);
     ValueLabelRenderer valueLabelRenderer=new ValueLabelRenderer(false,false,showGrouping,0);
     valueLabelRenderer.setValueLabelPosition(ValueLabelPosition.AT_TOP);
-    valueLabelRenderer.useVerticalLabels(true);
-    if (legendFont != null) {
-      valueLabelRenderer.setValueChartFont(new ChartFont(legendFont,new Color(foreColor.getRGB())));
+    valueLabelRenderer.setValueChartFont(new ChartFont(valueFont,foreColor));
+    valueLabelRenderer.useVerticalLabels(valueOrientation);
+    clusteredBarChartProperties.addPostRenderEventListener(valueLabelRenderer);
+    Paint[] paints=new Paint[_color.length];
+    for (int i=0; i < _color.length; i++) {
+      paints[i]=_color[i];
     }
-    barChartProperties.addPostRenderEventListener(valueLabelRenderer);
-    Paint[] paints=new Paint[]{color};
-    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,legendLabels,paints,ChartType.BAR,barChartProperties);
+    AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,_legendLabels,paints,ChartType.BAR_CLUSTERED,clusteredBarChartProperties);
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();
     LabelAxisProperties xaxis=new LabelAxisProperties();

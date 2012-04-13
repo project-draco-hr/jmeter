@@ -1,8 +1,13 @@
 {
   final Object eventSource=event.getSource();
   if (eventSource == displayButton) {
-    makeGraph();
-    tabbedGraph.setSelectedIndex(1);
+    if (model.getRowCount() > 1) {
+      makeGraph();
+      tabbedGraph.setSelectedIndex(1);
+    }
+ else {
+      JOptionPane.showMessageDialog(null,JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JOptionPane.WARNING_MESSAGE);
+    }
   }
  else   if (eventSource == saveGraph) {
     saveGraphToFile=true;
@@ -33,13 +38,11 @@ catch (    IOException e) {
       JOrphanUtils.closeQuietly(writer);
     }
   }
- else   if (eventSource == chooseBarColor) {
-    colorBarGraph=JColorChooser.showDialog(null,JMeterUtils.getResString("aggregate_graph_choose_color"),colorBarGraph);
-    currentColor.setBackground(colorBarGraph);
-  }
  else   if (eventSource == chooseForeColor) {
-    colorForeGraph=JColorChooser.showDialog(null,JMeterUtils.getResString("aggregate_graph_choose_color"),colorBarGraph);
-    currentColor.setForeground(colorForeGraph);
+    Color color=JColorChooser.showDialog(null,JMeterUtils.getResString("aggregate_graph_choose_color"),colorBarGraph);
+    if (color != null) {
+      colorForeGraph=color;
+    }
   }
  else   if (eventSource == syncWithName) {
     graphTitle.setText(namePanel.getName());
@@ -73,6 +76,21 @@ catch (    IOException e) {
       clearData();
       FilePanel filePanel=(FilePanel)getFilePanel();
       filePanel.actionPerformed(event);
+    }
+  }
+ else   if (eventSource instanceof JButton) {
+    JButton btn=((JButton)eventSource);
+    if (btn.getName() != null) {
+      try {
+        BarGraph bar=eltList.get(Integer.parseInt(btn.getName()));
+        Color color=JColorChooser.showDialog(null,bar.getLabel(),bar.getBackColor());
+        if (color != null) {
+          bar.setBackColor(color);
+          btn.setBackground(bar.getBackColor());
+        }
+      }
+ catch (      NumberFormatException nfe) {
+      }
     }
   }
 }

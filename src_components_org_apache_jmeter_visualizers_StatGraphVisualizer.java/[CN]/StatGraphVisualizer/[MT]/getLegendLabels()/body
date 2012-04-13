@@ -1,0 +1,11 @@
+{
+  String[] legends=new String[nbColToGraph];
+  int i=0;
+  for (  BarGraph bar : eltList) {
+    if (bar.getChkBox().isSelected()) {
+      legends[i]=bar.getLabel();
+      i++;
+    }
+  }
+  return legends;
+}

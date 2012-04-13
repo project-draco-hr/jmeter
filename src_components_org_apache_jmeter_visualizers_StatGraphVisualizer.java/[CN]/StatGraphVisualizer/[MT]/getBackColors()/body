@@ -1,0 +1,11 @@
+{
+  Color[] backColors=new Color[nbColToGraph];
+  int i=0;
+  for (  BarGraph bar : eltList) {
+    if (bar.getChkBox().isSelected()) {
+      backColors[i]=bar.getBackColor();
+      i++;
+    }
+  }
+  return backColors;
+}
