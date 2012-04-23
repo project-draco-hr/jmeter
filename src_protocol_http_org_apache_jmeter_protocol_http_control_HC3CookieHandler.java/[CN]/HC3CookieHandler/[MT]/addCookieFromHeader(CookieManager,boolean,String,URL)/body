@@ -44,7 +44,7 @@ catch (  IllegalArgumentException e) {
       }
     }
  catch (    MalformedCookieException e) {
-      log.debug("Not storing invalid cookie: <" + cookieHeader + "> for URL "+ url+ " ("+ e.getLocalizedMessage()+ ")");
+      log.warn("Not storing invalid cookie: <" + cookieHeader + "> for URL "+ url+ " ("+ e.getLocalizedMessage()+ ")");
     }
 catch (    IllegalArgumentException e) {
       log.warn(cookieHeader + e.getLocalizedMessage());
