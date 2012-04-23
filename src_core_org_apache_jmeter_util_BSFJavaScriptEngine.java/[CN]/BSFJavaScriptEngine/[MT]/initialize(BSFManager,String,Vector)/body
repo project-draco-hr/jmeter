@@ -10,6 +10,7 @@
     }
   }
  catch (  Throwable t) {
+    handleError(t);
   }
  finally {
     Context.exit();
