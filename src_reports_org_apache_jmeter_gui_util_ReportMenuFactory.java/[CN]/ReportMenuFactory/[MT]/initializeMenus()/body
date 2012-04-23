@@ -38,7 +38,7 @@
         log.warn("Missing jar? Could not create " + name + ". "+ e);
         continue;
       }
-catch (      Throwable e) {
+catch (      Exception e) {
         log.warn("Could not instantiate " + name,e);
         continue;
       }
