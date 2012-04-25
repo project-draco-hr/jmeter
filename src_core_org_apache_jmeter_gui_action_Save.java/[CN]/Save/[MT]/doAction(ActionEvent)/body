@@ -1,5 +1,6 @@
 {
   HashTree subTree=null;
+  boolean fullSave=false;
   if (!commands.contains(e.getActionCommand())) {
     throw new IllegalUserActionException("Invalid user command:" + e.getActionCommand());
   }
@@ -12,6 +13,7 @@
     subTree=GuiPackage.getInstance().getCurrentSubTree();
   }
  else {
+    fullSave=true;
     subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
   }
   String updateFile=GuiPackage.getInstance().getTestPlanFile();
@@ -45,10 +47,13 @@
   try {
     ostream=new FileOutputStream(updateFile);
     SaveService.saveTree(subTree,ostream);
-    ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),ActionNames.SUB_TREE_SAVED));
+    if (fullSave) {
+      subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
+      ActionRouter.getInstance().doActionNow(new ActionEvent(subTree,e.getID(),ActionNames.SUB_TREE_SAVED));
+    }
   }
  catch (  Throwable ex) {
-    log.error("",ex);
+    log.error("Error saving tree:",ex);
     if (ex instanceof Error) {
       throw (Error)ex;
     }
