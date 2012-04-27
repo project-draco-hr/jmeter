@@ -1,5 +1,5 @@
 {
-  if (log.isDebugEnabled() && certificates != null) {
+  if (certificates != null && log.isDebugEnabled()) {
     for (int c=0; c < certificates.length; c++) {
       X509Certificate cert=certificates[c];
       log.debug(" Server certificate " + (c + 1) + ":");
