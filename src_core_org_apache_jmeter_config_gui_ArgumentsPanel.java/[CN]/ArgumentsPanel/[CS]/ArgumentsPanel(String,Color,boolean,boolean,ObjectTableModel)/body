@@ -3,5 +3,6 @@
   this.enableUpDown=enableUpDown;
   this.background=bkg;
   this.standalone=standalone;
-  init(model);
+  this.tableModel=model;
+  init();
 }
