@@ -8,7 +8,7 @@
   }
   p.setLayout(new BorderLayout());
   p.add(makeLabelPanel(),BorderLayout.NORTH);
-  p.add(makeMainPanel(),BorderLayout.CENTER);
+  p.add(makeMainPanel(model),BorderLayout.CENTER);
   p.add(Box.createVerticalStrut(70),BorderLayout.WEST);
   p.add(makeButtonPanel(),BorderLayout.SOUTH);
   if (standalone) {

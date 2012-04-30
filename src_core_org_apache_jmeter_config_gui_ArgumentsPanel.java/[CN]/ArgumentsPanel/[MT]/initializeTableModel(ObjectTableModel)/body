@@ -3,6 +3,11 @@
     tableModel=new ObjectTableModel(new String[]{COLUMN_RESOURCE_NAMES_0,COLUMN_RESOURCE_NAMES_1,COLUMN_RESOURCE_NAMES_2},Argument.class,new Functor[]{new Functor("getName"),new Functor("getValue"),new Functor("getDescription")},new Functor[]{new Functor("setName"),new Functor("setValue"),new Functor("setDescription")},new Class[]{String.class,String.class,String.class});
   }
  else {
-    tableModel=new ObjectTableModel(new String[]{COLUMN_RESOURCE_NAMES_0,COLUMN_RESOURCE_NAMES_1},Argument.class,new Functor[]{new Functor("getName"),new Functor("getValue")},new Functor[]{new Functor("setName"),new Functor("setValue")},new Class[]{String.class,String.class});
+    if (model != null) {
+      tableModel=model;
+    }
+ else {
+      tableModel=new ObjectTableModel(new String[]{COLUMN_RESOURCE_NAMES_0,COLUMN_RESOURCE_NAMES_1},Argument.class,new Functor[]{new Functor("getName"),new Functor("getValue")},new Functor[]{new Functor("setName"),new Functor("setValue")},new Class[]{String.class,String.class});
+    }
   }
 }

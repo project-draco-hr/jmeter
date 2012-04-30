@@ -1,7 +1,3 @@
 {
-  tableLabel=new JLabel(label);
-  this.enableUpDown=enableUpDown;
-  this.background=bkg;
-  this.standalone=standalone;
-  init();
+  this(label,bkg,enableUpDown,standalone,null);
 }

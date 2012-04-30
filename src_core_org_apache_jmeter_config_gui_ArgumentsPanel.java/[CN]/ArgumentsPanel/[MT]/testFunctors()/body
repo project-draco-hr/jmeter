@@ -1,5 +1,5 @@
 {
   ArgumentsPanel instance=new ArgumentsPanel();
-  instance.initializeTableModel();
+  instance.initializeTableModel(null);
   return instance.tableModel.checkFunctors(null,instance.getClass());
 }

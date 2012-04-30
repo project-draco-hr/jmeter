@@ -1,4 +1,4 @@
 {
-  argsPanel=new ArgumentsPanel(JMeterUtils.getResString("arguments_panel_title"),true);
+  argsPanel=new ArgumentsPanel(JMeterUtils.getResString("arguments_panel_title"),null,true,false,new ObjectTableModel(new String[]{ArgumentsPanel.COLUMN_RESOURCE_NAMES_1},Argument.class,new Functor[]{new Functor("getValue")},new Functor[]{new Functor("setValue")},new Class[]{String.class}));
   return argsPanel;
 }

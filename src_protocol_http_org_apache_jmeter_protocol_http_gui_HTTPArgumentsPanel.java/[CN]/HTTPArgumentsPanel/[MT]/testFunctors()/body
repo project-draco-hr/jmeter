@@ -1,5 +1,5 @@
 {
   HTTPArgumentsPanel instance=new HTTPArgumentsPanel();
-  instance.initializeTableModel();
+  instance.initializeTableModel(null);
   return instance.tableModel.checkFunctors(null,instance.getClass());
 }
