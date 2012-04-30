@@ -1,0 +1,23 @@
+{
+  Process proc=null;
+  try {
+    ProcessBuilder procBuild=new ProcessBuilder(arguments);
+    procBuild.directory(directory);
+    procBuild.redirectErrorStream(true);
+    proc=procBuild.start();
+    this.outputGobbler=new StreamGobbler(proc.getInputStream());
+    outputGobbler.start();
+    int exitVal=proc.waitFor();
+    outputGobbler.join();
+    return exitVal;
+  }
+  finally {
+    if (proc != null) {
+      try {
+        proc.destroy();
+      }
+ catch (      Throwable e) {
+      }
+    }
+  }
+}

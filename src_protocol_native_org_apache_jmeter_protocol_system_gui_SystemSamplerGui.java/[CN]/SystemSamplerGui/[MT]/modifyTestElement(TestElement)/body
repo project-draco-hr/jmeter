@@ -1,0 +1,13 @@
+{
+  super.configureTestElement(sampler);
+  sampler.setProperty(SystemSampler.CHECK_RETURN_CODE,Boolean.toString(checkReturnCode.isSelected()));
+  if (checkReturnCode.isSelected()) {
+    sampler.setProperty(SystemSampler.EXPECTED_RETURN_CODE,desiredReturnCode.getText());
+  }
+ else {
+    sampler.setProperty(SystemSampler.EXPECTED_RETURN_CODE,"");
+  }
+  sampler.setProperty(SystemSampler.COMMAND,command.getText());
+  ((SystemSampler)sampler).setArguments((Arguments)argsPanel.createTestElement());
+  sampler.setProperty(SystemSampler.DIRECTORY,directory.getText());
+}

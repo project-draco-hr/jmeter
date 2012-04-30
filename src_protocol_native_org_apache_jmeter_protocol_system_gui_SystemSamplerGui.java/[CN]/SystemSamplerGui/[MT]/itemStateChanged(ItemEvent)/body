@@ -1,0 +1,5 @@
+{
+  if (e.getSource() == checkReturnCode) {
+    desiredReturnCode.setEnabled(e.getStateChange() == ItemEvent.SELECTED);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  super.clearGui();
+  directory.setText("");
+  command.setText("");
+  argsPanel.clearGui();
+  desiredReturnCode.setText("");
+  checkReturnCode.setSelected(false);
+  desiredReturnCode.setEnabled(false);
+}

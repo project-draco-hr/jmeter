@@ -1,0 +1,70 @@
+{
+  SampleResult results=new SampleResult();
+  results.setDataType(SampleResult.TEXT);
+  try {
+    String command=getCommand();
+    Arguments args=getArguments();
+    boolean checkReturnCode=getCheckReturnCode();
+    int expectedReturnCode=getExpectedReturnCode();
+    List<String> cmds=new ArrayList<String>(args.getArgumentCount() + 1);
+    StringBuilder cmdLine=new StringBuilder((null == command) ? "" : command);
+    cmds.add(command);
+    for (int i=0; i < args.getArgumentCount(); i++) {
+      Argument arg=args.getArgument(i);
+      cmds.add(arg.getPropertyAsString(Argument.VALUE));
+      cmdLine.append(" ");
+      cmdLine.append(cmds.get(i + 1));
+    }
+    results.setSamplerData(cmdLine.toString());
+    File directory=null;
+    if (StringUtils.isEmpty(getDirectory())) {
+      directory=new File(FileServer.getDefaultBase());
+      if (log.isDebugEnabled()) {
+        log.debug("Using default directory:" + directory.getAbsolutePath());
+      }
+    }
+ else {
+      directory=new File(getDirectory());
+      if (log.isDebugEnabled()) {
+        log.debug("Using configured directory:" + directory.getAbsolutePath());
+      }
+    }
+    NativeCommand nativeCommand=new NativeCommand(directory);
+    String responseData=null;
+    try {
+      if (log.isDebugEnabled()) {
+        log.debug("Will run :" + cmdLine);
+      }
+      results.sampleStart();
+      int returnCode=nativeCommand.run(cmds);
+      results.sampleEnd();
+      if (checkReturnCode && (returnCode != expectedReturnCode)) {
+        results.setSuccessful(false);
+        responseData="System did not return expected return code.  Expected [" + expectedReturnCode + "]. Returned ["+ returnCode+ "].";
+        results.setSampleLabel("FAILED: " + getName());
+      }
+ else {
+        results.setSuccessful(true);
+        responseData="System Call Complete.";
+        results.setSampleLabel(getName());
+      }
+    }
+ catch (    IOException ioe) {
+      results.setSuccessful(false);
+      responseData="Exception occured whilst executing System Call: " + ioe;
+      results.setSampleLabel("ERROR: " + getName());
+    }
+catch (    InterruptedException ie) {
+      results.setSuccessful(false);
+      responseData="System Sampler Interupted whilst executing System Call: " + ie;
+      results.setSampleLabel("ERROR: " + getName());
+    }
+    results.setResponseData((responseData + "\nProcess Output:\n" + nativeCommand.getOutResult()).getBytes());
+  }
+ catch (  Exception e) {
+    results.setSuccessful(false);
+    results.setResponseData(("Unknown Exception caught: " + e).getBytes());
+    results.setSampleLabel("ERROR: " + getName());
+  }
+  return results;
+}

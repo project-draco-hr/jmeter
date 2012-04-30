@@ -1,0 +1,9 @@
+{
+  super.configure(el);
+  checkReturnCode.setSelected(el.getPropertyAsBoolean(SystemSampler.CHECK_RETURN_CODE));
+  desiredReturnCode.setText(el.getPropertyAsString(SystemSampler.EXPECTED_RETURN_CODE));
+  desiredReturnCode.setEnabled(checkReturnCode.isSelected());
+  command.setText(el.getPropertyAsString(SystemSampler.COMMAND));
+  argsPanel.configure((Arguments)el.getProperty(SystemSampler.ARGUMENTS).getObjectValue());
+  directory.setText(el.getPropertyAsString(SystemSampler.DIRECTORY));
+}

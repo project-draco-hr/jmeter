@@ -1,0 +1,23 @@
+{
+  BufferedReader br=null;
+  try {
+    br=new BufferedReader(new InputStreamReader(is));
+    String line=null;
+    while ((line=br.readLine()) != null) {
+      buffer.append(line);
+      buffer.append("\r\n");
+    }
+  }
+ catch (  IOException e) {
+    buffer.append(e.getMessage());
+  }
+ finally {
+    if (br != null) {
+      try {
+        br.close();
+      }
+ catch (      Throwable e) {
+      }
+    }
+  }
+}

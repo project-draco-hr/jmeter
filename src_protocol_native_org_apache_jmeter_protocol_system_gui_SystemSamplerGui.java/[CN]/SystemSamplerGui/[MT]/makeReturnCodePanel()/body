@@ -1,0 +1,14 @@
+{
+  JPanel panel=new JPanel();
+  panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("return_code_config_box_title")));
+  checkReturnCode=new JCheckBox(JMeterUtils.getResString("check_return_code_title"));
+  checkReturnCode.addItemListener(this);
+  desiredReturnCode=new JLabeledTextField(JMeterUtils.getResString("expected_return_code_title"));
+  desiredReturnCode.setSize(desiredReturnCode.getSize().height,30);
+  panel.add(checkReturnCode);
+  panel.add(Box.createHorizontalStrut(5));
+  panel.add(desiredReturnCode);
+  checkReturnCode.setSelected(true);
+  return panel;
+}
