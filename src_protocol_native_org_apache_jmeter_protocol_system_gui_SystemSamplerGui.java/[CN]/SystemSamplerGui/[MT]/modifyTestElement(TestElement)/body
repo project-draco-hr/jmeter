@@ -9,5 +9,6 @@
   }
   sampler.setProperty(SystemSampler.COMMAND,command.getText());
   ((SystemSampler)sampler).setArguments((Arguments)argsPanel.createTestElement());
+  ((SystemSampler)sampler).setEnvironmentVariables((Arguments)envPanel.createTestElement());
   sampler.setProperty(SystemSampler.DIRECTORY,directory.getText());
 }

@@ -10,5 +10,6 @@
   cmdPanel.add(command);
   panel.add(cmdPanel,BorderLayout.NORTH);
   panel.add(makeArgumentsPanel(),BorderLayout.CENTER);
+  panel.add(makeEnvironmentPanel(),BorderLayout.SOUTH);
   return panel;
 }
