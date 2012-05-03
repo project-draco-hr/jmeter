@@ -35,7 +35,9 @@ catch (    NamingException e) {
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.OBJECT_MSG_RSC.equals(type)) {
-        throw new JMSException(type + " is not yet supported");
+        Serializable omsg=getObjectContent();
+        Message msg=publisher.publish(omsg,getDestination(),getJMSProperties().getArgumentsAsMap());
+        Utils.messageProperties(propBuffer,msg);
       }
  else {
         throw new JMSException(type + " is not recognised");

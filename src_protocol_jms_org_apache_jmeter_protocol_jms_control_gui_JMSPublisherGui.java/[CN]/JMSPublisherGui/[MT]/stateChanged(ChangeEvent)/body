@@ -2,9 +2,6 @@
   if (event.getSource() == configChoice) {
     updateConfig(configChoice.getText());
   }
- else   if (event.getSource() == msgChoice) {
-    updateMessageType(msgChoice.getText());
-  }
  else   if (event.getSource() == useProperties) {
     jndiICF.setEnabled(!useProperties.isSelected());
     urlField.setEnabled(!useProperties.isSelected());

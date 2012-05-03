@@ -1,0 +1,16 @@
+{
+  if (getConfigChoice().equals(JMSPublisherGui.USE_FILE_RSC)) {
+    if (object_msg_file_contents == null) {
+      object_msg_file_contents=getFileObjectContent(getInputFile());
+    }
+    return object_msg_file_contents;
+  }
+ else   if (getConfigChoice().equals(JMSPublisherGui.USE_RANDOM_RSC)) {
+    final String fname=FSERVER.getRandomFile(getRandomPath(),new String[]{".txt",".obj"}).getAbsolutePath();
+    return getFileObjectContent(fname);
+  }
+ else {
+    final String xmlMessage=getTextMessage();
+    return transformXmlToObjectMessage(xmlMessage);
+  }
+}

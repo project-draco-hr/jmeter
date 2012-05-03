@@ -1,0 +1,17 @@
+{
+  Serializable readObject=null;
+  InputStream inputStream=null;
+  try {
+    inputStream=new FileInputStream(path);
+    XStream xstream=new XStream();
+    readObject=(Serializable)xstream.fromXML(inputStream,readObject);
+  }
+ catch (  Exception e) {
+    log.error(e.getLocalizedMessage(),e);
+    throw new IllegalStateException("Unable to load object instance from file",e);
+  }
+ finally {
+    JOrphanUtils.closeQuietly(inputStream);
+  }
+  return readObject;
+}
