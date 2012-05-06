@@ -1,6 +1,6 @@
 {
   final ClassLoader classLoader=SaveService.class.getClassLoader();
-  boolean OK=true;
+  List<String> missingClasses=new ArrayList<String>();
   for (  Object clazz : classToAlias.keySet()) {
     String name=(String)clazz;
     if (!NameUpdater.isMapped(name)) {
@@ -9,9 +9,9 @@
       }
  catch (      ClassNotFoundException e) {
         log.error("Unexpected entry in saveservice.properties; class does not exist and is not upgraded: " + name);
-        OK=false;
+        missingClasses.add(name);
       }
     }
   }
-  return OK;
+  return missingClasses;
 }

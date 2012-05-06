@@ -1,3 +1,6 @@
 {
-  assertTrue("One or more classes not found - see log file",SaveService.checkClasses());
+  List<String> missingClasses=SaveService.checkClasses();
+  if (missingClasses.size() > 0) {
+    fail("One or more classes not found:" + missingClasses);
+  }
 }
