@@ -4,14 +4,15 @@
     boolean firstInBatch=false;
     long now=System.currentTimeMillis();
     long deltaT=now - lastTime;
+    int cachedGroupingMode=groupingMode.get();
     if (deltaT > sampleGap) {
-      if (!myTarget.isLeaf() && groupingMode == GROUPING_ADD_SEPARATORS) {
+      if (!myTarget.isLeaf() && cachedGroupingMode == GROUPING_ADD_SEPARATORS) {
         addDivider(treeModel,myTarget);
       }
-      if (groupingMode == GROUPING_IN_SIMPLE_CONTROLLERS) {
+      if (cachedGroupingMode == GROUPING_IN_SIMPLE_CONTROLLERS) {
         addSimpleController(treeModel,myTarget,sampler.getName());
       }
-      if (groupingMode == GROUPING_IN_TRANSACTION_CONTROLLERS) {
+      if (cachedGroupingMode == GROUPING_IN_TRANSACTION_CONTROLLERS) {
         addTransactionController(treeModel,myTarget,sampler.getName());
       }
       firstInBatch=true;
@@ -20,14 +21,14 @@
       deltaT=0;
     }
     lastTime=now;
-    if (groupingMode == GROUPING_STORE_FIRST_ONLY) {
+    if (cachedGroupingMode == GROUPING_STORE_FIRST_ONLY) {
       if (!firstInBatch) {
         return;
       }
       sampler.setFollowRedirects(true);
       sampler.setImageParser(true);
     }
-    if (groupingMode == GROUPING_IN_SIMPLE_CONTROLLERS || groupingMode == GROUPING_IN_TRANSACTION_CONTROLLERS) {
+    if (cachedGroupingMode == GROUPING_IN_SIMPLE_CONTROLLERS || cachedGroupingMode == GROUPING_IN_TRANSACTION_CONTROLLERS) {
       for (int i=myTarget.getChildCount() - 1; i >= 0; i--) {
         JMeterTreeNode c=(JMeterTreeNode)myTarget.getChildAt(i);
         if (c.getTestElement() instanceof GenericController) {
@@ -44,7 +45,7 @@
         try {
           final JMeterTreeNode newNode=treeModel.addComponent(sampler,myTargetFinal);
           if (firstInBatchFinal) {
-            if (addAssertions) {
+            if (addAssertions.get()) {
               addAssertion(treeModel,newNode);
             }
             addTimers(treeModel,newNode,deltaTFinal);

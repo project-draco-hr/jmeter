@@ -5,10 +5,10 @@
     @SuppressWarnings("unchecked") Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
     removeValuesFromSampler(sampler,defaultConfigurations);
     replaceValues(sampler,subConfigs,userDefinedVariables);
-    sampler.setAutoRedirects(samplerRedirectAutomatically);
-    sampler.setFollowRedirects(samplerFollowRedirects);
-    sampler.setUseKeepAlive(useKeepAlive);
-    sampler.setImageParser(samplerDownloadImages);
+    sampler.setAutoRedirects(samplerRedirectAutomatically.get());
+    sampler.setFollowRedirects(samplerFollowRedirects.get());
+    sampler.setUseKeepAlive(useKeepAlive.get());
+    sampler.setImageParser(samplerDownloadImages.get());
     placeSampler(sampler,subConfigs,myTarget);
   }
  else {

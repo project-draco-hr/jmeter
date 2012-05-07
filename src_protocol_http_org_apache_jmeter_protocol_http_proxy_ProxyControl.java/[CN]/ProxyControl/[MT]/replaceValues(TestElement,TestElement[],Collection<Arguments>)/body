@@ -11,10 +11,11 @@
     replacer.addVariables(map);
   }
   try {
-    replacer.reverseReplace(sampler,regexMatch);
+    boolean cachedRegexpMatch=regexMatch.get();
+    replacer.reverseReplace(sampler,cachedRegexpMatch);
     for (int i=0; i < configs.length; i++) {
       if (configs[i] != null) {
-        replacer.reverseReplace(configs[i],regexMatch);
+        replacer.reverseReplace(configs[i],cachedRegexpMatch);
       }
     }
   }

@@ -1,4 +1,4 @@
 {
-  this.groupingMode=grouping;
+  this.groupingMode.set(grouping);
   setProperty(new IntegerProperty(GROUPING_MODE,grouping));
 }
