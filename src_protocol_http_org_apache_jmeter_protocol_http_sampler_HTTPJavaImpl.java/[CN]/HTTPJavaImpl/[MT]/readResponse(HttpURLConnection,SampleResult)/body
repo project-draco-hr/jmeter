@@ -24,6 +24,9 @@
       Throwable cause=e.getCause();
       if (cause != null) {
         log.error("Cause: " + cause);
+        if (cause instanceof Error) {
+          throw (Error)cause;
+        }
       }
     }
     InputStream errorStream=conn.getErrorStream();
@@ -46,6 +49,9 @@ catch (  Exception e) {
     Throwable cause=e.getCause();
     if (cause != null) {
       log.error("Cause: " + cause);
+      if (cause instanceof Error) {
+        throw (Error)cause;
+      }
     }
     in=new BufferedInputStream(conn.getErrorStream());
   }
