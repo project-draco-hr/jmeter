@@ -13,11 +13,7 @@
   }
  finally {
     if (br != null) {
-      try {
-        br.close();
-      }
- catch (      Throwable e) {
-      }
+      JOrphanUtils.closeQuietly(br);
     }
   }
 }
