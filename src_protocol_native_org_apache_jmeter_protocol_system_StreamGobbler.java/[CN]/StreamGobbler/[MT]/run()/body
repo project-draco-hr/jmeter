@@ -12,8 +12,6 @@
     buffer.append(e.getMessage());
   }
  finally {
-    if (br != null) {
-      JOrphanUtils.closeQuietly(br);
-    }
+    JOrphanUtils.closeQuietly(br);
   }
 }
