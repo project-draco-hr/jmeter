@@ -28,6 +28,7 @@
     }
   }
  catch (  Exception exception) {
+    log.warn("Exception calling getBinding:" + exception.getMessage(),exception);
     return null;
   }
 }
