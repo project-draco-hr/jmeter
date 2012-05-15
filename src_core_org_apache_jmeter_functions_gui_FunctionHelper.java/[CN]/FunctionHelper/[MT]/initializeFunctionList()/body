@@ -1,23 +1,4 @@
 {
-  try {
-    List<String> functionClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Function.class},true);
-    String[] functionNames=new String[functionClasses.size()];
-    int count=0;
-    for (    String clazz : functionClasses) {
-      Class<?> cl=Class.forName(clazz);
-      functionNames[count]=((Function)cl.newInstance()).getReferenceKey();
-      functionMap.put(functionNames[count],cl);
-      count++;
-    }
-    functionList=new JLabeledChoice(JMeterUtils.getResString("choose_function"),functionNames);
-    functionList.addChangeListener(this);
-  }
- catch (  IOException e) {
-  }
-catch (  ClassNotFoundException e) {
-  }
-catch (  InstantiationException e) {
-  }
-catch (  IllegalAccessException e) {
-  }
+  functionList=new JLabeledChoice(JMeterUtils.getResString("choose_function"),CompoundVariable.getFunctionNames());
+  functionList.addChangeListener(this);
 }

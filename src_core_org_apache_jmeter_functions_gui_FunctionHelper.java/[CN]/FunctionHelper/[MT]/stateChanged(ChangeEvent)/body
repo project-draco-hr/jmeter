@@ -1,7 +1,7 @@
 {
   try {
     Arguments args=new Arguments();
-    Function function=(Function)((Class<?>)functionMap.get(functionList.getText())).newInstance();
+    Function function=CompoundVariable.getFunctionClass(functionList.getText()).newInstance();
     List<String> argumentDesc=function.getArgumentDesc();
     for (    String help : argumentDesc) {
       args.addArgument(help,"");
