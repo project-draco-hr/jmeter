@@ -6,5 +6,5 @@
  else {
     type=JOptionPane.INFORMATION_MESSAGE;
   }
-  JOptionPane.showMessageDialog(null,message,isError ? "Error" : "Information",type);
+  JOptionPane.showMessageDialog(null,message,isError ? JMeterUtils.getResString("mailer_msg_title_error") : JMeterUtils.getResString("mailer_msg_title_information"),type);
 }
