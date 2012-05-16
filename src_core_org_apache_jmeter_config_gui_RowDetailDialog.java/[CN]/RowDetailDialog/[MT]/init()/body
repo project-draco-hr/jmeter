@@ -2,8 +2,7 @@
   this.getContentPane().setLayout(new BorderLayout(10,10));
   nameTF=new JLabeledTextField(JMeterUtils.getResString("name"),20);
   valueTA=new JLabeledTextArea(JMeterUtils.getResString("value"));
-  valueTA.setPreferredSize(new Dimension(150,300));
-  nameTF.setPreferredSize(new Dimension((int)Math.round(getWidth() * 0.8),40));
+  valueTA.setPreferredSize(new Dimension(450,300));
   setValues(selectedRow);
   JPanel detailPanel=new JPanel();
   detailPanel.setLayout(new BorderLayout());
