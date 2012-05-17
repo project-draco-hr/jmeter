@@ -1,0 +1,6 @@
+{
+  LogTarget[] newLogTargets=new LogTarget[logTargets.length + 1];
+  System.arraycopy(logTargets,0,newLogTargets,1,logTargets.length);
+  newLogTargets[0]=target;
+  Hierarchy.getDefaultHierarchy().getRootLogger().setLogTargets(newLogTargets);
+}

@@ -1,0 +1,9 @@
+{
+  errorOrFatal.set(0);
+  SwingUtilities.invokeLater(new Runnable(){
+    public void run(){
+      errorsOrFatalsLabel.setText(Integer.toString(errorOrFatal.get()));
+    }
+  }
+);
+}
