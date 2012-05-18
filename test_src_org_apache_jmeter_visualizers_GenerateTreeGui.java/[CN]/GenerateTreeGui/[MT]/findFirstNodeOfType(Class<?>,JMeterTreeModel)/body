@@ -1,0 +1,9 @@
+{
+  List<JMeterTreeNode> nodes=treeModel.getNodesOfType(type);
+  for (  JMeterTreeNode node : nodes) {
+    if (node.isEnabled()) {
+      return node;
+    }
+  }
+  return null;
+}

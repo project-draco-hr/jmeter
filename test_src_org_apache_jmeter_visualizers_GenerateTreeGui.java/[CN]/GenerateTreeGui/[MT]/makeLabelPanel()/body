@@ -1,0 +1,8 @@
+{
+  JPanel labelPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
+  ButtonGroup bg=new ButtonGroup();
+  bg.add(generateButton);
+  generateButton.addActionListener(this);
+  labelPanel.add(generateButton);
+  return labelPanel;
+}

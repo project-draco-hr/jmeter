@@ -1,0 +1,14 @@
+{
+  myTarget=addSimpleController(treeModel,myTarget,title);
+  JPopupMenu jp=MenuFactory.makeMenu(menuKey,"").getPopupMenu();
+  for (  Component comp : jp.getComponents()) {
+    JMenuItem jmi=(JMenuItem)comp;
+    try {
+      TestElement testElement=guiPackage.createTestElement(jmi.getName());
+      addToTree(treeModel,myTarget,testElement);
+    }
+ catch (    Exception e) {
+      addSimpleController(treeModel,myTarget,jmi.getName() + " " + e.getMessage());
+    }
+  }
+}

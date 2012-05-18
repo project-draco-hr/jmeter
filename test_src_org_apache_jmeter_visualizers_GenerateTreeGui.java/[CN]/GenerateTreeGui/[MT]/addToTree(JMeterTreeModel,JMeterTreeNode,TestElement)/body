@@ -1,0 +1,18 @@
+{
+  RunGUI runnable=new RunGUI(model,node,sc);
+  if (SwingUtilities.isEventDispatchThread()) {
+    runnable.run();
+  }
+ else {
+    try {
+      SwingUtilities.invokeAndWait(runnable);
+    }
+ catch (    InterruptedException e) {
+      throw new Error(e);
+    }
+catch (    InvocationTargetException e) {
+      throw new Error(e);
+    }
+  }
+  return runnable.newNode;
+}

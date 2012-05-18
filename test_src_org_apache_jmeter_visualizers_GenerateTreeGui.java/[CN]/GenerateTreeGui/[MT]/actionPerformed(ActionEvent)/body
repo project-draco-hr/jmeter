@@ -1,0 +1,17 @@
+{
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  JMeterTreeModel treeModel=guiPackage.getTreeModel();
+  JMeterTreeNode myTarget=findFirstNodeOfType(org.apache.jmeter.threads.ThreadGroup.class,treeModel);
+  if (myTarget == null) {
+    JMeterUtils.reportErrorToUser("Cannot find Thread Group");
+    return;
+  }
+  addElements(MenuFactory.CONTROLLERS,"Controllers",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.CONFIG_ELEMENTS,"Config Elements",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.TIMERS,"Timers",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.PRE_PROCESSORS,"Pre Processors",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.SAMPLERS,"Samplers",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.POST_PROCESSORS,"Post Processors",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.ASSERTIONS,"Assertions",guiPackage,treeModel,myTarget);
+  addElements(MenuFactory.LISTENERS,"Listeners",guiPackage,treeModel,myTarget);
+}
