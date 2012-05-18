@@ -1,15 +1,13 @@
 {
   if (log.isDebugEnabled()) {
-    for (int i=0; i < classNames.length; i++) {
-      log.debug("superclass: " + classNames[i].getName());
-    }
+    log.debug("searchPathsOrJars : " + Arrays.toString(searchPathsOrJars));
+    log.debug("superclass : " + Arrays.toString(classNames));
+    log.debug("innerClasses : " + innerClasses + " annotations: "+ annotations);
+    log.debug("contains: " + contains + " notContains: "+ notContains);
   }
-  strPathsOrJars=addJarsInPath(strPathsOrJars);
+  String[] strPathsOrJars=addJarsInPath(searchPathsOrJars);
   for (int k=0; k < strPathsOrJars.length; k++) {
     strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
-    if (log.isDebugEnabled()) {
-      log.debug("strPathsOrJars : " + strPathsOrJars[k]);
-    }
   }
   List<String> listPaths=getClasspathMatches(strPathsOrJars);
   if (log.isDebugEnabled()) {
