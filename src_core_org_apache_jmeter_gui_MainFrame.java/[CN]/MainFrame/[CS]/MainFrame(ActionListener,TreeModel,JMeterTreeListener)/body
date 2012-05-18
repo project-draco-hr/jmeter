@@ -6,7 +6,9 @@
   activeThreads=new JLabel("0");
   warnIndicator=new JButton(warningIcon);
   warnIndicator.setMargin(new Insets(0,0,0,0));
-  warnIndicator.setBorder(BorderFactory.createEmptyBorder());
+  warnIndicator.setOpaque(false);
+  warnIndicator.setContentAreaFilled(false);
+  warnIndicator.setBorderPainted(false);
   warnIndicator.setToolTipText(JMeterUtils.getResString("error_indicator_tooltip"));
   warnIndicator.addActionListener(this);
   errorsOrFatalsLabel=new JLabel("0");
