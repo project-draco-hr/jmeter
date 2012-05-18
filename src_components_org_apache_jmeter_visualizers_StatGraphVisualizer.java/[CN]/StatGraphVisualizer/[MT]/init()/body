@@ -29,6 +29,7 @@
   spane.setLeftComponent(myScrollPane);
   spane.setRightComponent(tabbedGraph);
   spane.setResizeWeight(.2);
+  spane.setBorder(null);
   spane.setContinuousLayout(true);
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(spane,BorderLayout.CENTER);
