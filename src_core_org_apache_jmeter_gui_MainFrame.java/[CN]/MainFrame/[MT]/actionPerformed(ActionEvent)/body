@@ -1,0 +1,5 @@
+{
+  if (event.getSource() == warnIndicator) {
+    ActionRouter.getInstance().doActionNow(new ActionEvent(event.getSource(),event.getID(),ActionNames.LOGGER_PANEL_ENABLE_DISABLE));
+  }
+}
