@@ -10,7 +10,7 @@
   if (DISPLAY_ERROR_FATAL_COUNTER) {
     toolPanel.add(errorsOrFatalsLabel);
     toolPanel.add(warnIndicator);
-    toolPanel.add(Box.createRigidArea(new Dimension(10,15)));
+    toolPanel.add(Box.createRigidArea(new Dimension(20,15)));
   }
   toolPanel.add(activeThreads);
   toolPanel.add(new JLabel(" / "));

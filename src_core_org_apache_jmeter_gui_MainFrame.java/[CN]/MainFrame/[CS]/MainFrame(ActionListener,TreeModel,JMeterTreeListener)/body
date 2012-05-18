@@ -4,10 +4,10 @@
   runningIndicator.setBorder(BorderFactory.createEmptyBorder());
   totalThreads=new JLabel("0");
   activeThreads=new JLabel("0");
-  warnIndicator=new JButton(warningIcon);
-  warnIndicator.setMargin(new Insets(0,0,0,0));
-  warnIndicator.setBorder(BorderFactory.createEmptyBorder());
+  warnIndicator=new JLabel(warningIcon);
+  warnIndicator.setToolTipText(JMeterUtils.getResString("error_indicator_tooltip"));
   errorsOrFatalsLabel=new JLabel("0");
+  errorsOrFatalsLabel.setToolTipText(JMeterUtils.getResString("error_indicator_tooltip"));
   tree=makeTree(treeModel,treeListener);
   GuiPackage.getInstance().setMainFrame(this);
   init();
