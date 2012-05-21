@@ -35,7 +35,7 @@
   String filename=lgraph.getTitle();
   filename=filename.replace(' ','_');
   if (!"true".equalsIgnoreCase(System.getProperty("java.awt.headless"))) {
-    String outPfx=findTestPath("./testfiles/" + filename);
+    String outPfx=File.createTempFile(filename,null).getAbsolutePath();
     serv.saveJComponent(outPfx,SaveGraphicsService.PNG,gr);
     assertTrue("Should have created file",new File(outPfx + ".png").exists());
   }

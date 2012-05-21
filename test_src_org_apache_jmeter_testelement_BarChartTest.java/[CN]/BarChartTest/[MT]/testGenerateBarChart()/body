@@ -35,7 +35,7 @@
   String filename=bchart.getTitle();
   filename=filename.replace(' ','_');
   if (!"true".equalsIgnoreCase(System.getProperty("java.awt.headless"))) {
-    String outName=findTestPath("./testfiles/" + filename);
+    String outName=File.createTempFile(filename,null).getAbsolutePath();
     serv.saveJComponent(outName,SaveGraphicsService.PNG,gr);
     assertTrue("Should have created the file",new File(outName + ".png").exists());
   }
