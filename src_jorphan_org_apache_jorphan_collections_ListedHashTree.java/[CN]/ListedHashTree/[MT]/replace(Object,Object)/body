@@ -2,5 +2,16 @@
   HashTree tree=getTree(currentKey);
   data.remove(currentKey);
   data.put(newKey,tree);
-  order.set(order.indexOf(currentKey),newKey);
+  int entry=-1;
+  for (int i=0; i < order.size(); i++) {
+    Object ent=order.get(i);
+    if (ent == currentKey) {
+      entry=i;
+      break;
+    }
+  }
+  if (entry == -1) {
+    throw new JMeterError("Impossible state, data key not present in order: " + currentKey.getClass());
+  }
+  order.set(entry,newKey);
 }
