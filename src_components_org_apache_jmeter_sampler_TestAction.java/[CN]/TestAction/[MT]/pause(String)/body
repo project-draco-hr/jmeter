@@ -8,8 +8,12 @@
     milis=0;
   }
   try {
+    pauseThread=Thread.currentThread();
     Thread.sleep(milis);
   }
  catch (  InterruptedException e) {
+  }
+ finally {
+    pauseThread=null;
   }
 }
