@@ -4,6 +4,10 @@
     savedClient=null;
     try {
       client.abort();
+    }
+ catch (    IOException ignored) {
+    }
+    try {
       client.disconnect();
     }
  catch (    IOException ignored) {
