@@ -1,4 +1,11 @@
 {
-  functionList=new JLabeledChoice(JMeterUtils.getResString("choose_function"),CompoundVariable.getFunctionNames());
+  String[] functionNames=CompoundVariable.getFunctionNames();
+  Arrays.sort(functionNames,new Comparator<String>(){
+    public int compare(    String o1,    String o2){
+      return o1.compareToIgnoreCase(o2);
+    }
+  }
+);
+  functionList=new JLabeledChoice(JMeterUtils.getResString("choose_function"),functionNames);
   functionList.addChangeListener(this);
 }
