@@ -1,5 +1,14 @@
 {
-  TestSetup setup=new TestSetup(new TestSuite(TestHTTPSamplersAgainstHttpMirrorServer.class)){
+  final TestSuite testSuite=new TestSuite(TestHTTPSamplersAgainstHttpMirrorServer.class);
+  for (int i=0; i < 11; i++) {
+    testSuite.addTest(new TestHTTPSamplersAgainstHttpMirrorServer("itemised_testGetRequest_Parameters",i));
+    testSuite.addTest(new TestHTTPSamplersAgainstHttpMirrorServer("itemised_testGetRequest_Parameters2",i));
+    testSuite.addTest(new TestHTTPSamplersAgainstHttpMirrorServer("itemised_testGetRequest_Parameters3",i));
+    testSuite.addTest(new TestHTTPSamplersAgainstHttpMirrorServer("itemised_testPostRequest_UrlEncoded",i));
+    testSuite.addTest(new TestHTTPSamplersAgainstHttpMirrorServer("itemised_testPostRequest_UrlEncoded2",i));
+    testSuite.addTest(new TestHTTPSamplersAgainstHttpMirrorServer("itemised_testPostRequest_UrlEncoded3",i));
+  }
+  TestSetup setup=new TestSetup(testSuite){
     private HttpMirrorServer httpServer;
     @Override protected void setUp() throws Exception {
       httpServer=TestHTTPMirrorThread.startHttpMirror(MIRROR_PORT);
