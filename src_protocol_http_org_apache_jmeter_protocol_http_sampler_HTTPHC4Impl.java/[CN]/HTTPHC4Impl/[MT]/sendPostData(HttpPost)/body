@@ -60,7 +60,7 @@
           post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
         }
       }
-      FileEntity fileRequestEntity=new FileEntity(new File(file.getPath()),(String)null);
+      FileEntity fileRequestEntity=new FileEntity(new File(file.getPath()),(ContentType)null);
       post.setEntity(fileRequestEntity);
       postedBody.append("<actual file content, not shown here>");
     }

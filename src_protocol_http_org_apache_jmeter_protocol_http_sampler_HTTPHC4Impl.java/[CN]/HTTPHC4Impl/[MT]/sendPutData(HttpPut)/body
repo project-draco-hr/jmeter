@@ -9,7 +9,7 @@
   HTTPFileArg files[]=getHTTPFiles();
   if (!hasArguments() && getSendFileAsPostBody()) {
     hasPutBody=true;
-    FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()),(String)null);
+    FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()),(ContentType)null);
     put.setEntity(fileRequestEntity);
     putBody.append("<actual file content, not shown here>");
   }
