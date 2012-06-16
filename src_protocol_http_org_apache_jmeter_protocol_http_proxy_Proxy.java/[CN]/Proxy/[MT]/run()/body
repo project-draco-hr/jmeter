@@ -7,7 +7,7 @@
   try {
     request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     outStreamClient=clientSocket.getOutputStream();
-    if ((request.getMethod().startsWith(HTTPConstants.CONNECT)) && (outStreamClient != null)) {
+    if ((request.getMethod().startsWith(HTTPConstantsInterface.CONNECT)) && (outStreamClient != null)) {
       log.debug("Method CONNECT => SSL");
       outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes(SampleResult.DEFAULT_HTTP_ENCODING));
       outStreamClient.flush();
@@ -31,12 +31,12 @@
       if (httpsSpoofMatch.length() > 0) {
         String url=request.getUrl();
         if (url.matches(httpsSpoofMatch)) {
-          sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+          sampler.setProtocol(HTTPConstantsInterface.PROTOCOL_HTTPS);
           forcedHTTPS=true;
         }
       }
  else {
-        sampler.setProtocol(HTTPConstants.PROTOCOL_HTTPS);
+        sampler.setProtocol(HTTPConstantsInterface.PROTOCOL_HTTPS);
         forcedHTTPS=true;
       }
     }
@@ -45,7 +45,7 @@
     if (httpsSpoof && SampleResult.TEXT.equals(result.getDataType())) {
       final String enc=result.getDataEncodingWithDefault();
       String noHttpsResult=new String(result.getResponseData(),enc);
-      final String HTTPS_HOST="https://([^:/]+)(:" + HTTPConstants.DEFAULT_HTTPS_PORT_STRING + ")?";
+      final String HTTPS_HOST="https://([^:/]+)(:" + HTTPConstantsInterface.DEFAULT_HTTPS_PORT_STRING + ")?";
       noHttpsResult=noHttpsResult.replaceAll(HTTPS_HOST,"http://$1");
       result.setResponseData(noHttpsResult.getBytes(enc));
     }
@@ -84,8 +84,8 @@ catch (  Exception e) {
       }
     }
     if (headers != null) {
-      headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
-      headers.removeHeaderNamed(HTTPConstants.HEADER_AUTHORIZATION);
+      headers.removeHeaderNamed(HTTPConstantsInterface.HEADER_COOKIE);
+      headers.removeHeaderNamed(HTTPConstantsInterface.HEADER_AUTHORIZATION);
       for (      String hdr : headersToRemove) {
         headers.removeHeaderNamed(hdr);
       }

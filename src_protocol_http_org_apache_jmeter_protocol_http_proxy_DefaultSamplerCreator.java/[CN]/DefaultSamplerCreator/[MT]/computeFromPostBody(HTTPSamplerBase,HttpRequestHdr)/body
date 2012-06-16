@@ -1,5 +1,5 @@
 {
-  if ((!HTTPConstants.CONNECT.equals(request.getMethod())) && (!HTTPConstants.GET.equals(request.getMethod()))) {
+  if ((!HTTPConstantsInterface.CONNECT.equals(request.getMethod())) && (!HTTPConstantsInterface.GET.equals(request.getMethod()))) {
     final String contentType=request.getContentType();
     MultipartUrlConfig urlConfig=request.getMultipartConfig(contentType);
     String contentEncoding=sampler.getContentEncoding();
@@ -29,7 +29,7 @@
  else     if (postData.trim().startsWith("<?") || "PUT".equals(sampler.getMethod())) {
       sampler.addNonEncodedArgument("",postData,"");
     }
- else     if (contentType == null || contentType.startsWith(HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED)) {
+ else     if (contentType == null || contentType.startsWith(HTTPConstantsInterface.APPLICATION_X_WWW_FORM_URLENCODED)) {
       sampler.parseArguments(postData.trim(),contentEncoding);
     }
  else     if (postData.length() > 0) {

@@ -6,7 +6,7 @@
     }
     return protocol;
   }
- else   if (sampler.getPort() == HTTPConstants.DEFAULT_HTTPS_PORT) {
+ else   if (sampler.getPort() == HTTPConstantsInterface.DEFAULT_HTTPS_PORT) {
     if (log.isDebugEnabled()) {
       log.debug("Proxy: setting protocol to https");
     }
