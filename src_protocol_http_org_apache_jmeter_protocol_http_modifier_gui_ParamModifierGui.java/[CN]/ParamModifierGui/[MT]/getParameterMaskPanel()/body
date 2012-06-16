@@ -1,5 +1,5 @@
 {
-  HorizontalPanel panel=new HorizontalPanel(10,HorizontalPanel.TOP_ALIGNMENT);
+  HorizontalPanel panel=new HorizontalPanel(10,Component.TOP_ALIGNMENT);
   panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("html_parameter_mask")));
   _fieldName=new JTextField(10);
   _fieldName.setName(NAME);
