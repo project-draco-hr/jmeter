@@ -97,7 +97,8 @@
           }
           postBody.append(value);
         }
-        StringEntity requestEntity=new StringEntity(postBody.toString(),post.getFirstHeader(HEADER_CONTENT_TYPE).getValue(),contentEncoding);
+        ContentType contentType=ContentType.create(post.getFirstHeader(HEADER_CONTENT_TYPE).getValue(),contentEncoding);
+        StringEntity requestEntity=new StringEntity(postBody.toString(),contentType);
         post.setEntity(requestEntity);
         postedBody.append(postBody.toString());
       }

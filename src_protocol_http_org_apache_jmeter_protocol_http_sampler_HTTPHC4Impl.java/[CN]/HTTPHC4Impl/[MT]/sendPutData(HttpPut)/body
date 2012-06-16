@@ -36,7 +36,8 @@
     if (hasContentTypeHeader) {
       contentTypeValue=put.getFirstHeader(HEADER_CONTENT_TYPE).getValue();
     }
-    StringEntity requestEntity=new StringEntity(putBodyContent.toString(),contentTypeValue,charset);
+    ContentType contentType=ContentType.create(contentTypeValue,charset);
+    StringEntity requestEntity=new StringEntity(putBodyContent.toString(),contentType);
     put.setEntity(requestEntity);
   }
   if (hasPutBody) {
