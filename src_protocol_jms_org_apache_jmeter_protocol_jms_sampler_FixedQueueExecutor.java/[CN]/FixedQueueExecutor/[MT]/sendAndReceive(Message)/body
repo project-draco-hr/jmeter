@@ -20,7 +20,12 @@ synchronized (admin) {
     if (log.isDebugEnabled()) {
       log.debug(Thread.currentThread().getName() + " will wait for reply " + id+ " started on "+ System.currentTimeMillis());
     }
-    countDownLatch.await();
+    if (timeout == 0) {
+      countDownLatch.await();
+    }
+ else {
+      countDownLatch.await(timeout,TimeUnit.MILLISECONDS);
+    }
     if (log.isDebugEnabled()) {
       log.debug(Thread.currentThread().getName() + " done waiting for " + id+ " on "+ request+ " ended on "+ System.currentTimeMillis());
     }
