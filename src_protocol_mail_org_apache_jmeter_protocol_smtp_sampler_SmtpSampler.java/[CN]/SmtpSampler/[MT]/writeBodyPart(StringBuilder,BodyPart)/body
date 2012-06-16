@@ -3,7 +3,7 @@
   writeHeaders(allHeaders,sb);
   String disposition=bodyPart.getDisposition();
   sb.append("\n");
-  if (BodyPart.ATTACHMENT.equals(disposition)) {
+  if (Part.ATTACHMENT.equals(disposition)) {
     sb.append("<attachment content not shown>");
   }
  else {
