@@ -6,7 +6,7 @@
   sampler.setProtocol(protocol.getText());
   sampler.setPath(path.getText());
   sampler.setWsdlURL(wsdlField.getText());
-  sampler.setMethod(HTTPSamplerBase.POST);
+  sampler.setMethod(HTTPConstantsInterface.POST);
   sampler.setSoapAction(soapAction.getText());
   sampler.setMaintainSession(maintainSession.isSelected());
   sampler.setXmlData(soapXml.getText());

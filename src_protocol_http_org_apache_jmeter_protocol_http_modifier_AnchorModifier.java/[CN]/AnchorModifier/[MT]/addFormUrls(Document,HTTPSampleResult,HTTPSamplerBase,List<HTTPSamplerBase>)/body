@@ -5,7 +5,7 @@
     urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),result.getURL()));
   }
   for (  HTTPSamplerBase newUrl : urls) {
-    newUrl.setMethod(HTTPConstants.POST);
+    newUrl.setMethod(HTTPConstantsInterface.POST);
     if (log.isDebugEnabled()) {
       log.debug("Potential Form match: " + newUrl.toString());
     }
