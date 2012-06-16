@@ -8,7 +8,7 @@
     }
     setText(getText(value,row,column));
     setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-    setHorizontalAlignment(JLabel.CENTER);
+    setHorizontalAlignment(SwingConstants.CENTER);
   }
   return this;
 }

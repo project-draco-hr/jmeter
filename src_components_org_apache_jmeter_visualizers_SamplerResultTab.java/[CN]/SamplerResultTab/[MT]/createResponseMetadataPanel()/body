@@ -28,7 +28,7 @@
   setFirstColumnPreferredSize(tableResFields);
   tableResFields.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   RendererUtils.applyRenderers(tableResFields,RENDERERS_FIELDS);
-  tabbedResult=new JTabbedPane(JTabbedPane.BOTTOM);
+  tabbedResult=new JTabbedPane(SwingConstants.BOTTOM);
   JSplitPane topSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,GuiUtils.makeScrollPane(tableResHeaders),GuiUtils.makeScrollPane(tableResFields));
   topSplit.setOneTouchExpandable(true);
   topSplit.setResizeWeight(0.80);
