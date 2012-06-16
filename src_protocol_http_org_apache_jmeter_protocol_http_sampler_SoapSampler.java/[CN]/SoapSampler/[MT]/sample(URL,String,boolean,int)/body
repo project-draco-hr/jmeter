@@ -6,7 +6,7 @@
   HTTPSampleResult res=new HTTPSampleResult();
   res.setMonitor(false);
   res.setSampleLabel(urlStr);
-  res.setHTTPMethod(HTTPConstants.POST);
+  res.setHTTPMethod(HTTPConstantsInterface.POST);
   res.setURL(url);
   res.sampleStart();
   HttpClient client=null;
