@@ -1,5 +1,6 @@
 {
-  store.load(is,pword.toCharArray());
+  char pw[]=pword == null ? null : pword.toCharArray();
+  store.load(is,pw);
   ArrayList<String> v_names=new ArrayList<String>();
   ArrayList<PrivateKey> v_keys=new ArrayList<PrivateKey>();
   ArrayList<X509Certificate[]> v_certChains=new ArrayList<X509Certificate[]>();
@@ -11,7 +12,7 @@
       String alias=aliases.nextElement();
       if (store.isKeyEntry(alias)) {
         if ((index >= startIndex && index <= endIndex)) {
-          _key=(PrivateKey)store.getKey(alias,pword.toCharArray());
+          _key=(PrivateKey)store.getKey(alias,pw);
           if (null == _key) {
             throw new Exception("No key found for alias: " + alias);
           }
