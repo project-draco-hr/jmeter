@@ -15,5 +15,5 @@
   byte[] bodySent=getBodySent(res.getResponseData());
   assertNotNull("Sent body should not be null",bodySent);
   checkArraysHaveSameContent(expectedPostBody,bodySent,contentEncoding,res);
-  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),(String)null,res);
 }

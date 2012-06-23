@@ -21,5 +21,5 @@
   }
   checkHeaderTypeLength(headersSent,"multipart/form-data" + "; boundary=" + boundaryString,expectedPostBody.length);
   checkArraysHaveSameContent(expectedPostBody,bodySent.getBytes(contentEncoding),contentEncoding,res);
-  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),(String)null,res);
 }

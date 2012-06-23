@@ -25,5 +25,5 @@
     fail("No header and body section found in: [" + dataSentToMirrorServer + "]");
   }
   assertEquals(bodySent.length(),0);
-  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),expectedQueryString);
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),expectedQueryString,res);
 }

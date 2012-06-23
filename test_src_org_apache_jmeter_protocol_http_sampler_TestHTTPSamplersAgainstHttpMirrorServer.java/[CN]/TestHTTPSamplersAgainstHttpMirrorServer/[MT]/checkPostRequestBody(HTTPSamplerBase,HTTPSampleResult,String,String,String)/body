@@ -18,5 +18,5 @@
   }
   checkHeaderTypeLength(headersSent,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED,expectedPostBody.getBytes(contentEncoding).length);
   checkArraysHaveSameContent(expectedPostBody.getBytes(contentEncoding),bodySent.getBytes(contentEncoding),contentEncoding,res);
-  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),(String)null,res);
 }

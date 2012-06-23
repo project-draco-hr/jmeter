@@ -14,5 +14,5 @@
     fail("No header and body section found");
   }
   assertEquals(bodySent.length(),0);
-  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
+  checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),(String)null,res);
 }
