@@ -3,7 +3,7 @@
   CookieManager cookies=getCookieManager();
   AuthManager auth=getAuthManager();
   int hsz=1;
-  if (method.equals(POST)) {
+  if (method.equals(HTTPConstants.POST)) {
     HTTPFileArg[] hfa=getHTTPFiles();
     if (hfa.length > 0) {
       hsz+=3;

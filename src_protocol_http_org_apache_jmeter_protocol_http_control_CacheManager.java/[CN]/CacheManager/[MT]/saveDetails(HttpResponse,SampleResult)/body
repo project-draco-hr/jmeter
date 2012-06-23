@@ -1,10 +1,10 @@
 {
   if (isCacheable(res)) {
     method.getLastHeader(USE_EXPIRES);
-    String lastModified=getHeader(method,HTTPConstantsInterface.LAST_MODIFIED);
-    String expires=getHeader(method,HTTPConstantsInterface.EXPIRES);
-    String etag=getHeader(method,HTTPConstantsInterface.ETAG);
-    String cacheControl=getHeader(method,HTTPConstantsInterface.CACHE_CONTROL);
+    String lastModified=getHeader(method,HTTPConstants.LAST_MODIFIED);
+    String expires=getHeader(method,HTTPConstants.EXPIRES);
+    String etag=getHeader(method,HTTPConstants.ETAG);
+    String cacheControl=getHeader(method,HTTPConstants.CACHE_CONTROL);
     setCache(lastModified,cacheControl,expires,etag,res.getUrlAsString());
   }
 }

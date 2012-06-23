@@ -23,7 +23,7 @@
       setString(v);
     }
   }
-  if (method.equals(POST)) {
+  if (method.equals(HTTPConstants.POST)) {
     int cl=-1;
     HTTPFileArg[] hfa=getHTTPFiles();
     if (hfa.length > 0) {
@@ -32,17 +32,17 @@
       File input=new File(fn);
       cl=(int)input.length();
       body=new FileInputStream(input);
-      setString(HEADER_CONTENT_DISPOSITION);
+      setString(HTTPConstants.HEADER_CONTENT_DISPOSITION);
       setString("form-data; name=\"" + encode(fa.getParamName()) + "\"; filename=\""+ encode(fn)+ "\"");
       String mt=fa.getMimeType();
-      hbuf.append(HEADER_CONTENT_TYPE).append(COLON_SPACE).append(mt).append(NEWLINE);
+      hbuf.append(HTTPConstants.HEADER_CONTENT_TYPE).append(COLON_SPACE).append(mt).append(NEWLINE);
       setInt(0xA007);
       setString(mt);
     }
  else {
-      hbuf.append(HEADER_CONTENT_TYPE).append(COLON_SPACE).append(APPLICATION_X_WWW_FORM_URLENCODED).append(NEWLINE);
+      hbuf.append(HTTPConstants.HEADER_CONTENT_TYPE).append(COLON_SPACE).append(HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED).append(NEWLINE);
       setInt(0xA007);
-      setString(APPLICATION_X_WWW_FORM_URLENCODED);
+      setString(HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
       StringBuilder sb=new StringBuilder();
       boolean first=true;
       PropertyIterator args=getArguments().iterator();
@@ -61,7 +61,7 @@
       cl=sbody.length;
       body=new ByteArrayInputStream(sbody);
     }
-    hbuf.append(HEADER_CONTENT_LENGTH).append(COLON_SPACE).append(String.valueOf(cl)).append(NEWLINE);
+    hbuf.append(HTTPConstants.HEADER_CONTENT_LENGTH).append(COLON_SPACE).append(String.valueOf(cl)).append(NEWLINE);
     setInt(0xA008);
     setString(String.valueOf(cl));
   }
@@ -70,7 +70,7 @@
     if (authHeader != null) {
       setInt(0xA005);
       setString(authHeader);
-      hbuf.append(HEADER_AUTHORIZATION).append(COLON_SPACE).append(authHeader).append(NEWLINE);
+      hbuf.append(HTTPConstants.HEADER_AUTHORIZATION).append(COLON_SPACE).append(authHeader).append(NEWLINE);
     }
   }
   return hbuf.toString();

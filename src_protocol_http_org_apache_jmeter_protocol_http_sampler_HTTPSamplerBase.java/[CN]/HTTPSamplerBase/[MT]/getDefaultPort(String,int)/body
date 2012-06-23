@@ -1,6 +1,6 @@
 {
   if (port == URL_UNSPECIFIED_PORT) {
-    return protocol.equalsIgnoreCase(PROTOCOL_HTTP) ? DEFAULT_HTTP_PORT : protocol.equalsIgnoreCase(PROTOCOL_HTTPS) ? DEFAULT_HTTPS_PORT : port;
+    return protocol.equalsIgnoreCase(HTTPConstants.PROTOCOL_HTTP) ? HTTPConstants.DEFAULT_HTTP_PORT : protocol.equalsIgnoreCase(HTTPConstants.PROTOCOL_HTTPS) ? HTTPConstants.DEFAULT_HTTPS_PORT : port;
   }
   return port;
 }

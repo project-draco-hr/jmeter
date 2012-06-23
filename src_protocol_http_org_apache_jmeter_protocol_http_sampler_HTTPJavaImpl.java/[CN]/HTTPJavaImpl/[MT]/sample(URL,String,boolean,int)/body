@@ -9,7 +9,7 @@
   res.setHTTPMethod(method);
   res.sampleStart();
   final CacheManager cacheManager=getCacheManager();
-  if (cacheManager != null && GET.equalsIgnoreCase(method)) {
+  if (cacheManager != null && HTTPConstants.GET.equalsIgnoreCase(method)) {
     if (cacheManager.inCache(url)) {
       res.sampleEnd();
       res.setResponseNoContent();
@@ -47,11 +47,11 @@ catch (      IOException e) {
     if (retry > MAX_CONN_RETRIES) {
       throw new BindException();
     }
-    if (method.equals(POST)) {
+    if (method.equals(HTTPConstants.POST)) {
       String postBody=sendPostData(conn);
       res.setQueryString(postBody);
     }
- else     if (method.equals(PUT)) {
+ else     if (method.equals(HTTPConstants.PUT)) {
       String putBody=sendPutData(conn);
       res.setQueryString(putBody);
     }
@@ -98,7 +98,7 @@ catch (      IOException e) {
     String responseHeaders=getResponseHeaders(conn);
     res.setResponseHeaders(responseHeaders);
     if (res.isRedirect()) {
-      res.setRedirectLocation(conn.getHeaderField(HEADER_LOCATION));
+      res.setRedirectLocation(conn.getHeaderField(HTTPConstants.HEADER_LOCATION));
     }
     res.setHeadersSize(responseHeaders.replaceAll("\n","\r\n").length() + 2);
     if (log.isDebugEnabled()) {

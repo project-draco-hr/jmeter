@@ -3,9 +3,9 @@
   org.apache.commons.httpclient.URI uri=new org.apache.commons.httpclient.URI(urlStr,false);
   String schema=uri.getScheme();
   if ((schema == null) || (schema.length() == 0)) {
-    schema=PROTOCOL_HTTP;
+    schema=HTTPConstants.PROTOCOL_HTTP;
   }
-  if (PROTOCOL_HTTPS.equalsIgnoreCase(schema)) {
+  if (HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(schema)) {
     SSLManager.getInstance();
   }
   Protocol protocol=Protocol.getProtocol(schema);
@@ -82,10 +82,10 @@
   }
   httpMethod.setFollowRedirects(getAutoRedirects());
   if (getUseKeepAlive()) {
-    httpMethod.setRequestHeader(HEADER_CONNECTION,KEEP_ALIVE);
+    httpMethod.setRequestHeader(HTTPConstants.HEADER_CONNECTION,HTTPConstants.KEEP_ALIVE);
   }
  else {
-    httpMethod.setRequestHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
+    httpMethod.setRequestHeader(HTTPConstants.HEADER_CONNECTION,HTTPConstants.CONNECTION_CLOSE);
   }
   setConnectionHeaders(httpMethod,u,getHeaderManager(),getCacheManager());
   String cookies=setConnectionCookie(httpMethod,u,getCookieManager());

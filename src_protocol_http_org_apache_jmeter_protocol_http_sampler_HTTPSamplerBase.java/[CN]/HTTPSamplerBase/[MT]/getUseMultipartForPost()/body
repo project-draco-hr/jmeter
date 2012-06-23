@@ -1,6 +1,6 @@
 {
   HTTPFileArg[] files=getHTTPFiles();
-  if (POST.equals(getMethod()) && (getDoMultipartPost() || (files.length > 0 && !getSendFileAsPostBody()))) {
+  if (HTTPConstants.POST.equals(getMethod()) && (getDoMultipartPost() || (files.length > 0 && !getSendFileAsPostBody()))) {
     return true;
   }
   return false;

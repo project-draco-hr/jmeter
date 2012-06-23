@@ -1,4 +1,4 @@
 {
   String protocol=url.getProtocol().toLowerCase(java.util.Locale.ENGLISH);
-  return protocol.equals(HTTPConstantsInterface.PROTOCOL_HTTP) || protocol.equals(HTTPConstantsInterface.PROTOCOL_HTTPS);
+  return protocol.equals(HTTPConstants.PROTOCOL_HTTP) || protocol.equals(HTTPConstants.PROTOCOL_HTTPS);
 }

@@ -15,7 +15,7 @@
     String hrefStr=namedItem.getNodeValue();
     try {
       HTTPSamplerBase newUrl=HtmlParsingUtils.createUrlFromAnchor(hrefStr,ConversionUtils.makeRelativeURL(result.getURL(),base));
-      newUrl.setMethod(HTTPConstantsInterface.GET);
+      newUrl.setMethod(HTTPConstants.GET);
       if (log.isDebugEnabled()) {
         log.debug("Potential <frame src> match: " + newUrl);
       }

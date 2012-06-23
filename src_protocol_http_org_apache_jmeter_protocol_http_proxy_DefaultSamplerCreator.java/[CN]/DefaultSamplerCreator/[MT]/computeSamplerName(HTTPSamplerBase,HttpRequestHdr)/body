@@ -1,5 +1,5 @@
 {
-  if (!HTTPConstantsInterface.CONNECT.equals(request.getMethod()) && isNumberRequests()) {
+  if (!HTTPConstants.CONNECT.equals(request.getMethod()) && isNumberRequests()) {
     incrementRequestNumber();
     sampler.setName(getRequestNumber() + " " + sampler.getPath());
   }

@@ -6,7 +6,7 @@
   res.setResponseMessage(msg);
   int nh=getInt();
   StringBuilder sb=new StringBuilder();
-  sb.append(HTTP_1_1).append(status).append(" ").append(msg).append(NEWLINE);
+  sb.append(HTTPConstants.HTTP_1_1).append(status).append(" ").append(msg).append(NEWLINE);
   for (int i=0; i < nh; i++) {
     String name;
     int thn=peekInt();
@@ -18,11 +18,11 @@
       name=getString();
     }
     String value=getString();
-    if (HEADER_CONTENT_TYPE.equalsIgnoreCase(name)) {
+    if (HTTPConstants.HEADER_CONTENT_TYPE.equalsIgnoreCase(name)) {
       res.setContentType(value);
       res.setEncodingAndType(value);
     }
- else     if (HEADER_SET_COOKIE.equalsIgnoreCase(name)) {
+ else     if (HTTPConstants.HEADER_SET_COOKIE.equalsIgnoreCase(name)) {
       CookieManager cookies=getCookieManager();
       if (cookies != null) {
         cookies.addCookieFromHeader(value,res.getURL());

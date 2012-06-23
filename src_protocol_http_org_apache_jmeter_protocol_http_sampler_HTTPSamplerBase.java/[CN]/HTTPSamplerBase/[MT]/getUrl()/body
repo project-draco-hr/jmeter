@@ -15,7 +15,7 @@
     }
   }
   pathAndQuery.append(path);
-  if (GET.equals(getMethod()) || DELETE.equals(getMethod())) {
+  if (HTTPConstants.GET.equals(getMethod()) || HTTPConstants.DELETE.equals(getMethod())) {
     String queryString=getQueryString(getContentEncoding());
     if (queryString.length() > 0) {
       if (path.indexOf(QRY_PFX) > -1) {

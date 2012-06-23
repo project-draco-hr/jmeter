@@ -3,7 +3,7 @@
   Map<String,List<String>> requestHeaders=conn.getRequestProperties();
   for (  Map.Entry<String,List<String>> entry : requestHeaders.entrySet()) {
     String headerKey=entry.getKey();
-    if (!HEADER_COOKIE.equalsIgnoreCase(headerKey)) {
+    if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(headerKey)) {
       for (      String value : entry.getValue()) {
         hdrs.append(headerKey);
         hdrs.append(": ");

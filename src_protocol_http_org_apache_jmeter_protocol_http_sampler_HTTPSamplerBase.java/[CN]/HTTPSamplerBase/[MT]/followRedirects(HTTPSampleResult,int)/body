@@ -11,7 +11,7 @@
     }
     location=encodeSpaces(location);
     try {
-      lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),GET,true,frameDepth);
+      lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),HTTPConstants.GET,true,frameDepth);
     }
  catch (    MalformedURLException e) {
       errorResult(e,lastRes);

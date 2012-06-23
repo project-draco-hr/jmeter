@@ -48,16 +48,16 @@
     }
   }
  else {
-    Header contentTypeHeader=post.getFirstHeader(HEADER_CONTENT_TYPE);
+    Header contentTypeHeader=post.getFirstHeader(HTTPConstants.HEADER_CONTENT_TYPE);
     boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
     if (!hasArguments() && getSendFileAsPostBody()) {
       HTTPFileArg file=files[0];
       if (!hasContentTypeHeader) {
         if (file.getMimeType() != null && file.getMimeType().length() > 0) {
-          post.setHeader(HEADER_CONTENT_TYPE,file.getMimeType());
+          post.setHeader(HTTPConstants.HEADER_CONTENT_TYPE,file.getMimeType());
         }
  else {
-          post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+          post.setHeader(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
       }
       FileEntity fileRequestEntity=new FileEntity(new File(file.getPath()),(ContentType)null);
@@ -78,10 +78,10 @@
         if (!hasContentTypeHeader) {
           HTTPFileArg file=files.length > 0 ? files[0] : null;
           if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
-            post.setHeader(HEADER_CONTENT_TYPE,file.getMimeType());
+            post.setHeader(HTTPConstants.HEADER_CONTENT_TYPE,file.getMimeType());
           }
  else {
-            post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+            post.setHeader(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
           }
         }
         StringBuilder postBody=new StringBuilder();
@@ -97,14 +97,14 @@
           }
           postBody.append(value);
         }
-        ContentType contentType=ContentType.create(post.getFirstHeader(HEADER_CONTENT_TYPE).getValue(),contentEncoding);
+        ContentType contentType=ContentType.create(post.getFirstHeader(HTTPConstants.HEADER_CONTENT_TYPE).getValue(),contentEncoding);
         StringEntity requestEntity=new StringEntity(postBody.toString(),contentType);
         post.setEntity(requestEntity);
         postedBody.append(postBody.toString());
       }
  else {
         if (!hasContentTypeHeader) {
-          post.setHeader(HEADER_CONTENT_TYPE,APPLICATION_X_WWW_FORM_URLENCODED);
+          post.setHeader(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
         PropertyIterator args=getArguments().iterator();
         List<NameValuePair> nvps=new ArrayList<NameValuePair>();

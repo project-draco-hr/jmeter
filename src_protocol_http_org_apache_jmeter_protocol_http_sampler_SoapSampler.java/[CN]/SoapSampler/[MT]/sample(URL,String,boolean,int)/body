@@ -6,7 +6,7 @@
   HTTPSampleResult res=new HTTPSampleResult();
   res.setMonitor(false);
   res.setSampleLabel(urlStr);
-  res.setHTTPMethod(HTTPConstantsInterface.POST);
+  res.setHTTPMethod(HTTPConstants.POST);
   res.setURL(url);
   res.sampleStart();
   HttpClient client=null;
@@ -20,8 +20,8 @@
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
     instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
-      org.apache.commons.httpclient.Header responseHeader=httpMethod.getResponseHeader(HEADER_CONTENT_ENCODING);
-      if (responseHeader != null && ENCODING_GZIP.equals(responseHeader.getValue())) {
+      org.apache.commons.httpclient.Header responseHeader=httpMethod.getResponseHeader(HTTPConstants.HEADER_CONTENT_ENCODING);
+      if (responseHeader != null && HTTPConstants.ENCODING_GZIP.equals(responseHeader.getValue())) {
         instream=new GZIPInputStream(instream);
       }
       ByteArrayOutputStream outstream=new ByteArrayOutputStream(4 * 1024);
@@ -46,7 +46,7 @@
     res.setDataEncoding(ENCODING);
     res.setContentType(DEFAULT_CONTENT_TYPE);
     String ct=null;
-    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader(HEADER_CONTENT_TYPE);
+    org.apache.commons.httpclient.Header h=httpMethod.getResponseHeader(HTTPConstants.HEADER_CONTENT_TYPE);
     if (h != null) {
       ct=h.getValue();
       res.setContentType(ct);
@@ -54,7 +54,7 @@
     }
     res.setResponseHeaders(getResponseHeaders(httpMethod));
     if (res.isRedirect()) {
-      res.setRedirectLocation(httpMethod.getResponseHeader(HEADER_LOCATION).getValue());
+      res.setRedirectLocation(httpMethod.getResponseHeader(HTTPConstants.HEADER_LOCATION).getValue());
     }
     if (getAutoRedirects()) {
       res.setURL(new URL(httpMethod.getURI().toString()));

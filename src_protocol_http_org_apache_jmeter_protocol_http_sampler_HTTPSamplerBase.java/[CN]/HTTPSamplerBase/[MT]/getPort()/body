@@ -2,13 +2,13 @@
   final int port=getPortIfSpecified();
   if (port == UNSPECIFIED_PORT) {
     String prot=getProtocol();
-    if (PROTOCOL_HTTPS.equalsIgnoreCase(prot)) {
-      return DEFAULT_HTTPS_PORT;
+    if (HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(prot)) {
+      return HTTPConstants.DEFAULT_HTTPS_PORT;
     }
-    if (!PROTOCOL_HTTP.equalsIgnoreCase(prot)) {
+    if (!HTTPConstants.PROTOCOL_HTTP.equalsIgnoreCase(prot)) {
       log.warn("Unexpected protocol: " + prot);
     }
-    return DEFAULT_HTTP_PORT;
+    return HTTPConstants.DEFAULT_HTTP_PORT;
   }
   return port;
 }

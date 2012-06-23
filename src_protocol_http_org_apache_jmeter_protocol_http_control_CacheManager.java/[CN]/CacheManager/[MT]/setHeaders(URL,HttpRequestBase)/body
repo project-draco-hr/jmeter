@@ -6,11 +6,11 @@
   if (entry != null) {
     final String lastModified=entry.getLastModified();
     if (lastModified != null) {
-      request.setHeader(HTTPConstantsInterface.IF_MODIFIED_SINCE,lastModified);
+      request.setHeader(HTTPConstants.IF_MODIFIED_SINCE,lastModified);
     }
     final String etag=entry.getEtag();
     if (etag != null) {
-      request.setHeader(HTTPConstantsInterface.IF_NONE_MATCH,etag);
+      request.setHeader(HTTPConstants.IF_NONE_MATCH,etag);
     }
   }
 }

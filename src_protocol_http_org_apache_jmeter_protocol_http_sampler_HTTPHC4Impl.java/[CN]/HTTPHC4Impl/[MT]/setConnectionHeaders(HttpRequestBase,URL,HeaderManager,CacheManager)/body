@@ -6,9 +6,9 @@
       while (i.hasNext()) {
         org.apache.jmeter.protocol.http.control.Header header=(org.apache.jmeter.protocol.http.control.Header)i.next().getObjectValue();
         String n=header.getName();
-        if (!HEADER_CONTENT_LENGTH.equalsIgnoreCase(n)) {
+        if (!HTTPConstants.HEADER_CONTENT_LENGTH.equalsIgnoreCase(n)) {
           String v=header.getValue();
-          if (HEADER_HOST.equalsIgnoreCase(n)) {
+          if (HTTPConstants.HEADER_HOST.equalsIgnoreCase(n)) {
             int port=url.getPort();
             v=v.replaceFirst(":\\d+$","");
             if (port != -1) {

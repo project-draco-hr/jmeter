@@ -2,7 +2,7 @@
   try {
     StringBuilder stringBuffer=new StringBuilder();
     stringBuffer.append(this.getUrl().toString());
-    if (POST.equals(getMethod()) || PUT.equals(getMethod())) {
+    if (HTTPConstants.POST.equals(getMethod()) || HTTPConstants.PUT.equals(getMethod())) {
       stringBuffer.append("\nQuery Data: ");
       stringBuffer.append(getQueryString());
     }

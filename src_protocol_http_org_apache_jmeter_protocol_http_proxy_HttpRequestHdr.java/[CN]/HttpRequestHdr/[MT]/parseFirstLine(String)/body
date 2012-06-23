@@ -12,7 +12,7 @@
     log.debug("parsed url:    " + url);
     log.debug("parsed version:" + version);
   }
-  if (getMethod().startsWith(HTTPConstantsInterface.CONNECT)) {
+  if (getMethod().startsWith(HTTPConstants.CONNECT)) {
     paramHttps=url;
   }
   if (url.startsWith("/")) {

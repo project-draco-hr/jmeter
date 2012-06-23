@@ -58,10 +58,10 @@
             continue;
           }
           if (isConcurrentDwn()) {
-            liste.add(new ASyncSample(url,GET,false,frameDepth + 1,getCookieManager(),this));
+            liste.add(new ASyncSample(url,HTTPConstants.GET,false,frameDepth + 1,getCookieManager(),this));
           }
  else {
-            HTTPSampleResult binRes=sample(url,GET,false,frameDepth + 1);
+            HTTPSampleResult binRes=sample(url,HTTPConstants.GET,false,frameDepth + 1);
             res.addSubResult(binRes);
             setParentSampleSuccess(res,res.isSuccessful() && binRes.isSuccessful());
           }

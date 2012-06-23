@@ -1,6 +1,6 @@
 {
   send();
-  if (method.equals(POST)) {
+  if (method.equals(HTTPConstants.POST)) {
     res.setQueryString(stringBody);
     sendPostBody();
   }

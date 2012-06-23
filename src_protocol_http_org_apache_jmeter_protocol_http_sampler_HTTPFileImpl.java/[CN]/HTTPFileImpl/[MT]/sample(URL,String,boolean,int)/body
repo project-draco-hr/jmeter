@@ -1,6 +1,6 @@
 {
   HTTPSampleResult res=new HTTPSampleResult();
-  res.setHTTPMethod(GET);
+  res.setHTTPMethod(HTTPConstants.GET);
   res.setURL(url);
   res.setSampleLabel(url.toString());
   InputStream is=null;

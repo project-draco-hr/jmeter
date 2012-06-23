@@ -23,7 +23,7 @@
   res.setHTTPMethod(method);
   outpos=4;
   setByte((byte)2);
-  if (method.equals(POST)) {
+  if (method.equals(HTTPConstants.POST)) {
     setByte((byte)4);
   }
  else {
@@ -33,14 +33,14 @@
     setString("HTTP/1.0");
   }
  else {
-    setString(HTTP_1_1);
+    setString(HTTPConstants.HTTP_1_1);
   }
   setString(url.getPath());
   setString(localAddress);
   setString(localName);
   setString(host);
   setInt(url.getDefaultPort());
-  setByte(PROTOCOL_HTTPS.equalsIgnoreCase(scheme) ? (byte)1 : (byte)0);
+  setByte(HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(scheme) ? (byte)1 : (byte)0);
   setInt(getHeaderSize(method,url));
   String hdr=setConnectionHeaders(url,host,method);
   res.setRequestHeaders(hdr);

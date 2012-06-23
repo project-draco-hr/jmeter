@@ -21,10 +21,10 @@
   }
   requestParams.setBooleanParameter(ClientPNames.HANDLE_REDIRECTS,getAutoRedirects());
   if (getUseKeepAlive()) {
-    httpRequest.setHeader(HEADER_CONNECTION,KEEP_ALIVE);
+    httpRequest.setHeader(HTTPConstants.HEADER_CONNECTION,HTTPConstants.KEEP_ALIVE);
   }
  else {
-    httpRequest.setHeader(HEADER_CONNECTION,CONNECTION_CLOSE);
+    httpRequest.setHeader(HTTPConstants.HEADER_CONNECTION,HTTPConstants.CONNECTION_CLOSE);
   }
   setConnectionHeaders(httpRequest,url,getHeaderManager(),getCacheManager());
   String cookies=setConnectionCookie(httpRequest,url,getCookieManager());

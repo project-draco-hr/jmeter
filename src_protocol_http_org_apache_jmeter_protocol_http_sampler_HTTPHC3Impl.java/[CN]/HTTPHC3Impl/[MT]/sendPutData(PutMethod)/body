@@ -1,7 +1,7 @@
 {
   StringBuilder putBody=new StringBuilder(1000);
   boolean hasPutBody=false;
-  Header contentTypeHeader=put.getRequestHeader(HEADER_CONTENT_TYPE);
+  Header contentTypeHeader=put.getRequestHeader(HTTPConstants.HEADER_CONTENT_TYPE);
   boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.getValue() != null && contentTypeHeader.getValue().length() > 0;
   HTTPFileArg files[]=getHTTPFiles();
   if (!hasArguments() && getSendFileAsPostBody()) {
@@ -36,7 +36,7 @@
     }
     String contentTypeValue=null;
     if (hasContentTypeHeader) {
-      contentTypeValue=put.getRequestHeader(HEADER_CONTENT_TYPE).getValue();
+      contentTypeValue=put.getRequestHeader(HTTPConstants.HEADER_CONTENT_TYPE).getValue();
     }
     StringRequestEntity requestEntity=new StringRequestEntity(putBodyContent.toString(),contentTypeValue,put.getRequestCharSet());
     put.setRequestEntity(requestEntity);
@@ -55,10 +55,10 @@
     if (!hasContentTypeHeader) {
       HTTPFileArg file=files.length > 0 ? files[0] : null;
       if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
-        put.setRequestHeader(HEADER_CONTENT_TYPE,file.getMimeType());
+        put.setRequestHeader(HTTPConstants.HEADER_CONTENT_TYPE,file.getMimeType());
       }
     }
-    put.setRequestHeader(HEADER_CONTENT_LENGTH,Long.toString(put.getRequestEntity().getContentLength()));
+    put.setRequestHeader(HTTPConstants.HEADER_CONTENT_LENGTH,Long.toString(put.getRequestEntity().getContentLength()));
     return putBody.toString();
   }
   return null;
