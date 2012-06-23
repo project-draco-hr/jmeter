@@ -6,6 +6,9 @@
       System.out.println("==================== actual:");
       System.out.println(new String(actual,encoding));
       System.out.println("<<<<<<<<<<<<<<<<<<<<");
+      if (res != null) {
+        System.out.println("URL=" + res.getUrlAsString());
+      }
       fail("arrays have different length, expected is " + expected.length + ", actual is "+ actual.length);
     }
  else {
@@ -16,12 +19,18 @@
           System.out.println("==================== actual:");
           System.out.println(new String(actual,0,i + 1,encoding));
           System.out.println("<<<<<<<<<<<<<<<<<<<<");
+          if (res != null) {
+            System.out.println("URL=" + res.getUrlAsString());
+          }
           fail("byte at position " + i + " is different, expected is "+ expected[i]+ ", actual is "+ actual[i]);
         }
       }
     }
   }
  else {
+    if (res != null) {
+      System.out.println("URL=" + res.getUrlAsString());
+    }
     fail("expected or actual byte arrays were null");
   }
 }

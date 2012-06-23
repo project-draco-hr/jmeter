@@ -7,7 +7,7 @@
   assertNotNull(boundaryString);
   byte[] expectedPostBody=createExpectedFormdataOutput(boundaryString,contentEncoding,titleField,titleValue,descriptionField,descriptionValue,true,true);
   checkHeaderTypeLength(res.getRequestHeaders(),"multipart/form-data" + "; boundary=" + boundaryString,expectedPostBody.length);
-  checkArraysHaveSameContent(expectedPostBody,res.getQueryString().getBytes(contentEncoding),contentEncoding);
+  checkArraysHaveSameContent(expectedPostBody,res.getQueryString().getBytes(contentEncoding),contentEncoding,res);
   String dataSentToMirrorServer=new String(res.getResponseData(),contentEncoding);
   int posDividerHeadersAndBody=getPositionOfBody(dataSentToMirrorServer);
   String headersSent=null;
@@ -20,6 +20,6 @@
     fail("No header and body section found");
   }
   checkHeaderTypeLength(headersSent,"multipart/form-data" + "; boundary=" + boundaryString,expectedPostBody.length);
-  checkArraysHaveSameContent(expectedPostBody,bodySent.getBytes(contentEncoding),contentEncoding);
+  checkArraysHaveSameContent(expectedPostBody,bodySent.getBytes(contentEncoding),contentEncoding,res);
   checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),null);
 }

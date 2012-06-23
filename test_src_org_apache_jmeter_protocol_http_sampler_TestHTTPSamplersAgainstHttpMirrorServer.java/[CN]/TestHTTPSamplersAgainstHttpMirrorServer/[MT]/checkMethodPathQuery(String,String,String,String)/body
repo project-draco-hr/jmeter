@@ -25,6 +25,6 @@
   assertEquals(expectedPath,pathSent);
   if (expectedQueryString != null && expectedQueryString.length() > 0) {
     String queryStringSent=uriSent.substring(indexQueryStart + 1);
-    checkArraysHaveSameContent(expectedQueryString.getBytes(EncoderCache.URL_ARGUMENT_ENCODING),queryStringSent.getBytes(EncoderCache.URL_ARGUMENT_ENCODING),EncoderCache.URL_ARGUMENT_ENCODING);
+    checkArraysHaveSameContent(expectedQueryString.getBytes(EncoderCache.URL_ARGUMENT_ENCODING),queryStringSent.getBytes(EncoderCache.URL_ARGUMENT_ENCODING),EncoderCache.URL_ARGUMENT_ENCODING,null);
   }
 }
