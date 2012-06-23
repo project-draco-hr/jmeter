@@ -22,7 +22,7 @@
     bodySent=dataSentToMirrorServer.substring(posDividerHeadersAndBody + 2);
   }
  else {
-    fail("No header and body section found");
+    fail("No header and body section found in: [" + dataSentToMirrorServer + "]");
   }
   assertEquals(bodySent.length(),0);
   checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),expectedQueryString);
