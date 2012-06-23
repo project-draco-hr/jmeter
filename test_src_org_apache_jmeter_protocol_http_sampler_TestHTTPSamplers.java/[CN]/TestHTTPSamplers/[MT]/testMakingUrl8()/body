@@ -1,7 +1,7 @@
 {
   HTTPSamplerBase config=new HTTPNullSampler();
   config.setProtocol("http");
-  config.setMethod(HTTPSamplerBase.GET);
+  config.setMethod(HTTPConstants.GET);
   config.parseArguments("param1=");
   config.setPath("/index.html");
   config.setDomain("192.168.0.1");

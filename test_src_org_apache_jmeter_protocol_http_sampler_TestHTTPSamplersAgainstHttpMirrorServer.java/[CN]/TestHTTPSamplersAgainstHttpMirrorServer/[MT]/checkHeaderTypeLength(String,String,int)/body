@@ -1,5 +1,5 @@
 {
-  boolean typeOK=isInRequestHeaders(requestHeaders,HTTPSamplerBase.HEADER_CONTENT_TYPE,contentType);
+  boolean typeOK=isInRequestHeaders(requestHeaders,HTTPConstants.HEADER_CONTENT_TYPE,contentType);
   if (!typeOK) {
     fail("Expected type:" + contentType + " in:\n"+ requestHeaders);
   }

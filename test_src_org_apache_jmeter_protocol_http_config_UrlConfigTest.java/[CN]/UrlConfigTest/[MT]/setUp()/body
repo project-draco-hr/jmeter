@@ -7,7 +7,7 @@
   config.setName("Full Config");
   config.setProperty(HTTPSamplerBase.DOMAIN,"www.lazer.com");
   config.setProperty(HTTPSamplerBase.PATH,"login.jsp");
-  config.setProperty(HTTPSamplerBase.METHOD,HTTPSamplerBase.POST);
+  config.setProperty(HTTPSamplerBase.METHOD,HTTPConstants.POST);
   config.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));
   defaultConfig=new HTTPNullSampler();
   defaultConfig.setName("default");
@@ -15,5 +15,5 @@
   defaultConfig.setProperty(HTTPSamplerBase.PATH,"default.html");
   partialConfig=new HTTPNullSampler();
   partialConfig.setProperty(HTTPSamplerBase.PATH,"main.jsp");
-  partialConfig.setProperty(HTTPSamplerBase.METHOD,HTTPSamplerBase.GET);
+  partialConfig.setProperty(HTTPSamplerBase.METHOD,HTTPConstants.GET);
 }

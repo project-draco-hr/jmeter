@@ -1,5 +1,5 @@
 {
-  sampler.setMethod(HTTPSamplerBase.POST);
+  sampler.setMethod(HTTPConstants.POST);
   setupFilepart(sampler);
   setupFormData(sampler);
   postWriter.setHeaders(connection,sampler);

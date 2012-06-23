@@ -3,7 +3,7 @@
   String htmlEncodedFixture=URLEncoder.encode(specialChars,"UTF-8");
   HTTPSamplerBase config=makeUrlConfig(".*index.html");
   config.addArgument("test",".*");
-  config.setMethod(HTTPSamplerBase.POST);
+  config.setMethod(HTTPConstants.POST);
   HTTPSamplerBase context=makeContext("http://www.apache.org/subdir/previous.html");
   String responseText="<html><head><title>Test page</title></head><body>" + "<form action=\"index.html\" method=\"POST\">" + "<input type=\"hidden\" name=\"test\""+ " value=\"" + htmlEncodedFixture + "\">Goto index page</form></body></html>";
   HTTPSampleResult result=new HTTPSampleResult();

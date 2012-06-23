@@ -3,7 +3,7 @@
     contentEncoding=samplerDefaultEncoding;
   }
   assertEquals(sampler.getUrl(),res.getURL());
-  checkHeaderTypeLength(res.getRequestHeaders(),HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED,expectedPostBody.getBytes(contentEncoding).length);
+  checkHeaderTypeLength(res.getRequestHeaders(),HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED,expectedPostBody.getBytes(contentEncoding).length);
   checkArraysHaveSameContent(expectedPostBody.getBytes(contentEncoding),res.getQueryString().getBytes(contentEncoding),contentEncoding,res);
   String dataSentToMirrorServer=new String(res.getResponseData(),contentEncoding);
   int posDividerHeadersAndBody=getPositionOfBody(dataSentToMirrorServer);
@@ -16,7 +16,7 @@
  else {
     fail("No header and body section found");
   }
-  checkHeaderTypeLength(headersSent,HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED,expectedPostBody.getBytes(contentEncoding).length);
+  checkHeaderTypeLength(headersSent,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED,expectedPostBody.getBytes(contentEncoding).length);
   checkArraysHaveSameContent(expectedPostBody.getBytes(contentEncoding),bodySent.getBytes(contentEncoding),contentEncoding,res);
   checkMethodPathQuery(headersSent,sampler.getMethod(),sampler.getPath(),(String)null,res);
 }

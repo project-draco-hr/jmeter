@@ -3,7 +3,7 @@
   String contentEncoding="UTF-8";
   String testGetRequest="GET " + url + "?update=yes&d=1&d=2&d=&d=&d=&d=&d=&d=1&d=2&d=1&d=&d= "+ "HTTP/1.0\r\n\r\n";
   HTTPSamplerBase s=getSamplerForRequest(url,testGetRequest,contentEncoding);
-  assertEquals(HTTPSamplerBase.GET,s.getMethod());
+  assertEquals(HTTPConstants.GET,s.getMethod());
   assertEquals(contentEncoding,s.getContentEncoding());
   Arguments arguments=s.getArguments();
   assertEquals(13,arguments.getArgumentCount());
@@ -22,9 +22,9 @@
   checkArgument((HTTPArgument)arguments.getArgument(12),"d","","",contentEncoding,false);
   contentEncoding="UTF-8";
   String postBody="update=yes&d=1&d=2&d=&d=&d=&d=&d=&d=1&d=2&d=1&d=&d=";
-  String testPostRequest="POST " + url + " HTTP/1.0\n"+ "Content-type: "+ HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
+  String testPostRequest="POST " + url + " HTTP/1.0\n"+ "Content-type: "+ HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
   s=getSamplerForRequest(url,testPostRequest,contentEncoding);
-  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(HTTPConstants.POST,s.getMethod());
   assertFalse(s.getDoMultipartPost());
   assertEquals(contentEncoding,s.getContentEncoding());
   arguments=s.getArguments();
@@ -46,7 +46,7 @@
   postBody="update=yes&d=1&d=2&d=&d=&d=&d=&d=&d=1&d=2&d=1&d=\uc385&d=";
   testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: text/plain\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
   s=getSamplerForRequest(url,testPostRequest,contentEncoding);
-  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(HTTPConstants.POST,s.getMethod());
   assertFalse(s.getDoMultipartPost());
   assertEquals(contentEncoding,s.getContentEncoding());
   arguments=s.getArguments();
@@ -56,7 +56,7 @@
   postBody="update=yes&d=1&d=2&d=&d=&d=&d=&d=&d=1&d=2&d=1&d=\uc385&d=";
   testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: text/plain; charset="+ contentEncoding+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
   s=getSamplerForRequest(null,testPostRequest,contentEncoding);
-  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(HTTPConstants.POST,s.getMethod());
   assertFalse(s.getDoMultipartPost());
   assertEquals(contentEncoding,s.getContentEncoding());
   arguments=s.getArguments();

@@ -2,19 +2,19 @@
   HTTPSamplerBase sampler=createHttpSampler(samplerType);
   String contentEncoding="";
   setupUrl(sampler,contentEncoding);
-  sampler.setMethod(HTTPSamplerBase.GET);
+  sampler.setMethod(HTTPConstants.GET);
   HTTPSampleResult res=executeSampler(sampler);
   checkGetRequest(sampler,res);
   sampler=createHttpSampler(samplerType);
   contentEncoding=ISO_8859_1;
   setupUrl(sampler,contentEncoding);
-  sampler.setMethod(HTTPSamplerBase.GET);
+  sampler.setMethod(HTTPConstants.GET);
   res=executeSampler(sampler);
   checkGetRequest(sampler,res);
   sampler=createHttpSampler(samplerType);
   contentEncoding="UTF-8";
   setupUrl(sampler,contentEncoding);
-  sampler.setMethod(HTTPSamplerBase.GET);
+  sampler.setMethod(HTTPConstants.GET);
   res=executeSampler(sampler);
   checkGetRequest(sampler,res);
 }

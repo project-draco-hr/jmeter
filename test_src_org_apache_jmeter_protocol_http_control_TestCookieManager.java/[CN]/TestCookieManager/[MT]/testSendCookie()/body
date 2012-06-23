@@ -3,6 +3,6 @@
   HTTPSamplerBase sampler=new HTTPNullSampler();
   sampler.setDomain("jakarta.apache.org");
   sampler.setPath("/index.html");
-  sampler.setMethod(HTTPSamplerBase.GET);
+  sampler.setMethod(HTTPConstants.GET);
   assertNotNull(man.getCookieHeaderForURL(sampler.getUrl()));
 }

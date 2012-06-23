@@ -5,9 +5,9 @@
   String param2Value="0+5 -\u00c5%C3%85";
   String param2ValueEncoded=URLEncoder.encode(param2Value,"UTF-8");
   String postBody="param1=" + param1Value + "&param2="+ param2ValueEncoded+ "\r\n";
-  String testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: "+ HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
+  String testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: "+ HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
   HTTPSamplerBase s=getSamplerForRequest(null,testPostRequest,null);
-  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(HTTPConstants.POST,s.getMethod());
   assertEquals(contentEncoding,s.getContentEncoding());
   Arguments arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());
@@ -18,9 +18,9 @@
   param2Value="0+5 -\u007c\u2aa1\u266a\u0153\u20a1\u0115\u0364\u00c5\u2052\uc385%C3%85";
   param2ValueEncoded=URLEncoder.encode(param2Value,contentEncoding);
   postBody="param1=" + param1Value + "&param2="+ param2ValueEncoded+ "\r\n";
-  testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: "+ HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
+  testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: "+ HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
   s=getSamplerForRequest(url,testPostRequest,contentEncoding);
-  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(HTTPConstants.POST,s.getMethod());
   assertEquals(contentEncoding,s.getContentEncoding());
   arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());
@@ -31,9 +31,9 @@
   param2Value="0+5 -\u00c5%C3%85";
   param2ValueEncoded=URLEncoder.encode(param2Value,contentEncoding);
   postBody="param1=" + param1Value + "&param2="+ param2ValueEncoded+ "\r\n";
-  testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: "+ HTTPSamplerBase.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
+  testPostRequest="POST " + url + " HTTP/1.1\r\n"+ "Content-type: "+ HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED+ "\r\n"+ "Content-length: "+ getBodyLength(postBody,contentEncoding)+ "\r\n"+ "\r\n"+ postBody;
   s=getSamplerForRequest(url,testPostRequest,contentEncoding);
-  assertEquals(HTTPSamplerBase.POST,s.getMethod());
+  assertEquals(HTTPConstants.POST,s.getMethod());
   assertEquals(contentEncoding,s.getContentEncoding());
   arguments=s.getArguments();
   assertEquals(2,arguments.getArgumentCount());

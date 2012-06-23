@@ -2,7 +2,7 @@
   byte[] bodySent=null;
   String headersSent=getHeadersSent(responseData);
   if (headersSent != null) {
-    String contentLengthValue=getSentRequestHeaderValue(headersSent,HTTPSamplerBase.HEADER_CONTENT_LENGTH);
+    String contentLengthValue=getSentRequestHeaderValue(headersSent,HTTPConstants.HEADER_CONTENT_LENGTH);
     int contentLength=-1;
     if (contentLengthValue != null) {
       contentLength=new Integer(contentLengthValue).intValue();

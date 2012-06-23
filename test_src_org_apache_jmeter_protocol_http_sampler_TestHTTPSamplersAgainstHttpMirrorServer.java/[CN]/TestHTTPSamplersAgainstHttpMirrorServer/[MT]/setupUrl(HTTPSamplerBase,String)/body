@@ -3,7 +3,7 @@
   String domain="localhost";
   String path="/test/somescript.jsp";
   sampler.setProtocol(protocol);
-  sampler.setMethod(HTTPSamplerBase.POST);
+  sampler.setMethod(HTTPConstants.POST);
   sampler.setPath(path);
   sampler.setDomain(domain);
   sampler.setPort(MIRROR_PORT);

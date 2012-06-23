@@ -1,7 +1,7 @@
 {
   HTTPSamplerBase sampler=new HTTPNullSampler();
   sampler.setProtocol("http");
-  sampler.setMethod(HTTPSamplerBase.GET);
+  sampler.setMethod(HTTPConstants.GET);
   sampler.setPath("/index.html?pear");
   sampler.setDomain("www.apache.org");
   assertEquals("http://www.apache.org/index.html?pear",sampler.getUrl().toString());

@@ -1,6 +1,6 @@
 {
   Perl5Matcher localMatcher=JMeterUtils.getMatcher();
-  String regularExpression="^" + HTTPSamplerBase.HEADER_CONTENT_TYPE + ": multipart/form-data; boundary=(.+)$";
+  String regularExpression="^" + HTTPConstants.HEADER_CONTENT_TYPE + ": multipart/form-data; boundary=(.+)$";
   Pattern pattern=JMeterUtils.getPattern(regularExpression,Perl5Compiler.READ_ONLY_MASK | Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.MULTILINE_MASK);
   if (localMatcher.contains(requestHeaders,pattern)) {
     MatchResult match=localMatcher.getMatch();

@@ -1,5 +1,5 @@
 {
-  sampler.setMethod(HTTPSamplerBase.POST);
+  sampler.setMethod(HTTPConstants.POST);
   String fileField="upload";
   String mimeType="text/plain";
   File file=temporaryFile;
