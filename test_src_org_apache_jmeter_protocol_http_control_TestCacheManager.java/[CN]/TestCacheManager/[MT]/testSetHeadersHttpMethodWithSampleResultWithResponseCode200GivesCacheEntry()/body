@@ -1,9 +1,9 @@
 {
   this.httpMethod.setURI(this.uri);
-  this.httpMethod.addRequestHeader(new Header(HTTPConstantsInterface.IF_MODIFIED_SINCE,this.currentTimeInGMT,false));
-  this.httpMethod.addRequestHeader(new Header(HTTPConstantsInterface.ETAG,EXPECTED_ETAG,false));
+  this.httpMethod.addRequestHeader(new Header(HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT,false));
+  this.httpMethod.addRequestHeader(new Header(HTTPConstants.ETAG,EXPECTED_ETAG,false));
   saveDetailsWithHttpMethodAndSampleResultWithResponseCode("200");
   setHeadersWithUrlAndHttpMethod();
-  checkRequestHeader(HTTPConstantsInterface.IF_NONE_MATCH,EXPECTED_ETAG);
-  checkRequestHeader(HTTPConstantsInterface.IF_MODIFIED_SINCE,this.currentTimeInGMT);
+  checkRequestHeader(HTTPConstants.IF_NONE_MATCH,EXPECTED_ETAG);
+  checkRequestHeader(HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT);
 }

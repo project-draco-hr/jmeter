@@ -1,15 +1,15 @@
 {
-  if (HTTPConstantsInterface.LAST_MODIFIED.equals(headerName)) {
+  if (HTTPConstants.LAST_MODIFIED.equals(headerName)) {
     return this.lastModifiedHeader;
   }
- else   if (HTTPConstantsInterface.ETAG.equals(headerName)) {
+ else   if (HTTPConstants.ETAG.equals(headerName)) {
     return this.etagHeader;
   }
- else   if (HTTPConstantsInterface.EXPIRES.equals(headerName)) {
-    return expires == null ? null : new Header(HTTPConstantsInterface.EXPIRES,expires);
+ else   if (HTTPConstants.EXPIRES.equals(headerName)) {
+    return expires == null ? null : new Header(HTTPConstants.EXPIRES,expires);
   }
- else   if (HTTPConstantsInterface.CACHE_CONTROL.equals(headerName)) {
-    return cacheControl == null ? null : new Header(HTTPConstantsInterface.CACHE_CONTROL,cacheControl);
+ else   if (HTTPConstants.CACHE_CONTROL.equals(headerName)) {
+    return cacheControl == null ? null : new Header(HTTPConstants.CACHE_CONTROL,cacheControl);
   }
   return null;
 }

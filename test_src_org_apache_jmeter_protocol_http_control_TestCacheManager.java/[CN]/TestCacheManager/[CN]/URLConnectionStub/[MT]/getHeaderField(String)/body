@@ -1,14 +1,14 @@
 {
-  if (HTTPConstantsInterface.LAST_MODIFIED.equals(name)) {
+  if (HTTPConstants.LAST_MODIFIED.equals(name)) {
     return currentTimeInGMT;
   }
- else   if (HTTPConstantsInterface.ETAG.equals(name)) {
+ else   if (HTTPConstants.ETAG.equals(name)) {
     return EXPECTED_ETAG;
   }
- else   if (HTTPConstantsInterface.EXPIRES.equals(name)) {
+ else   if (HTTPConstants.EXPIRES.equals(name)) {
     return expires;
   }
- else   if (HTTPConstantsInterface.CACHE_CONTROL.equals(name)) {
+ else   if (HTTPConstants.CACHE_CONTROL.equals(name)) {
     return cacheControl;
   }
   return super.getHeaderField(name);
