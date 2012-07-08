@@ -4,6 +4,5 @@
   if (scriptEngine == null) {
     throw new ScriptException("Cannot find engine named: " + lang);
   }
-  initScriptEngine(scriptEngine);
   return scriptEngine;
 }

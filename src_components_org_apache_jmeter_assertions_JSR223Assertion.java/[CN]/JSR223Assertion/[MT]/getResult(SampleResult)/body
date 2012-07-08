@@ -2,9 +2,10 @@
   AssertionResult result=new AssertionResult(getName());
   try {
     ScriptEngine scriptEngine=getScriptEngine();
-    scriptEngine.put("SampleResult",response);
-    scriptEngine.put("AssertionResult",result);
-    processFileOrScript(scriptEngine);
+    Bindings bindings=scriptEngine.createBindings();
+    bindings.put("SampleResult",response);
+    bindings.put("AssertionResult",result);
+    processFileOrScript(scriptEngine,bindings);
     result.setError(false);
   }
  catch (  IOException e) {

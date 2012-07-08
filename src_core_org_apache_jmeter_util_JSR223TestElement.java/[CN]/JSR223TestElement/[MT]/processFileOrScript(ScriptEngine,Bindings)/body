@@ -1,0 +1,38 @@
+{
+  if (bindings == null) {
+    bindings=scriptEngine.createBindings();
+  }
+  populateBindings(bindings);
+  File scriptFile=new File(getFilename());
+  boolean supportsCompilable=scriptEngine instanceof Compilable && !(scriptEngine.getClass().getName().equals("bsh.engine.BshScriptEngine"));
+  if (scriptFile.exists()) {
+    BufferedReader fileReader=null;
+    try {
+      if (supportsCompilable) {
+        String cacheKey=getScriptLanguage() + "#" + scriptFile.getAbsolutePath()+ "#"+ scriptFile.lastModified();
+        CompiledScript compiledScript=compiledScriptsCache.get(cacheKey);
+        if (compiledScript == null) {
+synchronized (compiledScriptsCache) {
+            compiledScript=compiledScriptsCache.get(cacheKey);
+            if (compiledScript == null) {
+              fileReader=new BufferedReader(new FileReader(scriptFile),(int)scriptFile.length());
+              compiledScript=((Compilable)scriptEngine).compile(fileReader);
+              compiledScriptsCache.put(cacheKey,compiledScript);
+            }
+          }
+        }
+        return compiledScript.eval(bindings);
+      }
+ else {
+        fileReader=new BufferedReader(new FileReader(scriptFile),(int)scriptFile.length());
+        return scriptEngine.eval(fileReader,bindings);
+      }
+    }
+  finally {
+      IOUtils.closeQuietly(fileReader);
+    }
+  }
+ else {
+    return scriptEngine.eval(getScript(),bindings);
+  }
+}

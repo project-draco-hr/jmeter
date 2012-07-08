@@ -12,8 +12,9 @@
   result.sampleStart();
   try {
     ScriptEngine scriptEngine=getScriptEngine();
-    scriptEngine.put("SampleResult",result);
-    Object ret=processFileOrScript(scriptEngine);
+    Bindings bindings=scriptEngine.createBindings();
+    bindings.put("SampleResult",result);
+    Object ret=processFileOrScript(scriptEngine,bindings);
     result.setSuccessful(true);
     result.setResponseCodeOK();
     result.setResponseMessageOK();
