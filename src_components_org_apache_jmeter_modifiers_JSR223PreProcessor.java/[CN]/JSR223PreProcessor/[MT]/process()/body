@@ -1,15 +1,12 @@
 {
   try {
-    ScriptEngineManager sem=getManager();
-    if (sem == null) {
-      return;
-    }
-    processFileOrScript(sem);
+    ScriptEngine scriptEngine=getScriptEngine();
+    processFileOrScript(scriptEngine);
   }
  catch (  ScriptException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script ",e);
   }
 catch (  IOException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script ",e);
   }
 }

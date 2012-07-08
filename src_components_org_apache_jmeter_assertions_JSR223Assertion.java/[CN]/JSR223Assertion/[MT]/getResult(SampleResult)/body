@@ -1,25 +1,19 @@
 {
   AssertionResult result=new AssertionResult(getName());
   try {
-    ScriptEngineManager mgr=getManager();
-    if (mgr == null) {
-      result.setFailure(true);
-      result.setError(true);
-      result.setFailureMessage("JSR223 Manager not found");
-      return result;
-    }
-    mgr.put("SampleResult",response);
-    mgr.put("AssertionResult",result);
-    processFileOrScript(mgr);
+    ScriptEngine scriptEngine=getScriptEngine();
+    scriptEngine.put("SampleResult",response);
+    scriptEngine.put("AssertionResult",result);
+    processFileOrScript(scriptEngine);
     result.setError(false);
   }
  catch (  IOException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script ",e);
     result.setError(true);
     result.setFailureMessage(e.toString());
   }
 catch (  ScriptException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script ",e);
     result.setError(true);
     result.setFailureMessage(e.toString());
   }

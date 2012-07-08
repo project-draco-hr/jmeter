@@ -1,17 +1,14 @@
 {
   try {
-    ScriptEngineManager sem=getManager();
-    if (sem == null) {
-      return;
-    }
-    sem.put("sampleEvent",event);
-    sem.put("sampleResult",event.getResult());
-    processFileOrScript(sem);
+    ScriptEngine scriptEngine=getScriptEngine();
+    scriptEngine.put("sampleEvent",event);
+    scriptEngine.put("sampleResult",event.getResult());
+    processFileOrScript(scriptEngine);
   }
  catch (  ScriptException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script ",e);
   }
 catch (  IOException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script ",e);
   }
 }

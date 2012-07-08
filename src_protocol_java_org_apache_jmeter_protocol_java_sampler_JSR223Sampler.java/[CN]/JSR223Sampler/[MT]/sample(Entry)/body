@@ -11,15 +11,9 @@
   result.setDataType(SampleResult.TEXT);
   result.sampleStart();
   try {
-    ScriptEngineManager mgr=getManager();
-    if (mgr == null) {
-      result.setSuccessful(false);
-      result.setResponseCode("500");
-      result.setResponseMessage("Could not instantiate ScriptManager");
-      return result;
-    }
-    mgr.put("SampleResult",result);
-    Object ret=processFileOrScript(mgr);
+    ScriptEngine scriptEngine=getScriptEngine();
+    scriptEngine.put("SampleResult",result);
+    Object ret=processFileOrScript(scriptEngine);
     result.setSuccessful(true);
     result.setResponseCodeOK();
     result.setResponseMessageOK();
@@ -28,13 +22,13 @@
     }
   }
  catch (  IOException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script " + e,e);
     result.setSuccessful(false);
     result.setResponseCode("500");
     result.setResponseMessage(e.toString());
   }
 catch (  ScriptException e) {
-    log.warn("Problem in JSR223 script " + e);
+    log.warn("Problem in JSR223 script " + e,e);
     result.setSuccessful(false);
     result.setResponseCode("500");
     result.setResponseMessage(e.toString());

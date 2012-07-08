@@ -1,0 +1,9 @@
+{
+  final String lang=getScriptLanguage();
+  ScriptEngine scriptEngine=getInstance().getEngineByName(lang);
+  if (scriptEngine == null) {
+    throw new ScriptException("Cannot find engine named: " + lang);
+  }
+  initScriptEngine(scriptEngine);
+  return scriptEngine;
+}
