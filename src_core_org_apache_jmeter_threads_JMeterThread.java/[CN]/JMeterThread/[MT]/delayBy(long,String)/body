@@ -1,0 +1,23 @@
+{
+  if (delay > 0) {
+    long start=System.currentTimeMillis();
+    long end=start + delay;
+    long now=0;
+    long pause=RAMPUP_GRANULARITY;
+    while (running && (now=System.currentTimeMillis()) < end) {
+      long togo=end - now;
+      if (togo < pause) {
+        pause=togo;
+      }
+      try {
+        Thread.sleep(pause);
+      }
+ catch (      InterruptedException e) {
+        if (running) {
+          log.warn(type + " delay for " + threadName+ " was interrupted. Waited "+ (now - start)+ " milli-seconds out of "+ delay);
+        }
+        break;
+      }
+    }
+  }
+}
