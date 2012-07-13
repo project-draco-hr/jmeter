@@ -3,7 +3,7 @@
   engine=null;
   if (now) {
     tellThreadsToStop();
-    pause(10 * allThreads.size());
+    pause(10 * countStillActiveThreads());
     boolean stopped=verifyThreadsStopped();
     if (!stopped) {
       if (JMeter.isNonGUI()) {

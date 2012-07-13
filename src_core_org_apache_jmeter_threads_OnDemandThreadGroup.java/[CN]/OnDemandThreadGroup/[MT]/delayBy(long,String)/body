@@ -1,0 +1,20 @@
+{
+  if (delay > 0) {
+    long start=System.currentTimeMillis();
+    long end=start + delay;
+    long now=0;
+    long pause=RAMPUP_GRANULARITY;
+    while (!stopped.get() && (now=System.currentTimeMillis()) < end) {
+      long togo=end - now;
+      if (togo < pause) {
+        pause=togo;
+      }
+      try {
+        Thread.sleep(pause);
+      }
+ catch (      InterruptedException e) {
+        break;
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  int reminingThreads=0;
+  for (  AbstractThreadGroup threadGroup : groups) {
+    reminingThreads+=threadGroup.numberOfActiveThreads();
+  }
+  return reminingThreads;
+}

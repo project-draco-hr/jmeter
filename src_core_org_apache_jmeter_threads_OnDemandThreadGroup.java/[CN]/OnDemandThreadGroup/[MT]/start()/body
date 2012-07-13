@@ -1,0 +1,11 @@
+{
+  stopped.set(false);
+  this.threadStarter=new Thread(new ThreadStarter(),getName() + "-ThreadStarter");
+  threadStarter.start();
+  try {
+    threadStarter.join();
+  }
+ catch (  InterruptedException e) {
+    return;
+  }
+}

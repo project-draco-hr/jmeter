@@ -2,19 +2,9 @@
   if (engine == null) {
     return false;
   }
-  for (  Entry<JMeterThread,Thread> entry : engine.allThreads.entrySet()) {
-    JMeterThread thrd=entry.getKey();
-    if (thrd.getThreadName().equals(threadName)) {
-      thrd.stop();
-      thrd.interrupt();
-      if (now) {
-        Thread t=entry.getValue();
-        if (t != null) {
-          t.interrupt();
-        }
-      }
-      return true;
-    }
+  boolean wasStopped=false;
+  for (  AbstractThreadGroup threadGroup : engine.groups) {
+    wasStopped=wasStopped || threadGroup.stopThread(threadName,now);
   }
-  return false;
+  return wasStopped;
 }

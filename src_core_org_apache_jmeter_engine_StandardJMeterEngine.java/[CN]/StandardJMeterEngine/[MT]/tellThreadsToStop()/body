@@ -1,11 +1,5 @@
 {
-  for (  Entry<JMeterThread,Thread> entry : allThreads.entrySet()) {
-    JMeterThread item=entry.getKey();
-    item.stop();
-    item.interrupt();
-    Thread t=entry.getValue();
-    if (t != null) {
-      t.interrupt();
-    }
+  for (  AbstractThreadGroup threadGroup : groups) {
+    threadGroup.tellThreadsToStop();
   }
 }

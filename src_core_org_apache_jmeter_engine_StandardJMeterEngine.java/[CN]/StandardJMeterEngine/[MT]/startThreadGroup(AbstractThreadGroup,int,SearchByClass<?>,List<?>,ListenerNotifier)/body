@@ -24,6 +24,7 @@
   }
   ListedHashTree threadGroupTree=(ListedHashTree)searcher.getSubTree(group);
   threadGroupTree.add(group,testLevelElements);
+  JMeterThread[] jmThreads=new JMeterThread[numThreads];
   for (int i=0; running && i < numThreads; i++) {
     final JMeterThread jmeterThread=new JMeterThread(cloneTree(threadGroupTree),this,notifier);
     jmeterThread.setThreadNum(i);
@@ -37,10 +38,10 @@
     jmeterThread.setOnErrorStopThread(onErrorStopThread);
     jmeterThread.setOnErrorStartNextLoop(onErrorStartNextLoop);
     group.scheduleThread(jmeterThread);
-    Thread newThread=new Thread(jmeterThread);
-    newThread.setName(threadName);
-    allThreads.put(jmeterThread,newThread);
-    newThread.start();
+    jmThreads[i]=jmeterThread;
   }
+  group.setJMeterThreads(jmThreads);
+  groups.add(group);
+  group.start();
   return groupName;
 }

@@ -1,13 +1,5 @@
 {
-  for (  Thread t : allThreads.values()) {
-    if (t != null) {
-      while (t.isAlive()) {
-        try {
-          t.join(WAIT_TO_DIE);
-        }
- catch (        InterruptedException e) {
-        }
-      }
-    }
+  for (  AbstractThreadGroup threadGroup : groups) {
+    threadGroup.waitThreadsStopped();
   }
 }

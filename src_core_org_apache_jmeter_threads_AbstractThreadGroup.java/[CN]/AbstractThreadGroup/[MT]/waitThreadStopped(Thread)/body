@@ -1,0 +1,11 @@
+{
+  if (thread != null) {
+    while (thread.isAlive()) {
+      try {
+        thread.join(WAIT_TO_DIE);
+      }
+ catch (      InterruptedException e) {
+      }
+    }
+  }
+}

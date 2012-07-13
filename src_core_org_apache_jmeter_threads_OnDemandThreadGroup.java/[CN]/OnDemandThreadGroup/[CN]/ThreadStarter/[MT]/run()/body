@@ -1,0 +1,34 @@
+{
+  final JMeterThread[] jMeterThreads=getJMeterThreads();
+  int rampUp=getRampUp();
+  float perThreadDelay=((float)(rampUp * 1000) / (float)getNumThreads());
+  if (getScheduler()) {
+    long now=System.currentTimeMillis();
+    if (getDelay() > 0) {
+      delayBy(getDelay() * 1000,"start");
+    }
+ else {
+      long start=getStartTime();
+      if (start < now) {
+        start=now;
+      }
+ else {
+        delayBy(start - now,"start");
+      }
+    }
+  }
+  for (int i=0; i < jMeterThreads.length; i++) {
+    try {
+      if (!stopped.get()) {
+        Thread.sleep(Math.round(perThreadDelay));
+        Thread newThread=new Thread(jMeterThreads[i]);
+        newThread.setName(jMeterThreads[i].getThreadName());
+        registerStartedThread(jMeterThreads[i],newThread);
+        newThread.start();
+      }
+    }
+ catch (    InterruptedException e) {
+      break;
+    }
+  }
+}

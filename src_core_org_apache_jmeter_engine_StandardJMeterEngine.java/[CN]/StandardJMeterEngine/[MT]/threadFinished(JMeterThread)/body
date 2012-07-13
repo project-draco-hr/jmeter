@@ -1,4 +1,6 @@
 {
   log.info("Ending thread " + thread.getThreadName());
-  allThreads.remove(thread);
+  for (  AbstractThreadGroup threadGroup : groups) {
+    threadGroup.threadFinished(thread);
+  }
 }

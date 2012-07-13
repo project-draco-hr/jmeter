@@ -1,5 +1,6 @@
 {
-  long delay=System.currentTimeMillis() - endTime;
+  long now=System.currentTimeMillis();
+  long delay=now - endTime;
   if ((delay >= 0)) {
     running=false;
   }

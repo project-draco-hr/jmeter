@@ -1,5 +1,5 @@
 {
-  for (  JMeterThread item : allThreads.keySet()) {
-    item.stop();
+  for (  AbstractThreadGroup threadGroup : groups) {
+    threadGroup.stop();
   }
 }

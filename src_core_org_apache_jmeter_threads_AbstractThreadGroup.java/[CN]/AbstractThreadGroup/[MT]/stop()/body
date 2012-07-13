@@ -1,0 +1,5 @@
+{
+  for (  JMeterThread item : allThreads.keySet()) {
+    item.stop();
+  }
+}
