@@ -4,8 +4,11 @@
   assertNull("Should not find entry",getThreadCacheEntry(LOCAL_HOST));
   assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
   ((HttpMethodStub)httpMethod).expires=makeDate(new Date(System.currentTimeMillis()));
-  ((HttpMethodStub)httpMethod).cacheControl="public, max-age=10, no-transform";
+  ((HttpMethodStub)httpMethod).cacheControl="public, max-age=5, no-transform";
   this.cacheManager.saveDetails(httpMethod,sampleResultOK);
   assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
   assertTrue("Should find valid entry",this.cacheManager.inCache(url));
+  Thread.sleep(5001);
+  assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
+  assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
 }
