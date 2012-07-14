@@ -1,6 +1,6 @@
 {
   if (log.isDebugEnabled()) {
-    log.debug("SET(both) " + url + " "+ cacheControl+ " "+ lastModified+ " "+ " "+ expires+ " "+ etag);
+    log.debug("setCache(" + lastModified + ","+ cacheControl+ ","+ expires+ ","+ etag+ ","+ url+ ","+ date+ ")");
   }
   Date expiresDate=null;
   if (useExpires) {
