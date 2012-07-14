@@ -1,4 +1,5 @@
 {
   this.lastModifiedHeader=new Header(HTTPConstants.LAST_MODIFIED,currentTimeInGMT);
+  this.dateHeader=new Header(HTTPConstants.DATE,currentTimeInGMT);
   this.etagHeader=new Header(HTTPConstants.ETAG,EXPECTED_ETAG);
 }

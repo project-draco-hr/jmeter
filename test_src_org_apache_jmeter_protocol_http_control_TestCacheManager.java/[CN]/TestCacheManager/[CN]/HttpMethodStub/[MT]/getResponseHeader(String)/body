@@ -11,5 +11,8 @@
  else   if (HTTPConstants.CACHE_CONTROL.equals(headerName)) {
     return cacheControl == null ? null : new Header(HTTPConstants.CACHE_CONTROL,cacheControl);
   }
+  if (HTTPConstants.DATE.equals(headerName)) {
+    return this.dateHeader;
+  }
   return null;
 }

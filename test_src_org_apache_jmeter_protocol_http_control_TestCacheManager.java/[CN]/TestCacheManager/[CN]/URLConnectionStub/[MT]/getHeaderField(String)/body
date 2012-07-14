@@ -11,5 +11,8 @@
  else   if (HTTPConstants.CACHE_CONTROL.equals(name)) {
     return cacheControl;
   }
+ else   if (HTTPConstants.DATE.equals(name)) {
+    return currentTimeInGMT;
+  }
   return super.getHeaderField(name);
 }
