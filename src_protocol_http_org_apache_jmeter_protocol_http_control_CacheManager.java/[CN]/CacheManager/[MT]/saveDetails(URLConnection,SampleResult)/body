@@ -5,6 +5,7 @@
     String etag=conn.getHeaderField(HTTPConstants.ETAG);
     String url=conn.getURL().toString();
     String cacheControl=conn.getHeaderField(HTTPConstants.CACHE_CONTROL);
-    setCache(lastModified,cacheControl,expires,etag,url);
+    String date=conn.getHeaderField(HTTPConstants.DATE);
+    setCache(lastModified,cacheControl,expires,etag,url,date);
   }
 }
