@@ -5,13 +5,7 @@
   Date expiresDate=null;
   if (useExpires) {
     final String MAX_AGE="max-age=";
-    if (cacheControl != null) {
-      if (cacheControl.contains(MAX_AGE) && !cacheControl.contains("no-cache")) {
-        long maxAgeInSecs=Long.parseLong(cacheControl.substring(cacheControl.indexOf(MAX_AGE) + MAX_AGE.length()).split("[, ]")[0]);
-        expiresDate=new Date(System.currentTimeMillis() + maxAgeInSecs * 1000);
-      }
-    }
- else     if (expires != null) {
+    if (expires != null) {
       try {
         expiresDate=DateUtil.parseDate(expires);
       }
@@ -20,6 +14,15 @@
           log.debug("Unable to parse Expires: '" + expires + "' "+ e);
         }
         expiresDate=new Date(0L);
+      }
+    }
+    if (cacheControl != null && !cacheControl.contains("no-cache")) {
+      if (cacheControl.contains(MAX_AGE)) {
+        long maxAgeInSecs=Long.parseLong(cacheControl.substring(cacheControl.indexOf(MAX_AGE) + MAX_AGE.length()).split("[, ]")[0]);
+        expiresDate=new Date(System.currentTimeMillis() + maxAgeInSecs * 1000);
+      }
+ else       if (expires == null) {
+        expiresDate=new Date(System.currentTimeMillis() + TWO_WEEKS_MS);
       }
     }
   }
