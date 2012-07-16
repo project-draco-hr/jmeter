@@ -17,11 +17,12 @@
     java.io.File infile=new java.io.File(file);
     java.io.FileInputStream fis=null;
     java.io.InputStreamReader isr=null;
+    java.io.BufferedReader br=null;
     StringBuilder buf=new StringBuilder();
     try {
       fis=new java.io.FileInputStream(infile);
       isr=new java.io.InputStreamReader(fis);
-      java.io.BufferedReader br=new java.io.BufferedReader(isr);
+      br=new java.io.BufferedReader(isr);
       String line=null;
       while ((line=br.readLine()) != null) {
         buf.append(line);
@@ -29,6 +30,11 @@
     }
  catch (    Exception e) {
       e.printStackTrace();
+    }
+ finally {
+      IOUtils.closeQuietly(br);
+      IOUtils.closeQuietly(isr);
+      IOUtils.closeQuietly(fis);
     }
     long start=0;
     long end=0;

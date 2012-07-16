@@ -58,6 +58,7 @@ catch (  Exception e) {
   byte[] responseData=readResponse(res,in,contentLength);
   if (instream != null) {
     res.setBodySize(((CountingInputStream)instream).getCount());
+    instream.close();
   }
   return responseData;
 }
