@@ -1,52 +1,57 @@
 {
-  byte[] readBuffer=new byte[8192];
-  int bufferSize=32;
-  MessageDigest md=null;
-  boolean asMD5=useMD5();
-  if (asMD5) {
-    try {
-      md=MessageDigest.getInstance("MD5");
-    }
- catch (    NoSuchAlgorithmException e) {
-      log.error("Should not happen - could not find MD5 digest",e);
-      asMD5=false;
-    }
-  }
- else {
-    if (length <= 0) {
-      bufferSize=4 * 1024;
+  try {
+    byte[] readBuffer=new byte[8192];
+    int bufferSize=32;
+    MessageDigest md=null;
+    boolean asMD5=useMD5();
+    if (asMD5) {
+      try {
+        md=MessageDigest.getInstance("MD5");
+      }
+ catch (      NoSuchAlgorithmException e) {
+        log.error("Should not happen - could not find MD5 digest",e);
+        asMD5=false;
+      }
     }
  else {
-      bufferSize=length;
+      if (length <= 0) {
+        bufferSize=4 * 1024;
+      }
+ else {
+        bufferSize=length;
+      }
     }
-  }
-  ByteArrayOutputStream w=new ByteArrayOutputStream(bufferSize);
-  int bytesRead=0;
-  int totalBytes=0;
-  boolean first=true;
-  while ((bytesRead=in.read(readBuffer)) > -1) {
+    ByteArrayOutputStream w=new ByteArrayOutputStream(bufferSize);
+    int bytesRead=0;
+    int totalBytes=0;
+    boolean first=true;
+    while ((bytesRead=in.read(readBuffer)) > -1) {
+      if (first) {
+        sampleResult.latencyEnd();
+        first=false;
+      }
+      if (asMD5 && md != null) {
+        md.update(readBuffer,0,bytesRead);
+        totalBytes+=bytesRead;
+      }
+ else {
+        w.write(readBuffer,0,bytesRead);
+      }
+    }
     if (first) {
       sampleResult.latencyEnd();
-      first=false;
     }
+    in.close();
+    w.flush();
     if (asMD5 && md != null) {
-      md.update(readBuffer,0,bytesRead);
-      totalBytes+=bytesRead;
+      byte[] md5Result=md.digest();
+      w.write(JOrphanUtils.baToHexBytes(md5Result));
+      sampleResult.setBytes(totalBytes);
     }
- else {
-      w.write(readBuffer,0,bytesRead);
-    }
+    w.close();
+    return w.toByteArray();
   }
-  if (first) {
-    sampleResult.latencyEnd();
+  finally {
+    IOUtils.closeQuietly(in);
   }
-  in.close();
-  w.flush();
-  if (asMD5 && md != null) {
-    byte[] md5Result=md.digest();
-    w.write(JOrphanUtils.baToHexBytes(md5Result));
-    sampleResult.setBytes(totalBytes);
-  }
-  w.close();
-  return w.toByteArray();
 }
