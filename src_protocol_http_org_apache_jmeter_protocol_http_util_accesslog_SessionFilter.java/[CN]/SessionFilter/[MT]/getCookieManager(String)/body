@@ -13,6 +13,7 @@ synchronized (managersInUse) {
     cm=cookieManagers.get(ipAddr);
     if (cm == null) {
       cm=new CookieManager();
+      cm.testStarted();
       cookieManagers.put(ipAddr,cm);
     }
     while (managersInUse.contains(cm)) {
