@@ -13,13 +13,7 @@
     }
     for (int idz=0; idz < opnodes.getLength(); idz++) {
       Element child=(Element)opnodes.item(idz);
-      NodeList soapnode=child.getElementsByTagName(soapOp);
-      if (soapnode.getLength() > 0) {
-        ops.add(child);
-      }
- else {
-        ops.add(child);
-      }
+      ops.add(child);
     }
   }
   return ops.toArray();
