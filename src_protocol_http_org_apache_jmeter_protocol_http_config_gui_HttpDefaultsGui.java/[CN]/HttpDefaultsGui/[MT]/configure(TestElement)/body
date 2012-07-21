@@ -4,4 +4,5 @@
   imageParser.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.IMAGE_PARSER));
   concurrentDwn.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.CONCURRENT_DWN));
   concurrentPool.setText(((AbstractTestElement)el).getPropertyAsString(HTTPSamplerBase.CONCURRENT_POOL));
+  embeddedRE.setText(((AbstractTestElement)el).getPropertyAsString(HTTPSamplerBase.EMBEDDED_URL_RE,""));
 }

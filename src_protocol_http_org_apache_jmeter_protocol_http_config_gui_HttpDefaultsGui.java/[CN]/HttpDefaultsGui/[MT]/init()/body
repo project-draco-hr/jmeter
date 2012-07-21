@@ -4,7 +4,7 @@
   add(makeTitlePanel(),BorderLayout.NORTH);
   urlConfig=new UrlConfigGui(false,true,false);
   add(urlConfig,BorderLayout.CENTER);
-  final JPanel optionalTasksPanel=new HorizontalPanel();
+  final JPanel optionalTasksPanel=new VerticalPanel();
   optionalTasksPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
   final JPanel checkBoxPanel=new HorizontalPanel();
   imageParser=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
@@ -37,5 +37,7 @@
   checkBoxPanel.add(concurrentDwn);
   checkBoxPanel.add(concurrentPool);
   optionalTasksPanel.add(checkBoxPanel);
+  embeddedRE=new JLabeledTextField(JMeterUtils.getResString("web_testing_embedded_url_pattern"),30);
+  optionalTasksPanel.add(embeddedRE);
   add(optionalTasksPanel,BorderLayout.SOUTH);
 }
