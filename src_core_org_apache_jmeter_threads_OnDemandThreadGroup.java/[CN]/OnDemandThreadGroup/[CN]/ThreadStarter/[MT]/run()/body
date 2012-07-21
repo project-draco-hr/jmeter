@@ -9,10 +9,7 @@
     }
  else {
       long start=getStartTime();
-      if (start < now) {
-        start=now;
-      }
- else {
+      if (start >= now) {
         delayBy(start - now,"start");
       }
     }
