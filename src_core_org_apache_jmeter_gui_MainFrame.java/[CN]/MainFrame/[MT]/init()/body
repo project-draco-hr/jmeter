@@ -35,4 +35,5 @@
   addWindowListener(new WindowHappenings());
   setTitle(DEFAULT_TITLE);
   setIconImage(JMeterUtils.getImage("jmeter.jpg").getImage());
+  setWindowTitle();
 }

@@ -1,0 +1,16 @@
+{
+  Class<?> xtoolkit=Toolkit.getDefaultToolkit().getClass();
+  if (xtoolkit.getName().equals("sun.awt.X11.XToolkit")) {
+    try {
+      final Field awtAppClassName=xtoolkit.getDeclaredField("awtAppClassName");
+      awtAppClassName.setAccessible(true);
+      awtAppClassName.set(null,DEFAULT_APP_NAME);
+    }
+ catch (    NoSuchFieldException nsfe) {
+      log.warn("Error awt title: " + nsfe);
+    }
+catch (    IllegalAccessException iae) {
+      log.warn("Error awt title: " + iae);
+    }
+  }
+}
