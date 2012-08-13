@@ -1,0 +1,20 @@
+{
+  if (getOnDemand()) {
+    stopped.set(true);
+    try {
+      threadStarter.interrupt();
+    }
+ catch (    Exception e) {
+      log.warn("Exception occured interrupting ThreadStarter");
+    }
+  }
+  for (  Entry<JMeterThread,Thread> entry : allThreads.entrySet()) {
+    JMeterThread item=entry.getKey();
+    item.stop();
+    item.interrupt();
+    Thread t=entry.getValue();
+    if (t != null) {
+      t.interrupt();
+    }
+  }
+}

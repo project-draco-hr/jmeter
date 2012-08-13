@@ -1,0 +1,17 @@
+{
+  for (  Entry<JMeterThread,Thread> entry : allThreads.entrySet()) {
+    JMeterThread thrd=entry.getKey();
+    if (thrd.getThreadName().equals(threadName)) {
+      thrd.stop();
+      thrd.interrupt();
+      if (now) {
+        Thread t=entry.getValue();
+        if (t != null) {
+          t.interrupt();
+        }
+      }
+      return true;
+    }
+  }
+  return false;
+}

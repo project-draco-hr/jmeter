@@ -3,6 +3,7 @@
   threadInput.setText(tg.getPropertyAsString(AbstractThreadGroup.NUM_THREADS));
   rampInput.setText(tg.getPropertyAsString(ThreadGroup.RAMP_TIME));
   loopPanel.configure((TestElement)tg.getProperty(AbstractThreadGroup.MAIN_CONTROLLER).getObjectValue());
+  onDemand.setSelected(tg.getPropertyAsBoolean(ThreadGroup.ONDEMAND));
   scheduler.setSelected(tg.getPropertyAsBoolean(ThreadGroup.SCHEDULER));
   if (scheduler.isSelected()) {
     mainPanel.setVisible(true);

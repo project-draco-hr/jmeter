@@ -1,8 +1,0 @@
-{
-  for (int i=0; i < jmThreads.length; i++) {
-    Thread newThread=new Thread(jmThreads[i]);
-    newThread.setName(jmThreads[i].getThreadName());
-    registerStartedThread(jmThreads[i],newThread);
-    newThread.start();
-  }
-}

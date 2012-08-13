@@ -1,0 +1,17 @@
+{
+  boolean stopped=true;
+  if (thread != null) {
+    if (thread.isAlive()) {
+      try {
+        thread.join(WAIT_TO_DIE);
+      }
+ catch (      InterruptedException e) {
+      }
+      if (thread.isAlive()) {
+        stopped=false;
+        log.warn("Thread won't exit: " + thread.getName());
+      }
+    }
+  }
+  return stopped;
+}

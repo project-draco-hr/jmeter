@@ -18,6 +18,8 @@
   rampPanel.add(rampInput,BorderLayout.CENTER);
   threadPropsPanel.add(rampPanel);
   threadPropsPanel.add(createControllerPanel());
+  onDemand=new JCheckBox(JMeterUtils.getResString("ondemand"));
+  threadPropsPanel.add(onDemand);
   scheduler=new JCheckBox(JMeterUtils.getResString("scheduler"));
   scheduler.addItemListener(this);
   threadPropsPanel.add(scheduler);

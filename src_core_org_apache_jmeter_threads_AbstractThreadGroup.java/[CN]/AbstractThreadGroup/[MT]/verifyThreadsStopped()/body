@@ -1,7 +1,0 @@
-{
-  boolean stoppedAll=true;
-  for (  Thread t : allThreads.values()) {
-    stoppedAll=stoppedAll && verifyThreadStopped(t);
-  }
-  return stoppedAll;
-}

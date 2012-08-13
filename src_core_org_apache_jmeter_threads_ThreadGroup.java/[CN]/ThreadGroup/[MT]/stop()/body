@@ -1,0 +1,14 @@
+{
+  if (getOnDemand()) {
+    stopped.set(true);
+    try {
+      threadStarter.interrupt();
+    }
+ catch (    Exception e) {
+      log.warn("Exception occured interrupting ThreadStarter");
+    }
+  }
+  for (  JMeterThread item : allThreads.keySet()) {
+    item.stop();
+  }
+}

@@ -1,0 +1,10 @@
+{
+  boolean stoppedAll=true;
+  if (getOnDemand()) {
+    stoppedAll&=verifyThreadStopped(threadStarter);
+  }
+  for (  Thread t : allThreads.values()) {
+    stoppedAll=stoppedAll && verifyThreadStopped(t);
+  }
+  return stoppedAll;
+}

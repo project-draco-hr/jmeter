@@ -1,0 +1,8 @@
+{
+  if (getOnDemand()) {
+    waitThreadStopped(threadStarter);
+  }
+  for (  Thread t : allThreads.values()) {
+    waitThreadStopped(t);
+  }
+}
