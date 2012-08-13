@@ -2,7 +2,7 @@
   running=false;
   engine=null;
   if (now) {
-    tellThreadsToStop();
+    tellThreadGroupsToStop();
     pause(10 * countStillActiveThreads());
     boolean stopped=verifyThreadsStopped();
     if (!stopped) {
@@ -23,6 +23,6 @@
     }
   }
  else {
-    stopAllThreads();
+    stopAllThreadGroups();
   }
 }
