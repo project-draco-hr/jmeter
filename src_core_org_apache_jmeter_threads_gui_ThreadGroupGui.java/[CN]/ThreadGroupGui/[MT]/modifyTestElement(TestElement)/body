@@ -7,7 +7,9 @@
   tg.setProperty(ThreadGroup.RAMP_TIME,rampInput.getText());
   tg.setProperty(new LongProperty(ThreadGroup.START_TIME,start.getDate().getTime()));
   tg.setProperty(new LongProperty(ThreadGroup.END_TIME,end.getDate().getTime()));
-  tg.setProperty(new BooleanProperty(ThreadGroup.ONDEMAND,onDemand.isSelected()));
+  if (showDelayedStart) {
+    tg.setProperty(ThreadGroup.DELAYED_START,delayedStart.isSelected(),false);
+  }
   tg.setProperty(new BooleanProperty(ThreadGroup.SCHEDULER,scheduler.isSelected()));
   tg.setProperty(ThreadGroup.DURATION,duration.getText());
   tg.setProperty(ThreadGroup.DELAY,delay.getText());

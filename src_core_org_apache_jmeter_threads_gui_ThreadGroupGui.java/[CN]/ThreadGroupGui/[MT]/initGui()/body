@@ -2,7 +2,9 @@
   threadInput.setText("1");
   rampInput.setText("1");
   loopPanel.clearGui();
-  onDemand.setSelected(false);
+  if (showDelayedStart) {
+    delayedStart.setSelected(false);
+  }
   scheduler.setSelected(false);
   Date today=new Date();
   end.setDate(today);
