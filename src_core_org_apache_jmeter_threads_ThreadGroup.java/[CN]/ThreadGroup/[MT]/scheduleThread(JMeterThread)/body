@@ -1,5 +1,6 @@
 {
-  if (getOnDemand()) {
+  if (isDelayedStartup()) {
+    delayedStartup=true;
     thread.setInitialDelay(0);
   }
  else {

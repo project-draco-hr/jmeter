@@ -1,6 +1,6 @@
 {
   boolean stoppedAll=true;
-  if (getOnDemand()) {
+  if (delayedStartup) {
     stoppedAll&=verifyThreadStopped(threadStarter);
   }
   for (  Thread t : allThreads.values()) {

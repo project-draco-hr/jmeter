@@ -1,5 +1,5 @@
 {
-  if (getOnDemand()) {
+  if (delayedStartup) {
     stopped.set(true);
     try {
       threadStarter.interrupt();
