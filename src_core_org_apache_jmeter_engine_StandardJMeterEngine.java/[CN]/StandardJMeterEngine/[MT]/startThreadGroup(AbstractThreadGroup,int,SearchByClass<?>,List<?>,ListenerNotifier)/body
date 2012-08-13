@@ -26,7 +26,7 @@
   threadGroupTree.add(group,testLevelElements);
   JMeterThread[] jmThreads=new JMeterThread[numThreads];
   for (int i=0; running && i < numThreads; i++) {
-    final JMeterThread jmeterThread=new JMeterThread(cloneTree(threadGroupTree),this,notifier);
+    final JMeterThread jmeterThread=new JMeterThread(cloneTree(threadGroupTree),group,notifier);
     jmeterThread.setThreadNum(i);
     jmeterThread.setThreadGroup(group);
     jmeterThread.setInitialContext(JMeterContextService.getContext());

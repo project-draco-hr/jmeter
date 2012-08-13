@@ -1,6 +1,0 @@
-{
-  log.info("Ending thread " + thread.getThreadName());
-  for (  AbstractThreadGroup threadGroup : groups) {
-    threadGroup.threadFinished(thread);
-  }
-}
