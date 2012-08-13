@@ -47,7 +47,7 @@
       String groupName=startThreadGroup(group,groupCount,setupSearcher,testLevelElements,notifier);
       if (serialized && setupIter.hasNext()) {
         log.info("Waiting for setup thread group: " + groupName + " to finish before starting next setup group");
-        pauseWhileRemainingThreads();
+        pauseWhileRemainingThreads(group);
       }
     }
     log.info("Waiting for all setup thread groups To Exit");
@@ -67,7 +67,7 @@
     String groupName=startThreadGroup(group,groupCount,searcher,testLevelElements,notifier);
     if (serialized && iter.hasNext()) {
       log.info("Waiting for thread group: " + groupName + " to finish before starting next group");
-      pauseWhileRemainingThreads();
+      pauseWhileRemainingThreads(group);
     }
   }
   if (groupCount == 0) {
@@ -94,7 +94,7 @@
       String groupName=startThreadGroup(group,groupCount,postSearcher,testLevelElements,notifier);
       if (serialized && postIter.hasNext()) {
         log.info("Waiting for post thread group: " + groupName + " to finish before starting next post group");
-        pauseWhileRemainingThreads();
+        pauseWhileRemainingThreads(group);
       }
     }
     waitThreadsStopped();
