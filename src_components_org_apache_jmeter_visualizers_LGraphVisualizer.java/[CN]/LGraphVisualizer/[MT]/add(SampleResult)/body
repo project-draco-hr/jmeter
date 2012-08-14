@@ -1,5 +1,10 @@
 {
   final String sampleLabel=sampleResult.getSampleLabel();
+synchronized (lockInterval) {
+    SampleResult srTemp=new SampleResult(sampleResult.getStartTime(),sampleResult.getTime());
+    srTemp.setSampleLabel(sampleLabel);
+    internalList.add(srTemp);
+  }
   Matcher matcher=null;
   if (samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {
     Pattern pattern=createPattern(samplerMatchLabel.getText());

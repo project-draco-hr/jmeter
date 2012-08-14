@@ -40,17 +40,24 @@
     }
   }
  else   if (eventSource == reloadButton || eventSource == intervalButton) {
-    if (getFile() == null || getFile().length() <= 0) {
-      String msgErr=JMeterUtils.getResString("graph_line_only_with_read_results_file");
-      JOptionPane.showMessageDialog(null,msgErr,msgErr,JOptionPane.WARNING_MESSAGE);
+    if (eventSource == intervalButton) {
+      intervalValue=Integer.parseInt(intervalField.getText());
     }
- else {
-      if (eventSource == intervalButton) {
-        intervalValue=Integer.parseInt(intervalField.getText());
-      }
+    if (getFile() != null && getFile().length() > 0) {
       clearData();
       FilePanel filePanel=(FilePanel)getFilePanel();
       filePanel.actionPerformed(event);
+    }
+ else {
+      if (internalList.size() >= 2) {
+synchronized (lockInterval) {
+          @SuppressWarnings("unchecked") ArrayList<SampleResult> tempList=(ArrayList<SampleResult>)internalList.clone();
+          this.clearData();
+          for (          SampleResult sr : tempList) {
+            this.add(sr);
+          }
+        }
+      }
     }
   }
 }
