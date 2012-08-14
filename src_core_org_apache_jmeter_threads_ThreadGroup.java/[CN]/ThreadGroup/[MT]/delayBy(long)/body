@@ -9,12 +9,7 @@
       if (togo < pause) {
         pause=togo;
       }
-      try {
-        Thread.sleep(pause);
-      }
- catch (      InterruptedException e) {
-        break;
-      }
+      pause(pause);
     }
   }
 }
