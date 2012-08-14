@@ -4,8 +4,8 @@
   if (seriesNames.size() <= 0) {
     msgErr=JMeterUtils.getResString("aggregate_graph_no_values_to_graph");
   }
- else   if (durationTest <= 1) {
-    msgErr=JMeterUtils.getResString("graph_line_no_duration");
+ else   if (durationTest < 1) {
+    msgErr=JMeterUtils.getResString("graph_line_not_enough_data");
   }
   if (msgErr == null) {
     makeGraph();

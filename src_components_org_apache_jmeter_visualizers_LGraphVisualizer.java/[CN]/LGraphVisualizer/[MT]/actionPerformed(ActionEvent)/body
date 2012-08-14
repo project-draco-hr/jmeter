@@ -40,10 +40,14 @@
     }
   }
  else   if (eventSource == reloadButton || eventSource == intervalButton) {
-    if (eventSource == intervalButton) {
-      intervalValue=Integer.parseInt(intervalField.getText());
+    if (getFile() == null || getFile().length() <= 0) {
+      String msgErr=JMeterUtils.getResString("graph_line_only_with_read_results_file");
+      JOptionPane.showMessageDialog(null,msgErr,msgErr,JOptionPane.WARNING_MESSAGE);
     }
-    if (getFile() != null && getFile().length() > 0) {
+ else {
+      if (eventSource == intervalButton) {
+        intervalValue=Integer.parseInt(intervalField.getText());
+      }
       clearData();
       FilePanel filePanel=(FilePanel)getFilePanel();
       filePanel.actionPerformed(event);

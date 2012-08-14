@@ -10,30 +10,32 @@
     final int startTimeInterval=(int)startTimeMS / intervalValue;
     JMeterUtils.runSafe(new Runnable(){
       public void run(){
-        if (startTimeInterval < minStartTime) {
-          minStartTime=startTimeInterval;
-        }
- else         if (startTimeInterval > maxStartTime) {
-          maxStartTime=startTimeInterval;
-        }
-        if (!seriesNames.containsKey(sampleLabel)) {
-          seriesNames.put(sampleLabel,new LGraphLineBean(sampleLabel,listColors.get(colorIdx++)));
-          if (colorIdx >= listColors.size()) {
-            colorIdx=0;
+synchronized (lock) {
+          if (startTimeInterval < minStartTime) {
+            minStartTime=startTimeInterval;
           }
-        }
-        if (pList.containsKey(sampleLabel)) {
-          LinkedHashMap<Integer,Long> subList=pList.get(sampleLabel);
-          long respTime=sampleResult.getTime();
-          if (subList.containsKey(startTimeInterval)) {
-            respTime=(subList.get(startTimeInterval) + respTime) / 2;
+ else           if (startTimeInterval > maxStartTime) {
+            maxStartTime=startTimeInterval;
           }
-          subList.put(startTimeInterval,respTime);
-        }
+          if (!seriesNames.containsKey(sampleLabel)) {
+            seriesNames.put(sampleLabel,new LGraphLineBean(sampleLabel,listColors.get(colorIdx++)));
+            if (colorIdx >= listColors.size()) {
+              colorIdx=0;
+            }
+          }
+          if (pList.containsKey(sampleLabel)) {
+            LinkedHashMap<Integer,Long> subList=pList.get(sampleLabel);
+            long respTime=sampleResult.getTime();
+            if (subList.containsKey(startTimeInterval)) {
+              respTime=(subList.get(startTimeInterval) + respTime) / 2;
+            }
+            subList.put(startTimeInterval,respTime);
+          }
  else {
-          LinkedHashMap<Integer,Long> newSubList=new LinkedHashMap<Integer,Long>();
-          newSubList.put(startTimeInterval,sampleResult.getTime());
-          pList.put(sampleLabel,newSubList);
+            LinkedHashMap<Integer,Long> newSubList=new LinkedHashMap<Integer,Long>();
+            newSubList.put(startTimeInterval,sampleResult.getTime());
+            pList.put(sampleLabel,newSubList);
+          }
         }
       }
     }

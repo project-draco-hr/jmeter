@@ -1,9 +1,4 @@
 {
-  durationTest=maxStartTime - minStartTime;
-  if (durationTest <= 0) {
-    JOptionPane.showMessageDialog(null,JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JOptionPane.WARNING_MESSAGE);
-    return;
-  }
   Dimension size=graphPanel.getSize();
   int width=(int)size.getWidth();
   int height=(int)size.getHeight();

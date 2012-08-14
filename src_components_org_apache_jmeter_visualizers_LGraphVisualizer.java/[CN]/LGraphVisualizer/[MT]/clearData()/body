@@ -1,8 +1,10 @@
 {
-  seriesNames.clear();
-  pList.clear();
-  minStartTime=Integer.MAX_VALUE;
-  maxStartTime=Integer.MIN_VALUE;
-  durationTest=0;
-  colorIdx=0;
+synchronized (lock) {
+    seriesNames.clear();
+    pList.clear();
+    minStartTime=Integer.MAX_VALUE;
+    maxStartTime=Integer.MIN_VALUE;
+    durationTest=0;
+    colorIdx=0;
+  }
 }
