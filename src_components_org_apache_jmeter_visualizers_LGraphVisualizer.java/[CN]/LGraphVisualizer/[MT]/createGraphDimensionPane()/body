@@ -1,0 +1,15 @@
+{
+  JPanel dimensionPane=new JPanel();
+  dimensionPane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  dimensionPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_dimension")));
+  dimensionPane.add(dynamicGraphSize);
+  dynamicGraphSize.setSelected(true);
+  graphWidth.setEnabled(false);
+  graphHeight.setEnabled(false);
+  dynamicGraphSize.addActionListener(this);
+  dimensionPane.add(Box.createRigidArea(new Dimension(10,0)));
+  dimensionPane.add(graphWidth);
+  dimensionPane.add(Box.createRigidArea(new Dimension(5,0)));
+  dimensionPane.add(graphHeight);
+  return dimensionPane;
+}

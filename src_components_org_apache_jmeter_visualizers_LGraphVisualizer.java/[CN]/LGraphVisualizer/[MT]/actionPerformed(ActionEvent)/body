@@ -1,0 +1,52 @@
+{
+  final Object eventSource=event.getSource();
+  if (eventSource == displayButton) {
+    actionMakeGraph();
+  }
+ else   if (eventSource == saveGraph) {
+    saveGraphToFile=true;
+    try {
+      ActionRouter.getInstance().getAction(ActionNames.SAVE_GRAPHICS,SaveGraphics.class.getName()).doAction(new ActionEvent(this,1,ActionNames.SAVE_GRAPHICS));
+    }
+ catch (    Exception e) {
+      log.error(e.getMessage());
+    }
+  }
+ else   if (eventSource == syncWithName) {
+    graphTitle.setText(namePanel.getName());
+  }
+ else   if (eventSource == dynamicGraphSize) {
+    if (dynamicGraphSize.isSelected()) {
+      graphWidth.setEnabled(false);
+      graphHeight.setEnabled(false);
+    }
+ else {
+      graphWidth.setEnabled(true);
+      graphHeight.setEnabled(true);
+    }
+  }
+ else   if (eventSource == samplerSelection) {
+    if (samplerSelection.isSelected()) {
+      samplerMatchLabel.setEnabled(true);
+      reloadButton.setEnabled(true);
+      caseChkBox.setEnabled(true);
+      regexpChkBox.setEnabled(true);
+    }
+ else {
+      samplerMatchLabel.setEnabled(false);
+      reloadButton.setEnabled(false);
+      caseChkBox.setEnabled(false);
+      regexpChkBox.setEnabled(false);
+    }
+  }
+ else   if (eventSource == reloadButton || eventSource == intervalButton) {
+    if (eventSource == intervalButton) {
+      intervalValue=Integer.parseInt(intervalField.getText());
+    }
+    if (getFile() != null && getFile().length() > 0) {
+      clearData();
+      FilePanel filePanel=(FilePanel)getFilePanel();
+      filePanel.actionPerformed(event);
+    }
+  }
+}

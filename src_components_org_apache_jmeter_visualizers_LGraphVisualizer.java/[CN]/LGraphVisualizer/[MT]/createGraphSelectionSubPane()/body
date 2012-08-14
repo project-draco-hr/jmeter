@@ -1,0 +1,21 @@
+{
+  JPanel searchPanel=new JPanel();
+  searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
+  searchPanel.setBorder(BorderFactory.createEmptyBorder(3,0,3,0));
+  searchPanel.add(samplerSelection);
+  samplerMatchLabel.setEnabled(false);
+  reloadButton.setEnabled(false);
+  caseChkBox.setEnabled(false);
+  regexpChkBox.setEnabled(false);
+  samplerSelection.addActionListener(this);
+  searchPanel.add(samplerMatchLabel);
+  searchPanel.add(Box.createRigidArea(new Dimension(5,0)));
+  reloadButton.setFont(FONT_SMALL);
+  reloadButton.addActionListener(this);
+  searchPanel.add(reloadButton);
+  caseChkBox.setFont(FONT_SMALL);
+  searchPanel.add(caseChkBox);
+  regexpChkBox.setFont(FONT_SMALL);
+  searchPanel.add(regexpChkBox);
+  return searchPanel;
+}

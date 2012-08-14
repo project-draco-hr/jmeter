@@ -1,0 +1,42 @@
+{
+  int size=pList.size();
+  int max=durationTest;
+  double[][] data=new double[size][max];
+  double nanLast=0;
+  double nanBegin=0;
+  ArrayList<Double> nanList=new ArrayList<Double>();
+  Set<String> pointsKeys=pList.keySet();
+  int s=0;
+  for (  String pointKey : pointsKeys) {
+    LinkedHashMap<Integer,Long> subList=pList.get(pointKey);
+    int idx=0;
+    while (idx < durationTest) {
+      int keyShift=minStartTime + idx;
+      if (subList.containsKey(keyShift)) {
+        nanLast=subList.get(keyShift);
+        data[s][idx]=nanLast;
+        int nlsize=nanList.size();
+        if (nlsize > 0) {
+          double valPrev=nanBegin;
+          for (int cnt=0; cnt < nlsize; cnt++) {
+            int pos=idx - (nlsize - cnt);
+            if (pos < 0) {
+              pos=0;
+            }
+            valPrev=(valPrev + ((nanLast - nanBegin) / (nlsize + 2)));
+            data[s][pos]=valPrev;
+          }
+          nanList.clear();
+        }
+      }
+ else {
+        nanList.add(Double.NaN);
+        nanBegin=nanLast;
+        data[s][idx]=Double.NaN;
+      }
+      idx++;
+    }
+    s++;
+  }
+  return data;
+}

@@ -1,0 +1,39 @@
+{
+  durationTest=maxStartTime - minStartTime;
+  if (durationTest <= 0) {
+    JOptionPane.showMessageDialog(null,JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JOptionPane.WARNING_MESSAGE);
+    return;
+  }
+  Dimension size=graphPanel.getSize();
+  int width=(int)size.getWidth();
+  int height=(int)size.getHeight();
+  if (!dynamicGraphSize.isSelected()) {
+    String wstr=graphWidth.getText();
+    String hstr=graphHeight.getText();
+    if (wstr.length() != 0) {
+      width=Integer.parseInt(wstr);
+    }
+    if (hstr.length() != 0) {
+      height=Integer.parseInt(hstr);
+    }
+  }
+  String yAxisStr=maxValueYAxisLabel.getText();
+  int maxYAxisScale=yAxisStr.length() == 0 ? 0 : Integer.parseInt(yAxisStr);
+  graphPanel.setData(this.getData());
+  graphPanel.setTitle(graphTitle.getText());
+  graphPanel.setMaxYAxisScale(maxYAxisScale);
+  graphPanel.setYAxisLabels(this.yAxisLabel);
+  graphPanel.setYAxisTitle(this.yAxisTitle);
+  graphPanel.setXAxisLabels(getXAxisLabels());
+  graphPanel.setLegendLabels(getLegendLabels());
+  graphPanel.setColor(getLinesColors());
+  graphPanel.setShowGrouping(numberShowGrouping.isSelected());
+  graphPanel.setLegendPlacement(StatGraphProperties.getPlacementNameMap().get(legendPlacementList.getSelectedItem()).intValue());
+  graphPanel.setPointShape(StatGraphProperties.getPointShapeMap().get(pointShapeLine.getSelectedItem()));
+  graphPanel.setStrokeWidth(Float.parseFloat((String)strokeWidthList.getSelectedItem()));
+  graphPanel.setTitleFont(new Font(StatGraphProperties.getFontNameMap().get(titleFontNameList.getSelectedItem()),StatGraphProperties.getFontStyleMap().get(titleFontStyleList.getSelectedItem()).intValue(),Integer.parseInt((String)titleFontSizeList.getSelectedItem())));
+  graphPanel.setLegendFont(new Font(StatGraphProperties.getFontNameMap().get(fontNameList.getSelectedItem()),StatGraphProperties.getFontStyleMap().get(fontStyleList.getSelectedItem()).intValue(),Integer.parseInt((String)fontSizeList.getSelectedItem())));
+  graphPanel.setHeight(height);
+  graphPanel.setWidth(width);
+  graphPanel.repaint();
+}

@@ -1,0 +1,13 @@
+{
+  JPanel buttonPanel=new JPanel(new BorderLayout());
+  JPanel displayPane=new JPanel();
+  displayPane.add(displayButton);
+  displayButton.addActionListener(this);
+  buttonPanel.add(displayPane,BorderLayout.WEST);
+  JPanel savePane=new JPanel();
+  savePane.add(saveGraph);
+  saveGraph.addActionListener(this);
+  syncWithName.addActionListener(this);
+  buttonPanel.add(savePane,BorderLayout.EAST);
+  return buttonPanel;
+}
