@@ -24,23 +24,6 @@
   }
   ListedHashTree threadGroupTree=(ListedHashTree)searcher.getSubTree(group);
   threadGroupTree.add(group,testLevelElements);
-  JMeterThread[] jmThreads=new JMeterThread[numThreads];
-  for (int i=0; running && i < numThreads; i++) {
-    final JMeterThread jmeterThread=new JMeterThread(cloneTree(threadGroupTree),group,notifier);
-    jmeterThread.setThreadNum(i);
-    jmeterThread.setThreadGroup(group);
-    jmeterThread.setInitialContext(JMeterContextService.getContext());
-    final String threadName=groupName + " " + (groupCount)+ "-"+ (i + 1);
-    jmeterThread.setThreadName(threadName);
-    jmeterThread.setEngine(this);
-    jmeterThread.setOnErrorStopTest(onErrorStopTest);
-    jmeterThread.setOnErrorStopTestNow(onErrorStopTestNow);
-    jmeterThread.setOnErrorStopThread(onErrorStopThread);
-    jmeterThread.setOnErrorStartNextLoop(onErrorStartNextLoop);
-    group.scheduleThread(jmeterThread);
-    jmThreads[i]=jmeterThread;
-  }
-  group.setJMeterThreads(jmThreads);
   groups.add(group);
-  group.start();
+  group.start(groupCount,notifier,threadGroupTree,this);
 }

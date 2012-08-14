@@ -1,0 +1,27 @@
+{
+  log.info("Starting thread group number " + groupCount);
+  running=true;
+  int numThreads=getNumThreads();
+  int rampUp=getRampUp();
+  float perThreadDelay=((float)(rampUp * 1000) / (float)getNumThreads());
+  delayedStartup=isDelayedStartup();
+  if (delayedStartup) {
+    threadStarter=new Thread(new ThreadStarter(groupCount,notifier,threadGroupTree,engine),getName() + "-ThreadStarter");
+    threadStarter.setDaemon(true);
+    threadStarter.start();
+  }
+ else {
+    long now=System.currentTimeMillis();
+    final JMeterContext context=JMeterContextService.getContext();
+    for (int i=0; running && i < numThreads; i++) {
+      JMeterThread jmThread=makeThread(groupCount,notifier,threadGroupTree,engine,numThreads,i,context);
+      scheduleThread(jmThread,now);
+      jmThread.setInitialDelay((int)(i * perThreadDelay));
+      Thread newThread=new Thread(jmThread);
+      newThread.setName(jmThread.getThreadName());
+      registerStartedThread(jmThread,newThread);
+      newThread.start();
+    }
+  }
+  log.info("Started thread group number " + groupCount);
+}

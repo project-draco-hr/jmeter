@@ -1,0 +1,19 @@
+{
+  boolean onErrorStopTest=getOnErrorStopTest();
+  boolean onErrorStopTestNow=getOnErrorStopTestNow();
+  boolean onErrorStopThread=getOnErrorStopThread();
+  boolean onErrorStartNextLoop=getOnErrorStartNextLoop();
+  String groupName=getName();
+  final JMeterThread jmeterThread=new JMeterThread(cloneTree(threadGroupTree),this,notifier);
+  jmeterThread.setThreadNum(i);
+  jmeterThread.setThreadGroup(this);
+  jmeterThread.setInitialContext(context);
+  final String threadName=groupName + " " + (groupCount)+ "-"+ (i + 1);
+  jmeterThread.setThreadName(threadName);
+  jmeterThread.setEngine(engine);
+  jmeterThread.setOnErrorStopTest(onErrorStopTest);
+  jmeterThread.setOnErrorStopTestNow(onErrorStopTestNow);
+  jmeterThread.setOnErrorStopThread(onErrorStopThread);
+  jmeterThread.setOnErrorStartNextLoop(onErrorStartNextLoop);
+  return jmeterThread;
+}

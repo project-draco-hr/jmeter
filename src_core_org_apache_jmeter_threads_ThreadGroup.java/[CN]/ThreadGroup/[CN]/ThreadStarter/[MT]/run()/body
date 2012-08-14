@@ -1,9 +1,8 @@
 {
-  final JMeterThread[] jMeterThreads=jmThreads;
-  int rampUp=getRampUp();
-  float perThreadDelay=((float)(rampUp * 1000) / (float)getNumThreads());
-  if (getScheduler()) {
-    long now=System.currentTimeMillis();
+  long now=System.currentTimeMillis();
+  long endtime=0;
+  final boolean usingScheduler=getScheduler();
+  if (usingScheduler) {
     if (getDelay() > 0) {
       delayBy(getDelay() * 1000);
     }
@@ -13,19 +12,32 @@
         delayBy(start - now);
       }
     }
-  }
-  for (int i=0; i < jMeterThreads.length; i++) {
-    try {
-      if (running) {
-        Thread.sleep(Math.round(perThreadDelay));
-        Thread newThread=new Thread(jMeterThreads[i]);
-        newThread.setName(jMeterThreads[i].getThreadName());
-        registerStartedThread(jMeterThreads[i],newThread);
-        newThread.start();
-      }
+    endtime=getDuration();
+    if (endtime > 0) {
+      endtime=endtime * 1000 + System.currentTimeMillis();
     }
- catch (    InterruptedException e) {
+ else {
+      endtime=getEndTime();
+    }
+  }
+  final int numThreads=getNumThreads();
+  final int perTthreadDelay=Math.round(((float)(getRampUp() * 1000) / (float)numThreads));
+  for (int i=0; running && i < numThreads; i++) {
+    if (i > 0) {
+      pause(perTthreadDelay);
+    }
+    if (usingScheduler && System.currentTimeMillis() > endtime) {
       break;
     }
+    JMeterThread jmThread=makeThread(groupCount,notifier,threadGroupTree,engine,numThreads,i,context);
+    jmThread.setInitialDelay(0);
+    if (usingScheduler) {
+      jmThread.setScheduled(true);
+      jmThread.setEndTime(endtime);
+    }
+    Thread newThread=new Thread(jmThread);
+    newThread.setName(jmThread.getThreadName());
+    registerStartedThread(jmThread,newThread);
+    newThread.start();
   }
 }
