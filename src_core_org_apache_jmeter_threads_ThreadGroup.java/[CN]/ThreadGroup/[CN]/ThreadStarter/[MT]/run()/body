@@ -16,7 +16,7 @@
   }
   for (int i=0; i < jMeterThreads.length; i++) {
     try {
-      if (!stopped.get()) {
+      if (running) {
         Thread.sleep(Math.round(perThreadDelay));
         Thread newThread=new Thread(jMeterThreads[i]);
         newThread.setName(jMeterThreads[i].getThreadName());

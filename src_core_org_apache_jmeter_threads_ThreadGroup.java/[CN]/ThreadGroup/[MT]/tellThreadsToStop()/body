@@ -1,6 +1,6 @@
 {
+  running=false;
   if (delayedStartup) {
-    stopped.set(true);
     try {
       threadStarter.interrupt();
     }

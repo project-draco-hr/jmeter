@@ -1,6 +1,6 @@
 {
+  running=true;
   if (delayedStartup) {
-    stopped.set(false);
     this.threadStarter=new Thread(new ThreadStarter(),getName() + "-ThreadStarter");
     threadStarter.start();
     try {
