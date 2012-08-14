@@ -55,6 +55,10 @@
     LegendProperties legendProperties=new LegendProperties();
     legendProperties.setBorderStroke(null);
     legendProperties.setPlacement(legendPlacement);
+    legendProperties.setIconBorderPaint(Color.WHITE);
+    if (legendPlacement == LegendAreaProperties.RIGHT || legendPlacement == LegendAreaProperties.LEFT) {
+      legendProperties.setNumColumns(1);
+    }
     if (legendFont != null) {
       legendProperties.setFont(legendFont);
     }
