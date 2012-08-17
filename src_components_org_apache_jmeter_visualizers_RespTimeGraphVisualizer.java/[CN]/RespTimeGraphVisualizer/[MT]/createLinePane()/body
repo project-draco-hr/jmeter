@@ -1,0 +1,10 @@
+{
+  JPanel lineStylePane=new JPanel();
+  lineStylePane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  lineStylePane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("graph_resp_time_settings_line")));
+  lineStylePane.add(createLabelCombo(JMeterUtils.getResString("graph_resp_time_stroke_width"),strokeWidthList));
+  strokeWidthList.setSelectedItem(StatGraphProperties.strokeWidth[4]);
+  lineStylePane.add(createLabelCombo(JMeterUtils.getResString("graph_resp_time_shape_label"),pointShapeLine));
+  pointShapeLine.setSelectedIndex(0);
+  return lineStylePane;
+}

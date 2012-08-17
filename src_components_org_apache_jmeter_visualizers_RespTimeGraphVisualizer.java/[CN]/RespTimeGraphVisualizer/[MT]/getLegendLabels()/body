@@ -1,0 +1,10 @@
+{
+  String[] legends=new String[seriesNames.size()];
+  int i=0;
+  for (  String key : seriesNames.keySet()) {
+    RespTimeGraphLineBean val=seriesNames.get(key);
+    legends[i]=val.getLabel();
+    i++;
+  }
+  return legends;
+}

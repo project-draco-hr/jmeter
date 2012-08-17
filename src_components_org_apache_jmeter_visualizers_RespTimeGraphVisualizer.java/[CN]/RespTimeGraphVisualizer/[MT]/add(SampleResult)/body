@@ -1,0 +1,49 @@
+{
+  final String sampleLabel=sampleResult.getSampleLabel();
+synchronized (lockInterval) {
+    SampleResult srTemp=new SampleResult(sampleResult.getStartTime(),sampleResult.getTime());
+    srTemp.setSampleLabel(sampleLabel);
+    internalList.add(srTemp);
+  }
+  Matcher matcher=null;
+  if (samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {
+    Pattern pattern=createPattern(samplerMatchLabel.getText());
+    matcher=pattern.matcher(sampleLabel);
+  }
+  if ((matcher == null) || (matcher.find())) {
+    final long startTimeMS=sampleResult.getStartTime();
+    final int startTimeInterval=(int)startTimeMS / intervalValue;
+    JMeterUtils.runSafe(new Runnable(){
+      public void run(){
+synchronized (lock) {
+          if (startTimeInterval < minStartTime) {
+            minStartTime=startTimeInterval;
+          }
+ else           if (startTimeInterval > maxStartTime) {
+            maxStartTime=startTimeInterval;
+          }
+          if (!seriesNames.containsKey(sampleLabel)) {
+            seriesNames.put(sampleLabel,new RespTimeGraphLineBean(sampleLabel,listColors.get(colorIdx++)));
+            if (colorIdx >= listColors.size()) {
+              colorIdx=0;
+            }
+          }
+          if (pList.containsKey(sampleLabel)) {
+            LinkedHashMap<Integer,Long> subList=pList.get(sampleLabel);
+            long respTime=sampleResult.getTime();
+            if (subList.containsKey(startTimeInterval)) {
+              respTime=(subList.get(startTimeInterval) + respTime) / 2;
+            }
+            subList.put(startTimeInterval,respTime);
+          }
+ else {
+            LinkedHashMap<Integer,Long> newSubList=new LinkedHashMap<Integer,Long>();
+            newSubList.put(startTimeInterval,sampleResult.getTime());
+            pList.put(sampleLabel,newSubList);
+          }
+        }
+      }
+    }
+);
+  }
+}

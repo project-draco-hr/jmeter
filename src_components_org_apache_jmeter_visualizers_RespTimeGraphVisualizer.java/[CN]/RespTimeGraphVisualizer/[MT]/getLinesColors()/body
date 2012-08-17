@@ -1,0 +1,10 @@
+{
+  Color[] linesColors=new Color[seriesNames.size()];
+  int i=0;
+  for (  String key : seriesNames.keySet()) {
+    RespTimeGraphLineBean val=seriesNames.get(key);
+    linesColors[i]=val.getLineColor();
+    i++;
+  }
+  return linesColors;
+}
