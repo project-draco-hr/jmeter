@@ -6,7 +6,7 @@
   sb.append(" ");
   sb.append(type);
   sb.append(" ");
-  sb.append(longToSb(tmp,s.getNumSamples(),5));
+  sb.append(longToSb(tmp,s.getNumSamples(),6));
   sb.append(" in ");
   long elapsed=s.getElapsed();
   sb.append(doubleToSb(dfDouble,tmp,elapsed / 1000.0,5,1));
@@ -28,5 +28,14 @@
   sb.append(" (");
   sb.append(s.getErrorPercentageString());
   sb.append(")");
+  if ("+".equals(type)) {
+    ThreadCounts tc=JMeterContextService.getThreadCounts();
+    sb.append(" Active: ");
+    sb.append(tc.activeThreads);
+    sb.append(" Started: ");
+    sb.append(tc.startedThreads);
+    sb.append(" Finished: ");
+    sb.append(tc.finishedThreads);
+  }
   return sb.toString();
 }
