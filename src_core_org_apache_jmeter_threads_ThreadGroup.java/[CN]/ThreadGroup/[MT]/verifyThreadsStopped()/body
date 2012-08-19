@@ -1,7 +1,7 @@
 {
   boolean stoppedAll=true;
   if (delayedStartup) {
-    stoppedAll&=verifyThreadStopped(threadStarter);
+    stoppedAll=verifyThreadStopped(threadStarter);
   }
   for (  Thread t : allThreads.values()) {
     stoppedAll=stoppedAll && verifyThreadStopped(t);
