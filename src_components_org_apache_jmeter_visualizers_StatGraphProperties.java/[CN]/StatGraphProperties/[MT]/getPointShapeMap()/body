@@ -1,5 +1,5 @@
 {
-  Map<String,Shape> pointShapeMap=new HashMap<String,Shape>(5);
+  Map<String,Shape> pointShapeMap=new LinkedHashMap<String,Shape>(5);
   pointShapeMap.put(JMeterUtils.getResString("graph_pointshape_circle"),PointChartProperties.SHAPE_CIRCLE);
   pointShapeMap.put(JMeterUtils.getResString("graph_pointshape_diamond"),PointChartProperties.SHAPE_DIAMOND);
   pointShapeMap.put(JMeterUtils.getResString("graph_pointshape_square"),PointChartProperties.SHAPE_SQUARE);
