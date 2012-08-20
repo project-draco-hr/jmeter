@@ -24,18 +24,18 @@
     results.setSuccessful(success);
   }
  catch (  InterruptedException e) {
-    getLogger().warn("JavaTest: interrupted.");
+    LOG.warn("JavaTest: interrupted.");
     results.setSuccessful(true);
   }
 catch (  Exception e) {
-    getLogger().error("JavaTest: error during sample",e);
+    LOG.error("JavaTest: error during sample",e);
     results.setSuccessful(false);
   }
  finally {
     results.sampleEnd();
   }
-  if (getLogger().isDebugEnabled()) {
-    getLogger().debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
+  if (LOG.isDebugEnabled()) {
+    LOG.debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
     listParameters(context);
   }
   return results;

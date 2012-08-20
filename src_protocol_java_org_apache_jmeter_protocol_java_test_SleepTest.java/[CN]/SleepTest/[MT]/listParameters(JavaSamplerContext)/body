@@ -2,6 +2,6 @@
   Iterator<String> argsIt=context.getParameterNamesIterator();
   while (argsIt.hasNext()) {
     String name=argsIt.next();
-    getLogger().debug(name + "=" + context.getParameter(name));
+    LOG.debug(name + "=" + context.getParameter(name));
   }
 }

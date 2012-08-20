@@ -12,18 +12,18 @@
     results.setSuccessful(true);
   }
  catch (  InterruptedException e) {
-    getLogger().warn("SleepTest: interrupted.");
+    LOG.warn("SleepTest: interrupted.");
     results.setSuccessful(true);
   }
 catch (  Exception e) {
-    getLogger().error("SleepTest: error during sample",e);
+    LOG.error("SleepTest: error during sample",e);
     results.setSuccessful(false);
   }
  finally {
     results.sampleEnd();
   }
-  if (getLogger().isDebugEnabled()) {
-    getLogger().debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
+  if (LOG.isDebugEnabled()) {
+    LOG.debug(whoAmI() + "\trunTest()" + "\tTime:\t"+ results.getTime());
     listParameters(context);
   }
   return results;

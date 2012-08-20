@@ -1,6 +1,6 @@
 {
-  if (getLogger().isDebugEnabled()) {
-    getLogger().debug(whoAmI() + "\tsetupTest()");
+  if (LOG.isDebugEnabled()) {
+    LOG.debug(whoAmI() + "\tsetupTest()");
     listParameters(context);
   }
 }
