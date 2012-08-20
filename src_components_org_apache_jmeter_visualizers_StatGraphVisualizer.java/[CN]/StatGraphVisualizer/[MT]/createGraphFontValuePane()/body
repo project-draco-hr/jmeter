@@ -1,11 +1,11 @@
 {
   JPanel fontValueStylePane=new JPanel();
   fontValueStylePane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
-  fontValueStylePane.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_value_font"),valueFontNameList));
+  fontValueStylePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_value_font"),valueFontNameList));
   valueFontNameList.setSelectedIndex(0);
-  fontValueStylePane.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_size"),valueFontSizeList));
+  fontValueStylePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_size"),valueFontSizeList));
   valueFontSizeList.setSelectedItem(StatGraphProperties.fontSize[2]);
-  fontValueStylePane.add(createLabelCombo(JMeterUtils.getResString("aggregate_graph_style"),valueFontStyleList));
+  fontValueStylePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_style"),valueFontStyleList));
   valueFontStyleList.setSelectedItem(JMeterUtils.getResString("fontstyle.normal"));
   return fontValueStylePane;
 }
