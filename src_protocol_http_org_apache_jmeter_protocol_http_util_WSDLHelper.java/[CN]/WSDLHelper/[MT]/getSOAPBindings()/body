@@ -1,19 +1,12 @@
 {
   ArrayList<Element> list=new ArrayList<Element>();
-  NodeList bindings=WSDLDOC.getElementsByTagName("binding");
-  String soapBind="soap:binding";
-  if (bindings.getLength() == 0) {
-    bindings=WSDLDOC.getElementsByTagName("wsdl:binding");
-  }
-  if (WSDLDOC.getElementsByTagName(soapBind).getLength() == 0) {
-    soapBind="wsdlsoap:binding";
-  }
-  if (WSDLDOC.getElementsByTagName(soapBind).getLength() == 0) {
-    soapBind="SOAP:binding";
-  }
+  NodeList bindings=WSDLDOC.getElementsByTagNameNS(WSDL_NAMESPACE,"binding");
   for (int idx=0; idx < bindings.getLength(); idx++) {
     Element nd=(Element)bindings.item(idx);
-    NodeList slist=nd.getElementsByTagName(soapBind);
+    NodeList slist=nd.getElementsByTagNameNS(SOAP11_BINDING_NAMESPACE,"binding");
+    if (slist.getLength() == 0) {
+      slist=nd.getElementsByTagNameNS(SOAP12_BINDING_NAMESPACE,"binding");
+    }
     if (slist.getLength() > 0) {
       nd.getAttribute("name");
       list.add(nd);
