@@ -1,9 +1,7 @@
 {
-  if (getLogger().isDebugEnabled()) {
-    Iterator<String> argsIt=context.getParameterNamesIterator();
-    while (argsIt.hasNext()) {
-      String name=argsIt.next();
-      getLogger().debug(name + "=" + context.getParameter(name));
-    }
+  Iterator<String> argsIt=context.getParameterNamesIterator();
+  while (argsIt.hasNext()) {
+    String name=argsIt.next();
+    getLogger().debug(name + "=" + context.getParameter(name));
   }
 }
