@@ -1,9 +1,7 @@
 {
   final String sampleLabel=sampleResult.getSampleLabel();
 synchronized (lockInterval) {
-    SampleResult srTemp=new SampleResult(sampleResult.getStartTime(),sampleResult.getTime());
-    srTemp.setSampleLabel(sampleLabel);
-    internalList.add(srTemp);
+    internalMap.put(sampleResult.getStartTime(),sampleResult.getTime());
   }
   Matcher matcher=null;
   if (samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {

@@ -49,12 +49,12 @@
       filePanel.actionPerformed(event);
     }
  else {
-      if (internalList.size() >= 2) {
+      if (internalMap.size() >= 2) {
 synchronized (lockInterval) {
-          @SuppressWarnings("unchecked") ArrayList<SampleResult> tempList=(ArrayList<SampleResult>)internalList.clone();
+          @SuppressWarnings("unchecked") HashMap<Long,Long> tempMap=(HashMap<Long,Long>)internalMap.clone();
           this.clearData();
-          for (          SampleResult sr : tempList) {
-            this.add(sr);
+          for (          Long key : tempMap.keySet()) {
+            this.add(new SampleResult(key,tempMap.get(key)));
           }
         }
       }
