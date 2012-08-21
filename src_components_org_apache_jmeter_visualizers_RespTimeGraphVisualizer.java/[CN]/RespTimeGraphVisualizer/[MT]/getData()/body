@@ -11,9 +11,9 @@
     int idx=0;
     while (idx < durationTest) {
       int keyShift=minStartTime + idx;
-      Long value=subList.get(keyShift);
+      Long value=subList.get(Integer.valueOf(keyShift));
       if (value != null) {
-        nanLast=value;
+        nanLast=value.doubleValue();
         data[s][idx]=nanLast;
         int nlsize=nanList.size();
         if (nlsize > 0) {
@@ -30,7 +30,7 @@
         }
       }
  else {
-        nanList.add(Double.NaN);
+        nanList.add(Double.valueOf(Double.NaN));
         nanBegin=nanLast;
         data[s][idx]=Double.NaN;
       }

@@ -10,11 +10,11 @@ synchronized (lockInterval) {
   }
   if ((matcher == null) || (matcher.find())) {
     final long startTimeMS=sampleResult.getStartTime();
-    final Integer startTimeInterval=Integer.valueOf(((int)startTimeMS / intervalValue));
+    final int startTimeInterval=(int)startTimeMS / intervalValue;
     JMeterUtils.runSafe(new Runnable(){
       public void run(){
 synchronized (lock) {
-          if (startTimeInterval.intValue() < minStartTime) {
+          if (startTimeInterval < minStartTime) {
             minStartTime=startTimeInterval;
           }
  else           if (startTimeInterval > maxStartTime) {
@@ -29,15 +29,15 @@ synchronized (lock) {
           Map<Integer,Long> subList=pList.get(sampleLabel);
           if (subList != null) {
             long respTime=sampleResult.getTime();
-            Long value=subList.get(startTimeInterval);
+            Long value=subList.get(Integer.valueOf(startTimeInterval));
             if (value != null) {
-              respTime=(value + respTime) / 2;
+              respTime=(value.longValue() + respTime) / 2;
             }
-            subList.put(startTimeInterval,respTime);
+            subList.put(Integer.valueOf(startTimeInterval),Long.valueOf(respTime));
           }
  else {
             Map<Integer,Long> newSubList=new LinkedHashMap<Integer,Long>();
-            newSubList.put(startTimeInterval,sampleResult.getTime());
+            newSubList.put(Integer.valueOf(startTimeInterval),Long.valueOf(sampleResult.getTime()));
             pList.put(sampleLabel,newSubList);
           }
         }
