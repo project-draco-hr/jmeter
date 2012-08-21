@@ -5,10 +5,9 @@
   double nanLast=0;
   double nanBegin=0;
   List<Double> nanList=new ArrayList<Double>();
-  Set<String> pointsKeys=pList.keySet();
   int s=0;
-  for (  String pointKey : pointsKeys) {
-    Map<Integer,Long> subList=pList.get(pointKey);
+  for (  Map.Entry<String,Map<Integer,Long>> pointEntry : pList.entrySet()) {
+    Map<Integer,Long> subList=pointEntry.getValue();
     int idx=0;
     while (idx < durationTest) {
       int keyShift=minStartTime + idx;

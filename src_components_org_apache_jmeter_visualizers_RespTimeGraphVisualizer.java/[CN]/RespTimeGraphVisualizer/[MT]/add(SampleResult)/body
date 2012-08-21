@@ -26,8 +26,8 @@ synchronized (lock) {
               colorIdx=0;
             }
           }
-          if (pList.containsKey(sampleLabel)) {
-            Map<Integer,Long> subList=pList.get(sampleLabel);
+          Map<Integer,Long> subList=pList.get(sampleLabel);
+          if (subList != null) {
             long respTime=sampleResult.getTime();
             Long value=subList.get(startTimeInterval);
             if (value != null) {

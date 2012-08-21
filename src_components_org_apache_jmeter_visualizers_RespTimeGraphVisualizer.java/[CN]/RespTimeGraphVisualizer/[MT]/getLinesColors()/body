@@ -1,8 +1,8 @@
 {
   Color[] linesColors=new Color[seriesNames.size()];
   int i=0;
-  for (  String key : seriesNames.keySet()) {
-    RespTimeGraphLineBean val=seriesNames.get(key);
+  for (  Map.Entry<String,RespTimeGraphLineBean> entry : seriesNames.entrySet()) {
+    RespTimeGraphLineBean val=entry.getValue();
     linesColors[i]=val.getLineColor();
     i++;
   }

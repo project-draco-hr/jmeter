@@ -17,8 +17,8 @@
   graphPanel.setData(this.getData());
   graphPanel.setTitle(graphTitle.getText());
   graphPanel.setMaxYAxisScale(maxYAxisScale);
-  graphPanel.setYAxisLabels(this.yAxisLabel);
-  graphPanel.setYAxisTitle(this.yAxisTitle);
+  graphPanel.setYAxisLabels(Y_AXIS_LABEL);
+  graphPanel.setYAxisTitle(Y_AXIS_TITLE);
   graphPanel.setXAxisLabels(getXAxisLabels());
   graphPanel.setLegendLabels(getLegendLabels());
   graphPanel.setColor(getLinesColors());
