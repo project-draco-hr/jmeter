@@ -15,7 +15,6 @@
   test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
-  testListenersSave=testListeners;
   if (!startListenersLater) {
     notifyTestListenersOfStart(testListeners);
   }
@@ -103,5 +102,5 @@
     }
     waitThreadsStopped();
   }
-  notifyTestListenersOfEnd(testListenersSave);
+  notifyTestListenersOfEnd(testListeners);
 }
