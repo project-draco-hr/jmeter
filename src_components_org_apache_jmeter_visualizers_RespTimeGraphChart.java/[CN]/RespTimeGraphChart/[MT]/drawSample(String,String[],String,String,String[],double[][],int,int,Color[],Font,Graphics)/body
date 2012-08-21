@@ -52,7 +52,7 @@
     legendProperties.setPlacement(legendPlacement);
     legendProperties.setIconBorderPaint(Color.WHITE);
     legendProperties.setIconBorderStroke(new BasicStroke(0f,BasicStroke.CAP_SQUARE,BasicStroke.CAP_SQUARE));
-    legendProperties.setNumColumns(LegendProperties.COLUMNS_FIT_TO_IMAGE);
+    legendProperties.setNumColumns(LegendAreaProperties.COLUMNS_FIT_TO_IMAGE);
     if (legendPlacement == LegendAreaProperties.RIGHT || legendPlacement == LegendAreaProperties.LEFT) {
       legendProperties.setNumColumns(1);
     }

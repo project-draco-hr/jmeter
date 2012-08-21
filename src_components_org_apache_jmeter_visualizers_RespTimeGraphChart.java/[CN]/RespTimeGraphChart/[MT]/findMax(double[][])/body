@@ -1,10 +1,10 @@
 {
   double max=0;
-  max=_data[0][0];
-  for (int i=0; i < _data.length; i++) {
-    for (int j=0; j < _data[i].length; j++) {
-      if (Double.isNaN(max) || ((!Double.isNaN(_data[i][j])) && (_data[i][j] > max))) {
-        max=_data[i][j];
+  for (int i=0; i < datas.length; i++) {
+    for (int j=0; j < datas[i].length; j++) {
+      final double value=datas[i][j];
+      if ((!Double.isNaN(value)) && (value > max)) {
+        max=value;
       }
     }
   }
