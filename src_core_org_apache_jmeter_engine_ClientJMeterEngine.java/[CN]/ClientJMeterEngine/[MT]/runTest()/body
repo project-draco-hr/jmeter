@@ -1,13 +1,11 @@
 {
   log.info("running clientengine run method");
-  SearchByClass<TestListener> testListeners=new SearchByClass<TestListener>(TestListener.class);
   ConvertListeners sampleListeners=new ConvertListeners();
   HashTree testTree=test;
   PreCompiler compiler=new PreCompiler(true);
 synchronized (testTree) {
     testTree.traverse(compiler);
     testTree.traverse(new TurnElementsOn());
-    testTree.traverse(testListeners);
     testTree.traverse(sampleListeners);
   }
   String methodName="unknown";
