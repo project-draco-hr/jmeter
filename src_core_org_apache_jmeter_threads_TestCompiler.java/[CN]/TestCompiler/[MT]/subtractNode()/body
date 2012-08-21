@@ -1,5 +1,5 @@
 {
-  log.debug("Subtracting node, stack size = " + stack.size());
+  LOG.debug("Subtracting node, stack size = " + stack.size());
   TestElement child=stack.getLast();
   trackIterationListeners(stack);
   if (child instanceof Sampler) {
@@ -13,10 +13,10 @@
     TestElement parent=stack.getLast();
     ObjectPair pair=new ObjectPair(child,parent);
     if (parent instanceof Controller && (child instanceof Sampler || child instanceof Controller)) {
-synchronized (pairing) {
-        if (!pairing.contains(pair)) {
+synchronized (PAIRING) {
+        if (!PAIRING.contains(pair)) {
           parent.addTestElement(child);
-          pairing.add(pair);
+          PAIRING.add(pair);
         }
       }
     }
