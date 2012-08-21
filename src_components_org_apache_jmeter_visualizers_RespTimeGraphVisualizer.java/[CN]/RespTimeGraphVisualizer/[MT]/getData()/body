@@ -4,16 +4,17 @@
   double[][] data=new double[size][max];
   double nanLast=0;
   double nanBegin=0;
-  ArrayList<Double> nanList=new ArrayList<Double>();
+  List<Double> nanList=new ArrayList<Double>();
   Set<String> pointsKeys=pList.keySet();
   int s=0;
   for (  String pointKey : pointsKeys) {
-    LinkedHashMap<Integer,Long> subList=pList.get(pointKey);
+    Map<Integer,Long> subList=pList.get(pointKey);
     int idx=0;
     while (idx < durationTest) {
       int keyShift=minStartTime + idx;
-      if (subList.containsKey(keyShift)) {
-        nanLast=subList.get(keyShift);
+      Long value=subList.get(keyShift);
+      if (value != null) {
+        nanLast=value;
         data[s][idx]=nanLast;
         int nlsize=nanList.size();
         if (nlsize > 0) {

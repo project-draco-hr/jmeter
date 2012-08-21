@@ -53,8 +53,9 @@
 synchronized (lockInterval) {
           @SuppressWarnings("unchecked") HashMap<Long,Long> tempMap=(HashMap<Long,Long>)internalMap.clone();
           this.clearData();
-          for (          Long key : tempMap.keySet()) {
-            this.add(new SampleResult(key,tempMap.get(key)));
+          for (Iterator<Map.Entry<Long,Long>> iterator=tempMap.entrySet().iterator(); iterator.hasNext(); ) {
+            Map.Entry<Long,Long> entry=iterator.next();
+            this.add(new SampleResult(entry.getKey().longValue(),entry.getValue().longValue()));
           }
         }
       }

@@ -1,6 +1,6 @@
 {
   String msgErr=null;
-  durationTest=maxStartTime - minStartTime;
+  durationTest=maxStartTime.intValue() - minStartTime.intValue();
   if (seriesNames.size() <= 0) {
     msgErr=JMeterUtils.getResString("aggregate_graph_no_values_to_graph");
   }

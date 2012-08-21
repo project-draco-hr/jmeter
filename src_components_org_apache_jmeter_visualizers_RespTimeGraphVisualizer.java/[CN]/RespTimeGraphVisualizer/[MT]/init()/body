@@ -9,7 +9,7 @@
   settingsPane=new VerticalPanel();
   settingsPane.setBorder(margin2);
   graphPanel=new RespTimeGraphChart();
-  graphPanel.setPreferredSize(new Dimension(defaultWidth,defaultHeight));
+  graphPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGTH));
   settingsPane.add(createGraphActionsPane());
   settingsPane.add(createGraphSettingsPane());
   settingsPane.add(createGraphTitlePane());
