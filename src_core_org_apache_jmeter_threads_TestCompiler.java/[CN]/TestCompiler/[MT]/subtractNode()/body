@@ -12,10 +12,12 @@
   if (stack.size() > 0) {
     TestElement parent=stack.getLast();
     ObjectPair pair=new ObjectPair(child,parent);
+    if (parent instanceof Controller && (child instanceof Sampler || child instanceof Controller)) {
 synchronized (pairing) {
-      if (!pairing.contains(pair)) {
-        pair.addTestElements();
-        pairing.add(pair);
+        if (!pairing.contains(pair)) {
+          parent.addTestElement(child);
+          pairing.add(pair);
+        }
       }
     }
   }
