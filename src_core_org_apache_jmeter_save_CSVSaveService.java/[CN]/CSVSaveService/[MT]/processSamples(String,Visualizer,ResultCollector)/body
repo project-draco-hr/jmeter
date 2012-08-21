@@ -19,9 +19,10 @@
     }
     String[] parts;
     final char delim=saveConfig.getDelimiter().charAt(0);
+    SimpleDateFormat dateFormat=new SimpleDateFormat(DEFAULT_DATE_FORMAT_STRING);
     while ((parts=csvReadFile(dataReader,delim)).length != 0) {
       lineNumber++;
-      SampleEvent event=CSVSaveService.makeResultFromDelimitedString(parts,saveConfig,lineNumber);
+      SampleEvent event=CSVSaveService.makeResultFromDelimitedString(parts,saveConfig,lineNumber,dateFormat);
       if (event != null) {
         final SampleResult result=event.getResult();
         if (ResultCollector.isSampleWanted(result.isSuccessful(),errorsOnly,successOnly)) {

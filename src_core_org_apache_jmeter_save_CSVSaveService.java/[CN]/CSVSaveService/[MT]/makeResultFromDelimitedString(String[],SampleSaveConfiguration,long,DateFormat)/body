@@ -6,7 +6,6 @@
   String text=null;
   String field=null;
   int i=0;
-  final DateFormat DEFAULT_DATE_FORMAT=new SimpleDateFormat(DEFAULT_DATE_FORMAT_STRING);
   try {
     if (saveConfig.saveTimestamp()) {
       field=TIME_STAMP;
@@ -17,10 +16,10 @@
         }
  catch (        NumberFormatException e) {
           log.warn(e.toString());
-          Date stamp=DEFAULT_DATE_FORMAT.parse(text);
+          Date stamp=dateFormat.parse(text);
           timeStamp=stamp.getTime();
           log.warn("Setting date format to: " + DEFAULT_DATE_FORMAT_STRING);
-          saveConfig.setFormatter(DEFAULT_DATE_FORMAT);
+          saveConfig.setFormatter(dateFormat);
         }
       }
  else       if (saveConfig.formatter() != null) {
