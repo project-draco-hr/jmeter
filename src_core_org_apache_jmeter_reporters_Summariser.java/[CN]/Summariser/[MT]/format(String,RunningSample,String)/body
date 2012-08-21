@@ -9,7 +9,14 @@
   sb.append(longToSb(tmp,s.getNumSamples(),6));
   sb.append(" in ");
   long elapsed=s.getElapsed();
-  sb.append(doubleToSb(dfDouble,tmp,elapsed / 1000.0,5,1));
+  long elapsedSec=(elapsed + 500) / 1000;
+  if (elapsedSec > 100 || (elapsed - elapsedSec * 1000) < 50) {
+    sb.append(longToSb(tmp,elapsedSec,5));
+  }
+ else {
+    double elapsedSecf=elapsed / 1000.0d;
+    sb.append(doubleToSb(dfDouble,tmp,elapsedSecf,5,1));
+  }
   sb.append("s = ");
   if (elapsed > 0) {
     sb.append(doubleToSb(dfDouble,tmp,s.getRate(),6,1));
