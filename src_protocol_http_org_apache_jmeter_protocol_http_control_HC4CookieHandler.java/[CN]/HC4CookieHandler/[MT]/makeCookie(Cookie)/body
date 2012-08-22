@@ -1,0 +1,10 @@
+{
+  long exp=jmc.getExpiresMillis();
+  BasicClientCookie ret=new BasicClientCookie(jmc.getName(),jmc.getValue());
+  ret.setDomain(jmc.getDomain());
+  ret.setPath(jmc.getPath());
+  ret.setExpiryDate(exp > 0 ? new Date(exp) : null);
+  ret.setSecure(jmc.getSecure());
+  ret.setVersion(jmc.getVersion());
+  return ret;
+}

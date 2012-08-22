@@ -1,0 +1,26 @@
+{
+  List<org.apache.http.cookie.Cookie> cookies=new ArrayList<org.apache.http.cookie.Cookie>();
+  for (PropertyIterator iter=cookiesCP.iterator(); iter.hasNext(); ) {
+    Cookie jmcookie=(Cookie)iter.next().getObjectValue();
+    if (allowVariableCookie) {
+      jmcookie.setRunningVersion(true);
+    }
+    cookies.add(makeCookie(jmcookie));
+    if (allowVariableCookie) {
+      jmcookie.setRunningVersion(false);
+    }
+  }
+  String host=url.getHost();
+  String protocol=url.getProtocol();
+  int port=HTTPSamplerBase.getDefaultPort(protocol,url.getPort());
+  String path=url.getPath();
+  boolean secure=HTTPSamplerBase.isSecure(protocol);
+  CookieOrigin cookieOrigin=new CookieOrigin(host,port,path,secure);
+  List<org.apache.http.cookie.Cookie> cookiesValid=new ArrayList<org.apache.http.cookie.Cookie>();
+  for (  org.apache.http.cookie.Cookie cookie : cookies) {
+    if (cookieSpec.match(cookie,cookieOrigin)) {
+      cookiesValid.add(cookie);
+    }
+  }
+  return cookiesValid;
+}

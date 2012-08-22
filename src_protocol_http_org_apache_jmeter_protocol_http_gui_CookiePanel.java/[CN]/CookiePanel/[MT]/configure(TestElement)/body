@@ -4,4 +4,6 @@
   populateTable(cookieManager);
   clearEachIteration.setSelected((cookieManager).getClearEachIteration());
   policy.setText(cookieManager.getPolicy());
+  String fullImpl=cookieManager.getImplementation();
+  selectHandlerPanel.setSelectedItem(fullImpl.substring(fullImpl.lastIndexOf('.') + 1));
 }

@@ -3,6 +3,7 @@
   tableModel.clearData();
   clearEachIteration.setSelected(false);
   policy.setText(CookieManager.DEFAULT_POLICY);
+  selectHandlerPanel.setSelectedItem(CookieManager.DEFAULT_IMPLEMENTATION.substring(CookieManager.DEFAULT_IMPLEMENTATION.lastIndexOf('.') + 1));
   deleteButton.setEnabled(false);
   saveButton.setEnabled(false);
 }

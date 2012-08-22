@@ -1,0 +1,23 @@
+{
+  ComboBoxModel nodesModel=new DefaultComboBoxModel();
+  selectHandlerPanel=new JComboBox(nodesModel);
+  selectHandlerPanel.setActionCommand(HANDLER_COMMAND);
+  selectHandlerPanel.addActionListener(this);
+  List<String> classesToAdd=Collections.<String>emptyList();
+  try {
+    classesToAdd=JMeterUtils.findClassesThatExtend(CookieHandler.class);
+  }
+ catch (  IOException e1) {
+  }
+  String tmpName=null;
+  for (  String clazz : classesToAdd) {
+    String shortClazz=clazz.substring(clazz.lastIndexOf('.') + 1);
+    if (HC3CookieHandler.class.getName().equals(clazz)) {
+      tmpName=shortClazz;
+    }
+    selectHandlerPanel.addItem(shortClazz);
+    handlerMap.put(shortClazz,clazz);
+  }
+  nodesModel.setSelectedItem(tmpName);
+  return selectHandlerPanel;
+}

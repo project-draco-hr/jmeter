@@ -1,6 +1,11 @@
 {
   initialCookies=getCookies();
-  cookieHandler=new HC3CookieHandler(getPolicy());
+  try {
+    cookieHandler=(CookieHandler)ClassTools.construct(getImplementation(),getPolicy());
+  }
+ catch (  JMeterException e) {
+    log.error("Unable to load or invoke class: " + getImplementation(),e);
+  }
   if (log.isDebugEnabled()) {
     log.debug("Policy: " + getPolicy() + " Clear: "+ getClearEachIteration());
   }

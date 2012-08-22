@@ -8,8 +8,16 @@
   JPanel northPanel=new JPanel();
   northPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
   northPanel.add(makeTitlePanel());
-  northPanel.add(clearEachIteration);
-  northPanel.add(policy);
+  JPanel optionsPane=new JPanel();
+  optionsPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("cookie_options")));
+  optionsPane.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  optionsPane.add(clearEachIteration);
+  JPanel policyTypePane=new JPanel();
+  policyTypePane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
+  policyTypePane.add(policy);
+  policyTypePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("cookie_implementation_choose"),createComboHandler()));
+  optionsPane.add(policyTypePane);
+  northPanel.add(optionsPane);
   add(northPanel,BorderLayout.NORTH);
   add(createCookieTablePanel(),BorderLayout.CENTER);
 }

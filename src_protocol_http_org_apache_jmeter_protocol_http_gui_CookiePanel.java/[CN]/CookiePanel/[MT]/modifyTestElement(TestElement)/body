@@ -12,5 +12,6 @@
     }
     cookieManager.setClearEachIteration(clearEachIteration.isSelected());
     cookieManager.setCookiePolicy(policy.getText());
+    cookieManager.setImplementation(handlerMap.get(selectHandlerPanel.getSelectedItem()));
   }
 }

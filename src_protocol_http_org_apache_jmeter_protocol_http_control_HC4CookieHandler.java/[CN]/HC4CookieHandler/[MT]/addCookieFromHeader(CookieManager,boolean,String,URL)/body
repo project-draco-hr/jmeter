@@ -1,0 +1,52 @@
+{
+  boolean debugEnabled=log.isDebugEnabled();
+  if (debugEnabled) {
+    log.debug("Received Cookie: " + cookieHeader + " From: "+ url.toExternalForm());
+  }
+  String protocol=url.getProtocol();
+  String host=url.getHost();
+  int port=HTTPSamplerBase.getDefaultPort(protocol,url.getPort());
+  String path=url.getPath();
+  boolean isSecure=HTTPSamplerBase.isSecure(protocol);
+  List<org.apache.http.cookie.Cookie> cookies=null;
+  CookieOrigin cookieOrigin=new CookieOrigin(host,port,path,isSecure);
+  BasicHeader basicHeader=new BasicHeader(HTTPConstants.HEADER_SET_COOKIE,cookieHeader);
+  try {
+    cookies=cookieSpec.parse(basicHeader,cookieOrigin);
+  }
+ catch (  MalformedCookieException e) {
+    log.error("Unable to add the cookie",e);
+  }
+  if (cookies == null) {
+    return;
+  }
+  for (  org.apache.http.cookie.Cookie cookie : cookies) {
+    try {
+      if (checkCookies) {
+        cookieSpec.validate(cookie,cookieOrigin);
+      }
+      Date expiryDate=cookie.getExpiryDate();
+      long exp=0;
+      if (expiryDate != null) {
+        exp=expiryDate.getTime();
+      }
+      Cookie newCookie=new Cookie(cookie.getName(),cookie.getValue(),cookie.getDomain(),cookie.getPath(),cookie.isSecure(),exp / 1000);
+      if (exp == 0 || exp >= System.currentTimeMillis()) {
+        newCookie.setVersion(cookie.getVersion());
+        cookieManager.add(newCookie);
+      }
+ else {
+        cookieManager.removeMatchingCookies(newCookie);
+        if (debugEnabled) {
+          log.info("Dropping expired Cookie: " + newCookie.toString());
+        }
+      }
+    }
+ catch (    MalformedCookieException e) {
+      log.warn("Not storing invalid cookie: <" + cookieHeader + "> for URL "+ url+ " ("+ e.getLocalizedMessage()+ ")");
+    }
+catch (    IllegalArgumentException e) {
+      log.warn(cookieHeader + e.getLocalizedMessage());
+    }
+  }
+}
