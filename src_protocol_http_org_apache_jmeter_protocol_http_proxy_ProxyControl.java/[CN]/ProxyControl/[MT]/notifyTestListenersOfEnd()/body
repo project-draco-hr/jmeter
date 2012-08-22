@@ -6,8 +6,8 @@
     JMeterTreeNode subNode=kids.nextElement();
     if (subNode.isEnabled()) {
       TestElement testElement=subNode.getTestElement();
-      if (testElement instanceof TestListener) {
-        ((TestListener)testElement).testEnded();
+      if (testElement instanceof TestStateListener) {
+        ((TestStateListener)testElement).testEnded();
       }
     }
   }

@@ -1,6 +1,6 @@
 {
   threadVars.incIteration();
-  for (  TestListener listener : testIterationStartListeners) {
+  for (  TestIterationListener listener : testIterationStartListeners) {
     if (listener instanceof TestElement) {
       listener.testIterationStart(new LoopIterationEvent(controller,threadVars.getIteration()));
       ((TestElement)listener).recoverRunningVersion();

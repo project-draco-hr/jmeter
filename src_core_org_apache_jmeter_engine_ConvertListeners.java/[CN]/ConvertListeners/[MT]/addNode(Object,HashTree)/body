@@ -10,11 +10,11 @@
       }
       try {
         RemoteSampleListener rtl=new RemoteSampleListenerImpl(item);
-        if (item instanceof TestListener && item instanceof SampleListener) {
+        if (item instanceof TestStateListener && item instanceof SampleListener) {
           RemoteListenerWrapper wrap=new RemoteListenerWrapper(rtl);
           subTree.replace(item,wrap);
         }
- else         if (item instanceof TestListener) {
+ else         if (item instanceof TestStateListener) {
           RemoteTestListenerWrapper wrap=new RemoteTestListenerWrapper(rtl);
           subTree.replace(item,wrap);
         }

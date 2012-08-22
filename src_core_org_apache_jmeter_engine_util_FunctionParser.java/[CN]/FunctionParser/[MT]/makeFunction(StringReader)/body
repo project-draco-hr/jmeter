@@ -24,8 +24,8 @@
             int nbRead=reader.read(cb);
             throw new InvalidVariableException("Expected } after " + funcName + " function call in "+ new String(cb,0,nbRead));
           }
-          if (function instanceof TestListener) {
-            StandardJMeterEngine.register((TestListener)function);
+          if (function instanceof TestStateListener) {
+            StandardJMeterEngine.register((TestStateListener)function);
           }
           return function;
         }

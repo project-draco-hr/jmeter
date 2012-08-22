@@ -11,7 +11,7 @@
     JMeterUtils.reportErrorToUser("Error occurred compiling the tree: - see log file");
     return;
   }
-  SearchByClass<TestListener> testListeners=new SearchByClass<TestListener>(TestListener.class);
+  SearchByClass<TestStateListener> testListeners=new SearchByClass<TestStateListener>(TestStateListener.class);
   test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();

@@ -1,7 +1,7 @@
 {
   super(DEFAULT_LOCAL_PORT);
-  if (listener instanceof TestListener) {
-    testListener=(TestListener)listener;
+  if (listener instanceof TestStateListener) {
+    testListener=(TestStateListener)listener;
   }
  else {
     testListener=null;

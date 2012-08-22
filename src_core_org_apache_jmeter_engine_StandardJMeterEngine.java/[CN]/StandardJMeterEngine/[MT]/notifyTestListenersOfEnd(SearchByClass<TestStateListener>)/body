@@ -1,6 +1,6 @@
 {
   log.info("Notifying test listeners of end of test");
-  for (  TestListener tl : testListeners.getSearchResults()) {
+  for (  TestStateListener tl : testListeners.getSearchResults()) {
     try {
       if (host == null) {
         tl.testEnded();
