@@ -3,9 +3,7 @@
 synchronized (lockInterval) {
     internalMap.put(Long.valueOf(sampleResult.getStartTime()),Long.valueOf(sampleResult.getTime()));
   }
-  Matcher matcher=null;
-  if (samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {
-    Pattern pattern=createPattern(samplerMatchLabel.getText());
+  if (samplerSelection.isSelected() && pattern != null) {
     matcher=pattern.matcher(sampleLabel);
   }
   if ((matcher == null) || (matcher.find())) {

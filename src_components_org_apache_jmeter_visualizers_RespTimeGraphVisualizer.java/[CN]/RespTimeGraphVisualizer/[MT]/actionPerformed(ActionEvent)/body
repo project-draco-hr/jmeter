@@ -1,4 +1,5 @@
 {
+  boolean forceReloadData=false;
   final Object eventSource=event.getSource();
   if (eventSource == displayButton) {
     actionMakeGraph();
@@ -37,11 +38,19 @@
       reloadButton.setEnabled(false);
       caseChkBox.setEnabled(false);
       regexpChkBox.setEnabled(false);
+      forceReloadData=true;
     }
   }
- else   if (eventSource == reloadButton || eventSource == intervalButton) {
+  if (eventSource == reloadButton || eventSource == intervalButton || forceReloadData) {
     if (eventSource == intervalButton) {
       intervalValue=Integer.parseInt(intervalField.getText());
+    }
+    if (eventSource == reloadButton && samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {
+      pattern=createPattern(samplerMatchLabel.getText());
+    }
+ else     if (forceReloadData) {
+      pattern=null;
+      matcher=null;
     }
     if (getFile() != null && getFile().length() > 0) {
       clearData();

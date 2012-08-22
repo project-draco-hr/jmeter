@@ -22,6 +22,17 @@
   settingsPane.add(createLegendPane());
   tabbedGraph.addTab(JMeterUtils.getResString("aggregate_graph_tab_settings"),settingsPane);
   tabbedGraph.addTab(JMeterUtils.getResString("aggregate_graph_tab_graph"),graphPanel);
+  ChangeListener changeListener=new ChangeListener(){
+    public void stateChanged(    ChangeEvent changeEvent){
+      JTabbedPane srcTab=(JTabbedPane)changeEvent.getSource();
+      int index=srcTab.getSelectedIndex();
+      if (srcTab.getTitleAt(index).equals(JMeterUtils.getResString("aggregate_graph_tab_graph"))) {
+        actionMakeGraph();
+      }
+    }
+  }
+;
+  tabbedGraph.addChangeListener(changeListener);
   this.add(mainPanel,BorderLayout.NORTH);
   this.add(tabbedGraph,BorderLayout.CENTER);
 }
