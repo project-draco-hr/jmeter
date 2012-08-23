@@ -49,7 +49,6 @@
  else {
       entityBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
     }
-    return entityBody.toString();
   }
-  return null;
+  return entityBody.toString();
 }
