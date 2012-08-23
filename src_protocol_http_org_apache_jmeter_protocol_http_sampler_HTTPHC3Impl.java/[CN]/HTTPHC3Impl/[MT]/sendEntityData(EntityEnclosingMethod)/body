@@ -8,7 +8,6 @@
     hasPutBody=true;
     FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(files[0].getPath()),null);
     put.setRequestEntity(fileRequestEntity);
-    putBody.append("<actual file content, not shown here>");
   }
  else   if (getSendParameterValuesAsPostBody()) {
     hasPutBody=true;
