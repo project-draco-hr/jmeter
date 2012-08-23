@@ -61,7 +61,7 @@
       res.setQueryString(postBody);
     }
  else     if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH)) {
-      String putBody=sendPutData((HttpEntityEnclosingRequestBase)httpRequest);
+      String putBody=sendEntityData((HttpEntityEnclosingRequestBase)httpRequest);
       res.setQueryString(putBody);
     }
     HttpResponse httpResponse=httpClient.execute(httpRequest,localContext);

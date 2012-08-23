@@ -1,8 +1,8 @@
 {
-  StringBuilder putBody=new StringBuilder(1000);
-  boolean hasPutBody=false;
+  StringBuilder entityBody=new StringBuilder(1000);
+  boolean hasEntityBody=false;
   HTTPFileArg files[]=getHTTPFiles();
-  Header contentTypeHeader=put.getFirstHeader(HTTPConstants.HEADER_CONTENT_TYPE);
+  Header contentTypeHeader=entity.getFirstHeader(HTTPConstants.HEADER_CONTENT_TYPE);
   String contentTypeValue=contentTypeHeader == null ? null : contentTypeHeader.getValue();
   if (contentTypeValue == null) {
     HTTPFileArg file=files.length > 0 ? files[0] : null;
@@ -12,18 +12,18 @@
   }
   final String contentEncoding=getContentEncodingOrNull();
   final boolean haveContentEncoding=contentEncoding != null;
-  final HttpParams putParams=put.getParams();
-  final String charset=getCharsetWithDefault(putParams);
+  final HttpParams entityParams=entity.getParams();
+  final String charset=getCharsetWithDefault(entityParams);
   final ContentType contentType=ContentType.create(contentTypeValue,charset);
   if (!hasArguments() && getSendFileAsPostBody()) {
-    hasPutBody=true;
+    hasEntityBody=true;
     FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()),contentType);
-    put.setEntity(fileRequestEntity);
-    putBody.append("<actual file content, not shown here>");
+    entity.setEntity(fileRequestEntity);
+    entityBody.append("<actual file content, not shown here>");
   }
  else   if (getSendParameterValuesAsPostBody()) {
-    hasPutBody=true;
-    StringBuilder putBodyContent=new StringBuilder();
+    hasEntityBody=true;
+    StringBuilder entityBodyContent=new StringBuilder();
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
@@ -34,23 +34,23 @@
  else {
         value=arg.getEncodedValue();
       }
-      putBodyContent.append(value);
+      entityBodyContent.append(value);
     }
-    StringEntity requestEntity=new StringEntity(putBodyContent.toString(),contentType);
-    put.setEntity(requestEntity);
+    StringEntity requestEntity=new StringEntity(entityBodyContent.toString(),contentType);
+    entity.setEntity(requestEntity);
   }
-  if (hasPutBody) {
-    if (put.getEntity().isRepeatable()) {
+  if (hasEntityBody) {
+    if (entity.getEntity().isRepeatable()) {
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
-      put.getEntity().writeTo(bos);
+      entity.getEntity().writeTo(bos);
       bos.flush();
-      putBody.append(new String(bos.toByteArray(),charset));
+      entityBody.append(new String(bos.toByteArray(),charset));
       bos.close();
     }
  else {
-      putBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
+      entityBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
     }
-    return putBody.toString();
+    return entityBody.toString();
   }
   return null;
 }
