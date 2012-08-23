@@ -31,6 +31,14 @@
  else     if (method.equals(HTTPConstants.GET)) {
       httpMethod=new GetMethod(urlStr);
     }
+ else     if (method.equals(HTTPConstants.PATCH)) {
+      httpMethod=new EntityEnclosingMethod(urlStr){
+        @Override public String getName(){
+          return "PATCH";
+        }
+      }
+;
+    }
  else {
       throw new IllegalArgumentException("Unexpected method: " + method);
     }
@@ -50,8 +58,8 @@
       String postBody=sendPostData((PostMethod)httpMethod);
       res.setQueryString(postBody);
     }
- else     if (method.equals(HTTPConstants.PUT)) {
-      String putBody=sendPutData((PutMethod)httpMethod);
+ else     if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH)) {
+      String putBody=sendEntityData((EntityEnclosingMethod)httpMethod);
       res.setQueryString(putBody);
     }
     int statusCode=client.executeMethod(httpMethod);
