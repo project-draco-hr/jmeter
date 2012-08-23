@@ -19,7 +19,6 @@
     hasEntityBody=true;
     FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()),contentType);
     entity.setEntity(fileRequestEntity);
-    entityBody.append("<actual file content, not shown here>");
   }
  else   if (getSendParameterValuesAsPostBody()) {
     hasEntityBody=true;
