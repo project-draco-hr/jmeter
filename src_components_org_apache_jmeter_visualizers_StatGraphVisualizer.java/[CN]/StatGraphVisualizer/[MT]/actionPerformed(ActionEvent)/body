@@ -1,13 +1,8 @@
 {
+  boolean forceReloadData=false;
   final Object eventSource=event.getSource();
   if (eventSource == displayButton) {
-    if (model.getRowCount() > 1) {
-      makeGraph();
-      tabbedGraph.setSelectedIndex(1);
-    }
- else {
-      JOptionPane.showMessageDialog(null,JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JOptionPane.WARNING_MESSAGE);
-    }
+    actionMakeGraph();
   }
  else   if (eventSource == saveGraph) {
     saveGraphToFile=true;
@@ -60,18 +55,26 @@ catch (    IOException e) {
  else   if (eventSource == columnSelection) {
     if (columnSelection.isSelected()) {
       columnMatchLabel.setEnabled(true);
-      reloadButton.setEnabled(true);
+      applyFilterBtn.setEnabled(true);
       caseChkBox.setEnabled(true);
       regexpChkBox.setEnabled(true);
     }
  else {
       columnMatchLabel.setEnabled(false);
-      reloadButton.setEnabled(false);
+      applyFilterBtn.setEnabled(false);
       caseChkBox.setEnabled(false);
       regexpChkBox.setEnabled(false);
+      forceReloadData=true;
     }
   }
- else   if (eventSource == reloadButton) {
+  if (eventSource == applyFilterBtn || forceReloadData) {
+    if (columnSelection.isSelected() && columnMatchLabel.getText() != null && columnMatchLabel.getText().length() > 0) {
+      pattern=createPattern(columnMatchLabel.getText());
+    }
+ else     if (forceReloadData) {
+      pattern=null;
+      matcher=null;
+    }
     if (getFile() != null && getFile().length() > 0) {
       clearData();
       FilePanel filePanel=(FilePanel)getFilePanel();

@@ -1,8 +1,6 @@
 {
   final String sampleLabel=res.getSampleLabel();
-  Matcher matcher=null;
-  if (columnSelection.isSelected() && columnMatchLabel.getText() != null && columnMatchLabel.getText().length() > 0) {
-    Pattern pattern=createPattern(columnMatchLabel.getText());
+  if (columnSelection.isSelected() && pattern != null) {
     matcher=pattern.matcher(sampleLabel);
   }
   if ((matcher == null) || (matcher.find())) {

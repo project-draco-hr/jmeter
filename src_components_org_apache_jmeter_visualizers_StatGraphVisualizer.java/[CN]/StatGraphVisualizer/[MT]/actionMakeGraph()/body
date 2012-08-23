@@ -1,0 +1,9 @@
+{
+  if (model.getRowCount() > 1) {
+    makeGraph();
+    tabbedGraph.setSelectedIndex(1);
+  }
+ else {
+    JOptionPane.showMessageDialog(null,JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JMeterUtils.getResString("aggregate_graph_no_values_to_graph"),JOptionPane.WARNING_MESSAGE);
+  }
+}
