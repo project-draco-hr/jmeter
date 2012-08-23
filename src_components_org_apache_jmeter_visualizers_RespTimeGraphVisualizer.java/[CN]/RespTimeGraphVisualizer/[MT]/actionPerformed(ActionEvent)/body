@@ -29,23 +29,23 @@
  else   if (eventSource == samplerSelection) {
     if (samplerSelection.isSelected()) {
       samplerMatchLabel.setEnabled(true);
-      reloadButton.setEnabled(true);
+      applyFilterBtn.setEnabled(true);
       caseChkBox.setEnabled(true);
       regexpChkBox.setEnabled(true);
     }
  else {
       samplerMatchLabel.setEnabled(false);
-      reloadButton.setEnabled(false);
+      applyFilterBtn.setEnabled(false);
       caseChkBox.setEnabled(false);
       regexpChkBox.setEnabled(false);
       forceReloadData=true;
     }
   }
-  if (eventSource == reloadButton || eventSource == intervalButton || forceReloadData) {
+  if (eventSource == applyFilterBtn || eventSource == intervalButton || forceReloadData) {
     if (eventSource == intervalButton) {
       intervalValue=Integer.parseInt(intervalField.getText());
     }
-    if (eventSource == reloadButton && samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {
+    if (eventSource == applyFilterBtn && samplerSelection.isSelected() && samplerMatchLabel.getText() != null && samplerMatchLabel.getText().length() > 0) {
       pattern=createPattern(samplerMatchLabel.getText());
     }
  else     if (forceReloadData) {
