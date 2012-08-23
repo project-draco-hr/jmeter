@@ -1,13 +1,11 @@
 {
   StringBuilder postedBody=new StringBuilder(1000);
   HTTPFileArg files[]=getHTTPFiles();
+  final String contentEncoding=getContentEncodingOrNull();
+  final boolean haveContentEncoding=contentEncoding != null;
   if (getUseMultipartForPost()) {
-    String contentEncoding=getContentEncoding();
-    if (isNullOrEmptyTrimmed(contentEncoding)) {
-      contentEncoding=null;
-    }
     Charset charset=null;
-    if (contentEncoding != null) {
+    if (haveContentEncoding) {
       charset=Charset.forName(contentEncoding);
     }
     MultipartEntity multiPart=new MultipartEntity(getDoBrowserCompatibleMultipart() ? HttpMultipartMode.BROWSER_COMPATIBLE : HttpMultipartMode.STRICT,null,charset);
@@ -65,14 +63,8 @@
       postedBody.append("<actual file content, not shown here>");
     }
  else {
-      String contentEncoding=getContentEncoding();
-      boolean haveContentEncoding=false;
-      if (isNullOrEmptyTrimmed(contentEncoding)) {
-        contentEncoding=null;
-      }
- else {
+      if (haveContentEncoding) {
         post.getParams().setParameter(CoreProtocolPNames.HTTP_CONTENT_CHARSET,contentEncoding);
-        haveContentEncoding=true;
       }
       if (getSendParameterValuesAsPostBody()) {
         if (!hasContentTypeHeader) {
