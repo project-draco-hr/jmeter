@@ -80,17 +80,10 @@
         PropertyIterator args=getArguments().iterator();
         while (args.hasNext()) {
           HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-          String value;
-          if (haveContentEncoding) {
-            value=arg.getEncodedValue(contentEncoding);
-          }
- else {
-            value=arg.getEncodedValue();
-          }
-          postBody.append(value);
+          postBody.append(arg.getValue());
         }
-        ContentType contentType=ContentType.create(post.getFirstHeader(HTTPConstants.HEADER_CONTENT_TYPE).getValue(),contentEncoding);
-        StringEntity requestEntity=new StringEntity(postBody.toString(),contentType);
+        final String charset=getContentEncoding(HTTP.DEF_CONTENT_CHARSET.name());
+        StringEntity requestEntity=new StringEntity(postBody.toString(),charset);
         post.setEntity(requestEntity);
         postedBody.append(postBody.toString());
       }
