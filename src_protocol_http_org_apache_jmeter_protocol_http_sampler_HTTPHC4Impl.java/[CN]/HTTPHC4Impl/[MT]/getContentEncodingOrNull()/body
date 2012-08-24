@@ -1,9 +1,3 @@
 {
-  String ce=getContentEncoding();
-  if (isNullOrEmptyTrimmed(ce)) {
-    return null;
-  }
- else {
-    return ce;
-  }
+  return getContentEncoding(null);
 }

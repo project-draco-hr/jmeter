@@ -1,23 +1,17 @@
 {
   StringBuilder entityBody=new StringBuilder(1000);
   boolean hasEntityBody=false;
-  HTTPFileArg files[]=getHTTPFiles();
-  Header contentTypeHeader=entity.getFirstHeader(HTTPConstants.HEADER_CONTENT_TYPE);
-  String contentTypeValue=contentTypeHeader == null ? null : contentTypeHeader.getValue();
-  if (contentTypeValue == null) {
-    HTTPFileArg file=files.length > 0 ? files[0] : null;
-    if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
-      contentTypeValue=file.getMimeType();
-    }
+  final HTTPFileArg files[]=getHTTPFiles();
+  final HTTPFileArg file=files.length > 0 ? files[0] : null;
+  String contentTypeValue=null;
+  if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {
+    contentTypeValue=file.getMimeType();
+    entity.setHeader(HEADER_CONTENT_TYPE,contentTypeValue);
   }
-  final String contentEncoding=getContentEncodingOrNull();
-  final boolean haveContentEncoding=contentEncoding != null;
-  final HttpParams entityParams=entity.getParams();
-  final String charset=getCharsetWithDefault(entityParams);
-  final ContentType contentType=ContentType.create(contentTypeValue,charset);
+  final String charset=getContentEncoding(HTTP.DEF_CONTENT_CHARSET.name());
   if (!hasArguments() && getSendFileAsPostBody()) {
     hasEntityBody=true;
-    FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()),contentType);
+    FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()));
     entity.setEntity(fileRequestEntity);
   }
  else   if (getSendParameterValuesAsPostBody()) {
@@ -26,22 +20,16 @@
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-      String value=null;
-      if (haveContentEncoding) {
-        value=arg.getEncodedValue(contentEncoding);
-      }
- else {
-        value=arg.getEncodedValue();
-      }
-      entityBodyContent.append(value);
+      entityBodyContent.append(arg.getValue());
     }
-    StringEntity requestEntity=new StringEntity(entityBodyContent.toString(),contentType);
+    StringEntity requestEntity=new StringEntity(entityBodyContent.toString(),charset);
     entity.setEntity(requestEntity);
   }
   if (hasEntityBody) {
-    if (entity.getEntity().isRepeatable()) {
+    final HttpEntity entityEntry=entity.getEntity();
+    if (entityEntry.isRepeatable()) {
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
-      entity.getEntity().writeTo(bos);
+      entityEntry.writeTo(bos);
       bos.flush();
       entityBody.append(new String(bos.toByteArray(),charset));
       bos.close();
