@@ -1,6 +1,9 @@
 {
   lastSelectionEvent=e;
-  DefaultMutableTreeNode node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+  DefaultMutableTreeNode node=null;
+synchronized (this) {
+    node=(DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+  }
   if (node != null) {
     if (rightSide.getTabCount() > selectedTab) {
       resultsRender.setLastSelectedTab(rightSide.getSelectedIndex());
