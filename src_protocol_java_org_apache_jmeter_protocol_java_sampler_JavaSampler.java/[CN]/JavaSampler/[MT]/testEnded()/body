@@ -1,11 +1,13 @@
 {
   log.debug(whoAmI() + "\ttestEnded");
-synchronized (allSamplers) {
-    Iterator<JavaSampler> i=allSamplers.iterator();
-    while (i.hasNext()) {
-      JavaSampler sampler=i.next();
-      sampler.releaseJavaClient();
-      i.remove();
+synchronized (javaClientAndContextSet) {
+    for (    Object[] javaClientAndContext : javaClientAndContextSet) {
+      JavaSamplerClient jsClient=(JavaSamplerClient)javaClientAndContext[0];
+      JavaSamplerContext jsContext=(JavaSamplerContext)javaClientAndContext[1];
+      if (jsClient != null) {
+        jsClient.teardownTest(jsContext);
+      }
     }
+    javaClientAndContextSet.clear();
   }
 }

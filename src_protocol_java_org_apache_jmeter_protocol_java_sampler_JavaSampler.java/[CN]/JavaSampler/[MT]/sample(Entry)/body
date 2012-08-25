@@ -5,9 +5,10 @@
   if (javaClient == null) {
     log.debug(whoAmI() + "\tCreating Java Client");
     createJavaClient();
+    javaClientAndContextSet.add(new Object[]{javaClient,context});
     javaClient.setupTest(context);
   }
-  SampleResult result=createJavaClient().runTest(context);
+  SampleResult result=javaClient.runTest(context);
   if (result != null && result.getSampleLabel().length() == 0) {
     result.setSampleLabel(getName());
   }
