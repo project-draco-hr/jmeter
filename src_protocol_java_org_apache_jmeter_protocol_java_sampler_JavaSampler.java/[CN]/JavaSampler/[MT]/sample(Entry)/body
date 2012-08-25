@@ -1,16 +1,27 @@
 {
-  Arguments args=getArguments();
-  args.addArgument(TestElement.NAME,getName());
-  context=new JavaSamplerContext(args);
-  if (javaClient == null) {
-    log.debug(whoAmI() + "\tCreating Java Client");
-    createJavaClient();
-    javaClientAndContextSet.add(new Object[]{javaClient,context});
-    javaClient.setupTest(context);
+  try {
+    Arguments args=getArguments();
+    args.addArgument(TestElement.NAME,getName());
+    context=new JavaSamplerContext(args);
+    if (javaClient == null) {
+      log.debug(whoAmI() + "\tCreating Java Client");
+      createJavaClient();
+      registerForCleanup(javaClient,context);
+      javaClient.setupTest(context);
+    }
+    SampleResult result=javaClient.runTest(context);
+    if (result != null && result.getSampleLabel().length() == 0) {
+      result.setSampleLabel(getName());
+    }
+    return result;
   }
-  SampleResult result=javaClient.runTest(context);
-  if (result != null && result.getSampleLabel().length() == 0) {
-    result.setSampleLabel(getName());
+ catch (  Exception ex) {
+    SampleResult sampleResultIfError=new SampleResult();
+    sampleResultIfError.setSampleLabel(getName());
+    sampleResultIfError.setSuccessful(false);
+    sampleResultIfError.setResponseCode("500");
+    sampleResultIfError.setResponseMessage(ExceptionUtils.getRootCauseMessage(ex));
+    sampleResultIfError.setResponseData(ExceptionUtils.getStackTrace(ex),"UTF-8");
+    return sampleResultIfError;
   }
-  return result;
 }
