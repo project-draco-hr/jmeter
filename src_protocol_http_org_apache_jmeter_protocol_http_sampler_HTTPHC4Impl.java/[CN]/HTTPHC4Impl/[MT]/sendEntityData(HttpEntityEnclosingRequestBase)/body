@@ -20,7 +20,12 @@
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-      entityBodyContent.append(arg.getValue());
+      if (charset != null) {
+        entityBodyContent.append(arg.getEncodedValue(charset));
+      }
+ else {
+        entityBodyContent.append(arg.getEncodedValue());
+      }
     }
     StringEntity requestEntity=new StringEntity(entityBodyContent.toString(),charset);
     entity.setEntity(requestEntity);

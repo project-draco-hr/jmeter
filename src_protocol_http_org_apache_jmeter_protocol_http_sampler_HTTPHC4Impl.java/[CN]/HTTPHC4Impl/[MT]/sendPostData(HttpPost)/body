@@ -80,7 +80,12 @@
         PropertyIterator args=getArguments().iterator();
         while (args.hasNext()) {
           HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
-          postBody.append(arg.getValue());
+          if (haveContentEncoding) {
+            postBody.append(arg.getEncodedValue(contentEncoding));
+          }
+ else {
+            postBody.append(arg.getEncodedValue());
+          }
         }
         StringEntity requestEntity=new StringEntity(postBody.toString(),contentEncoding);
         post.setEntity(requestEntity);
