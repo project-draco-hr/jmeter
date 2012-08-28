@@ -1,9 +1,0 @@
-{
-  Boolean isToBeRegistered=isToBeRegisteredCache.get(clazz.getName());
-  if (isToBeRegistered == null) {
-    Method method=clazz.getMethod("teardownTest",new Class[]{JavaSamplerContext.class});
-    isToBeRegistered=Boolean.valueOf(!method.getDeclaringClass().equals(AbstractJavaSamplerClient.class));
-    isToBeRegisteredCache.put(clazz.getName(),isToBeRegistered);
-  }
-  return isToBeRegistered.booleanValue();
-}

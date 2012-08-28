@@ -1,0 +1,6 @@
+{
+  JavaSampler clone=(JavaSampler)super.clone();
+  clone.javaClass=this.javaClass;
+  clone.isToBeRegistered=this.isToBeRegistered;
+  return clone;
+}

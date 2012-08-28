@@ -1,12 +1,16 @@
 {
+  if (javaClass == null) {
+    return new ErrorSamplerClient();
+  }
   JavaSamplerClient client;
   try {
-    Class<?> javaClass=Class.forName(getClassname().trim(),false,Thread.currentThread().getContextClassLoader());
     client=(JavaSamplerClient)javaClass.newInstance();
     if (log.isDebugEnabled()) {
       log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(client.hashCode()));
     }
-    registerForCleanup(client);
+    if (isToBeRegistered) {
+      TEAR_DOWN_SET.add(this);
+    }
   }
  catch (  Exception e) {
     log.error(whoAmI() + "\tException creating: " + getClassname(),e);

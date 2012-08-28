@@ -1,0 +1,12 @@
+{
+  String name=getClassname().trim();
+  try {
+    javaClass=Class.forName(name,false,Thread.currentThread().getContextClassLoader());
+    Method method=javaClass.getMethod("teardownTest",new Class[]{JavaSamplerContext.class});
+    isToBeRegistered=!method.getDeclaringClass().equals(AbstractJavaSamplerClient.class);
+    log.info("Created class: " + name + ". Uses tearDownTest: "+ isToBeRegistered);
+  }
+ catch (  Exception e) {
+    log.error(whoAmI() + "\tException initialising: " + name,e);
+  }
+}
