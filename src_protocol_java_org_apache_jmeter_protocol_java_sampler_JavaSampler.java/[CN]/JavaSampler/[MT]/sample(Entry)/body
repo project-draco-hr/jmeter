@@ -4,7 +4,7 @@
   context=new JavaSamplerContext(args);
   if (javaClient == null) {
     log.debug(whoAmI() + "\tCreating Java Client");
-    createJavaClient();
+    javaClient=createJavaClient();
     javaClient.setupTest(context);
   }
   SampleResult result=javaClient.runTest(context);

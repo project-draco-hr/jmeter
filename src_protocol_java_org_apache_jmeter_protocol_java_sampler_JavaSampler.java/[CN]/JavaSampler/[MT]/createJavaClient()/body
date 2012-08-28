@@ -1,17 +1,16 @@
 {
-  if (javaClient == null) {
-    try {
-      Class<?> javaClass=Class.forName(getClassname().trim(),false,Thread.currentThread().getContextClassLoader());
-      javaClient=(JavaSamplerClient)javaClass.newInstance();
-      if (log.isDebugEnabled()) {
-        log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(javaClient.hashCode()));
-      }
-      registerForCleanup(javaClient,context);
+  JavaSamplerClient client;
+  try {
+    Class<?> javaClass=Class.forName(getClassname().trim(),false,Thread.currentThread().getContextClassLoader());
+    client=(JavaSamplerClient)javaClass.newInstance();
+    if (log.isDebugEnabled()) {
+      log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(client.hashCode()));
     }
- catch (    Exception e) {
-      log.error(whoAmI() + "\tException creating: " + getClassname(),e);
-      javaClient=new ErrorSamplerClient();
-    }
+    registerForCleanup(client,context);
   }
-  return javaClient;
+ catch (  Exception e) {
+    log.error(whoAmI() + "\tException creating: " + getClassname(),e);
+    client=new ErrorSamplerClient();
+  }
+  return client;
 }
