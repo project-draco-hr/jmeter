@@ -1,14 +1,13 @@
 {
   log.debug(whoAmI() + "\ttestEnded");
-synchronized (javaClientAndContextSet) {
-    for (    Object[] javaClientAndContext : javaClientAndContextSet) {
-      JavaSamplerClient jsClient=(JavaSamplerClient)javaClientAndContext[0];
-      JavaSamplerContext jsContext=(JavaSamplerContext)javaClientAndContext[1];
-      if (jsClient != null) {
-        jsClient.teardownTest(jsContext);
+synchronized (TEAR_DOWN_SET) {
+    for (    JavaSampler javaSampler : TEAR_DOWN_SET) {
+      JavaSamplerClient client=javaSampler.javaClient;
+      if (client != null) {
+        client.teardownTest(javaSampler.context);
       }
     }
-    javaClientAndContextSet.clear();
+    TEAR_DOWN_SET.clear();
   }
   isToBeRegisteredCache.clear();
 }
