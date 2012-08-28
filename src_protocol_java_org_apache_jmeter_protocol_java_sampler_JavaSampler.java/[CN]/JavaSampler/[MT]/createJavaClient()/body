@@ -6,7 +6,7 @@
     if (log.isDebugEnabled()) {
       log.debug(whoAmI() + "\tCreated:\t" + getClassname()+ "@"+ Integer.toHexString(client.hashCode()));
     }
-    registerForCleanup(client,context);
+    registerForCleanup(client);
   }
  catch (  Exception e) {
     log.error(whoAmI() + "\tException creating: " + getClassname(),e);
