@@ -17,8 +17,7 @@
       JMeterThread jmThread=makeThread(groupCount,notifier,threadGroupTree,engine,numThreads,i,context);
       scheduleThread(jmThread,now);
       jmThread.setInitialDelay((int)(i * perThreadDelay));
-      Thread newThread=new Thread(jmThread);
-      newThread.setName(jmThread.getThreadName());
+      Thread newThread=new Thread(jmThread,jmThread.getThreadName());
       registerStartedThread(jmThread,newThread);
       newThread.start();
     }
