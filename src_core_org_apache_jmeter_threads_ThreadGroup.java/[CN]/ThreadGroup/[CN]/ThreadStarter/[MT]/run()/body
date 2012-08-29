@@ -36,6 +36,7 @@
       jmThread.setEndTime(endtime);
     }
     Thread newThread=new Thread(jmThread,jmThread.getThreadName());
+    newThread.setDaemon(false);
     registerStartedThread(jmThread,newThread);
     newThread.start();
   }
