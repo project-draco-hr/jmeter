@@ -7,7 +7,7 @@
   this.cacheManager.saveDetails(this.urlConnection,sampleResultOK);
   assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
   assertTrue("Should find valid entry",this.cacheManager.inCache(url));
-  Thread.sleep(2001);
+  Thread.sleep(2010);
   assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
   assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
 }
