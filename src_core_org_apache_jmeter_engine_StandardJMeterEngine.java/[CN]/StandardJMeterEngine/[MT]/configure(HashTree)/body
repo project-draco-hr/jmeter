@@ -5,9 +5,9 @@
   if (plan.length == 0) {
     throw new RuntimeException("Could not find the TestPlan class!");
   }
-  if (((TestPlan)plan[0]).isSerialized()) {
-    serialized=true;
-  }
+  TestPlan tp=(TestPlan)plan[0];
+  serialized=tp.isSerialized();
+  tearDownOnShutdown=tp.isTearDownOnShutdown();
   active=true;
   test=testTree;
 }

@@ -59,6 +59,7 @@
   groups.clear();
   System.gc();
   JMeterContextService.getContext().setSamplingStarted(true);
+  boolean mainGroups=running;
   while (running && iter.hasNext()) {
     AbstractThreadGroup group=iter.next();
     if (group instanceof SetupThreadGroup)     continue;
@@ -89,6 +90,9 @@
     groupCount=0;
     JMeterContextService.clearTotalThreads();
     log.info("Starting tearDown thread groups");
+    if (mainGroups && !running) {
+      running=shutdown & tearDownOnShutdown;
+    }
     while (running && postIter.hasNext()) {
       AbstractThreadGroup group=postIter.next();
       groupCount++;

@@ -3,5 +3,6 @@
   argsPanel=new ArgumentsPanel(JMeterUtils.getResString("user_defined_variables"));
   serializedMode=new JCheckBox(JMeterUtils.getResString("testplan.serialized"));
   functionalMode=new JCheckBox(JMeterUtils.getResString("functional_mode"));
+  tearDownOnShutdown=new JCheckBox(JMeterUtils.getResString("teardown_on_shutdown"));
   init();
 }

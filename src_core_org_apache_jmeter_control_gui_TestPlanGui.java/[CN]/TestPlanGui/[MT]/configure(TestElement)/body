@@ -4,6 +4,7 @@
     TestPlan tp=(TestPlan)el;
     functionalMode.setSelected(tp.isFunctionalMode());
     serializedMode.setSelected(tp.isSerialized());
+    tearDownOnShutdown.setSelected(tp.isTearDownOnShutdown());
     final JMeterProperty udv=tp.getUserDefinedVariablesAsProperty();
     if (udv != null) {
       argsPanel.configure((Arguments)udv.getObjectValue());

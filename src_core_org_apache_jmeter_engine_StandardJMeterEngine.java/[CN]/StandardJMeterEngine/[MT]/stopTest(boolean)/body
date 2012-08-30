@@ -1,4 +1,5 @@
 {
-  Thread stopThread=new Thread(new StopTest(b));
+  shutdown=!now;
+  Thread stopThread=new Thread(new StopTest(now));
   stopThread.start();
 }

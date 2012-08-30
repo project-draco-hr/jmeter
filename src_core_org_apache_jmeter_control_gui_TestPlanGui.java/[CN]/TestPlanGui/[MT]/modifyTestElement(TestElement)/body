@@ -3,6 +3,7 @@
   if (plan instanceof TestPlan) {
     TestPlan tp=(TestPlan)plan;
     tp.setFunctionalMode(functionalMode.isSelected());
+    tp.setTearDownOnShutdown(tearDownOnShutdown.isSelected());
     tp.setSerialized(serializedMode.isSelected());
     tp.setUserDefinedVariables((Arguments)argsPanel.createTestElement());
     tp.setTestPlanClasspathArray(browseJar.getFiles());

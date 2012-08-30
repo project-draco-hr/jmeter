@@ -5,6 +5,7 @@
   add(argsPanel,BorderLayout.CENTER);
   VerticalPanel southPanel=new VerticalPanel();
   southPanel.add(serializedMode);
+  southPanel.add(tearDownOnShutdown);
   southPanel.add(functionalMode);
   JTextArea explain=new JTextArea(JMeterUtils.getResString("functional_mode_explanation"));
   explain.setEditable(false);
