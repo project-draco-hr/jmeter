@@ -4,12 +4,14 @@
   JMenuItem whatClass=makeMenuItemRes("help_node",'W',ActionNames.WHAT_CLASS,KeyStrokes.WHAT_CLASS);
   JMenuItem setDebug=makeMenuItemRes("debug_on",ActionNames.DEBUG_ON,KeyStrokes.DEBUG_ON);
   JMenuItem resetDebug=makeMenuItemRes("debug_off",ActionNames.DEBUG_OFF,KeyStrokes.DEBUG_OFF);
+  JMenuItem heapDump=makeMenuItemRes("heap_dump",ActionNames.HEAP_DUMP);
   help_about=makeMenuItemRes("about",'A',ActionNames.ABOUT);
   helpMenu.add(contextHelp);
   helpMenu.addSeparator();
   helpMenu.add(whatClass);
   helpMenu.add(setDebug);
   helpMenu.add(resetDebug);
+  helpMenu.add(heapDump);
   helpMenu.addSeparator();
   helpMenu.add(help_about);
 }
