@@ -20,6 +20,9 @@
             engine.stopTest(false);
           }
         }
+ else         if (command.equals("HeapDump")) {
+          HeapDumper.dumpHeap();
+        }
  else {
           System.out.println("Command: " + command + " not recognised ");
         }
