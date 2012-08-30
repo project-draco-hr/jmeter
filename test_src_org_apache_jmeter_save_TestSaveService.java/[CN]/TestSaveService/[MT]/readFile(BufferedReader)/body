@@ -1,13 +1,17 @@
 {
-  int length=0;
-  int lines=0;
-  String line;
-  while ((line=br.readLine()) != null) {
-    lines++;
-    if (!line.startsWith("<jmeterTestPlan")) {
-      length+=line.length();
+  try {
+    int length=0;
+    int lines=0;
+    String line;
+    while ((line=br.readLine()) != null) {
+      lines++;
+      if (!line.startsWith("<jmeterTestPlan")) {
+        length+=line.length();
+      }
     }
+    return new int[]{length,lines};
   }
-  br.close();
-  return new int[]{length,lines};
+  finally {
+    br.close();
+  }
 }
