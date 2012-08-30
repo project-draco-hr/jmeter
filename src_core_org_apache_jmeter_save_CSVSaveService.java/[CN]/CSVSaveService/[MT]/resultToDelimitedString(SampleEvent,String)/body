@@ -115,6 +115,9 @@ final class StringQuoter {
   if (saveConfig.saveHostname()) {
     text.append(event.getHostname());
   }
+  if (saveConfig.saveIdleTime()) {
+    text.append(event.getResult().getIdleTime());
+  }
   for (int i=0; i < SampleEvent.getVarCount(); i++) {
     text.append(event.getVarValue(i));
   }
