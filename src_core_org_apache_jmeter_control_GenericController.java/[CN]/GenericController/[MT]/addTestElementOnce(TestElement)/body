@@ -1,0 +1,7 @@
+{
+  if (children.putIfAbsent(child,DUMMY) == null) {
+    addTestElement(child);
+    return true;
+  }
+  return false;
+}

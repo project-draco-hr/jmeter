@@ -11,14 +11,27 @@
   stack.removeLast();
   if (stack.size() > 0) {
     TestElement parent=stack.getLast();
-    ObjectPair pair=new ObjectPair(child,parent);
+    boolean duplicate=false;
     if (parent instanceof Controller && (child instanceof Sampler || child instanceof Controller)) {
+      if (!IS_USE_STATIC_SET && parent instanceof TestCompilerHelper) {
+        TestCompilerHelper te=(TestCompilerHelper)parent;
+        duplicate=!te.addTestElementOnce(child);
+      }
+ else {
+        ObjectPair pair=new ObjectPair(child,parent);
 synchronized (PAIRING) {
-        if (!PAIRING.contains(pair)) {
-          parent.addTestElement(child);
-          PAIRING.add(pair);
+          if (!PAIRING.contains(pair)) {
+            parent.addTestElement(child);
+            PAIRING.add(pair);
+          }
+ else {
+            duplicate=true;
+          }
         }
       }
+    }
+    if (duplicate) {
+      LOG.warn("Unexpected duplicate for " + parent.getClass().getName() + " and "+ child.getClass().getName());
     }
   }
 }
