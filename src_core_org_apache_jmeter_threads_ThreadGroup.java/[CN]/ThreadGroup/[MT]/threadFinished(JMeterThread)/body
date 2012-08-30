@@ -1,4 +1,4 @@
 {
-  log.info("Ending thread " + thread.getThreadName());
+  log.debug("Ending thread " + thread.getThreadName());
   allThreads.remove(thread);
 }
