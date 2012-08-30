@@ -4,6 +4,7 @@
   ConversionHelp.setOutVersion(version);
   writer.addAttribute(ATT_VERSION,version);
   writer.addAttribute(ATT_PROPERTIES,SaveService.getPropertiesVersion());
+  writer.addAttribute(ATT_JMETER,JMeterUtils.getJMeterVersion());
   writer.startNode(classMapper.serializedClass(wrap.testPlan.getClass()));
   context.convertAnother(wrap.testPlan);
   writer.endNode();
