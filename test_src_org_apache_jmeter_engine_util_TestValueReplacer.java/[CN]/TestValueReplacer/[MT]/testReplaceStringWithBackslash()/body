@@ -1,0 +1,10 @@
+{
+  ValueReplacer replacer=new ValueReplacer();
+  replacer.setUserDefinedVariables(variables.getUserDefinedVariables());
+  TestElement element=new ConfigTestElement();
+  String input="\\${server} \\ \\\\ \\\\\\ \\, ";
+  element.setProperty(new StringProperty("domain",input));
+  replacer.replaceValues(element);
+  element.setRunningVersion(true);
+  assertEquals(input,element.getPropertyAsString("domain"));
+}
