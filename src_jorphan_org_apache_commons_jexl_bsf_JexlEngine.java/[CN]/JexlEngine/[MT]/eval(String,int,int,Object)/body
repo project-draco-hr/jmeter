@@ -16,6 +16,6 @@
     return jExpr.execute(jc);
   }
  catch (  Exception e) {
-    throw new BSFException(e.getMessage());
+    throw new BSFException(BSFException.REASON_OTHER_ERROR,e.getMessage(),e);
   }
 }
