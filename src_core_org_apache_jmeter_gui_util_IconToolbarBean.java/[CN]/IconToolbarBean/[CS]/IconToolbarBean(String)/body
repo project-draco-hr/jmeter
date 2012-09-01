@@ -1,6 +1,6 @@
 {
   if (strToSplit == null) {
-    throw new NullPointerException("Icon definition must not be null");
+    throw new IllegalArgumentException("Icon definition must not be null");
   }
   final String tmp[]=strToSplit.split(ICON_FIELD_SEP);
   if (tmp.length > 2) {
