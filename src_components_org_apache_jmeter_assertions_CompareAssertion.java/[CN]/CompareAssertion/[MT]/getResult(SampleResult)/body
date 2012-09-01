@@ -6,5 +6,7 @@
     compareTime(result);
     return result;
   }
- else   return new AssertionResult(getName());
+ else {
+    return new AssertionResult(getName());
+  }
 }
