@@ -11,7 +11,7 @@
     }
  catch (    IntrospectionException e) {
       log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
-      throw new Error(e.toString());
+      throw new Error(e.toString(),e);
     }
     if (defaultBundle == null) {
       if (className.startsWith("org.apache.jmeter.examples.")) {

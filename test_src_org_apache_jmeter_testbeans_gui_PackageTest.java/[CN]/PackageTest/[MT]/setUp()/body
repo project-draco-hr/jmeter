@@ -10,7 +10,7 @@
   }
  catch (  IntrospectionException e) {
     log.error("Can't get beanInfo for " + testBeanClass.getName(),e);
-    throw new Error(e.toString());
+    throw new Error(e.toString(),e);
   }
   if (bundle == null) {
     throw new Error("This can't happen!");
