@@ -13,6 +13,8 @@
  else   if (jprop instanceof NullProperty && !Boolean.TRUE.equals(desc.getValue(GenericTestBeanCustomizer.NOT_UNDEFINED))) {
     value=null;
   }
- else   value=Converter.convert(jprop.getStringValue(),type);
+ else {
+    value=Converter.convert(jprop.getStringValue(),type);
+  }
   return value;
 }
