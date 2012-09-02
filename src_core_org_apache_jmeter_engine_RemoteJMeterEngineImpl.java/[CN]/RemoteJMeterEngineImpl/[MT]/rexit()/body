@@ -9,6 +9,5 @@
     log.warn(JMETER_ENGINE_RMI_NAME + " is not bound",e);
   }
   log.info("Unbound from registry");
-  System.gc();
-  System.runFinalization();
+  JMeterUtils.helpGC();
 }

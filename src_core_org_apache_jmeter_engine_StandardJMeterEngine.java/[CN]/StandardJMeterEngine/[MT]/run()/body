@@ -57,7 +57,7 @@
     JMeterContextService.clearTotalThreads();
   }
   groups.clear();
-  System.gc();
+  JMeterUtils.helpGC();
   JMeterContextService.getContext().setSamplingStarted(true);
   boolean mainGroups=running;
   while (running && iter.hasNext()) {
