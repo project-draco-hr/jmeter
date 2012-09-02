@@ -22,9 +22,6 @@
  catch (  HeadlessException e) {
     log.warn(e.toString());
   }
-catch (  JMeterError e) {
-    throw e;
-  }
 catch (  Exception e) {
     log.error("exception finding action handlers",e);
   }
