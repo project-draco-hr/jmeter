@@ -11,10 +11,6 @@
   }
  finally {
     System.out.println("... disconnected from server.");
-    try {
-      is.close();
-    }
- catch (    IOException e) {
-    }
+    JOrphanUtils.closeQuietly(is);
   }
 }
