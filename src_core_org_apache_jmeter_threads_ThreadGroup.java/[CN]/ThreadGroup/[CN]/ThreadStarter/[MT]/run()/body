@@ -29,7 +29,7 @@
     if (usingScheduler && System.currentTimeMillis() > endtime) {
       break;
     }
-    JMeterThread jmThread=makeThread(groupCount,notifier,threadGroupTree,engine,numThreads,i,context);
+    JMeterThread jmThread=makeThread(groupCount,notifier,threadGroupTree,engine,i,context);
     jmThread.setInitialDelay(0);
     if (usingScheduler) {
       jmThread.setScheduled(true);
