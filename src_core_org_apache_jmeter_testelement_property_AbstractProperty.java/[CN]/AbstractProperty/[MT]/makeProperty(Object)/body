@@ -6,10 +6,10 @@
     return new TestElementProperty(((TestElement)item).getName(),(TestElement)item);
   }
   if (item instanceof Collection<?>) {
-    return new CollectionProperty("" + item.hashCode(),(Collection<?>)item);
+    return new CollectionProperty(Integer.toString(item.hashCode()),(Collection<?>)item);
   }
   if (item instanceof Map<?,?>) {
-    return new MapProperty("" + item.hashCode(),(Map<?,?>)item);
+    return new MapProperty(Integer.toString(item.hashCode()),(Map<?,?>)item);
   }
   return null;
 }

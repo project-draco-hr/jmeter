@@ -3,5 +3,5 @@
   if (val == null) {
     return false;
   }
-  return Boolean.valueOf(val).booleanValue();
+  return Boolean.parseBoolean(val);
 }
