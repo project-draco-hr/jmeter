@@ -1,0 +1,8 @@
+{
+  super();
+  this.directory=directory;
+  this.env=env;
+  this.stdin=nonEmpty(stdin);
+  this.stdout=nonEmpty(stdout);
+  this.stderr=nonEmpty(stderr);
+}

@@ -17,4 +17,7 @@
   systemSampler.setArguments((Arguments)argsPanel.createTestElement());
   systemSampler.setEnvironmentVariables((Arguments)envPanel.createTestElement());
   systemSampler.setDirectory(directory.getText());
+  systemSampler.setStdin(stdin.getFilename());
+  systemSampler.setStdout(stdout.getFilename());
+  systemSampler.setStderr(stderr.getFilename());
 }

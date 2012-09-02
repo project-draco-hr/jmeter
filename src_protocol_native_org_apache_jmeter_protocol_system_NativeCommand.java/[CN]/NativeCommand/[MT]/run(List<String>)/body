@@ -5,12 +5,43 @@
     procBuild.environment().putAll(env);
     this.executionEnvironment=Collections.unmodifiableMap(procBuild.environment());
     procBuild.directory(directory);
-    procBuild.redirectErrorStream(true);
+    if (stderr == null || stderr.equals(stdout)) {
+      procBuild.redirectErrorStream(true);
+    }
     proc=procBuild.start();
-    this.outputGobbler=new StreamGobbler(proc.getInputStream());
-    outputGobbler.start();
+    StreamCopier swerr=null;
+    if (!procBuild.redirectErrorStream()) {
+      swerr=new StreamCopier(proc.getErrorStream(),new FileOutputStream(stderr));
+      swerr.start();
+    }
+    StreamCopier swout=null;
+    if (stdout != null) {
+      swout=new StreamCopier(proc.getInputStream(),new FileOutputStream(stdout));
+      swout.start();
+    }
+ else {
+      outputGobbler=new StreamGobbler(proc.getInputStream());
+      outputGobbler.start();
+    }
+    StreamCopier swin=null;
+    if (stdin != null) {
+      swin=new StreamCopier(new FileInputStream(stdin),proc.getOutputStream());
+      swin.start();
+    }
     int exitVal=proc.waitFor();
-    outputGobbler.join();
+    if (outputGobbler != null) {
+      outputGobbler.join();
+    }
+    if (swout != null) {
+      swout.join();
+    }
+    if (swerr != null) {
+      swerr.join();
+    }
+    if (swin != null) {
+      swin.interrupt();
+      swin.join();
+    }
     return exitVal;
   }
   finally {

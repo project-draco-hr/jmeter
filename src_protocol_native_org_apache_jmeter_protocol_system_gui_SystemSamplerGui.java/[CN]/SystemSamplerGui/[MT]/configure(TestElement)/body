@@ -8,4 +8,7 @@
   argsPanel.configure(systemSampler.getArguments());
   envPanel.configure(systemSampler.getEnvironmentVariables());
   directory.setText(systemSampler.getDirectory());
+  stdin.setFilename(systemSampler.getStdin());
+  stdout.setFilename(systemSampler.getStdout());
+  stderr.setFilename(systemSampler.getStderr());
 }

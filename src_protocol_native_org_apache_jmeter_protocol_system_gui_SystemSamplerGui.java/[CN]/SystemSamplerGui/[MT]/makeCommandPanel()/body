@@ -1,6 +1,4 @@
 {
-  JPanel panel=new JPanel(new BorderLayout());
-  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("command_config_box_title")));
   JPanel cmdPanel=new JPanel();
   cmdPanel.setLayout(new BoxLayout(cmdPanel,BoxLayout.X_AXIS));
   directory=new JLabeledTextField(JMeterUtils.getResString("directory_field_title"));
@@ -8,8 +6,16 @@
   cmdPanel.add(Box.createHorizontalStrut(5));
   command=new JLabeledTextField(JMeterUtils.getResString("command_field_title"));
   cmdPanel.add(command);
-  panel.add(cmdPanel,BorderLayout.NORTH);
-  panel.add(makeArgumentsPanel(),BorderLayout.CENTER);
-  panel.add(makeEnvironmentPanel(),BorderLayout.SOUTH);
+  JPanel panel=new VerticalPanel();
+  panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("command_config_box_title")));
+  panel.add(cmdPanel);
+  panel.add(makeArgumentsPanel());
+  panel.add(makeEnvironmentPanel());
+  panel.add(Box.createVerticalStrut(5));
+  panel.add(stdin);
+  panel.add(Box.createVerticalStrut(5));
+  panel.add(stdout);
+  panel.add(Box.createVerticalStrut(5));
+  panel.add(stderr);
   return panel;
 }

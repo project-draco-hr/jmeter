@@ -1,0 +1,14 @@
+{
+  try {
+    IOUtils.copyLarge(is,os);
+    os.close();
+    is.close();
+  }
+ catch (  IOException e) {
+    log.warn("Error writing stream",e);
+  }
+ finally {
+    IOUtils.closeQuietly(is);
+    IOUtils.closeQuietly(os);
+  }
+}

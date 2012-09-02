@@ -7,4 +7,7 @@
   desiredReturnCode.setText("");
   checkReturnCode.setSelected(false);
   desiredReturnCode.setEnabled(false);
+  stdin.clearGui();
+  stdout.clearGui();
+  stderr.clearGui();
 }
