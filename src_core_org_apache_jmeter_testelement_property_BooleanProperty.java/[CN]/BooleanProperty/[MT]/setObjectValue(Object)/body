@@ -3,6 +3,6 @@
     value=((Boolean)v).booleanValue();
   }
  else {
-    value=Boolean.valueOf(v.toString()).booleanValue();
+    value=Boolean.parseBoolean(v.toString());
   }
 }
