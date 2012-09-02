@@ -1,10 +1,11 @@
 {
   checkForOpenFiles();
   if (basedir != null) {
-    base=new File(basedir);
-    if (!base.isDirectory()) {
-      base=base.getParentFile();
+    File newBase=new File(basedir);
+    if (!newBase.isDirectory()) {
+      newBase=newBase.getParentFile();
     }
+    base=newBase;
     log.info("Set new base='" + base + "'");
   }
 }
