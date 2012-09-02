@@ -11,5 +11,5 @@
   final List<CLOption> clOptions=parser.getArguments();
   final int size=clOptions.size();
   assertEquals(size,1);
-  assertEquals((clOptions.get(0)).getDescriptor().getId(),YOU_OPT);
+  assertEquals(clOptions.get(0).getDescriptor().getId(),YOU_OPT);
 }

@@ -5,6 +5,6 @@
   final List<CLOption> clOptions=parser.getArguments();
   final int size=clOptions.size();
   assertEquals(1,size);
-  assertEquals(FILE_OPT,(clOptions.get(0)).getDescriptor().getId());
-  assertEquals("-=,=-",(clOptions.get(0)).getArgument());
+  assertEquals(FILE_OPT,clOptions.get(0).getDescriptor().getId());
+  assertEquals("-=,=-",clOptions.get(0).getArgument());
 }

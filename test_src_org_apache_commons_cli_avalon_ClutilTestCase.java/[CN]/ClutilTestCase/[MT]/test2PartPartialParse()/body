@@ -12,16 +12,16 @@
   final List<CLOption> clOptions1=parser1.getArguments();
   final int size1=clOptions1.size();
   assertEquals(size1,4);
-  assertEquals((clOptions1.get(0)).getDescriptor().getId(),YOU_OPT);
-  assertEquals((clOptions1.get(1)).getDescriptor().getId(),0);
-  assertEquals((clOptions1.get(2)).getDescriptor().getId(),ALL_OPT);
-  assertEquals((clOptions1.get(3)).getDescriptor().getId(),CLEAR1_OPT);
+  assertEquals(clOptions1.get(0).getDescriptor().getId(),YOU_OPT);
+  assertEquals(clOptions1.get(1).getDescriptor().getId(),0);
+  assertEquals(clOptions1.get(2).getDescriptor().getId(),ALL_OPT);
+  assertEquals(clOptions1.get(3).getDescriptor().getId(),CLEAR1_OPT);
   assertEquals("ler",parser1.getUnparsedArgs()[0]);
   final CLArgsParser parser2=new CLArgsParser(parser1.getUnparsedArgs(),options2);
   assertNull(parser2.getErrorString(),parser2.getErrorString());
   final List<CLOption> clOptions2=parser2.getArguments();
   final int size2=clOptions2.size();
   assertEquals(size2,2);
-  assertEquals((clOptions2.get(0)).getDescriptor().getId(),0);
-  assertEquals((clOptions2.get(1)).getDescriptor().getId(),0);
+  assertEquals(clOptions2.get(0).getDescriptor().getId(),0);
+  assertEquals(clOptions2.get(1).getDescriptor().getId(),0);
 }

@@ -5,8 +5,8 @@
   final List<CLOption> clOptions=parser.getArguments();
   final int size=clOptions.size();
   assertEquals(3,size);
-  assertEquals(BLEE_OPT,(clOptions.get(0)).getDescriptor().getId());
-  assertEquals(TAINT_OPT,(clOptions.get(1)).getDescriptor().getId());
-  assertEquals(0,(clOptions.get(2)).getDescriptor().getId());
-  assertEquals("rest",(clOptions.get(2)).getArgument());
+  assertEquals(BLEE_OPT,clOptions.get(0).getDescriptor().getId());
+  assertEquals(TAINT_OPT,clOptions.get(1).getDescriptor().getId());
+  assertEquals(0,clOptions.get(2).getDescriptor().getId());
+  assertEquals("rest",clOptions.get(2).getArgument());
 }

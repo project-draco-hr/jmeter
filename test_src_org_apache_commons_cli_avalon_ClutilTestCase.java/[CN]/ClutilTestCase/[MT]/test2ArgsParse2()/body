@@ -5,7 +5,7 @@
   final List<CLOption> clOptions=parser.getArguments();
   final int size=clOptions.size();
   assertEquals(1,size);
-  assertEquals(DEFINE_OPT,(clOptions.get(0)).getDescriptor().getId());
+  assertEquals(DEFINE_OPT,clOptions.get(0).getDescriptor().getId());
   final CLOption option=clOptions.get(0);
   assertEquals("a-b,c",option.getArgument(0));
   assertEquals("d-e,f",option.getArgument(1));
