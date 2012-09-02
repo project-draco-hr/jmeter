@@ -1,4 +1,5 @@
 {
-  this(title,(String)null);
-  listeners.add(l);
+  super(JMeterUtils.getResString("file_visualizer_filename"),l);
+  this.title=title;
+  init();
 }

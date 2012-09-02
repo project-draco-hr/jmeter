@@ -1,0 +1,14 @@
+{
+  this.label=new JLabel(label);
+  if (listener != null) {
+    listeners.add(listener);
+  }
+  if (exts != null) {
+    this.filetypes=new String[exts.length];
+    System.arraycopy(exts,0,this.filetypes,0,exts.length);
+  }
+ else {
+    this.filetypes=null;
+  }
+  init();
+}

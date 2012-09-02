@@ -1,6 +1,5 @@
 {
+  super(JMeterUtils.getResString("file_visualizer_filename"),exts);
   title=resString;
-  this.filetypes=new String[exts.length];
-  System.arraycopy(exts,0,this.filetypes,0,exts.length);
   init();
 }

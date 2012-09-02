@@ -1,10 +1,5 @@
 {
+  super(JMeterUtils.getResString("file_visualizer_filename"),filetype);
   this.title=title;
-  if (filetype == null) {
-    this.filetypes=null;
-  }
- else {
-    this.filetypes=new String[]{filetype};
-  }
   init();
 }
