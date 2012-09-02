@@ -1,4 +1,3 @@
 {
-  Controller c=(Controller)getProperty(MAIN_CONTROLLER).getObjectValue();
-  return c;
+  return (Controller)getProperty(MAIN_CONTROLLER).getObjectValue();
 }
