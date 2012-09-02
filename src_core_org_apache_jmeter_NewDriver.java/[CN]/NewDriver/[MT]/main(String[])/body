@@ -13,7 +13,7 @@
       initialClass=loader.loadClass("org.apache.jmeter.JMeter");
     }
     Object instance=initialClass.newInstance();
-    Method startup=initialClass.getMethod("start",new Class[]{(new String[0]).getClass()});
+    Method startup=initialClass.getMethod("start",new Class[]{new String[0].getClass()});
     startup.invoke(instance,new Object[]{args});
   }
  catch (  Throwable e) {
