@@ -7,7 +7,7 @@
       log.warn("Script did not return a value");
       return 0;
     }
-    delay=Long.valueOf(o.toString()).longValue();
+    delay=Long.parseLong(o.toString());
   }
  catch (  NumberFormatException e) {
     log.warn("Problem in JSR223 script ",e);
