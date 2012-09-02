@@ -1,6 +1,6 @@
 {
-  ArrayList<Object> tempList;
-  if ((tempList=(ArrayList<Object>)data.get(column)) == null) {
+  List<Object> tempList;
+  if ((tempList=data.get(column)) == null) {
     tempList=new ArrayList<Object>();
     data.put(column,tempList);
   }

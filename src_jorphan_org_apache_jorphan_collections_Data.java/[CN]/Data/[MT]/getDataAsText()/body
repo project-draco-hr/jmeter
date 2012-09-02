@@ -11,8 +11,9 @@
   line[0]=temp.toString();
   reset();
   int index=1;
+  temp=new StringBuilder();
   while (next()) {
-    temp=new StringBuilder("");
+    temp.setLength(0);
     for (int count=0; count < elements.length; count++) {
       temp.append(getColumnValue(count));
       if (count + 1 < elements.length) {
