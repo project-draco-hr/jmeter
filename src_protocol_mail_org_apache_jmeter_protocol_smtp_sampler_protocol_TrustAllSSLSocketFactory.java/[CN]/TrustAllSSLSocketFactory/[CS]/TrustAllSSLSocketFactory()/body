@@ -3,12 +3,12 @@
   try {
     sslcontext=SSLContext.getInstance("TLS");
     sslcontext.init(null,new TrustManager[]{new X509TrustManager(){
-      public java.security.cert.X509Certificate[] getAcceptedIssuers(){
-        return new java.security.cert.X509Certificate[0];
+      public X509Certificate[] getAcceptedIssuers(){
+        return EMPTY_X509Certificate;
       }
-      public void checkClientTrusted(      java.security.cert.X509Certificate[] certs,      String authType){
+      public void checkClientTrusted(      X509Certificate[] certs,      String authType){
       }
-      public void checkServerTrusted(      java.security.cert.X509Certificate[] certs,      String authType){
+      public void checkServerTrusted(      X509Certificate[] certs,      String authType){
       }
     }
 },new java.security.SecureRandom());
