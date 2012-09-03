@@ -1,6 +1,4 @@
 {
-  if (null != result.getFailureMessage()) {
-  }
   assertNull("Failure message should be null",result.getFailureMessage());
   assertFalse(result.isError());
   assertFalse(result.isFailure());
