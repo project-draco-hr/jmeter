@@ -1,7 +1,7 @@
 {
   for (int i=0; i < (resultData.length - 1); i++) {
     if (resultData[i] == NEW_LINE && resultData[i + 1] == NEW_LINE) {
-      return getByteArraySlice(resultData,(i + 2),resultData.length - 1);
+      return JOrphanUtils.getByteArraySlice(resultData,(i + 2),resultData.length - 1);
     }
   }
   return resultData;

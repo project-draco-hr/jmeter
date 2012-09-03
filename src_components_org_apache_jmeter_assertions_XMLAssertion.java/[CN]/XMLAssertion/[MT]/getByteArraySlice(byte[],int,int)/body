@@ -1,9 +1,0 @@
-{
-  byte[] slice=new byte[(end - begin + 1)];
-  int count=0;
-  for (int i=begin; i <= end; i++) {
-    slice[count]=array[i];
-    count++;
-  }
-  return slice;
-}
