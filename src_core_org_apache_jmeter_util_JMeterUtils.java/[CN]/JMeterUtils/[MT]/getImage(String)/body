@@ -1,12 +1,15 @@
 {
   try {
-    return new ImageIcon(JMeterUtils.class.getClassLoader().getResource("org/apache/jmeter/images/" + name.trim()));
+    URL url=JMeterUtils.class.getClassLoader().getResource("org/apache/jmeter/images/" + name.trim());
+    if (url != null) {
+      return new ImageIcon(url);
+    }
+ else {
+      log.warn("no icon for " + name);
+      return null;
+    }
   }
- catch (  NullPointerException e) {
-    log.warn("no icon for " + name);
-    return null;
-  }
-catch (  NoClassDefFoundError e) {
+ catch (  NoClassDefFoundError e) {
     log.info("no icon for " + name + " "+ e.getMessage());
     return null;
   }
