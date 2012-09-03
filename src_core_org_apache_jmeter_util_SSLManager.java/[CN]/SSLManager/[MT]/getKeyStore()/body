@@ -9,7 +9,7 @@
     }
  catch (    Exception e) {
       this.keyStore=null;
-      throw new RuntimeException("Could not create keystore: " + e.getMessage());
+      throw new RuntimeException("Could not create keystore: " + e.getMessage(),e);
     }
     FileInputStream fileInputStream=null;
     try {
