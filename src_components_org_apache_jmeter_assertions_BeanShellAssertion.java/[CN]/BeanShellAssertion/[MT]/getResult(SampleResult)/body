@@ -22,7 +22,7 @@
     bshInterpreter.set("Failure",false);
     processFileOrScript(bshInterpreter);
     result.setFailureMessage(bshInterpreter.get("FailureMessage").toString());
-    result.setFailure(Boolean.valueOf(bshInterpreter.get("Failure").toString()).booleanValue());
+    result.setFailure(Boolean.parseBoolean(bshInterpreter.get("Failure").toString()));
     result.setError(false);
   }
  catch (  NoClassDefFoundError ex) {
