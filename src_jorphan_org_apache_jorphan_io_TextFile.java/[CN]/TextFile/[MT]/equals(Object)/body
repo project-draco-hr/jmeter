@@ -1,11 +1,21 @@
 {
-  if (this == obj)   return true;
-  if (!super.equals(obj))   return false;
-  if (!(obj instanceof TextFile))   return false;
+  if (this == obj) {
+    return true;
+  }
+  if (!super.equals(obj)) {
+    return false;
+  }
+  if (!(obj instanceof TextFile)) {
+    return false;
+  }
   TextFile other=(TextFile)obj;
   if (encoding == null) {
-    if (other.encoding != null)     return false;
+    if (other.encoding != null) {
+      return false;
+    }
   }
- else   if (!encoding.equals(other.encoding))   return false;
+ else   if (!encoding.equals(other.encoding)) {
+    return false;
+  }
   return true;
 }
