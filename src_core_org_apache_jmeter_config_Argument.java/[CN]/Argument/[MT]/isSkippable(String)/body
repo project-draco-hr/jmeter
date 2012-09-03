@@ -1,5 +1,5 @@
 {
-  if (parameterName.trim().length() == 0) {
+  if (JOrphanUtils.isBlank(parameterName)) {
     return true;
   }
   if (parameterName.trim().startsWith("${") && parameterName.endsWith("}")) {
