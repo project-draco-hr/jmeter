@@ -10,12 +10,7 @@
   }
   TextFile other=(TextFile)obj;
   if (encoding == null) {
-    if (other.encoding != null) {
-      return false;
-    }
+    return other.encoding == null;
   }
- else   if (!encoding.equals(other.encoding)) {
-    return false;
-  }
-  return true;
+  return encoding.equals(other.encoding);
 }
