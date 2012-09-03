@@ -1,5 +1,5 @@
 {
-  add=new JButton(JMeterUtils.getResString("add"));
+  JButton add=new JButton(JMeterUtils.getResString("add"));
   add.setActionCommand(ADD);
   add.addActionListener(this);
   add.setEnabled(true);

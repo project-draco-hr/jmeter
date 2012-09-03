@@ -1,11 +1,11 @@
 {
-  showDetail=new JButton(JMeterUtils.getResString("detail"));
+  JButton showDetail=new JButton(JMeterUtils.getResString("detail"));
   showDetail.setActionCommand(DETAIL);
   showDetail.setEnabled(true);
   add=new JButton(JMeterUtils.getResString("add"));
   add.setActionCommand(ADD);
   add.setEnabled(true);
-  addFromClipboard=new JButton(JMeterUtils.getResString("add_from_clipboard"));
+  JButton addFromClipboard=new JButton(JMeterUtils.getResString("add_from_clipboard"));
   addFromClipboard.setActionCommand(ADD_FROM_CLIPBOARD);
   addFromClipboard.setEnabled(true);
   delete=new JButton(JMeterUtils.getResString("delete"));

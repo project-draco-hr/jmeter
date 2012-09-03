@@ -13,10 +13,10 @@
   mainPanel.setBorder(BorderFactory.createEmptyBorder(7,3,3,3));
   mainPanel.add(detailPanel,BorderLayout.CENTER);
   JPanel buttonsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
-  updateButton=new JButton(JMeterUtils.getResString("update"));
+  JButton updateButton=new JButton(JMeterUtils.getResString("update"));
   updateButton.setActionCommand(UPDATE);
   updateButton.addActionListener(this);
-  closeButton=new JButton(JMeterUtils.getResString("close"));
+  JButton closeButton=new JButton(JMeterUtils.getResString("close"));
   closeButton.setActionCommand(CLOSE);
   closeButton.addActionListener(this);
   nextButton=new JButton(JMeterUtils.getResString("next"));
