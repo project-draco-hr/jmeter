@@ -3,6 +3,7 @@
     String prevContent=null;
     SampleResult prevResult=null;
     boolean success=true;
+    StringBuilder buf=new StringBuilder();
     for (    SampleResult sResult : responses) {
       String currentContent=sResult.getResponseDataAsString();
       currentContent=filterString(currentContent);
@@ -11,11 +12,11 @@
       }
       if (!success) {
         result.setFailure(true);
-        StringBuilder buf=new StringBuilder();
+        buf.setLength(0);
         appendResultDetails(buf,prevResult);
         buf.append(prevContent);
         result.addToBaseResult(buf.toString());
-        buf=new StringBuilder();
+        buf.setLength(0);
         appendResultDetails(buf,sResult);
         buf.append(currentContent);
         result.addToSecondaryResult(buf.toString());
