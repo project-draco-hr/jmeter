@@ -1,6 +1,6 @@
 {
   Date val=null;
-  if (date != null && date instanceof java.util.Date) {
+  if (date instanceof java.util.Date) {
     return (Date)date;
   }
  else   if (date != null) {

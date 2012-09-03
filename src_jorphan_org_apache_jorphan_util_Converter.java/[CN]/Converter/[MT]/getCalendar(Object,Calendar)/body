@@ -1,6 +1,6 @@
 {
   Calendar cal=new GregorianCalendar();
-  if (date != null && date instanceof java.util.Date) {
+  if (date instanceof java.util.Date) {
     cal.setTime((java.util.Date)date);
     return cal;
   }
