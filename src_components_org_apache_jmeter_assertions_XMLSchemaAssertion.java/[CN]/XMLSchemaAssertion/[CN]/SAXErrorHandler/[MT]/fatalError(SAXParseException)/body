@@ -1,6 +1,8 @@
 {
   String msg="fatal: " + errorDetails(exception);
-  log.debug(msg);
+  if (log.isDebugEnabled()) {
+    log.debug(msg);
+  }
   result.setFailureMessage(msg);
   result.setError(true);
   throw exception;
