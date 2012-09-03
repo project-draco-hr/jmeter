@@ -4,7 +4,7 @@
   assertion=new XMLSchemaAssertion();
   assertion.setThreadContext(jmctx);
   result=new SampleResult();
-  vars=new JMeterVariables();
+  JMeterVariables vars=new JMeterVariables();
   jmctx.setVariables(vars);
   jmctx.setPreviousResult(result);
 }
