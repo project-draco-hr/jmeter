@@ -1,10 +1,11 @@
 {
   Map<Thread,StackTraceElement[]> m=Thread.getAllStackTraces();
   String lineSeparator=System.getProperty("line.separator");
+  StringBuilder builder=new StringBuilder();
   for (  Map.Entry<Thread,StackTraceElement[]> e : m.entrySet()) {
     boolean daemon=e.getKey().isDaemon();
     if (includeDaemons || !daemon) {
-      StringBuilder builder=new StringBuilder();
+      builder.setLength(0);
       StackTraceElement[] ste=e.getValue();
       for (      StackTraceElement stackTraceElement : ste) {
         int lineNumber=stackTraceElement.getLineNumber();

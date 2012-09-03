@@ -1,4 +1,6 @@
 {
-  if (in < 10)   return (byte)(in + '0');
+  if (in < 10) {
+    return (byte)(in + '0');
+  }
   return (byte)((in - 10) + 'a');
 }

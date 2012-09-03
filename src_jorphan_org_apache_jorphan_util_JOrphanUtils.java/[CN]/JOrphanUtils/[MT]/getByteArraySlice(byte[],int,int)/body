@@ -1,9 +1,5 @@
 {
   byte[] slice=new byte[(end - begin + 1)];
-  int count=0;
-  for (int i=begin; i <= end; i++) {
-    slice[count]=array[i];
-    count++;
-  }
+  System.arraycopy(array,begin,slice,0,slice.length);
   return slice;
 }
