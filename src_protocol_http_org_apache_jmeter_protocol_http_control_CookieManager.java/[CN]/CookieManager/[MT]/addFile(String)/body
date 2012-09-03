@@ -15,7 +15,7 @@
     final CollectionProperty cookies=getCookies();
     while ((line=reader.readLine()) != null) {
       try {
-        if (line.startsWith("#") || line.trim().length() == 0) {
+        if (line.startsWith("#") || JOrphanUtils.isBlank(line)) {
           continue;
         }
         String[] st=JOrphanUtils.split(line,TAB,false);

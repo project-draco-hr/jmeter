@@ -13,7 +13,7 @@
     String line;
     while ((line=reader.readLine()) != null) {
       try {
-        if (line.startsWith("#") || line.trim().length() == 0) {
+        if (line.startsWith("#") || JOrphanUtils.isBlank(line)) {
           continue;
         }
         StringTokenizer st=new StringTokenizer(line,"\t");

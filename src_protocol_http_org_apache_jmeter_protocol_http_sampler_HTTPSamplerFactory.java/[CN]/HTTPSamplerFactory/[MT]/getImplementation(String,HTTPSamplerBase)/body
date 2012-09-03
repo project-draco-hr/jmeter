@@ -2,7 +2,7 @@
   if (HTTPSamplerBase.PROTOCOL_FILE.equals(base.getProtocol())) {
     return new HTTPFileImpl(base);
   }
-  if (impl.trim().length() == 0) {
+  if (JOrphanUtils.isBlank(impl)) {
     impl=DEFAULT_CLASSNAME;
   }
   if (IMPL_JAVA.equals(impl) || HTTP_SAMPLER_JAVA.equals(impl)) {

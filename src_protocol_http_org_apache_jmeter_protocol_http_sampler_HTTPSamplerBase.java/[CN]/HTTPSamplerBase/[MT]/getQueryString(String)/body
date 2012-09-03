@@ -1,5 +1,5 @@
 {
-  if (contentEncoding == null || contentEncoding.trim().length() == 0) {
+  if (JOrphanUtils.isBlank(contentEncoding)) {
     contentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;
   }
   StringBuilder buf=new StringBuilder();
