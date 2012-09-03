@@ -1,0 +1,6 @@
+{
+  assertTrue(JOrphanUtils.isBlank(""));
+  assertTrue(JOrphanUtils.isBlank(null));
+  assertTrue(JOrphanUtils.isBlank("    "));
+  assertFalse(JOrphanUtils.isBlank(" zdazd dzd "));
+}
