@@ -1,0 +1,8 @@
+{
+  JPanel stdPane=new JPanel(new BorderLayout());
+  stdPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("command_config_std_streams_title")));
+  stdPane.add(stdin,BorderLayout.NORTH);
+  stdPane.add(stdout,BorderLayout.CENTER);
+  stdPane.add(stderr,BorderLayout.SOUTH);
+  return stdPane;
+}

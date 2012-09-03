@@ -2,9 +2,9 @@
   setLayout(new BorderLayout());
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
-  JPanel panelb=new VerticalPanel();
-  panelb.add(makeReturnCodePanel());
-  panelb.add(Box.createVerticalStrut(5));
-  panelb.add(makeCommandPanel(),BorderLayout.CENTER);
-  add(panelb,BorderLayout.CENTER);
+  add(makeCommandPanel(),BorderLayout.CENTER);
+  JPanel streamsCodePane=new JPanel(new BorderLayout());
+  streamsCodePane.add(makeStreamsPanel(),BorderLayout.NORTH);
+  streamsCodePane.add(makeReturnCodePanel(),BorderLayout.SOUTH);
+  add(streamsCodePane,BorderLayout.SOUTH);
 }
