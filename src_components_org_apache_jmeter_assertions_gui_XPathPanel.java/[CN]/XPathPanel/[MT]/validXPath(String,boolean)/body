@@ -1,13 +1,11 @@
 {
   String ret=null;
   boolean success=true;
+  Document testDoc=null;
   try {
-    if (testDoc == null) {
-      Document doc=XPathUtil.makeDocumentBuilder(false,false,false,false).newDocument();
-      testDoc=doc;
-      Element el=testDoc.createElement("root");
-      doc.appendChild(el);
-    }
+    testDoc=XPathUtil.makeDocumentBuilder(false,false,false,false).newDocument();
+    Element el=testDoc.createElement("root");
+    testDoc.appendChild(el);
     XPathUtil.validateXPath(testDoc,xpathString);
   }
  catch (  IllegalArgumentException e) {
