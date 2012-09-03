@@ -2,7 +2,7 @@
   FileInputStream fis=new FileInputStream(fileEntry.file);
   InputStreamReader isr=null;
   String charsetName=fileEntry.charSetEncoding;
-  if (charsetName != null && charsetName.trim().length() > 0) {
+  if (!JOrphanUtils.isBlank(charsetName)) {
     isr=new InputStreamReader(fis,charsetName);
   }
  else {

@@ -2,7 +2,7 @@
   FileEntry fileEntry=files.get(filename);
   if (fileEntry != null) {
     if (fileEntry.inputOutputObject == null) {
-      fileEntry.inputOutputObject=createBufferedReader(fileEntry,filename);
+      fileEntry.inputOutputObject=createBufferedReader(fileEntry);
     }
  else     if (!(fileEntry.inputOutputObject instanceof Reader)) {
       throw new IOException("File " + filename + " already in use");
@@ -11,7 +11,7 @@
     String line=reader.readLine();
     if (line == null && recycle) {
       reader.close();
-      reader=createBufferedReader(fileEntry,filename);
+      reader=createBufferedReader(fileEntry);
       fileEntry.inputOutputObject=reader;
       if (firstLineIsNames) {
         reader.readLine();

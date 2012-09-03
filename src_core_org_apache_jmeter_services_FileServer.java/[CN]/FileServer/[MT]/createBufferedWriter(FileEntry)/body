@@ -2,7 +2,7 @@
   FileOutputStream fos=new FileOutputStream(fileEntry.file);
   OutputStreamWriter osw=null;
   String charsetName=fileEntry.charSetEncoding;
-  if (charsetName != null && charsetName.trim().length() > 0) {
+  if (!JOrphanUtils.isBlank(charsetName)) {
     osw=new OutputStreamWriter(fos,charsetName);
   }
  else {
