@@ -6,11 +6,11 @@
     if (contentDisposition != null && contentDisposition.indexOf("form-data") > -1) {
       final String namePrefix="name=\"";
       int index=contentDisposition.indexOf(namePrefix) + namePrefix.length();
-      String name=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
+      String name=contentDisposition.substring(index,contentDisposition.indexOf('\"',index));
       final String filenamePrefix="filename=\"";
       if (contentDisposition.indexOf(filenamePrefix) > -1) {
         index=contentDisposition.indexOf(filenamePrefix) + filenamePrefix.length();
-        String path=contentDisposition.substring(index,contentDisposition.indexOf("\"",index));
+        String path=contentDisposition.substring(index,contentDisposition.indexOf('\"',index));
         if (path != null && path.length() > 0) {
           files.addHTTPFileArg(path,name,contentType);
         }
