@@ -2,7 +2,7 @@
   JMeterProperty prop=getProperty(PERCENTTHROUGHPUT);
   float retVal=100;
   if (prop instanceof FloatProperty) {
-    retVal=(((FloatProperty)prop).getFloatValue());
+    retVal=((FloatProperty)prop).getFloatValue();
   }
  else {
     try {

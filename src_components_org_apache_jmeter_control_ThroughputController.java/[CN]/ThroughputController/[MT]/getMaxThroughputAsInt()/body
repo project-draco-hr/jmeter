@@ -2,7 +2,7 @@
   JMeterProperty prop=getProperty(MAXTHROUGHPUT);
   int retVal=1;
   if (prop instanceof IntegerProperty) {
-    retVal=(((IntegerProperty)prop).getIntValue());
+    retVal=((IntegerProperty)prop).getIntValue();
   }
  else {
     try {
