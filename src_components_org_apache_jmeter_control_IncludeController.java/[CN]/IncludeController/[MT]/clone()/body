@@ -2,15 +2,15 @@
   this.resolveReplacementSubTree(null);
   IncludeController clone=(IncludeController)super.clone();
   clone.setIncludePath(this.getIncludePath());
-  if (this.SUBTREE != null) {
-    if (this.SUBTREE.keySet().size() == 1) {
-      Iterator<Object> itr=this.SUBTREE.keySet().iterator();
+  if (this.subtree != null) {
+    if (this.subtree.keySet().size() == 1) {
+      Iterator<Object> itr=this.subtree.keySet().iterator();
       while (itr.hasNext()) {
-        this.SUB=(TestElement)itr.next();
+        this.sub=(TestElement)itr.next();
       }
     }
-    clone.SUBTREE=(HashTree)this.SUBTREE.clone();
-    clone.SUB=this.SUB == null ? null : (TestElement)this.SUB.clone();
+    clone.subtree=(HashTree)this.subtree.clone();
+    clone.sub=this.sub == null ? null : (TestElement)this.sub.clone();
   }
   return clone;
 }
