@@ -62,8 +62,12 @@
   boolean mainGroups=running;
   while (running && iter.hasNext()) {
     AbstractThreadGroup group=iter.next();
-    if (group instanceof SetupThreadGroup)     continue;
-    if (group instanceof PostThreadGroup)     continue;
+    if (group instanceof SetupThreadGroup) {
+      continue;
+    }
+    if (group instanceof PostThreadGroup) {
+      continue;
+    }
     groupCount++;
     String groupName=group.getName();
     log.info("Starting ThreadGroup: " + groupCount + " : "+ groupName);
