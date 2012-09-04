@@ -28,7 +28,7 @@ switch (length) {
 case -1:
           return -1;
 case 0:
-        return (new File(xmlFile)).length();
+        return new File(xmlFile).length();
 default :
       return length;
   }
