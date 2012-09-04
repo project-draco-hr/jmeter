@@ -11,7 +11,7 @@
     }
   }
  catch (  UnknownHostException e1) {
-    throw new RemoteException("Cannot start. Unable to get local host IP address.");
+    throw new RemoteException("Cannot start. Unable to get local host IP address.",e1);
   }
   log.info("IP address=" + localHost.getHostAddress());
   String hostName=localHost.getHostName();
@@ -41,6 +41,6 @@
   }
  catch (  Exception ex) {
     log.error("rmiregistry needs to be running to start JMeter in server " + "mode\n\t" + ex.toString());
-    throw new RemoteException("Cannot start. See server log file.");
+    throw new RemoteException("Cannot start. See server log file.",ex);
   }
 }
