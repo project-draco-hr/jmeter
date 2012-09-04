@@ -4,5 +4,8 @@
     setParameters(parameters);
   }
  catch (  InvalidVariableException e) {
+    if (log.isDebugEnabled()) {
+      log.debug("Invalid variable:" + parameters,e);
+    }
   }
 }

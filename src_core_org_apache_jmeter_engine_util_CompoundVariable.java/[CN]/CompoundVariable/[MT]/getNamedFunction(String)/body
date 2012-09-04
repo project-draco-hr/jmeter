@@ -5,7 +5,7 @@
     }
  catch (    Exception e) {
       log.error("",e);
-      throw new InvalidVariableException();
+      throw new InvalidVariableException(e);
     }
   }
   return new SimpleVariable(functionName);

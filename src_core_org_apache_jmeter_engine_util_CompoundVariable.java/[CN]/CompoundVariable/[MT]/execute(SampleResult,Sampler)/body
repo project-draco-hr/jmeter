@@ -11,6 +11,9 @@
         results.append(((Function)item).execute(previousResult,currentSampler));
       }
  catch (      InvalidVariableException e) {
+        if (log.isDebugEnabled()) {
+          log.debug("Invalid variable:" + item,e);
+        }
       }
     }
  else     if (item instanceof SimpleVariable) {
