@@ -18,18 +18,18 @@
     log.error("Problem retrieving gui for " + objClass,e);
     String msg="Cannot find class: " + e.getMessage();
     JOptionPane.showMessageDialog(null,msg,"Missing jar? See log file.",JOptionPane.ERROR_MESSAGE);
-    throw new RuntimeException(e.toString());
+    throw new RuntimeException(e.toString(),e);
   }
 catch (  ClassNotFoundException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new RuntimeException(e.toString());
+    throw new RuntimeException(e.toString(),e);
   }
 catch (  InstantiationException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new RuntimeException(e.toString());
+    throw new RuntimeException(e.toString(),e);
   }
 catch (  IllegalAccessException e) {
     log.error("Problem retrieving gui for " + objClass,e);
-    throw new RuntimeException(e.toString());
+    throw new RuntimeException(e.toString(),e);
   }
 }
