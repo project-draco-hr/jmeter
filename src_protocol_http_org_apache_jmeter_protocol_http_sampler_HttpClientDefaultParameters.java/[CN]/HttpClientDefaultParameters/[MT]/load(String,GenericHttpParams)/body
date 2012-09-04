@@ -9,7 +9,7 @@
     for (    Map.Entry<Object,Object> me : props.entrySet()) {
       String key=(String)me.getKey();
       String value=(String)me.getValue();
-      int typeSep=key.indexOf("$");
+      int typeSep=key.indexOf('$');
       try {
         if (typeSep > 0) {
           String type=key.substring(typeSep + 1);
