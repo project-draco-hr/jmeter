@@ -12,7 +12,7 @@
   JPanel resultsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   cutPasteFunction=new JLabeledTextField(JMeterUtils.getResString("cut_paste_function"),35);
   resultsPanel.add(cutPasteFunction);
-  generateButton=new JButton(JMeterUtils.getResString("generate"));
+  JButton generateButton=new JButton(JMeterUtils.getResString("generate"));
   generateButton.addActionListener(this);
   resultsPanel.add(generateButton);
   this.getContentPane().add(resultsPanel,BorderLayout.SOUTH);
