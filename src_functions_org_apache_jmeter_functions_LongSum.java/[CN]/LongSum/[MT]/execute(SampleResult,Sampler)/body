@@ -5,11 +5,9 @@
   for (int i=0; i < values.length - 1; i++) {
     sum+=Long.parseLong(((CompoundVariable)values[i]).execute());
   }
-  try {
+  if (StringUtils.isNumeric(varName)) {
     sum+=Long.parseLong(varName);
     varName=null;
-  }
- catch (  NumberFormatException ignored) {
   }
   String totalString=Long.toString(sum);
   if (vars != null && varName != null && varName.length() > 0) {
