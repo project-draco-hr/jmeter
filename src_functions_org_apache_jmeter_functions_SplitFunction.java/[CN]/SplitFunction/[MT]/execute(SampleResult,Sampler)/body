@@ -11,7 +11,7 @@
   }
   String parts[]=JOrphanUtils.split(stringToSplit,splitString,"?");
   vars.put(varNamePrefix,stringToSplit);
-  vars.put(varNamePrefix + "_n","" + parts.length);
+  vars.put(varNamePrefix + "_n",Integer.toString(parts.length));
   for (int i=1; i <= parts.length; i++) {
     if (log.isDebugEnabled()) {
       log.debug(parts[i - 1]);
