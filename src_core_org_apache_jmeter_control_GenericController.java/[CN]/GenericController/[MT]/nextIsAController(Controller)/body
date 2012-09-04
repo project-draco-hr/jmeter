@@ -5,7 +5,7 @@
   }
  catch (  StackOverflowError soe) {
     log.warn("StackOverflowError detected");
-    throw new NextIsNullException();
+    throw new NextIsNullException("StackOverflowError detected",soe);
   }
   if (sampler == null) {
     currentReturnedNull(controller);
