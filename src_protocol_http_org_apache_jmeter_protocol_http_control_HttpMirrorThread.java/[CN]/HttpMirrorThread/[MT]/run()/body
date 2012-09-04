@@ -36,7 +36,7 @@
     out.write(baos.toByteArray());
     String contentLengthHeaderValue=getRequestHeaderValue(headerString,"Content-Length");
     if (contentLengthHeaderValue != null) {
-      contentLength=Integer.valueOf(contentLengthHeaderValue).intValue();
+      contentLength=Integer.parseInt(contentLengthHeaderValue);
     }
     String sleepHeaderValue=getRequestHeaderValue(headerString,"X-Sleep");
     if (sleepHeaderValue != null) {
