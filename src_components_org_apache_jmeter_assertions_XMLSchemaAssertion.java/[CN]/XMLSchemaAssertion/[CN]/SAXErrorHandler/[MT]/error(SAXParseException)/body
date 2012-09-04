@@ -1,8 +1,6 @@
 {
   String msg="error: " + errorDetails(exception);
-  if (log.isDebugEnabled()) {
-    log.debug(msg);
-  }
+  log.debug(msg);
   result.setFailureMessage(msg);
   result.setError(true);
   throw exception;

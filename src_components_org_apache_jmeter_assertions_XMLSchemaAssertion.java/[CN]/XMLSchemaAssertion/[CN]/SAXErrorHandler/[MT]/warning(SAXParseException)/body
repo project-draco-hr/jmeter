@@ -1,7 +1,5 @@
 {
   String msg="warning: " + errorDetails(exception);
-  if (log.isDebugEnabled()) {
-    log.debug(msg);
-  }
+  log.debug(msg);
   result.setFailureMessage(msg);
 }
