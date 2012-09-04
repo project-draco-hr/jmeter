@@ -1,6 +1,6 @@
 {
   setLayout(new BorderLayout(5,0));
-  nameLabel=new JLabel(JMeterUtils.getResString("name"));
+  JLabel nameLabel=new JLabel(JMeterUtils.getResString("name"));
   nameLabel.setName("name");
   nameLabel.setLabelFor(nameField);
   add(nameLabel,BorderLayout.WEST);
