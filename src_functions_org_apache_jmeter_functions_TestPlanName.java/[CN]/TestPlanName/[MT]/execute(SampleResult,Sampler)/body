@@ -1,4 +1,3 @@
 {
-  String testPlanFile=FileServer.getFileServer().getScriptName();
-  return testPlanFile;
+  return FileServer.getFileServer().getScriptName();
 }
