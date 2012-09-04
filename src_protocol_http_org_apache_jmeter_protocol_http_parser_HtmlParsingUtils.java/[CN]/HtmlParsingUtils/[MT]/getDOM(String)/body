@@ -11,6 +11,6 @@
  catch (  UnsupportedEncodingException e) {
     log.error("getDOM1 : Unsupported encoding exception - " + e);
     log.debug("End : getDOM1");
-    throw new RuntimeException("UTF-8 encoding failed");
+    throw new RuntimeException("UTF-8 encoding failed",e);
   }
 }

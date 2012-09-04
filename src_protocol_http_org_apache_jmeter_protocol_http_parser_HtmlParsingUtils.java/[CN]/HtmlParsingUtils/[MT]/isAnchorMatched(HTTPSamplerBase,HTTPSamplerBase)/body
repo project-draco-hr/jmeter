@@ -5,7 +5,7 @@
   }
  catch (  UnsupportedEncodingException e) {
     log.error("UTF-8 encoding not supported!");
-    throw new Error("Should not happen: " + e.toString());
+    throw new Error("Should not happen: " + e.toString(),e);
   }
   final Arguments arguments=config.getArguments();
   final Perl5Matcher matcher=JMeterUtils.getMatcher();
