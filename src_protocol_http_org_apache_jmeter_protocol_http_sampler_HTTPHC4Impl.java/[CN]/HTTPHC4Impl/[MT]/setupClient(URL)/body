@@ -55,7 +55,9 @@
  else     if (useStaticProxy) {
       HttpHost proxy=new HttpHost(PROXY_HOST,PROXY_PORT);
       clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
-      if (PROXY_USER.length() > 0)       ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(PROXY_HOST,PROXY_PORT),new UsernamePasswordCredentials(PROXY_USER,PROXY_PASS));
+      if (PROXY_USER.length() > 0) {
+        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(PROXY_HOST,PROXY_PORT),new UsernamePasswordCredentials(PROXY_USER,PROXY_PASS));
+      }
     }
     clientParams.setParameter(ClientPNames.COOKIE_POLICY,CookiePolicy.IGNORE_COOKIES);
     if (log.isDebugEnabled()) {
