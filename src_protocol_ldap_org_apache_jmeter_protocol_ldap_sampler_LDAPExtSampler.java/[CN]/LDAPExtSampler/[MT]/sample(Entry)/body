@@ -121,7 +121,7 @@
     String returnData=ex.toString();
     final int indexOfLDAPErrCode=returnData.indexOf("LDAP: error code");
     if (indexOfLDAPErrCode >= 0) {
-      res.setResponseMessage(returnData.substring(indexOfLDAPErrCode + 21,returnData.indexOf("]")));
+      res.setResponseMessage(returnData.substring(indexOfLDAPErrCode + 21,returnData.indexOf(']')));
       res.setResponseCode(returnData.substring(indexOfLDAPErrCode + 17,indexOfLDAPErrCode + 19));
     }
  else {
