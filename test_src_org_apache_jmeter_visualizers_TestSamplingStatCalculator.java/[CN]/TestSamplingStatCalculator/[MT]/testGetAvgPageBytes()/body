@@ -1,11 +1,11 @@
 {
   SampleResult res=new SampleResult();
-  assertEquals(0,ssc.getAvgPageBytes(),0);
+  Assert.assertEquals(0,ssc.getAvgPageBytes(),0);
   res.setResponseData("abcdef","UTF-8");
   ssc.addSample(res);
   res.setResponseData("abcde","UTF-8");
   ssc.addSample(res);
   res.setResponseData("abcd","UTF-8");
   ssc.addSample(res);
-  assertEquals(5,ssc.getAvgPageBytes(),0);
+  Assert.assertEquals(5,ssc.getAvgPageBytes(),0);
 }
