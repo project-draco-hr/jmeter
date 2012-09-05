@@ -23,9 +23,7 @@
   String[] order=new String[]{"three","four","five","six","seven","four","seven","four","seven"};
   int expectedNoSamples=2 + (1 + 2 + (1 + 1) * innerLoopCount) * outerLoopCount;
   String[] expectedSamples=new String[expectedNoSamples];
-  for (int i=0; i < onlyOnceOrder.length; i++) {
-    expectedSamples[i]=onlyOnceOrder[i];
-  }
+  System.arraycopy(onlyOnceOrder,0,expectedSamples,0,onlyOnceOrder.length);
   final int onceOnlySamples=onlyOnceOrder.length;
   for (int i=0; i < order.length * outerLoopCount; i++) {
     expectedSamples[onceOnlySamples + i]=order[i % order.length];
