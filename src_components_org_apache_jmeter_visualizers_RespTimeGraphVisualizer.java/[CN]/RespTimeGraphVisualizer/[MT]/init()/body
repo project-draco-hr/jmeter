@@ -6,7 +6,7 @@
   mainPanel.setBorder(margin);
   mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
   mainPanel.add(makeTitlePanel());
-  settingsPane=new VerticalPanel();
+  JPanel settingsPane=new VerticalPanel();
   settingsPane.setBorder(margin2);
   graphPanel=new RespTimeGraphChart();
   graphPanel.setPreferredSize(new Dimension(DEFAULT_WIDTH,DEFAULT_HEIGTH));
