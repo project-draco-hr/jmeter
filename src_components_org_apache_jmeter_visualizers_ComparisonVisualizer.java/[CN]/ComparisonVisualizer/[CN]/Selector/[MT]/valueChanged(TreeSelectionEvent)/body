@@ -10,7 +10,9 @@
         break;
       }
     }
-    if (result == null)     result=new CompareAssertionResult(getName());
+    if (result == null) {
+      result=new CompareAssertionResult(getName());
+    }
     base.setText(result.getBaseResult());
     secondary.setText(result.getSecondaryResult());
   }
