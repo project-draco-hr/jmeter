@@ -4,6 +4,6 @@
     return;
   }
   String temp=fname.replace('\\','/');
-  String simpleName=temp.substring(temp.lastIndexOf("/") + 1);
+  String simpleName=temp.substring(temp.lastIndexOf('/') + 1);
   setTitle(simpleName + " (" + fname+ ") - "+ DEFAULT_TITLE);
 }
