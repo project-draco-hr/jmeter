@@ -16,9 +16,7 @@
     }
     LineChartProperties lineChartProperties=new LineChartProperties(strokes,shapes);
     Paint[] paints=new Paint[_color.length];
-    for (int i=0; i < _color.length; i++) {
-      paints[i]=_color[i];
-    }
+    System.arraycopy(_color,0,paints,0,_color.length);
     AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,_legendLabels,paints,ChartType.LINE,lineChartProperties);
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();

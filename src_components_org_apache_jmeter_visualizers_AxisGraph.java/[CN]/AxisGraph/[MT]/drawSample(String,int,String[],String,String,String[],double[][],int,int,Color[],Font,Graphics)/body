@@ -21,9 +21,7 @@
     valueLabelRenderer.useVerticalLabels(valueOrientation);
     clusteredBarChartProperties.addPostRenderEventListener(valueLabelRenderer);
     Paint[] paints=new Paint[_color.length];
-    for (int i=0; i < _color.length; i++) {
-      paints[i]=_color[i];
-    }
+    System.arraycopy(_color,0,paints,0,paints.length);
     AxisChartDataSet axisChartDataSet=new AxisChartDataSet(_data,_legendLabels,paints,ChartType.BAR_CLUSTERED,clusteredBarChartProperties);
     dataSeries.addIAxisPlotDataSet(axisChartDataSet);
     ChartProperties chartProperties=new ChartProperties();
