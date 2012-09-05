@@ -6,5 +6,5 @@
   mySB.append("Max: " + this.getMax() + "  ");
   mySB.append("Error Rate: " + this.getErrorPercentageString() + "  ");
   mySB.append("Sample Rate: " + this.getRateString());
-  return (mySB.toString());
+  return mySB.toString();
 }

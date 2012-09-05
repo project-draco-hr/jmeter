@@ -12,6 +12,5 @@
     rate*=60.0;
     unit="hour";
   }
-  String rval=rateFormatter.format(rate) + "/" + unit;
-  return (rval);
+  return rateFormatter.format(rate) + "/" + unit;
 }
