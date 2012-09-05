@@ -5,7 +5,7 @@
     StringTokenizer next=new StringTokenizer(addressees,",");
     while (next.hasMoreTokens()) {
       String theToken=next.nextToken().trim();
-      if (theToken.indexOf("@") > 0) {
+      if (theToken.indexOf('@') > 0) {
         addressList.add(theToken);
       }
  else {
