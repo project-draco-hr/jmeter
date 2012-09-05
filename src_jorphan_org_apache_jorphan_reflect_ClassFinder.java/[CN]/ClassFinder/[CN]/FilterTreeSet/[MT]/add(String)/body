@@ -8,7 +8,7 @@
   if (notContains != null && s.indexOf(notContains) != -1) {
     return false;
   }
-  if ((s.indexOf("$") == -1) || inner) {
+  if ((s.indexOf('$') == -1) || inner) {
     if (isChildOf(parents,s,contextClassLoader)) {
       return super.add(s);
     }

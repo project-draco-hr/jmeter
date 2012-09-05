@@ -7,7 +7,7 @@
     }
  else     if (list[i].endsWith(DOT_CLASS) && file.exists() && (file.length() != 0)) {
       final String path=file.getPath();
-      listClasses.add(path.substring(strPathElement.length() + 1,path.lastIndexOf(".")).replace(File.separator.charAt(0),'.'));
+      listClasses.add(path.substring(strPathElement.length() + 1,path.lastIndexOf('.')).replace(File.separator.charAt(0),'.'));
     }
   }
 }
