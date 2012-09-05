@@ -7,7 +7,7 @@
  else {
       String absPath2=file2.getAbsolutePath().replace('\\','/');
       int indexOfOrg=absPath2.indexOf("/org");
-      int lastIndex=absPath2.lastIndexOf(".");
+      int lastIndex=absPath2.lastIndexOf('.');
       set.add(absPath2.substring(indexOfOrg,lastIndex));
     }
   }

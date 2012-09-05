@@ -5,7 +5,7 @@
   if (localMatcher.contains(requestHeaders,pattern)) {
     MatchResult match=localMatcher.getMatch();
     String matchString=match.group(1);
-    int indexOf=matchString.indexOf(";");
+    int indexOf=matchString.indexOf(';');
     if (indexOf >= 0) {
       return matchString.substring(0,indexOf);
     }
