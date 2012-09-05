@@ -1,5 +1,5 @@
 {
-  if (url.indexOf("?") > -1) {
+  if (url.indexOf('?') > -1) {
     StringTokenizer tokens=this.tokenize(url,"?");
     this.URL_PATH=tokens.nextToken();
     el.setProperty(HTTPSamplerBase.PATH,URL_PATH);

@@ -4,11 +4,11 @@
   if (i > 0) {
     str=str.substring(i + 2);
   }
-  i=str.indexOf("/");
+  i=str.indexOf('/');
   if (0 < i) {
     str=str.substring(0,i);
   }
-  i=str.lastIndexOf(":");
+  i=str.lastIndexOf(':');
   if (0 < i) {
     str=str.substring(0,i);
   }

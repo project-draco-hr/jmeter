@@ -1,6 +1,6 @@
 {
   String url=entry;
-  if (entry.indexOf("\"") > -1 && checkMethod(entry)) {
+  if (entry.indexOf('"') > -1 && checkMethod(entry)) {
     StringTokenizer tokens=null;
     tokens=this.tokenize(entry,"\"");
     while (tokens.hasMoreTokens()) {

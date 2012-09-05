@@ -8,7 +8,7 @@
         charSet=JOrphanUtils.replaceAllChars(charSet,'"',"");
         charSet=charSet.trim();
         if (charSet.length() > 0) {
-          int semi=charSet.indexOf(";");
+          int semi=charSet.indexOf(';');
           if (semi == 0) {
             return null;
           }

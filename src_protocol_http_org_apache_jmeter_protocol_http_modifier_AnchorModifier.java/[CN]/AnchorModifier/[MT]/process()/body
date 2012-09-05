@@ -16,7 +16,7 @@
   String responseText="";
   responseText=result.getResponseDataAsString();
   Document html;
-  int index=responseText.indexOf("<");
+  int index=responseText.indexOf('<');
   if (index == -1) {
     index=0;
   }
