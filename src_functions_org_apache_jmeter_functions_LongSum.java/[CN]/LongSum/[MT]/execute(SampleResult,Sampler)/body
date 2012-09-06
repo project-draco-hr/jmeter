@@ -5,9 +5,18 @@
   for (int i=0; i < values.length - 1; i++) {
     sum+=Long.parseLong(((CompoundVariable)values[i]).execute());
   }
-  if (StringUtils.isNumeric(varName)) {
-    sum+=Long.parseLong(varName);
-    varName=null;
+  try {
+    if (StringUtils.isNumeric(varName)) {
+      sum+=Long.parseLong(varName);
+      varName=null;
+    }
+  }
+ catch (  NumberFormatException ignored) {
+    if (log.isDebugEnabled()) {
+      if (StringUtils.isNumeric(varName)) {
+        log.debug("Exception parsing " + varName + " as long, value will be considered a variable name and not included in sum");
+      }
+    }
   }
   String totalString=Long.toString(sum);
   if (vars != null && varName != null && varName.length() > 0) {
