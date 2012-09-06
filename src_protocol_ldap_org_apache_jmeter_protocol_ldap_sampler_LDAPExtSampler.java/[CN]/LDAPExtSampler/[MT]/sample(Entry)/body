@@ -25,7 +25,7 @@
       xmlBuffer.tag("baseobj",getRootdn());
       xmlBuffer.tag("binddn",getUserDN());
       xmlBuffer.tag("connectionTO",getConnTimeOut());
-      bindOp(dirContext,res);
+      bindOp(res);
     }
  else     if (testType.equals(SBIND)) {
       res.setSamplerData("SingleBind as " + getUserDN());
