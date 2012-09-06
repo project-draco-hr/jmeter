@@ -1,14 +1,14 @@
 {
   log.debug("close()");
   try {
-    if (CONN != null) {
-      CONN.stop();
+    if (connection != null) {
+      connection.stop();
     }
   }
  catch (  JMSException e) {
     log.error(e.getMessage());
   }
-  Utils.close(SUBSCRIBER,log);
-  Utils.close(SESSION,log);
-  Utils.close(CONN,log);
+  Utils.close(subscriber,log);
+  Utils.close(session,log);
+  Utils.close(connection,log);
 }

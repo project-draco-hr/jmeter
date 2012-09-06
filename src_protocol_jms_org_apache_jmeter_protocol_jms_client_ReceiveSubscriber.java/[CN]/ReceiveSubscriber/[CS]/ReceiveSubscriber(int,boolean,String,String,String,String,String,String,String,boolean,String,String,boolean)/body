@@ -2,13 +2,13 @@
   boolean initSuccess=false;
   try {
     Context ctx=InitialContextFactory.getContext(useProps,initialContextFactory,providerUrl,useAuth,securityPrincipal,securityCredentials);
-    CONN=Utils.getConnection(ctx,connfactory);
+    connection=Utils.getConnection(ctx,connfactory);
     if (!isEmpty(clientId)) {
-      CONN.setClientID(clientId);
+      connection.setClientID(clientId);
     }
-    SESSION=CONN.createSession(false,Session.AUTO_ACKNOWLEDGE);
+    session=connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
     Destination dest=Utils.lookupDestination(ctx,destinationName);
-    SUBSCRIBER=createSubscriber(SESSION,dest,durableSubscriptionId,jmsSelector);
+    subscriber=createSubscriber(session,dest,durableSubscriptionId,jmsSelector);
     if (useMessageListener) {
       if (queueSize <= 0) {
         queue=new LinkedBlockingQueue<Message>();
@@ -16,7 +16,7 @@
  else {
         queue=new LinkedBlockingQueue<Message>(queueSize);
       }
-      SUBSCRIBER.setMessageListener(this);
+      subscriber.setMessageListener(this);
     }
  else {
       queue=null;

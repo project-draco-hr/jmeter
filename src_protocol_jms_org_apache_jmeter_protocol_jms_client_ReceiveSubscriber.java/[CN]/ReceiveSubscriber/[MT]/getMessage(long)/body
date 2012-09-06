@@ -14,10 +14,10 @@
     return message;
   }
   if (timeout < 10) {
-    message=SUBSCRIBER.receiveNoWait();
+    message=subscriber.receiveNoWait();
   }
  else {
-    message=SUBSCRIBER.receive(timeout);
+    message=subscriber.receive(timeout);
   }
   return message;
 }
