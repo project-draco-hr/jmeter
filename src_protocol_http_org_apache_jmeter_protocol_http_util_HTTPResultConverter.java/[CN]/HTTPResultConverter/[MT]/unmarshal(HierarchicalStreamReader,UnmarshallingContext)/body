@@ -5,7 +5,7 @@
     reader.moveDown();
     Object subItem=readItem(reader,context,res);
     if (!retrieveItem(reader,context,res,subItem)) {
-      retrieveHTTPItem(reader,context,res,subItem);
+      retrieveHTTPItem(reader,res,subItem);
     }
     reader.moveUp();
   }
