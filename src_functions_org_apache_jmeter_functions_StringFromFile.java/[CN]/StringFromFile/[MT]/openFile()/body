@@ -9,11 +9,7 @@
     }
  catch (    NumberFormatException e) {
       myStart=COUNT_UNUSED;
-      if (log.isDebugEnabled()) {
-        if (StringUtils.isNumeric(start)) {
-          log.debug("Exception parsing " + start + " as int, value will not be considered as Start Number sequence");
-        }
-      }
+      log.warn("Exception parsing " + start + " as int, value will not be considered as Start Number sequence");
     }
   }
   if (myCurrent == COUNT_UNUSED) {
@@ -26,11 +22,7 @@
     }
  catch (    NumberFormatException e) {
       myEnd=COUNT_UNUSED;
-      if (log.isDebugEnabled()) {
-        if (StringUtils.isNumeric(tmp)) {
-          log.debug("Exception parsing " + tmp + " as int, value will not be considered as End Number sequence");
-        }
-      }
+      log.warn("Exception parsing " + tmp + " as int, value will not be considered as End Number sequence");
     }
   }
   if (values.length >= PARAM_START) {
