@@ -1,5 +1,8 @@
 {
   Connection conn=null;
+  if (JOrphanUtils.isBlank(getDataSource())) {
+    throw new IllegalArgumentException("Variable Name must not be null in " + getName());
+  }
   try {
     conn=DataSourceElement.getConnection(getDataSource());
     execute(conn);
