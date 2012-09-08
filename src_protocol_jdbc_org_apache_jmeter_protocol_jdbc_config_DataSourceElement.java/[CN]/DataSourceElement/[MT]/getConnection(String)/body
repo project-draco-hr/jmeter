@@ -1,7 +1,17 @@
 {
-  DataSourceComponent pool=(DataSourceComponent)JMeterContextService.getContext().getVariables().getObject(poolName);
-  if (pool == null) {
-    throw new SQLException("No pool found named: '" + poolName + "'");
+  Object poolObject=JMeterContextService.getContext().getVariables().getObject(poolName);
+  if (poolObject == null) {
+    throw new SQLException("No pool found named: '" + poolName + "', ensure Variable Name matches Variable Name of JDBC Connection Configuration");
   }
-  return pool.getConnection();
+ else {
+    if (poolObject instanceof DataSourceComponent) {
+      DataSourceComponent pool=(DataSourceComponent)poolObject;
+      return pool.getConnection();
+    }
+ else {
+      String errorMsg="Found object stored under variable:'" + poolName + "' with class:"+ poolObject.getClass().getName()+ " and value: '"+ poolObject+ " but it's not a DataSourceComponent, check you're not already using this name as another variable";
+      log.error(errorMsg);
+      throw new SQLException(errorMsg);
+    }
+  }
 }
