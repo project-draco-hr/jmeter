@@ -15,7 +15,7 @@
       public void writeRequest(      OutputStream out) throws IOException {
         InputStream in=null;
         try {
-          in=new FileInputStream(xmlFile);
+          in=new BufferedInputStream(new FileInputStream(xmlFile));
           IOUtils.copy(in,out);
           out.flush();
         }

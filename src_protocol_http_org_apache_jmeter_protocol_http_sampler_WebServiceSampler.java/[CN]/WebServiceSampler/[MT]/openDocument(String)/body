@@ -7,13 +7,13 @@
       TextFile tfile=new TextFile(file);
       fileContents=tfile.getText();
     }
-    FileInputStream fileInputStream=null;
+    InputStream fileInputStream=null;
     try {
-      fileInputStream=new FileInputStream(file);
+      fileInputStream=new BufferedInputStream(new FileInputStream(file));
       doc=XDB.parse(fileInputStream);
     }
   finally {
-      IOUtils.closeQuietly(fileInputStream);
+      JOrphanUtils.closeQuietly(fileInputStream);
     }
   }
  else {
