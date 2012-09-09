@@ -31,7 +31,7 @@
       String fn=fa.getName();
       File input=new File(fn);
       cl=(int)input.length();
-      body=new FileInputStream(input);
+      body=new BufferedInputStream(new FileInputStream(input));
       setString(HTTPConstants.HEADER_CONTENT_DISPOSITION);
       setString("form-data; name=\"" + encode(fa.getParamName()) + "\"; filename=\""+ encode(fn)+ "\"");
       String mt=fa.getMimeType();
