@@ -21,6 +21,7 @@
       res.setResponseMessage("Protocol handler not found");
     }
  else {
+      currentSocket=sock;
       InputStream is=sock.getInputStream();
       OutputStream os=sock.getOutputStream();
       String req=getRequestData();
@@ -41,6 +42,7 @@ catch (  Exception ex) {
     closeSocket(socketKey);
   }
  finally {
+    currentSocket=null;
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
     if (!isReUseConnection()) {

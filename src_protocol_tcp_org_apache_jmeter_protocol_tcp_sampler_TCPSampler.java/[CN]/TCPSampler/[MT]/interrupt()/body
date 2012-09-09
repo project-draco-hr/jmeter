@@ -1,0 +1,12 @@
+{
+  Socket sock=currentSocket;
+  if (sock != null) {
+    try {
+      sock.close();
+    }
+ catch (    IOException e) {
+    }
+    return true;
+  }
+  return false;
+}
