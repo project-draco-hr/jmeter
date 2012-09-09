@@ -1,3 +1,4 @@
 {
-  return Thread.currentThread().getName().substring(Thread.currentThread().getName().lastIndexOf("-") + 1);
+  String threadName=Thread.currentThread().getName();
+  return threadName.substring(threadName.lastIndexOf('-') + 1);
 }
