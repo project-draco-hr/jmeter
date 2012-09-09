@@ -2,9 +2,9 @@
   SSLContext sslcontext=null;
   try {
     KeyStore ks=KeyStore.getInstance("JKS");
-    FileInputStream stream=null;
+    InputStream stream=null;
     try {
-      stream=new FileInputStream(truststore);
+      stream=new BufferedInputStream(new FileInputStream(truststore));
       ks.load(stream,null);
     }
   finally {

@@ -7,7 +7,7 @@
     f=new File(folderPath,String.format(FILENAME_FORMAT,Integer.valueOf(index)));
   }
   try {
-    FileInputStream fis=new FileInputStream(f);
+    InputStream fis=new BufferedInputStream(new FileInputStream(f));
     try {
       Message m=new MailFileMessage(this,fis,index);
       return m;
