@@ -2,7 +2,7 @@
   Serializable readObject=null;
   InputStream inputStream=null;
   try {
-    inputStream=new FileInputStream(path);
+    inputStream=new BufferedInputStream(new FileInputStream(path));
     XStream xstream=new XStream();
     readObject=(Serializable)xstream.fromXML(inputStream,readObject);
   }

@@ -5,7 +5,7 @@
   log.debug(label + " " + fileName);
   SampleResult res=new SampleResult();
   res.setSampleLabel(label);
-  FileInputStream is=null;
+  InputStream is=null;
   BSFEngine bsfEngine=null;
   BSFManager mgr=new BSFManager();
   res.setResponseCode("200");
@@ -20,7 +20,7 @@
     Object bsfOut=null;
     if (fileName.length() > 0) {
       res.setSamplerData("File: " + fileName);
-      is=new FileInputStream(fileName);
+      is=new BufferedInputStream(new FileInputStream(fileName));
       bsfOut=bsfEngine.eval(fileName,0,0,IOUtils.toString(is));
     }
  else {
