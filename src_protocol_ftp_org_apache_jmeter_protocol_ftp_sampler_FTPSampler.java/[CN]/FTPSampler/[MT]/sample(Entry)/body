@@ -45,7 +45,7 @@
  else {
             File infile=new File(local);
             res.setBytes((int)infile.length());
-            input=new FileInputStream(infile);
+            input=new BufferedInputStream(new FileInputStream(infile));
           }
           ftpOK=ftp.storeFile(remote,input);
         }
