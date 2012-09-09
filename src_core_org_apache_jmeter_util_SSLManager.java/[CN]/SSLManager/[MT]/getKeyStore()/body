@@ -11,11 +11,11 @@
       this.keyStore=null;
       throw new RuntimeException("Could not create keystore: " + e.getMessage(),e);
     }
-    FileInputStream fileInputStream=null;
+    InputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
       if (fileName.length() > 0 && initStore.exists()) {
-        fileInputStream=new FileInputStream(initStore);
+        fileInputStream=new BufferedInputStream(new FileInputStream(initStore));
         this.keyStore.load(fileInputStream,getPassword());
         if (log.isInfoEnabled()) {
           log.info("Total of " + keyStore.getAliasCount() + " aliases loaded OK from keystore");

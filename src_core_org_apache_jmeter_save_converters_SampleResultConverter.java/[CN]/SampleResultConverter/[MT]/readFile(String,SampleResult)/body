@@ -1,9 +1,9 @@
 {
   File in=null;
-  FileInputStream fis=null;
+  InputStream fis=null;
   try {
     in=new File(resultFileName);
-    fis=new FileInputStream(in);
+    fis=new BufferedInputStream(new FileInputStream(in));
     ByteArrayOutputStream outstream=new ByteArrayOutputStream(res.getBytes());
     byte[] buffer=new byte[4096];
     int len;

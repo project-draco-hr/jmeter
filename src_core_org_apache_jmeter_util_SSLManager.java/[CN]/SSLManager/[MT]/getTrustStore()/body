@@ -14,11 +14,11 @@
       this.trustStore=null;
       throw new RuntimeException("Problem creating truststore: " + e.getMessage(),e);
     }
-    FileInputStream fileInputStream=null;
+    InputStream fileInputStream=null;
     try {
       File initStore=new File(fileName);
       if (initStore.exists()) {
-        fileInputStream=new FileInputStream(initStore);
+        fileInputStream=new BufferedInputStream(new FileInputStream(initStore));
         this.trustStore.load(fileInputStream,null);
         log.info("Truststore loaded OK from file");
       }
