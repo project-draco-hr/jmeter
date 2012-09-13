@@ -1,0 +1,6 @@
+{
+  BufferedReader br=new BufferedReader(new StringReader("\n"));
+  String[] out=CSVSaveService.csvReadFile(br,',');
+  checkStrings(new String[]{""},out);
+  assertEquals("Expected to be at EOF",-1,br.read());
+}
