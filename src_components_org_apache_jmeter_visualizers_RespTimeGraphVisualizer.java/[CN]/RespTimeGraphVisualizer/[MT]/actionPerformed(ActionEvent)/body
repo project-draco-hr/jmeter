@@ -58,13 +58,15 @@
       filePanel.actionPerformed(event);
     }
  else {
-      if (internalMap.size() >= 2) {
+      if (internalList.size() >= 2) {
 synchronized (lockInterval) {
-          @SuppressWarnings("unchecked") HashMap<Long,Long> tempMap=(HashMap<Long,Long>)internalMap.clone();
+          List<RespTimeGraphDataBean> tempList=new ArrayList<RespTimeGraphDataBean>();
+          tempList.addAll(internalList);
           this.clearData();
-          for (Iterator<Map.Entry<Long,Long>> iterator=tempMap.entrySet().iterator(); iterator.hasNext(); ) {
-            Map.Entry<Long,Long> entry=iterator.next();
-            this.add(new SampleResult(entry.getKey().longValue(),entry.getValue().longValue()));
+          for (          RespTimeGraphDataBean data : tempList) {
+            SampleResult sr=new SampleResult(data.getStartTime(),data.getTime());
+            sr.setSampleLabel(data.getSamplerLabel());
+            this.add(sr);
           }
         }
       }

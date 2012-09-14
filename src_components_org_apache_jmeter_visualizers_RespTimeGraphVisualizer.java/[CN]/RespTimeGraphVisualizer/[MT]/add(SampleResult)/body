@@ -1,7 +1,7 @@
 {
   final String sampleLabel=sampleResult.getSampleLabel();
 synchronized (lockInterval) {
-    internalMap.put(Long.valueOf(sampleResult.getStartTime()),Long.valueOf(sampleResult.getTime()));
+    internalList.add(new RespTimeGraphDataBean(sampleResult.getStartTime(),sampleResult.getTime(),sampleLabel));
   }
   if (samplerSelection.isSelected() && pattern != null) {
     matcher=pattern.matcher(sampleLabel);
