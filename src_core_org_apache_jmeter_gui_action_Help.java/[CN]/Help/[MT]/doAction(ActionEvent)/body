@@ -1,6 +1,6 @@
 {
   if (helpWindow == null) {
-    helpWindow=new JDialog(new Frame(),JMeterUtils.getResString("help"),false);
+    helpWindow=new EscapeDialog(new Frame(),JMeterUtils.getResString("help"),false);
     helpWindow.getContentPane().setLayout(new GridLayout(1,1));
     helpWindow.getContentPane().removeAll();
     helpWindow.getContentPane().add(scroller);

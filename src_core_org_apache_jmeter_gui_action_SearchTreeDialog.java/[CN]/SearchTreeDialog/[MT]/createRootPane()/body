@@ -1,0 +1,22 @@
+{
+  JRootPane rootPane=new JRootPane();
+  InputMap inputMap=rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  ActionMap actionMap=rootPane.getActionMap();
+  inputMap.put(KeyStrokes.ESC,"ESCAPE");
+  inputMap.put(KeyStrokes.ENTER,"ENTER");
+  Action escapeAction=new AbstractAction(){
+    public void actionPerformed(    ActionEvent actionEvent){
+      setVisible(false);
+    }
+  }
+;
+  actionMap.put("ESCAPE",escapeAction);
+  Action enterAction=new AbstractAction(){
+    public void actionPerformed(    ActionEvent actionEvent){
+      doSearch(actionEvent);
+    }
+  }
+;
+  actionMap.put("ENTER",enterAction);
+  return rootPane;
+}

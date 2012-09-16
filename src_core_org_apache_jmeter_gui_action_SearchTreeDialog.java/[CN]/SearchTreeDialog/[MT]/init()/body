@@ -26,8 +26,6 @@
   buttonsPanel.add(cancelButton);
   searchPanel.add(buttonsPanel,BorderLayout.SOUTH);
   this.getContentPane().add(searchPanel);
-  searchPanel.registerKeyboardAction(enterActionListener,KeyStrokes.ENTER,JComponent.WHEN_IN_FOCUSED_WINDOW);
-  searchPanel.registerKeyboardAction(escapeActionListener,KeyStrokes.ESC,JComponent.WHEN_IN_FOCUSED_WINDOW);
   searchTF.requestFocusInWindow();
   this.pack();
   ComponentUtil.centerComponentInWindow(this);

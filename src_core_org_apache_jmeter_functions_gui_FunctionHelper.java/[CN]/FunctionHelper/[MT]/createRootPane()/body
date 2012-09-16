@@ -1,0 +1,17 @@
+{
+  JRootPane rootPane=new JRootPane();
+  KeyStroke stroke=KeyStrokes.ESC;
+  InputMap inputMap=rootPane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  javax.swing.Action actionListener=new AbstractAction(){
+    /** 
+ */
+    private static final long serialVersionUID=-4036804004190858925L;
+    public void actionPerformed(    ActionEvent actionEvent){
+      setVisible(false);
+    }
+  }
+;
+  inputMap.put(stroke,"ESCAPE");
+  rootPane.getActionMap().put("ESCAPE",actionListener);
+  return rootPane;
+}
