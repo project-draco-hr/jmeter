@@ -1,5 +1,5 @@
 {
-  stopTableEditing();
+  GuiUtils.stopTableEditing(table);
   LDAPArguments arguments=null;
   if (args instanceof LDAPArguments) {
     arguments=(LDAPArguments)args;

@@ -1,5 +1,5 @@
 {
-  stopTableEditing();
+  GuiUtils.stopTableEditing(table);
   tableModel.addRow(makeNewLDAPArgument());
   delete.setEnabled(true);
   int rowToSelect=tableModel.getRowCount() - 1;
