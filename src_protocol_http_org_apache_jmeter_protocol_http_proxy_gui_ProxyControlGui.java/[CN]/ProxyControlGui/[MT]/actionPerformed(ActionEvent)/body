@@ -44,4 +44,14 @@
     model.setTarget(nw.getTreeNode());
     enableRestart();
   }
+ else   if (command.equals(ADD_TO_INCLUDE_FROM_CLIPBOARD)) {
+    addFromClipboard(includeTable);
+    includeModel.fireTableDataChanged();
+    enableRestart();
+  }
+ else   if (command.equals(ADD_TO_EXCLUDE_FROM_CLIPBOARD)) {
+    addFromClipboard(excludeTable);
+    excludeModel.fireTableDataChanged();
+    enableRestart();
+  }
 }

@@ -8,5 +8,9 @@
   deleteButton.setActionCommand(deleteCommand);
   deleteButton.addActionListener(this);
   buttonPanel.add(deleteButton);
+  JButton addFromClipboard=new JButton(JMeterUtils.getResString("add_from_clipboard"));
+  addFromClipboard.setActionCommand(copyFromClipboard);
+  addFromClipboard.addActionListener(this);
+  buttonPanel.add(addFromClipboard);
   return buttonPanel;
 }
