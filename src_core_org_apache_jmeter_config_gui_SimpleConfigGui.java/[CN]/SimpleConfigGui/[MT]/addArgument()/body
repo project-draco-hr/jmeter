@@ -1,5 +1,5 @@
 {
-  stopTableEditing();
+  GuiUtils.stopTableEditing(table);
   tableModel.addNewRow();
   tableModel.fireTableDataChanged();
   delete.setEnabled(true);

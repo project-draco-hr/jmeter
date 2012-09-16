@@ -1,5 +1,5 @@
 {
-  stopTableEditing();
+  GuiUtils.stopTableEditing(table);
   int rowCount=table.getRowCount();
   Clipboard clipboard=Toolkit.getDefaultToolkit().getSystemClipboard();
   Transferable trans=clipboard.getContents(null);
