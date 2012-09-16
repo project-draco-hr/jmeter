@@ -1,7 +1,5 @@
 {
-  if (cookieTable.isEditing()) {
-    cookieTable.getCellEditor().stopCellEditing();
-  }
+  GuiUtils.stopTableEditing(cookieTable);
   cm.clear();
   configureTestElement(cm);
   if (cm instanceof CookieManager) {

@@ -25,10 +25,7 @@
     }
   }
  else   if (action.equals(ADD_COMMAND)) {
-    if (cookieTable.isEditing()) {
-      TableCellEditor cellEditor=cookieTable.getCellEditor(cookieTable.getEditingRow(),cookieTable.getEditingColumn());
-      cellEditor.stopCellEditing();
-    }
+    GuiUtils.stopTableEditing(cookieTable);
     tableModel.addNewRow();
     tableModel.fireTableDataChanged();
     if (!deleteButton.isEnabled()) {

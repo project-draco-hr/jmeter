@@ -1,5 +1,5 @@
 {
-  stopTableEditing();
+  GuiUtils.stopTableEditing(table);
   if (testElement instanceof HTTPSamplerBase) {
     HTTPSamplerBase base=(HTTPSamplerBase)testElement;
     int rows=tableModel.getRowCount();

@@ -1,5 +1,5 @@
 {
-  stopTableEditing();
+  GuiUtils.stopTableEditing(table);
   tableModel.addRow(new HTTPFileArg(path));
   delete.setEnabled(true);
   browse.setEnabled(true);

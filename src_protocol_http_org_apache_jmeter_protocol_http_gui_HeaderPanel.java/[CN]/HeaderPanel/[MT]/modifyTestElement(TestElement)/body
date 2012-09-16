@@ -1,7 +1,5 @@
 {
-  if (headerTable.isEditing()) {
-    headerTable.getCellEditor().stopCellEditing();
-  }
+  GuiUtils.stopTableEditing(headerTable);
   el.clear();
   el.addTestElement(headerManager);
   configureTestElement(el);

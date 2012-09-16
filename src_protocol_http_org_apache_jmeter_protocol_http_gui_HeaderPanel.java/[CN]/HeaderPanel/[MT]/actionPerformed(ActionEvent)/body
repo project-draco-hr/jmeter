@@ -25,10 +25,7 @@
     }
   }
  else   if (action.equals(ADD_COMMAND)) {
-    if (headerTable.isEditing()) {
-      TableCellEditor cellEditor=headerTable.getCellEditor(headerTable.getEditingRow(),headerTable.getEditingColumn());
-      cellEditor.stopCellEditing();
-    }
+    GuiUtils.stopTableEditing(headerTable);
     tableModel.addNewRow();
     tableModel.fireTableDataChanged();
     if (!deleteButton.isEnabled()) {

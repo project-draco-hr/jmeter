@@ -25,10 +25,7 @@
     }
   }
  else   if (action.equals(ADD_COMMAND)) {
-    if (authTable.isEditing()) {
-      TableCellEditor cellEditor=authTable.getCellEditor(authTable.getEditingRow(),authTable.getEditingColumn());
-      cellEditor.stopCellEditing();
-    }
+    GuiUtils.stopTableEditing(authTable);
     tableModel.addNewRow();
     tableModel.fireTableDataChanged();
     if (!deleteButton.isEnabled()) {
