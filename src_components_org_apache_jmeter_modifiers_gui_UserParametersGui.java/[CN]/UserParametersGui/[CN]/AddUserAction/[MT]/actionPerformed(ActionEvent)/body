@@ -1,8 +1,5 @@
 {
-  if (paramTable.isEditing()) {
-    TableCellEditor cellEditor=paramTable.getCellEditor(paramTable.getEditingRow(),paramTable.getEditingColumn());
-    cellEditor.stopCellEditing();
-  }
+  GuiUtils.stopTableEditing(paramTable);
   tableModel.addNewColumn(getUserColName(tableModel.getColumnCount()),String.class);
   tableModel.fireTableDataChanged();
   setColumnWidths();
