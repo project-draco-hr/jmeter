@@ -72,7 +72,7 @@ break;
 }
 if (ch == -1) {
 if (state == QUOTED) {
-throw new IOException(state + " Missing trailing quote-char in quoted field:[\"" + baos.toString()+ "]");
+throw new IOException("Missing trailing quote-char in quoted field:[\"" + baos.toString() + "]");
 }
 if (baos.size() > 0 || push || state == EMBEDDEDQUOTE) {
 list.add(baos.toString());
