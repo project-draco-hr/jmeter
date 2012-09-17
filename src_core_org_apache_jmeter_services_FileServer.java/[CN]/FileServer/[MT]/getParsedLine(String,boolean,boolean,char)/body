@@ -1,0 +1,4 @@
+{
+  BufferedReader reader=getReader(alias,recycle,firstLineIsNames);
+  return CSVSaveService.csvReadFile(reader,delim);
+}

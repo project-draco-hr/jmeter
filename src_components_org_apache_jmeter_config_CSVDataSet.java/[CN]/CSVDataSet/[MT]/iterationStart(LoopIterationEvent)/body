@@ -47,10 +47,7 @@ JMeterVariables threadVars=context.getVariables();
 String[] lineValues={};
 try {
 if (getQuotedData()) {
-synchronized (server) {
-BufferedReader infile=server.getReader(alias,recycle,firstLineIsNames);
-lineValues=CSVSaveService.csvReadFile(infile,delim.charAt(0));
-}
+lineValues=server.getParsedLine(alias,recycle,firstLineIsNames,delim.charAt(0));
 }
  else {
 String line=server.readLine(alias,recycle,firstLineIsNames);
