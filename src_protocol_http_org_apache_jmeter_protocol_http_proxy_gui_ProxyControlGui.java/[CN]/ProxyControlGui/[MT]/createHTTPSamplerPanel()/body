@@ -4,7 +4,7 @@
     m.addElement(s);
   }
   samplerTypeName=new JComboBox(m);
-  samplerTypeName.setSelectedIndex(0);
+  samplerTypeName.setSelectedItem(HTTPSamplerFactory.DEFAULT_CLASSNAME);
   samplerTypeName.addItemListener(this);
   JLabel label2=new JLabel(JMeterUtils.getResString("proxy_sampler_type"));
   label2.setLabelFor(samplerTypeName);
