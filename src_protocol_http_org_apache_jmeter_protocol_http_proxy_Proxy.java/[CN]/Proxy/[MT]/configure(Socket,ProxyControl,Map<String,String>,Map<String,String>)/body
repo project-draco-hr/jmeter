@@ -2,8 +2,6 @@
   this.target=_target;
   this.clientSocket=_clientSocket;
   this.captureHttpHeaders=_target.getCaptureHttpHeaders();
-  this.httpsSpoof=_target.getHttpsSpoof();
-  this.httpsSpoofMatch=_target.getHttpsSpoofMatch();
   this.pageEncodings=_pageEncodings;
   this.formEncodings=_formEncodings;
 }

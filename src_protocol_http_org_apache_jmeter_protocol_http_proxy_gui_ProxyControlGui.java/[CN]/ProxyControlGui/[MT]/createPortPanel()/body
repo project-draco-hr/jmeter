@@ -4,23 +4,12 @@
   portField.addKeyListener(this);
   JLabel label=new JLabel(JMeterUtils.getResString("port"));
   label.setLabelFor(portField);
-  httpsSpoof=new JCheckBox(JMeterUtils.getResString("proxy_httpsspoofing"));
-  httpsSpoof.setSelected(false);
-  httpsSpoof.addActionListener(this);
-  httpsSpoof.setActionCommand(ENABLE_RESTART);
-  httpsMatch=new JTextField(40);
-  httpsMatch.addKeyListener(this);
-  httpsMatch.setName(ENABLE_RESTART);
-  httpsMatch.setEnabled(false);
-  JLabel matchlabel=new JLabel(JMeterUtils.getResString("proxy_httpsspoofing_match"));
-  matchlabel.setLabelFor(httpsMatch);
+  JPanel gPane=new JPanel(new BorderLayout());
+  gPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_general_settings")));
   HorizontalPanel panel=new HorizontalPanel();
-  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_general_settings")));
   panel.add(label);
   panel.add(portField);
-  panel.add(Box.createHorizontalStrut(10));
-  panel.add(httpsSpoof);
-  panel.add(matchlabel);
-  panel.add(httpsMatch);
-  return panel;
+  gPane.add(panel,BorderLayout.WEST);
+  gPane.add(Box.createHorizontalStrut(10));
+  return gPane;
 }
