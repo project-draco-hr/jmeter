@@ -13,7 +13,7 @@
 synchronized (calc) {
         calc.addSample(res);
         int count=calc.getCount();
-        TableSample newS=new TableSample(count,res.getSampleCount(),res.getStartTime(),res.getThreadName(),res.getSampleLabel(),res.getTime(),res.isSuccessful(),res.getBytes());
+        TableSample newS=new TableSample(count,res.getSampleCount(),res.getStartTime(),res.getThreadName(),res.getSampleLabel(),res.getTime(),res.isSuccessful(),res.getBytes(),res.getLatency());
         model.addRow(newS);
       }
       updateTextFields(res);
