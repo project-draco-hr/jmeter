@@ -8,8 +8,14 @@
     if (fmt == null) {
       fmt=format;
     }
-    SimpleDateFormat df=new SimpleDateFormat(fmt);
-    datetime=df.format(new Date());
+    if (fmt.matches("/\\d+")) {
+      long div=Long.parseLong(fmt.substring(1));
+      datetime=Long.toString((System.currentTimeMillis() / div));
+    }
+ else {
+      SimpleDateFormat df=new SimpleDateFormat(fmt);
+      datetime=df.format(new Date());
+    }
   }
   if (variable.length() > 0) {
     JMeterVariables vars=getVariables();

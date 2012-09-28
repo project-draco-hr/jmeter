@@ -1,0 +1,6 @@
+{
+  params.add(new CompoundVariable("/1000 "));
+  variable.setParameters(params);
+  value=variable.execute(result,null);
+  assertEquals("/1000 ",value);
+}
