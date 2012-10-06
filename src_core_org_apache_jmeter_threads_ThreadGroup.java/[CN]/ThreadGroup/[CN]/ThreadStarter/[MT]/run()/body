@@ -1,4 +1,5 @@
 {
+  JMeterContextService.getContext().setVariables(this.context.getVariables());
   long now=System.currentTimeMillis();
   long endtime=0;
   final boolean usingScheduler=getScheduler();
