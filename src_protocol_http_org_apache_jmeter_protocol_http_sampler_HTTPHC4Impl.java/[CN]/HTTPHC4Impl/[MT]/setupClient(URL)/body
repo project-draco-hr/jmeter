@@ -9,31 +9,7 @@
   HttpClient httpClient=map.get(key);
   if (httpClient == null) {
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
-    httpClient=new DefaultHttpClient(clientParams){
-      @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
-        return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false){
-          @Override public boolean retryRequest(          IOException ex,          int count,          HttpContext ctx){
-            Object request=ctx.getAttribute(ExecutionContext.HTTP_REQUEST);
-            if (request instanceof HttpUriRequest) {
-              if (request instanceof RequestWrapper) {
-                request=((RequestWrapper)request).getOriginal();
-              }
-              if (((HttpUriRequest)request).isAborted()) {
-                log.warn("Workround for HTTPCLIENT-1120 request retry: " + ex);
-                return false;
-              }
-            }
-            if ((ex instanceof java.net.BindException && ex.getMessage().contains("Address already in use: connect")) || ex.getMessage().contains("Request aborted")) {
-              log.warn("Workround for HTTPCLIENT-1120 connect retry: " + ex);
-              return false;
-            }
-            return super.retryRequest(ex,count,ctx);
-          }
-        }
-;
-      }
-    }
-;
+    httpClient=new DefaultHttpClient(clientParams);
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
     ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
     ((AbstractHttpClient)httpClient).addRequestInterceptor(METRICS_RESETTER);
