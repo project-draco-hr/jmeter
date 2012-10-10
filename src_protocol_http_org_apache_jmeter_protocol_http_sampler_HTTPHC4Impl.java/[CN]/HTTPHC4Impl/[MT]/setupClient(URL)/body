@@ -9,7 +9,12 @@
   HttpClient httpClient=map.get(key);
   if (httpClient == null) {
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
-    httpClient=new DefaultHttpClient(clientParams);
+    httpClient=new DefaultHttpClient(clientParams){
+      @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
+        return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false);
+      }
+    }
+;
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
     ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
     ((AbstractHttpClient)httpClient).addRequestInterceptor(METRICS_RESETTER);
