@@ -56,9 +56,8 @@ catch (  Exception e) {
     result=generateErrorResult(result,e);
   }
  finally {
-    boolean samplerAvailable=sampler != null;
     if (log.isDebugEnabled()) {
-      if (samplerAvailable) {
+      if (sampler != null) {
         log.debug("Will deliver sample " + sampler.getName());
       }
     }
@@ -69,7 +68,7 @@ catch (  Exception e) {
         headers.removeHeaderNamed(hdr);
       }
     }
-    if (samplerAvailable) {
+    if (sampler != null) {
       target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
     }
     try {
@@ -78,7 +77,7 @@ catch (  Exception e) {
  catch (    Exception e) {
       log.error("",e);
     }
-    if (samplerAvailable) {
+    if (sampler != null) {
       sampler.threadFinished();
     }
   }
