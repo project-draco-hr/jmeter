@@ -1,11 +1,13 @@
 {
   boolean tableEmpty=(tableModel.getRowCount() == 0);
-  addButton=createButton("add",'A',ADD_COMMAND,true);
+  JButton addButton=createButton("add",'A',ADD_COMMAND,true);
   deleteButton=createButton("delete",'D',DELETE_COMMAND,!tableEmpty);
-  loadButton=createButton("load",'L',LOAD_COMMAND,true);
+  JButton loadButton=createButton("load",'L',LOAD_COMMAND,true);
   saveButton=createButton("save",'S',SAVE_COMMAND,!tableEmpty);
+  JButton addFromClipboard=createButton("add_from_clipboard",'C',ADD_FROM_CLIPBOARD,true);
   JPanel buttonPanel=new JPanel();
   buttonPanel.add(addButton);
+  buttonPanel.add(addFromClipboard);
   buttonPanel.add(deleteButton);
   buttonPanel.add(loadButton);
   buttonPanel.add(saveButton);

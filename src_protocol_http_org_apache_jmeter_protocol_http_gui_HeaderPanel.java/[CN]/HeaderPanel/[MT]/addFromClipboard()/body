@@ -1,0 +1,28 @@
+{
+  GuiUtils.stopTableEditing(this.headerTable);
+  int rowCount=headerTable.getRowCount();
+  try {
+    String clipboardContent=GuiUtils.getPastedText();
+    String[] clipboardLines=clipboardContent.split("\n");
+    for (    String clipboardLine : clipboardLines) {
+      int index=clipboardLine.indexOf(":");
+      if (index > 0) {
+        Header header=new Header(clipboardLine.substring(0,index),clipboardLine.substring(index + 1));
+        headerManager.add(header);
+      }
+    }
+    tableModel.fireTableDataChanged();
+    if (headerTable.getRowCount() > rowCount) {
+      deleteButton.setEnabled(true);
+      saveButton.setEnabled(true);
+      int rowToSelect=tableModel.getRowCount() - 1;
+      headerTable.setRowSelectionInterval(rowCount,rowToSelect);
+    }
+  }
+ catch (  IOException ioe) {
+    JOptionPane.showMessageDialog(this,"Could not add read headers from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+catch (  UnsupportedFlavorException ufe) {
+    JOptionPane.showMessageDialog(this,"Could not add retrieved " + DataFlavor.stringFlavor.getHumanPresentableName() + " from clipboard"+ ufe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+}

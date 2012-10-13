@@ -64,4 +64,7 @@
       log.error("Could not save headers",ex);
     }
   }
+ else   if (action.equals(ADD_FROM_CLIPBOARD)) {
+    addFromClipboard();
+  }
 }
