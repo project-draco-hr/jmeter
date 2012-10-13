@@ -86,7 +86,7 @@
       final String timeLimit=getTimelim();
       final String countLimit=getCountlim();
       res.setSamplerData("Search with filter " + searchFilter);
-      xmlBuffer.tag("searchfilter",escapeXMLSpecialChar(searchFilter));
+      xmlBuffer.tag("searchfilter",StringEscapeUtils.escapeXml(searchFilter));
       xmlBuffer.tag("baseobj",getRootdn());
       xmlBuffer.tag("searchbase",searchBase);
       xmlBuffer.tag("scope",scopeStr);
