@@ -1,31 +1,27 @@
 {
   GuiUtils.stopTableEditing(table);
   int rowCount=table.getRowCount();
-  Clipboard clipboard=Toolkit.getDefaultToolkit().getSystemClipboard();
-  Transferable trans=clipboard.getContents(null);
-  DataFlavor[] flavourList=trans.getTransferDataFlavors();
   PowerTableModel model=null;
-  Collection<DataFlavor> flavours=new ArrayList<DataFlavor>(flavourList.length);
-  if (Collections.addAll(flavours,flavourList) && flavours.contains(DataFlavor.stringFlavor)) {
-    try {
-      String clipboardContent=(String)trans.getTransferData(DataFlavor.stringFlavor);
+  try {
+    String clipboardContent=GuiUtils.getPastedText();
+    if (clipboardContent != null) {
       String[] clipboardLines=clipboardContent.split("\n");
       for (      String clipboardLine : clipboardLines) {
         model=(PowerTableModel)table.getModel();
         model.addRow(new Object[]{clipboardLine});
       }
-    }
- catch (    IOException ioe) {
-      JOptionPane.showMessageDialog(this,"Could not add read arguments from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-    }
-catch (    UnsupportedFlavorException ufe) {
-      JOptionPane.showMessageDialog(this,"Could not add retrieve " + DataFlavor.stringFlavor.getHumanPresentableName() + " from clipboard"+ ufe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-    }
-    if (table.getRowCount() > rowCount) {
-      if (model != null) {
-        int rowToSelect=model.getRowCount() - 1;
-        table.setRowSelectionInterval(rowCount,rowToSelect);
+      if (table.getRowCount() > rowCount) {
+        if (model != null) {
+          int rowToSelect=model.getRowCount() - 1;
+          table.setRowSelectionInterval(rowCount,rowToSelect);
+        }
       }
     }
+  }
+ catch (  IOException ioe) {
+    JOptionPane.showMessageDialog(this,"Could not add read arguments from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+catch (  UnsupportedFlavorException ufe) {
+    JOptionPane.showMessageDialog(this,"Could not add retrieve " + DataFlavor.stringFlavor.getHumanPresentableName() + " from clipboard"+ ufe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
   }
 }
