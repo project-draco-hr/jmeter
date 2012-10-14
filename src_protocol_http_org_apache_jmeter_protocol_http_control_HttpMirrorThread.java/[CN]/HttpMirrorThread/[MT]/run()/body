@@ -19,12 +19,21 @@
     }
     baos.close();
     final String headerString=headers.toString();
+    String responseStatusValue=getRequestHeaderValue(headerString,"X-ResponseStatus");
+    if (responseStatusValue == null) {
+      responseStatusValue="200 OK";
+    }
     log.debug("Write headers");
     out=new BufferedOutputStream(clientSocket.getOutputStream());
-    out.write("HTTP/1.0 200 OK".getBytes(ISO_8859_1));
+    out.write(("HTTP/1.0 " + responseStatusValue).getBytes(ISO_8859_1));
     out.write(CRLF);
     out.write("Content-Type: text/plain".getBytes(ISO_8859_1));
     out.write(CRLF);
+    String responseLengthValue=getRequestHeaderValue(headerString,"X-ResponseLength");
+    int responseLength=-1;
+    if (responseLengthValue != null) {
+      responseLength=Integer.parseInt(responseLengthValue);
+    }
     String cookieHeaderValue=getRequestHeaderValue(headerString,"X-SetCookie");
     if (cookieHeaderValue != null) {
       out.write("Set-Cookie: ".getBytes(ISO_8859_1));
@@ -33,7 +42,12 @@
     }
     out.write(CRLF);
     out.flush();
-    out.write(baos.toByteArray());
+    if (responseLength >= 0) {
+      out.write(baos.toByteArray(),0,Math.min(baos.toByteArray().length,responseLength));
+    }
+ else {
+      out.write(baos.toByteArray());
+    }
     String contentLengthHeaderValue=getRequestHeaderValue(headerString,"Content-Length");
     if (contentLengthHeaderValue != null) {
       contentLength=Integer.parseInt(contentLengthHeaderValue);
