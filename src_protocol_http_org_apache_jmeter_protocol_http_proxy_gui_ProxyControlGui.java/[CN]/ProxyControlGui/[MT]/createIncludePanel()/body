@@ -6,6 +6,6 @@
   JPanel panel=new JPanel(new BorderLayout());
   panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("patterns_to_include")));
   panel.add(new JScrollPane(includeTable),BorderLayout.CENTER);
-  panel.add(createTableButtonPanel(ADD_INCLUDE,DELETE_INCLUDE,ADD_TO_INCLUDE_FROM_CLIPBOARD),BorderLayout.SOUTH);
+  panel.add(createTableButtonPanel(ADD_INCLUDE,DELETE_INCLUDE,ADD_TO_INCLUDE_FROM_CLIPBOARD,null),BorderLayout.SOUTH);
   return panel;
 }

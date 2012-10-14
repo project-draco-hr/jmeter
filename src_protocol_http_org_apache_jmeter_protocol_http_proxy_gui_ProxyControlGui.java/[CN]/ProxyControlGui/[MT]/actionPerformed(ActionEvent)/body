@@ -53,4 +53,9 @@
     excludeModel.fireTableDataChanged();
     enableRestart();
   }
+ else   if (command.equals(ADD_SUGGESTED_EXCLUDES)) {
+    addSuggestedExcludes(excludeTable);
+    excludeModel.fireTableDataChanged();
+    enableRestart();
+  }
 }

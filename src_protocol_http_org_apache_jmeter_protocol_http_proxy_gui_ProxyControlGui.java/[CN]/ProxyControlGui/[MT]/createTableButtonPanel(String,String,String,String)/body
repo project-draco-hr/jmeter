@@ -12,5 +12,11 @@
   addFromClipboard.setActionCommand(copyFromClipboard);
   addFromClipboard.addActionListener(this);
   buttonPanel.add(addFromClipboard);
+  if (addSuggestedExcludes != null) {
+    JButton addFromSuggestedExcludes=new JButton(JMeterUtils.getResString("add_from_suggested_excludes"));
+    addFromSuggestedExcludes.setActionCommand(addSuggestedExcludes);
+    addFromSuggestedExcludes.addActionListener(this);
+    buttonPanel.add(addFromSuggestedExcludes);
+  }
   return buttonPanel;
 }

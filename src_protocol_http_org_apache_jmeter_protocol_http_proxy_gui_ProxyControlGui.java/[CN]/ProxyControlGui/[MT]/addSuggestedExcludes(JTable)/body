@@ -1,0 +1,18 @@
+{
+  GuiUtils.stopTableEditing(table);
+  int rowCount=table.getRowCount();
+  PowerTableModel model=null;
+  String[] exclusions=SUGGESTED_EXCLUSIONS.split(";");
+  if (exclusions.length > 0) {
+    model=(PowerTableModel)table.getModel();
+    if (model != null) {
+      for (      String clipboardLine : exclusions) {
+        model.addRow(new Object[]{clipboardLine});
+      }
+      if (table.getRowCount() > rowCount) {
+        int rowToSelect=model.getRowCount() - 1;
+        table.setRowSelectionInterval(rowCount,rowToSelect);
+      }
+    }
+  }
+}
