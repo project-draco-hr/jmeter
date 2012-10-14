@@ -14,7 +14,6 @@
     result.setDataType(SampleResult.TEXT);
     result.setSamplerData(fileContents);
     Envelope msgEnv=Envelope.unmarshall(rdoc);
-    Message msg=new Message();
     result.sampleStart();
     SOAPHTTPConnection spconn=null;
     if (this.getHeaderManager() != null && this.getHeaderManager().getSOAPHeader() != null) {
@@ -57,9 +56,18 @@
         }
       }
     }
+    HeaderManager headerManager=this.getHeaderManager();
+    Hashtable<String,String> reqHeaders=null;
+    if (headerManager != null) {
+      int size=headerManager.getHeaders().size();
+      reqHeaders=new Hashtable<String,String>(size);
+      for (int i=0; i < size; i++) {
+        Header header=headerManager.get(i);
+        reqHeaders.put(header.getName(),header.getValue());
+      }
+    }
     spconn.setMaintainSession(getMaintainSession());
-    msg.setSOAPTransport(spconn);
-    msg.send(this.getUrl(),this.getSoapAction(),msgEnv);
+    spconn.send(this.getUrl(),this.getSoapAction(),reqHeaders,msgEnv,null,new SOAPContext());
     @SuppressWarnings("unchecked") final Map<String,String> headers=spconn.getHeaders();
     result.setResponseHeaders(convertSoapHeaders(headers));
     if (this.getHeaderManager() != null) {
