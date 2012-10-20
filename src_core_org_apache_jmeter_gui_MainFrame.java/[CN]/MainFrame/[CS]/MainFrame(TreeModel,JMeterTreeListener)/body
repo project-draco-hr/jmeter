@@ -3,7 +3,9 @@
   runningIndicator.setMargin(new Insets(0,0,0,0));
   runningIndicator.setBorder(BorderFactory.createEmptyBorder());
   totalThreads=new JLabel("0");
+  totalThreads.setToolTipText(JMeterUtils.getResString("total_threads_tooltip"));
   activeThreads=new JLabel("0");
+  activeThreads.setToolTipText(JMeterUtils.getResString("active_threads_tooltip"));
   warnIndicator=new JButton(warningIcon);
   warnIndicator.setMargin(new Insets(0,0,0,0));
   warnIndicator.setOpaque(false);
