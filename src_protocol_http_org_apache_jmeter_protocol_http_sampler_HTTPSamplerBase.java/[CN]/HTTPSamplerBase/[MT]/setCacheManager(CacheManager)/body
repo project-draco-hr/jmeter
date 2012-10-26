@@ -1,6 +1,6 @@
 {
   CacheManager mgr=getCacheManager();
-  if (mgr != null) {
+  if (log.isDebugEnabled() && mgr != null) {
     log.warn("Existing CacheManager " + mgr.getName() + " superseded by "+ value.getName());
   }
   setProperty(new TestElementProperty(CACHE_MANAGER,value));

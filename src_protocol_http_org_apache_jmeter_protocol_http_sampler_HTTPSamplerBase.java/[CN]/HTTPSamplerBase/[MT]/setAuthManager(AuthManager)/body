@@ -1,6 +1,6 @@
 {
   AuthManager mgr=getAuthManager();
-  if (mgr != null) {
+  if (log.isDebugEnabled() && mgr != null) {
     log.warn("Existing AuthManager " + mgr.getName() + " superseded by "+ value.getName());
   }
   setProperty(new TestElementProperty(AUTH_MANAGER,value));
