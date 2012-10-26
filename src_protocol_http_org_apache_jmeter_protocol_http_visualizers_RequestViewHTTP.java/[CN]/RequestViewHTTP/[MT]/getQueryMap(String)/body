@@ -18,7 +18,7 @@
     }
     String value="";
     if (paramSplit.length > 1) {
-      value=paramSplit[1];
+      value=param.substring(param.indexOf("=") + 1);
     }
     map.put(name,value);
   }
