@@ -17,5 +17,5 @@
       return ((javax.jms.ConnectionFactory)objfac).createConnection();
     }
   }
-  throw new NamingException("Expected javax.jms.ConnectionFactory, found " + objfac.getClass().getName());
+  throw new NamingException("Expected javax.jms.ConnectionFactory, found " + (objfac != null ? objfac.getClass().getName() : "null"));
 }

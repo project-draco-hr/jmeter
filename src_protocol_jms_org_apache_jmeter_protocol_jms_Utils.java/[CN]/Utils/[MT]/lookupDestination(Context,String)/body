@@ -3,5 +3,5 @@
   if (o instanceof Destination) {
     return (Destination)o;
   }
-  throw new NamingException("Found: " + name + "; expected Destination, but was: "+ o.getClass().getName());
+  throw new NamingException("Found: " + name + "; expected Destination, but was: "+ (o != null ? o.getClass().getName() : "null"));
 }
