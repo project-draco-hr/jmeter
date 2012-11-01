@@ -1,4 +1,9 @@
 {
+  for (  String entry : NON_BINARY_TYPES) {
+    if (ct.startsWith(entry)) {
+      return false;
+    }
+  }
   for (int i=0; i < BINARY_TYPES.length; i++) {
     if (ct.startsWith(BINARY_TYPES[i])) {
       return true;
