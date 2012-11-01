@@ -30,14 +30,14 @@
       clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
       String proxyUser=getProxyUser();
       if (proxyUser.length() > 0) {
-        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(proxyHost,proxyPort),new UsernamePasswordCredentials(proxyUser,getProxyPass()));
+        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(proxyHost,proxyPort),new NTCredentials(proxyUser,getProxyPass(),localHost,PROXY_DOMAIN));
       }
     }
  else     if (useStaticProxy) {
       HttpHost proxy=new HttpHost(PROXY_HOST,PROXY_PORT);
       clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
       if (PROXY_USER.length() > 0) {
-        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(PROXY_HOST,PROXY_PORT),new UsernamePasswordCredentials(PROXY_USER,PROXY_PASS));
+        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(PROXY_HOST,PROXY_PORT),new NTCredentials(PROXY_USER,PROXY_PASS,localHost,PROXY_DOMAIN));
       }
     }
     clientParams.setParameter(ClientPNames.COOKIE_POLICY,CookiePolicy.IGNORE_COOKIES);
