@@ -6,11 +6,11 @@
   this.sampler=(HTTPSamplerBase)base.clone();
   CacheManager cacheManager=base.getCacheManager();
   if (cacheManager != null) {
-    this.sampler.setCacheManager(cacheManager);
+    this.sampler.setCacheManagerProperty(cacheManager);
   }
   if (cookieManager != null) {
     CookieManager clonedCookieManager=(CookieManager)cookieManager.clone();
-    this.sampler.setCookieManager(clonedCookieManager);
+    this.sampler.setCookieManagerProperty(clonedCookieManager);
   }
   this.jmeterContextOfParentThread=JMeterContextService.getContext();
 }
