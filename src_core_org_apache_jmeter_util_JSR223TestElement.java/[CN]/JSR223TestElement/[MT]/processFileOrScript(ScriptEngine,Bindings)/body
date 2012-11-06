@@ -38,7 +38,22 @@ synchronized (compiledScriptsCache) {
     }
   }
  else   if (!StringUtils.isEmpty(getScript())) {
-    return scriptEngine.eval(getScript(),bindings);
+    if (supportsCompilable && !StringUtils.isEmpty(cacheKey)) {
+      CompiledScript compiledScript=compiledScriptsCache.get(cacheKey);
+      if (compiledScript == null) {
+synchronized (compiledScriptsCache) {
+          compiledScript=compiledScriptsCache.get(cacheKey);
+          if (compiledScript == null) {
+            compiledScript=((Compilable)scriptEngine).compile(getScript());
+            compiledScriptsCache.put(cacheKey,compiledScript);
+          }
+        }
+      }
+      return compiledScript.eval(bindings);
+    }
+ else {
+      return scriptEngine.eval(getScript(),bindings);
+    }
   }
  else {
     throw new ScriptException("Both script file and script text are empty for element:" + getName());
