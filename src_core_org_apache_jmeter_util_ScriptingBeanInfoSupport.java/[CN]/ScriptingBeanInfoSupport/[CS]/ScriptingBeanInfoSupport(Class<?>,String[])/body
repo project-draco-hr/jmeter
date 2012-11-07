@@ -15,6 +15,12 @@
   p.setValue(DEFAULT,"");
   p.setPropertyEditorClass(FileEditor.class);
   createPropertyGroup("filenameGroup",new String[]{"filename"});
+  if (JSR223TestElement.class.isAssignableFrom(beanClass)) {
+    p=property("cacheKey");
+    p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+    p.setValue(DEFAULT,"");
+    createPropertyGroup("cacheKey_group",new String[]{"cacheKey"});
+  }
   p=property("script");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");

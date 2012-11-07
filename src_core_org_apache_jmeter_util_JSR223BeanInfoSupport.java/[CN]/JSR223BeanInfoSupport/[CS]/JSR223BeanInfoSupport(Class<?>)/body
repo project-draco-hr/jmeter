@@ -1,7 +1,3 @@
 {
   super(beanClass,LANGUAGE_TAGS);
-  PropertyDescriptor p=property(CACHE_KEY);
-  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
-  p.setValue(DEFAULT,"");
-  createPropertyGroup(CACHE_KEY_GROUP,new String[]{CACHE_KEY});
 }
