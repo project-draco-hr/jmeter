@@ -1,5 +1,6 @@
 {
   if (e.getSource() == cancelButton) {
+    searchTF.requestFocusInWindow();
     this.setVisible(false);
     return;
   }

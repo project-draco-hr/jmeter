@@ -38,5 +38,6 @@
     jMeterTreeNode.setMarkedBySearch(true);
   }
   GuiPackage.getInstance().getMainFrame().repaint();
+  searchTF.requestFocusInWindow();
   this.setVisible(false);
 }
