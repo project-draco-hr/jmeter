@@ -7,6 +7,18 @@
  else {
       ((ForeachController)lc).setInputVal("");
     }
+    if (startIndex.getText().length() > 0) {
+      ((ForeachController)lc).setStartIndex(startIndex.getText());
+    }
+ else {
+      ((ForeachController)lc).setStartIndex(null);
+    }
+    if (endIndex.getText().length() > 0) {
+      ((ForeachController)lc).setEndIndex(endIndex.getText());
+    }
+ else {
+      ((ForeachController)lc).setEndIndex(null);
+    }
     if (returnVal.getText().length() > 0) {
       ((ForeachController)lc).setReturnVal(returnVal.getText());
     }

@@ -1,6 +1,8 @@
 {
   VerticalPanel loopPanel=new VerticalPanel();
   JLabel inputValLabel=new JLabel(JMeterUtils.getResString("foreach_input"));
+  JLabel startIndexLabel=new JLabel(JMeterUtils.getResString("foreach_start_index"));
+  JLabel endIndexLabel=new JLabel(JMeterUtils.getResString("foreach_end_index"));
   JLabel returnValLabel=new JLabel(JMeterUtils.getResString("foreach_output"));
   JPanel inputValSubPanel=new JPanel(new BorderLayout(5,0));
   inputVal=new JTextField("",5);
@@ -8,6 +10,18 @@
   inputValLabel.setLabelFor(inputVal);
   inputValSubPanel.add(inputValLabel,BorderLayout.WEST);
   inputValSubPanel.add(inputVal,BorderLayout.CENTER);
+  JPanel startIndexSubPanel=new JPanel(new BorderLayout(5,0));
+  startIndex=new JTextField("",5);
+  startIndex.setName(START_INDEX);
+  startIndexLabel.setLabelFor(startIndex);
+  startIndexSubPanel.add(startIndexLabel,BorderLayout.WEST);
+  startIndexSubPanel.add(startIndex,BorderLayout.CENTER);
+  JPanel endIndexSubPanel=new JPanel(new BorderLayout(5,0));
+  endIndex=new JTextField("",5);
+  endIndex.setName(END_INDEX);
+  endIndexLabel.setLabelFor(endIndex);
+  endIndexSubPanel.add(endIndexLabel,BorderLayout.WEST);
+  endIndexSubPanel.add(endIndex,BorderLayout.CENTER);
   JPanel returnValSubPanel=new JPanel(new BorderLayout(5,0));
   returnVal=new JTextField("",5);
   returnVal.setName(RETURNVAL);
@@ -16,6 +30,8 @@
   returnValSubPanel.add(returnVal,BorderLayout.CENTER);
   useSeparator=new JCheckBox(JMeterUtils.getResString("foreach_use_separator"),true);
   loopPanel.add(inputValSubPanel);
+  loopPanel.add(startIndexSubPanel);
+  loopPanel.add(endIndexSubPanel);
   loopPanel.add(returnValSubPanel);
   loopPanel.add(useSeparator);
   return loopPanel;
