@@ -6,7 +6,7 @@
       return true;
     }
   }
-  if ("307".equals(code) && ("GET".equals(getHTTPMethod()) || "HEAD".equals(getHTTPMethod()))) {
+  if ("307".equals(code) && (HTTPConstants.GET.equals(getHTTPMethod()) || HTTPConstants.HEAD.equals(getHTTPMethod()))) {
     return true;
   }
   return false;
