@@ -26,7 +26,7 @@
       sampler.setArguments(urlConfig.getArguments());
       sampler.setHTTPFiles(urlConfig.getHTTPFileArgs().asArray());
     }
- else     if (postData.trim().startsWith("<?") || "PUT".equals(sampler.getMethod())) {
+ else     if (postData.trim().startsWith("<?") || HTTPConstants.PUT.equals(sampler.getMethod())) {
       sampler.addNonEncodedArgument("",postData,"");
     }
  else     if (contentType == null || contentType.startsWith(HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED)) {
