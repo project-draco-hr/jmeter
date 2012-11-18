@@ -10,7 +10,12 @@
     model.setCaptureHttpHeaders(httpHeaders.isSelected());
     model.setGroupingMode(groupingMode.getSelectedIndex());
     model.setAssertions(addAssertions.isSelected());
-    model.setSamplerTypeName(HTTPSamplerFactory.getImplementations()[samplerTypeName.getSelectedIndex()]);
+    if (samplerTypeName.getSelectedIndex() < HTTPSamplerFactory.getImplementations().length) {
+      model.setSamplerTypeName(HTTPSamplerFactory.getImplementations()[samplerTypeName.getSelectedIndex()]);
+    }
+ else {
+      model.setSamplerTypeName(USE_DEFAULT_HTTP_IMPL);
+    }
     model.setSamplerRedirectAutomatically(samplerRedirectAutomatically.isSelected());
     model.setSamplerFollowRedirects(samplerFollowRedirects.isSelected());
     model.setUseKeepAlive(useKeepAlive.isSelected());

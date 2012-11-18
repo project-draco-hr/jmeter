@@ -3,6 +3,7 @@
   for (  String s : HTTPSamplerFactory.getImplementations()) {
     m.addElement(s);
   }
+  m.addElement(USE_DEFAULT_HTTP_IMPL);
   samplerTypeName=new JComboBox(m);
   samplerTypeName.setSelectedItem(HTTPSamplerFactory.DEFAULT_CLASSNAME);
   samplerTypeName.addItemListener(this);
