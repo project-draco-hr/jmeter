@@ -1,6 +1,9 @@
 {
   SampleResult result=new SampleResult();
   result.setSampleLabel(getName());
+  result.setSuccessful(true);
+  result.setResponseCodeOK();
+  result.setResponseMessageOK();
   final String filename=getFilename();
   if (filename.length() > 0) {
     result.setSamplerData("File: " + filename);
@@ -15,10 +18,7 @@
     Bindings bindings=scriptEngine.createBindings();
     bindings.put("SampleResult",result);
     Object ret=processFileOrScript(scriptEngine,bindings);
-    result.setSuccessful(true);
-    result.setResponseCodeOK();
-    result.setResponseMessageOK();
-    if (ret != null) {
+    if (ret != null && (result.getResponseData() == null || result.getResponseData() == SampleResult.EMPTY_BA)) {
       result.setResponseData(ret.toString(),null);
     }
   }
