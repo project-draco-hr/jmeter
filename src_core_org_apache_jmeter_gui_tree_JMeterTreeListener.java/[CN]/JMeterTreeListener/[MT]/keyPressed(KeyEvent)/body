@@ -2,13 +2,21 @@
   if (KeyStrokes.matches(e,KeyStrokes.COPY)) {
     ActionRouter actionRouter=ActionRouter.getInstance();
     actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.COPY));
+    e.consume();
   }
  else   if (KeyStrokes.matches(e,KeyStrokes.PASTE)) {
     ActionRouter actionRouter=ActionRouter.getInstance();
     actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.PASTE));
+    e.consume();
   }
  else   if (KeyStrokes.matches(e,KeyStrokes.CUT)) {
     ActionRouter actionRouter=ActionRouter.getInstance();
     actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.CUT));
+    e.consume();
+  }
+ else   if (KeyStrokes.matches(e,KeyStrokes.DUPLICATE)) {
+    ActionRouter actionRouter=ActionRouter.getInstance();
+    actionRouter.doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.DUPLICATE));
+    e.consume();
   }
 }
