@@ -17,7 +17,12 @@
     results.getDocument().putProperty(Document.StreamDescriptionProperty,res.getURL());
   }
   results.getDocument().putProperty("IgnoreCharsetDirective",Boolean.TRUE);
-  results.setText(html);
+  try {
+    results.setText(html);
+  }
+ catch (  RuntimeException rte) {
+    results.setText("Failed to parse HTML: " + rte.getMessage());
+  }
   results.setCaretPosition(0);
   resultsScrollPane.setViewportView(results);
 }
