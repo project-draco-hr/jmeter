@@ -119,6 +119,7 @@
   }
  catch (  IOException e) {
     res.sampleEnd();
+    res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
     errorResult(e,res);
     return res;
   }

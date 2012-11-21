@@ -121,11 +121,13 @@
   }
  catch (  IllegalArgumentException e) {
     res.sampleEnd();
+    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     errorResult(e,res);
     return res;
   }
 catch (  IOException e) {
     res.sampleEnd();
+    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     errorResult(e,res);
     return res;
   }
