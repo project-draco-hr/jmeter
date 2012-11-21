@@ -29,7 +29,10 @@
         results.setCaretPosition(0);
       }
     }
- catch (    BadLocationException ble) {
+ catch (    PatternSyntaxException pse) {
+      JOptionPane.showMessageDialog(null,pse.toString(),JMeterUtils.getResString("error_title"),JOptionPane.WARNING_MESSAGE);
+    }
+catch (    BadLocationException ble) {
       log.error("Location exception in text find",ble);
     }
   }
