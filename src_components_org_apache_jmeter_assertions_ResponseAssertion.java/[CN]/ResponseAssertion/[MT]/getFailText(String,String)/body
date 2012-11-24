@@ -16,6 +16,9 @@
  else   if (isTestFieldResponseHeaders()) {
     sb.append("headers");
   }
+ else   if (isTestFieldResponseDataAsDocument()) {
+    sb.append("document");
+  }
  else {
     sb.append("URL");
   }

@@ -1,0 +1,38 @@
+{
+  String errMissingTika=JMeterUtils.getResString("view_results_response_missing_tika");
+  String response=errMissingTika;
+  Parser parser=new AutoDetectParser();
+  ContentHandler handler=new BodyContentHandler(MAX_DOCUMENT_SIZE > 0 ? MAX_DOCUMENT_SIZE : -1);
+  Metadata metadata=new Metadata();
+  ParseContext context=new ParseContext();
+  InputStream stream=new ByteArrayInputStream(document);
+  try {
+    parser.parse(stream,handler,metadata,context);
+    response=handler.toString();
+  }
+ catch (  Exception e) {
+    response=e.toString();
+    log.warn("Error document parsing:",e);
+  }
+catch (  NoClassDefFoundError e) {
+    if (!System.getProperty("java.class.path").contains("tika-app")) {
+      log.warn(errMissingTika);
+    }
+ else {
+      log.warn(errMissingTika,e);
+    }
+  }
+ finally {
+    try {
+      stream.close();
+    }
+ catch (    IOException ioe) {
+      log.warn("Error closing document stream",ioe);
+    }
+  }
+  if (response.length() == 0 && document.length > 0) {
+    log.warn("Probably: " + errMissingTika);
+    response=errMissingTika;
+  }
+  return response;
+}

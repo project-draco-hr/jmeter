@@ -18,6 +18,9 @@
   if (model.isTestFieldResponseData()) {
     responseStringButton.setSelected(true);
   }
+ else   if (model.isTestFieldResponseDataAsDocument()) {
+    responseAsDocumentButton.setSelected(true);
+  }
  else   if (model.isTestFieldResponseCode()) {
     responseCodeButton.setSelected(true);
   }

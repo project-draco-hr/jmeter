@@ -12,6 +12,9 @@
  else   if (isTestFieldResponseData()) {
     toCheck=response.getResponseDataAsString();
   }
+ else   if (isTestFieldResponseDataAsDocument()) {
+    toCheck=Document.getTextFromDocument(response.getResponseData());
+  }
  else   if (isTestFieldResponseCode()) {
     toCheck=response.getResponseCode();
   }

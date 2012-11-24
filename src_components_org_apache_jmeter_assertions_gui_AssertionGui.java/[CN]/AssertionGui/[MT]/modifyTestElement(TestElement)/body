@@ -11,6 +11,9 @@
     if (responseStringButton.isSelected()) {
       ra.setTestFieldResponseData();
     }
+ else     if (responseAsDocumentButton.isSelected()) {
+      ra.setTestFieldResponseDataAsDocument();
+    }
  else     if (responseCodeButton.isSelected()) {
       ra.setTestFieldResponseCode();
     }

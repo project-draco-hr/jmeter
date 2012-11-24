@@ -1,0 +1,7 @@
+{
+  String response=Document.getTextFromDocument(sampleResult.getResponseData());
+  results.setContentType("text/plain");
+  results.setText(response);
+  results.setCaretPosition(0);
+  resultsScrollPane.setViewportView(results);
+}

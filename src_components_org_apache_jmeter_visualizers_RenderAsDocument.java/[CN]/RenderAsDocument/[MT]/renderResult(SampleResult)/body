@@ -1,0 +1,9 @@
+{
+  try {
+    showDocumentResponse(sampleResult);
+  }
+ catch (  Exception e) {
+    results.setText(e.toString());
+    log.error("Error:",e);
+  }
+}
