@@ -18,7 +18,7 @@
       final AnnotatedTestCase at=new AnnotatedTestCase(m,expectedException,timeout);
       testCase=at;
       protectable=new Protectable(){
-        public void protect() throws Throwable {
+        @Override public void protect() throws Throwable {
           at.runTest();
         }
       }
@@ -28,7 +28,7 @@
       this.testCase=(TestCase)this.testObject;
       final Object theClazz=this.testObject;
       protectable=new Protectable(){
-        public void protect() throws Throwable {
+        @Override public void protect() throws Throwable {
           try {
             m.invoke(theClazz,new Object[0]);
           }
