@@ -1,6 +1,11 @@
 {
-  copiedNodes=new JMeterTreeNode[nodes.length];
-  for (int i=0; i < nodes.length; i++) {
-    copiedNodes[i]=cloneTreeNode(nodes[i]);
+  Clipboard clipboard=Toolkit.getDefaultToolkit().getSystemClipboard();
+  try {
+    JMeterTreeNodeTransferable transferable=new JMeterTreeNodeTransferable();
+    transferable.setTransferData(nodes);
+    clipboard.setContents(transferable,null);
+  }
+ catch (  Exception ex) {
+    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("clipboard_node_read_error") + ":\n" + ex.getLocalizedMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 }

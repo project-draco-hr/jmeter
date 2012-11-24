@@ -1,11 +1,12 @@
 {
-  if (copiedNodes == null) {
-    return null;
-  }
-  for (int i=0; i < copiedNodes.length; i++) {
-    if (copiedNodes[i] == null) {
-      return null;
+  Clipboard clipboard=Toolkit.getDefaultToolkit().getSystemClipboard();
+  if (clipboard.isDataFlavorAvailable(JMeterTreeNodeTransferable.JMETER_TREE_NODE_ARRAY_DATA_FLAVOR)) {
+    try {
+      return (JMeterTreeNode[])clipboard.getData(JMeterTreeNodeTransferable.JMETER_TREE_NODE_ARRAY_DATA_FLAVOR);
+    }
+ catch (    Exception ex) {
+      JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("clipboard_node_read_error") + ":\n" + ex.getLocalizedMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
     }
   }
-  return cloneTreeNodes(copiedNodes);
+  return null;
 }
