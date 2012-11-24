@@ -121,7 +121,9 @@
   }
  catch (  IllegalArgumentException e) {
     res.sampleEnd();
-    res.setRequestHeaders(getConnectionHeaders(httpMethod));
+    if (httpMethod != null) {
+      res.setRequestHeaders(getConnectionHeaders(httpMethod));
+    }
     errorResult(e,res);
     return res;
   }
