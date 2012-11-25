@@ -11,5 +11,8 @@
     if (isStopThread()) {
       s.setStopThread(true);
     }
+    if (isStartNextThreadLoop()) {
+      s.setStartNextThreadLoop(true);
+    }
   }
 }

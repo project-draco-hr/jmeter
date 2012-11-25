@@ -8,5 +8,8 @@
   if (stopThrdBox.isSelected()) {
     return OnErrorTestElement.ON_ERROR_STOPTHREAD;
   }
+  if (startNextThreadLoopBox.isSelected()) {
+    return OnErrorTestElement.ON_ERROR_START_NEXT_THREAD_LOOP;
+  }
   return OnErrorTestElement.ON_ERROR_CONTINUE;
 }
