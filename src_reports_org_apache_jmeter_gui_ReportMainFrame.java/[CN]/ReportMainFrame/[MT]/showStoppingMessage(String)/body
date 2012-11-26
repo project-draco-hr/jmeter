@@ -6,7 +6,7 @@
   stoppingMessage.pack();
   ComponentUtil.centerComponentInComponent(this,stoppingMessage);
   SwingUtilities.invokeLater(new Runnable(){
-    public void run(){
+    @Override public void run(){
       if (stoppingMessage != null) {
         stoppingMessage.setVisible(true);
       }
