@@ -1,9 +1,7 @@
 {
   String resKey=locale.toLowerCase(java.util.Locale.ENGLISH);
-  try {
+  if (resources.containsKey(resKey)) {
     return resources.getString(resKey);
-  }
- catch (  MissingResourceException e) {
   }
   return locale;
 }
