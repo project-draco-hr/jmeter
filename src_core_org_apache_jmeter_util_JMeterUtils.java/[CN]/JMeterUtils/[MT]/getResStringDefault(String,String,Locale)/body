@@ -10,7 +10,13 @@
     if (forcedLocale != null) {
       bundle=ResourceBundle.getBundle("org.apache.jmeter.resources.messages",forcedLocale);
     }
-    resString=bundle.getString(resKey);
+    if (bundle.containsKey(resKey)) {
+      resString=bundle.getString(resKey);
+    }
+ else {
+      log.warn("ERROR! Resource string not found: [" + resKey + "]");
+      resString=defaultValue;
+    }
     if (ignoreResorces) {
       return "[" + key + "]";
     }
