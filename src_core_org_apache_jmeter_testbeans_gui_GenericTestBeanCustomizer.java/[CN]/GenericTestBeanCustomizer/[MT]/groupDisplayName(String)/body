@@ -1,12 +1,13 @@
 {
-  try {
-    ResourceBundle b=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(RESOURCE_BUNDLE);
-    if (b == null) {
-      return group;
-    }
-    return b.getString(group + ".displayName");
+  ResourceBundle b=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(RESOURCE_BUNDLE);
+  if (b == null) {
+    return group;
   }
- catch (  MissingResourceException e) {
+  String key=new StringBuilder(group).append(".displayName").toString();
+  if (b.containsKey(key)) {
+    return b.getString(key);
+  }
+ else {
     return group;
   }
 }

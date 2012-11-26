@@ -10,10 +10,10 @@
   try {
     ResourceBundle resourceBundle=ResourceBundle.getBundle(beanClass.getName() + "Resources",JMeterUtils.getLocale());
     getBeanDescriptor().setValue(RESOURCE_BUNDLE,resourceBundle);
-    try {
+    if (resourceBundle.containsKey("displayName")) {
       getBeanDescriptor().setDisplayName(resourceBundle.getString("displayName"));
     }
- catch (    MissingResourceException e) {
+ else {
       log.debug("Localized display name not available for bean " + beanClass);
     }
     PropertyDescriptor[] properties=getPropertyDescriptors();
