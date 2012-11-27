@@ -9,7 +9,7 @@
   targetModel.addElement(testTarget);
   targetBox=new JComboBox(targetModel);
   targetBox.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       if (((String)targetBox.getSelectedItem()).equals(threadTarget)) {
         target=TestAction.THREAD;
       }
@@ -25,7 +25,7 @@
   ButtonGroup actionButtons=new ButtonGroup();
   pauseButton=new JRadioButton(pauseAction,true);
   pauseButton.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       if (pauseButton.isSelected()) {
         action=TestAction.PAUSE;
         durationField.setEnabled(true);
@@ -36,7 +36,7 @@
 );
   stopButton=new JRadioButton(stopAction,false);
   stopButton.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       if (stopButton.isSelected()) {
         action=TestAction.STOP;
         durationField.setEnabled(false);
@@ -47,7 +47,7 @@
 );
   stopNowButton=new JRadioButton(stopNowAction,false);
   stopNowButton.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       if (stopNowButton.isSelected()) {
         action=TestAction.STOP_NOW;
         durationField.setEnabled(false);
@@ -58,7 +58,7 @@
 );
   restartNextLoopButton=new JRadioButton(restartNextLoopAction,false);
   restartNextLoopButton.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       if (restartNextLoopButton.isSelected()) {
         action=TestAction.RESTART_NEXT_LOOP;
         durationField.setEnabled(false);
@@ -82,10 +82,10 @@
   durationField=new JTextField(15);
   durationField.setText("");
   durationField.addFocusListener(new FocusListener(){
-    public void focusLost(    FocusEvent e){
+    @Override public void focusLost(    FocusEvent e){
       durationString=durationField.getText();
     }
-    public void focusGained(    FocusEvent e){
+    @Override public void focusGained(    FocusEvent e){
     }
   }
 );

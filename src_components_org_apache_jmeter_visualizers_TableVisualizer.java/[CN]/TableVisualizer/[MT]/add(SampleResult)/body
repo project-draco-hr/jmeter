@@ -1,6 +1,6 @@
 {
   JMeterUtils.runSafe(new Runnable(){
-    public void run(){
+    @Override public void run(){
       if (childSamples.isSelected()) {
         SampleResult[] subResults=res.getSubResults();
         if (subResults.length > 0) {

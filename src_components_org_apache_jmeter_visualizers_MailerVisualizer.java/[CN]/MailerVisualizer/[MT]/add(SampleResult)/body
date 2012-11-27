@@ -1,7 +1,7 @@
 {
   if (getModel() != null) {
     JMeterUtils.runSafe(new Runnable(){
-      public void run(){
+      @Override public void run(){
         MailerModel model=((MailerResultCollector)getModel()).getMailerModel();
         model.add(res);
         updateVisualizer(model);

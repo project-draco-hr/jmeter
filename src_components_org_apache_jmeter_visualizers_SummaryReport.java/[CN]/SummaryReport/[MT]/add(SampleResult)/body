@@ -1,7 +1,7 @@
 {
   final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());
   JMeterUtils.runSafe(new Runnable(){
-    public void run(){
+    @Override public void run(){
       Calculator row=null;
 synchronized (lock) {
         row=tableRows.get(sampleLabel);

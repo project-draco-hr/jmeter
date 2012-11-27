@@ -5,7 +5,7 @@
   }
   if ((matcher == null) || (matcher.find())) {
     JMeterUtils.runSafe(new Runnable(){
-      public void run(){
+      @Override public void run(){
         SamplingStatCalculator row=null;
 synchronized (lock) {
           row=tableRows.get(sampleLabel);

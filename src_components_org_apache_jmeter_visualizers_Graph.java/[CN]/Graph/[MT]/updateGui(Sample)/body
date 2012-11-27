@@ -20,7 +20,7 @@
   }
   final long xPos=model.getCount();
   SwingUtilities.invokeLater(new Runnable(){
-    public void run(){
+    @Override public void run(){
       Graphics g=getGraphics();
       if (g != null) {
         drawSample(xPos,oneSample,g);

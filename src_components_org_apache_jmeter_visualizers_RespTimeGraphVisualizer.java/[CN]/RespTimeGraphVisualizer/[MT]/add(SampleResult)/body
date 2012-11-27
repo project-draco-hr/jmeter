@@ -10,7 +10,7 @@ synchronized (lockInterval) {
     final long startTimeMS=sampleResult.getStartTime();
     final int startTimeInterval=(int)startTimeMS / intervalValue;
     JMeterUtils.runSafe(new Runnable(){
-      public void run(){
+      @Override public void run(){
 synchronized (lock) {
           if (startTimeInterval < minStartTime) {
             minStartTime=startTimeInterval;

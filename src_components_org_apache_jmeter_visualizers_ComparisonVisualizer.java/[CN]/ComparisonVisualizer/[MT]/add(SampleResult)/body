@@ -1,6 +1,6 @@
 {
   JMeterUtils.runSafe(new Runnable(){
-    public void run(){
+    @Override public void run(){
       DefaultMutableTreeNode currNode=new DefaultMutableTreeNode(sample);
       treeModel.insertNodeInto(currNode,root,root.getChildCount());
       if (root.getChildCount() == 1) {
