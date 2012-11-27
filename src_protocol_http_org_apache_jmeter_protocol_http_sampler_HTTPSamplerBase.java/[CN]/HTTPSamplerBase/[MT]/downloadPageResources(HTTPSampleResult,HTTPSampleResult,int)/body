@@ -82,9 +82,9 @@
         log.warn("Concurrent download resources selected, " + "but pool size value is bad. Use default value");
       }
       final ThreadPoolExecutor exec=new ThreadPoolExecutor(poolSize,poolSize,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(),new ThreadFactory(){
-        public Thread newThread(        final Runnable r){
+        @Override public Thread newThread(        final Runnable r){
           Thread t=new CleanerThread(new Runnable(){
-            public void run(){
+            @Override public void run(){
               try {
                 r.run();
               }

@@ -3,7 +3,7 @@
   sc.setProperty(TestElement.GUI_CLASS,LOGIC_CONTROLLER_GUI);
   sc.setName(name);
   JMeterUtils.runSafe(new Runnable(){
-    public void run(){
+    @Override public void run(){
       try {
         model.addComponent(sc,node);
       }

@@ -35,7 +35,7 @@
   mainPanel.add(soapXml,BorderLayout.CENTER);
   mainPanel.add(soapXmlFile,BorderLayout.SOUTH);
   sendSoapAction.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       soapAction.setEnabled(sendSoapAction.isSelected());
     }
   }

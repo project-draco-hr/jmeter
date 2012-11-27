@@ -10,7 +10,7 @@
   imageParser=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
   checkBoxPanel.add(imageParser);
   imageParser.addItemListener(new ItemListener(){
-    public void itemStateChanged(    final ItemEvent e){
+    @Override public void itemStateChanged(    final ItemEvent e){
       if (e.getStateChange() == ItemEvent.SELECTED) {
         enableConcurrentDwn(true);
       }
@@ -22,7 +22,7 @@
 );
   concurrentDwn=new JCheckBox(JMeterUtils.getResString("web_testing_concurrent_download"));
   concurrentDwn.addItemListener(new ItemListener(){
-    public void itemStateChanged(    final ItemEvent e){
+    @Override public void itemStateChanged(    final ItemEvent e){
       if (imageParser.isSelected() && e.getStateChange() == ItemEvent.SELECTED) {
         concurrentPool.setEnabled(true);
       }

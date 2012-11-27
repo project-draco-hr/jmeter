@@ -41,7 +41,7 @@
     final boolean firstInBatchFinal=firstInBatch;
     final JMeterTreeNode myTargetFinal=myTarget;
     JMeterUtils.runSafe(new Runnable(){
-      public void run(){
+      @Override public void run(){
         try {
           final JMeterTreeNode newNode=treeModel.addComponent(sampler,myTargetFinal);
           if (firstInBatchFinal) {
