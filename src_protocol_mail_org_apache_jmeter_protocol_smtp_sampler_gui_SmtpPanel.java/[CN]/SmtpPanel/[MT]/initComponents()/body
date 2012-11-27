@@ -29,7 +29,7 @@
   cbPlainBody=new JCheckBox(JMeterUtils.getResString("smtp_plainbody"));
   cbSuppressSubject=new JCheckBox(JMeterUtils.getResString("smtp_suppresssubj"));
   cbSuppressSubject.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent evt){
+    @Override public void stateChanged(    ChangeEvent evt){
       emptySubjectActionPerformed(evt);
     }
   }
@@ -44,13 +44,13 @@
   browseButton=new JButton(JMeterUtils.getResString("browse"));
   emlBrowseButton=new JButton(JMeterUtils.getResString("browse"));
   attachmentFileChooser.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       attachmentFolderFileChooserActionPerformed(evt);
     }
   }
 );
   emlFileChooser.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       emlFileChooserActionPerformed(evt);
     }
   }
@@ -129,7 +129,7 @@
   cbUseAuth.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
   cbUseAuth.setMargin(new java.awt.Insets(0,0,0,0));
   cbUseAuth.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       cbUseAuthActionPerformed(evt);
     }
   }
@@ -188,7 +188,7 @@
   panelMessageSettings.add(cbIncludeTimestamp,gridBagConstraints);
   addHeaderFieldButton=new JButton(JMeterUtils.getResString("smtp_header_add"));
   addHeaderFieldButton.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       addHeaderActionPerformed(evt);
     }
   }
@@ -235,7 +235,7 @@
   panelMessageSettings.add(tfAttachment,gridBagConstraints);
   tfAttachment.setToolTipText(JMeterUtils.getResString("smtp_attach_file_tooltip"));
   browseButton.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       browseButtonActionPerformed(evt);
     }
   }
@@ -246,7 +246,7 @@
   panelMessageSettings.add(browseButton,gridBagConstraints);
   cbUseEmlMessage.setSelected(false);
   cbUseEmlMessage.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       cbUseEmlMessageActionPerformed(evt);
     }
   }
@@ -261,7 +261,7 @@
   tfEmlMessage.setEnabled(false);
   panelMessageSettings.add(tfEmlMessage,gridBagConstraints);
   emlBrowseButton.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       emlBrowseButtonActionPerformed(evt);
     }
   }

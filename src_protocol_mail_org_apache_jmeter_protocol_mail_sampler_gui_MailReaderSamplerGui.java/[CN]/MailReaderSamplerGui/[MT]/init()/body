@@ -23,7 +23,7 @@
   ButtonGroup nmbg=new ButtonGroup();
   allMessagesButton=new JRadioButton(AllMessagesLabel);
   allMessagesButton.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       if (allMessagesButton.isSelected()) {
         someMessagesField.setEnabled(false);
       }
@@ -32,7 +32,7 @@
 );
   someMessagesButton=new JRadioButton();
   someMessagesButton.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       if (someMessagesButton.isSelected()) {
         someMessagesField.setEnabled(true);
       }

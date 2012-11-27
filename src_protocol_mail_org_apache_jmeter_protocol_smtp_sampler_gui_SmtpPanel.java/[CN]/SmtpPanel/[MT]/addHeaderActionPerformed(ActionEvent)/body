@@ -9,7 +9,7 @@
   headerFields.put(nameTF,valueTF);
   removeButtons.put(removeButton,nameTF);
   removeButton.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent evt){
+    @Override public void actionPerformed(    ActionEvent evt){
       removeHeaderActionPerformed(evt);
     }
   }
