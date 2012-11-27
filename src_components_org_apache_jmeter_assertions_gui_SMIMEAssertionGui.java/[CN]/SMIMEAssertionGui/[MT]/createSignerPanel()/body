@@ -9,7 +9,7 @@
   panel.add(signerNoCheck);
   panel.add(signerCheckConstraints);
   signerCheckConstraints.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       signerDnField.setEnabled(signerCheckConstraints.isSelected());
       signerSerialNumberField.setEnabled(signerCheckConstraints.isSelected());
       signerEmailField.setEnabled(signerCheckConstraints.isSelected());
@@ -38,7 +38,7 @@
   box.add(signerSerialNumberField);
   panel.add(box);
   signerCheckByFile.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       signerCertFile.setEnabled(signerCheckByFile.isSelected());
     }
   }

@@ -2,7 +2,7 @@
   JPanel panel=new JPanel();
   panel.setBorder(BorderFactory.createTitledBorder(JMeterUtils.getResString("smime_assertion_signature")));
   notSigned.addChangeListener(new ChangeListener(){
-    public void stateChanged(    ChangeEvent e){
+    @Override public void stateChanged(    ChangeEvent e){
       verifySignature.setEnabled(!notSigned.isSelected());
     }
   }

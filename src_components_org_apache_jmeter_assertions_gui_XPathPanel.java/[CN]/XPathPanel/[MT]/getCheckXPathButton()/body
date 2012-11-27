@@ -2,7 +2,7 @@
   if (checkXPath == null) {
     checkXPath=new JButton(JMeterUtils.getResString("xpath_assertion_button"));
     checkXPath.addActionListener(new ActionListener(){
-      public void actionPerformed(      ActionEvent e){
+      @Override public void actionPerformed(      ActionEvent e){
         validXPath(xpath.getText(),true);
       }
     }

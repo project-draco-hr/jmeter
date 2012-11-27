@@ -7,7 +7,7 @@
   validate=new JCheckBox(JMeterUtils.getResString("xml_validate_button"));
   tolerant=new JCheckBox(JMeterUtils.getResString("xml_tolerant_button"));
   tolerant.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       tolerant();
     }
   }
