@@ -2,7 +2,7 @@
   if (event.getPriority().equals(Priority.ERROR) || event.getPriority().equals(Priority.FATAL_ERROR)) {
     final int newValue=errorOrFatal.incrementAndGet();
     SwingUtilities.invokeLater(new Runnable(){
-      public void run(){
+      @Override public void run(){
         errorsOrFatalsLabel.setText(Integer.toString(newValue));
       }
     }

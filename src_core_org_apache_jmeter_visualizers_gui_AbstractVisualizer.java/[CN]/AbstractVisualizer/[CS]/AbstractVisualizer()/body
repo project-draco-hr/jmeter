@@ -2,7 +2,7 @@
   super();
   errorLogging=new JCheckBox(JMeterUtils.getResString("log_errors_only"));
   errorLogging.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       if (errorLogging.isSelected()) {
         successOnlyLogging.setSelected(false);
       }
@@ -11,7 +11,7 @@
 );
   successOnlyLogging=new JCheckBox(JMeterUtils.getResString("log_success_only"));
   successOnlyLogging.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       if (successOnlyLogging.isSelected()) {
         errorLogging.setSelected(false);
       }
@@ -20,7 +20,7 @@
 );
   JButton saveConfigButton=new JButton(JMeterUtils.getResString("config_save_settings"));
   saveConfigButton.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       SavePropertyDialog d=new SavePropertyDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("sample_result_save_configuration"),true,collector.getSaveConfig());
       d.pack();
       ComponentUtil.centerComponentInComponent(GuiPackage.getInstance().getMainFrame(),d);

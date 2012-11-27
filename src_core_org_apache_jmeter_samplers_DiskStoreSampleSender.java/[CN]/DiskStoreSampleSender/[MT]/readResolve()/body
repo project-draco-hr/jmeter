@@ -5,7 +5,7 @@
     temporaryFile=File.createTempFile("SerialisedSampleSender",".ser");
     temporaryFile.deleteOnExit();
     singleExecutor.submit(new Runnable(){
-      public void run(){
+      @Override public void run(){
         OutputStream anOutputStream;
         try {
           anOutputStream=new FileOutputStream(temporaryFile);

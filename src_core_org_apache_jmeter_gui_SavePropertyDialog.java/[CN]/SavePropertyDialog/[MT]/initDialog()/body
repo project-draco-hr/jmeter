@@ -30,7 +30,7 @@ catch (      InvocationTargetException e) {
   JButton exit=new JButton(JMeterUtils.getResString("done"));
   this.getContentPane().add(exit,BorderLayout.SOUTH);
   exit.addActionListener(new ActionListener(){
-    public void actionPerformed(    ActionEvent e){
+    @Override public void actionPerformed(    ActionEvent e){
       dispose();
     }
   }

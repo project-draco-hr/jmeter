@@ -1,6 +1,6 @@
 {
   this.addHyperlinkListener(new HyperlinkListener(){
-    public void hyperlinkUpdate(    HyperlinkEvent e){
+    @Override public void hyperlinkUpdate(    HyperlinkEvent e){
       if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
         String ref=e.getURL().getRef();
         if (ref != null && ref.length() > 0) {

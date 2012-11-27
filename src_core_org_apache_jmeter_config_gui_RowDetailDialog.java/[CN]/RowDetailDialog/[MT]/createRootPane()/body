@@ -4,7 +4,7 @@
     /** 
  */
     private static final long serialVersionUID=-8699034338969407625L;
-    public void actionPerformed(    ActionEvent actionEvent){
+    @Override public void actionPerformed(    ActionEvent actionEvent){
       setVisible(false);
     }
   }
@@ -13,7 +13,7 @@
     /** 
  */
     private static final long serialVersionUID=-1529005452976176873L;
-    public void actionPerformed(    ActionEvent actionEvent){
+    @Override public void actionPerformed(    ActionEvent actionEvent){
       doUpdate(actionEvent);
       setVisible(false);
     }

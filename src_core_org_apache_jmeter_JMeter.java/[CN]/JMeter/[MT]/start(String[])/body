@@ -20,7 +20,7 @@
       System.setProperty("org.apache.commons.logging.Log","org.apache.commons.logging.impl.LogKitLogger");
     }
     Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionHandler(){
-      public void uncaughtException(      Thread t,      Throwable e){
+      @Override public void uncaughtException(      Thread t,      Throwable e){
         if (!(e instanceof ThreadDeath)) {
           log.error("Uncaught exception: ",e);
           System.err.println("Uncaught Exception " + e + ". See log file for details.");

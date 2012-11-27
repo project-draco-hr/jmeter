@@ -1,7 +1,7 @@
 {
   log.info("Test Ended on " + host);
   singleExecutor.submit(new Runnable(){
-    public void run(){
+    @Override public void run(){
       try {
         oos.close();
       }
