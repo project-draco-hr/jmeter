@@ -51,6 +51,6 @@
       log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient));
     }
   }
-  setConnectionAuthorization(httpClient,url,getAuthManager());
+  setConnectionAuthorization(httpClient,url,getAuthManager(),key);
   return httpClient;
 }

@@ -16,6 +16,15 @@
     }
   }
  else {
+    Credentials credentials=null;
+    AuthScope authScope=null;
+    if (key.hasProxy && !StringUtils.isEmpty(key.proxyUser)) {
+      authScope=new AuthScope(key.proxyHost,key.proxyPort);
+      credentials=credentialsProvider.getCredentials(authScope);
+    }
     credentialsProvider.clear();
+    if (credentials != null) {
+      credentialsProvider.setCredentials(authScope,credentials);
+    }
   }
 }
