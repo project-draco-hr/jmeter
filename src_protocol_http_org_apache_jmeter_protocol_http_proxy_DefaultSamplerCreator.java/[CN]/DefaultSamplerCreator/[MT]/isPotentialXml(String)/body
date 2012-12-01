@@ -6,7 +6,7 @@
     ErrorDetectionHandler detectionHandler=new ErrorDetectionHandler();
     xmlReader.setContentHandler(detectionHandler);
     xmlReader.parse(new InputSource(new StringReader(postData)));
-    return detectionHandler.isErrorDetected();
+    return !detectionHandler.isErrorDetected();
   }
  catch (  ParserConfigurationException e) {
     return false;
