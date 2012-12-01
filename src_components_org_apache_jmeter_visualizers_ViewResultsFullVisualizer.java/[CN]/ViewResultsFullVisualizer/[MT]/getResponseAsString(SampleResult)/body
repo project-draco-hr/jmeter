@@ -1,6 +1,6 @@
 {
   String response=null;
-  if ((SampleResult.TEXT).equals(res.getDataType())) {
+  if (isTextDataType(res)) {
     int len=res.getResponseData().length;
     if (MAX_DISPLAY_SIZE > 0 && len > MAX_DISPLAY_SIZE) {
       StringBuilder builder=new StringBuilder(MAX_DISPLAY_SIZE + 100);

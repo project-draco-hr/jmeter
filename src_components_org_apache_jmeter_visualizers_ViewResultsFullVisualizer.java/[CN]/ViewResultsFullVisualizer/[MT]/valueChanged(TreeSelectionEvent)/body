@@ -13,7 +13,7 @@ synchronized (this) {
     resultsRender.setupTabPane();
     if (userObject instanceof SampleResult) {
       SampleResult sampleResult=(SampleResult)userObject;
-      if ((SampleResult.TEXT).equals(sampleResult.getDataType())) {
+      if (isTextDataType(sampleResult)) {
         resultsRender.renderResult(sampleResult);
       }
  else {
