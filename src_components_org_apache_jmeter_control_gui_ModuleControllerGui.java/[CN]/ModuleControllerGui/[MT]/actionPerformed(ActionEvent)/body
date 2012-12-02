@@ -1,0 +1,13 @@
+{
+  if (e.getSource() == expandButton) {
+    JMeterTreeNode currentSelectedNode=null;
+    TreeNodeWrapper tnw=(TreeNodeWrapper)nodesModel.getSelectedItem();
+    if (tnw != null && tnw.getTreeNode() != null) {
+      currentSelectedNode=tnw.getTreeNode();
+    }
+    if (currentSelectedNode != null) {
+      expandToSelectNode(currentSelectedNode);
+    }
+    return;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  GuiPackage guiInstance=GuiPackage.getInstance();
+  JTree jTree=guiInstance.getMainFrame().getTree();
+  jTree.expandPath(new TreePath(selected.getPath()));
+  selected.setMarkedBySearch(true);
+}

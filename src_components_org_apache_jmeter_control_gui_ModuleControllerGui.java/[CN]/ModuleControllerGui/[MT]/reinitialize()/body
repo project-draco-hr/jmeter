@@ -1,5 +1,4 @@
 {
-  TreeNodeWrapper current;
   nodesModel.removeAllElements();
   GuiPackage gp=GuiPackage.getInstance();
   JMeterTreeNode root;
@@ -8,6 +7,7 @@
     buildNodesModel(root,"",0);
   }
   if (selected != null) {
+    TreeNodeWrapper current;
     for (int i=0; i < nodesModel.getSize(); i++) {
       current=(TreeNodeWrapper)nodesModel.getElementAt(i);
       if (current.getTreeNode() != null && current.getTreeNode().equals(selected)) {

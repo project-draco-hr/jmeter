@@ -2,12 +2,16 @@
   setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
-  JPanel modulesPanel=new JPanel(new FlowLayout(FlowLayout.LEFT,20,5));
+  JPanel modulesPanel=new JPanel();
+  modulesPanel.setLayout(new BoxLayout(modulesPanel,BoxLayout.Y_AXIS));
   JLabel nodesLabel=new JLabel(JMeterUtils.getResString("module_controller_module_to_run"));
-  modulesPanel.add(nodesLabel);
+  modulesPanel.add(nodesLabel,BorderLayout.NORTH);
   nodesLabel.setLabelFor(nodes);
   reinitialize();
-  modulesPanel.add(nodes);
-  modulesPanel.add(warningLabel);
+  modulesPanel.add(nodes,BorderLayout.CENTER);
+  modulesPanel.add(warningLabel,BorderLayout.EAST);
+  expandButton=new JButton(JMeterUtils.getResString("expand"));
+  expandButton.addActionListener(this);
+  modulesPanel.add(expandButton,BorderLayout.SOUTH);
   add(modulesPanel);
 }
