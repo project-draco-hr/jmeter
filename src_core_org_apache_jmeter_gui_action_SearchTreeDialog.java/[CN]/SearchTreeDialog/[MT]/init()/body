@@ -20,9 +20,12 @@
   JPanel buttonsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   searchButton=new JButton(JMeterUtils.getResString("search"));
   searchButton.addActionListener(this);
+  searchAndExpandButton=new JButton(JMeterUtils.getResString("search_expand"));
+  searchAndExpandButton.addActionListener(this);
   cancelButton=new JButton(JMeterUtils.getResString("cancel"));
   cancelButton.addActionListener(this);
   buttonsPanel.add(searchButton);
+  buttonsPanel.add(searchAndExpandButton);
   buttonsPanel.add(cancelButton);
   searchPanel.add(buttonsPanel,BorderLayout.SOUTH);
   this.getContentPane().add(searchPanel);
