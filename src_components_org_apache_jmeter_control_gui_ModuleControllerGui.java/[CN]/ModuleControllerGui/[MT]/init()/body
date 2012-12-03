@@ -3,15 +3,17 @@
   setBorder(makeBorder());
   add(makeTitlePanel());
   JPanel modulesPanel=new JPanel();
-  modulesPanel.setLayout(new BoxLayout(modulesPanel,BoxLayout.Y_AXIS));
+  modulesPanel.setLayout(new BoxLayout(modulesPanel,BoxLayout.X_AXIS));
   JLabel nodesLabel=new JLabel(JMeterUtils.getResString("module_controller_module_to_run"));
-  modulesPanel.add(nodesLabel,BorderLayout.NORTH);
+  modulesPanel.add(nodesLabel);
+  modulesPanel.add(Box.createRigidArea(new Dimension(5,0)));
   nodesLabel.setLabelFor(nodes);
   reinitialize();
-  modulesPanel.add(nodes,BorderLayout.CENTER);
-  modulesPanel.add(warningLabel,BorderLayout.EAST);
+  modulesPanel.add(nodes);
+  modulesPanel.add(warningLabel);
+  modulesPanel.add(Box.createRigidArea(new Dimension(5,0)));
   expandButton=new JButton(JMeterUtils.getResString("expand"));
   expandButton.addActionListener(this);
-  modulesPanel.add(expandButton,BorderLayout.SOUTH);
+  modulesPanel.add(expandButton);
   add(modulesPanel);
 }
