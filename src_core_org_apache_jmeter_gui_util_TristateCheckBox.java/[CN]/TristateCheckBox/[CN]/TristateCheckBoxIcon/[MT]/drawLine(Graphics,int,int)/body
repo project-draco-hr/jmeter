@@ -1,0 +1,6 @@
+{
+  final int left=x + 2, right=x + (iconWidth - 4);
+  int height=y + iconHeight / 2;
+  g.drawLine(left,height,right,height);
+  g.drawLine(left,height - 1,right,height - 1);
+}

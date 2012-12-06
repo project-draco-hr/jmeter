@@ -1,0 +1,6 @@
+{
+  UIDefaults defaults=UIManager.getLookAndFeelDefaults();
+  final Icon icon=(Icon)defaults.get("CheckBox.icon");
+  iconHeight=icon.getIconHeight();
+  iconWidth=icon.getIconWidth();
+}
