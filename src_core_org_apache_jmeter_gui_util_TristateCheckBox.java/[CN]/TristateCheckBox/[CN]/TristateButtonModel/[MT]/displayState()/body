@@ -7,11 +7,13 @@
     if (state == TristateState.INDETERMINATE) {
       tristateCheckBox.setIcon(icon);
       tristateCheckBox.setSelectedIcon(icon);
+      tristateCheckBox.setDisabledSelectedIcon(icon);
     }
  else {
       if (tristateCheckBox != null) {
         tristateCheckBox.setIcon(null);
         tristateCheckBox.setSelectedIcon(null);
+        tristateCheckBox.setDisabledSelectedIcon(null);
       }
     }
   }
