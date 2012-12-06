@@ -1,0 +1,13 @@
+{
+  JFrame frame=new JFrame("TristateCheckBoxTest");
+  frame.setLayout(new GridLayout(0,1,15,15));
+  UIManager.LookAndFeelInfo[] lfs=UIManager.getInstalledLookAndFeels();
+  for (  UIManager.LookAndFeelInfo lf : lfs) {
+    System.out.println("Look&Feel " + lf.getName());
+    UIManager.setLookAndFeel(lf.getClassName());
+    frame.add(makePanel(lf.getName()));
+  }
+  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  frame.pack();
+  frame.setVisible(true);
+}

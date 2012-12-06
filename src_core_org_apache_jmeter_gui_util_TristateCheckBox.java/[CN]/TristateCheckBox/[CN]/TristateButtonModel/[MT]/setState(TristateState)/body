@@ -1,0 +1,9 @@
+{
+  this.state=state;
+  displayState();
+  if (state == TristateState.INDETERMINATE && isEnabled()) {
+    fireStateChanged();
+    int indeterminate=3;
+    fireItemStateChanged(new ItemEvent(this,ItemEvent.ITEM_STATE_CHANGED,this,indeterminate));
+  }
+}

@@ -1,0 +1,21 @@
+{
+  JCheckBox cb=(JCheckBox)c;
+  ButtonModel model=cb.getModel();
+  int controlSize=getControlSize();
+  if (model.isEnabled()) {
+    if (model.isPressed() && model.isArmed()) {
+      g.setColor(MetalLookAndFeel.getControlShadow());
+      g.fillRect(x,y,controlSize - 1,controlSize - 1);
+      drawPressed3DBorder(g,x,y,controlSize,controlSize);
+    }
+ else {
+      drawFlush3DBorder(g,x,y,controlSize,controlSize);
+    }
+    g.setColor(MetalLookAndFeel.getControlInfo());
+  }
+ else {
+    g.setColor(MetalLookAndFeel.getControlShadow());
+    g.drawRect(x,y,controlSize - 1,controlSize - 1);
+  }
+  drawCross(c,g,x,y);
+}

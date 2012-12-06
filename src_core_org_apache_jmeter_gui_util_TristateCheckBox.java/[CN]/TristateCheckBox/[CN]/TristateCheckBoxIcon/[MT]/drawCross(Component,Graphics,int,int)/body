@@ -1,0 +1,7 @@
+{
+  int controlSize=getControlSize();
+  g.drawLine(x + (controlSize - 4),y + 2,x + 3,y + (controlSize - 5));
+  g.drawLine(x + (controlSize - 4),y + 3,x + 3,y + (controlSize - 4));
+  g.drawLine(x + 3,y + 2,x + (controlSize - 4),y + (controlSize - 5));
+  g.drawLine(x + 3,y + 3,x + (controlSize - 4),y + (controlSize - 4));
+}

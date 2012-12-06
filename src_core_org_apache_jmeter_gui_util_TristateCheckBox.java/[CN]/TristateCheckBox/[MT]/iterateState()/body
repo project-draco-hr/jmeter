@@ -1,0 +1,14 @@
+{
+  if (!getModel().isEnabled())   return;
+  grabFocus();
+  getTristateModel().iterateState();
+  int modifiers=0;
+  AWTEvent currentEvent=EventQueue.getCurrentEvent();
+  if (currentEvent instanceof InputEvent) {
+    modifiers=((InputEvent)currentEvent).getModifiers();
+  }
+ else   if (currentEvent instanceof ActionEvent) {
+    modifiers=((ActionEvent)currentEvent).getModifiers();
+  }
+  fireActionPerformed(new ActionEvent(this,ActionEvent.ACTION_PERFORMED,getText(),System.currentTimeMillis(),modifiers));
+}
