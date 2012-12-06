@@ -1,0 +1,20 @@
+{
+  super(text,icon);
+  setModel(new TristateButtonModel(initial,this,original));
+  super.addMouseListener(new MouseAdapter(){
+    @Override public void mousePressed(    MouseEvent e){
+      TristateCheckBox.this.iterateState();
+    }
+  }
+);
+  ActionMap actions=new ActionMapUIResource();
+  actions.put("pressed",new AbstractAction(){
+    private static final long serialVersionUID=1L;
+    @Override public void actionPerformed(    ActionEvent e){
+      TristateCheckBox.this.iterateState();
+    }
+  }
+);
+  actions.put("released",null);
+  SwingUtilities.replaceUIActionMap(this,actions);
+}

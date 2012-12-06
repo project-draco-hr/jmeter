@@ -1,13 +1,18 @@
 {
   super.setSelected(state != TristateState.DESELECTED);
-  if (state == TristateState.INDETERMINATE) {
-    tristateCheckBox.setIcon(icon);
-    tristateCheckBox.setSelectedIcon(icon);
+  if (original) {
+    super.setArmed(state == TristateState.INDETERMINATE);
   }
  else {
-    if (tristateCheckBox != null) {
-      tristateCheckBox.setIcon(null);
-      tristateCheckBox.setSelectedIcon(null);
+    if (state == TristateState.INDETERMINATE) {
+      tristateCheckBox.setIcon(icon);
+      tristateCheckBox.setSelectedIcon(icon);
+    }
+ else {
+      if (tristateCheckBox != null) {
+        tristateCheckBox.setIcon(null);
+        tristateCheckBox.setSelectedIcon(null);
+      }
     }
   }
   super.setPressed(state == TristateState.INDETERMINATE);

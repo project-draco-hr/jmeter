@@ -1,0 +1,37 @@
+{
+  tristateBox.setIndeterminate();
+  tristateBox.addItemListener(new ItemListener(){
+    @Override public void itemStateChanged(    ItemEvent e){
+      System.out.println(e);
+switch (tristateBox.getState()) {
+case SELECTED:
+        System.out.println("Selected");
+      break;
+case DESELECTED:
+    System.out.println("Not Selected");
+  break;
+case INDETERMINATE:
+System.out.println("Tristate Selected");
+break;
+}
+}
+}
+);
+tristateBox.addActionListener(new ActionListener(){
+@Override public void actionPerformed(ActionEvent e){
+System.out.println(e);
+switch (tristateBox.getState()) {
+case SELECTED:
+System.out.println("Selected");
+break;
+case DESELECTED:
+System.out.println("Not Selected");
+break;
+case INDETERMINATE:
+System.out.println("Tristate Selected");
+break;
+}
+}
+}
+);
+}
