@@ -22,8 +22,7 @@
       request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     }
     SamplerCreator samplerCreator=factory.getSamplerCreator(request,pageEncodings,formEncodings);
-    sampler=samplerCreator.createSampler(request,pageEncodings,formEncodings);
-    samplerCreator.populateSampler(sampler,request,pageEncodings,formEncodings);
+    sampler=samplerCreator.createAndPopulateSampler(request,pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     sampler.threadStarted();
@@ -31,6 +30,7 @@
     String pageEncoding=addPageEncoding(result);
     addFormEncodings(result,pageEncoding);
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
+    samplerCreator.postProcessSampler(sampler,result);
   }
  catch (  UnknownHostException uhe) {
     log.warn("Server Not Found.",uhe);

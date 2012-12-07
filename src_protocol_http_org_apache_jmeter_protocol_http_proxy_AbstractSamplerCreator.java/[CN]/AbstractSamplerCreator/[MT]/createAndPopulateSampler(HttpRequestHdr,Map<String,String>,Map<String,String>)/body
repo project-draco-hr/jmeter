@@ -1,0 +1,5 @@
+{
+  HTTPSamplerBase sampler=createSampler(request,pageEncodings,formEncodings);
+  populateSampler(sampler,request,pageEncodings,formEncodings);
+  return sampler;
+}
