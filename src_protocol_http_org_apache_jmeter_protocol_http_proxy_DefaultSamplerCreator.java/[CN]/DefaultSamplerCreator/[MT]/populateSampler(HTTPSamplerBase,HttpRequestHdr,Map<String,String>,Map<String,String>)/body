@@ -4,4 +4,8 @@
   if (log.isDebugEnabled()) {
     log.debug("sampler path = " + sampler.getPath());
   }
+  Arguments arguments=sampler.getArguments();
+  if (arguments.getArgumentCount() == 1 && arguments.getArgument(0).getName().length() == 0) {
+    sampler.setPostBodyRaw(true);
+  }
 }
