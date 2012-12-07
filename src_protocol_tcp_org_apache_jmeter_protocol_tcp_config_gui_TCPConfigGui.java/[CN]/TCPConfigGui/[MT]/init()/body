@@ -11,7 +11,10 @@
   mainPanel.add(serverPanel);
   HorizontalPanel optionsPanel=new HorizontalPanel();
   optionsPanel.add(createClosePortPanel());
+  optionsPanel.add(createCloseConnectionPanel());
   optionsPanel.add(createNoDelayPanel());
+  optionsPanel.add(createSoLingerOption());
+  optionsPanel.add(createEolBytePanel());
   mainPanel.add(optionsPanel);
   mainPanel.add(createRequestPanel());
   add(mainPanel,BorderLayout.CENTER);

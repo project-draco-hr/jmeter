@@ -8,4 +8,7 @@
   element.setProperty(TCPSampler.TIMEOUT,serverPanel.getResponseTimeout());
   element.setProperty(TCPSampler.TIMEOUT_CONNECT,serverPanel.getConnectTimeout(),"");
   element.setProperty(TCPSampler.REQUEST,requestData.getText());
+  element.setProperty(TCPSampler.CLOSE_CONNECTION,closeConnection.isSelected(),TCPSampler.CLOSE_CONNECTION_DEFAULT);
+  element.setProperty(TCPSampler.SO_LINGER,soLinger.getText(),"");
+  element.setProperty(TCPSampler.EOL_BYTE,eolByte.getText(),"");
 }

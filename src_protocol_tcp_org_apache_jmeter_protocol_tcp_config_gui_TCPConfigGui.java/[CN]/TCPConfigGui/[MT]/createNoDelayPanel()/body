@@ -2,8 +2,8 @@
   JLabel label=new JLabel(JMeterUtils.getResString("tcp_nodelay"));
   setNoDelay=new JCheckBox();
   label.setLabelFor(setNoDelay);
-  JPanel nodelayPanel=new JPanel(new BorderLayout(5,0));
-  nodelayPanel.add(label,BorderLayout.WEST);
-  nodelayPanel.add(setNoDelay,BorderLayout.CENTER);
+  JPanel nodelayPanel=new JPanel(new FlowLayout());
+  nodelayPanel.add(label);
+  nodelayPanel.add(setNoDelay);
   return nodelayPanel;
 }

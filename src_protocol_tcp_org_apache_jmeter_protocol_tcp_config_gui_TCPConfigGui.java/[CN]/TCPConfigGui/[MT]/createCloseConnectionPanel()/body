@@ -1,0 +1,9 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("closeconnection"));
+  closeConnection=new JCheckBox("",false);
+  label.setLabelFor(closeConnection);
+  JPanel closeConnectionPanel=new JPanel(new FlowLayout());
+  closeConnectionPanel.add(label);
+  closeConnectionPanel.add(closeConnection);
+  return closeConnectionPanel;
+}

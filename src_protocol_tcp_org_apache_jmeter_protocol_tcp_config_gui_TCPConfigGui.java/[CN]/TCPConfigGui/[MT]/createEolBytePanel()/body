@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("eolbyte"));
+  eolByte=new JTextField(3);
+  eolByte.setMaximumSize(new Dimension(eolByte.getPreferredSize()));
+  label.setLabelFor(eolByte);
+  JPanel eolBytePanel=new JPanel(new FlowLayout());
+  eolBytePanel.add(label);
+  eolBytePanel.add(eolByte);
+  return eolBytePanel;
+}

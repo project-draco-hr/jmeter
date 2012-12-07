@@ -1,0 +1,10 @@
+{
+  JLabel label=new JLabel(JMeterUtils.getResString("solinger"));
+  soLinger=new JTextField(5);
+  soLinger.setMaximumSize(new Dimension(soLinger.getPreferredSize()));
+  label.setLabelFor(soLinger);
+  JPanel soLingerPanel=new JPanel(new FlowLayout());
+  soLingerPanel.add(label);
+  soLingerPanel.add(soLinger);
+  return soLingerPanel;
+}

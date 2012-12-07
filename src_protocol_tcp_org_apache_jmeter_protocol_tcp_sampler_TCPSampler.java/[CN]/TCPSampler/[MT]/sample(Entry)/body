@@ -45,7 +45,7 @@ catch (  Exception ex) {
     currentSocket=null;
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
-    if (!isReUseConnection()) {
+    if (!isReUseConnection() || isCloseConnection()) {
       closeSocket(socketKey);
     }
   }

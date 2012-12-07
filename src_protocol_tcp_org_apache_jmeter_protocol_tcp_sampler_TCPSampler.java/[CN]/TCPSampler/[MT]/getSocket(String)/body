@@ -12,6 +12,9 @@
       closeSocket(socketKey);
       SocketAddress sockaddr=new InetSocketAddress(getServer(),getPort());
       con=new Socket();
+      if (getPropertyAsString(SO_LINGER,"").length() > 0) {
+        con.setSoLinger(true,getSoLinger());
+      }
       con.connect(sockaddr,getConnectTimeout());
       if (log.isDebugEnabled()) {
         log.debug("Created new connection " + con);

@@ -5,4 +5,7 @@
   requestData.setText("");
   reUseConnection.setSelected(true);
   setNoDelay.setSelected(false);
+  closeConnection.setSelected(TCPSampler.CLOSE_CONNECTION_DEFAULT);
+  soLinger.setText("");
+  eolByte.setText("");
 }

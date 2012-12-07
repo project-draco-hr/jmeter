@@ -6,6 +6,10 @@
   }
   try {
     TCPClient=(TCPClient)javaClass.newInstance();
+    if (getPropertyAsString(EOL_BYTE,"").length() > 0) {
+      TCPClient.setEolByte(getEolByte());
+      log.info("Using eolByte=" + getEolByte());
+    }
     if (log.isDebugEnabled()) {
       log.debug(this + "Created: " + getClassname()+ "@"+ Integer.toHexString(TCPClient.hashCode()));
     }
