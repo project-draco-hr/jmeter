@@ -1,0 +1,8 @@
+{
+  if (checkBox.isIndeterminate()) {
+    element.removeProperty(propName);
+  }
+ else {
+    element.setProperty(propName,checkBox.isSelected());
+  }
+}

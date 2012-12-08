@@ -1,6 +1,6 @@
 {
   JLabel label=new JLabel(JMeterUtils.getResString("tcp_nodelay"));
-  setNoDelay=new JCheckBox();
+  setNoDelay=new TristateCheckBox();
   label.setLabelFor(setNoDelay);
   JPanel nodelayPanel=new JPanel(new FlowLayout());
   nodelayPanel.add(label);

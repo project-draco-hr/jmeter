@@ -1,0 +1,9 @@
+{
+  JMeterProperty jmp=element.getProperty(propName);
+  if (jmp instanceof NullProperty) {
+    checkBox.setIndeterminate();
+  }
+ else {
+    checkBox.setSelected(jmp.getBooleanValue());
+  }
+}
