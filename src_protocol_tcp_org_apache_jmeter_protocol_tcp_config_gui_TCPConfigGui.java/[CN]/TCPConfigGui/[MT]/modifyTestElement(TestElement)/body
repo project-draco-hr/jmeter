@@ -8,7 +8,7 @@
   element.setProperty(TCPSampler.TIMEOUT,serverPanel.getResponseTimeout());
   element.setProperty(TCPSampler.TIMEOUT_CONNECT,serverPanel.getConnectTimeout(),"");
   element.setProperty(TCPSampler.REQUEST,requestData.getText());
-  setPropertyFromTristate(element,closeConnection,TCPSampler.CLOSE_CONNECTION,TCPSampler.CLOSE_CONNECTION_DEFAULT);
+  setPropertyFromTristate(element,closeConnection,TCPSampler.CLOSE_CONNECTION);
   element.setProperty(TCPSampler.SO_LINGER,soLinger.getText(),"");
   element.setProperty(TCPSampler.EOL_BYTE,eolByte.getText(),"");
 }
