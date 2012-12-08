@@ -3,7 +3,6 @@
     log.debug("Regex = " + regex);
   }
   Perl5Matcher matcher=JMeterUtils.getMatcher();
-  Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
   List<MatchResult> matches=new ArrayList<MatchResult>();
   int found=0;
   if (isScopeVariable()) {

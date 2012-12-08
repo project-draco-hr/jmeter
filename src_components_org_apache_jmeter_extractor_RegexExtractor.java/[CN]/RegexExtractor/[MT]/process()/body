@@ -13,9 +13,11 @@
   if (defaultValue.length() > 0) {
     vars.put(refName,defaultValue);
   }
+  Perl5Matcher matcher=JMeterUtils.getMatcher();
   String regex=getRegex();
+  Pattern pattern=JMeterUtils.getPatternCache().getPattern(regex,Perl5Compiler.READ_ONLY_MASK);
   try {
-    List<MatchResult> matches=processMatches(regex,previousResult,matchNumber,vars);
+    List<MatchResult> matches=processMatches(pattern,regex,previousResult,matchNumber,vars);
     int prevCount=0;
     String prevString=vars.get(refName + REF_MATCH_NR);
     if (prevString != null) {
@@ -65,5 +67,8 @@
   }
  catch (  MalformedCachePatternException e) {
     log.warn("Error in pattern: " + regex);
+  }
+ finally {
+    clearMatcherMemory(matcher,pattern);
   }
 }
