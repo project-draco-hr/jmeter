@@ -3,12 +3,24 @@
     initSampling();
     firstSample=false;
   }
+  final boolean reUseConnection=isReUseConnection();
+  final boolean closeConnection=isCloseConnection();
   String socketKey=getSocketKey();
   log.debug(getLabel() + " " + getFilename()+ " "+ getUsername()+ " "+ getPassword());
   SampleResult res=new SampleResult();
   boolean isSuccessful=false;
   res.setSampleLabel(getName());
-  res.setSamplerData("Host: " + getServer() + " Port: "+ getPort());
+  StringBuilder sb=new StringBuilder();
+  sb.append("Host: ").append(getServer());
+  sb.append(" Port: ").append(getPort());
+  sb.append("\n");
+  sb.append("Reuse: ").append(reUseConnection);
+  sb.append(" Close: ").append(closeConnection);
+  sb.append("\n[");
+  sb.append("SOLINGER: ").append(getSoLinger());
+  sb.append(" EOL: ").append(getEolByte());
+  sb.append("]");
+  res.setSamplerData(sb.toString());
   res.sampleStart();
   try {
     Socket sock=getSocket(socketKey);
@@ -45,7 +57,7 @@ catch (  Exception ex) {
     currentSocket=null;
     res.sampleEnd();
     res.setSuccessful(isSuccessful);
-    if (!isReUseConnection() || isCloseConnection()) {
+    if (!reUseConnection || closeConnection) {
       closeSocket(socketKey);
     }
   }
