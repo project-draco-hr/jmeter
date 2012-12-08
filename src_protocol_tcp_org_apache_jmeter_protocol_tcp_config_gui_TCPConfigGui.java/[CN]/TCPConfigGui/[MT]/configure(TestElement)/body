@@ -2,7 +2,7 @@
   super.configure(element);
   classname.setText(element.getPropertyAsString(TCPSampler.CLASSNAME));
   serverPanel.setServer(element.getPropertyAsString(TCPSampler.SERVER));
-  reUseConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.RE_USE_CONNECTION,true));
+  reUseConnection.setSelected(element.getPropertyAsBoolean(TCPSampler.RE_USE_CONNECTION,TCPSampler.RE_USE_CONNECTION_DEFAULT));
   serverPanel.setPort(element.getPropertyAsString(TCPSampler.PORT));
   serverPanel.setResponseTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT));
   serverPanel.setConnectTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT_CONNECT));
