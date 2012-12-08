@@ -1,6 +1,9 @@
 {
   try {
-    return new String(responseData,getDataEncodingWithDefault());
+    if (responseDataAsString == null) {
+      responseDataAsString=new String(responseData,getDataEncodingWithDefault());
+    }
+    return responseDataAsString;
   }
  catch (  UnsupportedEncodingException e) {
     log.warn("Using platform default as " + getDataEncodingWithDefault() + " caused "+ e);

@@ -1,4 +1,5 @@
 {
+  responseDataAsString=null;
   String encodeUsing=encoding != null ? encoding : DEFAULT_CHARSET;
   try {
     responseData=response.getBytes(encodeUsing);
