@@ -1,16 +1,16 @@
 {
   int size=pList.size();
-  int max=durationTest;
+  int max=(int)durationTest;
   double[][] data=new double[size][max];
   double nanLast=0;
   double nanBegin=0;
   List<Double> nanList=new ArrayList<Double>();
   int s=0;
-  for (  Map<Integer,Long> subList : pList.values()) {
+  for (  Map<Long,Long> subList : pList.values()) {
     int idx=0;
     while (idx < durationTest) {
-      int keyShift=minStartTime + idx;
-      Long value=subList.get(Integer.valueOf(keyShift));
+      long keyShift=minStartTime + idx;
+      Long value=subList.get(keyShift);
       if (value != null) {
         nanLast=value.doubleValue();
         data[s][idx]=nanLast;

@@ -1,6 +1,6 @@
 {
   SimpleDateFormat formatter=new SimpleDateFormat(xAxisTimeFormat.getText());
-  String[] xAxisLabels=new String[durationTest];
+  String[] xAxisLabels=new String[(int)durationTest];
   for (int j=0; j < durationTest; j++) {
     xAxisLabels[j]=formatter.format(new Date((minStartTime + j) * intervalValue));
   }
