@@ -1,0 +1,15 @@
+{
+  if (extractor == null) {
+    boolean useDefaultExtractor=DEFAULT_EXTRACTOR.equals(getExtractor());
+    if (useDefaultExtractor || EXTRACTOR_JSOUP.equals(getExtractor())) {
+      extractor=new JSoupExtractor();
+    }
+ else     if (EXTRACTOR_JODD.equals(getExtractor())) {
+      extractor=new JSoupExtractor();
+    }
+ else {
+      throw new IllegalArgumentException("Extractor implementation:" + getExtractor() + " is unknown");
+    }
+  }
+  return extractor;
+}

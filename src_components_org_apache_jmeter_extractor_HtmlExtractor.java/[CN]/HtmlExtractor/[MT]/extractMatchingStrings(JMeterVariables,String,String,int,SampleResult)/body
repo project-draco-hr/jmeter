@@ -1,0 +1,21 @@
+{
+  int found=0;
+  List<String> result=new ArrayList<String>();
+  if (isScopeVariable()) {
+    String inputString=vars.get(getVariableName());
+    getExtractorImpl().extract(expression,attribute,matchNumber,inputString,result,found,true);
+  }
+ else {
+    List<SampleResult> sampleList=getSampleList(previousResult);
+    int i=0;
+    for (    SampleResult sr : sampleList) {
+      String inputString=sr.getResponseDataAsString();
+      found=getExtractorImpl().extract(expression,attribute,matchNumber,inputString,result,found,i == 0);
+      i++;
+      if (matchNumber > 0 && found == matchNumber) {
+        break;
+      }
+    }
+  }
+  return result;
+}

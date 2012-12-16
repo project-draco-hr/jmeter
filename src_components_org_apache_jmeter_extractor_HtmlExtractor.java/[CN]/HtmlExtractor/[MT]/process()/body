@@ -1,0 +1,62 @@
+{
+  JMeterContext context=getThreadContext();
+  SampleResult previousResult=context.getPreviousResult();
+  if (previousResult == null) {
+    return;
+  }
+  log.debug("HtmlExtractor processing result");
+  JMeterVariables vars=context.getVariables();
+  String refName=getRefName();
+  String expression=getExpression();
+  String attribute=getAttribute();
+  int matchNumber=getMatchNumber();
+  final String defaultValue=getDefaultValue();
+  if (defaultValue.length() > 0) {
+    vars.put(refName,defaultValue);
+  }
+  try {
+    List<String> matches=extractMatchingStrings(vars,expression,attribute,matchNumber,previousResult);
+    int prevCount=0;
+    String prevString=vars.get(refName + REF_MATCH_NR);
+    if (prevString != null) {
+      vars.remove(refName + REF_MATCH_NR);
+      try {
+        prevCount=Integer.parseInt(prevString);
+      }
+ catch (      NumberFormatException e1) {
+        log.warn("Could not parse " + prevString + " "+ e1);
+      }
+    }
+    int matchCount=0;
+    try {
+      String match;
+      if (matchNumber >= 0) {
+        match=getCorrectMatch(matches,matchNumber);
+        if (match != null) {
+          vars.put(refName,match);
+        }
+      }
+ else {
+        matchCount=matches.size();
+        vars.put(refName + REF_MATCH_NR,Integer.toString(matchCount));
+        for (int i=1; i <= matchCount; i++) {
+          match=getCorrectMatch(matches,i);
+          if (match != null) {
+            final String refName_n=new StringBuilder(refName).append(UNDERSCORE).append(i).toString();
+            vars.put(refName_n,match);
+          }
+        }
+      }
+      for (int i=matchCount + 1; i <= prevCount; i++) {
+        final String refName_n=new StringBuilder(refName).append(UNDERSCORE).append(i).toString();
+        vars.remove(refName_n);
+      }
+    }
+ catch (    RuntimeException e) {
+      log.warn("Error while generating result");
+    }
+  }
+ catch (  RuntimeException e) {
+    log.warn("Error while generating result");
+  }
+}

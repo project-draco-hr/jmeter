@@ -1,0 +1,13 @@
+{
+  super.configure(el);
+  if (el instanceof HtmlExtractor) {
+    HtmlExtractor htmlExtractor=(HtmlExtractor)el;
+    showScopeSettings(htmlExtractor,true);
+    expressionField.setText(htmlExtractor.getExpression());
+    attributeField.setText(htmlExtractor.getAttribute());
+    defaultField.setText(htmlExtractor.getDefaultValue());
+    matchNumberField.setText(htmlExtractor.getMatchNumberAsString());
+    refNameField.setText(htmlExtractor.getRefName());
+    extractorImplName.setSelectedItem(htmlExtractor.getExtractor());
+  }
+}

@@ -1,0 +1,8 @@
+{
+  if (!JOrphanUtils.isBlank(attribute)) {
+    return element.attr(attribute);
+  }
+ else {
+    return element.text().trim();
+  }
+}

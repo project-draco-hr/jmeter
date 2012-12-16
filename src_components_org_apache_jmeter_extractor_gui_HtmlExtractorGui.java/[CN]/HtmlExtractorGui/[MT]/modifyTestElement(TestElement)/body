@@ -1,0 +1,18 @@
+{
+  super.configureTestElement(extractor);
+  if (extractor instanceof HtmlExtractor) {
+    HtmlExtractor htmlExtractor=(HtmlExtractor)extractor;
+    saveScopeSettings(htmlExtractor);
+    htmlExtractor.setRefName(refNameField.getText());
+    htmlExtractor.setExpression(expressionField.getText());
+    htmlExtractor.setAttribute(attributeField.getText());
+    htmlExtractor.setDefaultValue(defaultField.getText());
+    htmlExtractor.setMatchNumber(matchNumberField.getText());
+    if (extractorImplName.getSelectedIndex() < HtmlExtractor.getImplementations().length) {
+      htmlExtractor.setExtractor(HtmlExtractor.getImplementations()[extractorImplName.getSelectedIndex()]);
+    }
+ else {
+      htmlExtractor.setExtractor(USE_DEFAULT_EXTRACTOR_IMPL);
+    }
+  }
+}
