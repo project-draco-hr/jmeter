@@ -1,0 +1,30 @@
+{
+  NodeSelector nodeSelector=null;
+  if (cacheKey != null) {
+    nodeSelector=(NodeSelector)JMeterContextService.getContext().getSamplerContext().get(CACHE_KEY_PREFIX + cacheKey);
+    if (nodeSelector == null) {
+      LagartoDOMBuilder domBuilder=new LagartoDOMBuilder();
+      jodd.lagarto.dom.Document doc=domBuilder.parse(inputString);
+      nodeSelector=new NodeSelector(doc);
+      JMeterContextService.getContext().getSamplerContext().put(CACHE_KEY_PREFIX + cacheKey,nodeSelector);
+    }
+  }
+ else {
+    LagartoDOMBuilder domBuilder=new LagartoDOMBuilder();
+    jodd.lagarto.dom.Document doc=domBuilder.parse(inputString);
+    nodeSelector=new NodeSelector(doc);
+  }
+  LinkedList<Node> elements=nodeSelector.select(expression);
+  int size=elements.size();
+  for (int i=0; i < size; i++) {
+    Node element=elements.get(i);
+    if (matchNumber <= 0 || found != matchNumber) {
+      result.add(extractValue(attribute,element));
+      found++;
+    }
+ else {
+      break;
+    }
+  }
+  return found;
+}
