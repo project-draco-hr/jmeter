@@ -19,5 +19,7 @@
   }
  finally {
     activeChannel=null;
+    JOrphanUtils.closeQuietly(body);
+    body=null;
   }
 }
