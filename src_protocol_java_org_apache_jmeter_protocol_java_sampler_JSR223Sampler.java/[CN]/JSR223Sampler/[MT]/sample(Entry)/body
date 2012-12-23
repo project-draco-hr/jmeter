@@ -23,13 +23,13 @@
     }
   }
  catch (  IOException e) {
-    log.warn("Problem in JSR223 script " + e,e);
+    log.error("Problem in JSR223 script " + e,e);
     result.setSuccessful(false);
     result.setResponseCode("500");
     result.setResponseMessage(e.toString());
   }
 catch (  ScriptException e) {
-    log.warn("Problem in JSR223 script " + e,e);
+    log.error("Problem in JSR223 script " + e,e);
     result.setSuccessful(false);
     result.setResponseCode("500");
     result.setResponseMessage(e.toString());
