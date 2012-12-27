@@ -9,12 +9,12 @@
     result.setError(false);
   }
  catch (  IOException e) {
-    log.warn("Problem in JSR223 script ",e);
+    log.error("Problem in JSR223 script ",e);
     result.setError(true);
     result.setFailureMessage(e.toString());
   }
 catch (  ScriptException e) {
-    log.warn("Problem in JSR223 script ",e);
+    log.error("Problem in JSR223 script ",e);
     result.setError(true);
     result.setFailureMessage(e.toString());
   }
