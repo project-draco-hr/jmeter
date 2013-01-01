@@ -4,11 +4,11 @@
   element.setProperty(TCPSampler.SERVER,serverPanel.getServer());
   element.setProperty(TCPSampler.RE_USE_CONNECTION,reUseConnection.isSelected());
   element.setProperty(TCPSampler.PORT,serverPanel.getPort());
-  setPropertyFromTristate(element,setNoDelay,TCPSampler.NODELAY);
+  setNoDelay.setPropertyFromTristate(element,TCPSampler.NODELAY);
   element.setProperty(TCPSampler.TIMEOUT,serverPanel.getResponseTimeout());
   element.setProperty(TCPSampler.TIMEOUT_CONNECT,serverPanel.getConnectTimeout(),"");
   element.setProperty(TCPSampler.REQUEST,requestData.getText());
-  setPropertyFromTristate(element,closeConnection,TCPSampler.CLOSE_CONNECTION);
+  closeConnection.setPropertyFromTristate(element,TCPSampler.CLOSE_CONNECTION);
   element.setProperty(TCPSampler.SO_LINGER,soLinger.getText(),"");
   element.setProperty(TCPSampler.EOL_BYTE,eolByte.getText(),"");
 }

@@ -6,9 +6,9 @@
   serverPanel.setPort(element.getPropertyAsString(TCPSampler.PORT));
   serverPanel.setResponseTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT));
   serverPanel.setConnectTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT_CONNECT));
-  setTristateFromProperty(element,setNoDelay,TCPSampler.NODELAY);
+  setNoDelay.setTristateFromProperty(element,TCPSampler.NODELAY);
   requestData.setText(element.getPropertyAsString(TCPSampler.REQUEST));
-  setTristateFromProperty(element,closeConnection,TCPSampler.CLOSE_CONNECTION);
+  closeConnection.setTristateFromProperty(element,TCPSampler.CLOSE_CONNECTION);
   soLinger.setText(element.getPropertyAsString(TCPSampler.SO_LINGER));
   eolByte.setText(element.getPropertyAsString(TCPSampler.EOL_BYTE));
 }

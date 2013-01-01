@@ -1,0 +1,8 @@
+{
+  if (isIndeterminate()) {
+    element.removeProperty(propName);
+  }
+ else {
+    element.setProperty(propName,isSelected());
+  }
+}
