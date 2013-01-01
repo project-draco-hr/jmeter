@@ -1,0 +1,9 @@
+{
+  super.configureTestElement(extractor);
+  if (extractor instanceof RegExUserParameters) {
+    RegExUserParameters regExUserParams=(RegExUserParameters)extractor;
+    regExUserParams.setRegExRefName(refRegExRefNameField.getText());
+    regExUserParams.setRegExParamNamesGrNr(paramNamesGrNrField.getText());
+    regExUserParams.setRegExParamValuesGrNr(paramValuesGrNrField.getText());
+  }
+}

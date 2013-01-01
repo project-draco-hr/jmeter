@@ -1,0 +1,9 @@
+{
+  super.configure(el);
+  if (el instanceof RegExUserParameters) {
+    RegExUserParameters re=(RegExUserParameters)el;
+    paramNamesGrNrField.setText(re.getRegParamNamesGrNr());
+    paramValuesGrNrField.setText(re.getRegExParamValuesGrNr());
+    refRegExRefNameField.setText(re.getRegExRefName());
+  }
+}
