@@ -1,0 +1,12 @@
+{
+  for (int idx=0; idx < resouces.length; idx++) {
+    JRadioButton btn=new JRadioButton(JMeterUtils.getResString(resouces[idx]));
+    btn.setActionCommand(resouces[idx]);
+    btn.addActionListener(this);
+    this.bGroup.add(btn);
+    this.add(btn);
+    if (selected != null && selected.equals(resouces[idx])) {
+      btn.setSelected(true);
+    }
+  }
+}

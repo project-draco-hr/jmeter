@@ -1,0 +1,13 @@
+{
+  String oldChoice=configChoice.getText();
+  if (BYTES_MSG_RSC.equals(command)) {
+    String newChoice=USE_TEXT_RSC.equals(oldChoice) ? USE_FILE_RSC : oldChoice;
+    configChoice.resetButtons(CONFIG_ITEMS_BYTES_MSG,newChoice);
+    textMessage.setEnabled(false);
+  }
+ else {
+    configChoice.resetButtons(CONFIG_ITEMS,oldChoice);
+    textMessage.setEnabled(true);
+  }
+  validate();
+}

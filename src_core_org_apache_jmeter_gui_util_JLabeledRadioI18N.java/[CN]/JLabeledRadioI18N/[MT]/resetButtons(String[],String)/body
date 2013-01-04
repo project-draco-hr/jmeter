@@ -1,0 +1,16 @@
+{
+  Enumeration<AbstractButton> buttons=bGroup.getElements();
+  List<AbstractButton> buttonsToRemove=new ArrayList<AbstractButton>(this.bGroup.getButtonCount());
+  while (buttons.hasMoreElements()) {
+    AbstractButton abstractButton=buttons.nextElement();
+    buttonsToRemove.add(abstractButton);
+  }
+  for (  AbstractButton abstractButton : buttonsToRemove) {
+    abstractButton.removeActionListener(this);
+    bGroup.remove(abstractButton);
+  }
+  for (  AbstractButton abstractButton : buttonsToRemove) {
+    this.remove(abstractButton);
+  }
+  initButtonGroup(resouces,selected);
+}

@@ -1,0 +1,15 @@
+{
+  InputStream inputStream=null;
+  try {
+    File file=new File(path);
+    inputStream=new BufferedInputStream(new FileInputStream(file));
+    return IOUtils.toByteArray(inputStream,(int)file.length());
+  }
+ catch (  Exception e) {
+    log.error(e.getLocalizedMessage(),e);
+    throw new IllegalStateException("Unable to load file",e);
+  }
+ finally {
+    JOrphanUtils.closeQuietly(inputStream);
+  }
+}

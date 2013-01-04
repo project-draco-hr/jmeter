@@ -21,4 +21,5 @@
   destSetup.setText(sampler.isDestinationStatic() ? DEST_SETUP_STATIC : DEST_SETUP_DYNAMIC);
   useNonPersistentDelivery.setSelected(sampler.getUseNonPersistentDelivery());
   jmsPropertiesPanel.configure(sampler.getJMSProperties());
+  updateChoice(msgChoice.getText());
 }

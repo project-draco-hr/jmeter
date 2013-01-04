@@ -1,0 +1,5 @@
+{
+  BytesMessage msg=session.createBytesMessage();
+  msg.writeBytes(bytes);
+  return setPropertiesAndSend(destinationName,properties,msg);
+}

@@ -1,0 +1,15 @@
+{
+  if (getConfigChoice().equals(JMSPublisherGui.USE_FILE_RSC)) {
+    if (bytes_msg_file_contents == null) {
+      bytes_msg_file_contents=getFileBytesContent(getInputFile());
+    }
+    return bytes_msg_file_contents;
+  }
+ else   if (getConfigChoice().equals(JMSPublisherGui.USE_RANDOM_RSC)) {
+    final String fname=FSERVER.getRandomFile(getRandomPath(),new String[]{".dat"}).getAbsolutePath();
+    return getFileBytesContent(fname);
+  }
+ else {
+    throw new IllegalArgumentException("Type of input not handled:" + getConfigChoice());
+  }
+}

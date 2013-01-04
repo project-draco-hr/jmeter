@@ -39,6 +39,11 @@ catch (    NamingException e) {
         Message msg=publisher.publish(omsg,getDestination(),getJMSProperties().getArgumentsAsMap());
         Utils.messageProperties(propBuffer,msg);
       }
+ else       if (JMSPublisherGui.BYTES_MSG_RSC.equals(type)) {
+        byte[] bmsg=getBytesContent();
+        Message msg=publisher.publish(bmsg,getDestination(),getJMSProperties().getArgumentsAsMap());
+        Utils.messageProperties(propBuffer,msg);
+      }
  else {
         throw new JMSException(type + " is not recognised");
       }
