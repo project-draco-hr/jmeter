@@ -1,6 +1,8 @@
 {
   try {
-    matcher.matches("",pattern);
+    if (pattern != null) {
+      matcher.matches("",pattern);
+    }
   }
  catch (  Exception e) {
   }
