@@ -1,6 +1,7 @@
 {
   super.configure(el);
   XPathAssertion assertion=(XPathAssertion)el;
+  showScopeSettings(assertion,true);
   xpath.setXPath(assertion.getXPathString());
   xpath.setNegated(assertion.isNegated());
   xml.configure(assertion);

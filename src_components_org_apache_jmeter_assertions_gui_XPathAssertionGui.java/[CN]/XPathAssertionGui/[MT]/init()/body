@@ -2,6 +2,9 @@
   setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
+  Box box=Box.createVerticalBox();
+  box.add(createScopePanel(true));
+  add(box);
   JPanel sizePanel=new JPanel(new BorderLayout());
   sizePanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
   sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getXPathAttributesTitle()));

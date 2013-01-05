@@ -2,6 +2,7 @@
   super.configureTestElement(el);
   if (el instanceof XPathAssertion) {
     XPathAssertion assertion=(XPathAssertion)el;
+    saveScopeSettings(assertion);
     assertion.setNegated(xpath.isNegated());
     assertion.setXPathString(xpath.getXPath());
     xml.modifyTestElement(assertion);
