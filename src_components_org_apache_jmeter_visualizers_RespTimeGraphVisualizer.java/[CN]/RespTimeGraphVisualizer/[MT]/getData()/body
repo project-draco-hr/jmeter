@@ -10,7 +10,7 @@
     int idx=0;
     while (idx < durationTest) {
       long keyShift=minStartTime + idx;
-      Long value=subList.get(keyShift);
+      Long value=subList.get(Long.valueOf(keyShift));
       if (value != null) {
         nanLast=value.doubleValue();
         data[s][idx]=nanLast;

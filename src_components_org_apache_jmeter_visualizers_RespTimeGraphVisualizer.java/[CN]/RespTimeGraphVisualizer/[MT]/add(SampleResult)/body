@@ -25,17 +25,18 @@ synchronized (lock) {
             }
           }
           Map<Long,Long> subList=pList.get(sampleLabel);
+          final Long startTimeIntervalLong=Long.valueOf(startTimeInterval);
           if (subList != null) {
             long respTime=sampleResult.getTime();
-            Long value=subList.get(startTimeInterval);
+            Long value=subList.get(startTimeIntervalLong);
             if (value != null) {
               respTime=(value.longValue() + respTime) / 2;
             }
-            subList.put(startTimeInterval,Long.valueOf(respTime));
+            subList.put(startTimeIntervalLong,Long.valueOf(respTime));
           }
  else {
             Map<Long,Long> newSubList=new LinkedHashMap<Long,Long>();
-            newSubList.put(startTimeInterval,Long.valueOf(sampleResult.getTime()));
+            newSubList.put(startTimeIntervalLong,Long.valueOf(sampleResult.getTime()));
             pList.put(sampleLabel,newSubList);
           }
         }
