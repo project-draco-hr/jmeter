@@ -1,0 +1,11 @@
+{
+  if (_map != null) {
+    data=_map;
+  }
+ else {
+    data=new HashMap<Object,HashTree>();
+  }
+  if (key != null) {
+    data.put(key,new HashTree());
+  }
+}
