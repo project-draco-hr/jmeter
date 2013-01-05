@@ -1,4 +1,3 @@
 {
-  scopePanel=new ScopePanel(enableVariable);
-  return scopePanel;
+  return createScopePanel(enableVariable,true,true);
 }

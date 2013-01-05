@@ -1,0 +1,24 @@
+{
+  parentButton=new JRadioButton(JMeterUtils.getResString("sample_scope_parent"));
+  if (enableParentAndSubsamples) {
+    allButton=new JRadioButton(JMeterUtils.getResString("sample_scope_all"));
+  }
+ else {
+    allButton=null;
+  }
+  if (enableSubsamplesOnly) {
+    childButton=new JRadioButton(JMeterUtils.getResString("sample_scope_children"));
+  }
+ else {
+    childButton=null;
+  }
+  if (enableVariableButton) {
+    variableButton=new JRadioButton(JMeterUtils.getResString("sample_scope_variable"));
+    variableName=new JTextField(10);
+  }
+ else {
+    variableButton=null;
+    variableName=null;
+  }
+  init();
+}

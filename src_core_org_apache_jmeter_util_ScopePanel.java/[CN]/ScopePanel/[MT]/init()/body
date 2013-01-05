@@ -4,12 +4,16 @@
   parentButton.setSelected(true);
   JPanel buttonPanel=new HorizontalPanel();
   ButtonGroup group=new ButtonGroup();
-  group.add(allButton);
+  if (allButton != null) {
+    group.add(allButton);
+    buttonPanel.add(allButton);
+  }
   group.add(parentButton);
-  group.add(childButton);
   buttonPanel.add(parentButton);
-  buttonPanel.add(childButton);
-  buttonPanel.add(allButton);
+  if (childButton != null) {
+    group.add(childButton);
+    buttonPanel.add(childButton);
+  }
   if (variableButton != null) {
     variableButton.addActionListener(this);
     group.add(variableButton);
