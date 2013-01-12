@@ -1,6 +1,7 @@
 {
   SampleResult result=event.getResult();
   if (result.isSuccessful()) {
+    result.setBytes(result.getBytes());
     result.setResponseData(new byte[0]);
   }
   if (decoratedSender == null) {
