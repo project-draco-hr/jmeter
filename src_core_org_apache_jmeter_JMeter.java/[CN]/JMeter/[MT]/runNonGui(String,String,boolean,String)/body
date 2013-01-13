@@ -51,6 +51,7 @@
     }
  else {
       java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
+      List<String> failingEngines=new ArrayList<String>(st.countTokens());
       while (st.hasMoreElements()) {
         String el=(String)st.nextElement();
         println("Configuring remote engine for " + el);
@@ -60,12 +61,16 @@
           engines.add(eng);
         }
  else {
+          failingEngines.add(el);
           println("Failed to configure " + el);
         }
       }
       if (engines.isEmpty()) {
         println("No remote engines were started.");
         return;
+      }
+      if (failingEngines.size() > 0) {
+        throw new IllegalArgumentException("The following remote engines did not start correclty:" + failingEngines);
       }
       println("Starting remote engines");
       log.info("Starting remote engines");
