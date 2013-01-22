@@ -16,6 +16,7 @@
         }
  catch (        NumberFormatException e) {
           log.warn(e.toString());
+          SimpleDateFormat dateFormat=new SimpleDateFormat(DEFAULT_DATE_FORMAT_STRING);
           Date stamp=dateFormat.parse(text);
           timeStamp=stamp.getTime();
           log.warn("Setting date format to: " + DEFAULT_DATE_FORMAT_STRING);
