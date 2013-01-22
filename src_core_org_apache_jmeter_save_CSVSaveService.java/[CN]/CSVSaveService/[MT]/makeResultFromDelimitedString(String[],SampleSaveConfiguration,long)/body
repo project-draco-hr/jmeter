@@ -16,11 +16,25 @@
         }
  catch (        NumberFormatException e) {
           log.warn(e.toString());
-          SimpleDateFormat dateFormat=new SimpleDateFormat(DEFAULT_DATE_FORMAT_STRING);
-          Date stamp=dateFormat.parse(text);
-          timeStamp=stamp.getTime();
-          log.warn("Setting date format to: " + DEFAULT_DATE_FORMAT_STRING);
-          saveConfig.setFormatter(dateFormat);
+          boolean foundMatch=false;
+          for (          String fmt : DATE_FORMAT_STRINGS) {
+            SimpleDateFormat dateFormat=new SimpleDateFormat(fmt);
+            dateFormat.setLenient(false);
+            try {
+              Date stamp=dateFormat.parse(text);
+              timeStamp=stamp.getTime();
+              log.warn("Setting date format to: " + fmt);
+              saveConfig.setFormatter(dateFormat);
+              foundMatch=true;
+              break;
+            }
+ catch (            ParseException e1) {
+              log.info(text + " did not match " + fmt);
+            }
+          }
+          if (!foundMatch) {
+            throw new ParseException("No date-time format found matching " + text,-1);
+          }
         }
       }
  else       if (saveConfig.formatter() != null) {
