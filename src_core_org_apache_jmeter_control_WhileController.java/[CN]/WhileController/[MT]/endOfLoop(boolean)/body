@@ -1,6 +1,8 @@
 {
   String cnd=getCondition().trim();
-  log.debug("Condition string:" + cnd + ".");
+  if (log.isDebugEnabled()) {
+    log.debug("Condition string:" + cnd + ".");
+  }
   boolean res;
   if ((loopEnd && cnd.length() == 0) || "LAST".equalsIgnoreCase(cnd)) {
     JMeterVariables threadVars=JMeterContextService.getContext().getVariables();
@@ -9,6 +11,8 @@
  else {
     res="false".equalsIgnoreCase(cnd);
   }
-  log.debug("Condition value: " + res);
+  if (log.isDebugEnabled()) {
+    log.debug("Condition value: " + res);
+  }
   return res;
 }

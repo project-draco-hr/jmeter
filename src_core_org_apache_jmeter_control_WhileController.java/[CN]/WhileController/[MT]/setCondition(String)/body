@@ -1,4 +1,6 @@
 {
-  log.debug("setCondition(" + string + ")");
+  if (log.isDebugEnabled()) {
+    log.debug("setCondition(" + string + ")");
+  }
   setProperty(new StringProperty(CONDITION,string));
 }

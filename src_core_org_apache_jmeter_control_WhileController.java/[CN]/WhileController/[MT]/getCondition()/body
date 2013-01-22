@@ -1,7 +1,5 @@
 {
-  String cnd;
   JMeterProperty prop=getProperty(CONDITION);
   prop.recoverRunningVersion(this);
-  cnd=prop.getStringValue();
-  return cnd;
+  return prop.getStringValue();
 }
