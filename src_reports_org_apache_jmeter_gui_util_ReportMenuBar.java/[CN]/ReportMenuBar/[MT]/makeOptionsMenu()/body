@@ -17,7 +17,7 @@
   optionsMenu.add(functionHelper);
   optionsMenu.add(lafMenu);
   if (SSLManager.isSSLSupported()) {
-    sslManager=new JMenuItem(JMeterUtils.getResString("sslManager"));
+    sslManager=new JMenuItem(JMeterUtils.getResString("sslmanager"));
     sslManager.addActionListener(ReportActionRouter.getInstance());
     sslManager.setActionCommand("sslManager");
     sslManager.setMnemonic('S');
