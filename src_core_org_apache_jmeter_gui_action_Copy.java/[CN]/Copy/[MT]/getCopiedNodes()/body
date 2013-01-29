@@ -5,6 +5,7 @@
       return (JMeterTreeNode[])clipboard.getData(JMeterTreeNodeTransferable.JMETER_TREE_NODE_ARRAY_DATA_FLAVOR);
     }
  catch (    Exception ex) {
+      log.error("Clipboard node read error:" + ex.getMessage(),ex);
       JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("clipboard_node_read_error") + ":\n" + ex.getLocalizedMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
     }
   }
