@@ -17,6 +17,9 @@
     if (defaultPRB == null) {
       throw new IOException("Could not find required file: " + res);
     }
+    if (resourcePrefix.endsWith(MESSAGES)) {
+      messagePRB=defaultPRB;
+    }
   }
  else   if (checkUnexpected) {
     PropertyResourceBundle prb=getRAS(res);

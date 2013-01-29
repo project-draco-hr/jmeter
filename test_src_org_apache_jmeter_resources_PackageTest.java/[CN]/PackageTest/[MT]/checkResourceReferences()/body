@@ -1,0 +1,46 @@
+{
+  final AtomicInteger errors=new AtomicInteger(0);
+  findFile(srcFiledir,null,new FilenameFilter(){
+    @Override public boolean accept(    File dir,    String name){
+      final File file=new File(dir,name);
+      final Pattern pat=Pattern.compile(".*getResString\\(\"([^\"]+)\"\\).*");
+      if (name.endsWith(".java")) {
+        BufferedReader fileReader;
+        try {
+          fileReader=new BufferedReader(new FileReader(file));
+          String s;
+          while ((s=fileReader.readLine()) != null) {
+            if (s.matches("\\s*//.*")) {
+              continue;
+            }
+            Matcher m=pat.matcher(s);
+            if (m.matches()) {
+              final String key=m.group(1);
+              String resKey=key.replace(' ','_');
+              resKey=resKey.toLowerCase(java.util.Locale.ENGLISH);
+              if (!key.equals(resKey)) {
+                System.out.println(file + ": non-standard message key: '" + key+ "'");
+              }
+              try {
+                messagePRB.getString(resKey);
+              }
+ catch (              MissingResourceException e) {
+                System.out.println(file + ": missing message key: '" + key+ "'");
+                errors.incrementAndGet();
+              }
+            }
+          }
+        }
+ catch (        IOException e) {
+          e.printStackTrace();
+        }
+      }
+      return file.isDirectory();
+    }
+  }
+);
+  int errs=errors.get();
+  if (errs > 0) {
+    fail("Detected " + errs + " missing message property keys");
+  }
+}
