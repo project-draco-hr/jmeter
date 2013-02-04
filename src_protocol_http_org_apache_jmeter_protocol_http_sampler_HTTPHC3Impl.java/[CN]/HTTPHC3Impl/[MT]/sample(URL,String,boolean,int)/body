@@ -10,29 +10,31 @@
   res.setURL(url);
   res.sampleStart();
   try {
+    URI uri=ConversionUtils.sanitizeUrl(url);
+    String uriAsString=uri.toString();
     if (method.equals(HTTPConstants.POST)) {
-      httpMethod=new PostMethod(urlStr);
+      httpMethod=new PostMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.PUT)) {
-      httpMethod=new PutMethod(urlStr);
+      httpMethod=new PutMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.HEAD)) {
-      httpMethod=new HeadMethod(urlStr);
+      httpMethod=new HeadMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.TRACE)) {
-      httpMethod=new TraceMethod(urlStr);
+      httpMethod=new TraceMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.OPTIONS)) {
-      httpMethod=new OptionsMethod(urlStr);
+      httpMethod=new OptionsMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.DELETE)) {
-      httpMethod=new DeleteMethod(urlStr);
+      httpMethod=new DeleteMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.GET)) {
-      httpMethod=new GetMethod(urlStr);
+      httpMethod=new GetMethod(uriAsString);
     }
  else     if (method.equals(HTTPConstants.PATCH)) {
-      httpMethod=new EntityEnclosingMethod(urlStr){
+      httpMethod=new EntityEnclosingMethod(uriAsString){
         @Override public String getName(){
           return "PATCH";
         }
@@ -124,6 +126,11 @@
     if (httpMethod != null) {
       res.setRequestHeaders(getConnectionHeaders(httpMethod));
     }
+    errorResult(e,res);
+    return res;
+  }
+catch (  URISyntaxException e) {
+    res.sampleEnd();
     errorResult(e,res);
     return res;
   }

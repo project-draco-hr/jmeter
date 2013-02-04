@@ -7,8 +7,7 @@
   HttpClient httpClient=setupClient(url);
   HttpRequestBase httpRequest=null;
   try {
-    URIBuilder builder=new URIBuilder().setScheme(url.getProtocol()).setHost(url.getHost()).setPort(url.getPort()).setUserInfo(url.getUserInfo()).setPath(url.getPath()).setQuery(url.getQuery());
-    URI uri=builder.build();
+    URI uri=ConversionUtils.sanitizeUrl(url);
     if (method.equals(HTTPConstants.POST)) {
       httpRequest=new HttpPost(uri);
     }
