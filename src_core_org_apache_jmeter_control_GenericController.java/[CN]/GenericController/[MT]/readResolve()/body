@@ -1,0 +1,6 @@
+{
+  iterationListeners=new LinkedList<LoopIterationListener>();
+  children=TestCompiler.IS_USE_STATIC_SET ? null : new ConcurrentHashMap<TestElement,Object>();
+  subControllersAndSamplers=new ArrayList<TestElement>();
+  return this;
+}

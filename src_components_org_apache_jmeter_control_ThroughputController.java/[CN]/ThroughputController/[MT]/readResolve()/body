@@ -1,5 +1,5 @@
 {
   super.readResolve();
-  lnf=new ListenerNotifier();
+  counterLock=new Object();
   return this;
 }
