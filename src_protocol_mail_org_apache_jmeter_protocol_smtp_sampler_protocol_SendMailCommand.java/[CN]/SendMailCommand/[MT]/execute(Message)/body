@@ -12,7 +12,7 @@
     tr.connect();
   }
   tr.sendMessage(message,message.getAllRecipients());
-  if (synchronousMode) {
+  if (listener != null) {
     listener.attend();
   }
   tr.close();
