@@ -1,6 +1,4 @@
 {
-  boolean pass=true;
-  boolean notTest=(NOT & getTestType()) > 0;
   AssertionResult result=new AssertionResult(getName());
   String toCheck="";
   if (getAssumeSuccess()) {
@@ -33,12 +31,7 @@
   }
   result.setFailure(false);
   result.setError(false);
-  if (toCheck.length() == 0) {
-    if (notTest) {
-      return result;
-    }
-    return result.setResultForNull();
-  }
+  boolean notTest=(NOT & getTestType()) > 0;
   boolean contains=isContainsType();
   boolean equals=isEqualsType();
   boolean substring=isSubstringType();
@@ -47,6 +40,16 @@
   if (debugEnabled) {
     log.debug("Type:" + (contains ? "Contains" : "Match") + (notTest ? "(not)" : ""));
   }
+  if (toCheck.length() == 0) {
+    if (notTest) {
+      return result;
+    }
+    if (debugEnabled) {
+      log.debug("Not checking empty response field in: " + response.getSampleLabel());
+    }
+    return result.setResultForNull();
+  }
+  boolean pass=true;
   try {
     Perl5Matcher localMatcher=JMeterUtils.getMatcher();
     PropertyIterator iter=getTestStrings().iterator();
