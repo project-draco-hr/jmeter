@@ -1,0 +1,12 @@
+{
+  String maxStr=String.valueOf(Math.round(value));
+  String divValueStr="1";
+  for (int i=1; i < maxStr.length(); i++) {
+    divValueStr+="0";
+  }
+  int divValueInt=Integer.parseInt(divValueStr);
+  BigDecimal round=new BigDecimal(value / divValueInt);
+  round=round.setScale(0,roundMode);
+  int topValue=round.intValue() * divValueInt;
+  return topValue;
+}

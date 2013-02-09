@@ -3,6 +3,7 @@
   yAxisPane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
   yAxisPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_yaxis_group")));
   yAxisPane.add(maxValueYAxisLabel);
+  yAxisPane.add(incrScaleYAxis);
   yAxisPane.add(numberShowGrouping);
   return yAxisPane;
 }

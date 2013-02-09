@@ -30,5 +30,6 @@
   graphPanel.setLegendFont(new Font(StatGraphProperties.getFontNameMap().get(fontNameList.getSelectedItem()),StatGraphProperties.getFontStyleMap().get(fontStyleList.getSelectedItem()).intValue(),Integer.parseInt((String)fontSizeList.getSelectedItem())));
   graphPanel.setHeight(height);
   graphPanel.setWidth(width);
+  graphPanel.setIncrYAxisScale(getIncrScaleYAxis());
   graphPanel.repaint();
 }

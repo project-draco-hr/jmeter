@@ -1,0 +1,8 @@
+{
+  int incrYAxisScale=0;
+  String iyas=incrScaleYAxis.getText();
+  if (iyas.length() != 0) {
+    incrYAxisScale=Integer.parseInt(iyas);
+  }
+  return incrYAxisScale;
+}
