@@ -1,8 +1,8 @@
 {
   JMenu menu=new JMenu(menuName);
-  GuiUtils.makeMenuScrollable(menu);
   for (  MenuInfo info : menuInfo) {
     menu.add(makeMenuItem(info,actionCommand));
   }
+  GuiUtils.makeScrollableMenu(menu);
   return menu;
 }

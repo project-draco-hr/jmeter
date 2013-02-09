@@ -1,0 +1,7 @@
+{
+  Dimension screenSize=Toolkit.getDefaultToolkit().getScreenSize();
+  if (menu.getItemCount() > 0) {
+    int maxItems=(int)Math.round(screenSize.getHeight() * 0.8 / menu.getMenuComponent(0).getPreferredSize().getHeight());
+    MenuScroller.setScrollerFor(menu,maxItems,200);
+  }
+}
