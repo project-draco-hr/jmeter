@@ -5,7 +5,7 @@
       final File file=new File(dir,name);
       final Pattern pat=Pattern.compile(".*getResString\\(\"([^\"]+)\"\\).*");
       if (name.endsWith(".java")) {
-        BufferedReader fileReader;
+        BufferedReader fileReader=null;
         try {
           fileReader=new BufferedReader(new FileReader(file));
           String s;
@@ -33,6 +33,9 @@
         }
  catch (        IOException e) {
           e.printStackTrace();
+        }
+ finally {
+          JOrphanUtils.closeQuietly(fileReader);
         }
       }
       return file.isDirectory();
