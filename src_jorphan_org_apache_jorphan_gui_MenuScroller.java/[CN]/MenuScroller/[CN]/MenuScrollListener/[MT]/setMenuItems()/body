@@ -1,0 +1,10 @@
+{
+  menuItems=menu.getComponents();
+  if (keepVisibleIndex >= topFixedCount && keepVisibleIndex <= menuItems.length - bottomFixedCount && (keepVisibleIndex > firstIndex + scrollCount || keepVisibleIndex < firstIndex)) {
+    firstIndex=Math.min(firstIndex,keepVisibleIndex);
+    firstIndex=Math.max(firstIndex,keepVisibleIndex - scrollCount + 1);
+  }
+  if (menuItems.length > topFixedCount + scrollCount + bottomFixedCount) {
+    refreshMenu();
+  }
+}

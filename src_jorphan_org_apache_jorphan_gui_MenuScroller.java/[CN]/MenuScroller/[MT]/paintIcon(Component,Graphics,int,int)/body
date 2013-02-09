@@ -1,0 +1,11 @@
+{
+  Dimension size=c.getSize();
+  Graphics g2=g.create(size.width / 2 - 5,size.height / 2 - 5,10,10);
+  g2.setColor(Color.GRAY);
+  g2.drawPolygon(xPoints,yPoints,3);
+  if (c.isEnabled()) {
+    g2.setColor(Color.BLACK);
+    g2.fillPolygon(xPoints,yPoints,3);
+  }
+  g2.dispose();
+}

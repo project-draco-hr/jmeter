@@ -1,0 +1,8 @@
+{
+  if (isArmed() && !timer.isRunning()) {
+    timer.start();
+  }
+  if (!isArmed() && timer.isRunning()) {
+    timer.stop();
+  }
+}

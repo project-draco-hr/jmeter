@@ -1,0 +1,9 @@
+{
+  super(interval,new ActionListener(){
+    @Override public void actionPerformed(    ActionEvent e){
+      firstIndex+=increment;
+      refreshMenu();
+    }
+  }
+);
+}

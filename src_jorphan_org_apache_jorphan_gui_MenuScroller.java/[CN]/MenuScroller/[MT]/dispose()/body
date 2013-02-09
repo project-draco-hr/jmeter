@@ -1,0 +1,7 @@
+{
+  if (menu != null) {
+    menu.removePopupMenuListener(menuListener);
+    menu.removeMouseWheelListener(mouseWheelListener);
+    menu=null;
+  }
+}

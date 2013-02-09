@@ -1,0 +1,9 @@
+{
+  if (item == null) {
+    keepVisibleIndex=-1;
+  }
+ else {
+    int index=menu.getComponentIndex(item);
+    keepVisibleIndex=index;
+  }
+}

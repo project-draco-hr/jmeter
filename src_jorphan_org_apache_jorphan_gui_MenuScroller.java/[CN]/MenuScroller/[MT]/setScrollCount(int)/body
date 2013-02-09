@@ -1,0 +1,7 @@
+{
+  if (scrollCount <= 0) {
+    throw new IllegalArgumentException("scrollCount must be greater than 0");
+  }
+  this.scrollCount=scrollCount;
+  MenuSelectionManager.defaultManager().clearSelectedPath();
+}

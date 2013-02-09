@@ -1,0 +1,8 @@
+{
+  if (interval <= 0) {
+    throw new IllegalArgumentException("interval must be greater than 0");
+  }
+  upItem.setInterval(interval);
+  downItem.setInterval(interval);
+  this.interval=interval;
+}

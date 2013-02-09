@@ -1,0 +1,17 @@
+{
+  if (scrollCount <= 0 || interval <= 0) {
+    throw new IllegalArgumentException("scrollCount and interval must be greater than 0");
+  }
+  if (topFixedCount < 0 || bottomFixedCount < 0) {
+    throw new IllegalArgumentException("topFixedCount and bottomFixedCount cannot be negative");
+  }
+  upItem=new MenuScrollItem(MenuIcon.UP,-1);
+  downItem=new MenuScrollItem(MenuIcon.DOWN,+1);
+  setScrollCount(scrollCount);
+  setInterval(interval);
+  setTopFixedCount(topFixedCount);
+  setBottomFixedCount(bottomFixedCount);
+  this.menu=menu;
+  menu.addPopupMenuListener(menuListener);
+  menu.addMouseWheelListener(mouseWheelListener);
+}
