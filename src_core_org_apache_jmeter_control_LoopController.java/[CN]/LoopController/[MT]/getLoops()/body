@@ -1,9 +1,12 @@
 {
-  try {
-    JMeterProperty prop=getProperty(LOOPS);
-    return Integer.parseInt(prop.getStringValue());
+  if (nbLoops == null || nbLoops.intValue() == -1) {
+    try {
+      JMeterProperty prop=getProperty(LOOPS);
+      nbLoops=Integer.valueOf(prop.getStringValue());
+    }
+ catch (    NumberFormatException e) {
+      nbLoops=0;
+    }
   }
- catch (  NumberFormatException e) {
-    return 0;
-  }
+  return nbLoops.intValue();
 }
