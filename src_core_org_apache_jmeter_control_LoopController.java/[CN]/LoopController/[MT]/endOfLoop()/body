@@ -1,4 +1,7 @@
 {
-  final int loops=getLoops();
+  if (nbLoops == null) {
+    nbLoops=Integer.valueOf(getLoops());
+  }
+  final int loops=nbLoops.intValue();
   return (loops > -1) && (loopCount >= loops);
 }
