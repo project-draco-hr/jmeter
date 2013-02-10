@@ -5,7 +5,7 @@
       ((LoopController)lc).setLoops(loops.getText());
     }
  else {
-      ((LoopController)lc).setLoops(-1);
+      ((LoopController)lc).setLoops(LoopController.INFINITE_LOOP_COUNT);
     }
   }
 }

@@ -1,4 +1,4 @@
 {
   final int loops=getLoops();
-  return (loops > -1) && (loopCount >= loops);
+  return (loops > INFINITE_LOOP_COUNT) && (loopCount >= loops);
 }

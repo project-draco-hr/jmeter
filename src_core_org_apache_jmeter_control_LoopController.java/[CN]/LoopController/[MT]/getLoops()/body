@@ -1,5 +1,5 @@
 {
-  if (nbLoops == null || nbLoops.intValue() == -1) {
+  if (nbLoops == null || nbLoops.intValue() == INFINITE_LOOP_COUNT) {
     try {
       JMeterProperty prop=getProperty(LOOPS);
       nbLoops=Integer.valueOf(prop.getStringValue());
