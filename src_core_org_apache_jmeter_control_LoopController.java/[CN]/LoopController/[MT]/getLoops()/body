@@ -5,7 +5,7 @@
       nbLoops=Integer.valueOf(prop.getStringValue());
     }
  catch (    NumberFormatException e) {
-      nbLoops=0;
+      nbLoops=Integer.valueOf(0);
     }
   }
   return nbLoops.intValue();
