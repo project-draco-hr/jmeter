@@ -1,0 +1,6 @@
+{
+  clearData();
+  String response=ViewResultsFullVisualizer.getResponseAsString(sampleResult);
+  cssJqueryDataField.setText(response);
+  cssJqueryDataField.setCaretPosition(0);
+}

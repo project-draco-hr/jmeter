@@ -1,0 +1,6 @@
+{
+  if (textToParse != null && textToParse.length() > 0 && this.cssJqueryField.getText().length() > 0) {
+    this.cssJqueryResultField.setText(process(textToParse));
+    this.cssJqueryResultField.setCaretPosition(0);
+  }
+}

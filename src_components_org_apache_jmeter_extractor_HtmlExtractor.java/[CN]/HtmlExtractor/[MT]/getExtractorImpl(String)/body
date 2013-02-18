@@ -1,0 +1,12 @@
+{
+  boolean useDefaultExtractor=DEFAULT_EXTRACTOR.equals(impl);
+  if (useDefaultExtractor || EXTRACTOR_JSOUP.equals(impl)) {
+    return new JSoupExtractor();
+  }
+ else   if (EXTRACTOR_JODD.equals(impl)) {
+    return new JoddExtractor();
+  }
+ else {
+    throw new IllegalArgumentException("Extractor implementation:" + impl + " is unknown");
+  }
+}
