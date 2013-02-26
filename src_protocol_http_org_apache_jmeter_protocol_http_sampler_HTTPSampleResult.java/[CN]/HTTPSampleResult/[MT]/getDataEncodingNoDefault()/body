@@ -1,9 +1,10 @@
 {
   if (super.getDataEncodingNoDefault() == null && getContentType().startsWith("text/html")) {
     byte[] bytes=getResponseData();
-    String prefix=new String(bytes,0,Math.min(bytes.length,2000),Charset.forName(DEFAULT_HTTP_ENCODING)).toLowerCase(java.util.Locale.ENGLISH);
+    String prefix=new String(bytes,0,Math.min(bytes.length,2000),Charset.forName(DEFAULT_HTTP_ENCODING));
+    String matchAgainst=prefix.toLowerCase(java.util.Locale.ENGLISH);
     final String METATAG="<meta http-equiv=\"content-type\" content=\"";
-    int tagstart=prefix.indexOf(METATAG);
+    int tagstart=matchAgainst.indexOf(METATAG);
     if (tagstart != -1) {
       tagstart+=METATAG.length();
       int tagend=prefix.indexOf('\"',tagstart);
