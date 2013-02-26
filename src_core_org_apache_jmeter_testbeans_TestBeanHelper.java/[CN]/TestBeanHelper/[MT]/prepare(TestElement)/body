@@ -28,4 +28,8 @@
  catch (  IntrospectionException e) {
     log.error("Couldn't set properties for " + el.getClass().getName(),e);
   }
+catch (  UnsatisfiedLinkError ule) {
+    log.error("Couldn't set properties for " + el.getClass().getName());
+    throw ule;
+  }
 }
