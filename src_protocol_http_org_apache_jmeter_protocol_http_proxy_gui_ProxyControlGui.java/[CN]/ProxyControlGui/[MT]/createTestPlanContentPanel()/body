@@ -14,12 +14,12 @@
   VerticalPanel mainPanel=new VerticalPanel();
   mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_test_plan_content")));
   HorizontalPanel nodeCreationPanel=new HorizontalPanel();
+  nodeCreationPanel.add(createGroupingPanel());
   nodeCreationPanel.add(httpHeaders);
   nodeCreationPanel.add(addAssertions);
   nodeCreationPanel.add(regexMatch);
   HorizontalPanel targetPanel=new HorizontalPanel();
   targetPanel.add(createTargetPanel());
-  targetPanel.add(createGroupingPanel());
   mainPanel.add(targetPanel);
   mainPanel.add(nodeCreationPanel);
   return mainPanel;

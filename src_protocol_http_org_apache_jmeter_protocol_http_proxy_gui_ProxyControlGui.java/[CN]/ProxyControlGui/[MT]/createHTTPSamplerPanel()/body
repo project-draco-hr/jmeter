@@ -5,6 +5,7 @@
   }
   m.addElement(USE_DEFAULT_HTTP_IMPL);
   samplerTypeName=new JComboBox(m);
+  samplerTypeName.setPreferredSize(new Dimension(150,20));
   samplerTypeName.setSelectedItem(USE_DEFAULT_HTTP_IMPL);
   samplerTypeName.addItemListener(this);
   JLabel label2=new JLabel(JMeterUtils.getResString("proxy_sampler_type"));

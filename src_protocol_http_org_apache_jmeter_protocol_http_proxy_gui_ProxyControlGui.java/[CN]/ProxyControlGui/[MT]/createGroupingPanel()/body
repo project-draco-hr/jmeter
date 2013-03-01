@@ -6,6 +6,7 @@
   m.addElement(JMeterUtils.getResString("grouping_store_first_only"));
   m.addElement(JMeterUtils.getResString("grouping_in_transaction_controllers"));
   groupingMode=new JComboBox(m);
+  groupingMode.setPreferredSize(new Dimension(150,20));
   groupingMode.setSelectedIndex(0);
   groupingMode.addItemListener(this);
   JLabel label2=new JLabel(JMeterUtils.getResString("grouping_mode"));
