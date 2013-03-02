@@ -70,6 +70,6 @@
     log.error("Error in pattern: " + regex);
   }
  finally {
-    clearMatcherMemory(matcher,pattern);
+    JMeterUtils.clearMatcherMemory(matcher,pattern);
   }
 }
