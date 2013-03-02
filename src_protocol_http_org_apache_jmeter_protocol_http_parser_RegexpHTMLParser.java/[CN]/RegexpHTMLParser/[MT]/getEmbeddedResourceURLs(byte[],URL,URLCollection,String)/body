@@ -1,9 +1,11 @@
 {
+  Pattern pattern=null;
+  Perl5Matcher matcher=null;
   try {
-    Perl5Matcher matcher=JMeterUtils.getMatcher();
+    matcher=JMeterUtils.getMatcher();
     PatternMatcherInput input=localInput.get();
     input.setInput(new String(html,encoding));
-    Pattern pattern=JMeterUtils.getPatternCache().getPattern(REGEXP,Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK | Perl5Compiler.READ_ONLY_MASK);
+    pattern=JMeterUtils.getPatternCache().getPattern(REGEXP,Perl5Compiler.CASE_INSENSITIVE_MASK | Perl5Compiler.SINGLELINE_MASK | Perl5Compiler.READ_ONLY_MASK);
     while (matcher.contains(input,pattern)) {
       MatchResult match=matcher.getMatch();
       String s;
@@ -43,5 +45,8 @@
   }
 catch (  MalformedCachePatternException e) {
     throw new HTMLParseException(e.getMessage(),e);
+  }
+ finally {
+    JMeterUtils.clearMatcherMemory(matcher,pattern);
   }
 }
