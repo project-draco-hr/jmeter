@@ -1,0 +1,20 @@
+{
+  if (o == null) {
+    return "ok";
+  }
+  if (o instanceof Double) {
+    return this.handle((Double)o);
+  }
+ else   if (o instanceof Integer) {
+    return this.handle((Integer)o);
+  }
+ else   if (o instanceof String) {
+    return this.handle((String)o);
+  }
+ else   if (o instanceof DBObject) {
+    return this.handle((DBObject)o);
+  }
+ else {
+    return "return type not handled";
+  }
+}

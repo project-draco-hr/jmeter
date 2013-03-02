@@ -1,0 +1,33 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug(getTitle() + " testStarted");
+  }
+  MongoOptions mongoOptions=new MongoOptions();
+  mongoOptions.autoConnectRetry=Boolean.parseBoolean(getAutoConnectRetry());
+  mongoOptions.connectTimeout=Integer.parseInt(getConnectTimeout());
+  mongoOptions.connectionsPerHost=Integer.parseInt(getConnectionsPerHost());
+  mongoOptions.fsync=Boolean.parseBoolean(getFsync());
+  mongoOptions.j=Boolean.parseBoolean(getWaitForJournaling());
+  mongoOptions.maxAutoConnectRetryTime=Integer.parseInt(getMaxAutoConnectRetryTime());
+  mongoOptions.maxWaitTime=Integer.parseInt(getMaxWaitTime());
+  mongoOptions.safe=Boolean.parseBoolean(getSafe());
+  mongoOptions.socketKeepAlive=Boolean.parseBoolean(getSocketKeepAlive());
+  mongoOptions.socketTimeout=Integer.parseInt(getSocketTimeout());
+  mongoOptions.threadsAllowedToBlockForConnectionMultiplier=Integer.parseInt(getThreadsAllowedToBlockForConnectionMultiplier());
+  mongoOptions.w=Integer.parseInt(getWriteOperationNumberOfServers());
+  mongoOptions.wtimeout=Integer.parseInt(getWriteOperationTimeout());
+  if (log.isDebugEnabled()) {
+    log.debug("options : " + mongoOptions.toString());
+  }
+  if (getThreadContext().getVariables().getObject(getSource()) != null) {
+    if (log.isWarnEnabled()) {
+      log.warn(getSource() + " has already been defined.");
+    }
+  }
+ else {
+    if (log.isDebugEnabled()) {
+      log.debug(getSource() + "  is being defined.");
+    }
+    getThreadContext().getVariables().putObject(getSource(),new MongoDB(MongoUtils.toServerAddresses(getConnection()),mongoOptions));
+  }
+}

@@ -1,0 +1,14 @@
+{
+  Object mongoSource=JMeterContextService.getContext().getVariables().getObject(source);
+  if (mongoSource == null) {
+    throw new IllegalStateException("mongoSource is null");
+  }
+ else {
+    if (mongoSource instanceof MongoDB) {
+      return (MongoDB)mongoSource;
+    }
+ else {
+      throw new IllegalStateException("Variable:" + source + " is not a MongoDB instance, class:"+ (mongoSource != null ? mongoSource.getClass() : "null"));
+    }
+  }
+}

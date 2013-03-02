@@ -1,0 +1,7 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("clearing");
+  }
+  mongo.close();
+  mongo=null;
+}

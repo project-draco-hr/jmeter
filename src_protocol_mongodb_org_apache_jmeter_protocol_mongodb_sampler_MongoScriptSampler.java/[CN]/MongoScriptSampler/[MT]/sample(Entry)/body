@@ -1,0 +1,37 @@
+{
+  trace("sample()");
+  SampleResult res=new SampleResult();
+  String data=getScript();
+  res.setSampleLabel(getTitle());
+  res.setResponseCodeOK();
+  res.setResponseCode("200");
+  res.setSuccessful(true);
+  res.setResponseMessageOK();
+  res.setSamplerData(data);
+  res.setDataType(SampleResult.TEXT);
+  res.setContentType("text/plain");
+  res.sampleStart();
+  try {
+    MongoDB mongoDB=MongoSourceElement.getMongoDB(getSource());
+    MongoScriptRunner runner=new MongoScriptRunner();
+    DB db=mongoDB.getDB(getDatabase(),getUsername(),getPassword());
+    res.latencyEnd();
+    Object result=runner.evaluate(db,data);
+    res.sampleEnd();
+    EvalResultHandler handler=new EvalResultHandler();
+    String resultAsString=handler.handle(result);
+    res.setResponseData(resultAsString.getBytes());
+  }
+ catch (  Exception ex) {
+    res.sampleEnd();
+    log.warn("",ex);
+    res.setResponseCode("500");
+    res.setSuccessful(false);
+    res.setResponseMessage(ex.toString());
+    res.setResponseData(ex.getMessage().getBytes());
+  }
+ finally {
+    res.sampleEnd();
+  }
+  return res;
+}

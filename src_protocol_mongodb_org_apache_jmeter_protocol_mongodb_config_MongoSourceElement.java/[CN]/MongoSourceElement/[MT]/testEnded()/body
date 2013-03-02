@@ -1,0 +1,6 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug(getTitle() + " testEnded");
+  }
+  ((MongoDB)getThreadContext().getVariables().getObject(getSource())).clear();
+}

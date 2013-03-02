@@ -1,0 +1,28 @@
+{
+  super(MongoScriptSampler.class);
+  createPropertyGroup("mongodb",new String[]{"source","database","username","password"});
+  createPropertyGroup("sampler",new String[]{"script"});
+  PropertyDescriptor p=property("database");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p=property("username");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p=property("password",TypeEditor.PasswordEditor);
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p=property("source");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p=property("script");
+  p.setValue(NOT_UNDEFINED,Boolean.FALSE);
+  p.setValue(DEFAULT,"");
+  p.setValue(NOT_EXPRESSION,Boolean.TRUE);
+  p.setPropertyEditorClass(TextAreaEditor.class);
+  if (log.isDebugEnabled()) {
+    for (    PropertyDescriptor pd : getPropertyDescriptors()) {
+      log.debug(pd.getName());
+      log.debug(pd.getDisplayName());
+    }
+  }
+}
