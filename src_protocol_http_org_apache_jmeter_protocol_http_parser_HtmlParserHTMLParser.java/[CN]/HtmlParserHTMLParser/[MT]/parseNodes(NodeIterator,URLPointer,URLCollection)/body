@@ -30,6 +30,17 @@
       AppletTag applet=(AppletTag)tag;
       binUrlStr=applet.getAppletClass();
     }
+ else     if (tag instanceof ObjectTag) {
+      ObjectTag applet=(ObjectTag)tag;
+      String data=applet.getAttribute("codebase");
+      if (!StringUtils.isEmpty(data)) {
+        binUrlStr=data;
+      }
+      data=applet.getAttribute("data");
+      if (!StringUtils.isEmpty(data)) {
+        binUrlStr=data;
+      }
+    }
  else     if (tag instanceof InputTag) {
       if (ATT_IS_IMAGE.equalsIgnoreCase(tag.getAttribute(ATT_TYPE))) {
         binUrlStr=tag.getAttribute(ATT_SRC);
