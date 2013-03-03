@@ -28,6 +28,11 @@
     if (log.isDebugEnabled()) {
       log.debug(getSource() + "  is being defined.");
     }
-    getThreadContext().getVariables().putObject(getSource(),new MongoDB(MongoUtils.toServerAddresses(getConnection()),mongoOptions));
+    try {
+      getThreadContext().getVariables().putObject(getSource(),new MongoDB(MongoUtils.toServerAddresses(getConnection()),mongoOptions));
+    }
+ catch (    UnknownHostException e) {
+      throw new IllegalStateException(e);
+    }
   }
 }
