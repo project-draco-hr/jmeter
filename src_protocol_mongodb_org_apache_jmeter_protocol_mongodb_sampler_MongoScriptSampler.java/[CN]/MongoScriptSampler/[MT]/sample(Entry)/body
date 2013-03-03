@@ -24,7 +24,6 @@
   }
  catch (  Exception ex) {
     res.sampleEnd();
-    log.warn("",ex);
     res.setResponseCode("500");
     res.setSuccessful(false);
     res.setResponseMessage(ex.toString());
