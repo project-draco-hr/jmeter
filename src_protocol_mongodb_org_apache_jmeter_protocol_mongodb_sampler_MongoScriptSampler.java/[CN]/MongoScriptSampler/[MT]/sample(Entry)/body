@@ -22,7 +22,6 @@
     res.setResponseData(resultAsString.getBytes());
   }
  catch (  Exception ex) {
-    res.sampleEnd();
     res.setResponseCode("500");
     res.setSuccessful(false);
     res.setResponseMessage(ex.toString());
