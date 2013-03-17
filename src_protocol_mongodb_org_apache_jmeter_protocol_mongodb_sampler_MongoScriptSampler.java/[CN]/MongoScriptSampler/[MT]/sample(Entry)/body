@@ -17,7 +17,6 @@
     DB db=mongoDB.getDB(getDatabase(),getUsername(),getPassword());
     res.latencyEnd();
     Object result=runner.evaluate(db,data);
-    res.sampleEnd();
     EvalResultHandler handler=new EvalResultHandler();
     String resultAsString=handler.handle(result);
     res.setResponseData(resultAsString.getBytes());
