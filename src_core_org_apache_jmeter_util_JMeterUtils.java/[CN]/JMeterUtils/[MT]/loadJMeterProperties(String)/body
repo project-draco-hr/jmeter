@@ -10,7 +10,7 @@
     try {
       is=ClassLoader.getSystemResourceAsStream("org/apache/jmeter/jmeter.properties");
       if (is == null) {
-        throw new RuntimeException("Could not read JMeter properties file");
+        throw new RuntimeException("Could not read JMeter properties file:" + file);
       }
       p.load(is);
     }
