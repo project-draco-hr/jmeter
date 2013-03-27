@@ -1,9 +1,3 @@
 {
-  setSampleLabel(res.getSampleLabel());
-  if (keyOnThreadName) {
-    setThreadName(res.getThreadName());
-  }
-  setSuccessful(true);
-  setSampleCount(0);
-  elapsed=0;
+  this(res);
 }
