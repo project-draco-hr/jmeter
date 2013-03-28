@@ -1,6 +1,7 @@
 {
   log.info("Running the test!");
   running=true;
+  SampleEvent.initSampleVariables();
   JMeterContextService.startTest();
   try {
     PreCompiler compiler=new PreCompiler();

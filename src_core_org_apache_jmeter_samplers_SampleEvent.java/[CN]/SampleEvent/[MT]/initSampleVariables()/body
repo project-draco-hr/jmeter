@@ -1,0 +1,5 @@
+{
+  String vars=JMeterUtils.getProperty(SAMPLE_VARIABLES);
+  variableNames=vars != null ? vars.split(",") : new String[0];
+  log.info("List of sample_variables: " + Arrays.toString(variableNames));
+}
