@@ -8,7 +8,7 @@
   Box delayDevPanel=Box.createHorizontalBox();
   delayDevPanel.add(new JLabel(getTimerRangeLabelKey()));
   delayDevPanel.add(Box.createHorizontalStrut(5));
-  rangeField=new JTextField(6);
+  rangeField=new JTextField(20);
   rangeField.setText(getDefaultRange());
   rangeField.setName(RANGE_FIELD);
   delayDevPanel.add(rangeField);
@@ -16,7 +16,7 @@
   Box avgDelayPanel=Box.createHorizontalBox();
   avgDelayPanel.add(new JLabel(getTimerDelayLabelKey()));
   avgDelayPanel.add(Box.createHorizontalStrut(5));
-  delayField=new JTextField(6);
+  delayField=new JTextField(20);
   delayField.setText(getDefaultDelay());
   delayField.setName(DELAY_FIELD);
   avgDelayPanel.add(delayField);
