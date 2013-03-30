@@ -24,5 +24,11 @@
     results.setText("Failed to parse HTML: " + rte.getMessage());
   }
   results.setCaretPosition(0);
-  resultsScrollPane.setViewportView(results);
+  try {
+    resultsScrollPane.setViewportView(results);
+  }
+ catch (  NumberFormatException e) {
+    log.warn("An error occured rendering html code",e);
+    results.setText("Failed to render HTML: " + e.getMessage() + ", use Text renderer");
+  }
 }
