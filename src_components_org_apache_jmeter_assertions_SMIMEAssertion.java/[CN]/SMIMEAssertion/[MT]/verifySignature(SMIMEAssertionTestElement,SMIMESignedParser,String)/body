@@ -6,7 +6,7 @@
     Iterator<?> signerIt=signers.getSigners().iterator();
     if (signerIt.hasNext()) {
       SignerInformation signer=(SignerInformation)signerIt.next();
-      Iterator<?> certIt=certs.getCertificates(signer.getSID()).iterator();
+      Iterator<?> certIt=certs.getCertificates((new JcaX509CertSelectorConverter()).getCertSelector(signer.getSID())).iterator();
       if (certIt.hasNext()) {
         X509Certificate cert=(X509Certificate)certIt.next();
         if (testElement.isVerifySignature()) {
