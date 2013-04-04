@@ -22,7 +22,7 @@
         log.warn("Error creating directories for " + pdir.toString());
       }
     }
-    writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),SaveService.getFileEncoding("UTF-8")),false);
+    writer=new PrintWriter(new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(filename,trimmed)),SaveService.getFileEncoding("UTF-8")),SAVING_AUTOFLUSH);
     log.debug("Opened file: " + filename);
     files.put(filename,new FileEntry(writer,saveConfig));
   }
