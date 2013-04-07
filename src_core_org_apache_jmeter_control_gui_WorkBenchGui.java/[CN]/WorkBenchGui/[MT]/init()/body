@@ -1,5 +1,9 @@
 {
-  setLayout(new BorderLayout());
+  setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
+  VerticalPanel workBenchPropsPanel=new VerticalPanel(5,0);
+  saveWorkBench=new JCheckBox(JMeterUtils.getResString("save_workbench"));
+  workBenchPropsPanel.add(saveWorkBench);
+  add(workBenchPropsPanel,BorderLayout.CENTER);
 }

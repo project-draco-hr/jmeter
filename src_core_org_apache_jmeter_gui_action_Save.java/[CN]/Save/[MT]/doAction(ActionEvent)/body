@@ -14,7 +14,13 @@
   }
  else {
     fullSave=true;
-    subTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
+    HashTree testPlan=GuiPackage.getInstance().getTreeModel().getTestPlan();
+    JMeterTreeNode workbenchNode=(JMeterTreeNode)((JMeterTreeNode)GuiPackage.getInstance().getTreeModel().getRoot()).getChildAt(1);
+    if (((WorkBench)workbenchNode.getUserObject()).getSaveWorkBench()) {
+      HashTree workbench=GuiPackage.getInstance().getTreeModel().getWorkBench();
+      testPlan.add(workbench);
+    }
+    subTree=testPlan;
   }
   String updateFile=GuiPackage.getInstance().getTestPlanFile();
   if (!ActionNames.SAVE.equals(e.getActionCommand()) || updateFile == null) {

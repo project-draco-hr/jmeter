@@ -1,0 +1,7 @@
+{
+  super.configure(el);
+  if (el instanceof WorkBench) {
+    WorkBench tp=(WorkBench)el;
+    saveWorkBench.setSelected(tp.getSaveWorkBench());
+  }
+}
