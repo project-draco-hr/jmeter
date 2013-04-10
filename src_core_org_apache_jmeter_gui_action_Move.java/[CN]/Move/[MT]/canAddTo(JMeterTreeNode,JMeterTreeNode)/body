@@ -1,0 +1,7 @@
+{
+  boolean ok=MenuFactory.canAddTo(parentNode,new JMeterTreeNode[]{node});
+  if (!ok) {
+    Toolkit.getDefaultToolkit().beep();
+  }
+  return ok;
+}

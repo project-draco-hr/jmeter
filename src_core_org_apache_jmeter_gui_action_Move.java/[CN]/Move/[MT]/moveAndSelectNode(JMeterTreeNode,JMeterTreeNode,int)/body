@@ -1,0 +1,8 @@
+{
+  GuiPackage guiInstance=GuiPackage.getInstance();
+  guiInstance.getTreeModel().removeNodeFromParent(currentNode);
+  guiInstance.getTreeModel().insertNodeInto(currentNode,parentNode,newIndx);
+  TreeNode[] nodes=guiInstance.getTreeModel().getPathToRoot(currentNode);
+  JTree jTree=guiInstance.getMainFrame().getTree();
+  jTree.setSelectionPath(new TreePath(nodes));
+}

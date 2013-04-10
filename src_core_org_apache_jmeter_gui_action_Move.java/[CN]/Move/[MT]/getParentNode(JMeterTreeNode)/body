@@ -1,0 +1,8 @@
+{
+  JMeterTreeNode parentNode=(JMeterTreeNode)currentNode.getParent();
+  TestElement te=currentNode.getTestElement();
+  if (te instanceof TestPlan || te instanceof WorkBench) {
+    parentNode=null;
+  }
+  return parentNode;
+}
