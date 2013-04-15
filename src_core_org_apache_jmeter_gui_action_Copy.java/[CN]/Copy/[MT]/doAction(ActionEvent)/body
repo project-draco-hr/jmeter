@@ -1,6 +1,7 @@
 {
   JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
   JMeterTreeNode[] nodes=treeListener.getSelectedNodes();
+  nodes=filterNodes(nodes);
   nodes=cloneTreeNodes(nodes);
   setCopiedNodes(nodes);
 }
