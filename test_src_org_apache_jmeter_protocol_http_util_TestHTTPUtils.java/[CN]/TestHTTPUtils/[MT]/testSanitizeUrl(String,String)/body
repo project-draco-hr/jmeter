@@ -1,0 +1,5 @@
+{
+  final URL url=new URL(input);
+  final URI uri=new URI(expected);
+  assertEquals(uri,ConversionUtils.sanitizeUrl(url));
+}

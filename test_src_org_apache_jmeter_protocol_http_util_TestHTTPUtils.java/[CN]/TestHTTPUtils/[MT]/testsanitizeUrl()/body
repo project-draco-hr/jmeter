@@ -1,0 +1,4 @@
+{
+  testSanitizeUrl("http://localhost/","http://localhost/");
+  testSanitizeUrl("http://localhost/a/b/c%7Cd","http://localhost/a/b/c|d");
+}
