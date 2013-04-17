@@ -1,0 +1,14 @@
+{
+  @SuppressWarnings("unchecked") List<File> files=(List<File>)tr.getTransferData(DataFlavor.javaFileListFlavor);
+  if (files.isEmpty()) {
+    return false;
+  }
+  File file=files.get(0);
+  if (!file.getName().endsWith(".jmx")) {
+    log.warn("Importing file:" + file.getName() + "from DnD failed because file extension does not end with .jmx");
+    return false;
+  }
+  ActionEvent fakeEvent=new ActionEvent(this,ActionEvent.ACTION_PERFORMED,ActionNames.OPEN);
+  LoadDraggedFile.loadProject(fakeEvent,file);
+  return true;
+}

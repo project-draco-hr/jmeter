@@ -1,0 +1,39 @@
+{
+  if (!support.isDrop()) {
+    return false;
+  }
+  DataFlavor[] flavors=support.getDataFlavors();
+  for (int i=0; i < flavors.length; i++) {
+    if (flavors[i].isFlavorJavaFileListType()) {
+      return true;
+    }
+  }
+  if (!support.isDataFlavorSupported(nodeFlavor)) {
+    return false;
+  }
+  int action=support.getDropAction();
+  if (action != MOVE) {
+    return false;
+  }
+  support.setShowDropLocation(true);
+  JTree.DropLocation dl=(JTree.DropLocation)support.getDropLocation();
+  JTree tree=(JTree)support.getComponent();
+  int dropRow=tree.getRowForPath(dl.getPath());
+  int[] selRows=tree.getSelectionRows();
+  for (int i=0; i < selRows.length; i++) {
+    if (selRows[i] == dropRow) {
+      return false;
+    }
+  }
+  TreePath dest=dl.getPath();
+  JMeterTreeNode target=(JMeterTreeNode)dest.getLastPathComponent();
+  if (target.isRoot()) {
+    return false;
+  }
+  TreePath path=tree.getPathForRow(selRows[0]);
+  JMeterTreeNode draggedNode=(JMeterTreeNode)path.getLastPathComponent();
+  if (draggedNode.getChildCount() > 0 && target.isNodeAncestor(draggedNode)) {
+    return false;
+  }
+  return MenuFactory.canAddTo(target,new JMeterTreeNode[]{draggedNode});
+}

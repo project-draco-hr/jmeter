@@ -1,0 +1,10 @@
+{
+  try {
+    String mimeType=DataFlavor.javaJVMLocalObjectMimeType + ";class=\"" + JMeterTreeNode[].class.getName()+ "\"";
+    nodeFlavor=new DataFlavor(mimeType);
+    jMeterTreeNodeDataFlavors[0]=nodeFlavor;
+  }
+ catch (  ClassNotFoundException e) {
+    LOG.error("Class Not Found",e);
+  }
+}

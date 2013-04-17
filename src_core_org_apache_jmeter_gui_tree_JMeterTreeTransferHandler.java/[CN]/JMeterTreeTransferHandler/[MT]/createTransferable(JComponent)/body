@@ -1,0 +1,9 @@
+{
+  JTree tree=(JTree)c;
+  TreePath[] paths=tree.getSelectionPaths();
+  if (paths != null) {
+    JMeterTreeNode node=(JMeterTreeNode)paths[0].getLastPathComponent();
+    return new NodesTransferable(new JMeterTreeNode[]{node});
+  }
+  return null;
+}

@@ -1,0 +1,52 @@
+{
+  if (!canImport(support)) {
+    return false;
+  }
+  GuiPackage guiInstance=GuiPackage.getInstance();
+  DataFlavor[] flavors=support.getDataFlavors();
+  Transferable t=support.getTransferable();
+  for (int i=0; i < flavors.length; i++) {
+    if (flavors[i].isFlavorJavaFileListType()) {
+      try {
+        return guiInstance.getMainFrame().openJmxFilesFromDragAndDrop(t);
+      }
+ catch (      Exception e) {
+        LOG.error("Drop file failed",e);
+      }
+      return false;
+    }
+  }
+  JMeterTreeNode[] nodes=null;
+  try {
+    nodes=(JMeterTreeNode[])t.getTransferData(nodeFlavor);
+  }
+ catch (  Exception e) {
+    LOG.error("Unsupported Flavor in Transferable",e);
+  }
+  if (nodes == null || nodes.length == 0) {
+    return false;
+  }
+  JTree.DropLocation dl=(JTree.DropLocation)support.getDropLocation();
+  TreePath dest=dl.getPath();
+  JMeterTreeNode target=(JMeterTreeNode)dest.getLastPathComponent();
+  JMeterTreeNode draggedNode=nodes[0];
+  int index=dl.getChildIndex();
+  if (index == -1) {
+    index=target.getChildCount();
+    if (draggedNode.getParent() == target) {
+      index--;
+    }
+  }
+ else   if (draggedNode.getParent() == target) {
+    if (guiInstance.getTreeModel().getIndexOfChild(target,draggedNode) < index) {
+      index--;
+    }
+  }
+  for (int i=0; i < nodes.length; i++) {
+    guiInstance.getTreeModel().removeNodeFromParent(nodes[i]);
+    guiInstance.getTreeModel().insertNodeInto(nodes[i],target,index);
+  }
+  JTree tree=(JTree)support.getComponent();
+  tree.expandPath(new TreePath(target.getPath()));
+  return true;
+}
