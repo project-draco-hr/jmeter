@@ -1,2 +1,9 @@
 {
+  if (this.nodesForRemoval != null && ((action & MOVE) == MOVE)) {
+    GuiPackage guiInstance=GuiPackage.getInstance();
+    for (    JMeterTreeNode jMeterTreeNode : nodesForRemoval) {
+      guiInstance.getTreeModel().removeNodeFromParent(jMeterTreeNode);
+    }
+    nodesForRemoval=null;
+  }
 }

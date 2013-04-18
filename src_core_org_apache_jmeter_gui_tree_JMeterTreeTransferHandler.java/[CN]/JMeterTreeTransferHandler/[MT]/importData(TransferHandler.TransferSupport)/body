@@ -16,35 +16,27 @@
       return false;
     }
   }
-  JMeterTreeNode[] nodes=null;
-  try {
-    nodes=(JMeterTreeNode[])t.getTransferData(nodeFlavor);
-  }
- catch (  Exception e) {
-    LOG.error("Unsupported Flavor in Transferable",e);
-  }
+  JMeterTreeNode[] nodes=getDraggedNodes(t);
   if (nodes == null || nodes.length == 0) {
     return false;
   }
   JTree.DropLocation dl=(JTree.DropLocation)support.getDropLocation();
   TreePath dest=dl.getPath();
   JMeterTreeNode target=(JMeterTreeNode)dest.getLastPathComponent();
-  JMeterTreeNode draggedNode=nodes[0];
+  nodesForRemoval=new ArrayList<JMeterTreeNode>();
   int index=dl.getChildIndex();
-  if (index == -1) {
-    index=target.getChildCount();
-    if (draggedNode.getParent() == target) {
-      index--;
-    }
-  }
- else   if (draggedNode.getParent() == target) {
-    if (guiInstance.getTreeModel().getIndexOfChild(target,draggedNode) < index) {
-      index--;
-    }
-  }
   for (int i=0; i < nodes.length; i++) {
-    guiInstance.getTreeModel().removeNodeFromParent(nodes[i]);
-    guiInstance.getTreeModel().insertNodeInto(nodes[i],target,index);
+    if (index == -1) {
+      index=target.getChildCount();
+    }
+    JMeterTreeNode copy=(JMeterTreeNode)nodes[i].clone();
+    Enumeration<?> enumFrom=nodes[i].children();
+    while (enumFrom.hasMoreElements()) {
+      JMeterTreeNode child=(JMeterTreeNode)enumFrom.nextElement();
+      copy.add(child);
+    }
+    guiInstance.getTreeModel().insertNodeInto(copy,target,index++);
+    nodesForRemoval.add(nodes[i]);
   }
   JTree tree=(JTree)support.getComponent();
   tree.expandPath(new TreePath(target.getPath()));

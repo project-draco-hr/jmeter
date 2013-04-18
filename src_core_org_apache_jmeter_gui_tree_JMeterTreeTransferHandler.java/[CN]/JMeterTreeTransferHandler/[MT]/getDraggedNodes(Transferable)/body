@@ -1,0 +1,10 @@
+{
+  JMeterTreeNode[] nodes=null;
+  try {
+    nodes=(JMeterTreeNode[])t.getTransferData(nodeFlavor);
+  }
+ catch (  Exception e) {
+    LOG.error("Unsupported Flavor in Transferable",e);
+  }
+  return nodes;
+}
