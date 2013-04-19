@@ -31,9 +31,13 @@
     }
     JMeterTreeNode copy=(JMeterTreeNode)nodes[i].clone();
     Enumeration<?> enumFrom=nodes[i].children();
+    List<JMeterTreeNode> tmp=new ArrayList<JMeterTreeNode>();
     while (enumFrom.hasMoreElements()) {
       JMeterTreeNode child=(JMeterTreeNode)enumFrom.nextElement();
-      copy.add(child);
+      tmp.add(child);
+    }
+    for (    JMeterTreeNode jMeterTreeNode : tmp) {
+      copy.add(jMeterTreeNode);
     }
     guiInstance.getTreeModel().insertNodeInto(copy,target,index++);
     nodesForRemoval.add(nodes[i]);
