@@ -1,5 +1,6 @@
 {
   super.clearGui();
+  GuiUtils.stopTableEditing(stringTable);
   tableModel.clearData();
   responseStringButton.setSelected(true);
   urlButton.setSelected(false);

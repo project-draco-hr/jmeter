@@ -1,4 +1,5 @@
 {
+  GuiUtils.stopTableEditing(stringTable);
   configureTestElement(el);
   if (el instanceof ResponseAssertion) {
     ResponseAssertion ra=(ResponseAssertion)el;
