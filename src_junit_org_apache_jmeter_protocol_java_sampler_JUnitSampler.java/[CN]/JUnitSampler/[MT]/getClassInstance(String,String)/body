@@ -49,13 +49,13 @@
         }
       }
  catch (      InvocationTargetException e) {
-        log.error("Error instanciating class:" + theclazz + ":"+ e.getMessage(),e);
+        log.error("Error instantiating class:" + theclazz + ":"+ e.getMessage(),e);
       }
 catch (      InstantiationException e) {
-        log.error("Error instanciating class:" + theclazz + ":"+ e.getMessage(),e);
+        log.error("Error instantiating class:" + theclazz + ":"+ e.getMessage(),e);
       }
 catch (      IllegalAccessException e) {
-        log.error("Error instanciating class:" + theclazz + ":"+ e.getMessage(),e);
+        log.error("Error instantiating class:" + theclazz + ":"+ e.getMessage(),e);
       }
     }
   }
