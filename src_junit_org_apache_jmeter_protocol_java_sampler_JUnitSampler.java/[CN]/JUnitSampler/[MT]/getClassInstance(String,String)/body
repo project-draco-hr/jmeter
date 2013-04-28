@@ -26,7 +26,7 @@
         }
       }
  catch (      NoSuchMethodException e) {
-        log.info("String constructor:: " + e.getMessage());
+        log.info("Trying to find constructor with one String parameter returned error: " + e.getMessage());
       }
       try {
         con=theclazz.getDeclaredConstructor(new Class[0]);
@@ -35,7 +35,7 @@
         }
       }
  catch (      NoSuchMethodException e) {
-        log.info("Empty constructor:: " + e.getMessage());
+        log.info("Trying to find empty constructor returned error: " + e.getMessage());
       }
       try {
         if (strCon != null) {
@@ -44,15 +44,18 @@
  else         if (con != null) {
           testclass=con.newInstance(params);
         }
+ else {
+          log.error("No empty constructor nor string constructor found for class:" + theclazz);
+        }
       }
  catch (      InvocationTargetException e) {
-        log.warn(e.getMessage());
+        log.error("Error instanciating class:" + theclazz + ":"+ e.getMessage(),e);
       }
 catch (      InstantiationException e) {
-        log.info(e.getMessage());
+        log.error("Error instanciating class:" + theclazz + ":"+ e.getMessage(),e);
       }
 catch (      IllegalAccessException e) {
-        log.info(e.getMessage());
+        log.error("Error instanciating class:" + theclazz + ":"+ e.getMessage(),e);
       }
     }
   }

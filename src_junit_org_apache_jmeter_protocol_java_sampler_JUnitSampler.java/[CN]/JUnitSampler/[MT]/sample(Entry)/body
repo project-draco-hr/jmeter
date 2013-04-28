@@ -95,7 +95,7 @@ catch (    IllegalArgumentException e) {
   }
  else {
     sresult.setSuccessful(false);
-    sresult.setResponseMessage("failed to create an instance of the class");
+    sresult.setResponseMessage("Failed to create an instance of the class:" + getClassname() + ", reasons may be missing both empty constructor and one "+ "String constructor or failure to instanciate constructor,"+ " check warning messages in jmeter log file");
     sresult.setResponseCode(getErrorCode());
   }
   return sresult;
