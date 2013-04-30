@@ -2,7 +2,7 @@
   super(MongoSourceElement.class);
   createPropertyGroup("mongodb",new String[]{"connection","source"});
   createPropertyGroup("options",new String[]{"autoConnectRetry","connectionsPerHost","connectTimeout","maxAutoConnectRetryTime","maxWaitTime","socketTimeout","socketKeepAlive","threadsAllowedToBlockForConnectionMultiplier"});
-  createPropertyGroup("writeConcern",new String[]{"fsync","safe","waitForJournaling","writeOperationNumberOfServers","writeOperationTimeout"});
+  createPropertyGroup("writeConcern",new String[]{"safe","fsync","waitForJournaling","writeOperationNumberOfServers","writeOperationTimeout","continueOnInsertError"});
   PropertyDescriptor p=property("connection");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
@@ -48,6 +48,9 @@
   p=property("writeOperationTimeout");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"0");
+  p=property("continueOnInsertError");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,Boolean.FALSE);
   if (log.isDebugEnabled()) {
     for (    PropertyDescriptor pd : getPropertyDescriptors()) {
       log.debug(pd.getName());

@@ -2,20 +2,14 @@
   if (log.isDebugEnabled()) {
     log.debug(getTitle() + " testStarted");
   }
-  MongoOptions mongoOptions=new MongoOptions();
-  mongoOptions.autoConnectRetry=Boolean.parseBoolean(getAutoConnectRetry());
-  mongoOptions.connectTimeout=Integer.parseInt(getConnectTimeout());
-  mongoOptions.connectionsPerHost=Integer.parseInt(getConnectionsPerHost());
-  mongoOptions.fsync=Boolean.parseBoolean(getFsync());
-  mongoOptions.j=Boolean.parseBoolean(getWaitForJournaling());
-  mongoOptions.maxAutoConnectRetryTime=Integer.parseInt(getMaxAutoConnectRetryTime());
-  mongoOptions.maxWaitTime=Integer.parseInt(getMaxWaitTime());
-  mongoOptions.safe=Boolean.parseBoolean(getSafe());
-  mongoOptions.socketKeepAlive=Boolean.parseBoolean(getSocketKeepAlive());
-  mongoOptions.socketTimeout=Integer.parseInt(getSocketTimeout());
-  mongoOptions.threadsAllowedToBlockForConnectionMultiplier=Integer.parseInt(getThreadsAllowedToBlockForConnectionMultiplier());
-  mongoOptions.w=Integer.parseInt(getWriteOperationNumberOfServers());
-  mongoOptions.wtimeout=Integer.parseInt(getWriteOperationTimeout());
+  MongoClientOptions.Builder builder=MongoClientOptions.builder().autoConnectRetry(getAutoConnectRetry()).connectTimeout(getConnectTimeout()).connectionsPerHost(getConnectionsPerHost()).maxAutoConnectRetryTime(getMaxAutoConnectRetryTime()).maxWaitTime(getMaxWaitTime()).socketKeepAlive(getSocketKeepAlive()).socketTimeout(getSocketTimeout()).threadsAllowedToBlockForConnectionMultiplier(getThreadsAllowedToBlockForConnectionMultiplier());
+  if (getSafe()) {
+    builder.writeConcern(WriteConcern.SAFE);
+  }
+ else {
+    builder.writeConcern(new WriteConcern(getWriteOperationNumberOfServers(),getWriteOperationTimeout(),getFsync(),getWaitForJournaling(),getContinueOnInsertError()));
+  }
+  MongoClientOptions mongoOptions=builder.build();
   if (log.isDebugEnabled()) {
     log.debug("options : " + mongoOptions.toString());
   }
