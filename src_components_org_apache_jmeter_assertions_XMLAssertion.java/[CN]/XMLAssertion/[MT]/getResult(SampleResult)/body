@@ -1,11 +1,10 @@
 {
   AssertionResult result=new AssertionResult(getName());
-  byte[] responseData=response.getResponseData();
-  if (responseData.length == 0) {
+  String resultData=response.getResponseDataAsString();
+  if (resultData.length() == 0) {
     return result.setResultForNull();
   }
   result.setFailure(false);
-  String resultData=new String(getResultBody(responseData));
   SAXBuilder builder=myBuilder.get();
   try {
     builder.build(new StringReader(resultData));
