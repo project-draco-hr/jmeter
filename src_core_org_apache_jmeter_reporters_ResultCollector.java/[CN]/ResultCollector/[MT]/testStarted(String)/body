@@ -1,4 +1,5 @@
 {
+  Runtime.getRuntime().addShutdownHook(shutdownHook);
 synchronized (LOCK) {
     instanceCount++;
     try {

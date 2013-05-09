@@ -1,0 +1,10 @@
+{
+  for (  Map.Entry<String,ResultCollector.FileEntry> me : files.entrySet()) {
+    log.debug("Flushing: " + me.getKey());
+    FileEntry fe=me.getValue();
+    fe.pw.flush();
+    if (fe.pw.checkError()) {
+      log.warn("Problem detected during use of " + me.getKey());
+    }
+  }
+}

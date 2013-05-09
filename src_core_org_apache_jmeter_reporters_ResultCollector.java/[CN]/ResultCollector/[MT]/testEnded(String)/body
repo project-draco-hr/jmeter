@@ -3,6 +3,7 @@ synchronized (LOCK) {
     instanceCount--;
     if (instanceCount <= 0) {
       finalizeFileOutput();
+      Runtime.getRuntime().removeShutdownHook(shutdownHook);
       inTest=false;
     }
   }

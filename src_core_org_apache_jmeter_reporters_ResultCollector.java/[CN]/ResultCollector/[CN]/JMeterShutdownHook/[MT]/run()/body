@@ -1,0 +1,10 @@
+{
+  log.warn("Shutdown hook started");
+  if (collector.inTest) {
+synchronized (LOCK) {
+      collector.flushFileOutput();
+    }
+    log.warn("Shutdown hook flushed file");
+  }
+  log.warn("Shutdown hook ended");
+}
