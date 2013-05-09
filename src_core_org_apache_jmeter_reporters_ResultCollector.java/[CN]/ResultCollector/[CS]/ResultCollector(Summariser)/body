@@ -3,5 +3,4 @@
   setSuccessOnlyLogging(false);
   setProperty(new ObjectProperty(SAVE_CONFIG,new SampleSaveConfiguration()));
   summariser=summer;
-  this.shutdownHook=new Thread(new JMeterShutdownHook(this));
 }

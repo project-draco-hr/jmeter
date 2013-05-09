@@ -1,0 +1,7 @@
+{
+  log.warn("Shutdown hook started");
+synchronized (LOCK) {
+    flushFileOutput();
+  }
+  log.warn("Shutdown hook ended");
+}

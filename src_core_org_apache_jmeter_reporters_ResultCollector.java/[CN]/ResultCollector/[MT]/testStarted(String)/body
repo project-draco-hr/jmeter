@@ -1,6 +1,9 @@
 {
-  Runtime.getRuntime().addShutdownHook(shutdownHook);
 synchronized (LOCK) {
+    if (instanceCount == 0) {
+      shutdownHook=new Thread(new ShutdownHook());
+      Runtime.getRuntime().addShutdownHook(shutdownHook);
+    }
     instanceCount++;
     try {
       initializeFileOutput();
