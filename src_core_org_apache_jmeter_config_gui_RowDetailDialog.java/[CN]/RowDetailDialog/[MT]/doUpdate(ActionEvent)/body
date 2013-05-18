@@ -1,4 +1,6 @@
 {
   tableModel.setValueAt(nameTF.getText(),selectedRow,0);
   tableModel.setValueAt(valueTA.getText(),selectedRow,1);
+  closeButton.setText(JMeterUtils.getResString("close"));
+  textChanged=false;
 }

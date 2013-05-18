@@ -1,0 +1,6 @@
+{
+  if (!textChanged) {
+    closeButton.setText(JMeterUtils.getResString("cancel"));
+    textChanged=true;
+  }
+}
