@@ -1,0 +1,11 @@
+{
+  String decodeString="";
+  try {
+    String encodedString=((CompoundVariable)values[0]).execute();
+    decodeString=URLEncoder.encode(encodedString,CHARSET_ENCODING);
+  }
+ catch (  UnsupportedEncodingException uee) {
+    return null;
+  }
+  return decodeString;
+}
