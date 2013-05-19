@@ -25,7 +25,7 @@
   FileOutputStream pw=null;
   try {
     pw=new FileOutputStream(out);
-    pw.write(s.getResponseData());
+    JOrphanUtils.write(s.getResponseData(),pw);
   }
  catch (  FileNotFoundException e1) {
     log.error("Error creating sample file for " + s.getSampleLabel(),e1);
