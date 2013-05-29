@@ -3,5 +3,5 @@
   TestAction ta=(TestAction)element;
   ta.setAction(action);
   ta.setTarget(target);
-  ta.setDuration(durationString);
+  ta.setDuration(durationField.getText());
 }

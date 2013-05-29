@@ -81,14 +81,6 @@
   HorizontalPanel durationPanel=new HorizontalPanel();
   durationField=new JTextField(15);
   durationField.setText("");
-  durationField.addFocusListener(new FocusListener(){
-    @Override public void focusLost(    FocusEvent e){
-      durationString=durationField.getText();
-    }
-    @Override public void focusGained(    FocusEvent e){
-    }
-  }
-);
   durationPanel.add(new JLabel(durationLabel));
   durationPanel.add(durationField);
   add(durationPanel);
