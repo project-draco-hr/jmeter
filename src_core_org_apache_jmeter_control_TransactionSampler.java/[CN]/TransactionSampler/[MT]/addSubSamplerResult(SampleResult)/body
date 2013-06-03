@@ -1,5 +1,8 @@
 {
   calls++;
+  if (noFailingSamples == 0) {
+    transactionSampleResult.setResponseCode(res.getResponseCode());
+  }
   if (!res.isSuccessful()) {
     transactionSampleResult.setSuccessful(false);
     noFailingSamples++;
