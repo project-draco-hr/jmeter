@@ -5,7 +5,8 @@
   if ((schema == null) || (schema.length() == 0)) {
     schema=HTTPConstants.PROTOCOL_HTTP;
   }
-  if (HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(schema)) {
+  final boolean isHTTPS=HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(schema);
+  if (isHTTPS) {
     SSLManager.getInstance();
   }
   Protocol protocol=Protocol.getProtocol(schema);
@@ -39,6 +40,13 @@
   }
   Map<HostConfiguration,HttpClient> map=httpClients.get();
   HttpClient httpClient=map.get(hc);
+  if (httpClient != null && resetSSLContext && isHTTPS) {
+    httpClient.getHttpConnectionManager().closeIdleConnections(-1000);
+    httpClient=null;
+    JsseSSLManager sslMgr=(JsseSSLManager)SSLManager.getInstance();
+    sslMgr.resetContext();
+    resetSSLContext=false;
+  }
   if (httpClient == null) {
     httpClient=new HttpClient(new SimpleHttpConnectionManager());
     httpClient.getParams().setParameter(HttpMethodParams.RETRY_HANDLER,new DefaultHttpMethodRetryHandler(RETRY_COUNT,false));

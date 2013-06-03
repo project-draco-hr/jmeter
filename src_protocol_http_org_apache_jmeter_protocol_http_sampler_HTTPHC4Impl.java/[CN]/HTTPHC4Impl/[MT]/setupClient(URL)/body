@@ -7,6 +7,15 @@
   boolean useDynamicProxy=isDynamicProxy(proxyHost,proxyPort);
   HttpClientKey key=new HttpClientKey(url,(useStaticProxy || useDynamicProxy),useDynamicProxy ? proxyHost : PROXY_HOST,useDynamicProxy ? proxyPort : PROXY_PORT,useDynamicProxy ? getProxyUser() : PROXY_USER,useDynamicProxy ? getProxyPass() : PROXY_PASS);
   HttpClient httpClient=map.get(key);
+  if (httpClient != null && resetSSLContext && HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(url.getProtocol())) {
+    ((AbstractHttpClient)httpClient).clearRequestInterceptors();
+    ((AbstractHttpClient)httpClient).clearResponseInterceptors();
+    httpClient.getConnectionManager().shutdown();
+    httpClient=null;
+    JsseSSLManager sslMgr=(JsseSSLManager)SSLManager.getInstance();
+    sslMgr.resetContext();
+    resetSSLContext=false;
+  }
   if (httpClient == null) {
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
     httpClient=new DefaultHttpClient(clientParams){
