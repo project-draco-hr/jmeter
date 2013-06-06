@@ -1,8 +1,11 @@
 {
-  if (impl != null) {
-    return impl.sample(u,method,areFollowingRedirect,depth);
+  if (impl == null) {
+    try {
+      impl=HTTPSamplerFactory.getImplementation(getImplementation(),this);
+    }
+ catch (    Exception ex) {
+      return errorResult(ex,new HTTPSampleResult());
+    }
   }
- else {
-    return errorResult(initException,new HTTPSampleResult());
-  }
+  return impl.sample(u,method,areFollowingRedirect,depth);
 }
