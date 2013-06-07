@@ -1,6 +1,9 @@
 {
   if (impl == null) {
     try {
+      if (initException != null) {
+        return errorResult(initException,new HTTPSampleResult());
+      }
       impl=HTTPSamplerFactory.getImplementation(getImplementation(),this);
     }
  catch (    Exception ex) {
