@@ -1,9 +1,7 @@
 {
   int timeout=0;
   try {
-    if (StringUtils.isNumeric(queryTimeout)) {
-      timeout=Integer.parseInt(queryTimeout);
-    }
+    timeout=Integer.parseInt(queryTimeout);
   }
  catch (  NumberFormatException nfe) {
     timeout=0;
