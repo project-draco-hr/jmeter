@@ -12,7 +12,14 @@
  else {
       pstmt=conn.prepareStatement(getQuery());
     }
+    pstmt.setQueryTimeout(getIntegerQueryTimeout());
     preparedStatementMap.put(getQuery(),pstmt);
+  }
+ else {
+    int timeoutInS=getIntegerQueryTimeout();
+    if (pstmt.getQueryTimeout() != timeoutInS) {
+      pstmt.setQueryTimeout(getIntegerQueryTimeout());
+    }
   }
   pstmt.clearParameters();
   return pstmt;

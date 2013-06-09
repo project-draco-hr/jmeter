@@ -5,6 +5,7 @@
     String _queryType=getQueryType();
     if (SELECT.equals(_queryType)) {
       stmt=conn.createStatement();
+      stmt.setQueryTimeout(getIntegerQueryTimeout());
       ResultSet rs=null;
       try {
         rs=stmt.executeQuery(getQuery());
@@ -23,6 +24,7 @@
     }
  else     if (UPDATE.equals(_queryType)) {
       stmt=conn.createStatement();
+      stmt.setQueryTimeout(getIntegerQueryTimeout());
       stmt.executeUpdate(getQuery());
       int updateCount=stmt.getUpdateCount();
       String results=updateCount + " updates";
