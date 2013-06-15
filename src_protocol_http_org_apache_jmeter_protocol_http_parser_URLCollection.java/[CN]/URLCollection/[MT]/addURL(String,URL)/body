@@ -8,7 +8,10 @@
     b=this.add(ConversionUtils.makeRelativeURL(baseUrl,url));
   }
  catch (  MalformedURLException mfue) {
-    b=this.add(url);
+    if (log.isDebugEnabled()) {
+      log.debug("Error occured building relative url for:" + url + ", message:"+ mfue.getMessage());
+    }
+    return false;
   }
   return b;
 }
