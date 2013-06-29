@@ -1,0 +1,27 @@
+{
+  Map<String,Template> templates=new HashMap<String,Template>();
+  String[] templateFiles=TEMPLATE_FILES.split(",");
+  for (int i=0; i < templateFiles.length; i++) {
+    if (!StringUtils.isEmpty(templateFiles[i])) {
+      InputStream inputStream=null;
+      File f=new File(JMeterUtils.getJMeterHome(),templateFiles[i]);
+      try {
+        if (f.exists() && f.canRead()) {
+          log.info("Reading templates from:" + f.getAbsolutePath());
+          inputStream=new BufferedInputStream(new FileInputStream(f));
+          templates.putAll(((Templates)xstream.fromXML(inputStream)).templates);
+        }
+ else {
+          log.warn("Ignoring template file:'" + f.getAbsolutePath() + "' as it does not exist or is not readable");
+        }
+      }
+ catch (      Exception ex) {
+        log.warn("Ignoring template file:'" + f.getAbsolutePath() + "', an error occured parsing the file",ex);
+      }
+ finally {
+        JOrphanUtils.closeQuietly(inputStream);
+      }
+    }
+  }
+  return templates;
+}
