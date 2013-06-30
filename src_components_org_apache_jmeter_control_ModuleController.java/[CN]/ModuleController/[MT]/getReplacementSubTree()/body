@@ -1,12 +1,13 @@
 {
   HashTree tree=new ListedHashTree();
   if (selectedNode != null) {
-    if (!selectedNode.isEnabled()) {
-      selectedNode=cloneTreeNode(selectedNode);
-      selectedNode.setEnabled(true);
+    JMeterTreeNode nodeToReplace=selectedNode;
+    if (!nodeToReplace.isEnabled()) {
+      nodeToReplace=cloneTreeNode(selectedNode);
+      nodeToReplace.setEnabled(true);
     }
-    HashTree subtree=tree.add(selectedNode);
-    createSubTree(subtree,selectedNode);
+    HashTree subtree=tree.add(nodeToReplace);
+    createSubTree(subtree,nodeToReplace);
   }
   return tree;
 }
