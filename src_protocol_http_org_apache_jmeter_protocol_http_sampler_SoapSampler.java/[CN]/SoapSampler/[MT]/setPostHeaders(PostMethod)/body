@@ -7,6 +7,7 @@
       Header hd=mngr.getHeader(idx);
       if (HTTPConstants.HEADER_CONTENT_LENGTH.equalsIgnoreCase(hd.getName())) {
         length=Integer.parseInt(hd.getValue());
+        break;
       }
     }
   }
