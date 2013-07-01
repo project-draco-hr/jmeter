@@ -1,4 +1,29 @@
 {
+  this.menuCreators=new ArrayList<MenuCreator>();
+  try {
+    List<String> listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{MenuCreator.class});
+    for (    String strClassName : listClasses) {
+      try {
+        if (log.isDebugEnabled()) {
+          log.debug("Loading menu creator class: " + strClassName);
+        }
+        Class<?> commandClass=Class.forName(strClassName);
+        if (!Modifier.isAbstract(commandClass.getModifiers())) {
+          if (log.isDebugEnabled()) {
+            log.debug("Instantiating: " + commandClass.getName());
+          }
+          MenuCreator creator=(MenuCreator)commandClass.newInstance();
+          menuCreators.add(creator);
+        }
+      }
+ catch (      Exception e) {
+        log.error("Exception registering " + MenuCreator.class.getName() + " with implementation:"+ strClassName,e);
+      }
+    }
+  }
+ catch (  IOException e) {
+    log.error("Exception finding implementations of " + MenuCreator.class,e);
+  }
   makeFileMenu();
   makeEditMenu();
   makeRunMenu();
@@ -10,5 +35,12 @@
   this.add(searchMenu);
   this.add(runMenu);
   this.add(optionsMenu);
+  for (Iterator iterator=menuCreators.iterator(); iterator.hasNext(); ) {
+    MenuCreator menuCreator=(MenuCreator)iterator.next();
+    JMenu[] topLevelMenus=menuCreator.getTopLevelMenus();
+    for (    JMenu topLevelMenu : topLevelMenus) {
+      this.add(topLevelMenu);
+    }
+  }
   this.add(helpMenu);
 }

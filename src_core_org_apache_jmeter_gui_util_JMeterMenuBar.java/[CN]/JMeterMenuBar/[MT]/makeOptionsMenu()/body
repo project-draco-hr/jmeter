@@ -30,4 +30,5 @@
   optionsMenu.add(collapse);
   JMenuItem expand=makeMenuItemRes("menu_expand_all",ActionNames.EXPAND_ALL,KeyStrokes.EXPAND_ALL);
   optionsMenu.add(expand);
+  addPluginsMenuItems(optionsMenu,menuCreators,MENU_LOCATION.OPTIONS);
 }

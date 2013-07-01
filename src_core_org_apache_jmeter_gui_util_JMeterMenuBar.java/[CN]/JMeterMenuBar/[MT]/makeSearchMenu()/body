@@ -2,8 +2,9 @@
   searchMenu=makeMenuRes("menu_search");
   JMenuItem search=makeMenuItemRes("menu_search",'F',ActionNames.SEARCH_TREE,KeyStrokes.SEARCH_TREE);
   searchMenu.add(search);
-  searchMenu.setEnabled(true);
+  search.setEnabled(true);
   JMenuItem searchReset=makeMenuItemRes("menu_search_reset",ActionNames.SEARCH_RESET);
   searchMenu.add(searchReset);
-  searchMenu.setEnabled(true);
+  searchReset.setEnabled(true);
+  addPluginsMenuItems(searchMenu,menuCreators,MENU_LOCATION.SEARCH);
 }

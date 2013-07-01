@@ -30,5 +30,6 @@
   for (  JComponent jc : file_load_recent_files) {
     fileMenu.add(jc);
   }
+  addPluginsMenuItems(fileMenu,menuCreators,MENU_LOCATION.FILE);
   fileMenu.add(file_exit);
 }

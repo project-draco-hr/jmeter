@@ -2,6 +2,11 @@
   Component component=menu.getComponent();
   final String compName=component.getName();
   if (compName != null) {
+    for (    MenuCreator menuCreator : menuCreators) {
+      if (menuCreator.localeChanged(menu)) {
+        return;
+      }
+    }
     if (component instanceof JMenu) {
       final JMenu jMenu=(JMenu)component;
       if (isResource(jMenu.getActionCommand())) {

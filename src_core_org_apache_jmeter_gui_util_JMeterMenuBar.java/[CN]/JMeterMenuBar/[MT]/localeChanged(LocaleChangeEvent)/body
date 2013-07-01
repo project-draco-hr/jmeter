@@ -5,4 +5,7 @@
   updateMenuElement(runMenu);
   updateMenuElement(optionsMenu);
   updateMenuElement(helpMenu);
+  for (  MenuCreator creator : menuCreators) {
+    creator.localeChanged();
+  }
 }

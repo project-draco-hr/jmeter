@@ -1,4 +1,5 @@
 {
   editMenu=makeMenuRes("edit",'E');
   editMenu.setEnabled(false);
+  addPluginsMenuItems(editMenu,menuCreators,MENU_LOCATION.EDIT);
 }

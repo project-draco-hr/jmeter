@@ -12,6 +12,7 @@
   helpMenu.add(setDebug);
   helpMenu.add(resetDebug);
   helpMenu.add(heapDump);
+  addPluginsMenuItems(helpMenu,menuCreators,MENU_LOCATION.HELP);
   helpMenu.addSeparator();
   helpMenu.add(help_about);
 }

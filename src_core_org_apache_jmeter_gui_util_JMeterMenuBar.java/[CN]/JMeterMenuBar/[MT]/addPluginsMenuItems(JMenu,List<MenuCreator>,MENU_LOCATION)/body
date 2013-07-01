@@ -1,0 +1,13 @@
+{
+  boolean addedSeparator=false;
+  for (  MenuCreator menuCreator : menuCreators) {
+    JMenuItem[] menuItems=menuCreator.getMenuItemsAtLocation(location);
+    for (    JMenuItem jMenuItem : menuItems) {
+      if (!addedSeparator) {
+        menu.addSeparator();
+        addedSeparator=true;
+      }
+      menu.add(jMenuItem);
+    }
+  }
+}
