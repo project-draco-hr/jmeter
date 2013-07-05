@@ -1,0 +1,13 @@
+{
+  Object source=evt.getSource();
+  if (source instanceof ComboStringEditor && source != null) {
+    ComboStringEditor cse=(ComboStringEditor)source;
+    String lang=cse.getAsText().toLowerCase();
+    if (languageProperties.containsKey(lang)) {
+      textUI.setSyntaxEditingStyle(languageProperties.getProperty(lang));
+    }
+ else {
+      textUI.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
+    }
+  }
+}
