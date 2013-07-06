@@ -33,7 +33,9 @@ catch (      Throwable e) {
           throw (Error)e;
         }
         if (e instanceof RuntimeException) {
-          throw (RuntimeException)e;
+          if (!(e instanceof HeadlessException)) {
+            throw (RuntimeException)e;
+          }
         }
         continue;
       }
