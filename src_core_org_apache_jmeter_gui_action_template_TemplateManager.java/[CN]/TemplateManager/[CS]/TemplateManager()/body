@@ -1,8 +1,3 @@
 {
-  try {
-    templates=readTemplates();
-  }
- catch (  IOException e) {
-    log.error("Error loading templates from files referenced in templates.files property:" + TEMPLATE_FILES,e);
-  }
+  templates=readTemplates();
 }
