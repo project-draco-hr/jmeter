@@ -1,5 +1,6 @@
 {
   super();
+  mTextArea=new JTextArea();
   mLabel=new JLabel(pLabel);
   init();
   if (docModel != null) {
