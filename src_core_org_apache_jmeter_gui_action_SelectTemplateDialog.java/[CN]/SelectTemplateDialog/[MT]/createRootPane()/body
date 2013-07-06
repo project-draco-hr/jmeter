@@ -13,8 +13,8 @@
     /** 
  */
     private static final long serialVersionUID=-3661361497864527363L;
-    @Override public void actionPerformed(    ActionEvent actionEvent){
-      doOpen(actionEvent);
+    @Override public void actionPerformed(    final ActionEvent actionEvent){
+      checkDirtyAndLoad(actionEvent);
     }
   }
 ;

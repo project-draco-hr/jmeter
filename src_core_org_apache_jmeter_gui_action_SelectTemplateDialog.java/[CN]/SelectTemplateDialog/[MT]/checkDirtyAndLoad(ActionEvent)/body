@@ -1,0 +1,15 @@
+{
+  ActionRouter.getInstance().doActionNow(new ActionEvent(actionEvent.getSource(),actionEvent.getID(),ActionNames.CHECK_DIRTY));
+  GuiPackage guiPackage=GuiPackage.getInstance();
+  if (guiPackage.isDirty()) {
+    int response=JOptionPane.showConfirmDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("cancel_new_from_template"),JMeterUtils.getResString("template_load?"),JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+    if (response == JOptionPane.YES_OPTION) {
+      ActionRouter.getInstance().doActionNow(new ActionEvent(actionEvent.getSource(),actionEvent.getID(),ActionNames.SAVE));
+    }
+    if (response == JOptionPane.CLOSED_OPTION || response == JOptionPane.CANCEL_OPTION) {
+      return;
+    }
+  }
+  ActionRouter.getInstance().doActionNow(new ActionEvent(actionEvent.getSource(),actionEvent.getID(),ActionNames.STOP_THREAD));
+  doOpen(actionEvent);
+}
