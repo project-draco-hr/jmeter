@@ -1,5 +1,7 @@
 {
   super(source);
+  textUI=new RSyntaxTextArea(20,20);
+  scroller=new RTextScrollPane(textUI);
   init();
   setValue(source);
 }
