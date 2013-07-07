@@ -1,10 +1,4 @@
 {
   textUI.discardAllEdits();
-  textUI.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
-  textUI.setCodeFoldingEnabled(true);
-  textUI.setAntiAliasingEnabled(true);
   textUI.addFocusListener(this);
-  textUI.setWrapStyleWord(true);
-  textUI.setLineWrap(true);
-  scroller.setFoldIndicatorEnabled(true);
 }

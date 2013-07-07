@@ -7,7 +7,7 @@
       textUI.setSyntaxEditingStyle(languageProperties.getProperty(lang));
     }
  else {
-      textUI.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
+      textUI.setSyntaxEditingStyle(null);
     }
   }
 }

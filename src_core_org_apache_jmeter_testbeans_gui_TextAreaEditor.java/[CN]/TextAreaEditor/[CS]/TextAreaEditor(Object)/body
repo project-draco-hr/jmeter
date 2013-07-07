@@ -1,7 +1,7 @@
 {
   super(source);
-  textUI=new RSyntaxTextArea(20,20);
-  scroller=new RTextScrollPane(textUI);
+  textUI=new JSyntaxTextArea(20,20);
+  scroller=new JTextScrollPane(textUI,true);
   init();
   setValue(source);
 }

@@ -1,15 +1,10 @@
 {
-  scriptField=new RSyntaxTextArea(20,20);
-  scriptField.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
-  scriptField.setCodeFoldingEnabled(true);
-  scriptField.setAntiAliasingEnabled(true);
-  scriptField.setLineWrap(true);
-  scriptField.setWrapStyleWord(true);
+  scriptField=new JSyntaxTextArea(20,20);
   JLabel label=new JLabel(JMeterUtils.getResString("bsh_assertion_script"));
   label.setLabelFor(scriptField);
   JPanel panel=new JPanel(new BorderLayout());
   panel.add(label,BorderLayout.NORTH);
-  panel.add(new RTextScrollPane(scriptField),BorderLayout.CENTER);
+  panel.add(new JTextScrollPane(scriptField),BorderLayout.CENTER);
   JTextArea explain=new JTextArea(JMeterUtils.getResString("bsh_assertion_script_variables"));
   explain.setLineWrap(true);
   explain.setEditable(false);
