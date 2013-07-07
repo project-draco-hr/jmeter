@@ -2,8 +2,7 @@
   if (res != null) {
     StringBuilder display=new StringBuilder();
     AssertionResult assertionResults[]=res.getAssertionResults();
-    for (int i=0; i < assertionResults.length; i++) {
-      AssertionResult item=assertionResults[i];
+    for (    AssertionResult item : assertionResults) {
       if (item.isFailure() || item.isError()) {
         display.append("\n\t");
         display.append(item.getName() != null ? item.getName() + " : " : "");

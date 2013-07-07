@@ -5,8 +5,8 @@
   GuiPackage guiInstance=GuiPackage.getInstance();
   DataFlavor[] flavors=support.getDataFlavors();
   Transferable t=support.getTransferable();
-  for (int i=0; i < flavors.length; i++) {
-    if (flavors[i].isFlavorJavaFileListType()) {
+  for (  DataFlavor flavor : flavors) {
+    if (flavor.isFlavorJavaFileListType()) {
       try {
         return guiInstance.getMainFrame().openJmxFilesFromDragAndDrop(t);
       }
@@ -25,12 +25,12 @@
   JMeterTreeNode target=(JMeterTreeNode)dest.getLastPathComponent();
   nodesForRemoval=new ArrayList<JMeterTreeNode>();
   int index=dl.getChildIndex();
-  for (int i=0; i < nodes.length; i++) {
+  for (  JMeterTreeNode node : nodes) {
     if (index == -1) {
       index=target.getChildCount();
     }
-    JMeterTreeNode copy=(JMeterTreeNode)nodes[i].clone();
-    Enumeration<?> enumFrom=nodes[i].children();
+    JMeterTreeNode copy=(JMeterTreeNode)node.clone();
+    Enumeration<?> enumFrom=node.children();
     List<JMeterTreeNode> tmp=new ArrayList<JMeterTreeNode>();
     while (enumFrom.hasMoreElements()) {
       JMeterTreeNode child=(JMeterTreeNode)enumFrom.nextElement();
@@ -40,7 +40,7 @@
       copy.add(jMeterTreeNode);
     }
     guiInstance.getTreeModel().insertNodeInto(copy,target,index++);
-    nodesForRemoval.add(nodes[i]);
+    nodesForRemoval.add(node);
   }
   JTree tree=(JTree)support.getComponent();
   tree.expandPath(new TreePath(target.getPath()));

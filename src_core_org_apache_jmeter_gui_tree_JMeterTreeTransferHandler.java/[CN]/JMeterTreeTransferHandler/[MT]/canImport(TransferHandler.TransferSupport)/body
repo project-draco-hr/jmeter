@@ -3,8 +3,8 @@
     return false;
   }
   DataFlavor[] flavors=support.getDataFlavors();
-  for (int i=0; i < flavors.length; i++) {
-    if (flavors[i].isFlavorJavaFileListType()) {
+  for (  DataFlavor flavor : flavors) {
+    if (flavor.isFlavorJavaFileListType()) {
       return true;
     }
   }
@@ -26,11 +26,11 @@
   if (nodes == null || nodes.length == 0) {
     return false;
   }
-  for (int i=0; i < nodes.length; i++) {
-    if (target == nodes[i]) {
+  for (  JMeterTreeNode node : nodes) {
+    if (target == node) {
       return false;
     }
-    if (nodes[i].getChildCount() > 0 && target.isNodeAncestor(nodes[i])) {
+    if (node.getChildCount() > 0 && target.isNodeAncestor(node)) {
       return false;
     }
   }
