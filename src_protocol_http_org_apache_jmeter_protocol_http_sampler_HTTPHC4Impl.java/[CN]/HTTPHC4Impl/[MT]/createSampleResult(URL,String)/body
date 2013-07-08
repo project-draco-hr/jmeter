@@ -1,0 +1,8 @@
+{
+  HTTPSampleResult res=new HTTPSampleResult();
+  res.setMonitor(isMonitor());
+  res.setSampleLabel(url.toString());
+  res.setHTTPMethod(method);
+  res.setURL(url);
+  return res;
+}

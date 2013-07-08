@@ -1,0 +1,10 @@
+{
+  if (method.equals(HTTPConstants.POST)) {
+    String postBody=sendPostData((HttpPost)httpRequest);
+    result.setQueryString(postBody);
+  }
+ else   if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH)) {
+    String entityBody=sendEntityData((HttpEntityEnclosingRequestBase)httpRequest);
+    result.setQueryString(entityBody);
+  }
+}

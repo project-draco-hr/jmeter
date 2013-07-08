@@ -1,9 +1,5 @@
 {
-  HTTPSampleResult res=new HTTPSampleResult();
-  res.setMonitor(isMonitor());
-  res.setSampleLabel(url.toString());
-  res.setHTTPMethod(method);
-  res.setURL(url);
+  HTTPSampleResult res=createSampleResult(url,method);
   HttpClient httpClient=setupClient(url);
   HttpRequestBase httpRequest=null;
   try {
@@ -56,14 +52,7 @@
   }
   try {
     currentRequest=httpRequest;
-    if (method.equals(HTTPConstants.POST)) {
-      String postBody=sendPostData((HttpPost)httpRequest);
-      res.setQueryString(postBody);
-    }
- else     if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH)) {
-      String entityBody=sendEntityData((HttpEntityEnclosingRequestBase)httpRequest);
-      res.setQueryString(entityBody);
-    }
+    handleMethod(method,res,httpRequest,localContext);
     HttpResponse httpResponse=httpClient.execute(httpRequest,localContext);
     res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
     Header contentType=httpResponse.getLastHeader(HTTPConstants.HEADER_CONTENT_TYPE);
