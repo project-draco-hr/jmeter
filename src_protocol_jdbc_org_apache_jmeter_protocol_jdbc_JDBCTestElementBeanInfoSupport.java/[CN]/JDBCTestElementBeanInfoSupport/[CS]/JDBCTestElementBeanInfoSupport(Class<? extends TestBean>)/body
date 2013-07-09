@@ -25,8 +25,8 @@
   p.setValue(DEFAULT,AbstractJDBCTestElement.SELECT);
   p.setValue(NOT_OTHER,Boolean.TRUE);
   p.setValue(TAGS,new String[]{AbstractJDBCTestElement.SELECT,AbstractJDBCTestElement.UPDATE,AbstractJDBCTestElement.CALLABLE,AbstractJDBCTestElement.PREPARED_SELECT,AbstractJDBCTestElement.PREPARED_UPDATE,AbstractJDBCTestElement.COMMIT,AbstractJDBCTestElement.ROLLBACK,AbstractJDBCTestElement.AUTOCOMMIT_FALSE,AbstractJDBCTestElement.AUTOCOMMIT_TRUE});
-  p=property("query");
+  p=property("query",TypeEditor.TextAreaEditor);
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
-  p.setPropertyEditorClass(TextAreaEditor.class);
+  p.setValue(TEXT_LANGUAGE,"sql");
 }

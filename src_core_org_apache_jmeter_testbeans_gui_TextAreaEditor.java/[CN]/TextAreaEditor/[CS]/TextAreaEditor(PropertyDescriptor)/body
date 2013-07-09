@@ -1,5 +1,6 @@
 {
   textUI=new JSyntaxTextArea(20,20);
+  textUI.setLanguage((String)descriptor.getValue(GenericTestBeanCustomizer.TEXT_LANGUAGE));
   scroller=new JTextScrollPane(textUI,true);
   init();
 }
