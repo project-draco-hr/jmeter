@@ -2,4 +2,5 @@
   String selectedTemplate=templateList.getText();
   Template template=TemplateManager.getInstance().getTemplateByName(selectedTemplate);
   helpDoc.setText(template.getDescription());
+  applyTemplateButton.setText(template.isTestPlan() ? JMeterUtils.getResString("template_create_from") : JMeterUtils.getResString("template_merge_from"));
 }
