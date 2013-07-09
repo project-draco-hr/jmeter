@@ -1,17 +1,11 @@
 {
   initializeTemplateList();
   this.getContentPane().setLayout(new BorderLayout(10,10));
-  JPanel comboPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
-  comboPanel.add(templateList);
-  this.getContentPane().add(comboPanel,BorderLayout.NORTH);
+  this.getContentPane().add(templateList,BorderLayout.NORTH);
   helpDoc.setContentType("text/html");
   helpDoc.setEditable(false);
   fillDescription();
-  JPanel jPanel=new JPanel(new GridLayout(1,1));
-  scroller.setPreferredSize(new Dimension(SCROLLER_WIDTH,SCROLLER_HEIGHT));
-  jPanel.setPreferredSize(new Dimension(SCROLLER_WIDTH + 10,SCROLLER_HEIGHT + 10));
-  jPanel.add(scroller);
-  this.getContentPane().add(jPanel,BorderLayout.CENTER);
+  this.getContentPane().add(scroller,BorderLayout.CENTER);
   JPanel buttonsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   createFromTemplateButton=new JButton(JMeterUtils.getResString("template_create_from"));
   createFromTemplateButton.addActionListener(this);
@@ -21,5 +15,6 @@
   buttonsPanel.add(cancelButton);
   this.getContentPane().add(buttonsPanel,BorderLayout.SOUTH);
   this.pack();
-  ComponentUtil.centerComponentInWindow(this);
+  this.setMinimumSize(new Dimension(MINIMAL_BOX_WIDTH,MINIMAL_BOX_HEIGHT));
+  ComponentUtil.centerComponentInWindow(this,50);
 }
