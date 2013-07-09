@@ -1,0 +1,42 @@
+{
+  ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.STOP_THREAD));
+  final GuiPackage guiPackage=GuiPackage.getInstance();
+  if (f != null) {
+    InputStream reader=null;
+    try {
+      if (merging) {
+        log.info("Merging file: " + f);
+      }
+ else {
+        log.info("Loading file: " + f);
+        if (setDetails) {
+          FileServer.getFileServer().setBaseForScript(f);
+        }
+      }
+      reader=new FileInputStream(f);
+      final HashTree tree=SaveService.loadTree(reader);
+      final boolean isTestPlan=insertLoadedTree(e.getID(),tree,merging);
+      if (!merging && isTestPlan && setDetails) {
+        guiPackage.setTestPlanFile(f.getAbsolutePath());
+      }
+    }
+ catch (    NoClassDefFoundError ex) {
+      reportError("Missing jar file",ex,true);
+    }
+catch (    ConversionException ex) {
+      log.warn("Could not convert file " + ex);
+      JMeterUtils.reportErrorToUser(SaveService.CEtoString(ex));
+    }
+catch (    IOException ex) {
+      reportError("Error reading file: ",ex,false);
+    }
+catch (    Exception ex) {
+      reportError("Unexpected error",ex,true);
+    }
+ finally {
+      JOrphanUtils.closeQuietly(reader);
+    }
+    guiPackage.updateCurrentGui();
+    guiPackage.getMainFrame().repaint();
+  }
+}
