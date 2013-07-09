@@ -3,11 +3,6 @@
   if (source instanceof ComboStringEditor) {
     ComboStringEditor cse=(ComboStringEditor)source;
     String lang=cse.getAsText().toLowerCase();
-    if (languageProperties.containsKey(lang)) {
-      textUI.setSyntaxEditingStyle(languageProperties.getProperty(lang));
-    }
- else {
-      textUI.setSyntaxEditingStyle(null);
-    }
+    textUI.setLanguage(lang);
   }
 }

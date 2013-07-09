@@ -1,4 +1,5 @@
 {
+  final String style=languageProperties.getProperty(language);
   if (style == null) {
     super.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
   }
