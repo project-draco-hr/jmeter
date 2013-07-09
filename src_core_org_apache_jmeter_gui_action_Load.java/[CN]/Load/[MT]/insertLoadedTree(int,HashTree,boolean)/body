@@ -1,6 +1,6 @@
 {
   if (tree == null) {
-    throw new Exception("Error in TestPlan - see log file");
+    throw new IllegalUserActionException("Empty TestPlan - see log file");
   }
   boolean isTestPlan=tree.getArray()[0] instanceof TestPlan;
   GuiPackage guiInstance=GuiPackage.getInstance();
