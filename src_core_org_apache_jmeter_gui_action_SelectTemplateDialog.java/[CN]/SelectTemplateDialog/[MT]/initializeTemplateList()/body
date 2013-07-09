@@ -1,12 +1,5 @@
 {
-  Set<String> templatesAsSet=TemplateManager.getInstance().getTemplateNames();
-  String[] templateNames=templatesAsSet.toArray(new String[templatesAsSet.size()]);
-  Arrays.sort(templateNames,new Comparator<String>(){
-    @Override public int compare(    String o1,    String o2){
-      return o1.compareToIgnoreCase(o2);
-    }
-  }
-);
+  String[] templateNames=TemplateManager.getInstance().getTemplateNames();
   templateList=new JLabeledChoice(JMeterUtils.getResString("template_choose"),templateNames);
   templateList.addChangeListener(this);
 }

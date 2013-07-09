@@ -1,5 +1,5 @@
 {
-  Map<String,Template> templates=new HashMap<String,Template>();
+  Map<String,Template> templates=new LinkedHashMap<String,Template>();
   String[] templateFiles=TEMPLATE_FILES.split(",");
   for (  String templateFile : templateFiles) {
     if (!StringUtils.isEmpty(templateFile)) {
