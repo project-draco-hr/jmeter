@@ -1,5 +1,5 @@
 {
-  initializeTemplateList();
+  templateList.addChangeListener(this);
   this.getContentPane().setLayout(new BorderLayout(10,10));
   this.getContentPane().add(templateList,BorderLayout.NORTH);
   helpDoc.setContentType("text/html");
@@ -11,7 +11,6 @@
   buttonsPanel.add(applyTemplateButton);
   buttonsPanel.add(cancelButton);
   this.getContentPane().add(buttonsPanel,BorderLayout.SOUTH);
-  populateTemplatePage();
   this.pack();
   this.setMinimumSize(new Dimension(MINIMAL_BOX_WIDTH,MINIMAL_BOX_HEIGHT));
   ComponentUtil.centerComponentInWindow(this,50);
