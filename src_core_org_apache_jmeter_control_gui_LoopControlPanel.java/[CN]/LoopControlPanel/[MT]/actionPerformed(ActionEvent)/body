@@ -5,6 +5,6 @@
   }
  else {
     loops.setEnabled(true);
-    new FocusRequester(loops);
+    FocusRequester.requestFocus(loops);
   }
 }

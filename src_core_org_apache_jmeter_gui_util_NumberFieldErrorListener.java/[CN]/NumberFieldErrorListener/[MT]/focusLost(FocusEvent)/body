@@ -12,6 +12,6 @@
   }
  catch (  NumberFormatException nfe) {
     JOptionPane.showMessageDialog(source,JMeterUtils.getResString("you_must_enter_a_valid_number"),JMeterUtils.getResString("invalid_data"),JOptionPane.WARNING_MESSAGE);
-    new FocusRequester(source);
+    FocusRequester.requestFocus(source);
   }
 }
