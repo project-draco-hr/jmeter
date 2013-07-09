@@ -1,0 +1,13 @@
+{
+  if (stackTrace) {
+    log.warn(reason,ex);
+  }
+ else {
+    log.warn(reason + ex);
+  }
+  String msg=ex.getMessage();
+  if (msg == null) {
+    msg="Unexpected error - see log for details";
+  }
+  JMeterUtils.reportErrorToUser(msg);
+}

@@ -2,15 +2,15 @@
   if (tree == null) {
     throw new IllegalUserActionException("Empty TestPlan - see log file");
   }
-  boolean isTestPlan=tree.getArray()[0] instanceof TestPlan;
-  GuiPackage guiInstance=GuiPackage.getInstance();
+  final boolean isTestPlan=tree.getArray()[0] instanceof TestPlan;
+  final GuiPackage guiInstance=GuiPackage.getInstance();
   if (isTestPlan && !merging) {
     guiInstance.clearTestPlan((TestElement)tree.getArray()[0]);
   }
   if (merging) {
-    TestElement te=(TestElement)tree.getArray()[0];
+    final TestElement te=(TestElement)tree.getArray()[0];
     if (!(te instanceof WorkBench || te instanceof TestPlan)) {
-      boolean ok=MenuFactory.canAddTo(guiInstance.getCurrentNode(),te);
+      final boolean ok=MenuFactory.canAddTo(guiInstance.getCurrentNode(),te);
       if (!ok) {
         String name=te.getName();
         String className=te.getClass().getName();
@@ -19,19 +19,13 @@
       }
     }
   }
-  HashTree newTree=guiInstance.addSubTree(tree);
+  final HashTree newTree=guiInstance.addSubTree(tree);
   guiInstance.updateCurrentGui();
   guiInstance.getMainFrame().getTree().setSelectionPath(new TreePath(((JMeterTreeNode)newTree.getArray()[0]).getPath()));
-  tree=guiInstance.getCurrentSubTree();
-  ActionEvent actionEvent=null;
-  if (!merging) {
-    actionEvent=new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,ActionNames.SUB_TREE_LOADED);
-  }
- else {
-    actionEvent=new ActionEvent(tree.get(tree.getArray()[tree.size() - 1]),id,ActionNames.SUB_TREE_MERGED);
-  }
+  final HashTree subTree=guiInstance.getCurrentSubTree();
+  ActionEvent actionEvent=new ActionEvent(subTree.get(subTree.getArray()[subTree.size() - 1]),id,merging ? ActionNames.SUB_TREE_MERGED : ActionNames.SUB_TREE_LOADED);
   ActionRouter.getInstance().actionPerformed(actionEvent);
-  JTree jTree=guiInstance.getMainFrame().getTree();
+  final JTree jTree=guiInstance.getMainFrame().getTree();
   if (expandTree && !merging) {
     for (int i=0; i < jTree.getRowCount(); i++) {
       jTree.expandRow(i);
@@ -40,8 +34,7 @@
  else {
     jTree.expandRow(0);
   }
-  TreePath path=jTree.getPathForRow(1);
-  jTree.setSelectionPath(path);
+  jTree.setSelectionPath(jTree.getPathForRow(1));
   FocusRequester.requestFocus(jTree);
   return isTestPlan;
 }
