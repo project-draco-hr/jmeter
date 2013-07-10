@@ -1,4 +1,5 @@
 {
+  templateList.setValues(TemplateManager.getInstance().getTemplateNames());
   templateList.addChangeListener(this);
   reloadTemplateButton.addActionListener(this);
   this.getContentPane().setLayout(new BorderLayout(10,10));
@@ -17,4 +18,5 @@
   this.pack();
   this.setMinimumSize(new Dimension(MINIMAL_BOX_WIDTH,MINIMAL_BOX_HEIGHT));
   ComponentUtil.centerComponentInWindow(this,50);
+  populateTemplatePage();
 }
