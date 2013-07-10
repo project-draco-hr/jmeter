@@ -1,13 +1,13 @@
 {
-  Map<String,Template> templates=new LinkedHashMap<String,Template>();
-  String[] templateFiles=TEMPLATE_FILES.split(",");
+  final Map<String,Template> temps=new LinkedHashMap<String,Template>();
+  final String[] templateFiles=TEMPLATE_FILES.split(",");
   for (  String templateFile : templateFiles) {
     if (!StringUtils.isEmpty(templateFile)) {
-      File f=new File(JMeterUtils.getJMeterHome(),templateFile);
+      final File f=new File(JMeterUtils.getJMeterHome(),templateFile);
       try {
         if (f.exists() && f.canRead()) {
           log.info("Reading templates from:" + f.getAbsolutePath());
-          templates.putAll(((Templates)xstream.fromXML(f)).templates);
+          temps.putAll(((Templates)xstream.fromXML(f)).templates);
         }
  else {
           log.warn("Ignoring template file:'" + f.getAbsolutePath() + "' as it does not exist or is not readable");
@@ -18,5 +18,5 @@
       }
     }
   }
-  return templates;
+  return temps;
 }
