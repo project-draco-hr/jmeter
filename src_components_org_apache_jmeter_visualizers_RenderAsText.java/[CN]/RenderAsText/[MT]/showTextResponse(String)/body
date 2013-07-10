@@ -3,4 +3,6 @@
   results.setText(response == null ? "" : response);
   results.setCaretPosition(0);
   resultsScrollPane.setViewportView(results);
+  resultsScrollPane.setPreferredSize(resultsScrollPane.getMinimumSize());
+  results.revalidate();
 }
