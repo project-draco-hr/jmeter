@@ -4,6 +4,7 @@
   this.getContentPane().add(templateList,BorderLayout.NORTH);
   helpDoc.setContentType("text/html");
   helpDoc.setEditable(false);
+  helpDoc.addHyperlinkListener(this);
   this.getContentPane().add(scroller,BorderLayout.CENTER);
   JPanel buttonsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   applyTemplateButton.addActionListener(this);
