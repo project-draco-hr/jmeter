@@ -1,7 +1,13 @@
 {
-  if (e.getSource() == cancelButton) {
+  final Object source=e.getSource();
+  if (source == cancelButton) {
     this.setVisible(false);
     return;
   }
-  checkDirtyAndLoad(e);
+ else   if (source == applyTemplateButton) {
+    checkDirtyAndLoad(e);
+  }
+ else   if (source == reloadTemplateButton) {
+    templateList.setValues(TemplateManager.getInstance().reset().getTemplateNames());
+  }
 }

@@ -1,7 +1,6 @@
 {
   if (visible) {
-    String[] templateNames=TemplateManager.getInstance().reset().getTemplateNames();
-    templateList.setValues(templateNames);
+    templateList.setValues(TemplateManager.getInstance().getTemplateNames());
     populateTemplatePage();
   }
   super.setVisible(visible);

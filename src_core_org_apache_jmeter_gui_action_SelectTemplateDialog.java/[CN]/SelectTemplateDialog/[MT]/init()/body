@@ -1,5 +1,6 @@
 {
   templateList.addChangeListener(this);
+  reloadTemplateButton.addActionListener(this);
   this.getContentPane().setLayout(new BorderLayout(10,10));
   this.getContentPane().add(templateList,BorderLayout.NORTH);
   helpDoc.setContentType("text/html");
@@ -9,6 +10,7 @@
   JPanel buttonsPanel=new JPanel(new FlowLayout(FlowLayout.CENTER));
   applyTemplateButton.addActionListener(this);
   cancelButton.addActionListener(this);
+  buttonsPanel.add(reloadTemplateButton);
   buttonsPanel.add(applyTemplateButton);
   buttonsPanel.add(cancelButton);
   this.getContentPane().add(buttonsPanel,BorderLayout.SOUTH);
