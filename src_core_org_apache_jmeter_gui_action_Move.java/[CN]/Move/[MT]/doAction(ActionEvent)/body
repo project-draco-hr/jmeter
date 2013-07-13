@@ -31,13 +31,6 @@
       if (after != null && canAddTo(after,currentNode)) {
         moveAndSelectNode(currentNode,after,0);
       }
- else {
-        JMeterTreeNode parentParentNode=getParentNode(parentNode);
-        after=(JMeterTreeNode)parentParentNode.getChildAfter(parentNode);
-        if (after != null && canAddTo(parentParentNode,currentNode)) {
-          moveAndSelectNode(currentNode,parentParentNode,parentParentNode.getIndex(after));
-        }
-      }
     }
   }
   GuiPackage.getInstance().getMainFrame().repaint();
