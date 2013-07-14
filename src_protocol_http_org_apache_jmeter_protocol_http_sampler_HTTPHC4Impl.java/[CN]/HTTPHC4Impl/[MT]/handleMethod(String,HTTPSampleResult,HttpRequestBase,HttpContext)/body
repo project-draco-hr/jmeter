@@ -3,7 +3,7 @@
     String postBody=sendPostData((HttpPost)httpRequest);
     result.setQueryString(postBody);
   }
- else   if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH)) {
+ else   if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH) || method.equals(HTTPConstants.DELETE)) {
     String entityBody=sendEntityData((HttpEntityEnclosingRequestBase)httpRequest);
     result.setQueryString(entityBody);
   }
