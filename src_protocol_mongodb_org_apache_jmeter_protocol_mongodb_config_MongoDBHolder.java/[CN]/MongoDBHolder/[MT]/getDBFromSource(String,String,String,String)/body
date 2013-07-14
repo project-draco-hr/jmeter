@@ -1,0 +1,4 @@
+{
+  MongoDB mongodb=(MongoDB)JMeterContextService.getContext().getVariables().getObject(varName);
+  return mongodb.getDB(dbName,login,password);
+}
