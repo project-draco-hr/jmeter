@@ -1,0 +1,21 @@
+{
+  System.out.println();
+  final Properties buildProp=new Properties();
+  final FileInputStream bp=new FileInputStream(getFileFromHome("build.properties"));
+  buildProp.load(bp);
+  bp.close();
+  for (  Entry<Object,Object> entry : buildProp.entrySet()) {
+    final String key=(String)entry.getKey();
+    if (key.endsWith(".version")) {
+      final String value=(String)entry.getValue();
+      final String jarprop=key.replace(".version","");
+      final String old=versions.put(jarprop,value);
+      propNames.add(jarprop);
+      if (old != null) {
+        fail("Already have entry for " + key);
+      }
+    }
+  }
+  propNames.remove("velocity");
+  propNames.remove("commons-lang");
+}

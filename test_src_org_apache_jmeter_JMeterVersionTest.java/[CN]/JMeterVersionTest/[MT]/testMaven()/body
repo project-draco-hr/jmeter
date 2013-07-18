@@ -1,0 +1,26 @@
+{
+  final BufferedReader maven=new BufferedReader(new FileReader(getFileFromHome("res/maven/ApacheJMeter_parent.pom")));
+  final Pattern p=Pattern.compile("\\s+<([^\\.]+)\\.version>([^<]+)<.*");
+  String line;
+  while ((line=maven.readLine()) != null) {
+    final Matcher m=p.matcher(line);
+    if (m.matches()) {
+      String jar=m.group(1);
+      String version=m.group(2);
+      String expected=versions.get(jar);
+      propNames.remove(jar);
+      if (expected == null) {
+        fail("Versions list does not contain: " + jar);
+      }
+ else {
+        if (!version.equals(expected)) {
+          assertEquals(jar,expected,version);
+        }
+      }
+    }
+  }
+  maven.close();
+  if (propNames.size() > 0) {
+    fail("Should have no names left: " + Arrays.toString(propNames.toArray()));
+  }
+}

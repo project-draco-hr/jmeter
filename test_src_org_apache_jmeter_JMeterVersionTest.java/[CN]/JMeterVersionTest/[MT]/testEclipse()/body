@@ -1,0 +1,38 @@
+{
+  final BufferedReader eclipse=new BufferedReader(new FileReader(getFileFromHome("eclipse.classpath")));
+  final Pattern p=Pattern.compile("\\s+<classpathentry kind=\"lib\" path=\"lib/(?:api/)?(.+)-([^-]+)\\.jar\"/>");
+  String line;
+  while ((line=eclipse.readLine()) != null) {
+    final Matcher m=p.matcher(line);
+    if (m.matches()) {
+      String jar=m.group(1);
+      String version=m.group(2);
+      if (jar.endsWith("-jdk15on")) {
+        jar=jar.replace("-jdk15on","");
+      }
+ else       if (jar.equals("commons-jexl") && version.startsWith("2")) {
+        jar="commons-jexl2";
+      }
+ else {
+        String tmp=JAR_TO_BUILD_PROP.get(jar);
+        if (tmp != null) {
+          jar=tmp;
+        }
+      }
+      final String expected=versions.get(jar);
+      propNames.remove(jar);
+      if (expected == null) {
+        fail("Versions list does not contain: " + jar);
+      }
+ else {
+        if (!version.equals(expected)) {
+          assertEquals(jar,expected,version);
+        }
+      }
+    }
+  }
+  eclipse.close();
+  if (propNames.size() > 0) {
+    fail("Should have no names left: " + Arrays.toString(propNames.toArray()));
+  }
+}
