@@ -9,7 +9,7 @@
   }
   try {
     pauseThread=Thread.currentThread();
-    Thread.sleep(milis);
+    TimeUnit.MILLISECONDS.sleep(milis);
   }
  catch (  InterruptedException e) {
   }
