@@ -6,7 +6,7 @@
   }
   if (sum > 0) {
     try {
-      Thread.sleep(sum);
+      TimeUnit.MILLISECONDS.sleep(sum);
     }
  catch (    InterruptedException e) {
       log.warn("The delay timer was interrupted - probably did not wait as long as intended.");

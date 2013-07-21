@@ -4,7 +4,7 @@
     Thread daemon=new Thread(){
       @Override public void run(){
         try {
-          Thread.sleep(REMAIN_THREAD_PAUSE);
+          TimeUnit.MILLISECONDS.sleep(REMAIN_THREAD_PAUSE);
         }
  catch (        InterruptedException ignored) {
         }

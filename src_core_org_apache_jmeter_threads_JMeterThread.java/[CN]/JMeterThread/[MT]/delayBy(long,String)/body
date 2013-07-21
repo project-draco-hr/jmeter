@@ -10,7 +10,7 @@
         pause=togo;
       }
       try {
-        Thread.sleep(pause);
+        TimeUnit.MILLISECONDS.sleep(pause);
       }
  catch (      InterruptedException e) {
         if (running) {

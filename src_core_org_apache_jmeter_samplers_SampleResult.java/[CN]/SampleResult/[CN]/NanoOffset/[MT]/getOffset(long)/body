@@ -1,6 +1,6 @@
 {
   try {
-    Thread.sleep(wait);
+    TimeUnit.MILLISECONDS.sleep(wait);
     long clock=System.currentTimeMillis();
     long nano=SampleResult.sampleNsClockInMs();
     nanoOffset=clock - nano;
