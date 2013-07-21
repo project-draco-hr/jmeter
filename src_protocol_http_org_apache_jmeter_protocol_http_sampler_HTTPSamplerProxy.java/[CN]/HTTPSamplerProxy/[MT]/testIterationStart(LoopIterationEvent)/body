@@ -1,14 +1,3 @@
 {
-  if (impl == null) {
-    try {
-      impl=HTTPSamplerFactory.getImplementation(getImplementation(),this);
-      initException=null;
-    }
- catch (    Exception ex) {
-      initException=ex;
-    }
-  }
-  if (impl != null) {
-    impl.testIterationStart(event);
-  }
+  notifyFirstSampleAfterLoopRestart=true;
 }
