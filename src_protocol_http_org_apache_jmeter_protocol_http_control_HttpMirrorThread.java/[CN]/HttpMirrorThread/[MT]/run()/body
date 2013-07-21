@@ -54,7 +54,7 @@
     }
     String sleepHeaderValue=getRequestHeaderValue(headerString,"X-Sleep");
     if (sleepHeaderValue != null) {
-      Thread.sleep(Integer.parseInt(sleepHeaderValue));
+      TimeUnit.MILLISECONDS.sleep(Integer.parseInt(sleepHeaderValue));
     }
     String transferEncodingHeaderValue=getRequestHeaderValue(headerString,"Transfer-Encoding");
     if (transferEncodingHeaderValue != null) {
