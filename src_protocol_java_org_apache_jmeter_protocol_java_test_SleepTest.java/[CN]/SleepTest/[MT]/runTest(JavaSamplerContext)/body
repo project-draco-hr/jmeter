@@ -8,7 +8,7 @@
       sleep=sleepTime + (start % sleepMask);
     }
     results.setSampleLabel("Sleep Test: time = " + sleep);
-    Thread.sleep(sleep);
+    TimeUnit.MILLISECONDS.sleep(sleep);
     results.setSuccessful(true);
   }
  catch (  InterruptedException e) {

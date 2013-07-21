@@ -19,7 +19,7 @@
   }
   try {
     if (sleep > 0) {
-      Thread.sleep(sleep);
+      TimeUnit.MILLISECONDS.sleep(sleep);
     }
     results.setSuccessful(success);
   }
