@@ -1,6 +1,6 @@
 {
   try {
-    Thread.sleep(100);
+    TimeUnit.MILLISECONDS.sleep(100);
     assertEquals("one","one");
   }
  catch (  InterruptedException e) {
