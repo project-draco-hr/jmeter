@@ -33,7 +33,7 @@
       chartProperties.setTitleFont(new ChartFont(titleFont,new Color(0)));
     }
     try {
-      double numInterval=_height / 50;
+      double numInterval=_height / 50d;
       double incrYAxis=max / numInterval;
       double incrTopValue=_incrScaleYAxis;
       if (_incrScaleYAxis == 0) {
@@ -43,7 +43,7 @@
         incrTopValue=1.0d;
       }
       yaxis.setUserDefinedScale(0,incrTopValue);
-      yaxis.setNumItems(new Double(max / incrTopValue).intValue() + 1);
+      yaxis.setNumItems((int)(max / incrTopValue) + 1);
       yaxis.setShowGridLines(1);
     }
  catch (    PropertyException e) {
