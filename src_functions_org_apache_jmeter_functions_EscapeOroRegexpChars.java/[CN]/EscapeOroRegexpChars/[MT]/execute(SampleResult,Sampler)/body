@@ -1,5 +1,5 @@
 {
-  String valueToEscape=values[0].execute().trim();
+  String valueToEscape=values[0].execute();
   String varName="";
   if (values.length >= PARAM_NAME) {
     varName=values[PARAM_NAME - 1].execute().trim();
