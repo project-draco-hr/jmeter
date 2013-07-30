@@ -53,7 +53,7 @@
   try {
     currentRequest=httpRequest;
     handleMethod(method,res,httpRequest,localContext);
-    HttpResponse httpResponse=httpClient.execute(httpRequest,localContext);
+    HttpResponse httpResponse=executeRequest(httpClient,httpRequest,localContext,url);
     res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
     Header contentType=httpResponse.getLastHeader(HTTPConstants.HEADER_CONTENT_TYPE);
     if (contentType != null) {

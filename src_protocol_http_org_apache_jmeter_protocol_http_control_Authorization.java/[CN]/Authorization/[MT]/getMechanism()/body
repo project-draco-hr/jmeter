@@ -1,0 +1,3 @@
+{
+  return Mechanism.valueOf(getPropertyAsString(MECHANISM,Mechanism.BASIC_DIGEST.name()));
+}

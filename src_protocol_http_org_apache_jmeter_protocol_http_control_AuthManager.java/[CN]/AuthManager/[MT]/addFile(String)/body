@@ -26,7 +26,11 @@
           domain=st.nextToken();
           realm=st.nextToken();
         }
-        Authorization auth=new Authorization(url,user,pass,domain,realm);
+        Mechanism mechanism=Mechanism.BASIC_DIGEST;
+        if (st.hasMoreTokens()) {
+          mechanism=Mechanism.valueOf(st.nextToken());
+        }
+        Authorization auth=new Authorization(url,user,pass,domain,realm,mechanism);
         getAuthObjects().addItem(auth);
       }
  catch (      NoSuchElementException e) {
@@ -36,7 +40,7 @@
     }
   }
   finally {
-    IOUtils.closeQuietly(reader);
+    JOrphanUtils.closeQuietly(reader);
   }
   if (!ok) {
     JMeterUtils.reportErrorToUser("One or more errors found when reading the Auth file - see the log file");

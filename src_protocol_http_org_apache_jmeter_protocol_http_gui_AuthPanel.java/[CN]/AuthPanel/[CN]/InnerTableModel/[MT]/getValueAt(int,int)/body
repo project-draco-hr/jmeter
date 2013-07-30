@@ -11,6 +11,8 @@ case AuthManager.COL_DOMAIN:
 return auth.getDomain();
 case AuthManager.COL_REALM:
 return auth.getRealm();
+case AuthManager.COL_MECHANISM:
+return auth.getMechanism();
 default :
 return null;
 }

@@ -5,6 +5,8 @@
   authTable.setPreferredScrollableViewportSize(new Dimension(100,70));
   TableColumn passwordColumn=authTable.getColumnModel().getColumn(AuthManager.COL_PASSWORD);
   passwordColumn.setCellRenderer(new PasswordCellRenderer());
+  TableColumn mechanismColumn=authTable.getColumnModel().getColumn(AuthManager.COL_MECHANISM);
+  mechanismColumn.setCellEditor(new MechanismCellEditor());
   JPanel panel=new JPanel(new BorderLayout(0,5));
   panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("auths_stored")));
   panel.add(new JScrollPane(authTable));

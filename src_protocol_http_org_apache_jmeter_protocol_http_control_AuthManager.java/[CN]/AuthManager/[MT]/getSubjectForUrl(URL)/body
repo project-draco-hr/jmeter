@@ -1,0 +1,7 @@
+{
+  Authorization authorization=getAuthForURL(url);
+  if (authorization != null && Mechanism.KERBEROS.equals(authorization.getMechanism())) {
+    return kerberosManager.getSubjectForUser(authorization.getUser(),authorization.getPass());
+  }
+  return null;
+}

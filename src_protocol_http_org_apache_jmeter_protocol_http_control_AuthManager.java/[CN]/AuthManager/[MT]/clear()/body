@@ -1,4 +1,5 @@
 {
   super.clear();
+  kerberosManager.clearSubjects();
   setProperty(new CollectionProperty(AUTH_LIST,new ArrayList<Object>()));
 }

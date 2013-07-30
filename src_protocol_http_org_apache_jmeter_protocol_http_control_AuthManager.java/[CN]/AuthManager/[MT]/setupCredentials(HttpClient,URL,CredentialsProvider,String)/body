@@ -1,0 +1,18 @@
+{
+  Authorization auth=getAuthForURL(url);
+  if (auth != null) {
+    String username=auth.getUser();
+    String realm=auth.getRealm();
+    String domain=auth.getDomain();
+    if (log.isDebugEnabled()) {
+      log.debug(username + " > D=" + domain+ " R="+ realm+ " M="+ auth.getMechanism());
+    }
+    if (Mechanism.KERBEROS.equals(auth.getMechanism())) {
+      ((AbstractHttpClient)client).getAuthSchemes().register(AuthPolicy.SPNEGO,new SPNegoSchemeFactory(true));
+      credentialsProvider.setCredentials(new AuthScope(null,-1,null),USE_JAAS_CREDENTIALS);
+    }
+ else {
+      credentialsProvider.setCredentials(new AuthScope(url.getHost(),url.getPort(),realm.length() == 0 ? null : realm),new NTCredentials(username,auth.getPass(),localHost,domain));
+    }
+  }
+}

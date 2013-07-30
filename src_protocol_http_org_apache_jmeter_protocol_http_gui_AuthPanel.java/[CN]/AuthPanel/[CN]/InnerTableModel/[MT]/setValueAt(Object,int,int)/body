@@ -17,6 +17,9 @@ break;
 case AuthManager.COL_REALM:
 auth.setRealm((String)value);
 break;
+case AuthManager.COL_MECHANISM:
+auth.setMechanism((Mechanism)value);
+break;
 default :
 break;
 }
