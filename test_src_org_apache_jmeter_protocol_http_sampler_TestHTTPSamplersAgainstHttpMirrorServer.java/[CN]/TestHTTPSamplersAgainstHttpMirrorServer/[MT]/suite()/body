@@ -23,7 +23,7 @@
       httpServer.stopServer();
       httpServer=null;
       if (!temporaryFile.delete()) {
-        fail("Could not delete file:" + temporaryFile.getAbsolutePath());
+        Assert.fail("Could not delete file:" + temporaryFile.getAbsolutePath());
       }
     }
   }
