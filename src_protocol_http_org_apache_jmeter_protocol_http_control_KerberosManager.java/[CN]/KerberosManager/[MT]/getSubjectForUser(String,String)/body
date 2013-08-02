@@ -3,7 +3,7 @@
     @Override public Subject call() throws Exception {
       LoginContext loginCtx;
       try {
-        loginCtx=new LoginContext("Client",new LoginCallbackHandler(username,password));
+        loginCtx=new LoginContext(JAAS_APPLICATION,new LoginCallbackHandler(username,password));
         loginCtx.login();
         return loginCtx.getSubject();
       }
@@ -15,6 +15,9 @@
   }
 ;
   FutureTask<Subject> task=new FutureTask<Subject>(callable);
+  if (log.isDebugEnabled()) {
+    log.debug("Subject cached:" + subjects.keySet() + " before:"+ username);
+  }
   Future<Subject> subjectFuture=subjects.putIfAbsent(username,task);
   if (subjectFuture == null) {
     subjectFuture=task;
