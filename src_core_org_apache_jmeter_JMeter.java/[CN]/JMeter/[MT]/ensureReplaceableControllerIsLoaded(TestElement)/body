@@ -1,0 +1,10 @@
+{
+  ReplaceableController rc;
+  if (item.getClass().getName().equals("org.apache.jmeter.control.ModuleController")) {
+    rc=(ReplaceableController)item;
+  }
+ else {
+    rc=(ReplaceableController)item.clone();
+  }
+  return rc;
+}

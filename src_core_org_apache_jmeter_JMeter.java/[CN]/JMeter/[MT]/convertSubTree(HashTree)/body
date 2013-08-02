@@ -5,13 +5,7 @@
       TestElement item=(TestElement)o;
       if (item.isEnabled()) {
         if (item instanceof ReplaceableController) {
-          ReplaceableController rc;
-          if (item.getClass().getName().equals("org.apache.jmeter.control.ModuleController")) {
-            rc=(ReplaceableController)item;
-          }
- else {
-            rc=(ReplaceableController)item.clone();
-          }
+          ReplaceableController rc=ensureReplaceableControllerIsLoaded(item);
           HashTree subTree=tree.getTree(item);
           if (subTree != null) {
             HashTree replacementTree=rc.getReplacementSubTree();
@@ -20,9 +14,6 @@
               tree.replace(item,rc);
               tree.set(rc,replacementTree);
             }
-          }
- else {
-            convertSubTree(tree.getTree(item));
           }
         }
  else {
@@ -37,7 +28,8 @@
       JMeterTreeNode item=(JMeterTreeNode)o;
       if (item.isEnabled()) {
         if (item.getUserObject() instanceof ReplaceableController) {
-          ReplaceableController rc=(ReplaceableController)item.getTestElement();
+          TestElement controllerAsItem=item.getTestElement();
+          ReplaceableController rc=ensureReplaceableControllerIsLoaded(controllerAsItem);
           HashTree subTree=tree.getTree(item);
           if (subTree != null) {
             HashTree replacementTree=rc.getReplacementSubTree();
