@@ -28,6 +28,9 @@
       swin=new StreamCopier(new FileInputStream(stdin),proc.getOutputStream());
       swin.start();
     }
+ else {
+      proc.getOutputStream().close();
+    }
     int exitVal=proc.waitFor();
     if (outputGobbler != null) {
       outputGobbler.join();
