@@ -1,7 +1,7 @@
 {
   Box hbox=Box.createHorizontalBox();
   hbox.add(Box.createHorizontalGlue());
-  hbox.add(getXPathTextField());
+  hbox.add(new JTextScrollPane(getXPathField()));
   hbox.add(Box.createHorizontalGlue());
   hbox.add(getCheckXPathButton());
   Box vbox=Box.createVerticalBox();
