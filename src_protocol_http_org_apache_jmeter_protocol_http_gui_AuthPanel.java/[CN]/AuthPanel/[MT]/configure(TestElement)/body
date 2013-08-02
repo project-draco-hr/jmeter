@@ -2,6 +2,7 @@
   super.configure(el);
   tableModel.manager.clear();
   tableModel.manager.addTestElement((AuthManager)el.clone());
+  clearEachIteration.setSelected(((AuthManager)el).getClearEachIteration());
   if (tableModel.getRowCount() != 0) {
     deleteButton.setEnabled(true);
     saveButton.setEnabled(true);

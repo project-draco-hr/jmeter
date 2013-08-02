@@ -1,6 +1,15 @@
 {
   setLayout(new BorderLayout());
   setBorder(makeBorder());
-  add(makeTitlePanel(),BorderLayout.NORTH);
+  JPanel northPanel=new JPanel();
+  northPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  northPanel.add(makeTitlePanel());
+  JPanel optionsPane=new JPanel();
+  optionsPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("auth_manager_options")));
+  optionsPane.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  clearEachIteration=new JCheckBox(JMeterUtils.getResString("auth_manager_clear_per_iter"),false);
+  optionsPane.add(clearEachIteration);
+  northPanel.add(optionsPane);
+  add(northPanel,BorderLayout.NORTH);
   add(createAuthTablePanel(),BorderLayout.CENTER);
 }

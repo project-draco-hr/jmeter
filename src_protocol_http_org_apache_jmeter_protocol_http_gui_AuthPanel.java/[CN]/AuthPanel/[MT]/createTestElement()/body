@@ -1,5 +1,6 @@
 {
   AuthManager authMan=tableModel.manager;
   configureTestElement(authMan);
+  authMan.setClearEachIteration(clearEachIteration.isSelected());
   return (TestElement)authMan.clone();
 }
