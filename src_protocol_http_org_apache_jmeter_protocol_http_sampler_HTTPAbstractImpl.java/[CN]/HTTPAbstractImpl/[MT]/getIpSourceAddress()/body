@@ -1,6 +1,17 @@
 {
   final String ipSource=getIpSource();
   if (ipSource.length() > 0) {
+    if (ipSource.startsWith(DEVICE_PREFIX)) {
+      final String device=ipSource.substring(DEVICE_PREFIX.length());
+      NetworkInterface net=NetworkInterface.getByName(device);
+      if (net != null) {
+        List<InterfaceAddress> netAds=net.getInterfaceAddresses();
+        if (netAds.size() > 0) {
+          return netAds.get(0).getAddress();
+        }
+      }
+      return null;
+    }
     return InetAddress.getByName(ipSource);
   }
   return null;
