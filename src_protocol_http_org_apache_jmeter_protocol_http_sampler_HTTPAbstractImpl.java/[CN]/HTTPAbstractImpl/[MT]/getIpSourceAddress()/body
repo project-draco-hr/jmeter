@@ -1,0 +1,7 @@
+{
+  final String ipSource=getIpSource();
+  if (ipSource.length() > 0) {
+    return InetAddress.getByName(ipSource);
+  }
+  return null;
+}

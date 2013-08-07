@@ -1,8 +1,7 @@
 {
   HttpParams requestParams=httpRequest.getParams();
-  final String ipSource=getIpSource();
-  if (ipSource.length() > 0) {
-    InetAddress inetAddr=InetAddress.getByName(ipSource);
+  final InetAddress inetAddr=getIpSourceAddress();
+  if (inetAddr != null) {
     requestParams.setParameter(ConnRoutePNames.LOCAL_ADDRESS,inetAddr);
   }
  else   if (localAddress != null) {
