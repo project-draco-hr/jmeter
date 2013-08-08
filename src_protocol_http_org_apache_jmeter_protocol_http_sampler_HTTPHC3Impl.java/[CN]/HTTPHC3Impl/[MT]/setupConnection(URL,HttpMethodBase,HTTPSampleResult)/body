@@ -14,14 +14,12 @@
   int port=uri.getPort();
   HostConfiguration hc=new HostConfiguration();
   hc.setHost(host,port,protocol);
-  if (localAddress != null) {
-    hc.setLocalAddress(localAddress);
+  final InetAddress inetAddr=getIpSourceAddress();
+  if (inetAddr != null) {
+    hc.setLocalAddress(inetAddr);
   }
  else {
-    final InetAddress inetAddr=getIpSourceAddress();
-    if (inetAddr != null) {
-      hc.setLocalAddress(inetAddr);
-    }
+    hc.setLocalAddress(localAddress);
   }
   final String proxyHost=getProxyHost();
   final int proxyPort=getProxyPortInt();
