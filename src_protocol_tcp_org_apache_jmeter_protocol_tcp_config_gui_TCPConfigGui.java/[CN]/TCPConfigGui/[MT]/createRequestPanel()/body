@@ -1,10 +1,11 @@
 {
   JLabel reqLabel=new JLabel(JMeterUtils.getResString("tcp_request_data"));
-  requestData=new JTextArea(3,0);
-  requestData.setLineWrap(true);
+  requestData=new JSyntaxTextArea(15,80);
+  requestData.setLanguage("text");
   reqLabel.setLabelFor(requestData);
   JPanel reqDataPanel=new JPanel(new BorderLayout(5,0));
+  reqDataPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder()));
   reqDataPanel.add(reqLabel,BorderLayout.WEST);
-  reqDataPanel.add(requestData,BorderLayout.CENTER);
+  reqDataPanel.add(new JTextScrollPane(requestData),BorderLayout.CENTER);
   return reqDataPanel;
 }

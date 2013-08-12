@@ -10,6 +10,7 @@
   mainPanel.add(classname);
   mainPanel.add(serverPanel);
   HorizontalPanel optionsPanel=new HorizontalPanel();
+  optionsPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder()));
   optionsPanel.add(createClosePortPanel());
   optionsPanel.add(createCloseConnectionPanel());
   optionsPanel.add(createNoDelayPanel());
