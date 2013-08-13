@@ -35,7 +35,7 @@
       }
     }
     results.setSamplerData("Working Directory:" + directory.getAbsolutePath() + ", Environment:"+ env+ ", Executing:"+ cmdLine.toString());
-    NativeCommand nativeCommand=new NativeCommand(directory,env,getStdin(),getStdout(),getStderr());
+    SystemCommand nativeCommand=new SystemCommand(directory,env,getStdin(),getStdout(),getStderr());
     String responseData=null;
     try {
       if (log.isDebugEnabled()) {
