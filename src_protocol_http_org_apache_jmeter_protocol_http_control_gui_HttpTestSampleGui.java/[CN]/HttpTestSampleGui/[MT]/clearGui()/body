@@ -10,5 +10,6 @@
   embeddedRE.setText("");
   if (!isAJP) {
     sourceIpAddr.setText("");
+    sourceIpType.setSelectedItem(JMeterUtils.getResString("web_testing_source_ip_hostname"));
   }
 }

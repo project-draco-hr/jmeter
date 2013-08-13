@@ -4,5 +4,11 @@
   add(makeTitlePanel(),BorderLayout.NORTH);
   urlConfigGui=new MultipartUrlConfigGui(true,!isAJP);
   add(urlConfigGui,BorderLayout.CENTER);
-  add(createOptionalTasksPanel(),BorderLayout.SOUTH);
+  JPanel bottomPane=new VerticalPanel();
+  bottomPane.add(createEmbeddedRsrcPanel());
+  JPanel optionAndSourcePane=new HorizontalPanel();
+  optionAndSourcePane.add(createSourceAddrPanel());
+  optionAndSourcePane.add(createOptionalTasksPanel());
+  bottomPane.add(optionAndSourcePane);
+  add(bottomPane,BorderLayout.SOUTH);
 }

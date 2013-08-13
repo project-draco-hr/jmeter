@@ -10,5 +10,6 @@
   embeddedRE.setText(samplerBase.getEmbeddedUrlRE());
   if (!isAJP) {
     sourceIpAddr.setText(samplerBase.getIpSource());
+    sourceIpType.setSelectedIndex(samplerBase.getIpSourceType());
   }
 }
