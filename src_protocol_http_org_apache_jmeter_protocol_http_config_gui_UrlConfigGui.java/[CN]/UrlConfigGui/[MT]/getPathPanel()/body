@@ -4,16 +4,21 @@
   label.setLabelFor(path);
   if (notConfigOnly) {
     followRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects"));
+    followRedirects.setFont(null);
     followRedirects.setSelected(true);
     followRedirects.addChangeListener(this);
     autoRedirects=new JCheckBox(JMeterUtils.getResString("follow_redirects_auto"));
+    autoRedirects.setFont(null);
     autoRedirects.addChangeListener(this);
     autoRedirects.setSelected(false);
     useKeepAlive=new JCheckBox(JMeterUtils.getResString("use_keepalive"));
+    useKeepAlive.setFont(null);
     useKeepAlive.setSelected(true);
     useMultipartForPost=new JCheckBox(JMeterUtils.getResString("use_multipart_for_http_post"));
+    useMultipartForPost.setFont(null);
     useMultipartForPost.setSelected(false);
     useBrowserCompatibleMultipartMode=new JCheckBox(JMeterUtils.getResString("use_multipart_mode_browser"));
+    useBrowserCompatibleMultipartMode.setFont(null);
     useBrowserCompatibleMultipartMode.setSelected(HTTPSamplerBase.BROWSER_COMPATIBLE_MULTIPART_MODE_DEFAULT);
   }
   JPanel pathPanel=new JPanel(new BorderLayout(5,0));
@@ -25,6 +30,7 @@
   panel.add(pathPanel);
   if (notConfigOnly) {
     JPanel optionPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+    optionPanel.setFont(FONT_SMALL);
     optionPanel.add(autoRedirects);
     optionPanel.add(followRedirects);
     optionPanel.add(useKeepAlive);
