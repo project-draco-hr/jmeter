@@ -1,0 +1,8 @@
+{
+  super();
+  this.directory=directory;
+  this.env=env;
+  this.stdin=JOrphanUtils.nullifyIfEmptyTrimmed(stdin);
+  this.stdout=JOrphanUtils.nullifyIfEmptyTrimmed(stdout);
+  this.stderr=JOrphanUtils.nullifyIfEmptyTrimmed(stderr);
+}
