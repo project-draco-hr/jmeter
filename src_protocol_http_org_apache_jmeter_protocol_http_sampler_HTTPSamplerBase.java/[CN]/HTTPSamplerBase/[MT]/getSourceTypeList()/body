@@ -1,8 +1,8 @@
 {
-  ArrayList<String> sourceTypeList=new ArrayList<String>(4);
-  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_hostname"));
-  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_device"));
-  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_device_ipv4"));
-  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_device_ipv6"));
-  return sourceTypeList;
+  final SourceType[] types=SourceType.values();
+  final String[] displayStrings=new String[types.length];
+  for (int i=0; i < types.length; i++) {
+    displayStrings[i]=JMeterUtils.getResString(types[i].propertyName);
+  }
+  return displayStrings;
 }

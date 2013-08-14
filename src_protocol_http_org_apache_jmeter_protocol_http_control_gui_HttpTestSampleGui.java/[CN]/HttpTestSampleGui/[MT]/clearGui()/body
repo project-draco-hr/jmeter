@@ -10,6 +10,6 @@
   embeddedRE.setText("");
   if (!isAJP) {
     sourceIpAddr.setText("");
-    sourceIpType.setSelectedItem(HTTPSamplerBase.getSourceTypeList().get(HTTPSamplerBase.SOURCE_TYPE_IP_HOSTNAME));
+    sourceIpType.setSelectedIndex(HTTPSamplerBase.SourceType.HOSTNAME.ordinal());
   }
 }
