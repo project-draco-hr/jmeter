@@ -2,7 +2,7 @@
   final JPanel sourceAddrPanel=new HorizontalPanel();
   sourceAddrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_testing_source_ip")));
   if (!isAJP) {
-    sourceIpType.setSelectedItem(JMeterUtils.getResString("web_testing_source_ip_hostname"));
+    sourceIpType.setSelectedItem(HTTPSamplerBase.getSourceTypeList().get(HTTPSamplerBase.SOURCE_TYPE_IP_HOSTNAME));
     sourceIpType.setFont(FONT_VERY_SMALL);
     sourceAddrPanel.add(sourceIpType);
     sourceIpAddr=new JTextField();

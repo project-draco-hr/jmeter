@@ -1,0 +1,8 @@
+{
+  ArrayList<String> sourceTypeList=new ArrayList<String>(4);
+  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_hostname"));
+  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_device"));
+  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_device_ipv4"));
+  sourceTypeList.add(JMeterUtils.getResString("web_testing_source_ip_device_ipv6"));
+  return sourceTypeList;
+}

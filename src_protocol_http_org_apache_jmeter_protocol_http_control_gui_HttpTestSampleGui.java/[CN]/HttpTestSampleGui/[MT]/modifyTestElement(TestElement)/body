@@ -11,7 +11,7 @@
   samplerBase.setEmbeddedUrlRE(embeddedRE.getText());
   if (!isAJP) {
     samplerBase.setIpSource(sourceIpAddr.getText());
-    samplerBase.setIpSourceType(HTTPSamplerBase.getSourceTypeMap().get(sourceIpType.getSelectedItem()).intValue());
+    samplerBase.setIpSourceType(HTTPSamplerBase.getSourceTypeList().indexOf(sourceIpType.getSelectedItem()));
   }
   this.configureTestElement(sampler);
 }
