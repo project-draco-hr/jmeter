@@ -1,7 +1,7 @@
 {
-  Map<String,Integer> sourceTypeMap=new HashMap<String,Integer>(4);
-  sourceTypeMap.put(JMeterUtils.getResString("web_testing_source_ip_device"),SOURCE_TYPE_DEVICE);
+  LinkedHashMap<String,Integer> sourceTypeMap=new LinkedHashMap<String,Integer>(4);
   sourceTypeMap.put(JMeterUtils.getResString("web_testing_source_ip_hostname"),SOURCE_TYPE_IP_HOSTNAME);
+  sourceTypeMap.put(JMeterUtils.getResString("web_testing_source_ip_device"),SOURCE_TYPE_DEVICE);
   sourceTypeMap.put(JMeterUtils.getResString("web_testing_source_ip_device_ipv4"),SOURCE_TYPE_DEVICE_IPV4);
   sourceTypeMap.put(JMeterUtils.getResString("web_testing_source_ip_device_ipv6"),SOURCE_TYPE_DEVICE_IPV6);
   return sourceTypeMap;
