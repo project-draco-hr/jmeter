@@ -35,9 +35,8 @@
   checkBoxPanel.add(concurrentDwn);
   checkBoxPanel.add(concurrentPool);
   embeddedRsrcPanel.add(checkBoxPanel);
-  JLabel lblEmbRE=new JLabel(JMeterUtils.getResString("web_testing_embedded_url_pattern"));
-  lblEmbRE.setFont(FONT_SMALL);
-  checkBoxPanel.add(lblEmbRE);
+  labelEmbeddedRE.setFont(FONT_SMALL);
+  checkBoxPanel.add(labelEmbeddedRE);
   embeddedRE=new JTextField(10);
   checkBoxPanel.add(embeddedRE);
   embeddedRsrcPanel.add(checkBoxPanel);

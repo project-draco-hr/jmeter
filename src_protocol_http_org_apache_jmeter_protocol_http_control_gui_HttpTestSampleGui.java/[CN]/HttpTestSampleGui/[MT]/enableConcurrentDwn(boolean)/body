@@ -1,6 +1,8 @@
 {
   if (enable) {
     concurrentDwn.setEnabled(true);
+    labelEmbeddedRE.setEnabled(true);
+    embeddedRE.setEnabled(true);
     if (concurrentDwn.isSelected()) {
       concurrentPool.setEnabled(true);
     }
@@ -8,5 +10,7 @@
  else {
     concurrentDwn.setEnabled(false);
     concurrentPool.setEnabled(false);
+    labelEmbeddedRE.setEnabled(false);
+    embeddedRE.setEnabled(false);
   }
 }
