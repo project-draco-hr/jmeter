@@ -21,10 +21,9 @@
     useBrowserCompatibleMultipartMode.setFont(null);
     useBrowserCompatibleMultipartMode.setSelected(HTTPSamplerBase.BROWSER_COMPATIBLE_MULTIPART_MODE_DEFAULT);
   }
-  JPanel pathPanel=new JPanel(new BorderLayout(5,0));
-  pathPanel.add(label,BorderLayout.WEST);
-  pathPanel.add(path,BorderLayout.CENTER);
-  pathPanel.setMinimumSize(pathPanel.getPreferredSize());
+  JPanel pathPanel=new HorizontalPanel();
+  pathPanel.add(label);
+  pathPanel.add(path);
   JPanel panel=new JPanel();
   panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
   panel.add(pathPanel);
