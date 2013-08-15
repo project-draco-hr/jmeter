@@ -1,0 +1,18 @@
+{
+  model=new DefaultComboBoxModel();
+  combo=new JComboBox(model);
+  combo.setEditable(false);
+  rb=(ResourceBundle)descriptor.getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);
+  eNum=(Enum<?>[])descriptor.getValue(GenericTestBeanCustomizer.TAGS);
+  for (  Enum<?> e : eNum) {
+    model.addElement(rb.getObject(e.toString()));
+  }
+  Enum<?> def=(Enum<?>)descriptor.getValue(GenericTestBeanCustomizer.DEFAULT);
+  if (def != null) {
+    this.defaultIndex=def.ordinal();
+  }
+ else {
+    this.defaultIndex=0;
+  }
+  combo.setSelectedIndex(defaultIndex);
+}

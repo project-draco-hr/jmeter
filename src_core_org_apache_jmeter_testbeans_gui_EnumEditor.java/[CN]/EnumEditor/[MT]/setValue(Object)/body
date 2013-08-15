@@ -1,0 +1,11 @@
+{
+  if (value instanceof Enum<?>) {
+    combo.setSelectedIndex(((Enum<?>)value).ordinal());
+  }
+ else   if (value instanceof Integer) {
+    combo.setSelectedIndex(((Integer)value).intValue());
+  }
+ else {
+    combo.setSelectedItem(value);
+  }
+}
