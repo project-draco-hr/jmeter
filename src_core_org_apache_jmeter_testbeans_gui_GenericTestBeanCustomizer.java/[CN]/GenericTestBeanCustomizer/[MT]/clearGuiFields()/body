@@ -3,7 +3,10 @@
     PropertyEditor propertyEditor=editors[i];
     if (propertyEditor != null) {
       try {
-        if (propertyEditor instanceof WrapperEditor) {
+        if (propertyEditor instanceof ClearGui) {
+          ((ClearGui)propertyEditor).clearGui();
+        }
+ else         if (propertyEditor instanceof WrapperEditor) {
           WrapperEditor we=(WrapperEditor)propertyEditor;
           String tags[]=we.getTags();
           if (tags != null && tags.length > 0) {
