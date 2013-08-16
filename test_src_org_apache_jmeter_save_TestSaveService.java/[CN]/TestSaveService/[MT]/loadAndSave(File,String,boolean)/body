@@ -1,0 +1,48 @@
+{
+  boolean failed=false;
+  int[] orig=readFile(new BufferedReader(new FileReader(testFile)));
+  InputStream in=null;
+  HashTree tree=null;
+  try {
+    in=new FileInputStream(testFile);
+    tree=SaveService.loadTree(in);
+  }
+  finally {
+    if (in != null) {
+      in.close();
+    }
+  }
+  ByteArrayOutputStream out=new ByteArrayOutputStream(1000000);
+  try {
+    SaveService.saveTree(tree,out);
+  }
+  finally {
+    out.close();
+  }
+  ByteArrayInputStream ins=new ByteArrayInputStream(out.toByteArray());
+  int[] output=readFile(new BufferedReader(new InputStreamReader(ins)));
+  if ((checkSize && (orig[0] != output[0])) || orig[1] != output[1]) {
+    failed=true;
+    System.out.println();
+    System.out.println("Loading file testfiles/" + fileName + " and "+ "saving it back changes its size from "+ orig[0]+ " to "+ output[0]+ ".");
+    if (orig[1] != output[1]) {
+      System.out.println("Number of lines changes from " + orig[1] + " to "+ output[1]);
+    }
+    if (saveOut) {
+      final File outFile=findTestFile("testfiles/" + fileName + ".out");
+      System.out.println("Write " + outFile);
+      FileOutputStream outf=null;
+      try {
+        outf=new FileOutputStream(outFile);
+        outf.write(out.toByteArray());
+      }
+  finally {
+        if (outf != null) {
+          outf.close();
+        }
+      }
+      System.out.println("Wrote " + outFile);
+    }
+  }
+  return failed;
+}
