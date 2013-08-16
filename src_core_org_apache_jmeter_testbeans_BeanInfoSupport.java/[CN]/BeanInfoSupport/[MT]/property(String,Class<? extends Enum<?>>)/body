@@ -2,7 +2,7 @@
   PropertyDescriptor property=property(name);
   if (property != null) {
     property.setValue(GenericTestBeanCustomizer.GUITYPE,enumClass);
-    property.setValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE,rb);
+    property.setValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE,getBeanDescriptor().getValue(RESOURCE_BUNDLE));
   }
   return property;
 }
