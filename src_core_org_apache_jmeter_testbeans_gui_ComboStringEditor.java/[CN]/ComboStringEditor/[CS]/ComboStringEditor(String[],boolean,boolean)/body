@@ -1,5 +1,5 @@
 {
-  this.tags=tags == null ? EMPTY_STRING_ARRAY : tags;
+  this.tags=tags == null ? EMPTY_STRING_ARRAY : tags.clone();
   model=new DefaultComboBoxModel();
   if (!noUndefined) {
     model.addElement(UNDEFINED);
