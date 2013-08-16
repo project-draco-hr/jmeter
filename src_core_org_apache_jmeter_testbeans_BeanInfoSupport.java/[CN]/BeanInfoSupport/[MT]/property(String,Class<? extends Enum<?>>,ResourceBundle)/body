@@ -1,0 +1,8 @@
+{
+  PropertyDescriptor property=property(name);
+  if (property != null) {
+    property.setValue(GenericTestBeanCustomizer.GUITYPE,enumClass);
+    property.setValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE,rb);
+  }
+  return property;
+}
