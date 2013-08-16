@@ -1,9 +1,7 @@
 {
   ConstantThroughputTimer timer=new ConstantThroughputTimer();
-  ConstantThroughputTimerBeanInfo bi=new ConstantThroughputTimerBeanInfo();
-  ResourceBundle rb=(ResourceBundle)bi.getBeanDescriptor().getValue(BeanInfoSupport.RESOURCE_BUNDLE);
-  timer.setCalcMode(rb.getString("calcMode.2"));
-  assertEquals(1,timer.getCalcModeInt());
+  timer.setMode(ConstantThroughputTimer.Mode.AllActiveThreads);
+  assertEquals(1,timer.getCalcMode());
   for (int i=1; i <= 10; i++) {
     TestJMeterContextService.incrNumberOfThreads();
   }
