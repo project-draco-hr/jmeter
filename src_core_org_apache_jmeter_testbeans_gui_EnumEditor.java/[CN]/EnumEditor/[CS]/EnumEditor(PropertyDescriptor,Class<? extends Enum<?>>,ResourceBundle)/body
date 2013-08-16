@@ -2,17 +2,15 @@
   model=new DefaultComboBoxModel();
   combo=new JComboBox(model);
   combo.setEditable(false);
-  rb=(ResourceBundle)descriptor.getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);
-  eNum=(Enum<?>[])descriptor.getValue(GenericTestBeanCustomizer.TAGS);
-  for (  Enum<?> e : eNum) {
+  for (  Enum<?> e : enumClazz.getEnumConstants()) {
     model.addElement(rb.getObject(e.toString()));
   }
   Enum<?> def=(Enum<?>)descriptor.getValue(GenericTestBeanCustomizer.DEFAULT);
   if (def != null) {
-    this.defaultIndex=def.ordinal();
+    defaultIndex=def.ordinal();
   }
  else {
-    this.defaultIndex=0;
+    defaultIndex=0;
   }
   combo.setSelectedIndex(defaultIndex);
 }
