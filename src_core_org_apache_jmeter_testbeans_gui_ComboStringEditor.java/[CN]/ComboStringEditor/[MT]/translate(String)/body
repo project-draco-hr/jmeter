@@ -1,0 +1,7 @@
+{
+  if (validTranslations != null) {
+    final String entry=validTranslations.get(input);
+    return entry != null ? entry : input;
+  }
+  return input;
+}

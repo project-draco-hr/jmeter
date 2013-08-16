@@ -1,16 +1,3 @@
 {
-  this.tags=tags == null ? EMPTY_STRING_ARRAY : tags.clone();
-  model=new DefaultComboBoxModel();
-  if (!noUndefined) {
-    model.addElement(UNDEFINED);
-  }
-  for (  String tag : this.tags) {
-    model.addElement(tag);
-  }
-  if (!noEdit) {
-    model.addElement(EDIT);
-  }
-  combo=new JComboBox(model);
-  combo.addItemListener(this);
-  combo.setEditable(false);
+  this(tags,noEdit,noUndefined,null);
 }

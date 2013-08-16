@@ -1,0 +1,33 @@
+{
+  tags=pTags == null ? EMPTY_STRING_ARRAY : pTags.clone();
+  model=new DefaultComboBoxModel();
+  if (rb != null && tags.length > 0) {
+    validTranslations=new HashMap<String,String>();
+    for (    String tag : this.tags) {
+      validTranslations.put(tag,rb.getString(tag));
+    }
+  }
+ else {
+    validTranslations=null;
+  }
+  if (!noUndefined) {
+    model.addElement(UNDEFINED);
+  }
+  if (tags.length == 0) {
+    this.minTagIndex=Integer.MAX_VALUE;
+    this.maxTagIndex=Integer.MIN_VALUE;
+  }
+ else {
+    this.minTagIndex=model.getSize();
+    for (    String tag : this.tags) {
+      model.addElement(translate(tag));
+    }
+    this.maxTagIndex=model.getSize();
+  }
+  if (!noEdit) {
+    model.addElement(EDIT);
+  }
+  combo=new JComboBox(model);
+  combo.addItemListener(this);
+  combo.setEditable(false);
+}

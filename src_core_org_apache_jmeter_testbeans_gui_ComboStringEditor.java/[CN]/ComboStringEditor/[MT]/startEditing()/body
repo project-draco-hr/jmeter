@@ -2,8 +2,8 @@
   JTextComponent textField=(JTextComponent)combo.getEditor().getEditorComponent();
   combo.setEditable(true);
   textField.requestFocus();
-  String text=initialEditValue;
-  if (initialEditValue == null) {
+  String text=translate(initialEditValue);
+  if (text == null) {
     text="";
   }
   combo.setSelectedItem(text);

@@ -1,7 +1,11 @@
 {
-  Object value=combo.getSelectedItem();
+  final Object value=combo.getSelectedItem();
   if (value == UNDEFINED) {
     return null;
+  }
+  final int item=combo.getSelectedIndex();
+  if (item >= minTagIndex && item <= maxTagIndex) {
+    return tags[item - minTagIndex];
   }
   return (String)value;
 }

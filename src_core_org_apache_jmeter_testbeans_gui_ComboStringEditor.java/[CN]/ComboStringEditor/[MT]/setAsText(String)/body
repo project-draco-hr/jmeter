@@ -4,7 +4,7 @@
     combo.setSelectedItem(UNDEFINED);
   }
  else {
-    combo.setSelectedItem(value);
+    combo.setSelectedItem(translate(value));
   }
   if (!startingEdit && combo.getSelectedIndex() >= 0) {
     combo.setEditable(false);
