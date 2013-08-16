@@ -6,4 +6,5 @@
   p.setValue(DEFAULT,Double.valueOf(0.0));
   p=property("calcMode",ConstantThroughputTimer.Mode.class);
   p.setValue(DEFAULT,ConstantThroughputTimer.Mode.ThisThreadOnly);
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
 }
