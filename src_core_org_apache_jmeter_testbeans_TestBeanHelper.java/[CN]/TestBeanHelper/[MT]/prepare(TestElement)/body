@@ -9,6 +9,12 @@
       log.debug("Preparing " + el.getClass());
     }
     for (    PropertyDescriptor desc : descs) {
+      if (isDescriptorIgnored(desc)) {
+        if (log.isDebugEnabled()) {
+          log.debug("Ignoring property '" + desc.getName() + "' in "+ el.getClass().getCanonicalName());
+        }
+        continue;
+      }
       JMeterProperty jprop=el.getProperty(desc.getName());
       Class<?> type=desc.getPropertyType();
       Object value=unwrapProperty(desc,jprop,type);

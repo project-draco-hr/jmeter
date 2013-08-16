@@ -1,0 +1,3 @@
+{
+  return descriptor.isHidden() || (descriptor.isExpert() && !JMeterUtils.isExpertMode()) || descriptor.getReadMethod() == null || descriptor.getWriteMethod() == null;
+}
