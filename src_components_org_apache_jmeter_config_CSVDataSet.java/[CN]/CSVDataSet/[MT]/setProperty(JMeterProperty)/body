@@ -1,0 +1,29 @@
+{
+  if (property instanceof StringProperty) {
+    final String propName=property.getName();
+    if (propName.equals("shareMode")) {
+      final String propValue=property.getStringValue();
+      if (propValue.contains(" ")) {
+        try {
+          final BeanInfo beanInfo=Introspector.getBeanInfo(this.getClass());
+          final ResourceBundle rb=(ResourceBundle)beanInfo.getBeanDescriptor().getValue(GenericTestBeanCustomizer.RESOURCE_BUNDLE);
+          for (          String resKey : CSVDataSetBeanInfo.SHARE_TAGS) {
+            if (propValue.equals(rb.getString(resKey))) {
+              if (log.isDebugEnabled()) {
+                log.debug("Converted " + propName + "="+ propValue+ " to "+ resKey+ " using Locale: "+ rb.getLocale());
+              }
+              ((StringProperty)property).setValue(resKey);
+              super.setProperty(property);
+              return;
+            }
+          }
+          log.warn("Could not translate " + propName + "="+ propValue+ " using Locale: "+ rb.getLocale());
+        }
+ catch (        IntrospectionException e) {
+          log.error("Could not find BeanInfo; cannot translate shareMode entries",e);
+        }
+      }
+    }
+  }
+  super.setProperty(property);
+}
