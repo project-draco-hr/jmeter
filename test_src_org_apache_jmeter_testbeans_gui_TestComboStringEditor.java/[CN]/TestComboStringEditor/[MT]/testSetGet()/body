@@ -1,5 +1,5 @@
 {
-  ComboStringEditor e=new ComboStringEditor();
+  @SuppressWarnings("deprecation") ComboStringEditor e=new ComboStringEditor();
   testSetGet(e,"any string");
   testSetGet(e,"");
   testSetGet(e,null);

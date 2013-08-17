@@ -1,5 +1,5 @@
 {
-  ComboStringEditor e=new ComboStringEditor();
+  @SuppressWarnings("deprecation") ComboStringEditor e=new ComboStringEditor();
   testSetGetAsText(e,"any string");
   testSetGetAsText(e,"");
   testSetGetAsText(e,"${var}");
