@@ -68,6 +68,10 @@
       res.setQueryString(putBody);
     }
     int statusCode=client.executeMethod(httpMethod);
+    final InetAddress localAddr=client.getHostConfiguration().getLocalAddress();
+    if (localAddr != null) {
+      httpMethod.addRequestHeader(HEADER_LOCAL_ADDRESS,localAddr.toString());
+    }
     res.setRequestHeaders(getConnectionHeaders(httpMethod));
     InputStream instream=httpMethod.getResponseBodyAsStream();
     if (instream != null) {
