@@ -1,6 +1,16 @@
 {
-  if (notNull(pd) && pd.getValue(DEFAULT) == null) {
-    log.warn(getDetails(pd) + " requires a value but does not provide a default.");
+  final Object deflt=pd.getValue(DEFAULT);
+  if (deflt == null) {
+    if (notNull(pd)) {
+      log.warn(getDetails(pd) + " requires a value but does not provide a default.");
+    }
+  }
+ else {
+    final Class<?> defltClass=deflt.getClass();
+    final Class<?> propClass=ClassUtils.primitiveToWrapper(pd.getPropertyType());
+    if (!propClass.isAssignableFrom(defltClass)) {
+      log.warn(getDetails(pd) + " has a DEFAULT of class " + defltClass.getCanonicalName());
+    }
   }
   if (notOther(pd) && pd.getValue(TAGS) == null && pe.getTags() == null) {
     log.warn(getDetails(pd) + " does not have tags but other values are not allowed.");

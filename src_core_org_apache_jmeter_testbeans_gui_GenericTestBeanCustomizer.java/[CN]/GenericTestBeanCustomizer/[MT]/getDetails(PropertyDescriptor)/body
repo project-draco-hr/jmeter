@@ -3,5 +3,8 @@
   sb.append(pd.getReadMethod().getDeclaringClass().getName());
   sb.append('#');
   sb.append(pd.getName());
+  sb.append('(');
+  sb.append(pd.getPropertyType().getCanonicalName());
+  sb.append(')');
   return sb.toString();
 }
