@@ -8,6 +8,7 @@
   serverPanel.setConnectTimeout(element.getPropertyAsString(TCPSampler.TIMEOUT_CONNECT));
   setNoDelay.setTristateFromProperty(element,TCPSampler.NODELAY);
   requestData.setText(element.getPropertyAsString(TCPSampler.REQUEST));
+  requestData.setCaretPosition(0);
   closeConnection.setTristateFromProperty(element,TCPSampler.CLOSE_CONNECTION);
   soLinger.setText(element.getPropertyAsString(TCPSampler.SO_LINGER));
   eolByte.setText(element.getPropertyAsString(TCPSampler.EOL_BYTE));

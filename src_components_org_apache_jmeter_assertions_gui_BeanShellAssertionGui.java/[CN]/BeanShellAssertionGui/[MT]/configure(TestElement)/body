@@ -1,5 +1,6 @@
 {
   scriptField.setText(element.getPropertyAsString(BeanShellAssertion.SCRIPT));
+  scriptField.setCaretPosition(0);
   filename.setText(element.getPropertyAsString(BeanShellAssertion.FILENAME));
   parameters.setText(element.getPropertyAsString(BeanShellAssertion.PARAMETERS));
   resetInterpreter.setSelected(element.getPropertyAsBoolean(BeanShellAssertion.RESET_INTERPRETER));
