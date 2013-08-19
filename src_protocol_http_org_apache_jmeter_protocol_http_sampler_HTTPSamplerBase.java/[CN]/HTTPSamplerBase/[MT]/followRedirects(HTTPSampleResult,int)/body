@@ -10,8 +10,12 @@
       location=ConversionUtils.removeSlashDotDot(location);
     }
     location=encodeSpaces(location);
+    String method=lastRes.getHTTPMethod();
+    if (!HTTPConstants.HEAD.equalsIgnoreCase(method)) {
+      method=HTTPConstants.GET;
+    }
     try {
-      lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),HTTPConstants.GET,true,frameDepth);
+      lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),method,true,frameDepth);
     }
  catch (    MalformedURLException e) {
       errorResult(e,lastRes);
