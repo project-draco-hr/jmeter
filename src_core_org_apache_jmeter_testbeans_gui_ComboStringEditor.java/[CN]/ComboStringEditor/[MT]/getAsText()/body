@@ -1,6 +1,6 @@
 {
   final Object value=combo.getSelectedItem();
-  if (value == UNDEFINED) {
+  if (UNDEFINED.equals(value)) {
     return null;
   }
   final int item=combo.getSelectedIndex();

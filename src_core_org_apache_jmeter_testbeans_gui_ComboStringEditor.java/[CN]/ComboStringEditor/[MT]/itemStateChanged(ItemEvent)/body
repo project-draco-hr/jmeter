@@ -1,6 +1,6 @@
 {
   if (e.getStateChange() == ItemEvent.SELECTED) {
-    if (e.getItem() == EDIT) {
+    if (EDIT.equals(e.getItem())) {
       startingEdit=true;
       startEditing();
       startingEdit=false;
