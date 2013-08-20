@@ -7,5 +7,6 @@
   if (item >= minTagIndex && item <= maxTagIndex) {
     return tags[item - minTagIndex];
   }
-  return (String)value;
+  JTextComponent textField=(JTextComponent)combo.getEditor().getEditorComponent();
+  return textField.getText();
 }
