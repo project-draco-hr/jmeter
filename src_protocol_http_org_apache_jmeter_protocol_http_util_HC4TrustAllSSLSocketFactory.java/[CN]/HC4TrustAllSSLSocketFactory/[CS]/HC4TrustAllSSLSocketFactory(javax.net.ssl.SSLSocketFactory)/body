@@ -1,4 +1,4 @@
 {
   super(TRUSTALL,SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-  this.factory=new HttpSSLProtocolSocketFactory((JsseSSLManager)JsseSSLManager.getInstance());
+  this.factory=new HttpSSLProtocolSocketFactory((JsseSSLManager)JsseSSLManager.getInstance(),JsseSSLManager.CPS);
 }
