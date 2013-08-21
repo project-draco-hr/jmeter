@@ -1,23 +1,26 @@
 {
   SampleResult results=new SampleResult();
+  results.setSampleLabel(name);
+  long sleep=sleepTime;
+  if (sleepTime > 0 && sleepMask > 0) {
+    long start=System.currentTimeMillis();
+    sleep=sleepTime + (start % sleepMask);
+  }
+  results.setSamplerData("Sleep Test: time = " + sleep);
   try {
     results.sampleStart();
-    long sleep=sleepTime;
-    if (sleepTime > 0 && sleepMask > 0) {
-      long start=System.currentTimeMillis();
-      sleep=sleepTime + (start % sleepMask);
-    }
-    results.setSampleLabel("Sleep Test: time = " + sleep);
     TimeUnit.MILLISECONDS.sleep(sleep);
     results.setSuccessful(true);
   }
  catch (  InterruptedException e) {
     LOG.warn("SleepTest: interrupted.");
     results.setSuccessful(true);
+    results.setResponseMessage(e.toString());
   }
 catch (  Exception e) {
     LOG.error("SleepTest: error during sample",e);
     results.setSuccessful(false);
+    results.setResponseMessage(e.toString());
   }
  finally {
     results.sampleEnd();
