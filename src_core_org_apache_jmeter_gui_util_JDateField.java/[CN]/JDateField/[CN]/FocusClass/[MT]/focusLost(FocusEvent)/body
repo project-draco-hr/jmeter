@@ -3,6 +3,6 @@
     dateFormat.parse(getText());
   }
  catch (  ParseException e1) {
-    requestFocus();
+    requestFocusInWindow();
   }
 }
