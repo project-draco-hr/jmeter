@@ -2,7 +2,9 @@
   Process proc=null;
   try {
     ProcessBuilder procBuild=new ProcessBuilder(arguments);
-    procBuild.environment().putAll(env);
+    if (env != null) {
+      procBuild.environment().putAll(env);
+    }
     this.executionEnvironment=Collections.unmodifiableMap(procBuild.environment());
     procBuild.directory(directory);
     if (stderr == null || stderr.equals(stdout)) {
