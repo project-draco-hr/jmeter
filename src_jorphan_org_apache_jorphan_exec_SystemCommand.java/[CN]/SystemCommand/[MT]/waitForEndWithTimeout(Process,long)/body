@@ -1,0 +1,16 @@
+{
+  if (timeoutInMillis <= 0L) {
+    return proc.waitFor();
+  }
+ else {
+    long now=System.currentTimeMillis();
+    long finish=now + timeoutInMillis;
+    while (isAlive(proc) && (System.currentTimeMillis() < finish)) {
+      Thread.sleep(POLL_INTERVAL);
+    }
+    if (isAlive(proc)) {
+      throw new InterruptedException("Process timeout out after " + timeoutInMillis + " milliseconds");
+    }
+    return proc.exitValue();
+  }
+}

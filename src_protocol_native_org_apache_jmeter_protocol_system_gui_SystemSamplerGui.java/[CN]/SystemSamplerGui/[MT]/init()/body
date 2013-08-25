@@ -5,6 +5,7 @@
   add(makeCommandPanel(),BorderLayout.CENTER);
   JPanel streamsCodePane=new JPanel(new BorderLayout());
   streamsCodePane.add(makeStreamsPanel(),BorderLayout.NORTH);
-  streamsCodePane.add(makeReturnCodePanel(),BorderLayout.SOUTH);
+  streamsCodePane.add(makeReturnCodePanel(),BorderLayout.CENTER);
+  streamsCodePane.add(makeTimeoutPanel(),BorderLayout.SOUTH);
   add(streamsCodePane,BorderLayout.SOUTH);
 }

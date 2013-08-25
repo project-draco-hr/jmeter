@@ -20,4 +20,12 @@
   systemSampler.setStdin(stdin.getFilename());
   systemSampler.setStdout(stdout.getFilename());
   systemSampler.setStderr(stderr.getFilename());
+  if (!StringUtils.isEmpty(timeout.getText())) {
+    try {
+      systemSampler.setTimout(Long.parseLong(timeout.getText()));
+    }
+ catch (    NumberFormatException e) {
+      log.error("Error parsing timeout field value:" + timeout.getText(),e);
+    }
+  }
 }

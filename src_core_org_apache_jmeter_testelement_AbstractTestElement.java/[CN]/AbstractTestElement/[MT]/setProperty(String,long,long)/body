@@ -1,0 +1,8 @@
+{
+  if (value == dflt) {
+    removeProperty(name);
+  }
+ else {
+    setProperty(new LongProperty(name,value));
+  }
+}

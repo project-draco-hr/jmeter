@@ -33,7 +33,7 @@
  else {
       proc.getOutputStream().close();
     }
-    int exitVal=proc.waitFor();
+    int exitVal=waitForEndWithTimeout(proc,timeoutMillis);
     if (outputGobbler != null) {
       outputGobbler.join();
     }

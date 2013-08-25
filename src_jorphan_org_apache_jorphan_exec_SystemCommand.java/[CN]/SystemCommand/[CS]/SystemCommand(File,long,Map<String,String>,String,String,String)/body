@@ -1,5 +1,6 @@
 {
   super();
+  this.timeoutMillis=timeoutMillis;
   this.directory=directory;
   this.env=env;
   this.stdin=JOrphanUtils.nullifyIfEmptyTrimmed(stdin);

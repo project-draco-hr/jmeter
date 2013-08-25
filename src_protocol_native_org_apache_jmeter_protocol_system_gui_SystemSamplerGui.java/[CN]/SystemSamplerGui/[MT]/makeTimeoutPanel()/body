@@ -1,0 +1,9 @@
+{
+  JPanel panel=new JPanel();
+  panel.setLayout(new BoxLayout(panel,BoxLayout.X_AXIS));
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("timeout_config_box_title")));
+  timeout=new JLabeledTextField(JMeterUtils.getResString("timeout_title"));
+  timeout.setSize(timeout.getSize().height,30);
+  panel.add(timeout);
+  return panel;
+}
