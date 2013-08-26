@@ -38,7 +38,7 @@
     log.debug("Will run :" + cmdLine + " using working directory:"+ directory.getAbsolutePath()+ " with environment:"+ env);
   }
   results.setSamplerData("Working Directory:" + directory.getAbsolutePath() + "\nEnvironment:"+ env+ "\nExecuting:"+ cmdLine.toString());
-  SystemCommand nativeCommand=new SystemCommand(directory,getTimeout(),env,getStdin(),getStdout(),getStderr());
+  SystemCommand nativeCommand=new SystemCommand(directory,getTimeout(),POLL_INTERVAL,env,getStdin(),getStdout(),getStderr());
   try {
     results.sampleStart();
     int returnCode=nativeCommand.run(cmds);
