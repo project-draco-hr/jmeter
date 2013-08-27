@@ -12,9 +12,9 @@ synchronized (hashHost) {
       SSLContext sslcontext=null;
       try {
         ks=KeyStore.getInstance(KEYSTORE_TYPE);
-        ks.load(in,KEYSTORE_PASSWORD);
+        ks.load(in,JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD).toCharArray());
         kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
-        kmf.init(ks,KEY_PASSWORD);
+        kmf.init(ks,JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD).toCharArray());
         sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
         sslcontext.init(kmf.getKeyManagers(),null,null);
         SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
