@@ -1,8 +1,6 @@
 {
   File output=new File(getTargetDirectory());
-  if (!output.exists() || !output.isDirectory()) {
-    if (!output.mkdir()) {
-      throw new IllegalStateException("Could not create directory:" + output.getAbsolutePath());
-    }
+  if (!output.mkdir() && !output.isDirectory()) {
+    throw new IllegalStateException("Could not create directory:" + output.getAbsolutePath());
   }
 }
