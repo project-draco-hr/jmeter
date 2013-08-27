@@ -5,12 +5,19 @@
  else {
     long now=System.currentTimeMillis();
     long finish=now + timeoutInMillis;
-    while (isAlive(proc) && (System.currentTimeMillis() < finish)) {
-      Thread.sleep(pollInterval);
+    while (System.currentTimeMillis() < finish) {
+      try {
+        return proc.exitValue();
+      }
+ catch (      IllegalThreadStateException e) {
+        Thread.sleep(pollInterval);
+      }
     }
-    if (isAlive(proc)) {
+    try {
+      return proc.exitValue();
+    }
+ catch (    IllegalThreadStateException e) {
       throw new InterruptedException("Process timeout out after " + timeoutInMillis + " milliseconds");
     }
-    return proc.exitValue();
   }
 }

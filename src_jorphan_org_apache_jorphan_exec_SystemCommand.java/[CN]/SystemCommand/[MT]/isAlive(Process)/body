@@ -1,9 +1,0 @@
-{
-  try {
-    p.exitValue();
-    return false;
-  }
- catch (  IllegalThreadStateException e) {
-    return true;
-  }
-}
