@@ -29,7 +29,7 @@
       httpRequest=new HttpPatch(uri);
     }
  else {
-      throw new IllegalArgumentException("Unexpected method: " + method);
+      throw new IllegalArgumentException("Unexpected method: '" + method + "'");
     }
     setupRequest(url,httpRequest,res);
   }
