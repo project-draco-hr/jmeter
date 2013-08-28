@@ -20,10 +20,10 @@
     }
     if (msg.isMimeType("multipart/signed")) {
       MimeMultipart multipart=(MimeMultipart)msg.getContent();
-      s=new SMIMESignedParser((org.bouncycastle.operator.DigestCalculatorProvider)new BcDigestCalculatorProvider(),multipart);
+      s=new SMIMESignedParser(new BcDigestCalculatorProvider(),multipart);
     }
  else     if (msg.isMimeType("application/pkcs7-mime") || msg.isMimeType("application/x-pkcs7-mime")) {
-      s=new SMIMESignedParser((org.bouncycastle.operator.DigestCalculatorProvider)new BcDigestCalculatorProvider(),msg);
+      s=new SMIMESignedParser(new BcDigestCalculatorProvider(),msg);
     }
     if (null != s) {
       log.debug("Found signature");
