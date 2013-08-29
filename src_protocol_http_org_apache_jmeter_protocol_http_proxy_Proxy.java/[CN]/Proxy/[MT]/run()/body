@@ -32,6 +32,10 @@
       if (log.isDebugEnabled()) {
         log.debug(port + "Reparse: " + new String(ba));
       }
+      if (ba.length == 0) {
+        log.warn(port + "Empty response to http over SSL. Probably waiting for user to authorize the certificate for " + request.getUrl());
+        throw new JMeterException();
+      }
     }
     SamplerCreator samplerCreator=factory.getSamplerCreator(request,pageEncodings,formEncodings);
     sampler=samplerCreator.createAndPopulateSampler(request,pageEncodings,formEncodings);
