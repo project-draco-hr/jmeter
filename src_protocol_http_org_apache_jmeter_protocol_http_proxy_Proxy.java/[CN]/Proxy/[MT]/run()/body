@@ -8,6 +8,10 @@
   log.debug(port + "====================================================================");
   try {
     byte[] ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+    if (ba.length == 0) {
+      log.warn(port + "Empty request, ignored");
+      throw new JMeterException();
+    }
     if (log.isDebugEnabled()) {
       log.debug(port + "Initial request: " + new String(ba));
     }
@@ -43,7 +47,9 @@
     writeToClient(result,new BufferedOutputStream(clientSocket.getOutputStream()));
     samplerCreator.postProcessSampler(sampler,result);
   }
- catch (  UnknownHostException uhe) {
+ catch (  JMeterException jme) {
+  }
+catch (  UnknownHostException uhe) {
     log.warn(port + "Server Not Found.",uhe);
     writeErrorToClient(HttpReplyHdr.formServerNotFound());
     result=generateErrorResult(result,uhe);
