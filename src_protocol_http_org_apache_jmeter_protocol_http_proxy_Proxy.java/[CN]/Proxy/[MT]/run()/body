@@ -26,7 +26,8 @@
         clientSocket=startSSL(clientSocket,param[0]);
       }
  else {
-        log.warn("In SSL request, unable to find host and port in CONNECT request");
+        log.error("In SSL request, unable to find host and port in CONNECT request: " + request.getUrl());
+        throw new JMeterException();
       }
       ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
       if (log.isDebugEnabled()) {
