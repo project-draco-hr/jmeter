@@ -5,7 +5,7 @@
     out.write(CRLF_BYTES);
     out.write(res.getResponseData());
     out.flush();
-    log.debug("Done writing to client");
+    log.debug(port + "Done writing to client");
   }
  catch (  IOException e) {
     log.error("",e);
@@ -16,7 +16,7 @@
       out.close();
     }
  catch (    Exception ex) {
-      log.warn("Error while closing socket",ex);
+      log.warn(port + "Error while closing socket",ex);
     }
   }
 }

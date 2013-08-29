@@ -4,4 +4,5 @@
   this.captureHttpHeaders=_target.getCaptureHttpHeaders();
   this.pageEncodings=_pageEncodings;
   this.formEncodings=_formEncodings;
+  this.port="[" + clientSocket.getPort() + "] ";
 }

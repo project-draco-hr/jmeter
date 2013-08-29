@@ -1,7 +1,7 @@
 {
 synchronized (hashHost) {
     if (hashHost.containsKey(host)) {
-      log.debug("Good, already in map, host=" + host);
+      log.debug(port + "Good, already in map, host=" + host);
       return hashHost.get(host);
     }
     InputStream in=getCertificate();
@@ -16,7 +16,7 @@ synchronized (hashHost) {
         sslcontext.init(kmf.getKeyManagers(),null,null);
         SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
         hashHost.put(host,sslFactory);
-        log.info("KeyStore for SSL loaded OK and put host in map (" + host + ")");
+        log.info(port + "KeyStore for SSL loaded OK and put host in map (localPort+" + host+ ")");
         return sslFactory;
       }
  catch (      NoSuchAlgorithmException e) {
@@ -36,7 +36,7 @@ catch (      CertificateException e) {
       }
  finally {
         if (except != null) {
-          log.error("Problem with SSL certificate",except);
+          log.error(port + "Problem with SSL certificate",except);
         }
         IOUtils.closeQuietly(in);
       }

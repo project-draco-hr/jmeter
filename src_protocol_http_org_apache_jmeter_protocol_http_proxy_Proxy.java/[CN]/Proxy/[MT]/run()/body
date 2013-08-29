@@ -5,28 +5,38 @@
   HeaderManager headers=null;
   HTTPSamplerBase sampler=null;
   String[] param=new String[0];
+  log.debug(port + "====================================================================");
   try {
-    request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+    byte[] ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+    if (log.isDebugEnabled()) {
+      log.debug(port + "First line: " + new String(ba));
+    }
     outStreamClient=clientSocket.getOutputStream();
     if ((request.getMethod().startsWith(HTTPConstants.CONNECT)) && (outStreamClient != null)) {
-      log.debug("Method CONNECT => SSL");
+      log.debug(port + "Method CONNECT => SSL");
       outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes(SampleResult.DEFAULT_HTTP_ENCODING));
       outStreamClient.flush();
       param=request.getUrl().split(":");
       if (param.length == 2) {
-        log.debug("Start to negotiate SSL connection, host: " + param[0]);
+        log.debug(port + "Start to negotiate SSL connection, host: " + param[0]);
         clientSocket=startSSL(clientSocket,param[0]);
       }
  else {
         log.warn("In SSL request, unable to find host and port in CONNECT request");
       }
-      request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+      ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+      if (log.isDebugEnabled()) {
+        log.debug(port + "Reparse: " + new String(ba));
+      }
     }
     SamplerCreator samplerCreator=factory.getSamplerCreator(request,pageEncodings,formEncodings);
     sampler=samplerCreator.createAndPopulateSampler(request,pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     sampler.threadStarted();
+    if (log.isDebugEnabled()) {
+      log.debug(port + "Execute sample: " + sampler.getMethod()+ " "+ sampler.getUrl());
+    }
     result=sampler.sample();
     String pageEncoding=addPageEncoding(result);
     addFormEncodings(result,pageEncoding);
@@ -34,17 +44,18 @@
     samplerCreator.postProcessSampler(sampler,result);
   }
  catch (  UnknownHostException uhe) {
-    log.warn("Server Not Found.",uhe);
+    log.warn(port + "Server Not Found.",uhe);
     writeErrorToClient(HttpReplyHdr.formServerNotFound());
     result=generateErrorResult(result,uhe);
   }
 catch (  IllegalArgumentException e) {
-    log.error("Not implemented (probably used https)",e);
+    log.error(port + "Not implemented (probably used https)",e);
     writeErrorToClient(HttpReplyHdr.formNotImplemented("Probably used https instead of http. " + "To record https requests, see " + "<a href=\"http://jmeter.apache.org/usermanual/component_reference.html#HTTP_Proxy_Server\">HTTP Proxy Server documentation</a>"));
     result=generateErrorResult(result,e);
   }
 catch (  IOException ioe) {
-    log.error("Problem with SSL certificate? Ensure browser is set to accept the JMeter proxy cert: " + ioe.getLocalizedMessage() + " for url:"+ (param.length > 0 ? param[0] : ""),ioe);
+    final String url=param.length > 0 ? " for '" + param[0] + "'" : "";
+    log.error(port + "Problem with SSL certificate" + url+ "? Ensure browser is set to accept the JMeter proxy cert:",ioe);
     if (result == null) {
       result=new SampleResult();
       result.setSampleLabel("Sample failed");
@@ -52,14 +63,14 @@ catch (  IOException ioe) {
     result.setResponseMessage(ioe.getMessage() + "\n**ensure browser is set to accept the JMeter proxy certificate**");
   }
 catch (  Exception e) {
-    log.error("Exception when processing sample",e);
+    log.error(port + "Exception when processing sample",e);
     writeErrorToClient(HttpReplyHdr.formInternalError());
     result=generateErrorResult(result,e);
   }
  finally {
     if (log.isDebugEnabled()) {
       if (sampler != null) {
-        log.debug("Will deliver sample " + sampler.getName());
+        log.debug(port + "Will deliver sample " + sampler.getName());
       }
     }
     if (headers != null) {
@@ -76,7 +87,7 @@ catch (  Exception e) {
       clientSocket.close();
     }
  catch (    Exception e) {
-      log.error("",e);
+      log.error(port + "Failed to close client socket",e);
     }
     if (sampler != null) {
       sampler.threadFinished();

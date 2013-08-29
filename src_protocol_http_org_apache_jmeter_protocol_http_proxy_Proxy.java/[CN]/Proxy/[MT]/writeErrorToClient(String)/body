@@ -6,6 +6,6 @@
     out.flush();
   }
  catch (  Exception e) {
-    log.warn("Exception while writing error",e);
+    log.warn(port + "Exception while writing error",e);
   }
 }

@@ -6,17 +6,17 @@
       secureSocket=(SSLSocket)sslFactory.createSocket(sock,sock.getInetAddress().getHostName(),sock.getPort(),true);
       secureSocket.setUseClientMode(false);
       if (log.isDebugEnabled()) {
-        log.debug("SSL transaction ok with cipher: " + secureSocket.getSession().getCipherSuite());
+        log.debug(port + "SSL transaction ok with cipher: " + secureSocket.getSession().getCipherSuite());
       }
       return secureSocket;
     }
  catch (    IOException e) {
-      log.error("Error in SSL socket negotiation: ",e);
+      log.error(port + "Error in SSL socket negotiation: ",e);
       throw e;
     }
   }
  else {
-    log.warn("Unable to negotiate SSL transaction, no keystore?");
+    log.warn(port + "Unable to negotiate SSL transaction, no keystore?");
     throw new IOException("Unable to negotiate SSL transaction, no keystore?");
   }
 }

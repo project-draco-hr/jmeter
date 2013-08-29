@@ -5,14 +5,14 @@
   if (certFile.exists() && certFile.canRead()) {
     try {
       in=new BufferedInputStream(new FileInputStream(certFile));
-      log.info("Opened Keystore file: " + certPath);
+      log.info(port + "Opened Keystore file: " + certPath);
     }
  catch (    FileNotFoundException e) {
-      log.error("No server cert file found: " + certPath,e);
+      log.error(port + "No server cert file found: " + certPath,e);
     }
   }
  else {
-    log.error("No server cert file found: " + certPath);
+    log.error(port + "No server cert file found: " + certPath);
   }
   return in;
 }
