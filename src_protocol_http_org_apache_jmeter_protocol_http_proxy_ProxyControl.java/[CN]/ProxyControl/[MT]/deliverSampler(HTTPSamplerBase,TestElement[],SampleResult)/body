@@ -1,21 +1,23 @@
 {
-  if (filterContentType(result) && filterUrl(sampler)) {
-    JMeterTreeNode myTarget=findTargetControllerNode();
-    @SuppressWarnings("unchecked") Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
-    @SuppressWarnings("unchecked") Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
-    removeValuesFromSampler(sampler,defaultConfigurations);
-    replaceValues(sampler,subConfigs,userDefinedVariables);
-    sampler.setAutoRedirects(samplerRedirectAutomatically.get());
-    sampler.setFollowRedirects(samplerFollowRedirects.get());
-    sampler.setUseKeepAlive(useKeepAlive.get());
-    sampler.setImageParser(samplerDownloadImages.get());
-    placeSampler(sampler,subConfigs,myTarget);
-  }
- else {
-    if (log.isDebugEnabled()) {
-      log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
+  if (sampler != null) {
+    if (filterContentType(result) && filterUrl(sampler)) {
+      JMeterTreeNode myTarget=findTargetControllerNode();
+      @SuppressWarnings("unchecked") Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
+      @SuppressWarnings("unchecked") Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
+      removeValuesFromSampler(sampler,defaultConfigurations);
+      replaceValues(sampler,subConfigs,userDefinedVariables);
+      sampler.setAutoRedirects(samplerRedirectAutomatically.get());
+      sampler.setFollowRedirects(samplerFollowRedirects.get());
+      sampler.setUseKeepAlive(useKeepAlive.get());
+      sampler.setImageParser(samplerDownloadImages.get());
+      placeSampler(sampler,subConfigs,myTarget);
     }
-    result.setSampleLabel("[" + result.getSampleLabel() + "]");
+ else {
+      if (log.isDebugEnabled()) {
+        log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
+      }
+      result.setSampleLabel("[" + result.getSampleLabel() + "]");
+    }
   }
   notifySampleListeners(new SampleEvent(result,"WorkBench"));
 }
