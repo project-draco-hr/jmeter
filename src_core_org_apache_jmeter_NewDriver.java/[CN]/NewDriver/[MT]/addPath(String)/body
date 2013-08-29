@@ -7,5 +7,16 @@
   StringBuilder sb=new StringBuilder(System.getProperty(JAVA_CLASS_PATH));
   sb.append(CLASSPATH_SEPARATOR);
   sb.append(path);
+  File[] jars=listJars(file);
+  for (int x=0; x < jars.length; x++) {
+    try {
+      loader.addURL(jars[x].toURI().toURL());
+      sb.append(CLASSPATH_SEPARATOR);
+      sb.append(jars[x].getPath());
+    }
+ catch (    MalformedURLException e) {
+      e.printStackTrace();
+    }
+  }
   System.setProperty(JAVA_CLASS_PATH,sb.toString());
 }

@@ -12,12 +12,18 @@
       log.warn("Can't read " + path);
     }
  else {
-      log.info("Adding to classpath: " + path);
-      try {
-        NewDriver.addPath(path);
+      if (cp) {
+        log.info("Adding to classpath and loader: " + path);
+        try {
+          NewDriver.addPath(path);
+        }
+ catch (        MalformedURLException e) {
+          log.warn("Error adding: " + path + " "+ e.getLocalizedMessage());
+        }
       }
- catch (      MalformedURLException e) {
-        log.warn("Error adding: " + path + " "+ e.getLocalizedMessage());
+ else {
+        log.info("Adding to loader: " + path);
+        NewDriver.addURL(path);
       }
     }
   }

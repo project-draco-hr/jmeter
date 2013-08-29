@@ -6,4 +6,13 @@
  catch (  MalformedURLException e) {
     e.printStackTrace();
   }
+  File[] jars=listJars(furl);
+  for (int x=0; x < jars.length; x++) {
+    try {
+      loader.addURL(jars[x].toURI().toURL());
+    }
+ catch (    MalformedURLException e) {
+      e.printStackTrace();
+    }
+  }
 }

@@ -1,4 +1,5 @@
 {
-  updatePath("search_paths",";");
-  updatePath("user.classpath",File.pathSeparator);
+  updatePath("search_paths",";",true);
+  updatePath("user.classpath",File.pathSeparator,true);
+  updatePath("plugin_dependency_paths",";",false);
 }

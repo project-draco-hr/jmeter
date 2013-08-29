@@ -1,0 +1,15 @@
+{
+  if (dir.isDirectory()) {
+    return dir.listFiles(new FilenameFilter(){
+      @Override public boolean accept(      File f,      String name){
+        if (name.endsWith(".jar")) {
+          File jar=new File(f,name);
+          return jar.isFile() && jar.canRead();
+        }
+        return false;
+      }
+    }
+);
+  }
+  return new File[0];
+}
