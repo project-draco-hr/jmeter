@@ -8,11 +8,11 @@
   sb.append(CLASSPATH_SEPARATOR);
   sb.append(path);
   File[] jars=listJars(file);
-  for (int x=0; x < jars.length; x++) {
+  for (  File jar : jars) {
     try {
-      loader.addURL(jars[x].toURI().toURL());
+      loader.addURL(jar.toURI().toURL());
       sb.append(CLASSPATH_SEPARATOR);
-      sb.append(jars[x].getPath());
+      sb.append(jar.getPath());
     }
  catch (    MalformedURLException e) {
       e.printStackTrace();

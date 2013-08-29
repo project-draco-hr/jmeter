@@ -7,9 +7,9 @@
     e.printStackTrace();
   }
   File[] jars=listJars(furl);
-  for (int x=0; x < jars.length; x++) {
+  for (  File jar : jars) {
     try {
-      loader.addURL(jars[x].toURI().toURL());
+      loader.addURL(jar.toURI().toURL());
     }
  catch (    MalformedURLException e) {
       e.printStackTrace();
