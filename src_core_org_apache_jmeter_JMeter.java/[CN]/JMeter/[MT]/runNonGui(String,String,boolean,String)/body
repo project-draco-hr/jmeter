@@ -38,6 +38,7 @@
         tree.add(tree.getArray()[0],summer);
       }
     }
+    tree.add(tree.getArray()[0],new RemoteThreadsListenerTestElement());
     List<JMeterEngine> engines=new LinkedList<JMeterEngine>();
     tree.add(tree.getArray()[0],new ListenToTest(parent,(remoteStart && remoteStop) ? engines : null));
     println("Created the tree successfully using " + testFile);

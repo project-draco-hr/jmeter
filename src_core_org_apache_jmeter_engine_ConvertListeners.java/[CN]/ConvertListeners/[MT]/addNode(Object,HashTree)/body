@@ -4,6 +4,16 @@
       log.debug("num threads = " + ((AbstractThreadGroup)item).getNumThreads());
     }
     if (item instanceof Remoteable) {
+      if (item instanceof RemoteThreadsListenerTestElement) {
+        try {
+          RemoteThreadsListenerWrapper wrapper=new RemoteThreadsListenerWrapper(new RemoteThreadsListenerImpl());
+          subTree.replace(item,wrapper);
+        }
+ catch (        RemoteException e) {
+          log.error("Error replacing " + RemoteThreadsListenerTestElement.class.getName() + " by wrapper:"+ RemoteThreadsListenerWrapper.class.getName(),e);
+        }
+        continue;
+      }
       if (item instanceof ThreadListener) {
         log.error("Cannot handle ThreadListener Remotable item " + item.getClass().getName());
         continue;

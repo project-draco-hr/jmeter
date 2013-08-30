@@ -1,0 +1,7 @@
+{
+  JMeterContextService.incrNumberOfThreads();
+  GuiPackage gp=GuiPackage.getInstance();
+  if (gp != null) {
+    gp.getMainFrame().updateCounts();
+  }
+}

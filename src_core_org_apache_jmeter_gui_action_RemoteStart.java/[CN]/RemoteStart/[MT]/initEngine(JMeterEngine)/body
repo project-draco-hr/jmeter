@@ -3,5 +3,6 @@
   HashTree testTree=gui.getTreeModel().getTestPlan();
   JMeter.convertSubTree(testTree);
   testTree.add(testTree.getArray()[0],gui.getMainFrame());
+  testTree.add(testTree.getArray()[0],new RemoteThreadsListenerTestElement());
   engine.configure(testTree);
 }
