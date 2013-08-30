@@ -4,4 +4,7 @@
   if (gp != null) {
     gp.getMainFrame().updateCounts();
   }
+  for (  RemoteThreadsLifeCycleListener listener : listeners) {
+    listener.threadNumberDecreased(JMeterContextService.getNumberOfThreads());
+  }
 }

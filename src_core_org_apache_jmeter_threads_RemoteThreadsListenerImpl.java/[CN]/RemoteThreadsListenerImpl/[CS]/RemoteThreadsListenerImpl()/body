@@ -1,3 +1,27 @@
 {
   super(DEFAULT_LOCAL_PORT);
+  try {
+    List<String> listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{RemoteThreadsLifeCycleListener.class});
+    for (    String strClassName : listClasses) {
+      try {
+        if (log.isDebugEnabled()) {
+          log.debug("Loading class: " + strClassName);
+        }
+        Class<?> commandClass=Class.forName(strClassName);
+        if (!Modifier.isAbstract(commandClass.getModifiers())) {
+          if (log.isDebugEnabled()) {
+            log.debug("Instantiating: " + commandClass.getName());
+          }
+          RemoteThreadsLifeCycleListener listener=(RemoteThreadsLifeCycleListener)commandClass.newInstance();
+          listeners.add(listener);
+        }
+      }
+ catch (      Exception e) {
+        log.error("Exception registering " + RemoteThreadsLifeCycleListener.class.getName() + " with implementation:"+ strClassName,e);
+      }
+    }
+  }
+ catch (  IOException e) {
+    log.error("Exception finding implementations of " + RemoteThreadsLifeCycleListener.class,e);
+  }
 }
