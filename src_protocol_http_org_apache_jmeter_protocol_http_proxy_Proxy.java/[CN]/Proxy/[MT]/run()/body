@@ -29,7 +29,15 @@
         log.error("In SSL request, unable to find host and port in CONNECT request: " + request.getUrl());
         throw new JMeterException();
       }
-      ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+      try {
+        ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
+      }
+ catch (      IOException ioe) {
+        final String url=param.length > 0 ? " for '" + param[0] + "'" : "";
+        log.warn(port + "Problem with SSL certificate" + url+ "? Ensure browser is set to accept the JMeter proxy cert: "+ ioe.getMessage());
+        result=generateErrorResult(result,request,ioe,"\n**ensure browser is set to accept the JMeter proxy certificate**");
+        throw new JMeterException();
+      }
       if (log.isDebugEnabled()) {
         log.debug(port + "Reparse: " + new String(ba));
       }
@@ -57,26 +65,17 @@
 catch (  UnknownHostException uhe) {
     log.warn(port + "Server Not Found.",uhe);
     writeErrorToClient(HttpReplyHdr.formServerNotFound());
-    result=generateErrorResult(result,uhe);
+    result=generateErrorResult(result,request,uhe);
   }
 catch (  IllegalArgumentException e) {
     log.error(port + "Not implemented (probably used https)",e);
     writeErrorToClient(HttpReplyHdr.formNotImplemented("Probably used https instead of http. " + "To record https requests, see " + "<a href=\"http://jmeter.apache.org/usermanual/component_reference.html#HTTP_Proxy_Server\">HTTP Proxy Server documentation</a>"));
-    result=generateErrorResult(result,e);
-  }
-catch (  IOException ioe) {
-    final String url=param.length > 0 ? " for '" + param[0] + "'" : "";
-    log.error(port + "Problem with SSL certificate" + url+ "? Ensure browser is set to accept the JMeter proxy cert:",ioe);
-    if (result == null) {
-      result=new SampleResult();
-      result.setSampleLabel("Sample failed");
-    }
-    result.setResponseMessage(ioe.getMessage() + "\n**ensure browser is set to accept the JMeter proxy certificate**");
+    result=generateErrorResult(result,request,e);
   }
 catch (  Exception e) {
     log.error(port + "Exception when processing sample",e);
     writeErrorToClient(HttpReplyHdr.formInternalError());
-    result=generateErrorResult(result,e);
+    result=generateErrorResult(result,request,e);
   }
  finally {
     if (log.isDebugEnabled()) {
@@ -91,7 +90,7 @@ catch (  Exception e) {
         headers.removeHeaderNamed(hdr);
       }
     }
-    if (sampler != null) {
+    if (result != null) {
       target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
     }
     try {
