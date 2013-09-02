@@ -1,0 +1,9 @@
+{
+  String in=JOrphanUtils.nullifyIfEmptyTrimmed(stdin);
+  if (in == null) {
+    return null;
+  }
+ else {
+    return new FileInputStream(in);
+  }
+}

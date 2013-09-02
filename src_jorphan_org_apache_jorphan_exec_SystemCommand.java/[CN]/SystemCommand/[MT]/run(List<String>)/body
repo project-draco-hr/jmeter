@@ -1,45 +1,40 @@
 {
   Process proc=null;
+  final ProcessBuilder procBuild=new ProcessBuilder(arguments);
+  if (env != null) {
+    procBuild.environment().putAll(env);
+  }
+  this.executionEnvironment=Collections.unmodifiableMap(procBuild.environment());
+  procBuild.directory(directory);
+  if (stderr == null) {
+    procBuild.redirectErrorStream(true);
+  }
   try {
-    ProcessBuilder procBuild=new ProcessBuilder(arguments);
-    if (env != null) {
-      procBuild.environment().putAll(env);
-    }
-    this.executionEnvironment=Collections.unmodifiableMap(procBuild.environment());
-    procBuild.directory(directory);
-    if (stderr == null || stderr.equals(stdout)) {
-      procBuild.redirectErrorStream(true);
-    }
     proc=procBuild.start();
-    StreamCopier swerr=null;
-    if (!procBuild.redirectErrorStream()) {
-      swerr=new StreamCopier(proc.getErrorStream(),new FileOutputStream(stderr));
+    final OutputStream procOut=proc.getOutputStream();
+    final InputStream procErr=proc.getErrorStream();
+    final InputStream procIn=proc.getInputStream();
+    final StreamCopier swerr;
+    if (stderr != null) {
+      swerr=new StreamCopier(procErr,stderr);
       swerr.start();
     }
-    StreamCopier swout=null;
-    if (stdout != null) {
-      swout=new StreamCopier(proc.getInputStream(),new FileOutputStream(stdout));
-      swout.start();
-    }
  else {
-      outputGobbler=new StreamGobbler(proc.getInputStream());
-      outputGobbler.start();
+      swerr=null;
     }
-    StreamCopier swin=null;
+    final StreamCopier swout=new StreamCopier(procIn,stdout);
+    swout.start();
+    final StreamCopier swin;
     if (stdin != null) {
-      swin=new StreamCopier(new FileInputStream(stdin),proc.getOutputStream());
+      swin=new StreamCopier(stdin,procOut);
       swin.start();
     }
  else {
-      proc.getOutputStream().close();
+      swin=null;
+      procOut.close();
     }
     int exitVal=waitForEndWithTimeout(proc,timeoutMillis);
-    if (outputGobbler != null) {
-      outputGobbler.join();
-    }
-    if (swout != null) {
-      swout.join();
-    }
+    swout.join();
     if (swerr != null) {
       swerr.join();
     }
@@ -55,6 +50,7 @@
         proc.destroy();
       }
  catch (      Exception ignored) {
+        ignored.printStackTrace();
       }
     }
   }

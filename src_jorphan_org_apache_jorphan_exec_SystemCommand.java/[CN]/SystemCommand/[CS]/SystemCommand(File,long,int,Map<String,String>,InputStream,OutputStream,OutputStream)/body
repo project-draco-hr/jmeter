@@ -1,0 +1,16 @@
+{
+  super();
+  this.timeoutMillis=timeoutMillis;
+  this.directory=directory;
+  this.env=env;
+  this.pollInterval=pollInterval;
+  this.stdin=stdin;
+  this.stdoutWasNull=stdout == null;
+  if (stdout == null) {
+    this.stdout=new ByteArrayOutputStream();
+  }
+ else {
+    this.stdout=stdout;
+  }
+  this.stderr=stderr;
+}

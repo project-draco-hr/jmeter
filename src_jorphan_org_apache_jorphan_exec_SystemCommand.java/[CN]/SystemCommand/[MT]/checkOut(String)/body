@@ -1,0 +1,9 @@
+{
+  String in=JOrphanUtils.nullifyIfEmptyTrimmed(path);
+  if (in == null) {
+    return null;
+  }
+ else {
+    return new FileOutputStream(path);
+  }
+}

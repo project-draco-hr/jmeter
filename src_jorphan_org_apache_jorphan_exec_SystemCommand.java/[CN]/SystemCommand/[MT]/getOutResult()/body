@@ -1,6 +1,6 @@
 {
-  if (outputGobbler != null) {
-    return outputGobbler.getResult();
+  if (stdoutWasNull) {
+    return stdout.toString();
   }
  else {
     return "";
