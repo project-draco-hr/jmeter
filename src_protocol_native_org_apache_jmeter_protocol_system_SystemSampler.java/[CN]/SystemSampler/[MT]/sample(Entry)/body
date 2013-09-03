@@ -38,8 +38,9 @@
     log.debug("Will run :" + cmdLine + " using working directory:"+ directory.getAbsolutePath()+ " with environment:"+ env);
   }
   results.setSamplerData("Working Directory:" + directory.getAbsolutePath() + "\nEnvironment:"+ env+ "\nExecuting:"+ cmdLine.toString());
-  SystemCommand nativeCommand=new SystemCommand(directory,getTimeout(),POLL_INTERVAL,env,getStdin(),getStdout(),getStderr());
+  SystemCommand nativeCommand=null;
   try {
+    nativeCommand=new SystemCommand(directory,getTimeout(),POLL_INTERVAL,env,getStdin(),getStdout(),getStderr());
     results.sampleStart();
     int returnCode=nativeCommand.run(cmds);
     results.sampleEnd();
@@ -66,6 +67,8 @@ catch (  InterruptedException ie) {
     results.setSuccessful(false);
     results.setResponseMessage("System Sampler Interupted whilst executing System Call: " + ie);
   }
-  results.setResponseData(nativeCommand.getOutResult().getBytes());
+  if (nativeCommand != null) {
+    results.setResponseData(nativeCommand.getOutResult().getBytes());
+  }
   return results;
 }
