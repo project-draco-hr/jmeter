@@ -1,0 +1,8 @@
+{
+  ByteArrayOutputStream out=new ByteArrayOutputStream();
+  int exitCode=run(arguments1,stdin,out,stderr);
+  if (exitCode == 0) {
+    exitCode=run(arguments2,new ByteArrayInputStream(out.toByteArray()),stdout,stderr);
+  }
+  return exitCode;
+}
