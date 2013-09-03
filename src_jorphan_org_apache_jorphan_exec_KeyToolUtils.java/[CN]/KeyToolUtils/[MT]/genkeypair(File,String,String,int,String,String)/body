@@ -1,16 +1,13 @@
 {
-  if (keystore.exists()) {
-    throw new IOException("Keystore already exists");
-  }
   final File workingDir=keystore.getParentFile();
   final SystemCommand nativeCommand=new SystemCommand(workingDir,null);
   final List<String> arguments=new ArrayList<String>();
   arguments.add("keytool");
   arguments.add("-genkeypair");
   arguments.add("-alias");
-  arguments.add("jmeter");
+  arguments.add(alias);
   arguments.add("-dname");
-  arguments.add("cn=JMeter Proxy (DO NOT TRUST)");
+  arguments.add(dname == null ? DEFAULT_DNAME : dname);
   arguments.add("-keyalg");
   arguments.add("RSA");
   arguments.add("-keystore");
@@ -21,6 +18,10 @@
   arguments.add(password);
   arguments.add("-validity");
   arguments.add(Integer.toString(validity));
+  if (ext != null) {
+    arguments.add("-ext");
+    arguments.add(ext);
+  }
   int exitVal=nativeCommand.run(arguments);
   if (exitVal != 0) {
     throw new IOException("Command failed, code: " + exitVal + "\n"+ nativeCommand.getOutResult());
