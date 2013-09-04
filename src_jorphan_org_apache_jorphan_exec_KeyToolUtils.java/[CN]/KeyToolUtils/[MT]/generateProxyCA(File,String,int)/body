@@ -1,11 +1,11 @@
 {
   keystore.delete();
   new File(CACERT).delete();
-  KeyToolUtils.genkeypair(keystore,"root",password,validity,DNAME_ROOT_KEY,"bc:c");
-  KeyToolUtils.genkeypair(keystore,"ca",password,validity,DNAME_CA_KEY,"bc:c");
+  KeyToolUtils.genkeypair(keystore,ROOT_ALIAS,password,validity,DNAME_ROOT_KEY,"bc:c");
+  KeyToolUtils.genkeypair(keystore,CA_ALIAS,password,validity,DNAME_CA_KEY,"bc:c");
   ByteArrayOutputStream certReqOut=new ByteArrayOutputStream();
-  KeyToolUtils.keytool("-certreq",keystore,password,"ca",null,certReqOut);
+  KeyToolUtils.keytool("-certreq",keystore,password,CA_ALIAS,null,certReqOut);
   InputStream certReqIn=new ByteArrayInputStream(certReqOut.toByteArray());
-  KeyToolUtils.keytool("-gencert",keystore,password,"ca",certReqIn,null,"-ext","BC:0","-outfile",CACERT);
-  KeyToolUtils.keytool("-importcert",keystore,password,"ca",null,null,"-file",CACERT);
+  KeyToolUtils.keytool("-gencert",keystore,password,CA_ALIAS,certReqIn,null,"-ext","BC:0","-outfile",CACERT);
+  KeyToolUtils.keytool("-importcert",keystore,password,CA_ALIAS,null,null,"-file",CACERT);
 }
