@@ -1,0 +1,22 @@
+{
+  final File workingDir=keystore.getParentFile();
+  final SystemCommand nativeCommand=new SystemCommand(workingDir,0L,0,null,input,output,null);
+  final List<String> arguments=new ArrayList<String>();
+  arguments.add("keytool");
+  arguments.add(command);
+  arguments.add("-keystore");
+  arguments.add(keystore.getName());
+  arguments.add("-storepass");
+  arguments.add(password);
+  arguments.add("-keypass");
+  arguments.add(password);
+  arguments.add("-alias");
+  arguments.add(alias);
+  for (  String parameter : parameters) {
+    arguments.add(parameter);
+  }
+  int exitVal=nativeCommand.run(arguments);
+  if (exitVal != 0) {
+    throw new IOException("Command failed, code: " + exitVal + "\n"+ nativeCommand.getOutResult());
+  }
+}
