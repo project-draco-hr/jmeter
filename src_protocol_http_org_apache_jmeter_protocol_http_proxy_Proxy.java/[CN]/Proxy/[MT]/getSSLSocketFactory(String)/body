@@ -4,45 +4,19 @@ synchronized (hashHost) {
       log.debug(port + "Good, already in map, host=" + host);
       return hashHost.get(host);
     }
-    InputStream in=getCertificate();
-    Exception except=null;
-    if (in != null) {
-      try {
-        KeyStore ks=KeyStore.getInstance(KEYSTORE_TYPE);
-        ks.load(in,JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD).toCharArray());
-        KeyManagerFactory kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
-        kmf.init(ks,JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD).toCharArray());
-        SSLContext sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
-        sslcontext.init(kmf.getKeyManagers(),null,null);
-        SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
-        hashHost.put(host,sslFactory);
-        log.info(port + "KeyStore for SSL loaded OK and put host in map (" + host+ ")");
-        return sslFactory;
-      }
- catch (      NoSuchAlgorithmException e) {
-        except=e;
-      }
-catch (      KeyManagementException e) {
-        except=e;
-      }
-catch (      KeyStoreException e) {
-        except=e;
-      }
-catch (      UnrecoverableKeyException e) {
-        except=e;
-      }
-catch (      CertificateException e) {
-        except=e;
-      }
- finally {
-        if (except != null) {
-          log.error(port + "Problem with SSL certificate",except);
-        }
-        IOUtils.closeQuietly(in);
-      }
+    try {
+      SSLContext sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
+      sslcontext.init(getKeyManagers(CERT_ALIAS),null,null);
+      SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
+      hashHost.put(host,sslFactory);
+      log.info(port + "KeyStore for SSL loaded OK and put host in map (" + host+ ")");
+      return sslFactory;
     }
- else {
-      throw new IOException("Unable to read keystore");
+ catch (    GeneralSecurityException e) {
+      log.error(port + "Problem with SSL certificate",e);
+    }
+catch (    IOException e) {
+      log.error(port + "Problem with keystore",e);
     }
     return null;
   }

@@ -1,0 +1,32 @@
+{
+  InputStream in=getCertificate();
+  if (in == null) {
+    throw new IOException("Cannot open keystore");
+  }
+ else {
+    try {
+      KeyStore ks=KeyStore.getInstance(KEYSTORE_TYPE);
+      ks.load(in,JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD).toCharArray());
+      KeyManagerFactory kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
+      kmf.init(ks,JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD).toCharArray());
+      final KeyManager[] keyManagers=kmf.getKeyManagers();
+      if (serverAlias == null) {
+        return keyManagers;
+      }
+ else {
+        if (!ks.containsAlias(serverAlias)) {
+          throw new IOException("Keystore does not contain alias " + serverAlias);
+        }
+        final int keyManagerCount=keyManagers.length;
+        final KeyManager[] wrappedKeyManagers=new KeyManager[keyManagerCount];
+        for (int i=0; i < keyManagerCount; i++) {
+          wrappedKeyManagers[i]=new ServerAliasKeyManager(keyManagers[i],serverAlias);
+        }
+        return wrappedKeyManagers;
+      }
+    }
+  finally {
+      IOUtils.closeQuietly(in);
+    }
+  }
+}
