@@ -1,20 +1,41 @@
 {
-  KeyManagerFactory kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
-  KeyStore ks=getKeyStore(JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD).toCharArray());
-  kmf.init(ks,JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD).toCharArray());
-  final KeyManager[] keyManagers=kmf.getKeyManagers();
-  if (serverAlias == null) {
-    return keyManagers;
-  }
+  final KeyStore ks;
+  final String serverAlias;
+  String keyPass;
+switch (keystoreType) {
+case JMETER_KEYSTORE:
+    ks=getJMeterKeyStore(getPassword(),(String)null);
+  keyPass=getPassword();
+serverAlias=JMETER_SERVER_ALIAS;
+break;
+case DYNAMIC_KEYSTORE:
+ks=getJMeterKeyStore(getPassword(),host);
+keyPass=getPassword();
+serverAlias=host;
+break;
+case USER_KEYSTORE:
+default :
+String keyStorePass=JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD);
+ks=getKeyStore(keyStorePass.toCharArray());
+keyPass=JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD);
+serverAlias=CERT_ALIAS;
+break;
+}
+KeyManagerFactory kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
+kmf.init(ks,keyPass.toCharArray());
+final KeyManager[] keyManagers=kmf.getKeyManagers();
+if (serverAlias == null) {
+return keyManagers;
+}
  else {
-    if (!ks.containsAlias(serverAlias)) {
-      throw new IOException("Keystore does not contain alias " + serverAlias);
-    }
-    final int keyManagerCount=keyManagers.length;
-    final KeyManager[] wrappedKeyManagers=new KeyManager[keyManagerCount];
-    for (int i=0; i < keyManagerCount; i++) {
-      wrappedKeyManagers[i]=new ServerAliasKeyManager(keyManagers[i],serverAlias);
-    }
-    return wrappedKeyManagers;
-  }
+if (!ks.containsAlias(serverAlias)) {
+throw new IOException("Keystore does not contain alias " + serverAlias);
+}
+final int keyManagerCount=keyManagers.length;
+final KeyManager[] wrappedKeyManagers=new KeyManager[keyManagerCount];
+for (int i=0; i < keyManagerCount; i++) {
+wrappedKeyManagers[i]=new ServerAliasKeyManager(keyManagers[i],serverAlias);
+}
+return wrappedKeyManagers;
+}
 }

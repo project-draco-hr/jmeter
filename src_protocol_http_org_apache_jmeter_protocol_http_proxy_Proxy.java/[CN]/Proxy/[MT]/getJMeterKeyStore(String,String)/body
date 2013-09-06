@@ -1,0 +1,47 @@
+{
+  final File certFile=new File(CERT_DIRECTORY,CERT_FILE);
+  final String subject=host == null ? JMETER_SERVER_ALIAS : host;
+  KeyStore keyStore=null;
+  final String canonicalPath=certFile.getCanonicalPath();
+  if (keyStorePass != null) {
+    try {
+      keyStore=getKeyStore(keyStorePass.toCharArray());
+    }
+ catch (    Exception e) {
+      log.warn(port + "Could not open expected file " + canonicalPath+ " "+ e.getMessage());
+    }
+  }
+  if (keyStore == null) {
+    keyStorePass=RandomStringUtils.randomAscii(20);
+    setPassword(keyStorePass);
+    try {
+      if (host != null) {
+        log.info(port + "Creating Proxy CA in " + canonicalPath);
+        KeyToolUtils.generateProxyCA(certFile,keyStorePass,CERT_VALIDITY);
+        log.info(port + "Creating entry " + subject+ " in "+ canonicalPath);
+        KeyToolUtils.generateHostCert(certFile,keyStorePass,subject,CERT_VALIDITY);
+        log.info(port + "Created keystore in " + canonicalPath);
+      }
+ else {
+        log.info(port + "Generating standard keypair in " + canonicalPath);
+        certFile.delete();
+        KeyToolUtils.genkeypair(certFile,JMETER_SERVER_ALIAS,keyStorePass,CERT_VALIDITY,null,null);
+      }
+      keyStore=getKeyStore(keyStorePass.toCharArray());
+    }
+ catch (    InterruptedException e) {
+      throw new IOException("Could not create Proxy CA keystore",e);
+    }
+  }
+  if (keyStorePass != null && host != null && !keyStore.containsAlias(host)) {
+    log.info(port + "Creating entry '" + host+ "' in "+ canonicalPath);
+    try {
+      KeyToolUtils.generateHostCert(certFile,keyStorePass,host,CERT_VALIDITY);
+      keyStore=getKeyStore(keyStorePass.toCharArray());
+    }
+ catch (    InterruptedException e) {
+      throw new IOException("Could not create entry for subject '" + host + "'",e);
+    }
+  }
+  return keyStore;
+}

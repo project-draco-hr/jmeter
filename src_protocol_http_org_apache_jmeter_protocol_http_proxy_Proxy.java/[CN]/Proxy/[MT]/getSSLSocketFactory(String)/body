@@ -6,7 +6,7 @@ synchronized (hashHost) {
     }
     try {
       SSLContext sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
-      sslcontext.init(getKeyManagers(CERT_ALIAS),null,null);
+      sslcontext.init(getKeyManagers(host),null,null);
       SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
       hashHost.put(host,sslFactory);
       log.info(port + "KeyStore for SSL loaded OK and put host in map (" + host+ ")");
