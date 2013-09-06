@@ -1,12 +1,3 @@
 {
-  String alias=domain;
-  String dname="cn=*." + domain + ", o=JMeter Proxy (TEMPORARY TRUST ONLY";
-  KeyToolUtils.genkeypair(keystore,alias,password,validity,dname,null);
-  ByteArrayOutputStream certReqOut=new ByteArrayOutputStream();
-  KeyToolUtils.keytool("-certreq",keystore,password,alias,null,certReqOut);
-  InputStream certReqIn=new ByteArrayInputStream(certReqOut.toByteArray());
-  ByteArrayOutputStream certOut=new ByteArrayOutputStream();
-  KeyToolUtils.keytool("-gencert",keystore,password,CA_ALIAS,certReqIn,certOut,"-ext","ku:c=dig,keyE");
-  InputStream certIn=new ByteArrayInputStream(certOut.toByteArray());
-  KeyToolUtils.keytool("-importcert",keystore,password,alias,certIn,null,"-noprompt");
+  generateSignedCert(keystore,password,validity,domain,"*." + domain);
 }
