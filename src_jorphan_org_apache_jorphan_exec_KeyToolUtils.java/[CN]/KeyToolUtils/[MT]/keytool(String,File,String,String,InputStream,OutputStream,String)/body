@@ -15,8 +15,13 @@
   for (  String parameter : parameters) {
     arguments.add(parameter);
   }
-  int exitVal=nativeCommand.run(arguments);
-  if (exitVal != 0) {
-    throw new IOException("Command failed, code: " + exitVal + "\n"+ nativeCommand.getOutResult());
+  try {
+    int exitVal=nativeCommand.run(arguments);
+    if (exitVal != 0) {
+      throw new IOException("Command failed, code: " + exitVal + "\n"+ nativeCommand.getOutResult());
+    }
+  }
+ catch (  InterruptedException e) {
+    throw new IOException("Command was interrupted\n" + nativeCommand.getOutResult(),e);
   }
 }
