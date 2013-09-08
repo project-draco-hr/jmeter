@@ -9,5 +9,6 @@
       return tree.getTree(item);
     }
   }
-  return tree;
+  log.warn("No Test Fragment was found in included Test Plan, returning empty HashTree");
+  return new HashTree();
 }
