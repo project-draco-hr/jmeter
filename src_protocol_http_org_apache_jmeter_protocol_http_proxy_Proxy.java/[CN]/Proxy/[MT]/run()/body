@@ -4,7 +4,6 @@
   SampleResult result=null;
   HeaderManager headers=null;
   HTTPSamplerBase sampler=null;
-  String[] param=new String[0];
   log.debug(port + "====================================================================");
   try {
     byte[] ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
@@ -20,7 +19,7 @@
       log.debug(port + "Method CONNECT => SSL");
       outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes(SampleResult.DEFAULT_HTTP_ENCODING));
       outStreamClient.flush();
-      param=request.getUrl().split(":");
+      String[] param=request.getUrl().split(":");
       if (param.length == 2) {
         log.debug(port + "Start to negotiate SSL connection, host: " + param[0]);
         clientSocket=startSSL(clientSocket,param[0]);
