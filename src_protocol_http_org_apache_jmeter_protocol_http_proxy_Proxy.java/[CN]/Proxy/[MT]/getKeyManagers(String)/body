@@ -2,7 +2,7 @@
   final KeyStore ks;
   final String serverAlias;
   String keyPass;
-switch (keystoreType) {
+switch (ProxyControl.keystoreType) {
 case JMETER_KEYSTORE:
     ks=getJMeterKeyStore(getPassword(),(String)null);
   keyPass=getPassword();
@@ -18,7 +18,7 @@ default :
 String keyStorePass=JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD);
 ks=getKeyStore(keyStorePass.toCharArray());
 keyPass=JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD);
-serverAlias=CERT_ALIAS;
+serverAlias=ProxyControl.CERT_ALIAS;
 break;
 }
 KeyManagerFactory kmf=KeyManagerFactory.getInstance(KEYMANAGERFACTORY);
