@@ -1,7 +1,14 @@
 {
   Map<String,PreparedStatement> preparedStatementMap=perConnCache.get(conn);
   if (null == preparedStatementMap) {
-    preparedStatementMap=new ConcurrentHashMap<String,PreparedStatement>();
+    preparedStatementMap=Collections.<String,PreparedStatement>synchronizedMap(new org.apache.commons.collections.map.LRUMap(MAX_OPEN_PREPARED_STATEMENTS){
+      @Override protected boolean removeLRU(      LinkEntry entry){
+        PreparedStatement preparedStatement=(PreparedStatement)entry.getValue();
+        close(preparedStatement);
+        return true;
+      }
+    }
+);
     perConnCache.put(conn,preparedStatementMap);
   }
   PreparedStatement pstmt=preparedStatementMap.get(getQuery());
