@@ -1,6 +1,8 @@
 {
   keystore.delete();
-  new File(CACERT).delete();
+  if (!new File(CACERT).delete()) {
+    log.warn("Could not delete file:" + new File(CACERT).getAbsolutePath() + ", will continue ignoring this");
+  }
   KeyToolUtils.genkeypair(keystore,ROOT_ALIAS,password,validity,DNAME_ROOT_KEY,"bc:c");
   KeyToolUtils.genkeypair(keystore,CA_ALIAS,password,validity,DNAME_CA_KEY,"bc:c");
   ByteArrayOutputStream certReqOut=new ByteArrayOutputStream();
