@@ -1,5 +1,12 @@
 {
   String command=action.getActionCommand();
+  final Object source=action.getSource();
+  if (source.equals(samplerFollowRedirects) && samplerFollowRedirects.isSelected()) {
+    samplerRedirectAutomatically.setSelected(false);
+  }
+ else   if (source.equals(samplerRedirectAutomatically) && samplerRedirectAutomatically.isSelected()) {
+    samplerFollowRedirects.setSelected(false);
+  }
   if (command.equals(STOP)) {
     model.stopProxy();
     stop.setEnabled(false);
