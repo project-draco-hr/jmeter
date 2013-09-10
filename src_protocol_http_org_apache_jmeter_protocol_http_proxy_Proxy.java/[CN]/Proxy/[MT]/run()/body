@@ -45,7 +45,7 @@
         throw new JMeterException();
       }
     }
-    SamplerCreator samplerCreator=factory.getSamplerCreator(request,pageEncodings,formEncodings);
+    SamplerCreator samplerCreator=SAMPLERFACTORY.getSamplerCreator(request,pageEncodings,formEncodings);
     sampler=samplerCreator.createAndPopulateSampler(request,pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
@@ -85,7 +85,7 @@ catch (  Exception e) {
     if (headers != null) {
       headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
       headers.removeHeaderNamed(HTTPConstants.HEADER_AUTHORIZATION);
-      for (      String hdr : headersToRemove) {
+      for (      String hdr : HEADERS_TO_REMOVE) {
         headers.removeHeaderNamed(hdr);
       }
     }

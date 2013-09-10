@@ -42,8 +42,8 @@ break;
 default :
 throw new IllegalStateException("Impossible case: " + ProxyControl.KEYSTORE_MODE);
 }
-synchronized (hashHost) {
-final SSLSocketFactory sslSocketFactory=hashHost.get(hashAlias);
+synchronized (HOST2SSL_SOCK_FAC) {
+final SSLSocketFactory sslSocketFactory=HOST2SSL_SOCK_FAC.get(hashAlias);
 if (sslSocketFactory != null) {
 log.debug(port + "Good, already in map, host=" + host+ " using alias "+ hashAlias);
 return sslSocketFactory;
@@ -52,7 +52,7 @@ try {
 SSLContext sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
 sslcontext.init(getWrappedKeyManagers(keyAlias),null,null);
 SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
-hashHost.put(hashAlias,sslFactory);
+HOST2SSL_SOCK_FAC.put(hashAlias,sslFactory);
 log.info(port + "KeyStore for SSL loaded OK and put host '" + host+ "' in map with key ("+ hashAlias+ ")");
 return sslFactory;
 }
