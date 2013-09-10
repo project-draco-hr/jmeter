@@ -1,5 +1,27 @@
 {
   if (sampler != null) {
+    if (ATTEMPT_REDIRECT_DISABLING && (samplerRedirectAutomatically || samplerFollowRedirects)) {
+      if (result instanceof HTTPSampleResult) {
+        final HTTPSampleResult httpSampleResult=(HTTPSampleResult)result;
+        final String urlAsString=httpSampleResult.getUrlAsString();
+        if (urlAsString.equals(LAST_REDIRECT)) {
+          sampler.setEnabled(false);
+          sampler.setComment("Detected a redirect from the previous sample");
+        }
+ else {
+          LAST_REDIRECT=null;
+        }
+        if (httpSampleResult.isRedirect()) {
+          if (LAST_REDIRECT == null) {
+            sampler.setComment("Detected the start of a redirect chain");
+          }
+          LAST_REDIRECT=httpSampleResult.getRedirectLocation();
+        }
+ else {
+          LAST_REDIRECT=null;
+        }
+      }
+    }
     if (filterContentType(result) && filterUrl(sampler)) {
       JMeterTreeNode myTarget=findTargetControllerNode();
       @SuppressWarnings("unchecked") Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
