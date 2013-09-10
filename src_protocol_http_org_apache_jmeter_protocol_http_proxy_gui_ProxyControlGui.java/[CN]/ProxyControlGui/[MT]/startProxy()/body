@@ -1,6 +1,8 @@
 {
   ValueReplacer replacer=GuiPackage.getInstance().getReplacer();
   modifyTestElement(model);
+  Cursor cursor=getCursor();
+  setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
   try {
     replacer.replaceValues(model);
     model.startProxy();
@@ -16,5 +18,8 @@ catch (  BindException e) {
   }
 catch (  IOException e) {
     JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error"),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+ finally {
+    setCursor(cursor);
   }
 }

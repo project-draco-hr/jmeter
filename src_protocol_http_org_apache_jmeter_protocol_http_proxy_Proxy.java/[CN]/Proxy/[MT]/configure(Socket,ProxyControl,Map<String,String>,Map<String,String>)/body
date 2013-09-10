@@ -5,4 +5,6 @@
   this.pageEncodings=_pageEncodings;
   this.formEncodings=_formEncodings;
   this.port="[" + clientSocket.getPort() + "] ";
+  this.keyStore=_target.getKeyStore();
+  this.keyPassword=_target.getKeyPassword();
 }

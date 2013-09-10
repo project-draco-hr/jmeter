@@ -1,0 +1,10 @@
+{
+synchronized (CERT_PATH) {
+    if (!keyStore.containsAlias(host)) {
+      log.info(port + "Creating entry " + host+ " in "+ CERT_PATH_ABS);
+      KeyToolUtils.generateHostCert(CERT_PATH,storePassword,host,CERT_VALIDITY);
+    }
+    keyStore=getKeyStore(storePassword.toCharArray());
+  }
+  return keyStore;
+}

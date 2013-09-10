@@ -1,0 +1,14 @@
+{
+  InputStream in=null;
+  try {
+    in=new BufferedInputStream(new FileInputStream(CERT_PATH));
+    log.debug("Opened Keystore file: " + CERT_PATH_ABS);
+    KeyStore ks=KeyStore.getInstance(KEYSTORE_TYPE);
+    ks.load(in,password);
+    log.debug("Loaded Keystore file: " + CERT_PATH_ABS);
+    return ks;
+  }
+  finally {
+    IOUtils.closeQuietly(in);
+  }
+}

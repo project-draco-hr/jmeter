@@ -1,0 +1,18 @@
+{
+  if (keyStore.containsAlias(host)) {
+    return host;
+  }
+  String parts[]=host.split("\\.");
+  for (int i=1; i <= parts.length - 2; i++) {
+    StringBuilder sb=new StringBuilder("*");
+    for (int j=i; j < parts.length; j++) {
+      sb.append('.');
+      sb.append(parts[j]);
+    }
+    String alias=sb.toString();
+    if (keyStore.containsAlias(alias)) {
+      return alias;
+    }
+  }
+  return null;
+}

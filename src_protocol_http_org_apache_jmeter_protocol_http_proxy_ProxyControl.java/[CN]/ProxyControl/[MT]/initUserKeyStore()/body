@@ -1,0 +1,17 @@
+{
+  try {
+    keyStore=getKeyStore(storePassword.toCharArray());
+    X509Certificate caCert=(X509Certificate)keyStore.getCertificate(CERT_ALIAS);
+    if (caCert == null) {
+      log.error("Could not find key with alias " + CERT_ALIAS);
+      keyStore=null;
+    }
+ else {
+      caCert.checkValidity(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_DAY));
+    }
+  }
+ catch (  Exception e) {
+    keyStore=null;
+    log.error("Could not open keystore or certificate is not valid " + CERT_PATH_ABS + " "+ e.getMessage());
+  }
+}

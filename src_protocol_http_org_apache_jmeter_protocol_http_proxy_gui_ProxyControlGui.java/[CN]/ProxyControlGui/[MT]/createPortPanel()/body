@@ -9,7 +9,10 @@
   HorizontalPanel panel=new HorizontalPanel();
   panel.add(label);
   panel.add(portField);
+  panel.add(Box.createHorizontalStrut(10));
   gPane.add(panel,BorderLayout.WEST);
-  gPane.add(Box.createHorizontalStrut(10));
+  sslDomains=new JLabeledTextField(JMeterUtils.getResString("proxy_domains"));
+  sslDomains.setEnabled(ProxyControl.isDynamicMode());
+  gPane.add(sslDomains,BorderLayout.CENTER);
   return gPane;
 }

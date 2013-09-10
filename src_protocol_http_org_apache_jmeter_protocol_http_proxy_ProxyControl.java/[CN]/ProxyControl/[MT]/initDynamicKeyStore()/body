@@ -1,0 +1,51 @@
+{
+  if (storePassword != null) {
+    try {
+      keyStore=getKeyStore(storePassword.toCharArray());
+      X509Certificate caCert=(X509Certificate)keyStore.getCertificate(KeyToolUtils.CA_ALIAS);
+      if (caCert == null) {
+        keyStore=null;
+      }
+ else {
+        caCert.checkValidity(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_DAY));
+      }
+    }
+ catch (    IOException e) {
+      keyStore=null;
+      if (e.getCause() instanceof UnrecoverableKeyException) {
+        log.warn("Could not read key store " + e.getMessage() + " cause "+ e.getCause().getMessage());
+      }
+ else {
+        log.warn("Could not open/read key store " + e.getMessage());
+      }
+    }
+catch (    GeneralSecurityException e) {
+      log.warn("Problem reading key store" + e.getMessage());
+    }
+  }
+  if (keyStore == null) {
+    storePassword=RandomStringUtils.randomAlphanumeric(20);
+    keyPassword=storePassword;
+    setPassword(storePassword);
+    log.info("Creating Proxy CA in " + CERT_PATH_ABS);
+    KeyToolUtils.generateProxyCA(CERT_PATH,storePassword,CERT_VALIDITY);
+    log.info("Created keystore in " + CERT_PATH_ABS);
+    keyStore=getKeyStore(storePassword.toCharArray());
+  }
+  final String sslDomains=getSslDomains().trim();
+  if (sslDomains.length() > 0) {
+    final String[] domains=sslDomains.split(",");
+    for (    String subject : domains) {
+      if (isValid(subject)) {
+        if (!keyStore.containsAlias(subject)) {
+          log.info("Creating entry " + subject + " in "+ CERT_PATH_ABS);
+          KeyToolUtils.generateHostCert(CERT_PATH,storePassword,subject,CERT_VALIDITY);
+          keyStore=getKeyStore(storePassword.toCharArray());
+        }
+      }
+ else {
+        log.warn("Attempt to create an invalid domain certificate: " + subject);
+      }
+    }
+  }
+}

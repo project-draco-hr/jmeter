@@ -3,6 +3,7 @@
   super.configure(element);
   model=(ProxyControl)element;
   portField.setText(model.getPortString());
+  sslDomains.setText(model.getSslDomains());
   httpHeaders.setSelected(model.getCaptureHttpHeaders());
   groupingMode.setSelectedIndex(model.getGroupingMode());
   addAssertions.setSelected(model.getAssertions());

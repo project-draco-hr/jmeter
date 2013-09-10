@@ -1,0 +1,22 @@
+{
+  if (storePassword != null) {
+    try {
+      keyStore=getKeyStore(storePassword.toCharArray());
+      X509Certificate caCert=(X509Certificate)keyStore.getCertificate(JMETER_SERVER_ALIAS);
+      caCert.checkValidity(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_DAY));
+    }
+ catch (    Exception e) {
+      keyStore=null;
+      log.warn("Could not open expected file or certificate is not valid " + CERT_PATH_ABS + " "+ e.getMessage());
+    }
+  }
+  if (keyStore == null) {
+    storePassword=RandomStringUtils.randomAlphanumeric(20);
+    keyPassword=storePassword;
+    setPassword(storePassword);
+    log.info("Generating standard keypair in " + CERT_PATH_ABS);
+    CERT_PATH.delete();
+    KeyToolUtils.genkeypair(CERT_PATH,JMETER_SERVER_ALIAS,storePassword,CERT_VALIDITY,null,null);
+    keyStore=getKeyStore(storePassword.toCharArray());
+  }
+}

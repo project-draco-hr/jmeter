@@ -5,6 +5,7 @@
   if (el instanceof ProxyControl) {
     model=(ProxyControl)el;
     model.setPort(portField.getText());
+    model.setSslDomains(sslDomains.getText());
     setIncludeListInProxyControl(model);
     setExcludeListInProxyControl(model);
     model.setCaptureHttpHeaders(httpHeaders.isSelected());

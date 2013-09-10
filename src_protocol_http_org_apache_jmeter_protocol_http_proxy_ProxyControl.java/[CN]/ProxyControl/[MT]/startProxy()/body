@@ -1,4 +1,15 @@
 {
+  try {
+    initKeyStore();
+  }
+ catch (  GeneralSecurityException e) {
+    log.error("Could not initialise key store",e);
+    throw new IOException("Could not create keystore",e);
+  }
+catch (  IOException e) {
+    log.error("Could not initialise key store",e);
+    throw e;
+  }
   notifyTestListenersOfStart();
   try {
     server=new Daemon(getPort(),this);

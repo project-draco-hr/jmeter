@@ -1,23 +1,67 @@
 {
-synchronized (hashHost) {
-    if (hashHost.containsKey(host)) {
-      log.debug(port + "Good, already in map, host=" + host);
-      return hashHost.get(host);
-    }
-    try {
-      SSLContext sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
-      sslcontext.init(getKeyManagers(host),null,null);
-      SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
-      hashHost.put(host,sslFactory);
-      log.info(port + "KeyStore for SSL loaded OK and put host in map (" + host+ ")");
-      return sslFactory;
-    }
- catch (    GeneralSecurityException e) {
-      log.error(port + "Problem with SSL certificate",e);
-    }
-catch (    IOException e) {
-      log.error(port + "Problem with keystore",e);
-    }
+  if (keyStore == null) {
+    log.error(port + "No keystore available, cannot record SSL");
     return null;
   }
+  final String hashAlias;
+  final String keyAlias;
+switch (ProxyControl.KEYSTORE_MODE) {
+case DYNAMIC_KEYSTORE:
+    try {
+      keyStore=target.getKeyStore();
+      String alias=getDomainMatch(keyStore,host);
+      if (alias == null) {
+        hashAlias=host;
+        keyAlias=host;
+        keyStore=target.updateKeyStore(port,keyAlias);
+      }
+ else       if (alias.equals(host)) {
+        hashAlias=host;
+        keyAlias=host;
+      }
+ else {
+        hashAlias=alias;
+        keyAlias=alias;
+      }
+    }
+ catch (    IOException e) {
+      log.error(port + "Problem with keystore",e);
+      return null;
+    }
+catch (    GeneralSecurityException e) {
+      log.error(port + "Problem with keystore",e);
+      return null;
+    }
+  break;
+case JMETER_KEYSTORE:
+hashAlias=keyAlias=ProxyControl.JMETER_SERVER_ALIAS;
+break;
+case USER_KEYSTORE:
+hashAlias=keyAlias=ProxyControl.CERT_ALIAS;
+break;
+default :
+throw new IllegalStateException("Impossible case: " + ProxyControl.KEYSTORE_MODE);
+}
+synchronized (hashHost) {
+final SSLSocketFactory sslSocketFactory=hashHost.get(hashAlias);
+if (sslSocketFactory != null) {
+log.debug(port + "Good, already in map, host=" + host+ " using alias "+ hashAlias);
+return sslSocketFactory;
+}
+try {
+SSLContext sslcontext=SSLContext.getInstance(SSLCONTEXT_PROTOCOL);
+sslcontext.init(getWrappedKeyManagers(keyAlias),null,null);
+SSLSocketFactory sslFactory=sslcontext.getSocketFactory();
+hashHost.put(hashAlias,sslFactory);
+log.info(port + "KeyStore for SSL loaded OK and put host '" + host+ "' in map with key ("+ hashAlias+ ")");
+return sslFactory;
+}
+ catch (GeneralSecurityException e) {
+log.error(port + "Problem with SSL certificate",e);
+}
+catch (IOException e) {
+log.error(port + "Problem with keystore",e);
+}
+return null;
+}
 }

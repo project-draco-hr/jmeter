@@ -1,0 +1,22 @@
+{
+switch (KEYSTORE_MODE) {
+case DYNAMIC_KEYSTORE:
+    storePassword=getPassword();
+  keyPassword=getPassword();
+initDynamicKeyStore();
+break;
+case JMETER_KEYSTORE:
+storePassword=getPassword();
+keyPassword=getPassword();
+initJMeterKeyStore();
+break;
+case USER_KEYSTORE:
+storePassword=JMeterUtils.getPropDefault("proxy.cert.keystorepass",DEFAULT_PASSWORD);
+keyPassword=JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD);
+log.info("Proxy Server will use the keystore '" + CERT_PATH_ABS + "' with the alias: '"+ CERT_ALIAS+ "'");
+initUserKeyStore();
+break;
+default :
+throw new IllegalStateException("Impossible case: " + KEYSTORE_MODE);
+}
+}
