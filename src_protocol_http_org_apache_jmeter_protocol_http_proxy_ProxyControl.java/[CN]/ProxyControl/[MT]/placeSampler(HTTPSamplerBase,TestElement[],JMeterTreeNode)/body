@@ -4,7 +4,7 @@
     boolean firstInBatch=false;
     long now=System.currentTimeMillis();
     long deltaT=now - lastTime;
-    int cachedGroupingMode=groupingMode.get();
+    int cachedGroupingMode=groupingMode;
     if (deltaT > sampleGap) {
       if (!myTarget.isLeaf() && cachedGroupingMode == GROUPING_ADD_SEPARATORS) {
         addDivider(treeModel,myTarget);
@@ -45,7 +45,7 @@
         try {
           final JMeterTreeNode newNode=treeModel.addComponent(sampler,myTargetFinal);
           if (firstInBatchFinal) {
-            if (addAssertions.get()) {
+            if (addAssertions) {
               addAssertion(treeModel,newNode);
             }
             addTimers(treeModel,newNode,deltaTFinal);

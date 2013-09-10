@@ -11,7 +11,7 @@
     replacer.addVariables(map);
   }
   try {
-    boolean cachedRegexpMatch=regexMatch.get();
+    boolean cachedRegexpMatch=regexMatch;
     replacer.reverseReplace(sampler,cachedRegexpMatch);
     for (int i=0; i < configs.length; i++) {
       if (configs[i] != null) {
