@@ -1,13 +1,31 @@
 {
-  keystore.delete();
-  if (new File(CACERT).exists() && !new File(CACERT).delete()) {
-    log.warn("Could not delete file:" + new File(CACERT).getAbsolutePath() + ", will continue ignoring this");
+  File caCert_crt=new File(ROOT_CACERT_CRT);
+  File caCert_usr=new File(ROOT_CACERT_USR);
+  boolean fileExists=false;
+  if (!keystore.delete() && keystore.exists()) {
+    log.warn("Problem deleting the keystore '" + keystore + "'");
+    fileExists=true;
   }
-  KeyToolUtils.genkeypair(keystore,ROOT_ALIAS,password,validity,DNAME_ROOT_KEY,"bc:c");
-  KeyToolUtils.genkeypair(keystore,CA_ALIAS,password,validity,DNAME_CA_KEY,"bc:c");
+  if (!caCert_crt.delete() && caCert_crt.exists()) {
+    log.warn("Problem deleting the certificate file '" + caCert_crt + "'");
+    fileExists=true;
+  }
+  if (!caCert_usr.delete() && caCert_usr.exists()) {
+    log.warn("Problem deleting the certificate file '" + caCert_usr + "'");
+    fileExists=true;
+  }
+  if (fileExists) {
+    log.warn("If problems occur when recording SSL, delete the files manually and retry.");
+  }
+  KeyToolUtils.genkeypair(keystore,ROOTCA_ALIAS,password,validity,DNAME_ROOT_CA_KEY,"bc:c");
+  KeyToolUtils.genkeypair(keystore,INTERMEDIATE_CA_ALIAS,password,validity,DNAME_INTERMEDIATE_CA_KEY,"bc:c");
   ByteArrayOutputStream certReqOut=new ByteArrayOutputStream();
-  KeyToolUtils.keytool("-certreq",keystore,password,CA_ALIAS,null,certReqOut);
+  KeyToolUtils.keytool("-certreq",keystore,password,INTERMEDIATE_CA_ALIAS,null,certReqOut);
   InputStream certReqIn=new ByteArrayInputStream(certReqOut.toByteArray());
-  KeyToolUtils.keytool("-gencert",keystore,password,CA_ALIAS,certReqIn,null,"-ext","BC:0","-outfile",CACERT);
-  KeyToolUtils.keytool("-importcert",keystore,password,CA_ALIAS,null,null,"-file",CACERT);
+  ByteArrayOutputStream genCertOut=new ByteArrayOutputStream();
+  KeyToolUtils.keytool("-gencert",keystore,password,ROOTCA_ALIAS,certReqIn,genCertOut,"-ext","BC:0");
+  InputStream genCertIn=new ByteArrayInputStream(genCertOut.toByteArray());
+  KeyToolUtils.keytool("-importcert",keystore,password,INTERMEDIATE_CA_ALIAS,genCertIn,null);
+  KeyToolUtils.keytool("-exportcert",keystore,password,ROOTCA_ALIAS,null,null,"-rfc","-file",ROOT_CACERT_CRT);
+  FileUtils.copyFile(caCert_crt,caCert_usr);
 }

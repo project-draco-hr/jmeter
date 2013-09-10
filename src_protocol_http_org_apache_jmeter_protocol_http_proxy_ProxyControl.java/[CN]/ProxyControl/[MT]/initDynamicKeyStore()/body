@@ -2,12 +2,15 @@
   if (storePassword != null) {
     try {
       keyStore=getKeyStore(storePassword.toCharArray());
-      X509Certificate caCert=(X509Certificate)keyStore.getCertificate(KeyToolUtils.CA_ALIAS);
-      if (caCert == null) {
-        keyStore=null;
-      }
+      for (      String alias : KeyToolUtils.getCAaliases()) {
+        X509Certificate caCert=(X509Certificate)keyStore.getCertificate(alias);
+        if (caCert == null) {
+          keyStore=null;
+          break;
+        }
  else {
-        caCert.checkValidity(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_DAY));
+          caCert.checkValidity(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_DAY));
+        }
       }
     }
  catch (    IOException e) {
