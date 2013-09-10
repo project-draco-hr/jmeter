@@ -1,14 +1,16 @@
 {
   Map<String,PreparedStatement> preparedStatementMap=perConnCache.get(conn);
   if (null == preparedStatementMap) {
-    preparedStatementMap=Collections.<String,PreparedStatement>synchronizedMap(new org.apache.commons.collections.map.LRUMap(MAX_OPEN_PREPARED_STATEMENTS){
+    @SuppressWarnings("unchecked") Map<String,PreparedStatement> lruMap=new LRUMap(MAX_OPEN_PREPARED_STATEMENTS){
+      private static final long serialVersionUID=1L;
       @Override protected boolean removeLRU(      LinkEntry entry){
         PreparedStatement preparedStatement=(PreparedStatement)entry.getValue();
         close(preparedStatement);
         return true;
       }
     }
-);
+;
+    preparedStatementMap=Collections.<String,PreparedStatement>synchronizedMap(lruMap);
     perConnCache.put(conn,preparedStatementMap);
   }
   PreparedStatement pstmt=preparedStatementMap.get(getQuery());
