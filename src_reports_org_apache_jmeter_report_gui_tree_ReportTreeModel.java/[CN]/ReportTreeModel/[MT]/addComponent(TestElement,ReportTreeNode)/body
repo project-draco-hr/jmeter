@@ -9,12 +9,7 @@
   ReportGuiPackage.getInstance().getCurrentGui();
   ReportTreeNode newNode=new ReportTreeNode(component,this);
   try {
-    if (component.getProperty(TestElement.ENABLED) instanceof NullProperty || component.getPropertyAsBoolean(TestElement.ENABLED)) {
-      newNode.setEnabled(true);
-    }
- else {
-      newNode.setEnabled(false);
-    }
+    newNode.setEnabled(component.isEnabled());
   }
  catch (  Exception e) {
     newNode.setEnabled(true);

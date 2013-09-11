@@ -1,10 +1,5 @@
 {
   setName(element.getName());
-  if (element.getProperty(TestElement.ENABLED) instanceof NullProperty) {
-    enabled=true;
-  }
- else {
-    enabled=element.getPropertyAsBoolean(TestElement.ENABLED);
-  }
+  enabled=element.isEnabled();
   getCommentPanel().setText(element.getComment());
 }
