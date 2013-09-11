@@ -1,5 +1,5 @@
 {
-  String dname="cn=" + subject + ", o=JMeter Proxy (TEMPORARY TRUST ONLY";
+  String dname="cn=" + subject + ", o=JMeter Proxy (TEMPORARY TRUST ONLY)";
   KeyToolUtils.genkeypair(keystore,alias,password,validity,dname,null);
   ByteArrayOutputStream certReqOut=new ByteArrayOutputStream();
   KeyToolUtils.keytool("-certreq",keystore,password,alias,null,certReqOut);
