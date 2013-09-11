@@ -1,5 +1,10 @@
 {
   log.info("Creating JMeter engine on host " + host + " base '"+ jmxBase+ "'");
+  try {
+    log.info("Remote client host: " + getClientHost());
+  }
+ catch (  ServerNotActiveException e) {
+  }
 synchronized (LOCK) {
     if (backingEngine != null && backingEngine.isActive()) {
       log.warn("Engine is busy - cannot create JMeter engine");
