@@ -13,6 +13,12 @@
   gPane.add(panel,BorderLayout.WEST);
   sslDomains=new JLabeledTextField(JMeterUtils.getResString("proxy_domains"));
   sslDomains.setEnabled(ProxyControl.isDynamicMode());
+  if (ProxyControl.isDynamicMode()) {
+    sslDomains.setToolTipText(JMeterUtils.getResString("proxy_domains_dynamic_mode_tooltip"));
+  }
+ else {
+    sslDomains.setToolTipText(JMeterUtils.getResString("proxy_domains_dynamic_mode_tooltip_java6"));
+  }
   gPane.add(sslDomains,BorderLayout.CENTER);
   return gPane;
 }
