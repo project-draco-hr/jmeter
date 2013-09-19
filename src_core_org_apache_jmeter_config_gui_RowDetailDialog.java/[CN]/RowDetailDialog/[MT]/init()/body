@@ -7,15 +7,13 @@
   namePane.add(nameLabel,BorderLayout.WEST);
   namePane.add(nameTF,BorderLayout.CENTER);
   valueLabel=new JLabel(JMeterUtils.getResString("value"));
-  valueTA=new JTextArea();
-  valueTA.setLineWrap(true);
-  valueTA.setWrapStyleWord(true);
+  valueTA=new JSyntaxTextArea(30,80);
   valueTA.getDocument().addDocumentListener(this);
-  valueTA.setPreferredSize(new Dimension(450,300));
   setValues(selectedRow);
   JPanel valuePane=new JPanel(new BorderLayout());
   valuePane.add(valueLabel,BorderLayout.NORTH);
-  valuePane.add(new JScrollPane(valueTA),BorderLayout.CENTER);
+  JTextScrollPane jTextScrollPane=new JTextScrollPane(valueTA);
+  valuePane.add(jTextScrollPane,BorderLayout.CENTER);
   JPanel detailPanel=new JPanel(new BorderLayout());
   detailPanel.add(namePane,BorderLayout.NORTH);
   detailPanel.add(valuePane,BorderLayout.CENTER);
