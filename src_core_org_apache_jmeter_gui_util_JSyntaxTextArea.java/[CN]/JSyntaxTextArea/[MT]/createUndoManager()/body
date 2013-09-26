@@ -1,0 +1,5 @@
+{
+  RUndoManager undoManager=super.createUndoManager();
+  undoManager.setLimit(MAX_UNDOS);
+  return undoManager;
+}
