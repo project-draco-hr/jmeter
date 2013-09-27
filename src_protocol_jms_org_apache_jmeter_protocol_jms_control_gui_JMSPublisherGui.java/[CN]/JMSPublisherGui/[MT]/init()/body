@@ -19,7 +19,10 @@
   mainPanel.add(msgChoice);
   mainPanel.add(messageFile);
   mainPanel.add(randomFile);
-  mainPanel.add(textMessage);
+  JPanel messageContentPanel=new JPanel(new BorderLayout());
+  messageContentPanel.add(new JLabel(JMeterUtils.getResString("jms_text_area")),BorderLayout.NORTH);
+  messageContentPanel.add(new JTextScrollPane(textMessage),BorderLayout.CENTER);
+  mainPanel.add(messageContentPanel);
   Dimension pref=new Dimension(400,150);
   textMessage.setPreferredSize(pref);
   useProperties.addChangeListener(this);

@@ -6,7 +6,7 @@
  else   if (index != this.getSelectedIndex()) {
     if (noData(getSelectedIndex())) {
       argsPanel.clear();
-      postBodyContent.setText("");
+      postBodyContent.setInitialText("");
       super.setSelectedIndex(index);
     }
  else {

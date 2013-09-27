@@ -8,7 +8,7 @@
   jmsDestination.setText(sampler.getDestination());
   jmsUser.setText(sampler.getUsername());
   jmsPwd.setText(sampler.getPassword());
-  textMessage.setText(sampler.getTextMessage());
+  textMessage.setInitialText(sampler.getTextMessage());
   messageFile.setFilename(sampler.getInputFile());
   randomFile.setFilename(sampler.getRandomPath());
   configChoice.setText(sampler.getConfigChoice());

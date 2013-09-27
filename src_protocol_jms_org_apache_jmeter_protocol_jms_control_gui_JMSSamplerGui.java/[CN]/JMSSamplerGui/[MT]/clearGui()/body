@@ -6,7 +6,7 @@
   ((JComboBox)oneWay.getComponentList().get(1)).setSelectedItem(JMeterUtils.getResString("jms_request"));
   timeout.setText("");
   jmsSelector.setText("");
-  messageContent.setText("");
+  messageContent.setInitialText("");
   initialContextFactory.setText("");
   providerUrl.setText("");
   jmsPropertiesPanel.clear();

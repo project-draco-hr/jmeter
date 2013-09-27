@@ -3,8 +3,8 @@
   argsPanel=new HTTPArgumentsPanel();
   postContentTabbedPane.add(JMeterUtils.getResString("post_as_parameters"),argsPanel);
   if (showRawBodyPane) {
-    postBodyContent=new JLabeledTextArea(JMeterUtils.getResString("post_body_raw"));
-    postContentTabbedPane.add(JMeterUtils.getResString("post_body"),postBodyContent);
+    postBodyContent=new JSyntaxTextArea(30,50);
+    postContentTabbedPane.add(JMeterUtils.getResString("post_body"),new JTextScrollPane(postBodyContent));
   }
   return postContentTabbedPane;
 }

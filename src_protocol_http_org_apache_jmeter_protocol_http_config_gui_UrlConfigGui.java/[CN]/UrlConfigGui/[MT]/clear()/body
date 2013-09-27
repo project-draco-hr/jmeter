@@ -23,7 +23,7 @@
   contentEncoding.setText("");
   argsPanel.clear();
   if (showRawBodyPane) {
-    postBodyContent.setText("");
+    postBodyContent.setInitialText("");
   }
   postContentTabbedPane.setSelectedIndex(TAB_PARAMETERS,false);
 }
