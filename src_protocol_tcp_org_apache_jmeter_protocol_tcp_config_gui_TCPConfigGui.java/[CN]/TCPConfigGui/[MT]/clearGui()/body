@@ -2,7 +2,7 @@
   super.clearGui();
   serverPanel.clear();
   classname.setText("");
-  requestData.setText("");
+  requestData.setInitialText("");
   reUseConnection.setSelected(true);
   setNoDelay.setSelected(false);
   closeConnection.setSelected(TCPSampler.CLOSE_CONNECTION_DEFAULT);
