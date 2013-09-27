@@ -1,9 +1,9 @@
 {
   if (value != null) {
-    textUI.setText(value.toString());
+    textUI.setInitialText(value.toString());
     textUI.setCaretPosition(0);
   }
  else {
-    textUI.setText("");
+    textUI.setInitialText("");
   }
 }

@@ -1,5 +1,5 @@
 {
-  scriptField.setText(element.getPropertyAsString(BeanShellAssertion.SCRIPT));
+  scriptField.setInitialText(element.getPropertyAsString(BeanShellAssertion.SCRIPT));
   scriptField.setCaretPosition(0);
   filename.setText(element.getPropertyAsString(BeanShellAssertion.FILENAME));
   parameters.setText(element.getPropertyAsString(BeanShellAssertion.PARAMETERS));

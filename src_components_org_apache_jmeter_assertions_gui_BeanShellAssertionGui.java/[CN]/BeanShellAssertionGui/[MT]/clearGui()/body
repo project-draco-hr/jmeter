@@ -2,6 +2,6 @@
   super.clearGui();
   filename.setText("");
   parameters.setText("");
-  scriptField.setText("");
+  scriptField.setInitialText("");
   resetInterpreter.setSelected(false);
 }
