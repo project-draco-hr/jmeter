@@ -1,20 +1,15 @@
 {
-  try {
-    this.setLayout(new BorderLayout());
-    JPanel webRequestPanel=new JPanel();
-    webRequestPanel.setLayout(new BorderLayout());
-    webRequestPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_request")));
-    JPanel northPanel=new JPanel();
-    northPanel.setLayout(new BoxLayout(northPanel,BoxLayout.Y_AXIS));
-    northPanel.add(getProtocolAndMethodPanel());
-    northPanel.add(getPathPanel());
-    webRequestPanel.add(northPanel,BorderLayout.NORTH);
-    webRequestPanel.add(getParameterPanel(),BorderLayout.CENTER);
-    this.add(getWebServerTimeoutPanel(),BorderLayout.NORTH);
-    this.add(webRequestPanel,BorderLayout.CENTER);
-    this.add(getProxyServerPanel(),BorderLayout.SOUTH);
-  }
- catch (  HeadlessException e) {
-    log.warn(e.toString());
-  }
+  this.setLayout(new BorderLayout());
+  JPanel webRequestPanel=new JPanel();
+  webRequestPanel.setLayout(new BorderLayout());
+  webRequestPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_request")));
+  JPanel northPanel=new JPanel();
+  northPanel.setLayout(new BoxLayout(northPanel,BoxLayout.Y_AXIS));
+  northPanel.add(getProtocolAndMethodPanel());
+  northPanel.add(getPathPanel());
+  webRequestPanel.add(northPanel,BorderLayout.NORTH);
+  webRequestPanel.add(getParameterPanel(),BorderLayout.CENTER);
+  this.add(getWebServerTimeoutPanel(),BorderLayout.NORTH);
+  this.add(webRequestPanel,BorderLayout.CENTER);
+  this.add(getProxyServerPanel(),BorderLayout.SOUTH);
 }
