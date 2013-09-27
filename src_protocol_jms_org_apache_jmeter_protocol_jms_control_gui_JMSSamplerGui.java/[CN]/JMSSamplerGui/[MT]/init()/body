@@ -34,9 +34,9 @@
   messageNorthPanel.add(timeoutPanel,BorderLayout.SOUTH);
   messagePanel.add(messageNorthPanel,BorderLayout.NORTH);
   JPanel soapXmlPanel=new JPanel(new BorderLayout());
-  soapXmlPanel.add(soapXml);
+  soapXmlPanel.add(messageContent);
   Dimension pref=new Dimension(400,150);
-  soapXml.setPreferredSize(pref);
+  messageContent.setPreferredSize(pref);
   messagePanel.add(soapXmlPanel,BorderLayout.CENTER);
   jmsPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_props"));
   messagePanel.add(jmsPropertiesPanel,BorderLayout.SOUTH);

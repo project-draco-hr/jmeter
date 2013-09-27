@@ -19,7 +19,7 @@
   useResMsgIdAsCorrelId.setSelected(sampler.isUseResMsgIdAsCorrelId());
   timeout.setText(sampler.getTimeout());
   jmsSelector.setText(sampler.getJMSSelector());
-  soapXml.setText(sampler.getContent());
+  messageContent.setText(sampler.getContent());
   initialContextFactory.setText(sampler.getInitialContextFactory());
   providerUrl.setText(sampler.getContextProvider());
   jmsPropertiesPanel.configure(sampler.getJMSProperties());

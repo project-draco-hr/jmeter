@@ -9,7 +9,7 @@
   element.setUseResMsgIdAsCorrelId(useResMsgIdAsCorrelId.isSelected());
   element.setTimeout(timeout.getText());
   element.setJMSSelector(jmsSelector.getText());
-  element.setContent(soapXml.getText());
+  element.setContent(messageContent.getText());
   element.setInitialContextFactory(initialContextFactory.getText());
   element.setContextProvider(providerUrl.getText());
   Arguments jndiArgs=(Arguments)jndiPropertiesPanel.createTestElement();
