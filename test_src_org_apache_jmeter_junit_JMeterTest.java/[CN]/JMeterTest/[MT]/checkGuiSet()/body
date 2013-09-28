@@ -1,5 +1,5 @@
 {
   guiTitles.remove("Example Sampler");
   guiTitles.remove("Sample_Result_Save_Configuration");
-  assertEquals("Should not have any names left over",0,scanprintMap(guiTitles,"GUI"));
+  assertEquals("Should not have any names left over, check name of components in EN (default) Locale, which must match name attribute of component",0,scanprintMap(guiTitles,"GUI"));
 }
