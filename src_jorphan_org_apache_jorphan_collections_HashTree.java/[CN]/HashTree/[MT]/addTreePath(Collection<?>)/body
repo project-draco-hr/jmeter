@@ -1,8 +1,7 @@
 {
   HashTree tree=this;
   for (  Object temp : treePath) {
-    tree.add(temp);
-    tree=tree.getTree(temp);
+    tree=tree.add(temp);
   }
   return tree;
 }
