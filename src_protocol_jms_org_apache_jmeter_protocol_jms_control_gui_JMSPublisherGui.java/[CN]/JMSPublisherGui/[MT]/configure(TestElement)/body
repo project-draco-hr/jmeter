@@ -9,6 +9,7 @@
   jmsUser.setText(sampler.getUsername());
   jmsPwd.setText(sampler.getPassword());
   textMessage.setInitialText(sampler.getTextMessage());
+  textMessage.setCaretPosition(0);
   messageFile.setFilename(sampler.getInputFile());
   randomFile.setFilename(sampler.getRandomPath());
   configChoice.setText(sampler.getConfigChoice());
