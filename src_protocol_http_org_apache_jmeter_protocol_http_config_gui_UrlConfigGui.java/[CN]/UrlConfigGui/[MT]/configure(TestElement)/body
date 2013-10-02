@@ -5,6 +5,7 @@
   if (useRaw) {
     String postBody=computePostBody(arguments,true);
     postBodyContent.setInitialText(postBody);
+    postBodyContent.setCaretPosition(0);
     postContentTabbedPane.setSelectedIndex(TAB_RAW_BODY,false);
   }
  else {
