@@ -1,17 +1,16 @@
 {
   this.firstLine=firstLine;
   if (log.isDebugEnabled()) {
-    log.debug("browser request: " + firstLine);
+    log.debug("browser request: " + firstLine.replaceFirst("\r\n$","<CRLF>"));
   }
   StringTokenizer tz=new StringTokenizer(firstLine);
   method=getToken(tz).toUpperCase(java.util.Locale.ENGLISH);
   url=getToken(tz);
   version=getToken(tz);
   if (log.isDebugEnabled()) {
-    log.debug("parser input:  " + firstLine);
-    log.debug("parsed method: " + method);
-    log.debug("parsed url:    " + url);
-    log.debug("parsed version:" + version);
+    log.debug("parsed method:   " + method);
+    log.debug("parsed url/host: " + url);
+    log.debug("parsed version:  " + version);
   }
   if (getMethod().startsWith(HTTPConstants.CONNECT)) {
     paramHttps=url;
@@ -20,7 +19,7 @@
     url=HTTPS + "://" + paramHttps+ url;
   }
   if (HTTPSamplerFactory.IMPL_JAVA.equals(httpSamplerName)) {
-    log.debug("First Line: " + url);
+    log.debug("First Line url: " + url);
     return;
   }
   try {
@@ -42,5 +41,5 @@
       log.error("Error escaping URL:'" + url + "', message:"+ e1.getMessage());
     }
   }
-  log.debug("First Line: " + url);
+  log.debug("First Line url: " + url);
 }

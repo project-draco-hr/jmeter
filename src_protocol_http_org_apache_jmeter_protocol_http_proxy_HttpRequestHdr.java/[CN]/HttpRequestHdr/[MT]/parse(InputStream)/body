@@ -17,18 +17,19 @@
         inHeaders=false;
         firstLine=false;
       }
+      final String reqLine=line.toString();
       if (firstLine) {
-        parseFirstLine(line.toString());
+        parseFirstLine(reqLine);
         firstLine=false;
       }
  else {
-        final int contentLen=parseLine(line.toString());
+        final int contentLen=parseLine(reqLine);
         if (contentLen > 0) {
           dataLength=contentLen;
         }
       }
       if (log.isDebugEnabled()) {
-        log.debug("Client Request Line: " + line.toString());
+        log.debug("Client Request Line: '" + reqLine.replaceFirst("\r\n$","<CRLF>") + "'");
       }
       line.reset();
     }
@@ -39,7 +40,7 @@
   rawPostData=line.toByteArray();
   if (log.isDebugEnabled()) {
     log.debug("rawPostData in default JRE encoding: " + new String(rawPostData));
-    log.debug("Request: " + clientRequest.toString());
+    log.debug("Request: '" + clientRequest.toString().replaceAll("\r\n","<CRLF>") + "'");
   }
   return clientRequest.toByteArray();
 }
