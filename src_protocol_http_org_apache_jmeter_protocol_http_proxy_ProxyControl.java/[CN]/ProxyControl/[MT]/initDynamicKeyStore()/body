@@ -10,13 +10,14 @@
         }
  else {
           caCert.checkValidity(new Date(System.currentTimeMillis() + DateUtils.MILLIS_PER_DAY));
+          log.info("Valid alias found for " + alias);
         }
       }
     }
  catch (    IOException e) {
       keyStore=null;
       if (e.getCause() instanceof UnrecoverableKeyException) {
-        log.warn("Could not read key store " + e.getMessage() + " cause "+ e.getCause().getMessage());
+        log.warn("Could not read key store " + e.getMessage() + "; cause: "+ e.getCause().getMessage());
       }
  else {
         log.warn("Could not open/read key store " + e.getMessage());

@@ -5,11 +5,12 @@
       if (caCert == null) {
         return new String[]{"Could not find certificate"};
       }
+      caCert.checkValidity();
       return new String[]{caCert.getSubjectX500Principal().toString(),"Fingerprint(SHA1):",JOrphanUtils.baToHexString(DigestUtils.sha1(caCert.getEncoded()),' ')};
     }
  catch (    GeneralSecurityException e) {
       log.error("Problem reading root CA from keystore",e);
-      return new String[]{"Could not read certificate"};
+      return new String[]{"Problem with root certificate",e.getMessage()};
     }
   }
   return null;
