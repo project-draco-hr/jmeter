@@ -90,7 +90,7 @@
         res.setRedirectLocation(ConversionUtils.sanitizeUrl(redirectUrl).toString());
       }
  catch (      Exception e) {
-        log.error("Error in redirect URL for " + httpRequest.getRequestLine() + ", Error sanitizing redirect URL: "+ redirectLocation+ "\n\t",e);
+        log.error("Error in redirect URL for " + httpRequest.getRequestLine() + "\n\tCould not sanitize URL: "+ redirectLocation+ "\n\t",e);
       }
     }
     HttpConnectionMetrics metrics=(HttpConnectionMetrics)localContext.getAttribute(CONTEXT_METRICS);
