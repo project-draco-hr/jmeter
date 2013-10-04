@@ -5,7 +5,6 @@
       if (caCert == null) {
         return new String[]{"Could not find certificate"};
       }
-      caCert.checkValidity();
       return new String[]{caCert.getSubjectX500Principal().toString(),"Fingerprint(SHA1): " + JOrphanUtils.baToHexString(DigestUtils.sha1(caCert.getEncoded()),' '),"Created: " + caCert.getNotBefore().toString()};
     }
  catch (    GeneralSecurityException e) {
