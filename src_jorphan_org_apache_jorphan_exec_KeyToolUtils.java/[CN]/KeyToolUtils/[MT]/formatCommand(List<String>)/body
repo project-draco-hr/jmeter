@@ -1,0 +1,10 @@
+{
+  StringBuilder builder=new StringBuilder();
+  for (  String string : arguments) {
+    builder.append("\"").append(string).append("\"").append(" ");
+  }
+  if (arguments.size() > 0) {
+    builder.setLength(builder.length() - 1);
+  }
+  return builder.toString();
+}
