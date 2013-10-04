@@ -10,12 +10,12 @@
     stop.setEnabled(true);
     restart.setEnabled(false);
     if (ProxyControl.isDynamicMode()) {
-      String details[]=model.getCertificateSerialAndFingerPrint();
+      String details[]=model.getCertificateDetails();
       StringBuilder sb=new StringBuilder();
       for (      String detail : details) {
         sb.append(detail).append("\n");
       }
-      JOptionPane.showMessageDialog(this,sb.toString(),"Please check the certificate before installing it:",JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(this,sb.toString(),"Please check the certificate matches the details below before installing " + KeyToolUtils.ROOT_CACERT_CRT_PFX,JOptionPane.INFORMATION_MESSAGE);
     }
   }
  catch (  InvalidVariableException e) {
