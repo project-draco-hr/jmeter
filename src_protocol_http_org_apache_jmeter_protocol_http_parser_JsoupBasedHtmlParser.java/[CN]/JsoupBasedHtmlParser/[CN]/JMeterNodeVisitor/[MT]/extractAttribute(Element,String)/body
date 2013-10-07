@@ -1,0 +1,6 @@
+{
+  String url=tag.attr(attributeName);
+  if (!StringUtils.isEmpty(url)) {
+    urls.addURL(url,baseUrl.url);
+  }
+}
