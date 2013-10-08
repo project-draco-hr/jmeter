@@ -12,10 +12,11 @@
     if (ProxyControl.isDynamicMode()) {
       String details[]=model.getCertificateDetails();
       StringBuilder sb=new StringBuilder();
+      sb.append("Please check the details below when installing the certificate in the browser").append(NEW_LINE).append(NEW_LINE);
       for (      String detail : details) {
-        sb.append(detail).append("\n");
+        sb.append(detail).append(NEW_LINE);
       }
-      JOptionPane.showMessageDialog(this,sb.toString(),"Please check the certificate matches the details below before installing " + KeyToolUtils.ROOT_CACERT_CRT_PFX,JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(this,sb.toString(),"Root CA certificate: " + KeyToolUtils.ROOT_CACERT_CRT_PFX + " created in JMeter bin directory",JOptionPane.INFORMATION_MESSAGE);
     }
   }
  catch (  InvalidVariableException e) {
