@@ -12,21 +12,21 @@
     if (ProxyControl.isDynamicMode()) {
       String details[]=model.getCertificateDetails();
       StringBuilder sb=new StringBuilder();
-      sb.append("Please check the details below when installing the certificate in the browser").append(NEW_LINE).append(NEW_LINE);
+      sb.append(JMeterUtils.getResString("proxy_daemon_msg_check_details")).append(NEW_LINE).append(NEW_LINE);
       for (      String detail : details) {
         sb.append(detail).append(NEW_LINE);
       }
-      JOptionPane.showMessageDialog(this,sb.toString(),"Root CA certificate: " + KeyToolUtils.ROOT_CACERT_CRT_PFX + " created in JMeter bin directory",JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(this,sb.toString(),JMeterUtils.getResString("proxy_daemon_msg_rootca_cert") + SPACE + KeyToolUtils.ROOT_CACERT_CRT_PFX+ SPACE+ JMeterUtils.getResString("proxy_daemon_msg_created_in_bin"),JOptionPane.INFORMATION_MESSAGE);
     }
   }
  catch (  InvalidVariableException e) {
-    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("invalid_variables"),"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("invalid_variables"),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 catch (  BindException e) {
-    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_bind_error"),"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_bind_error"),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 catch (  IOException e) {
-    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error"),"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error"),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
  finally {
     setCursor(cursor);

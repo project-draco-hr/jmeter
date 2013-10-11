@@ -7,7 +7,7 @@
  catch (    NumberFormatException nfe) {
       int length=portField.getText().length();
       if (length > 0) {
-        JOptionPane.showMessageDialog(this,"Only digits allowed","Invalid data",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_settings_port_error_digits"),JMeterUtils.getResString("proxy_settings_port_error_invalid_data"),JOptionPane.WARNING_MESSAGE);
         portField.setText(portField.getText().substring(0,length - 1));
       }
     }

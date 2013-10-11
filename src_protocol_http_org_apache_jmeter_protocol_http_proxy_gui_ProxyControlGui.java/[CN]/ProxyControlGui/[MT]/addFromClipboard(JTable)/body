@@ -19,9 +19,9 @@
     }
   }
  catch (  IOException ioe) {
-    JOptionPane.showMessageDialog(this,"Could not add read arguments from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error_read_args") + "\n" + ioe.getLocalizedMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 catch (  UnsupportedFlavorException ufe) {
-    JOptionPane.showMessageDialog(this,"Could not add retrieve " + DataFlavor.stringFlavor.getHumanPresentableName() + " from clipboard"+ ufe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error_not_retrieve") + SPACE + DataFlavor.stringFlavor.getHumanPresentableName()+ SPACE+ JMeterUtils.getResString("proxy_daemon_error_from_clipboard")+ ufe.getLocalizedMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 }
