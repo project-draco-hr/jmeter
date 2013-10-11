@@ -12,6 +12,7 @@
     tabbedGraph.setSelectedIndex(1);
   }
  else {
+    tabbedGraph.setSelectedIndex(0);
     JOptionPane.showMessageDialog(null,msgErr,msgErr,JOptionPane.WARNING_MESSAGE);
   }
 }
