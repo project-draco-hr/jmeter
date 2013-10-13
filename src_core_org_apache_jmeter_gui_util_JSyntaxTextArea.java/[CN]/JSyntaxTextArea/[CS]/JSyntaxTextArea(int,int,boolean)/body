@@ -1,0 +1,9 @@
+{
+  super(rows,cols);
+  super.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+  super.setCodeFoldingEnabled(CODE_FOLDING);
+  super.setAntiAliasingEnabled(true);
+  super.setLineWrap(LINE_WRAP);
+  super.setWrapStyleWord(WRAP_STYLE_WORD);
+  this.disableUndo=disableUndo;
+}
