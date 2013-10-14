@@ -1,5 +1,11 @@
 {
   super.configure(config);
   argsPanel.configure((Arguments)config.getProperty(JavaSampler.ARGUMENTS).getObjectValue());
-  classnameCombo.setSelectedItem(config.getPropertyAsString(JavaSampler.CLASSNAME));
+  String className=config.getPropertyAsString(JavaSampler.CLASSNAME);
+  if (checkContainsClassName(classnameCombo.getModel(),className)) {
+    classnameCombo.setSelectedItem(className);
+  }
+ else {
+    log.error("Error setting class:'" + className + "' in JavaSampler "+ getName()+ ", check for a missing jar in your jmeter classpath");
+  }
 }
