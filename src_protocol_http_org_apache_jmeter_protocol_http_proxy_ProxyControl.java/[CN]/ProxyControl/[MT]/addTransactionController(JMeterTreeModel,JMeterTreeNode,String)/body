@@ -1,5 +1,6 @@
 {
   final TransactionController sc=new TransactionController();
+  sc.setIncludeTimers(false);
   sc.setProperty(TestElement.GUI_CLASS,TRANSACTION_CONTROLLER_GUI);
   sc.setName(name);
   JMeterUtils.runSafe(new Runnable(){
