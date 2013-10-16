@@ -4,5 +4,10 @@
   activeThreads.setText("0");
   totalThreads.setText("0");
   menuBar.setRunning(true,host);
-  toolbar.setTestStarted(true);
+  if (LOCAL.equals(host)) {
+    toolbar.setLocalTestStarted(true);
+  }
+ else {
+    toolbar.setRemoteTestStarted(true);
+  }
 }
