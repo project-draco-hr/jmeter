@@ -11,4 +11,5 @@
   stdin.setFilename(systemSampler.getStdin());
   stdout.setFilename(systemSampler.getStdout());
   stderr.setFilename(systemSampler.getStderr());
+  timeout.setText(systemSampler.getTimeout() == 0L ? "" : Long.toString(systemSampler.getTimeout()));
 }
