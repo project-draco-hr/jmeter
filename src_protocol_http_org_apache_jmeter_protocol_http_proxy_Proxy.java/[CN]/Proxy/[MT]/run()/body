@@ -8,7 +8,7 @@
   try {
     byte[] ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     if (ba.length == 0) {
-      log.warn(port + "Empty request, ignored");
+      log.info(port + "Empty request, ignored");
       throw new JMeterException();
     }
     if (log.isDebugEnabled()) {
