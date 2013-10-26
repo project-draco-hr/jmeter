@@ -1,32 +1,3 @@
 {
-  addSeparator(menu);
-  menu.add(makeMenuItemRes("open",ActionNames.OPEN));
-  menu.add(makeMenuItemRes("menu_merge",ActionNames.MERGE));
-  menu.add(makeMenuItemRes("save_as",ActionNames.SAVE_AS));
-  addSeparator(menu);
-  JMenuItem savePicture=makeMenuItemRes("save_as_image",ActionNames.SAVE_GRAPHICS,KeyStrokes.SAVE_GRAPHICS);
-  menu.add(savePicture);
-  if (!(GuiPackage.getInstance().getCurrentGui() instanceof Printable)) {
-    savePicture.setEnabled(false);
-  }
-  JMenuItem savePictureAll=makeMenuItemRes("save_as_image_all",ActionNames.SAVE_GRAPHICS_ALL,KeyStrokes.SAVE_GRAPHICS_ALL);
-  menu.add(savePictureAll);
-  addSeparator(menu);
-  JMenuItem disabled=makeMenuItemRes("disable",ActionNames.DISABLE);
-  JMenuItem enabled=makeMenuItemRes("enable",ActionNames.ENABLE);
-  boolean isEnabled=GuiPackage.getInstance().getTreeListener().getCurrentNode().isEnabled();
-  if (isEnabled) {
-    disabled.setEnabled(true);
-    enabled.setEnabled(false);
-  }
- else {
-    disabled.setEnabled(false);
-    enabled.setEnabled(true);
-  }
-  menu.add(enabled);
-  menu.add(disabled);
-  JMenuItem toggle=makeMenuItemRes("toggle",ActionNames.TOGGLE,KeyStrokes.TOGGLE);
-  menu.add(toggle);
-  addSeparator(menu);
-  menu.add(makeMenuItemRes("help",ActionNames.HELP));
+  addFileMenu(pop,true);
 }

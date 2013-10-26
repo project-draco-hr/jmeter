@@ -6,6 +6,8 @@
   file_save_as.setEnabled(true);
   file_selection_as=makeMenuItemRes("save_as",ActionNames.SAVE_AS);
   file_selection_as.setEnabled(true);
+  file_selection_as_test_fragment=makeMenuItemRes("save_as_test_fragment",ActionNames.SAVE_AS_TEST_FRAGMENT);
+  file_selection_as_test_fragment.setEnabled(true);
   file_revert=makeMenuItemRes("revert_project",'R',ActionNames.REVERT_PROJECT);
   file_revert.setEnabled(false);
   file_load=makeMenuItemRes("menu_open",'O',ActionNames.OPEN,KeyStrokes.OPEN);
@@ -24,6 +26,7 @@
   fileMenu.add(file_save);
   fileMenu.add(file_save_as);
   fileMenu.add(file_selection_as);
+  fileMenu.add(file_selection_as_test_fragment);
   fileMenu.add(file_revert);
   fileMenu.addSeparator();
   file_load_recent_files=LoadRecentProject.getRecentFileMenuItems();

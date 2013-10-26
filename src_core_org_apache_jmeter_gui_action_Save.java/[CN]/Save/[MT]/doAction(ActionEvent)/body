@@ -12,6 +12,17 @@
     }
     subTree=GuiPackage.getInstance().getCurrentSubTree();
   }
+ else   if (e.getActionCommand().equals(ActionNames.SAVE_AS_TEST_FRAGMENT)) {
+    JMeterTreeNode[] nodes=GuiPackage.getInstance().getTreeListener().getSelectedNodes();
+    subTree=GuiPackage.getInstance().getCurrentSubTree();
+    TestElement element=GuiPackage.getInstance().createTestElement(TestFragmentControllerGui.class.getName());
+    HashTree hashTree=new ListedHashTree();
+    HashTree tfTree=hashTree.add(new JMeterTreeNode(element,null));
+    for (int i=0; i < nodes.length; i++) {
+      tfTree.add(nodes[i]);
+    }
+    subTree=hashTree;
+  }
  else {
     fullSave=true;
     HashTree testPlan=GuiPackage.getInstance().getTreeModel().getTestPlan();
