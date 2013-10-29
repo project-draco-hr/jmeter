@@ -5,7 +5,7 @@
   Date expiresDate=null;
   if (useExpires) {
     final String MAX_AGE="max-age=";
-    if (cacheControl.contains("no-store")) {
+    if (cacheControl != null && cacheControl.contains("no-store")) {
       return;
     }
     if (expires != null) {
