@@ -5,6 +5,9 @@
   Date expiresDate=null;
   if (useExpires) {
     final String MAX_AGE="max-age=";
+    if (cacheControl.contains("no-store")) {
+      return;
+    }
     if (expires != null) {
       try {
         expiresDate=DateUtil.parseDate(expires);
@@ -13,7 +16,7 @@
         if (log.isDebugEnabled()) {
           log.debug("Unable to parse Expires: '" + expires + "' "+ e);
         }
-        expiresDate=new Date(0L);
+        expiresDate=CacheManager.EXPIRED_DATE;
       }
     }
     if (cacheControl != null && !cacheControl.contains("no-cache")) {
