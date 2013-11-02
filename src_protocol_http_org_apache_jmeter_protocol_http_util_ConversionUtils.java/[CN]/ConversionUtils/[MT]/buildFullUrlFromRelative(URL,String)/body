@@ -1,0 +1,26 @@
+{
+  StringBuilder builder=new StringBuilder();
+  builder.append(lastUrl.getProtocol()).append("://").append(lastUrl.getHost());
+  if (lastUrl.getPort() != -1) {
+    builder.append(":").append(lastUrl.getPort());
+  }
+  if (redirectLocation.startsWith("/")) {
+    builder.append(redirectLocation);
+  }
+ else {
+    if (lastUrl.getPath().isEmpty()) {
+      builder.append("/").append(redirectLocation);
+    }
+ else {
+      String path=lastUrl.getPath();
+      int index=path.lastIndexOf("/");
+      if (index == -1) {
+        builder.append("/").append(redirectLocation);
+      }
+ else {
+        builder.append(path.substring(0,index + 1)).append(redirectLocation);
+      }
+    }
+  }
+  return builder.toString();
+}
