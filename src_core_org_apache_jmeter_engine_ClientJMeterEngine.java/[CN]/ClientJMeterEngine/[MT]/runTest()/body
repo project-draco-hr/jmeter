@@ -1,5 +1,6 @@
 {
   log.info("running clientengine run method");
+  JMeterContextService.clearTotalThreads();
   HashTree testTree=test;
 synchronized (testTree) {
     testTree.traverse(new PreCompiler(true));
