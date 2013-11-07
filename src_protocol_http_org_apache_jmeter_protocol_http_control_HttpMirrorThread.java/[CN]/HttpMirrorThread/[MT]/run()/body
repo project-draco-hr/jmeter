@@ -29,6 +29,15 @@
     out.write(CRLF);
     out.write("Content-Type: text/plain".getBytes(ISO_8859_1));
     out.write(CRLF);
+    String headersValue=getRequestHeaderValue(headerString,"X-SetHeaders");
+    if (headersValue != null) {
+      String[] headersToSet=headersValue.split("\\|");
+      for (      String string : headersToSet) {
+        out.write(string.getBytes(ISO_8859_1));
+        out.write(CRLF);
+      }
+    }
+    out.write(CRLF);
     String responseLengthValue=getRequestHeaderValue(headerString,"X-ResponseLength");
     int responseLength=-1;
     if (responseLengthValue != null) {
