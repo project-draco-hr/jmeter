@@ -37,7 +37,6 @@
         out.write(CRLF);
       }
     }
-    out.write(CRLF);
     String responseLengthValue=getRequestHeaderValue(headerString,"X-ResponseLength");
     int responseLength=-1;
     if (responseLengthValue != null) {
