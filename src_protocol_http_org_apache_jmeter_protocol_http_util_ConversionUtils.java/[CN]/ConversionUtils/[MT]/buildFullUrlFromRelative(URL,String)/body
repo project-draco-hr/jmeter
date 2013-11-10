@@ -1,21 +1,21 @@
 {
   StringBuilder builder=new StringBuilder();
-  builder.append(lastUrl.getProtocol()).append("://").append(lastUrl.getHost());
+  builder.append(lastUrl.getProtocol()).append(COLONSLASHSLASH).append(lastUrl.getHost());
   if (lastUrl.getPort() != -1) {
-    builder.append(":").append(lastUrl.getPort());
+    builder.append(COLON).append(lastUrl.getPort());
   }
-  if (redirectLocation.startsWith("/")) {
+  if (redirectLocation.startsWith(SLASH)) {
     builder.append(redirectLocation);
   }
  else {
     if (lastUrl.getPath().isEmpty()) {
-      builder.append("/").append(redirectLocation);
+      builder.append(SLASH).append(redirectLocation);
     }
  else {
       String path=lastUrl.getPath();
-      int index=path.lastIndexOf("/");
+      int index=path.lastIndexOf(SLASH);
       if (index == -1) {
-        builder.append("/").append(redirectLocation);
+        builder.append(SLASH).append(redirectLocation);
       }
  else {
         builder.append(path.substring(0,index + 1)).append(redirectLocation);
