@@ -1,0 +1,6 @@
+{
+  if (rightSide.indexOfTab(JMeterUtils.getResString("xpath_tester_title")) < 0) {
+    rightSide.addTab(JMeterUtils.getResString("xpath_tester_title"),xmlWithXPathPane);
+  }
+  clearData();
+}

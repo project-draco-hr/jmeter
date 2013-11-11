@@ -1,0 +1,6 @@
+{
+  if (textToParse != null && textToParse.length() > 0 && this.xpathExpressionField.getText().length() > 0) {
+    this.xpathResultField.setText(process(textToParse,extractor));
+    this.xpathResultField.setCaretPosition(0);
+  }
+}

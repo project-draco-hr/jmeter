@@ -1,0 +1,17 @@
+{
+  try {
+    Document doc=parseResponse(textToParse,extractor);
+    List<String> matchStrings=new ArrayList<String>();
+    XPathUtil.putValuesForXPathInList(doc,xpathExpressionField.getText(),matchStrings,extractor.getFragment());
+    StringBuilder builder=new StringBuilder();
+    int nbFound=matchStrings.size();
+    builder.append("Match count: ").append(nbFound).append("\n");
+    for (int i=0; i < nbFound; i++) {
+      builder.append("Match[").append(i + 1).append("]=").append(matchStrings.get(i)).append("\n");
+    }
+    return builder.toString();
+  }
+ catch (  Exception e) {
+    return "Exception:" + ExceptionUtils.getStackTrace(e);
+  }
+}

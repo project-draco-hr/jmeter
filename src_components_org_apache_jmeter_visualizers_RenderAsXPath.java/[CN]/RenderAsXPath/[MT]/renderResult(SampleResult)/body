@@ -1,0 +1,12 @@
+{
+  String response=ViewResultsFullVisualizer.getResponseAsString(sampleResult);
+  try {
+    xmlDataField.setText(response == null ? "" : XPathUtil.formatXml(response));
+    xmlDataField.setCaretPosition(0);
+  }
+ catch (  Exception e) {
+    logger.error("Exception converting to XML:" + response + ", message:"+ e.getMessage(),e);
+    xmlDataField.setText("Exception converting to XML:" + response + ", message:"+ e.getMessage());
+    xmlDataField.setCaretPosition(0);
+  }
+}

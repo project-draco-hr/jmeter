@@ -1,0 +1,10 @@
+{
+  String command=e.getActionCommand();
+  if ((sampleResult != null) && (XPATH_TESTER_COMMAND.equals(command))) {
+    String response=xmlDataField.getText();
+    XPathExtractor extractor=new XPathExtractor();
+    xmlConfPanel.modifyTestElement(extractor);
+    extractor.setFragment(getFragment.isSelected());
+    executeAndShowXPathTester(response,extractor);
+  }
+}

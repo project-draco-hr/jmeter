@@ -1,0 +1,13 @@
+{
+  xmlDataField=new JTextArea();
+  xmlDataField.setEditable(false);
+  xmlDataField.setLineWrap(true);
+  xmlDataField.setWrapStyleWord(true);
+  this.xmlDataPane=GuiUtils.makeScrollPane(xmlDataField);
+  xmlDataPane.setMinimumSize(new Dimension(0,400));
+  JPanel pane=new JPanel(new BorderLayout(0,5));
+  JSplitPane mainSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,xmlDataPane,createXpathExtractorTasksPanel());
+  mainSplit.setDividerLocation(400);
+  pane.add(mainSplit,BorderLayout.CENTER);
+  return pane;
+}
