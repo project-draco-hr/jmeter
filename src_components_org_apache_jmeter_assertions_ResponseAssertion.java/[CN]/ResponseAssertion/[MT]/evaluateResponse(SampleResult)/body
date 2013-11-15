@@ -40,7 +40,7 @@
   if (debugEnabled) {
     log.debug("Type:" + (contains ? "Contains" : "Match") + (notTest ? "(not)" : ""));
   }
-  if (toCheck.length() == 0) {
+  if (StringUtils.isEmpty(toCheck)) {
     if (notTest) {
       return result;
     }
