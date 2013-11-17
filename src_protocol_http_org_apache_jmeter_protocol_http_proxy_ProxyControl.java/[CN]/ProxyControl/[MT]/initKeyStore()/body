@@ -16,6 +16,8 @@ keyPassword=JMeterUtils.getPropDefault("proxy.cert.keypassword",DEFAULT_PASSWORD
 log.info("HTTP(S) Test Script Recorder will use the keystore '" + CERT_PATH_ABS + "' with the alias: '"+ CERT_ALIAS+ "'");
 initUserKeyStore();
 break;
+case NONE:
+throw new IOException("Cannot find keytool application and no keystore was provided");
 default :
 throw new IllegalStateException("Impossible case: " + KEYSTORE_MODE);
 }
