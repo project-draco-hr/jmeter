@@ -24,7 +24,8 @@
       }
     }
 catch (    GeneralSecurityException e) {
-      log.warn("Problem reading key store" + e.getMessage());
+      keyStore=null;
+      log.warn("Problem reading key store: " + e.getMessage());
     }
   }
   if (keyStore == null) {
