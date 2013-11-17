@@ -1,0 +1,17 @@
+{
+  final SystemCommand nativeCommand=new SystemCommand(null,null);
+  final List<String> arguments=new ArrayList<String>();
+  arguments.add(keytoolPath);
+  arguments.add("-help");
+  try {
+    nativeCommand.run(arguments);
+    return true;
+  }
+ catch (  IOException ioe) {
+    return false;
+  }
+catch (  InterruptedException e) {
+    log.error("Command was interrupted\n" + nativeCommand.getOutResult(),e);
+    return false;
+  }
+}

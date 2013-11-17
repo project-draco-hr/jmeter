@@ -2,7 +2,7 @@
   final File workingDir=keystore.getParentFile();
   final SystemCommand nativeCommand=new SystemCommand(workingDir,null);
   final List<String> arguments=new ArrayList<String>();
-  arguments.add("keytool");
+  arguments.add(getKeyToolPath());
   arguments.add("-list");
   arguments.add("-v");
   arguments.add("-keystore");
