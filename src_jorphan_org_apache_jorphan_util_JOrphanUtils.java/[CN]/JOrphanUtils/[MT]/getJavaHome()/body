@@ -1,10 +1,3 @@
 {
-  URL resource=Object.class.getResource("Object.class");
-  if (resource == null) {
-    return null;
-  }
-  String path=resource.getPath();
-  path=path.replace("file:","").replaceFirst("!.+","");
-  File rt=new File(path);
-  return rt.getParentFile().getParentFile().getParentFile();
+  return SystemUtils.getJavaHome();
 }
