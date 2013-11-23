@@ -45,7 +45,9 @@ throw new IllegalStateException("Impossible case: " + ProxyControl.KEYSTORE_MODE
 synchronized (HOST2SSL_SOCK_FAC) {
 final SSLSocketFactory sslSocketFactory=HOST2SSL_SOCK_FAC.get(hashAlias);
 if (sslSocketFactory != null) {
+if (log.isDebugEnabled()) {
 log.debug(port + "Good, already in map, host=" + host+ " using alias "+ hashAlias);
+}
 return sslSocketFactory;
 }
 try {

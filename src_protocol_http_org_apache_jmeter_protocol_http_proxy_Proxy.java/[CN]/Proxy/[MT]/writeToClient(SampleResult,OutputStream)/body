@@ -5,7 +5,9 @@
     out.write(CRLF_BYTES);
     out.write(res.getResponseData());
     out.flush();
-    log.debug(port + "Done writing to client");
+    if (log.isDebugEnabled()) {
+      log.debug(port + "Done writing to client");
+    }
   }
  catch (  IOException e) {
     log.error("",e);

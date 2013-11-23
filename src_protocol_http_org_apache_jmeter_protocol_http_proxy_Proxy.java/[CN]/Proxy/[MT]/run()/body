@@ -4,24 +4,33 @@
   SampleResult result=null;
   HeaderManager headers=null;
   HTTPSamplerBase sampler=null;
-  log.debug(port + "====================================================================");
+  final boolean isDebug=log.isDebugEnabled();
+  if (isDebug) {
+    log.debug(port + "====================================================================");
+  }
   try {
     byte[] ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     if (ba.length == 0) {
-      log.info(port + "Empty request, ignored");
+      if (isDebug) {
+        log.debug(port + "Empty request, ignored");
+      }
       throw new JMeterException();
     }
-    if (log.isDebugEnabled()) {
+    if (isDebug) {
       log.debug(port + "Initial request: " + new String(ba));
     }
     outStreamClient=clientSocket.getOutputStream();
     if ((request.getMethod().startsWith(HTTPConstants.CONNECT)) && (outStreamClient != null)) {
-      log.debug(port + "Method CONNECT => SSL");
+      if (isDebug) {
+        log.debug(port + "Method CONNECT => SSL");
+      }
       outStreamClient.write(("HTTP/1.0 200 OK\r\n\r\n").getBytes(SampleResult.DEFAULT_HTTP_ENCODING));
       outStreamClient.flush();
       String[] param=request.getUrl().split(":");
       if (param.length == 2) {
-        log.debug(port + "Start to negotiate SSL connection, host: " + param[0]);
+        if (isDebug) {
+          log.debug(port + "Start to negotiate SSL connection, host: " + param[0]);
+        }
         clientSocket=startSSL(clientSocket,param[0]);
       }
  else {
@@ -37,7 +46,7 @@
         result=generateErrorResult(result,request,ioe,"\n**ensure browser is set to accept the JMeter proxy certificate**");
         throw new JMeterException();
       }
-      if (log.isDebugEnabled()) {
+      if (isDebug) {
         log.debug(port + "Reparse: " + new String(ba));
       }
       if (ba.length == 0) {
@@ -50,7 +59,7 @@
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
     sampler.threadStarted();
-    if (log.isDebugEnabled()) {
+    if (isDebug) {
       log.debug(port + "Execute sample: " + sampler.getMethod()+ " "+ sampler.getUrl());
     }
     result=sampler.sample();
@@ -77,10 +86,8 @@ catch (  Exception e) {
     result=generateErrorResult(result,request,e);
   }
  finally {
-    if (log.isDebugEnabled()) {
-      if (sampler != null) {
-        log.debug(port + "Will deliver sample " + sampler.getName());
-      }
+    if (sampler != null && isDebug) {
+      log.debug(port + "Will deliver sample " + sampler.getName());
     }
     if (headers != null) {
       headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
