@@ -1,6 +1,6 @@
 {
   int ch;
-  int state=INITIAL;
+  ParserState state=ParserState.INITIAL;
   List<String> list=new ArrayList<String>();
   CharArrayWriter baos=new CharArrayWriter(200);
   boolean push=false;
@@ -9,14 +9,14 @@
 switch (state) {
 case INITIAL:
       if (ch == QUOTING_CHAR) {
-        state=QUOTED;
+        state=ParserState.QUOTED;
       }
  else       if (isDelimOrEOL(delim,ch)) {
         push=true;
       }
  else {
         baos.write(ch);
-        state=PLAIN;
+        state=ParserState.PLAIN;
       }
     break;
 case PLAIN:
@@ -26,7 +26,7 @@ case PLAIN:
   }
  else   if (isDelimOrEOL(delim,ch)) {
     push=true;
-    state=INITIAL;
+    state=ParserState.INITIAL;
   }
  else {
     baos.write(ch);
@@ -34,7 +34,7 @@ case PLAIN:
 break;
 case QUOTED:
 if (ch == QUOTING_CHAR) {
-state=EMBEDDEDQUOTE;
+state=ParserState.EMBEDDEDQUOTE;
 }
  else {
 baos.write(ch);
@@ -43,11 +43,11 @@ break;
 case EMBEDDEDQUOTE:
 if (ch == QUOTING_CHAR) {
 baos.write(QUOTING_CHAR);
-state=QUOTED;
+state=ParserState.QUOTED;
 }
  else if (isDelimOrEOL(delim,ch)) {
 push=true;
-state=INITIAL;
+state=ParserState.INITIAL;
 }
  else {
 baos.write(QUOTING_CHAR);
@@ -66,15 +66,15 @@ String s=baos.toString();
 list.add(s);
 baos.reset();
 }
-if ((ch == '\n' || ch == '\r') && state != QUOTED) {
+if ((ch == '\n' || ch == '\r') && state != ParserState.QUOTED) {
 break;
 }
 }
 if (ch == -1) {
-if (state == QUOTED) {
+if (state == ParserState.QUOTED) {
 throw new IOException("Missing trailing quote-char in quoted field:[\"" + baos.toString() + "]");
 }
-if (baos.size() > 0 || push || state == EMBEDDEDQUOTE) {
+if (baos.size() > 0 || push || state == ParserState.EMBEDDEDQUOTE) {
 list.add(baos.toString());
 }
 }
