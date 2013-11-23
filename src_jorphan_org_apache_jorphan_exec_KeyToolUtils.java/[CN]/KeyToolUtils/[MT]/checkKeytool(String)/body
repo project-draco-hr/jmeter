@@ -4,8 +4,8 @@
   arguments.add(keytoolPath);
   arguments.add("-help");
   try {
-    int status=nativeCommand.run(arguments);
-    return status == 0;
+    nativeCommand.run(arguments);
+    return true;
   }
  catch (  IOException ioe) {
     return false;
