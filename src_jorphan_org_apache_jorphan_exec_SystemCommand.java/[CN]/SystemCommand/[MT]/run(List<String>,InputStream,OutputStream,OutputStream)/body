@@ -42,6 +42,9 @@
       swin.interrupt();
       swin.join();
     }
+    procErr.close();
+    procIn.close();
+    procOut.close();
     return exitVal;
   }
   finally {
