@@ -22,13 +22,13 @@
     }
   }
  catch (  InvalidVariableException e) {
-    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("invalid_variables") + ":" + e.getMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("invalid_variables") + ": " + e.getMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 catch (  BindException e) {
-    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_bind_error") + ":" + e.getMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_bind_error") + ": " + e.getMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
 catch (  IOException e) {
-    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error") + ":" + e.getMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
+    JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_daemon_error") + ": " + e.getMessage(),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
   }
  finally {
     setCursor(cursor);
