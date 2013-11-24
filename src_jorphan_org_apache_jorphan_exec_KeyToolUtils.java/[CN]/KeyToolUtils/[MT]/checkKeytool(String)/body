@@ -4,8 +4,12 @@
   arguments.add(keytoolPath);
   arguments.add("-help");
   try {
-    nativeCommand.run(arguments);
-    return true;
+    int status=nativeCommand.run(arguments);
+    if (log.isDebugEnabled()) {
+      log.debug("checkKeyTool:status=" + status);
+      log.debug(nativeCommand.getOutResult());
+    }
+    return status == 0 || status == 1;
   }
  catch (  IOException ioe) {
     return false;
