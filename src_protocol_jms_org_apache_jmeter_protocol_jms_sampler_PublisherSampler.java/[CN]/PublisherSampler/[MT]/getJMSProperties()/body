@@ -1,8 +1,15 @@
 {
-  Arguments arguments=getArguments(JMS_PROPERTIES);
-  if (arguments == null) {
-    arguments=new Arguments();
-    setArguments(arguments);
+  Object o=getProperty(JMS_PROPERTIES).getObjectValue();
+  JMSProperties jmsProperties=null;
+  if (o instanceof Arguments) {
+    jmsProperties=Utils.convertArgumentsToJmsProperties((Arguments)o);
   }
-  return arguments;
+ else {
+    jmsProperties=(JMSProperties)o;
+  }
+  if (jmsProperties == null) {
+    jmsProperties=new JMSProperties();
+    setJMSProperties(jmsProperties);
+  }
+  return jmsProperties;
 }

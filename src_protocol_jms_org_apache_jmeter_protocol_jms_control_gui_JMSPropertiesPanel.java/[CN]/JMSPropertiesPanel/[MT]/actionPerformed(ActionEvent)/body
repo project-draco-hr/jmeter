@@ -1,0 +1,36 @@
+{
+  String action=e.getActionCommand();
+  if (action.equals(DELETE_COMMAND)) {
+    if (tableModel.getRowCount() > 0) {
+      if (jmsPropertiesTable.isEditing()) {
+        TableCellEditor cellEditor=jmsPropertiesTable.getCellEditor(jmsPropertiesTable.getEditingRow(),jmsPropertiesTable.getEditingColumn());
+        cellEditor.cancelCellEditing();
+      }
+      int rowSelected=jmsPropertiesTable.getSelectedRow();
+      if (rowSelected != -1) {
+        tableModel.removeRow(rowSelected);
+        tableModel.fireTableDataChanged();
+        if (tableModel.getRowCount() == 0) {
+          deleteButton.setEnabled(false);
+        }
+ else {
+          int rowToSelect=rowSelected;
+          if (rowSelected >= tableModel.getRowCount()) {
+            rowToSelect=rowSelected - 1;
+          }
+          jmsPropertiesTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+        }
+      }
+    }
+  }
+ else   if (action.equals(ADD_COMMAND)) {
+    GuiUtils.stopTableEditing(jmsPropertiesTable);
+    tableModel.addNewRow();
+    tableModel.fireTableDataChanged();
+    if (!deleteButton.isEnabled()) {
+      deleteButton.setEnabled(true);
+    }
+    int rowToSelect=tableModel.getRowCount() - 1;
+    jmsPropertiesTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+  }
+}

@@ -1,0 +1,9 @@
+{
+  PropertyIterator iter=getProperties().iterator();
+  while (iter.hasNext()) {
+    JMSProperty arg=(JMSProperty)iter.next().getObjectValue();
+    if (arg.getName().equals(argName)) {
+      iter.remove();
+    }
+  }
+}

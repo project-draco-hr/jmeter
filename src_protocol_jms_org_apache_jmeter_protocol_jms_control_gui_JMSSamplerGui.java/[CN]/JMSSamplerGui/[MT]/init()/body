@@ -39,7 +39,7 @@
   Dimension pref=new Dimension(400,150);
   messageContent.setPreferredSize(pref);
   messagePanel.add(messageContentPanel,BorderLayout.CENTER);
-  jmsPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_props"));
+  jmsPropertiesPanel=new JMSPropertiesPanel();
   messagePanel.add(jmsPropertiesPanel,BorderLayout.SOUTH);
   Box mainPanel=Box.createVerticalBox();
   add(mainPanel,BorderLayout.CENTER);

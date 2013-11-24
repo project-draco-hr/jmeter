@@ -15,6 +15,6 @@
   sampler.setIterations(iterations.getText());
   sampler.setUseAuth(useAuth.isSelected());
   sampler.setUseNonPersistentDelivery(useNonPersistentDelivery.isSelected());
-  Arguments args=(Arguments)jmsPropertiesPanel.createTestElement();
+  JMSProperties args=(JMSProperties)jmsPropertiesPanel.createTestElement();
   sampler.setJMSProperties(args);
 }

@@ -1,0 +1,12 @@
+{
+  StringBuilder str=new StringBuilder();
+  PropertyIterator iter=getProperties().iterator();
+  while (iter.hasNext()) {
+    JMSProperty arg=(JMSProperty)iter.next().getObjectValue();
+    str.append(arg.toString());
+    if (iter.hasNext()) {
+      str.append(",");
+    }
+  }
+  return str.toString();
+}

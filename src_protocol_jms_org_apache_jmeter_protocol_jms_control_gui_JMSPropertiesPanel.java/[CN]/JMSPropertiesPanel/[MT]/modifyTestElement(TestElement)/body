@@ -1,0 +1,6 @@
+{
+  GuiUtils.stopTableEditing(jmsPropertiesTable);
+  JMSProperties jmsProperties=(JMSProperties)el;
+  jmsProperties.clear();
+  jmsProperties.addTestElement((TestElement)tableModel.jmsProperties.clone());
+}

@@ -14,6 +14,6 @@
   element.setContextProvider(providerUrl.getText());
   Arguments jndiArgs=(Arguments)jndiPropertiesPanel.createTestElement();
   element.setJNDIProperties(jndiArgs);
-  Arguments args=(Arguments)jmsPropertiesPanel.createTestElement();
+  JMSProperties args=(JMSProperties)jmsPropertiesPanel.createTestElement();
   element.setJMSProperties(args);
 }

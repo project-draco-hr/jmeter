@@ -1,0 +1,13 @@
+{
+  JMSProperty property=jmsProperties.getJmsProperty(row);
+switch (column) {
+case COL_NAME:
+    return property.getName();
+case COL_VALUE:
+  return property.getValue();
+case COL_TYPE:
+return property.getType();
+default :
+return null;
+}
+}

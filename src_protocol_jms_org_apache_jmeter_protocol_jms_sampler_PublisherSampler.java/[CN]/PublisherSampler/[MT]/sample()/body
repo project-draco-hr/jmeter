@@ -22,26 +22,27 @@ catch (    NamingException e) {
   result.sampleStart();
   String type=getMessageChoice();
   try {
+    Map<String,Object> msgProperties=getJMSProperties().getJmsPropertysAsMap();
     for (int idx=0; idx < loop; idx++) {
       if (JMSPublisherGui.TEXT_MSG_RSC.equals(type)) {
         String tmsg=getMessageContent();
-        Message msg=publisher.publish(tmsg,getDestination(),getJMSProperties().getArgumentsAsMap());
+        Message msg=publisher.publish(tmsg,getDestination(),msgProperties);
         buffer.append(tmsg);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.MAP_MSG_RSC.equals(type)) {
         Map<String,Object> m=getMapContent();
-        Message msg=publisher.publish(m,getDestination(),getJMSProperties().getArgumentsAsMap());
+        Message msg=publisher.publish(m,getDestination(),msgProperties);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.OBJECT_MSG_RSC.equals(type)) {
         Serializable omsg=getObjectContent();
-        Message msg=publisher.publish(omsg,getDestination(),getJMSProperties().getArgumentsAsMap());
+        Message msg=publisher.publish(omsg,getDestination(),msgProperties);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.BYTES_MSG_RSC.equals(type)) {
         byte[] bmsg=getBytesContent();
-        Message msg=publisher.publish(bmsg,getDestination(),getJMSProperties().getArgumentsAsMap());
+        Message msg=publisher.publish(bmsg,getDestination(),msgProperties);
         Utils.messageProperties(propBuffer,msg);
       }
  else {

@@ -1,0 +1,8 @@
+{
+  JMSProperties jmsProperties=new JMSProperties();
+  Map<String,String> map=args.getArgumentsAsMap();
+  for (  Map.Entry<String,String> entry : map.entrySet()) {
+    jmsProperties.addJmsProperty(entry.getKey(),entry.getValue());
+  }
+  return jmsProperties;
+}

@@ -1,4 +1,3 @@
 {
-  Map<String,String> map=getArguments(JMSSampler.JMS_PROPERTIES).getArgumentsAsMap();
-  Utils.addJMSProperties(msg,map);
+  Utils.addJMSProperties(msg,getJMSProperties().getJmsPropertysAsMap());
 }

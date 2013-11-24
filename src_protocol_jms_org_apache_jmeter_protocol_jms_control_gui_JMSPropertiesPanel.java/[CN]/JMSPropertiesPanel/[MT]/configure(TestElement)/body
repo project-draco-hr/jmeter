@@ -1,0 +1,7 @@
+{
+  tableModel.jmsProperties.clear();
+  tableModel.jmsProperties.addTestElement((JMSProperties)el.clone());
+  if (tableModel.getRowCount() != 0) {
+    deleteButton.setEnabled(true);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  jmsPropertiesTable=new JTable(tableModel);
+  jmsPropertiesTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
+  jmsPropertiesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  jmsPropertiesTable.setPreferredScrollableViewportSize(new Dimension(100,70));
+  TableColumn mechanismColumn=jmsPropertiesTable.getColumnModel().getColumn(COL_TYPE);
+  mechanismColumn.setCellEditor(new TypeCellEditor());
+  JPanel panel=new JPanel(new BorderLayout(0,5));
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("jms_props")));
+  panel.add(new JScrollPane(jmsPropertiesTable));
+  panel.add(createButtonPanel(),BorderLayout.SOUTH);
+  return panel;
+}

@@ -1,0 +1,31 @@
+{
+  String type=getType();
+  String value=getValue();
+  if (type.equals(Boolean.class.getName())) {
+    return Boolean.valueOf(value);
+  }
+ else   if (type.equals(Byte.class.getName())) {
+    return Byte.valueOf(value);
+  }
+ else   if (type.equals(Short.class.getName())) {
+    return Short.valueOf(value);
+  }
+ else   if (type.equals(Integer.class.getName())) {
+    return Integer.valueOf(value);
+  }
+ else   if (type.equals(Long.class.getName())) {
+    return Long.valueOf(value);
+  }
+ else   if (type.equals(Float.class.getName())) {
+    return Float.valueOf(value);
+  }
+ else   if (type.equals(Double.class.getName())) {
+    return Double.valueOf(value);
+  }
+ else   if (type.equals(String.class.getName())) {
+    return value;
+  }
+ else {
+    return null;
+  }
+}

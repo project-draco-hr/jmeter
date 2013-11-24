@@ -1,0 +1,12 @@
+{
+switch (column) {
+case COL_NAME:
+    return "name";
+case COL_VALUE:
+  return "value";
+case COL_TYPE:
+return "jms_properties_type";
+default :
+return null;
+}
+}

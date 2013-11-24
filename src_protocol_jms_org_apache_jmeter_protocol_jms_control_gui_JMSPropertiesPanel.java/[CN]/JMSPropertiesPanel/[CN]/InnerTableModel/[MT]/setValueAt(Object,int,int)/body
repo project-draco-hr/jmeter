@@ -1,0 +1,19 @@
+{
+  JMSProperty property=jmsProperties.getJmsProperty(row);
+  if (log.isDebugEnabled()) {
+    log.debug("Setting jms property value: " + value);
+  }
+switch (column) {
+case COL_NAME:
+    property.setName((String)value);
+  break;
+case COL_VALUE:
+property.setValue((String)value);
+break;
+case COL_TYPE:
+property.setType((String)value);
+break;
+default :
+break;
+}
+}

@@ -1,0 +1,7 @@
+{
+  JMSProperty argument=null;
+  if (row < getProperties().size()) {
+    argument=(JMSProperty)getProperties().get(row).getObjectValue();
+  }
+  return argument;
+}

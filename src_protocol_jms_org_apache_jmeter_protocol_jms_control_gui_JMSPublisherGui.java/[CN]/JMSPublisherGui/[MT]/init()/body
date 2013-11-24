@@ -11,7 +11,7 @@
   mainPanel.add(createDestinationPane());
   mainPanel.add(createAuthPane());
   mainPanel.add(iterations);
-  jmsPropertiesPanel=new ArgumentsPanel(JMeterUtils.getResString("jms_props"));
+  jmsPropertiesPanel=new JMSPropertiesPanel();
   mainPanel.add(jmsPropertiesPanel);
   configChoice.setLayout(new BoxLayout(configChoice,BoxLayout.X_AXIS));
   mainPanel.add(configChoice);
