@@ -1,7 +1,13 @@
 {
   StringBuilder builder=new StringBuilder();
+  boolean redact=false;
   for (  String string : arguments) {
-    builder.append("\"").append(string).append("\"").append(" ");
+    final boolean quote=string.contains(" ");
+    if (quote)     builder.append("\"");
+    builder.append(redact ? "{redacted)" : string);
+    if (quote)     builder.append("\"");
+    builder.append(" ");
+    redact=string.equals("-storepass") || string.equals("-keypass");
   }
   if (arguments.size() > 0) {
     builder.setLength(builder.length() - 1);
