@@ -58,8 +58,8 @@
       filePanel.actionPerformed(event);
     }
  else {
-      if (internalList.size() >= 2) {
 synchronized (lockInterval) {
+        if (internalList.size() >= 2) {
           List<RespTimeGraphDataBean> tempList=new ArrayList<RespTimeGraphDataBean>();
           tempList.addAll(internalList);
           this.clearData();
