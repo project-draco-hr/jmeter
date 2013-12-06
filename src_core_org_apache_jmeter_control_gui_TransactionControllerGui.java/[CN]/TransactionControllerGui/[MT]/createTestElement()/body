@@ -1,5 +1,6 @@
 {
   TransactionController lc=new TransactionController();
+  lc.setIncludeTimers(false);
   configureTestElement(lc);
   return lc;
 }
