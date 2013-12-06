@@ -8,7 +8,7 @@
       if (semiColon >= 0) {
         charSet=charSet.substring(0,semiColon);
       }
-      if (charSet.startsWith("\"")) {
+      if (charSet.startsWith("\"") || charSet.startsWith("\'")) {
         setDataEncoding(charSet.substring(1,charSet.length() - 1));
       }
  else {
