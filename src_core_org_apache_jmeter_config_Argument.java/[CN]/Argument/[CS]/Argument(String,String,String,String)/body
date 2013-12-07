@@ -1,6 +1,14 @@
 {
-  setProperty(new StringProperty(ARG_NAME,name));
-  setProperty(new StringProperty(VALUE,value));
-  setProperty(new StringProperty(METADATA,metadata));
-  setProperty(DESCRIPTION,description,DFLT_DESCRIPTION);
+  if (name != null) {
+    setProperty(new StringProperty(ARG_NAME,name));
+  }
+  if (value != null) {
+    setProperty(new StringProperty(VALUE,value));
+  }
+  if (metadata != null) {
+    setProperty(new StringProperty(METADATA,metadata));
+  }
+  if (description != null) {
+    setProperty(DESCRIPTION,description,DFLT_DESCRIPTION);
+  }
 }
