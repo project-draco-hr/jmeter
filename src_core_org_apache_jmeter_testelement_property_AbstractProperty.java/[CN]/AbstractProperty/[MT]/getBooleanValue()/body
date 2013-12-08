@@ -1,6 +1,6 @@
 {
   String val=getStringValue();
-  if (val == null) {
+  if (val == null || val.length() == 0) {
     return false;
   }
   return Boolean.parseBoolean(val);
