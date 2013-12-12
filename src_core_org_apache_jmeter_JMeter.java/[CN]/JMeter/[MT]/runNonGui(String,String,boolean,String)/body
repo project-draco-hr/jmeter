@@ -22,7 +22,7 @@
     }
     convertSubTree(tree);
     Summariser summer=null;
-    String summariserName=JMeterUtils.getPropDefault("summariser.name","");
+    String summariserName=JMeterUtils.getPropDefault("summariser.name","summary");
     if (summariserName.length() > 0) {
       log.info("Creating summariser <" + summariserName + ">");
       println("Creating summariser <" + summariserName + ">");
