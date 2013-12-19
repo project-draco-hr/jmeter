@@ -1,4 +1,12 @@
 {
+  if (!StringUtils.isEmpty(clientCertAliasVarName)) {
+    String aliasName=JMeterContextService.getContext().getVariables().get(clientCertAliasVarName);
+    if (StringUtils.isEmpty(aliasName)) {
+      LOG.error("No var called '" + clientCertAliasVarName + "' found");
+      throw new IllegalArgumentException("No var called '" + clientCertAliasVarName + "' found");
+    }
+    return aliasName;
+  }
   int length=this.names.length;
   if (length == 0) {
     return null;

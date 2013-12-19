@@ -1,7 +1,7 @@
 {
-  int entry=findAlias(alias);
-  if (entry >= 0) {
-    return this.certChains[entry];
+  X509Certificate[] result=this.certsByAlias.get(alias);
+  if (result != null) {
+    return result;
   }
-  return null;
+  throw new IllegalArgumentException("No certificate found for alias:'" + alias + "'");
 }

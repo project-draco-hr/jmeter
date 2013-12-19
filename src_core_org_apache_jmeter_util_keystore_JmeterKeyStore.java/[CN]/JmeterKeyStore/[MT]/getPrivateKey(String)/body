@@ -1,7 +1,7 @@
 {
-  int entry=findAlias(alias);
-  if (entry >= 0) {
-    return this.keys[entry];
+  PrivateKey pk=this.privateKeyByAlias.get(alias);
+  if (pk != null) {
+    return pk;
   }
-  return null;
+  throw new IllegalArgumentException("No PrivateKey found for alias:'" + alias + "'");
 }

@@ -1,12 +1,15 @@
 {
   super(KeystoreConfig.class);
-  createPropertyGroup(ALIASES_GROUP,new String[]{PRELOAD,ALIAS_START_INDEX,ALIAS_END_INDEX});
+  createPropertyGroup(ALIASES_GROUP,new String[]{PRELOAD,CLIENT_CERT_ALIAS_VAR_NAME,ALIAS_START_INDEX,ALIAS_END_INDEX});
   PropertyDescriptor p=property(PRELOAD);
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"true");
   p.setValue(NOT_EXPRESSION,Boolean.TRUE);
   p.setValue(NOT_OTHER,Boolean.TRUE);
   p.setValue(TAGS,new String[]{"True","False"});
+  p=property(CLIENT_CERT_ALIAS_VAR_NAME);
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
   p=property(ALIAS_START_INDEX);
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
