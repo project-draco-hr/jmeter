@@ -1,7 +1,9 @@
 {
   final BufferedReader eclipse=new BufferedReader(new FileReader(getFileFromHome("eclipse.classpath")));
   final Pattern p=Pattern.compile("\\s+<classpathentry kind=\"lib\" path=\"lib/(?:api/)?(.+)-([^-]+)\\.jar\"/>");
+  final Pattern versionPat=Pattern.compile("\\$\\{(.+)\\.version\\}");
   String line;
+  final ArrayList<String> toRemove=new ArrayList<String>();
   while ((line=eclipse.readLine()) != null) {
     final Matcher m=p.matcher(line);
     if (m.matches()) {
@@ -23,7 +25,13 @@
           jar=tmp;
         }
       }
-      final String expected=versions.get(jar);
+      String expected=versions.get(jar);
+      final Matcher mp=versionPat.matcher(expected);
+      if (mp.matches()) {
+        String key=mp.group(1);
+        expected=versions.get(key);
+        toRemove.add(key);
+      }
       propNames.remove(jar);
       if (expected == null) {
         fail("Versions list does not contain: " + jar);
@@ -34,6 +42,9 @@
         }
       }
     }
+  }
+  for (  Object key : toRemove.toArray()) {
+    propNames.remove(key);
   }
   eclipse.close();
   if (propNames.size() > 0) {
