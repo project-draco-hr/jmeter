@@ -1,0 +1,10 @@
+{
+  JPanel panel=new JPanel();
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("notify_child_listeners_fr")));
+  notifyChildSamplerListenerOfFilteredSamplersCB=new JCheckBox(JMeterUtils.getResString("notify_child_listeners_fr"));
+  notifyChildSamplerListenerOfFilteredSamplersCB.setSelected(false);
+  notifyChildSamplerListenerOfFilteredSamplersCB.addActionListener(this);
+  notifyChildSamplerListenerOfFilteredSamplersCB.setActionCommand(ENABLE_RESTART);
+  panel.add(notifyChildSamplerListenerOfFilteredSamplersCB);
+  return panel;
+}

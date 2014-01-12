@@ -16,6 +16,7 @@
   Box includeExcludePanel=Box.createVerticalBox();
   includeExcludePanel.add(createIncludePanel());
   includeExcludePanel.add(createExcludePanel());
+  includeExcludePanel.add(createNotifyListenersPanel());
   mainPanel.add(includeExcludePanel,BorderLayout.CENTER);
   mainPanel.add(createControls(),BorderLayout.SOUTH);
   add(mainPanel,BorderLayout.CENTER);

@@ -1,4 +1,5 @@
 {
+  boolean notifySampleListeners=true;
   if (sampler != null) {
     if (ATTEMPT_REDIRECT_DISABLING && (samplerRedirectAutomatically || samplerFollowRedirects)) {
       if (result instanceof HTTPSampleResult) {
@@ -38,8 +39,14 @@
       if (log.isDebugEnabled()) {
         log.debug("Sample excluded based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
       }
+      notifySampleListeners=notifyChildSamplerListenersOfFilteredSamples;
       result.setSampleLabel("[" + result.getSampleLabel() + "]");
     }
   }
-  notifySampleListeners(new SampleEvent(result,"WorkBench"));
+  if (notifySampleListeners) {
+    notifySampleListeners(new SampleEvent(result,"WorkBench"));
+  }
+ else {
+    log.debug("Sample not delivered to Child Sampler Listener based on url or content-type: " + result.getUrlAsString() + " - "+ result.getContentType());
+  }
 }

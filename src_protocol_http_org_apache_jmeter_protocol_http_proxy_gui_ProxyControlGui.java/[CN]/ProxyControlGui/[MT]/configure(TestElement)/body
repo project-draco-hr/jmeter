@@ -12,6 +12,7 @@
   samplerFollowRedirects.setSelected(model.getSamplerFollowRedirects());
   useKeepAlive.setSelected(model.getUseKeepalive());
   samplerDownloadImages.setSelected(model.getSamplerDownloadImages());
+  notifyChildSamplerListenerOfFilteredSamplersCB.setSelected(model.getNotifyChildSamplerListenerOfFilteredSamplers());
   regexMatch.setSelected(model.getRegexMatch());
   contentTypeInclude.setText(model.getContentTypeInclude());
   contentTypeExclude.setText(model.getContentTypeExclude());
