@@ -36,8 +36,6 @@
   JPanel messageContentPanel=new JPanel(new BorderLayout());
   messageContentPanel.add(new JLabel(JMeterUtils.getResString("jms_msg_content")),BorderLayout.NORTH);
   messageContentPanel.add(new JTextScrollPane(messageContent),BorderLayout.CENTER);
-  Dimension pref=new Dimension(400,150);
-  messageContent.setPreferredSize(pref);
   messagePanel.add(messageContentPanel,BorderLayout.CENTER);
   jmsPropertiesPanel=new JMSPropertiesPanel();
   messagePanel.add(jmsPropertiesPanel,BorderLayout.SOUTH);
