@@ -1,0 +1,7 @@
+{
+  String connectionTimeout=connectionTimeOut.trim();
+  if (connectionTimeout.length() > 0) {
+    return connectionTimeout;
+  }
+  return "0";
+}

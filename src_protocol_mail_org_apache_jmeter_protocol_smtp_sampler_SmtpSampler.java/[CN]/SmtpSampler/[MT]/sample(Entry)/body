@@ -6,6 +6,8 @@
   SendMailCommand instance=new SendMailCommand();
   instance.setSmtpServer(getPropertyAsString(SmtpSampler.SERVER));
   instance.setSmtpPort(getPropertyAsString(SmtpSampler.SERVER_PORT));
+  instance.setConnectionTimeOut(getPropertyAsString(SmtpSampler.SERVER_CONNECTION_TIMEOUT));
+  instance.setTimeOut(getPropertyAsString(SmtpSampler.SERVER_TIMEOUT));
   instance.setUseSSL(getPropertyAsBoolean(SecuritySettingsPanel.USE_SSL));
   instance.setUseStartTLS(getPropertyAsBoolean(SecuritySettingsPanel.USE_STARTTLS));
   instance.setTrustAllCerts(getPropertyAsBoolean(SecuritySettingsPanel.SSL_TRUST_ALL_CERTS));

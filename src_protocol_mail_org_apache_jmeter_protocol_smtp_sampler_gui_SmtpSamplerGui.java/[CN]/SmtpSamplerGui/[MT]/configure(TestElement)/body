@@ -4,6 +4,8 @@
   }
   smtpPanel.setServer(element.getPropertyAsString(SmtpSampler.SERVER));
   smtpPanel.setPort(element.getPropertyAsString(SmtpSampler.SERVER_PORT));
+  smtpPanel.setTimeout(element.getPropertyAsString(SmtpSampler.SERVER_TIMEOUT));
+  smtpPanel.setConnectionTimeout(element.getPropertyAsString(SmtpSampler.SERVER_CONNECTION_TIMEOUT));
   smtpPanel.setMailFrom(element.getPropertyAsString(SmtpSampler.MAIL_FROM));
   smtpPanel.setMailReplyTo(element.getPropertyAsString(SmtpSampler.MAIL_REPLYTO));
   smtpPanel.setReceiverTo(element.getPropertyAsString(SmtpSampler.RECEIVER_TO));
