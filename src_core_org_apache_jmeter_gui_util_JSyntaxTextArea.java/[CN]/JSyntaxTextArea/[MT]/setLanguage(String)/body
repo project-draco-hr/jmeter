@@ -1,9 +1,14 @@
 {
-  final String style=languageProperties.getProperty(language);
-  if (style == null) {
+  if (language == null) {
     super.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
   }
  else {
-    super.setSyntaxEditingStyle(style);
+    final String style=languageProperties.getProperty(language);
+    if (style == null) {
+      super.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
+    }
+ else {
+      super.setSyntaxEditingStyle(style);
+    }
   }
 }

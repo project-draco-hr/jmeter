@@ -1,0 +1,10 @@
+{
+  JSyntaxTextArea textArea=new JSyntaxTextArea(30,50,false);
+  try {
+    textArea.setLanguage(null);
+  }
+ catch (  Exception e) {
+    fail("No Exception expected");
+  }
+  assertEquals(SyntaxConstants.SYNTAX_STYLE_NONE,textArea.getSyntaxEditingStyle());
+}
