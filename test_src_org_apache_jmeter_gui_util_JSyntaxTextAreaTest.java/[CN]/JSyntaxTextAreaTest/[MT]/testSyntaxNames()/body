@@ -1,0 +1,15 @@
+{
+  HashSet<String> values=new HashSet<String>();
+  for (  Field field : SyntaxConstants.class.getFields()) {
+    int modifiers=field.getModifiers();
+    if (field.getType().equals(String.class) && Modifier.isStatic(modifiers) && Modifier.isPublic(modifiers)) {
+      values.add((String)field.get(null));
+    }
+  }
+  final Properties languageProperties=JMeterUtils.loadProperties("org/apache/jmeter/gui/util/textarea.properties");
+  for (  Object s : languageProperties.values()) {
+    if (!values.contains(s)) {
+      fail("Invalid property value: " + s);
+    }
+  }
+}
