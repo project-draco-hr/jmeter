@@ -13,6 +13,12 @@
         }
       }
     }
+ else     if (val instanceof NumberProperty) {
+      val=transform.transformValue(val);
+      if (log.isDebugEnabled()) {
+        log.debug("Replacement result: " + val);
+      }
+    }
  else     if (val instanceof MultiProperty) {
       MultiProperty multiVal=(MultiProperty)val;
       Collection<JMeterProperty> newValues=replaceValues(multiVal.iterator(),transform);
