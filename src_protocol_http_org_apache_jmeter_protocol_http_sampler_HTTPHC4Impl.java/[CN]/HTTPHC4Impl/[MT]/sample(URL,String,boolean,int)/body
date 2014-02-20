@@ -123,12 +123,14 @@
   }
  catch (  IOException e) {
     res.sampleEnd();
+    log.debug("IOException",e);
     res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
     errorResult(e,res);
     return res;
   }
 catch (  RuntimeException e) {
     res.sampleEnd();
+    log.debug("RuntimeException",e);
     errorResult(e,res);
     return res;
   }

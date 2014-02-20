@@ -51,13 +51,13 @@
     }
     clientParams.setParameter(ClientPNames.COOKIE_POLICY,CookiePolicy.IGNORE_COOKIES);
     if (log.isDebugEnabled()) {
-      log.debug("Created new HttpClient: @" + System.identityHashCode(httpClient));
+      log.debug("Created new HttpClient: @" + System.identityHashCode(httpClient) + " "+ key.toString());
     }
     map.put(key,httpClient);
   }
  else {
     if (log.isDebugEnabled()) {
-      log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient));
+      log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient) + " "+ key.toString());
     }
   }
   setConnectionAuthorization(httpClient,url,getAuthManager(),key);
