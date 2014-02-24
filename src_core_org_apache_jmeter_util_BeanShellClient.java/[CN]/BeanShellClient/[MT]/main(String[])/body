@@ -32,5 +32,6 @@
   os.flush();
   sock.shutdownOutput();
   sockRead.join();
+  is.close();
   os.close();
 }
