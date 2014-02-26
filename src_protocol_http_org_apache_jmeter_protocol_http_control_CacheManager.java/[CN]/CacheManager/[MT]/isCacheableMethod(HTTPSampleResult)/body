@@ -1,0 +1,9 @@
+{
+  final String resMethod=res.getHTTPMethod();
+  for (  String method : CACHEABLE_METHODS) {
+    if (method.equalsIgnoreCase(resMethod)) {
+      return true;
+    }
+  }
+  return false;
+}
