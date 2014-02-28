@@ -14,13 +14,13 @@
     Queue sendQueue=(Queue)context.lookup(getSendQueue());
     if (!useTemporyQueue()) {
       receiveQueue=(Queue)context.lookup(getReceiveQueue());
-      receiverThread=Receiver.createReceiver(factory,receiveQueue,getPrincipal(context),getCredentials(context),isUseResMsgIdAsCorrelId(),getJMSSelector());
+      receiverThread=Receiver.createReceiver(factory,receiveQueue,Utils.getFromEnvironment(context,Context.SECURITY_PRINCIPAL),Utils.getFromEnvironment(context,Context.SECURITY_CREDENTIALS),isUseResMsgIdAsCorrelId(),getJMSSelector());
     }
     String principal=null;
     String credentials=null;
     if (USE_SECURITY_PROPERTIES) {
-      principal=getPrincipal(context);
-      credentials=getCredentials(context);
+      principal=Utils.getFromEnvironment(context,Context.SECURITY_PRINCIPAL);
+      credentials=Utils.getFromEnvironment(context,Context.SECURITY_CREDENTIALS);
     }
     if (principal != null && credentials != null) {
       connection=factory.createQueueConnection(principal,credentials);

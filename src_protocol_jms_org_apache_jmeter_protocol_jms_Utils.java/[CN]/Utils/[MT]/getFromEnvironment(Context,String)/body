@@ -1,0 +1,16 @@
+{
+  try {
+    Hashtable<?,?> env=context.getEnvironment();
+    if (env != null) {
+      return (String)env.get(key);
+    }
+ else {
+      log.warn("context.getEnvironment() returned null (should not happen according to javadoc but non compliant implementation can return this)");
+      return null;
+    }
+  }
+ catch (  javax.naming.OperationNotSupportedException ex) {
+    log.warn("context.getEnvironment() not supported by implementation ");
+    return null;
+  }
+}

@@ -7,10 +7,9 @@
     throw new NamingException("Lookup failed: " + e.toString());
   }
   if (objfac instanceof javax.jms.ConnectionFactory) {
-    @SuppressWarnings("unchecked") Map<String,Object> env=(Map<String,Object>)ctx.getEnvironment();
-    if (env.containsKey(Context.SECURITY_PRINCIPAL)) {
-      String username=(String)env.get(Context.SECURITY_PRINCIPAL);
-      String password=(String)env.get(Context.SECURITY_CREDENTIALS);
+    String username=getFromEnvironment(ctx,Context.SECURITY_PRINCIPAL);
+    if (username != null) {
+      String password=getFromEnvironment(ctx,Context.SECURITY_CREDENTIALS);
       return ((javax.jms.ConnectionFactory)objfac).createConnection(username,password);
     }
  else {
