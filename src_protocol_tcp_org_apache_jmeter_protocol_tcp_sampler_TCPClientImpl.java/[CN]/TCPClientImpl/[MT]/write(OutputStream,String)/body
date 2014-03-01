@@ -1,7 +1,7 @@
 {
+  if (log.isDebugEnabled()) {
+    log.debug("WriteS: " + showEOL(s));
+  }
   os.write(s.getBytes(charset));
   os.flush();
-  if (log.isDebugEnabled()) {
-    log.debug("Wrote: " + s);
-  }
 }

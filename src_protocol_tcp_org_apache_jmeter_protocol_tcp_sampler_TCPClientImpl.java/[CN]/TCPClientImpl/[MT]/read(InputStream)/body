@@ -15,6 +15,6 @@
     return w.toString(charset);
   }
  catch (  IOException e) {
-    throw new ReadException("",e,w.toString());
+    throw new ReadException("Error reading from server, bytes read: " + w.size(),e,w.toString());
   }
 }
