@@ -89,6 +89,7 @@
         redirectLocation=ConversionUtils.buildFullUrlFromRelative(url,redirectLocation);
       }
       try {
+        res.setRedirectLocation(redirectLocation);
         final URL redirectUrl=new URL(redirectLocation);
         res.setRedirectLocation(ConversionUtils.sanitizeUrl(redirectUrl).toString());
       }
