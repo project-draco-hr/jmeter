@@ -3,6 +3,9 @@
   int rowCount=headerTable.getRowCount();
   try {
     String clipboardContent=GuiUtils.getPastedText();
+    if (clipboardContent == null) {
+      return;
+    }
     String[] clipboardLines=clipboardContent.split("\n");
     for (    String clipboardLine : clipboardLines) {
       int index=clipboardLine.indexOf(":");
