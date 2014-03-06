@@ -21,7 +21,7 @@
   JPanel tpPanel=new JPanel();
   JLabel tpLabel=new JLabel(THROUGHPUT_LABEL);
   tpPanel.add(tpLabel);
-  throughput=new JTextField(5);
+  throughput=new JTextField(15);
   tpPanel.add(throughput);
   throughput.setText("1");
   tpPanel.add(throughput);
