@@ -1,5 +1,10 @@
 {
-  rend=new JTextArea(value.toString());
+  if (value != null) {
+    rend=new JTextArea(value.toString());
+  }
+ else {
+    rend=new JTextArea();
+  }
   rend.setRows(2);
   rend.revalidate();
   if (!hasFocus && !isSelected) {
