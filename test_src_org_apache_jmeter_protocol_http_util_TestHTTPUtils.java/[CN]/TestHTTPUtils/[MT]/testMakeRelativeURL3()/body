@@ -1,0 +1,7 @@
+{
+  URL base=new URL("http://ahost.invalid/a/b/c");
+  assertEquals(new URL("http://host.invalid/e"),ConversionUtils.makeRelativeURL(base,"http://host.invalid/e"));
+  assertEquals(new URL("https://host.invalid/e"),ConversionUtils.makeRelativeURL(base,"https://host.invalid/e"));
+  assertEquals(new URL("http://host.invalid:8081/e"),ConversionUtils.makeRelativeURL(base,"http://host.invalid:8081/e"));
+  assertEquals(new URL("https://host.invalid:8081/e"),ConversionUtils.makeRelativeURL(base,"https://host.invalid:8081/e"));
+}
