@@ -6,16 +6,26 @@
   for (redirect=0; redirect < MAX_REDIRECTS; redirect++) {
     boolean invalidRedirectUrl=false;
     String location=lastRes.getRedirectLocation();
+    if (log.isDebugEnabled()) {
+      log.debug("Initial location: " + location);
+    }
     if (REMOVESLASHDOTDOT) {
       location=ConversionUtils.removeSlashDotDot(location);
     }
     location=encodeSpaces(location);
+    if (log.isDebugEnabled()) {
+      log.debug("Location after /. and space transforms: " + location);
+    }
     String method=lastRes.getHTTPMethod();
     if (!HTTPConstants.HEAD.equalsIgnoreCase(method)) {
       method=HTTPConstants.GET;
     }
     try {
-      lastRes=sample(ConversionUtils.makeRelativeURL(lastRes.getURL(),location),method,true,frameDepth);
+      final URL url=ConversionUtils.makeRelativeURL(lastRes.getURL(),location);
+      if (log.isDebugEnabled()) {
+        log.debug("Location as URL: " + url.toString());
+      }
+      lastRes=sample(url,method,true,frameDepth);
     }
  catch (    MalformedURLException e) {
       errorResult(e,lastRes);
