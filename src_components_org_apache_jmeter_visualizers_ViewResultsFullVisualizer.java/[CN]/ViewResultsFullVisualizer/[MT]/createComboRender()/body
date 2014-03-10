@@ -11,6 +11,7 @@
   }
   String textRenderer=JMeterUtils.getResString("view_results_render_text");
   Object textObject=null;
+  Map<String,ResultRenderer> map=new HashMap<String,ResultRenderer>(classesToAdd.size());
   for (  String clazz : classesToAdd) {
     try {
       final ResultRenderer renderer=(ResultRenderer)Class.forName(clazz).newInstance();
@@ -18,11 +19,29 @@
         textObject=renderer;
       }
       renderer.setBackgroundColor(getBackground());
-      selectRenderPanel.addItem(renderer);
+      map.put(renderer.getClass().getName(),renderer);
     }
  catch (    Exception e) {
-      log.warn("Error in load result render:" + clazz,e);
+      log.warn("Error loading result renderer:" + clazz,e);
     }
+  }
+  if (VIEWERS_ORDER.length() > 0) {
+    String[] keys=VIEWERS_ORDER.split(",");
+    for (    String key : keys) {
+      if (key.startsWith(".")) {
+        key="org.apache.jmeter.visualizers" + key;
+      }
+      ResultRenderer renderer=map.remove(key);
+      if (renderer != null) {
+        selectRenderPanel.addItem(renderer);
+      }
+ else {
+        log.warn("Missing (check spelling error in renderer name) or already added(check doublon) " + "result renderer, check property 'view.results.tree.renderers_order', renderer name:'" + key + "'");
+      }
+    }
+  }
+  for (  ResultRenderer renderer : map.values()) {
+    selectRenderPanel.addItem(renderer);
   }
   nodesModel.setSelectedItem(textObject);
   return selectRenderPanel;
