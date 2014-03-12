@@ -1,6 +1,6 @@
 {
   reInitialize();
-  if (endOfArguments()) {
+  if (endOfArguments() || loopCount >= getEndIndex()) {
     resetLoopCount();
     return null;
   }
