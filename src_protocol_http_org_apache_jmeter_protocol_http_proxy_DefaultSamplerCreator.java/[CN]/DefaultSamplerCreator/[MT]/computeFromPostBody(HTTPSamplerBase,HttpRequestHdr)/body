@@ -25,6 +25,7 @@
       request.getHeaderManager().removeHeaderNamed(HttpRequestHdr.CONTENT_LENGTH);
       sampler.setArguments(urlConfig.getArguments());
       sampler.setHTTPFiles(urlConfig.getHTTPFileArgs().asArray());
+      sampler.setDoBrowserCompatibleMultipart(true);
     }
  else     if (postData.trim().startsWith("<?") || HTTPConstants.PUT.equals(sampler.getMethod()) || isPotentialXml(postData)) {
       sampler.addNonEncodedArgument("",postData,"");
