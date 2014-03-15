@@ -19,6 +19,8 @@
   response.close();
   byte[] mirroredResponse=getMirroredResponse(response.toByteArray());
   checkArraysHaveSameContent(bos.toByteArray(),mirroredResponse);
+  outputStream.close();
+  inputStream.close();
   clientSocket.close();
   clientSocket=new Socket("localhost",HTTP_SERVER_PORT);
   outputStream=clientSocket.getOutputStream();
@@ -50,5 +52,7 @@
   bos.write(secondChunk);
   bos.close();
   checkArraysHaveSameContent(bos.toByteArray(),mirroredResponse);
+  outputStream.close();
+  inputStream.close();
   clientSocket.close();
 }
