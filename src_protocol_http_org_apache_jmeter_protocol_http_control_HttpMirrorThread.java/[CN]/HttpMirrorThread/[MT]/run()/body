@@ -56,7 +56,7 @@
  else {
       out.write(baos.toByteArray());
     }
-    String contentLengthHeaderValue=getRequestHeaderValue(headerString,"Content-Length");
+    String contentLengthHeaderValue=getRequestHeaderValue(headerString,HTTPConstants.HEADER_CONTENT_LENGTH);
     if (contentLengthHeaderValue != null) {
       contentLength=Integer.parseInt(contentLengthHeaderValue);
     }
@@ -64,7 +64,7 @@
     if (sleepHeaderValue != null) {
       TimeUnit.MILLISECONDS.sleep(Integer.parseInt(sleepHeaderValue));
     }
-    String transferEncodingHeaderValue=getRequestHeaderValue(headerString,"Transfer-Encoding");
+    String transferEncodingHeaderValue=getRequestHeaderValue(headerString,HTTPConstants.TRANSFER_ENCODING);
     if (transferEncodingHeaderValue != null) {
       isChunked=transferEncodingHeaderValue.equalsIgnoreCase("chunked");
       if (!isChunked) {
