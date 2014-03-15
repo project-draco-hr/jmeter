@@ -1,0 +1,7 @@
+{
+  URL url=new URL("http","localhost",HTTP_SERVER_PORT,"/");
+  HttpURLConnection conn=(HttpURLConnection)url.openConnection();
+  conn.addRequestProperty("X-SetCookie","four=2*2");
+  conn.connect();
+  assertEquals("four=2*2",conn.getHeaderField("Set-Cookie"));
+}
