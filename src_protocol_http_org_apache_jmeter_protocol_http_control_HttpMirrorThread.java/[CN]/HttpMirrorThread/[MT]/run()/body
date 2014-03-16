@@ -19,7 +19,8 @@
     }
     baos.close();
     final String headerString=headers.toString();
-    final String[] requestParts=headerString.split("\\s+",3);
+    final String firstLine=headerString.substring(0,headerString.indexOf('\r'));
+    final String[] requestParts=firstLine.split("\\s+");
     final String requestMethod=requestParts[0];
     final String requestPath=requestParts[1];
     final HashMap<String,String> parameters=new HashMap<String,String>();
@@ -42,9 +43,16 @@
             if (parts.length == 2) {
               parameters.put(parts[0],parts[1]);
             }
+ else {
+              parameters.put(parts[0],"");
+            }
           }
         }
       }
+    }
+    final boolean verbose=parameters.containsKey(VERBOSE);
+    if (verbose) {
+      System.out.println(firstLine);
     }
     String responseStatusValue=getRequestHeaderValue(headerString,"X-ResponseStatus");
     if (responseStatusValue == null) {
@@ -63,8 +71,15 @@
     out.write("Content-Type: text/plain".getBytes(ISO_8859_1));
     out.write(CRLF);
     if (parameters.containsKey(REDIRECT)) {
-      out.write((HTTPConstants.HEADER_LOCATION + ": ").getBytes(ISO_8859_1));
-      out.write(parameters.get(REDIRECT).getBytes(ISO_8859_1));
+      StringBuilder sb=new StringBuilder();
+      sb.append(HTTPConstants.HEADER_LOCATION);
+      sb.append(": ");
+      sb.append(parameters.get(REDIRECT));
+      final String redirectLocation=sb.toString();
+      if (verbose) {
+        System.out.println(redirectLocation);
+      }
+      out.write(redirectLocation.getBytes(ISO_8859_1));
       out.write(CRLF);
     }
     String headersValue=getRequestHeaderValue(headerString,"X-SetHeaders");
