@@ -1,4 +1,8 @@
 {
+  if (log.isDebugEnabled()) {
+    log.debug("Start : sample " + url.toString());
+    log.debug("method " + method + " followingRedirect "+ areFollowingRedirect+ " depth "+ frameDepth);
+  }
   HTTPSampleResult res=createSampleResult(url,method);
   HttpClient httpClient=setupClient(url);
   HttpRequestBase httpRequest=null;
@@ -85,17 +89,7 @@
         throw new IllegalArgumentException("Missing location header in redirect for " + httpRequest.getRequestLine());
       }
       String redirectLocation=headerLocation.getValue();
-      if (!STRICT_RFC_2616 && !(redirectLocation.startsWith("http://") || redirectLocation.startsWith("https://"))) {
-        redirectLocation=ConversionUtils.buildFullUrlFromRelative(url,redirectLocation);
-      }
-      try {
-        res.setRedirectLocation(redirectLocation);
-        final URL redirectUrl=new URL(redirectLocation);
-        res.setRedirectLocation(ConversionUtils.sanitizeUrl(redirectUrl).toString());
-      }
- catch (      Exception e) {
-        log.error("Error in redirect URL for " + httpRequest.getRequestLine() + "\n\tCould not sanitize URL: "+ redirectLocation+ "\n\t",e);
-      }
+      res.setRedirectLocation(redirectLocation);
     }
     HttpConnectionMetrics metrics=(HttpConnectionMetrics)localContext.getAttribute(CONTEXT_METRICS);
     long headerBytes=res.getResponseHeaders().length() + httpResponse.getAllHeaders().length + 1+ 2;

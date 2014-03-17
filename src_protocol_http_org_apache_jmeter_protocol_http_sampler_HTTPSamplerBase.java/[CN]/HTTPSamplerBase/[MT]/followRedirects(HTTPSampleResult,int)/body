@@ -21,13 +21,18 @@
       method=HTTPConstants.GET;
     }
     try {
-      final URL url=ConversionUtils.makeRelativeURL(lastRes.getURL(),location);
+      URL url=ConversionUtils.makeRelativeURL(lastRes.getURL(),location);
+      url=ConversionUtils.sanitizeUrl(url).toURL();
       if (log.isDebugEnabled()) {
         log.debug("Location as URL: " + url.toString());
       }
       lastRes=sample(url,method,true,frameDepth);
     }
  catch (    MalformedURLException e) {
+      errorResult(e,lastRes);
+      invalidRedirectUrl=true;
+    }
+catch (    URISyntaxException e) {
       errorResult(e,lastRes);
       invalidRedirectUrl=true;
     }
