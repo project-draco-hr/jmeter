@@ -1,5 +1,8 @@
 {
-  URIBuilder builder=new URIBuilder().setScheme(url.getProtocol()).setHost(url.getHost()).setPort(url.getPort()).setUserInfo(url.getUserInfo()).setPath(url.getPath() != null ? URLDecoder.decode(url.getPath(),"UTF-8") : null).setQuery(url.getQuery());
-  URI uri=builder.build();
-  return uri;
+  try {
+    return url.toURI();
+  }
+ catch (  URISyntaxException e) {
+    return new URI(url.getProtocol(),url.getUserInfo(),url.getHost(),url.getPort(),url.getPath(),url.getQuery(),url.getRef());
+  }
 }
