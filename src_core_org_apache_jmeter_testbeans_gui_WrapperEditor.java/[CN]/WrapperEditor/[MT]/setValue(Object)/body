@@ -16,7 +16,7 @@
     typeEditor.setValue(value);
     text=fixGetAsTextBug(typeEditor.getAsText());
     if (!acceptsOther && !isATag(text)) {
-      throw new IllegalArgumentException("Value not allowed: " + text);
+      throw new IllegalArgumentException("Value not allowed: '" + text + "' is not in "+ Arrays.toString(getTags()));
     }
   }
   guiEditor.setValue(text);
