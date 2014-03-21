@@ -1,0 +1,32 @@
+{
+  super(beanClass);
+  PropertyDescriptor p;
+  p=property("scriptLanguage");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  if (rb != null) {
+    p.setValue(RESOURCE_BUNDLE,rb);
+  }
+  p.setValue(TAGS,LANGUAGE_TAGS);
+  createPropertyGroup("scriptingLanguage",new String[]{"scriptLanguage"});
+  p=property("parameters");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  createPropertyGroup("parameterGroup",new String[]{"parameters"});
+  p=property("filename");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p.setPropertyEditorClass(FileEditor.class);
+  createPropertyGroup("filenameGroup",new String[]{"filename"});
+  if (JSR223TestElement.class.isAssignableFrom(beanClass)) {
+    p=property("cacheKey");
+    p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+    p.setValue(DEFAULT,"");
+    createPropertyGroup("cacheKey_group",new String[]{"cacheKey"});
+  }
+  p=property("script");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,"");
+  p.setPropertyEditorClass(TextAreaEditor.class);
+  createPropertyGroup("scripting",new String[]{"script"});
+}
