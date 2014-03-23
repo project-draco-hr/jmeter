@@ -4,6 +4,7 @@
     ans=(Long.valueOf(appProperties.getProperty(propName,Long.toString(defaultVal)).trim())).longValue();
   }
  catch (  Exception e) {
+    log.warn("Unexpected value set for long property:'" + propName + "', defaulting to:"+ defaultVal);
     ans=defaultVal;
   }
   return ans;
