@@ -3,5 +3,6 @@
   long delay=now - endTime;
   if ((delay >= 0)) {
     running=false;
+    log.info("Stopping because end time detected by thread: " + threadName);
   }
 }

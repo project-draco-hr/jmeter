@@ -36,6 +36,7 @@
       }
       if (controller.isDone()) {
         running=false;
+        log.info("Thread is done: " + threadName);
       }
     }
   }
