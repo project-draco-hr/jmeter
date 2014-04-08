@@ -1,0 +1,16 @@
+{
+  int fails=0;
+  for (  Entry<Object,Object> entry : prop.entrySet()) {
+    final String key=(String)entry.getKey();
+    if (key.endsWith(".loc")) {
+      final String value=(String)entry.getValue();
+      if (!value.startsWith("${maven2.repo}")) {
+        fails++;
+        System.err.println("ERROR: non-Maven download detected\n" + key + "="+ value);
+      }
+    }
+  }
+  if (fails > 0) {
+    System.err.println("ERROR: All files must be available from Maven Central; but " + fails + " use(s) a different download source");
+  }
+}
