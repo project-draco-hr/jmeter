@@ -55,24 +55,24 @@
  else {
       folder.open(Folder.READ_ONLY);
     }
-    Message messages[]=folder.getMessages();
+    final int messageTotal=folder.getMessageCount();
+    int n=getNumMessages();
+    if (n == ALL_MESSAGES || n > messageTotal) {
+      n=messageTotal;
+    }
+    Message messages[]=folder.getMessages(1,n);
     StringBuilder pdata=new StringBuilder();
     pdata.append(messages.length);
     pdata.append(" messages found\n");
     parent.setResponseData(pdata.toString(),null);
     parent.setDataType(SampleResult.TEXT);
     parent.setContentType("text/plain");
-    int n=getNumMessages();
-    if (n == ALL_MESSAGES || n > messages.length) {
-      n=messages.length;
-    }
-    parent.setSampleCount(n);
+    parent.setSampleCount(messages.length);
     busy=true;
-    for (int i=0; busy && i < n; i++) {
+    for (    Message message : messages) {
       StringBuilder cdata=new StringBuilder();
       SampleResult child=new SampleResult();
       child.sampleStart();
-      Message message=messages[i];
       cdata.append("Message ");
       cdata.append(message.getMessageNumber());
       child.setSampleLabel(cdata.toString());
