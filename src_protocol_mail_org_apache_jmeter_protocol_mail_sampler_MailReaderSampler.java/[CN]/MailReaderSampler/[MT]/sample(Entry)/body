@@ -1,7 +1,8 @@
 {
   SampleResult parent=new SampleResult();
   boolean isOK=false;
-  boolean deleteMessages=getDeleteMessages();
+  final boolean deleteMessages=getDeleteMessages();
+  final String serverProtocol=getServerType();
   parent.setSampleLabel(getName());
   String samplerString=toString();
   parent.setSamplerData(samplerString);
@@ -9,19 +10,19 @@
   try {
     Properties props=new Properties();
     if (isUseStartTLS()) {
-      props.setProperty("mail.pop3s.starttls.enable","true");
+      props.setProperty(mailProp(serverProtocol,"starttls.enable"),TRUE);
       if (isEnforceStartTLS()) {
-        props.setProperty("mail.pop3s.starttls.require","true");
+        props.setProperty(mailProp(serverProtocol,"starttls.require"),TRUE);
       }
     }
     if (isTrustAllCerts()) {
       if (isUseSSL()) {
-        props.setProperty("mail.pop3s.ssl.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
-        props.setProperty("mail.pop3s.ssl.socketFactory.fallback","false");
+        props.setProperty(mailProp(serverProtocol,"ssl.socketFactory.class"),TRUST_ALL_SOCKET_FACTORY);
+        props.setProperty(mailProp(serverProtocol,"ssl.socketFactory.fallback"),FALSE);
       }
  else       if (isUseStartTLS()) {
-        props.setProperty("mail.pop3s.ssl.socketFactory.class",TRUST_ALL_SOCKET_FACTORY);
-        props.setProperty("mail.pop3s.ssl.socketFactory.fallback","false");
+        props.setProperty(mailProp(serverProtocol,"ssl.socketFactory.class"),TRUST_ALL_SOCKET_FACTORY);
+        props.setProperty(mailProp(serverProtocol,"ssl.socketFactory.fallback"),FALSE);
       }
     }
  else     if (isUseLocalTrustStore()) {
@@ -37,16 +38,16 @@
         }
       }
       if (isUseSSL()) {
-        props.put("mail.pop3s.ssl.socketFactory",new LocalTrustStoreSSLSocketFactory(truststore));
-        props.put("mail.pop3s.ssl.socketFactory.fallback","false");
+        props.put(mailProp(serverProtocol,"ssl.socketFactory"),new LocalTrustStoreSSLSocketFactory(truststore));
+        props.put(mailProp(serverProtocol,"ssl.socketFactory.fallback"),FALSE);
       }
  else       if (isUseStartTLS()) {
-        props.put("mail.pop3s.ssl.socketFactory",new LocalTrustStoreSSLSocketFactory(truststore));
-        props.put("mail.pop3s.ssl.socketFactory.fallback","false");
+        props.put(mailProp(serverProtocol,"ssl.socketFactory"),new LocalTrustStoreSSLSocketFactory(truststore));
+        props.put(mailProp(serverProtocol,"ssl.socketFactory.fallback"),FALSE);
       }
     }
     Session session=Session.getInstance(props,null);
-    Store store=session.getStore(getServerType());
+    Store store=session.getStore(serverProtocol);
     store.connect(getServer(),getPortAsInt(),getUserName(),getPassword());
     Folder folder=store.getFolder(getFolder());
     if (deleteMessages) {
