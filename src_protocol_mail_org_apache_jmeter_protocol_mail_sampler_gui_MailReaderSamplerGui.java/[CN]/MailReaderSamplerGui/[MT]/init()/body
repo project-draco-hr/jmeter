@@ -46,6 +46,7 @@
   numMessagesPanel.add(allMessagesButton);
   numMessagesPanel.add(someMessagesButton);
   numMessagesPanel.add(someMessagesField);
+  headerOnlyBox=new JCheckBox(headerOnlyLabel);
   deleteBox=new JCheckBox(DeleteLabel);
   storeMimeMessageBox=new JCheckBox(STOREMIME);
   securitySettingsPanel=new SecuritySettingsPanel();
@@ -53,6 +54,7 @@
   settings.add(Box.createVerticalStrut(5));
   settings.add(settingsPanel);
   settings.add(numMessagesPanel);
+  settings.add(headerOnlyBox);
   settings.add(deleteBox);
   settings.add(storeMimeMessageBox);
   settings.add(securitySettingsPanel);

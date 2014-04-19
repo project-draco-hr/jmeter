@@ -68,6 +68,7 @@
     parent.setDataType(SampleResult.TEXT);
     parent.setContentType("text/plain");
     parent.setSampleCount(messages.length);
+    final boolean headerOnly=getHeaderOnly();
     busy=true;
     for (    Message message : messages) {
       StringBuilder cdata=new StringBuilder();
@@ -102,7 +103,9 @@
         }
         child.setResponseHeaders(cdata.toString());
         cdata.setLength(0);
-        appendMessageData(child,message);
+        if (!headerOnly) {
+          appendMessageData(child,message);
+        }
       }
       if (deleteMessages) {
         message.setFlag(Flags.Flag.DELETED,true);

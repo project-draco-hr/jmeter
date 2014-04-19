@@ -14,6 +14,7 @@
     someMessagesButton.setSelected(true);
     someMessagesField.setText(mrs.getNumMessagesString());
   }
+  headerOnlyBox.setSelected(mrs.getHeaderOnly());
   deleteBox.setSelected(mrs.getDeleteMessages());
   storeMimeMessageBox.setSelected(mrs.isStoreMimeMessage());
   securitySettingsPanel.configure(element);
