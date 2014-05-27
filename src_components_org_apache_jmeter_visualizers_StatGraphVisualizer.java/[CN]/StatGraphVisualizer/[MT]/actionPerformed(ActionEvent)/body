@@ -24,10 +24,10 @@
       CSVSaveService.saveCSVStats(getAllTableData(),writer,saveHeaders.isSelected() ? COLUMNS : null);
     }
  catch (    FileNotFoundException e) {
-      log.warn(e.getMessage());
+      JMeterUtils.reportErrorToUser(e.getMessage(),"Error saving data");
     }
 catch (    IOException e) {
-      log.warn(e.getMessage());
+      JMeterUtils.reportErrorToUser(e.getMessage(),"Error saving data");
     }
  finally {
       JOrphanUtils.closeQuietly(writer);
