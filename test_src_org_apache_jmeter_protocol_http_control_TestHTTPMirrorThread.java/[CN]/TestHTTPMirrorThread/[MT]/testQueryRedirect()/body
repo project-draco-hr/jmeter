@@ -1,6 +1,5 @@
 {
   URL url=new URI("http",null,"localhost",HTTP_SERVER_PORT,"/path","redirect=/a/b/c/d?q",null).toURL();
-  System.err.println(url);
   HttpURLConnection conn=(HttpURLConnection)url.openConnection();
   conn.setInstanceFollowRedirects(false);
   conn.connect();
