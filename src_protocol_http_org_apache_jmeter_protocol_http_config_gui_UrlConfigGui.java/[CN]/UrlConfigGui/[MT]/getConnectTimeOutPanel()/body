@@ -1,5 +1,5 @@
 {
-  connectTimeOut=new JTextField(4);
+  connectTimeOut=new JTextField(10);
   JLabel label=new JLabel(JMeterUtils.getResString("web_server_timeout_connect"));
   label.setLabelFor(connectTimeOut);
   JPanel panel=new JPanel(new BorderLayout(5,0));

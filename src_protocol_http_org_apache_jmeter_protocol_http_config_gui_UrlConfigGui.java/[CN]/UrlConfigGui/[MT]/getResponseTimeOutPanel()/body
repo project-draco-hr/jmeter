@@ -1,5 +1,5 @@
 {
-  responseTimeOut=new JTextField(4);
+  responseTimeOut=new JTextField(10);
   JLabel label=new JLabel(JMeterUtils.getResString("web_server_timeout_response"));
   label.setLabelFor(responseTimeOut);
   JPanel panel=new JPanel(new BorderLayout(5,0));

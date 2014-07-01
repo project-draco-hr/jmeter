@@ -1,5 +1,5 @@
 {
-  proxyPort=new JTextField(4);
+  proxyPort=new JTextField(10);
   JLabel label=new JLabel(JMeterUtils.getResString("web_server_port"));
   label.setLabelFor(proxyPort);
   label.setFont(FONT_SMALL);
