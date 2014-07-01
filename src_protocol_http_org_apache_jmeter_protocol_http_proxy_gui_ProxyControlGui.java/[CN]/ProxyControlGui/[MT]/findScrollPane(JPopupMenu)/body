@@ -1,0 +1,9 @@
+{
+  Component[] components=popup.getComponents();
+  for (  Component component : components) {
+    if (component instanceof JScrollPane) {
+      return (JScrollPane)component;
+    }
+  }
+  return null;
+}
