@@ -15,6 +15,8 @@
   configChoice.setText(sampler.getConfigChoice());
   msgChoice.setText(sampler.getMessageChoice());
   iterations.setText(sampler.getIterations());
+  expiration.setText(sampler.getExpiration());
+  priority.setText(sampler.getPriority());
   useAuth.setSelected(sampler.isUseAuth());
   jmsUser.setEnabled(useAuth.isSelected());
   jmsPwd.setEnabled(useAuth.isSelected());

@@ -1,0 +1,7 @@
+{
+  MapMessage msg=session.createMapMessage();
+  for (  Entry<String,Object> me : map.entrySet()) {
+    msg.setObject(me.getKey(),me.getValue());
+  }
+  return (MapMessage)setPropertiesAndSend(destinationName,properties,msg,deliveryMode,priority,expiration);
+}

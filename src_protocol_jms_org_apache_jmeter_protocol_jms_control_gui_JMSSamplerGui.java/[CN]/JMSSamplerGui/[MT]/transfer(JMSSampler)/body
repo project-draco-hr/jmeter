@@ -8,6 +8,8 @@
   element.setUseReqMsgIdAsCorrelId(useReqMsgIdAsCorrelId.isSelected());
   element.setUseResMsgIdAsCorrelId(useResMsgIdAsCorrelId.isSelected());
   element.setTimeout(timeout.getText());
+  element.setExpiration(expiration.getText());
+  element.setPriority(priority.getText());
   element.setJMSSelector(jmsSelector.getText());
   element.setContent(messageContent.getText());
   element.setInitialContextFactory(initialContextFactory.getText());

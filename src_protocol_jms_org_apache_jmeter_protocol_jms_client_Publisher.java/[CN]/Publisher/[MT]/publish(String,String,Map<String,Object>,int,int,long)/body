@@ -1,0 +1,4 @@
+{
+  TextMessage msg=session.createTextMessage(text);
+  return setPropertiesAndSend(destinationName,properties,msg,deliveryMode,priority,expiration);
+}

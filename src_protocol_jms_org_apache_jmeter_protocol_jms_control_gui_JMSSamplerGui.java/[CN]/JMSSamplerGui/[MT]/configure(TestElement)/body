@@ -18,6 +18,8 @@
   useReqMsgIdAsCorrelId.setSelected(sampler.isUseReqMsgIdAsCorrelId());
   useResMsgIdAsCorrelId.setSelected(sampler.isUseResMsgIdAsCorrelId());
   timeout.setText(sampler.getTimeout());
+  expiration.setText(sampler.getExpiration());
+  priority.setText(sampler.getPriority());
   jmsSelector.setText(sampler.getJMSSelector());
   messageContent.setInitialText(sampler.getContent());
   initialContextFactory.setText(sampler.getInitialContextFactory());

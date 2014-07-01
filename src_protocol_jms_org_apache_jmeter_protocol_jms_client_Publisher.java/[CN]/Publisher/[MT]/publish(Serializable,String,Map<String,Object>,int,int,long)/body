@@ -1,0 +1,4 @@
+{
+  ObjectMessage msg=session.createObjectMessage(contents);
+  return setPropertiesAndSend(destinationName,properties,msg,deliveryMode,priority,expiration);
+}

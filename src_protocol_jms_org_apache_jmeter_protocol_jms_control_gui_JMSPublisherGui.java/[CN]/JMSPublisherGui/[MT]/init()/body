@@ -10,6 +10,7 @@
   mainPanel.add(jndiConnFac);
   mainPanel.add(createDestinationPane());
   mainPanel.add(createAuthPane());
+  mainPanel.add(createPriorityAndExpiration());
   mainPanel.add(iterations);
   jmsPropertiesPanel=new JMSPropertiesPanel();
   mainPanel.add(jmsPropertiesPanel);

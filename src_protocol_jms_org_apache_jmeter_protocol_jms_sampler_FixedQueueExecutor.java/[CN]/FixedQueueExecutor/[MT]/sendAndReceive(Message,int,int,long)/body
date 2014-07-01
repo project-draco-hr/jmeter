@@ -1,0 +1,37 @@
+{
+  String id=request.getJMSCorrelationID();
+  if (id == null && !useReqMsgIdAsCorrelId) {
+    throw new IllegalArgumentException("Correlation id is null. Set the JMSCorrelationID header.");
+  }
+  final CountDownLatch countDownLatch=new CountDownLatch(1);
+  final MessageAdmin admin=MessageAdmin.getAdmin();
+  if (useReqMsgIdAsCorrelId) {
+synchronized (admin) {
+      producer.send(request,deliveryMode,priority,expiration);
+      id=request.getJMSMessageID();
+      admin.putRequest(id,request,countDownLatch);
+    }
+  }
+ else {
+    admin.putRequest(id,request,countDownLatch);
+    producer.send(request,deliveryMode,priority,expiration);
+  }
+  try {
+    if (log.isDebugEnabled()) {
+      log.debug(Thread.currentThread().getName() + " will wait for reply " + id+ " started on "+ System.currentTimeMillis());
+    }
+    if (timeout == 0) {
+      countDownLatch.await();
+    }
+ else {
+      countDownLatch.await(timeout,TimeUnit.MILLISECONDS);
+    }
+    if (log.isDebugEnabled()) {
+      log.debug(Thread.currentThread().getName() + " done waiting for " + id+ " on "+ request+ " ended on "+ System.currentTimeMillis());
+    }
+  }
+ catch (  InterruptedException e) {
+    log.warn("Interrupt exception caught",e);
+  }
+  return admin.get(id);
+}

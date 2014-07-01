@@ -5,6 +5,8 @@
   sampler.setProviderUrl(urlField.getText());
   sampler.setConnectionFactory(jndiConnFac.getText());
   sampler.setDestination(jmsDestination.getText());
+  sampler.setExpiration(expiration.getText());
+  sampler.setPriority(priority.getText());
   sampler.setUsername(jmsUser.getText());
   sampler.setPassword(jmsPwd.getText());
   sampler.setTextMessage(textMessage.getText());

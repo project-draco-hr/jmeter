@@ -23,26 +23,29 @@ catch (    NamingException e) {
   String type=getMessageChoice();
   try {
     Map<String,Object> msgProperties=getJMSProperties().getJmsPropertysAsMap();
+    int deliveryMode=getUseNonPersistentDelivery() ? DeliveryMode.NON_PERSISTENT : DeliveryMode.PERSISTENT;
+    int priority=Integer.parseInt(getPriority());
+    long expiration=Long.parseLong(getExpiration());
     for (int idx=0; idx < loop; idx++) {
       if (JMSPublisherGui.TEXT_MSG_RSC.equals(type)) {
         String tmsg=getMessageContent();
-        Message msg=publisher.publish(tmsg,getDestination(),msgProperties);
+        Message msg=publisher.publish(tmsg,getDestination(),msgProperties,deliveryMode,priority,expiration);
         buffer.append(tmsg);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.MAP_MSG_RSC.equals(type)) {
         Map<String,Object> m=getMapContent();
-        Message msg=publisher.publish(m,getDestination(),msgProperties);
+        Message msg=publisher.publish(m,getDestination(),msgProperties,deliveryMode,priority,expiration);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.OBJECT_MSG_RSC.equals(type)) {
         Serializable omsg=getObjectContent();
-        Message msg=publisher.publish(omsg,getDestination(),msgProperties);
+        Message msg=publisher.publish(omsg,getDestination(),msgProperties,deliveryMode,priority,expiration);
         Utils.messageProperties(propBuffer,msg);
       }
  else       if (JMSPublisherGui.BYTES_MSG_RSC.equals(type)) {
         byte[] bmsg=getBytesContent();
-        Message msg=publisher.publish(bmsg,getDestination(),msgProperties);
+        Message msg=publisher.publish(bmsg,getDestination(),msgProperties,deliveryMode,priority,expiration);
         Utils.messageProperties(propBuffer,msg);
       }
  else {

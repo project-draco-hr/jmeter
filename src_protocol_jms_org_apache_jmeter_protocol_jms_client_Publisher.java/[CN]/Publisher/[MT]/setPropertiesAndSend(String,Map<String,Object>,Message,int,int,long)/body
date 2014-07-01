@@ -1,0 +1,11 @@
+{
+  Utils.addJMSProperties(msg,properties);
+  if (staticDest || destinationName == null) {
+    producer.send(msg,deliveryMode,priority,expiration);
+  }
+ else {
+    Destination dest=Utils.lookupDestination(ctx,destinationName);
+    producer.send(dest,msg,deliveryMode,priority,expiration);
+  }
+  return msg;
+}

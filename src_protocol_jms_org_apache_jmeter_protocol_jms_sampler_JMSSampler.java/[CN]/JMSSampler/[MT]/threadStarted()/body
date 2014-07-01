@@ -32,11 +32,13 @@
     if (LOGGER.isDebugEnabled()) {
       LOGGER.debug("Session created");
     }
-    if (getPropertyAsBoolean(IS_ONE_WAY)) {
+    if (isOneway()) {
       producer=session.createSender(sendQueue);
       if (isNonPersistent()) {
         producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
       }
+      producer.setPriority(Integer.parseInt(getPriority()));
+      producer.setTimeToLive(Long.parseLong(getExpiration()));
     }
  else {
       if (useTemporyQueue()) {
@@ -44,9 +46,6 @@
       }
  else {
         producer=session.createSender(sendQueue);
-        if (isNonPersistent()) {
-          producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-        }
         executor=new FixedQueueExecutor(producer,getTimeoutAsInt(),isUseReqMsgIdAsCorrelId());
       }
     }

@@ -8,7 +8,8 @@
   try {
     TextMessage msg=createMessage();
     if (isOneway()) {
-      producer.send(msg);
+      int deliveryMode=isNonPersistent() ? DeliveryMode.NON_PERSISTENT : DeliveryMode.PERSISTENT;
+      producer.send(msg,deliveryMode,Integer.parseInt(getPriority()),Long.parseLong(getExpiration()));
       res.setRequestHeaders(Utils.messageProperties(msg));
       res.setResponseOK();
       res.setResponseData("Oneway request has no response data",null);
@@ -17,7 +18,7 @@
       if (!useTemporyQueue()) {
         msg.setJMSReplyTo(receiveQueue);
       }
-      Message replyMsg=executor.sendAndReceive(msg);
+      Message replyMsg=executor.sendAndReceive(msg,isNonPersistent() ? DeliveryMode.NON_PERSISTENT : DeliveryMode.PERSISTENT,Integer.parseInt(getPriority()),Long.parseLong(getExpiration()));
       res.setRequestHeaders(Utils.messageProperties(msg));
       if (replyMsg == null) {
         res.setResponseMessage("No reply message received");
