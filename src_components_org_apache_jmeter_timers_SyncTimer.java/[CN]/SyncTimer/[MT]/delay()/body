@@ -2,12 +2,21 @@
   if (getGroupSize() >= 0) {
     int arrival=0;
     try {
-      arrival=this.barrier.await();
+      if (timeoutInMs == 0) {
+        arrival=this.barrier.await();
+      }
+ else {
+        arrival=this.barrier.await(timeoutInMs,TimeUnit.MILLISECONDS);
+      }
     }
  catch (    InterruptedException e) {
       return 0;
     }
 catch (    BrokenBarrierException e) {
+      return 0;
+    }
+catch (    TimeoutException e) {
+      LOGGER.warn("SyncTimer " + getName() + " timeouted waiting for users after:"+ getTimeoutInMs()+ "ms");
       return 0;
     }
  finally {
