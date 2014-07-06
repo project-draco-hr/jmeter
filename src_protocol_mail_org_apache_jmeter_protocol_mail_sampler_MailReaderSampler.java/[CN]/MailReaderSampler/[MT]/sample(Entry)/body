@@ -68,7 +68,6 @@
     parent.setResponseData(pdata.toString(),null);
     parent.setDataType(SampleResult.TEXT);
     parent.setContentType("text/plain");
-    parent.setSampleCount(messages.length);
     final boolean headerOnly=getHeaderOnly();
     busy=true;
     for (    Message message : messages) {
