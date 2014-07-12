@@ -18,7 +18,7 @@
     jc.set("sampler",currentSampler);
     jc.set("sampleResult",previousResult);
     jc.set("OUT",System.out);
-    Expression e=jexl.createExpression(exp);
+    Expression e=getJexlEngine().createExpression(exp);
     Object o=e.evaluate(jc);
     if (o != null) {
       str=o.toString();

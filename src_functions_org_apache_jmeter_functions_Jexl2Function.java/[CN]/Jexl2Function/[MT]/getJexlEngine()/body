@@ -1,0 +1,11 @@
+{
+  JexlEngine engine=threadLocalJexl.get();
+  if (engine == null) {
+    engine=new JexlEngine();
+    engine.setCache(512);
+    engine.setLenient(false);
+    engine.setSilent(false);
+    threadLocalJexl.set(engine);
+  }
+  return engine;
+}
