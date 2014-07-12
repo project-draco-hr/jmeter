@@ -1,0 +1,7 @@
+{
+  String dataEncodingNoDefault=getDataEncodingNoDefault();
+  if (dataEncodingNoDefault != null && dataEncodingNoDefault.length() > 0) {
+    return dataEncodingNoDefault;
+  }
+  return defaultEncoding;
+}
