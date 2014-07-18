@@ -1,0 +1,7 @@
+{
+  configureTestElement(controller);
+  if (controller instanceof CriticalSectionController) {
+    CriticalSectionController csController=(CriticalSectionController)controller;
+    csController.setLockName(tfLockName.getText());
+  }
+}

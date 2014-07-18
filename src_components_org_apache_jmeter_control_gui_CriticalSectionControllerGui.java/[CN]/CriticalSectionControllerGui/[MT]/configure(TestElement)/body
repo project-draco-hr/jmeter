@@ -1,0 +1,7 @@
+{
+  super.configure(element);
+  if (element instanceof CriticalSectionController) {
+    CriticalSectionController controller=(CriticalSectionController)element;
+    tfLockName.setText(controller.getLockName());
+  }
+}

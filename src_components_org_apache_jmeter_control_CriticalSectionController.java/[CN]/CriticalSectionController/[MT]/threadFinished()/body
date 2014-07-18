@@ -1,0 +1,7 @@
+{
+  if (this.currentLock != null && this.currentLock.isHeldByCurrentThread()) {
+    logger.warn("Lock " + getLockName() + " not released in:"+ getName()+ ", releasing in threadFinished");
+    this.currentLock.unlock();
+  }
+  this.currentLock=null;
+}

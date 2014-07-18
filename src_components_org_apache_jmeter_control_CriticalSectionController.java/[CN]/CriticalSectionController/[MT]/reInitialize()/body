@@ -1,0 +1,9 @@
+{
+  if (this.currentLock != null) {
+    if (currentLock.isHeldByCurrentThread()) {
+      this.currentLock.unlock();
+    }
+    this.currentLock=null;
+  }
+  super.reInitialize();
+}

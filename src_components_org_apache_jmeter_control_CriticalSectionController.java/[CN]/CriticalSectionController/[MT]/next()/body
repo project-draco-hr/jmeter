@@ -1,0 +1,18 @@
+{
+  if (StringUtils.isEmpty(getLockName())) {
+    logger.warn("Empty lock name in Critical Section Controller:" + getName());
+    return super.next();
+  }
+  if (isFirst()) {
+    long startTime=System.currentTimeMillis();
+    if (this.currentLock == null) {
+      this.currentLock=getLock();
+    }
+    this.currentLock.lock();
+    long endTime=System.currentTimeMillis();
+    if (logger.isDebugEnabled()) {
+      logger.debug(Thread.currentThread().getName() + " acquired lock:'" + getLockName()+ "' in Critical Section Controller "+ getName()+ " in:"+ (endTime - startTime)+ " ms");
+    }
+  }
+  return super.next();
+}

@@ -1,0 +1,10 @@
+{
+  ReentrantLock lock=lockMap.get(getLockName());
+  ReentrantLock prev=null;
+  if (lock != null) {
+    return lock;
+  }
+  lock=new ReentrantLock();
+  prev=lockMap.putIfAbsent(getLockName(),lock);
+  return prev == null ? lock : prev;
+}
