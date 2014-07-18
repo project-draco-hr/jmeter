@@ -1,0 +1,6 @@
+{
+  if (STRIP_PORT) {
+    return true;
+  }
+  return (url.getPort() == HTTPConstants.DEFAULT_HTTP_PORT || url.getPort() == HTTPConstants.DEFAULT_HTTPS_PORT);
+}
