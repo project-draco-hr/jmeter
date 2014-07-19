@@ -14,5 +14,8 @@
   shouldCache=new JCheckBox(JMeterUtils.getResString("cache_session_id"));
   shouldCache.setSelected(true);
   mainPanel.add(shouldCache);
+  encode=new JCheckBox(JMeterUtils.getResString("encode"));
+  encode.setSelected(false);
+  mainPanel.add(encode);
   add(mainPanel,BorderLayout.CENTER);
 }

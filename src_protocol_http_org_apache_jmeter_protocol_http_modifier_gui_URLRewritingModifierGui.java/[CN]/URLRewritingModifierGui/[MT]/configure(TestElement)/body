@@ -5,5 +5,6 @@
   pathExtNoEquals.setSelected(rewritingModifier.isPathExtensionNoEquals());
   pathExtNoQuestionmark.setSelected(rewritingModifier.isPathExtensionNoQuestionmark());
   shouldCache.setSelected(rewritingModifier.shouldCache());
+  encode.setSelected(rewritingModifier.encode());
   super.configure(el);
 }
