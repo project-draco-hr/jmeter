@@ -3,12 +3,12 @@
   legendPanel.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
   legendPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_legend")));
   legendPanel.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_legend_placement"),legendPlacementList));
-  legendPlacementList.setSelectedItem(JMeterUtils.getResString("aggregate_graph_legend.placement.bottom"));
+  legendPlacementList.setSelectedIndex(DEFAULT_LEGEND_PLACEMENT);
   legendPanel.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_font"),fontNameList));
-  fontNameList.setSelectedIndex(0);
+  fontNameList.setSelectedIndex(DEFAULT_LEGEND_FONT);
   legendPanel.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_size"),fontSizeList));
-  fontSizeList.setSelectedItem(StatGraphProperties.fontSize[2]);
+  fontSizeList.setSelectedItem(StatGraphProperties.fontSize[DEFAULT_LEGEND_SIZE]);
   legendPanel.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("aggregate_graph_style"),fontStyleList));
-  fontStyleList.setSelectedItem(JMeterUtils.getResString("fontstyle.normal"));
+  fontStyleList.setSelectedIndex(DEFAULT_LEGEND_STYLE);
   return legendPanel;
 }

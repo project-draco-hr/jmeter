@@ -3,8 +3,8 @@
   lineStylePane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
   lineStylePane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("graph_resp_time_settings_line")));
   lineStylePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("graph_resp_time_stroke_width"),strokeWidthList));
-  strokeWidthList.setSelectedItem(StatGraphProperties.strokeWidth[4]);
+  strokeWidthList.setSelectedItem(StatGraphProperties.strokeWidth[DEFAULT_STROKE_WIDTH_LIST]);
   lineStylePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("graph_resp_time_shape_label"),pointShapeLine));
-  pointShapeLine.setSelectedIndex(0);
+  pointShapeLine.setSelectedIndex(DEFAULT_LINE_SHAPE_POINT);
   return lineStylePane;
 }

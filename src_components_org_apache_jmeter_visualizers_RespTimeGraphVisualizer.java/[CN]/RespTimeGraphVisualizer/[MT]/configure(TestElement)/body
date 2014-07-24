@@ -1,0 +1,27 @@
+{
+  super.configure(te);
+  intervalField.setText(te.getPropertyAsString(INTERVAL,String.valueOf(DEFAULT_INTERVAL)));
+  samplerSelection.setSelected(te.getPropertyAsBoolean(SERIES_SELECTION,DEFAULT_SERIES_SELECTION));
+  samplerMatchLabel.setText(te.getPropertyAsString(SERIES_SELECTION_MATCH_LABEL,""));
+  caseChkBox.setSelected(te.getPropertyAsBoolean(SERIES_SELECTION_CASE_SENSITIVE,DEFAULT_CASE_SENSITIVE));
+  regexpChkBox.setSelected(te.getPropertyAsBoolean(SERIES_SELECTION_REGEXP,DEFAULT_REGEXP));
+  graphTitle.setText(te.getPropertyAsString(GRAPH_TITLE,""));
+  titleFontNameList.setSelectedIndex(te.getPropertyAsInt(GRAPH_TITLE_FONT_NAME,DEFAULT_TITLE_FONT_NAME));
+  titleFontSizeList.setSelectedIndex(te.getPropertyAsInt(GRAPH_TITLE_FONT_SIZE,DEFAULT_TITLE_FONT_SIZE));
+  titleFontStyleList.setSelectedIndex(te.getPropertyAsInt(GRAPH_TITLE_FONT_STYLE,DEFAULT_TITLE_FONT_STYLE));
+  strokeWidthList.setSelectedIndex(te.getPropertyAsInt(LINE_STROKE_WIDTH,DEFAULT_STROKE_WIDTH_LIST));
+  pointShapeLine.setSelectedIndex(te.getPropertyAsInt(LINE_SHAPE_POINT,DEFAULT_LINE_SHAPE_POINT));
+  dynamicGraphSize.setSelected(te.getPropertyAsBoolean(GRAPH_SIZE_DYNAMIC,DEFAULT_DYNAMIC_GRAPH_SIZE));
+  graphWidth.setText(te.getPropertyAsString(GRAPH_SIZE_WIDTH,""));
+  graphHeight.setText(te.getPropertyAsString(GRAPH_SIZE_HEIGHT,""));
+  xAxisTimeFormat.setText(te.getPropertyAsString(XAXIS_TIME_FORMAT,DEFAULT_XAXIS_TIME_FORMAT));
+  maxValueYAxisLabel.setText(te.getPropertyAsString(YAXIS_SCALE_MAX_VALUE,""));
+  incrScaleYAxis.setText(te.getPropertyAsString(YAXIS_INCREMENT_SCALE,""));
+  numberShowGrouping.setSelected(te.getPropertyAsBoolean(YAXIS_NUMBER_GROUPING,DEFAULT_NUMBER_SHOW_GROUPING));
+  legendPlacementList.setSelectedIndex(te.getPropertyAsInt(LEGEND_PLACEMENT,DEFAULT_LEGEND_PLACEMENT));
+  fontNameList.setSelectedIndex(te.getPropertyAsInt(LEGEND_FONT,DEFAULT_LEGEND_FONT));
+  fontSizeList.setSelectedIndex(te.getPropertyAsInt(LEGEND_SIZE,DEFAULT_LEGEND_SIZE));
+  fontStyleList.setSelectedIndex(te.getPropertyAsInt(LEGEND_STYLE,DEFAULT_LEGEND_STYLE));
+  enableSamplerSelection(samplerSelection.isSelected());
+  enableDynamicGraph(dynamicGraphSize.isSelected());
+}

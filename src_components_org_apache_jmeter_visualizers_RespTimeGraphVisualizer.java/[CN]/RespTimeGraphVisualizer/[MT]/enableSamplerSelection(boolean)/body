@@ -1,0 +1,14 @@
+{
+  if (enable) {
+    samplerMatchLabel.setEnabled(true);
+    applyFilterBtn.setEnabled(true);
+    caseChkBox.setEnabled(true);
+    regexpChkBox.setEnabled(true);
+  }
+ else {
+    samplerMatchLabel.setEnabled(false);
+    applyFilterBtn.setEnabled(false);
+    caseChkBox.setEnabled(false);
+    regexpChkBox.setEnabled(false);
+  }
+}

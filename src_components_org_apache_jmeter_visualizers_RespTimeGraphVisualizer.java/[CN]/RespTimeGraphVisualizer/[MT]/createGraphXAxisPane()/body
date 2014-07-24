@@ -2,7 +2,7 @@
   JPanel xAxisPane=new JPanel();
   xAxisPane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
   xAxisPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_xaxis_group")));
-  xAxisTimeFormat.setText("HH:mm:ss");
+  xAxisTimeFormat.setText(DEFAULT_XAXIS_TIME_FORMAT);
   xAxisPane.add(xAxisTimeFormat);
   return xAxisPane;
 }

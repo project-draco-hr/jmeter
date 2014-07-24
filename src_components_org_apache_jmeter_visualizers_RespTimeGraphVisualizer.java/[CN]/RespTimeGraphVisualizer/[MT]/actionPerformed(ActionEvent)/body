@@ -17,27 +17,11 @@
     graphTitle.setText(namePanel.getName());
   }
  else   if (eventSource == dynamicGraphSize) {
-    if (dynamicGraphSize.isSelected()) {
-      graphWidth.setEnabled(false);
-      graphHeight.setEnabled(false);
-    }
- else {
-      graphWidth.setEnabled(true);
-      graphHeight.setEnabled(true);
-    }
+    enableDynamicGraph(dynamicGraphSize.isSelected());
   }
  else   if (eventSource == samplerSelection) {
-    if (samplerSelection.isSelected()) {
-      samplerMatchLabel.setEnabled(true);
-      applyFilterBtn.setEnabled(true);
-      caseChkBox.setEnabled(true);
-      regexpChkBox.setEnabled(true);
-    }
- else {
-      samplerMatchLabel.setEnabled(false);
-      applyFilterBtn.setEnabled(false);
-      caseChkBox.setEnabled(false);
-      regexpChkBox.setEnabled(false);
+    enableSamplerSelection(samplerSelection.isSelected());
+    if (!samplerSelection.isSelected()) {
       forceReloadData=true;
     }
   }

@@ -1,0 +1,25 @@
+{
+  super.clearGui();
+  intervalField.setText(String.valueOf(DEFAULT_INTERVAL));
+  samplerSelection.setSelected(DEFAULT_SERIES_SELECTION);
+  samplerMatchLabel.setText("");
+  caseChkBox.setSelected(DEFAULT_CASE_SENSITIVE);
+  regexpChkBox.setSelected(DEFAULT_REGEXP);
+  graphTitle.setText("");
+  titleFontNameList.setSelectedIndex(DEFAULT_TITLE_FONT_NAME);
+  titleFontSizeList.setSelectedIndex(DEFAULT_TITLE_FONT_SIZE);
+  titleFontStyleList.setSelectedIndex(DEFAULT_TITLE_FONT_STYLE);
+  strokeWidthList.setSelectedIndex(DEFAULT_STROKE_WIDTH_LIST);
+  pointShapeLine.setSelectedIndex(DEFAULT_LINE_SHAPE_POINT);
+  dynamicGraphSize.setSelected(DEFAULT_DYNAMIC_GRAPH_SIZE);
+  graphWidth.setText("");
+  graphHeight.setText("");
+  xAxisTimeFormat.setText(DEFAULT_XAXIS_TIME_FORMAT);
+  maxValueYAxisLabel.setText("");
+  incrScaleYAxis.setText("");
+  numberShowGrouping.setSelected(DEFAULT_NUMBER_SHOW_GROUPING);
+  legendPlacementList.setSelectedIndex(DEFAULT_LEGEND_PLACEMENT);
+  fontNameList.setSelectedIndex(DEFAULT_LEGEND_FONT);
+  fontSizeList.setSelectedIndex(DEFAULT_LEGEND_SIZE);
+  fontStyleList.setSelectedIndex(DEFAULT_LEGEND_STYLE);
+}

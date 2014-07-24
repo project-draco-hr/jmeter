@@ -1,0 +1,27 @@
+{
+  super.modifyTestElement(te);
+  te.setProperty(INTERVAL,intervalField.getText(),String.valueOf(DEFAULT_INTERVAL));
+  te.setProperty(SERIES_SELECTION,samplerSelection.isSelected(),DEFAULT_SERIES_SELECTION);
+  te.setProperty(SERIES_SELECTION_MATCH_LABEL,samplerMatchLabel.getText(),"");
+  te.setProperty(SERIES_SELECTION_CASE_SENSITIVE,caseChkBox.isSelected(),DEFAULT_CASE_SENSITIVE);
+  te.setProperty(SERIES_SELECTION_REGEXP,regexpChkBox.isSelected(),DEFAULT_REGEXP);
+  te.setProperty(GRAPH_TITLE,graphTitle.getText(),"");
+  te.setProperty(GRAPH_TITLE_FONT_NAME,titleFontNameList.getSelectedIndex(),DEFAULT_TITLE_FONT_NAME);
+  te.setProperty(GRAPH_TITLE_FONT_SIZE,titleFontSizeList.getSelectedIndex(),DEFAULT_TITLE_FONT_SIZE);
+  te.setProperty(GRAPH_TITLE_FONT_STYLE,titleFontStyleList.getSelectedIndex(),DEFAULT_TITLE_FONT_STYLE);
+  te.setProperty(LINE_STROKE_WIDTH,strokeWidthList.getSelectedIndex(),DEFAULT_STROKE_WIDTH_LIST);
+  te.setProperty(LINE_SHAPE_POINT,pointShapeLine.getSelectedIndex(),DEFAULT_LINE_SHAPE_POINT);
+  te.setProperty(GRAPH_SIZE_DYNAMIC,dynamicGraphSize.isSelected(),DEFAULT_DYNAMIC_GRAPH_SIZE);
+  te.setProperty(GRAPH_SIZE_WIDTH,graphWidth.getText(),"");
+  te.setProperty(GRAPH_SIZE_HEIGHT,graphHeight.getText(),"");
+  te.setProperty(XAXIS_TIME_FORMAT,xAxisTimeFormat.getText(),DEFAULT_XAXIS_TIME_FORMAT);
+  te.setProperty(YAXIS_SCALE_MAX_VALUE,maxValueYAxisLabel.getText(),"");
+  te.setProperty(YAXIS_INCREMENT_SCALE,incrScaleYAxis.getText(),"");
+  te.setProperty(YAXIS_NUMBER_GROUPING,numberShowGrouping.isSelected(),DEFAULT_NUMBER_SHOW_GROUPING);
+  te.setProperty(LEGEND_PLACEMENT,legendPlacementList.getSelectedIndex(),DEFAULT_LEGEND_PLACEMENT);
+  te.setProperty(LEGEND_FONT,fontNameList.getSelectedIndex(),DEFAULT_LEGEND_FONT);
+  te.setProperty(LEGEND_SIZE,fontSizeList.getSelectedIndex(),DEFAULT_LEGEND_SIZE);
+  te.setProperty(LEGEND_STYLE,fontStyleList.getSelectedIndex(),DEFAULT_LEGEND_STYLE);
+  enableSamplerSelection(samplerSelection.isSelected());
+  enableDynamicGraph(dynamicGraphSize.isSelected());
+}

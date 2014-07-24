@@ -3,7 +3,7 @@
   dimensionPane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
   dimensionPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("aggregate_graph_dimension")));
   dimensionPane.add(dynamicGraphSize);
-  dynamicGraphSize.setSelected(true);
+  dynamicGraphSize.setSelected(DEFAULT_DYNAMIC_GRAPH_SIZE);
   graphWidth.setEnabled(false);
   graphHeight.setEnabled(false);
   dynamicGraphSize.addActionListener(this);
