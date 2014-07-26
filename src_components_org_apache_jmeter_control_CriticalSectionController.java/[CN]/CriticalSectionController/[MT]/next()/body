@@ -6,7 +6,7 @@
   if (isFirst()) {
     long startTime=System.currentTimeMillis();
     if (this.currentLock == null) {
-      this.currentLock=getLock();
+      this.currentLock=getOrCreateLock();
     }
     this.currentLock.lock();
     long endTime=System.currentTimeMillis();
