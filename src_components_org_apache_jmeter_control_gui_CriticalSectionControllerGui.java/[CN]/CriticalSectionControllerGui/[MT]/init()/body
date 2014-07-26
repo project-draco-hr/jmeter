@@ -4,11 +4,11 @@
     setBorder(makeBorder());
     add(makeTitlePanel(),BorderLayout.NORTH);
     JPanel mainPanel=new JPanel(new BorderLayout());
-    mainPanel.add(createConditionPanel(),BorderLayout.NORTH);
+    mainPanel.add(createCriticalSectionPanel(),BorderLayout.NORTH);
     add(mainPanel,BorderLayout.CENTER);
   }
  else {
     setLayout(new BorderLayout());
-    add(createConditionPanel(),BorderLayout.NORTH);
+    add(createCriticalSectionPanel(),BorderLayout.NORTH);
   }
 }
