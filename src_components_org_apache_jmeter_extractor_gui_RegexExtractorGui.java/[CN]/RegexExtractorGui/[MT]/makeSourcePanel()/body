@@ -5,6 +5,7 @@
   useUnescapedBody=new JRadioButton(JMeterUtils.getResString("regex_src_body_unescaped"));
   useBodyAsDocument=new JRadioButton(JMeterUtils.getResString("regex_src_body_as_document"));
   useHeaders=new JRadioButton(JMeterUtils.getResString("regex_src_hdrs"));
+  useRequestHeaders=new JRadioButton(JMeterUtils.getResString("regex_src_hdrs_req"));
   useURL=new JRadioButton(JMeterUtils.getResString("regex_src_url"));
   useCode=new JRadioButton(JMeterUtils.getResString("assertion_code_resp"));
   useMessage=new JRadioButton(JMeterUtils.getResString("assertion_message_resp"));
@@ -13,6 +14,7 @@
   group.add(useUnescapedBody);
   group.add(useBodyAsDocument);
   group.add(useHeaders);
+  group.add(useRequestHeaders);
   group.add(useURL);
   group.add(useCode);
   group.add(useMessage);
@@ -20,6 +22,7 @@
   panel.add(useUnescapedBody);
   panel.add(useBodyAsDocument);
   panel.add(useHeaders);
+  panel.add(useRequestHeaders);
   panel.add(useURL);
   panel.add(useCode);
   panel.add(useMessage);
@@ -28,6 +31,7 @@
   useUnescapedBody.setActionCommand(RegexExtractor.USE_BODY_UNESCAPED);
   useBodyAsDocument.setActionCommand(RegexExtractor.USE_BODY_AS_DOCUMENT);
   useHeaders.setActionCommand(RegexExtractor.USE_HDRS);
+  useRequestHeaders.setActionCommand(RegexExtractor.USE_REQUEST_HDRS);
   useURL.setActionCommand(RegexExtractor.USE_URL);
   useCode.setActionCommand(RegexExtractor.USE_CODE);
   useMessage.setActionCommand(RegexExtractor.USE_MESSAGE);

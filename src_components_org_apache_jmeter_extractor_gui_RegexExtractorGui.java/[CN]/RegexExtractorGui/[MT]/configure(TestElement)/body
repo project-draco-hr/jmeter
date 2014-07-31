@@ -4,6 +4,7 @@
     RegexExtractor re=(RegexExtractor)el;
     showScopeSettings(re,true);
     useHeaders.setSelected(re.useHeaders());
+    useRequestHeaders.setSelected(re.useRequestHeaders());
     useBody.setSelected(re.useBody());
     useUnescapedBody.setSelected(re.useUnescapedBody());
     useBodyAsDocument.setSelected(re.useBodyAsDocument());
