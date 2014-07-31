@@ -14,11 +14,11 @@
         if (index >= startIndex && index <= endIndex) {
           _key=(PrivateKey)store.getKey(alias,pw);
           if (null == _key) {
-            throw new Exception("No key found for alias: " + alias);
+            throw new IOException("No key found for alias: " + alias);
           }
           Certificate[] chain=store.getCertificateChain(alias);
           if (null == chain) {
-            throw new Exception("No certificate chain found for alias: " + alias);
+            throw new IOException("No certificate chain found for alias: " + alias);
           }
           v_names.add(alias);
           X509Certificate[] x509certs=new X509Certificate[chain.length];
@@ -32,7 +32,7 @@
       }
     }
     if (null == _key) {
-      throw new Exception("No key(s) found");
+      throw new IOException("No key(s) found");
     }
     if (index <= endIndex - startIndex) {
       LOG.warn("Did not find all requested aliases. Start=" + startIndex + ", end="+ endIndex+ ", found="+ certsByAlias.size());
