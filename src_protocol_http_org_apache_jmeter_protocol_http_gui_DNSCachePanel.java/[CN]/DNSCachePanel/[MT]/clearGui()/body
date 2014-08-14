@@ -1,0 +1,7 @@
+{
+  super.clearGui();
+  clearEachIteration.setSelected(DNSCacheManager.DEFAULT_CLEAR_CACHE_EACH_ITER);
+  providerDNSradioGroup.setSelected(sysResButton.getModel(),true);
+  dnsServersTableModel.clearData();
+  deleteButton.setEnabled(false);
+}

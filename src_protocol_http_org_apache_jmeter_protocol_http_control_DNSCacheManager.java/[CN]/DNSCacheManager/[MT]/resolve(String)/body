@@ -1,0 +1,16 @@
+{
+  if (cache.containsKey(host)) {
+    if (log.isDebugEnabled()) {
+      log.debug("Cache hit thr#" + JMeterContextService.getContext().getThreadNum() + ": "+ host+ "=>"+ Arrays.toString(cache.get(host)));
+    }
+    return cache.get(host);
+  }
+ else {
+    InetAddress[] addresses=requestLookup(host);
+    if (log.isDebugEnabled()) {
+      log.debug("Cache miss thr#" + JMeterContextService.getContext().getThreadNum() + ": "+ host+ "=>"+ Arrays.toString(addresses));
+    }
+    cache.put(host,addresses);
+    return addresses;
+  }
+}

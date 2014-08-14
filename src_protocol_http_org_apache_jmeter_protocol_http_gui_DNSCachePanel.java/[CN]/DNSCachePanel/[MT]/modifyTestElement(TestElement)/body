@@ -1,0 +1,19 @@
+{
+  GuiUtils.stopTableEditing(dnsServersTable);
+  dnsRes.clear();
+  configureTestElement(dnsRes);
+  if (dnsRes instanceof DNSCacheManager) {
+    DNSCacheManager dnsCacheManager=(DNSCacheManager)dnsRes;
+    for (int i=0; i < dnsServersTableModel.getRowCount(); i++) {
+      String server=(String)dnsServersTableModel.getRowData(i)[0];
+      dnsCacheManager.addServer(server);
+    }
+    dnsCacheManager.setClearEachIteration(clearEachIteration.isSelected());
+    if (providerDNSradioGroup.isSelected(custResButton.getModel())) {
+      dnsCacheManager.setCustomResolver(true);
+    }
+ else {
+      dnsCacheManager.setCustomResolver(false);
+    }
+  }
+}

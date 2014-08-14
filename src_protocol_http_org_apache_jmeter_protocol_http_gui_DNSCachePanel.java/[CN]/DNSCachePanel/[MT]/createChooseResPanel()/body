@@ -1,0 +1,20 @@
+{
+  JPanel chooseResPanel=new JPanel(new BorderLayout(0,5));
+  sysResButton=new JRadioButton();
+  sysResButton.setSelected(true);
+  sysResButton.setText(SYS_RES_COMMAND);
+  sysResButton.setToolTipText(SYS_RES_COMMAND);
+  sysResButton.setEnabled(true);
+  sysResButton.addActionListener(this);
+  custResButton=new JRadioButton();
+  custResButton.setSelected(false);
+  custResButton.setText(CUST_RES_COMMAND);
+  custResButton.setToolTipText(CUST_RES_COMMAND);
+  custResButton.setEnabled(true);
+  custResButton.addActionListener(this);
+  providerDNSradioGroup.add(sysResButton);
+  providerDNSradioGroup.add(custResButton);
+  chooseResPanel.add(sysResButton,BorderLayout.WEST);
+  chooseResPanel.add(custResButton,BorderLayout.CENTER);
+  return chooseResPanel;
+}

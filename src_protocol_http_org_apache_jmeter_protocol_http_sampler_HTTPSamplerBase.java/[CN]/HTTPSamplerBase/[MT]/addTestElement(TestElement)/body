@@ -11,6 +11,9 @@
  else   if (el instanceof AuthManager) {
     setAuthManager((AuthManager)el);
   }
+ else   if (el instanceof DNSCacheManager) {
+    setDNSResolver((DNSCacheManager)el);
+  }
  else {
     super.addTestElement(el);
   }

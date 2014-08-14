@@ -1,0 +1,7 @@
+{
+  DNSCacheManager mgr=getDNSResolver();
+  if (mgr != null) {
+    log.warn("Existing DNSCacheManager " + mgr.getName() + " superseded by "+ cacheManager.getName());
+  }
+  setProperty(new TestElementProperty(DNS_CACHE_MANAGER,cacheManager));
+}

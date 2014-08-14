@@ -1,0 +1,6 @@
+{
+  setProperty(new CollectionProperty(SERVERS,new ArrayList<String>()));
+  lookupCache=new Cache();
+  lookupCache.setMaxCache(0);
+  lookupCache.setMaxEntries(0);
+}

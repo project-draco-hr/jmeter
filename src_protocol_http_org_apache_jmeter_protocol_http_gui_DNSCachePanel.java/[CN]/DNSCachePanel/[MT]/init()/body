@@ -1,0 +1,18 @@
+{
+  dnsServersTableModel=new PowerTableModel(COLUMN_RESOURCE_NAMES,columnClasses);
+  clearEachIteration=new JCheckBox(JMeterUtils.getResString("clear_cache_each_iteration"),true);
+  setLayout(new BorderLayout());
+  setBorder(makeBorder());
+  JPanel northPanel=new JPanel();
+  northPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  northPanel.add(makeTitlePanel());
+  JPanel optionsPane=new JPanel();
+  optionsPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),OPTIONS));
+  optionsPane.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
+  optionsPane.add(clearEachIteration,BorderLayout.WEST);
+  optionsPane.add(createChooseResPanel(),BorderLayout.SOUTH);
+  northPanel.add(optionsPane);
+  add(northPanel,BorderLayout.NORTH);
+  dnsServersPanel=createDnsServersTablePanel();
+  add(dnsServersPanel,BorderLayout.CENTER);
+}

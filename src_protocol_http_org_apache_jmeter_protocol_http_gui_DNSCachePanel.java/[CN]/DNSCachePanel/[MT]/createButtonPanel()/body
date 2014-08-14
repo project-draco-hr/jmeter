@@ -1,0 +1,9 @@
+{
+  boolean tableEmpty=(dnsServersTableModel.getRowCount() == 0);
+  addButton=createButton("add",'A',ADD_COMMAND,custResButton.isSelected());
+  deleteButton=createButton("delete",'D',DELETE_COMMAND,!tableEmpty);
+  JPanel buttonPanel=new JPanel();
+  buttonPanel.add(addButton,BorderLayout.WEST);
+  buttonPanel.add(deleteButton,BorderLayout.LINE_END);
+  return buttonPanel;
+}

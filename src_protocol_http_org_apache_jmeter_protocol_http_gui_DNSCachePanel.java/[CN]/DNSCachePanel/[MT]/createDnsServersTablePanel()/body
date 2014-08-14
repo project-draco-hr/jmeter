@@ -1,0 +1,12 @@
+{
+  dnsServersTable=new JTable(dnsServersTableModel);
+  dnsServersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+  dnsServersTable.setPreferredScrollableViewportSize(new Dimension(400,100));
+  JPanel panel=new JPanel(new BorderLayout(0,5));
+  panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("dns_servers")));
+  JScrollPane dnsServScrollPane=new JScrollPane(dnsServersTable);
+  panel.add(dnsServScrollPane,BorderLayout.CENTER);
+  dnsServButPanel=createButtonPanel();
+  panel.add(dnsServButPanel,BorderLayout.SOUTH);
+  return panel;
+}

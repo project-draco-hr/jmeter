@@ -1,0 +1,14 @@
+{
+  super.configure(el);
+  DNSCacheManager dnsCacheManager=(DNSCacheManager)el;
+  populateTable(dnsCacheManager);
+  clearEachIteration.setSelected(dnsCacheManager.isClearEachIteration());
+  if (dnsCacheManager.isCustomResolver()) {
+    providerDNSradioGroup.setSelected(custResButton.getModel(),true);
+    deleteButton.setEnabled(dnsServersTable.getColumnCount() > 0);
+    addButton.setEnabled(true);
+  }
+ else {
+    providerDNSradioGroup.setSelected(sysResButton.getModel(),true);
+  }
+}

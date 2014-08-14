@@ -1,0 +1,4 @@
+{
+  log.debug("Clear all servers from store");
+  setProperty(new CollectionProperty(SERVERS,new ArrayList<String>()));
+}

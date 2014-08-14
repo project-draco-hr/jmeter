@@ -18,7 +18,12 @@
   }
   if (httpClient == null) {
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
-    httpClient=new DefaultHttpClient(clientParams){
+    DnsResolver resolver=this.testElement.getDNSResolver();
+    if (resolver == null) {
+      resolver=new SystemDefaultDnsResolver();
+    }
+    PoolingClientConnectionManager poolingClientConnectionManager=new PoolingClientConnectionManager(SchemeRegistryFactory.createDefault(),resolver);
+    httpClient=new DefaultHttpClient(poolingClientConnectionManager,clientParams){
       @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
         return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false);
       }

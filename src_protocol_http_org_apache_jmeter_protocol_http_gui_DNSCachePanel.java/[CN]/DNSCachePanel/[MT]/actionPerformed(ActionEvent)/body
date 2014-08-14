@@ -1,0 +1,47 @@
+{
+  String action=e.getActionCommand();
+  dnsServersTable.setEnabled(custResButton.isSelected());
+  Color greyColor=new Color(240,240,240);
+  Color blueColor=new Color(184,207,229);
+  dnsServersTable.setBackground(sysResButton.isSelected() ? greyColor : Color.WHITE);
+  dnsServersTable.setSelectionBackground(sysResButton.isSelected() ? greyColor : blueColor);
+  addButton.setEnabled(custResButton.isSelected());
+  deleteButton.setEnabled(custResButton.isSelected());
+  if (custResButton.isSelected() && (dnsServersTableModel.getRowCount() > 0)) {
+    deleteButton.setEnabled(true);
+    addButton.setEnabled(true);
+  }
+  if (action.equals(DELETE_COMMAND)) {
+    if (dnsServersTableModel.getRowCount() > 0) {
+      if (dnsServersTable.isEditing()) {
+        TableCellEditor cellEditor=dnsServersTable.getCellEditor(dnsServersTable.getEditingRow(),dnsServersTable.getEditingColumn());
+        cellEditor.cancelCellEditing();
+      }
+      int rowSelected=dnsServersTable.getSelectedRow();
+      if (rowSelected != -1) {
+        dnsServersTableModel.removeRow(rowSelected);
+        dnsServersTableModel.fireTableDataChanged();
+        if (dnsServersTableModel.getRowCount() == 0) {
+          deleteButton.setEnabled(false);
+        }
+ else {
+          int rowToSelect=rowSelected;
+          if (rowSelected >= dnsServersTableModel.getRowCount()) {
+            rowToSelect=rowSelected - 1;
+          }
+          dnsServersTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+        }
+      }
+    }
+  }
+ else   if (action.equals(ADD_COMMAND)) {
+    GuiUtils.stopTableEditing(dnsServersTable);
+    dnsServersTableModel.addNewRow();
+    dnsServersTableModel.fireTableDataChanged();
+    if (!deleteButton.isEnabled()) {
+      deleteButton.setEnabled(true);
+    }
+    int rowToSelect=dnsServersTableModel.getRowCount() - 1;
+    dnsServersTable.setRowSelectionInterval(rowToSelect,rowToSelect);
+  }
+}
