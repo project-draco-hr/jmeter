@@ -1,0 +1,6 @@
+{
+  if (out != null) {
+    log.info("forced flush through ResultCollecto#flushFile");
+    out.flush();
+  }
+}
