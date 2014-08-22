@@ -1,5 +1,12 @@
 {
   LOGGER.debug("Thread ended " + new Date());
+  if (context != null) {
+    try {
+      context.close();
+    }
+ catch (    NamingException ignored) {
+    }
+  }
   Utils.close(session,LOGGER);
   Utils.close(connection,LOGGER);
   if (receiverThread != null) {

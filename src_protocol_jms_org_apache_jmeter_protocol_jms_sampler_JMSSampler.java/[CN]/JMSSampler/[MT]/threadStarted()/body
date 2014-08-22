@@ -1,6 +1,5 @@
 {
   logThreadStart();
-  Context context=null;
   thrown=null;
   try {
     context=getInitialContext();
@@ -64,14 +63,5 @@
 catch (  NoClassDefFoundError e) {
     thrown=e;
     LOGGER.error(e.getLocalizedMessage(),e);
-  }
- finally {
-    if (context != null) {
-      try {
-        context.close();
-      }
- catch (      NamingException ignored) {
-      }
-    }
   }
 }
