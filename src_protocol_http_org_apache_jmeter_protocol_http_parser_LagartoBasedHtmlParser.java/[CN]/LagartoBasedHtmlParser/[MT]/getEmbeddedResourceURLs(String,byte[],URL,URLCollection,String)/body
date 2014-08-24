@@ -1,0 +1,23 @@
+{
+  try {
+    Float ieVersion=extractIEVersion(userAgent);
+    String contents=new String(html,encoding);
+    LagartoParser lagartoParser=new LagartoParser(contents,false);
+    LagartoParserConfig<LagartoParserConfig> config=new LagartoParserConfig<LagartoParserConfig>();
+    config.setCaseSensitive(false);
+    config.setEnableConditionalComments(isEnableConditionalComments(ieVersion));
+    lagartoParser.setConfig(config);
+    JMeterTagVisitor tagVisitor=new JMeterTagVisitor(new URLPointer(baseUrl),coll,ieVersion);
+    lagartoParser.parse(tagVisitor);
+    return coll.iterator();
+  }
+ catch (  LagartoException e) {
+    if (log.isDebugEnabled()) {
+      log.debug("Error extracting embedded resource URLs from:'" + baseUrl + "', probably not text content, message:"+ e.getMessage());
+    }
+    return Collections.<URL>emptyList().iterator();
+  }
+catch (  Exception e) {
+    throw new HTMLParseException(e);
+  }
+}

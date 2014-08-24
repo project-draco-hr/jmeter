@@ -17,5 +17,12 @@
     }
     suite.addTest(ps);
   }
+  TestSuite ps=new TestSuite(DEFAULT_JMETER_PARSER + "_conditional_comments");
+  for (int j=0; j < SPECIFIC_PARSER_TESTS.length; j++) {
+    TestSuite ts=new TestSuite(SPECIFIC_PARSER_TESTS[j].fileName);
+    ts.addTest(new TestHTMLParser("testSpecificParserList",DEFAULT_JMETER_PARSER,j));
+    ps.addTest(ts);
+  }
+  suite.addTest(ps);
   return suite;
 }

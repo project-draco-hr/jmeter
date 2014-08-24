@@ -1,0 +1,12 @@
+{
+  if (!isStartingTag) {
+    enabled.pop();
+  }
+ else {
+    if (htmlCCommentExpressionMatcher == null) {
+      htmlCCommentExpressionMatcher=new HtmlCCommentExpressionMatcher();
+    }
+    String expressionString=expression.toString().trim();
+    enabled.push(Boolean.valueOf(htmlCCommentExpressionMatcher.match(ieVersion.floatValue(),expressionString)));
+  }
+}

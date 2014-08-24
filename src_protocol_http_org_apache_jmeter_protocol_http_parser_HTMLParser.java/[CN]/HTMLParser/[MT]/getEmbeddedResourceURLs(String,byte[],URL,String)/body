@@ -1,0 +1,4 @@
+{
+  Collection<URLString> col=new LinkedHashSet<URLString>();
+  return getEmbeddedResourceURLs(userAgent,html,baseUrl,new URLCollection(col),encoding);
+}

@@ -1,3 +1,6 @@
 {
+  if (!enabled.peek()) {
+    return;
+  }
   extractAttribute(tag,ATT_SRC);
 }
