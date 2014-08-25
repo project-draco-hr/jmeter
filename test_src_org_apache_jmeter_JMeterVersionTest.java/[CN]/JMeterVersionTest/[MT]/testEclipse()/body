@@ -26,6 +26,10 @@
         }
       }
       String expected=versions.get(jar);
+      if (expected == null) {
+        System.err.println("Didn't find version for jar name extracted by regexp, jar name extracted:" + jar + ", version extracted:"+ version+ ", current line:"+ line);
+        fail("Didn't find version for jar name extracted by regexp, jar name extracted:" + jar + ", version extracted:"+ version+ ", current line:"+ line);
+      }
       final Matcher mp=versionPat.matcher(expected);
       if (mp.matches()) {
         String key=mp.group(1);
