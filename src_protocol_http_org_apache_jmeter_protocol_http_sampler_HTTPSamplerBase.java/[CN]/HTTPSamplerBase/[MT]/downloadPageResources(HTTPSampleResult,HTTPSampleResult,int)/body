@@ -6,7 +6,8 @@
       String parserName=getParserClass(res);
       if (parserName != null) {
         final HTMLParser parser=parserName.length() > 0 ? HTMLParser.getParser(parserName) : HTMLParser.getParser();
-        urls=parser.getEmbeddedResourceURLs(responseData,res.getURL(),res.getDataEncodingWithDefault());
+        String userAgent=getUserAgent(res);
+        urls=parser.getEmbeddedResourceURLs(userAgent,responseData,res.getURL(),res.getDataEncodingWithDefault());
       }
     }
   }

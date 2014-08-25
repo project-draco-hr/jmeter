@@ -1,0 +1,15 @@
+{
+  String res=sampleResult.getRequestHeaders();
+  int index=res.indexOf(USER_AGENT);
+  if (index >= 0) {
+    final String userAgentPrefix=USER_AGENT + ": ";
+    String userAgentHdr=res.substring(index + userAgentPrefix.length(),res.indexOf('\n',index + userAgentPrefix.length() + 1));
+    return userAgentHdr.trim();
+  }
+ else {
+    if (log.isInfoEnabled()) {
+      log.info("No user agent extracted from requestHeaders:" + res);
+    }
+    return null;
+  }
+}
