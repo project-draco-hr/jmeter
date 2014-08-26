@@ -9,7 +9,6 @@
     if (m.matches()) {
       String jar=m.group(1);
       String version=m.group(2);
-      System.out.println(jar + " => " + version);
       if (jar.endsWith("-jdk15on")) {
         jar=jar.replace("-jdk15on","");
       }
