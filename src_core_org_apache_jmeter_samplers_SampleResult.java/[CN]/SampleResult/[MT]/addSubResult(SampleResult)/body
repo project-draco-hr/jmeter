@@ -1,4 +1,7 @@
 {
+  if (subResult == null) {
+    return;
+  }
   String tn=getThreadName();
   if (tn.length() == 0) {
     tn=Thread.currentThread().getName();
