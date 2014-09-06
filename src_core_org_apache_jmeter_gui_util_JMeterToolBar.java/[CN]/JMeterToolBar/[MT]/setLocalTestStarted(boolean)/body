@@ -4,14 +4,5 @@
   buttonStates.put(ActionNames.ACTION_START_NO_TIMERS,Boolean.valueOf(!started));
   buttonStates.put(ActionNames.ACTION_STOP,Boolean.valueOf(started));
   buttonStates.put(ActionNames.ACTION_SHUTDOWN,Boolean.valueOf(started));
-  Component[] components=getComponents();
-  for (int i=0; i < components.length; i++) {
-    if (components[i] instanceof JButton) {
-      JButton button=(JButton)components[i];
-      Boolean enabled=buttonStates.get(button.getActionCommand());
-      if (enabled != null) {
-        button.setEnabled(enabled.booleanValue());
-      }
-    }
-  }
+  updateButtons(buttonStates);
 }

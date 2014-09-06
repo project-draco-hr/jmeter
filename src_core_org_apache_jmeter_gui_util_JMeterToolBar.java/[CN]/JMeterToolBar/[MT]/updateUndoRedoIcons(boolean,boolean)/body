@@ -1,0 +1,6 @@
+{
+  Map<String,Boolean> buttonStates=new HashMap<String,Boolean>(2);
+  buttonStates.put(ActionNames.UNDO,Boolean.valueOf(canUndo));
+  buttonStates.put(ActionNames.REDO,Boolean.valueOf(canRedo));
+  updateButtons(buttonStates);
+}
