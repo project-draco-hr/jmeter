@@ -1,12 +1,13 @@
 {
   log.debug("close()");
   try {
-    if (connection != null) {
+    if (connection != null && connectionStarted) {
       connection.stop();
+      connectionStarted=false;
     }
   }
  catch (  JMSException e) {
-    log.error(e.getMessage());
+    log.warn("Stopping connection throws exception, message:" + e.getMessage());
   }
   Utils.close(subscriber,log);
   Utils.close(session,log);

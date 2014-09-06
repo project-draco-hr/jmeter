@@ -1,4 +1,5 @@
 {
   log.debug("stop()");
   connection.stop();
+  connectionStarted=false;
 }
