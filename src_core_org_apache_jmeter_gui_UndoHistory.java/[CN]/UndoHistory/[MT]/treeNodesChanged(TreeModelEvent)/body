@@ -1,0 +1,6 @@
+{
+  String name=((JMeterTreeNode)tme.getTreePath().getLastPathComponent()).getName();
+  log.debug("Nodes changed " + name);
+  final JMeterTreeModel sender=(JMeterTreeModel)tme.getSource();
+  add(sender,"Node changed " + name);
+}

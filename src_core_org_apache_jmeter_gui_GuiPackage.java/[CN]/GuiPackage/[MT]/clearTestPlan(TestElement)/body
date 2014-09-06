@@ -1,4 +1,6 @@
 {
   getTreeModel().clearTestPlan(element);
   removeNode(element);
+  undoHistory.clear();
+  undoHistory.add(this.treeModel,"Initial Tree");
 }

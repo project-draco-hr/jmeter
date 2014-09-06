@@ -2,4 +2,6 @@
   getTreeModel().clearTestPlan();
   nodesToGui.clear();
   setTestPlanFile(null);
+  undoHistory.clear();
+  undoHistory.add(this.treeModel,"Initial Tree");
 }

@@ -1,0 +1,12 @@
+{
+  final JTree tree=guiInstance.getMainFrame().getTree();
+  if (savedExpanded.size() > 0) {
+    for (    int rowN : savedExpanded) {
+      tree.expandRow(rowN);
+    }
+  }
+ else {
+    tree.expandRow(0);
+  }
+  tree.setSelectionRow(savedSelected);
+}

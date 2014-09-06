@@ -1,5 +1,6 @@
 {
   this.treeModel=treeModel;
+  this.treeModel.addTreeModelListener(undoHistory);
   this.treeListener=treeListener;
   JMeterUtils.addLocaleChangeListener(this);
 }

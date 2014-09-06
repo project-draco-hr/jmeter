@@ -1,0 +1,7 @@
+{
+  Save executor=new Save();
+  executor.convertSubTree(tree);
+  TreeCloner cloner=new TreeCloner(false);
+  tree.traverse(cloner);
+  return cloner.getClonedTree();
+}

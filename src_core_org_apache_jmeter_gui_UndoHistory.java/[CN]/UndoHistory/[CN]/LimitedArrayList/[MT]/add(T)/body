@@ -1,0 +1,6 @@
+{
+  if (this.size() + 1 > limit) {
+    this.remove(0);
+  }
+  return super.add(item);
+}

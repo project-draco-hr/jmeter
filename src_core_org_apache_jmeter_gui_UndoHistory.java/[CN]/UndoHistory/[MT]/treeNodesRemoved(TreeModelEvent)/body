@@ -1,0 +1,5 @@
+{
+  String name=((JMeterTreeNode)tme.getTreePath().getLastPathComponent()).getName();
+  log.debug("Nodes removed: " + name);
+  add((JMeterTreeModel)tme.getSource(),"Remove " + name);
+}

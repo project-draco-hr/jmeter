@@ -1,0 +1,9 @@
+{
+  addSeparator(menu);
+  JMenuItem undo=makeMenuItemRes("undo",ActionNames.UNDO);
+  undo.setEnabled(GuiPackage.getInstance().canUndo());
+  menu.add(undo);
+  JMenuItem redo=makeMenuItemRes("redo",ActionNames.REDO);
+  redo.setEnabled(GuiPackage.getInstance().canRedo());
+  menu.add(redo);
+}

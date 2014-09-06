@@ -1,0 +1,14 @@
+{
+  HashTree newModel=history.get(position).getTree();
+  acceptorModel.removeTreeModelListener(this);
+  working=true;
+  try {
+    guiInstance.getTreeModel().clearTestPlan();
+    guiInstance.addSubTree(newModel);
+  }
+ catch (  Exception ex) {
+    log.error("Failed to load from history",ex);
+  }
+  acceptorModel.addTreeModelListener(this);
+  working=false;
+}

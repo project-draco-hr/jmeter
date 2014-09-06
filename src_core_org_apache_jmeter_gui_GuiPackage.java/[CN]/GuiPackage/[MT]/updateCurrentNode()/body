@@ -4,8 +4,12 @@
       log.debug("Updating current node " + currentNode.getName());
       JMeterGUIComponent comp=getGui(currentNode.getTestElement());
       TestElement el=currentNode.getTestElement();
+      int before=getTestElementCheckSum(el);
       comp.modifyTestElement(el);
-      currentNode.nameChanged();
+      int after=getTestElementCheckSum(el);
+      if (before != after) {
+        currentNode.nameChanged();
+      }
     }
     currentNodeUpdated=true;
     currentNode=treeListener.getCurrentNode();

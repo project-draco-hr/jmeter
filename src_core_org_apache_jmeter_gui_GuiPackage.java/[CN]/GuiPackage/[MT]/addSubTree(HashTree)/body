@@ -1,3 +1,6 @@
 {
-  return treeModel.addSubTree(subTree,treeListener.getCurrentNode());
+  HashTree hashTree=treeModel.addSubTree(subTree,treeListener.getCurrentNode());
+  undoHistory.clear();
+  undoHistory.add(this.treeModel,"Loaded tree");
+  return hashTree;
 }

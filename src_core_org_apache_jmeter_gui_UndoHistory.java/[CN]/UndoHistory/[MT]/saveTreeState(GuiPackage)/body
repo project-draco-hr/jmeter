@@ -1,0 +1,13 @@
+{
+  savedExpanded.clear();
+  MainFrame mainframe=guiPackage.getMainFrame();
+  if (mainframe != null) {
+    final JTree tree=mainframe.getTree();
+    savedSelected=tree.getMinSelectionRow();
+    for (int rowN=0; rowN < tree.getRowCount(); rowN++) {
+      if (tree.isExpanded(rowN)) {
+        savedExpanded.add(rowN);
+      }
+    }
+  }
+}

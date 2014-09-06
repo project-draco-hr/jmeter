@@ -1,0 +1,23 @@
+{
+  log.debug("Moving history from position " + position + " with step "+ offset+ ", size is "+ history.size());
+  if (offset < 0 && !canUndo()) {
+    log.warn("Can't undo, we're already on the last record");
+    return;
+  }
+  if (offset > 0 && !canRedo()) {
+    log.warn("Can't redo, we're already on the first record");
+    return;
+  }
+  if (history.isEmpty()) {
+    log.warn("Can't proceed, the history is empty");
+    return;
+  }
+  position+=offset;
+  final GuiPackage guiInstance=GuiPackage.getInstance();
+  saveTreeState(guiInstance);
+  loadHistoricalTree(acceptorModel,guiInstance);
+  restoreTreeState(guiInstance);
+  log.debug("Current position " + position + ", size is "+ history.size());
+  guiInstance.updateCurrentGui();
+  guiInstance.getMainFrame().repaint();
+}

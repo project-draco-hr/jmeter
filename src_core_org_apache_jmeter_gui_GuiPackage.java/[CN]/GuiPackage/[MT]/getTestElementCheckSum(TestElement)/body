@@ -1,0 +1,15 @@
+{
+  int ret=el.getClass().hashCode();
+  PropertyIterator it=el.propertyIterator();
+  while (it.hasNext()) {
+    JMeterProperty obj=it.next();
+    if (obj instanceof TestElementProperty) {
+      ret^=getTestElementCheckSum(((TestElementProperty)obj).getElement());
+    }
+ else {
+      ret^=obj.getName().hashCode();
+      ret^=obj.getStringValue().hashCode();
+    }
+  }
+  return ret;
+}
