@@ -1,4 +1,6 @@
 {
+  Map<String,Boolean> currentButtonStates=getCurrentButtonsStates();
   this.removeAll();
   setupToolbarContent(this);
+  updateButtons(currentButtonStates);
 }

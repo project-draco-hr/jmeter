@@ -1,0 +1,11 @@
+{
+  Component[] components=getComponents();
+  Map<String,Boolean> buttonStates=new HashMap<String,Boolean>(components.length);
+  for (int i=0; i < components.length; i++) {
+    if (components[i] instanceof JButton) {
+      JButton button=(JButton)components[i];
+      buttonStates.put(button.getActionCommand(),Boolean.valueOf(button.isEnabled()));
+    }
+  }
+  return buttonStates;
+}
