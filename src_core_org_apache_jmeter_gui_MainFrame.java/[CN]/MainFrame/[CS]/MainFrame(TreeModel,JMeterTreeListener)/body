@@ -11,6 +11,7 @@
   warnIndicator.setOpaque(false);
   warnIndicator.setContentAreaFilled(false);
   warnIndicator.setBorderPainted(false);
+  warnIndicator.setCursor(new Cursor(Cursor.HAND_CURSOR));
   warnIndicator.setToolTipText(JMeterUtils.getResString("error_indicator_tooltip"));
   warnIndicator.addActionListener(this);
   errorsOrFatalsLabel=new JLabel("0");
