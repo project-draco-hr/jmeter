@@ -1,0 +1,5 @@
+{
+  for (  HistoryListener listener : listeners) {
+    listener.notifyChangeInHistory(this);
+  }
+}

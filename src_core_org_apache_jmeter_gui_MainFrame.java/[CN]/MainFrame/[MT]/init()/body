@@ -33,6 +33,7 @@
   getContentPane().add(all);
   tree.setSelectionRow(1);
   addWindowListener(new WindowHappenings());
+  GuiPackage.getInstance().registerAsListener();
   setTitle(DEFAULT_TITLE);
   setIconImage(JMeterUtils.getImage("icon-apache.png").getImage());
   setWindowTitle();

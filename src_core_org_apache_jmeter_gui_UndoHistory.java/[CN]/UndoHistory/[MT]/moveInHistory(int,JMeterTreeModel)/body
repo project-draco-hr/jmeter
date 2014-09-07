@@ -20,4 +20,5 @@
   log.debug("Current position " + position + ", size is "+ history.size());
   guiInstance.updateCurrentGui();
   guiInstance.getMainFrame().repaint();
+  notifyListeners();
 }

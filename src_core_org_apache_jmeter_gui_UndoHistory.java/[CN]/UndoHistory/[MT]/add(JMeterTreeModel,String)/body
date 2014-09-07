@@ -22,4 +22,5 @@
   history.add(new UndoHistoryItem(copy,comment));
   log.debug("Added history element, position: " + position + ", size: "+ history.size());
   working=false;
+  notifyListeners();
 }

@@ -5,4 +5,5 @@
   log.debug("Clearing undo history");
   history.clear();
   position=INITIAL_POS;
+  notifyListeners();
 }
