@@ -1,3 +1,9 @@
 {
-  return null;
+  if (!RETURN_204_FOR_INCACHE_RESOURCE) {
+    return null;
+  }
+  res.sampleEnd();
+  res.setResponseNoContent();
+  res.setSuccessful(true);
+  return res;
 }
