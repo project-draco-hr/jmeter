@@ -3,7 +3,6 @@
   pane.add(jmsDestination,BorderLayout.WEST);
   destSetup.setLayout(new BoxLayout(destSetup,BoxLayout.X_AXIS));
   pane.add(destSetup,BorderLayout.CENTER);
-  useNonPersistentDelivery=new JCheckBox(JMeterUtils.getResString("jms_use_non_persistent_delivery"),false);
   pane.add(useNonPersistentDelivery,BorderLayout.EAST);
   return pane;
 }
