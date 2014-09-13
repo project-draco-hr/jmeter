@@ -27,5 +27,10 @@
   InputStream genCertIn=new ByteArrayInputStream(genCertOut.toByteArray());
   KeyToolUtils.keytool("-importcert",keystore,password,INTERMEDIATE_CA_ALIAS,genCertIn,null);
   KeyToolUtils.keytool("-exportcert",keystore,password,ROOTCA_ALIAS,null,null,"-rfc","-file",ROOT_CACERT_CRT);
-  FileUtils.copyFile(caCert_crt,caCert_usr);
+  if (caCert_crt.exists() && caCert_crt.canRead()) {
+    FileUtils.copyFile(caCert_crt,caCert_usr);
+  }
+ else {
+    log.warn("Failed creating " + caCert_crt.getAbsolutePath() + ", check 'keytool' utility in path is available and points to a JDK >= 7");
+  }
 }
