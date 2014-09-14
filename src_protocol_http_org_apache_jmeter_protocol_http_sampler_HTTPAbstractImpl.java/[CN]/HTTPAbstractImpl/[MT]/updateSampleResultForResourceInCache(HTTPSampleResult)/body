@@ -1,9 +1,20 @@
 {
-  if (!RETURN_204_FOR_INCACHE_RESOURCE) {
+switch (CACHED_RESOURCE_MODE) {
+case RETURN_NO_SAMPLE:
     return null;
-  }
+case RETURN_200_CACHE:
   res.sampleEnd();
-  res.setResponseNoContent();
-  res.setSuccessful(true);
-  return res;
+res.setResponseCodeOK();
+res.setResponseMessage(RETURN_200_CACHE_MESSAGE);
+res.setSuccessful(true);
+return res;
+case RETURN_CUSTOM_STATUS:
+res.sampleEnd();
+res.setResponseCode(RETURN_CUSTOM_STATUS_CODE);
+res.setResponseMessage(RETURN_CUSTOM_STATUS_MESSAGE);
+res.setSuccessful(true);
+return res;
+default :
+throw new IllegalStateException("Unknown CACHED_RESOURCE_MODE");
+}
 }
