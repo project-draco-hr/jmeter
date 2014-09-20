@@ -20,9 +20,6 @@
  else   if (item instanceof Long) {
     return new LongProperty("",((Long)item).longValue());
   }
- else   if (item instanceof Long) {
-    return new LongProperty("",((Long)item).longValue());
-  }
  else {
     return new StringProperty("",item.toString());
   }
