@@ -1,5 +1,7 @@
 {
   this.treeModel=treeModel;
-  this.treeModel.addTreeModelListener(undoHistory);
+  if (undoHistory.isEnabled()) {
+    this.treeModel.addTreeModelListener(undoHistory);
+  }
   this.treeListener=treeListener;
 }

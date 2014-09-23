@@ -1,4 +1,8 @@
 {
+  if (!isEnabled()) {
+    log.debug("undo.history.size is set to 0, undo/redo feature is disabled");
+    return;
+  }
   if (working) {
     log.debug("Not adding history because of noop");
     return;

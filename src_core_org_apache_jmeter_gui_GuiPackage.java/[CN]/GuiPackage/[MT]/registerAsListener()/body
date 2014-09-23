@@ -1,4 +1,6 @@
 {
-  this.undoHistory.registerHistoryListener(this);
+  if (undoHistory.isEnabled()) {
+    this.undoHistory.registerHistoryListener(this);
+  }
   JMeterUtils.addLocaleChangeListener(this);
 }
