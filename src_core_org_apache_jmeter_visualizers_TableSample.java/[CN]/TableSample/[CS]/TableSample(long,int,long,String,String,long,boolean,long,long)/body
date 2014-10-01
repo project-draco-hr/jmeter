@@ -4,8 +4,8 @@
   this.startTime=startTime;
   this.threadName=threadName;
   this.label=label;
-  this.elapsed=elapsed / sampleCount;
+  this.elapsed=(sampleCount > 0) ? elapsed / sampleCount : 0;
+  this.bytes=(sampleCount > 0) ? bytes / sampleCount : 0;
   this.success=success;
-  this.bytes=bytes / sampleCount;
   this.latency=latency;
 }
