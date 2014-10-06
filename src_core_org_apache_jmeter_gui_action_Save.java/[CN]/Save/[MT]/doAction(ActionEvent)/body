@@ -20,7 +20,9 @@
       HashTree hashTree=new ListedHashTree();
       HashTree tfTree=hashTree.add(new JMeterTreeNode(element,null));
       for (int i=0; i < nodes.length; i++) {
-        tfTree.add(nodes[i]);
+        TreeCloner cloner=new TreeCloner(false);
+        GuiPackage.getInstance().getTreeModel().getCurrentSubTree(nodes[i]).traverse(cloner);
+        tfTree.add(cloner.getClonedTree());
       }
       subTree=hashTree;
     }
