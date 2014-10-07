@@ -1,6 +1,9 @@
 {
   this.setLayout(new BorderLayout());
-  textArea=new JSyntaxTextArea(15,50,true);
+  textArea=new JSyntaxTextArea(15,80,true);
+  textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_NONE);
+  textArea.setCodeFoldingEnabled(false);
+  textArea.setAntiAliasingEnabled(false);
   textArea.setEditable(false);
   textArea.setLineWrap(false);
   textArea.setLanguage("text");
