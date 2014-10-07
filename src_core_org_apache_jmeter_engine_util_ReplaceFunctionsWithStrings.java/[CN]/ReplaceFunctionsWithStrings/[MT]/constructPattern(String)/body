@@ -1,0 +1,6 @@
+{
+  if (value.startsWith("(") && value.endsWith(")")) {
+    return value;
+  }
+  return "\\b(" + value + ")\\b";
+}
