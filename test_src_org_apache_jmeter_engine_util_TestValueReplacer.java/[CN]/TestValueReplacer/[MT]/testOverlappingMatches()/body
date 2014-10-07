@@ -1,0 +1,11 @@
+{
+  TestPlan plan=new TestPlan();
+  plan.addParameter("longMatch","servername");
+  plan.addParameter("shortMatch",".*");
+  ValueReplacer replacer=new ValueReplacer(plan);
+  TestElement element=new TestPlan();
+  element.setProperty(new StringProperty("domain","servername.domain"));
+  replacer.reverseReplace(element,true);
+  String replacedDomain=element.getPropertyAsString("domain");
+  assertEquals("${${shortMatch}",replacedDomain);
+}
