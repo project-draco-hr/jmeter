@@ -38,7 +38,7 @@
     }
     Component customEditor=editors[i].getCustomEditor();
     boolean multiLineEditor=false;
-    if (customEditor.getPreferredSize().height > 50 || customEditor instanceof JScrollPane) {
+    if (customEditor.getPreferredSize().height > 50 || customEditor instanceof JScrollPane || descriptors[i].getValue(MULTILINE) != null) {
       multiLineEditor=true;
     }
     JLabel label=createLabel(descriptors[i]);
