@@ -1,0 +1,4 @@
+{
+  Object value=getValue();
+  return value instanceof Boolean ? toString((Boolean)value) : null;
+}
