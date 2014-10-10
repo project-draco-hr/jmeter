@@ -1,15 +1,16 @@
 {
   super(Example3.class);
-  getprop("mybool");
+  getprop("mybool",Boolean.TRUE);
   getprop("myBoolean1");
-  getprop("myBoolean2","True");
-  getprop("myInt","77");
+  getprop("myBoolean2",Boolean.TRUE);
+  getprop("myInt",Integer.valueOf(77));
   getprop("myInteger1");
   getprop("myInteger2",Integer.valueOf(123));
-  getprop("mylong","99");
+  getprop("mylong",Long.valueOf(99));
   getprop("myLong1");
   getprop("myLong2",Long.valueOf(456));
   getprop("myString1");
   getprop("myString2","abcd");
+  getprop("myFile1");
   property("myFile2",TypeEditor.FileEditor);
 }

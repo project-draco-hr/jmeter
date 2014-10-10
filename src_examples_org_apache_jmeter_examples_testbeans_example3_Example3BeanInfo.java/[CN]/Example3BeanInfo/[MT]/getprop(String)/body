@@ -1,3 +1,5 @@
 {
-  return property(name);
+  final PropertyDescriptor property=property(name);
+  property.setValue(NOT_UNDEFINED,Boolean.FALSE);
+  return property;
 }
