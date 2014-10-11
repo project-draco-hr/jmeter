@@ -1,6 +1,5 @@
 {
   assertNotNull("Expected to find property editor",propertyEditor);
-  System.out.println(propertyEditor.getClass().getCanonicalName());
   String tags[]=propertyEditor.getTags();
   assertEquals(2,tags.length);
   assertEquals(TRUE,tags[0]);
