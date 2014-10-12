@@ -31,7 +31,8 @@ case SELF_CLOSING:
       extractAttribute(tag,ATT_DATA);
     }
  else     if (tag.nameEquals(TAG_INPUT)) {
-      if (TagUtil.equalsIgnoreCase(ATT_IS_IMAGE,tag.getAttributeValue(ATT_TYPE))) {
+      CharSequence type=tag.getAttributeValue(ATT_TYPE);
+      if (type != null && TagUtil.equalsIgnoreCase(ATT_IS_IMAGE,type)) {
         extractAttribute(tag,ATT_SRC);
       }
     }
@@ -49,7 +50,7 @@ case SELF_CLOSING:
     }
  else     if (tag.nameEquals(TAG_LINK)) {
       CharSequence relAttribute=tag.getAttributeValue(ATT_REL);
-      if (TagUtil.equalsIgnoreCase(STYLESHEET,relAttribute)) {
+      if (relAttribute != null && TagUtil.equalsIgnoreCase(STYLESHEET,relAttribute)) {
         extractAttribute(tag,ATT_HREF);
       }
     }
