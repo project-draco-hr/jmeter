@@ -1,12 +1,5 @@
 {
-  Sampler sampler=null;
-  try {
-    sampler=controller.next();
-  }
- catch (  StackOverflowError soe) {
-    log.warn("StackOverflowError detected");
-    throw new NextIsNullException("StackOverflowError detected",soe);
-  }
+  Sampler sampler=controller.next();
   if (sampler == null) {
     currentReturnedNull(controller);
     sampler=next();

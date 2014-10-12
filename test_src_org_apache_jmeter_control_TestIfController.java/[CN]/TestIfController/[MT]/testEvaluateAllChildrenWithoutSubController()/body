@@ -12,6 +12,7 @@
   ifCont.addTestElement(sample4);
   String[] order=new String[]{"Sample1","Sample2","Sample3","Sample1","Sample2","Sample3"};
   int counter=0;
+  controller.initialize();
   controller.setRunningVersion(true);
   ifCont.setRunningVersion(true);
   Sampler sampler=null;

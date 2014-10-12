@@ -1,0 +1,51 @@
+{
+  LoopController controller=new LoopController();
+  controller.setLoops(1);
+  controller.setContinueForever(false);
+  Arguments arguments=new Arguments();
+  arguments.addArgument("VAR1","0","=");
+  DebugSampler debugSampler1=new DebugSampler();
+  debugSampler1.setName("VAR1 = ${VAR1}");
+  IfController ifCont=new IfController("true==false");
+  ifCont.setUseExpression(false);
+  ifCont.setEvaluateAll(false);
+  IfController ifCont2=new IfController("true==true");
+  ifCont2.setUseExpression(false);
+  ifCont2.setEvaluateAll(false);
+  CounterConfig counterConfig=new CounterConfig();
+  counterConfig.setStart(1);
+  counterConfig.setIncrement(1);
+  counterConfig.setVarName("VAR1");
+  DebugSampler debugSampler2=new DebugSampler();
+  debugSampler2.setName("VAR1 = ${VAR1}");
+  controller.addTestElement(arguments);
+  controller.addTestElement(debugSampler1);
+  controller.addTestElement(ifCont);
+  ifCont.addTestElement(ifCont2);
+  ifCont2.addTestElement(counterConfig);
+  controller.addTestElement(debugSampler2);
+  controller.initialize();
+  controller.setRunningVersion(true);
+  ifCont.setRunningVersion(true);
+  ifCont2.setRunningVersion(true);
+  counterConfig.setRunningVersion(true);
+  arguments.setRunningVersion(true);
+  debugSampler1.setRunningVersion(true);
+  debugSampler2.setRunningVersion(true);
+  ifCont2.addIterationListener(counterConfig);
+  JMeterVariables vars=new JMeterVariables();
+  JMeterContext jmctx=JMeterContextService.getContext();
+  jmctx.setVariables(vars);
+  vars.put("VAR1","0");
+  try {
+    Sampler sampler=controller.next();
+    SampleResult sampleResult1=sampler.sample(null);
+    assertEquals("0",vars.get("VAR1"));
+    sampler=controller.next();
+    SampleResult sampleResult2=sampler.sample(null);
+    assertEquals("0",vars.get("VAR1"));
+  }
+ catch (  StackOverflowError e) {
+    fail("Stackoverflow occured in testStackOverflow");
+  }
+}

@@ -1,0 +1,7 @@
+{
+  for (  TestElement te : subControllersAndSamplers) {
+    if (te instanceof GenericController) {
+      ((Controller)te).initialize();
+    }
+  }
+}

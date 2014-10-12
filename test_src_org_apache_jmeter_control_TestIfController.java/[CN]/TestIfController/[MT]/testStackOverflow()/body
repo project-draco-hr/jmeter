@@ -1,0 +1,29 @@
+{
+  LoopController controller=new LoopController();
+  controller.setLoops(1);
+  controller.setContinueForever(false);
+  IfController ifCont=new IfController("true==false");
+  ifCont.setUseExpression(false);
+  ifCont.setEvaluateAll(false);
+  WhileController whileController=new WhileController();
+  whileController.setCondition("${__javaScript(\"true\" != \"false\")}");
+  whileController.addTestElement(new TestSampler("Sample1"));
+  controller.addTestElement(ifCont);
+  ifCont.addTestElement(whileController);
+  Sampler sampler=null;
+  int counter=0;
+  controller.initialize();
+  controller.setRunningVersion(true);
+  ifCont.setRunningVersion(true);
+  whileController.setRunningVersion(true);
+  try {
+    while ((sampler=controller.next()) != null) {
+      sampler.sample(null);
+      counter++;
+    }
+    assertEquals(0,counter);
+  }
+ catch (  StackOverflowError e) {
+    fail("Stackoverflow occured in testStackOverflow");
+  }
+}

@@ -8,8 +8,6 @@
  else {
     SampleEvent event=new SampleEvent(res,threadContext.getThreadGroup().getName(),threadVars,true);
     res=null;
-    if (!getThreadContext().isReinitializingSubControllers()) {
-      lnf.notifyListeners(event,pack.getSampleListeners());
-    }
+    lnf.notifyListeners(event,pack.getSampleListeners());
   }
 }
