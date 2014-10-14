@@ -2,7 +2,12 @@
 synchronized (LOCK) {
     instanceCount--;
     if (instanceCount <= 0) {
-      Runtime.getRuntime().removeShutdownHook(shutdownHook);
+      if (shutdownHook != null) {
+        Runtime.getRuntime().removeShutdownHook(shutdownHook);
+      }
+ else {
+        log.warn("Should not happen: shutdownHook==null, instanceCount=" + instanceCount);
+      }
       finalizeFileOutput();
       inTest=false;
     }
