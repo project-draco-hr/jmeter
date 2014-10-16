@@ -1,6 +1,6 @@
 {
   SSLManager.reset();
-  keyStoreChooser=new JFileChooser(System.getProperty("user.dir"));
+  JFileChooser keyStoreChooser=new JFileChooser(System.getProperty("user.dir"));
   keyStoreChooser.addChoosableFileFilter(new AcceptPKCS12FileFilter());
   keyStoreChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
   int retVal=keyStoreChooser.showOpenDialog(GuiPackage.getInstance().getMainFrame());
@@ -12,6 +12,5 @@
  catch (    IOException e) {
     }
   }
-  keyStoreChooser=null;
   SSLManager.getInstance();
 }
