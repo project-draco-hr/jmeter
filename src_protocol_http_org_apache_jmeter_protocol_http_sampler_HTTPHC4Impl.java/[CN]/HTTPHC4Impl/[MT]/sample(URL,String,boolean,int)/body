@@ -32,6 +32,9 @@
  else     if (method.equals(HTTPConstants.PATCH)) {
       httpRequest=new HttpPatch(uri);
     }
+ else     if (HttpWebdav.isWebdavMethod(method)) {
+      httpRequest=new HttpWebdav(method,uri);
+    }
  else {
       throw new IllegalArgumentException("Unexpected method: '" + method + "'");
     }
