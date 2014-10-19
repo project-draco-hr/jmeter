@@ -1,5 +1,5 @@
 {
-  if (isDynamic) {
+  if (isDynamic || permanentResults == null) {
     JMeterContext context=JMeterContextService.getContext();
     SampleResult previousResult=context.getPreviousResult();
     Sampler currentSampler=context.getCurrentSampler();

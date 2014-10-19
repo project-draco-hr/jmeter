@@ -7,4 +7,12 @@
   if (compiledComponents.size() > 1 || !(compiledComponents.get(0) instanceof String)) {
     hasFunction=true;
   }
+  permanentResults=null;
+  isDynamic=false;
+  for (  Object item : compiledComponents) {
+    if (item instanceof Function || item instanceof SimpleVariable) {
+      isDynamic=true;
+      break;
+    }
+  }
 }

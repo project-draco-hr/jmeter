@@ -2,5 +2,7 @@
   CompoundVariable func=new CompoundVariable();
   func.compiledComponents=(LinkedList<Object>)compiledComponents.clone();
   func.rawParameters=rawParameters;
+  func.hasFunction=hasFunction;
+  func.isDynamic=isDynamic;
   return func;
 }

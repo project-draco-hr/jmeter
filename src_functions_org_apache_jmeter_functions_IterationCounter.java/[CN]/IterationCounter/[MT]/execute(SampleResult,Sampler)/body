@@ -1,5 +1,4 @@
 {
-  globalCounter++;
   JMeterVariables vars=getVariables();
   boolean perThread=Boolean.parseBoolean(((CompoundVariable)variables[0]).execute());
   String varName="";
@@ -14,7 +13,10 @@
     counterString=String.valueOf(threadCounter);
   }
  else {
-    counterString=String.valueOf(globalCounter);
+synchronized (this) {
+      globalCounter++;
+      counterString=String.valueOf(globalCounter);
+    }
   }
   if (vars != null && varName.length() > 0) {
     vars.put(varName,counterString);

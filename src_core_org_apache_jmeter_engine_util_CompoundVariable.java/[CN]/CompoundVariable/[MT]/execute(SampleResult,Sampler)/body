@@ -2,11 +2,9 @@
   if (compiledComponents == null || compiledComponents.size() == 0) {
     return "";
   }
-  boolean testDynamic=false;
   StringBuilder results=new StringBuilder();
   for (  Object item : compiledComponents) {
     if (item instanceof Function) {
-      testDynamic=true;
       try {
         results.append(((Function)item).execute(previousResult,currentSampler));
       }
@@ -17,15 +15,13 @@
       }
     }
  else     if (item instanceof SimpleVariable) {
-      testDynamic=true;
       results.append(((SimpleVariable)item).toString());
     }
  else {
       results.append(item);
     }
   }
-  if (!testDynamic) {
-    isDynamic=false;
+  if (!isDynamic) {
     permanentResults=results.toString();
   }
   return results.toString();

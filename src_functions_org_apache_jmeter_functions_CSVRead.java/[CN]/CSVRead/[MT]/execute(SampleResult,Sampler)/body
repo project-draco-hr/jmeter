@@ -2,7 +2,9 @@
   String myValue="";
   String fileName=((org.apache.jmeter.engine.util.CompoundVariable)values[0]).execute();
   String columnOrNext=((org.apache.jmeter.engine.util.CompoundVariable)values[1]).execute();
-  log.debug("execute (" + fileName + " , "+ columnOrNext+ ")   ");
+  if (log.isDebugEnabled()) {
+    log.debug("execute (" + fileName + " , "+ columnOrNext+ ")   ");
+  }
   if (columnOrNext.startsWith("*")) {
     FileWrapper.open(fileName,columnOrNext);
     return "";
@@ -21,6 +23,8 @@
 catch (  IndexOutOfBoundsException e) {
     log.warn(Thread.currentThread().getName() + " - invalid column number: " + columnOrNext+ " at row "+ FileWrapper.getCurrentRow(fileName)+ " "+ e.toString());
   }
-  log.debug("execute value: " + myValue);
+  if (log.isDebugEnabled()) {
+    log.debug("execute value: " + myValue);
+  }
   return myValue;
 }
