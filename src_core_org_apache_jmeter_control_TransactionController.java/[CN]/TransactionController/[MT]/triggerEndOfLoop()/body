@@ -9,6 +9,12 @@
     }
   }
  else {
+    Sampler subSampler=transactionSampler.getSubSampler();
+    if (subSampler instanceof TransactionSampler) {
+      TransactionSampler tc=(TransactionSampler)subSampler;
+      tc.getTransactionController().triggerEndOfLoop();
+      transactionSampler.addSubSamplerResult(tc.getTransactionResult());
+    }
     transactionSampler.setTransactionDone();
     transactionSampler=null;
   }
