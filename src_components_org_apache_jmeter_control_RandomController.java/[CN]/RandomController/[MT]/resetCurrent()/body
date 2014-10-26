@@ -1,6 +1,6 @@
 {
   if (getSubControllers().size() > 0) {
-    current=RAND.nextInt(this.getSubControllers().size());
+    current=ThreadLocalRandom.current().nextInt(this.getSubControllers().size());
   }
  else {
     current=0;
