@@ -1,13 +1,16 @@
 {
-  StringBuilder hdrs=new StringBuilder(100);
-  Header[] requestHeaders=method.getAllHeaders();
-  for (int i=0; i < requestHeaders.length; i++) {
-    if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(requestHeaders[i].getName())) {
-      hdrs.append(requestHeaders[i].getName());
-      hdrs.append(": ");
-      hdrs.append(requestHeaders[i].getValue());
-      hdrs.append("\n");
+  if (method != null) {
+    StringBuilder hdrs=new StringBuilder(100);
+    Header[] requestHeaders=method.getAllHeaders();
+    for (int i=0; i < requestHeaders.length; i++) {
+      if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(requestHeaders[i].getName())) {
+        hdrs.append(requestHeaders[i].getName());
+        hdrs.append(": ");
+        hdrs.append(requestHeaders[i].getValue());
+        hdrs.append("\n");
+      }
     }
+    return hdrs.toString();
   }
-  return hdrs.toString();
+  return "";
 }
