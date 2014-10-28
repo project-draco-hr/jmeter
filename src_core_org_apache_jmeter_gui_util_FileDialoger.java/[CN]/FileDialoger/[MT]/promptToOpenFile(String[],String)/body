@@ -18,6 +18,7 @@
     jfc.setAcceptAllFileFilterUsed(true);
     jfc.setFileFilter(currentFilter);
   }
+  jfc.setCurrentDirectory(new File(lastJFCDirectory));
   int retVal=jfc.showOpenDialog(GuiPackage.getInstance().getMainFrame());
   lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
   if (retVal == JFileChooser.APPROVE_OPTION) {

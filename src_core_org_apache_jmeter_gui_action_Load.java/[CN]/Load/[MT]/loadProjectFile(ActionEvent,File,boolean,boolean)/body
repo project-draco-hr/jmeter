@@ -36,6 +36,7 @@ catch (    Exception ex) {
  finally {
       JOrphanUtils.closeQuietly(reader);
     }
+    FileDialoger.setLastJFCDirectory(f.getParentFile().getAbsolutePath());
     guiPackage.updateCurrentGui();
     guiPackage.getMainFrame().repaint();
   }
