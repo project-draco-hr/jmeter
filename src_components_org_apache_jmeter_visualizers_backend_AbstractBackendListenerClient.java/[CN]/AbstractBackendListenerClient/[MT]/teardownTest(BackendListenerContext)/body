@@ -1,4 +1,4 @@
 {
-  log.debug(getClass().getName() + ": teardownTest");
+  LOGGER.debug(getClass().getName() + ": teardownTest");
   metricsPerSampler.clear();
 }
