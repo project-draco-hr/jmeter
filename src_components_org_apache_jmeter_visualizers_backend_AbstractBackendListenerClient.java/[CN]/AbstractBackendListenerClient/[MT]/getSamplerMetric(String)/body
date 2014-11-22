@@ -1,0 +1,11 @@
+{
+  SamplerMetric samplerMetric=metricsPerSampler.get(sampleLabel);
+  if (samplerMetric == null) {
+    samplerMetric=new SamplerMetric();
+    SamplerMetric oldValue=metricsPerSampler.putIfAbsent(sampleLabel,samplerMetric);
+    if (oldValue != null) {
+      samplerMetric=oldValue;
+    }
+  }
+  return samplerMetric;
+}

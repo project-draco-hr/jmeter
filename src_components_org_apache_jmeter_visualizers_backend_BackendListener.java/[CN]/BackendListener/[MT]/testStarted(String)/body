@@ -1,0 +1,23 @@
+{
+  log.debug(whoAmI() + "\ttestStarted(" + host+ ")");
+  queue=new ArrayBlockingQueue<SampleResult>(getQueueSize());
+  initClass();
+  queueWaits=0L;
+  queueWaitTime=0L;
+  log.info(getName() + ":Starting worker with class:" + javaClass+ " and queue capacity:"+ getQueueSize());
+  backendListenerClient=createBackendListenerClientImpl(javaClass);
+  context=new BackendListenerContext((Arguments)getArguments().clone());
+  if (isToBeRegistered) {
+    TEAR_DOWN_SET.add(this);
+  }
+  try {
+    backendListenerClient.setupTest(context);
+  }
+ catch (  Exception e) {
+    throw new java.lang.IllegalStateException("Failed calling setupTest",e);
+  }
+  Worker worker=new Worker(javaClass,backendListenerClient,(Arguments)getArguments().clone(),queue);
+  worker.setDaemon(true);
+  worker.start();
+  log.info(getName() + ":Started  worker with class:" + javaClass);
+}

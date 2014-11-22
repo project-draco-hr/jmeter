@@ -1,0 +1,17 @@
+{
+  if (result.isSuccessful()) {
+    success++;
+  }
+ else {
+    failure++;
+  }
+  long time=result.getTime();
+  int activeThreads=result.getAllThreads();
+  maxTime=Math.max(time,maxTime);
+  minTime=Math.min(time,minTime);
+  maxActiveThreads=Math.max(maxActiveThreads,activeThreads);
+  minActiveThreads=Math.min(minActiveThreads,activeThreads);
+  if (result.isSuccessful()) {
+    stats.addValue(time);
+  }
+}

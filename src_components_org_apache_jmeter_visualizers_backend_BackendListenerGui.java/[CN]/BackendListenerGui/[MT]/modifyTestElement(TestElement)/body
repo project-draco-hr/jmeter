@@ -1,0 +1,7 @@
+{
+  configureTestElement(config);
+  BackendListener backendListener=(BackendListener)config;
+  backendListener.setArguments((Arguments)argsPanel.createTestElement());
+  backendListener.setClassname(String.valueOf(classnameCombo.getSelectedItem()));
+  backendListener.setQueueSize(Integer.parseInt(queueSize.getText()));
+}
