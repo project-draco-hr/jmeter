@@ -12,7 +12,7 @@
         testParams=client.getDefaultParameters();
       }
  catch (      AbstractMethodError e) {
-        log.warn("BackendListenerClient doesn't implement " + "getDefaultParameters.  Default parameters won't " + "be shown.  Please update your client class: "+ className);
+        LOGGER.warn("BackendListenerClient doesn't implement " + "getDefaultParameters.  Default parameters won't " + "be shown.  Please update your client class: "+ className);
       }
       if (testParams != null) {
         PropertyIterator i=testParams.getArguments().iterator();
@@ -32,7 +32,7 @@
       argsPanel.configure(newArgs);
     }
  catch (    Exception e) {
-      log.error("Error getting argument list for " + className,e);
+      LOGGER.error("Error getting argument list for " + className,e);
     }
   }
 }

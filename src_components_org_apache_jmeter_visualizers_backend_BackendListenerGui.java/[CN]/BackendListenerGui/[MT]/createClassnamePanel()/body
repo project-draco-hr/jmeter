@@ -5,7 +5,7 @@
     possibleClasses.remove(BackendListener.class.getName() + "$ErrorBackendListenerClient");
   }
  catch (  Exception e) {
-    log.debug("Exception getting interfaces.",e);
+    LOGGER.debug("Exception getting interfaces.",e);
   }
   JLabel label=new JLabel(JMeterUtils.getResString("backend_listener_classname"));
   classnameCombo=new JComboBox(possibleClasses.toArray());
