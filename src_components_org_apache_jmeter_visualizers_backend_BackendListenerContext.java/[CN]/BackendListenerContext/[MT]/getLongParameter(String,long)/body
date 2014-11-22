@@ -6,7 +6,7 @@
     return Long.decode(params.get(name)).longValue();
   }
  catch (  NumberFormatException e) {
-    log.warn("Value for parameter '" + name + "' not a long: '"+ params.get(name)+ "'.  Using default: '"+ defaultValue+ "'.",e);
+    LOGGER.warn("Value for parameter '" + name + "' not a long: '"+ params.get(name)+ "'.  Using default: '"+ defaultValue+ "'.",e);
     return defaultValue;
   }
 }

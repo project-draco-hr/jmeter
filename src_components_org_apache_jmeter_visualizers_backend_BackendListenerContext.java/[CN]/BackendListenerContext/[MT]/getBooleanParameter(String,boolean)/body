@@ -2,5 +2,5 @@
   if (params == null || !params.containsKey(name)) {
     return defaultValue;
   }
-  return Boolean.valueOf(params.get(name));
+  return Boolean.parseBoolean(params.get(name));
 }
