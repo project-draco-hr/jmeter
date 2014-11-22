@@ -1,6 +1,6 @@
 {
   try {
-    queue.put(FINAL_EVENT);
+    queue.put(FINAL_SAMPLE_RESULT);
   }
  catch (  Exception ex) {
     LOGGER.warn("testEnded() with exception:" + ex.getMessage(),ex);

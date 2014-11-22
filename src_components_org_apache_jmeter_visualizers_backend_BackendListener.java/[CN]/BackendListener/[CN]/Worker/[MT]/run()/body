@@ -7,28 +7,24 @@
       if (isDebugEnabled) {
         LOGGER.debug("Thread:" + Thread.currentThread().getName() + " taking SampleResult from queue:"+ queue.size());
       }
-      SampleResult e=queue.take();
+      SampleResult sampleResult=queue.take();
       if (isDebugEnabled) {
-        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " took SampleResult:"+ e+ ", isFinal:"+ (e == FINAL_EVENT));
+        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " took SampleResult:"+ sampleResult+ ", isFinal:"+ (sampleResult == FINAL_SAMPLE_RESULT));
       }
-      while (!(endOfLoop=(e == FINAL_EVENT)) && e != null) {
-        sampleResults.add(e);
+      while (!(endOfLoop=(sampleResult == FINAL_SAMPLE_RESULT)) && sampleResult != null) {
+        sampleResults.add(sampleResult);
         if (isDebugEnabled) {
           LOGGER.debug("Thread:" + Thread.currentThread().getName() + " polling from queue:"+ queue.size());
         }
-        e=queue.poll();
+        sampleResult=queue.poll();
         if (isDebugEnabled) {
-          LOGGER.debug("Thread:" + Thread.currentThread().getName() + " took from queue:"+ e+ ", isFinal:"+ (e == FINAL_EVENT));
+          LOGGER.debug("Thread:" + Thread.currentThread().getName() + " took from queue:"+ sampleResult+ ", isFinal:"+ (sampleResult == FINAL_SAMPLE_RESULT));
         }
       }
       if (isDebugEnabled) {
-        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " exiting with FINAL EVENT:"+ (e == FINAL_EVENT)+ ", null:"+ (e == null));
+        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " exiting with FINAL EVENT:"+ (sampleResult == FINAL_SAMPLE_RESULT)+ ", null:"+ (sampleResult == null));
       }
-      int size=sampleResults.size();
-      if (size > 0) {
-        backendListenerClient.handleSampleResults(sampleResults,context);
-        sampleResults.clear();
-      }
+      sendToListener(backendListenerClient,context,sampleResults);
       if (!endOfLoop) {
         LockSupport.parkNanos(100);
       }
@@ -36,10 +32,6 @@
   }
  catch (  InterruptedException e) {
   }
-  int size=sampleResults.size();
-  if (size > 0) {
-    backendListenerClient.handleSampleResults(sampleResults,context);
-    sampleResults.clear();
-  }
+  sendToListener(backendListenerClient,context,sampleResults);
   LOGGER.info("Worker ended");
 }

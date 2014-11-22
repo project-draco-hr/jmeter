@@ -1,0 +1,6 @@
+{
+  if (sampleResults.size() > 0) {
+    backendListenerClient.handleSampleResults(sampleResults,context);
+    sampleResults.clear();
+  }
+}
