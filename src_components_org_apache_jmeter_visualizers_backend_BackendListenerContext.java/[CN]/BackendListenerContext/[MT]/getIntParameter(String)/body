@@ -1,6 +1,6 @@
 {
   if (params == null || !params.containsKey(name)) {
-    throw new NumberFormatException("No value for parameter named '" + name + "'.");
+    throw new IllegalArgumentException("No value for parameter named '" + name + "'.");
   }
   return Integer.parseInt(params.get(name));
 }
