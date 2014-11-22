@@ -1,0 +1,34 @@
+{
+  if (metrics.size() > 0) {
+    SocketOutputStream out=null;
+    try {
+      out=socketOutputStreamPool.borrowObject(socketConnectionInfos);
+      PrintWriter pw=new PrintWriter(new OutputStreamWriter(out,CHARSET_NAME),false);
+      for (      MetricTuple metric : metrics) {
+        pw.printf("%s %s %d%n",metric.name,metric.value,Long.valueOf(metric.timestamp));
+      }
+      pw.flush();
+      if (LOG.isDebugEnabled()) {
+        LOG.debug("Wrote " + metrics.size() + " metrics");
+      }
+      socketOutputStreamPool.returnObject(socketConnectionInfos,out);
+    }
+ catch (    Exception e) {
+      if (out != null) {
+        try {
+          socketOutputStreamPool.invalidateObject(socketConnectionInfos,out);
+        }
+ catch (        Exception e1) {
+          LOG.warn("Exception invalidating socketOutputStream connected to graphite server '" + socketConnectionInfos.getHost() + "':"+ socketConnectionInfos.getPort(),e1);
+        }
+      }
+      if (LOG.isDebugEnabled()) {
+        LOG.debug("Error writing to Graphite",e);
+      }
+ else {
+        LOG.warn("Error writing to Graphite:" + e.getMessage());
+      }
+    }
+    metrics.clear();
+  }
+}

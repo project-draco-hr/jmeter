@@ -1,0 +1,18 @@
+{
+  String graphiteMetricsSenderClass=context.getParameter("graphiteMetricsSender");
+  graphiteHost=context.getParameter("graphiteHost");
+  graphitePort=context.getIntParameter("graphitePort",DEFAULT_PICKLE_PORT);
+  summaryOnly=context.getBooleanParameter("summaryOnly",true);
+  samplersList=context.getParameter("samplersList","");
+  rootMetricsPrefix=context.getParameter("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
+  Class clazz=Class.forName(graphiteMetricsSenderClass);
+  this.pickleMetricsManager=(GraphiteMetricsSender)clazz.newInstance();
+  pickleMetricsManager.setup(graphiteHost,graphitePort,rootMetricsPrefix);
+  String[] samplers=samplersList.split(",");
+  samplersToFilter=new HashSet<String>();
+  for (  String samplerName : samplers) {
+    samplersToFilter.add(samplerName);
+  }
+  scheduler=Executors.newScheduledThreadPool(MAX_POOL_SIZE);
+  scheduler.scheduleAtFixedRate(this,ONE_SECOND,ONE_SECOND,TimeUnit.SECONDS);
+}

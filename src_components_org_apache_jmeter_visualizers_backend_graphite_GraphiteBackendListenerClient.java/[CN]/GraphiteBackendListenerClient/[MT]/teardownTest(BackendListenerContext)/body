@@ -1,0 +1,12 @@
+{
+  scheduler.shutdown();
+  try {
+    scheduler.awaitTermination(30,TimeUnit.SECONDS);
+  }
+ catch (  InterruptedException e) {
+    LOGGER.error("Error waiting for end of scheduler");
+  }
+  samplersToFilter.clear();
+  pickleMetricsManager.destroy();
+  super.teardownTest(context);
+}

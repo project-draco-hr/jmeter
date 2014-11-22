@@ -1,0 +1,11 @@
+{
+  GenericKeyedObjectPoolConfig config=new GenericKeyedObjectPoolConfig();
+  config.setTestOnBorrow(true);
+  config.setTestWhileIdle(true);
+  config.setMaxTotalPerKey(-1);
+  config.setMaxTotal(-1);
+  config.setMaxIdlePerKey(-1);
+  config.setMinEvictableIdleTimeMillis(TimeUnit.MINUTES.toMillis(3));
+  config.setTimeBetweenEvictionRunsMillis(TimeUnit.MINUTES.toMillis(3));
+  return new GenericKeyedObjectPool<SocketConnectionInfos,SocketOutputStream>(new SocketOutputStreamPoolFactory(SOCKET_CONNECT_TIMEOUT_MS,SOCKET_TIMEOUT),config);
+}

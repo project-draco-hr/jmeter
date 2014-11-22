@@ -1,0 +1,7 @@
+{
+  Socket socket=new Socket();
+  socket.setKeepAlive(true);
+  socket.setSoTimeout(socketTimeoutInMillis);
+  socket.connect(new InetSocketAddress(connectionInfos.getHost(),connectionInfos.getPort()),socketConnectTimeoutInMillis);
+  return new SocketOutputStream(socket);
+}

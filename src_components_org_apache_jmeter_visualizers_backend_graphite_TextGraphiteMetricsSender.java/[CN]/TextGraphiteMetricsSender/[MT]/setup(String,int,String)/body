@@ -1,0 +1,8 @@
+{
+  this.prefix=prefix;
+  this.socketConnectionInfos=new SocketConnectionInfos(graphiteHost,graphitePort);
+  this.socketOutputStreamPool=createSocketOutputStreamPool();
+  if (LOG.isInfoEnabled()) {
+    LOG.info("Created TextGraphiteMetricsSender with host:" + graphiteHost + ", port:"+ graphitePort+ ", prefix:"+ prefix);
+  }
+}

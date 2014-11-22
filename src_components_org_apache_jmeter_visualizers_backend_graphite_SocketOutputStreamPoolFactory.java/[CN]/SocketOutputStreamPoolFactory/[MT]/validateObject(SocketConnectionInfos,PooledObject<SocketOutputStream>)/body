@@ -1,0 +1,4 @@
+{
+  Socket socket=socketOutputStream.getObject().getSocket();
+  return socket.isConnected() && socket.isBound() && !socket.isClosed()&& !socket.isInputShutdown()&& !socket.isOutputShutdown();
+}

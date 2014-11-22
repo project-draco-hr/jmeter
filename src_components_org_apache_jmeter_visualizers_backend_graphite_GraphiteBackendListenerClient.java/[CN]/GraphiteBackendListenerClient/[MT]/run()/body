@@ -1,0 +1,18 @@
+{
+  long timestamp=TimeUnit.SECONDS.convert(System.currentTimeMillis(),TimeUnit.MILLISECONDS);
+  for (  Map.Entry<String,SamplerMetric> entry : getMetricsPerSampler().entrySet()) {
+    SamplerMetric metric=entry.getValue();
+    if (entry.getKey().equals(CUMULATED_METRICS)) {
+      addMetrics(timestamp,CUMULATED_CONTEXT_NAME,metric);
+    }
+ else {
+      addMetrics(timestamp,AbstractGraphiteMetricsSender.sanitizeString(entry.getKey()),metric);
+    }
+    metric.resetForTimeInterval();
+  }
+  ThreadCounts tc=JMeterContextService.getThreadCounts();
+  pickleMetricsManager.addMetric(timestamp,CUMULATED_CONTEXT_NAME,METRIC_ACTIVE_THREADS,Integer.toString(tc.activeThreads));
+  pickleMetricsManager.addMetric(timestamp,CUMULATED_CONTEXT_NAME,METRIC_STARTED_THREADS,Integer.toString(tc.startedThreads));
+  pickleMetricsManager.addMetric(timestamp,CUMULATED_CONTEXT_NAME,METRIC_STOPPED_THREADS,Integer.toString(tc.finishedThreads));
+  pickleMetricsManager.writeAndSendMetrics();
+}

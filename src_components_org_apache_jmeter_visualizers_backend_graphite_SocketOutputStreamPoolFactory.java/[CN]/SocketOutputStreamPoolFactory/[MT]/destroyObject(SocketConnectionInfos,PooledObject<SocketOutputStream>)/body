@@ -1,0 +1,6 @@
+{
+  super.destroyObject(socketConnectionInfos,socketOutputStream);
+  SocketOutputStream outputStream=socketOutputStream.getObject();
+  outputStream.close();
+  outputStream.getSocket().close();
+}

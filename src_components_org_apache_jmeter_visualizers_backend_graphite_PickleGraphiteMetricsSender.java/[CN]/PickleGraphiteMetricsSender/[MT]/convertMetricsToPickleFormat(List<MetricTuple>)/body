@@ -1,0 +1,15 @@
+{
+  StringBuilder pickled=new StringBuilder(metrics.size() * 75);
+  pickled.append(MARK).append(LIST);
+  for (  MetricTuple tuple : metrics) {
+    pickled.append(MARK);
+    pickled.append(STRING).append(QUOTE).append(tuple.name).append(QUOTE).append(LF);
+    pickled.append(MARK);
+    pickled.append(LONG).append(tuple.timestamp).append(LONG).append(LF);
+    pickled.append(STRING).append(QUOTE).append(tuple.value).append(QUOTE).append(LF);
+    pickled.append(TUPLE).append(TUPLE);
+    pickled.append(APPEND);
+  }
+  pickled.append(STOP);
+  return pickled.toString();
+}

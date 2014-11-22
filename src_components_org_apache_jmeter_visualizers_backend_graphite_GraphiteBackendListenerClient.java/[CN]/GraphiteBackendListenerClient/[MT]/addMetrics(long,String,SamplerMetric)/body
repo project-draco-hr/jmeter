@@ -1,0 +1,9 @@
+{
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_FAILED_REQUESTS,Integer.toString(metric.getFailure()));
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_SUCCESSFUL_REQUESTS,Integer.toString(metric.getSuccess()));
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_TOTAL_REQUESTS,Integer.toString(metric.getTotal()));
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_MIN_RESPONSE_TIME,Long.toString(metric.getMinTime()));
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_MAX_RESPONSE_TIME,Long.toString(metric.getMaxTime()));
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_PERCENTILE90_RESPONSE_TIME,Double.toString(metric.getPercentile(90)));
+  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_PERCENTILE95_RESPONSE_TIME,Double.toString(metric.getPercentile(95)));
+}
