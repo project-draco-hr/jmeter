@@ -1,5 +1,5 @@
 {
-  if (evt.getSource() == classnameCombo) {
+  if (event.getSource() == classnameCombo) {
     String className=((String)classnameCombo.getSelectedItem()).trim();
     try {
       BackendListenerClient client=(BackendListenerClient)Class.forName(className,true,Thread.currentThread().getContextClassLoader()).newInstance();
