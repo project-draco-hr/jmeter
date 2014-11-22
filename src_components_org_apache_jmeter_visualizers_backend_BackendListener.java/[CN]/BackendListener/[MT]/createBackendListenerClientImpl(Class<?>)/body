@@ -1,13 +1,13 @@
 {
-  if (javaClass == null) {
+  if (clientClass == null) {
     return new ErrorBackendListenerClient();
   }
   BackendListenerClient client;
   try {
-    client=(BackendListenerClient)javaClass.newInstance();
+    client=(BackendListenerClient)clientClass.newInstance();
   }
  catch (  Exception e) {
-    log.error("Exception creating: " + javaClass,e);
+    LOGGER.error("Exception creating: " + clientClass,e);
     client=new ErrorBackendListenerClient();
   }
   return client;

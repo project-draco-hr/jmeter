@@ -1,6 +1,6 @@
 {
   BackendListener clone=(BackendListener)super.clone();
-  clone.javaClass=this.javaClass;
+  clone.clientClass=this.clientClass;
   clone.isToBeRegistered=this.isToBeRegistered;
   return clone;
 }

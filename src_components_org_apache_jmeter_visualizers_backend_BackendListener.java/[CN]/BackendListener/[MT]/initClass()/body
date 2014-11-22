@@ -1,12 +1,12 @@
 {
   String name=getClassname().trim();
   try {
-    javaClass=Class.forName(name,false,Thread.currentThread().getContextClassLoader());
-    Method method=javaClass.getMethod("teardownTest",new Class[]{BackendListenerContext.class});
+    clientClass=Class.forName(name,false,Thread.currentThread().getContextClassLoader());
+    Method method=clientClass.getMethod("teardownTest",new Class[]{BackendListenerContext.class});
     isToBeRegistered=!method.getDeclaringClass().equals(AbstractBackendListenerClient.class);
-    log.info("Created class: " + name + ". Uses teardownTest: "+ isToBeRegistered);
+    LOGGER.info("Created class: " + name + ". Uses teardownTest: "+ isToBeRegistered);
   }
  catch (  Exception e) {
-    log.error(whoAmI() + "\tException initialising: " + name,e);
+    LOGGER.error(whoAmI() + "\tException initialising: " + name,e);
   }
 }

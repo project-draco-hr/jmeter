@@ -1,33 +1,33 @@
 {
-  boolean isDebugEnabled=log.isDebugEnabled();
-  List<SampleResult> l=new ArrayList<SampleResult>(queue.size());
+  boolean isDebugEnabled=LOGGER.isDebugEnabled();
+  List<SampleResult> sampleResults=new ArrayList<SampleResult>(queue.size());
   try {
     boolean eof=false;
     while (!eof) {
       if (isDebugEnabled) {
-        log.debug("Thread:" + Thread.currentThread().getName() + " taking SampleResult from queue:"+ queue.size());
+        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " taking SampleResult from queue:"+ queue.size());
       }
       SampleResult e=queue.take();
       if (isDebugEnabled) {
-        log.debug("Thread:" + Thread.currentThread().getName() + " took SampleResult:"+ e+ ", isFinal:"+ (e == FINAL_EVENT));
+        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " took SampleResult:"+ e+ ", isFinal:"+ (e == FINAL_EVENT));
       }
       while (!(eof=(e == FINAL_EVENT)) && e != null) {
-        l.add(e);
+        sampleResults.add(e);
         if (isDebugEnabled) {
-          log.debug("Thread:" + Thread.currentThread().getName() + " polling from queue:"+ queue.size());
+          LOGGER.debug("Thread:" + Thread.currentThread().getName() + " polling from queue:"+ queue.size());
         }
         e=queue.poll();
         if (isDebugEnabled) {
-          log.debug("Thread:" + Thread.currentThread().getName() + " took from queue:"+ e+ ", isFinal:"+ (e == FINAL_EVENT));
+          LOGGER.debug("Thread:" + Thread.currentThread().getName() + " took from queue:"+ e+ ", isFinal:"+ (e == FINAL_EVENT));
         }
       }
       if (isDebugEnabled) {
-        log.debug("Thread:" + Thread.currentThread().getName() + " exiting with FINAL EVENT:"+ (e == FINAL_EVENT)+ ", null:"+ (e == null));
+        LOGGER.debug("Thread:" + Thread.currentThread().getName() + " exiting with FINAL EVENT:"+ (e == FINAL_EVENT)+ ", null:"+ (e == null));
       }
-      int size=l.size();
+      int size=sampleResults.size();
       if (size > 0) {
-        backendListenerClient.handleSampleResults(l,context);
-        l.clear();
+        backendListenerClient.handleSampleResults(sampleResults,context);
+        sampleResults.clear();
       }
       if (!eof) {
         LockSupport.parkNanos(100);
@@ -36,10 +36,10 @@
   }
  catch (  InterruptedException e) {
   }
-  int size=l.size();
+  int size=sampleResults.size();
   if (size > 0) {
-    backendListenerClient.handleSampleResults(l,context);
-    l.clear();
+    backendListenerClient.handleSampleResults(sampleResults,context);
+    sampleResults.clear();
   }
-  log.info("Worker ended");
+  LOGGER.info("Worker ended");
 }

@@ -3,23 +3,16 @@
     queue.put(FINAL_EVENT);
   }
  catch (  Exception ex) {
-    log.warn("testEnded() with exception:" + ex.getMessage(),ex);
+    LOGGER.warn("testEnded() with exception:" + ex.getMessage(),ex);
   }
-  if (queueWaits > 0) {
-    log.warn("QueueWaits: " + queueWaits + "; QueueWaitTime: "+ queueWaitTime+ " (nanoseconds), you may need to increase queue capacity, see property 'backend_queue_capacity'");
+  if (queueWaits.get() > 0) {
+    LOGGER.warn("QueueWaits: " + queueWaits + "; QueueWaitTime: "+ queueWaitTime+ " (nanoseconds), you may need to increase queue capacity, see property 'backend_queue_capacity'");
   }
-synchronized (TEAR_DOWN_SET) {
-    for (    BackendListener backendListener : TEAR_DOWN_SET) {
-      BackendListenerClient client=backendListener.backendListenerClient;
-      if (client != null) {
-        try {
-          client.teardownTest(backendListener.context);
-        }
- catch (        Exception e) {
-          throw new java.lang.IllegalStateException("Failed calling teardownTest",e);
-        }
-      }
-    }
-    TEAR_DOWN_SET.clear();
+  try {
+    BackendListenerContext context=new BackendListenerContext(getArguments());
+    backendListenerClient.teardownTest(context);
+  }
+ catch (  Exception e) {
+    throw new java.lang.IllegalStateException("Failed calling teardownTest",e);
   }
 }

@@ -1,17 +1,17 @@
 {
   Arguments args=getArguments();
-  context=new BackendListenerContext(args);
-  SampleResult sr=backendListenerClient.createSampleResult(context,e.getResult());
+  BackendListenerContext context=new BackendListenerContext(args);
+  SampleResult sr=backendListenerClient.createSampleResult(context,event.getResult());
   try {
     if (!queue.offer(sr)) {
-      queueWaits++;
+      queueWaits.incrementAndGet();
       long t1=System.nanoTime();
       queue.put(sr);
       long t2=System.nanoTime();
-      queueWaitTime+=t2 - t1;
+      queueWaitTime.addAndGet(t2 - t1);
     }
   }
  catch (  Exception err) {
-    log.error("sampleOccurred, failed to queue the sample",err);
+    LOGGER.error("sampleOccurred, failed to queue the sample",err);
   }
 }
