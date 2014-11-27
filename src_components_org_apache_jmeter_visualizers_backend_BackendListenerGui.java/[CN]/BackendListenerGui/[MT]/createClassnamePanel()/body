@@ -15,7 +15,7 @@
   HorizontalPanel classNamePanel=new HorizontalPanel();
   classNamePanel.add(label);
   classNamePanel.add(classnameCombo);
-  queueSize=new JTextField("",5);
+  queueSize=new JTextField("0",5);
   queueSize.setName("Queue Size");
   JLabel queueSizeLabel=new JLabel(JMeterUtils.getResString("backend_listener_queue_size"));
   queueSizeLabel.setLabelFor(queueSize);
