@@ -25,7 +25,7 @@
   graphPanel.setMaxLength(maxLength);
   graphPanel.setMaxYAxisScale(maxYAxisScale);
   graphPanel.setXAxisLabels(getAxisLabels());
-  graphPanel.setXAxisTitle((String)columnsList.getSelectedItem());
+  graphPanel.setXAxisTitle(JMeterUtils.getResString((String)columnsList.getSelectedItem()));
   graphPanel.setYAxisLabels(this.yAxisLabel);
   graphPanel.setYAxisTitle(this.yAxisTitle);
   graphPanel.setLegendLabels(getLegendLabels());

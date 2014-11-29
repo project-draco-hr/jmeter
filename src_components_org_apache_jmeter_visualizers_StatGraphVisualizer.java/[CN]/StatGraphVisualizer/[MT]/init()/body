@@ -7,7 +7,8 @@
   mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.Y_AXIS));
   mainPanel.add(makeTitlePanel());
   myJTable=new JTable(model);
-  myJTable.setPreferredScrollableViewportSize(new Dimension(500,80));
+  myJTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer(COLUMNS_MSG_PARAMETERS));
+  myJTable.setPreferredScrollableViewportSize(new Dimension(500,70));
   RendererUtils.applyRenderers(myJTable,RENDERERS);
   myScrollPane=new JScrollPane(myJTable);
   settingsPane=new VerticalPanel();

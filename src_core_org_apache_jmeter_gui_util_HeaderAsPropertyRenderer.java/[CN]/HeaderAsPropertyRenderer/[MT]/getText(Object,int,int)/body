@@ -2,5 +2,10 @@
   if (value == null) {
     return "";
   }
-  return JMeterUtils.getResString(value.toString());
+  if (columnsMsgParameters != null && columnsMsgParameters[column] != null) {
+    return MessageFormat.format(JMeterUtils.getResString(value.toString()),columnsMsgParameters[column]);
+  }
+ else {
+    return JMeterUtils.getResString(value.toString());
+  }
 }

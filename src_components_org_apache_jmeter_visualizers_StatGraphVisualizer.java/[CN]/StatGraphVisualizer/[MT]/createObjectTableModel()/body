@@ -1,0 +1,3 @@
+{
+  return new ObjectTableModel(COLUMNS,SamplingStatCalculator.class,new Functor[]{new Functor("getLabel"),new Functor("getCount"),new Functor("getMeanAsNumber"),new Functor("getMedian"),new Functor("getPercentPoint",new Object[]{pct1Value}),new Functor("getPercentPoint",new Object[]{pct2Value}),new Functor("getPercentPoint",new Object[]{pct3Value}),new Functor("getMin"),new Functor("getMax"),new Functor("getErrorPercentage"),new Functor("getRate"),new Functor("getKBPerSecond")},new Functor[]{null,null,null,null,null,null,null,null,null,null,null,null},new Class[]{String.class,Long.class,Long.class,Long.class,Long.class,Long.class,Long.class,Long.class,Long.class,String.class,String.class,String.class});
+}
