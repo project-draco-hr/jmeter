@@ -1,0 +1,7 @@
+{
+  String[] labels=new String[keys.length];
+  for (int i=0; i < labels.length; i++) {
+    labels[i]=MessageFormat.format(JMeterUtils.getResString(keys[i]),COLUMNS_MSG_PARAMETERS[i]);
+  }
+  return labels;
+}

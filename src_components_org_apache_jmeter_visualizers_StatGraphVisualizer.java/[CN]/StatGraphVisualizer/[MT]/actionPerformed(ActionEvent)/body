@@ -21,7 +21,7 @@
     FileWriter writer=null;
     try {
       writer=new FileWriter(chooser.getSelectedFile());
-      CSVSaveService.saveCSVStats(getAllTableData(),writer,saveHeaders.isSelected() ? COLUMNS : null);
+      CSVSaveService.saveCSVStats(getAllTableData(model),writer,saveHeaders.isSelected() ? getLabels(COLUMNS) : null);
     }
  catch (    FileNotFoundException e) {
       JMeterUtils.reportErrorToUser(e.getMessage(),"Error saving data");
