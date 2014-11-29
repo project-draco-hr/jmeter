@@ -17,7 +17,13 @@
     Map.Entry<Object,Object> entry=iterator.next();
     String key=(String)entry.getKey();
     if (!messagesFr.containsKey(key)) {
-      missingLabels.put(key,(String)entry.getValue());
+      String value=(String)entry.getValue();
+      if (value.matches("[\\d%]+")) {
+        System.out.println("Ignoring missing " + key + "="+ value+ " in "+ languageBundle);
+      }
+ else {
+        missingLabels.put(key,(String)entry.getValue());
+      }
     }
   }
   if (!missingLabels.isEmpty()) {
