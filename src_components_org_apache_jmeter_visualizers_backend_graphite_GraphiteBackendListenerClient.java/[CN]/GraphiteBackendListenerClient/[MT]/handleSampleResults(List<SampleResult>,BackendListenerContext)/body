@@ -1,5 +1,6 @@
 {
   for (  SampleResult sampleResult : sampleResults) {
+    getUserMetrics().add(sampleResult);
     if (!summaryOnly && samplersToFilter.contains(sampleResult.getSampleLabel())) {
       SamplerMetric samplerMetric=getSamplerMetric(sampleResult.getSampleLabel());
       samplerMetric.add(sampleResult);

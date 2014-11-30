@@ -1,17 +1,12 @@
 {
   if (result.isSuccessful()) {
-    success++;
+    successes++;
   }
  else {
-    failure++;
+    failures++;
   }
   long time=result.getTime();
-  int activeThreads=result.getAllThreads();
-  maxTime=Math.max(time,maxTime);
-  minTime=Math.min(time,minTime);
-  maxActiveThreads=Math.max(maxActiveThreads,activeThreads);
-  minActiveThreads=Math.min(minActiveThreads,activeThreads);
   if (result.isSuccessful()) {
-    stats.addValue(time);
+    responsesStats.addValue(time);
   }
 }

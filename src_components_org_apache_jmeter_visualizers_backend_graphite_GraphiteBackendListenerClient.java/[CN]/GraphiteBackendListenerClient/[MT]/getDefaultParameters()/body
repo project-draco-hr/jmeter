@@ -6,5 +6,6 @@
   arguments.addArgument("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
   arguments.addArgument("summaryOnly","true");
   arguments.addArgument("samplersList","");
+  arguments.addArgument("percentiles",DEFAULT_PERCENTILES);
   return arguments;
 }
