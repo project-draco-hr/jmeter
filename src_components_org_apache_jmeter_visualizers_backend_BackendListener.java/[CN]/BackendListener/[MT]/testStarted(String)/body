@@ -2,7 +2,16 @@
   if (LOGGER.isDebugEnabled()) {
     LOGGER.debug(whoAmI() + "\ttestStarted(" + host+ ")");
   }
-  queue=new ArrayBlockingQueue<SampleResult>(getQueueSize());
+  int queueSize;
+  final String size=getQueueSize();
+  try {
+    queueSize=Integer.parseInt(size);
+  }
+ catch (  NumberFormatException nfe) {
+    LOGGER.warn("Invalid queue size '" + size + "' defaulting to "+ DEFAULT_QUEUE_SIZE);
+    queueSize=Integer.parseInt(DEFAULT_QUEUE_SIZE);
+  }
+  queue=new ArrayBlockingQueue<SampleResult>(queueSize);
   initClass();
   queueWaits=new AtomicLong(0L);
   queueWaitTime=new AtomicLong(0L);

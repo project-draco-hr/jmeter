@@ -8,5 +8,5 @@
  else {
     LOGGER.error("Error setting class:'" + className + "' in BackendListener: "+ getName()+ ", check for a missing jar in your jmeter 'search_paths' and 'plugin_dependency_paths' properties");
   }
-  queueSize.setText(Integer.toString(((BackendListener)config).getQueueSize()));
+  queueSize.setText(((BackendListener)config).getQueueSize());
 }

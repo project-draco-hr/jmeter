@@ -2,5 +2,5 @@
   super.clearGui();
   argsPanel.clearGui();
   classnameCombo.setSelectedIndex(0);
-  queueSize.setText("0");
+  queueSize.setText(BackendListener.DEFAULT_QUEUE_SIZE);
 }
