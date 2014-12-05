@@ -6,7 +6,7 @@
   samplersList=context.getParameter("samplersList","");
   rootMetricsPrefix=context.getParameter("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
   String percentilesAsString=context.getParameter("percentiles",DEFAULT_METRICS_PREFIX);
-  String[] percentilesStringArray=percentilesAsString.split(";");
+  String[] percentilesStringArray=percentilesAsString.split(SEPARATOR);
   percentiles=new HashMap<String,Float>(percentilesStringArray.length);
   DecimalFormat format=new DecimalFormat("0.##");
   for (int i=0; i < percentilesStringArray.length; i++) {
@@ -16,14 +16,14 @@
         percentiles.put(METRIC_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
       }
  catch (      Exception e) {
-        LOGGER.error("Error parsing percentile:'" + percentilesStringArray[i] + "'");
+        LOGGER.error("Error parsing percentile:'" + percentilesStringArray[i] + "'",e);
       }
     }
   }
   Class<?> clazz=Class.forName(graphiteMetricsSenderClass);
   this.pickleMetricsManager=(GraphiteMetricsSender)clazz.newInstance();
   pickleMetricsManager.setup(graphiteHost,graphitePort,rootMetricsPrefix);
-  String[] samplers=samplersList.split(",");
+  String[] samplers=samplersList.split(SEPARATOR);
   samplersToFilter=new HashSet<String>();
   for (  String samplerName : samplers) {
     samplersToFilter.add(samplerName);
