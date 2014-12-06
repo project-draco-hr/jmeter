@@ -1,12 +1,12 @@
 {
-  Map<HttpClientKey,HttpClient> map=HTTPCLIENTS.get();
+  Map<HttpClientKey,HttpClient> mapHttpClientPerHttpClientKey=HTTPCLIENTS_CACHE_PER_THREAD_AND_HTTPCLIENTKEY.get();
   final String host=url.getHost();
   final String proxyHost=getProxyHost();
   final int proxyPort=getProxyPortInt();
   boolean useStaticProxy=isStaticProxy(host);
   boolean useDynamicProxy=isDynamicProxy(proxyHost,proxyPort);
   HttpClientKey key=new HttpClientKey(url,(useStaticProxy || useDynamicProxy),useDynamicProxy ? proxyHost : PROXY_HOST,useDynamicProxy ? proxyPort : PROXY_PORT,useDynamicProxy ? getProxyUser() : PROXY_USER,useDynamicProxy ? getProxyPass() : PROXY_PASS);
-  HttpClient httpClient=map.get(key);
+  HttpClient httpClient=mapHttpClientPerHttpClientKey.get(key);
   if (httpClient != null && resetSSLContext && HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(url.getProtocol())) {
     ((AbstractHttpClient)httpClient).clearRequestInterceptors();
     ((AbstractHttpClient)httpClient).clearResponseInterceptors();
@@ -61,7 +61,7 @@
     if (log.isDebugEnabled()) {
       log.debug("Created new HttpClient: @" + System.identityHashCode(httpClient) + " "+ key.toString());
     }
-    map.put(key,httpClient);
+    mapHttpClientPerHttpClientKey.put(key,httpClient);
   }
  else {
     if (log.isDebugEnabled()) {

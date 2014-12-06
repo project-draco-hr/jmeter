@@ -1,11 +1,11 @@
 {
-  Map<HttpClientKey,HttpClient> map=HTTPCLIENTS.get();
-  if (map != null) {
-    for (    HttpClient cl : map.values()) {
+  Map<HttpClientKey,HttpClient> mapHttpClientPerHttpClientKey=HTTPCLIENTS_CACHE_PER_THREAD_AND_HTTPCLIENTKEY.get();
+  if (mapHttpClientPerHttpClientKey != null) {
+    for (    HttpClient cl : mapHttpClientPerHttpClientKey.values()) {
       ((AbstractHttpClient)cl).clearRequestInterceptors();
       ((AbstractHttpClient)cl).clearResponseInterceptors();
       cl.getConnectionManager().shutdown();
     }
-    map.clear();
+    mapHttpClientPerHttpClientKey.clear();
   }
 }
