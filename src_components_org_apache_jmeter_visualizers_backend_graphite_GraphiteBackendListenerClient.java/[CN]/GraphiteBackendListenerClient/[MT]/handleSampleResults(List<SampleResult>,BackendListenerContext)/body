@@ -1,11 +1,13 @@
 {
-  for (  SampleResult sampleResult : sampleResults) {
-    getUserMetrics().add(sampleResult);
-    if (!summaryOnly && samplersToFilter.contains(sampleResult.getSampleLabel())) {
-      SamplerMetric samplerMetric=getSamplerMetric(sampleResult.getSampleLabel());
-      samplerMetric.add(sampleResult);
+synchronized (LOCK) {
+    for (    SampleResult sampleResult : sampleResults) {
+      getUserMetrics().add(sampleResult);
+      if (!summaryOnly && samplersToFilter.contains(sampleResult.getSampleLabel())) {
+        SamplerMetric samplerMetric=getSamplerMetric(sampleResult.getSampleLabel());
+        samplerMetric.add(sampleResult);
+      }
+      SamplerMetric cumulatedMetrics=getSamplerMetric(CUMULATED_METRICS);
+      cumulatedMetrics.add(sampleResult);
     }
-    SamplerMetric cumulatedMetrics=getSamplerMetric(CUMULATED_METRICS);
-    cumulatedMetrics.add(sampleResult);
   }
 }

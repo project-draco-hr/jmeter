@@ -1,3 +1,6 @@
 {
+synchronized (LOCK) {
+    queuesByTestElementName.clear();
+  }
   setArguments(new Arguments());
 }

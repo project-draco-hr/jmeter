@@ -11,21 +11,32 @@
     LOGGER.warn("Invalid queue size '" + size + "' defaulting to "+ DEFAULT_QUEUE_SIZE);
     queueSize=Integer.parseInt(DEFAULT_QUEUE_SIZE);
   }
-  queue=new ArrayBlockingQueue<SampleResult>(queueSize);
-  initClass();
-  queueWaits=new AtomicLong(0L);
-  queueWaitTime=new AtomicLong(0L);
-  LOGGER.info(getName() + ":Starting worker with class:" + clientClass+ " and queue capacity:"+ getQueueSize());
-  backendListenerClient=createBackendListenerClientImpl(clientClass);
-  BackendListenerContext context=new BackendListenerContext((Arguments)getArguments().clone());
-  try {
-    backendListenerClient.setupTest(context);
+synchronized (LOCK) {
+    myName=getName();
+    listenerClientData=queuesByTestElementName.get(myName);
+    if (listenerClientData == null) {
+      initClass();
+      BackendListenerClient backendListenerClient=createBackendListenerClientImpl(clientClass);
+      BackendListenerContext context=new BackendListenerContext((Arguments)getArguments().clone());
+      listenerClientData=new ListenerClientData();
+      listenerClientData.queue=new ArrayBlockingQueue<SampleResult>(queueSize);
+      listenerClientData.queueWaits=new AtomicLong(0L);
+      listenerClientData.queueWaitTime=new AtomicLong(0L);
+      listenerClientData.latch=new CountDownLatch(1);
+      listenerClientData.client=backendListenerClient;
+      LOGGER.info(getName() + ":Starting worker with class:" + clientClass+ " and queue capacity:"+ getQueueSize());
+      Worker worker=new Worker(backendListenerClient,(Arguments)getArguments().clone(),listenerClientData);
+      worker.setDaemon(true);
+      worker.start();
+      LOGGER.info(getName() + ": Started  worker with class:" + clientClass);
+      try {
+        backendListenerClient.setupTest(context);
+      }
+ catch (      Exception e) {
+        throw new java.lang.IllegalStateException("Failed calling setupTest",e);
+      }
+      queuesByTestElementName.put(myName,listenerClientData);
+    }
+    listenerClientData.instanceCount++;
   }
- catch (  Exception e) {
-    throw new java.lang.IllegalStateException("Failed calling setupTest",e);
-  }
-  Worker worker=new Worker(backendListenerClient,(Arguments)getArguments().clone(),queue);
-  worker.setDaemon(true);
-  worker.start();
-  LOGGER.info(getName() + ": Started  worker with class:" + clientClass);
 }

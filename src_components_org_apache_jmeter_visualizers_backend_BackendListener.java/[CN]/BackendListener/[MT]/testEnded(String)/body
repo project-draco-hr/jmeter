@@ -1,3 +1,29 @@
 {
-  testEnded();
+synchronized (LOCK) {
+    ListenerClientData listenerClientData=queuesByTestElementName.get(myName);
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("testEnded called on instance " + myName + "#"+ listenerClientData.instanceCount);
+    }
+    listenerClientData.instanceCount--;
+    if (listenerClientData.instanceCount > 0) {
+      return;
+    }
+  }
+  try {
+    listenerClientData.queue.put(FINAL_SAMPLE_RESULT);
+  }
+ catch (  Exception ex) {
+    LOGGER.warn("testEnded() with exception:" + ex.getMessage(),ex);
+  }
+  if (listenerClientData.queueWaits.get() > 0) {
+    LOGGER.warn("QueueWaits: " + listenerClientData.queueWaits + "; QueueWaitTime: "+ listenerClientData.queueWaitTime+ " (nanoseconds), you may need to increase queue capacity, see property 'backend_queue_capacity'");
+  }
+  try {
+    listenerClientData.latch.await();
+    BackendListenerContext context=new BackendListenerContext(getArguments());
+    listenerClientData.client.teardownTest(context);
+  }
+ catch (  Exception e) {
+    throw new java.lang.IllegalStateException("Failed calling teardownTest",e);
+  }
 }

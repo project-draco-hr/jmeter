@@ -1,4 +1,8 @@
 {
+  boolean cancelState=timerHandle.cancel(false);
+  if (LOGGER.isDebugEnabled()) {
+    LOGGER.debug("Canceled state:" + cancelState);
+  }
   scheduler.shutdown();
   try {
     scheduler.awaitTermination(30,TimeUnit.SECONDS);
@@ -6,6 +10,7 @@
  catch (  InterruptedException e) {
     LOGGER.error("Error waiting for end of scheduler");
   }
+  sendMetrics();
   samplersToFilter.clear();
   pickleMetricsManager.destroy();
   super.teardownTest(context);

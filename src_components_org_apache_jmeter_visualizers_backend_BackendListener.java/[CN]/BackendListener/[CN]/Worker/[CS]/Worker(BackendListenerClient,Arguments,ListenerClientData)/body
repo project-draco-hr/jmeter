@@ -1,5 +1,5 @@
 {
-  queue=q;
+  this.listenerClientData=listenerClientData;
   arguments.addArgument(TestElement.NAME,getName());
   context=new BackendListenerContext(arguments);
   this.backendListenerClient=backendListenerClient;

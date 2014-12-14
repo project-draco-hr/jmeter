@@ -1,10 +1,10 @@
 {
-  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_FAILED_REQUESTS,Integer.toString(metric.getFailures()));
-  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_SUCCESSFUL_REQUESTS,Integer.toString(metric.getSuccesses()));
-  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_TOTAL_REQUESTS,Integer.toString(metric.getTotal()));
-  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_MIN_RESPONSE_TIME,Double.toString(metric.getMinTime()));
-  pickleMetricsManager.addMetric(timestamp,contextName,METRIC_MAX_RESPONSE_TIME,Double.toString(metric.getMaxTime()));
+  pickleMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_FAILED_REQUESTS,Integer.toString(metric.getFailures()));
+  pickleMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_SUCCESSFUL_REQUESTS,Integer.toString(metric.getSuccesses()));
+  pickleMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_TOTAL_REQUESTS,Integer.toString(metric.getTotal()));
+  pickleMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_MIN_RESPONSE_TIME,Double.toString(metric.getMinTime()));
+  pickleMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_MAX_RESPONSE_TIME,Double.toString(metric.getMaxTime()));
   for (  Map.Entry<String,Float> entry : percentiles.entrySet()) {
-    pickleMetricsManager.addMetric(timestamp,contextName,entry.getKey(),Double.toString(metric.getPercentile(entry.getValue().floatValue())));
+    pickleMetricsManager.addMetric(timestampInSeconds,contextName,entry.getKey(),Double.toString(metric.getPercentile(entry.getValue().floatValue())));
   }
 }

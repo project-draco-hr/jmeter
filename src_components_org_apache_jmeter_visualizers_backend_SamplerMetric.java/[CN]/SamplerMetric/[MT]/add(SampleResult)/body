@@ -1,9 +1,9 @@
 {
   if (result.isSuccessful()) {
-    successes++;
+    successes+=result.getSampleCount() - result.getErrorCount();
   }
  else {
-    failures++;
+    failures+=result.getErrorCount();
   }
   long time=result.getTime();
   if (result.isSuccessful()) {

@@ -29,5 +29,5 @@
     samplersToFilter.add(samplerName);
   }
   scheduler=Executors.newScheduledThreadPool(MAX_POOL_SIZE);
-  scheduler.scheduleAtFixedRate(this,ONE_SECOND,ONE_SECOND,TimeUnit.SECONDS);
+  this.timerHandle=scheduler.scheduleAtFixedRate(this,ONE_SECOND,ONE_SECOND,TimeUnit.SECONDS);
 }

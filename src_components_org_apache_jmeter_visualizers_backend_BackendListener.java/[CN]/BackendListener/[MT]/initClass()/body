@@ -2,9 +2,6 @@
   String name=getClassname().trim();
   try {
     clientClass=Class.forName(name,false,Thread.currentThread().getContextClassLoader());
-    Method method=clientClass.getMethod("teardownTest",new Class[]{BackendListenerContext.class});
-    isToBeRegistered=!method.getDeclaringClass().equals(AbstractBackendListenerClient.class);
-    LOGGER.info("Created class: " + name + ". Uses teardownTest: "+ isToBeRegistered);
   }
  catch (  Exception e) {
     LOGGER.error(whoAmI() + "\tException initialising: " + name,e);
