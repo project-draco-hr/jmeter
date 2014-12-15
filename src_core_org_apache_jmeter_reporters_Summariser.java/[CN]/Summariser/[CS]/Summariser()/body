@@ -1,7 +1,7 @@
 {
   super();
-synchronized (lock) {
-    accumulators.clear();
-    instanceCount=0;
+synchronized (LOCK) {
+    ACCUMULATORS.clear();
+    INSTANCE_COUNT=0;
   }
 }

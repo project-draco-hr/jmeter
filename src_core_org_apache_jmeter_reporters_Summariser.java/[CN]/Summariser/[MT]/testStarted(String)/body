@@ -1,11 +1,11 @@
 {
-synchronized (lock) {
+synchronized (LOCK) {
     myName=getName();
-    myTotals=accumulators.get(myName);
+    myTotals=ACCUMULATORS.get(myName);
     if (myTotals == null) {
       myTotals=new Totals();
-      accumulators.put(myName,myTotals);
+      ACCUMULATORS.put(myName,myTotals);
     }
-    instanceCount++;
+    INSTANCE_COUNT++;
   }
 }

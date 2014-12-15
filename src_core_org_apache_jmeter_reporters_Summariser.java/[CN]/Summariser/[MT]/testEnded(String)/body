@@ -1,9 +1,9 @@
 {
   Set<Entry<String,Totals>> totals=null;
-synchronized (lock) {
-    instanceCount--;
-    if (instanceCount <= 0) {
-      totals=accumulators.entrySet();
+synchronized (LOCK) {
+    INSTANCE_COUNT--;
+    if (INSTANCE_COUNT <= 0) {
+      totals=ACCUMULATORS.entrySet();
     }
   }
   if (totals == null) {
