@@ -1,7 +1,7 @@
 {
   super(beanClass);
   createPropertyGroup("varName",new String[]{"dataSource"});
-  createPropertyGroup("sql",new String[]{"queryType","query","queryArguments","queryArgumentsTypes","variableNames","resultVariable","queryTimeout"});
+  createPropertyGroup("sql",new String[]{"queryType","query","queryArguments","queryArgumentsTypes","variableNames","resultVariable","queryTimeout","resultSetHandler"});
   PropertyDescriptor p=property("dataSource");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
@@ -14,6 +14,11 @@
   p=property("variableNames");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");
+  p=property("resultSetHandler");
+  p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+  p.setValue(DEFAULT,AbstractJDBCTestElement.RS_STORE_AS_STRING);
+  p.setValue(NOT_OTHER,Boolean.TRUE);
+  p.setValue(TAGS,new String[]{AbstractJDBCTestElement.RS_STORE_AS_STRING,AbstractJDBCTestElement.RS_STORE_AS_OBJECT,AbstractJDBCTestElement.RS_COUNT_RECORDS});
   p=property("resultVariable");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
   p.setValue(DEFAULT,"");

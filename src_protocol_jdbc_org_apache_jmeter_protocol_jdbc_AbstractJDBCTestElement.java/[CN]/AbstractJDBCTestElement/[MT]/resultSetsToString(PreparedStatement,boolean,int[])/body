@@ -36,6 +36,9 @@
         sb.append(i + 1);
         sb.append("] ");
         sb.append(o);
+        if (o instanceof java.sql.ResultSet && RS_COUNT_RECORDS.equals(resultSetHandler)) {
+          sb.append(" ").append(countRows((ResultSet)o)).append(" rows");
+        }
         sb.append("\n");
       }
     }
@@ -46,7 +49,21 @@
         String name=varnames[i].trim();
         if (name.length() > 0) {
           Object o=outputValues.get(i);
-          jmvars.put(name,o == null ? null : o.toString());
+          if (o instanceof java.sql.ResultSet) {
+            ResultSet resultSet=(ResultSet)o;
+            if (RS_STORE_AS_OBJECT.equals(resultSetHandler)) {
+              jmvars.putObject(name,o);
+            }
+ else             if (RS_COUNT_RECORDS.equals(resultSetHandler)) {
+              jmvars.put(name,o.toString() + " " + countRows(resultSet)+ " rows");
+            }
+ else {
+              jmvars.put(name,o.toString());
+            }
+          }
+ else {
+            jmvars.put(name,o == null ? null : o.toString());
+          }
         }
       }
     }
