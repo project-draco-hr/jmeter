@@ -12,6 +12,6 @@
   }
   sendMetrics();
   samplersToFilter.clear();
-  pickleMetricsManager.destroy();
+  graphiteMetricsManager.destroy();
   super.teardownTest(context);
 }

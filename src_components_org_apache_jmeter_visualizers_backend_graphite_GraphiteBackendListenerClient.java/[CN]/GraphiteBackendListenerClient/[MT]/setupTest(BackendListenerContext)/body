@@ -1,7 +1,7 @@
 {
   String graphiteMetricsSenderClass=context.getParameter("graphiteMetricsSender");
   graphiteHost=context.getParameter("graphiteHost");
-  graphitePort=context.getIntParameter("graphitePort",DEFAULT_PICKLE_PORT);
+  graphitePort=context.getIntParameter("graphitePort",DEFAULT_PLAINTEXT_PROTOCOL_PORT);
   summaryOnly=context.getBooleanParameter("summaryOnly",true);
   samplersList=context.getParameter("samplersList","");
   rootMetricsPrefix=context.getParameter("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
@@ -21,8 +21,8 @@
     }
   }
   Class<?> clazz=Class.forName(graphiteMetricsSenderClass);
-  this.pickleMetricsManager=(GraphiteMetricsSender)clazz.newInstance();
-  pickleMetricsManager.setup(graphiteHost,graphitePort,rootMetricsPrefix);
+  this.graphiteMetricsManager=(GraphiteMetricsSender)clazz.newInstance();
+  graphiteMetricsManager.setup(graphiteHost,graphitePort,rootMetricsPrefix);
   String[] samplers=samplersList.split(SEPARATOR);
   samplersToFilter=new HashSet<String>();
   for (  String samplerName : samplers) {

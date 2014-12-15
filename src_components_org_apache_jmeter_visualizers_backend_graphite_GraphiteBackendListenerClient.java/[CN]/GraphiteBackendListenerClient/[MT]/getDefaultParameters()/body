@@ -2,7 +2,7 @@
   Arguments arguments=new Arguments();
   arguments.addArgument("graphiteMetricsSender",TextGraphiteMetricsSender.class.getName());
   arguments.addArgument("graphiteHost","");
-  arguments.addArgument("graphitePort",Integer.toString(DEFAULT_PICKLE_PORT));
+  arguments.addArgument("graphitePort",Integer.toString(DEFAULT_PLAINTEXT_PROTOCOL_PORT));
   arguments.addArgument("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
   arguments.addArgument("summaryOnly","true");
   arguments.addArgument("samplersList","");
