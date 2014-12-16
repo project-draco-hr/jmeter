@@ -1,0 +1,43 @@
+{
+  Header authHeader=null;
+  Authorization authorization=null;
+  for (  TestElement te : subConfigs) {
+    if (te instanceof HeaderManager) {
+      List<TestElementProperty> headers=(ArrayList<TestElementProperty>)((HeaderManager)te).getHeaders().getObjectValue();
+      for (Iterator<?> iterator=headers.iterator(); iterator.hasNext(); ) {
+        TestElementProperty tep=(TestElementProperty)iterator.next();
+        if (tep.getName().equals(HTTPConstants.HEADER_AUTHORIZATION)) {
+          authHeader=(Header)tep.getObjectValue();
+          String[] authHeaderContent=authHeader.getValue().split(" ");
+          String authType=null;
+          String authCredentialsBase64=null;
+          if (authHeaderContent.length >= 2) {
+            authType=authHeaderContent[0];
+            authCredentialsBase64=authHeaderContent[1];
+            authorization=new Authorization();
+            try {
+              authorization.setURL(sampler.getUrl().toExternalForm());
+            }
+ catch (            MalformedURLException e) {
+              log.error("Error filling url on authorization, message:" + e.getMessage(),e);
+              authorization.setURL("${AUTH_BASE_URL}");
+            }
+            authorization.setMechanism(authType.equals(BASIC_AUTH) || authType.equals(DIGEST_AUTH) ? AuthManager.Mechanism.BASIC_DIGEST : AuthManager.Mechanism.KERBEROS);
+            if (BASIC_AUTH.equals(authType)) {
+              String authCred=new String(Base64.decodeBase64(authCredentialsBase64));
+              String[] loginPassword=authCred.split(":");
+              authorization.setUser(loginPassword[0]);
+              authorization.setPass(loginPassword[1]);
+            }
+ else {
+              authorization.setUser("${AUTH_LOGIN}");
+              authorization.setPass("${AUTH_PASSWORD}");
+            }
+          }
+          iterator.remove();
+        }
+      }
+    }
+  }
+  return authorization;
+}

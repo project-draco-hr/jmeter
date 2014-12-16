@@ -33,6 +33,10 @@
       sampler.setFollowRedirects(samplerFollowRedirects);
       sampler.setUseKeepAlive(useKeepAlive);
       sampler.setImageParser(samplerDownloadImages);
+      Authorization authorization=createAuthorization(subConfigs,sampler);
+      if (authorization != null) {
+        setAuthorization(authorization,myTarget);
+      }
       placeSampler(sampler,subConfigs,myTarget);
     }
  else {

@@ -1,0 +1,8 @@
+{
+  AuthManager authManager=new AuthManager();
+  authManager.setProperty(TestElement.GUI_CLASS,AUTH_PANEL);
+  authManager.setProperty(TestElement.TEST_CLASS,AUTH_MANAGER);
+  authManager.setName("HTTP Authorization Manager");
+  authManager.addAuth(authorization);
+  return authManager;
+}

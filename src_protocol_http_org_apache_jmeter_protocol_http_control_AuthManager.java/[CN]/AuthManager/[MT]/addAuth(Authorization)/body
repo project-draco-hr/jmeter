@@ -1,3 +1,20 @@
 {
-  getAuthObjects().addItem(auth);
+  boolean alreadyExists=false;
+  PropertyIterator iter=getAuthObjects().iterator();
+  while (iter.hasNext()) {
+    Authorization authorization=(Authorization)iter.next().getObjectValue();
+    if (authorization == null) {
+      continue;
+    }
+    if (match(authorization,newAuthorization)) {
+      if (log.isDebugEnabled()) {
+        log.debug("Found the same Authorization object:" + newAuthorization.toString());
+      }
+      alreadyExists=true;
+      break;
+    }
+  }
+  if (!alreadyExists) {
+    getAuthObjects().addItem(newAuthorization);
+  }
 }

@@ -1,0 +1,18 @@
+{
+  JMeterTreeModel jmeterTreeModel=GuiPackage.getInstance().getTreeModel();
+  List<JMeterTreeNode> authManagerNodes=jmeterTreeModel.getNodesOfType(AuthManager.class);
+  if (authManagerNodes.size() == 0) {
+    try {
+      log.debug("Creating HTTP Authentication manager for authorization:" + authorization);
+      AuthManager authManager=newAuthorizationManager(authorization);
+      jmeterTreeModel.addComponent(authManager,target);
+    }
+ catch (    IllegalUserActionException e) {
+      log.error("Failed to add Authorization Manager to target node:" + target.getName(),e);
+    }
+  }
+ else {
+    AuthManager authManager=(AuthManager)authManagerNodes.get(0).getTestElement();
+    authManager.addAuth(authorization);
+  }
+}

@@ -91,7 +91,6 @@ catch (  Exception e) {
     }
     if (headers != null) {
       headers.removeHeaderNamed(HTTPConstants.HEADER_COOKIE);
-      headers.removeHeaderNamed(HTTPConstants.HEADER_AUTHORIZATION);
       for (      String hdr : HEADERS_TO_REMOVE) {
         headers.removeHeaderNamed(hdr);
       }
