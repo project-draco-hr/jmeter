@@ -1,6 +1,5 @@
 {
-  String laf;
-  laf=PREFS.get(USER_PREFS_KEY,null);
+  String laf=PREFS.get(USER_PREFS_KEY,null);
   if (laf != null) {
     return checkLafName(laf);
   }
