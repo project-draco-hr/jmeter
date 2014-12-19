@@ -2,7 +2,12 @@
   try {
     String className=ev.getActionCommand().substring(ActionNames.LAF_PREFIX.length()).replace('/','.');
     UIManager.setLookAndFeel(className);
-    SwingUtilities.updateComponentTreeUI(GuiPackage.getInstance().getMainFrame());
+    for (    Window w : Window.getWindows()) {
+      SwingUtilities.updateComponentTreeUI(w);
+      if (w.isDisplayable() && (w instanceof Frame ? !((Frame)w).isResizable() : w instanceof Dialog ? !((Dialog)w).isResizable() : true)) {
+        w.pack();
+      }
+    }
     PREFS.put(USER_PREFS_KEY,className);
   }
  catch (  javax.swing.UnsupportedLookAndFeelException e) {
