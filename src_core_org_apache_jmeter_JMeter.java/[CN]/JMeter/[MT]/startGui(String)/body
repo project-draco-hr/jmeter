@@ -1,4 +1,11 @@
 {
+  String jMeterLaf=LookAndFeelCommand.getJMeterLaf();
+  try {
+    UIManager.setLookAndFeel(jMeterLaf);
+  }
+ catch (  Exception ex) {
+    log.warn("Could not set LAF to:" + jMeterLaf,ex);
+  }
   PluginManager.install(this,true);
   JMeterTreeModel treeModel=new JMeterTreeModel();
   JMeterTreeListener treeLis=new JMeterTreeListener(treeModel);
