@@ -16,13 +16,19 @@
   for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
     Map.Entry<Object,Object> entry=iterator.next();
     String key=(String)entry.getKey();
+    final String I18NString="[\\d% ]+";
     if (!messagesFr.containsKey(key)) {
       String value=(String)entry.getValue();
-      if (value.matches("[\\d%]+")) {
-        System.out.println("Ignoring missing " + key + "="+ value+ " in "+ languageBundle);
+      if (value.matches(I18NString)) {
       }
  else {
         missingLabels.put(key,(String)entry.getValue());
+      }
+    }
+ else {
+      String value=(String)entry.getValue();
+      if (value.matches(I18NString)) {
+        System.out.println("Unnecessary entry " + key + "="+ value+ " in "+ languageBundle);
       }
     }
   }
