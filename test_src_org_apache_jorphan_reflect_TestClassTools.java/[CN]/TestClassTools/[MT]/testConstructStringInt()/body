@@ -1,0 +1,5 @@
+{
+  Integer dummy=(Integer)ClassTools.construct("java.lang.Integer",23);
+  assertNotNull(dummy);
+  assertEquals(Integer.valueOf(23),dummy);
+}

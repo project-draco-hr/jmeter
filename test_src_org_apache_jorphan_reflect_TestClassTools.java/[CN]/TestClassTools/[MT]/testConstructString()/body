@@ -1,0 +1,5 @@
+{
+  String dummy=(String)ClassTools.construct("java.lang.String");
+  assertNotNull(dummy);
+  assertEquals("",dummy);
+}

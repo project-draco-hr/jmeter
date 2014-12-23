@@ -2,8 +2,8 @@
   Object instance=null;
   try {
     Class<?> clazz=ClassUtils.getClass(className);
-    clazz.getConstructor(new Class[]{Integer.TYPE});
-    instance=ClassUtils.getClass(className).newInstance();
+    Constructor<?> constructor=clazz.getConstructor(Integer.TYPE);
+    instance=constructor.newInstance(parameter);
   }
  catch (  ClassNotFoundException e) {
     throw new JMeterException(e);
@@ -18,6 +18,12 @@ catch (  SecurityException e) {
     throw new JMeterException(e);
   }
 catch (  NoSuchMethodException e) {
+    throw new JMeterException(e);
+  }
+catch (  IllegalArgumentException e) {
+    throw new JMeterException(e);
+  }
+catch (  InvocationTargetException e) {
     throw new JMeterException(e);
   }
   return instance;
