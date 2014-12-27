@@ -1,6 +1,14 @@
 {
   ValueReplacer replacer=GuiPackage.getInstance().getReplacer();
   modifyTestElement(model);
+  TreeNodeWrapper treeNodeWrapper=(TreeNodeWrapper)targetNodesModel.getSelectedItem();
+  if (JMeterUtils.getResString("use_recording_controller").equals(treeNodeWrapper.getLabel())) {
+    JMeterTreeNode targetNode=model.findTargetControllerNode();
+    if (targetNode == null || !(targetNode.getTestElement() instanceof RecordingController)) {
+      JOptionPane.showMessageDialog(this,JMeterUtils.getResString("proxy_cl_wrong_target_cl"),JMeterUtils.getResString("error_title"),JOptionPane.ERROR_MESSAGE);
+      return;
+    }
+  }
   Cursor cursor=getCursor();
   setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
   try {
