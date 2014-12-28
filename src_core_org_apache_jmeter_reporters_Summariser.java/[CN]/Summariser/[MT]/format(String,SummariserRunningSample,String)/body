@@ -6,9 +6,9 @@
   sb.append(" ");
   sb.append(type);
   sb.append(" ");
-  sb.append(longToSb(tmp,s.getNumSamples(),6));
+  sb.append(longToSb(tmp,summariserRunningSample.getNumSamples(),6));
   sb.append(" in ");
-  long elapsed=s.getElapsed();
+  long elapsed=summariserRunningSample.getElapsed();
   long elapsedSec=(elapsed + 500) / 1000;
   if (elapsedSec > 100 || (elapsed - elapsedSec * 1000) < 50) {
     sb.append(longToSb(tmp,elapsedSec,5));
@@ -19,21 +19,21 @@
   }
   sb.append("s = ");
   if (elapsed > 0) {
-    sb.append(doubleToSb(dfDouble,tmp,s.getRate(),6,1));
+    sb.append(doubleToSb(dfDouble,tmp,summariserRunningSample.getRate(),6,1));
   }
  else {
     sb.append("******");
   }
   sb.append("/s Avg: ");
-  sb.append(longToSb(tmp,s.getAverage(),5));
+  sb.append(longToSb(tmp,summariserRunningSample.getAverage(),5));
   sb.append(" Min: ");
-  sb.append(longToSb(tmp,s.getMin(),5));
+  sb.append(longToSb(tmp,summariserRunningSample.getMin(),5));
   sb.append(" Max: ");
-  sb.append(longToSb(tmp,s.getMax(),5));
+  sb.append(longToSb(tmp,summariserRunningSample.getMax(),5));
   sb.append(" Err: ");
-  sb.append(longToSb(tmp,s.getErrorCount(),5));
+  sb.append(longToSb(tmp,summariserRunningSample.getErrorCount(),5));
   sb.append(" (");
-  sb.append(s.getErrorPercentageString());
+  sb.append(summariserRunningSample.getErrorPercentageString());
   sb.append(")");
   if ("+".equals(type)) {
     ThreadCounts tc=JMeterContextService.getThreadCounts();
