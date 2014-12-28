@@ -1,0 +1,5 @@
+{
+  Calendar cal=new GregorianCalendar();
+  Date time=cal.getTime();
+  assertEquals(cal,Converter.getCalendar(time,null));
+}

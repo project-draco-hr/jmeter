@@ -1,0 +1,4 @@
+{
+  Calendar cal=new GregorianCalendar();
+  assertEquals(cal,Converter.getCalendar(null,cal));
+}
