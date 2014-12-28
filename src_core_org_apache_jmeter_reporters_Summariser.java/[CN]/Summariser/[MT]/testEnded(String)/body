@@ -13,6 +13,7 @@ synchronized (LOCK) {
     String str;
     String name=entry.getKey();
     Totals total=entry.getValue();
+    total.delta.setEndTime();
     if (total.delta.getNumSamples() > 0 && total.total.getNumSamples() > 0) {
       str=format(name,total.delta,"+");
       if (TOLOG) {

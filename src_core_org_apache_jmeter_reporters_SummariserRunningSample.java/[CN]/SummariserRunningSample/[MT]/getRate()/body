@@ -1,0 +1,10 @@
+{
+  if (counter == 0) {
+    return 0.0;
+  }
+  long howLongRunning=endTime - startTime;
+  if (howLongRunning == 0) {
+    return Double.MAX_VALUE;
+  }
+  return (double)counter / howLongRunning * 1000.0;
+}

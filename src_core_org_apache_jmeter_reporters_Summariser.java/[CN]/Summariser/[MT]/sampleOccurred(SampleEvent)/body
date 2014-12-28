@@ -1,8 +1,8 @@
 {
   SampleResult s=e.getResult();
   long now=System.currentTimeMillis() / 1000;
-  RunningSample myDelta=null;
-  RunningSample myTotal=null;
+  SummariserRunningSample myDelta=null;
+  SummariserRunningSample myTotal=null;
   boolean reportNow=false;
 synchronized (myTotals) {
     if (s != null) {
@@ -10,9 +10,9 @@ synchronized (myTotals) {
     }
     if ((now > myTotals.last + INTERVAL_WINDOW) && (now % INTERVAL <= INTERVAL_WINDOW)) {
       reportNow=true;
-      myDelta=new RunningSample(myTotals.delta);
+      myDelta=new SummariserRunningSample(myTotals.delta);
       myTotals.moveDelta();
-      myTotal=new RunningSample(myTotals.total);
+      myTotal=new SummariserRunningSample(myTotals.total);
       myTotals.last=now;
     }
   }

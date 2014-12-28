@@ -1,0 +1,13 @@
+{
+  counter+=res.getSampleCount();
+  errorCount+=res.getErrorCount();
+  long aTimeInMillis=res.getTime();
+  runningSum+=aTimeInMillis;
+  if (aTimeInMillis > max) {
+    max=aTimeInMillis;
+  }
+  if (aTimeInMillis < min) {
+    min=aTimeInMillis;
+  }
+  endTime=System.currentTimeMillis();
+}

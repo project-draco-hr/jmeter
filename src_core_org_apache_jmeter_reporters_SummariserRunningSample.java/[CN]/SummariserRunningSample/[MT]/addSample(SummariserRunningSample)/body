@@ -1,0 +1,12 @@
+{
+  counter+=rs.counter;
+  errorCount+=rs.errorCount;
+  runningSum+=rs.runningSum;
+  if (max < rs.max) {
+    max=rs.max;
+  }
+  if (min > rs.min) {
+    min=rs.min;
+  }
+  endTime=System.currentTimeMillis();
+}
