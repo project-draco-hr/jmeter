@@ -1,0 +1,5 @@
+{
+  ClientConnectionRequest res=super.requestConnection(route,state);
+  this.measuredConnection=new MeasuringConnectionRequest(res,this.sample);
+  return this.measuredConnection;
+}

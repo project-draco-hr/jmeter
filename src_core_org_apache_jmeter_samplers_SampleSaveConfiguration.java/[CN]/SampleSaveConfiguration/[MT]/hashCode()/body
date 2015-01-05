@@ -2,6 +2,7 @@
   int hash=7;
   hash=31 * hash + (time ? 1 : 0);
   hash=31 * hash + (latency ? 1 : 0);
+  hash=31 * hash + (connectTime ? 1 : 0);
   hash=31 * hash + (timestamp ? 1 : 0);
   hash=31 * hash + (success ? 1 : 0);
   hash=31 * hash + (label ? 1 : 0);

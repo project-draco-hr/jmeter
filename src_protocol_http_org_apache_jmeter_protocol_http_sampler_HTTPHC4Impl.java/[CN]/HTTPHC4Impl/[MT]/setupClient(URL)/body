@@ -22,8 +22,8 @@
     if (resolver == null) {
       resolver=new SystemDefaultDnsResolver();
     }
-    PoolingClientConnectionManager poolingClientConnectionManager=new PoolingClientConnectionManager(SchemeRegistryFactory.createDefault(),resolver);
-    httpClient=new DefaultHttpClient(poolingClientConnectionManager,clientParams){
+    ClientConnectionManager connManager=new MeasuringConnectionManager(SchemeRegistryFactory.createDefault(),resolver);
+    httpClient=new DefaultHttpClient(connManager,clientParams){
       @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
         return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false);
       }

@@ -8,6 +8,9 @@
   if (save.saveLatency()) {
     writer.addAttribute(ATT_LATENCY,Long.toString(res.getLatency()));
   }
+  if (save.saveConnectTime()) {
+    writer.addAttribute(ATT_CONNECT_TIME,Long.toString(res.getConnectTime()));
+  }
   if (save.saveTimestamp()) {
     writer.addAttribute(ATT_TIME_STAMP,Long.toString(res.getTimeStamp()));
   }

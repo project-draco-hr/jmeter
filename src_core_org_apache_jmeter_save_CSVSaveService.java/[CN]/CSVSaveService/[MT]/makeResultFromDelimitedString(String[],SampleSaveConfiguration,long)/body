@@ -139,6 +139,11 @@
       text=parts[i++];
       result.setIdleTime(Long.parseLong(text));
     }
+    if (saveConfig.saveConnectTime()) {
+      field=CSV_CONNECT_TIME;
+      text=parts[i++];
+      result.setConnectTime(Long.parseLong(text));
+    }
     if (i + saveConfig.getVarCount() < parts.length) {
       log.warn("Line: " + lineNumber + ". Found "+ parts.length+ " fields, expected "+ i+ ". Extra fields have been ignored.");
     }
