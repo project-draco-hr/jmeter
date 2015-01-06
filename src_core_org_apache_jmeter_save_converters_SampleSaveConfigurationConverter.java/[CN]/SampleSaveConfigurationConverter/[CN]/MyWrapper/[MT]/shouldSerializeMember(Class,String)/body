@@ -23,6 +23,9 @@
   if (fieldName.equals(NODE_IDLE_TIME)) {
     return false;
   }
+  if (fieldName.equals(NODE_CONNECT_TIME)) {
+    return false;
+  }
   if (fieldName.equals(NODE_DELIMITER)) {
     return false;
   }
