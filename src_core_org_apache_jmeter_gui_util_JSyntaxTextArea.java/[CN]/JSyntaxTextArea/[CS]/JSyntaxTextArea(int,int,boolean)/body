@@ -6,4 +6,7 @@
   super.setLineWrap(LINE_WRAP);
   super.setWrapStyleWord(WRAP_STYLE_WORD);
   this.disableUndo=disableUndo;
+  if (disableUndo) {
+    discardAllEdits();
+  }
 }
