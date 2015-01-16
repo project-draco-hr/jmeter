@@ -1,9 +1,9 @@
 {
   SampleResult result=event.getResult();
   if (result.isSuccessful()) {
-    stipResponse(result);
+    stripResponse(result);
     for (    SampleResult subResult : result.getSubResults()) {
-      stipResponse(subResult);
+      stripResponse(subResult);
     }
   }
   if (decoratedSender == null) {
