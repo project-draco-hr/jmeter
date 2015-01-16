@@ -1,8 +1,10 @@
 {
   SampleResult result=event.getResult();
   if (result.isSuccessful()) {
-    result.setBytes(result.getBytes());
-    result.setResponseData(new byte[0]);
+    stipResponse(result);
+    for (    SampleResult subResult : result.getSubResults()) {
+      stipResponse(subResult);
+    }
   }
   if (decoratedSender == null) {
     try {
