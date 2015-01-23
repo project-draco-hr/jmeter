@@ -10,7 +10,7 @@
   if (httpClient != null && resetSSLContext && HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(url.getProtocol())) {
     ((AbstractHttpClient)httpClient).clearRequestInterceptors();
     ((AbstractHttpClient)httpClient).clearResponseInterceptors();
-    httpClient.getConnectionManager().shutdown();
+    httpClient.getConnectionManager().closeIdleConnections(1L,TimeUnit.MICROSECONDS);
     httpClient=null;
     JsseSSLManager sslMgr=(JsseSSLManager)SSLManager.getInstance();
     sslMgr.resetContext();
