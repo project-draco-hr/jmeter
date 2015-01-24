@@ -4,12 +4,15 @@
   clone.cache=new LinkedHashMap<String,InetAddress[]>();
   CollectionProperty dnsServers=getServers();
   try {
-    clone.resolver=new ExtendedResolver();
+    String[] serverNames=new String[dnsServers.size()];
     PropertyIterator dnsServIt=dnsServers.iterator();
+    int index=0;
     while (dnsServIt.hasNext()) {
-      String dnsServer=dnsServIt.next().getStringValue();
-      ((ExtendedResolver)clone.resolver).addResolver(new SimpleResolver(dnsServer));
+      serverNames[index]=dnsServIt.next().getStringValue();
+      index++;
     }
+    clone.resolver=new ExtendedResolver(serverNames);
+    log.debug("Using DNS Resolvers: " + Arrays.asList(((ExtendedResolver)clone.resolver).getResolvers()));
     ((ExtendedResolver)clone.resolver).setLoadBalance(true);
   }
  catch (  UnknownHostException uhe) {

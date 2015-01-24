@@ -1,0 +1,12 @@
+{
+  DNSCacheManager original=new DNSCacheManager();
+  original.setCustomResolver(true);
+  original.addServer("127.0.0.99");
+  DNSCacheManager clone=(DNSCacheManager)original.clone();
+  try {
+    clone.resolve("jmeter.apache.org");
+    fail();
+  }
+ catch (  UnknownHostException e) {
+  }
+}
