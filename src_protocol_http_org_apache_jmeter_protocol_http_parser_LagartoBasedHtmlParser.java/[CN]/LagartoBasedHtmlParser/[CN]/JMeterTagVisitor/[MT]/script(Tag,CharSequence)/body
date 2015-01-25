@@ -1,5 +1,5 @@
 {
-  if (!enabled.peek()) {
+  if (!enabled.peek().booleanValue()) {
     return;
   }
   extractAttribute(tag,ATT_SRC);
