@@ -9,10 +9,10 @@
   }
   try {
     pauseThread=Thread.currentThread();
-    if (milis >= 0) {
+    if (milis > 0) {
       TimeUnit.MILLISECONDS.sleep(milis);
     }
- else {
+ else     if (milis < 0) {
       throw new IllegalArgumentException("Configured sleep is negative:" + milis);
     }
   }
