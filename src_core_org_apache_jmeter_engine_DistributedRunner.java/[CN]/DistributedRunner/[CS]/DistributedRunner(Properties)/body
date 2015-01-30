@@ -1,0 +1,6 @@
+{
+  remoteProps=props;
+  retriesNumber=JMeterUtils.getPropDefault(RETRIES_NUMBER,1);
+  continueOnFail=JMeterUtils.getPropDefault(CONTINUE_ON_FAIL,false);
+  retriesDelay=JMeterUtils.getPropDefault(RETRIES_DELAY,5000);
+}

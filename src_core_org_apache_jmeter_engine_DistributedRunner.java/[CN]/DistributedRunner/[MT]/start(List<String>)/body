@@ -1,0 +1,22 @@
+{
+  println("Starting remote engines");
+  long now=System.currentTimeMillis();
+  println("Starting the test @ " + new Date(now) + " ("+ now+ ")");
+  for (  String address : addresses) {
+    try {
+      if (engines.containsKey(address)) {
+        engines.get(address).runTest();
+      }
+ else {
+        log.warn("Host not found in list of active engines: " + address);
+      }
+    }
+ catch (    IllegalStateException e) {
+      JMeterUtils.reportErrorToUser(e.getMessage(),JMeterUtils.getResString("remote_error_starting"));
+    }
+catch (    JMeterEngineException e) {
+      JMeterUtils.reportErrorToUser(e.getMessage(),JMeterUtils.getResString("remote_error_starting"));
+    }
+  }
+  println("Remote engines have been started");
+}

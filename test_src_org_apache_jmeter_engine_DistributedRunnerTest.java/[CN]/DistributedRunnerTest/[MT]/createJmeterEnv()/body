@@ -1,0 +1,12 @@
+{
+  File propsFile;
+  try {
+    propsFile=File.createTempFile("jmeter-plugins",".properties");
+    propsFile.deleteOnExit();
+    JMeterUtils.loadJMeterProperties(propsFile.getAbsolutePath());
+  }
+ catch (  IOException ex) {
+    ex.printStackTrace(System.err);
+  }
+  JMeterUtils.setLocale(new Locale("ignoreResources"));
+}

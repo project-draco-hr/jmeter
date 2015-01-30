@@ -1,0 +1,16 @@
+{
+  JMeterEngine engine;
+  try {
+    engine=createEngine(address);
+    engine.configure(testTree);
+    if (!remoteProps.isEmpty()) {
+      engine.setProperties(remoteProps);
+    }
+    return engine;
+  }
+ catch (  Exception ex) {
+    log.error("Failed to create engine at " + address,ex);
+    JMeterUtils.reportErrorToUser(ex.getMessage(),JMeterUtils.getResString("remote_error_init") + ": " + address);
+    return null;
+  }
+}

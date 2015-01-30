@@ -1,7 +1,0 @@
-{
-  JMeterEngine engine=remoteEngines.get(name);
-  if (engine == null) {
-    return;
-  }
-  engine.exit();
-}

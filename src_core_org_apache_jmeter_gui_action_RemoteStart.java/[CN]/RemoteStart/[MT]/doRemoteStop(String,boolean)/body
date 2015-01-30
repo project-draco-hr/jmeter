@@ -1,7 +1,0 @@
-{
-  GuiPackage.getInstance().getMainFrame().showStoppingMessage(name);
-  JMeterEngine engine=remoteEngines.get(name);
-  if (engine != null) {
-    engine.stopTest(now);
-  }
-}

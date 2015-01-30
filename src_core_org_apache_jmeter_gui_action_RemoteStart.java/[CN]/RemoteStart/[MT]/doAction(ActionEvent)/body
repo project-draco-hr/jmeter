@@ -5,45 +5,33 @@
   }
   String action=e.getActionCommand();
   if (action.equals(ActionNames.REMOTE_STOP)) {
-    doRemoteStop(name,true);
+    GuiPackage.getInstance().getMainFrame().showStoppingMessage(name);
+    distributedRunner.stop(Arrays.asList(name));
   }
  else   if (action.equals(ActionNames.REMOTE_SHUT)) {
-    doRemoteStop(name,false);
+    GuiPackage.getInstance().getMainFrame().showStoppingMessage(name);
+    distributedRunner.shutdown(Arrays.asList(name));
   }
  else   if (action.equals(ActionNames.REMOTE_START)) {
     popupShouldSave(e);
-    doRemoteInit(name);
-    doRemoteStart(name);
+    distributedRunner.init(Arrays.asList(name),getTestTree());
+    distributedRunner.start(Arrays.asList(name));
   }
  else   if (action.equals(ActionNames.REMOTE_START_ALL)) {
     popupShouldSave(e);
-    String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
-    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
-    while (st.hasMoreElements()) {
-      String el=(String)st.nextElement();
-      doRemoteInit(el.trim());
-    }
-    st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
-    while (st.hasMoreElements()) {
-      String el=(String)st.nextElement();
-      doRemoteStart(el.trim());
-    }
+    distributedRunner.init(getRemoteHosts(),getTestTree());
+    distributedRunner.start();
   }
  else   if (action.equals(ActionNames.REMOTE_STOP_ALL)) {
-    doRemoteStopAll(true);
+    distributedRunner.stop(getRemoteHosts());
   }
  else   if (action.equals(ActionNames.REMOTE_SHUT_ALL)) {
-    doRemoteStopAll(false);
+    distributedRunner.shutdown(getRemoteHosts());
   }
  else   if (action.equals(ActionNames.REMOTE_EXIT)) {
-    doRemoteExit(name);
+    distributedRunner.exit(Arrays.asList(name));
   }
  else   if (action.equals(ActionNames.REMOTE_EXIT_ALL)) {
-    String remote_hosts_string=JMeterUtils.getPropDefault(REMOTE_HOSTS,LOCAL_HOST);
-    java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,REMOTE_HOSTS_SEPARATOR);
-    while (st.hasMoreElements()) {
-      String el=(String)st.nextElement();
-      doRemoteExit(el.trim());
-    }
+    distributedRunner.exit(getRemoteHosts());
   }
 }
