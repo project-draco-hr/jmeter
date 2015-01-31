@@ -6,8 +6,8 @@
   if (tmp.length > 2) {
     this.i18nKey=tmp[0];
     this.actionName=tmp[1];
-    this.iconPath=tmp[2];
-    this.iconPathPressed=(tmp.length > 3) ? tmp[3] : tmp[2];
+    this.iconPath=tmp[2].replace("<SIZE>",iconSize);
+    this.iconPathPressed=(tmp.length > 3) ? tmp[3].replace("<SIZE>",iconSize) : this.iconPath;
   }
  else {
     throw new IllegalArgumentException("Incorrect argument format - expected at least 2 fields separated by " + ICON_FIELD_SEP);

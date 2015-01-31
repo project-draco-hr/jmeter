@@ -6,7 +6,12 @@
         toolBar.addSeparator();
       }
  else {
-        toolBar.add(makeButtonItemRes(iconToolbarBean));
+        try {
+          toolBar.add(makeButtonItemRes(iconToolbarBean));
+        }
+ catch (        Exception e) {
+          log.warn(e.getMessage());
+        }
       }
     }
     toolBar.initButtonsState();
