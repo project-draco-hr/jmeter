@@ -2,8 +2,6 @@
   JRootPane rootPane=new JRootPane();
   KeyStroke stroke=KeyStrokes.ESC;
   javax.swing.Action escapeAction=new AbstractAction("ESCAPE"){
-    /** 
- */
     private static final long serialVersionUID=-4036804004190858925L;
     @Override public void actionPerformed(    ActionEvent actionEvent){
       setVisible(false);

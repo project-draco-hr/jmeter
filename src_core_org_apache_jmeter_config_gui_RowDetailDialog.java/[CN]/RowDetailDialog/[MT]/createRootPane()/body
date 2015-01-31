@@ -1,8 +1,6 @@
 {
   JRootPane rootPane=new JRootPane();
   Action escapeAction=new AbstractAction("ESCAPE"){
-    /** 
- */
     private static final long serialVersionUID=-8699034338969407625L;
     @Override public void actionPerformed(    ActionEvent actionEvent){
       setVisible(false);
@@ -10,8 +8,6 @@
   }
 ;
   Action enterAction=new AbstractAction("ENTER"){
-    /** 
- */
     private static final long serialVersionUID=-1529005452976176873L;
     @Override public void actionPerformed(    ActionEvent actionEvent){
       doUpdate(actionEvent);
