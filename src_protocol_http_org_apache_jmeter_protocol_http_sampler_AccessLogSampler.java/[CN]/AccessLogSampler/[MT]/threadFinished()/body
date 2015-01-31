@@ -1,6 +1,6 @@
 {
-  if (PARSER instanceof ThreadListener) {
-    ((ThreadListener)PARSER).threadFinished();
+  if (parser instanceof ThreadListener) {
+    ((ThreadListener)parser).threadFinished();
   }
   if (filter instanceof ThreadListener) {
     ((ThreadListener)filter).threadFinished();

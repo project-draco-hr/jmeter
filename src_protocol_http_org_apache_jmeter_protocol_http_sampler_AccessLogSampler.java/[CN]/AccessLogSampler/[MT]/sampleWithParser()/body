@@ -3,10 +3,10 @@
   instantiateParser();
   SampleResult res=null;
   try {
-    if (PARSER == null) {
+    if (parser == null) {
       throw new JMeterException("No Parser available");
     }
-    int thisCount=PARSER.parseAndConfigure(1,this);
+    int thisCount=parser.parseAndConfigure(1,this);
     if (thisCount < 0) {
       return errorResult(new Error("Problem parsing the log file"),new HTTPSampleResult());
     }

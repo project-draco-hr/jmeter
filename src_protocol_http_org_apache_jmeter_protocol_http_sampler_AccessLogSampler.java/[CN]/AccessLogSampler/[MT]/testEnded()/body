@@ -1,6 +1,6 @@
 {
-  if (PARSER != null) {
-    PARSER.close();
+  if (parser != null) {
+    parser.close();
   }
   filter=null;
   started=false;
