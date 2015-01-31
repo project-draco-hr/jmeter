@@ -2,8 +2,8 @@
   try {
     Transferable tr=dtde.getTransferable();
     DataFlavor[] flavors=tr.getTransferDataFlavors();
-    for (int i=0; i < flavors.length; i++) {
-      if (flavors[i].isFlavorJavaFileListType()) {
+    for (    DataFlavor flavor : flavors) {
+      if (flavor.isFlavorJavaFileListType()) {
         dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
         try {
           openJmxFilesFromDragAndDrop(tr);
