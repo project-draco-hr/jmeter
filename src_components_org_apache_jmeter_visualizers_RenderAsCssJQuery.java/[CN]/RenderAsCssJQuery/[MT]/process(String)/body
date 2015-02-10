@@ -1,12 +1,20 @@
 {
-  List<String> result=new ArrayList<String>();
-  Extractor extractor=HtmlExtractor.getExtractorImpl(cssJqueryLabeledChoice.getText());
-  final int nbFound=extractor.extract(cssJqueryField.getText(),attributeField.getText(),-1,textToParse,result,0,null);
-  StringBuilder sb=new StringBuilder();
-  sb.append("Match count: ").append(nbFound).append("\n");
-  for (int j=0; j < nbFound; j++) {
-    String mr=result.get(j);
-    sb.append("Match[").append(j + 1).append("]=").append(mr).append("\n");
+  try {
+    List<String> result=new ArrayList<String>();
+    Extractor extractor=HtmlExtractor.getExtractorImpl(cssJqueryLabeledChoice.getText());
+    final int nbFound=extractor.extract(cssJqueryField.getText(),attributeField.getText(),-1,textToParse,result,0,null);
+    StringBuilder sb=new StringBuilder();
+    sb.append("Match count: ").append(nbFound).append("\n");
+    for (int j=0; j < nbFound; j++) {
+      String mr=result.get(j);
+      sb.append("Match[").append(j + 1).append("]=").append(mr).append("\n");
+    }
+    return sb.toString();
   }
-  return sb.toString();
+ catch (  Exception ex) {
+    StringBuilder sb=new StringBuilder();
+    String message=MessageFormat.format(JMeterUtils.getResString("cssjquery_tester_error"),new Object[]{cssJqueryField.getText(),ex.getMessage()});
+    sb.append(message);
+    return sb.toString();
+  }
 }
