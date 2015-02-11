@@ -8,6 +8,7 @@
   if (isDebug) {
     log.debug(port + "====================================================================");
   }
+  SamplerCreator samplerCreator=null;
   try {
     byte[] ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
     if (ba.length == 0) {
@@ -54,7 +55,7 @@
         throw new JMeterException();
       }
     }
-    SamplerCreator samplerCreator=SAMPLERFACTORY.getSamplerCreator(request,pageEncodings,formEncodings);
+    samplerCreator=SAMPLERFACTORY.getSamplerCreator(request,pageEncodings,formEncodings);
     sampler=samplerCreator.createAndPopulateSampler(request,pageEncodings,formEncodings);
     headers=request.getHeaderManager();
     sampler.setHeaderManager(headers);
@@ -96,7 +97,14 @@ catch (  Exception e) {
       }
     }
     if (result != null) {
-      target.deliverSampler(sampler,new TestElement[]{captureHttpHeaders ? headers : null},result);
+      List<TestElement> children=new ArrayList<TestElement>();
+      if (captureHttpHeaders) {
+        children.add(headers);
+      }
+      if (samplerCreator != null) {
+        children.addAll(samplerCreator.createChildren(sampler,result));
+      }
+      target.deliverSampler(sampler,children.isEmpty() ? null : (TestElement[])children.toArray(new TestElement[children.size()]),result);
     }
     try {
       clientSocket.close();
