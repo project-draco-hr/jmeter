@@ -1,9 +1,0 @@
-{
-  JMenuItem newMenuChoice=new JMenuItem(label);
-  newMenuChoice.setName(name);
-  newMenuChoice.addActionListener(ReportActionRouter.getInstance());
-  if (actionCommand != null) {
-    newMenuChoice.setActionCommand(actionCommand);
-  }
-  return newMenuChoice;
-}

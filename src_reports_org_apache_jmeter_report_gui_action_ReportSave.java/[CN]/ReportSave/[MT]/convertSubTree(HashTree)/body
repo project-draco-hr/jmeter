@@ -1,9 +1,0 @@
-{
-  Iterator<Object> iter=new LinkedList<Object>(tree.list()).iterator();
-  while (iter.hasNext()) {
-    ReportTreeNode item=(ReportTreeNode)iter.next();
-    convertSubTree(tree.getTree(item));
-    TestElement testElement=item.getTestElement();
-    tree.replaceKey(item,testElement);
-  }
-}

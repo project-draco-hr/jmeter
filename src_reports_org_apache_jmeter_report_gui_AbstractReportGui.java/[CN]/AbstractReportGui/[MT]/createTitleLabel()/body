@@ -1,7 +1,0 @@
-{
-  JLabel titleLabel=new JLabel(getStaticLabel());
-  Font curFont=titleLabel.getFont();
-  titleLabel.setFont(curFont.deriveFont((float)curFont.getSize() + 4));
-  titleLabel.setBackground(Color.white);
-  return titleLabel;
-}

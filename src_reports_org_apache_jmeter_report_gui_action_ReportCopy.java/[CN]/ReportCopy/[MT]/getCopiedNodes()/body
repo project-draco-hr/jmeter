@@ -1,8 +1,0 @@
-{
-  for (int i=0; i < copiedNodes.length; i++) {
-    if (copiedNodes[i] == null) {
-      return null;
-    }
-  }
-  return cloneTreeNodes(copiedNodes);
-}

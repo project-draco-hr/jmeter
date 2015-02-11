@@ -1,8 +1,0 @@
-{
-  updateCurrentNode();
-  currentNode=treeListener.getCurrentNode();
-  TestElement element=currentNode.getTestElement();
-  JMeterGUIComponent comp=getGui(element);
-  comp.configure(element);
-  currentNodeUpdated=false;
-}

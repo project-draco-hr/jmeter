@@ -1,8 +1,0 @@
-{
-  long elpasedTime=0;
-  Iterator<PageSummary> itr=this.pages.iterator();
-  while (itr.hasNext()) {
-    elpasedTime+=itr.next().getElapsedTime();
-  }
-  return elpasedTime;
-}

@@ -1,9 +1,0 @@
-{
-  ListedHashTree hashTree=new ListedHashTree(node);
-  @SuppressWarnings("unchecked") Enumeration<ReportTreeNode> enumNode=node.children();
-  while (enumNode.hasMoreElements()) {
-    ReportTreeNode child=enumNode.nextElement();
-    hashTree.add(node,getCurrentSubTree(child));
-  }
-  return hashTree;
-}
