@@ -1,0 +1,19 @@
+{
+  final String missing="no-such-file";
+  final String alias="missing";
+  final String charsetName="UTF-8";
+  try {
+    FS.reserveFile(missing,charsetName,alias,true);
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException e) {
+    assertTrue("Expected FNF",e.getCause() instanceof java.io.FileNotFoundException);
+  }
+  try {
+    FS.reserveFile(missing,charsetName,alias,true);
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException e) {
+    assertTrue("Expected FNF",e.getCause() instanceof java.io.FileNotFoundException);
+  }
+}

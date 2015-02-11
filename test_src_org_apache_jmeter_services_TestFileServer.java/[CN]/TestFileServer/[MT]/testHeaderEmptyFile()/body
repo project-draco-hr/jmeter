@@ -1,0 +1,19 @@
+{
+  final String empty=findTestPath("testfiles/empty.csv");
+  final String alias="empty";
+  final String charsetName="UTF-8";
+  try {
+    String hdr=FS.reserveFile(empty,charsetName,alias,true);
+    fail("Expected IllegalArgumentException|" + hdr + "|");
+  }
+ catch (  IllegalArgumentException e) {
+    assertTrue("Expected EOF",e.getCause() instanceof java.io.EOFException);
+  }
+  try {
+    FS.reserveFile(empty,charsetName,alias,true);
+    fail("Expected IllegalArgumentException");
+  }
+ catch (  IllegalArgumentException e) {
+    assertTrue("Expected EOF",e.getCause() instanceof java.io.EOFException);
+  }
+}

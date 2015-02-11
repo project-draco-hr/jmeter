@@ -21,9 +21,16 @@
         fileEntry.headerLine=readLine(alias,false);
       }
  catch (      IOException e) {
+        fileEntry.exception=e;
         throw new IllegalArgumentException("Could not read file header line",e);
       }
+      if (fileEntry.headerLine == null) {
+        fileEntry.exception=new EOFException("File is empty: " + fileEntry.file);
+      }
     }
+  }
+  if (hasHeader && fileEntry.headerLine == null) {
+    throw new IllegalArgumentException("Could not read file header line",fileEntry.exception);
   }
   return fileEntry.headerLine;
 }
