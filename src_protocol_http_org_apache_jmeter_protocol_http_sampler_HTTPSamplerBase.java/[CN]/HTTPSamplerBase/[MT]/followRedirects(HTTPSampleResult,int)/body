@@ -26,7 +26,13 @@
       if (log.isDebugEnabled()) {
         log.debug("Location as URL: " + url.toString());
       }
-      lastRes=sample(url,method,true,frameDepth);
+      HTTPSampleResult tempRes=sample(url,method,true,frameDepth);
+      if (tempRes != null) {
+        lastRes=tempRes;
+      }
+ else {
+        break;
+      }
     }
  catch (    MalformedURLException e) {
       errorResult(e,lastRes);

@@ -2,7 +2,9 @@
   SampleResult res=null;
   try {
     res=sample(getUrl(),getMethod(),false,0);
-    res.setSampleLabel(getName());
+    if (res != null) {
+      res.setSampleLabel(getName());
+    }
     return res;
   }
  catch (  Exception e) {
