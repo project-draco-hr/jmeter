@@ -1,0 +1,23 @@
+{
+  if (level >= testPlanPath.length) {
+    return EMPTY_TREE_NODES;
+  }
+  int childCount=parent.getChildCount();
+  JMeterTreeNode searchedTreeNode=(JMeterTreeNode)testPlanPath[level];
+  for (int i=0; i < childCount; i++) {
+    DefaultMutableTreeNode child=(DefaultMutableTreeNode)parent.getChildAt(i);
+    JMeterTreeNode childUserObj=(JMeterTreeNode)child.getUserObject();
+    if (!childUserObj.equals(searchedTreeNode)) {
+      continue;
+    }
+ else {
+      if (level == (testPlanPath.length - 1)) {
+        return child.getPath();
+      }
+ else {
+        return findPathInTreeModel(level + 1,testPlanPath,child);
+      }
+    }
+  }
+  return EMPTY_TREE_NODES;
+}

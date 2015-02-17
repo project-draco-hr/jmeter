@@ -1,9 +1,13 @@
 {
   configureTestElement(element);
-  TreeNodeWrapper tnw=(TreeNodeWrapper)nodesModel.getSelectedItem();
-  if (tnw != null && tnw.getTreeNode() != null) {
-    selected=tnw.getTreeNode();
-    if (selected != null) {
+  JMeterTreeNode tn=null;
+  DefaultMutableTreeNode lastSelected=(DefaultMutableTreeNode)this.moduleToRunTreeNodes.getLastSelectedPathComponent();
+  if (lastSelected != null && lastSelected.getUserObject() instanceof JMeterTreeNode) {
+    tn=(JMeterTreeNode)lastSelected.getUserObject();
+  }
+  if (tn != null) {
+    selected=tn;
+    if (selected != null && !(selected.getTestElement() instanceof AbstractThreadGroup) && !(selected.getTestElement() instanceof TestPlan)) {
       ((ModuleController)element).setSelectedNode(selected);
     }
   }

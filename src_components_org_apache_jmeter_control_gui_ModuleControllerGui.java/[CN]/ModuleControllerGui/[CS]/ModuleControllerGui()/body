@@ -1,6 +1,7 @@
 {
-  nodesModel=new DefaultComboBoxModel();
-  nodes=new JComboBox(nodesModel);
+  moduleToRunTreeModel=new DefaultTreeModel(new DefaultMutableTreeNode());
+  moduleToRunTreeNodes=new JTree(moduleToRunTreeModel);
+  moduleToRunTreeNodes.setCellRenderer(new ModuleControllerCellRenderer());
   warningLabel=new JLabel("");
   init();
 }

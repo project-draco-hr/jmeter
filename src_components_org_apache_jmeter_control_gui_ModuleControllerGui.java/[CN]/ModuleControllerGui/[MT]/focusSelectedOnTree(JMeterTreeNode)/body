@@ -1,0 +1,14 @@
+{
+  TreeNode[] path=selected.getPath();
+  TreeNode[] filteredPath=new TreeNode[path.length - 1];
+  for (int i=1; i < path.length; i++) {
+    filteredPath[i - 1]=path[i];
+  }
+  DefaultMutableTreeNode root=(DefaultMutableTreeNode)moduleToRunTreeNodes.getModel().getRoot();
+  TreeNode[] dmtnPath=this.findPathInTreeModel(1,filteredPath,root);
+  if (dmtnPath.length > 0) {
+    TreePath treePath=new TreePath(dmtnPath);
+    moduleToRunTreeNodes.setSelectionPath(treePath);
+    moduleToRunTreeNodes.scrollPathToVisible(treePath);
+  }
+}

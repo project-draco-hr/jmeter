@@ -1,0 +1,17 @@
+{
+  JMeterTreeNode node=(JMeterTreeNode)((DefaultMutableTreeNode)value).getUserObject();
+  if (node != null) {
+    super.getTreeCellRendererComponent(tree,node.getName(),selected,expanded,leaf,row,hasFocus);
+    boolean enabled=node.isEnabled();
+    ImageIcon icon=node.getIcon(enabled);
+    if (icon != null) {
+      if (enabled) {
+        setIcon(icon);
+      }
+ else {
+        setDisabledIcon(icon);
+      }
+    }
+  }
+  return this;
+}

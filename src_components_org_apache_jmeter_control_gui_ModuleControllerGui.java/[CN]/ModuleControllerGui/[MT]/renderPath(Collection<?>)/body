@@ -10,7 +10,7 @@
     }
     buf.append(iter.next());
     if (iter.hasNext()) {
-      buf.append(" > ");
+      buf.append(SEPARATOR);
     }
   }
   return buf.toString();

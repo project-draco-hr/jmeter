@@ -1,0 +1,27 @@
+{
+  if (node != null) {
+    for (int i=0; i < node.getChildCount(); i++) {
+      JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
+      TestElement te=cur.getTestElement();
+      if (te instanceof Controller && !(te instanceof ModuleController) && level > 0) {
+        DefaultMutableTreeNode newNode=new DefaultMutableTreeNode(cur);
+        parent.add(newNode);
+        buildTreeNodeModel(cur,level + 1,newNode);
+      }
+ else       if (te instanceof TestFragmentController) {
+        DefaultMutableTreeNode newNode=new DefaultMutableTreeNode(cur);
+        parent.add(newNode);
+        buildTreeNodeModel(cur,level + 1,newNode);
+      }
+ else       if (te instanceof AbstractThreadGroup) {
+        DefaultMutableTreeNode newNode=new DefaultMutableTreeNode(cur);
+        parent.add(newNode);
+        buildTreeNodeModel(cur,level + 1,newNode);
+      }
+ else       if (te instanceof TestPlan) {
+        ((DefaultMutableTreeNode)moduleToRunTreeModel.getRoot()).setUserObject(cur);
+        buildTreeNodeModel(cur,level,(DefaultMutableTreeNode)moduleToRunTreeModel.getRoot());
+      }
+    }
+  }
+}

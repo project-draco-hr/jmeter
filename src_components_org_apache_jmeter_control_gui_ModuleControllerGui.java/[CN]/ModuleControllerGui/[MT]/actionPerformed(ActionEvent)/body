@@ -1,14 +1,14 @@
 {
   if (e.getSource() == expandButton) {
-    ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.SEARCH_RESET));
-    JMeterTreeNode currentSelectedNode=null;
-    TreeNodeWrapper tnw=(TreeNodeWrapper)nodesModel.getSelectedItem();
-    if (tnw != null && tnw.getTreeNode() != null) {
-      currentSelectedNode=tnw.getTreeNode();
+    JMeterTreeNode tn=null;
+    DefaultMutableTreeNode selected=(DefaultMutableTreeNode)this.moduleToRunTreeNodes.getLastSelectedPathComponent();
+    if (selected != null && selected.getUserObject() instanceof JMeterTreeNode) {
+      tn=(JMeterTreeNode)selected.getUserObject();
     }
-    if (currentSelectedNode != null) {
-      expandToSelectNode(currentSelectedNode);
+    if (tn != null) {
+      TreePath treePath=new TreePath(tn.getPath());
+      GuiPackage.getInstance().getTreeListener().getJTree().setSelectionPath(treePath);
+      GuiPackage.getInstance().getTreeListener().getJTree().scrollPathToVisible(treePath);
     }
-    return;
   }
 }
