@@ -3,13 +3,13 @@
   double msPerRequest=(MILLISEC_PER_MIN / getThroughput());
 switch (mode) {
 case AllActiveThreads:
-    delay=(long)(JMeterContextService.getNumberOfThreads() * msPerRequest);
+    delay=Math.round(JMeterContextService.getNumberOfThreads() * msPerRequest);
   break;
 case AllActiveThreadsInCurrentThreadGroup:
-delay=(long)(JMeterContextService.getContext().getThreadGroup().getNumberOfThreads() * msPerRequest);
+delay=Math.round(JMeterContextService.getContext().getThreadGroup().getNumberOfThreads() * msPerRequest);
 break;
 case AllActiveThreads_Shared:
-delay=calculateSharedDelay(allThreadsInfo,(long)msPerRequest);
+delay=calculateSharedDelay(allThreadsInfo,Math.round(msPerRequest));
 break;
 case AllActiveThreadsInCurrentThreadGroup_Shared:
 final org.apache.jmeter.threads.AbstractThreadGroup group=JMeterContextService.getContext().getThreadGroup();
@@ -21,11 +21,11 @@ if (previous != null) {
 groupInfo=previous;
 }
 }
-delay=calculateSharedDelay(groupInfo,(long)msPerRequest);
+delay=calculateSharedDelay(groupInfo,Math.round(msPerRequest));
 break;
 case ThisThreadOnly:
 default :
-delay=(long)msPerRequest;
+delay=Math.round(msPerRequest);
 break;
 }
 return delay;
