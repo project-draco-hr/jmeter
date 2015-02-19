@@ -1,11 +1,4 @@
 {
-  FileInputStream fis=new FileInputStream(f);
-  HashTree tree=null;
-  try {
-    tree=SaveService.loadTree(fis);
-  }
-  finally {
-    fis.close();
-  }
+  HashTree tree=SaveService.loadTree(f);
   return tree;
 }

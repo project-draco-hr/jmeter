@@ -1,6 +1,5 @@
 {
   final String includePath=getIncludePath();
-  InputStream reader=null;
   HashTree tree=null;
   if (includePath != null && includePath.length() > 0) {
     try {
@@ -17,8 +16,7 @@
           throw new IOException("loadIncludedElements -failed for: " + absolutePath);
         }
       }
-      reader=new FileInputStream(file);
-      tree=SaveService.loadTree(reader);
+      tree=SaveService.loadTree(file);
       tree=getProperBranch(tree);
       removeDisabledItems(tree);
       return tree;
@@ -43,9 +41,6 @@ catch (    Exception ex) {
       }
       JMeterUtils.reportErrorToUser(msg);
       log.warn("Unexpected error",ex);
-    }
- finally {
-      JOrphanUtils.closeQuietly(reader);
     }
   }
   return tree;

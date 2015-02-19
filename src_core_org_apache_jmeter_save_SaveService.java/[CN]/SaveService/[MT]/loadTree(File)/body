@@ -1,0 +1,39 @@
+{
+  log.info("Loading file: " + file);
+  InputStream reader=null;
+  try {
+    reader=new FileInputStream(file);
+    if (!reader.markSupported()) {
+      reader=new BufferedInputStream(reader);
+    }
+    reader.mark(Integer.MAX_VALUE);
+    ScriptWrapper wrapper=null;
+    try {
+      InputStreamReader inputStreamReader=getInputStreamReader(reader);
+      wrapper=(ScriptWrapper)JMXSAVER.fromXML(inputStreamReader);
+      inputStreamReader.close();
+      if (wrapper == null) {
+        log.error("Problem loading XML: see above.");
+        return null;
+      }
+      return wrapper.testPlan;
+    }
+ catch (    CannotResolveClassException e) {
+      if (e.getMessage().startsWith("node")) {
+        log.info("Problem loading XML, trying Avalon format");
+        reader.reset();
+        return OldSaveService.loadSubTree(reader);
+      }
+      throw new IllegalArgumentException("Problem loading XML from:'" + file.getAbsolutePath() + "', cannot determine class for element: "+ e,e);
+    }
+catch (    NoClassDefFoundError e) {
+      throw new IllegalArgumentException("Problem loading XML from:'" + file.getAbsolutePath() + "', missing class "+ e,e);
+    }
+catch (    ConversionException e) {
+      throw new IllegalArgumentException("Problem loading XML from:'" + file.getAbsolutePath() + "', conversion error "+ e,e);
+    }
+  }
+  finally {
+    JOrphanUtils.closeQuietly(reader);
+  }
+}

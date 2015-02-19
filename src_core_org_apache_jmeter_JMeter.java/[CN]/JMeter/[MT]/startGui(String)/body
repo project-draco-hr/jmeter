@@ -16,13 +16,11 @@
   main.setVisible(true);
   ActionRouter.getInstance().actionPerformed(new ActionEvent(main,1,ActionNames.ADD_ALL));
   if (testFile != null) {
-    FileInputStream reader=null;
     try {
       File f=new File(testFile);
       log.info("Loading file: " + f);
       FileServer.getFileServer().setBaseForScript(f);
-      reader=new FileInputStream(f);
-      HashTree tree=SaveService.loadTree(reader);
+      HashTree tree=SaveService.loadTree(f);
       GuiPackage.getInstance().setTestPlanFile(f.getAbsolutePath());
       Load.insertLoadedTree(1,tree);
     }
@@ -33,9 +31,6 @@
 catch (    Exception e) {
       log.error("Failure loading test file",e);
       JMeterUtils.reportErrorToUser(e.toString());
-    }
- finally {
-      JOrphanUtils.closeQuietly(reader);
     }
   }
  else {

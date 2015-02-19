@@ -2,7 +2,6 @@
   ActionRouter.getInstance().doActionNow(new ActionEvent(e.getSource(),e.getID(),ActionNames.STOP_THREAD));
   final GuiPackage guiPackage=GuiPackage.getInstance();
   if (f != null) {
-    InputStream reader=null;
     try {
       if (merging) {
         log.info("Merging file: " + f);
@@ -13,8 +12,7 @@
           FileServer.getFileServer().setBaseForScript(f);
         }
       }
-      reader=new FileInputStream(f);
-      final HashTree tree=SaveService.loadTree(reader);
+      final HashTree tree=SaveService.loadTree(f);
       final boolean isTestPlan=insertLoadedTree(e.getID(),tree,merging);
       if (!merging && isTestPlan && setDetails) {
         guiPackage.setTestPlanFile(f.getAbsolutePath());
@@ -32,9 +30,6 @@ catch (    IOException ex) {
     }
 catch (    Exception ex) {
       reportError("Unexpected error",ex,true);
-    }
- finally {
-      JOrphanUtils.closeQuietly(reader);
     }
     FileDialoger.setLastJFCDirectory(f.getParentFile().getAbsolutePath());
     guiPackage.updateCurrentGui();
