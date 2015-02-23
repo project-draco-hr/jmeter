@@ -1,0 +1,46 @@
+{
+  if (!reader.markSupported()) {
+    reader=new BufferedInputStream(reader);
+  }
+  reader.mark(Integer.MAX_VALUE);
+  ScriptWrapper wrapper=null;
+  try {
+    InputStreamReader inputStreamReader=getInputStreamReader(reader);
+    wrapper=(ScriptWrapper)JMXSAVER.fromXML(inputStreamReader);
+    inputStreamReader.close();
+    if (wrapper == null) {
+      log.error("Problem loading XML: see above.");
+      return null;
+    }
+    return wrapper.testPlan;
+  }
+ catch (  CannotResolveClassException e) {
+    if (e.getMessage().startsWith("node")) {
+      log.info("Problem loading XML, trying Avalon format");
+      reader.reset();
+      return OldSaveService.loadSubTree(reader);
+    }
+    if (file != null) {
+      throw new IllegalArgumentException("Problem loading XML from:'" + file.getAbsolutePath() + "', cannot determine class for element: "+ e,e);
+    }
+ else {
+      throw new IllegalArgumentException("Problem loading XML, cannot determine class for element: " + e,e);
+    }
+  }
+catch (  NoClassDefFoundError e) {
+    if (file != null) {
+      throw new IllegalArgumentException("Problem loading XML from:'" + file.getAbsolutePath() + "', missing class "+ e,e);
+    }
+ else {
+      throw new IllegalArgumentException("Problem loading XML, missing class " + e,e);
+    }
+  }
+catch (  ConversionException e) {
+    if (file != null) {
+      throw new IllegalArgumentException("Problem loading XML from:'" + file.getAbsolutePath() + "', conversion error "+ e,e);
+    }
+ else {
+      throw new IllegalArgumentException("Problem loading XML, conversion error " + e,e);
+    }
+  }
+}
