@@ -4,7 +4,7 @@
     log.debug("method " + method + " followingRedirect "+ areFollowingRedirect+ " depth "+ frameDepth);
   }
   HTTPSampleResult res=createSampleResult(url,method);
-  HttpClient httpClient=setupClient(url);
+  HttpClient httpClient=setupClient(url,res);
   HttpRequestBase httpRequest=null;
   try {
     URI uri=url.toURI();
