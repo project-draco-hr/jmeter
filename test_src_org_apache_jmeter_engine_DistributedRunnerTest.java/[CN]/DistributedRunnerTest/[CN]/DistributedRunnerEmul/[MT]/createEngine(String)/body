@@ -1,4 +1,7 @@
 {
+  if (engines.size() == 0) {
+    throw new IllegalArgumentException("Throwing on Engine creation to simulate failure");
+  }
   EmulatorEngine engine=engines.remove(0);
   engine.setHost(address);
   return engine;
