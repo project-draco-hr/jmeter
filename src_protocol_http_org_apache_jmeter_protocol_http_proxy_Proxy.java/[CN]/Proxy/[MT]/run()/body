@@ -42,7 +42,7 @@
         ba=request.parse(new BufferedInputStream(clientSocket.getInputStream()));
       }
  catch (      IOException ioe) {
-        final String url=param.length > 0 ? " for '" + param[0] + "'" : "";
+        final String url=" for '" + param[0] + "'";
         log.warn(port + "Problem with SSL certificate" + url+ "? Ensure browser is set to accept the JMeter proxy cert: "+ ioe.getMessage());
         result=generateErrorResult(result,request,ioe,"\n**ensure browser is set to accept the JMeter proxy certificate**");
         throw new JMeterException();
