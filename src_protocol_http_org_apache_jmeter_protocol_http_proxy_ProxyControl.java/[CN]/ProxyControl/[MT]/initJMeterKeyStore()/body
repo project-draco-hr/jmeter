@@ -15,7 +15,9 @@
     keyPassword=storePassword;
     setPassword(storePassword);
     log.info("Generating standard keypair in " + CERT_PATH_ABS);
-    CERT_PATH.delete();
+    if (!CERT_PATH.delete()) {
+      log.warn("Could not delete " + CERT_PATH.getAbsolutePath() + ", this could create issues, stop jmeter, ensure file is deleted and restart again");
+    }
     KeyToolUtils.genkeypair(CERT_PATH,JMETER_SERVER_ALIAS,storePassword,CERT_VALIDITY,null,null);
     keyStore=getKeyStore(storePassword.toCharArray());
   }
