@@ -1,7 +1,7 @@
 {
   int ans;
   try {
-    ans=(Integer.valueOf(appProperties.getProperty(propName,Integer.toString(defaultVal)).trim())).intValue();
+    ans=Integer.parseInt(appProperties.getProperty(propName,Integer.toString(defaultVal)).trim());
   }
  catch (  Exception e) {
     log.warn("Unexpected value set for int property:'" + propName + "', defaulting to:"+ defaultVal);

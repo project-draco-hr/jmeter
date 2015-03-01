@@ -9,7 +9,7 @@
       ans=false;
     }
  else {
-      ans=((Integer.valueOf(strVal)).intValue() == 1);
+      ans=Integer.parseInt(strVal) == 1;
     }
   }
  catch (  Exception e) {
