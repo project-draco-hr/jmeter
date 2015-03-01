@@ -1,6 +1,8 @@
 {
   super.destroyObject(socketConnectionInfos,socketOutputStream);
   SocketOutputStream outputStream=socketOutputStream.getObject();
-  outputStream.close();
-  outputStream.getSocket().close();
+  JOrphanUtils.closeQuietly(outputStream);
+  if (outputStream.getSocket() != null) {
+    JOrphanUtils.closeQuietly(outputStream.getSocket());
+  }
 }
