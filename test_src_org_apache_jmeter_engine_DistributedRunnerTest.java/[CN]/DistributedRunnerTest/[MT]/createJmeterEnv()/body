@@ -1,7 +1,7 @@
 {
   File propsFile;
   try {
-    propsFile=File.createTempFile("jmeter-plugins",".properties");
+    propsFile=File.createTempFile("jmeter",".properties");
     propsFile.deleteOnExit();
     JMeterUtils.loadJMeterProperties(propsFile.getAbsolutePath());
   }
