@@ -4,7 +4,7 @@ synchronized (LOCK) {
     for (    Map.Entry<String,SamplerMetric> entry : getMetricsPerSampler().entrySet()) {
       SamplerMetric metric=entry.getValue();
       if (entry.getKey().equals(CUMULATED_METRICS)) {
-        addMetrics(timestampInSeconds,CUMULATED_CONTEXT_NAME,metric);
+        addMetrics(timestampInSeconds,ALL_CONTEXT_NAME,metric);
       }
  else {
         addMetrics(timestampInSeconds,AbstractGraphiteMetricsSender.sanitizeString(entry.getKey()),metric);
@@ -12,10 +12,10 @@ synchronized (LOCK) {
       metric.resetForTimeInterval();
     }
   }
-  graphiteMetricsManager.addMetric(timestampInSeconds,CUMULATED_CONTEXT_NAME,METRIC_MIN_ACTIVE_THREADS,Integer.toString(getUserMetrics().getMinActiveThreads()));
-  graphiteMetricsManager.addMetric(timestampInSeconds,CUMULATED_CONTEXT_NAME,METRIC_MAX_ACTIVE_THREADS,Integer.toString(getUserMetrics().getMaxActiveThreads()));
-  graphiteMetricsManager.addMetric(timestampInSeconds,CUMULATED_CONTEXT_NAME,METRIC_MEAN_ACTIVE_THREADS,Integer.toString(getUserMetrics().getMeanActiveThreads()));
-  graphiteMetricsManager.addMetric(timestampInSeconds,CUMULATED_CONTEXT_NAME,METRIC_STARTED_THREADS,Integer.toString(getUserMetrics().getStartedThreads()));
-  graphiteMetricsManager.addMetric(timestampInSeconds,CUMULATED_CONTEXT_NAME,METRIC_STOPPED_THREADS,Integer.toString(getUserMetrics().getFinishedThreads()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,TEST_CONTEXT_NAME,METRIC_MIN_ACTIVE_THREADS,Integer.toString(getUserMetrics().getMinActiveThreads()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,TEST_CONTEXT_NAME,METRIC_MAX_ACTIVE_THREADS,Integer.toString(getUserMetrics().getMaxActiveThreads()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,TEST_CONTEXT_NAME,METRIC_MEAN_ACTIVE_THREADS,Integer.toString(getUserMetrics().getMeanActiveThreads()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,TEST_CONTEXT_NAME,METRIC_STARTED_THREADS,Integer.toString(getUserMetrics().getStartedThreads()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,TEST_CONTEXT_NAME,METRIC_FINISHED_THREADS,Integer.toString(getUserMetrics().getFinishedThreads()));
   graphiteMetricsManager.writeAndSendMetrics();
 }

@@ -7,13 +7,17 @@
   rootMetricsPrefix=context.getParameter("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
   String percentilesAsString=context.getParameter("percentiles",DEFAULT_METRICS_PREFIX);
   String[] percentilesStringArray=percentilesAsString.split(SEPARATOR);
-  percentiles=new HashMap<String,Float>(percentilesStringArray.length);
+  okPercentiles=new HashMap<String,Float>(percentilesStringArray.length);
+  koPercentiles=new HashMap<String,Float>(percentilesStringArray.length);
+  allPercentiles=new HashMap<String,Float>(percentilesStringArray.length);
   DecimalFormat format=new DecimalFormat("0.##");
   for (int i=0; i < percentilesStringArray.length; i++) {
     if (!StringUtils.isEmpty(percentilesStringArray[i].trim())) {
       try {
         Float percentileValue=Float.parseFloat(percentilesStringArray[i].trim());
-        percentiles.put(METRIC_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
+        okPercentiles.put(METRIC_OK_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
+        koPercentiles.put(METRIC_KO_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
+        allPercentiles.put(METRIC_ALL_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
       }
  catch (      Exception e) {
         LOGGER.error("Error parsing percentile:'" + percentilesStringArray[i] + "'",e);

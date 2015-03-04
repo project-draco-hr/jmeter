@@ -1,12 +1,28 @@
 {
-  graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_FAILED_REQUESTS,Integer.toString(metric.getFailures()));
-  graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_SUCCESSFUL_REQUESTS,Integer.toString(metric.getSuccesses()));
-  graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_TOTAL_REQUESTS,Integer.toString(metric.getTotal()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_OK_COUNT,Integer.toString(metric.getSuccesses()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_KO_COUNT,Integer.toString(metric.getFailures()));
+  graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_ALL_COUNT,Integer.toString(metric.getTotal()));
   if (metric.getTotal() > 0) {
-    graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_MIN_RESPONSE_TIME,Double.toString(metric.getMinTime()));
-    graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_MAX_RESPONSE_TIME,Double.toString(metric.getMaxTime()));
-    for (    Map.Entry<String,Float> entry : percentiles.entrySet()) {
-      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,entry.getKey(),Double.toString(metric.getPercentile(entry.getValue().floatValue())));
+    if (metric.getSuccesses() > 0) {
+      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_OK_MIN_RESPONSE_TIME,Double.toString(metric.getOkMinTime()));
+      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_OK_MAX_RESPONSE_TIME,Double.toString(metric.getOkMaxTime()));
+      for (      Map.Entry<String,Float> entry : okPercentiles.entrySet()) {
+        graphiteMetricsManager.addMetric(timestampInSeconds,contextName,entry.getKey(),Double.toString(metric.getOkPercentile(entry.getValue().floatValue())));
+      }
+    }
+    if (metric.getFailures() > 0) {
+      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_KO_MIN_RESPONSE_TIME,Double.toString(metric.getKoMinTime()));
+      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_KO_MAX_RESPONSE_TIME,Double.toString(metric.getKoMaxTime()));
+      for (      Map.Entry<String,Float> entry : koPercentiles.entrySet()) {
+        graphiteMetricsManager.addMetric(timestampInSeconds,contextName,entry.getKey(),Double.toString(metric.getKoPercentile(entry.getValue().floatValue())));
+      }
+    }
+    if (metric.getTotal() > 0) {
+      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_ALL_MIN_RESPONSE_TIME,Double.toString(metric.getAllMinTime()));
+      graphiteMetricsManager.addMetric(timestampInSeconds,contextName,METRIC_ALL_MAX_RESPONSE_TIME,Double.toString(metric.getAllMaxTime()));
+      for (      Map.Entry<String,Float> entry : allPercentiles.entrySet()) {
+        graphiteMetricsManager.addMetric(timestampInSeconds,contextName,entry.getKey(),Double.toString(metric.getAllPercentile(entry.getValue().floatValue())));
+      }
     }
   }
 }

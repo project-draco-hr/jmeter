@@ -6,7 +6,11 @@
     failures+=result.getErrorCount();
   }
   long time=result.getTime();
+  allResponsesStats.addValue(time);
   if (result.isSuccessful()) {
-    responsesStats.addValue(time);
+    okResponsesStats.addValue(time);
+  }
+ else {
+    koResponsesStats.addValue(time);
   }
 }
