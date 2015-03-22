@@ -1,6 +1,8 @@
 {
   if (!IGNORE_FAILED_EMBEDDED_RESOURCES) {
     res.setSuccessful(initialValue);
-    res.setResponseMessage("Embedded resource download error");
+    if (!initialValue) {
+      res.setResponseMessage("Embedded resource download error");
+    }
   }
 }
