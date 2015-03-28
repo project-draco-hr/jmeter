@@ -1,0 +1,3 @@
+{
+  assertEquals("{\n" + TAB + "\"Hello\": \"World\", \n"+ TAB+ "\"more\": \n"+ TAB+ "[\n"+ TAB+ TAB+ "\"Something\", \n"+ TAB+ TAB+ "\"else\", \n"+ TAB+ "]\n}",prettyJSON("{\"Hello\": \"World\", \"more\": [\"Something\", \"else\", ]}"));
+}

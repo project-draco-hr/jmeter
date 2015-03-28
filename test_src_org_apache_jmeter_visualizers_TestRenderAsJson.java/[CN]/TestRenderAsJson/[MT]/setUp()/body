@@ -1,0 +1,5 @@
+{
+  super.setUp();
+  prettyJSON=RenderAsJSON.class.getDeclaredMethod("prettyJSON",String.class);
+  prettyJSON.setAccessible(true);
+}

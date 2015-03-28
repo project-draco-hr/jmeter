@@ -1,0 +1,9 @@
+{
+  StringBuilder json=new StringBuilder();
+  json.append("\"customData\":\"");
+  for (int i=0; i < 100; i++) {
+    json.append("somenotsorandomtext");
+  }
+  json.append("\"");
+  assertEquals("{\n" + TAB + json.toString()+ "\n}",prettyJSON("{" + json.toString() + "}"));
+}
