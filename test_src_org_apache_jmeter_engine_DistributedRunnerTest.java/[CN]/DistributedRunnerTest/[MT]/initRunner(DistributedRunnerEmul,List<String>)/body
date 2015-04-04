@@ -1,0 +1,12 @@
+{
+  PrintStream origSystemOut=System.out;
+  ByteArrayOutputStream catchingOut=new ByteArrayOutputStream();
+  System.setOut(new PrintStream(catchingOut));
+  try {
+    runner.init(hosts,new HashTree());
+    fail();
+  }
+ catch (  RuntimeException ignored) {
+  }
+  System.setOut(origSystemOut);
+}

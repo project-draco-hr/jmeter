@@ -5,10 +5,5 @@
   JMeterUtils.setProperty(DistributedRunner.CONTINUE_ON_FAIL,"false");
   DistributedRunnerEmul obj=new DistributedRunnerEmul();
   List<String> hosts=Arrays.asList("test1","test2");
-  try {
-    obj.init(hosts,new HashTree());
-    fail();
-  }
- catch (  RuntimeException ignored) {
-  }
+  initRunner(obj,hosts);
 }
