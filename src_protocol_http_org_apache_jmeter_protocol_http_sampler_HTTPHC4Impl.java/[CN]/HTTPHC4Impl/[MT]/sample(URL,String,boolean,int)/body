@@ -117,15 +117,22 @@
     res=resultProcessing(areFollowingRedirect,frameDepth,res);
   }
  catch (  IOException e) {
-    res.sampleEnd();
     log.debug("IOException",e);
+    if (res.getEndTime() == 0) {
+      res.sampleEnd();
+    }
+    if (res.getRequestHeaders() != null) {
+      log.debug("Overwriting request old headers: " + res.getRequestHeaders());
+    }
     res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
     errorResult(e,res);
     return res;
   }
 catch (  RuntimeException e) {
-    res.sampleEnd();
     log.debug("RuntimeException",e);
+    if (res.getEndTime() == 0) {
+      res.sampleEnd();
+    }
     errorResult(e,res);
     return res;
   }
