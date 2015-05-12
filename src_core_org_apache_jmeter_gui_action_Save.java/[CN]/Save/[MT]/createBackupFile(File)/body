@@ -1,0 +1,54 @@
+{
+  if (!BACKUP_ENABLED) {
+    return EMPTY_FILE_LIST;
+  }
+  char versionSeparator='-';
+  String baseName=fileToBackup.getName();
+  baseName=baseName.endsWith(JMX_FILE_EXTENSION) ? baseName.substring(0,baseName.length() - JMX_FILE_EXTENSION.length()) : baseName;
+  File backupDir=new File(BACKUP_DIRECTORY);
+  backupDir.mkdirs();
+  if (!backupDir.isDirectory()) {
+    log.error("Could not backup file ! Backup directory does not exist, is not a directory or could not be created ! <" + backupDir.getAbsolutePath() + ">");
+  }
+  String backupPatternRegex=Pattern.quote(baseName + versionSeparator) + "([\\d]{6})" + Pattern.quote(JMX_FILE_EXTENSION);
+  Pattern backupPattern=Pattern.compile(backupPatternRegex);
+  IOFileFilter patternFileFilter=new PrivatePatternFileFilter(backupPattern);
+  List<File> backupFiles=new ArrayList<File>(FileUtils.listFiles(backupDir,patternFileFilter,null));
+  int lastVersionNumber=0;
+  for (  File backupFile : backupFiles) {
+    Matcher matcher=backupPattern.matcher(backupFile.getName());
+    if (matcher.find() && matcher.groupCount() > 0) {
+      int version=Integer.parseInt(matcher.group(1));
+      lastVersionNumber=Math.max(lastVersionNumber,version);
+    }
+  }
+  List<File> expiredFiles=new ArrayList<File>();
+  if (BACKUP_MAX_HOURS > 0) {
+    Calendar cal=Calendar.getInstance();
+    cal.add(Calendar.HOUR_OF_DAY,-BACKUP_MAX_HOURS);
+    long expiryDate=cal.getTime().getTime();
+    IOFileFilter expiredFileFilter=FileFilterUtils.ageFileFilter(expiryDate,true);
+    expiredFiles.addAll(FileFilterUtils.filterList(expiredFileFilter,backupFiles));
+  }
+  Collections.sort(backupFiles,new Comparator<File>(){
+    @Override public int compare(    File o1,    File o2){
+      long diff=o1.lastModified() - o2.lastModified();
+      return diff < 0 ? -1 : diff > 0 ? 1 : 0;
+    }
+  }
+);
+  String backupName=baseName + versionSeparator + BACKUP_VERSION_FORMATER.format(lastVersionNumber + 1)+ JMX_FILE_EXTENSION;
+  File backupFile=new File(backupDir,backupName);
+  try {
+    FileUtils.copyFile(fileToBackup,backupFile);
+  }
+ catch (  IOException e) {
+    log.error("Failed to backup file :" + fileToBackup.getAbsolutePath(),e);
+    return EMPTY_FILE_LIST;
+  }
+  backupFiles.add(backupFile);
+  if (BACKUP_MAX_COUNT > 0 && backupFiles.size() > BACKUP_MAX_COUNT) {
+    expiredFiles.addAll(backupFiles.subList(0,backupFiles.size() - BACKUP_MAX_COUNT));
+  }
+  return expiredFiles;
+}
