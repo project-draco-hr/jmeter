@@ -2,7 +2,7 @@
   super(AccessLogSampler.class);
   log.debug("Entered access log sampler bean info");
   try {
-    createPropertyGroup("defaults",new String[]{"domain","portString","imageParsing"});
+    createPropertyGroup("defaults",new String[]{"protocol","domain","portString","imageParsing"});
     createPropertyGroup("plugins",new String[]{"parserClassName","filterClassName"});
     createPropertyGroup("accesslogfile",new String[]{"logFile"});
     PropertyDescriptor p;
@@ -29,6 +29,9 @@
     p=property("domain");
     p.setValue(NOT_UNDEFINED,Boolean.TRUE);
     p.setValue(DEFAULT,"");
+    p=property("protocol");
+    p.setValue(NOT_UNDEFINED,Boolean.TRUE);
+    p.setValue(DEFAULT,"http");
     p=property("portString");
     p.setValue(NOT_UNDEFINED,Boolean.TRUE);
     p.setValue(DEFAULT,"");

@@ -1,0 +1,7 @@
+{
+  String protocol=getPropertyAsString(PROTOCOL);
+  if (StringUtils.isEmpty(protocol)) {
+    return HTTPConstants.PROTOCOL_HTTP;
+  }
+  return protocol;
+}
