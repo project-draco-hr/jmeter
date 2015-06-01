@@ -1,5 +1,5 @@
 {
-  tags=pTags == null ? EMPTY_STRING_ARRAY : pTags.clone();
+  tags=pTags == null ? ArrayUtils.EMPTY_STRING_ARRAY : pTags.clone();
   model=new DefaultComboBoxModel();
   if (rb != null && tags.length > 0) {
     validTranslations=new HashMap<String,String>();
