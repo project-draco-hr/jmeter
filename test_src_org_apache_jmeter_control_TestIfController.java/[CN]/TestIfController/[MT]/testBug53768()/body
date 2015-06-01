@@ -39,10 +39,10 @@
   vars.put("VAR1","0");
   try {
     Sampler sampler=controller.next();
-    SampleResult sampleResult1=sampler.sample(null);
+    sampler.sample(null);
     assertEquals("0",vars.get("VAR1"));
     sampler=controller.next();
-    SampleResult sampleResult2=sampler.sample(null);
+    sampler.sample(null);
     assertEquals("0",vars.get("VAR1"));
   }
  catch (  StackOverflowError e) {
