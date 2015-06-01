@@ -4,10 +4,10 @@
   add(makeTitlePanel());
   HorizontalPanel targetPanel=new HorizontalPanel();
   targetPanel.add(new JLabel(targetLabel));
-  DefaultComboBoxModel targetModel=new DefaultComboBoxModel();
+  DefaultComboBoxModel<String> targetModel=new DefaultComboBoxModel<>();
   targetModel.addElement(threadTarget);
   targetModel.addElement(testTarget);
-  targetBox=new JComboBox(targetModel);
+  targetBox=new JComboBox<>(targetModel);
   targetBox.addActionListener(new ActionListener(){
     @Override public void actionPerformed(    ActionEvent e){
       if (((String)targetBox.getSelectedItem()).equals(threadTarget)) {

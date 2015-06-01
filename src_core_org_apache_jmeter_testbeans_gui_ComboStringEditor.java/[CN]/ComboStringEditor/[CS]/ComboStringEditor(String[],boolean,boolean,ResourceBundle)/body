@@ -1,6 +1,6 @@
 {
   tags=pTags == null ? ArrayUtils.EMPTY_STRING_ARRAY : pTags.clone();
-  model=new DefaultComboBoxModel();
+  model=new DefaultComboBoxModel<>();
   if (rb != null && tags.length > 0) {
     validTranslations=new HashMap<String,String>();
     for (    String tag : this.tags) {
@@ -27,7 +27,7 @@
   if (!noEdit) {
     model.addElement(EDIT);
   }
-  combo=new JComboBox(model);
+  combo=new JComboBox<>(model);
   combo.addItemListener(this);
   combo.setEditable(false);
 }

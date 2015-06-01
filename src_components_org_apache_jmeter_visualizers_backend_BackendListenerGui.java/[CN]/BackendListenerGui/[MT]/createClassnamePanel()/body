@@ -8,7 +8,7 @@
     LOGGER.debug("Exception getting interfaces.",e);
   }
   JLabel label=new JLabel(JMeterUtils.getResString("backend_listener_classname"));
-  classnameCombo=new JComboBox(possibleClasses.toArray());
+  classnameCombo=new JComboBox<>(possibleClasses.toArray(ArrayUtils.EMPTY_STRING_ARRAY));
   classnameCombo.addActionListener(this);
   classnameCombo.setEditable(false);
   label.setLabelFor(classnameCombo);

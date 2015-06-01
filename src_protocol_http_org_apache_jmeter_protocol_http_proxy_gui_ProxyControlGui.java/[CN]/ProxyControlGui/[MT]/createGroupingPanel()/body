@@ -1,11 +1,11 @@
 {
-  DefaultComboBoxModel m=new DefaultComboBoxModel();
+  DefaultComboBoxModel<String> m=new DefaultComboBoxModel<>();
   m.addElement(JMeterUtils.getResString("grouping_no_groups"));
   m.addElement(JMeterUtils.getResString("grouping_add_separators"));
   m.addElement(JMeterUtils.getResString("grouping_in_controllers"));
   m.addElement(JMeterUtils.getResString("grouping_store_first_only"));
   m.addElement(JMeterUtils.getResString("grouping_in_transaction_controllers"));
-  groupingMode=new JComboBox(m);
+  groupingMode=new JComboBox<>(m);
   groupingMode.setPreferredSize(new Dimension(150,20));
   groupingMode.setSelectedIndex(0);
   groupingMode.addItemListener(this);

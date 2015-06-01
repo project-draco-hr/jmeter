@@ -1,6 +1,6 @@
 {
-  ComboBoxModel nodesModel=new DefaultComboBoxModel();
-  selectRenderPanel=new JComboBox(nodesModel);
+  ComboBoxModel<ResultRenderer> nodesModel=new DefaultComboBoxModel<>();
+  selectRenderPanel=new JComboBox<>(nodesModel);
   selectRenderPanel.setActionCommand(COMBO_CHANGE_COMMAND);
   selectRenderPanel.addActionListener(this);
   List<String> classesToAdd=Collections.<String>emptyList();

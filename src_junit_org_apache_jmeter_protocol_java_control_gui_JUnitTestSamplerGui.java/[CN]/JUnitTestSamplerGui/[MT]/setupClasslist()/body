@@ -11,7 +11,7 @@
     }
     ClassFilter filter=new ClassFilter();
     filter.setPackges(JOrphanUtils.split(filterpkg.getText(),","));
-    Object[] clist=filter.filterArray(classList);
+    String[] clist=filter.filterArray(classList);
     for (int idx=0; idx < clist.length; idx++) {
       classnameCombo.addItem(clist[idx]);
     }

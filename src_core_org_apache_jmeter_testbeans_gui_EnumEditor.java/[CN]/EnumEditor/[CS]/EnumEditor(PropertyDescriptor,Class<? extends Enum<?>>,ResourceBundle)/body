@@ -1,9 +1,9 @@
 {
-  model=new DefaultComboBoxModel();
-  combo=new JComboBox(model);
+  model=new DefaultComboBoxModel<>();
+  combo=new JComboBox<>(model);
   combo.setEditable(false);
   for (  Enum<?> e : enumClazz.getEnumConstants()) {
-    model.addElement(rb.getObject(e.toString()));
+    model.addElement((String)rb.getObject(e.toString()));
   }
   Object def=descriptor.getValue(GenericTestBeanCustomizer.DEFAULT);
   if (def instanceof Integer) {

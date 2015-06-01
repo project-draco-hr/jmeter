@@ -2,10 +2,10 @@
   setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
   setBorder(makeBorder());
   add(makeTitlePanel());
-  DefaultComboBoxModel styleModel=new DefaultComboBoxModel();
+  DefaultComboBoxModel<String> styleModel=new DefaultComboBoxModel<>();
   styleModel.addElement(BYNUMBER_LABEL);
   styleModel.addElement(BYPERCENT_LABEL);
-  styleBox=new JComboBox(styleModel);
+  styleBox=new JComboBox<>(styleModel);
   styleBox.addActionListener(new ActionListener(){
     @Override public void actionPerformed(    ActionEvent e){
       if (((String)styleBox.getSelectedItem()).equals(BYNUMBER_LABEL)) {

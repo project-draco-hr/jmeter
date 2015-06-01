@@ -1,7 +1,7 @@
 {
   String command=event.getActionCommand();
   if (COMBO_CHANGE_COMMAND.equals(command)) {
-    JComboBox jcb=(JComboBox)event.getSource();
+    JComboBox<?> jcb=(JComboBox<?>)event.getSource();
     if (jcb != null) {
       resultsRender=(ResultRenderer)jcb.getSelectedItem();
       if (rightSide != null) {

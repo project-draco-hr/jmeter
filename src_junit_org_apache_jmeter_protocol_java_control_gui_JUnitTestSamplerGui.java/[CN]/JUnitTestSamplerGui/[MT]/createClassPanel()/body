@@ -1,10 +1,10 @@
 {
   JLabel label=new JLabel(JMeterUtils.getResString("protocol_java_classname"));
-  classnameCombo=new JComboBox();
+  classnameCombo=new JComboBox<>();
   classnameCombo.addActionListener(this);
   classnameCombo.setEditable(false);
   label.setLabelFor(classnameCombo);
-  methodName=new JComboBox();
+  methodName=new JComboBox<>();
   methodName.addActionListener(this);
   methodLabel.setLabelFor(methodName);
   setupClasslist();

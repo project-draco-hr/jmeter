@@ -1,10 +1,10 @@
 {
-  DefaultComboBoxModel m=new DefaultComboBoxModel();
+  DefaultComboBoxModel<String> m=new DefaultComboBoxModel<>();
   for (  String s : HTTPSamplerFactory.getImplementations()) {
     m.addElement(s);
   }
   m.addElement(USE_DEFAULT_HTTP_IMPL);
-  samplerTypeName=new JComboBox(m);
+  samplerTypeName=new JComboBox<>(m);
   samplerTypeName.setPreferredSize(new Dimension(150,20));
   samplerTypeName.setSelectedItem(USE_DEFAULT_HTTP_IMPL);
   samplerTypeName.addItemListener(this);

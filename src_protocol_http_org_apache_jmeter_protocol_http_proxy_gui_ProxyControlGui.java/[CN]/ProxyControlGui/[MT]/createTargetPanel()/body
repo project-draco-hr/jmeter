@@ -1,6 +1,6 @@
 {
-  targetNodesModel=new DefaultComboBoxModel();
-  targetNodes=new JComboBox(targetNodesModel);
+  targetNodesModel=new DefaultComboBoxModel<>();
+  targetNodes=new JComboBox<>(targetNodesModel);
   targetNodes.setPrototypeDisplayValue("");
   JPopupMenu popup=(JPopupMenu)targetNodes.getUI().getAccessibleChild(targetNodes,0);
   JScrollPane scrollPane=findScrollPane(popup);

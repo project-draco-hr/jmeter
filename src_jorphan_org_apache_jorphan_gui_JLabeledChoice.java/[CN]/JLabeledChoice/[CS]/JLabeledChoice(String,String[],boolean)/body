@@ -1,7 +1,7 @@
 {
   super();
   mLabel.setText(pLabel);
-  choiceList=new JComboBox(items);
+  choiceList=new JComboBox<>(items);
   choiceList.setEditable(editable);
   init();
 }

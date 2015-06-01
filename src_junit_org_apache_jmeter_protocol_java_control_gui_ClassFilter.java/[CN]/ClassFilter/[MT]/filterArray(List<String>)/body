@@ -1,14 +1,14 @@
 {
-  ArrayList<Object> newlist=new ArrayList<Object>();
+  ArrayList<String> newlist=new ArrayList<>();
   for (  String item : items) {
     if (include(item)) {
       newlist.add(item);
     }
   }
   if (newlist.size() > 0) {
-    return newlist.toArray();
+    return newlist.toArray(ArrayUtils.EMPTY_STRING_ARRAY);
   }
  else {
-    return new Object[0];
+    return ArrayUtils.EMPTY_STRING_ARRAY;
   }
 }

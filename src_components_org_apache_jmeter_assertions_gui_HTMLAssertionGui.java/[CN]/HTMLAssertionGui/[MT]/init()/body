@@ -6,7 +6,7 @@
   VerticalPanel assertionPanel=new VerticalPanel();
   assertionPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),"Tidy Settings"));
   HorizontalPanel docTypePanel=new HorizontalPanel();
-  docTypeBox=new JComboBox(new String[]{"omit","auto","strict","loose"});
+  docTypeBox=new JComboBox<>(new String[]{"omit","auto","strict","loose"});
   docTypePanel.add(new JLabel("Doctype:"));
   docTypePanel.add(docTypeBox);
   assertionPanel.add(docTypePanel);

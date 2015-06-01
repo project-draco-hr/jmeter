@@ -34,7 +34,7 @@
   authPane.add(smtpPasswordPane,BorderLayout.EAST);
   JPanel authTypePane=new JPanel(new BorderLayout());
   authTypePane.add(new JLabel(JMeterUtils.getResString("mailer_connection_security")),BorderLayout.WEST);
-  authTypeCombo=new JComboBox(new Object[]{MailerModel.MailAuthType.NONE.toString(),MailerModel.MailAuthType.SSL.toString(),MailerModel.MailAuthType.TLS.toString()});
+  authTypeCombo=new JComboBox<>(new String[]{MailerModel.MailAuthType.NONE.toString(),MailerModel.MailAuthType.SSL.toString(),MailerModel.MailAuthType.TLS.toString()});
   authTypeCombo.setFont(new Font("SansSerif",Font.PLAIN,10));
   authTypePane.add(authTypeCombo,BorderLayout.CENTER);
   JPanel credPane=new JPanel(new BorderLayout());

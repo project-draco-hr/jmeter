@@ -3,7 +3,7 @@
   queueConnectionFactory.setText("");
   sendQueue.setText("");
   receiveQueue.setText("");
-  ((JComboBox)oneWay.getComponentList().get(1)).setSelectedItem(JMeterUtils.getResString("jms_request"));
+  ((JComboBox<?>)oneWay.getComponentList().get(1)).setSelectedItem(JMeterUtils.getResString("jms_request"));
   timeout.setText("");
   expiration.setText("");
   priority.setText("");
