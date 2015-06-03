@@ -30,5 +30,6 @@
   treevar.setDragEnabled(true);
   treevar.setDropMode(DropMode.ON_OR_INSERT);
   treevar.setTransferHandler(new JMeterTreeTransferHandler());
+  addQuickComponentHotkeys(treevar);
   return treevar;
 }

@@ -1,0 +1,39 @@
+{
+  Action quickComponent=new AbstractAction("Quick Component"){
+    @Override public void actionPerformed(    ActionEvent actionEvent){
+      String propname="gui.quick_" + actionEvent.getActionCommand();
+      String comp=JMeterUtils.getProperty(propname);
+      log.debug("Event " + propname + ": "+ comp);
+      if (comp == null) {
+        log.warn("No component set through property: " + propname);
+        return;
+      }
+      GuiPackage guiPackage=GuiPackage.getInstance();
+      try {
+        guiPackage.updateCurrentNode();
+        TestElement testElement=guiPackage.createTestElement(SaveService.aliasToClass(comp));
+        JMeterTreeNode parentNode=guiPackage.getCurrentNode();
+        while (!MenuFactory.canAddTo(parentNode,testElement)) {
+          parentNode=(JMeterTreeNode)parentNode.getParent();
+        }
+        if (parentNode.getParent() == null) {
+          log.debug("Cannot add element on very top level");
+        }
+ else {
+          JMeterTreeNode node=guiPackage.getTreeModel().addComponent(testElement,parentNode);
+          guiPackage.getMainFrame().getTree().setSelectionPath(new TreePath(node.getPath()));
+        }
+      }
+ catch (      Exception err) {
+        log.warn("Failed to perform quick component add: " + comp,err);
+      }
+    }
+  }
+;
+  InputMap inputMap=treevar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+  KeyStroke[] keyStrokes=new KeyStroke[]{KeyStrokes.CTRL_0,KeyStrokes.CTRL_1,KeyStrokes.CTRL_2,KeyStrokes.CTRL_3,KeyStrokes.CTRL_4,KeyStrokes.CTRL_5,KeyStrokes.CTRL_6,KeyStrokes.CTRL_7,KeyStrokes.CTRL_8,KeyStrokes.CTRL_9};
+  for (int n=0; n < keyStrokes.length; n++) {
+    treevar.getActionMap().put(ActionNames.QUICK_COMPONENT + String.valueOf(n),quickComponent);
+    inputMap.put(keyStrokes[n],ActionNames.QUICK_COMPONENT + String.valueOf(n));
+  }
+}
