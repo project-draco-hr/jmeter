@@ -24,7 +24,7 @@
     }
     for (int i=0; i < files.length; i++) {
       HTTPFileArg file=files[i];
-      File inputFile=new File(file.getPath());
+      File inputFile=FileServer.getFileServer().getResolvedFile(file.getPath());
       ViewableFilePart filePart=new ViewableFilePart(file.getParamName(),inputFile,file.getMimeType(),null);
       filePart.setCharSet(null);
       partlist.add(filePart);

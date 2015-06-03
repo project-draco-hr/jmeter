@@ -1,0 +1,9 @@
+{
+  File f=new File(filename);
+  if (f.isAbsolute() || f.exists()) {
+    return f;
+  }
+ else {
+    return new File(base,filename);
+  }
+}

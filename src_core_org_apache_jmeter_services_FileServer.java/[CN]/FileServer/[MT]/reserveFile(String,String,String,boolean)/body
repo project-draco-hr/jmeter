@@ -7,8 +7,7 @@
   }
   FileEntry fileEntry=files.get(alias);
   if (fileEntry == null) {
-    File f=new File(filename);
-    fileEntry=new FileEntry(f.isAbsolute() ? f : new File(base,filename),null,charsetName);
+    fileEntry=new FileEntry(resolveFileFromPath(filename),null,charsetName);
     if (filename.equals(alias)) {
       log.info("Stored: " + filename);
     }

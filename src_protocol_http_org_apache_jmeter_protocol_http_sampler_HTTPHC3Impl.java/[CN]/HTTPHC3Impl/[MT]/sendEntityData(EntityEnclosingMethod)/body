@@ -6,7 +6,8 @@
   HTTPFileArg files[]=getHTTPFiles();
   if (!hasArguments() && getSendFileAsPostBody()) {
     hasPutBody=true;
-    FileRequestEntity fileRequestEntity=new FileRequestEntity(new File(files[0].getPath()),null);
+    File reservedFile=FileServer.getFileServer().getResolvedFile(files[0].getPath());
+    FileRequestEntity fileRequestEntity=new FileRequestEntity(reservedFile,null);
     put.setRequestEntity(fileRequestEntity);
   }
  else   if (getSendParameterValuesAsPostBody()) {

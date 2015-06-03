@@ -1,0 +1,7 @@
+{
+  final File anchor=new File(findTestPath("testfiles/empty.csv"));
+  assertTrue(FS.getResolvedFile(anchor.getAbsolutePath()).exists());
+  assertTrue(FS.getResolvedFile(anchor.getParentFile().getPath() + "/../testfiles/empty.csv").exists());
+  FS.setBaseForScript(anchor);
+  assertTrue(FS.getResolvedFile(anchor.getName()).exists());
+}

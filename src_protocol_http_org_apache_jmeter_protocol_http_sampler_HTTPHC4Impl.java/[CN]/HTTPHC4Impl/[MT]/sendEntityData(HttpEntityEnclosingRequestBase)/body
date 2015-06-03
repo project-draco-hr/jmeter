@@ -11,7 +11,8 @@
   final String charset=getContentEncoding(HTTP.DEF_CONTENT_CHARSET.name());
   if (!hasArguments() && getSendFileAsPostBody()) {
     hasEntityBody=true;
-    FileEntity fileRequestEntity=new FileEntity(new File(files[0].getPath()));
+    File reservedFile=FileServer.getFileServer().getResolvedFile(files[0].getPath());
+    FileEntity fileRequestEntity=new FileEntity(reservedFile);
     entity.setEntity(fileRequestEntity);
   }
  else   if (getSendParameterValuesAsPostBody()) {

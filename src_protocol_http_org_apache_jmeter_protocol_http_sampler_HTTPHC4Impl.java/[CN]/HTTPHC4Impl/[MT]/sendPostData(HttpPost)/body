@@ -24,7 +24,8 @@
     ViewableFileBody[] fileBodies=new ViewableFileBody[files.length];
     for (int i=0; i < files.length; i++) {
       HTTPFileArg file=files[i];
-      fileBodies[i]=new ViewableFileBody(new File(file.getPath()),file.getMimeType());
+      File reservedFile=FileServer.getFileServer().getResolvedFile(file.getPath());
+      fileBodies[i]=new ViewableFileBody(reservedFile,file.getMimeType());
       multiPart.addPart(file.getParamName(),fileBodies[i]);
     }
     post.setEntity(multiPart);
