@@ -1,5 +1,6 @@
 {
   Action quickComponent=new AbstractAction("Quick Component"){
+    private static final long serialVersionUID=1L;
     @Override public void actionPerformed(    ActionEvent actionEvent){
       String propname="gui.quick_" + actionEvent.getActionCommand();
       String comp=JMeterUtils.getProperty(propname);
