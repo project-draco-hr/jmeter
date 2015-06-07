@@ -1,5 +1,5 @@
 {
-  if (!BACKUP_ENABLED) {
+  if (!BACKUP_ENABLED || !fileToBackup.exists()) {
     return EMPTY_FILE_LIST;
   }
   char versionSeparator='-';
