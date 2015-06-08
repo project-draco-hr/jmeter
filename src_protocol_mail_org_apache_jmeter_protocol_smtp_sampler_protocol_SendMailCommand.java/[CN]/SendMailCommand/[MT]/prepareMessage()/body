@@ -6,6 +6,16 @@
   props.setProperty("mail." + protocol + ".auth",Boolean.toString(useAuthentication));
   props.setProperty("mail." + protocol + ".timeout",getTimeout());
   props.setProperty("mail." + protocol + ".connectiontimeout",getConnectionTimeout());
+  if (useStartTLS || useSSL) {
+    try {
+      String allProtocols=StringUtils.join(SSLContext.getDefault().getSupportedSSLParameters().getProtocols()," ");
+      logger.info("Use ssl/tls protocols for mail: " + allProtocols);
+      props.setProperty("mail.smtp.ssl.protocols",allProtocols);
+    }
+ catch (    Exception e) {
+      logger.error("Problem setting ssl/tls protocols for mail",e);
+    }
+  }
   if (enableDebug) {
     props.setProperty("mail.debug","true");
   }
