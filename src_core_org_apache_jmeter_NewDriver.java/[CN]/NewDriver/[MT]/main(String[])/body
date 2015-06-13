@@ -5,13 +5,7 @@
     System.setProperty("log4j.configuration","file:" + conf);
   }
   try {
-    Class<?> initialClass;
-    if (args != null && args.length > 0 && args[0].equals("report")) {
-      initialClass=loader.loadClass("org.apache.jmeter.JMeterReport");
-    }
- else {
-      initialClass=loader.loadClass("org.apache.jmeter.JMeter");
-    }
+    Class<?> initialClass=loader.loadClass("org.apache.jmeter.JMeter");
     Object instance=initialClass.newInstance();
     Method startup=initialClass.getMethod("start",new Class[]{new String[0].getClass()});
     startup.invoke(instance,new Object[]{args});
