@@ -9,8 +9,8 @@
   }
   if (resultData != null && resultData.length() > 0) {
     results.setResponseData(resultData,null);
-    results.setDataType(SampleResult.TEXT);
   }
+  results.setDataType(SampleResult.TEXT);
   results.sampleStart();
   long sleep=sleepTime;
   if (sleepTime > 0 && sleepMask > 0) {
