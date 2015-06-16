@@ -20,6 +20,7 @@
       statsBuff.append(JMeterUtils.getResString("view_results_size_body_in_bytes")).append(sampleResult.getBodySize()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_sample_count")).append(sampleResult.getSampleCount()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_error_count")).append(sampleResult.getErrorCount()).append(NL);
+      statsBuff.append(JMeterUtils.getResString("view_results_datatype")).append(sampleResult.getDataType()).append(NL);
       statsDoc.insertString(statsDoc.getLength(),statsBuff.toString(),null);
       statsBuff.setLength(0);
       String responseCode=sampleResult.getResponseCode();
