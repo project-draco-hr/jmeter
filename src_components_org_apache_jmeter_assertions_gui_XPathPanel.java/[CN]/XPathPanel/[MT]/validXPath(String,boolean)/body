@@ -13,11 +13,7 @@
     success=false;
     ret=e.getLocalizedMessage();
   }
-catch (  ParserConfigurationException e) {
-    success=false;
-    ret=e.getLocalizedMessage();
-  }
-catch (  TransformerException e) {
+catch (  ParserConfigurationException|TransformerException e) {
     success=false;
     ret=e.getLocalizedMessage();
   }
