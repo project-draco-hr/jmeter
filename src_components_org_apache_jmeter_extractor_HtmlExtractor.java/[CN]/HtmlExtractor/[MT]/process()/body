@@ -4,7 +4,7 @@
   if (previousResult == null) {
     return;
   }
-  log.debug("HtmlExtractor processing result");
+  log.debug("HtmlExtractor " + getName() + ":processing result");
   JMeterVariables vars=context.getVariables();
   String refName=getRefName();
   String expression=getExpression();
@@ -24,7 +24,7 @@
         prevCount=Integer.parseInt(prevString);
       }
  catch (      NumberFormatException e1) {
-        log.warn("Could not parse " + prevString + " "+ e1);
+        log.warn(getName() + ":Could not parse " + prevString+ " "+ e1);
       }
     }
     int matchCount=0;
@@ -53,10 +53,10 @@
       }
     }
  catch (    RuntimeException e) {
-      log.warn("Error while generating result");
+      log.warn(getName() + ":Error while generating result");
     }
   }
  catch (  RuntimeException e) {
-    log.warn("Error while generating result");
+    log.warn(getName() + ":Error while generating result");
   }
 }
