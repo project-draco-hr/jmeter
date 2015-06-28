@@ -9,10 +9,7 @@
       writer=new FileWriter(chooser.getSelectedFile());
       CSVSaveService.saveCSVStats(StatGraphVisualizer.getAllTableData(model,StatGraphVisualizer.FORMATS),writer,saveHeaders.isSelected() ? StatGraphVisualizer.getLabels(StatGraphVisualizer.COLUMNS) : null);
     }
- catch (    FileNotFoundException e) {
-      JMeterUtils.reportErrorToUser(e.getMessage(),"Error saving data");
-    }
-catch (    IOException e) {
+ catch (    IOException e) {
       JMeterUtils.reportErrorToUser(e.getMessage(),"Error saving data");
     }
  finally {
