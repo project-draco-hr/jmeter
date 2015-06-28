@@ -10,10 +10,7 @@
     }
     delay=Long.parseLong(o.toString());
   }
- catch (  NumberFormatException e) {
-    log.warn("Problem in BSF script " + e);
-  }
-catch (  BSFException e) {
+ catch (  NumberFormatException|BSFException e) {
     log.warn("Problem in BSF script " + e);
   }
  finally {
