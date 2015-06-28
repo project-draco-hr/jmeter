@@ -8,10 +8,7 @@
     clonedElement.setRunningVersion(runningVersion);
     return clonedElement;
   }
- catch (  InstantiationException e) {
-    throw new AssertionError(e);
-  }
-catch (  IllegalAccessException e) {
+ catch (  InstantiationException|IllegalAccessException e) {
     throw new AssertionError(e);
   }
 }
