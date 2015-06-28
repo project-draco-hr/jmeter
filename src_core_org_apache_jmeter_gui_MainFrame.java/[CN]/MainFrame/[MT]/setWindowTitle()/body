@@ -6,11 +6,8 @@
       awtAppClassName.setAccessible(true);
       awtAppClassName.set(null,DEFAULT_APP_NAME);
     }
- catch (    NoSuchFieldException nsfe) {
+ catch (    NoSuchFieldException|IllegalAccessException nsfe) {
       log.warn("Error awt title: " + nsfe);
-    }
-catch (    IllegalAccessException iae) {
-      log.warn("Error awt title: " + iae);
     }
   }
 }

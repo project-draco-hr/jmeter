@@ -15,10 +15,7 @@
       }
     }
   }
- catch (  UnsupportedFlavorException e) {
-    log.warn("Dnd failed",e);
-  }
-catch (  IOException e) {
+ catch (  UnsupportedFlavorException|IOException e) {
     log.warn("Dnd failed",e);
   }
 }
