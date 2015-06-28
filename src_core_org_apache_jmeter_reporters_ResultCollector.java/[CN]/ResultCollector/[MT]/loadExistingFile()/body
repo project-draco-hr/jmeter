@@ -45,22 +45,10 @@ catch (          Exception e) {
         }
       }
     }
- catch (    IOException e) {
+ catch (    IOException|JMeterError|RuntimeException|OutOfMemoryError e) {
       log.warn("Problem reading JTL file: " + file);
     }
-catch (    JMeterError e) {
-      log.warn("Problem reading JTL file: " + file);
-    }
-catch (    RuntimeException e) {
-      log.warn("Problem reading JTL file: " + file,e);
-    }
-catch (    OutOfMemoryError e) {
-      log.warn("Problem reading JTL file: " + file,e);
-    }
-catch (    ConfigurationException e) {
-      log.warn("Problem reading Avalon JTL file: " + file,e);
-    }
-catch (    SAXException e) {
+catch (    ConfigurationException|SAXException e) {
       log.warn("Problem reading Avalon JTL file: " + file,e);
     }
  finally {
