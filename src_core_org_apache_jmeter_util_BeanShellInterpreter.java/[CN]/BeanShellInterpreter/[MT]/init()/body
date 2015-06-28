@@ -5,11 +5,7 @@
   try {
     bshInstance=bshClass.newInstance();
   }
- catch (  InstantiationException e) {
-    log.error("Can't instantiate BeanShell",e);
-    throw new ClassNotFoundException("Can't instantiate BeanShell",e);
-  }
-catch (  IllegalAccessException e) {
+ catch (  InstantiationException|IllegalAccessException e) {
     log.error("Can't instantiate BeanShell",e);
     throw new ClassNotFoundException("Can't instantiate BeanShell",e);
   }

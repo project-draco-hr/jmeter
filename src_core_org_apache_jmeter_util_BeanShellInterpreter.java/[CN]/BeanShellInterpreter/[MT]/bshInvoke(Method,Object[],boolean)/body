@@ -4,12 +4,7 @@
   try {
     r=m.invoke(bshInstance,o);
   }
- catch (  IllegalArgumentException e) {
-    final String message=errorString + m.getName();
-    log.error(message);
-    throw new JMeterError(message,e);
-  }
-catch (  IllegalAccessException e) {
+ catch (  IllegalArgumentException|IllegalAccessException e) {
     final String message=errorString + m.getName();
     log.error(message);
     throw new JMeterError(message,e);

@@ -9,11 +9,7 @@
       return null;
     }
   }
- catch (  NoClassDefFoundError e) {
-    log.info("no icon for " + name + " "+ e.getMessage());
-    return null;
-  }
-catch (  InternalError e) {
+ catch (  NoClassDefFoundError|InternalError e) {
     log.info("no icon for " + name + " "+ e.getMessage());
     return null;
   }
