@@ -11,10 +11,7 @@
         log.warn("Host not found in list of active engines: " + address);
       }
     }
- catch (    IllegalStateException e) {
-      JMeterUtils.reportErrorToUser(e.getMessage(),JMeterUtils.getResString("remote_error_starting"));
-    }
-catch (    JMeterEngineException e) {
+ catch (    IllegalStateException|JMeterEngineException e) {
       JMeterUtils.reportErrorToUser(e.getMessage(),JMeterUtils.getResString("remote_error_starting"));
     }
   }
