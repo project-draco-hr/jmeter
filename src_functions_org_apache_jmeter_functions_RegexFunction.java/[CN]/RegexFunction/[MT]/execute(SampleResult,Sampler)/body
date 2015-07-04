@@ -85,7 +85,7 @@
     return value.toString();
   }
  else   if (valueIndex.equals(RAND)) {
-    MatchResult result=collectAllMatches.get(rand.nextInt(collectAllMatches.size()));
+    MatchResult result=collectAllMatches.get(ThreadLocalRandom.current().nextInt(collectAllMatches.size()));
     return generateResult(result,name,tmplt,vars);
   }
  else {

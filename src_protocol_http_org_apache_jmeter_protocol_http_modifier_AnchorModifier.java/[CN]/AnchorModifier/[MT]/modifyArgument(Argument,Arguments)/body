@@ -17,7 +17,7 @@
     }
   }
   if (possibleReplacements.size() > 0) {
-    replacementArg=possibleReplacements.get(rand.nextInt(possibleReplacements.size()));
+    replacementArg=possibleReplacements.get(ThreadLocalRandom.current().nextInt(possibleReplacements.size()));
     arg.setName(replacementArg.getName());
     arg.setValue(replacementArg.getValue());
     if (log.isDebugEnabled()) {

@@ -5,7 +5,7 @@
     if (src.isDirectory() && src.list() != null) {
       File[] lfiles=src.listFiles(new JMeterFileFilter(extensions));
       int count=lfiles.length;
-      input=lfiles[random.nextInt(count)];
+      input=lfiles[ThreadLocalRandom.current().nextInt(count)];
     }
   }
   return input;
