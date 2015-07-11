@@ -1,0 +1,3 @@
+{
+  return res.getResponseMessage() != null && res.getResponseMessage().startsWith(TransactionController.NUMBER_OF_SAMPLES_IN_TRANSACTION_PREFIX);
+}

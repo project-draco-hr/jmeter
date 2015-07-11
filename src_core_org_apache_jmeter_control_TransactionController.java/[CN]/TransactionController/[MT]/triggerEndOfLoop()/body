@@ -4,7 +4,7 @@
       res.setIdleTime(pauseTime + res.getIdleTime());
       res.sampleEnd();
       res.setSuccessful(TRUE.equals(JMeterContextService.getContext().getVariables().get(JMeterThread.LAST_SAMPLE_OK)));
-      res.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
+      res.setResponseMessage(TransactionController.NUMBER_OF_SAMPLES_IN_TRANSACTION_PREFIX + calls + ", number of failing samples : "+ noFailingSamples);
       notifyListeners();
     }
   }

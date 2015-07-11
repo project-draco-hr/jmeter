@@ -1,0 +1,9 @@
+{
+  SampleResult[] subResults=res.getSubResults();
+  if (!TransactionController.isFromTransactionController(res)) {
+    hits+=1;
+  }
+  for (int i=0; i < subResults.length; i++) {
+    addHits(subResults[i]);
+  }
+}

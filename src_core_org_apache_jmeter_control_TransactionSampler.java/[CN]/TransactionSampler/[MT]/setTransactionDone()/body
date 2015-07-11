@@ -1,6 +1,6 @@
 {
   this.transactionDone=true;
-  transactionSampleResult.setResponseMessage("Number of samples in transaction : " + calls + ", number of failing samples : "+ noFailingSamples);
+  transactionSampleResult.setResponseMessage(TransactionController.NUMBER_OF_SAMPLES_IN_TRANSACTION_PREFIX + calls + ", number of failing samples : "+ noFailingSamples);
   if (transactionSampleResult.isSuccessful()) {
     transactionSampleResult.setResponseCodeOK();
   }
