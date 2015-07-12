@@ -11,8 +11,11 @@
  else   if (HTTPConstants.CACHE_CONTROL.equals(headerName)) {
     return cacheControl == null ? null : new Header(HTTPConstants.CACHE_CONTROL,cacheControl);
   }
-  if (HTTPConstants.DATE.equals(headerName)) {
+ else   if (HTTPConstants.DATE.equals(headerName)) {
     return this.dateHeader;
+  }
+ else   if (HTTPConstants.VARY.equals(headerName)) {
+    return vary == null ? null : new Header(HTTPConstants.VARY,vary);
   }
   return null;
 }

@@ -14,5 +14,8 @@
  else   if (HTTPConstants.DATE.equals(name)) {
     return currentTimeInGMT;
   }
+ else   if (HTTPConstants.VARY.equals(name)) {
+    return vary;
+  }
   return super.getHeaderField(name);
 }

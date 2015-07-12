@@ -1,5 +1,5 @@
 {
-  if (isCacheable(res)) {
+  if (isCacheable(res) && !hasVaryHeader(conn)) {
     String lastModified=conn.getHeaderField(HTTPConstants.LAST_MODIFIED);
     String expires=conn.getHeaderField(HTTPConstants.EXPIRES);
     String etag=conn.getHeaderField(HTTPConstants.ETAG);
