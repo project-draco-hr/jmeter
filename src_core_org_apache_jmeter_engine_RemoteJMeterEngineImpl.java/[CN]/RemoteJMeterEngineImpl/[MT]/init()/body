@@ -4,6 +4,7 @@
   String host=System.getProperties().getProperty("java.rmi.server.hostname");
   try {
     if (host == null) {
+      log.info("System property 'java.rmi.server.hostname' is not defined, using localHost address");
       localHost=InetAddress.getLocalHost();
     }
  else {
