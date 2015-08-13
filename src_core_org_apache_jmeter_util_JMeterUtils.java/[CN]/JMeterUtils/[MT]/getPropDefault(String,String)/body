@@ -7,6 +7,7 @@
     }
   }
  catch (  Exception e) {
+    log.warn("Exception '" + e.getMessage() + "' occurred when fetching String property:'"+ propName+ "', defaulting to:"+ defaultVal);
     ans=defaultVal;
   }
   return ans;

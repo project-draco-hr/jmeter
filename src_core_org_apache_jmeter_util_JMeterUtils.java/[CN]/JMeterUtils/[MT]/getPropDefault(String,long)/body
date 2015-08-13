@@ -4,7 +4,7 @@
     ans=Long.parseLong(appProperties.getProperty(propName,Long.toString(defaultVal)).trim());
   }
  catch (  Exception e) {
-    log.warn("Unexpected value set for long property:'" + propName + "', defaulting to:"+ defaultVal);
+    log.warn("Exception '" + e.getMessage() + "' occurred when fetching long property:'"+ propName+ "', defaulting to:"+ defaultVal);
     ans=defaultVal;
   }
   return ans;

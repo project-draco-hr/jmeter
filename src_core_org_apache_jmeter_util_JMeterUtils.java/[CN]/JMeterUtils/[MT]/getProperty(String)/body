@@ -4,6 +4,7 @@
     ans=appProperties.getProperty(propName);
   }
  catch (  Exception e) {
+    log.warn("Exception '" + e.getMessage() + "' occurred when fetching String property:'"+ propName+ "'");
     ans=null;
   }
   return ans;

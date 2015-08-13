@@ -13,7 +13,7 @@
     }
   }
  catch (  Exception e) {
-    log.warn("Unexpected value set for boolean property:'" + propName + "', defaulting to:"+ defaultVal);
+    log.warn("Exception '" + e.getMessage() + "' occurred when fetching boolean property:'"+ propName+ "', defaulting to:"+ defaultVal);
     ans=defaultVal;
   }
   return ans;

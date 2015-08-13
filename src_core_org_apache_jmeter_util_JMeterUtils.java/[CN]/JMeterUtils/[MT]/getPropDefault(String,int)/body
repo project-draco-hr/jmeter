@@ -4,7 +4,7 @@
     ans=Integer.parseInt(appProperties.getProperty(propName,Integer.toString(defaultVal)).trim());
   }
  catch (  Exception e) {
-    log.warn("Unexpected value set for int property:'" + propName + "', defaulting to:"+ defaultVal);
+    log.warn("Exception '" + e.getMessage() + "' occurred when fetching int property:'"+ propName+ "', defaulting to:"+ defaultVal);
     ans=defaultVal;
   }
   return ans;
