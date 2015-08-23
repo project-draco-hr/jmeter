@@ -1,7 +1,6 @@
 {
-  Iterator<Object> iter=new LinkedList<>(tree.list()).iterator();
-  while (iter.hasNext()) {
-    TestElement item=(TestElement)iter.next();
+  for (  Object o : new LinkedList<>(tree.list())) {
+    TestElement item=(TestElement)o;
     if (!item.isEnabled()) {
       tree.remove(item);
     }
