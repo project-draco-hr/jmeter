@@ -1,6 +1,6 @@
 {
   Object[] res=this.getSOAPBindings();
-  ArrayList<Element> ops=new ArrayList<>();
+  List<Element> ops=new ArrayList<>();
   for (int idx=0; idx < res.length; idx++) {
     Element one=(Element)res[idx];
     NodeList opnodes=one.getElementsByTagNameNS(WSDL_NAMESPACE,"operation");

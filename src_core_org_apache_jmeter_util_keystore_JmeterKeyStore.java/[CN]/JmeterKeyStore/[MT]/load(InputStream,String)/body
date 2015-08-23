@@ -1,7 +1,7 @@
 {
   char pw[]=pword == null ? null : pword.toCharArray();
   store.load(is,pw);
-  ArrayList<String> v_names=new ArrayList<>();
+  List<String> v_names=new ArrayList<>();
   this.privateKeyByAlias=new HashMap<>();
   this.certsByAlias=new HashMap<>();
   if (null != is) {

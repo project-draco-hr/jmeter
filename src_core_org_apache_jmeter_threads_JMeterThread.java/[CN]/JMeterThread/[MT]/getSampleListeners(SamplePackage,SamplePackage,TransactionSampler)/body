@@ -1,7 +1,7 @@
 {
   List<SampleListener> sampleListeners=samplePack.getSampleListeners();
   if (transactionSampler != null) {
-    ArrayList<SampleListener> onlySubSamplerListeners=new ArrayList<>();
+    List<SampleListener> onlySubSamplerListeners=new ArrayList<>();
     List<SampleListener> transListeners=transactionPack.getSampleListeners();
     for (    SampleListener listener : sampleListeners) {
       boolean found=false;
