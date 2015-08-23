@@ -1,6 +1,6 @@
 {
   if (action != null) {
-    HashSet<ActionListener> set=postActionListeners.get(action.getName());
+    Set<ActionListener> set=postActionListeners.get(action.getName());
     if (set == null) {
       set=new HashSet<>();
     }
