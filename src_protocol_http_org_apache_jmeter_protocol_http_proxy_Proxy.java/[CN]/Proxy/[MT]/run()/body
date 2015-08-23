@@ -97,7 +97,7 @@ catch (  Exception e) {
       }
     }
     if (result != null) {
-      List<TestElement> children=new ArrayList<TestElement>();
+      List<TestElement> children=new ArrayList<>();
       if (captureHttpHeaders) {
         children.add(headers);
       }

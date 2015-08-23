@@ -3,7 +3,7 @@
     log.debug("Regex = " + regex);
   }
   Perl5Matcher matcher=JMeterUtils.getMatcher();
-  List<MatchResult> matches=new ArrayList<MatchResult>();
+  List<MatchResult> matches=new ArrayList<>();
   int found=0;
   if (isScopeVariable()) {
     String inputString=vars.get(getVariableName());

@@ -1,6 +1,6 @@
 {
   final SystemCommand nativeCommand=new SystemCommand(null,null);
-  final List<String> arguments=new ArrayList<String>();
+  final List<String> arguments=new ArrayList<>();
   arguments.add(keytoolPath);
   arguments.add("-help");
   try {

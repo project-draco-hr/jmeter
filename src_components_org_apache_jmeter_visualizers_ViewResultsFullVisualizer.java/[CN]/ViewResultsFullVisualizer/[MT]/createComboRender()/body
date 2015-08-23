@@ -11,7 +11,7 @@
   }
   String textRenderer=JMeterUtils.getResString("view_results_render_text");
   Object textObject=null;
-  Map<String,ResultRenderer> map=new HashMap<String,ResultRenderer>(classesToAdd.size());
+  Map<String,ResultRenderer> map=new HashMap<>(classesToAdd.size());
   for (  String clazz : classesToAdd) {
     try {
       final ResultRenderer renderer=(ResultRenderer)Class.forName(clazz).newInstance();

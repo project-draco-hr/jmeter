@@ -4,7 +4,7 @@
   double[][] data=new double[size][max];
   double nanLast=0;
   double nanBegin=0;
-  List<Double> nanList=new ArrayList<Double>();
+  List<Double> nanList=new ArrayList<>();
   int s=0;
   for (  Map<Long,StatCalculatorLong> subList : pList.values()) {
     int idx=0;

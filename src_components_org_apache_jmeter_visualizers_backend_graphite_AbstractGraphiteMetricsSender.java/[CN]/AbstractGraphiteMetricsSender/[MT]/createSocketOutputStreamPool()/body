@@ -7,5 +7,5 @@
   config.setMaxIdlePerKey(-1);
   config.setMinEvictableIdleTimeMillis(TimeUnit.MINUTES.toMillis(3));
   config.setTimeBetweenEvictionRunsMillis(TimeUnit.MINUTES.toMillis(3));
-  return new GenericKeyedObjectPool<SocketConnectionInfos,SocketOutputStream>(new SocketOutputStreamPoolFactory(SOCKET_CONNECT_TIMEOUT_MS,SOCKET_TIMEOUT),config);
+  return new GenericKeyedObjectPool<>(new SocketOutputStreamPoolFactory(SOCKET_CONNECT_TIMEOUT_MS,SOCKET_TIMEOUT),config);
 }

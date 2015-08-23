@@ -1,6 +1,6 @@
 {
   String addressees=getToAddress();
-  List<String> addressList=new ArrayList<String>();
+  List<String> addressList=new ArrayList<>();
   if (addressees != null) {
     StringTokenizer next=new StringTokenizer(addressees,",");
     while (next.hasMoreTokens()) {

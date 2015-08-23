@@ -1,5 +1,5 @@
 {
-  Map<String,String> map=new HashMap<String,String>();
+  Map<String,String> map=new HashMap<>();
   while (iter.hasNext()) {
     JMeterProperty item=iter.next();
     map.put(item.getName(),item.getStringValue());

@@ -1,5 +1,5 @@
 {
-  LinkedHashMap<String,String> linkedHeaders=new LinkedHashMap<String,String>();
+  LinkedHashMap<String,String> linkedHeaders=new LinkedHashMap<>();
   String[] list=headers.split("\n");
   for (  String header : list) {
     int colon=header.indexOf(':');

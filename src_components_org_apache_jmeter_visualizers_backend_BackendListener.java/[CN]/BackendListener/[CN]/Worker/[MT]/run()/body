@@ -1,6 +1,6 @@
 {
   boolean isDebugEnabled=LOGGER.isDebugEnabled();
-  List<SampleResult> sampleResults=new ArrayList<SampleResult>(listenerClientData.queue.size());
+  List<SampleResult> sampleResults=new ArrayList<>(listenerClientData.queue.size());
   try {
     try {
       boolean endOfLoop=false;

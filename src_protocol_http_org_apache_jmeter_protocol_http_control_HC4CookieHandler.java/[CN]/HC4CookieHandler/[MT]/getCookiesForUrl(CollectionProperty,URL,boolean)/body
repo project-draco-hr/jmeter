@@ -1,5 +1,5 @@
 {
-  List<org.apache.http.cookie.Cookie> cookies=new ArrayList<org.apache.http.cookie.Cookie>();
+  List<org.apache.http.cookie.Cookie> cookies=new ArrayList<>();
   for (PropertyIterator iter=cookiesCP.iterator(); iter.hasNext(); ) {
     Cookie jmcookie=(Cookie)iter.next().getObjectValue();
     if (allowVariableCookie) {
@@ -16,7 +16,7 @@
   String path=url.getPath();
   boolean secure=HTTPSamplerBase.isSecure(protocol);
   CookieOrigin cookieOrigin=new CookieOrigin(host,port,path,secure);
-  List<org.apache.http.cookie.Cookie> cookiesValid=new ArrayList<org.apache.http.cookie.Cookie>();
+  List<org.apache.http.cookie.Cookie> cookiesValid=new ArrayList<>();
   for (  org.apache.http.cookie.Cookie cookie : cookies) {
     if (cookieSpec.match(cookie,cookieOrigin)) {
       cookiesValid.add(cookie);

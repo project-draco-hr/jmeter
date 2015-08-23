@@ -33,7 +33,7 @@
         log.warn("Ignoring embedded URL match string: " + e.getMessage());
       }
     }
-    final List<Callable<AsynSamplerResultHolder>> liste=new ArrayList<Callable<AsynSamplerResultHolder>>();
+    final List<Callable<AsynSamplerResultHolder>> liste=new ArrayList<>();
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {

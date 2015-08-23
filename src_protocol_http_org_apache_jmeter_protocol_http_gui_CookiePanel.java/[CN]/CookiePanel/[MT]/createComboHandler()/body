@@ -1,6 +1,6 @@
 {
   ComboBoxModel<String> nodesModel=new DefaultComboBoxModel<>();
-  selectHandlerPanel=new JComboBox<String>(nodesModel);
+  selectHandlerPanel=new JComboBox<>(nodesModel);
   selectHandlerPanel.setActionCommand(HANDLER_COMMAND);
   selectHandlerPanel.addActionListener(this);
   List<String> classesToAdd=Collections.<String>emptyList();

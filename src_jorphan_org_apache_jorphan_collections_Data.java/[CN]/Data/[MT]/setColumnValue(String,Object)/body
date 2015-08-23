@@ -1,7 +1,7 @@
 {
   List<Object> tempList;
   if ((tempList=data.get(column)) == null) {
-    tempList=new ArrayList<Object>();
+    tempList=new ArrayList<>();
     data.put(column,tempList);
   }
   if (currentPos == -1) {

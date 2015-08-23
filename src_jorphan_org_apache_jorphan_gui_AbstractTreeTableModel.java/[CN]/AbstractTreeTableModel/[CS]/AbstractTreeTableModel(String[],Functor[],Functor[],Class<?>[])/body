@@ -2,6 +2,6 @@
   this.rootNode=null;
   this.headers.addAll(Arrays.asList(headers));
   this.classes.addAll(Arrays.asList(editorClasses));
-  this.readFunctors=new ArrayList<Functor>(Arrays.asList(readFunctors));
-  this.writeFunctors=new ArrayList<Functor>(Arrays.asList(writeFunctors));
+  this.readFunctors=new ArrayList<>(Arrays.asList(readFunctors));
+  this.writeFunctors=new ArrayList<>(Arrays.asList(writeFunctors));
 }

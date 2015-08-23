@@ -1,5 +1,5 @@
 {
-  Iterator<Object> iter=new LinkedList<Object>(tree.list()).iterator();
+  Iterator<Object> iter=new LinkedList<>(tree.list()).iterator();
   while (iter.hasNext()) {
     TestElement item=(TestElement)iter.next();
     if (!item.isEnabled()) {

@@ -20,7 +20,7 @@
   }
   String[] oList=order.split(TOOLBAR_ENTRY_SEP);
   String iconSize=JMeterUtils.getPropDefault(TOOLBAR_ICON_SIZE,DEFAULT_TOOLBAR_ICON_SIZE);
-  List<IconToolbarBean> listIcons=new ArrayList<IconToolbarBean>();
+  List<IconToolbarBean> listIcons=new ArrayList<>();
   for (  String key : oList) {
     log.debug("Toolbar icon key: " + key);
     String trimmed=key.trim();

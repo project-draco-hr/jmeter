@@ -1,6 +1,6 @@
 {
   PropertyIterator iter=getProperties().iterator();
-  Map<String,Object> argMap=new LinkedHashMap<String,Object>();
+  Map<String,Object> argMap=new LinkedHashMap<>();
   while (iter.hasNext()) {
     JMSProperty arg=(JMSProperty)iter.next().getObjectValue();
     if (!argMap.containsKey(arg.getName())) {

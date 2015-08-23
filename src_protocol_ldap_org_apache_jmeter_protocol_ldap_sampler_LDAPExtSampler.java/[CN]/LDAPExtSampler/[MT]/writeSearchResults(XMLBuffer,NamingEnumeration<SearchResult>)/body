@@ -1,5 +1,5 @@
 {
-  final ArrayList<SearchResult> sortedResults=new ArrayList<SearchResult>(MAX_SORTED_RESULTS);
+  final ArrayList<SearchResult> sortedResults=new ArrayList<>(MAX_SORTED_RESULTS);
   final String searchBase=getPropertyAsString(SEARCHBASE);
   final String rootDn=getRootdn();
   try {

@@ -16,7 +16,7 @@
   }
   vars.put(matchNR,"0");
   vars.remove(concat(refName,"1"));
-  List<String> matches=new ArrayList<String>();
+  List<String> matches=new ArrayList<>();
   try {
     if (isScopeVariable()) {
       String inputString=vars.get(getVariableName());

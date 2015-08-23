@@ -1,5 +1,5 @@
 {
-  Map<String,Object> m=new HashMap<String,Object>();
+  Map<String,Object> m=new HashMap<>();
   String text=getMessageContent();
   String[] lines=text.split("\n");
   for (  String line : lines) {

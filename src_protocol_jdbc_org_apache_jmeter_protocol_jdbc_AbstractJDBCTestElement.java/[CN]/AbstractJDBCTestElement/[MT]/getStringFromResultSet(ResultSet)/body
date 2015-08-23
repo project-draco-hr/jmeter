@@ -16,7 +16,7 @@
   String resultVariable=getResultVariable().trim();
   List<Map<String,Object>> results=null;
   if (resultVariable.length() > 0) {
-    results=new ArrayList<Map<String,Object>>();
+    results=new ArrayList<>();
     jmvars.putObject(resultVariable,results);
   }
   int j=0;
@@ -27,7 +27,7 @@
       Object o=rs.getObject(i);
       if (results != null) {
         if (row == null) {
-          row=new HashMap<String,Object>(numColumns);
+          row=new HashMap<>(numColumns);
           results.add(row);
         }
         row.put(meta.getColumnLabel(i),o);

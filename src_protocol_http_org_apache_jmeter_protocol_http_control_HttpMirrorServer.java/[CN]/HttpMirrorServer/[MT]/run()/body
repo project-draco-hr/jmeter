@@ -4,7 +4,7 @@
   ServerSocket mainSocket=null;
   ThreadPoolExecutor threadPoolExecutor=null;
   if (maxThreadPoolSize > 0) {
-    final ArrayBlockingQueue<Runnable> queue=new ArrayBlockingQueue<Runnable>(maxQueueSize);
+    final ArrayBlockingQueue<Runnable> queue=new ArrayBlockingQueue<>(maxQueueSize);
     threadPoolExecutor=new ThreadPoolExecutor(maxThreadPoolSize / 2,maxThreadPoolSize,KEEP_ALIVE_TIME,TimeUnit.SECONDS,queue);
     threadPoolExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
   }

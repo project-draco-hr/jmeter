@@ -1,6 +1,6 @@
 {
   DirContext dirContext;
-  Hashtable<String,String> env=new Hashtable<String,String>();
+  Hashtable<String,String> env=new Hashtable<>();
   env.put(Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
   StringBuilder sb=new StringBuilder(80);
   if (secure) {

@@ -1,6 +1,6 @@
 {
-  List<Controller> result=new ArrayList<Controller>(stack.size());
-  LinkedList<TestElement> stackLocalCopy=new LinkedList<TestElement>(stack);
+  List<Controller> result=new ArrayList<>(stack.size());
+  LinkedList<TestElement> stackLocalCopy=new LinkedList<>(stack);
   while (stackLocalCopy.size() > 0) {
     TestElement te=stackLocalCopy.getLast();
     if (te instanceof Controller) {

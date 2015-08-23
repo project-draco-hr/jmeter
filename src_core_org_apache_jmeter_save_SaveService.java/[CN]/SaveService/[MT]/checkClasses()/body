@@ -1,6 +1,6 @@
 {
   final ClassLoader classLoader=SaveService.class.getClassLoader();
-  List<String> missingClasses=new ArrayList<String>();
+  List<String> missingClasses=new ArrayList<>();
   for (  Object clazz : classToAlias.keySet()) {
     String name=(String)clazz;
     if (!NameUpdater.isMapped(name)) {

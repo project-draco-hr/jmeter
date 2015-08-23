@@ -13,7 +13,7 @@
   String backupPatternRegex=Pattern.quote(baseName + versionSeparator) + "([\\d]{6})" + Pattern.quote(JMX_FILE_EXTENSION);
   Pattern backupPattern=Pattern.compile(backupPatternRegex);
   IOFileFilter patternFileFilter=new PrivatePatternFileFilter(backupPattern);
-  List<File> backupFiles=new ArrayList<File>(FileUtils.listFiles(backupDir,patternFileFilter,null));
+  List<File> backupFiles=new ArrayList<>(FileUtils.listFiles(backupDir,patternFileFilter,null));
   int lastVersionNumber=0;
   for (  File backupFile : backupFiles) {
     Matcher matcher=backupPattern.matcher(backupFile.getName());
@@ -22,7 +22,7 @@
       lastVersionNumber=Math.max(lastVersionNumber,version);
     }
   }
-  List<File> expiredFiles=new ArrayList<File>();
+  List<File> expiredFiles=new ArrayList<>();
   if (BACKUP_MAX_HOURS > 0) {
     Calendar cal=Calendar.getInstance();
     cal.add(Calendar.HOUR_OF_DAY,-BACKUP_MAX_HOURS);

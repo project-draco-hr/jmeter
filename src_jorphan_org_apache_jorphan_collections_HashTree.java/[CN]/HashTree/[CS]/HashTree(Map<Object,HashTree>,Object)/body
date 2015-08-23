@@ -3,7 +3,7 @@
     data=_map;
   }
  else {
-    data=new HashMap<Object,HashTree>();
+    data=new HashMap<>();
   }
   if (key != null) {
     data.put(key,new HashTree());

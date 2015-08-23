@@ -1,5 +1,5 @@
 {
-  Map<String,Boolean> buttonStates=new HashMap<String,Boolean>(3);
+  Map<String,Boolean> buttonStates=new HashMap<>(3);
   buttonStates.put(ActionNames.REMOTE_START_ALL,Boolean.valueOf(!started));
   buttonStates.put(ActionNames.REMOTE_STOP_ALL,Boolean.valueOf(started));
   buttonStates.put(ActionNames.REMOTE_SHUT_ALL,Boolean.valueOf(started));

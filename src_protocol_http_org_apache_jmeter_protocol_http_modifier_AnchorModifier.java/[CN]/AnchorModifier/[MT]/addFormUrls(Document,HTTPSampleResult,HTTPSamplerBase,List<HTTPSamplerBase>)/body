@@ -1,6 +1,6 @@
 {
   NodeList rootList=html.getChildNodes();
-  List<HTTPSamplerBase> urls=new LinkedList<HTTPSamplerBase>();
+  List<HTTPSamplerBase> urls=new LinkedList<>();
   for (int x=0; x < rootList.getLength(); x++) {
     urls.addAll(HtmlParsingUtils.createURLFromForm(rootList.item(x),result.getURL()));
   }

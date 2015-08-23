@@ -1,5 +1,5 @@
 {
-  Vector<String> v=new Vector<String>();
+  Vector<String> v=new Vector<>();
   Enumeration<?> names=properties.keys();
   while (names.hasMoreElements()) {
     String prop=(String)names.nextElement();

@@ -1,5 +1,5 @@
 {
-  List<SampleResult> sampleList=new ArrayList<SampleResult>();
+  List<SampleResult> sampleList=new ArrayList<>();
   String scope=fetchScope();
   if (isScopeParent(scope) || isScopeAll(scope)) {
     sampleList.add(result);

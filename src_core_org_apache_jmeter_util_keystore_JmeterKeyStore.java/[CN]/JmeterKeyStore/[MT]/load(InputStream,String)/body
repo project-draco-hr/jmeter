@@ -1,9 +1,9 @@
 {
   char pw[]=pword == null ? null : pword.toCharArray();
   store.load(is,pw);
-  ArrayList<String> v_names=new ArrayList<String>();
-  this.privateKeyByAlias=new HashMap<String,PrivateKey>();
-  this.certsByAlias=new HashMap<String,X509Certificate[]>();
+  ArrayList<String> v_names=new ArrayList<>();
+  this.privateKeyByAlias=new HashMap<>();
+  this.certsByAlias=new HashMap<>();
   if (null != is) {
     PrivateKey _key=null;
     int index=0;

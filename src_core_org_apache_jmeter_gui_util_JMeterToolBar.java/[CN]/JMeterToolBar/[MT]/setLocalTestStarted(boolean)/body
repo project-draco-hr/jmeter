@@ -1,5 +1,5 @@
 {
-  Map<String,Boolean> buttonStates=new HashMap<String,Boolean>(3);
+  Map<String,Boolean> buttonStates=new HashMap<>(3);
   buttonStates.put(ActionNames.ACTION_START,Boolean.valueOf(!started));
   buttonStates.put(ActionNames.ACTION_START_NO_TIMERS,Boolean.valueOf(!started));
   buttonStates.put(ActionNames.ACTION_STOP,Boolean.valueOf(started));

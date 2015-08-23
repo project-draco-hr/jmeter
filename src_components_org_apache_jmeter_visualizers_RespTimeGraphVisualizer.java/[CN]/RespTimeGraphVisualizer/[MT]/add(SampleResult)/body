@@ -36,7 +36,7 @@ synchronized (lock) {
             value.addValue(respTime,1);
           }
  else {
-            Map<Long,StatCalculatorLong> newSubList=new LinkedHashMap<Long,StatCalculatorLong>(5);
+            Map<Long,StatCalculatorLong> newSubList=new LinkedHashMap<>(5);
             StatCalculatorLong helper=new StatCalculatorLong();
             helper.addValue(Long.valueOf(sampleResult.getTime()),1);
             newSubList.put(startTimeIntervalLong,helper);

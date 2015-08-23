@@ -1,6 +1,6 @@
 {
   String selectName=null;
-  LinkedList<HTTPSamplerBase> urlConfigs=new LinkedList<HTTPSamplerBase>();
+  LinkedList<HTTPSamplerBase> urlConfigs=new LinkedList<>();
   recurseForm(doc,urlConfigs,context,selectName,false);
   return urlConfigs;
 }

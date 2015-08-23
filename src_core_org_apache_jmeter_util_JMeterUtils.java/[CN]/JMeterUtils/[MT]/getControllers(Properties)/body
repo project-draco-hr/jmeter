@@ -1,6 +1,6 @@
 {
   String name="controller.";
-  Vector<Object> v=new Vector<Object>();
+  Vector<Object> v=new Vector<>();
   Enumeration<?> names=properties.keys();
   while (names.hasMoreElements()) {
     String prop=(String)names.nextElement();

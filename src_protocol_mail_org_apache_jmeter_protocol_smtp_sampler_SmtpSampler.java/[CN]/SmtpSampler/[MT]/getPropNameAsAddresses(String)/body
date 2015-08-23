@@ -1,6 +1,6 @@
 {
   if (propValue.length() > 0) {
-    List<InternetAddress> addresses=new ArrayList<InternetAddress>();
+    List<InternetAddress> addresses=new ArrayList<>();
     for (    String address : propValue.split(";")) {
       addresses.add(new InternetAddress(address.trim()));
     }

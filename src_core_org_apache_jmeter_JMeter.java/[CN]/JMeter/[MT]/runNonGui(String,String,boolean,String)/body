@@ -10,7 +10,7 @@
     @SuppressWarnings("deprecation") JMeterTreeModel treeModel=new JMeterTreeModel(new Object());
     JMeterTreeNode root=(JMeterTreeNode)treeModel.getRoot();
     treeModel.addSubTree(tree,root);
-    SearchByClass<ReplaceableController> replaceableControllers=new SearchByClass<ReplaceableController>(ReplaceableController.class);
+    SearchByClass<ReplaceableController> replaceableControllers=new SearchByClass<>(ReplaceableController.class);
     tree.traverse(replaceableControllers);
     Collection<ReplaceableController> replaceableControllersRes=replaceableControllers.getSearchResults();
     for (Iterator<ReplaceableController> iter=replaceableControllersRes.iterator(); iter.hasNext(); ) {
@@ -36,7 +36,7 @@
       }
     }
     tree.add(tree.getArray()[0],new RemoteThreadsListenerTestElement());
-    List<JMeterEngine> engines=new LinkedList<JMeterEngine>();
+    List<JMeterEngine> engines=new LinkedList<>();
     tree.add(tree.getArray()[0],new ListenToTest(parent,(remoteStart && remoteStop) ? engines : null));
     println("Created the tree successfully using " + testFile);
     if (!remoteStart) {
@@ -49,7 +49,7 @@
     }
  else {
       java.util.StringTokenizer st=new java.util.StringTokenizer(remote_hosts_string,",");
-      List<String> hosts=new LinkedList<String>();
+      List<String> hosts=new LinkedList<>();
       while (st.hasMoreElements()) {
         hosts.add((String)st.nextElement());
       }

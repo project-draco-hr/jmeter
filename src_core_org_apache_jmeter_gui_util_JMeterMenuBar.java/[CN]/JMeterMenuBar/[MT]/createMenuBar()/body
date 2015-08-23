@@ -1,5 +1,5 @@
 {
-  this.menuCreators=new ArrayList<MenuCreator>();
+  this.menuCreators=new ArrayList<>();
   try {
     List<String> listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{MenuCreator.class});
     for (    String strClassName : listClasses) {

@@ -1,5 +1,5 @@
 {
-  LinkedList<Object> copyList=new LinkedList<Object>(tree.list());
+  LinkedList<Object> copyList=new LinkedList<>(tree.list());
   for (  Object o : copyList) {
     if (o instanceof TestElement) {
       TestElement item=(TestElement)o;

@@ -14,7 +14,7 @@
     }
   }
 ;
-  FutureTask<Subject> task=new FutureTask<Subject>(callable);
+  FutureTask<Subject> task=new FutureTask<>(callable);
   if (log.isDebugEnabled()) {
     log.debug("Subject cached:" + subjects.keySet() + " before:"+ username);
   }

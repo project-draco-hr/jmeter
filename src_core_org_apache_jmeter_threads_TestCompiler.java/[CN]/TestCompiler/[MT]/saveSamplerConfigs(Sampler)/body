@@ -1,15 +1,15 @@
 {
-  List<ConfigTestElement> configs=new LinkedList<ConfigTestElement>();
-  List<Controller> controllers=new LinkedList<Controller>();
-  List<SampleListener> listeners=new LinkedList<SampleListener>();
-  List<Timer> timers=new LinkedList<Timer>();
-  List<Assertion> assertions=new LinkedList<Assertion>();
-  LinkedList<PostProcessor> posts=new LinkedList<PostProcessor>();
-  LinkedList<PreProcessor> pres=new LinkedList<PreProcessor>();
+  List<ConfigTestElement> configs=new LinkedList<>();
+  List<Controller> controllers=new LinkedList<>();
+  List<SampleListener> listeners=new LinkedList<>();
+  List<Timer> timers=new LinkedList<>();
+  List<Assertion> assertions=new LinkedList<>();
+  LinkedList<PostProcessor> posts=new LinkedList<>();
+  LinkedList<PreProcessor> pres=new LinkedList<>();
   for (int i=stack.size(); i > 0; i--) {
     addDirectParentControllers(controllers,stack.get(i - 1));
-    List<PreProcessor> tempPre=new LinkedList<PreProcessor>();
-    List<PostProcessor> tempPost=new LinkedList<PostProcessor>();
+    List<PreProcessor> tempPre=new LinkedList<>();
+    List<PostProcessor> tempPost=new LinkedList<>();
     for (    Object item : testTree.list(stack.subList(0,i))) {
       if ((item instanceof ConfigTestElement)) {
         configs.add((ConfigTestElement)item);

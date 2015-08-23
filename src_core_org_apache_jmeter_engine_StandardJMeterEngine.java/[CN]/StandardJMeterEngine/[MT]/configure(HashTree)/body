@@ -1,5 +1,5 @@
 {
-  SearchByClass<TestPlan> testPlan=new SearchByClass<TestPlan>(TestPlan.class);
+  SearchByClass<TestPlan> testPlan=new SearchByClass<>(TestPlan.class);
   testTree.traverse(testPlan);
   Object[] plan=testPlan.getSearchResults().toArray();
   if (plan.length == 0) {

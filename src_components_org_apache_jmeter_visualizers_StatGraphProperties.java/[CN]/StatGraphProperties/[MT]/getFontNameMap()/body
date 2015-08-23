@@ -1,5 +1,5 @@
 {
-  Map<String,String> fontNameMap=new LinkedHashMap<String,String>(2);
+  Map<String,String> fontNameMap=new LinkedHashMap<>(2);
   fontNameMap.put(JMeterUtils.getResString("font.sansserif"),"SansSerif");
   fontNameMap.put(JMeterUtils.getResString("font.serif"),"Serif");
   return fontNameMap;

@@ -44,7 +44,7 @@
  else {
 synchronized (lockInterval) {
         if (internalList.size() >= 2) {
-          List<RespTimeGraphDataBean> tempList=new ArrayList<RespTimeGraphDataBean>();
+          List<RespTimeGraphDataBean> tempList=new ArrayList<>();
           tempList.addAll(internalList);
           this.clearData();
           for (          RespTimeGraphDataBean data : tempList) {

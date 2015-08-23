@@ -1,9 +1,9 @@
 {
-  List<List<Object>> data=new ArrayList<List<Object>>();
+  List<List<Object>> data=new ArrayList<>();
   if (model.getRowCount() > 0) {
     for (int rw=0; rw < model.getRowCount(); rw++) {
       int cols=model.getColumnCount();
-      List<Object> column=new ArrayList<Object>();
+      List<Object> column=new ArrayList<>();
       data.add(column);
       for (int idx=0; idx < cols; idx++) {
         Object val=model.getValueAt(rw,idx);

@@ -7,7 +7,7 @@
       contentEncoding=null;
     }
     final boolean browserCompatible=getDoBrowserCompatibleMultipart();
-    ArrayList<PartBase> partlist=new ArrayList<PartBase>();
+    ArrayList<PartBase> partlist=new ArrayList<>();
     PropertyIterator args=getArguments().iterator();
     while (args.hasNext()) {
       HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();

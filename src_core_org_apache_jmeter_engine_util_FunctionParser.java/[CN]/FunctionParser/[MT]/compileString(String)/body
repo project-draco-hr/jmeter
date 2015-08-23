@@ -1,6 +1,6 @@
 {
   StringReader reader=new StringReader(value);
-  LinkedList<Object> result=new LinkedList<Object>();
+  LinkedList<Object> result=new LinkedList<>();
   StringBuilder buffer=new StringBuilder();
   char previous=' ';
   char[] current=new char[1];

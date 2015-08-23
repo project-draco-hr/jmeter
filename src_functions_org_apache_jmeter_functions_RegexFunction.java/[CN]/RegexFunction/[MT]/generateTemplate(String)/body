@@ -1,6 +1,6 @@
 {
-  List<String> pieces=new ArrayList<String>();
-  List<Object> combined=new LinkedList<Object>();
+  List<String> pieces=new ArrayList<>();
+  List<Object> combined=new LinkedList<>();
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Util.split(pieces,matcher,templatePattern,rawTemplate);
   PatternMatcherInput input=new PatternMatcherInput(rawTemplate);

@@ -2,7 +2,7 @@
   if (template != null) {
     return;
   }
-  List<Object> combined=new ArrayList<Object>();
+  List<Object> combined=new ArrayList<>();
   String rawTemplate=getTemplate();
   PatternMatcher matcher=JMeterUtils.getMatcher();
   Pattern templatePattern=JMeterUtils.getPatternCache().getPattern("\\$(\\d+)\\$",Perl5Compiler.READ_ONLY_MASK & Perl5Compiler.SINGLELINE_MASK);

@@ -1,6 +1,6 @@
 {
   Enumeration<AbstractButton> buttons=bGroup.getElements();
-  List<AbstractButton> buttonsToRemove=new ArrayList<AbstractButton>(this.bGroup.getButtonCount());
+  List<AbstractButton> buttonsToRemove=new ArrayList<>(this.bGroup.getButtonCount());
   while (buttons.hasMoreElements()) {
     AbstractButton abstractButton=buttons.nextElement();
     buttonsToRemove.add(abstractButton);

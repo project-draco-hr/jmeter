@@ -1,5 +1,5 @@
 {
-  List<JMeterProperty> props=new LinkedList<JMeterProperty>();
+  List<JMeterProperty> props=new LinkedList<>();
   while (iter.hasNext()) {
     JMeterProperty val=iter.next();
     if (log.isDebugEnabled()) {

@@ -97,7 +97,7 @@
           post.setHeader(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
         PropertyIterator args=getArguments().iterator();
-        List<NameValuePair> nvps=new ArrayList<NameValuePair>();
+        List<NameValuePair> nvps=new ArrayList<>();
         String urlContentEncoding=contentEncoding;
         if (urlContentEncoding == null || urlContentEncoding.length() == 0) {
           urlContentEncoding=EncoderCache.URL_ARGUMENT_ENCODING;

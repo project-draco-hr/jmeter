@@ -2,7 +2,7 @@
   try {
     boolean eof=false;
     while (!eof) {
-      List<SampleEvent> l=new ArrayList<SampleEvent>();
+      List<SampleEvent> l=new ArrayList<>();
       SampleEvent e=queue.take();
       while (!(eof=(e == FINAL_EVENT)) && e != null) {
         l.add(e);

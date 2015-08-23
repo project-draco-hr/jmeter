@@ -1,5 +1,5 @@
 {
-  ArrayList<Element> list=new ArrayList<Element>();
+  ArrayList<Element> list=new ArrayList<>();
   NodeList bindings=WSDLDOC.getElementsByTagNameNS(WSDL_NAMESPACE,"binding");
   for (int idx=0; idx < bindings.getLength(); idx++) {
     Element nd=(Element)bindings.item(idx);

@@ -12,7 +12,7 @@
     sampler=(HTTPSamplerBase)sam;
     result=(HTTPSampleResult)res;
   }
-  List<HTTPSamplerBase> potentialLinks=new ArrayList<HTTPSamplerBase>();
+  List<HTTPSamplerBase> potentialLinks=new ArrayList<>();
   String responseText="";
   responseText=result.getResponseDataAsString();
   Document html;

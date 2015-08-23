@@ -1,5 +1,5 @@
 {
-  List<String> addresses=new LinkedList<String>();
+  List<String> addresses=new LinkedList<>();
   addresses.addAll(engines.keySet());
   stop(addresses);
 }

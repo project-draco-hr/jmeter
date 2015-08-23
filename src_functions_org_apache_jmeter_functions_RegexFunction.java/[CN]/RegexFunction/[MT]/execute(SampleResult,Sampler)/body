@@ -52,7 +52,7 @@
   if (textToMatch == null || textToMatch.length() == 0) {
     return defaultValue;
   }
-  List<MatchResult> collectAllMatches=new ArrayList<MatchResult>();
+  List<MatchResult> collectAllMatches=new ArrayList<>();
   try {
     PatternMatcher matcher=JMeterUtils.getMatcher();
     PatternMatcherInput input=new PatternMatcherInput(textToMatch);

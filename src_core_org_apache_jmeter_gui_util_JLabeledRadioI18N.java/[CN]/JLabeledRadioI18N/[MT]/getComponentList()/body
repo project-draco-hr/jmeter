@@ -1,5 +1,5 @@
 {
-  List<JComponent> comps=new LinkedList<JComponent>();
+  List<JComponent> comps=new LinkedList<>();
   comps.add(mLabel);
   Enumeration<AbstractButton> en=this.bGroup.getElements();
   while (en.hasMoreElements()) {

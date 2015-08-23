@@ -12,7 +12,7 @@
     JMeterUtils.reportErrorToUser("Error occurred compiling the tree: - see log file");
     return;
   }
-  SearchByClass<TestStateListener> testListeners=new SearchByClass<TestStateListener>(TestStateListener.class);
+  SearchByClass<TestStateListener> testListeners=new SearchByClass<>(TestStateListener.class);
   test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
@@ -25,9 +25,9 @@
   }
   List<?> testLevelElements=new LinkedList<Object>(test.list(test.getArray()[0]));
   removeThreadGroups(testLevelElements);
-  SearchByClass<SetupThreadGroup> setupSearcher=new SearchByClass<SetupThreadGroup>(SetupThreadGroup.class);
-  SearchByClass<AbstractThreadGroup> searcher=new SearchByClass<AbstractThreadGroup>(AbstractThreadGroup.class);
-  SearchByClass<PostThreadGroup> postSearcher=new SearchByClass<PostThreadGroup>(PostThreadGroup.class);
+  SearchByClass<SetupThreadGroup> setupSearcher=new SearchByClass<>(SetupThreadGroup.class);
+  SearchByClass<AbstractThreadGroup> searcher=new SearchByClass<>(AbstractThreadGroup.class);
+  SearchByClass<PostThreadGroup> postSearcher=new SearchByClass<>(PostThreadGroup.class);
   test.traverse(setupSearcher);
   test.traverse(searcher);
   test.traverse(postSearcher);

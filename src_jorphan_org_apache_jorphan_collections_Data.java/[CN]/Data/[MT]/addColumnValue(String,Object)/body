@@ -1,7 +1,7 @@
 {
   List<Object> tempList;
   if ((tempList=data.get(column)) == null) {
-    tempList=new ArrayList<Object>();
+    tempList=new ArrayList<>();
     data.put(column,tempList);
   }
   int s=tempList.size();

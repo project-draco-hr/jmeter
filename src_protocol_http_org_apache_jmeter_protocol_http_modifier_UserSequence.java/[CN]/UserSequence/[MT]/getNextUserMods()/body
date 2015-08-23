@@ -8,7 +8,7 @@
     log.debug("UserSequence.getNextuserMods(): current parameters will be " + "changed to: " + user);
   }
  else {
-    user=new HashMap<String,String>();
+    user=new HashMap<>();
   }
   return user;
 }

@@ -1,5 +1,5 @@
 {
-  Hashtable<String,String> t=new Hashtable<String,String>();
+  Hashtable<String,String> t=new Hashtable<>();
   Enumeration<?> names=properties.keys();
   final int length=prefix.length();
   while (names.hasMoreElements()) {

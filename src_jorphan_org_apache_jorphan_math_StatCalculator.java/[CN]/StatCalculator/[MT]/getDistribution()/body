@@ -1,5 +1,5 @@
 {
-  Map<Number,Number[]> items=new HashMap<Number,Number[]>();
+  Map<Number,Number[]> items=new HashMap<>();
   for (  Entry<T,MutableLong> entry : valuesMap.entrySet()) {
     Number[] dis=new Number[2];
     dis[0]=entry.getKey();

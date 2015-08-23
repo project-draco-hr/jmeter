@@ -1,8 +1,8 @@
 {
   updateCurrentNode();
-  guis=new HashMap<Class<?>,JMeterGUIComponent>();
-  nodesToGui=new HashMap<TestElement,JMeterGUIComponent>();
-  testBeanGUIs=new HashMap<Class<?>,JMeterGUIComponent>();
+  guis=new HashMap<>();
+  nodesToGui=new HashMap<>();
+  testBeanGUIs=new HashMap<>();
   Introspector.flushCaches();
   MainFrame mf=getMainFrame();
   if (mf == null) {

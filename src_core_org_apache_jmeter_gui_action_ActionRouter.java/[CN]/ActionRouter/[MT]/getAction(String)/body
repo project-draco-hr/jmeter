@@ -1,5 +1,5 @@
 {
-  Set<Command> set=new HashSet<Command>();
+  Set<Command> set=new HashSet<>();
   for (  Command c : commands.get(actionName)) {
     try {
       set.add(c);

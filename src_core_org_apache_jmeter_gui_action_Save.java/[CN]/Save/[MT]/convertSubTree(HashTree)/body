@@ -1,5 +1,5 @@
 {
-  Iterator<Object> iter=new LinkedList<Object>(tree.list()).iterator();
+  Iterator<Object> iter=new LinkedList<>(tree.list()).iterator();
   while (iter.hasNext()) {
     JMeterTreeNode item=(JMeterTreeNode)iter.next();
     convertSubTree(tree.getTree(item));
