@@ -9,7 +9,7 @@
         if (!HTTPConstants.HEADER_CONTENT_LENGTH.equalsIgnoreCase(n)) {
           String v=header.getValue();
           if (HTTPConstants.HEADER_HOST.equalsIgnoreCase(n)) {
-            int port=url.getPort();
+            int port=getPortFromHostHeader(v,url.getPort());
             v=v.replaceFirst(":\\d+$","");
             if (port != -1) {
               if (port == url.getDefaultPort()) {
