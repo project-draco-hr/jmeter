@@ -1,7 +1,7 @@
 {
-  for (int i=0; i < m_optionDescriptors.length; i++) {
-    if (m_optionDescriptors[i].getName().equals(name)) {
-      return m_optionDescriptors[i];
+  for (  CLOptionDescriptor optionDescriptor : m_optionDescriptors) {
+    if (optionDescriptor.getName().equals(name)) {
+      return optionDescriptor;
     }
   }
   return null;

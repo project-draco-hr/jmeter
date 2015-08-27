@@ -6,8 +6,8 @@
     }
     final CLOption option=arguments.elementAt(i);
     final int id=option.getDescriptor().getId();
-    for (int j=0; j < incompatible.length; j++) {
-      if (id == incompatible[j]) {
+    for (    int anIncompatible : incompatible) {
+      if (id == anIncompatible) {
         final CLOption originalOption=arguments.elementAt(original);
         final int originalId=originalOption.getDescriptor().getId();
         String message=null;

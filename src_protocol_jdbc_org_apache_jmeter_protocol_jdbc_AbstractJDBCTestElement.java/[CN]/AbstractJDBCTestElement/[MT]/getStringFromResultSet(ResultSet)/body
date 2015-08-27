@@ -12,7 +12,7 @@
     }
   }
   JMeterVariables jmvars=getThreadContext().getVariables();
-  String varnames[]=getVariableNames().split(COMMA);
+  String varNames[]=getVariableNames().split(COMMA);
   String resultVariable=getResultVariable().trim();
   List<Map<String,Object>> results=null;
   if (resultVariable.length() > 0) {
@@ -42,16 +42,16 @@
  else {
         sb.append('\t');
       }
-      if (i <= varnames.length) {
-        String name=varnames[i - 1].trim();
+      if (i <= varNames.length) {
+        String name=varNames[i - 1].trim();
         if (name.length() > 0) {
           jmvars.put(name + UNDERSCORE + j,o == null ? null : o.toString());
         }
       }
     }
   }
-  for (int i=0; i < varnames.length; i++) {
-    String name=varnames[i].trim();
+  for (  String varName : varNames) {
+    String name=varName.trim();
     if (name.length() > 0 && jmvars != null) {
       final String varCount=name + "_#";
       String prevCount=jmvars.get(varCount);
