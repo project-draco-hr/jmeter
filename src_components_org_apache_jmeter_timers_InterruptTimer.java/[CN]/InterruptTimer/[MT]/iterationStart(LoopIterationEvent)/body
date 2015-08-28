@@ -1,0 +1,5 @@
+{
+  timeout=getPropertyAsLong(TIMEOUT);
+  context=JMeterContextService.getContext();
+  tpool=Executors.newScheduledThreadPool(1);
+}

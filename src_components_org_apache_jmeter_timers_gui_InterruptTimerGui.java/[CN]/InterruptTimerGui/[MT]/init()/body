@@ -1,0 +1,12 @@
+{
+  setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
+  setBorder(makeBorder());
+  add(makeTitlePanel());
+  Box timeoutPanel=Box.createHorizontalBox();
+  JLabel timeoutLabel=new JLabel(JMeterUtils.getResString("interrupt_timer_timeout"));
+  timeoutPanel.add(timeoutLabel);
+  timeoutField=new JTextField(6);
+  timeoutField.setText(DEFAULT_TIMEOUT);
+  timeoutPanel.add(timeoutField);
+  add(timeoutPanel);
+}

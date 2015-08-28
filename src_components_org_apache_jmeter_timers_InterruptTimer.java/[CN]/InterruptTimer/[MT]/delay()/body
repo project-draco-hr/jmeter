@@ -1,0 +1,30 @@
+{
+  if (future != null) {
+    if (!future.isDone()) {
+      boolean cancelled=future.cancel(false);
+      if (debug) {
+        LOG.debug("Cancelled the task:" + future + " with result "+ cancelled);
+      }
+    }
+    future=null;
+  }
+  if (timeout <= 0) {
+    return 0;
+  }
+  final Sampler samp=context.getCurrentSampler();
+  if (!(samp instanceof Interruptible)) {
+    return 0;
+  }
+  final Interruptible sampler=(Interruptible)samp;
+  Runnable run=new Runnable(){
+    public void run(){
+      boolean interrupted=sampler.interrupt();
+      if (interrupted) {
+        LOG.warn("The sampler " + samp.getName() + " was interrupted.");
+      }
+    }
+  }
+;
+  future=tpool.schedule(run,timeout,TimeUnit.MILLISECONDS);
+  return 0;
+}
