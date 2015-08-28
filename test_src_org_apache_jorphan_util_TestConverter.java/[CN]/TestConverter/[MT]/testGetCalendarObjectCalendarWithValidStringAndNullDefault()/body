@@ -5,7 +5,7 @@
   cal.set(Calendar.SECOND,0);
   cal.set(Calendar.MILLISECOND,0);
   Date time=cal.getTime();
-  for (  int formatId : Arrays.asList(DateFormat.SHORT,DateFormat.MEDIUM,DateFormat.LONG,DateFormat.FULL)) {
+  for (  int formatId : new int[]{DateFormat.SHORT,DateFormat.MEDIUM,DateFormat.LONG,DateFormat.FULL}) {
     DateFormat formatter=DateFormat.getDateInstance(formatId);
     assertEquals(cal,Converter.getCalendar(formatter.format(time),null));
   }

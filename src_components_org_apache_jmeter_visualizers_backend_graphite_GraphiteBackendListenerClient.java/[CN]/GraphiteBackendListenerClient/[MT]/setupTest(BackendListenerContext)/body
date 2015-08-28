@@ -14,7 +14,7 @@
   for (int i=0; i < percentilesStringArray.length; i++) {
     if (!StringUtils.isEmpty(percentilesStringArray[i].trim())) {
       try {
-        Float percentileValue=Float.parseFloat(percentilesStringArray[i].trim());
+        Float percentileValue=Float.valueOf(percentilesStringArray[i].trim());
         okPercentiles.put(METRIC_OK_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
         koPercentiles.put(METRIC_KO_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
         allPercentiles.put(METRIC_ALL_PERCENTILE_PREFIX + AbstractGraphiteMetricsSender.sanitizeString(format.format(percentileValue)),percentileValue);
