@@ -4,7 +4,7 @@
   assertTrue(replacer.containsKey("server"));
   TestElement element=new TestPlan();
   element.setProperty(new StringProperty("domain","jakarta.apache.org"));
-  List<Object> argsin=new ArrayList<Object>();
+  List<Object> argsin=new ArrayList<>();
   argsin.add("username is jack");
   argsin.add("his_password");
   element.setProperty(new CollectionProperty("args",argsin));

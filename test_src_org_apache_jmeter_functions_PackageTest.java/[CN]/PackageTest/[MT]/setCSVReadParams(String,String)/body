@@ -1,6 +1,6 @@
 {
   CSVRead cr=new CSVRead();
-  Collection<CompoundVariable> parms=new LinkedList<CompoundVariable>();
+  Collection<CompoundVariable> parms=new LinkedList<>();
   if (p1 != null) {
     parms.add(new CompoundVariable(p1));
   }

@@ -1,7 +1,7 @@
 {
   JMeterContext jmctx=JMeterContextService.getContext();
   LoopController loop=new LoopController();
-  Map<String,String> variables=new HashMap<String,String>();
+  Map<String,String> variables=new HashMap<>();
   ReplaceStringWithFunctions transformer=new ReplaceStringWithFunctions(new CompoundVariable(),variables);
   jmctx.setVariables(new JMeterVariables());
   StringProperty prop=new StringProperty(LoopController.LOOPS,"${__Random(1,12,)}");

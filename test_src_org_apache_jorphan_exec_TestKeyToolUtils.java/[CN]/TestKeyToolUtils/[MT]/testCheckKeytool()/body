@@ -1,6 +1,6 @@
 {
   SystemCommand sc=new SystemCommand(null,null);
-  List<String> arguments=new ArrayList<String>();
+  List<String> arguments=new ArrayList<>();
   arguments.add("xyzqwas");
   try {
     int status=sc.run(arguments);

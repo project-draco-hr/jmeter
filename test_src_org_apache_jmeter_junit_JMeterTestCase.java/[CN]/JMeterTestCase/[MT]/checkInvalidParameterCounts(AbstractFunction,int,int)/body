@@ -1,5 +1,5 @@
 {
-  Collection<CompoundVariable> parms=new LinkedList<CompoundVariable>();
+  Collection<CompoundVariable> parms=new LinkedList<>();
   for (int count=0; count < min; count++) {
     try {
       func.setParameters(parms);

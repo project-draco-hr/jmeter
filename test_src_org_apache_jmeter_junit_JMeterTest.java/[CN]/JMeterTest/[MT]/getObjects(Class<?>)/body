@@ -2,7 +2,7 @@
   String exName=extendsClass.getName();
   Object myThis="";
   Iterator<String> classes=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{extendsClass}).iterator();
-  List<Object> objects=new LinkedList<Object>();
+  List<Object> objects=new LinkedList<>();
   String n="";
   boolean caughtError=true;
   Throwable caught=null;

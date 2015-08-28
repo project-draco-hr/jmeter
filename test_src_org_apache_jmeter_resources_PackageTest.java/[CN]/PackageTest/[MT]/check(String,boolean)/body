@@ -1,5 +1,5 @@
 {
-  ArrayList<String> alf=new ArrayList<String>(500);
+  ArrayList<String> alf=new ArrayList<>(500);
   String res=getResName(resname);
   subTestFailures+=readRF(res,alf);
   Collections.sort(alf);

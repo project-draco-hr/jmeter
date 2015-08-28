@@ -1,5 +1,5 @@
 {
-  Map<String,Map<String,String>> missingLabelsPerBundle=new HashMap<String,Map<String,String>>();
+  Map<String,Map<String,String>> missingLabelsPerBundle=new HashMap<>();
   for (  String prefix : prefixList) {
     Properties messages=new Properties();
     messages.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(prefix.substring(1) + ".properties"));

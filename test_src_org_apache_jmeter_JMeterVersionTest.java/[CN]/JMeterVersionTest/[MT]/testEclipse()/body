@@ -3,7 +3,7 @@
   final Pattern p=Pattern.compile("\\s+<classpathentry kind=\"lib\" path=\"lib/(?:api/)?(.+?)-([^-]+(-b\\d+|-BETA\\d)?)\\.jar\"/>");
   final Pattern versionPat=Pattern.compile("\\$\\{(.+)\\.version\\}");
   String line;
-  final ArrayList<String> toRemove=new ArrayList<String>();
+  final ArrayList<String> toRemove=new ArrayList<>();
   while ((line=eclipse.readLine()) != null) {
     final Matcher m=p.matcher(line);
     if (m.matches()) {

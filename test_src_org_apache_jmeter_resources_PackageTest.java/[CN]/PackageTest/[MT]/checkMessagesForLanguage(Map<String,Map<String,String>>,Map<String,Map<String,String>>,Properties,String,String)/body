@@ -3,7 +3,7 @@
   String languageBundle=bundlePath + "_" + language+ ".properties";
   InputStream inputStream=Thread.currentThread().getContextClassLoader().getResourceAsStream(languageBundle);
   if (inputStream == null) {
-    Map<String,String> messagesAsProperties=new HashMap<String,String>();
+    Map<String,String> messagesAsProperties=new HashMap<>();
     for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
       Map.Entry<Object,Object> entry=iterator.next();
       messagesAsProperties.put((String)entry.getKey(),(String)entry.getValue());
@@ -12,7 +12,7 @@
     return;
   }
   messagesFr.load(inputStream);
-  Map<String,String> missingLabels=new TreeMap<String,String>();
+  Map<String,String> missingLabels=new TreeMap<>();
   for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
     Map.Entry<Object,Object> entry=iterator.next();
     String key=(String)entry.getKey();

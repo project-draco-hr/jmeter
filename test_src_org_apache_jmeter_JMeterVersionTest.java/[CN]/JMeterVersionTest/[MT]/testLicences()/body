@@ -1,5 +1,5 @@
 {
-  Set<String> liceNames=new HashSet<String>();
+  Set<String> liceNames=new HashSet<>();
   for (  Map.Entry<String,String> me : versions.entrySet()) {
     final String key=me.getKey();
     liceNames.add(key + "-" + me.getValue()+ ".txt");
