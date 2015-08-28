@@ -9,12 +9,14 @@
   results.setSamplerData("Sleep Test: time = " + sleep);
   try {
     results.sampleStart();
+    myThread=Thread.currentThread();
     TimeUnit.MILLISECONDS.sleep(sleep);
+    myThread=null;
     results.setSuccessful(true);
   }
  catch (  InterruptedException e) {
     LOG.warn("SleepTest: interrupted.");
-    results.setSuccessful(true);
+    results.setSuccessful(false);
     results.setResponseMessage(e.toString());
   }
 catch (  Exception e) {

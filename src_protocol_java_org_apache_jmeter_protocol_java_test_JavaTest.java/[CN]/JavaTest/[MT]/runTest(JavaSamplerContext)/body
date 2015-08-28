@@ -19,13 +19,15 @@
   }
   try {
     if (sleep > 0) {
+      myThread=Thread.currentThread();
       TimeUnit.MILLISECONDS.sleep(sleep);
+      myThread=null;
     }
     results.setSuccessful(success);
   }
  catch (  InterruptedException e) {
     LOG.warn("JavaTest: interrupted.");
-    results.setSuccessful(true);
+    results.setSuccessful(false);
   }
 catch (  Exception e) {
     LOG.error("JavaTest: error during sample",e);

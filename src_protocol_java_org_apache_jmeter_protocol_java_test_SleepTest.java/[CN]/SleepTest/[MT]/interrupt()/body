@@ -1,0 +1,7 @@
+{
+  Thread t=myThread;
+  if (t != null) {
+    t.interrupt();
+  }
+  return t != null;
+}
