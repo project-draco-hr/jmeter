@@ -1,4 +1,7 @@
 {
+  if (debug) {
+    LOG.debug(whoAmI("delay()",this));
+  }
   if (future != null) {
     if (!future.isDone()) {
       boolean cancelled=future.cancel(false);
@@ -20,11 +23,19 @@
     public void run(){
       boolean interrupted=sampler.interrupt();
       if (interrupted) {
-        LOG.warn("The sampler " + samp.getName() + " was interrupted.");
+        LOG.warn("Interruped the sampler " + getInfo(samp));
+      }
+ else {
+        if (debug) {
+          LOG.debug("Did not interrupt the sampler " + getInfo(samp));
+        }
       }
     }
   }
 ;
+  if (debug) {
+    LOG.debug("Scheduling timer for " + getInfo(samp));
+  }
   future=tpool.schedule(run,timeout,TimeUnit.MILLISECONDS);
   return 0;
 }

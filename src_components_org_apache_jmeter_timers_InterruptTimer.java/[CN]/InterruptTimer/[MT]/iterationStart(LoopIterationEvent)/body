@@ -1,5 +1,15 @@
 {
+  if (debug) {
+    LOG.debug(whoAmI("iterationStart()",this));
+  }
   timeout=getPropertyAsLong(TIMEOUT);
   context=JMeterContextService.getContext();
-  tpool=Executors.newScheduledThreadPool(1);
+  tpool=Executors.newScheduledThreadPool(1,new ThreadFactory(){
+    public Thread newThread(    Runnable r){
+      Thread t=Executors.defaultThreadFactory().newThread(r);
+      t.setDaemon(true);
+      return t;
+    }
+  }
+);
 }
