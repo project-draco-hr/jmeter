@@ -24,7 +24,7 @@
           pstmt.setNull(i + 1,targetSqlType);
         }
  else {
-          pstmt.setObject(i + 1,argument,targetSqlType);
+          setArgument(pstmt,argument,targetSqlType,i + 1);
         }
       }
       if (OUT.equalsIgnoreCase(inputOutput) || INOUT.equalsIgnoreCase(inputOutput)) {
