@@ -11,9 +11,7 @@
           }
         }
 );
-        for (int x=0; x < jars.length; x++) {
-          fullList.add(jars[x]);
-        }
+        Collections.addAll(fullList,jars);
       }
     }
   }
