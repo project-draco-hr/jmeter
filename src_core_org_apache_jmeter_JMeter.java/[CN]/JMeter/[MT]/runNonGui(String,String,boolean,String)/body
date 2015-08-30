@@ -13,8 +13,7 @@
     SearchByClass<ReplaceableController> replaceableControllers=new SearchByClass<>(ReplaceableController.class);
     tree.traverse(replaceableControllers);
     Collection<ReplaceableController> replaceableControllersRes=replaceableControllers.getSearchResults();
-    for (Iterator<ReplaceableController> iter=replaceableControllersRes.iterator(); iter.hasNext(); ) {
-      ReplaceableController replaceableController=iter.next();
+    for (    ReplaceableController replaceableController : replaceableControllersRes) {
       replaceableController.resolveReplacementSubTree(root);
     }
     convertSubTree(tree);

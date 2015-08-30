@@ -1,11 +1,11 @@
 {
   String[] list=dir.list();
-  for (int i=0; i < list.length; i++) {
-    File file=new File(dir,list[i]);
+  for (  String aList : list) {
+    File file=new File(dir,aList);
     if (file.isDirectory()) {
       findClassesInPathsDir(strPathElement,file,listClasses);
     }
- else     if (list[i].endsWith(DOT_CLASS) && file.exists() && (file.length() != 0)) {
+ else     if (aList.endsWith(DOT_CLASS) && file.exists() && (file.length() != 0)) {
       final String path=file.getPath();
       listClasses.add(path.substring(strPathElement.length() + 1,path.lastIndexOf('.')).replace(File.separator.charAt(0),'.'));
     }

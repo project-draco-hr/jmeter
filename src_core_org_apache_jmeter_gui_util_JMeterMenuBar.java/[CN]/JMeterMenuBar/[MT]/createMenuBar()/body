@@ -35,8 +35,7 @@
   this.add(searchMenu);
   this.add(runMenu);
   this.add(optionsMenu);
-  for (Iterator<MenuCreator> iterator=menuCreators.iterator(); iterator.hasNext(); ) {
-    MenuCreator menuCreator=iterator.next();
+  for (  MenuCreator menuCreator : menuCreators) {
     JMenu[] topLevelMenus=menuCreator.getTopLevelMenus();
     for (    JMenu topLevelMenu : topLevelMenus) {
       this.add(topLevelMenu);

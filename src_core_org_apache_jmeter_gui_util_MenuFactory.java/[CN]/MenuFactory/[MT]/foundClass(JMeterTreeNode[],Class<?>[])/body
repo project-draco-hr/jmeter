@@ -1,8 +1,7 @@
 {
-  for (int i=0; i < nodes.length; i++) {
-    JMeterTreeNode node=nodes[i];
-    for (int j=0; j < classes.length; j++) {
-      if (classes[j].isInstance(node.getUserObject())) {
+  for (  JMeterTreeNode node : nodes) {
+    for (    Class<?> aClass : classes) {
+      if (aClass.isInstance(node.getUserObject())) {
         return true;
       }
     }

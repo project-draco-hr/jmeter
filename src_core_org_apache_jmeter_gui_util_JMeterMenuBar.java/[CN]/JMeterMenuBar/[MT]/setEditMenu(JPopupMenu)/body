@@ -2,8 +2,8 @@
   if (menu != null) {
     editMenu.removeAll();
     Component[] comps=menu.getComponents();
-    for (int i=0; i < comps.length; i++) {
-      editMenu.add(comps[i]);
+    for (    Component comp : comps) {
+      editMenu.add(comp);
     }
     editMenu.setEnabled(true);
   }

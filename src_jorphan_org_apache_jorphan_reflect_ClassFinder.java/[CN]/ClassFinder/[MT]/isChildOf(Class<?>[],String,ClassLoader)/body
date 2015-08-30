@@ -2,8 +2,8 @@
   try {
     Class<?> c=Class.forName(strClassName,false,contextClassLoader);
     if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers())) {
-      for (int i=0; i < parentClasses.length; i++) {
-        if (parentClasses[i].isAssignableFrom(c)) {
+      for (      Class<?> parentClass : parentClasses) {
+        if (parentClass.isAssignableFrom(c)) {
           return true;
         }
       }

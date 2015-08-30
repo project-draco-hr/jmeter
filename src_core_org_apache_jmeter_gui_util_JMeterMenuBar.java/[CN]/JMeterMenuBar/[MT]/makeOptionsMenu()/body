@@ -2,13 +2,12 @@
   optionsMenu=makeMenuRes("option",'O');
   JMenuItem functionHelper=makeMenuItemRes("function_dialog_menu_item",'F',ActionNames.FUNCTIONS,KeyStrokes.FUNCTIONS);
   lafMenu=makeMenuRes("appearance",'L');
-  UIManager.LookAndFeelInfo lafs[]=getAllLAFs();
-  for (int i=0; i < lafs.length; ++i) {
-    JMenuItem laf=new JMenuItem(lafs[i].getName());
-    laf.addActionListener(ActionRouter.getInstance());
-    laf.setActionCommand(ActionNames.LAF_PREFIX + lafs[i].getClassName());
-    laf.setToolTipText(lafs[i].getClassName());
-    lafMenu.add(laf);
+  for (  LookAndFeelInfo laf : getAllLAFs()) {
+    JMenuItem menuItem=new JMenuItem(laf.getName());
+    menuItem.addActionListener(ActionRouter.getInstance());
+    menuItem.setActionCommand(ActionNames.LAF_PREFIX + laf.getClassName());
+    menuItem.setToolTipText(laf.getClassName());
+    lafMenu.add(menuItem);
   }
   optionsMenu.add(functionHelper);
   optionsMenu.add(lafMenu);

@@ -23,8 +23,7 @@
       }
     }
   }
-  MenuElement[] subelements=menu.getSubElements();
-  for (int i=0; i < subelements.length; i++) {
-    updateMenuElement(subelements[i]);
+  for (  MenuElement subElement : menu.getSubElements()) {
+    updateMenuElement(subElement);
   }
 }
