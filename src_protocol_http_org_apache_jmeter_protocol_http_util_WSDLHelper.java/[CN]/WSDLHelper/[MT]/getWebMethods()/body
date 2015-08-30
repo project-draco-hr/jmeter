@@ -1,6 +1,6 @@
 {
-  for (int idx=0; idx < SOAPOPS.length; idx++) {
-    Node act=(Node)SOAPOPS[idx];
+  for (  Object soapOp : SOAPOPS) {
+    Node act=(Node)soapOp;
     NodeList opers=((Element)act).getElementsByTagNameNS(SOAP11_BINDING_NAMESPACE,"operation");
     if (opers.getLength() == 0) {
       opers=((Element)act).getElementsByTagNameNS(SOAP12_BINDING_NAMESPACE,"operation");

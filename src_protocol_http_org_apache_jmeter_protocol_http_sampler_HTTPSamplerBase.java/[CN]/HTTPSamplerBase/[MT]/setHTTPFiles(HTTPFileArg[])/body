@@ -1,8 +1,7 @@
 {
   HTTPFileArgs fileArgs=new HTTPFileArgs();
   if (files.length > 0) {
-    for (int i=0; i < files.length; i++) {
-      HTTPFileArg file=files[i];
+    for (    HTTPFileArg file : files) {
       if (file.isNotEmpty()) {
         fileArgs.addHTTPFileArg(file);
       }

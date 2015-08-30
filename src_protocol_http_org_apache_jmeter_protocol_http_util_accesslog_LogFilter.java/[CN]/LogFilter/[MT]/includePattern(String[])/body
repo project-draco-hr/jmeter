@@ -2,8 +2,8 @@
   if (regexp != null && regexp.length > 0) {
     INCPTRN=regexp;
     this.PTRNFILTER=true;
-    for (int idx=0; idx < INCPTRN.length; idx++) {
-      this.INCPATTERNS.add(this.createPattern(INCPTRN[idx]));
+    for (    String includePattern : INCPTRN) {
+      this.INCPATTERNS.add(this.createPattern(includePattern));
     }
   }
 }

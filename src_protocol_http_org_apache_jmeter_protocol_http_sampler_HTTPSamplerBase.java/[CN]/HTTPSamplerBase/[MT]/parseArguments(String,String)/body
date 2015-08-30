@@ -1,23 +1,23 @@
 {
   String[] args=JOrphanUtils.split(queryString,QRY_SEP);
   final boolean isDebug=log.isDebugEnabled();
-  for (int i=0; i < args.length; i++) {
+  for (  String arg : args) {
     if (isDebug) {
-      log.debug("Arg: " + args[i]);
+      log.debug("Arg: " + arg);
     }
     String metaData;
     String name;
     String value;
-    int length=args[i].length();
-    int endOfNameIndex=args[i].indexOf(ARG_VAL_SEP);
+    int length=arg.length();
+    int endOfNameIndex=arg.indexOf(ARG_VAL_SEP);
     if (endOfNameIndex != -1) {
       metaData=ARG_VAL_SEP;
-      name=args[i].substring(0,endOfNameIndex);
-      value=args[i].substring(endOfNameIndex + 1,length);
+      name=arg.substring(0,endOfNameIndex);
+      value=arg.substring(endOfNameIndex + 1,length);
     }
  else {
       metaData="";
-      name=args[i];
+      name=arg;
       value="";
     }
     if (name.length() > 0) {

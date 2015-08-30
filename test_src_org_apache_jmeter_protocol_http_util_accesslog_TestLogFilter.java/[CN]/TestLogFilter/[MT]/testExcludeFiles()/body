@@ -1,7 +1,6 @@
 {
   testf.excludeFiles(INCL);
-  for (int idx=0; idx < TESTDATA.length; idx++) {
-    TestData td=TESTDATA[idx];
+  for (  TestData td : TESTDATA) {
     String theFile=td.file;
     boolean expect=td.exclfile;
     testf.isFiltered(theFile,null);

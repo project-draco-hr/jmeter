@@ -12,8 +12,7 @@
       sortedAttrs.add(attr);
     }
     sortAttributes(sortedAttrs);
-    for (Iterator<Attribute> ait=sortedAttrs.iterator(); ait.hasNext(); ) {
-      final Attribute attr=ait.next();
+    for (    final Attribute attr : sortedAttrs) {
       StringBuilder sb=new StringBuilder();
       if (attr.size() == 1) {
         sb.append(getWriteValue(attr.get()));
@@ -26,8 +25,7 @@
           sortedVals.add(value.toString());
         }
         Collections.sort(sortedVals);
-        for (Iterator<String> vit=sortedVals.iterator(); vit.hasNext(); ) {
-          final String value=vit.next();
+        for (        final String value : sortedVals) {
           if (first) {
             first=false;
           }

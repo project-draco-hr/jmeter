@@ -1,8 +1,8 @@
 {
   this.USEFILE=true;
   boolean exc=false;
-  for (int idx=0; idx < this.EXCPATTERNS.size(); idx++) {
-    if (JMeterUtils.getMatcher().contains(text,this.EXCPATTERNS.get(idx))) {
+  for (  Pattern excludePattern : this.EXCPATTERNS) {
+    if (JMeterUtils.getMatcher().contains(text,excludePattern)) {
       exc=true;
       this.USEFILE=false;
       break;

@@ -9,8 +9,8 @@
     allFileArgs.addHTTPFileArg(oldStyleFile);
     if (fileArgs != null) {
       HTTPFileArg[] infiles=fileArgs.asArray();
-      for (int i=0; i < infiles.length; i++) {
-        allFileArgs.addHTTPFileArg(infiles[i]);
+      for (      HTTPFileArg infile : infiles) {
+        allFileArgs.addHTTPFileArg(infile);
       }
     }
   }

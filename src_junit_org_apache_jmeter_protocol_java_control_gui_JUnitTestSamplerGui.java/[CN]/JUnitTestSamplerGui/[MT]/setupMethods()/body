@@ -5,8 +5,8 @@
     try {
       Class<?> testClass=Class.forName(className,false,contextClassLoader);
       String[] names=getMethodNames(testClass);
-      for (int idx=0; idx < names.length; idx++) {
-        methodName.addItem(names[idx]);
+      for (      String name : names) {
+        methodName.addItem(name);
       }
       methodName.repaint();
     }

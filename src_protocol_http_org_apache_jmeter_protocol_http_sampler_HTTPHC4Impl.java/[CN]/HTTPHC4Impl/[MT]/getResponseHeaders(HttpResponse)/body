@@ -3,10 +3,10 @@
   Header[] rh=response.getAllHeaders();
   headerBuf.append(response.getStatusLine());
   headerBuf.append("\n");
-  for (int i=0; i < rh.length; i++) {
-    headerBuf.append(rh[i].getName());
+  for (  Header responseHeader : rh) {
+    headerBuf.append(responseHeader.getName());
     headerBuf.append(": ");
-    headerBuf.append(rh[i].getValue());
+    headerBuf.append(responseHeader.getValue());
     headerBuf.append("\n");
   }
   return headerBuf.toString();

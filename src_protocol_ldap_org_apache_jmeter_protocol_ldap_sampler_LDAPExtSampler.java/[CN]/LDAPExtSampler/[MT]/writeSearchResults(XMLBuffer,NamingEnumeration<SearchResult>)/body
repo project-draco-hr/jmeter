@@ -11,8 +11,7 @@
   }
   finally {
     sortResults(sortedResults);
-    for (Iterator<SearchResult> it=sortedResults.iterator(); it.hasNext(); ) {
-      final SearchResult sr=it.next();
+    for (    final SearchResult sr : sortedResults) {
       writeSearchResult(sr,xmlb);
     }
   }

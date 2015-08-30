@@ -2,11 +2,11 @@
   if (method != null) {
     StringBuilder hdrs=new StringBuilder(100);
     Header[] requestHeaders=method.getAllHeaders();
-    for (int i=0; i < requestHeaders.length; i++) {
-      if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(requestHeaders[i].getName())) {
-        hdrs.append(requestHeaders[i].getName());
+    for (    Header requestHeader : requestHeaders) {
+      if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(requestHeader.getName())) {
+        hdrs.append(requestHeader.getName());
         hdrs.append(": ");
-        hdrs.append(requestHeaders[i].getValue());
+        hdrs.append(requestHeader.getValue());
         hdrs.append("\n");
       }
     }
