@@ -1,0 +1,12 @@
+{
+  try {
+    ScriptContext newContext=new SimpleScriptContext();
+    newContext.setBindings(NASHORN_ENGINE.get().createBindings(),ScriptContext.ENGINE_SCOPE);
+    Object o=NASHORN_ENGINE.get().eval(condition,newContext);
+    return computeResultFromString(condition,o.toString());
+  }
+ catch (  Exception ex) {
+    logger.error(testElementName + ": error while processing " + "["+ condition+ "]\n",ex);
+  }
+  return false;
+}

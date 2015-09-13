@@ -1,0 +1,16 @@
+{
+  boolean result=false;
+  Context cx=Context.enter();
+  try {
+    Scriptable scope=cx.initStandardObjects(null);
+    Object cxResultObject=cx.evaluateString(scope,condition,"<cmd>",1,null);
+    result=computeResultFromString(condition,Context.toString(cxResultObject));
+  }
+ catch (  Exception e) {
+    logger.error(testElementName + ": error while processing " + "["+ condition+ "]\n",e);
+  }
+ finally {
+    Context.exit();
+  }
+  return result;
+}

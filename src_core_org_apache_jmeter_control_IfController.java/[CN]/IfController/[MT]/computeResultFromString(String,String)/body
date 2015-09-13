@@ -1,0 +1,17 @@
+{
+  boolean result;
+switch (resultStr) {
+case "false":
+    result=false;
+  break;
+case "true":
+result=true;
+break;
+default :
+throw new Exception(" BAD CONDITION :: " + condition + " :: expected true or false");
+}
+if (logger.isDebugEnabled()) {
+logger.debug("    >> evaluate Condition -  [ " + condition + "] results is  ["+ result+ "]");
+}
+return result;
+}

@@ -1,28 +1,6 @@
 {
-  logger.debug("    getCondition() : [" + cond + "]");
-  String resultStr="";
-  boolean result=false;
-  Context cx=Context.enter();
-  try {
-    Scriptable scope=cx.initStandardObjects(null);
-    Object cxResultObject=cx.evaluateString(scope,cond,"<cmd>",1,null);
-    resultStr=Context.toString(cxResultObject);
-    if (resultStr.equals("false")) {
-      result=false;
-    }
- else     if (resultStr.equals("true")) {
-      result=true;
-    }
- else {
-      throw new Exception(" BAD CONDITION :: " + cond + " :: expected true or false");
-    }
-    logger.debug("    >> evaluate Condition -  [ " + cond + "] results is  ["+ result+ "]");
+  if (logger.isDebugEnabled()) {
+    logger.debug("    getCondition() : [" + cond + "]");
   }
- catch (  Exception e) {
-    logger.error(getName() + ": error while processing " + "["+ cond+ "]\n",e);
-  }
- finally {
-    Context.exit();
-  }
-  return result;
+  return JAVASCRIPT_EVALUATOR.evaluate(getName(),cond);
 }
