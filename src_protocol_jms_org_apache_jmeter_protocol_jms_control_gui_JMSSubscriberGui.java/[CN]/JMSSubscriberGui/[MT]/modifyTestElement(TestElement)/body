@@ -12,8 +12,8 @@
   sampler.setUsername(jmsUser.getText());
   sampler.setPassword(jmsPwd.getText());
   sampler.setUseAuth(useAuth.isSelected());
-  sampler.setIterations(iterations.getText());
-  sampler.setReadResponse(String.valueOf(readResponse.isSelected()));
+  sampler.setIterations(samplesToAggregate.getText());
+  sampler.setReadResponse(String.valueOf(storeResponse.isSelected()));
   sampler.setClientChoice(clientChoice.getText());
   sampler.setStopBetweenSamples(stopBetweenSamples.isSelected());
   sampler.setTimeout(timeout.getText());

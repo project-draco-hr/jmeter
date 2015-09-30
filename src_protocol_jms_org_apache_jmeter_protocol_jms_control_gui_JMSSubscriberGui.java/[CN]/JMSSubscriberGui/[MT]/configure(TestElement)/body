@@ -11,11 +11,11 @@
   jmsSelector.setText(sampler.getJmsSelector());
   jmsUser.setText(sampler.getUsername());
   jmsPwd.setText(sampler.getPassword());
-  iterations.setText(sampler.getIterations());
+  samplesToAggregate.setText(sampler.getIterations());
   useAuth.setSelected(sampler.isUseAuth());
   jmsUser.setEnabled(useAuth.isSelected());
   jmsPwd.setEnabled(useAuth.isSelected());
-  readResponse.setSelected(sampler.getReadResponseAsBoolean());
+  storeResponse.setSelected(sampler.getReadResponseAsBoolean());
   clientChoice.setText(sampler.getClientChoice());
   stopBetweenSamples.setSelected(sampler.isStopBetweenSamples());
   timeout.setText(sampler.getTimeout());

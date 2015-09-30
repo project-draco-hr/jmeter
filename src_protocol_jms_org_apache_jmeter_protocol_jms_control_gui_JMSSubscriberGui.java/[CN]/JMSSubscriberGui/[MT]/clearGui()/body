@@ -10,13 +10,13 @@
   jmsSelector.setText("");
   jmsUser.setText("");
   jmsPwd.setText("");
-  iterations.setText("1");
+  samplesToAggregate.setText("1");
   timeout.setText("");
   separator.setText("");
   useAuth.setSelected(false);
   jmsUser.setEnabled(false);
   jmsPwd.setEnabled(false);
-  readResponse.setSelected(true);
+  storeResponse.setSelected(true);
   clientChoice.setText(RECEIVE_RSC);
   stopBetweenSamples.setSelected(false);
   destSetup.setText(DEST_SETUP_STATIC);
