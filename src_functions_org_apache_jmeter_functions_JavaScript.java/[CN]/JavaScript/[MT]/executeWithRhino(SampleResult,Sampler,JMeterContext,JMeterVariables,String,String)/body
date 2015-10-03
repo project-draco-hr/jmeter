@@ -1,0 +1,27 @@
+{
+  Context cx=Context.enter();
+  String resultStr=null;
+  try {
+    Scriptable scope=cx.initStandardObjects(null);
+    scope.put("log",scope,log);
+    scope.put("ctx",scope,jmctx);
+    scope.put("vars",scope,vars);
+    scope.put("props",scope,JMeterUtils.getJMeterProperties());
+    scope.put("threadName",scope,Thread.currentThread().getName());
+    scope.put("sampler",scope,currentSampler);
+    scope.put("sampleResult",scope,previousResult);
+    Object result=cx.evaluateString(scope,script,"<cmd>",1,null);
+    resultStr=Context.toString(result);
+    if (varName != null && vars != null) {
+      vars.put(varName,resultStr);
+    }
+  }
+ catch (  RhinoException e) {
+    log.error("Error processing Javascript: [" + script + "]\n",e);
+    throw new InvalidVariableException("Error processing Javascript: [" + script + "]",e);
+  }
+ finally {
+    Context.exit();
+  }
+  return resultStr;
+}
