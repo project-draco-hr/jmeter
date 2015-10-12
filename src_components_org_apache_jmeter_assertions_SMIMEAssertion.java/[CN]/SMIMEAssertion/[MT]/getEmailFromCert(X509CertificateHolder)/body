@@ -1,0 +1,21 @@
+{
+  List<String> res=new ArrayList<>();
+  X500Name subject=cert.getSubject();
+  for (  RDN emails : subject.getRDNs(BCStyle.EmailAddress)) {
+    for (    AttributeTypeAndValue emailAttr : emails.getTypesAndValues()) {
+      log.debug("Add email from RDN: " + IETFUtils.valueToString(emailAttr.getValue()));
+      res.add(IETFUtils.valueToString(emailAttr.getValue()));
+    }
+  }
+  Extension subjectAlternativeNames=cert.getExtension(Extension.subjectAlternativeName);
+  if (subjectAlternativeNames != null) {
+    for (    GeneralName name : GeneralNames.getInstance(subjectAlternativeNames.getParsedValue()).getNames()) {
+      if (name.getTagNo() == GeneralName.rfc822Name) {
+        String email=IETFUtils.valueToString(name.getName());
+        log.debug("Add email from subjectAlternativeName: " + email);
+        res.add(email);
+      }
+    }
+  }
+  return res;
+}
