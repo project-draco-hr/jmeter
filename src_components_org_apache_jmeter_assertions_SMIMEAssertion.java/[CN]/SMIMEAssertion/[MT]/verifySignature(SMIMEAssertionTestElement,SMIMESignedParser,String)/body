@@ -37,22 +37,22 @@
           if (subject.length() > 0) {
             final X500Principal certPrincipal=cert.getSubjectX500Principal();
             log.debug(certPrincipal.getName(X500Principal.CANONICAL));
-            X500Principal principal=new X500Principal(subject);
+            X500Principal principal=new X500Principal(subject,keywordMap);
             log.debug(principal.getName(X500Principal.CANONICAL));
             if (!principal.equals(certPrincipal)) {
               res.setFailure(true);
-              failureMessage.append("Distinguished name of signer certificate does not match \"").append(subject).append("\"\n");
+              failureMessage.append("Distinguished name of signer certificate does not match \"").append(principal).append("\" != \"").append(certPrincipal).append("\"\n");
             }
           }
           String issuer=testElement.getIssuerDn();
           if (issuer.length() > 0) {
             final X500Principal issuerX500Principal=cert.getIssuerX500Principal();
             log.debug(issuerX500Principal.getName(X500Principal.CANONICAL));
-            X500Principal principal=new X500Principal(issuer);
+            X500Principal principal=new X500Principal(issuer,keywordMap);
             log.debug(principal.getName(X500Principal.CANONICAL));
             if (!principal.equals(issuerX500Principal)) {
               res.setFailure(true);
-              failureMessage.append("Issuer distinguished name of signer certificate does not match \"").append(subject).append("\"\n");
+              failureMessage.append("Issuer distinguished name of signer certificate does not match \"").append(principal).append("\" != \"").append(issuerX500Principal).append("\"\n");
             }
           }
           if (failureMessage.length() > 0) {
