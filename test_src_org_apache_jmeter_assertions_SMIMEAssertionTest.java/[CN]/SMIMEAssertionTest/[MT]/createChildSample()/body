@@ -1,0 +1,12 @@
+{
+  SampleResult child=new SampleResult();
+  child.setSampleLabel("Message " + msg.getMessageNumber());
+  child.setContentType(msg.getContentType());
+  child.setEncodingAndType(msg.getContentType());
+  ByteArrayOutputStream outbuf=new ByteArrayOutputStream();
+  msg.writeTo(outbuf);
+  child.setResponseData(outbuf.toByteArray());
+  child.setDataType(SampleResult.TEXT);
+  child.setResponseOK();
+  return child;
+}

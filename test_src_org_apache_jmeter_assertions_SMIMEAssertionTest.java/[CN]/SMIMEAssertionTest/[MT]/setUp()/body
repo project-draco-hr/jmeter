@@ -1,0 +1,7 @@
+{
+  Session mailSession=Session.getDefaultInstance(new Properties());
+  msg=new MimeMessage(mailSession,this.getClass().getResourceAsStream("signed_email.eml"));
+  parent=new SampleResult();
+  parent.sampleStart();
+  parent.addSubResult(createChildSample());
+}

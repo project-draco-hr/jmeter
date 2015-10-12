@@ -1,0 +1,7 @@
+{
+  SMIMEAssertionTestElement testElement=new SMIMEAssertionTestElement();
+  testElement.setVerifySignature(true);
+  AssertionResult result=SMIMEAssertion.getResult(testElement,parent,"Test");
+  assertFalse("Result should not be an error",result.isError());
+  assertFalse("Result should not fail: " + result.getFailureMessage(),result.isFailure());
+}

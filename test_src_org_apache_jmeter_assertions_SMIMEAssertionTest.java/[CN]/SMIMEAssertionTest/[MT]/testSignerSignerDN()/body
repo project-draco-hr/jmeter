@@ -1,0 +1,9 @@
+{
+  SMIMEAssertionTestElement testElement=new SMIMEAssertionTestElement();
+  testElement.setSignerCheckConstraints(true);
+  String signerDn="C=AU, L=Wherever, O=Example Ltd, E=alice@a.example.com, CN=alice example";
+  testElement.setSignerDn(signerDn);
+  AssertionResult result=SMIMEAssertion.getResult(testElement,parent,"Test");
+  assertFalse("Result should not be an error",result.isError());
+  assertFalse("Result should not fail: " + result.getFailureMessage(),result.isFailure());
+}
