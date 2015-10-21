@@ -1,0 +1,6 @@
+{
+  if (textToParse != null && textToParse.length() > 0 && this.jsonPathExpressionField.getText().length() > 0) {
+    this.jsonPathResultField.setText(process(textToParse));
+    this.jsonPathResultField.setCaretPosition(0);
+  }
+}

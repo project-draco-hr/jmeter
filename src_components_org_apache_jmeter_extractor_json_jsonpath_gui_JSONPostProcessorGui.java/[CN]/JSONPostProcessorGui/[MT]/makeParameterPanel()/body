@@ -1,0 +1,21 @@
+{
+  refNamesField=new JLabeledTextField(JMeterUtils.getResString("jsonpp_variable_names"));
+  jsonPathExpressionsField=new JLabeledTextField(JMeterUtils.getResString("jsonpp_json_path_expressions"));
+  matchNumbersField=new JLabeledTextField(JMeterUtils.getResString("jsonpp_match_numbers"));
+  defaultValuesField=new JLabeledTextField(JMeterUtils.getResString("jsonpp_default_values"));
+  computeConcatenationField=new JCheckBox();
+  JPanel panel=new JPanel(new GridBagLayout());
+  GridBagConstraints gbc=new GridBagConstraints();
+  initConstraints(gbc);
+  addField(panel,refNamesField,gbc);
+  nextLine(gbc);
+  addField(panel,jsonPathExpressionsField,gbc);
+  nextLine(gbc);
+  addField(panel,matchNumbersField,gbc);
+  nextLine(gbc);
+  addField(panel,new JLabel(JMeterUtils.getResString("jsonpp_compute_concat")),computeConcatenationField,gbc);
+  nextLine(gbc);
+  gbc.weighty=1;
+  addField(panel,defaultValuesField,gbc);
+  return panel;
+}

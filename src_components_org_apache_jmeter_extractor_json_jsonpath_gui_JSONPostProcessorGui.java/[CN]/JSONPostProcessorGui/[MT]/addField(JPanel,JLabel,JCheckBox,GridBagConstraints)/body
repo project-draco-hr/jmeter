@@ -1,0 +1,7 @@
+{
+  panel.add(label,gbc.clone());
+  gbc.gridx++;
+  gbc.weightx=1;
+  gbc.fill=GridBagConstraints.HORIZONTAL;
+  panel.add(checkBox,gbc.clone());
+}

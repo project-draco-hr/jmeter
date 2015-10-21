@@ -1,0 +1,7 @@
+{
+  String command=e.getActionCommand();
+  if ((sampleResult != null) && (JSONPATH_TESTER_COMMAND.equals(command))) {
+    String response=jsonDataField.getText();
+    executeAndShowXPathTester(response);
+  }
+}

@@ -1,0 +1,4 @@
+{
+  JsonPath jsonPathParser=getJsonPath(jsonPath);
+  return jsonPathParser.read(jsonString);
+}

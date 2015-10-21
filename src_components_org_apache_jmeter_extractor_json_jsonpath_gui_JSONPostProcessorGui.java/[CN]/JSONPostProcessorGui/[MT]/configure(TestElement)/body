@@ -1,0 +1,10 @@
+{
+  super.configure(element);
+  JSONPostProcessor config=(JSONPostProcessor)element;
+  showScopeSettings(config,true);
+  refNamesField.setText(config.getRefNames());
+  jsonPathExpressionsField.setText(config.getJsonPathExpressions());
+  matchNumbersField.setText(config.getMatchNumbers());
+  defaultValuesField.setText(config.getDefaultValues());
+  computeConcatenationField.setSelected(config.getComputeConcatenation());
+}

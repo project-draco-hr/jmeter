@@ -1,0 +1,8 @@
+{
+  List<JComponent> item=field.getComponentList();
+  panel.add(item.get(0),gbc.clone());
+  gbc.gridx++;
+  gbc.weightx=1;
+  gbc.fill=GridBagConstraints.HORIZONTAL;
+  panel.add(item.get(1),gbc.clone());
+}

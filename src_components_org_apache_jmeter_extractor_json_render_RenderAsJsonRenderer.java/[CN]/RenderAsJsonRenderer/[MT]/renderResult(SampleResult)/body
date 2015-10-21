@@ -1,0 +1,12 @@
+{
+  String response=ViewResultsFullVisualizer.getResponseAsString(sampleResult);
+  try {
+    jsonDataField.setText(response == null ? "" : RenderAsJSON.prettyJSON(response,TAB_SEPARATOR));
+    jsonDataField.setCaretPosition(0);
+  }
+ catch (  Exception e) {
+    LOGGER.error("Exception converting to XML:" + response + ", message:"+ e.getMessage(),e);
+    jsonDataField.setText("Exception converting to XML:" + response + ", message:"+ e.getMessage());
+    jsonDataField.setCaretPosition(0);
+  }
+}

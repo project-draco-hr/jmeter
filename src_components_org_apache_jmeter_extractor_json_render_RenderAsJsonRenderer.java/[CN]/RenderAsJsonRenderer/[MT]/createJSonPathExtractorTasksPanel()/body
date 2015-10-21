@@ -1,0 +1,20 @@
+{
+  JPanel jsonPathActionPanel=new JPanel();
+  jsonPathActionPanel.setLayout(new BoxLayout(jsonPathActionPanel,BoxLayout.X_AXIS));
+  Border margin=new EmptyBorder(5,5,0,5);
+  jsonPathActionPanel.setBorder(margin);
+  jsonPathExpressionField=new JLabeledTextField(JMeterUtils.getResString("jsonpath_tester_field"));
+  jsonPathActionPanel.add(jsonPathExpressionField,BorderLayout.WEST);
+  JButton xpathTester=new JButton(JMeterUtils.getResString("jsonpath_tester_button_test"));
+  xpathTester.setActionCommand(JSONPATH_TESTER_COMMAND);
+  xpathTester.addActionListener(this);
+  jsonPathActionPanel.add(xpathTester,BorderLayout.EAST);
+  jsonPathResultField=new JTextArea();
+  jsonPathResultField.setEditable(false);
+  jsonPathResultField.setLineWrap(true);
+  jsonPathResultField.setWrapStyleWord(true);
+  JPanel xpathTasksPanel=new JPanel(new BorderLayout(0,5));
+  xpathTasksPanel.add(jsonPathActionPanel,BorderLayout.NORTH);
+  xpathTasksPanel.add(GuiUtils.makeScrollPane(jsonPathResultField),BorderLayout.CENTER);
+  return xpathTasksPanel;
+}

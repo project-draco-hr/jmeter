@@ -1,0 +1,8 @@
+{
+  JsonPath jsonPath=expressionToJsonPath.get(jsonPathExpression);
+  if (jsonPath == null) {
+    jsonPath=JsonPath.compile(jsonPathExpression);
+    expressionToJsonPath.put(jsonPathExpression,jsonPath);
+  }
+  return jsonPath;
+}

@@ -1,0 +1,8 @@
+{
+  super.clearGui();
+  refNamesField.setText("");
+  jsonPathExpressionsField.setText("");
+  matchNumbersField.setText("");
+  defaultValuesField.setText("");
+  computeConcatenationField.setSelected(JSONPostProcessor.COMPUTE_CONCATENATION_DEFAULT_VALUE);
+}
