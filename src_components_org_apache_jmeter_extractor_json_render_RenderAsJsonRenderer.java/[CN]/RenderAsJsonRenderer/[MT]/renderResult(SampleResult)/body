@@ -5,8 +5,8 @@
     jsonDataField.setCaretPosition(0);
   }
  catch (  Exception e) {
-    LOGGER.error("Exception converting to XML:" + response + ", message:"+ e.getMessage(),e);
-    jsonDataField.setText("Exception converting to XML:" + response + ", message:"+ e.getMessage());
+    LOGGER.error("Exception converting to XML: " + response + ", message: "+ e.getMessage(),e);
+    jsonDataField.setText("Exception converting to XML: " + response + ", message: "+ e.getMessage());
     jsonDataField.setCaretPosition(0);
   }
 }
