@@ -1,6 +1,7 @@
 {
   if (getConfigChoice().equals(JMSPublisherGui.USE_FILE_RSC)) {
-    if (file_contents == null) {
+    if (file_contents == null || !Objects.equals(cachedFileName,getInputFile())) {
+      cachedFileName=getInputFile();
       file_contents=getFileContent(getInputFile());
     }
     return file_contents;
