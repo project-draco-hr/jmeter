@@ -1,21 +1,10 @@
 {
-  FileInputStream fis=null;
-  InputStreamReader inStream=null;
-  BufferedReader reader=null;
   MessageDigest md=MessageDigest.getInstance("SHA1");
-  try {
-    fis=new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE));
-    inStream=new InputStreamReader(fis);
-    reader=new BufferedReader(inStream);
+  try (BufferedReader reader=new BufferedReader(new InputStreamReader(new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE))))){
     String line=null;
     while ((line=reader.readLine()) != null) {
       md.update(line.getBytes());
     }
   }
-  finally {
-    JOrphanUtils.closeQuietly(reader);
-    JOrphanUtils.closeQuietly(inStream);
-    JOrphanUtils.closeQuietly(fis);
-  }
-  return JOrphanUtils.baToHexString(md.digest());
+   return JOrphanUtils.baToHexString(md.digest());
 }

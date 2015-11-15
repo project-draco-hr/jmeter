@@ -1,11 +1,6 @@
 {
   log.info("Loading file: " + file);
-  InputStream reader=null;
-  try {
-    reader=new FileInputStream(file);
+  try (InputStream reader=new FileInputStream(file)){
     return readTree(reader,file);
   }
-  finally {
-    JOrphanUtils.closeQuietly(reader);
-  }
-}
+ }

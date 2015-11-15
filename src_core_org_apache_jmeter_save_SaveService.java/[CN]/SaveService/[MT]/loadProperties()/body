@@ -1,12 +1,7 @@
 {
   Properties nameMap=new Properties();
-  FileInputStream fis=null;
-  try {
-    fis=new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE));
+  try (FileInputStream fis=new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE))){
     nameMap.load(fis);
   }
-  finally {
-    JOrphanUtils.closeQuietly(fis);
-  }
-  return nameMap;
+   return nameMap;
 }
