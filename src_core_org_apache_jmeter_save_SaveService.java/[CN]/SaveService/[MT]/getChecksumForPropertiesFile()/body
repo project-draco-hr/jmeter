@@ -1,6 +1,6 @@
 {
   MessageDigest md=MessageDigest.getInstance("SHA1");
-  try (BufferedReader reader=new BufferedReader(new InputStreamReader(new FileInputStream(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE))))){
+  try (FileReader fileReader=new FileReader(JMeterUtils.getJMeterHome() + JMeterUtils.getPropDefault(SAVESERVICE_PROPERTIES,SAVESERVICE_PROPERTIES_FILE));BufferedReader reader=new BufferedReader(fileReader)){
     String line=null;
     while ((line=reader.readLine()) != null) {
       md.update(line.getBytes());
