@@ -12,6 +12,12 @@
         setDisabledIcon(icon);
       }
     }
+ else     if (!enabled) {
+      icon=node.getIcon();
+      if (icon != null) {
+        setIcon(icon);
+      }
+    }
   }
   return this;
 }
