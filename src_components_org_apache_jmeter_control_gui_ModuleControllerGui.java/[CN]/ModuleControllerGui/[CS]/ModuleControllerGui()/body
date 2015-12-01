@@ -2,6 +2,18 @@
   moduleToRunTreeModel=new DefaultTreeModel(new DefaultMutableTreeNode());
   moduleToRunTreeNodes=new JTree(moduleToRunTreeModel);
   moduleToRunTreeNodes.setCellRenderer(new ModuleControllerCellRenderer());
-  warningLabel=new JLabel("");
+  ImageIcon image=JMeterUtils.getImage("warning.png");
+  warningLabel=new JLabel("",image,SwingConstants.LEFT);
+  warningLabel.setForeground(Color.RED);
+  Font font=warningLabel.getFont();
+  warningLabel.setFont(new Font(font.getFontName(),Font.BOLD,(int)(font.getSize() * 1.1)));
+  warningLabel.setVisible(false);
   init();
+  TreeSelectionListener tsl=new TreeSelectionListener(){
+    @Override public void valueChanged(    TreeSelectionEvent e){
+      warningLabel.setVisible(false);
+    }
+  }
+;
+  moduleToRunTreeNodes.addTreeSelectionListener(tsl);
 }
