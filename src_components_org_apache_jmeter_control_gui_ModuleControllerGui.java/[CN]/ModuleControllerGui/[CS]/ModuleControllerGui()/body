@@ -2,6 +2,7 @@
   moduleToRunTreeModel=new DefaultTreeModel(new DefaultMutableTreeNode());
   moduleToRunTreeNodes=new JTree(moduleToRunTreeModel);
   moduleToRunTreeNodes.setCellRenderer(new ModuleControllerCellRenderer());
+  moduleToRunTreeNodes.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
   ImageIcon image=JMeterUtils.getImage("warning.png");
   warningLabel=new JLabel("",image,SwingConstants.LEFT);
   warningLabel.setForeground(Color.RED);
