@@ -52,6 +52,7 @@
   TreeSelectionListener tsl=new TreeSelectionListener(){
     @Override public void valueChanged(    TreeSelectionEvent e){
       warningLabel.setVisible(false);
+      expandButton.setEnabled(true);
     }
   }
 ;

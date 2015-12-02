@@ -3,7 +3,7 @@
   setBorder(makeBorder());
   add(makeTitlePanel());
   JPanel modulesPanel=new JPanel();
-  expandButton=new JButton(JMeterUtils.getResString("expand"));
+  expandButton=new JButton(JMeterUtils.getResString("find_target_element"));
   expandButton.addActionListener(this);
   modulesPanel.add(expandButton);
   modulesPanel.setLayout(new BoxLayout(modulesPanel,BoxLayout.Y_AXIS));
