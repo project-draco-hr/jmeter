@@ -1,0 +1,6 @@
+{
+  if (testElement != null && !(testElement instanceof AbstractThreadGroup) && !(testElement instanceof TestPlan)) {
+    return true;
+  }
+  return false;
+}

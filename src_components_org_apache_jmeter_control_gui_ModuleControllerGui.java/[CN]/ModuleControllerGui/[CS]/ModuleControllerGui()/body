@@ -2,7 +2,46 @@
   moduleToRunTreeModel=new DefaultTreeModel(new DefaultMutableTreeNode());
   moduleToRunTreeNodes=new JTree(moduleToRunTreeModel);
   moduleToRunTreeNodes.setCellRenderer(new ModuleControllerCellRenderer());
-  moduleToRunTreeNodes.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  TreeSelectionModel tsm=new DefaultTreeSelectionModel(){
+    private static final long serialVersionUID=4062816201792954617L;
+    private boolean isSelectedPathAllowed(    DefaultMutableTreeNode lastSelected){
+      JMeterTreeNode tn=null;
+      if (lastSelected != null && lastSelected.getUserObject() instanceof JMeterTreeNode) {
+        tn=(JMeterTreeNode)lastSelected.getUserObject();
+      }
+      if (tn != null && isTestElementAllowed(tn.getTestElement())) {
+        return true;
+      }
+      return false;
+    }
+    @Override public void setSelectionPath(    TreePath path){
+      DefaultMutableTreeNode lastSelected=(DefaultMutableTreeNode)path.getLastPathComponent();
+      if (isSelectedPathAllowed(lastSelected)) {
+        super.setSelectionPath(path);
+      }
+    }
+    @Override public void setSelectionPaths(    TreePath[] pPaths){
+      DefaultMutableTreeNode lastSelected=(DefaultMutableTreeNode)pPaths[pPaths.length - 1].getLastPathComponent();
+      if (isSelectedPathAllowed(lastSelected)) {
+        super.setSelectionPaths(pPaths);
+      }
+    }
+    @Override public void addSelectionPath(    TreePath path){
+      DefaultMutableTreeNode lastSelected=(DefaultMutableTreeNode)path.getLastPathComponent();
+      if (isSelectedPathAllowed(lastSelected)) {
+        super.addSelectionPath(path);
+      }
+    }
+    @Override public void addSelectionPaths(    TreePath[] paths){
+      DefaultMutableTreeNode lastSelected=(DefaultMutableTreeNode)paths[paths.length - 1].getLastPathComponent();
+      if (isSelectedPathAllowed(lastSelected)) {
+        super.addSelectionPaths(paths);
+      }
+    }
+  }
+;
+  tsm.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+  moduleToRunTreeNodes.setSelectionModel(tsm);
   ImageIcon image=JMeterUtils.getImage("warning.png");
   warningLabel=new JLabel("",image,SwingConstants.LEFT);
   warningLabel.setForeground(Color.RED);

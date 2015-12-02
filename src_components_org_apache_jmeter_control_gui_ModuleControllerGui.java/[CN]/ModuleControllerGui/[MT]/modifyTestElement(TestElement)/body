@@ -7,7 +7,7 @@
   }
   if (tn != null) {
     selected=tn;
-    if (selected != null && !(selected.getTestElement() instanceof AbstractThreadGroup) && !(selected.getTestElement() instanceof TestPlan)) {
+    if (selected != null && isTestElementAllowed(selected.getTestElement())) {
       ((ModuleController)element).setSelectedNode(selected);
     }
   }
