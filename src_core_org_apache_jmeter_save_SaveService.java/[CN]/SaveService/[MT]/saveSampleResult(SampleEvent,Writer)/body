@@ -2,7 +2,7 @@
   DataHolder dh=JTLSAVER.newDataHolder();
   dh.put(SAMPLE_EVENT_OBJECT,evt);
   try {
-    JTLSAVER.marshal(evt.getResult(),new XppDriver().createWriter(writer),dh);
+    JTLSAVER.marshal(evt.getResult(),new PrettyPrintWriter(writer),dh);
   }
  catch (  RuntimeException e) {
     throw new IllegalArgumentException("Failed marshalling:" + (evt.getResult() != null ? showDebuggingInfo(evt.getResult()) : "null"),e);
