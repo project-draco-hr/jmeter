@@ -4,8 +4,8 @@
   dataField=createInfoField(Color.black,5);
   averageField=createInfoField(Color.blue,5);
   deviationField=createInfoField(Color.red,5);
-  throughputField=createInfoField(JMeterColor.dark_green,15);
-  medianField=createInfoField(JMeterColor.purple,5);
+  throughputField=createInfoField(JMeterColor.DARK_GREEN,15);
+  medianField=createInfoField(JMeterColor.PURPLE,5);
   graphInfoPanel.add(createInfoColumn(createInfoLabel("graph_results_no_samples",noSamplesField),noSamplesField,createInfoLabel("graph_results_deviation",deviationField),deviationField));
   graphInfoPanel.add(Box.createHorizontalGlue());
   graphInfoPanel.add(createInfoColumn(createInfoLabel("graph_results_latest_sample",dataField),dataField,createInfoLabel("graph_results_throughput",throughputField),throughputField));

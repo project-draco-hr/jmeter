@@ -5,8 +5,8 @@
   data=createChooseCheckBox("graph_results_data",Color.black);
   average=createChooseCheckBox("graph_results_average",Color.blue);
   deviation=createChooseCheckBox("graph_results_deviation",Color.red);
-  throughput=createChooseCheckBox("graph_results_throughput",JMeterColor.dark_green);
-  median=createChooseCheckBox("graph_results_median",JMeterColor.purple);
+  throughput=createChooseCheckBox("graph_results_throughput",JMeterColor.DARK_GREEN);
+  median=createChooseCheckBox("graph_results_median",JMeterColor.PURPLE);
   chooseGraphsPanel.add(selectGraphsLabel);
   chooseGraphsPanel.add(data);
   chooseGraphsPanel.add(average);
