@@ -1,4 +1,7 @@
 {
+  if (getText() == null || getText().isEmpty()) {
+    return;
+  }
   try {
     dateFormat.parse(getText());
   }

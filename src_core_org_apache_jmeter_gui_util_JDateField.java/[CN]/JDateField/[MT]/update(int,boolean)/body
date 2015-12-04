@@ -13,5 +13,11 @@
   if (pos > newDate.length()) {
     pos=newDate.length();
   }
-  setCaretPosition(pos);
+  final int newPosition=pos;
+  SwingUtilities.invokeLater(new Runnable(){
+    @Override public void run(){
+      setCaretPosition(newPosition);
+    }
+  }
+);
 }
