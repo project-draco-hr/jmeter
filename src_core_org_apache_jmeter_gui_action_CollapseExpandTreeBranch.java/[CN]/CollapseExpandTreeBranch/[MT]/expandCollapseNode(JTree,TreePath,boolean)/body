@@ -1,0 +1,18 @@
+{
+  TreeNode node=(TreeNode)parent.getLastPathComponent();
+  if (node.isLeaf()) {
+    return;
+  }
+  Enumeration children=node.children();
+  while (children.hasMoreElements()) {
+    TreeNode child=(TreeNode)children.nextElement();
+    TreePath path=parent.pathByAddingChild(child);
+    expandCollapseNode(jTree,path,collapse);
+  }
+  if (collapse) {
+    jTree.collapsePath(parent);
+  }
+ else {
+    jTree.expandPath(parent);
+  }
+}

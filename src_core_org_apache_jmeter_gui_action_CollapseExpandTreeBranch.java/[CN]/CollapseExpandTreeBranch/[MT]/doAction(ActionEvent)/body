@@ -1,0 +1,13 @@
+{
+  JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
+  JTree jTree=GuiPackage.getInstance().getMainFrame().getTree();
+  JMeterTreeNode[] selectedNodes=treeListener.getSelectedNodes();
+  for (  JMeterTreeNode currentNode : selectedNodes) {
+    if (!currentNode.isLeaf()) {
+      TreeNode[] nodes=GuiPackage.getInstance().getTreeModel().getPathToRoot(currentNode);
+      TreePath path=new TreePath(nodes);
+      boolean collapse=ActionNames.COLLAPSE.equals(e.getActionCommand());
+      expandCollapseNode(jTree,path,collapse);
+    }
+  }
+}
