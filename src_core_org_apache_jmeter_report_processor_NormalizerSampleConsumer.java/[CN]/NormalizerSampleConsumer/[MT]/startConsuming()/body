@@ -1,0 +1,6 @@
+{
+  sampleMetadata=getConsumedMetadata(0);
+  timestamp=sampleMetadata.indexOf(CSVSaveService.TIME_STAMP);
+  super.setProducedMetadata(sampleMetadata,0);
+  startProducing();
+}

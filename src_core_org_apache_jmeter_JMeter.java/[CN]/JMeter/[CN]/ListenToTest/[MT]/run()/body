@@ -14,5 +14,6 @@
   }
   ClientJMeterEngine.tidyRMI(log);
   println("... end of run");
+  generateReport();
   checkForRemainingThreads();
 }

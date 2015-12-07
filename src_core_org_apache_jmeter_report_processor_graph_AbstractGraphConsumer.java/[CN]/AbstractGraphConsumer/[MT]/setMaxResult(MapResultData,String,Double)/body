@@ -1,0 +1,4 @@
+{
+  ValueResultData valueResult=(ValueResultData)result.getResult(name);
+  valueResult.setValue(Math.max((Double)valueResult.getValue(),value));
+}

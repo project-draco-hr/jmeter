@@ -1,0 +1,6 @@
+{
+  double result=Double.valueOf((String)context.get(key));
+  long timestamp=(long)result;
+  context.put(key,'"' + TimeHelper.formatTimeStamp(timestamp) + '"');
+  return timestamp;
+}

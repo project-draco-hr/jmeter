@@ -1,0 +1,39 @@
+{
+  int sz=samples.size();
+  if (sz <= 1) {
+    return samples;
+  }
+  int middle=sz / 2;
+  final List<Sample> left=samples.subList(0,middle);
+  final List<Sample> right=samples.subList(middle,sz);
+  Job<List<Sample>> jobLeft=new Job<List<Sample>>(){
+    protected List<Sample> exec(){
+      return sort(left);
+    }
+  }
+;
+  Job<List<Sample>> jobRight=new Job<List<Sample>>(){
+    @Override protected List<Sample> exec(){
+      return sort(right);
+    }
+  }
+;
+  List<Sample> newLeft=null;
+  List<Sample> newRight=null;
+  workQueue.add(jobLeft);
+  workQueue.add(jobRight);
+  if (parallelize) {
+    try {
+      newLeft=jobLeft.getResult();
+      newRight=jobRight.getResult();
+    }
+ catch (    InterruptedException ie) {
+      throw new SampleException("Unexpected interruption !",ie);
+    }
+  }
+ else {
+    newLeft=sort(left);
+    newRight=sort(right);
+  }
+  return merge(newLeft,newRight);
+}

@@ -1,0 +1,5 @@
+{
+  HashMap<String,GroupInfo> groupInfos=new HashMap<String,GroupInfo>(1);
+  groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new TimeRateAggregatorFactory(),new CodeSeriesSelector(),new CountValueSelector(),false,false));
+  return groupInfos;
+}

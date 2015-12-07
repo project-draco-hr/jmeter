@@ -1,0 +1,11 @@
+{
+  String value=properties.get(key);
+  TProperty result;
+  if (value == null) {
+    result=defaultValue;
+  }
+ else {
+    result=ConfigurationUtils.convert(value,clazz);
+  }
+  return result;
+}

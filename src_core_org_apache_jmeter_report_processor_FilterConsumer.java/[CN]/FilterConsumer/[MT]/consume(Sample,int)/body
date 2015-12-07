@@ -1,0 +1,5 @@
+{
+  if ((reverseFilter == false && samplePredicate != null && samplePredicate.matches(sample)) || (reverseFilter == true && (samplePredicate == null || samplePredicate.matches(sample) == false))) {
+    super.produce(sample,channel);
+  }
+}

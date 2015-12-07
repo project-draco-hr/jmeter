@@ -1,0 +1,22 @@
+{
+  if (samples.size() > 0) {
+    chunks.add(sortAndDump(samples,sampleMetadata));
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("sort(): " + inputSampleCount + " samples read from input, "+ chunkedSampleCount+ " samples written to chunk files");
+    if (inputSampleCount != chunkedSampleCount) {
+      log.error("Failure !");
+    }
+ else {
+      log.info("chunked samples dumps succeeded.");
+    }
+  }
+  super.setProducedMetadata(sampleMetadata,0);
+  super.startProducing();
+  sortFilesParallel(chunks,sampleMetadata,this);
+  super.stopProducing();
+  if (this.pool != null) {
+    this.pool.shutdown();
+  }
+  getWorkingDirectory().delete();
+}

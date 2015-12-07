@@ -1,0 +1,4 @@
+{
+  long time=selectBeginTime ? sample.getStartTime() : sample.getEndTime();
+  return (double)(time - time % granularity);
+}

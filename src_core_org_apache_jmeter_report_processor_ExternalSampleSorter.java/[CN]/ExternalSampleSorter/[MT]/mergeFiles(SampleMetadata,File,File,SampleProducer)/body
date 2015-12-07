@@ -1,0 +1,30 @@
+{
+  CsvSampleReader l=new CsvSampleReader(left,metadata);
+  CsvSampleReader r=new CsvSampleReader(right,metadata);
+  try {
+    while (l.hasNext() || r.hasNext()) {
+      if (l.hasNext() && r.hasNext()) {
+        Sample firstLeft=l.peek();
+        Sample firstRight=r.peek();
+        if (revertedSort == false && sampleComparator.compare(firstLeft,firstRight) < 0 || revertedSort == true && sampleComparator.compare(firstLeft,firstRight) >= 0) {
+          out.produce(firstLeft,0);
+          l.readSample();
+        }
+ else {
+          out.produce(firstRight,0);
+          r.readSample();
+        }
+      }
+ else       if (l.hasNext()) {
+        out.produce(l.readSample(),0);
+      }
+ else       if (r.hasNext()) {
+        out.produce(r.readSample(),0);
+      }
+    }
+  }
+  finally {
+    l.close();
+    r.close();
+  }
+}

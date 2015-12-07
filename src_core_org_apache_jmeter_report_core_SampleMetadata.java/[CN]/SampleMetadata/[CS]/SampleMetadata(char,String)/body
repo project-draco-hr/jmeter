@@ -1,0 +1,6 @@
+{
+  if (columns == null) {
+    throw new ArgumentNullException("columns");
+  }
+  initialize(separator,Arrays.asList(columns));
+}

@@ -1,0 +1,10 @@
+{
+  SampleBuilder builder=builders.get(channel);
+  SampleMetadata metadata=builder.getMetadata();
+  int colCount=metadata.getColumnCount();
+  for (int i=0; i < colCount - 1; i++) {
+    builder.add(sample.getString(i));
+  }
+  builder.add(String.valueOf(count));
+  return builder.build();
+}

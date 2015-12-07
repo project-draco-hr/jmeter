@@ -1,0 +1,12 @@
+{
+  if (reportGenerator != null) {
+    try {
+      log.info("Generating Dashboard");
+      reportGenerator.generate();
+      log.info("Dashboard generated");
+    }
+ catch (    GenerationException ex) {
+      log.error("Error generating dashboard:" + ex.getMessage(),ex);
+    }
+  }
+}

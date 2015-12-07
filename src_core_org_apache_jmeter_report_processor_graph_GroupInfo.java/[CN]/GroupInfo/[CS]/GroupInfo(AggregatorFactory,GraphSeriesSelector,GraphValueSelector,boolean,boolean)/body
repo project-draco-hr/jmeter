@@ -1,0 +1,8 @@
+{
+  this.enableOverallSeries=enableOverallSeries;
+  this.seriesSelector=seriesSelector;
+  this.valueSelector=valueSelector;
+  this.aggregatorFactory=aggregatorFactory;
+  this.enableAggregatedKeysSeries=enableAggregatedKeysSeries;
+  this.groupData=new GroupData(aggregatorFactory,enableOverallSeries,enableAggregatedKeysSeries);
+}

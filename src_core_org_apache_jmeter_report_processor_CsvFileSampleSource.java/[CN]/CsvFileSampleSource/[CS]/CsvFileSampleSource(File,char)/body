@@ -1,0 +1,29 @@
+{
+  if (inputFile == null)   throw new ArgumentNullException("inputFile");
+  final String inputRootName=getFileRootName(inputFile.getName());
+  final String inputExtension=getFileExtension(inputFile.getName());
+  File[] secondaryInputs=null;
+  try {
+    final Pattern pattern=Pattern.compile(inputRootName + "-[0-9]+\\." + inputExtension);
+    secondaryInputs=inputFile.getAbsoluteFile().getParentFile().listFiles(new FileFilter(){
+      @Override public boolean accept(      File pathname){
+        return pathname.isFile() && pattern.matcher(pathname.getName()).matches();
+      }
+    }
+);
+  }
+ catch (  PatternSyntaxException e) {
+    throw new SampleException("Could not locate input sample files !",e);
+  }
+  inputFiles=new File[secondaryInputs.length + 1];
+  csvReaders=new CsvSampleReader[secondaryInputs.length + 1];
+  int k=0;
+  csvReaders[k]=new CsvSampleReader(inputFile,separator,true);
+  inputFiles[k]=inputFile;
+  for (  File input : secondaryInputs) {
+    k++;
+    csvReaders[k]=new CsvSampleReader(input,separator,true);
+    inputFiles[k]=secondaryInputs[k - 1];
+  }
+  producer=new PrivateProducer();
+}

@@ -1,0 +1,10 @@
+{
+  int idx=fName.lastIndexOf('.');
+  if (idx < 0) {
+    return "";
+  }
+  if (idx < fName.length() - 1) {
+    return fName.substring(idx + 1);
+  }
+  return "";
+}

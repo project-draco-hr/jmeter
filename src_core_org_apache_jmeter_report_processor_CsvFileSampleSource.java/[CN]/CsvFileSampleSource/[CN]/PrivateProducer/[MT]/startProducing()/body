@@ -1,0 +1,11 @@
+{
+  for (  SampleConsumer consumer : this.sampleConsumers) {
+    try {
+      consumer.startConsuming();
+    }
+ catch (    Exception e) {
+      log.error("startProducing(): Consumer failed with message :" + e.getMessage(),e);
+      throw new SampleException(e);
+    }
+  }
+}

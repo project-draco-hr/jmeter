@@ -1,0 +1,9 @@
+{
+  count=0L;
+  errorCount=0L;
+  int channelCount=getConsumedChannelCount();
+  for (int i=0; i < channelCount; i++) {
+    super.setProducedMetadata(getConsumedMetadata(i),i);
+  }
+  super.startProducing();
+}

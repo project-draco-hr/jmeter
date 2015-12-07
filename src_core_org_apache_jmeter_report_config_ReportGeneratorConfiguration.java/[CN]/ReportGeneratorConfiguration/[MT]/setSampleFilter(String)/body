@@ -1,0 +1,13 @@
+{
+  if (Objects.equals(this.sampleFilter,sampleFilter) == false) {
+    this.sampleFilter=sampleFilter;
+    filteredSamples.clear();
+    if (sampleFilter != null) {
+      String[] items=sampleFilter.split(",");
+      int count=items.length;
+      for (int index=0; index < count; index++) {
+        filteredSamples.add(items[index].trim());
+      }
+    }
+  }
+}

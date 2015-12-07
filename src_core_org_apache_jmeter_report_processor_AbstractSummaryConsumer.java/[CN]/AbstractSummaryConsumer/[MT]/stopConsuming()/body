@@ -1,0 +1,19 @@
+{
+  MapResultData result=new MapResultData();
+  result.setResult(RESULT_VALUE_SUPPORTS_CONTROLLERS_DISCRIMINATION,new ValueResultData(supportsControllersDiscrimination));
+  result.setResult(RESULT_VALUE_TITLES,createResultTitles());
+  if (hasOverallResult) {
+    MapResultData overallResult=createResultFromKey(null);
+    if (overallResult != null)     result.setResult(RESULT_VALUE_OVERALL,overallResult);
+  }
+  ListResultData itemsResult=new ListResultData();
+  for (  String key : infos.keySet()) {
+    MapResultData keyResult=createResultFromKey(key);
+    if (keyResult != null)     itemsResult.addResult(keyResult);
+  }
+  result.setResult(RESULT_VALUE_ITEMS,itemsResult);
+  setDataToContext(getName(),result);
+  super.stopProducing();
+  infos.clear();
+  overallInfo.setData(null);
+}

@@ -1,0 +1,8 @@
+{
+  return new GraphKeysSelector(){
+    @Override public Double select(    Sample sample){
+      return (double)sample.getElapsedTime();
+    }
+  }
+;
+}

@@ -1,0 +1,4 @@
+{
+  if (visitor == null)   throw new ArgumentNullException("visitor");
+  return visitor.visitMapResult(this);
+}

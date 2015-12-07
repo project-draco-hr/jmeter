@@ -91,17 +91,31 @@
         startOptionalServers();
       }
  else {
-        CLOption rem=parser.getArgumentById(REMOTE_OPT_PARAM);
-        if (rem == null) {
-          rem=parser.getArgumentById(REMOTE_OPT);
+        CLOption testReportOpt=parser.getArgumentById(REPORT_GENERATING_OPT);
+        if (testReportOpt != null) {
+          String reportFile=testReportOpt.getArgument();
+          ReportGenerator generator=new ReportGenerator(reportFile,null);
+          generator.generate();
         }
-        CLOption jtl=parser.getArgumentById(LOGFILE_OPT);
-        String jtlFile=null;
-        if (jtl != null) {
-          jtlFile=processLAST(jtl.getArgument(),".jtl");
+ else {
+          CLOption rem=parser.getArgumentById(REMOTE_OPT_PARAM);
+          if (rem == null) {
+            rem=parser.getArgumentById(REMOTE_OPT);
+          }
+          CLOption jtl=parser.getArgumentById(LOGFILE_OPT);
+          String jtlFile=null;
+          if (jtl != null) {
+            jtlFile=processLAST(jtl.getArgument(),".jtl");
+          }
+          CLOption reportAtEndOpt=parser.getArgumentById(REPORT_AT_END_OPT);
+          if (reportAtEndOpt != null) {
+            if (jtlFile == null) {
+              throw new IllegalUserActionException("Option -" + REPORT_AT_END_OPT + " requires -"+ LOGFILE_OPT+ " option");
+            }
+          }
+          startNonGui(testFile,jtlFile,rem,reportAtEndOpt != null);
+          startOptionalServers();
         }
-        startNonGui(testFile,jtlFile,rem);
-        startOptionalServers();
       }
     }
   }

@@ -1,0 +1,18 @@
+{
+  if (sampleMetadata == null)   throw new ArgumentNullException("sampleMetadata");
+  if (inputFile == null)   throw new ArgumentNullException("inputFile");
+  if (outputFile == null)   throw new ArgumentNullException("outputFile");
+  if (!inputFile.isFile()) {
+    throw new SampleException(inputFile.getAbsolutePath() + " does not exist or is not a file. Please provide an existing samples file");
+  }
+  if (outputFile.isDirectory()) {
+    throw new SampleException(outputFile.getAbsolutePath() + " is a directory. Please provide a valid output sample file path (not a directory)");
+  }
+  CsvSampleReader csvReader=new CsvSampleReader(inputFile,sampleMetadata);
+  try {
+    sort(csvReader,outputFile,writeHeader);
+  }
+  finally {
+    csvReader.close();
+  }
+}

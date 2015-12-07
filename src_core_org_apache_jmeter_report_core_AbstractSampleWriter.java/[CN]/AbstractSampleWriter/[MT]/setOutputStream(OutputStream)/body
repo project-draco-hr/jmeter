@@ -1,0 +1,8 @@
+{
+  if (out == null)   throw new ArgumentNullException("out");
+  try {
+    setWriter(new OutputStreamWriter(out,CHARSET));
+  }
+ catch (  UnsupportedEncodingException e) {
+  }
+}

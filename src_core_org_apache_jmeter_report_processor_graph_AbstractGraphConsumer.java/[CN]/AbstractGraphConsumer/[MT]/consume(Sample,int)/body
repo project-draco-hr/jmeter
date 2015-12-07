@@ -1,0 +1,25 @@
+{
+  Double key=keysSelector.select(sample);
+  for (  Map.Entry<String,GroupInfo> entryGroup : groupInfos.entrySet()) {
+    GroupInfo groupInfo=entryGroup.getValue();
+    GroupData groupData=groupInfo.getGroupData();
+    AggregatorFactory factory=groupInfo.getAggregatorFactory();
+    boolean overallSeries=groupInfo.enablesOverallSeries();
+    boolean aggregatedKeysSeries=groupInfo.enablesAggregatedKeysSeries();
+    for (    String seriesName : groupInfo.getSeriesSelector().select(sample)) {
+      Map<String,SeriesData> seriesInfo=groupData.getSeriesInfo();
+      SeriesData seriesData=seriesInfo.get(seriesName);
+      if (seriesData == null) {
+        seriesData=new SeriesData(factory,aggregatedKeysSeries,groupInfo.getSeriesSelector().allowsControllersDiscrimination() ? sample.isController() : false,false);
+        seriesInfo.put(seriesName,seriesData);
+      }
+      double value=groupInfo.getValueSelector().select(seriesName,sample);
+      aggregateValue(factory,seriesData,key,value);
+      if (overallSeries == true) {
+        SeriesData overallData=groupData.getOverallSeries();
+        aggregateValue(factory,overallData,key,value);
+      }
+    }
+  }
+  super.produce(sample,channel);
+}

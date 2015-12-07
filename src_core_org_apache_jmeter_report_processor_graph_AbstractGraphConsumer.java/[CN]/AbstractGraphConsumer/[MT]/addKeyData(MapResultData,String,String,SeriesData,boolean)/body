@@ -1,0 +1,96 @@
+{
+  ListResultData seriesList=(ListResultData)result.getResult(RESULT_SERIES);
+  MapResultData seriesResult=null;
+  int index=0;
+  int size=seriesList.getSize();
+  while (seriesResult == null && index < size) {
+    MapResultData currSeries=(MapResultData)seriesList.get(index);
+    String name=String.valueOf(((ValueResultData)currSeries.getResult(RESULT_SERIES_NAME)).getValue());
+    if (Objects.equals(name,series)) {
+      seriesResult=currSeries;
+    }
+    index++;
+  }
+  if (seriesResult == null) {
+    seriesResult=new MapResultData();
+    seriesResult.setResult(RESULT_SERIES_NAME,new ValueResultData(series));
+    seriesResult.setResult(RESULT_SERIES_IS_CONTROLLER,new ValueResultData(seriesData.isControllersSeries()));
+    seriesResult.setResult(RESULT_SERIES_IS_OVERALL,new ValueResultData(seriesData.isOverallSeries()));
+    seriesResult.setResult(RESULT_SERIES_DATA,new ListResultData());
+    seriesList.addResult(seriesResult);
+  }
+  ListResultData dataResult=(ListResultData)seriesResult.getResult(RESULT_SERIES_DATA);
+  Map<Double,Aggregator> aggInfo;
+  if (aggregated == false) {
+    aggInfo=seriesData.getAggregatorInfo();
+  }
+ else {
+    series=String.format(aggregatedKeysSeriesFormat,series);
+    aggInfo=new HashMap<Double,Aggregator>();
+    aggInfo.put(seriesData.getKeysAggregator().getResult(),seriesData.getValuesAggregator());
+  }
+  if (renderPercentiles == false) {
+    for (    Map.Entry<Double,Aggregator> entry : aggInfo.entrySet()) {
+      Double key=entry.getKey();
+      Double value=entry.getValue().getResult();
+      ListResultData coordResult=new ListResultData();
+      if (revertsKeysAndValues == false) {
+        key=entry.getKey();
+        value=entry.getValue().getResult();
+      }
+ else {
+        key=entry.getValue().getResult();
+        value=entry.getKey();
+      }
+      coordResult.addResult(new ValueResultData(key));
+      coordResult.addResult(new ValueResultData(value));
+      dataResult.addResult(coordResult);
+      setMinResult(result,RESULT_MIN_X,key);
+      setMaxResult(result,RESULT_MAX_X,key);
+      setMinResult(result,RESULT_MIN_Y,value);
+      setMaxResult(result,RESULT_MAX_Y,value);
+    }
+  }
+ else {
+    long count=seriesData.getCount();
+    int rank=0;
+    double percent=0;
+    TreeMap<Double,Aggregator> sortedInfo=new TreeMap<Double,Aggregator>(aggInfo);
+    if (revertsKeysAndValues == false) {
+      for (      Map.Entry<Double,Aggregator> entry : sortedInfo.entrySet()) {
+        double value=entry.getKey();
+        percent+=(double)100 * entry.getValue().getCount() / count;
+        double percentile=(double)rank / 10;
+        while (percentile < percent) {
+          ListResultData coordResult=new ListResultData();
+          coordResult.addResult(new ValueResultData(percentile));
+          coordResult.addResult(new ValueResultData(value));
+          dataResult.addResult(coordResult);
+          percentile=(double)++rank / 10;
+        }
+        setMinResult(result,RESULT_MIN_Y,value);
+        setMaxResult(result,RESULT_MAX_Y,value);
+      }
+      setMinResult(result,RESULT_MIN_X,0d);
+      setMaxResult(result,RESULT_MAX_X,100d);
+    }
+ else {
+      for (      Map.Entry<Double,Aggregator> entry : sortedInfo.entrySet()) {
+        double value=entry.getKey();
+        percent+=(double)100 * entry.getValue().getCount() / count;
+        double percentile=(double)rank / 10;
+        while (percentile < percent) {
+          ListResultData coordResult=new ListResultData();
+          coordResult.addResult(new ValueResultData(value));
+          coordResult.addResult(new ValueResultData(percentile));
+          dataResult.addResult(coordResult);
+          percentile=(double)++rank / 10;
+        }
+        setMinResult(result,RESULT_MIN_X,value);
+        setMaxResult(result,RESULT_MAX_X,value);
+      }
+      setMinResult(result,RESULT_MIN_Y,0d);
+      setMaxResult(result,RESULT_MAX_Y,100d);
+    }
+  }
+}

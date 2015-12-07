@@ -1,0 +1,14 @@
+{
+  SummaryInfo overallInfo=getOverallInfo();
+  Long overallData=overallInfo.getData();
+  if (overallData == null) {
+    overallData=Long.valueOf(0);
+  }
+  overallInfo.setData(overallData + 1);
+  if (!sample.getSuccess()) {
+    errorCount++;
+    Long data=info.getData();
+    if (data == null)     data=Long.valueOf(1);
+    info.setData(data + 1);
+  }
+}

@@ -1,0 +1,8 @@
+{
+  ListResultData titles=new ListResultData();
+  titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_apdex_apdex")));
+  titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_apdex_satisfied")));
+  titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_apdex_tolerated")));
+  titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_apdex_samplers")));
+  return titles;
+}

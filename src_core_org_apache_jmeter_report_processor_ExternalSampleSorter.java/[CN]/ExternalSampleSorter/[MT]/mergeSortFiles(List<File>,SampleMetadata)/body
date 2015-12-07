@@ -1,0 +1,12 @@
+{
+  int sz=chunks.size();
+  if (sz == 1) {
+    return chunks.get(0);
+  }
+  int middle=sz / 2;
+  List<File> left=chunks.subList(0,middle);
+  List<File> right=chunks.subList(middle,sz);
+  File leftFile=mergeSortFiles(left,metadata);
+  File rightFile=mergeSortFiles(right,metadata);
+  return mergeFiles(leftFile,rightFile,metadata);
+}

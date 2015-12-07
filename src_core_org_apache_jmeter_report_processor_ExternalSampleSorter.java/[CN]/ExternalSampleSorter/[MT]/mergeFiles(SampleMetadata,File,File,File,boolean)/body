@@ -1,0 +1,38 @@
+{
+  if (out == null) {
+    out=getChunkFile();
+  }
+  CsvSampleWriter csvWriter=new CsvSampleWriter(out,metadata);
+  CsvSampleReader l=new CsvSampleReader(left,metadata);
+  CsvSampleReader r=new CsvSampleReader(right,metadata);
+  try {
+    if (writeHeader) {
+      csvWriter.writeHeader();
+    }
+    while (l.hasNext() || r.hasNext()) {
+      if (l.hasNext() && r.hasNext()) {
+        Sample firstLeft=l.peek();
+        Sample firstRight=r.peek();
+        if (revertedSort == false && sampleComparator.compare(firstLeft,firstRight) < 0 || revertedSort == true && sampleComparator.compare(firstLeft,firstRight) >= 0) {
+          csvWriter.write(firstLeft);
+          l.readSample();
+        }
+ else {
+          csvWriter.write(firstRight);
+          r.readSample();
+        }
+      }
+ else       if (l.hasNext()) {
+        csvWriter.write(l.readSample());
+      }
+ else       if (r.hasNext()) {
+        csvWriter.write(r.readSample());
+      }
+    }
+  }
+  finally {
+    csvWriter.close();
+    l.close();
+    r.close();
+  }
+}

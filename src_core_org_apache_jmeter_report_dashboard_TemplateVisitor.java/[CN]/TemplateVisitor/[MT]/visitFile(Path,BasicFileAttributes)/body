@@ -1,0 +1,23 @@
+{
+  String extension=FilenameUtils.getExtension(arg0.toString());
+  if (TEMPLATED_FILE_EXT.equalsIgnoreCase(extension)) {
+    String templatePath=source.relativize(arg0).toString();
+    Template template=configuration.getTemplate(templatePath);
+    Path newPath=target.resolve(FilenameUtils.removeExtension(templatePath));
+    Writer file=new FileWriter(newPath.toString());
+    try {
+      template.process(data,file);
+    }
+ catch (    TemplateException ex) {
+      throw new IOException(ex);
+    }
+ finally {
+      file.close();
+    }
+  }
+ else {
+    Path newFile=target.resolve(source.relativize(arg0));
+    Files.copy(arg0,newFile,StandardCopyOption.REPLACE_EXISTING);
+  }
+  return FileVisitResult.CONTINUE;
+}

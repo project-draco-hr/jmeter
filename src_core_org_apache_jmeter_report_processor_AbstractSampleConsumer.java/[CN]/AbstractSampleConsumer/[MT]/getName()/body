@@ -1,0 +1,8 @@
+{
+  if (name == null) {
+    return getClass().getSimpleName() + "-" + hashCode();
+  }
+ else {
+    return name;
+  }
+}

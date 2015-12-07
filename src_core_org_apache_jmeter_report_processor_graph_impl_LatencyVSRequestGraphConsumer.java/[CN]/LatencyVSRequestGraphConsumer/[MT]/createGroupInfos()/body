@@ -1,0 +1,5 @@
+{
+  HashMap<String,GroupInfo> groupInfos=new HashMap<String,GroupInfo>(1);
+  groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new MedianAggregatorFactory(),new StatusSeriesSelector(),new LatencyValueSelector(),false,false));
+  return groupInfos;
+}

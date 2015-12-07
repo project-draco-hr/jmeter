@@ -1,0 +1,15 @@
+{
+  SummaryInfo overallInfo=getOverallInfo();
+  StatisticsSummaryData overallData=overallInfo.getData();
+  if (overallData == null) {
+    overallData=new StatisticsSummaryData(percentileIndex1,percentileIndex2,percentileIndex3);
+    overallInfo.setData(overallData);
+  }
+  StatisticsSummaryData data=info.getData();
+  if (data == null) {
+    data=new StatisticsSummaryData(percentileIndex1,percentileIndex2,percentileIndex3);
+    info.setData(data);
+  }
+  aggregateSample(sample,data);
+  aggregateSample(sample,overallData);
+}

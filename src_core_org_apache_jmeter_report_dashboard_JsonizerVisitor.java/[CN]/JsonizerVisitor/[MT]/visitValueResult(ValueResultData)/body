@@ -1,0 +1,9 @@
+{
+  String result="";
+  if (valueResult != null) {
+    Object value=valueResult.getValue();
+    result=String.valueOf(value);
+    if (value instanceof String)     result='"' + result + '"';
+  }
+  return result;
+}

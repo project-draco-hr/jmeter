@@ -1,0 +1,12 @@
+{
+  if (hasAggregatedKey) {
+    keysAggregator=factory.createKeyAggregator();
+    valuesAggregator=factory.createAggregatedKeyValueAggregator();
+  }
+ else {
+    keysAggregator=null;
+    valuesAggregator=null;
+  }
+  this.isControllersSeries=isControllersSeries;
+  this.isOverallSeries=isOverallSeries;
+}

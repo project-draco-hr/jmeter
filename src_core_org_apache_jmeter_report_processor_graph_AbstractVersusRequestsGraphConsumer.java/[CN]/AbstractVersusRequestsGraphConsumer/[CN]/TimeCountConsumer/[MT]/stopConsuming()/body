@@ -1,0 +1,31 @@
+{
+  parent.startConsumingBase();
+  int channelsCount=getConsumedChannelCount();
+  for (int i=0; i < channelsCount; i++) {
+    FileInfo fileInfo=fileInfos.get(i);
+    CsvSampleWriter writer=fileInfo.getWriter();
+    writer.close();
+    File file=fileInfo.getFile();
+    CsvSampleReader reader=new CsvSampleReader(file,getConsumedMetadata(i));
+    try {
+      while (reader.hasNext()) {
+        Sample sample=reader.readSample();
+        parent.consumeBase(createIndexedSample(sample,i,counts.get(getTimeInterval(sample)) % parent.getGranularity()),i);
+      }
+    }
+  finally {
+      reader.close();
+      file.delete();
+    }
+  }
+  if (createdWorkDir == true) {
+    File workingDir=parent.getWorkingDirectory();
+    try {
+      FileUtils.deleteDirectory(workingDir);
+    }
+ catch (    IOException e) {
+      log.warn(String.format("Cannot delete created temporary directory \"%s\"",workingDir),e);
+    }
+  }
+  parent.stopConsumingBase();
+}

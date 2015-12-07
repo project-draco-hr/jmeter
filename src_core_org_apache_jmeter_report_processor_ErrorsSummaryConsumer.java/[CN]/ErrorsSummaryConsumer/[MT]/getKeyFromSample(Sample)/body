@@ -1,0 +1,13 @@
+{
+  String code=sample.getResponseCode();
+  if (isSuccessCode(code)) {
+    code=ASSERTION_FAILED;
+    if (JMeterUtils.getPropDefault(SampleSaveConfiguration.ASSERTION_RESULTS_FAILURE_MESSAGE_PROP,false)) {
+      String msg=sample.getFailureMessage();
+      if (!StringUtils.isEmpty(msg)) {
+        code=StringEscapeUtils.escapeJson(msg);
+      }
+    }
+  }
+  return code;
+}

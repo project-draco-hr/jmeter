@@ -1,0 +1,16 @@
+{
+  try {
+    SampleMetadata metadata;
+    String line=reader.readLine();
+    if (useSaveSampleCfg && CSVSaveService.getSampleSaveConfiguration(line,file.getAbsolutePath()) == null) {
+      metadata=new SampleMetadata(SampleSaveConfiguration.staticConfig());
+    }
+ else {
+      metadata=new SampleMetaDataParser(separator).parse(line);
+    }
+    return metadata;
+  }
+ catch (  Exception e) {
+    throw new SampleException("Could not read metadata !",e);
+  }
+}

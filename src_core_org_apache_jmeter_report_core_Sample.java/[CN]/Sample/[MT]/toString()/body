@@ -1,0 +1,10 @@
+{
+  StringBuffer out=new StringBuffer();
+  for (int i=0; i < data.length; i++) {
+    out.append(data[i]);
+    if (i < data.length - 1) {
+      out.append(metadata.getSeparator());
+    }
+  }
+  return out.toString();
+}

@@ -1,0 +1,10 @@
+{
+  Path newDir=target.resolve(source.relativize(arg0));
+  try {
+    Files.copy(arg0,newDir);
+  }
+ catch (  FileAlreadyExistsException ex) {
+    FileUtils.cleanDirectory(newDir.toFile());
+  }
+  return FileVisitResult.CONTINUE;
+}

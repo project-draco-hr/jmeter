@@ -1,0 +1,9 @@
+{
+  String name=sample.getName();
+  int index=names.indexOf(name);
+  if (index < 0) {
+    names.addLast(name);
+    index=names.size() - 1;
+  }
+  return (double)index;
+}

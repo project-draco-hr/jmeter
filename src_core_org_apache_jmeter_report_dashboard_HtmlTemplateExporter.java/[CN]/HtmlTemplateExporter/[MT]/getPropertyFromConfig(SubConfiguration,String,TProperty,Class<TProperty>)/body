@@ -1,0 +1,8 @@
+{
+  try {
+    return cfg.getProperty(property,defaultValue,clazz);
+  }
+ catch (  ConfigurationException ex) {
+    throw new ExportException(String.format(INVALID_PROPERTY_CONFIG_FMT,property,getName()),ex);
+  }
+}

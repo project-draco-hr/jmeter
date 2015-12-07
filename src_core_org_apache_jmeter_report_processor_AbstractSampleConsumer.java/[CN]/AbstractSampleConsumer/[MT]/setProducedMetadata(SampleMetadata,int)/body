@@ -1,0 +1,11 @@
+{
+  for (  SampleConsumer consumer : this.sampleConsumers) {
+    try {
+      consumer.setConsumedMetadata(metadata,channel);
+    }
+ catch (    Exception e) {
+      log.error("setProducedMetadata(): Consumer failed with message :" + e.getMessage(),e);
+      throw new SampleException(e);
+    }
+  }
+}

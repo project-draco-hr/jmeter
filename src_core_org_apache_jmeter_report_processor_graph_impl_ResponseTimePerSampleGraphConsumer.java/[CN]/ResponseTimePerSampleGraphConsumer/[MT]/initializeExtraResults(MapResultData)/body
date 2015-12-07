@@ -1,0 +1,9 @@
+{
+  ListResultData samples=new ListResultData();
+  IndexedNameSelector indexedNameSelector=(IndexedNameSelector)getKeysSelector();
+  int size=indexedNameSelector.getNames().size();
+  for (int i=0; i < size; i++) {
+    samples.addResult(new ValueResultData(indexedNameSelector.getNames().get(i)));
+  }
+  parentResult.setResult("sampleNames",samples);
+}

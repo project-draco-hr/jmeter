@@ -1,0 +1,4 @@
+{
+  aggregator.addValue(selector.select(sample));
+  super.produce(sample,channel);
+}

@@ -1,0 +1,8 @@
+{
+  try {
+    return Double.parseDouble(data[id]);
+  }
+ catch (  NumberFormatException ex) {
+    throw new SampleException("Error on sample #" + row,ex);
+  }
+}

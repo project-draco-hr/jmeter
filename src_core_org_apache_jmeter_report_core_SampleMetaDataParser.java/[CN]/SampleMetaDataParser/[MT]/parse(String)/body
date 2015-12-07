@@ -1,0 +1,5 @@
+{
+  String[] cols=headRow.split(Character.toString(separator));
+  SampleMetadata out=new SampleMetadata(separator,cols);
+  return out;
+}

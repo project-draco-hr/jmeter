@@ -1,0 +1,7 @@
+{
+  if (sampleIndexer != null) {
+    sampleIndexer.reset();
+  }
+  initProducedMetadata();
+  super.startProducing();
+}

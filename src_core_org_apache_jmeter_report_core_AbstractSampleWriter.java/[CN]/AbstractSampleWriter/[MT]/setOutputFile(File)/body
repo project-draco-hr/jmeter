@@ -1,0 +1,10 @@
+{
+  FileOutputStream fos=null;
+  try {
+    fos=new FileOutputStream(output);
+  }
+ catch (  Exception e) {
+    throw new SampleException(e.getMessage(),e);
+  }
+  setOutputStream(fos);
+}

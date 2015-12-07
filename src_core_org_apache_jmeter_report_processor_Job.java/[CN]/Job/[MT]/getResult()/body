@@ -1,0 +1,8 @@
+{
+synchronized (lock) {
+    while (!resultReady) {
+      lock.wait();
+    }
+  }
+  return result;
+}

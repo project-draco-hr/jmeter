@@ -1,0 +1,21 @@
+{
+  if (csvReader == null)   throw new ArgumentNullException("csvReader");
+  if (output == null)   throw new ArgumentNullException("output");
+  SampleMetadata sampleMetadata=csvReader.getMetadata();
+  SampleWriterConsumer writerConsumer=new SampleWriterConsumer();
+  writerConsumer.setOutputFile(output);
+  writerConsumer.setWriteHeader(writeHeader);
+  addSampleConsumer(writerConsumer);
+  try {
+    super.setConsumedMetadata(sampleMetadata,0);
+    startConsuming();
+    Sample s=null;
+    while ((s=csvReader.readSample()) != null) {
+      consume(s,0);
+    }
+    stopConsuming();
+  }
+  finally {
+    removeSampleConsumer(writerConsumer);
+  }
+}

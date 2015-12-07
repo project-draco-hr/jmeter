@@ -1,0 +1,65 @@
+{
+  log.debug(START_LOADING_MSG);
+  ReportGeneratorConfiguration configuration=new ReportGeneratorConfiguration();
+  final Props props=new Props();
+  props.load(properties);
+  final File tempDirectory=getRequiredProperty(props,REPORT_GENERATOR_KEY_TEMP_DIR,REPORT_GENERATOR_KEY_TEMP_DIR_DEFAULT,File.class);
+  configuration.setTempDirectory(tempDirectory);
+  final long apdexSatisfiedThreshold=getRequiredProperty(props,REPORT_GENERATOR_KEY_APDEX_SATISFIED_THRESHOLD,REPORT_GENERATOR_KEY_APDEX_SATISFIED_THRESHOLD_DEFAULT,long.class);
+  configuration.setApdexSatisfiedThreshold(apdexSatisfiedThreshold);
+  final long apdexToleratedThreshold=getRequiredProperty(props,REPORT_GENERATOR_KEY_APDEX_TOLERATED_THRESHOLD,REPORT_GENERATOR_KEY_APDEX_TOLERATED_THRESHOLD_DEFAULT,long.class);
+  configuration.setApdexToleratedThreshold(apdexToleratedThreshold);
+  final String sampleFilter=getOptionalProperty(props,REPORT_GENERATOR_KEY_SAMPLE_FILTER,String.class);
+  configuration.setSampleFilter(sampleFilter);
+  final Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
+  loadSubConfiguration(graphConfigurations,props,REPORT_GENERATOR_GRAPH_KEY_PREFIX,false,new SubConfigurationFactory<GraphConfiguration>(){
+    @Override public GraphConfiguration createSubConfiguration(){
+      return new GraphConfiguration();
+    }
+    @Override public void initialize(    String graphId,    GraphConfiguration graphConfiguration) throws ConfigurationException {
+      log.debug(String.format(LOAD_GRAPH_FMT,graphId));
+      boolean excludeControllers=getRequiredProperty(props,getGraphPropertyKey(graphId,GRAPH_KEY_EXCLUDE_CONTROLLERS),GRAPH_KEY_EXCLUDE_CONTROLLERS_DEFAULT,Boolean.class);
+      graphConfiguration.setExcludeControllers(excludeControllers);
+      String title=getRequiredProperty(props,getGraphPropertyKey(graphId,GRAPH_KEY_TITLE),GRAPH_KEY_TITLE_DEFAULT,String.class);
+      graphConfiguration.setTitle(title);
+      String className=getRequiredProperty(props,getGraphPropertyKey(graphId,SUBCONF_KEY_CLASSNAME),"",String.class);
+      graphConfiguration.setClassName(className);
+    }
+  }
+);
+  if (graphConfigurations.isEmpty()) {
+    log.info("No graph configuration found.");
+  }
+  final Map<String,ExporterConfiguration> exportConfigurations=configuration.getExportConfigurations();
+  loadSubConfiguration(exportConfigurations,props,REPORT_GENERATOR_EXPORTER_KEY_PREFIX,false,new SubConfigurationFactory<ExporterConfiguration>(){
+    @Override public ExporterConfiguration createSubConfiguration(){
+      return new ExporterConfiguration();
+    }
+    @Override public void initialize(    String exportId,    ExporterConfiguration exportConfiguration) throws ConfigurationException {
+      log.debug(String.format(LOAD_EXPORTER_FMT,exportId));
+      String className=getRequiredProperty(props,getExporterPropertyKey(exportId,SUBCONF_KEY_CLASSNAME),"",String.class);
+      exportConfiguration.setClassName(className);
+      boolean filtersOnlySampleSeries=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_FILTERS_ONLY_SAMPLE_SERIES),EXPORTER_KEY_FILTERS_ONLY_SAMPLE_SERIES_DEFAULT,Boolean.class);
+      exportConfiguration.filtersOnlySampleSeries(filtersOnlySampleSeries);
+      String seriesFilter=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_SERIES_FILTER),EXPORTER_KEY_SERIES_FILTER_DEFAULT,String.class);
+      exportConfiguration.setSeriesFilter(seriesFilter);
+      boolean showControllerSeriesOnly=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_SHOW_CONTROLLERS_ONLY),EXPORTER_KEY_SHOW_CONTROLLERS_ONLY_DEFAULT,Boolean.class);
+      exportConfiguration.showControllerSeriesOnly(showControllerSeriesOnly);
+      Map<String,SubConfiguration> graphExtraConfigurations=exportConfiguration.getGraphExtraConfigurations();
+      loadSubConfiguration(graphExtraConfigurations,props,getSubConfigurationPropertyKey(REPORT_GENERATOR_EXPORTER_KEY_PREFIX,exportId,EXPORTER_KEY_GRAPH_EXTRA_OPTIONS),true,new SubConfigurationFactory<SubConfiguration>(){
+        @Override public SubConfiguration createSubConfiguration(){
+          return new SubConfiguration();
+        }
+        @Override public void initialize(        String subConfId,        SubConfiguration subConfiguration) throws ConfigurationException {
+        }
+      }
+);
+    }
+  }
+);
+  if (exportConfigurations.isEmpty()) {
+    log.warn("No export configuration found. None report will be generated.");
+  }
+  log.debug(END_LOADING_MSG);
+  return configuration;
+}

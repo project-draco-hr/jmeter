@@ -1,0 +1,9 @@
+{
+  return new GraphKeysSelector(){
+    @Override public Double select(    Sample sample){
+      long elapsed=sample.getElapsedTime();
+      return (double)(elapsed - elapsed % granularity);
+    }
+  }
+;
+}

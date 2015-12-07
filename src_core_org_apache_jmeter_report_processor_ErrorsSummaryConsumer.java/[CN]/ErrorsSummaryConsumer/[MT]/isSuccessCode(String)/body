@@ -1,0 +1,12 @@
+{
+  if (StringUtils.isNumeric(codeAsString)) {
+    try {
+      int code=Integer.parseInt(codeAsString);
+      return (code >= 200 && code <= 399);
+    }
+ catch (    NumberFormatException ex) {
+      return false;
+    }
+  }
+  return false;
+}

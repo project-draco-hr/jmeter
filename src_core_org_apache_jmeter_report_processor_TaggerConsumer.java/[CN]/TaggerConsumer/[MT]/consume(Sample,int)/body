@@ -1,0 +1,7 @@
+{
+  if (sample != null && sampleIndexer != null) {
+    TIndex index=sampleIndexer.calculateIndex(sample);
+    Sample indexedSample=createIndexedSample(sample,channel,index);
+    super.produce(indexedSample,channel);
+  }
+}

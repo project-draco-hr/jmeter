@@ -1,0 +1,6 @@
+{
+  DecimalFormat df=new DecimalFormat("00000");
+  File out=new File(getWorkingDirectory(),"chunk-" + df.format(sequence.incrementAndGet()) + ".csv");
+  out.deleteOnExit();
+  return out;
+}

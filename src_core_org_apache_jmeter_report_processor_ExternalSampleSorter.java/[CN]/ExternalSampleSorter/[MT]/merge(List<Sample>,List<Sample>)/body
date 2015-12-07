@@ -1,0 +1,26 @@
+{
+  ArrayList<Sample> out=new ArrayList<Sample>();
+  ListIterator<Sample> l=left.listIterator();
+  ListIterator<Sample> r=right.listIterator();
+  while (l.hasNext() || r.hasNext()) {
+    if (l.hasNext() && r.hasNext()) {
+      Sample firstLeft=l.next();
+      Sample firstRight=r.next();
+      if (revertedSort == false && sampleComparator.compare(firstLeft,firstRight) < 0 || revertedSort == true && sampleComparator.compare(firstLeft,firstRight) >= 0) {
+        out.add(firstLeft);
+        r.previous();
+      }
+ else {
+        out.add(firstRight);
+        l.previous();
+      }
+    }
+ else     if (l.hasNext()) {
+      out.add(l.next());
+    }
+ else     if (r.hasNext()) {
+      out.add(r.next());
+    }
+  }
+  return out;
+}

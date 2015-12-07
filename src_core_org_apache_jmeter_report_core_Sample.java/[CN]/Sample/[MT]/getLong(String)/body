@@ -1,0 +1,8 @@
+{
+  try {
+    return Long.parseLong(data[metadata.indexOf(name)]);
+  }
+ catch (  NumberFormatException ex) {
+    throw new SampleException("Error on sample #" + row,ex);
+  }
+}

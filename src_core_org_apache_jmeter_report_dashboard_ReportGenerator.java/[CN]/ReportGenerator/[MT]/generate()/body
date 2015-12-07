@@ -1,0 +1,179 @@
+{
+  if (resultCollector != null) {
+    log.info("Flushing result collector before report Generation");
+    resultCollector.flushFile();
+  }
+  log.debug("Start report generation");
+  File tmpDir=configuration.getTempDirectory();
+  boolean tmpDirCreated=false;
+  if (tmpDir.exists() == false) {
+    tmpDirCreated=tmpDir.mkdir();
+    if (tmpDirCreated == false) {
+      String message=String.format("Cannot create temporary directory \"%s\".",tmpDir);
+      log.error(message);
+      throw new GenerationException(message);
+    }
+  }
+  SampleContext sampleContext=new SampleContext();
+  sampleContext.setWorkingDirectory(tmpDir);
+  SampleSource source=new CsvFileSampleSource(testFile,JMeterUtils.getPropDefault("jmeter.save.saveservice.default_delimiter",",").charAt(0));
+  source.setSampleContext(sampleContext);
+  NormalizerSampleConsumer normalizer=new NormalizerSampleConsumer();
+  normalizer.setName(NORMALIZER_CONSUMER_NAME);
+  source.addSampleConsumer(normalizer);
+  AggregateConsumer beginDateConsumer=new AggregateConsumer(new MinAggregator(),new SampleSelector<Double>(){
+    @Override public Double select(    Sample sample){
+      return (double)sample.getStartTime();
+    }
+  }
+);
+  beginDateConsumer.setName(BEGIN_DATE_CONSUMER_NAME);
+  normalizer.addSampleConsumer(beginDateConsumer);
+  AggregateConsumer endDateConsumer=new AggregateConsumer(new MaxAggregator(),new SampleSelector<Double>(){
+    @Override public Double select(    Sample sample){
+      return (double)sample.getEndTime();
+    }
+  }
+);
+  endDateConsumer.setName(END_DATE_CONSUMER_NAME);
+  normalizer.addSampleConsumer(endDateConsumer);
+  FilterConsumer nameFilter=new FilterConsumer();
+  nameFilter.setName(NAME_FILTER_CONSUMER_NAME);
+  nameFilter.setSamplePredicate(new SamplePredicate(){
+    @Override public boolean matches(    Sample sample){
+      List<String> filteredSamples=configuration.getFilteredSamples();
+      return filteredSamples.size() == 0 || filteredSamples.contains(sample.getName());
+    }
+  }
+);
+  normalizer.setSampleConsumer(nameFilter);
+  ApdexSummaryConsumer apdexSummaryConsumer=new ApdexSummaryConsumer();
+  apdexSummaryConsumer.setName(APDEX_SUMMARY_CONSUMER_NAME);
+  apdexSummaryConsumer.setHasOverallResult(true);
+  apdexSummaryConsumer.setThresholdSelector(new ThresholdSelector(){
+    @Override public ApdexThresholdsInfo select(    String sampleName){
+      ApdexThresholdsInfo info=new ApdexThresholdsInfo();
+      info.setSatisfiedThreshold(configuration.getApdexSatisfiedThreshold());
+      info.setToleratedThreshold(configuration.getApdexToleratedThreshold());
+      return info;
+    }
+  }
+);
+  nameFilter.setSampleConsumer(apdexSummaryConsumer);
+  RequestsSummaryConsumer requestsSummaryConsumer=new RequestsSummaryConsumer();
+  requestsSummaryConsumer.setName(REQUESTS_SUMMARY_CONSUMER_NAME);
+  nameFilter.setSampleConsumer(requestsSummaryConsumer);
+  StatisticsSummaryConsumer statisticsSummaryConsumer=new StatisticsSummaryConsumer();
+  statisticsSummaryConsumer.setName(STATISTICS_SUMMARY_CONSUMER_NAME);
+  statisticsSummaryConsumer.setHasOverallResult(true);
+  nameFilter.setSampleConsumer(statisticsSummaryConsumer);
+  FilterConsumer excludeControllerFilter=new FilterConsumer();
+  excludeControllerFilter.setName(START_INTERVAL_CONTROLLER_FILTER_CONSUMER_NAME);
+  excludeControllerFilter.setSamplePredicate(new ControllerSamplePredicate());
+  excludeControllerFilter.setReverseFilter(true);
+  nameFilter.setSampleConsumer(excludeControllerFilter);
+  ErrorsSummaryConsumer errorsSummaryConsumer=new ErrorsSummaryConsumer();
+  errorsSummaryConsumer.setName(ERRORS_SUMMARY_CONSUMER_NAME);
+  excludeControllerFilter.setSampleConsumer(errorsSummaryConsumer);
+  Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
+  HashMap<GraphConfiguration,AbstractGraphConsumer> graphMap=new HashMap<GraphConfiguration,AbstractGraphConsumer>();
+  for (  Map.Entry<String,GraphConfiguration> entryGraphCfg : graphConfigurations.entrySet()) {
+    String graphName=entryGraphCfg.getKey();
+    GraphConfiguration graphConfiguration=entryGraphCfg.getValue();
+    String className=graphConfiguration.getClassName();
+    try {
+      Class<?> clazz=Class.forName(className);
+      Object obj=clazz.newInstance();
+      AbstractGraphConsumer graph=(AbstractGraphConsumer)obj;
+      graph.setName(graphName);
+      Method[] methods=clazz.getMethods();
+      for (      Map.Entry<String,String> entryProperty : graphConfiguration.getProperties().entrySet()) {
+        String propertyName=entryProperty.getKey();
+        String propertyValue=entryProperty.getValue();
+        String setterName=getSetterName(propertyName);
+        try {
+          int i=0;
+          boolean invoked=false;
+          while (i < methods.length && invoked == false) {
+            Method method=methods[i];
+            if (method.getName().equals(setterName)) {
+              Class<?>[] parameterTypes=method.getParameterTypes();
+              if (parameterTypes.length == 1) {
+                Class<?> parameterType=parameterTypes[0];
+                if (parameterType.isAssignableFrom(String.class)) {
+                  method.invoke(obj,propertyValue);
+                }
+ else {
+                  StringConverter<?> converter=Converters.getConverter(parameterType);
+                  if (converter == null)                   throw new GenerationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,parameterType.getName()));
+                  method.invoke(obj,converter.convert(propertyValue));
+                }
+                invoked=true;
+              }
+            }
+            i++;
+          }
+          if (invoked == false) {
+            log.warn(String.format("\"%s\" is not a valid property for class \"%s\", skip it",propertyName,className));
+          }
+        }
+ catch (        InvocationTargetException|ConvertException ex) {
+          String message=String.format("Cannot assign \"%s\" to property \"%s\" (mapped as \"%s\"), skip it",propertyValue,propertyName,setterName);
+          log.error(message,ex);
+          throw new GenerationException(message,ex);
+        }
+      }
+      AbstractSampleConsumer entryPoint=graphConfiguration.excludesControllers() ? excludeControllerFilter : nameFilter;
+      entryPoint.addSampleConsumer(graph);
+      graphMap.put(graphConfiguration,graph);
+    }
+ catch (    ClassNotFoundException|IllegalAccessException|InstantiationException|ClassCastException ex) {
+      String error=String.format(INVALID_CLASS_FMT,className);
+      log.error(error,ex);
+      throw new GenerationException(error,ex);
+    }
+  }
+  log.debug("Start samples processing");
+  try {
+    source.run();
+  }
+ catch (  SampleException ex) {
+    String message="Error while processing samples";
+    log.error(message,ex);
+    throw new GenerationException(message,ex);
+  }
+  log.debug("End of samples processing");
+  log.debug("Start data exporting");
+  for (  Map.Entry<String,ExporterConfiguration> entry : configuration.getExportConfigurations().entrySet()) {
+    String exporterName=entry.getKey();
+    ExporterConfiguration exporterConfiguration=entry.getValue();
+    String className=exporterConfiguration.getClassName();
+    try {
+      Class<?> clazz=Class.forName(className);
+      Object obj=clazz.newInstance();
+      DataExporter exporter=(DataExporter)obj;
+      exporter.setName(exporterName);
+      exporter.export(sampleContext,testFile,configuration);
+    }
+ catch (    ClassNotFoundException|IllegalAccessException|InstantiationException|ClassCastException ex) {
+      String error=String.format(INVALID_CLASS_FMT,className);
+      log.error(error,ex);
+      throw new GenerationException(error,ex);
+    }
+catch (    ExportException ex) {
+      String error=String.format(INVALID_EXPORT_FMT,exporterName);
+      log.error(error,ex);
+      throw new GenerationException(error,ex);
+    }
+  }
+  log.debug("End of data exporting");
+  if (tmpDirCreated == true) {
+    try {
+      FileUtils.deleteDirectory(tmpDir);
+    }
+ catch (    IOException ex) {
+      log.warn(String.format("Cannot delete created temporary directory \"%s\".",tmpDir),ex);
+    }
+  }
+  log.debug("End of report generation");
+}

@@ -1,0 +1,8 @@
+{
+  resultReady=false;
+  result=exec();
+synchronized (lock) {
+    resultReady=true;
+    lock.notify();
+  }
+}

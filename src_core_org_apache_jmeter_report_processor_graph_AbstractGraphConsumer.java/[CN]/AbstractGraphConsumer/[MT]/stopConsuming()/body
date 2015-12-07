@@ -1,0 +1,31 @@
+{
+  super.stopProducing();
+  MapResultData result=createResult();
+  for (  Map.Entry<String,GroupInfo> groupEntry : groupInfos.entrySet()) {
+    String groupName=groupEntry.getKey();
+    GroupInfo groupInfo=groupEntry.getValue();
+    GroupData groupData=groupInfo.getGroupData();
+    boolean overallSeries=groupInfo.enablesOverallSeries();
+    boolean aggregatedKeysSeries=groupInfo.enablesAggregatedKeysSeries();
+    for (    Map.Entry<String,SeriesData> seriesEntry : groupData.getSeriesInfo().entrySet()) {
+      String seriesName=seriesEntry.getKey();
+      SeriesData seriesData=seriesEntry.getValue();
+      addKeyData(result,groupName,seriesName,seriesData,false);
+      if (aggregatedKeysSeries == true) {
+        addKeyData(result,groupName,seriesName,seriesData,true);
+      }
+    }
+    if (overallSeries == true) {
+      SeriesData overallData=groupData.getOverallSeries();
+      String overallSeriesName=String.format(overallSeriesFormat,groupName);
+      addKeyData(result,groupName,overallSeriesName,overallData,false);
+      if (aggregatedKeysSeries == true) {
+        addKeyData(result,groupName,overallSeriesName,overallData,true);
+      }
+    }
+  }
+  setDataToContext(getName(),result);
+  for (  GroupInfo groupInfo : groupInfos.values()) {
+    groupInfo.getGroupData().clear();
+  }
+}

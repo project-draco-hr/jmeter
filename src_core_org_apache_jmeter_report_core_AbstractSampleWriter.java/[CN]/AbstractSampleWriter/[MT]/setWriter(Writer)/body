@@ -1,0 +1,7 @@
+{
+  if (writer == null)   throw new ArgumentNullException("writer");
+  if (this.writer != null) {
+    safeClose(this.writer);
+  }
+  this.writer=new PrintWriter(new BufferedWriter(writer,BUF_SIZE),false);
+}

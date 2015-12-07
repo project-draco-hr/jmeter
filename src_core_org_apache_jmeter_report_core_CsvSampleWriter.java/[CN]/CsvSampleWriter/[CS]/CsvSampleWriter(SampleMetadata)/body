@@ -1,0 +1,9 @@
+{
+  if (metadata == null) {
+    throw new ArgumentNullException("metadata");
+  }
+  this.metadata=metadata;
+  this.columnCount=metadata.getColumnCount();
+  this.separator=metadata.getSeparator();
+  this.sampleCount=0;
+}

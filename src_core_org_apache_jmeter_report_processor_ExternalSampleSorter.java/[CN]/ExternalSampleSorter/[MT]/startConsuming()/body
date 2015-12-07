@@ -1,0 +1,12 @@
+{
+  if (sampleComparator == null)   throw new IllegalStateException("sampleComparator is not set, call setSampleComparator() first.");
+  File workDir=getWorkingDirectory();
+  workDir.mkdir();
+  this.pool.prestartAllCoreThreads();
+  inputSampleCount=0;
+  chunkedSampleCount=0;
+  chunks=new LinkedList<File>();
+  samples=new LinkedList<Sample>();
+  sampleMetadata=getConsumedMetadata(0);
+  sampleComparator.initialize(sampleMetadata);
+}

@@ -1,0 +1,6 @@
+{
+  for (int i=0; i < channelsCount; i++) {
+    csvWriters[i].close();
+  }
+  getWorkingDirectory().delete();
+}

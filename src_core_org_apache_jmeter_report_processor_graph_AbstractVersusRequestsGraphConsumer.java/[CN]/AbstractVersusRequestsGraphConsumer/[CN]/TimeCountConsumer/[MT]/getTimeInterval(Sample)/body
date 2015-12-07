@@ -1,0 +1,4 @@
+{
+  long time=sample.getEndTime();
+  return time - (time % parent.getGranularity());
+}

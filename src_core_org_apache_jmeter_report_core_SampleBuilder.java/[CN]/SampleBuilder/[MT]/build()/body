@@ -1,0 +1,10 @@
+{
+  while (k < data.length) {
+    data[k++]="";
+  }
+  String[] sampleData=new String[data.length];
+  System.arraycopy(data,0,sampleData,0,data.length);
+  Sample out=new Sample(row++,metadata,sampleData);
+  k=0;
+  return out;
+}

@@ -1,0 +1,28 @@
+{
+  Date date=null;
+  try {
+    String tStr=s.getString(timestamp);
+    try {
+      date=new Date(Long.parseLong(tStr));
+    }
+ catch (    NumberFormatException ex) {
+      date=df.parse(tStr);
+    }
+  }
+ catch (  Exception e) {
+    throw new SampleException(String.format(PARSE_TIMESTAMP_EXCEPTION_MESSAGE,s.getString(timestamp),s.toString()),e);
+  }
+  long time=date.getTime();
+  int cc=sampleMetadata.getColumnCount();
+  String[] data=new String[cc];
+  for (int i=0; i < cc; i++) {
+    if (i == timestamp) {
+      data[i]=Long.toString(time);
+    }
+ else {
+      data[i]=s.getString(i);
+    }
+  }
+  Sample rewrited=new Sample(s.getSampleRow(),sampleMetadata,data);
+  super.produce(rewrited,0);
+}

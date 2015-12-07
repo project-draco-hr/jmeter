@@ -1,0 +1,27 @@
+{
+  for (  Map.Entry<String,Object> entry : props.innerMap(propertyPrefix).entrySet()) {
+    String key=entry.getKey();
+    int index=key.indexOf(KEY_DELIMITER);
+    if (index > 0) {
+      String name=key.substring(0,index);
+      TSubConf subConfiguration=subConfigurations.get(name);
+      if (subConfiguration == null) {
+        subConfiguration=factory.createSubConfiguration();
+        subConfigurations.put(name,subConfiguration);
+      }
+    }
+ else {
+      log.warn(String.format(INVALID_KEY_FMT,key));
+    }
+  }
+  for (  Map.Entry<String,TSubConf> entry : subConfigurations.entrySet()) {
+    String subConfId=entry.getKey();
+    final TSubConf subConfiguration=entry.getValue();
+    factory.initialize(subConfId,subConfiguration);
+    Map<String,Object> extraKeys=props.innerMap(noPropertyKey ? getSubConfigurationPropertyPrefix(propertyPrefix,subConfId) : getSubConfigurationPropertyKey(propertyPrefix,subConfId,SUBCONF_KEY_PROPERTY));
+    Map<String,String> extraProperties=subConfiguration.getProperties();
+    for (    Map.Entry<String,Object> entryProperty : extraKeys.entrySet()) {
+      extraProperties.put(entryProperty.getKey(),(String)entryProperty.getValue());
+    }
+  }
+}

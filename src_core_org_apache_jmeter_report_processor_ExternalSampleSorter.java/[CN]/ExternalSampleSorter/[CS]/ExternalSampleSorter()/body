@@ -1,0 +1,7 @@
+{
+  chunkSize=DEFAULT_CHUNK_SIZE;
+  this.nbProcessors=Runtime.getRuntime().availableProcessors();
+  this.parallelize=nbProcessors > 1;
+  this.pool=new ThreadPoolExecutor(nbProcessors,nbProcessors + 5,10,TimeUnit.SECONDS,workQueue);
+  setRevertedSort(false);
+}

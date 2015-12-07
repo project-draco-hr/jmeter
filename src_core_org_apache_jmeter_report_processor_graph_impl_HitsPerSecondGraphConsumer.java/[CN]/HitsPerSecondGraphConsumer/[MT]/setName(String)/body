@@ -1,0 +1,4 @@
+{
+  super.setName(name);
+  ((StaticSeriesSelector)getGroupInfos().get(AbstractGraphConsumer.DEFAULT_GROUP).getSeriesSelector()).setSeriesName(name);
+}

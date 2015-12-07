@@ -1,0 +1,4 @@
+{
+  SimpleDateFormat dateFormat=format != null ? new SimpleDateFormat(format) : new SimpleDateFormat();
+  return dateFormat.format(new Date(timeStamp));
+}

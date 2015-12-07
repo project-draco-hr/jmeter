@@ -1,0 +1,12 @@
+{
+  int sz=samples.size();
+  if (sz <= 1) {
+    return samples;
+  }
+  int middle=sz / 2;
+  List<Sample> left=samples.subList(0,middle);
+  List<Sample> right=samples.subList(middle,sz);
+  left=sort(left);
+  right=sort(right);
+  return merge(left,right);
+}

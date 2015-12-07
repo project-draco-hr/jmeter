@@ -1,0 +1,7 @@
+{
+  MapResultData result=new MapResultData();
+  result.setResult("KoPercent",new ValueResultData((double)errorCount * 100 / count));
+  result.setResult("OkPercent",new ValueResultData((double)(count - errorCount) * 100 / count));
+  setDataToContext(getName(),result);
+  super.stopProducing();
+}

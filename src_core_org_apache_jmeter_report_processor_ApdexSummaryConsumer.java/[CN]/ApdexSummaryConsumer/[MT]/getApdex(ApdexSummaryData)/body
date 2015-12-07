@@ -1,0 +1,3 @@
+{
+  return (data.getSatisfiedCount() + (double)data.getToleratedCount() / 2) / data.getTotalCount();
+}

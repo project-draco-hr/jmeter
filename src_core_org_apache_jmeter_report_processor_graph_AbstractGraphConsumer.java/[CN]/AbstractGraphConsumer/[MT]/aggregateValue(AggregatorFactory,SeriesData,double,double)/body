@@ -1,0 +1,18 @@
+{
+  Map<Double,Aggregator> aggInfo=data.getAggregatorInfo();
+  Aggregator aggregator=aggInfo.get(key);
+  if (aggregator == null) {
+    aggregator=factory.createValueAggregator();
+    aggInfo.put(key,aggregator);
+  }
+  aggregator.addValue(value);
+  data.incrementCount();
+  Aggregator keysAgg=data.getKeysAggregator();
+  if (keysAgg != null) {
+    keysAgg.addValue(key);
+  }
+  Aggregator valuesAgg=data.getValuesAggregator();
+  if (valuesAgg != null) {
+    valuesAgg.addValue(value);
+  }
+}

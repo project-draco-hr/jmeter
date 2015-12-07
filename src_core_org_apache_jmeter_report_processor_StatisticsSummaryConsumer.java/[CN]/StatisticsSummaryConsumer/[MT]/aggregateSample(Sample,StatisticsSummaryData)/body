@@ -1,0 +1,15 @@
+{
+  data.IncTotal();
+  data.IncBytes(sample.getSentBytes());
+  if (sample.getSuccess() == false) {
+    data.IncErrors();
+  }
+  long elapsedTime=sample.getElapsedTime();
+  data.getPercentile1().addValue((double)elapsedTime);
+  data.getPercentile2().addValue((double)elapsedTime);
+  data.getPercentile3().addValue((double)elapsedTime);
+  data.setMin(elapsedTime);
+  data.setMax(elapsedTime);
+  data.setFirstTime(sample.getStartTime());
+  data.setEndTime(sample.getEndTime());
+}

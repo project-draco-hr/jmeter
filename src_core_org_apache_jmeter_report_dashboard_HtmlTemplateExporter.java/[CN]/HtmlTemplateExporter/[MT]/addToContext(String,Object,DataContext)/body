@@ -1,0 +1,6 @@
+{
+  if (value instanceof String) {
+    value='"' + (String)value + '"';
+  }
+  context.put(key,value);
+}

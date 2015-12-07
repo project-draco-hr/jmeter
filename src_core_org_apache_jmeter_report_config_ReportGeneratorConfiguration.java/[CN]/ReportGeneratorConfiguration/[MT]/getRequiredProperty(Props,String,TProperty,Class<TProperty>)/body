@@ -1,0 +1,5 @@
+{
+  TProperty property=getProperty(props,key,defaultValue,clazz);
+  log.debug(String.format(REQUIRED_PROPERTY_FMT,property,key));
+  return property;
+}

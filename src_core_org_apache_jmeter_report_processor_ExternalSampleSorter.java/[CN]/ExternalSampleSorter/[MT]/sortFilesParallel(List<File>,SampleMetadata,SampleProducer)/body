@@ -1,0 +1,46 @@
+{
+  int sz=chunks.size();
+  if (sz > 1) {
+    int middle=sz / 2;
+    final List<File> left=chunks.subList(0,middle);
+    final List<File> right=chunks.subList(middle,sz);
+    File leftFile=null;
+    File rightFile=null;
+    Job<File> leftJob=new Job<File>(){
+      @Override protected File exec(){
+        return mergeSortFiles(left,metadata);
+      }
+    }
+;
+    Job<File> rightJob=new Job<File>(){
+      @Override protected File exec(){
+        return mergeSortFiles(right,metadata);
+      }
+    }
+;
+    if (parallelize) {
+      workQueue.add(leftJob);
+      workQueue.add(rightJob);
+      try {
+        leftFile=leftJob.getResult();
+        rightFile=rightJob.getResult();
+      }
+ catch (      InterruptedException ie) {
+        throw new SampleException("Unexpected interruption !",ie);
+      }
+    }
+ else {
+      leftFile=leftJob.exec();
+      rightFile=rightJob.exec();
+    }
+    mergeFiles(metadata,leftFile,rightFile,out);
+  }
+ else {
+    File f=chunks.get(0);
+    CsvSampleReader reader=new CsvSampleReader(f,metadata);
+    Sample s=null;
+    while ((s=reader.readSample()) != null) {
+      out.produce(s,0);
+    }
+  }
+}

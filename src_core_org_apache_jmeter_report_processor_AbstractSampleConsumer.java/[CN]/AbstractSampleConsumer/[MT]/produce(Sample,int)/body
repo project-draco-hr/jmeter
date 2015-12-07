@@ -1,0 +1,12 @@
+{
+  for (  SampleConsumer consumer : this.sampleConsumers) {
+    try {
+      consumer.consume(s,channel);
+      producedSampleCount++;
+    }
+ catch (    Exception e) {
+      log.error("produce(): Consumer failed with message :" + e.getMessage(),e);
+      throw new SampleException(e);
+    }
+  }
+}

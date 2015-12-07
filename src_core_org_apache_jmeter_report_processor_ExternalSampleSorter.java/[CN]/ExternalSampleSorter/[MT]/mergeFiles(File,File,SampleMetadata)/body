@@ -1,0 +1,5 @@
+{
+  File out=getChunkFile();
+  mergeFiles(metadata,left,right,out,false);
+  return out;
+}
