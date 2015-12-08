@@ -7,7 +7,7 @@
   final List<Sample> left=samples.subList(0,middle);
   final List<Sample> right=samples.subList(middle,sz);
   Job<List<Sample>> jobLeft=new Job<List<Sample>>(){
-    protected List<Sample> exec(){
+    @Override protected List<Sample> exec(){
       return sort(left);
     }
   }
