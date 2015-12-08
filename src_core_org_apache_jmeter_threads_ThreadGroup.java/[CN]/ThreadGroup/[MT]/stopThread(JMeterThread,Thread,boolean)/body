@@ -1,0 +1,9 @@
+{
+  thrd.stop();
+  thrd.interrupt();
+  if (interrupt) {
+    if (t != null) {
+      t.interrupt();
+    }
+  }
+}

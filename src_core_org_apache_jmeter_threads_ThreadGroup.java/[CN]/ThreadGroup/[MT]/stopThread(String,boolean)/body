@@ -2,14 +2,7 @@
   for (  Entry<JMeterThread,Thread> entry : allThreads.entrySet()) {
     JMeterThread thrd=entry.getKey();
     if (thrd.getThreadName().equals(threadName)) {
-      thrd.stop();
-      thrd.interrupt();
-      if (now) {
-        Thread t=entry.getValue();
-        if (t != null) {
-          t.interrupt();
-        }
-      }
+      stopThread(thrd,entry.getValue(),now);
       return true;
     }
   }
