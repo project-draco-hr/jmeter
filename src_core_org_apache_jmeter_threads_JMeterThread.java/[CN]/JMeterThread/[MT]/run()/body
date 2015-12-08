@@ -6,7 +6,7 @@
     while (running) {
       Sampler sam=controller.next();
       while (running && sam != null) {
-        process_sampler(sam,null,threadContext);
+        processSampler(sam,null,threadContext);
         threadContext.cleanAfterSample();
         if (onErrorStartNextLoop || threadContext.isRestartNextLoop()) {
           if (threadContext.isRestartNextLoop()) {

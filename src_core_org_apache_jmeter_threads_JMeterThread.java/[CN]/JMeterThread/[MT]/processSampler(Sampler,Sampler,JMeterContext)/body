@@ -24,7 +24,7 @@
         Sampler prev=current;
         current=transactionSampler.getSubSampler();
         if (current instanceof TransactionSampler) {
-          SampleResult res=process_sampler(current,prev,threadContext);
+          SampleResult res=processSampler(current,prev,threadContext);
           threadContext.setCurrentSampler(prev);
           current=null;
           if (res != null) {
