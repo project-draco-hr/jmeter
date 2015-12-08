@@ -1,7 +1,7 @@
 {
   List<org.apache.http.cookie.Cookie> cookies=new ArrayList<>();
-  for (PropertyIterator iter=cookiesCP.iterator(); iter.hasNext(); ) {
-    Cookie jmcookie=(Cookie)iter.next().getObjectValue();
+  for (  JMeterProperty jMeterProperty : cookiesCP) {
+    Cookie jmcookie=(Cookie)jMeterProperty.getObjectValue();
     if (allowVariableCookie) {
       jmcookie.setRunningVersion(true);
     }

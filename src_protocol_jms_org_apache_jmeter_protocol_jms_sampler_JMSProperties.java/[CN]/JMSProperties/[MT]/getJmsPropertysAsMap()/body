@@ -1,8 +1,7 @@
 {
-  PropertyIterator iter=getProperties().iterator();
   Map<String,Object> argMap=new LinkedHashMap<>();
-  while (iter.hasNext()) {
-    JMSProperty arg=(JMSProperty)iter.next().getObjectValue();
+  for (  JMeterProperty jMeterProperty : getProperties()) {
+    JMSProperty arg=(JMSProperty)jMeterProperty.getObjectValue();
     if (!argMap.containsKey(arg.getName())) {
       argMap.put(arg.getName(),arg.getValueAsObject());
     }

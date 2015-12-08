@@ -5,10 +5,9 @@
   CollectionProperty dnsServers=getServers();
   try {
     String[] serverNames=new String[dnsServers.size()];
-    PropertyIterator dnsServIt=dnsServers.iterator();
     int index=0;
-    while (dnsServIt.hasNext()) {
-      serverNames[index]=dnsServIt.next().getStringValue();
+    for (    JMeterProperty jMeterProperty : dnsServers) {
+      serverNames[index]=jMeterProperty.getStringValue();
       index++;
     }
     clone.resolver=new ExtendedResolver(serverNames);

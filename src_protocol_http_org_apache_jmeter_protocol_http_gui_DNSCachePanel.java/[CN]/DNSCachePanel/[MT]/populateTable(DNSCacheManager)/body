@@ -1,7 +1,6 @@
 {
   dnsServersTableModel.clearData();
-  PropertyIterator iter=resolver.getServers().iterator();
-  while (iter.hasNext()) {
-    addServerToTable((String)iter.next().getObjectValue());
+  for (  JMeterProperty jMeterProperty : resolver.getServers()) {
+    addServerToTable((String)jMeterProperty.getObjectValue());
   }
 }

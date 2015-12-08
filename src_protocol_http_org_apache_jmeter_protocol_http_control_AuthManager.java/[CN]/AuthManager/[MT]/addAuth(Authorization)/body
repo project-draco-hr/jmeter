@@ -1,8 +1,7 @@
 {
   boolean alreadyExists=false;
-  PropertyIterator iter=getAuthObjects().iterator();
-  while (iter.hasNext()) {
-    Authorization authorization=(Authorization)iter.next().getObjectValue();
+  for (  JMeterProperty jMeterProperty : getAuthObjects()) {
+    Authorization authorization=(Authorization)jMeterProperty.getObjectValue();
     if (authorization == null) {
       continue;
     }

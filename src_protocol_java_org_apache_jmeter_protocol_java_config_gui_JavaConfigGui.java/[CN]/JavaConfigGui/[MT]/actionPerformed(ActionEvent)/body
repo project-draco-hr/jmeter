@@ -15,9 +15,8 @@
         log.warn("JavaSamplerClient doesn't implement " + "getDefaultParameters.  Default parameters won't " + "be shown.  Please update your client class: "+ className);
       }
       if (testParams != null) {
-        PropertyIterator i=testParams.getArguments().iterator();
-        while (i.hasNext()) {
-          Argument arg=(Argument)i.next().getObjectValue();
+        for (        JMeterProperty jMeterProperty : testParams.getArguments()) {
+          Argument arg=(Argument)jMeterProperty.getObjectValue();
           String name=arg.getName();
           String value=arg.getValue();
           if (currArgsMap.containsKey(name)) {

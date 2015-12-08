@@ -35,9 +35,8 @@
   }
   assumeSuccess.setSelected(model.getAssumeSuccess());
   tableModel.clearData();
-  PropertyIterator tests=model.getTestStrings().iterator();
-  while (tests.hasNext()) {
-    tableModel.addRow(new Object[]{tests.next().getStringValue()});
+  for (  JMeterProperty jMeterProperty : model.getTestStrings()) {
+    tableModel.addRow(new Object[]{jMeterProperty.getStringValue()});
   }
   if (model.getTestStrings().size() == 0) {
     deletePattern.setEnabled(false);

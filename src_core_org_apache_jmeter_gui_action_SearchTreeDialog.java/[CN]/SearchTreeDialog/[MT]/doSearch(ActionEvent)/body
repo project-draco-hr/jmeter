@@ -36,8 +36,7 @@
   }
   GuiPackage guiInstance=GuiPackage.getInstance();
   JTree jTree=guiInstance.getMainFrame().getTree();
-  for (Iterator<JMeterTreeNode> iterator=nodes.iterator(); iterator.hasNext(); ) {
-    JMeterTreeNode jMeterTreeNode=iterator.next();
+  for (  JMeterTreeNode jMeterTreeNode : nodes) {
     jMeterTreeNode.setMarkedBySearch(true);
     if (expand) {
       jTree.expandPath(new TreePath(jMeterTreeNode.getPath()));
