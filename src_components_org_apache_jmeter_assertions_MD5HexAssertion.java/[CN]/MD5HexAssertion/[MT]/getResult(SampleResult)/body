@@ -8,7 +8,7 @@
     result.setFailureMessage("Response was null");
     return result;
   }
-  if (getAllowedMD5Hex().equals("")) {
+  if (getAllowedMD5Hex().isEmpty()) {
     result.setError(false);
     result.setFailure(true);
     result.setFailureMessage("MD5Hex to test against is empty");

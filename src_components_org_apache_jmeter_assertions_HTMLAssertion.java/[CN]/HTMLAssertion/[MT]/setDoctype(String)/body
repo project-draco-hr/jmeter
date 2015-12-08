@@ -1,5 +1,5 @@
 {
-  if ((inDoctype == null) || (inDoctype.trim().equals(""))) {
+  if ((inDoctype == null) || (inDoctype.trim().isEmpty())) {
     setProperty(new StringProperty(DOCTYPE_KEY,DEFAULT_DOCTYPE));
   }
  else {

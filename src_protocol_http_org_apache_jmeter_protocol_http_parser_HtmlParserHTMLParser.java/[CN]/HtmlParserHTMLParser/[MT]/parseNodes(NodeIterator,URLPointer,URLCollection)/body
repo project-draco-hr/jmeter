@@ -14,7 +14,7 @@
       BaseHrefTag baseHref=(BaseHrefTag)tag;
       String baseref=baseHref.getBaseUrl();
       try {
-        if (!baseref.equals("")) {
+        if (!baseref.isEmpty()) {
           baseUrl.url=ConversionUtils.makeRelativeURL(baseUrl.url,baseref);
         }
       }

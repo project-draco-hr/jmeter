@@ -47,7 +47,7 @@
       return;
     }
     updateFile=chooser.getSelectedFile().getAbsolutePath();
-    if (FilenameUtils.getExtension(updateFile).equals("")) {
+    if (FilenameUtils.getExtension(updateFile).isEmpty()) {
       updateFile=updateFile + JMX_FILE_EXTENSION;
     }
     File f=new File(updateFile);
