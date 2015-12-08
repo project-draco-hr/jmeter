@@ -1,26 +1,26 @@
 {
   if (remoteHosts.length > 0) {
-    remote_start=makeMenuRes("remote_start");
-    remote_stop=makeMenuRes("remote_stop");
-    remote_shut=makeMenuRes("remote_shut");
-    remote_exit=makeMenuRes("remote_exit");
+    remoteStart=makeMenuRes("remote_start");
+    remoteStop=makeMenuRes("remote_stop");
+    remoteShut=makeMenuRes("remote_shut");
+    remoteExit=makeMenuRes("remote_exit");
     for (int i=0; i < remoteHosts.length; i++) {
       remoteHosts[i]=remoteHosts[i].trim();
       JMenuItem item=makeMenuItemNoRes(remoteHosts[i],ActionNames.REMOTE_START);
-      remote_engine_start.add(item);
-      remote_start.add(item);
+      remoteEngineStart.add(item);
+      remoteStart.add(item);
       item=makeMenuItemNoRes(remoteHosts[i],ActionNames.REMOTE_STOP);
       item.setEnabled(false);
-      remote_engine_stop.add(item);
-      remote_stop.add(item);
+      remoteEngineStop.add(item);
+      remoteStop.add(item);
       item=makeMenuItemNoRes(remoteHosts[i],ActionNames.REMOTE_SHUT);
       item.setEnabled(false);
-      remote_engine_shut.add(item);
-      remote_shut.add(item);
+      remoteEngineShut.add(item);
+      remoteShut.add(item);
       item=makeMenuItemNoRes(remoteHosts[i],ActionNames.REMOTE_EXIT);
       item.setEnabled(false);
-      remote_engine_exit.add(item);
-      remote_exit.add(item);
+      remoteEngineExit.add(item);
+      remoteExit.add(item);
     }
   }
 }

@@ -3,10 +3,10 @@
   if (org.apache.jmeter.gui.MainFrame.LOCAL.equals(host)) {
     return;
   }
-  Iterator<JMenuItem> iter=remote_engine_start.iterator();
-  Iterator<JMenuItem> iter2=remote_engine_stop.iterator();
-  Iterator<JMenuItem> iter3=remote_engine_exit.iterator();
-  Iterator<JMenuItem> iter4=remote_engine_shut.iterator();
+  Iterator<JMenuItem> iter=remoteEngineStart.iterator();
+  Iterator<JMenuItem> iter2=remoteEngineStop.iterator();
+  Iterator<JMenuItem> iter3=remoteEngineExit.iterator();
+  Iterator<JMenuItem> iter4=remoteEngineShut.iterator();
   while (iter.hasNext() && iter2.hasNext() && iter3.hasNext()&& iter4.hasNext()) {
     JMenuItem start=iter.next();
     JMenuItem stop=iter2.next();

@@ -1,9 +1,9 @@
 {
-  file_load_recent_files=new LinkedList<>();
-  remote_engine_start=new LinkedList<>();
-  remote_engine_stop=new LinkedList<>();
-  remote_engine_shut=new LinkedList<>();
-  remote_engine_exit=new LinkedList<>();
+  fileLoadRecentFiles=new LinkedList<>();
+  remoteEngineStart=new LinkedList<>();
+  remoteEngineStop=new LinkedList<>();
+  remoteEngineShut=new LinkedList<>();
+  remoteEngineExit=new LinkedList<>();
   remoteHosts=JOrphanUtils.split(JMeterUtils.getPropDefault("remote_hosts",""),",");
   if (remoteHosts.length == 1 && remoteHosts[0].isEmpty()) {
     remoteHosts=new String[0];

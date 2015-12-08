@@ -5,7 +5,7 @@
   JMenuItem setDebug=makeMenuItemRes("debug_on",ActionNames.DEBUG_ON,KeyStrokes.DEBUG_ON);
   JMenuItem resetDebug=makeMenuItemRes("debug_off",ActionNames.DEBUG_OFF,KeyStrokes.DEBUG_OFF);
   JMenuItem heapDump=makeMenuItemRes("heap_dump",ActionNames.HEAP_DUMP);
-  help_about=makeMenuItemRes("about",'A',ActionNames.ABOUT);
+  helpAbout=makeMenuItemRes("about",'A',ActionNames.ABOUT);
   helpMenu.add(contextHelp);
   helpMenu.addSeparator();
   helpMenu.add(whatClass);
@@ -14,5 +14,5 @@
   helpMenu.add(heapDump);
   addPluginsMenuItems(helpMenu,menuCreators,MENU_LOCATION.HELP);
   helpMenu.addSeparator();
-  helpMenu.add(help_about);
+  helpMenu.add(helpAbout);
 }

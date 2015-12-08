@@ -1,39 +1,39 @@
 {
   runMenu=makeMenuRes("run",'R');
-  run_start=makeMenuItemRes("start",'S',ActionNames.ACTION_START,KeyStrokes.ACTION_START);
-  run_start_no_timers=makeMenuItemRes("start_no_timers",ActionNames.ACTION_START_NO_TIMERS);
-  run_stop=makeMenuItemRes("stop",'T',ActionNames.ACTION_STOP,KeyStrokes.ACTION_STOP);
-  run_stop.setEnabled(false);
-  run_shut=makeMenuItemRes("shutdown",'Y',ActionNames.ACTION_SHUTDOWN,KeyStrokes.ACTION_SHUTDOWN);
-  run_shut.setEnabled(false);
-  run_clear=makeMenuItemRes("clear",'C',ActionNames.CLEAR,KeyStrokes.CLEAR);
-  run_clearAll=makeMenuItemRes("clear_all",'a',ActionNames.CLEAR_ALL,KeyStrokes.CLEAR_ALL);
-  runMenu.add(run_start);
-  runMenu.add(run_start_no_timers);
-  if (remote_start != null) {
-    runMenu.add(remote_start);
+  runStart=makeMenuItemRes("start",'S',ActionNames.ACTION_START,KeyStrokes.ACTION_START);
+  runStartNoTimers=makeMenuItemRes("start_no_timers",ActionNames.ACTION_START_NO_TIMERS);
+  runStop=makeMenuItemRes("stop",'T',ActionNames.ACTION_STOP,KeyStrokes.ACTION_STOP);
+  runStop.setEnabled(false);
+  runShut=makeMenuItemRes("shutdown",'Y',ActionNames.ACTION_SHUTDOWN,KeyStrokes.ACTION_SHUTDOWN);
+  runShut.setEnabled(false);
+  runClear=makeMenuItemRes("clear",'C',ActionNames.CLEAR,KeyStrokes.CLEAR);
+  runClearAll=makeMenuItemRes("clear_all",'a',ActionNames.CLEAR_ALL,KeyStrokes.CLEAR_ALL);
+  runMenu.add(runStart);
+  runMenu.add(runStartNoTimers);
+  if (remoteStart != null) {
+    runMenu.add(remoteStart);
   }
-  remote_start_all=makeMenuItemRes("remote_start_all",ActionNames.REMOTE_START_ALL,KeyStrokes.REMOTE_START_ALL);
-  runMenu.add(remote_start_all);
-  runMenu.add(run_stop);
-  runMenu.add(run_shut);
-  if (remote_stop != null) {
-    runMenu.add(remote_stop);
+  remoteStartAll=makeMenuItemRes("remote_start_all",ActionNames.REMOTE_START_ALL,KeyStrokes.REMOTE_START_ALL);
+  runMenu.add(remoteStartAll);
+  runMenu.add(runStop);
+  runMenu.add(runShut);
+  if (remoteStop != null) {
+    runMenu.add(remoteStop);
   }
-  remote_stop_all=makeMenuItemRes("remote_stop_all",'X',ActionNames.REMOTE_STOP_ALL,KeyStrokes.REMOTE_STOP_ALL);
-  runMenu.add(remote_stop_all);
-  if (remote_shut != null) {
-    runMenu.add(remote_shut);
+  remoteStopAll=makeMenuItemRes("remote_stop_all",'X',ActionNames.REMOTE_STOP_ALL,KeyStrokes.REMOTE_STOP_ALL);
+  runMenu.add(remoteStopAll);
+  if (remoteShut != null) {
+    runMenu.add(remoteShut);
   }
-  remote_shut_all=makeMenuItemRes("remote_shut_all",'X',ActionNames.REMOTE_SHUT_ALL,KeyStrokes.REMOTE_SHUT_ALL);
-  runMenu.add(remote_shut_all);
-  if (remote_exit != null) {
-    runMenu.add(remote_exit);
+  remoteShutAll=makeMenuItemRes("remote_shut_all",'X',ActionNames.REMOTE_SHUT_ALL,KeyStrokes.REMOTE_SHUT_ALL);
+  runMenu.add(remoteShutAll);
+  if (remoteExit != null) {
+    runMenu.add(remoteExit);
   }
-  remote_exit_all=makeMenuItemRes("remote_exit_all",ActionNames.REMOTE_EXIT_ALL);
-  runMenu.add(remote_exit_all);
+  remoteExitAll=makeMenuItemRes("remote_exit_all",ActionNames.REMOTE_EXIT_ALL);
+  runMenu.add(remoteExitAll);
   runMenu.addSeparator();
-  runMenu.add(run_clear);
-  runMenu.add(run_clearAll);
+  runMenu.add(runClear);
+  runMenu.add(runClearAll);
   addPluginsMenuItems(runMenu,menuCreators,MENU_LOCATION.RUN);
 }
