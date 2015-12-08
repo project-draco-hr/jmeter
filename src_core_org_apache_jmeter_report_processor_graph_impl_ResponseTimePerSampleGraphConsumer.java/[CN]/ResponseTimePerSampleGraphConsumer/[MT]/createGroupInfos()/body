@@ -1,5 +1,5 @@
 {
-  HashMap<String,GroupInfo> groupInfos=new HashMap<String,GroupInfo>(2);
+  HashMap<String,GroupInfo> groupInfos=new HashMap<>(2);
   groupInfos.put("aggregate_rpt_pct1",createGroupInfo("aggregate_rpt_pct1",90));
   groupInfos.put("aggregate_rpt_pct2",createGroupInfo("aggregate_rpt_pct2",95));
   groupInfos.put("aggregate_rpt_pct3",createGroupInfo("aggregate_rpt_pct3",99));

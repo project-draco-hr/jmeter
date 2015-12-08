@@ -1,5 +1,5 @@
 {
-  ArrayList<Sample> out=new ArrayList<Sample>();
+  ArrayList<Sample> out=new ArrayList<>();
   ListIterator<Sample> l=left.listIterator();
   ListIterator<Sample> r=right.listIterator();
   while (l.hasNext() || r.hasNext()) {

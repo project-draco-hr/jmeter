@@ -76,7 +76,7 @@
   errorsSummaryConsumer.setName(ERRORS_SUMMARY_CONSUMER_NAME);
   excludeControllerFilter.setSampleConsumer(errorsSummaryConsumer);
   Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
-  HashMap<GraphConfiguration,AbstractGraphConsumer> graphMap=new HashMap<GraphConfiguration,AbstractGraphConsumer>();
+  HashMap<GraphConfiguration,AbstractGraphConsumer> graphMap=new HashMap<>();
   for (  Map.Entry<String,GraphConfiguration> entryGraphCfg : graphConfigurations.entrySet()) {
     String graphName=entryGraphCfg.getKey();
     GraphConfiguration graphConfiguration=entryGraphCfg.getValue();

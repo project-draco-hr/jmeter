@@ -1,5 +1,5 @@
 {
-  HashMap<String,GroupInfo> groupInfos=new HashMap<String,GroupInfo>(1);
+  HashMap<String,GroupInfo> groupInfos=new HashMap<>(1);
   groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new TimeRateAggregatorFactory(),new AbstractSeriesSelector(true){
     @Override public Iterable<String> select(    Sample sample){
       String label=String.format(STATUS_SERIES_FORMAT,sample.getName(),sample.getSuccess() ? SUCCESS_SERIES_SUFFIX : FAILURE_SERIES_SUFFIX);

@@ -5,8 +5,8 @@
   this.pool.prestartAllCoreThreads();
   inputSampleCount=0;
   chunkedSampleCount=0;
-  chunks=new LinkedList<File>();
-  samples=new LinkedList<Sample>();
+  chunks=new LinkedList<>();
+  samples=new LinkedList<>();
   sampleMetadata=getConsumedMetadata(0);
   sampleComparator.initialize(sampleMetadata);
 }

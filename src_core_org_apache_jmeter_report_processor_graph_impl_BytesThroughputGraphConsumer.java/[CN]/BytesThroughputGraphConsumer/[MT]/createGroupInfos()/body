@@ -1,5 +1,5 @@
 {
-  HashMap<String,GroupInfo> groupInfos=new HashMap<String,GroupInfo>(2);
+  HashMap<String,GroupInfo> groupInfos=new HashMap<>(2);
   groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new TimeRateAggregatorFactory(),new AbstractSeriesSelector(){
     private final Iterable<String> values=Arrays.asList(RECEIVED_BYTES_SERIES_LABEL,SENT_BYTES_SERIES_LABEL);
     @Override public Iterable<String> select(    Sample sample){
