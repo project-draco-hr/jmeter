@@ -11,6 +11,9 @@
  else   if (action.equals(ActionNames.ADD_ALL)) {
     previousGuiItems.clear();
     GuiPackage.getInstance().getTreeModel().getTestPlan().traverse(this);
+    if (isWorkbenchSaveable()) {
+      GuiPackage.getInstance().getTreeModel().getWorkBench().traverse(this);
+    }
   }
  else   if (action.equals(ActionNames.CHECK_REMOVE)) {
     GuiPackage guiPackage=GuiPackage.getInstance();
@@ -34,6 +37,12 @@
     try {
       HashTree wholeTree=GuiPackage.getInstance().getTreeModel().getTestPlan();
       wholeTree.traverse(this);
+      if (!dirty) {
+        if (isWorkbenchSaveable()) {
+          HashTree workbench=GuiPackage.getInstance().getTreeModel().getWorkBench();
+          workbench.traverse(this);
+        }
+      }
     }
   finally {
       checkMode=false;

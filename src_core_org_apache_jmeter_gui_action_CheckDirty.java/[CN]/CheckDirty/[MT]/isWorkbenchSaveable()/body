@@ -1,0 +1,4 @@
+{
+  JMeterTreeNode workbenchNode=(JMeterTreeNode)((JMeterTreeNode)GuiPackage.getInstance().getTreeModel().getRoot()).getChildAt(1);
+  return ((WorkBench)workbenchNode.getUserObject()).getSaveWorkBench();
+}
