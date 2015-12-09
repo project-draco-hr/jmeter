@@ -1,4 +1,6 @@
 {
   log.info("Test Ended on " + host);
-  if (decoratedSender != null)   decoratedSender.testEnded(host);
+  if (decoratedSender != null) {
+    decoratedSender.testEnded(host);
+  }
 }

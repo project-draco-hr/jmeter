@@ -1,4 +1,6 @@
 {
-  if (visitor == null)   throw new ArgumentNullException("visitor");
+  if (visitor == null) {
+    throw new ArgumentNullException("visitor");
+  }
   return visitor.visitValueResult(this);
 }

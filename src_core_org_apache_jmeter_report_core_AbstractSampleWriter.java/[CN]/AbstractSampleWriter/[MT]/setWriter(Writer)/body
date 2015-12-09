@@ -1,5 +1,7 @@
 {
-  if (writer == null)   throw new ArgumentNullException("writer");
+  if (writer == null) {
+    throw new ArgumentNullException("writer");
+  }
   if (this.writer != null) {
     safeClose(this.writer);
   }

@@ -1,5 +1,7 @@
 {
-  if (sampleComparator == null)   throw new IllegalStateException("sampleComparator is not set, call setSampleComparator() first.");
+  if (sampleComparator == null) {
+    throw new IllegalStateException("sampleComparator is not set, call setSampleComparator() first.");
+  }
   File workDir=getWorkingDirectory();
   workDir.mkdir();
   this.pool.prestartAllCoreThreads();

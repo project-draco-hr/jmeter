@@ -1,6 +1,10 @@
 {
-  if (inputFile == null)   throw new ArgumentNullException("inputFile");
-  if (inputFile.isFile() == false || inputFile.canRead() == false)   throw new IllegalArgumentException(file.getAbsolutePath() + "does not exist or is not readable");
+  if (inputFile == null) {
+    throw new ArgumentNullException("inputFile");
+  }
+  if (inputFile.isFile() == false || inputFile.canRead() == false) {
+    throw new IllegalArgumentException(file.getAbsolutePath() + "does not exist or is not readable");
+  }
   this.file=inputFile;
   try {
     this.reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),CHARSET),BUF_SIZE);
@@ -8,7 +12,9 @@
  catch (  FileNotFoundException|UnsupportedEncodingException ex) {
     throw new SampleException("Could not create file reader !",ex);
   }
-  if (metadata == null)   metadata=readMetadata(separator,useSaveSampleCfg);
+  if (metadata == null) {
+    metadata=readMetadata(separator,useSaveSampleCfg);
+  }
   this.metadata=metadata;
   this.columnCount=metadata.getColumnCount();
   this.separator=metadata.getSeparator();

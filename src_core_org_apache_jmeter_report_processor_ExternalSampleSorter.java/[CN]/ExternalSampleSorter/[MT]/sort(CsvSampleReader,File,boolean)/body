@@ -1,6 +1,10 @@
 {
-  if (csvReader == null)   throw new ArgumentNullException("csvReader");
-  if (output == null)   throw new ArgumentNullException("output");
+  if (csvReader == null) {
+    throw new ArgumentNullException("csvReader");
+  }
+  if (output == null) {
+    throw new ArgumentNullException("output");
+  }
   SampleMetadata sampleMetadata=csvReader.getMetadata();
   SampleWriterConsumer writerConsumer=new SampleWriterConsumer();
   writerConsumer.setOutputFile(output);

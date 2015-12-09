@@ -1,6 +1,8 @@
 {
   super.configure(el);
-  if (!(el instanceof JMSSampler))   return;
+  if (!(el instanceof JMSSampler)) {
+    return;
+  }
   JMSSampler sampler=(JMSSampler)el;
   queueConnectionFactory.setText(sampler.getQueueConnectionFactory());
   sendQueue.setText(sampler.getSendQueue());

@@ -7,7 +7,9 @@
       if (data.length < columnCount) {
         String[] filler=new String[columnCount];
         System.arraycopy(data,0,filler,0,data.length);
-        for (int i=data.length; i < columnCount; i++)         filler[i]="";
+        for (int i=data.length; i < columnCount; i++) {
+          filler[i]="";
+        }
         data=filler;
       }
       sample=new Sample(row,metadata,data);

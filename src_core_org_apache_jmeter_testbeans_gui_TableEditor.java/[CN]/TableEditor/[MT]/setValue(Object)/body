@@ -2,6 +2,8 @@
   if (value != null) {
     model.setRows(convertCollection((Collection<?>)value));
   }
- else   model.clearData();
+ else {
+    model.clearData();
+  }
   this.firePropertyChange();
 }

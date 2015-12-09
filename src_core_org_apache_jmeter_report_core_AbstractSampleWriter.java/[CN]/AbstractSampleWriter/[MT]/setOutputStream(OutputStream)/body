@@ -1,5 +1,7 @@
 {
-  if (out == null)   throw new ArgumentNullException("out");
+  if (out == null) {
+    throw new ArgumentNullException("out");
+  }
   try {
     setWriter(new OutputStreamWriter(out,CHARSET));
   }

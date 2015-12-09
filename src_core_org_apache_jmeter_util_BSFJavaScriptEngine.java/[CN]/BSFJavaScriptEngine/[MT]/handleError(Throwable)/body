@@ -1,5 +1,7 @@
 {
-  if (t instanceof WrappedException)   t=((WrappedException)t).getWrappedException();
+  if (t instanceof WrappedException) {
+    t=((WrappedException)t).getWrappedException();
+  }
   String message=null;
   Throwable target=t;
   if (t instanceof JavaScriptException) {
@@ -18,7 +20,9 @@
  else   if (t instanceof StackOverflowError) {
     message="Stack Overflow";
   }
-  if (message == null)   message=t.toString();
+  if (message == null) {
+    message=t.toString();
+  }
   if (t instanceof Error && !(t instanceof StackOverflowError)) {
     throw (Error)t;
   }

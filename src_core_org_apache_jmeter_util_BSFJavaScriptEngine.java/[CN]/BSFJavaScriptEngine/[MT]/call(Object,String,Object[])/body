@@ -4,14 +4,18 @@
   try {
     cx=Context.enter();
     Object fun=global.get(method,global);
-    if (fun == Scriptable.NOT_FOUND)     throw new EvaluatorException("function " + method + " not found.","none",0);
+    if (fun == Scriptable.NOT_FOUND) {
+      throw new EvaluatorException("function " + method + " not found.","none",0);
+    }
     cx.setOptimizationLevel(-1);
     cx.setGeneratingDebug(false);
     cx.setGeneratingSource(false);
     cx.setOptimizationLevel(0);
     cx.setDebugger(null,null);
     retval=((Function)fun).call(cx,global,global,args);
-    if (retval instanceof Wrapper)     retval=((Wrapper)retval).unwrap();
+    if (retval instanceof Wrapper) {
+      retval=((Wrapper)retval).unwrap();
+    }
   }
  catch (  Throwable t) {
     handleError(t);

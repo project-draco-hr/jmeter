@@ -1,4 +1,6 @@
 {
   super.setModel(newModel);
-  if (model instanceof TristateButtonModel)   model.addChangeListener(enableListener);
+  if (model instanceof TristateButtonModel) {
+    model.addChangeListener(enableListener);
+  }
 }

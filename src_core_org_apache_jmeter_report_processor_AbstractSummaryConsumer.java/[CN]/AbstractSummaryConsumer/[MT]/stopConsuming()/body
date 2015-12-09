@@ -4,12 +4,16 @@
   result.setResult(RESULT_VALUE_TITLES,createResultTitles());
   if (hasOverallResult) {
     MapResultData overallResult=createResultFromKey(null);
-    if (overallResult != null)     result.setResult(RESULT_VALUE_OVERALL,overallResult);
+    if (overallResult != null) {
+      result.setResult(RESULT_VALUE_OVERALL,overallResult);
+    }
   }
   ListResultData itemsResult=new ListResultData();
   for (  String key : infos.keySet()) {
     MapResultData keyResult=createResultFromKey(key);
-    if (keyResult != null)     itemsResult.addResult(keyResult);
+    if (keyResult != null) {
+      itemsResult.addResult(keyResult);
+    }
   }
   result.setResult(RESULT_VALUE_ITEMS,itemsResult);
   setDataToContext(getName(),result);

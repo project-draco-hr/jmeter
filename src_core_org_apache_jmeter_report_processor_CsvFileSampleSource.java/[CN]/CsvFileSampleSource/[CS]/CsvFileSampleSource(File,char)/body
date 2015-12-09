@@ -1,5 +1,7 @@
 {
-  if (inputFile == null)   throw new ArgumentNullException("inputFile");
+  if (inputFile == null) {
+    throw new ArgumentNullException("inputFile");
+  }
   final String inputRootName=getFileRootName(inputFile.getName());
   final String inputExtension=getFileExtension(inputFile.getName());
   File[] secondaryInputs=null;

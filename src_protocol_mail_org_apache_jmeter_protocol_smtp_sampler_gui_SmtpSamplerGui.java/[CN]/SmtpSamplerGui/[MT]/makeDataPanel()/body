@@ -1,4 +1,6 @@
 {
-  if (smtpPanel == null)   smtpPanel=new SmtpPanel();
+  if (smtpPanel == null) {
+    smtpPanel=new SmtpPanel();
+  }
   return smtpPanel;
 }

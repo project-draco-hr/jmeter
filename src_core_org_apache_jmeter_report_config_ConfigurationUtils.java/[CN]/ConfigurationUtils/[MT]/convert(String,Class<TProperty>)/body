@@ -1,12 +1,16 @@
 {
-  if (clazz == null)   throw new ArgumentNullException("clazz");
+  if (clazz == null) {
+    throw new ArgumentNullException("clazz");
+  }
   TProperty result;
   if (clazz.isAssignableFrom(String.class)) {
     result=(TProperty)value;
   }
  else {
     StringConverter<TProperty> converter=Converters.getConverter(clazz);
-    if (converter == null)     throw new ConfigurationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,value,clazz.getName()));
+    if (converter == null) {
+      throw new ConfigurationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,value,clazz.getName()));
+    }
     try {
       result=converter.convert(value);
     }

@@ -1,4 +1,6 @@
 {
-  if (sample == null)   throw new ArgumentNullException("sample");
+  if (sample == null) {
+    throw new ArgumentNullException("sample");
+  }
   return sample.isController();
 }

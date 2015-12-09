@@ -1,4 +1,6 @@
 {
-  if (consumers == null)   throw new ArgumentNullException("consumers");
+  if (consumers == null) {
+    throw new ArgumentNullException("consumers");
+  }
   this.sampleConsumers=consumers;
 }

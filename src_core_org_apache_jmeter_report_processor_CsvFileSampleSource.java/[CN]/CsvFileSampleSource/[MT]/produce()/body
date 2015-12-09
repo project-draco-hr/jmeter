@@ -1,6 +1,8 @@
 {
   SampleContext context=getSampleContext();
-  if (context == null)   throw new IllegalStateException("Set a sample context before produce samples.");
+  if (context == null) {
+    throw new IllegalStateException("Set a sample context before produce samples.");
+  }
   for (int i=0; i < csvReaders.length; i++) {
     long sampleCount=0;
     long start=now();

@@ -1,7 +1,13 @@
 {
-  if (context == null)   throw new ArgumentNullException("context");
-  if (file == null)   throw new ArgumentNullException("file");
-  if (configuration == null)   throw new ArgumentNullException("configuration");
+  if (context == null) {
+    throw new ArgumentNullException("context");
+  }
+  if (file == null) {
+    throw new ArgumentNullException("file");
+  }
+  if (configuration == null) {
+    throw new ArgumentNullException("configuration");
+  }
   log.debug("Start template processing");
   DataContext dataContext=new DataContext();
   final ExporterConfiguration exportCfg=configuration.getExportConfigurations().get(getName());

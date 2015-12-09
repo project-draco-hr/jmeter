@@ -1,5 +1,7 @@
 {
-  if (until == 0)   return DEFAULT_WAIT;
+  if (until == 0) {
+    return DEFAULT_WAIT;
+  }
   long wait=until - now;
   return wait > DEFAULT_WAIT ? DEFAULT_WAIT : wait;
 }

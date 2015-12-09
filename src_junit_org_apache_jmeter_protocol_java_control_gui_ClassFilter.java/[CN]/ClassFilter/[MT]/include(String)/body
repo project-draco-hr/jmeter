@@ -1,5 +1,7 @@
 {
-  if (pkgs.length == 0)   return true;
+  if (pkgs.length == 0) {
+    return true;
+  }
   for (  String pkg : pkgs) {
     if (text.startsWith(pkg)) {
       return true;

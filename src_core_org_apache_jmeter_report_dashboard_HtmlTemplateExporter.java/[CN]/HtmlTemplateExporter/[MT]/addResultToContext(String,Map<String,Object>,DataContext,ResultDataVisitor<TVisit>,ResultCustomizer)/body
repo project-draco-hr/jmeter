@@ -2,7 +2,9 @@
   Object data=storage.get(resultKey);
   if (data instanceof ResultData) {
     ResultData result=(ResultData)data;
-    if (customizer != null)     result=customizer.customizeResult(result);
+    if (customizer != null) {
+      result=customizer.customizeResult(result);
+    }
     dataContext.put(resultKey,result.accept(visitor));
   }
 }

@@ -10,7 +10,9 @@
     cx.setOptimizationLevel(0);
     cx.setDebugger(null,null);
     retval=cx.evaluateString(global,scriptText,source,lineNo,null);
-    if (retval instanceof NativeJavaObject)     retval=((NativeJavaObject)retval).unwrap();
+    if (retval instanceof NativeJavaObject) {
+      retval=((NativeJavaObject)retval).unwrap();
+    }
   }
  catch (  Throwable t) {
     handleError(t);
