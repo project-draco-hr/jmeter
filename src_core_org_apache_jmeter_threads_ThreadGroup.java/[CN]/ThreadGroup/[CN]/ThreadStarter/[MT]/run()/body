@@ -22,10 +22,10 @@
     }
   }
   final int numThreads=getNumThreads();
-  final int perTthreadDelay=Math.round(((float)(getRampUp() * 1000) / (float)numThreads));
+  final int perThreadDelayInMillis=Math.round(((float)(getRampUp() * 1000) / (float)numThreads));
   for (int i=0; running && i < numThreads; i++) {
     if (i > 0) {
-      pause(perTthreadDelay);
+      pause(perThreadDelayInMillis);
     }
     if (usingScheduler && System.currentTimeMillis() > endtime) {
       break;

@@ -1,10 +1,10 @@
 {
   running=true;
   int numThreads=getNumThreads();
-  int rampUp=getRampUp();
-  float perThreadDelay=((float)(rampUp * 1000) / (float)getNumThreads());
+  int rampUpPeriodInSeconds=getRampUp();
+  float perThreadDelayInMillis=((float)(rampUpPeriodInSeconds * 1000) / (float)getNumThreads());
   delayedStartup=isDelayedStartup();
-  log.info("Starting thread group number " + groupCount + " threads "+ numThreads+ " ramp-up "+ rampUp+ " perThread "+ perThreadDelay+ " delayedStart="+ delayedStartup);
+  log.info("Starting thread group number " + groupCount + " threads "+ numThreads+ " ramp-up "+ rampUpPeriodInSeconds+ " perThread "+ perThreadDelayInMillis+ " delayedStart="+ delayedStartup);
   if (delayedStartup) {
     threadStarter=new Thread(new ThreadStarter(groupCount,notifier,threadGroupTree,engine),getName() + "-ThreadStarter");
     threadStarter.setDaemon(true);
@@ -16,7 +16,7 @@
     for (int i=0; running && i < numThreads; i++) {
       JMeterThread jmThread=makeThread(groupCount,notifier,threadGroupTree,engine,i,context);
       scheduleThread(jmThread,now);
-      jmThread.setInitialDelay((int)(i * perThreadDelay));
+      jmThread.setInitialDelay((int)(i * perThreadDelayInMillis));
       Thread newThread=new Thread(jmThread,jmThread.getThreadName());
       registerStartedThread(jmThread,newThread);
       newThread.start();
