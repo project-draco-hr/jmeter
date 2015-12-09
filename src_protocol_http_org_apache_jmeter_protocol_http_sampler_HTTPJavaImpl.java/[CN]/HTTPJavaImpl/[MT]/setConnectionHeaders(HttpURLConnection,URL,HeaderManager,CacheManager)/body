@@ -2,9 +2,8 @@
   if (headerManager != null) {
     CollectionProperty headers=headerManager.getHeaders();
     if (headers != null) {
-      PropertyIterator i=headers.iterator();
-      while (i.hasNext()) {
-        Header header=(Header)i.next().getObjectValue();
+      for (      JMeterProperty jMeterProperty : headers) {
+        Header header=(Header)jMeterProperty.getObjectValue();
         String n=header.getName();
         String v=header.getValue();
         conn.addRequestProperty(n,v);

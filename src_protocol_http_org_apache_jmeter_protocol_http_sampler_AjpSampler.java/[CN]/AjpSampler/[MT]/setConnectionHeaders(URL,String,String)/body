@@ -6,10 +6,8 @@
   setInt(0xA00b);
   setString(host);
   if (headers != null) {
-    CollectionProperty coll=headers.getHeaders();
-    PropertyIterator i=coll.iterator();
-    while (i.hasNext()) {
-      Header header=(Header)i.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : headers.getHeaders()) {
+      Header header=(Header)jMeterProperty.getObjectValue();
       String n=header.getName();
       String v=header.getValue();
       hbuf.append(n).append(COLON_SPACE).append(v).append(NEWLINE);

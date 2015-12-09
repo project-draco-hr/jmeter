@@ -1,6 +1,5 @@
 {
-  PropertyIterator iter=col.iterator();
-  while (iter.hasNext()) {
-    traverseProperty(traverser,iter.next());
+  for (  JMeterProperty jMeterProperty : col) {
+    traverseProperty(traverser,jMeterProperty);
   }
 }

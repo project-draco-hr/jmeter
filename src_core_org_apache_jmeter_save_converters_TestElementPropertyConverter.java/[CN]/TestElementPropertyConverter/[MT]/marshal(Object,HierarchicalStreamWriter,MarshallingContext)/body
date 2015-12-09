@@ -7,11 +7,9 @@
     TestElement te=(TestElement)prop.getObjectValue();
     ConversionHelp.saveSpecialProperties(te,writer);
   }
-  PropertyIterator iter=prop.iterator();
-  while (iter.hasNext()) {
-    JMeterProperty jmp=iter.next();
+  for (  JMeterProperty jmp : prop) {
     if (!SaveService.IS_TESTPLAN_FORMAT_22 || !ConversionHelp.isSpecialProperty(jmp.getName())) {
-      if (!(TestElement.COMMENTS.equals(jmp.getName()) && jmp.getStringValue().length() == 0)) {
+      if (!(TestElement.COMMENTS.equals(jmp.getName()) && jmp.getStringValue().isEmpty())) {
         writeItem(jmp,context,writer);
       }
     }
