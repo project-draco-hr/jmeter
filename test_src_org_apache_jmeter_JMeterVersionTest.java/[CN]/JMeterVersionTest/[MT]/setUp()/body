@@ -17,5 +17,8 @@
   }
   propNames.remove("velocity");
   propNames.remove("commons-lang");
+  propNames.remove("checkstyle-all");
+  buildProp.remove("checkstyle-all.loc");
+  versions.remove("checkstyle-all");
   prop=buildProp;
 }
