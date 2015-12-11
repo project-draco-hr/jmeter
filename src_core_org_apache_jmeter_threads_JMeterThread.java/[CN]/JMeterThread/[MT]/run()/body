@@ -8,27 +8,16 @@
       while (running && sam != null) {
         processSampler(sam,null,threadContext);
         threadContext.cleanAfterSample();
-        if (onErrorStartNextLoop || threadContext.isRestartNextLoop()) {
-          if (threadContext.isRestartNextLoop()) {
-            triggerEndOfLoopOnParentControllers(sam,threadContext);
-            sam=null;
-            threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
-            threadContext.setRestartNextLoop(false);
-          }
- else {
-            boolean lastSampleFailed=!TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK));
-            if (lastSampleFailed) {
-              if (log.isDebugEnabled()) {
-                log.debug("StartNextLoop option is on, Last sample failed, starting next loop");
-              }
-              triggerEndOfLoopOnParentControllers(sam,threadContext);
-              sam=null;
-              threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
-            }
- else {
-              sam=controller.next();
+        if (threadContext.isRestartNextLoop() || (onErrorStartNextLoop && !TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK)))) {
+          if (log.isDebugEnabled()) {
+            if (onErrorStartNextLoop && !threadContext.isRestartNextLoop()) {
+              log.debug("StartNextLoop option is on, Last sample failed, starting next loop");
             }
           }
+          triggerEndOfLoopOnParentControllers(sam,threadContext);
+          sam=null;
+          threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
+          threadContext.setRestartNextLoop(false);
         }
  else {
           sam=controller.next();

@@ -85,7 +85,7 @@
       }
     }
     if (scheduler) {
-      stopScheduler();
+      stopSchedulerIfNeeded();
     }
   }
  catch (  JMeterStopTestException e) {
