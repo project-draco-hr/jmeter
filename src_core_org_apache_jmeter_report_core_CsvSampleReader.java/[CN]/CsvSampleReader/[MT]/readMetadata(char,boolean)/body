@@ -2,6 +2,9 @@
   try {
     SampleMetadata metadata;
     String line=reader.readLine();
+    if (line == null) {
+      throw new IllegalArgumentException("File is empty");
+    }
     if (useSaveSampleCfg && CSVSaveService.getSampleSaveConfiguration(line,file.getAbsolutePath()) == null) {
       metadata=new SampleMetadata(SampleSaveConfiguration.staticConfig());
     }
