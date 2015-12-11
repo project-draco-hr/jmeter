@@ -6,15 +6,13 @@
     CsvSampleWriter writer=fileInfo.getWriter();
     writer.close();
     File file=fileInfo.getFile();
-    CsvSampleReader reader=new CsvSampleReader(file,getConsumedMetadata(i));
-    try {
+    try (CsvSampleReader reader=new CsvSampleReader(file,getConsumedMetadata(i))){
       while (reader.hasNext()) {
         Sample sample=reader.readSample();
         parent.consumeBase(createIndexedSample(sample,i,counts.get(getTimeInterval(sample)) % parent.getGranularity()),i);
       }
     }
   finally {
-      reader.close();
       file.delete();
     }
   }
