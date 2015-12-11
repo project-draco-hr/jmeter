@@ -2,15 +2,15 @@
   SummaryInfo overallInfo=getOverallInfo();
   Long overallData=overallInfo.getData();
   if (overallData == null) {
-    overallData=Long.valueOf(0);
+    overallData=ZERO;
   }
-  overallInfo.setData(overallData + 1);
+  overallInfo.setData(Long.valueOf(overallData.longValue() + 1));
   if (!sample.getSuccess()) {
     errorCount++;
     Long data=info.getData();
     if (data == null) {
       data=Long.valueOf(1);
     }
-    info.setData(data + 1);
+    info.setData(Long.valueOf(data.longValue() + 1));
   }
 }
