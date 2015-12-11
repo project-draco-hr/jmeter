@@ -1,6 +1,5 @@
 {
-  Pattern pattern=Pattern.compile("_(.)");
-  Matcher matcher=pattern.matcher(propertyKey);
+  Matcher matcher=POTENTIAL_CAMEL_CASE_PATTERN.matcher(propertyKey);
   StringBuffer buffer=new StringBuffer();
   while (matcher.find()) {
     matcher.appendReplacement(buffer,matcher.group(1).toUpperCase());
