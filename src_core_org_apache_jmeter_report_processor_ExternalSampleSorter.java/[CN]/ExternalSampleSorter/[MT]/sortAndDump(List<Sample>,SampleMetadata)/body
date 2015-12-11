@@ -18,17 +18,13 @@
     log.debug("sortAndDump(): Dumping chunk " + out);
     start=System.currentTimeMillis();
   }
-  CsvSampleWriter csvWriter=new CsvSampleWriter(out,sampleMetadata);
-  try {
+  try (CsvSampleWriter csvWriter=new CsvSampleWriter(out,sampleMetadata)){
     for (    Sample sample : sortedSamples) {
       csvWriter.write(sample);
       chunkedSampleCount.incrementAndGet();
     }
   }
-  finally {
-    csvWriter.close();
-  }
-  if (log.isDebugEnabled()) {
+   if (log.isDebugEnabled()) {
     stop=System.currentTimeMillis();
     log.debug("sortAndDump(): in " + (stop - start) / 1000f + " s : Dumped chunk " + out.getAbsolutePath());
   }

@@ -1,7 +1,5 @@
 {
-  CsvSampleReader l=new CsvSampleReader(left,metadata);
-  CsvSampleReader r=new CsvSampleReader(right,metadata);
-  try {
+  try (CsvSampleReader l=new CsvSampleReader(left,metadata);CsvSampleReader r=new CsvSampleReader(right,metadata)){
     while (l.hasNext() || r.hasNext()) {
       if (l.hasNext() && r.hasNext()) {
         Sample firstLeft=l.peek();
@@ -23,8 +21,4 @@
       }
     }
   }
-  finally {
-    l.close();
-    r.close();
-  }
-}
+ }

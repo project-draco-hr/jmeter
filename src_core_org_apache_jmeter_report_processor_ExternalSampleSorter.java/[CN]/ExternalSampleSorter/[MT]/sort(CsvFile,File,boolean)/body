@@ -11,11 +11,7 @@
   if (outputFile.isDirectory()) {
     throw new SampleException(outputFile.getAbsolutePath() + " is a directory. Please provide a valid output sample file path (not a directory)");
   }
-  CsvSampleReader csvReader=new CsvSampleReader(inputFile,inputFile.getSeparator(),false);
-  try {
+  try (CsvSampleReader csvReader=new CsvSampleReader(inputFile,inputFile.getSeparator(),false)){
     sort(csvReader,outputFile,writeHeader);
   }
-  finally {
-    csvReader.close();
-  }
-}
+ }

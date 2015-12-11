@@ -2,10 +2,7 @@
   if (out == null) {
     out=getChunkFile();
   }
-  CsvSampleWriter csvWriter=new CsvSampleWriter(out,metadata);
-  CsvSampleReader l=new CsvSampleReader(left,metadata);
-  CsvSampleReader r=new CsvSampleReader(right,metadata);
-  try {
+  try (CsvSampleWriter csvWriter=new CsvSampleWriter(out,metadata);CsvSampleReader l=new CsvSampleReader(left,metadata);CsvSampleReader r=new CsvSampleReader(right,metadata)){
     if (writeHeader) {
       csvWriter.writeHeader();
     }
@@ -30,9 +27,4 @@
       }
     }
   }
-  finally {
-    csvWriter.close();
-    l.close();
-    r.close();
-  }
-}
+ }
