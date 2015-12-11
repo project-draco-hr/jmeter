@@ -2,7 +2,7 @@
   if (inputFile == null) {
     throw new ArgumentNullException("inputFile");
   }
-  if (inputFile.isFile() == false || inputFile.canRead() == false) {
+  if (!(inputFile.isFile() && inputFile.canRead())) {
     throw new IllegalArgumentException(inputFile.getAbsolutePath() + "does not exist or is not readable");
   }
   this.file=inputFile;
