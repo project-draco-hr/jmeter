@@ -21,7 +21,7 @@
   }
   ListResultData dataResult=(ListResultData)seriesResult.getResult(RESULT_SERIES_DATA);
   Map<Double,Aggregator> aggInfo;
-  if (aggregated == false) {
+  if (!aggregated) {
     aggInfo=seriesData.getAggregatorInfo();
   }
  else {
@@ -29,12 +29,12 @@
     aggInfo=new HashMap<>();
     aggInfo.put(seriesData.getKeysAggregator().getResult(),seriesData.getValuesAggregator());
   }
-  if (renderPercentiles == false) {
+  if (!renderPercentiles) {
     for (    Map.Entry<Double,Aggregator> entry : aggInfo.entrySet()) {
       Double key=entry.getKey();
       Double value=entry.getValue().getResult();
       ListResultData coordResult=new ListResultData();
-      if (revertsKeysAndValues == false) {
+      if (!revertsKeysAndValues) {
         key=entry.getKey();
         value=entry.getValue().getResult();
       }
@@ -56,7 +56,7 @@
     int rank=0;
     double percent=0;
     TreeMap<Double,Aggregator> sortedInfo=new TreeMap<>(aggInfo);
-    if (revertsKeysAndValues == false) {
+    if (!revertsKeysAndValues) {
       for (      Map.Entry<Double,Aggregator> entry : sortedInfo.entrySet()) {
         double value=entry.getKey();
         percent+=(double)100 * entry.getValue().getCount() / count;

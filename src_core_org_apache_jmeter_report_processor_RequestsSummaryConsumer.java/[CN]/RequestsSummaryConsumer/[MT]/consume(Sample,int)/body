@@ -1,6 +1,6 @@
 {
   count++;
-  if (sample.getSuccess() == false) {
+  if (!sample.getSuccess()) {
     errorCount++;
   }
   super.produce(sample,channel);

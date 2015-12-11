@@ -6,7 +6,7 @@
     if (l.hasNext() && r.hasNext()) {
       Sample firstLeft=l.next();
       Sample firstRight=r.next();
-      if (revertedSort == false && sampleComparator.compare(firstLeft,firstRight) < 0 || revertedSort == true && sampleComparator.compare(firstLeft,firstRight) >= 0) {
+      if (!revertedSort && sampleComparator.compare(firstLeft,firstRight) < 0 || revertedSort == true && sampleComparator.compare(firstLeft,firstRight) >= 0) {
         out.add(firstLeft);
         r.previous();
       }

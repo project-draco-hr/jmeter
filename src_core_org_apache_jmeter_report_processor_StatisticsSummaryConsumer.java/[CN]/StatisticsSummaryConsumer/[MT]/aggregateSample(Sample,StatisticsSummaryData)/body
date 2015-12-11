@@ -1,7 +1,7 @@
 {
   data.IncTotal();
   data.IncBytes(sample.getSentBytes());
-  if (sample.getSuccess() == false) {
+  if (!sample.getSuccess()) {
     data.IncErrors();
   }
   long elapsedTime=sample.getElapsedTime();
