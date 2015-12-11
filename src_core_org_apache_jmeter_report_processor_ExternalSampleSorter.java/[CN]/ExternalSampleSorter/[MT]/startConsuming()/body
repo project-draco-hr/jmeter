@@ -5,8 +5,9 @@
   File workDir=getWorkingDirectory();
   workDir.mkdir();
   this.pool.prestartAllCoreThreads();
-  inputSampleCount=0;
-  chunkedSampleCount=0;
+  inputSampleCount.set(0);
+  ;
+  chunkedSampleCount.set(0);
   chunks=new LinkedList<>();
   samples=new LinkedList<>();
   sampleMetadata=getConsumedMetadata(0);

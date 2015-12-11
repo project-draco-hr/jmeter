@@ -1,6 +1,6 @@
 {
   samples.add(s);
-  inputSampleCount++;
+  inputSampleCount.incrementAndGet();
   if (samples.size() >= chunkSize) {
     chunks.add(sortAndDump(samples,sampleMetadata));
     samples.clear();

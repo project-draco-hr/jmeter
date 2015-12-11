@@ -22,7 +22,7 @@
   try {
     for (    Sample sample : sortedSamples) {
       csvWriter.write(sample);
-      chunkedSampleCount++;
+      chunkedSampleCount.incrementAndGet();
     }
   }
   finally {
