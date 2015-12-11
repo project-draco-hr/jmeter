@@ -9,7 +9,7 @@
     try (CsvSampleReader reader=new CsvSampleReader(file,getConsumedMetadata(i))){
       while (reader.hasNext()) {
         Sample sample=reader.readSample();
-        parent.consumeBase(createIndexedSample(sample,i,counts.get(getTimeInterval(sample)) % parent.getGranularity()),i);
+        parent.consumeBase(createIndexedSample(sample,i,counts.get(getTimeInterval(sample)).longValue() % parent.getGranularity()),i);
       }
     }
   finally {

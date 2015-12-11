@@ -1,11 +1,11 @@
 {
-  long time=getTimeInterval(sample);
+  Long time=getTimeInterval(sample);
   Long count=counts.get(time);
   if (count != null) {
-    counts.put(time,count + 1);
+    counts.put(time,Long.valueOf(count.longValue() + 1));
   }
  else {
-    counts.put(time,1L);
+    counts.put(time,ONE);
   }
   fileInfos.get(channel).getWriter().write(sample);
 }
