@@ -1,4 +1,4 @@
 {
-  safeClose(this.writer);
+  JOrphanUtils.closeQuietly(writer);
   this.writer=null;
 }
