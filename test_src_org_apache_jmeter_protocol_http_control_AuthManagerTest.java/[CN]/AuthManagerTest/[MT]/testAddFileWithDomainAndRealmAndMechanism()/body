@@ -1,0 +1,10 @@
+{
+  File authFile=File.createTempFile("auth",".txt");
+  Files.write(authFile.toPath(),"http://example.com\tuser\tpassword\tdomain\tEXAMPLE.COM\tKERBEROS".getBytes());
+  AuthManager manager=new AuthManager();
+  manager.addFile(authFile.getAbsolutePath());
+  Authorization authForURL=manager.getAuthForURL(new URL("http://example.com"));
+  assertEquals("password",authForURL.getPass());
+  assertEquals("domain",authForURL.getDomain());
+  assertEquals(AuthManager.Mechanism.KERBEROS,authForURL.getMechanism());
+}

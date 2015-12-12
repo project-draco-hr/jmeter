@@ -1,0 +1,8 @@
+{
+  File authFile=File.createTempFile("auth",".txt");
+  Files.write(authFile.toPath(),"http://example.com\tuser\tpassword\t\t\tBASIC_DIGEST".getBytes());
+  AuthManager manager=new AuthManager();
+  manager.addFile(authFile.getAbsolutePath());
+  Authorization authForURL=manager.getAuthForURL(new URL("http://example.com"));
+  assertEquals("password",authForURL.getPass());
+}
