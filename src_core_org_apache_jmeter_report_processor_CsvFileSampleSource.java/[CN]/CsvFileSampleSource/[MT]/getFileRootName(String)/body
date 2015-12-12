@@ -3,6 +3,5 @@
   if (idx < 0) {
     return fName;
   }
-  fName=fName.substring(0,idx);
-  return fName;
+  return fName.substring(0,idx);
 }
