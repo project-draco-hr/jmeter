@@ -17,28 +17,30 @@
           continue;
         }
         String[] tokens=line.split("\t");
-        String url=tokens[0];
-        String user=tokens[1];
-        String pass=tokens[2];
-        String domain;
-        String realm;
-        if (tokens.length > 2) {
-          domain=tokens[3];
-          realm=tokens[4];
-        }
+        if (tokens.length >= 3) {
+          String url=tokens[0];
+          String user=tokens[1];
+          String pass=tokens[2];
+          String domain;
+          String realm;
+          if (tokens.length > 3) {
+            domain=tokens[3];
+            realm=tokens[4];
+          }
  else {
-          domain="";
-          realm="";
-        }
-        Mechanism mechanism;
-        if (tokens.length > 4) {
-          mechanism=Mechanism.valueOf(tokens[5]);
-        }
+            domain="";
+            realm="";
+          }
+          Mechanism mechanism;
+          if (tokens.length > 5) {
+            mechanism=Mechanism.valueOf(tokens[5]);
+          }
  else {
-          mechanism=Mechanism.BASIC_DIGEST;
+            mechanism=Mechanism.BASIC_DIGEST;
+          }
+          Authorization auth=new Authorization(url,user,pass,domain,realm,mechanism);
+          getAuthObjects().addItem(auth);
         }
-        Authorization auth=new Authorization(url,user,pass,domain,realm,mechanism);
-        getAuthObjects().addItem(auth);
       }
  catch (      NoSuchElementException e) {
         log.error("Error parsing auth line: '" + line + "'",e);
