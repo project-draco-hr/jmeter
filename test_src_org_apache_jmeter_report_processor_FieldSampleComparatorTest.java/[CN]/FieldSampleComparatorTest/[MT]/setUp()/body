@@ -1,0 +1,6 @@
+{
+  super.setUp();
+  sampleMetadata=new SampleMetadata(',',"test");
+  comparator=new FieldSampleComparator("test");
+  comparator.initialize(sampleMetadata);
+}

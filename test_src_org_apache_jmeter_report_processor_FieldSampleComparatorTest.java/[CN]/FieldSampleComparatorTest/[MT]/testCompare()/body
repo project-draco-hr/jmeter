@@ -1,0 +1,8 @@
+{
+  Sample s1=new Sample(0,sampleMetadata,"1");
+  Sample s2=new Sample(1,sampleMetadata,"2");
+  assertTrue(comparator.compare(s1,s2) < 0);
+  assertTrue(comparator.compare(s2,s1) > 0);
+  assertTrue(comparator.compare(s2,s2) == 0);
+  assertTrue(comparator.compare(s1,s1) == 0);
+}
