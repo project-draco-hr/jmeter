@@ -15,7 +15,7 @@
       }
       double value=groupInfo.getValueSelector().select(seriesName,sample);
       aggregateValue(factory,seriesData,key,value);
-      if (overallSeries == true) {
+      if (overallSeries) {
         SeriesData overallData=groupData.getOverallSeries();
         aggregateValue(factory,overallData,key,value);
       }

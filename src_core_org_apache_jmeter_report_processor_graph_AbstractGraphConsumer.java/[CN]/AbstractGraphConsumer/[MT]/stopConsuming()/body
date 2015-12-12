@@ -11,15 +11,15 @@
       String seriesName=seriesEntry.getKey();
       SeriesData seriesData=seriesEntry.getValue();
       addKeyData(result,groupName,seriesName,seriesData,false);
-      if (aggregatedKeysSeries == true) {
+      if (aggregatedKeysSeries) {
         addKeyData(result,groupName,seriesName,seriesData,true);
       }
     }
-    if (overallSeries == true) {
+    if (overallSeries) {
       SeriesData overallData=groupData.getOverallSeries();
       String overallSeriesName=String.format(overallSeriesFormat,groupName);
       addKeyData(result,groupName,overallSeriesName,overallData,false);
-      if (aggregatedKeysSeries == true) {
+      if (aggregatedKeysSeries) {
         addKeyData(result,groupName,overallSeriesName,overallData,true);
       }
     }
