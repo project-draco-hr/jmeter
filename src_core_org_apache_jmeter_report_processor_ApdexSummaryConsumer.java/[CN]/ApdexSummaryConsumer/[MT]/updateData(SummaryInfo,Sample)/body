@@ -10,23 +10,23 @@
     data=new ApdexSummaryData(getThresholdSelector().select(sample.getName()));
     info.setData(data);
   }
-  data.IncTotalCount();
-  overallData.IncTotalCount();
+  data.incTotalCount();
+  overallData.incTotalCount();
   if (sample.getSuccess()) {
     long elapsedTime=sample.getElapsedTime();
     ApdexThresholdsInfo thresholdsInfo=data.getApdexThresholdInfo();
     if (elapsedTime <= thresholdsInfo.getSatisfiedThreshold()) {
-      data.IncSatisfiedCount();
+      data.incSatisfiedCount();
     }
  else     if (elapsedTime <= thresholdsInfo.getToleratedThreshold()) {
-      data.IncToleratedCount();
+      data.incToleratedCount();
     }
     ApdexThresholdsInfo overallThresholdsInfo=overallData.getApdexThresholdInfo();
     if (elapsedTime <= overallThresholdsInfo.getSatisfiedThreshold()) {
-      overallData.IncSatisfiedCount();
+      overallData.incSatisfiedCount();
     }
  else     if (elapsedTime <= overallThresholdsInfo.getToleratedThreshold()) {
-      overallData.IncToleratedCount();
+      overallData.incToleratedCount();
     }
   }
 }

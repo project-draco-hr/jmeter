@@ -1,5 +1,5 @@
 {
-  String result="{";
+  StringBuilder result=new StringBuilder("{");
   if (map != null) {
     String[] array=new String[map.size()];
     int index=0;
