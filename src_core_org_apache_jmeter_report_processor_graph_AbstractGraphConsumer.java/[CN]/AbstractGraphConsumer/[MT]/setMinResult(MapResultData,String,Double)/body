@@ -1,4 +1,4 @@
 {
   ValueResultData valueResult=(ValueResultData)result.getResult(name);
-  valueResult.setValue(Math.min((Double)valueResult.getValue(),value));
+  valueResult.setValue(Double.valueOf(Math.min(((Double)valueResult.getValue()).doubleValue(),value.doubleValue())));
 }
