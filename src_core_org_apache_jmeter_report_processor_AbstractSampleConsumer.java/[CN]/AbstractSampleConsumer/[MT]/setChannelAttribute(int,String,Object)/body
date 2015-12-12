@@ -1,6 +1,6 @@
 {
   super.setChannelAttribute(channel,key,value);
-  for (  SampleConsumer c : sampleConsumers) {
-    c.setChannelAttribute(channel,key,value);
+  for (  SampleConsumer consumer : sampleConsumers) {
+    consumer.setChannelAttribute(channel,key,value);
   }
 }
