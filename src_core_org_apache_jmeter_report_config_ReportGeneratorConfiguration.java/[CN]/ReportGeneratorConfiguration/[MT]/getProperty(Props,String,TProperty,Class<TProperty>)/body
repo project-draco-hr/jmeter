@@ -1,14 +1,8 @@
 {
-  TProperty property=null;
   String value=props.getValue(key);
   if (value == null) {
-    if (defaultValue != null) {
-      property=defaultValue;
-      log.info(String.format(NOT_FOUND_PROPERTY_FMT,key,defaultValue));
-    }
+    log.info(String.format(NOT_FOUND_PROPERTY_FMT,key,defaultValue));
+    return defaultValue;
   }
- else {
-    property=ConfigurationUtils.convert(value,clazz);
-  }
-  return property;
+  return ConfigurationUtils.convert(value,clazz);
 }
