@@ -3,10 +3,8 @@
     this.sampleFilter=sampleFilter;
     filteredSamples.clear();
     if (sampleFilter != null) {
-      String[] items=sampleFilter.split(",");
-      int count=items.length;
-      for (int index=0; index < count; index++) {
-        filteredSamples.add(items[index].trim());
+      for (      String item : sampleFilter.split(",")) {
+        filteredSamples.add(item.trim());
       }
     }
   }
