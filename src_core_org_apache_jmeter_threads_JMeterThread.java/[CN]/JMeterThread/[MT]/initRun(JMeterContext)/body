@@ -11,15 +11,10 @@
   }
   rampUpDelay();
   log.info("Thread started: " + Thread.currentThread().getName());
-  if (startEarlier) {
-    threadContext.setSamplingStarted(true);
-  }
+  threadContext.setSamplingStarted(true);
   controller.initialize();
   IterationListener iterationListener=new IterationListener();
   controller.addIterationListener(iterationListener);
-  if (!startEarlier) {
-    threadContext.setSamplingStarted(true);
-  }
   threadStarted();
   return iterationListener;
 }
