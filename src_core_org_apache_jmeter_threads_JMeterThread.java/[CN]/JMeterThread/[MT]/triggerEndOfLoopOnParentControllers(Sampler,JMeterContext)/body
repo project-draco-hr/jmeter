@@ -20,6 +20,7 @@
     }
   }
   if (transactionSampler != null) {
-    processSampler(transactionSampler,null,threadContext);
+    SamplePackage transactionPack=compiler.configureTransactionSampler(transactionSampler);
+    doEndTransactionSampler(transactionSampler,null,transactionPack,threadContext);
   }
 }

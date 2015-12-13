@@ -1,0 +1,13 @@
+{
+  SampleResult transactionResult;
+  transactionResult=transactionSampler.getTransactionResult();
+  transactionResult.setThreadName(threadName);
+  transactionResult.setGroupThreads(threadGroup.getNumberOfThreads());
+  transactionResult.setAllThreads(JMeterContextService.getNumberOfThreads());
+  checkAssertions(transactionPack.getAssertions(),transactionResult,threadContext);
+  if (!(parent instanceof TransactionSampler)) {
+    notifyListeners(transactionPack.getSampleListeners(),transactionResult);
+  }
+  compiler.done(transactionPack);
+  return transactionResult;
+}
