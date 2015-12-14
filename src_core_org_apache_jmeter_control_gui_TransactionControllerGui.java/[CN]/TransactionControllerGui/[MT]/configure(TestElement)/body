@@ -1,5 +1,5 @@
 {
   super.configure(el);
-  parent.setSelected(((TransactionController)el).isParent());
+  generateParentSample.setSelected(((TransactionController)el).isGenerateParentSample());
   includeTimers.setSelected(((TransactionController)el).isIncludeTimers());
 }

@@ -1,5 +1,5 @@
 {
-  if (!isParent()) {
+  if (!isGenerateParentSample()) {
     if (res != null && !se.isTransactionSampleEvent()) {
       SampleResult sampleResult=se.getResult();
       res.setThreadName(sampleResult.getThreadName());

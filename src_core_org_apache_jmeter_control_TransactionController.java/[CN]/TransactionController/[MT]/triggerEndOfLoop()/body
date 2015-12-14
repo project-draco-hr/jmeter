@@ -1,5 +1,5 @@
 {
-  if (!isParent()) {
+  if (!isGenerateParentSample()) {
     if (res != null) {
       res.setIdleTime(pauseTime + res.getIdleTime());
       res.sampleEnd();

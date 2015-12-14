@@ -1,6 +1,6 @@
 {
-  if (isParent()) {
-    return next1();
+  if (isGenerateParentSample()) {
+    return nextWithTransactionSampler();
   }
-  return next2();
+  return nextWithoutTransactionSampler();
 }

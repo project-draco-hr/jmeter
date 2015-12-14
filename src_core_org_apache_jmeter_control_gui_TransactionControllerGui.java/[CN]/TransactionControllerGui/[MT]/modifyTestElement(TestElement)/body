@@ -1,7 +1,7 @@
 {
   configureTestElement(el);
-  ((TransactionController)el).setParent(parent.isSelected());
+  ((TransactionController)el).setGenerateParentSample(generateParentSample.isSelected());
   TransactionController tc=((TransactionController)el);
-  tc.setParent(parent.isSelected());
+  tc.setGenerateParentSample(generateParentSample.isSelected());
   tc.setIncludeTimers(includeTimers.isSelected());
 }
