@@ -27,19 +27,19 @@
  else {
     series=String.format(aggregatedKeysSeriesFormat,series);
     aggInfo=new HashMap<>();
-    aggInfo.put(seriesData.getKeysAggregator().getResult(),seriesData.getValuesAggregator());
+    aggInfo.put(Double.valueOf(seriesData.getKeysAggregator().getResult()),seriesData.getValuesAggregator());
   }
   if (!renderPercentiles) {
     for (    Map.Entry<Double,Aggregator> entry : aggInfo.entrySet()) {
       Double key=entry.getKey();
-      Double value=entry.getValue().getResult();
+      Double value=Double.valueOf(entry.getValue().getResult());
       ListResultData coordResult=new ListResultData();
       if (!revertsKeysAndValues) {
         key=entry.getKey();
-        value=entry.getValue().getResult();
+        value=Double.valueOf(entry.getValue().getResult());
       }
  else {
-        key=entry.getValue().getResult();
+        key=Double.valueOf(entry.getValue().getResult());
         value=entry.getKey();
       }
       coordResult.addResult(new ValueResultData(key));

@@ -23,7 +23,7 @@
   source.addSampleConsumer(normalizer);
   AggregateConsumer beginDateConsumer=new AggregateConsumer(new MinAggregator(),new SampleSelector<Double>(){
     @Override public Double select(    Sample sample){
-      return (double)sample.getStartTime();
+      return Double.valueOf(sample.getStartTime());
     }
   }
 );
@@ -31,7 +31,7 @@
   normalizer.addSampleConsumer(beginDateConsumer);
   AggregateConsumer endDateConsumer=new AggregateConsumer(new MaxAggregator(),new SampleSelector<Double>(){
     @Override public Double select(    Sample sample){
-      return (double)sample.getEndTime();
+      return Double.valueOf(sample.getEndTime());
     }
   }
 );

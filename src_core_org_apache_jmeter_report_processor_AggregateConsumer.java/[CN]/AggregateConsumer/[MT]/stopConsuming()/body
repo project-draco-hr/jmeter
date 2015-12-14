@@ -1,4 +1,4 @@
 {
-  setDataToContext(getName(),new ValueResultData(aggregator.getResult()));
+  setDataToContext(getName(),new ValueResultData(Double.valueOf(aggregator.getResult())));
   super.stopProducing();
 }
