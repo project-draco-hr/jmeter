@@ -26,55 +26,7 @@
       }
     }
     if (current != null) {
-      threadContext.setCurrentSampler(current);
-      SamplePackage pack=compiler.configureSampler(current);
-      runPreProcessors(pack.getPreProcessors());
-      threadVars.putObject(PACKAGE_OBJECT,pack);
-      delay(pack.getTimers());
-      Sampler sampler=pack.getSampler();
-      sampler.setThreadContext(threadContext);
-      sampler.setThreadName(threadName);
-      TestBeanHelper.prepare(sampler);
-      currentSampler=sampler;
-      SampleResult result=sampler.sample(null);
-      currentSampler=null;
-      if (result != null) {
-        result.setGroupThreads(threadGroup.getNumberOfThreads());
-        result.setAllThreads(JMeterContextService.getNumberOfThreads());
-        result.setThreadName(threadName);
-        SampleResult[] subResults=result.getSubResults();
-        if (subResults != null) {
-          for (          SampleResult subResult : subResults) {
-            subResult.setGroupThreads(threadGroup.getNumberOfThreads());
-            subResult.setAllThreads(JMeterContextService.getNumberOfThreads());
-            subResult.setThreadName(threadName);
-          }
-        }
-        threadContext.setPreviousResult(result);
-        runPostProcessors(pack.getPostProcessors());
-        checkAssertions(pack.getAssertions(),result,threadContext);
-        List<SampleListener> sampleListeners=getSampleListeners(pack,transactionPack,transactionSampler);
-        notifyListeners(sampleListeners,result);
-        compiler.done(pack);
-        if (transactionSampler != null) {
-          transactionSampler.addSubSamplerResult(result);
-        }
-        if (result.isStopThread() || (!result.isSuccessful() && onErrorStopThread)) {
-          stopThread();
-        }
-        if (result.isStopTest() || (!result.isSuccessful() && onErrorStopTest)) {
-          stopTest();
-        }
-        if (result.isStopTestNow() || (!result.isSuccessful() && onErrorStopTestNow)) {
-          stopTestNow();
-        }
-        if (result.isStartNextThreadLoop()) {
-          threadContext.setRestartNextLoop(true);
-        }
-      }
- else {
-        compiler.done(pack);
-      }
+      executeSamplePackage(current,transactionSampler,transactionPack,threadContext);
     }
     if (scheduler) {
       stopSchedulerIfNeeded();

@@ -3,29 +3,27 @@
   LoopIterationListener iterationListener=null;
   try {
     iterationListener=initRun(threadContext);
-    while (running) {
-      Sampler sam=controller.next();
-      while (running && sam != null) {
-        processSampler(sam,null,threadContext);
-        threadContext.cleanAfterSample();
-        if (threadContext.isRestartNextLoop() || (onErrorStartNextLoop && !TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK)))) {
-          if (log.isDebugEnabled()) {
-            if (onErrorStartNextLoop && !threadContext.isRestartNextLoop()) {
-              log.debug("StartNextLoop option is on, Last sample failed, starting next loop");
-            }
+    Sampler sam=controller.next();
+    while (running && sam != null) {
+      processSampler(sam,null,threadContext);
+      threadContext.cleanAfterSample();
+      if (threadContext.isRestartNextLoop() || (onErrorStartNextLoop && !TRUE.equals(threadContext.getVariables().get(LAST_SAMPLE_OK)))) {
+        if (log.isDebugEnabled()) {
+          if (onErrorStartNextLoop && !threadContext.isRestartNextLoop()) {
+            log.debug("StartNextLoop option is on, Last sample failed, starting next loop");
           }
-          triggerEndOfLoopOnParentControllers(sam,threadContext);
-          sam=null;
-          threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
-          threadContext.setRestartNextLoop(false);
         }
- else {
-          sam=controller.next();
-        }
+        triggerEndOfLoopOnParentControllers(sam,threadContext);
+        threadContext.getVariables().put(LAST_SAMPLE_OK,TRUE);
+        threadContext.setRestartNextLoop(false);
+        sam=null;
       }
-      if (controller.isDone()) {
+      if (sam == null && controller.isDone()) {
         running=false;
         log.info("Thread is done: " + threadName);
+      }
+ else {
+        sam=controller.next();
       }
     }
   }
