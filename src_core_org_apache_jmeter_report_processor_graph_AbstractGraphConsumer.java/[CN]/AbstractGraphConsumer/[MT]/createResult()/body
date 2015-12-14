@@ -10,7 +10,7 @@
   while (supportsControllersDiscrimination && it.hasNext()) {
     supportsControllersDiscrimination&=it.next().getSeriesSelector().allowsControllersDiscrimination();
   }
-  result.setResult(RESULT_SUPPORTS_CONTROLLERS_DISCRIMINATION,new ValueResultData(supportsControllersDiscrimination));
+  result.setResult(RESULT_SUPPORTS_CONTROLLERS_DISCRIMINATION,new ValueResultData(Boolean.valueOf(supportsControllersDiscrimination)));
   initializeExtraResults(result);
   return result;
 }

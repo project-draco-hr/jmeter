@@ -1,6 +1,6 @@
 {
   MapResultData result=new MapResultData();
-  result.setResult(RESULT_VALUE_SUPPORTS_CONTROLLERS_DISCRIMINATION,new ValueResultData(supportsControllersDiscrimination));
+  result.setResult(RESULT_VALUE_SUPPORTS_CONTROLLERS_DISCRIMINATION,new ValueResultData(Boolean.valueOf(supportsControllersDiscrimination)));
   result.setResult(RESULT_VALUE_TITLES,createResultTitles());
   if (hasOverallResult) {
     MapResultData overallResult=createResultFromKey(null);
