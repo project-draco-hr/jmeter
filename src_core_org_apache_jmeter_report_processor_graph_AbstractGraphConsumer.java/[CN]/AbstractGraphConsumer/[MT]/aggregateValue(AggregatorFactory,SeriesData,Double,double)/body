@@ -9,7 +9,7 @@
   data.incrementCount();
   Aggregator keysAgg=data.getKeysAggregator();
   if (keysAgg != null) {
-    keysAgg.addValue(key);
+    keysAgg.addValue(key.doubleValue());
   }
   Aggregator valuesAgg=data.getValuesAggregator();
   if (valuesAgg != null) {

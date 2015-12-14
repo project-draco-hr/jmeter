@@ -13,7 +13,7 @@
         seriesData=new SeriesData(factory,aggregatedKeysSeries,groupInfo.getSeriesSelector().allowsControllersDiscrimination() ? sample.isController() : false,false);
         seriesInfo.put(seriesName,seriesData);
       }
-      Double value=Double.valueOf(groupInfo.getValueSelector().select(seriesName,sample));
+      double value=groupInfo.getValueSelector().select(seriesName,sample);
       aggregateValue(factory,seriesData,key,value);
       if (overallSeries) {
         SeriesData overallData=groupData.getOverallSeries();
