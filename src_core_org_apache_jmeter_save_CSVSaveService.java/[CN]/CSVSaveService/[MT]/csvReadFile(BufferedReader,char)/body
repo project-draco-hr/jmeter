@@ -54,6 +54,8 @@ baos.write(QUOTING_CHAR);
 throw new IOException("Cannot have single quote-char in quoted field:[" + baos.toString() + "]");
 }
 break;
+default :
+throw new IllegalStateException("Unexpected state " + state);
 }
 if (push) {
 if (ch == '\r') {

@@ -64,5 +64,7 @@ if (!StringUtils.isEmpty(styleTagStr)) {
 break;
 case END:
 break;
+default :
+throw new IllegalStateException("Unexpected tagType " + tagType);
 }
 }
