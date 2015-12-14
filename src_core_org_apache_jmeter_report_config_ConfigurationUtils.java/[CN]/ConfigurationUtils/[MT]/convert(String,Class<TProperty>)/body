@@ -4,7 +4,8 @@
   }
   TProperty result;
   if (clazz.isAssignableFrom(String.class)) {
-    result=(TProperty)value;
+    @SuppressWarnings("unchecked") TProperty temp=(TProperty)value;
+    result=temp;
   }
  else {
     StringConverter<TProperty> converter=Converters.getConverter(clazz);
