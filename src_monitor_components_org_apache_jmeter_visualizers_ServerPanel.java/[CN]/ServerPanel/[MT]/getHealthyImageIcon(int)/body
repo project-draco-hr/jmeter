@@ -13,6 +13,8 @@ break;
 case Stats.DEAD:
 i=DEAD;
 break;
+default :
+throw new IllegalStateException("Unexpected health value: " + health);
 }
 return i;
 }
