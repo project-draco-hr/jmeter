@@ -9,7 +9,24 @@
   sampler.setThreadName(threadName);
   TestBeanHelper.prepare(sampler);
   currentSampler=sampler;
+  if (IMPLEMENTS_SAMPLE_STARTED) {
+    for (    SampleListener listener : pack.getSampleListeners()) {
+      try {
+        TestBeanHelper.prepare((TestElement)listener);
+        listener.sampleStarted(null);
+      }
+ catch (      RuntimeException e) {
+        log.error("Detected problem in Listener: ",e);
+        log.info("Continuing to process further listeners");
+      }
+    }
+  }
   SampleResult result=sampler.sample(null);
+  if (IMPLEMENTS_SAMPLE_STARTED) {
+    for (    SampleListener listener : pack.getSampleListeners()) {
+      listener.sampleStopped(null);
+    }
+  }
   currentSampler=null;
   if (result != null) {
     int nbActiveThreadsInThreadGroup=threadGroup.getNumberOfThreads();

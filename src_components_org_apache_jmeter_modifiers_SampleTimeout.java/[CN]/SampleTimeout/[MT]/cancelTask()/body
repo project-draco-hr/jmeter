@@ -1,0 +1,11 @@
+{
+  if (future != null) {
+    if (!future.isDone()) {
+      boolean cancelled=future.cancel(false);
+      if (debug) {
+        LOG.debug("Cancelled timer: @" + System.identityHashCode(future) + " with result "+ cancelled);
+      }
+    }
+    future=null;
+  }
+}

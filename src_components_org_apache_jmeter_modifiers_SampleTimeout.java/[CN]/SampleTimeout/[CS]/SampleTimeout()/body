@@ -1,0 +1,7 @@
+{
+  debug=LOG.isDebugEnabled();
+  execService=getExecutorService();
+  if (debug) {
+    LOG.debug(whoAmI("InterruptTimer()",this));
+  }
+}

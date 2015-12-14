@@ -1,0 +1,6 @@
+{
+  if (debug) {
+    LOG.debug(whoAmI("threadFinished()",this));
+  }
+  cancelTask();
+}
