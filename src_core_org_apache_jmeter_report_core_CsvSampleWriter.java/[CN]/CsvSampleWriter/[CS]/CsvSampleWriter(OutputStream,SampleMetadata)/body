@@ -1,7 +1,5 @@
 {
   this(metadata);
-  if (output == null) {
-    throw new ArgumentNullException("output");
-  }
+  Validate.notNull(output,MUST_NOT_BE_NULL,"output");
   setOutputStream(output);
 }

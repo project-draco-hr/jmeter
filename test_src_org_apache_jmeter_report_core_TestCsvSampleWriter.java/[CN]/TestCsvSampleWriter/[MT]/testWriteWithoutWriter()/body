@@ -1,0 +1,11 @@
+{
+  try (CsvSampleWriter csvWriter=new CsvSampleWriter(metadata)){
+    Sample sample=new SampleBuilder(metadata).add("a1").add("b1").build();
+    try {
+      csvWriter.write(sample);
+      fail("ISE expected");
+    }
+ catch (    IllegalStateException e) {
+    }
+  }
+ }

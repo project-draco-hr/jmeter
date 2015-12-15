@@ -1,0 +1,7 @@
+{
+  try (Writer writer=new StringWriter();CsvSampleWriter csvWriter=new CsvSampleWriter(writer,metadata)){
+    csvWriter.writeHeader();
+    replaceWriter(csvWriter);
+    assertEquals("a,b\n",writer.toString());
+  }
+ }

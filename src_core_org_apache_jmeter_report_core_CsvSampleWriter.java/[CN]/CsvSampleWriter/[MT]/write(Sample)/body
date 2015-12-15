@@ -1,10 +1,6 @@
 {
-  if (sample == null) {
-    throw new ArgumentNullException("sample");
-  }
-  if (writer == null) {
-    throw new IllegalStateException("No writer set! Call setWriter() first!");
-  }
+  Validate.notNull(sample,MUST_NOT_BE_NULL,"sample");
+  Validate.validState(writer != null,"No writer set! Call setWriter() first!");
   StringBuilder row=new StringBuilder();
   char[] specials=new char[]{separator,CSVSaveService.QUOTING_CHAR,CharUtils.CR,CharUtils.LF};
   for (int i=0; i < columnCount; i++) {

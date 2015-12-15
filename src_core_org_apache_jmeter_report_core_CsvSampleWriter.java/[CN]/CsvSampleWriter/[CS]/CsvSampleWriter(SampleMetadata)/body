@@ -1,7 +1,5 @@
 {
-  if (metadata == null) {
-    throw new ArgumentNullException("metadata");
-  }
+  Validate.notNull(metadata,MUST_NOT_BE_NULL,"metadata");
   this.metadata=metadata;
   this.columnCount=metadata.getColumnCount();
   this.separator=metadata.getSeparator();

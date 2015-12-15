@@ -1,0 +1,9 @@
+{
+  try {
+    CsvSampleWriter dummy=new CsvSampleWriter(null);
+    dummy.close();
+    fail("NPE expected");
+  }
+ catch (  NullPointerException e) {
+  }
+}

@@ -1,0 +1,8 @@
+{
+  try (Writer writer=new StringWriter();CsvSampleWriter csvWriter=new CsvSampleWriter(writer,metadata)){
+    Sample sample=new SampleBuilder(metadata).add("a1").add("b1").build();
+    csvWriter.write(sample);
+    replaceWriter(csvWriter);
+    assertEquals("a1,b1\n",writer.toString());
+  }
+ }

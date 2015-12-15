@@ -1,0 +1,5 @@
+{
+  try (Writer replacement=new StringWriter()){
+    csvWriter.setWriter(replacement);
+  }
+ }
