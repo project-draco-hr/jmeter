@@ -6,13 +6,10 @@
     if (is != null) {
       fileReader=new BufferedReader(new InputStreamReader(is));
       StringBuilder text=new StringBuilder();
-      String line="NOTNULL";
-      while (line != null) {
-        line=fileReader.readLine();
-        if (line != null) {
-          text.append(line);
-          text.append(lineEnd);
-        }
+      String line;
+      while ((line=fileReader.readLine()) != null) {
+        text.append(line);
+        text.append(lineEnd);
       }
       return text.toString();
     }
