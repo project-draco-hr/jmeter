@@ -10,7 +10,7 @@
   final Interruptible sampler=(Interruptible)samp;
   if (useRunnable) {
     Runnable run=new Runnable(){
-      public void run(){
+      @Override public void run(){
         long start=System.nanoTime();
         boolean interrupted=sampler.interrupt();
         String elapsed=Double.toString((double)(System.nanoTime() - start) / 1000000000) + " secs";
