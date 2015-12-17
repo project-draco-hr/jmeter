@@ -16,13 +16,8 @@
   test.traverse(testListeners);
   testListeners.getSearchResults().addAll(testList);
   testList.clear();
-  if (!startListenersLater) {
-    notifyTestListenersOfStart(testListeners);
-  }
   test.traverse(new TurnElementsOn());
-  if (startListenersLater) {
-    notifyTestListenersOfStart(testListeners);
-  }
+  notifyTestListenersOfStart(testListeners);
   List<?> testLevelElements=new LinkedList<>(test.list(test.getArray()[0]));
   removeThreadGroups(testLevelElements);
   SearchByClass<SetupThreadGroup> setupSearcher=new SearchByClass<>(SetupThreadGroup.class);
