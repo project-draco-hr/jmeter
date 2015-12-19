@@ -9,13 +9,14 @@
   sampler.setThreadName(threadName);
   TestBeanHelper.prepare(sampler);
   currentSampler=sampler;
-  if (IMPLEMENTS_SAMPLE_STARTED) {
-    for (    SampleMonitor monitor : sampleMonitors) {
-      monitor.sampleStarting();
-    }
+  for (  SampleMonitor monitor : sampleMonitors) {
+    monitor.sampleStarting();
   }
-  SampleResult result=sampler.sample(null);
-  if (IMPLEMENTS_SAMPLE_STARTED) {
+  SampleResult result=null;
+  try {
+    result=sampler.sample(null);
+  }
+  finally {
     for (    SampleMonitor monitor : sampleMonitors) {
       monitor.sampleEnded();
     }
