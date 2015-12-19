@@ -10,21 +10,14 @@
   TestBeanHelper.prepare(sampler);
   currentSampler=sampler;
   if (IMPLEMENTS_SAMPLE_STARTED) {
-    for (    SampleListener listener : pack.getSampleListeners()) {
-      try {
-        TestBeanHelper.prepare((TestElement)listener);
-        listener.sampleStarted(null);
-      }
- catch (      RuntimeException e) {
-        log.error("Detected problem in Listener: ",e);
-        log.info("Continuing to process further listeners");
-      }
+    for (    SampleMonitor monitor : sampleMonitors) {
+      monitor.sampleStarting();
     }
   }
   SampleResult result=sampler.sample(null);
   if (IMPLEMENTS_SAMPLE_STARTED) {
-    for (    SampleListener listener : pack.getSampleListeners()) {
-      listener.sampleStopped(null);
+    for (    SampleMonitor monitor : sampleMonitors) {
+      monitor.sampleEnded();
     }
   }
   currentSampler=null;

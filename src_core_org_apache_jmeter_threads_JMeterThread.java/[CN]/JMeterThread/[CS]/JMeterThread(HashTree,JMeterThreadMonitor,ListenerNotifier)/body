@@ -7,6 +7,14 @@
   SearchByClass<TestIterationListener> threadListenerSearcher=new SearchByClass<>(TestIterationListener.class);
   test.traverse(threadListenerSearcher);
   testIterationStartListeners=threadListenerSearcher.getSearchResults();
+  if (IMPLEMENTS_SAMPLE_STARTED) {
+    SearchByClass<SampleMonitor> sampleMonitorSearcher=new SearchByClass<>(SampleMonitor.class);
+    test.traverse(sampleMonitorSearcher);
+    sampleMonitors=sampleMonitorSearcher.getSearchResults();
+  }
+ else {
+    sampleMonitors=null;
+  }
   notifier=note;
   running=true;
 }
