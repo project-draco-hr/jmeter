@@ -3,7 +3,6 @@
   if (timeout <= 0) {
     return;
   }
-  final Sampler samp=context.getCurrentSampler();
   if (!(samp instanceof Interruptible)) {
     return;
   }

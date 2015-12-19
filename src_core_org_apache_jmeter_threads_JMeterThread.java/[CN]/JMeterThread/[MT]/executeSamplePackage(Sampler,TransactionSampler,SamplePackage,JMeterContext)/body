@@ -10,7 +10,7 @@
   TestBeanHelper.prepare(sampler);
   currentSampler=sampler;
   for (  SampleMonitor monitor : sampleMonitors) {
-    monitor.sampleStarting();
+    monitor.sampleStarting(sampler);
   }
   SampleResult result=null;
   try {
@@ -18,7 +18,7 @@
   }
   finally {
     for (    SampleMonitor monitor : sampleMonitors) {
-      monitor.sampleEnded();
+      monitor.sampleEnded(sampler);
     }
   }
   currentSampler=null;
