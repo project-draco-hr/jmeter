@@ -1,5 +1,5 @@
 {
-  Validate.notNull(metadata,MUST_NOT_BE_NULL,"metadata");
+  super();
   this.metadata=metadata;
   this.columnCount=metadata.getColumnCount();
   this.separator=metadata.getSeparator();

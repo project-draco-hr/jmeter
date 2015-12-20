@@ -1,4 +1,5 @@
 {
+  Validate.validState(writer != null,"No writer set! Call setWriter() first!");
   StringBuilder row=new StringBuilder();
   for (int i=0; i < columnCount; i++) {
     row.append(metadata.getColumnName(i));

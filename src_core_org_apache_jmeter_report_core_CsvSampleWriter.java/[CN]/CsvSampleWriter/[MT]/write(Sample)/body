@@ -1,5 +1,4 @@
 {
-  Validate.notNull(sample,MUST_NOT_BE_NULL,"sample");
   Validate.validState(writer != null,"No writer set! Call setWriter() first!");
   StringBuilder row=new StringBuilder();
   char[] specials=new char[]{separator,CSVSaveService.QUOTING_CHAR,CharUtils.CR,CharUtils.LF};
@@ -7,8 +6,7 @@
     String data=sample.getString(i);
     row.append(CSVSaveService.quoteDelimiters(data,specials)).append(separator);
   }
-  int rowLength=row.length() - 1;
-  row.setLength(rowLength);
+  row.setLength(row.length() - 1);
   writer.println(row.toString());
   sampleCount++;
   return sampleCount;
