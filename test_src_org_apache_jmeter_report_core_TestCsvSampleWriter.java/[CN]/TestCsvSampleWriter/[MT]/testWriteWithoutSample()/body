@@ -5,7 +5,6 @@
       fail("NPE expected");
     }
  catch (    NullPointerException e) {
-      assertEquals("sample must not be null",e.getMessage());
     }
   }
  }
