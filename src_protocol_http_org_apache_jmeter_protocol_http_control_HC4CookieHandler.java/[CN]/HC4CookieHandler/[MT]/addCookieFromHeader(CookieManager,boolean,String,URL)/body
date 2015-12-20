@@ -30,9 +30,8 @@
       if (expiryDate != null) {
         exp=expiryDate.getTime();
       }
-      Cookie newCookie=new Cookie(cookie.getName(),cookie.getValue(),cookie.getDomain(),cookie.getPath(),cookie.isSecure(),exp / 1000);
+      Cookie newCookie=new Cookie(cookie.getName(),cookie.getValue(),cookie.getDomain(),cookie.getPath(),cookie.isSecure(),exp / 1000,((BasicClientCookie)cookie).containsAttribute(ClientCookie.PATH_ATTR),((BasicClientCookie)cookie).containsAttribute(ClientCookie.DOMAIN_ATTR),cookie.getVersion());
       if (exp == 0 || exp >= System.currentTimeMillis()) {
-        newCookie.setVersion(cookie.getVersion());
         cookieManager.add(newCookie);
       }
  else {

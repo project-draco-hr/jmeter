@@ -1,7 +1,8 @@
 {
   super();
   if (policy.equals(org.apache.commons.httpclient.cookie.CookiePolicy.DEFAULT)) {
-    policy=CookiePolicy.BEST_MATCH;
+    policy=CookieSpecs.DEFAULT;
   }
-  this.cookieSpec=registry.getCookieSpec(policy);
+  HttpClientContext context=HttpClientContext.create();
+  this.cookieSpec=registry.lookup(policy).create(context);
 }

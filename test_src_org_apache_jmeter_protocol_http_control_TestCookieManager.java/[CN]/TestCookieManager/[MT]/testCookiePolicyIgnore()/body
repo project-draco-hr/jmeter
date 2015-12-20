@@ -1,5 +1,5 @@
 {
-  man.setCookiePolicy(CookiePolicy.IGNORE_COOKIES);
+  man.setCookiePolicy(CookieSpecs.IGNORE_COOKIES);
   man.testStarted();
   URL url=new URL("http://order.now/sub1/moo.html");
   man.addCookieFromHeader("test1=moo1;",url);
@@ -18,8 +18,7 @@
   assertEquals("/sub1",man.get(1).getPath());
   assertEquals("/",man.get(2).getPath());
   String s=man.getCookieHeaderForURL(url);
-  assertNull(s);
-  HC3CookieHandler hc3CookieHandler=(HC3CookieHandler)man.getCookieHandler();
-  org.apache.commons.httpclient.Cookie[] c=hc3CookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
-  assertEquals(0,c.length);
+  assertTrue(s.length() == 0);
+  HC4CookieHandler cookieHandler=(HC4CookieHandler)man.getCookieHandler();
+  List<org.apache.http.cookie.Cookie> c=cookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
 }

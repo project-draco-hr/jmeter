@@ -6,5 +6,11 @@
   ret.setExpiryDate(exp > 0 ? new Date(exp) : null);
   ret.setSecure(jmc.getSecure());
   ret.setVersion(jmc.getVersion());
+  if (jmc.isDomainSpecified()) {
+    ret.setAttribute(ClientCookie.DOMAIN_ATTR,jmc.getDomain());
+  }
+  if (jmc.isPathSpecified()) {
+    ret.setAttribute(ClientCookie.PATH_ATTR,jmc.getPath());
+  }
   return ret;
 }

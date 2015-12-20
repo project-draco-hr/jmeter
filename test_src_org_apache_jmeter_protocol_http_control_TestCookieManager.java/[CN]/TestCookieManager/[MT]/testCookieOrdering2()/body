@@ -9,12 +9,12 @@
   assertEquals("/",man.get(2).getPath());
   String s=man.getCookieHeaderForURL(url);
   assertNotNull(s);
-  HC3CookieHandler hc3CookieHandler=(HC3CookieHandler)man.getCookieHandler();
-  org.apache.commons.httpclient.Cookie[] c=hc3CookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
-  assertEquals("/sub1",c[0].getPath());
-  assertFalse(c[0].isPathAttributeSpecified());
-  assertEquals("/sub1",c[1].getPath());
-  assertTrue(c[1].isPathAttributeSpecified());
-  assertEquals("/",c[2].getPath());
+  HC4CookieHandler cookieHandler=(HC4CookieHandler)man.getCookieHandler();
+  List<org.apache.http.cookie.Cookie> c=cookieHandler.getCookiesForUrl(man.getCookies(),url,CookieManager.ALLOW_VARIABLE_COOKIES);
+  assertEquals("/sub1",c.get(0).getPath());
+  assertFalse(((BasicClientCookie)c.get(0)).containsAttribute(ClientCookie.PATH_ATTR));
+  assertEquals("/sub1",c.get(1).getPath());
+  assertTrue(((BasicClientCookie)c.get(1)).containsAttribute(ClientCookie.PATH_ATTR));
+  assertEquals("/",c.get(2).getPath());
   assertEquals("test1=moo1; test2=moo2; test2=moo3",s);
 }
