@@ -1,7 +1,7 @@
 {
   tableModel=new PowerTableModel(COLUMN_RESOURCE_NAMES,columnClasses);
   clearEachIteration=new JCheckBox(JMeterUtils.getResString("clear_cookies_per_iter"),false);
-  policy=new JLabeledChoice(JMeterUtils.getResString("cookie_manager_policy"),policies);
+  policy=new JLabeledChoice(JMeterUtils.getResString("cookie_manager_policy"),getPolicies(CookieManager.DEFAULT_IMPLEMENTATION));
   policy.setText(CookieManager.DEFAULT_POLICY);
   setLayout(new BorderLayout());
   setBorder(makeBorder());
@@ -14,8 +14,8 @@
   optionsPane.add(clearEachIteration);
   JPanel policyTypePane=new JPanel();
   policyTypePane.setLayout(new FlowLayout(FlowLayout.LEFT,0,0));
-  policyTypePane.add(policy);
   policyTypePane.add(GuiUtils.createLabelCombo(JMeterUtils.getResString("cookie_implementation_choose"),createComboHandler()));
+  policyTypePane.add(policy);
   optionsPane.add(policyTypePane);
   northPanel.add(optionsPane);
   add(northPanel,BorderLayout.NORTH);

@@ -1,0 +1,9 @@
+{
+  if (HC3CookieHandler.class.getName().equals(className)) {
+    return HC3CookieHandler.AVAILABLE_POLICIES;
+  }
+ else   if (HC4CookieHandler.class.getName().equals(className)) {
+    return HC4CookieHandler.AVAILABLE_POLICIES;
+  }
+  return HC4CookieHandler.AVAILABLE_POLICIES;
+}

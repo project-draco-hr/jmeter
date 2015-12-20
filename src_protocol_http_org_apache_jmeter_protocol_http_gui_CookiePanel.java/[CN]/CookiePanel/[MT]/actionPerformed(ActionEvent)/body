@@ -69,4 +69,7 @@
       JMeterUtils.reportErrorToUser(ex.getMessage(),"Error saving cookies");
     }
   }
+ else   if (action.equals(HANDLER_COMMAND)) {
+    policy.setValues(getPolicies(handlerMap.get(selectHandlerPanel.getSelectedItem())));
+  }
 }

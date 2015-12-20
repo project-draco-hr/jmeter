@@ -12,7 +12,7 @@
   String tmpName=null;
   for (  String clazz : classesToAdd) {
     String shortClazz=clazz.substring(clazz.lastIndexOf('.') + 1);
-    if (HC3CookieHandler.class.getName().equals(clazz)) {
+    if (CookieManager.DEFAULT_IMPLEMENTATION.equals(clazz)) {
       tmpName=shortClazz;
     }
     selectHandlerPanel.addItem(shortClazz);
