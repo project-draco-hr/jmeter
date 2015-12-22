@@ -1,7 +1,5 @@
 {
-  if (out == null) {
-    throw new ArgumentNullException("out");
-  }
+  Validate.notNull(out,"out must not be null.");
   try {
     setWriter(new OutputStreamWriter(out,CHARSET));
   }

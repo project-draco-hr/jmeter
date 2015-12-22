@@ -1,7 +1,5 @@
 {
-  if (writer == null) {
-    throw new ArgumentNullException("writer");
-  }
+  Validate.notNull(writer,"writer must not be null.");
   if (this.writer != null) {
     JOrphanUtils.closeQuietly(this.writer);
   }
