@@ -1,6 +1,3 @@
 {
-  if (visitor == null) {
-    throw new ArgumentNullException("visitor");
-  }
   return visitor.visitListResult(this);
 }
