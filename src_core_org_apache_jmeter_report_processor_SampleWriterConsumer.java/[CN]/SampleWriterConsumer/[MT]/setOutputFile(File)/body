@@ -1,6 +1,4 @@
 {
-  if (outputFile == null) {
-    throw new ArgumentNullException("outputFile");
-  }
+  Validate.notNull(outputFile,"outputFile must not be null");
   this.outputFile=outputFile;
 }
