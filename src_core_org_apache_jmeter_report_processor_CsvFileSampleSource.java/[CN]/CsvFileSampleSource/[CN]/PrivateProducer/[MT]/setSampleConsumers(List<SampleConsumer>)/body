@@ -1,6 +1,4 @@
 {
-  if (consumers == null) {
-    throw new ArgumentNullException("consumers");
-  }
+  Validate.notNull(consumers,"consumers must not be null");
   this.sampleConsumers=consumers;
 }
