@@ -42,7 +42,7 @@
   nameFilter.setSamplePredicate(new SamplePredicate(){
     @Override public boolean matches(    Sample sample){
       List<String> filteredSamples=configuration.getFilteredSamples();
-      return filteredSamples.size() == 0 || filteredSamples.contains(sample.getName());
+      return filteredSamples.isEmpty() || filteredSamples.contains(sample.getName());
     }
   }
 );
