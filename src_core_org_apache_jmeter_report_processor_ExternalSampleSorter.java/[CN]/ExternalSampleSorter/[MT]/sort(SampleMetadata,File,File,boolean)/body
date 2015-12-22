@@ -1,13 +1,5 @@
 {
-  if (sampleMetadata == null) {
-    throw new ArgumentNullException("sampleMetadata");
-  }
-  if (inputFile == null) {
-    throw new ArgumentNullException("inputFile");
-  }
-  if (outputFile == null) {
-    throw new ArgumentNullException("outputFile");
-  }
+  Validate.notNull(sampleMetadata,MUST_NOT_BE_NULL,"sampleMetadata");
   if (!inputFile.isFile()) {
     throw new SampleException(inputFile.getAbsolutePath() + " does not exist or is not a file. Please provide an existing samples file");
   }

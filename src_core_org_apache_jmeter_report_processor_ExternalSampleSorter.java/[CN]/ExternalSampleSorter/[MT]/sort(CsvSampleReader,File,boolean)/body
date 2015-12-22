@@ -1,10 +1,5 @@
 {
-  if (csvReader == null) {
-    throw new ArgumentNullException("csvReader");
-  }
-  if (output == null) {
-    throw new ArgumentNullException("output");
-  }
+  Validate.notNull(output,"%s must not be null","output");
   SampleMetadata sampleMetadata=csvReader.getMetadata();
   SampleWriterConsumer writerConsumer=new SampleWriterConsumer();
   writerConsumer.setOutputFile(output);

@@ -1,10 +1,4 @@
 {
-  if (inputFile == null) {
-    throw new ArgumentNullException("inputFile");
-  }
-  if (outputFile == null) {
-    throw new ArgumentNullException("outputFile");
-  }
   if (!inputFile.isFile()) {
     throw new SampleException(inputFile.getAbsolutePath() + " does not exist or is not a file. Please provide an existing samples file");
   }
