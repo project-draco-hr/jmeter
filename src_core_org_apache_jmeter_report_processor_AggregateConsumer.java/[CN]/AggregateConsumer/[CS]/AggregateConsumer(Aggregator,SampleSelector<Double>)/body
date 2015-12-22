@@ -1,10 +1,6 @@
 {
-  if (aggregator == null) {
-    throw new ArgumentNullException("aggregator");
-  }
-  if (selector == null) {
-    throw new ArgumentNullException("selector");
-  }
+  Validate.notNull(aggregator,MUST_NOT_BE_NULL,"aggregator");
+  Validate.notNull(selector,MUST_NOT_BE_NULL,"selector");
   this.aggregator=aggregator;
   this.selector=selector;
 }
