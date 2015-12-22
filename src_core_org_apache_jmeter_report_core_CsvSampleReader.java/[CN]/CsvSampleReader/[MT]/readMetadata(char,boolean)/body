@@ -1,17 +1,17 @@
 {
   try {
-    SampleMetadata metadata;
+    SampleMetadata result;
     String line=reader.readLine();
     if (line == null) {
       throw new IllegalArgumentException("File is empty");
     }
     if (useSaveSampleCfg && CSVSaveService.getSampleSaveConfiguration(line,file.getAbsolutePath()) == null) {
-      metadata=new SampleMetadata(SampleSaveConfiguration.staticConfig());
+      result=new SampleMetadata(SampleSaveConfiguration.staticConfig());
     }
  else {
-      metadata=new SampleMetaDataParser(separator).parse(line);
+      result=new SampleMetaDataParser(separator).parse(line);
     }
-    return metadata;
+    return result;
   }
  catch (  Exception e) {
     throw new SampleException("Could not read metadata !",e);
