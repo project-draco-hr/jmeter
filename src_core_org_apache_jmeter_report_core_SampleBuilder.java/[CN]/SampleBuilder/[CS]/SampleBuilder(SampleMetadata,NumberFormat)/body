@@ -1,9 +1,9 @@
 {
-  if (floatFormater == null) {
-    this.floatFormater=DEFAULT_FLOAT_FORMATER;
+  if (floatFormatter == null) {
+    this.floatFormatter=DEFAULT_FLOAT_FORMATTER;
   }
  else {
-    this.floatFormater=floatFormater;
+    this.floatFormatter=floatFormatter;
   }
   this.metadata=metadata;
   this.data=new String[metadata.getColumnCount()];
