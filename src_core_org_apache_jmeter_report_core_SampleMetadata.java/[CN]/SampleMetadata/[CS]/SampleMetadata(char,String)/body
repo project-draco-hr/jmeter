@@ -1,6 +1,4 @@
 {
-  if (columns == null) {
-    throw new ArgumentNullException("columns");
-  }
+  Validate.notNull(columns,"columns must not be null");
   initialize(separator,Arrays.asList(columns));
 }
