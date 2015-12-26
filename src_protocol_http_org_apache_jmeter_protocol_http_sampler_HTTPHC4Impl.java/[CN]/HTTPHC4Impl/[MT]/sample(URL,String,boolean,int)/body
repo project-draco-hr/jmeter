@@ -47,6 +47,7 @@
     return res;
   }
   HttpContext localContext=new BasicHttpContext();
+  setupClientContextBeforeSample(localContext);
   res.sampleStart();
   final CacheManager cacheManager=getCacheManager();
   if (cacheManager != null && HTTPConstants.GET.equalsIgnoreCase(method)) {
@@ -59,6 +60,7 @@
     handleMethod(method,res,httpRequest,localContext);
     HttpResponse httpResponse=executeRequest(httpClient,httpRequest,localContext,url);
     final HttpRequest request=(HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST);
+    extractClientContextAfterSample(localContext);
     final InetAddress localAddr=(InetAddress)httpRequest.getParams().getParameter(ConnRoutePNames.LOCAL_ADDRESS);
     if (localAddr != null) {
       request.addHeader(HEADER_LOCAL_ADDRESS,localAddr.toString());

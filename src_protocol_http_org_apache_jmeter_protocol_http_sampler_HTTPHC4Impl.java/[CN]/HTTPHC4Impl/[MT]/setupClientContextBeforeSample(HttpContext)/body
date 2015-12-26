@@ -1,0 +1,16 @@
+{
+  Object userToken=JMeterContextService.getContext().getVariables().getObject(USER_TOKEN);
+  if (userToken != null) {
+    if (log.isDebugEnabled()) {
+      log.debug("Found user token:" + userToken + " as JMeter variable:"+ USER_TOKEN+ ", storing it in HttpContext");
+    }
+    localContext.setAttribute(ClientContext.USER_TOKEN,userToken);
+  }
+ else {
+    String userId=Thread.currentThread().getName();
+    if (log.isDebugEnabled()) {
+      log.debug("Storing in HttpContext the user token:" + userId);
+    }
+    localContext.setAttribute(ClientContext.USER_TOKEN,userId);
+  }
+}
