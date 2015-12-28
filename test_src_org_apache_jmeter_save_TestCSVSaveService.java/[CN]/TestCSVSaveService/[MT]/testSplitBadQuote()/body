@@ -1,6 +1,6 @@
 {
   try {
-    checkSplitString("a\"b",',',null);
+    checkSplitString("a\"b",',',new String[]{});
     fail("Should have generated IOException");
   }
  catch (  IOException e) {
