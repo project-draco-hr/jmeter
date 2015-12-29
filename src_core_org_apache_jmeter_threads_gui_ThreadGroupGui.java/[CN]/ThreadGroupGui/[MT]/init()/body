@@ -27,11 +27,11 @@
   threadPropsPanel.add(scheduler);
   mainPanel=new VerticalPanel();
   mainPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("scheduler_configuration")));
-  mainPanel.add(createStartTimePanel());
-  mainPanel.add(createEndTimePanel());
   mainPanel.add(createDurationPanel());
   mainPanel.add(createDelayPanel());
-  mainPanel.setVisible(false);
+  mainPanel.add(createStartTimePanel());
+  mainPanel.add(createEndTimePanel());
+  toggleSchedulerFields(false);
   VerticalPanel intgrationPanel=new VerticalPanel();
   intgrationPanel.add(threadPropsPanel);
   intgrationPanel.add(mainPanel);
