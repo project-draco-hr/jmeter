@@ -10,14 +10,8 @@
   sb.append(" in ");
   long elapsed=summariserRunningSample.getElapsed();
   long elapsedSec=(elapsed + 500) / 1000;
-  if (elapsedSec > 100 || (elapsed - elapsedSec * 1000) < 50) {
-    sb.append(longToSb(tmp,elapsedSec,5));
-  }
- else {
-    double elapsedSecf=elapsed / 1000.0d;
-    sb.append(doubleToSb(dfDouble,tmp,elapsedSecf,5,1));
-  }
-  sb.append("s = ");
+  sb.append(String.format("%d:%02d:%02d",elapsedSec / 3600,(elapsedSec % 3600) / 60,(elapsedSec % 60)));
+  sb.append(" = ");
   if (elapsed > 0) {
     sb.append(doubleToSb(dfDouble,tmp,summariserRunningSample.getRate(),6,1));
   }
