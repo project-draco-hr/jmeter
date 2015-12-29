@@ -16,7 +16,7 @@
       file.delete();
     }
   }
-  if (createdWorkDir == true) {
+  if (createdWorkDir) {
     File workingDir=parent.getWorkingDirectory();
     try {
       FileUtils.deleteDirectory(workingDir);
