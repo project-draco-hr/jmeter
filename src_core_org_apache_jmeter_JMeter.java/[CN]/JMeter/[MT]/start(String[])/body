@@ -66,6 +66,9 @@
  else     if (parser.getArgumentById(HELP_OPT) != null) {
       System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
     }
+ else     if (parser.getArgumentById(OPTIONS_OPT) != null) {
+      System.out.println(CLUtil.describeOptions(options).toString());
+    }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
       try {
         RemoteJMeterEngineImpl.startServer(JMeterUtils.getPropDefault("server_port",0));
