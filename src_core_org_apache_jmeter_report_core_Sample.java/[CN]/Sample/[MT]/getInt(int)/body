@@ -3,6 +3,6 @@
     return Integer.parseInt(data[i]);
   }
  catch (  NumberFormatException ex) {
-    throw new SampleException("Error on sample #" + row,ex);
+    throw new SampleException(ERROR_ON_SAMPLE + row,ex);
   }
 }
