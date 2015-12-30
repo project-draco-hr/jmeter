@@ -8,7 +8,7 @@
       log.error("Failure! Number of samples read from input and written to chunk files differ");
     }
  else {
-      log.info("chunked samples dumps succeeded.");
+      log.info("dumping of samples chunk succeeded.");
     }
   }
   super.setProducedMetadata(sampleMetadata,0);
