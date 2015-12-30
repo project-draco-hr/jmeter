@@ -1,0 +1,7 @@
+{
+  long startTime=JMeterContextService.getTestStartTime();
+  if (startTime > 0) {
+    long elapsedSec=(System.currentTimeMillis() - startTime + 500) / 1000;
+    testTimeDuration.setText(JOrphanUtils.formatDuration(elapsedSec));
+  }
+}

@@ -7,6 +7,8 @@
   toolPanel.add(toolbar);
   toolPanel.add(Box.createRigidArea(new Dimension(10,15)));
   toolPanel.add(Box.createGlue());
+  toolPanel.add(testTimeDuration);
+  toolPanel.add(Box.createRigidArea(new Dimension(20,15)));
   if (DISPLAY_ERROR_FATAL_COUNTER) {
     toolPanel.add(errorsOrFatalsLabel);
     toolPanel.add(warnIndicator);

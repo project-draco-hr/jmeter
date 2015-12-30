@@ -1,0 +1,3 @@
+{
+  return String.format("%02d:%02d:%02d",elapsedSec / 3600,(elapsedSec % 3600) / 60,(elapsedSec % 60));
+}

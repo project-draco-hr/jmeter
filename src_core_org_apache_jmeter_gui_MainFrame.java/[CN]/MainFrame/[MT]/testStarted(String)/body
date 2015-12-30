@@ -1,5 +1,6 @@
 {
   hosts.add(host);
+  computeTestDurationTimer.start();
   runningIndicator.setIcon(runningIcon);
   activeThreads.setText("0");
   totalThreads.setText("0");

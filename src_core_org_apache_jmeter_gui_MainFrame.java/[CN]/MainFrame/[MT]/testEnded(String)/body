@@ -3,6 +3,7 @@
   if (hosts.size() == 0) {
     runningIndicator.setIcon(stoppedIcon);
     JMeterContextService.endTest();
+    computeTestDurationTimer.stop();
   }
   menuBar.setRunning(false,host);
   if (LOCAL.equals(host)) {
