@@ -5,15 +5,7 @@
   }
   log.debug("Start report generation");
   File tmpDir=configuration.getTempDirectory();
-  boolean tmpDirCreated=false;
-  if (!tmpDir.exists()) {
-    tmpDirCreated=tmpDir.mkdir();
-    if (!tmpDirCreated) {
-      String message=String.format("Cannot create temporary directory \"%s\".",tmpDir);
-      log.error(message);
-      throw new GenerationException(message);
-    }
-  }
+  boolean tmpDirCreated=createTempDir(tmpDir);
   SampleContext sampleContext=new SampleContext();
   sampleContext.setWorkingDirectory(tmpDir);
   SampleSource source=new CsvFileSampleSource(testFile,JMeterUtils.getPropDefault("jmeter.save.saveservice.default_delimiter",",").charAt(0));
@@ -46,13 +38,6 @@
     exportData(sampleContext,entry.getKey(),entry.getValue());
   }
   log.debug("End of data exporting");
-  if (tmpDirCreated) {
-    try {
-      FileUtils.deleteDirectory(tmpDir);
-    }
- catch (    IOException ex) {
-      log.warn(String.format("Cannot delete created temporary directory \"%s\".",tmpDir),ex);
-    }
-  }
+  removeTempDir(tmpDir,tmpDirCreated);
   log.debug("End of report generation");
 }

@@ -1,0 +1,10 @@
+{
+  if (tmpDirCreated) {
+    try {
+      FileUtils.deleteDirectory(tmpDir);
+    }
+ catch (    IOException ex) {
+      log.warn(String.format("Cannot delete created temporary directory \"%s\".",tmpDir),ex);
+    }
+  }
+}
