@@ -20,17 +20,13 @@
   source.setSampleContext(sampleContext);
   NormalizerSampleConsumer normalizer=new NormalizerSampleConsumer();
   normalizer.setName(NORMALIZER_CONSUMER_NAME);
-  source.addSampleConsumer(normalizer);
   normalizer.addSampleConsumer(createBeginDateConsumer());
   normalizer.addSampleConsumer(createEndDateConsumer());
   FilterConsumer nameFilter=createNameFilter();
-  normalizer.setSampleConsumer(nameFilter);
-  nameFilter.setSampleConsumer(createApdexSummaryConsumer());
-  nameFilter.setSampleConsumer(createRequestsSummaryConsumer());
-  nameFilter.setSampleConsumer(createStatisticsSummaryConsumer());
   FilterConsumer excludeControllerFilter=createExcludeControllerFilter();
-  nameFilter.setSampleConsumer(excludeControllerFilter);
-  excludeControllerFilter.setSampleConsumer(createErrorsSummaryConsumer());
+  nameFilter.addSampleConsumer(excludeControllerFilter);
+  normalizer.addSampleConsumer(nameFilter);
+  source.addSampleConsumer(normalizer);
   Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
   HashMap<GraphConfiguration,AbstractGraphConsumer> graphMap=new HashMap<>();
   for (  Map.Entry<String,GraphConfiguration> entryGraphCfg : graphConfigurations.entrySet()) {

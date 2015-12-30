@@ -3,5 +3,6 @@
   excludeControllerFilter.setName(START_INTERVAL_CONTROLLER_FILTER_CONSUMER_NAME);
   excludeControllerFilter.setSamplePredicate(new ControllerSamplePredicate());
   excludeControllerFilter.setReverseFilter(true);
+  excludeControllerFilter.addSampleConsumer(createErrorsSummaryConsumer());
   return excludeControllerFilter;
 }

@@ -8,5 +8,8 @@
     }
   }
 );
+  nameFilter.addSampleConsumer(createApdexSummaryConsumer());
+  nameFilter.addSampleConsumer(createRequestsSummaryConsumer());
+  nameFilter.addSampleConsumer(createStatisticsSummaryConsumer());
   return nameFilter;
 }
