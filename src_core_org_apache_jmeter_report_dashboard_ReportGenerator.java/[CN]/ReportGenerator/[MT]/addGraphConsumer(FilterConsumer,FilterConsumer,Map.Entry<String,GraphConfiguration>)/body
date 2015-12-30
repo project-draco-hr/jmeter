@@ -16,7 +16,6 @@
     }
     AbstractSampleConsumer entryPoint=graphConfiguration.excludesControllers() ? excludeControllerFilter : nameFilter;
     entryPoint.addSampleConsumer(graph);
-    graphMap.put(graphConfiguration,graph);
   }
  catch (  ClassNotFoundException|IllegalAccessException|InstantiationException|ClassCastException ex) {
     String error=String.format(INVALID_CLASS_FMT,className);

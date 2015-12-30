@@ -28,9 +28,8 @@
   normalizer.addSampleConsumer(nameFilter);
   source.addSampleConsumer(normalizer);
   Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
-  HashMap<GraphConfiguration,AbstractGraphConsumer> graphMap=new HashMap<>();
   for (  Map.Entry<String,GraphConfiguration> entryGraphCfg : graphConfigurations.entrySet()) {
-    addGraphConsumer(nameFilter,excludeControllerFilter,graphMap,entryGraphCfg);
+    addGraphConsumer(nameFilter,excludeControllerFilter,entryGraphCfg);
   }
   log.debug("Start samples processing");
   try {
