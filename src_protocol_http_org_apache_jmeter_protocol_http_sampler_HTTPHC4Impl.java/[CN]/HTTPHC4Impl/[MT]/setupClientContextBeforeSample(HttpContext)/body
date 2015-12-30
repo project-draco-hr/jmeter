@@ -1,5 +1,9 @@
 {
-  Object userToken=JMeterContextService.getContext().getVariables().getObject(USER_TOKEN);
+  Object userToken=null;
+  JMeterVariables jMeterVariables=JMeterContextService.getContext().getVariables();
+  if (jMeterVariables != null) {
+    userToken=jMeterVariables.getObject(USER_TOKEN);
+  }
   if (userToken != null) {
     if (log.isDebugEnabled()) {
       log.debug("Found user token:" + userToken + " as JMeter variable:"+ USER_TOKEN+ ", storing it in HttpContext");
