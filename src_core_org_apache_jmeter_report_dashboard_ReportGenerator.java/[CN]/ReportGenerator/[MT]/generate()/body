@@ -67,26 +67,7 @@
   log.debug("End of samples processing");
   log.debug("Start data exporting");
   for (  Map.Entry<String,ExporterConfiguration> entry : configuration.getExportConfigurations().entrySet()) {
-    String exporterName=entry.getKey();
-    ExporterConfiguration exporterConfiguration=entry.getValue();
-    String className=exporterConfiguration.getClassName();
-    try {
-      Class<?> clazz=Class.forName(className);
-      Object obj=clazz.newInstance();
-      DataExporter exporter=(DataExporter)obj;
-      exporter.setName(exporterName);
-      exporter.export(sampleContext,testFile,configuration);
-    }
- catch (    ClassNotFoundException|IllegalAccessException|InstantiationException|ClassCastException ex) {
-      String error=String.format(INVALID_CLASS_FMT,className);
-      log.error(error,ex);
-      throw new GenerationException(error,ex);
-    }
-catch (    ExportException ex) {
-      String error=String.format(INVALID_EXPORT_FMT,exporterName);
-      log.error(error,ex);
-      throw new GenerationException(error,ex);
-    }
+    exportData(sampleContext,entry.getKey(),entry.getValue());
   }
   log.debug("End of data exporting");
   if (tmpDirCreated) {
