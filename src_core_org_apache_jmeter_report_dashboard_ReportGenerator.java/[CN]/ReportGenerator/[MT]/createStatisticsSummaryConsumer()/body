@@ -1,0 +1,6 @@
+{
+  StatisticsSummaryConsumer statisticsSummaryConsumer=new StatisticsSummaryConsumer();
+  statisticsSummaryConsumer.setName(STATISTICS_SUMMARY_CONSUMER_NAME);
+  statisticsSummaryConsumer.setHasOverallResult(true);
+  return statisticsSummaryConsumer;
+}

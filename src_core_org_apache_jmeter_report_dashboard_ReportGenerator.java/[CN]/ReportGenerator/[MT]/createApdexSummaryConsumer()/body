@@ -1,0 +1,15 @@
+{
+  ApdexSummaryConsumer apdexSummaryConsumer=new ApdexSummaryConsumer();
+  apdexSummaryConsumer.setName(APDEX_SUMMARY_CONSUMER_NAME);
+  apdexSummaryConsumer.setHasOverallResult(true);
+  apdexSummaryConsumer.setThresholdSelector(new ThresholdSelector(){
+    @Override public ApdexThresholdsInfo select(    String sampleName){
+      ApdexThresholdsInfo info=new ApdexThresholdsInfo();
+      info.setSatisfiedThreshold(configuration.getApdexSatisfiedThreshold());
+      info.setToleratedThreshold(configuration.getApdexToleratedThreshold());
+      return info;
+    }
+  }
+);
+  return apdexSummaryConsumer;
+}

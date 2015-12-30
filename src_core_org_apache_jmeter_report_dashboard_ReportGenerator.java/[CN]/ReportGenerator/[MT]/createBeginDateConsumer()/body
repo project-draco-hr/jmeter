@@ -1,0 +1,10 @@
+{
+  AggregateConsumer beginDateConsumer=new AggregateConsumer(new MinAggregator(),new SampleSelector<Double>(){
+    @Override public Double select(    Sample sample){
+      return Double.valueOf(sample.getStartTime());
+    }
+  }
+);
+  beginDateConsumer.setName(BEGIN_DATE_CONSUMER_NAME);
+  return beginDateConsumer;
+}

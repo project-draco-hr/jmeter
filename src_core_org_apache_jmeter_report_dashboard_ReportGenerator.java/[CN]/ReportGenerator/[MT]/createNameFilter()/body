@@ -1,0 +1,12 @@
+{
+  FilterConsumer nameFilter=new FilterConsumer();
+  nameFilter.setName(NAME_FILTER_CONSUMER_NAME);
+  nameFilter.setSamplePredicate(new SamplePredicate(){
+    @Override public boolean matches(    Sample sample){
+      List<String> filteredSamples=configuration.getFilteredSamples();
+      return filteredSamples.isEmpty() || filteredSamples.contains(sample.getName());
+    }
+  }
+);
+  return nameFilter;
+}

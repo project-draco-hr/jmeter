@@ -1,0 +1,10 @@
+{
+  AggregateConsumer endDateConsumer=new AggregateConsumer(new MaxAggregator(),new SampleSelector<Double>(){
+    @Override public Double select(    Sample sample){
+      return Double.valueOf(sample.getEndTime());
+    }
+  }
+);
+  endDateConsumer.setName(END_DATE_CONSUMER_NAME);
+  return endDateConsumer;
+}
