@@ -10,7 +10,7 @@
       if (l.hasNext() && r.hasNext()) {
         Sample firstLeft=l.peek();
         Sample firstRight=r.peek();
-        if (!revertedSort && sampleComparator.compare(firstLeft,firstRight) < 0 || revertedSort == true && sampleComparator.compare(firstLeft,firstRight) >= 0) {
+        if (leftBeforeRight(firstLeft,firstRight)) {
           csvWriter.write(firstLeft);
           l.readSample();
         }

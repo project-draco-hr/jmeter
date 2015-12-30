@@ -1,0 +1,3 @@
+{
+  return !revertedSort && sampleComparator.compare(leftSample,rightSample) < 0 || revertedSort && sampleComparator.compare(leftSample,rightSample) >= 0;
+}
