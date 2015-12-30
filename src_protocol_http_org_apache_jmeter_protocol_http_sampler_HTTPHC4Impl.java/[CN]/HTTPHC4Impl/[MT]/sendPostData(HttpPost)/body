@@ -16,9 +16,8 @@
       if (arg.isSkippable(parameterName)) {
         continue;
       }
-      FormBodyPart formPart;
       StringBody stringBody=new StringBody(arg.getValue(),charset);
-      formPart=new FormBodyPart(arg.getName(),stringBody);
+      FormBodyPart formPart=new FormBodyPart(arg.getName(),stringBody);
       multiPart.addPart(formPart);
     }
     ViewableFileBody[] fileBodies=new ViewableFileBody[files.length];
