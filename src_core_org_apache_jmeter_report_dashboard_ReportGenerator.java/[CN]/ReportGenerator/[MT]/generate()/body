@@ -91,39 +91,7 @@
         String propertyName=entryProperty.getKey();
         String propertyValue=entryProperty.getValue();
         String setterName=getSetterName(propertyName);
-        try {
-          int i=0;
-          boolean invoked=false;
-          while (i < methods.length && !invoked) {
-            Method method=methods[i];
-            if (method.getName().equals(setterName)) {
-              Class<?>[] parameterTypes=method.getParameterTypes();
-              if (parameterTypes.length == 1) {
-                Class<?> parameterType=parameterTypes[0];
-                if (parameterType.isAssignableFrom(String.class)) {
-                  method.invoke(obj,propertyValue);
-                }
- else {
-                  StringConverter<?> converter=Converters.getConverter(parameterType);
-                  if (converter == null) {
-                    throw new GenerationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,parameterType.getName()));
-                  }
-                  method.invoke(obj,converter.convert(propertyValue));
-                }
-                invoked=true;
-              }
-            }
-            i++;
-          }
-          if (!invoked) {
-            log.warn(String.format("\"%s\" is not a valid property for class \"%s\", skip it",propertyName,className));
-          }
-        }
- catch (        InvocationTargetException|ConvertException ex) {
-          String message=String.format("Cannot assign \"%s\" to property \"%s\" (mapped as \"%s\"), skip it",propertyValue,propertyName,setterName);
-          log.error(message,ex);
-          throw new GenerationException(message,ex);
-        }
+        setProperty(className,obj,methods,propertyName,propertyValue,setterName);
       }
       AbstractSampleConsumer entryPoint=graphConfiguration.excludesControllers() ? excludeControllerFilter : nameFilter;
       entryPoint.addSampleConsumer(graph);
