@@ -1,0 +1,26 @@
+{
+  String graphName=entryGraphCfg.getKey();
+  GraphConfiguration graphConfiguration=entryGraphCfg.getValue();
+  String className=graphConfiguration.getClassName();
+  try {
+    Class<?> clazz=Class.forName(className);
+    Object obj=clazz.newInstance();
+    AbstractGraphConsumer graph=(AbstractGraphConsumer)obj;
+    graph.setName(graphName);
+    Method[] methods=clazz.getMethods();
+    for (    Map.Entry<String,String> entryProperty : graphConfiguration.getProperties().entrySet()) {
+      String propertyName=entryProperty.getKey();
+      String propertyValue=entryProperty.getValue();
+      String setterName=getSetterName(propertyName);
+      setProperty(className,obj,methods,propertyName,propertyValue,setterName);
+    }
+    AbstractSampleConsumer entryPoint=graphConfiguration.excludesControllers() ? excludeControllerFilter : nameFilter;
+    entryPoint.addSampleConsumer(graph);
+    graphMap.put(graphConfiguration,graph);
+  }
+ catch (  ClassNotFoundException|IllegalAccessException|InstantiationException|ClassCastException ex) {
+    String error=String.format(INVALID_CLASS_FMT,className);
+    log.error(error,ex);
+    throw new GenerationException(error,ex);
+  }
+}
