@@ -50,7 +50,7 @@
         @Override public SubConfiguration createSubConfiguration(){
           return new SubConfiguration();
         }
-        @Override public void initialize(        String subConfId,        SubConfiguration subConfiguration) throws ConfigurationException {
+        @Override public void initialize(        String subConfId,        SubConfiguration subConfiguration){
         }
       }
 );
