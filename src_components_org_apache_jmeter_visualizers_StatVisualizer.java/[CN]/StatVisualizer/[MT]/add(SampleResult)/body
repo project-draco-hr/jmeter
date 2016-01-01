@@ -1,5 +1,5 @@
 {
-  JMeterUtils.runSafe(new Runnable(){
+  JMeterUtils.runSafe(true,new Runnable(){
     @Override public void run(){
       SamplingStatCalculator row=null;
       final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());

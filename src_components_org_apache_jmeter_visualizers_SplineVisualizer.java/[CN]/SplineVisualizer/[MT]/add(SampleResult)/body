@@ -1,5 +1,5 @@
 {
-  JMeterUtils.runSafe(new Runnable(){
+  JMeterUtils.runSafe(true,new Runnable(){
     @Override public void run(){
       model.add(res);
     }

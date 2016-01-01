@@ -4,7 +4,7 @@
     matcher=pattern.matcher(sampleLabel);
   }
   if ((matcher == null) || (matcher.find())) {
-    JMeterUtils.runSafe(new Runnable(){
+    JMeterUtils.runSafe(true,new Runnable(){
       @Override public void run(){
         SamplingStatCalculator row=null;
 synchronized (lock) {

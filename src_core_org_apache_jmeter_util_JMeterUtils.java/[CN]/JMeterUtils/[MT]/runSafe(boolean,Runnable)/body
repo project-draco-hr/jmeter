@@ -1,0 +1,21 @@
+{
+  if (SwingUtilities.isEventDispatchThread()) {
+    runnable.run();
+  }
+ else {
+    if (synchronous) {
+      try {
+        SwingUtilities.invokeAndWait(runnable);
+      }
+ catch (      InterruptedException e) {
+        log.warn("Interrupted in thread " + Thread.currentThread().getName(),e);
+      }
+catch (      InvocationTargetException e) {
+        throw new Error(e);
+      }
+    }
+ else {
+      SwingUtilities.invokeLater(runnable);
+    }
+  }
+}

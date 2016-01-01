@@ -1,16 +1,3 @@
 {
-  if (SwingUtilities.isEventDispatchThread()) {
-    runnable.run();
-  }
- else {
-    try {
-      SwingUtilities.invokeAndWait(runnable);
-    }
- catch (    InterruptedException e) {
-      log.warn("Interrupted in thread " + Thread.currentThread().getName(),e);
-    }
-catch (    InvocationTargetException e) {
-      throw new Error(e);
-    }
-  }
+  runSafe(true,runnable);
 }
