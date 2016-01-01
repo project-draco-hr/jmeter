@@ -1,5 +1,5 @@
 {
-  JMeterUtils.runSafe(true,new Runnable(){
+  JMeterUtils.runSafe(false,new Runnable(){
     @Override public void run(){
       model.addSample(res);
       updateGui(model.getCurrentSample());

@@ -3,7 +3,7 @@
   sb.append(sample.getSampleLabel());
   sb.append(getAssertionResult(sample));
   sb.append("\n");
-  JMeterUtils.runSafe(true,new Runnable(){
+  JMeterUtils.runSafe(false,new Runnable(){
     @Override public void run(){
 synchronized (textArea) {
         textArea.append(sb.toString());

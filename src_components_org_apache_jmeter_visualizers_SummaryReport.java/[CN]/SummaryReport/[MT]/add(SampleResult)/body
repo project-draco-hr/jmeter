@@ -1,6 +1,6 @@
 {
   final String sampleLabel=res.getSampleLabel(useGroupName.isSelected());
-  JMeterUtils.runSafe(true,new Runnable(){
+  JMeterUtils.runSafe(false,new Runnable(){
     @Override public void run(){
       Calculator row=null;
 synchronized (lock) {
