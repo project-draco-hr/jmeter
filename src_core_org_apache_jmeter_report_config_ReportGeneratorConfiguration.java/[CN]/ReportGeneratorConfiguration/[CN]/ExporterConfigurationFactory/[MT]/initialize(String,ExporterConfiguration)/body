@@ -1,0 +1,20 @@
+{
+  log.debug(String.format(LOAD_EXPORTER_FMT,exportId));
+  String className=getRequiredProperty(props,getExporterPropertyKey(exportId,SUBCONF_KEY_CLASSNAME),"",String.class);
+  exportConfiguration.setClassName(className);
+  boolean filtersOnlySampleSeries=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_FILTERS_ONLY_SAMPLE_SERIES),EXPORTER_KEY_FILTERS_ONLY_SAMPLE_SERIES_DEFAULT,Boolean.class).booleanValue();
+  exportConfiguration.filtersOnlySampleSeries(filtersOnlySampleSeries);
+  String seriesFilter=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_SERIES_FILTER),EXPORTER_KEY_SERIES_FILTER_DEFAULT,String.class);
+  exportConfiguration.setSeriesFilter(seriesFilter);
+  boolean showControllerSeriesOnly=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_SHOW_CONTROLLERS_ONLY),EXPORTER_KEY_SHOW_CONTROLLERS_ONLY_DEFAULT,Boolean.class).booleanValue();
+  exportConfiguration.showControllerSeriesOnly(showControllerSeriesOnly);
+  Map<String,SubConfiguration> graphExtraConfigurations=exportConfiguration.getGraphExtraConfigurations();
+  loadSubConfiguration(graphExtraConfigurations,props,getSubConfigurationPropertyKey(REPORT_GENERATOR_EXPORTER_KEY_PREFIX,exportId,EXPORTER_KEY_GRAPH_EXTRA_OPTIONS),true,new SubConfigurationFactory<SubConfiguration>(){
+    @Override public SubConfiguration createSubConfiguration(){
+      return new SubConfiguration();
+    }
+    @Override public void initialize(    String subConfId,    SubConfiguration subConfiguration){
+    }
+  }
+);
+}

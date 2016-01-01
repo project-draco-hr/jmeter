@@ -1,0 +1,9 @@
+{
+  log.debug(String.format(LOAD_GRAPH_FMT,graphId));
+  boolean excludeControllers=getRequiredProperty(props,getGraphPropertyKey(graphId,GRAPH_KEY_EXCLUDE_CONTROLLERS),GRAPH_KEY_EXCLUDE_CONTROLLERS_DEFAULT,Boolean.class).booleanValue();
+  graphConfiguration.setExcludeControllers(excludeControllers);
+  String title=getRequiredProperty(props,getGraphPropertyKey(graphId,GRAPH_KEY_TITLE),GRAPH_KEY_TITLE_DEFAULT,String.class);
+  graphConfiguration.setTitle(title);
+  String className=getRequiredProperty(props,getGraphPropertyKey(graphId,SUBCONF_KEY_CLASSNAME),"",String.class);
+  graphConfiguration.setClassName(className);
+}
