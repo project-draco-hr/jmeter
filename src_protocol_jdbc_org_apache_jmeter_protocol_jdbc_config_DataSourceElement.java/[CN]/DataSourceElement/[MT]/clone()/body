@@ -1,7 +1,7 @@
 {
   DataSourceElement el=(DataSourceElement)super.clone();
 synchronized (this) {
-    el.excaliburSource=excaliburSource;
+    el.dbcpDataSource=dbcpDataSource;
     el.perThreadPoolSet=perThreadPoolSet;
   }
   return el;

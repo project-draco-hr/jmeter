@@ -1,14 +1,24 @@
 {
 synchronized (this) {
-    if (excaliburSource != null) {
-      excaliburSource.dispose();
+    if (dbcpDataSource != null) {
+      try {
+        dbcpDataSource.close();
+      }
+ catch (      SQLException ex) {
+        log.error("Error closing pool:" + getName(),ex);
+      }
     }
-    excaliburSource=null;
+    dbcpDataSource=null;
   }
   if (perThreadPoolSet != null) {
-    for (    ResourceLimitingJdbcDataSource dsc : perThreadPoolSet) {
-      log.debug("Disposing pool: " + dsc.getInstrumentableName() + " @"+ System.identityHashCode(dsc));
-      dsc.dispose();
+    for (    BasicDataSource dsc : perThreadPoolSet) {
+      log.debug("Closing pool: " + getDataSourceName() + " @"+ System.identityHashCode(dsc));
+      try {
+        dsc.close();
+      }
+ catch (      SQLException ex) {
+        log.error("Error closing pool:" + getName(),ex);
+      }
     }
     perThreadPoolSet=null;
   }

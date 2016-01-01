@@ -4,8 +4,8 @@
     throw new SQLException("No pool found named: '" + poolName + "', ensure Variable Name matches Variable Name of JDBC Connection Configuration");
   }
  else {
-    if (poolObject instanceof DataSourceComponent) {
-      DataSourceComponent pool=(DataSourceComponent)poolObject;
+    if (poolObject instanceof DataSourceComponentImpl) {
+      DataSourceComponentImpl pool=(DataSourceComponentImpl)poolObject;
       return pool.getConnection();
     }
  else {

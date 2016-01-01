@@ -1,7 +1,5 @@
 {
-  ResourceLimitingJdbcDataSource source=null;
-  source=new ResourceLimitingJdbcDataSource();
-  DefaultConfiguration config=new DefaultConfiguration("rl-jdbc");
+  BasicDataSource dataSource=new BasicDataSource();
   if (log.isDebugEnabled()) {
     StringBuilder sb=new StringBuilder(40);
     sb.append("MaxPool: ");
@@ -14,16 +12,13 @@
     sb.append(isAutocommit());
     log.debug(sb.toString());
   }
-  DefaultConfiguration poolController=new DefaultConfiguration("pool-controller");
-  poolController.setAttribute("max",maxPool);
-  poolController.setAttribute("max-strict","true");
-  poolController.setAttribute("blocking","true");
-  poolController.setAttribute("timeout",getTimeout());
-  poolController.setAttribute("trim-interval",getTrimInterval());
-  config.addChild(poolController);
-  DefaultConfiguration autoCommit=new DefaultConfiguration("auto-commit");
-  autoCommit.setValue(String.valueOf(isAutocommit()));
-  config.addChild(autoCommit);
+  int poolSize=Integer.parseInt(maxPool);
+  dataSource.setMinIdle(0);
+  dataSource.setInitialSize(poolSize);
+  dataSource.setMaxIdle(poolSize);
+  dataSource.setMaxTotal(poolSize);
+  dataSource.setMaxWaitMillis(Long.parseLong(getTimeout()));
+  dataSource.setDefaultAutoCommit(Boolean.valueOf(isAutocommit()));
   if (log.isDebugEnabled()) {
     StringBuilder sb=new StringBuilder(40);
     sb.append("KeepAlive: ");
@@ -34,11 +29,20 @@
     sb.append(getCheckQuery());
     log.debug(sb.toString());
   }
-  DefaultConfiguration cfgKeepAlive=new DefaultConfiguration("keep-alive");
-  cfgKeepAlive.setAttribute("disable",String.valueOf(!isKeepAlive()));
-  cfgKeepAlive.setAttribute("age",getConnectionAge());
-  cfgKeepAlive.setValue(getCheckQuery());
-  poolController.addChild(cfgKeepAlive);
+  dataSource.setTestOnBorrow(false);
+  dataSource.setTestOnReturn(false);
+  dataSource.setTestOnCreate(false);
+  dataSource.setTestWhileIdle(false);
+  if (isKeepAlive()) {
+    dataSource.setTestWhileIdle(true);
+    dataSource.setValidationQuery(getCheckQuery());
+    dataSource.setMaxConnLifetimeMillis(Long.parseLong(getConnectionAge()));
+    dataSource.setTimeBetweenEvictionRunsMillis(Integer.parseInt(getTrimInterval()));
+  }
+  int transactionIsolation=DataSourceElementBeanInfo.getTransactionIsolationMode(getTransactionIsolation());
+  if (transactionIsolation >= 0) {
+    dataSource.setDefaultTransactionIsolation(transactionIsolation);
+  }
   String _username=getUsername();
   if (log.isDebugEnabled()) {
     StringBuilder sb=new StringBuilder(40);
@@ -50,27 +54,14 @@
     sb.append(_username);
     log.debug(sb.toString());
   }
-  DefaultConfiguration cfgDriver=new DefaultConfiguration("driver");
-  cfgDriver.setValue(getDriver());
-  config.addChild(cfgDriver);
-  DefaultConfiguration cfgDbUrl=new DefaultConfiguration("dburl");
-  cfgDbUrl.setValue(getDbUrl());
-  config.addChild(cfgDbUrl);
+  dataSource.setDriverClassName(getDriver());
+  dataSource.setUrl(getDbUrl());
   if (_username.length() > 0) {
-    DefaultConfiguration cfgUsername=new DefaultConfiguration("user");
-    cfgUsername.setValue(_username);
-    config.addChild(cfgUsername);
-    DefaultConfiguration cfgPassword=new DefaultConfiguration("password");
-    cfgPassword.setValue(getPassword());
-    config.addChild(cfgPassword);
+    dataSource.setUsername(_username);
+    dataSource.setPassword(getPassword());
   }
-  source.enableLogging(new LogKitLogger(log));
-  try {
-    source.configure(config);
-    source.setInstrumentableName(getDataSource());
+  if (log.isDebugEnabled()) {
+    log.debug("PoolConfiguration:" + this.dataSource);
   }
- catch (  ConfigurationException e) {
-    log.error("Could not configure datasource for pool: " + getDataSource(),e);
-  }
-  return source;
+  return dataSource;
 }

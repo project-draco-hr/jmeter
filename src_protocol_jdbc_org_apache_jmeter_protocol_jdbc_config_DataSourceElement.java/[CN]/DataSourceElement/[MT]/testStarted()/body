@@ -11,15 +11,15 @@
   }
  else {
     String maxPool=getPoolMax();
-    perThreadPoolSet=Collections.synchronizedSet(new HashSet<ResourceLimitingJdbcDataSource>());
+    perThreadPoolSet=Collections.synchronizedSet(new HashSet<BasicDataSource>());
     if (maxPool.equals("0")) {
       variables.putObject(poolName,new DataSourceComponentImpl());
     }
  else {
-      ResourceLimitingJdbcDataSource src=initPool(maxPool);
+      BasicDataSource src=initPool(maxPool);
 synchronized (this) {
-        excaliburSource=src;
-        variables.putObject(poolName,new DataSourceComponentImpl(excaliburSource));
+        dbcpDataSource=src;
+        variables.putObject(poolName,new DataSourceComponentImpl(dbcpDataSource));
       }
     }
   }

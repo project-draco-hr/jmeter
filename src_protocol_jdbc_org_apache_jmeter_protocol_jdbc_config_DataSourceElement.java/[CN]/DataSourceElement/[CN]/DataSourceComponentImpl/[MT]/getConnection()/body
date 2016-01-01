@@ -1,16 +1,16 @@
 {
   Connection conn=null;
-  ResourceLimitingJdbcDataSource dsc=null;
+  BasicDataSource dsc=null;
   if (sharedDSC != null) {
     dsc=sharedDSC;
   }
  else {
-    Map<String,ResourceLimitingJdbcDataSource> poolMap=perThreadPoolMap.get();
-    dsc=poolMap.get(getDataSource());
+    Map<String,BasicDataSource> poolMap=perThreadPoolMap.get();
+    dsc=poolMap.get(getDataSourceName());
     if (dsc == null) {
       dsc=initPool("1");
-      poolMap.put(getDataSource(),dsc);
-      log.debug("Storing pool: " + dsc.getInstrumentableName() + " @"+ System.identityHashCode(dsc));
+      poolMap.put(getDataSourceName(),dsc);
+      log.debug("Storing pool: " + getName() + " @"+ System.identityHashCode(dsc));
       perThreadPoolSet.add(dsc);
     }
   }
