@@ -17,5 +17,5 @@
   }
   this.resultCollector=resultCollector;
   this.testFile=file;
-  configuration=ReportGeneratorConfiguration.LoadFromProperties(JMeterUtils.getJMeterProperties());
+  configuration=ReportGeneratorConfiguration.loadFromProperties(JMeterUtils.getJMeterProperties());
 }
