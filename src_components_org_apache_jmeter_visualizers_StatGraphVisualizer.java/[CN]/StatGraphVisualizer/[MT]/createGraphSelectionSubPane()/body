@@ -1,5 +1,4 @@
 {
-  Font font=new Font("SansSerif",Font.PLAIN,10);
   JPanel searchPanel=new JPanel();
   searchPanel.setLayout(new BoxLayout(searchPanel,BoxLayout.X_AXIS));
   searchPanel.setBorder(BorderFactory.createEmptyBorder(3,0,3,0));
@@ -11,12 +10,12 @@
   columnSelection.addActionListener(this);
   searchPanel.add(columnMatchLabel);
   searchPanel.add(Box.createRigidArea(new Dimension(5,0)));
-  applyFilterBtn.setFont(font);
+  applyFilterBtn.setFont(FONT_SMALL);
   applyFilterBtn.addActionListener(this);
   searchPanel.add(applyFilterBtn);
-  caseChkBox.setFont(font);
+  caseChkBox.setFont(FONT_SMALL);
   searchPanel.add(caseChkBox);
-  regexpChkBox.setFont(font);
+  regexpChkBox.setFont(FONT_SMALL);
   searchPanel.add(regexpChkBox);
   return searchPanel;
 }
