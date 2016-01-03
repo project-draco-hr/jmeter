@@ -8,7 +8,15 @@
     }
  else {
       ret^=obj.getName().hashCode();
-      ret^=obj.getStringValue().hashCode();
+      String stringValue=obj.getStringValue();
+      if (stringValue != null) {
+        ret^=stringValue.hashCode();
+      }
+ else {
+        if (log.isDebugEnabled()) {
+          log.debug("obj.getStringValue() returned null for test element:" + el.getName() + " at property:"+ obj.getName());
+        }
+      }
     }
   }
   return ret;

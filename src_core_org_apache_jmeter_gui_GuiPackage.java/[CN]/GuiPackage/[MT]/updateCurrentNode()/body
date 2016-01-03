@@ -4,10 +4,17 @@
       log.debug("Updating current node " + currentNode.getName());
       JMeterGUIComponent comp=getGui(currentNode.getTestElement());
       TestElement el=currentNode.getTestElement();
-      int before=getTestElementCheckSum(el);
+      int before=0;
+      int after=0;
+      final boolean historyEnabled=undoHistory.isEnabled();
+      if (historyEnabled) {
+        before=getTestElementCheckSum(el);
+      }
       comp.modifyTestElement(el);
-      int after=getTestElementCheckSum(el);
-      if (before != after) {
+      if (historyEnabled) {
+        after=getTestElementCheckSum(el);
+      }
+      if (!historyEnabled || (before != after)) {
         currentNode.nameChanged();
       }
     }
