@@ -1,19 +1,19 @@
 {
   long start=0;
-  if (log.isDebugEnabled()) {
-    log.debug("sortAndDump(): Sorting " + samples.size() + " samples...");
+  if (LOG.isDebugEnabled()) {
+    LOG.debug("sortAndDump(): Sorting " + samples.size() + " samples...");
     start=System.currentTimeMillis();
   }
   final List<Sample> sortedSamples=sortSamplesParallel(samples);
   if (sortedSamples.size() != samples.size()) {
     throw new SampleException("sort failed ! " + sortedSamples.size() + " != "+ samples.size());
   }
-  if (log.isDebugEnabled()) {
-    log.debug("sortAndDump(): in " + (System.currentTimeMillis() - start) / 1000f + " s. Sorted  " + samples.size() + " samples.");
+  if (LOG.isDebugEnabled()) {
+    LOG.debug("sortAndDump(): in " + (System.currentTimeMillis() - start) / 1000f + " s. Sorted  " + samples.size() + " samples.");
   }
   File out=getChunkFile();
-  if (log.isDebugEnabled()) {
-    log.debug("sortAndDump(): Dumping chunk " + out);
+  if (LOG.isDebugEnabled()) {
+    LOG.debug("sortAndDump(): Dumping chunk " + out);
     start=System.currentTimeMillis();
   }
   try (CsvSampleWriter csvWriter=new CsvSampleWriter(out,sampleMetadata)){
@@ -22,8 +22,8 @@
       chunkedSampleCount.incrementAndGet();
     }
   }
-   if (log.isDebugEnabled()) {
-    log.debug("sortAndDump(): in " + (System.currentTimeMillis() - start) / 1000f + " s : Dumped chunk " + out.getAbsolutePath());
+   if (LOG.isDebugEnabled()) {
+    LOG.debug("sortAndDump(): in " + (System.currentTimeMillis() - start) / 1000f + " s : Dumped chunk " + out.getAbsolutePath());
   }
   return out;
 }
