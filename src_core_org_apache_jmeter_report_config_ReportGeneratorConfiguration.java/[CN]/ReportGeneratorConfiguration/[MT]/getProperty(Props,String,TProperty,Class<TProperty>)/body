@@ -1,7 +1,7 @@
 {
   String value=props.getValue(key);
   if (value == null) {
-    log.info(String.format(NOT_FOUND_PROPERTY_FMT,key,defaultValue));
+    LOG.info(String.format(NOT_FOUND_PROPERTY_FMT,key,defaultValue));
     return defaultValue;
   }
   return ConfigurationUtils.convert(value,clazz);

@@ -7,13 +7,13 @@
     if (!(file.isFile() && file.canRead())) {
       throw new IllegalArgumentException(String.format("Invalid test results file : %s",file));
     }
-    log.info("Will only generate report from results file:" + resultsFile);
+    LOG.info("Will only generate report from results file:" + resultsFile);
   }
  else {
     if (file.exists() && file.length() > 0) {
       throw new IllegalArgumentException("Results file:" + resultsFile + " is not empty");
     }
-    log.info("Will generate report at end of test from  results file:" + resultsFile);
+    LOG.info("Will generate report at end of test from  results file:" + resultsFile);
   }
   this.resultCollector=resultCollector;
   this.testFile=file;

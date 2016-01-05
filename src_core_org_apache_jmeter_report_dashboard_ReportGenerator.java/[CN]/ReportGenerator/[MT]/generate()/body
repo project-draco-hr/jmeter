@@ -1,9 +1,9 @@
 {
   if (resultCollector != null) {
-    log.info("Flushing result collector before report Generation");
+    LOG.info("Flushing result collector before report Generation");
     resultCollector.flushFile();
   }
-  log.debug("Start report generation");
+  LOG.debug("Start report generation");
   File tmpDir=configuration.getTempDirectory();
   boolean tmpDirCreated=createTempDir(tmpDir);
   SampleContext sampleContext=new SampleContext();
@@ -23,21 +23,21 @@
   for (  Map.Entry<String,GraphConfiguration> entryGraphCfg : graphConfigurations.entrySet()) {
     addGraphConsumer(nameFilter,excludeControllerFilter,entryGraphCfg);
   }
-  log.debug("Start samples processing");
+  LOG.debug("Start samples processing");
   try {
     source.run();
   }
  catch (  SampleException ex) {
     String message="Error while processing samples";
-    log.error(message,ex);
+    LOG.error(message,ex);
     throw new GenerationException(message,ex);
   }
-  log.debug("End of samples processing");
-  log.debug("Start data exporting");
+  LOG.debug("End of samples processing");
+  LOG.debug("Start data exporting");
   for (  Map.Entry<String,ExporterConfiguration> entry : configuration.getExportConfigurations().entrySet()) {
     exportData(sampleContext,entry.getKey(),entry.getValue());
   }
-  log.debug("End of data exporting");
+  LOG.debug("End of data exporting");
   removeTempDir(tmpDir,tmpDirCreated);
-  log.debug("End of report generation");
+  LOG.debug("End of report generation");
 }

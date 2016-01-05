@@ -19,7 +19,7 @@
   }
  catch (  ClassNotFoundException|IllegalAccessException|InstantiationException|ClassCastException ex) {
     String error=String.format(INVALID_CLASS_FMT,className);
-    log.error(error,ex);
+    LOG.error(error,ex);
     throw new GenerationException(error,ex);
   }
 }

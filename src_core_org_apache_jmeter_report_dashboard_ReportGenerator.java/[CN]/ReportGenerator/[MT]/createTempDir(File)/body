@@ -4,7 +4,7 @@
     tmpDirCreated=tmpDir.mkdir();
     if (!tmpDirCreated) {
       String message=String.format("Cannot create temporary directory \"%s\".",tmpDir);
-      log.error(message);
+      LOG.error(message);
       throw new GenerationException(message);
     }
   }

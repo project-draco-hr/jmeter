@@ -11,7 +11,7 @@
       }
     }
  else {
-      log.warn(String.format(INVALID_KEY_FMT,key));
+      LOG.warn(String.format(INVALID_KEY_FMT,key));
     }
   }
   for (  Map.Entry<String,TSubConf> entry : subConfigurations.entrySet()) {

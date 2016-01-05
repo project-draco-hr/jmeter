@@ -1,5 +1,5 @@
 {
-  log.debug(START_LOADING_MSG);
+  LOG.debug(START_LOADING_MSG);
   ReportGeneratorConfiguration configuration=new ReportGeneratorConfiguration();
   final Props props=new Props();
   props.load(properties);
@@ -14,13 +14,13 @@
   final Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
   loadSubConfiguration(graphConfigurations,props,REPORT_GENERATOR_GRAPH_KEY_PREFIX,false,new GraphConfigurationFactory(props));
   if (graphConfigurations.isEmpty()) {
-    log.info("No graph configuration found.");
+    LOG.info("No graph configuration found.");
   }
   final Map<String,ExporterConfiguration> exportConfigurations=configuration.getExportConfigurations();
   loadSubConfiguration(exportConfigurations,props,REPORT_GENERATOR_EXPORTER_KEY_PREFIX,false,new ExporterConfigurationFactory(props));
   if (exportConfigurations.isEmpty()) {
-    log.warn("No export configuration found. None report will be generated.");
+    LOG.warn("No export configuration found. None report will be generated.");
   }
-  log.debug(END_LOADING_MSG);
+  LOG.debug(END_LOADING_MSG);
   return configuration;
 }

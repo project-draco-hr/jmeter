@@ -1,5 +1,5 @@
 {
-  log.debug(String.format(LOAD_EXPORTER_FMT,exportId));
+  LOG.debug(String.format(LOAD_EXPORTER_FMT,exportId));
   String className=getRequiredProperty(props,getExporterPropertyKey(exportId,SUBCONF_KEY_CLASSNAME),"",String.class);
   exportConfiguration.setClassName(className);
   boolean filtersOnlySampleSeries=getRequiredProperty(props,getExporterPropertyKey(exportId,EXPORTER_KEY_FILTERS_ONLY_SAMPLE_SERIES),EXPORTER_KEY_FILTERS_ONLY_SAMPLE_SERIES_DEFAULT,Boolean.class).booleanValue();

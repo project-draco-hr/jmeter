@@ -22,11 +22,11 @@
       }
       i++;
     }
-    log.warn(String.format("\"%s\" is not a valid property for class \"%s\", skip it",propertyName,className));
+    LOG.warn(String.format("\"%s\" is not a valid property for class \"%s\", skip it",propertyName,className));
   }
  catch (  InvocationTargetException|ConvertException ex) {
     String message=String.format("Cannot assign \"%s\" to property \"%s\" (mapped as \"%s\"), skip it",propertyValue,propertyName,setterName);
-    log.error(message,ex);
+    LOG.error(message,ex);
     throw new GenerationException(message,ex);
   }
 }
