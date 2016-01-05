@@ -5,7 +5,7 @@
       producedSampleCount++;
     }
  catch (    Exception e) {
-      log.error("produce(): Consumer failed with message :" + e.getMessage(),e);
+      LOG.error("produce(): Consumer failed with message :" + e.getMessage(),e);
       throw new SampleException(e);
     }
   }

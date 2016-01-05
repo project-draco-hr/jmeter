@@ -2,8 +2,8 @@
   if (outputFile == null) {
     File wd=getWorkingDirectory();
     wd.mkdir();
-    if (log.isInfoEnabled()) {
-      log.info("startConsuming(): No output file set, writing to work directory :" + wd.getAbsolutePath());
+    if (LOG.isInfoEnabled()) {
+      LOG.info("startConsuming(): No output file set, writing to work directory :" + wd.getAbsolutePath());
     }
     outputFile=new File(wd,"samples.csv");
   }

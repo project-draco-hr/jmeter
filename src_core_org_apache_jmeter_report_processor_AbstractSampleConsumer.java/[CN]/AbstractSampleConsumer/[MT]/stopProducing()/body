@@ -4,11 +4,11 @@
       consumer.stopConsuming();
     }
  catch (    Exception e) {
-      log.error("stopProducing(): Consumer failed with message :" + e.getMessage(),e);
+      LOG.error("stopProducing(): Consumer failed with message :" + e.getMessage(),e);
       throw new SampleException(e);
     }
   }
-  if (log.isInfoEnabled()) {
-    log.info("stopProducing(): " + getName() + " produced "+ producedSampleCount+ " samples");
+  if (LOG.isInfoEnabled()) {
+    LOG.info("stopProducing(): " + getName() + " produced "+ producedSampleCount+ " samples");
   }
 }

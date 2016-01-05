@@ -20,8 +20,8 @@
       producer.stopProducing();
       csvReader.close();
     }
-    if (log.isInfoEnabled()) {
-      log.info("produce(): " + sampleCount + " samples produced in "+ time(now() - start)+ " on channel "+ i);
+    if (LOG.isInfoEnabled()) {
+      LOG.info("produce(): " + sampleCount + " samples produced in "+ time(now() - start)+ " on channel "+ i);
     }
   }
 }

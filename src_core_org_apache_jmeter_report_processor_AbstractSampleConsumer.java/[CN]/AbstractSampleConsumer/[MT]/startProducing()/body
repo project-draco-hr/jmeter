@@ -5,7 +5,7 @@
       consumer.startConsuming();
     }
  catch (    Exception e) {
-      log.error("startProducing(): Consumer failed with message :" + e.getMessage(),e);
+      LOG.error("startProducing(): Consumer failed with message :" + e.getMessage(),e);
       throw new SampleException(e);
     }
   }
