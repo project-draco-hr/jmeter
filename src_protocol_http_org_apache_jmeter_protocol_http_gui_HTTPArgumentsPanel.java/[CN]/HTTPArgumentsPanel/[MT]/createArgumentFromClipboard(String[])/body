@@ -1,0 +1,15 @@
+{
+  HTTPArgument argument=makeNewArgument();
+  argument.setName(clipboardCols[0]);
+  if (clipboardCols.length > 1) {
+    argument.setValue(clipboardCols[1]);
+    if (clipboardCols.length > 2) {
+      argument.setAlwaysEncoded(Boolean.parseBoolean(clipboardCols[2]));
+      if (clipboardCols.length > 3) {
+        Boolean useEqual=BooleanUtils.toBooleanObject(clipboardCols[3]);
+        argument.setUseEquals(useEqual != null ? useEqual.booleanValue() : true);
+      }
+    }
+  }
+  return argument;
+}

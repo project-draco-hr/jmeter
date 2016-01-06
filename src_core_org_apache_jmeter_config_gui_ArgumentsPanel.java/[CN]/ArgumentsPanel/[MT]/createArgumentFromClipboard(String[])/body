@@ -1,0 +1,11 @@
+{
+  Argument argument=makeNewArgument();
+  argument.setName(clipboardCols[0]);
+  if (clipboardCols.length > 1) {
+    argument.setValue(clipboardCols[1]);
+    if (clipboardCols.length > 2) {
+      argument.setDescription(clipboardCols[2]);
+    }
+  }
+  return argument;
+}
