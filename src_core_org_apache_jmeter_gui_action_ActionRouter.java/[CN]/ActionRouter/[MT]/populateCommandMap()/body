@@ -1,7 +1,9 @@
 {
+  if (!commands.isEmpty()) {
+    return;
+  }
   try {
     List<String> listClasses=ClassFinder.findClassesThatExtend(JMeterUtils.getSearchPaths(),new Class[]{Class.forName("org.apache.jmeter.gui.action.Command")},false,null,"org.apache.jmeter.report.gui",false);
-    commands=new HashMap<>(listClasses.size());
     if (listClasses.isEmpty()) {
       log.fatalError("!!!!!Uh-oh, didn't find any action handlers!!!!!");
       throw new JMeterError("No action handlers found - check JMeterHome and libraries");
