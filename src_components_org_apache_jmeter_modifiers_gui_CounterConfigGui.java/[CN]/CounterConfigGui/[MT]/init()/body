@@ -14,7 +14,7 @@
   add(endField);
   add(formatField);
   add(varNameField);
-  add(perUserField);
-  add(resetCounterOnEachThreadGroupIteration);
+  add(CheckBoxPanel.wrap(perUserField));
+  add(CheckBoxPanel.wrap(resetCounterOnEachThreadGroupIteration));
   perUserField.addActionListener(this);
 }

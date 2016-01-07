@@ -3,7 +3,7 @@
   setBorder(makeBorder());
   add(makeTitlePanel());
   generateParentSample=new JCheckBox(JMeterUtils.getResString("transaction_controller_parent"));
-  add(generateParentSample);
+  add(CheckBoxPanel.wrap(generateParentSample));
   includeTimers=new JCheckBox(JMeterUtils.getResString("transaction_controller_include_timers"),true);
-  add(includeTimers);
+  add(CheckBoxPanel.wrap(includeTimers));
 }

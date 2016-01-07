@@ -3,5 +3,5 @@
   setBorder(makeBorder());
   add(makeTitlePanel());
   style=new JCheckBox(JMeterUtils.getResString("ignore_subcontrollers"));
-  add(style);
+  add(CheckBoxPanel.wrap(style));
 }
