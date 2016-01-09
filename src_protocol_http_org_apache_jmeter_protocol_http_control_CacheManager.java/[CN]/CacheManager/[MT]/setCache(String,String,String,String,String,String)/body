@@ -10,9 +10,9 @@
     }
     if (expires != null) {
       try {
-        expiresDate=DateUtils.parseDate(expires);
+        expiresDate=org.apache.http.client.utils.DateUtils.parseDate(expires);
       }
- catch (      org.apache.http.impl.cookie.DateParseException e) {
+ catch (      IllegalArgumentException e) {
         if (log.isDebugEnabled()) {
           log.debug("Unable to parse Expires: '" + expires + "' "+ e);
         }
@@ -31,7 +31,7 @@
             Date lastModifiedAsDate=DateUtils.parseDate(lastModified);
             expiresDate=new Date(System.currentTimeMillis() + Math.round((responseDate.getTime() - lastModifiedAsDate.getTime()) * 0.1));
           }
- catch (          DateParseException e) {
+ catch (          IllegalArgumentException e) {
             if (log.isWarnEnabled()) {
               log.warn("Failed computing expiration date with following info:" + lastModified + ","+ cacheControl+ ","+ expires+ ","+ etag+ ","+ url+ ","+ date);
             }
