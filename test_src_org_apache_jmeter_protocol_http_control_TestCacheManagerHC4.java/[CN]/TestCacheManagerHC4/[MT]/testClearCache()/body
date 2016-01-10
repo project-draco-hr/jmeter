@@ -1,0 +1,7 @@
+{
+  assertTrue("ThreadCache should be empty initially.",getThreadCache().isEmpty());
+  saveDetailsWithHttpMethodAndSampleResultWithResponseCode("200");
+  assertFalse("ThreadCache should be populated after saving details for HttpMethod with SampleResult with response code 200.",getThreadCache().isEmpty());
+  this.cacheManager.clear();
+  assertTrue("ThreadCache should be emptied by call to clear.",getThreadCache().isEmpty());
+}

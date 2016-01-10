@@ -1,0 +1,4 @@
+{
+  HTTPSampleResult sampleResult=getSampleResultWithSpecifiedResponseCode(responseCode);
+  this.cacheManager.saveDetails(this.httpResponse,sampleResult);
+}

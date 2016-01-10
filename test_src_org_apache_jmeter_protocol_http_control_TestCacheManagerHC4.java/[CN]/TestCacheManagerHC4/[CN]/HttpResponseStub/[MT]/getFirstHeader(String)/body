@@ -1,0 +1,7 @@
+{
+  Header[] headers=getHeaders(headerName);
+  if (headers.length > 0) {
+    return headers[0];
+  }
+  return null;
+}

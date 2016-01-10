@@ -1,0 +1,6 @@
+{
+  this.headers=new ArrayList<>();
+  this.lastModifiedHeader=new BasicHeader(HTTPConstants.LAST_MODIFIED,currentTimeInGMT);
+  this.dateHeader=new BasicHeader(HTTPConstants.DATE,currentTimeInGMT);
+  this.etagHeader=new BasicHeader(HTTPConstants.ETAG,EXPECTED_ETAG);
+}

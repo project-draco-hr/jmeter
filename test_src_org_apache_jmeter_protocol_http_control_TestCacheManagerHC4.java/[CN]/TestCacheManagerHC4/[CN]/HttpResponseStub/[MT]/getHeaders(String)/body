@@ -1,0 +1,27 @@
+{
+  org.apache.http.Header header=null;
+  if (HTTPConstants.LAST_MODIFIED.equals(headerName)) {
+    header=this.lastModifiedHeader;
+  }
+ else   if (HTTPConstants.ETAG.equals(headerName)) {
+    header=this.etagHeader;
+  }
+ else   if (HTTPConstants.EXPIRES.equals(headerName)) {
+    header=expires == null ? null : new BasicHeader(HTTPConstants.EXPIRES,expires);
+  }
+ else   if (HTTPConstants.CACHE_CONTROL.equals(headerName)) {
+    header=cacheControl == null ? null : new BasicHeader(HTTPConstants.CACHE_CONTROL,cacheControl);
+  }
+ else   if (HTTPConstants.DATE.equals(headerName)) {
+    header=this.dateHeader;
+  }
+ else   if (HTTPConstants.VARY.equals(headerName)) {
+    header=vary == null ? null : new BasicHeader(HTTPConstants.VARY,vary);
+  }
+  if (header != null) {
+    return new org.apache.http.Header[]{header};
+  }
+ else {
+    return super.getHeaders(headerName);
+  }
+}

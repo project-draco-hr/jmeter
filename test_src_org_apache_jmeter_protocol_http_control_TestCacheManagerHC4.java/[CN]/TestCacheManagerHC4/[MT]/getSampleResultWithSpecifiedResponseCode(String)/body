@@ -1,0 +1,7 @@
+{
+  HTTPSampleResult sampleResult=new HTTPSampleResult();
+  sampleResult.setResponseCode(code);
+  sampleResult.setHTTPMethod("GET");
+  sampleResult.setURL(url);
+  return sampleResult;
+}
