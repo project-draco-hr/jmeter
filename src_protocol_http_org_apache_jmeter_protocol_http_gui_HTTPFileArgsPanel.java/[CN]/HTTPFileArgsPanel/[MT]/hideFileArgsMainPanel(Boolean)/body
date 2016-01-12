@@ -1,0 +1,14 @@
+{
+  BorderLayout bl=(BorderLayout)this.getLayout();
+  boolean result=false;
+  String[] borders={BorderLayout.CENTER,BorderLayout.WEST,BorderLayout.SOUTH};
+  for (  String border : borders) {
+    Component tableComponent=bl.getLayoutComponent(border);
+    if (tableComponent != null) {
+      boolean visible=force != null ? force.booleanValue() : !tableComponent.isVisible();
+      tableComponent.setVisible(visible);
+      result|=visible;
+    }
+  }
+  tableLabel.setIcon(result ? JMeterUtils.getImage("collapse-open.png") : JMeterUtils.getImage("collapse-close.png"));
+}
