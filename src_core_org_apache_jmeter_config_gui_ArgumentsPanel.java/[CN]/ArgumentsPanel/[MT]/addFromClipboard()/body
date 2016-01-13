@@ -18,6 +18,7 @@
       delete.setEnabled(true);
       int rowToSelect=tableModel.getRowCount() - 1;
       table.setRowSelectionInterval(rowCount,rowToSelect);
+      table.scrollRectToVisible(table.getCellRect(rowCount,0,true));
     }
   }
  catch (  IOException ioe) {

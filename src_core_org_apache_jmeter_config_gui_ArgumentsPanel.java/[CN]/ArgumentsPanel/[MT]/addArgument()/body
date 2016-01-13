@@ -8,4 +8,5 @@
   }
   int rowToSelect=tableModel.getRowCount() - 1;
   table.setRowSelectionInterval(rowToSelect,rowToSelect);
+  table.scrollRectToVisible(table.getCellRect(rowToSelect,0,true));
 }
