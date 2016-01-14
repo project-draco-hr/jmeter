@@ -1,39 +1,23 @@
 {
   String textToFind=textToFindField.getText();
-  if (results != null && results.getText().length() > 0 && textToFind.length() > 0) {
+  if (this.searchProvider != null) {
     if (lastTextTofind != null && !lastTextTofind.equals(textToFind)) {
-      lastPosition=LAST_POSITION_DEFAULT;
+      searchProvider.resetTextToFind();
     }
-    if (log.isDebugEnabled()) {
-      log.debug("lastPosition=" + lastPosition);
-    }
-    Matcher matcher=null;
     try {
-      Pattern pattern=createPattern(textToFind);
-      Document contentDoc=results.getDocument();
-      String body=contentDoc.getText(lastPosition,(contentDoc.getLength() - lastPosition));
-      matcher=pattern.matcher(body);
-      if ((matcher != null) && (matcher.find())) {
-        selection.removeAllHighlights();
-        selection.addHighlight(lastPosition + matcher.start(),lastPosition + matcher.end(),painter);
-        results.setCaretPosition(lastPosition + matcher.end());
-        lastPosition=lastPosition + matcher.end();
+      Pattern pattern=createPattern(textToFindField.getText());
+      boolean found=searchProvider.executeAndShowTextFind(pattern);
+      if (found) {
         findButton.setText(JMeterUtils.getResString("search_text_button_next"));
         lastTextTofind=textToFind;
-        newSearch=true;
       }
  else {
-        JOptionPane.showMessageDialog(null,JMeterUtils.getResString("search_text_msg_not_found"),JMeterUtils.getResString("search_text_title_not_found"),JOptionPane.INFORMATION_MESSAGE);
-        lastPosition=LAST_POSITION_DEFAULT;
         findButton.setText(JMeterUtils.getResString("search_text_button_find"));
-        results.setCaretPosition(0);
+        JOptionPane.showMessageDialog(null,JMeterUtils.getResString("search_text_msg_not_found"),JMeterUtils.getResString("search_text_title_not_found"),JOptionPane.INFORMATION_MESSAGE);
       }
     }
  catch (    PatternSyntaxException pse) {
       JOptionPane.showMessageDialog(null,pse.toString(),JMeterUtils.getResString("error_title"),JOptionPane.WARNING_MESSAGE);
-    }
-catch (    BadLocationException ble) {
-      log.error("Location exception in text find",ble);
     }
   }
 }

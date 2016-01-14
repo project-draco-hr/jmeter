@@ -1,10 +1,3 @@
 {
-  if (this.results != null) {
-    newSearch=true;
-    resetTextToFind();
-  }
-  this.results=results;
-  selection=new DefaultHighlighter();
-  painter=new DefaultHighlighter.DefaultHighlightPainter(HILIT_COLOR);
-  results.setHighlighter(selection);
+  setSearchProvider(new JEditorPaneSearchProvider(results));
 }

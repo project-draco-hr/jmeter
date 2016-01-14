@@ -1,4 +1,5 @@
 {
+  this.searchTextExtension.resetTextToFind();
   if (objectResult instanceof HTTPSampleResult) {
     HTTPSampleResult sampleResult=(HTTPSampleResult)objectResult;
     requestModel.addRow(new RowResult(JMeterUtils.getResString("view_results_table_request_http_method"),sampleResult.getHTTPMethod()));

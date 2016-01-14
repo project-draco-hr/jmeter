@@ -1,0 +1,25 @@
+{
+  boolean found=false;
+  if (tableParams != null) {
+    tableParams.clearSelection();
+    outerloop:     for (int i=lastPosition + 1; i < tableParams.getRowCount(); i++) {
+      for (int j=0; j < COLUMNS_PARAMS.length; j++) {
+        Object o=tableParams.getModel().getValueAt(i,j);
+        if (o instanceof String) {
+          Matcher matcher=pattern.matcher((String)o);
+          if ((matcher != null) && (matcher.find())) {
+            found=true;
+            tableParams.setRowSelectionInterval(i,i);
+            tableParams.scrollRectToVisible(tableParams.getCellRect(i,0,true));
+            lastPosition=i;
+            break outerloop;
+          }
+        }
+      }
+    }
+    if (!found) {
+      resetTextToFind();
+    }
+  }
+  return found;
+}
