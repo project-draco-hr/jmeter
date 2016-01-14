@@ -1,6 +1,6 @@
 {
-  cancelEditing();
   int[] rowsSelected=table.getSelectedRows();
+  GuiUtils.stopTableEditing(table);
   if (rowsSelected.length > 0 && rowsSelected[0] > 0) {
     table.clearSelection();
     for (    int rowSelected : rowsSelected) {

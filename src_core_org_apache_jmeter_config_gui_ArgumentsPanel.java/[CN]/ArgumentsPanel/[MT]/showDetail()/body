@@ -1,6 +1,6 @@
 {
-  cancelEditing();
   int[] rowsSelected=table.getSelectedRows();
+  GuiUtils.stopTableEditing(table);
   if (rowsSelected.length == 1) {
     table.clearSelection();
     RowDetailDialog detailDialog=new RowDetailDialog(tableModel,rowsSelected[0]);
