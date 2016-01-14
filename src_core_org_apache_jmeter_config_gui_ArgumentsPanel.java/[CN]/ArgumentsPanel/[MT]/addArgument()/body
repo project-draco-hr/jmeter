@@ -1,11 +1,7 @@
 {
   GuiUtils.stopTableEditing(table);
   tableModel.addRow(makeNewArgument());
-  delete.setEnabled(true);
-  if (enableUpDown && tableModel.getRowCount() > 1) {
-    up.setEnabled(true);
-    down.setEnabled(true);
-  }
+  checkButtonsStatus();
   int rowToSelect=tableModel.getRowCount() - 1;
   table.setRowSelectionInterval(rowToSelect,rowToSelect);
   table.scrollRectToVisible(table.getCellRect(rowToSelect,0,true));

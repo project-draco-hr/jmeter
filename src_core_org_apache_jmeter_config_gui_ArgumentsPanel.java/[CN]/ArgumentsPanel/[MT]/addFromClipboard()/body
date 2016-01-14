@@ -15,7 +15,7 @@
       }
     }
     if (table.getRowCount() > rowCount) {
-      delete.setEnabled(true);
+      checkButtonsStatus();
       int rowToSelect=tableModel.getRowCount() - 1;
       table.setRowSelectionInterval(rowCount,rowToSelect);
       table.scrollRectToVisible(table.getCellRect(rowCount,0,true));

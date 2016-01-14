@@ -1,0 +1,20 @@
+{
+  if (tableModel.getRowCount() == 0) {
+    delete.setEnabled(false);
+    showDetail.setEnabled(false);
+  }
+ else {
+    delete.setEnabled(true);
+    showDetail.setEnabled(true);
+  }
+  if (enableUpDown) {
+    if (tableModel.getRowCount() > 1) {
+      up.setEnabled(true);
+      down.setEnabled(true);
+    }
+ else {
+      up.setEnabled(false);
+      down.setEnabled(false);
+    }
+  }
+}

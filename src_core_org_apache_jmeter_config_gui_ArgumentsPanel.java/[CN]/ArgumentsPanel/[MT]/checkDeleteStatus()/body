@@ -1,12 +1,3 @@
 {
-  if (tableModel.getRowCount() == 0) {
-    delete.setEnabled(false);
-  }
- else {
-    delete.setEnabled(true);
-  }
-  if (enableUpDown && tableModel.getRowCount() > 1) {
-    up.setEnabled(true);
-    down.setEnabled(true);
-  }
+  checkButtonsStatus();
 }

@@ -1,5 +1,5 @@
 {
-  JButton showDetail=new JButton(JMeterUtils.getResString("detail"));
+  showDetail=new JButton(JMeterUtils.getResString("detail"));
   showDetail.setActionCommand(DETAIL);
   showDetail.setEnabled(true);
   add=new JButton(JMeterUtils.getResString("add"));
@@ -16,7 +16,7 @@
     down=new JButton(JMeterUtils.getResString("down"));
     down.setActionCommand(DOWN);
   }
-  checkDeleteStatus();
+  checkButtonsStatus();
   JPanel buttonPanel=new JPanel();
   buttonPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
   if (this.background != null) {
