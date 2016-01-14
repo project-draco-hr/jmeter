@@ -59,7 +59,7 @@
     currentRequest=httpRequest;
     handleMethod(method,res,httpRequest,localContext);
     HttpResponse httpResponse=executeRequest(httpClient,httpRequest,localContext,url);
-    final HttpRequest request=(HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST);
+    final HttpRequest request=(HttpRequest)localContext.getAttribute(HttpCoreContext.HTTP_REQUEST);
     extractClientContextAfterSample(localContext);
     final InetAddress localAddr=(InetAddress)httpRequest.getParams().getParameter(ConnRoutePNames.LOCAL_ADDRESS);
     if (localAddr != null) {
@@ -101,8 +101,8 @@
       log.debug("ResponseHeadersSize=" + res.getHeadersSize() + " Content-Length="+ res.getBodySize()+ " Total="+ (res.getHeadersSize() + res.getBodySize()));
     }
     if (getAutoRedirects()) {
-      HttpUriRequest req=(HttpUriRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST);
-      HttpHost target=(HttpHost)localContext.getAttribute(ExecutionContext.HTTP_TARGET_HOST);
+      HttpUriRequest req=(HttpUriRequest)localContext.getAttribute(HttpCoreContext.HTTP_REQUEST);
+      HttpHost target=(HttpHost)localContext.getAttribute(HttpCoreContext.HTTP_TARGET_HOST);
       URI redirectURI=req.getURI();
       if (redirectURI.isAbsolute()) {
         res.setURL(redirectURI.toURL());
@@ -125,7 +125,7 @@
     if (res.getRequestHeaders() != null) {
       log.debug("Overwriting request old headers: " + res.getRequestHeaders());
     }
-    res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(ExecutionContext.HTTP_REQUEST)));
+    res.setRequestHeaders(getConnectionHeaders((HttpRequest)localContext.getAttribute(HttpCoreContext.HTTP_REQUEST)));
     errorResult(e,res);
     return res;
   }
