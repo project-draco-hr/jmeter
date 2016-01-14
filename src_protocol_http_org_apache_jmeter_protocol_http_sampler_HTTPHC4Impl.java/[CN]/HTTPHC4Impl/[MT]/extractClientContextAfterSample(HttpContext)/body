@@ -1,5 +1,5 @@
 {
-  Object userToken=localContext.getAttribute(ClientContext.USER_TOKEN);
+  Object userToken=localContext.getAttribute(HttpClientContext.USER_TOKEN);
   if (userToken != null) {
     if (log.isDebugEnabled()) {
       log.debug("Extracted from HttpContext user token:" + userToken + ", storing it as JMeter variable:"+ USER_TOKEN);
