@@ -19,9 +19,11 @@
       }
       queryGet=RequestViewHTTP.decodeQuery(queryGet);
       if (queryGet != null) {
-        Set<Entry<String,String>> keys=RequestViewHTTP.getQueryMap(queryGet).entrySet();
-        for (        Entry<String,String> entry : keys) {
-          paramsModel.addRow(new RowResult(entry.getKey(),entry.getValue()));
+        Set<Entry<String,String[]>> keys=RequestViewHTTP.getQueryMap(queryGet).entrySet();
+        for (        Entry<String,String[]> entry : keys) {
+          for (          String value : entry.getValue()) {
+            paramsModel.addRow(new RowResult(entry.getKey(),value));
+          }
         }
       }
     }
