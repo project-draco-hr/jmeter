@@ -3,7 +3,7 @@
   Authorization authorization=null;
   for (  TestElement te : subConfigs) {
     if (te instanceof HeaderManager) {
-      List<TestElementProperty> headers=(ArrayList<TestElementProperty>)((HeaderManager)te).getHeaders().getObjectValue();
+      @SuppressWarnings("unchecked") List<TestElementProperty> headers=(ArrayList<TestElementProperty>)((HeaderManager)te).getHeaders().getObjectValue();
       for (Iterator<?> iterator=headers.iterator(); iterator.hasNext(); ) {
         TestElementProperty tep=(TestElementProperty)iterator.next();
         if (tep.getName().equals(HTTPConstants.HEADER_AUTHORIZATION)) {
