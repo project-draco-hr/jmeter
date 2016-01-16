@@ -1,0 +1,8 @@
+{
+  return new Job<List<Sample>>(){
+    @Override protected List<Sample> exec(){
+      return sort(samples);
+    }
+  }
+;
+}

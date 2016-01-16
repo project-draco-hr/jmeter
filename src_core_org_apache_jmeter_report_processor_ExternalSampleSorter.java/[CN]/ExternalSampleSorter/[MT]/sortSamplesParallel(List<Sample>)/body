@@ -6,23 +6,13 @@
   int middle=sz / 2;
   final List<Sample> left=samples.subList(0,middle);
   final List<Sample> right=samples.subList(middle,sz);
-  Job<List<Sample>> jobLeft=new Job<List<Sample>>(){
-    @Override protected List<Sample> exec(){
-      return sort(left);
-    }
-  }
-;
-  Job<List<Sample>> jobRight=new Job<List<Sample>>(){
-    @Override protected List<Sample> exec(){
-      return sort(right);
-    }
-  }
-;
-  List<Sample> newLeft=null;
-  List<Sample> newRight=null;
-  workQueue.add(jobLeft);
-  workQueue.add(jobRight);
+  List<Sample> newLeft;
+  List<Sample> newRight;
+  Job<List<Sample>> jobLeft=createSortJob(left);
+  Job<List<Sample>> jobRight=createSortJob(right);
   if (parallelize) {
+    workQueue.add(jobLeft);
+    workQueue.add(jobRight);
     try {
       newLeft=jobLeft.getResult();
       newRight=jobRight.getResult();
@@ -32,8 +22,8 @@
     }
   }
  else {
-    newLeft=sort(left);
-    newRight=sort(right);
+    newLeft=jobLeft.exec();
+    newRight=jobRight.exec();
   }
   return merge(newLeft,newRight);
 }

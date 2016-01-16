@@ -1,0 +1,8 @@
+{
+  return new Job<File>(){
+    @Override protected File exec(){
+      return mergeSortFiles(chunks,metadata);
+    }
+  }
+;
+}

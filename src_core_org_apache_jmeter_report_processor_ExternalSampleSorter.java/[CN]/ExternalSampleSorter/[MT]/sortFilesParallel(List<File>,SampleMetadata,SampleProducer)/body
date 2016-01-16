@@ -4,20 +4,10 @@
     int middle=sz / 2;
     final List<File> left=chunks.subList(0,middle);
     final List<File> right=chunks.subList(middle,sz);
-    File leftFile=null;
-    File rightFile=null;
-    Job<File> leftJob=new Job<File>(){
-      @Override protected File exec(){
-        return mergeSortFiles(left,metadata);
-      }
-    }
-;
-    Job<File> rightJob=new Job<File>(){
-      @Override protected File exec(){
-        return mergeSortFiles(right,metadata);
-      }
-    }
-;
+    File leftFile;
+    File rightFile;
+    Job<File> leftJob=createMergeJob(left,metadata);
+    Job<File> rightJob=createMergeJob(right,metadata);
     if (parallelize) {
       workQueue.add(leftJob);
       workQueue.add(rightJob);
