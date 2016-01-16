@@ -34,11 +34,7 @@
   if (hasEntityBody) {
     final HttpEntity entityEntry=entity.getEntity();
     if (entityEntry.isRepeatable()) {
-      ByteArrayOutputStream bos=new ByteArrayOutputStream();
-      entityEntry.writeTo(bos);
-      bos.flush();
-      entityBody.append(new String(bos.toByteArray(),charset));
-      bos.close();
+      entityBody.append("<actual file content, not shown here>");
     }
  else {
       entityBody.append("<RequestEntity was not repeatable, cannot view what was sent>");

@@ -43,11 +43,7 @@
   }
   if (hasPutBody) {
     if (put.getRequestEntity().isRepeatable()) {
-      ByteArrayOutputStream bos=new ByteArrayOutputStream();
-      put.getRequestEntity().writeRequest(bos);
-      bos.flush();
-      putBody.append(new String(bos.toByteArray(),put.getRequestCharSet()));
-      bos.close();
+      putBody.append("<actual file content, not shown here>");
     }
  else {
       putBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
