@@ -1,0 +1,6 @@
+{
+  params.add(new CompoundVariable("sampleResult.getResponseDataAsString().replaceAll('T','t')"));
+  function.setParameters(params);
+  String ret=function.execute(result,null);
+  assertEquals("the quick brown fox",ret);
+}

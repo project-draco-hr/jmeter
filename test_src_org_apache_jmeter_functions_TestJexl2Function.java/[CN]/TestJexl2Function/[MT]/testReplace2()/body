@@ -1,0 +1,9 @@
+{
+  vars.put("URL","/query.cgi?s1=1&amp;s2=2&amp;s3=3");
+  params.add(new CompoundVariable("vars.get('URL').replaceAll('&amp;','&')"));
+  params.add(new CompoundVariable("URL"));
+  function.setParameters(params);
+  String ret=function.execute(result,null);
+  assertEquals("/query.cgi?s1=1&s2=2&s3=3",ret);
+  assertEquals(ret,vars.getObject("URL"));
+}

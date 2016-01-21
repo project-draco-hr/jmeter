@@ -1,0 +1,8 @@
+{
+  params.add(new CompoundVariable("1+2+3"));
+  params.add(new CompoundVariable("TOTAL"));
+  function.setParameters(params);
+  String ret=function.execute(result,null);
+  assertEquals("6",ret);
+  assertEquals("6",vars.get("TOTAL"));
+}

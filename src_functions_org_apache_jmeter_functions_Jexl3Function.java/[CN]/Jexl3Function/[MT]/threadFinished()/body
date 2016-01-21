@@ -1,0 +1,7 @@
+{
+  JexlEngine engine=threadLocalJexl.get();
+  if (engine != null) {
+    engine.clearCache();
+    threadLocalJexl.remove();
+  }
+}
