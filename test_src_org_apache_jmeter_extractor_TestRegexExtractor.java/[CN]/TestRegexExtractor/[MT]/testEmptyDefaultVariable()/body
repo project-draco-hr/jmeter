@@ -1,0 +1,8 @@
+{
+  extractor.setRegex("<value name=\"positioncount\">(.+?)</value>");
+  extractor.setTemplate("$1$");
+  extractor.setMatchNumber(1);
+  extractor.setDefaultEmptyValue(true);
+  extractor.process();
+  assertEquals("",vars.get("regVal"));
+}

@@ -8,6 +8,7 @@
     regex.setRegex(regexField.getText());
     regex.setTemplate(templateField.getText());
     regex.setDefaultValue(defaultField.getText());
+    regex.setDefaultEmptyValue(emptyDefaultValue.isSelected());
     regex.setMatchNumber(matchNumberField.getText());
   }
 }

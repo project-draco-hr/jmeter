@@ -14,6 +14,7 @@
     regexField.setText(re.getRegex());
     templateField.setText(re.getTemplate());
     defaultField.setText(re.getDefaultValue());
+    emptyDefaultValue.setSelected(re.isEmptyDefaultValue());
     matchNumberField.setText(re.getMatchNumberAsString());
     refNameField.setText(re.getRefName());
   }
