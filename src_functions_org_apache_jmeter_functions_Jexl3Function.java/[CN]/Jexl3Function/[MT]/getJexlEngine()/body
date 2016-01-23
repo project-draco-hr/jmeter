@@ -1,7 +1,7 @@
 {
   JexlEngine engine=threadLocalJexl.get();
   if (engine == null) {
-    engine=new JexlBuilder().cache(512).silent(true).strict(true).create();
+    engine=new JexlBuilder().cache(512).silent(true).strict(true).debug(false).arithmetic(new JMeterArithmetic(true)).create();
     threadLocalJexl.set(engine);
   }
   return engine;
