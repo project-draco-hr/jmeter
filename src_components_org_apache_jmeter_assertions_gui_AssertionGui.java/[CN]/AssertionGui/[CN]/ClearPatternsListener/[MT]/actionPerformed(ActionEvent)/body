@@ -1,8 +1,14 @@
 {
-  int index=stringTable.getSelectedRow();
-  if (index > -1) {
-    stringTable.getCellEditor(index,stringTable.getSelectedColumn()).cancelCellEditing();
-    tableModel.removeRow(index);
+  if (stringTable.isEditing()) {
+    TableCellEditor cellEditor=stringTable.getCellEditor(stringTable.getEditingRow(),stringTable.getEditingColumn());
+    cellEditor.cancelCellEditing();
+  }
+  int[] rowsSelected=stringTable.getSelectedRows();
+  stringTable.clearSelection();
+  if (rowsSelected.length > 0) {
+    for (int i=rowsSelected.length - 1; i >= 0; i--) {
+      tableModel.removeRow(rowsSelected[i]);
+    }
     tableModel.fireTableDataChanged();
   }
   if (stringTable.getModel().getRowCount() == 0) {
