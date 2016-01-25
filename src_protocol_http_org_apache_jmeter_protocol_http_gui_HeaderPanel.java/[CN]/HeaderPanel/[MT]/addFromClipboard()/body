@@ -9,6 +9,9 @@
     String[] clipboardLines=clipboardContent.split("\n");
     for (    String clipboardLine : clipboardLines) {
       int index=clipboardLine.indexOf(":");
+      if (index < 0) {
+        index=clipboardLine.indexOf("\t");
+      }
       if (index > 0) {
         Header header=new Header(clipboardLine.substring(0,index),clipboardLine.substring(index + 1));
         headerManager.add(header);
