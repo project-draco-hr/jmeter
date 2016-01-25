@@ -7,7 +7,7 @@
   if (rb != null) {
     p.setValue(RESOURCE_BUNDLE,rb);
   }
-  p.setValue(TAGS,LANGUAGE_TAGS);
+  p.setValue(TAGS,languageTags);
   createPropertyGroup("scriptingLanguage",new String[]{"scriptLanguage"});
   p=property("parameters");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
@@ -22,6 +22,7 @@
     p=property("cacheKey");
     p.setValue(NOT_UNDEFINED,Boolean.TRUE);
     p.setValue(DEFAULT,"");
+    p.setPropertyEditorClass(JSR223ScriptCacheCheckboxEditor.class);
     createPropertyGroup("cacheKey_group",new String[]{"cacheKey"});
   }
   p=property("script");

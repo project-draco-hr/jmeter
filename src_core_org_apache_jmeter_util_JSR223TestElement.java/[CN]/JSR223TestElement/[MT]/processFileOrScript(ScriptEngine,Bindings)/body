@@ -39,13 +39,14 @@ synchronized (compiledScriptsCache) {
   }
  else   if (!StringUtils.isEmpty(getScript())) {
     if (supportsCompilable && !StringUtils.isEmpty(cacheKey)) {
-      CompiledScript compiledScript=compiledScriptsCache.get(cacheKey);
+      computeScriptMD5();
+      CompiledScript compiledScript=compiledScriptsCache.get(this.scriptMd5);
       if (compiledScript == null) {
 synchronized (compiledScriptsCache) {
-          compiledScript=compiledScriptsCache.get(cacheKey);
+          compiledScript=compiledScriptsCache.get(this.scriptMd5);
           if (compiledScript == null) {
             compiledScript=((Compilable)scriptEngine).compile(getScript());
-            compiledScriptsCache.put(cacheKey,compiledScript);
+            compiledScriptsCache.put(this.scriptMd5,compiledScript);
           }
         }
       }

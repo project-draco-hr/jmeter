@@ -1,0 +1,5 @@
+{
+  if (scriptMd5 == null) {
+    scriptMd5=DigestUtils.md5Hex(getScript());
+  }
+}

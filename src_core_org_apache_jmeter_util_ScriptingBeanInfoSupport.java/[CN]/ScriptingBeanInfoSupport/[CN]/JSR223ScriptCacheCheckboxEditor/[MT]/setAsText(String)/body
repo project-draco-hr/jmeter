@@ -1,0 +1,6 @@
+{
+  if (StringUtils.isNotBlank(value)) {
+    initialValue=value;
+  }
+  checkbox.setSelected(initialValue != null);
+}

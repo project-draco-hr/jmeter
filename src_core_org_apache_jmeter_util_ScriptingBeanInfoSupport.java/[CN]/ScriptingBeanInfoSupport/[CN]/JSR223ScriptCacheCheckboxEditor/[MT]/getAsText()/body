@@ -1,0 +1,12 @@
+{
+  String value=null;
+  if (checkbox.isSelected()) {
+    if (initialValue != null) {
+      value=initialValue;
+    }
+ else {
+      value=UUID.randomUUID().toString();
+    }
+  }
+  return value;
+}
