@@ -1,0 +1,15 @@
+{
+  if (table.getParent() instanceof JViewport) {
+    Rectangle visibleRect=table.getVisibleRect();
+    final int cellIndex=0;
+    Rectangle cellRect=table.getCellRect(rowIndx,cellIndex,false);
+    if (visibleRect.y > cellRect.y) {
+      table.scrollRectToVisible(cellRect);
+    }
+ else {
+      Rectangle rect2=table.getCellRect(rowIndx + getNumberOfVisibleRows(table),cellIndex,true);
+      int width=rect2.y - cellRect.y;
+      table.scrollRectToVisible(new Rectangle(cellRect.x,cellRect.y,cellRect.width,cellRect.height + width));
+    }
+  }
+}

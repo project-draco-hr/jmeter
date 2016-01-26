@@ -9,5 +9,6 @@
     for (    int rowSelected : rowsSelected) {
       table.addRowSelectionInterval(rowSelected - 1,rowSelected - 1);
     }
+    scrollToRowIfNotVisible(rowsSelected[0] - 1);
   }
 }

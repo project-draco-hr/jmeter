@@ -1,0 +1,6 @@
+{
+  Rectangle vr=table.getVisibleRect();
+  int first=table.rowAtPoint(vr.getLocation());
+  vr.translate(0,vr.height);
+  return table.rowAtPoint(vr.getLocation()) - first;
+}
