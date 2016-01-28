@@ -1,0 +1,26 @@
+{
+  if (log.isDebugEnabled()) {
+    log.debug("searchPathsOrJars : " + Arrays.toString(searchPathsOrJars));
+  }
+  String[] strPathsOrJars=addJarsInPath(searchPathsOrJars);
+  for (int k=0; k < strPathsOrJars.length; k++) {
+    strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
+  }
+  List<String> listPaths=getClasspathMatches(strPathsOrJars);
+  if (log.isDebugEnabled()) {
+    for (    String path : listPaths) {
+      log.debug("listPaths : " + path);
+    }
+  }
+  Set<String> listClasses=new TreeSet<>();
+  for (  String path : listPaths) {
+    findClassesInOnePath(path,listClasses,filter);
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("listClasses.size()=" + listClasses.size());
+    for (    String clazz : listClasses) {
+      log.debug("listClasses : " + clazz);
+    }
+  }
+  return new ArrayList<>(listClasses);
+}

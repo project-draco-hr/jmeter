@@ -1,0 +1,34 @@
+{
+  File file=new File(strPath);
+  if (file.isDirectory()) {
+    findClassesInPathsDir(strPath,file,listClasses,filter);
+  }
+ else   if (file.exists()) {
+    ZipFile zipFile=null;
+    try {
+      zipFile=new ZipFile(file);
+      Enumeration<? extends ZipEntry> entries=zipFile.entries();
+      while (entries.hasMoreElements()) {
+        String strEntry=entries.nextElement().toString();
+        if (strEntry.endsWith(DOT_CLASS)) {
+          String fixedClassName=fixClassName(strEntry);
+          if (filter.accept(fixedClassName)) {
+            listClasses.add(fixedClassName);
+          }
+        }
+      }
+    }
+ catch (    IOException e) {
+      log.warn("Can not open the jar " + strPath + " "+ e.getLocalizedMessage(),e);
+    }
+ finally {
+      if (zipFile != null) {
+        try {
+          zipFile.close();
+        }
+ catch (        Exception e) {
+        }
+      }
+    }
+  }
+}

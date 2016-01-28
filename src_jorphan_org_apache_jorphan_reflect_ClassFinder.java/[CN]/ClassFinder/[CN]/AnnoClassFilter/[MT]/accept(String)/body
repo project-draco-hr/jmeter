@@ -1,0 +1,8 @@
+{
+  if ((className.indexOf('$') == -1) || inner) {
+    if (hasAnnotationOnMethod(annotations,className,contextClassLoader)) {
+      return true;
+    }
+  }
+  return false;
+}

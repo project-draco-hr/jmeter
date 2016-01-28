@@ -1,0 +1,4 @@
+{
+  List<String> classList=ClassFinder.findClasses(JOrphanUtils.split(searchPaths,","),new JunitTestFilter());
+  return classList;
+}

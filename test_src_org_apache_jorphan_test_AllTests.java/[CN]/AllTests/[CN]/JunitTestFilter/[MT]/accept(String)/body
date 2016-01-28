@@ -1,0 +1,21 @@
+{
+  boolean isJunitTest=false;
+  try {
+    Class<?> c=Class.forName(className,false,contextClassLoader);
+    if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers())) {
+      if (TestCase.class.isAssignableFrom(c)) {
+        isJunitTest=true;
+      }
+    }
+  }
+ catch (  UnsupportedClassVersionError ignored) {
+    log.debug(ignored.getLocalizedMessage());
+  }
+catch (  NoClassDefFoundError ignored) {
+    log.debug(ignored.getLocalizedMessage());
+  }
+catch (  ClassNotFoundException ignored) {
+    log.debug(ignored.getLocalizedMessage());
+  }
+  return isJunitTest;
+}

@@ -5,24 +5,13 @@
     log.debug("innerClasses : " + innerClasses + " annotations: "+ annotations);
     log.debug("contains: " + contains + " notContains: "+ notContains);
   }
-  String[] strPathsOrJars=addJarsInPath(searchPathsOrJars);
-  for (int k=0; k < strPathsOrJars.length; k++) {
-    strPathsOrJars[k]=fixPathEntry(strPathsOrJars[k]);
+  ClassFilter filter=null;
+  if (annotations) {
+    @SuppressWarnings("unchecked") final Class<? extends Annotation>[] annoclassNames=(Class<? extends Annotation>[])classNames;
+    filter=new AnnoClassFilter(annoclassNames,innerClasses);
   }
-  List<String> listPaths=getClasspathMatches(strPathsOrJars);
-  if (log.isDebugEnabled()) {
-    for (    String path : listPaths) {
-      log.debug("listPaths : " + path);
-    }
+ else {
+    filter=new ExtendsClassFilter(classNames,innerClasses,contains,notContains);
   }
-  @SuppressWarnings("unchecked") final Class<? extends Annotation>[] annoclassNames=(Class<? extends Annotation>[])classNames;
-  Set<String> listClasses=annotations ? new AnnoFilterTreeSet(annoclassNames,innerClasses) : new FilterTreeSet(classNames,innerClasses,contains,notContains);
-  findClassesInPaths(listPaths,listClasses);
-  if (log.isDebugEnabled()) {
-    log.debug("listClasses.size()=" + listClasses.size());
-    for (    String clazz : listClasses) {
-      log.debug("listClasses : " + clazz);
-    }
-  }
-  return new ArrayList<>(listClasses);
+  return findClasses(searchPathsOrJars,filter);
 }

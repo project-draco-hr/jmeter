@@ -1,0 +1,14 @@
+{
+  if (contains != null && className.indexOf(contains) == -1) {
+    return false;
+  }
+  if (notContains != null && className.indexOf(notContains) != -1) {
+    return false;
+  }
+  if ((className.indexOf('$') == -1) || inner) {
+    if (isChildOf(parents,className,contextClassLoader)) {
+      return true;
+    }
+  }
+  return false;
+}

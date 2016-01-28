@@ -1,4 +1,9 @@
 {
+  if (GraphicsEnvironment.isHeadless()) {
+    System.out.println("Skipping test:" + getClass().getName() + "#testCloneSampler"+ ", cannot run in Headless mode");
+    log.warn("Skipping test:" + getClass().getName() + "#testCloneSampler"+ ", cannot run in Headless mode");
+    return;
+  }
   check("menumap",MenuFactory.menuMap_size());
   check("assertions",MenuFactory.assertions_size());
   check("configElements",MenuFactory.configElements_size());
