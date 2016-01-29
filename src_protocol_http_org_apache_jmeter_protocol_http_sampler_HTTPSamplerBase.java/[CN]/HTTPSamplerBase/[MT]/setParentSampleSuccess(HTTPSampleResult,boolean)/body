@@ -2,7 +2,15 @@
   if (!IGNORE_FAILED_EMBEDDED_RESOURCES) {
     res.setSuccessful(initialValue);
     if (!initialValue) {
-      res.setResponseMessage("Embedded resource download error");
+      StringBuilder detailedMessage=new StringBuilder(80);
+      detailedMessage.append("Embedded resource download error:");
+      for (      SampleResult subResult : res.getSubResults()) {
+        HTTPSampleResult httpSampleResult=(HTTPSampleResult)subResult;
+        if (!httpSampleResult.isSuccessful()) {
+          detailedMessage.append(httpSampleResult.getURL()).append(" code:").append(httpSampleResult.getResponseCode()).append(" message:").append(httpSampleResult.getResponseMessage()).append(", ");
+        }
+      }
+      res.setResponseMessage(detailedMessage.toString());
     }
   }
 }
