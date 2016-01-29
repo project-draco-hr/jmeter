@@ -51,10 +51,12 @@
   logprop("java.awt.headless",true);
   logprop("java.awt.graphicsenv",true);
   System.out.println("------------");
-  System.out.println("Creating test suite");
-  TestSuite suite=suite(args[0]);
-  int countTestCases=suite.countTestCases();
-  System.out.println("Starting test run, test count = " + countTestCases);
-  TestResult result=TestRunner.run(suite);
-  System.exit(result.wasSuccessful() ? 0 : 1);
+  try {
+    System.out.println("Searching junit tests in:" + args[0]);
+    List<String> tests=findJMeterJUnitTests(args[0]);
+    JUnitCore.main(tests.toArray(new String[0]));
+  }
+ catch (  IOException e) {
+    System.exit(1);
+  }
 }
