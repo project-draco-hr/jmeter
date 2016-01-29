@@ -5,7 +5,9 @@
   try {
     String escapedUrl=ConversionUtils.escapeIllegalURLCharacters(url);
     if (!escapedUrl.equals(url)) {
-      log.warn("Url '" + url + "' has been escaped to '"+ escapedUrl+ "'. Please corect your webpage.");
+      if (log.isDebugEnabled()) {
+        log.debug("Url '" + url + "' has been escaped to '"+ escapedUrl+ "'. Please corect your webpage.");
+      }
     }
     return escapedUrl;
   }
