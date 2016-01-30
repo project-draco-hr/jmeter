@@ -1,6 +1,10 @@
 {
-  handler.open(route,context,params);
-  if (sample != null) {
-    sample.connectEnd();
+  try {
+    handler.open(route,context,params);
+  }
+  finally {
+    if (sample != null) {
+      sample.connectEnd();
+    }
   }
 }
