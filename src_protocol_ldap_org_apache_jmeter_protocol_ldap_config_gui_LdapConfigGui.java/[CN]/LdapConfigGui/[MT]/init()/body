@@ -11,7 +11,7 @@
   mainPanel.add(createTestPanel());
   mainPanel.add(testPanel());
   add(mainPanel,BorderLayout.CENTER);
-  user_Defined.addItemListener(this);
+  userDefined.addItemListener(this);
   addTest.addItemListener(this);
   modifyTest.addItemListener(this);
   deleteTest.addItemListener(this);

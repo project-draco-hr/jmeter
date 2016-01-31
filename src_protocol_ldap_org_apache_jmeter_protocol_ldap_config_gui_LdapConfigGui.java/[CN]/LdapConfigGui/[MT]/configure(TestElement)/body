@@ -29,10 +29,10 @@
     cl.show(cards,"Search");
   }
   if (element.getPropertyAsBoolean(LDAPSampler.USER_DEFINED)) {
-    user_Defined.setSelected(true);
+    userDefined.setSelected(true);
   }
  else {
-    user_Defined.setSelected(false);
+    userDefined.setSelected(false);
     cl.show(cards,"");
   }
 }

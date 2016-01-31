@@ -1,6 +1,6 @@
 {
   CardLayout cl=(CardLayout)(cards.getLayout());
-  if (user_Defined.isSelected()) {
+  if (userDefined.isSelected()) {
     if (addTest.isSelected()) {
       cl.show(cards,"Add");
       tableModifyPanel.clear();
