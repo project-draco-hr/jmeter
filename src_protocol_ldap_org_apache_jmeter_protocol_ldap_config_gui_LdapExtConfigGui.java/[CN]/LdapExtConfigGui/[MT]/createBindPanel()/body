@@ -1,26 +1,11 @@
 {
   VerticalPanel bindPanel=new VerticalPanel();
-  bindPanel.add(createServernamePanel());
-  bindPanel.add(createPortPanel());
-  bindPanel.add(createRootdnPanel());
-  JPanel bPanel=new JPanel(new BorderLayout(5,0));
-  JLabel blabel0=new JLabel(JMeterUtils.getResString("userdn"));
-  blabel0.setLabelFor(userdn);
-  bPanel.add(blabel0,BorderLayout.WEST);
-  bPanel.add(userdn,BorderLayout.CENTER);
-  bindPanel.add(bPanel);
-  JPanel b1Panel=new JPanel(new BorderLayout(5,0));
-  JLabel blabel1=new JLabel(JMeterUtils.getResString("userpw"));
-  blabel1.setLabelFor(userpw);
-  b1Panel.add(blabel1,BorderLayout.WEST);
-  b1Panel.add(userpw,BorderLayout.CENTER);
-  bindPanel.add(b1Panel);
-  JPanel b2Panel=new JPanel(new BorderLayout(5,0));
-  JLabel blabel2=new JLabel(JMeterUtils.getResString("ldap_connto"));
-  blabel2.setLabelFor(connto);
-  b2Panel.add(blabel2,BorderLayout.WEST);
-  b2Panel.add(connto,BorderLayout.CENTER);
-  bindPanel.add(b2Panel);
+  bindPanel.add(createLabelPanel("servername",servername));
+  bindPanel.add(createLabelPanel("port",port));
+  bindPanel.add(createLabelPanel("ddn",rootdn));
+  bindPanel.add(createLabelPanel("userdn",userdn));
+  bindPanel.add(createLabelPanel("userpw",userpw));
+  bindPanel.add(createLabelPanel("ldap_connto",connto));
   bindPanel.add(secure);
   return bindPanel;
 }
