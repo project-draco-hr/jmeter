@@ -1,0 +1,8 @@
+{
+  JPanel addInnerPanel=new JPanel(new BorderLayout(5,0));
+  JLabel label=new JLabel(JMeterUtils.getResString(key));
+  label.setLabelFor(field);
+  addInnerPanel.add(label,BorderLayout.WEST);
+  addInnerPanel.add(field,BorderLayout.CENTER);
+  return addInnerPanel;
+}
