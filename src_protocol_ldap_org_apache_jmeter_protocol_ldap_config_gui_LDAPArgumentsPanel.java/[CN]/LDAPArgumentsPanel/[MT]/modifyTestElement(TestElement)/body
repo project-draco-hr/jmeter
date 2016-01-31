@@ -1,8 +1,7 @@
 {
   GuiUtils.stopTableEditing(table);
-  LDAPArguments arguments=null;
   if (args instanceof LDAPArguments) {
-    arguments=(LDAPArguments)args;
+    LDAPArguments arguments=(LDAPArguments)args;
     arguments.clear();
     @SuppressWarnings("unchecked") Iterator<LDAPArgument> modelData=(Iterator<LDAPArgument>)tableModel.iterator();
     while (modelData.hasNext()) {
