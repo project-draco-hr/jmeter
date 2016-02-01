@@ -1,0 +1,10 @@
+{
+  for (  Method method : clazz.getDeclaredMethods()) {
+    for (    Annotation annotation : method.getAnnotations()) {
+      if (org.junit.Test.class.isAssignableFrom(annotation.annotationType())) {
+        return true;
+      }
+    }
+  }
+  return false;
+}

@@ -2,9 +2,12 @@
   boolean isJunitTest=false;
   try {
     Class<?> c=Class.forName(className,false,contextClassLoader);
-    if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers())) {
+    if (!c.isAnnotation() && !c.isEnum() && !c.isInterface()&& !Modifier.isAbstract(c.getModifiers())) {
       if (TestCase.class.isAssignableFrom(c)) {
         isJunitTest=true;
+      }
+ else {
+        isJunitTest=checkForJUnitAnnotations(c);
       }
     }
   }

@@ -1,0 +1,10 @@
+{
+  Class<?> classToCheck=clazz;
+  while (classToCheck != null) {
+    if (checkforTestAnnotationOnMethods(classToCheck)) {
+      return true;
+    }
+    classToCheck=classToCheck.getSuperclass();
+  }
+  return false;
+}
