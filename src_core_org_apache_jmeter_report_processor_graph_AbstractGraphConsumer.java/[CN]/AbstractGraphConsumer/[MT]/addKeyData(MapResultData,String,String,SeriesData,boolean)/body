@@ -1,4 +1,7 @@
 {
+  if (aggregated) {
+    series=String.format(aggregatedKeysSeriesFormat,series);
+  }
   ListResultData seriesList=(ListResultData)result.getResult(RESULT_SERIES);
   MapResultData seriesResult=null;
   int index=0;
@@ -21,13 +24,12 @@
   }
   ListResultData dataResult=(ListResultData)seriesResult.getResult(RESULT_SERIES_DATA);
   Map<Double,Aggregator> aggInfo;
-  if (!aggregated) {
-    aggInfo=seriesData.getAggregatorInfo();
-  }
- else {
-    series=String.format(aggregatedKeysSeriesFormat,series);
+  if (aggregated) {
     aggInfo=new HashMap<>();
     aggInfo.put(Double.valueOf(seriesData.getKeysAggregator().getResult()),seriesData.getValuesAggregator());
+  }
+ else {
+    aggInfo=seriesData.getAggregatorInfo();
   }
   if (!renderPercentiles) {
     for (    Map.Entry<Double,Aggregator> entry : aggInfo.entrySet()) {
