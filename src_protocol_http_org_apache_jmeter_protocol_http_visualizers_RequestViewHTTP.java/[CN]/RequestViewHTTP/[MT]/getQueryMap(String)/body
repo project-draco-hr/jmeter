@@ -9,12 +9,15 @@
       map.put(" ",new String[]{query});
       return map;
     }
-    if (paramSplit.length == 1 || paramSplit.length > 2) {
+    if ((param.startsWith("=") && paramSplit.length == 1) || paramSplit.length > 2) {
       map.put(" ",new String[]{query});
       return map;
     }
-    String value=paramSplit[1];
-    value=decodeQuery(value);
+    String value="";
+    if (paramSplit.length > 1) {
+      value=paramSplit[1];
+      value=decodeQuery(value);
+    }
     String[] known=map.get(name);
     if (known == null) {
       known=new String[]{value};
