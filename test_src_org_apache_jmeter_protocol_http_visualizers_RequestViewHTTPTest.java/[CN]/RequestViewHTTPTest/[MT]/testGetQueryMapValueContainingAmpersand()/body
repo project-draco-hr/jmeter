@@ -1,0 +1,14 @@
+{
+  String query="login=toto1&pwd=Welcome%261";
+  Map<String,String[]> params=RequestViewHTTP.getQueryMap(query);
+  Assert.assertNotNull(params);
+  Assert.assertEquals(2,params.size());
+  String[] param1=params.get("login");
+  Assert.assertNotNull(param1);
+  Assert.assertEquals(1,param1.length);
+  Assert.assertEquals("toto1",param1[0]);
+  String[] param2=params.get("pwd");
+  Assert.assertNotNull(param2);
+  Assert.assertEquals(1,param2.length);
+  Assert.assertEquals("Welcome&1",param2[0]);
+}

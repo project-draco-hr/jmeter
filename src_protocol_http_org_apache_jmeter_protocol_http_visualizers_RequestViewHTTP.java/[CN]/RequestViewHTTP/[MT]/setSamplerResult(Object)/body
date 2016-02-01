@@ -18,8 +18,7 @@
         }
         queryGet+=queryPost;
       }
-      queryGet=RequestViewHTTP.decodeQuery(queryGet);
-      if (queryGet != null) {
+      if (StringUtils.isNotBlank(queryGet)) {
         Set<Entry<String,String[]>> keys=RequestViewHTTP.getQueryMap(queryGet).entrySet();
         for (        Entry<String,String[]> entry : keys) {
           for (          String value : entry.getValue()) {

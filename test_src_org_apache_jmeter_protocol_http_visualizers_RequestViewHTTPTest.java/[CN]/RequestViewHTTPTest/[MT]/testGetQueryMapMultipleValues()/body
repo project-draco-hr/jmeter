@@ -1,0 +1,15 @@
+{
+  String query="param2=15&param1=12&param2=baulpismuth";
+  Map<String,String[]> params=RequestViewHTTP.getQueryMap(query);
+  Assert.assertNotNull(params);
+  Assert.assertEquals(2,params.size());
+  String[] param1=params.get("param1");
+  Assert.assertNotNull(param1);
+  Assert.assertEquals(1,param1.length);
+  Assert.assertEquals("12",param1[0]);
+  String[] param2=params.get("param2");
+  Assert.assertNotNull(param2);
+  Assert.assertEquals(2,param2.length);
+  Assert.assertEquals("15",param2[0]);
+  Assert.assertEquals("baulpismuth",param2[1]);
+}

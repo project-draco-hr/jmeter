@@ -1,0 +1,11 @@
+{
+  String query="<envelope><header><context><conversationId>119</conversationId></context></header><body><call component=\"OrderTransfer\" method=\"getSourceManifestID\" id=\"2\">\n" + "<params></params><refs></refs></call></body></envelope>";
+  Map<String,String[]> params=RequestViewHTTP.getQueryMap(query);
+  Assert.assertNotNull(params);
+  Assert.assertEquals(1,params.size());
+  Map.Entry<String,String[]> param1=params.entrySet().iterator().next();
+  Assert.assertNotNull(param1);
+  Assert.assertEquals(1,param1.getValue().length);
+  Assert.assertEquals(query,param1.getValue()[0]);
+  Assert.assertTrue(StringUtils.isBlank(param1.getKey()));
+}
