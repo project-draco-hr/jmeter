@@ -1,0 +1,13 @@
+{
+  Collection<CompoundVariable> parms=new LinkedList<>();
+  for (int c=0; c < minimum; c++) {
+    try {
+      func.setParameters(parms);
+      fail("Should have generated InvalidVariableException for " + parms.size() + " parameters");
+    }
+ catch (    InvalidVariableException ignored) {
+    }
+    parms.add(new CompoundVariable());
+  }
+  func.setParameters(parms);
+}
