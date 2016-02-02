@@ -1,13 +1,13 @@
 {
   final StringBuilder sb=new StringBuilder();
   sb.append("[OptionDescriptor ");
-  sb.append(m_name);
+  sb.append(this.name);
   sb.append(", ");
-  sb.append(m_id);
+  sb.append(this.id);
   sb.append(", ");
-  sb.append(m_flags);
+  sb.append(this.flags);
   sb.append(", ");
-  sb.append(m_description);
+  sb.append(this.description);
   sb.append(" ]");
   return sb.toString();
 }

@@ -1,8 +1,8 @@
 {
-  if (null == m_arguments) {
+  if (null == this.arguments) {
     return 0;
   }
  else {
-    return m_arguments.length;
+    return this.arguments.length;
   }
 }

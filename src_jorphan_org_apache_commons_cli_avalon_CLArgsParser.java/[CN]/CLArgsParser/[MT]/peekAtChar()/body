@@ -1,6 +1,6 @@
 {
-  if (INVALID == m_lastChar) {
-    m_lastChar=readChar();
+  if (INVALID == this.lastChar) {
+    this.lastChar=readChar();
   }
-  return (char)m_lastChar;
+  return (char)this.lastChar;
 }

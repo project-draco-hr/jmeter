@@ -1,9 +1,9 @@
 {
-  m_ch=getChar();
-  final CLOptionDescriptor descriptor=getDescriptorFor(m_ch);
-  m_isLong=false;
-  parseOption(descriptor,"-" + m_ch);
-  if (STATE_NORMAL == m_state) {
-    m_state=STATE_OPTION_MODE;
+  this.ch=getChar();
+  final CLOptionDescriptor descriptor=getDescriptorFor(this.ch);
+  this.isLong=false;
+  parseOption(descriptor,"-" + this.ch);
+  if (STATE_NORMAL == this.state) {
+    this.state=STATE_OPTION_MODE;
   }
 }

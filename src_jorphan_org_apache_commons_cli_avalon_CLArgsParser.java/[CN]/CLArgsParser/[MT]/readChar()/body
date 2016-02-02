@@ -1,17 +1,17 @@
 {
-  if (m_stringIndex >= m_stringLength) {
-    m_argIndex++;
-    m_stringIndex=0;
-    if (m_argIndex < m_args.length) {
-      m_stringLength=m_args[m_argIndex].length();
+  if (this.stringIndex >= this.stringLength) {
+    this.argIndex++;
+    this.stringIndex=0;
+    if (this.argIndex < this.args.length) {
+      this.stringLength=this.args[this.argIndex].length();
     }
  else {
-      m_stringLength=0;
+      this.stringLength=0;
     }
     return 0;
   }
-  if (m_argIndex >= m_args.length) {
+  if (this.argIndex >= this.args.length) {
     return 0;
   }
-  return m_args[m_argIndex].charAt(m_stringIndex++);
+  return this.args[this.argIndex].charAt(this.stringIndex++);
 }

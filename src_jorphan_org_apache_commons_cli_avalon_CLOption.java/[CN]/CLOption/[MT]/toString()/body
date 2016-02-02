@@ -1,7 +1,7 @@
 {
   final StringBuilder sb=new StringBuilder();
   sb.append("[");
-  final char id=(char)m_descriptor.getId();
+  final char id=(char)this.descriptor.getId();
   if (id == TEXT_ARGUMENT) {
     sb.append("TEXT ");
   }
@@ -9,9 +9,9 @@
     sb.append("Option ");
     sb.append(id);
   }
-  if (null != m_arguments) {
+  if (null != this.arguments) {
     sb.append(", ");
-    sb.append(Arrays.asList(m_arguments));
+    sb.append(Arrays.asList(this.arguments));
   }
   sb.append(" ]");
   return sb.toString();

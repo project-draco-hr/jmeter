@@ -1,11 +1,11 @@
 {
-  final int size=m_options.size();
-  m_optionIndex=new Hashtable<>(size * 2);
-  for (  final CLOption option : m_options) {
+  final int size=this.options.size();
+  this.optionIndex=new Hashtable<>(size * 2);
+  for (  final CLOption option : this.options) {
     final CLOptionDescriptor optionDescriptor=getDescriptorFor(option.getDescriptor().getId());
-    m_optionIndex.put(Integer.valueOf(option.getDescriptor().getId()),option);
+    this.optionIndex.put(Integer.valueOf(option.getDescriptor().getId()),option);
     if (null != optionDescriptor && null != optionDescriptor.getName()) {
-      m_optionIndex.put(optionDescriptor.getName(),option);
+      this.optionIndex.put(optionDescriptor.getName(),option);
     }
   }
 }

@@ -1,14 +1,14 @@
 {
-  m_optionDescriptors=optionDescriptors;
-  m_control=control;
-  m_options=new Vector<>();
-  m_args=args;
+  this.optionDescriptors=optionDescriptors;
+  this.control=control;
+  this.options=new Vector<>();
+  this.args=args;
   try {
     parse();
-    checkIncompatibilities(m_options);
+    checkIncompatibilities(this.options);
     buildOptionIndex();
   }
  catch (  final ParseException pe) {
-    m_errorMessage=pe.getMessage();
+    this.errorMessage=pe.getMessage();
   }
 }

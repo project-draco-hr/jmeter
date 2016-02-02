@@ -1,15 +1,15 @@
 {
   final StringBuilder sb=new StringBuilder();
-  final char id=(char)m_descriptor.getId();
+  final char id=(char)this.descriptor.getId();
   if (id != TEXT_ARGUMENT) {
     sb.append("-");
     sb.append(id);
   }
-  if (null != m_arguments) {
+  if (null != this.arguments) {
     if (id != TEXT_ARGUMENT) {
       sb.append("=");
     }
-    sb.append(Arrays.asList(m_arguments));
+    sb.append(Arrays.asList(this.arguments));
   }
   return sb.toString();
 }

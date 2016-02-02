@@ -1,7 +1,7 @@
 {
-  if (INVALID != m_lastChar) {
-    final char result=(char)m_lastChar;
-    m_lastChar=INVALID;
+  if (INVALID != this.lastChar) {
+    final char result=(char)this.lastChar;
+    this.lastChar=INVALID;
     return result;
   }
  else {

@@ -1,5 +1,5 @@
 {
-  for (  CLOptionDescriptor optionDescriptor : m_optionDescriptors) {
+  for (  CLOptionDescriptor optionDescriptor : this.optionDescriptors) {
     if (optionDescriptor.getName().equals(name)) {
       return optionDescriptor;
     }

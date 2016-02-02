@@ -2,9 +2,9 @@
   if (null == descriptor) {
     throw new ParseException("Unknown option " + optionString,0);
   }
-  m_state=getStateFor(descriptor);
-  m_option=new CLOption(descriptor);
-  if (STATE_NORMAL == m_state) {
-    addOption(m_option);
+  this.state=getStateFor(descriptor);
+  this.option=new CLOption(descriptor);
+  if (STATE_NORMAL == this.state) {
+    addOption(this.option);
   }
 }
