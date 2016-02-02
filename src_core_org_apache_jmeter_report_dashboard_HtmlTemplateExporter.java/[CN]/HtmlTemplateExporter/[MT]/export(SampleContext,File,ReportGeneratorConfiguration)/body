@@ -52,6 +52,8 @@
   try {
     templateCfg.setDirectoryForTemplateLoading(templateDirectory);
     templateCfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+    LOG.info("Report will be generated in:" + outputDir.getAbsolutePath() + ", creating folder structure");
+    FileUtils.forceMkdir(outputDir);
     TemplateVisitor visitor=new TemplateVisitor(templateDirectory.toPath(),outputDir.toPath(),templateCfg,dataContext);
     Files.walkFileTree(templateDirectory.toPath(),visitor);
   }
