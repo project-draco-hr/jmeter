@@ -4,6 +4,6 @@
   calc.addValue(3L);
   calc.addValue(6L,3);
   assertEquals(6,calc.getCount());
-  assertEquals(12.0,calc.getSum());
-  assertEquals(0.5773502691896255,calc.getStandardDeviation());
+  assertEquals(12.0,calc.getSum(),0.00000001);
+  assertEquals(0.5773502691896255,calc.getStandardDeviation(),0.000000000000001);
 }
