@@ -1,8 +1,0 @@
-{
-  try {
-    return Float.parseFloat(data[metadata.indexOf(name)]);
-  }
- catch (  NumberFormatException ex) {
-    throw new SampleException(ERROR_ON_SAMPLE + row,ex);
-  }
-}

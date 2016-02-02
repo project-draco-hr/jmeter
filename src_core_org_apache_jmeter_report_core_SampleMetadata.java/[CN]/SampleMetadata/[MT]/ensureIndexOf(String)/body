@@ -1,0 +1,7 @@
+{
+  int index=indexOf(col);
+  if (index < 0) {
+    throw new SampleException(String.format(METADATA_EXCEPTION_MSG_FMT,col,toString()));
+  }
+  return index;
+}

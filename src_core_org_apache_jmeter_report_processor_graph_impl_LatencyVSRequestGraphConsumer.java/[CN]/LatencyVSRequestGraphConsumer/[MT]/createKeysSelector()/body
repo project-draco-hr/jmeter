@@ -1,7 +1,7 @@
 {
   return new GraphKeysSelector(){
     @Override public Double select(    Sample sample){
-      return sample.getDouble(AbstractVersusRequestsGraphConsumer.TIME_INTERVAL_LABEL);
+      return sample.getData(Double.class,AbstractVersusRequestsGraphConsumer.TIME_INTERVAL_LABEL);
     }
   }
 ;

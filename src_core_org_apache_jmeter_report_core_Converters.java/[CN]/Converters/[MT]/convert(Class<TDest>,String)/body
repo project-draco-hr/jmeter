@@ -1,0 +1,15 @@
+{
+  TDest result;
+  if (clazz.isAssignableFrom(String.class)) {
+    @SuppressWarnings("unchecked") TDest temp=(TDest)value;
+    result=temp;
+  }
+ else {
+    StringConverter<TDest> converter=Converters.getConverter(clazz);
+    if (converter == null) {
+      throw new ConvertException(value,clazz.getName());
+    }
+    result=converter.convert(value);
+  }
+  return result;
+}

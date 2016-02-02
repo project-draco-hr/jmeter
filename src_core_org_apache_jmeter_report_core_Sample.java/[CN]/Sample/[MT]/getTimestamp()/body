@@ -1,3 +1,3 @@
 {
-  return getLong(metadata.indexOf(CSVSaveService.TIME_STAMP));
+  return getData(long.class,CSVSaveService.TIME_STAMP);
 }

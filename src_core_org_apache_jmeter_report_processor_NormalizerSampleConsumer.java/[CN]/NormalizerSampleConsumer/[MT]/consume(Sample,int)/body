@@ -1,7 +1,7 @@
 {
   Date date=null;
   try {
-    String tStr=s.getString(timestamp);
+    String tStr=s.getData(timestamp);
     try {
       date=new Date(Long.parseLong(tStr));
     }
@@ -10,7 +10,7 @@
     }
   }
  catch (  Exception e) {
-    throw new SampleException(String.format(PARSE_TIMESTAMP_EXCEPTION_MESSAGE,s.getString(timestamp),s.toString()),e);
+    throw new SampleException(String.format(PARSE_TIMESTAMP_EXCEPTION_MESSAGE,s.getData(timestamp),s.toString()),e);
   }
   long time=date.getTime();
   int cc=sampleMetadata.getColumnCount();
@@ -20,7 +20,7 @@
       data[i]=Long.toString(time);
     }
  else {
-      data[i]=s.getString(i);
+      data[i]=s.getData(i);
     }
   }
   Sample rewrited=new Sample(s.getSampleRow(),sampleMetadata,data);

@@ -1,20 +1,8 @@
 {
-  TProperty result;
-  if (clazz.isAssignableFrom(String.class)) {
-    @SuppressWarnings("unchecked") TProperty temp=(TProperty)value;
-    result=temp;
+  try {
+    return Converters.convert(clazz,value);
   }
- else {
-    StringConverter<TProperty> converter=Converters.getConverter(clazz);
-    if (converter == null) {
-      throw new ConfigurationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,value,clazz.getName()));
-    }
-    try {
-      result=converter.convert(value);
-    }
- catch (    ConvertException ex) {
-      throw new ConfigurationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,value,clazz.getName()),ex);
-    }
+ catch (  ConvertException ex) {
+    throw new ConfigurationException(String.format(NOT_SUPPORTED_CONVERTION_FMT,value,clazz.getName()));
   }
-  return result;
 }

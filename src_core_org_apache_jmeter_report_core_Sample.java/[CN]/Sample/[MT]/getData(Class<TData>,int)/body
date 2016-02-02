@@ -1,0 +1,8 @@
+{
+  try {
+    return Converters.convert(clazz,data[index]);
+  }
+ catch (  ConvertException ex) {
+    throw new SampleException(ERROR_ON_SAMPLE + row,ex);
+  }
+}

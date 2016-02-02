@@ -1,8 +1,0 @@
-{
-  try {
-    return Integer.parseInt(data[i]);
-  }
- catch (  NumberFormatException ex) {
-    throw new SampleException(ERROR_ON_SAMPLE + row,ex);
-  }
-}
