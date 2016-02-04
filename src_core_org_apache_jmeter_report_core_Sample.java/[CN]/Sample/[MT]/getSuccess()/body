@@ -1,3 +1,3 @@
 {
-  return getData(boolean.class,CSVSaveService.SUCCESSFUL);
+  return getData(boolean.class,CSVSaveService.SUCCESSFUL).booleanValue();
 }
