@@ -1,5 +1,5 @@
 {
   Dummy dummy=new Dummy();
   ClassTools.invoke(dummy,"callMe");
-  assertEquals(dummy.wasCalled(),true);
+  assertTrue(dummy.wasCalled());
 }
