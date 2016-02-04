@@ -7,5 +7,5 @@
  else {
     assertEquals(expectedEncodedValue,arg.getEncodedValue("ISO-8859-1"));
   }
-  assertEquals(expectedEncoded,arg.isAlwaysEncoded());
+  assertPrimitiveEquals(expectedEncoded,arg.isAlwaysEncoded());
 }

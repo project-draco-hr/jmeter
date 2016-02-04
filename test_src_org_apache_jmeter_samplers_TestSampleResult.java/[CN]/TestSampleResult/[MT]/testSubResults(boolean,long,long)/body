@@ -1,6 +1,6 @@
 {
   SampleResult parent=new SampleResult(nanoTime,nanoThreadSleep);
-  assertEquals(nanoTime,parent.useNanoTime);
+  JMeterTestCase.assertPrimitiveEquals(nanoTime,parent.useNanoTime);
   assertEquals(nanoThreadSleep,parent.nanoThreadSleep);
   long beginTest=parent.currentTimeInMillis();
   parent.sampleStart();
