@@ -1,11 +1,20 @@
 {
   Map<HttpClientKey,HttpClient> mapHttpClientPerHttpClientKey=HTTPCLIENTS_CACHE_PER_THREAD_AND_HTTPCLIENTKEY.get();
   final String host=url.getHost();
-  final String proxyHost=getProxyHost();
-  final int proxyPort=getProxyPortInt();
+  String proxyHost=getProxyHost();
+  int proxyPort=getProxyPortInt();
+  String proxyPass=getProxyPass();
+  String proxyUser=getProxyUser();
   boolean useStaticProxy=isStaticProxy(host);
   boolean useDynamicProxy=isDynamicProxy(proxyHost,proxyPort);
-  HttpClientKey key=new HttpClientKey(url,(useStaticProxy || useDynamicProxy),useDynamicProxy ? proxyHost : PROXY_HOST,useDynamicProxy ? proxyPort : PROXY_PORT,useDynamicProxy ? getProxyUser() : PROXY_USER,useDynamicProxy ? getProxyPass() : PROXY_PASS);
+  boolean useProxy=useStaticProxy || useDynamicProxy;
+  if (!useDynamicProxy) {
+    proxyHost=PROXY_HOST;
+    proxyPort=PROXY_PORT;
+    proxyUser=PROXY_USER;
+    proxyPass=PROXY_PASS;
+  }
+  HttpClientKey key=new HttpClientKey(url,useProxy,proxyHost,proxyPort,proxyUser,proxyPass);
   HttpClient httpClient=mapHttpClientPerHttpClientKey.get(key);
   if (httpClient != null && resetSSLContext && HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(url.getProtocol())) {
     ((AbstractHttpClient)httpClient).clearRequestInterceptors();
@@ -42,19 +51,11 @@
     if (HTTPS_SCHEME != null) {
       schemeRegistry.register(HTTPS_SCHEME);
     }
-    if (useDynamicProxy) {
+    if (useProxy) {
       HttpHost proxy=new HttpHost(proxyHost,proxyPort);
       clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
-      String proxyUser=getProxyUser();
       if (proxyUser.length() > 0) {
-        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(proxyHost,proxyPort),new NTCredentials(proxyUser,getProxyPass(),localHost,PROXY_DOMAIN));
-      }
-    }
- else     if (useStaticProxy) {
-      HttpHost proxy=new HttpHost(PROXY_HOST,PROXY_PORT);
-      clientParams.setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
-      if (PROXY_USER.length() > 0) {
-        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(PROXY_HOST,PROXY_PORT),new NTCredentials(PROXY_USER,PROXY_PASS,localHost,PROXY_DOMAIN));
+        ((AbstractHttpClient)httpClient).getCredentialsProvider().setCredentials(new AuthScope(proxyHost,proxyPort),new NTCredentials(proxyUser,proxyPass,localHost,PROXY_DOMAIN));
       }
     }
     clientParams.setParameter(ClientPNames.COOKIE_POLICY,CookieSpecs.IGNORE_COOKIES);
