@@ -24,8 +24,8 @@
     }
     suite.addTest(new PackageTest(testBeanClass,defaultLocale,defaultBundle));
     String[] languages=JMeterMenuBar.getLanguages();
-    for (int i=0; i < languages.length; i++) {
-      final String[] language=languages[i].split("_");
+    for (    String lang : languages) {
+      final String[] language=lang.split("_");
       if (language.length == 1) {
         suite.addTest(new PackageTest(testBeanClass,new Locale(language[0]),defaultBundle));
       }
