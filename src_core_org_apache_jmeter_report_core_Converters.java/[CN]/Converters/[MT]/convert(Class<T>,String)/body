@@ -1,11 +1,11 @@
 {
-  TDest result;
+  T result;
   if (clazz.isAssignableFrom(String.class)) {
-    @SuppressWarnings("unchecked") TDest temp=(TDest)value;
+    @SuppressWarnings("unchecked") T temp=(T)value;
     result=temp;
   }
  else {
-    StringConverter<TDest> converter=Converters.getConverter(clazz);
+    StringConverter<T> converter=Converters.getConverter(clazz);
     if (converter == null) {
       throw new ConvertException(value,clazz.getName());
     }
