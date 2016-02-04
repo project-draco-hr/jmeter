@@ -11,6 +11,9 @@
     if (method.equals(HTTPConstants.POST)) {
       httpRequest=new HttpPost(uri);
     }
+ else     if (method.equals(HTTPConstants.GET)) {
+      httpRequest=new HttpGet(uri);
+    }
  else     if (method.equals(HTTPConstants.PUT)) {
       httpRequest=new HttpPut(uri);
     }
@@ -25,9 +28,6 @@
     }
  else     if (method.equals(HTTPConstants.DELETE)) {
       httpRequest=new HttpDelete(uri);
-    }
- else     if (method.equals(HTTPConstants.GET)) {
-      httpRequest=new HttpGet(uri);
     }
  else     if (method.equals(HTTPConstants.PATCH)) {
       httpRequest=new HttpPatch(uri);

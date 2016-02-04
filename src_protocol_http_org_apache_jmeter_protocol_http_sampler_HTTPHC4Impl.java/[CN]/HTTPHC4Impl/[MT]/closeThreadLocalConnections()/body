@@ -4,6 +4,7 @@
     for (    HttpClient cl : mapHttpClientPerHttpClientKey.values()) {
       ((AbstractHttpClient)cl).clearRequestInterceptors();
       ((AbstractHttpClient)cl).clearResponseInterceptors();
+      ((AbstractHttpClient)cl).close();
       cl.getConnectionManager().shutdown();
     }
     mapHttpClientPerHttpClientKey.clear();
