@@ -1,9 +1,4 @@
 {
-  if (GraphicsEnvironment.isHeadless()) {
-    System.out.println("Skipping test:" + getClass().getName() + "#testConfiguring"+ ", cannot run in Headless mode");
-    log.warn("Skipping test:" + getClass().getName() + "#testConfiguring"+ ", cannot run in Headless mode");
-    return;
-  }
   HTTPSamplerBase sampler=(HTTPSamplerBase)new HttpTestSampleGui().createTestElement();
   configure(sampler);
 }

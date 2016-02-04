@@ -1,0 +1,8 @@
+{
+  Class<?>[] classes=new Class<?>[tests.size()];
+  for (int i=0; i < classes.length; i++) {
+    String test=tests.get(i);
+    classes[i]=Class.forName(test,true,Thread.currentThread().getContextClassLoader());
+  }
+  return classes;
+}

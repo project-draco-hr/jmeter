@@ -1,9 +1,4 @@
 {
-  if (GraphicsEnvironment.isHeadless()) {
-    System.out.println("Skipping test:" + getClass().getName() + "#testCloneSampler"+ ", cannot run in Headless mode");
-    log.warn("Skipping test:" + getClass().getName() + "#testCloneSampler"+ ", cannot run in Headless mode");
-    return;
-  }
   HTTPSamplerBase sampler=(HTTPSamplerBase)gui.createTestElement();
   sampler.addArgument("param","value");
   HTTPSamplerBase clonedSampler=(HTTPSamplerBase)sampler.clone();

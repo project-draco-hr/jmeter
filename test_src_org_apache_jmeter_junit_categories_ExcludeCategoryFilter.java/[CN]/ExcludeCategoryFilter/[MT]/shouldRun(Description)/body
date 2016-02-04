@@ -1,0 +1,12 @@
+{
+  Category cat=description.getAnnotation(Category.class);
+  if (cat != null) {
+    Class<?>[] categories=cat.value();
+    for (    Class<?> class1 : categories) {
+      if (excludedClass.isAssignableFrom(class1)) {
+        return false;
+      }
+    }
+  }
+  return true;
+}

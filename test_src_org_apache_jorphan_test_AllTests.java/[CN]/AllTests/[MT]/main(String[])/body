@@ -54,9 +54,19 @@
   try {
     System.out.println("Searching junit tests in : " + args[0]);
     List<String> tests=findJMeterJUnitTests(args[0]);
-    JUnitCore.main(tests.toArray(new String[0]));
+    Class<?>[] classes=asClasses(tests);
+    JUnitCore jUnitCore=new JUnitCore();
+    RunListener listener=new TextListener(new RealSystem());
+    jUnitCore.addListener(listener);
+    Request request=Request.classes(new Computer(),classes);
+    if (GraphicsEnvironment.isHeadless()) {
+      request=request.filterWith(new ExcludeCategoryFilter(NeedGuiTests.class));
+    }
+    Result result=jUnitCore.run(request);
+    System.exit(result.wasSuccessful() ? 0 : 1);
   }
- catch (  IOException e) {
+ catch (  Exception e) {
+    e.printStackTrace();
     System.exit(1);
   }
 }
