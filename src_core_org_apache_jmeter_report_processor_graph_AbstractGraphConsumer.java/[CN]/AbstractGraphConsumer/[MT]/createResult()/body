@@ -4,6 +4,7 @@
   result.setResult(RESULT_MAX_X,new ValueResultData(Double.valueOf(Double.MIN_VALUE)));
   result.setResult(RESULT_MIN_Y,new ValueResultData(Double.valueOf(Double.MAX_VALUE)));
   result.setResult(RESULT_MAX_Y,new ValueResultData(Double.valueOf(Double.MIN_VALUE)));
+  result.setResult(RESULT_TITLE,new ValueResultData(getTitle()));
   result.setResult(RESULT_SERIES,new ListResultData());
   boolean supportsControllersDiscrimination=true;
   Iterator<GroupInfo> it=groupInfos.values().iterator();

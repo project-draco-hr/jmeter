@@ -1,0 +1,12 @@
+{
+  TValue value=null;
+  ResultData result=findData(data,root);
+  if (result instanceof ValueResultData) {
+    ValueResultData valueResult=(ValueResultData)result;
+    Object object=valueResult.getValue();
+    if (object != null && clazz.isAssignableFrom(object.getClass())) {
+      value=clazz.cast(object);
+    }
+  }
+  return value;
+}

@@ -1,0 +1,40 @@
+{
+  Boolean supportsControllerDiscrimination=findValue(Boolean.class,AbstractGraphConsumer.RESULT_SUPPORTS_CONTROLLERS_DISCRIMINATION,result);
+  String message=null;
+  if (supportsControllerDiscrimination && showControllerSeriesOnly && excludesControllers) {
+    message=ReportGeneratorConfiguration.EXPORTER_KEY_SHOW_CONTROLLERS_ONLY + " is set while the graph excludes controllers.";
+  }
+ else {
+    if (filterPattern != null) {
+      ResultData seriesResult=findData(AbstractGraphConsumer.RESULT_SERIES,result);
+      if (seriesResult instanceof ListResultData) {
+        ListResultData seriesList=(ListResultData)seriesResult;
+        int count=seriesList.getSize();
+        int index=0;
+        boolean matches=false;
+        while (index < count && !matches) {
+          ResultData currentResult=seriesList.get(index);
+          if (currentResult instanceof MapResultData) {
+            MapResultData seriesData=(MapResultData)currentResult;
+            String name=findValue(String.class,AbstractGraphConsumer.RESULT_SERIES_NAME,seriesData);
+            boolean isController=findValue(Boolean.class,AbstractGraphConsumer.RESULT_SERIES_IS_CONTROLLER,seriesData).booleanValue();
+            matches=filterPattern.matcher(name).matches();
+            if (matches) {
+              matches=!filtersOnlySampleSeries || !supportsControllerDiscrimination || isController|| !showControllerSeriesOnly;
+            }
+ else {
+              matches=filtersOnlySampleSeries && !supportsControllerDiscrimination;
+            }
+          }
+          index++;
+        }
+        if (!matches) {
+          message="None series matches the " + ReportGeneratorConfiguration.EXPORTER_KEY_SERIES_FILTER;
+        }
+      }
+    }
+  }
+  if (message != null) {
+    LOG.warn(String.format(EMPTY_GRAPH_FMT,graphId,message));
+  }
+}

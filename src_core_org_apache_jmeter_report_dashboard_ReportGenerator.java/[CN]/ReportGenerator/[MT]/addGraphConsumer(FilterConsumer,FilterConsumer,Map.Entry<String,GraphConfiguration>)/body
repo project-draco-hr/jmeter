@@ -7,6 +7,7 @@
     Object obj=clazz.newInstance();
     AbstractGraphConsumer graph=(AbstractGraphConsumer)obj;
     graph.setName(graphName);
+    graph.setTitle(graphConfiguration.getTitle());
     Method[] methods=clazz.getMethods();
     for (    Map.Entry<String,String> entryProperty : graphConfiguration.getProperties().entrySet()) {
       String propertyName=entryProperty.getKey();

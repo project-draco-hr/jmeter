@@ -2,6 +2,9 @@
   Object data=storage.get(resultKey);
   if (data instanceof ResultData) {
     ResultData result=(ResultData)data;
+    if (checker != null) {
+      checker.checkResult(result);
+    }
     if (customizer != null) {
       result=customizer.customizeResult(result);
     }

@@ -1,0 +1,12 @@
+{
+  MapResultData customizedResult=new MapResultData();
+  customizedResult.setResult(DATA_CTX_RESULT,result);
+  if (extraOptions != null) {
+    MapResultData extraResult=new MapResultData();
+    for (    Map.Entry<String,String> extraEntry : extraOptions.getProperties().entrySet()) {
+      extraResult.setResult(extraEntry.getKey(),new ValueResultData(extraEntry.getValue()));
+    }
+    customizedResult.setResult(DATA_CTX_EXTRA_OPTIONS,extraResult);
+  }
+  return customizedResult;
+}
