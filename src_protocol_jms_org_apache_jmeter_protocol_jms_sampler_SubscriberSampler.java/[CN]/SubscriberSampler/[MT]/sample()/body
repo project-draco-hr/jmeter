@@ -56,11 +56,15 @@
     result.setResponseCode("404");
     result.setSuccessful(false);
   }
+ else   if (read < loop) {
+    result.setResponseCode("500");
+    result.setSuccessful(false);
+  }
  else {
     result.setResponseCodeOK();
     result.setSuccessful(true);
   }
-  result.setResponseMessage(read + " message(s) received successfully");
+  result.setResponseMessage(read + " message(s) received successfully of " + loop+ " expected");
   result.setSamplerData(loop + " messages expected");
   result.setSampleCount(read);
   if (stopBetweenSamples) {
