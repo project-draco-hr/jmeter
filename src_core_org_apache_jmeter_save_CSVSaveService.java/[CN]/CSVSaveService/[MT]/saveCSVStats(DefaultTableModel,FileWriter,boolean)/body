@@ -1,6 +1,6 @@
 {
   final char DELIM=',';
-  final char SPECIALS[]=new char[]{DELIM,QUOTING_CHAR};
+  final char[] SPECIALS=new char[]{DELIM,QUOTING_CHAR};
   final int columns=model.getColumnCount();
   final int rows=model.getRowCount();
   if (saveHeaders) {

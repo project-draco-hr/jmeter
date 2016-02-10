@@ -17,7 +17,7 @@
   int i=0;
   while (pe.hasMoreElements()) {
     String key=(String)pe.nextElement();
-    String icons[]=JOrphanUtils.split(p.getProperty(key)," ");
+    String[] icons=JOrphanUtils.split(p.getProperty(key)," ");
     iconlist[i][0]=key;
     iconlist[i][1]=icons[0];
     if (icons.length > 1) {

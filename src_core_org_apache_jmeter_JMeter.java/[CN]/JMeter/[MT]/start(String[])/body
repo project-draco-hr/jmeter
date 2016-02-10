@@ -48,7 +48,7 @@
     updateClassLoader();
     if (log.isDebugEnabled()) {
       String jcp=System.getProperty("java.class.path");
-      String bits[]=jcp.split(File.pathSeparator);
+      String[] bits=jcp.split(File.pathSeparator);
       log.debug("ClassPath");
       for (      String bit : bits) {
         log.debug(bit);

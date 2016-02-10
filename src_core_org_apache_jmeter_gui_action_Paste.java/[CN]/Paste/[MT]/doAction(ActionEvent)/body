@@ -1,5 +1,5 @@
 {
-  JMeterTreeNode draggedNodes[]=Copy.getCopiedNodes();
+  JMeterTreeNode[] draggedNodes=Copy.getCopiedNodes();
   if (draggedNodes == null) {
     Toolkit.getDefaultToolkit().beep();
     return;

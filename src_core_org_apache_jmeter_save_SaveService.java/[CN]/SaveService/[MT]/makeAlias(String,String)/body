@@ -1,5 +1,5 @@
 {
-  String aliases[]=aliasList.split(",");
+  String[] aliases=aliasList.split(",");
   String alias=aliases[0];
   for (  String a : aliases) {
     Object old=aliasToClass.setProperty(a,clazz);
