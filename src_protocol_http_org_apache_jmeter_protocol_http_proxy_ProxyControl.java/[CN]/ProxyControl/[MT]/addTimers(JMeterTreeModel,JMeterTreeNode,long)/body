@@ -14,11 +14,7 @@
           replacer.undoReverseReplace(timer);
           model.addComponent(timer,node);
         }
- catch (        InvalidVariableException e) {
-          log.error("Program error",e);
-          throw new Error(e);
-        }
-catch (        IllegalUserActionException e) {
+ catch (        InvalidVariableException|IllegalUserActionException e) {
           log.error("Program error",e);
           throw new Error(e);
         }

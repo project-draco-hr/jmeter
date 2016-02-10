@@ -34,11 +34,7 @@
         break;
       }
     }
- catch (    MalformedURLException e) {
-      errorResult(e,lastRes);
-      invalidRedirectUrl=true;
-    }
-catch (    URISyntaxException e) {
+ catch (    MalformedURLException|URISyntaxException e) {
       errorResult(e,lastRes);
       invalidRedirectUrl=true;
     }

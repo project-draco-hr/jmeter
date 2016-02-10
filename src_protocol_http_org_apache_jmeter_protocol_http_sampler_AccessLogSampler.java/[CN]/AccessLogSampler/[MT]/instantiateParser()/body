@@ -12,13 +12,7 @@
         }
       }
     }
- catch (    InstantiationException e) {
-      log.error("",e);
-    }
-catch (    IllegalAccessException e) {
-      log.error("",e);
-    }
-catch (    ClassNotFoundException e) {
+ catch (    InstantiationException|ClassNotFoundException|IllegalAccessException e) {
       log.error("",e);
     }
   }

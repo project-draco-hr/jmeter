@@ -50,10 +50,7 @@
       }
     }
   }
- catch (  FileNotFoundException e) {
-    log.error("Problem loading properties " + e.toString());
-  }
-catch (  IOException e) {
+ catch (  IOException e) {
     log.error("Problem loading properties " + e.toString());
   }
  finally {
