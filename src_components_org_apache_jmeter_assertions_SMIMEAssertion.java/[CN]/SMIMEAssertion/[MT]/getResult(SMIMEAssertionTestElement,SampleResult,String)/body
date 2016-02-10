@@ -5,13 +5,17 @@
     MimeMessage msg=null;
     final int msgPos=testElement.getSpecificMessagePositionAsInt();
     if (msgPos < 0) {
-      SampleResult subResults[]=response.getSubResults();
+      SampleResult[] subResults=response.getSubResults();
       final int pos=subResults.length + msgPos;
-      log.debug("Getting message number: " + pos + " of "+ subResults.length);
+      if (log.isDebugEnabled()) {
+        log.debug("Getting message number: " + pos + " of "+ subResults.length);
+      }
       msg=getMessageFromResponse(response,pos);
     }
  else {
-      log.debug("Getting message number: " + msgPos);
+      if (log.isDebugEnabled()) {
+        log.debug("Getting message number: " + msgPos);
+      }
       msg=getMessageFromResponse(response,msgPos);
     }
     SMIMESignedParser s=null;

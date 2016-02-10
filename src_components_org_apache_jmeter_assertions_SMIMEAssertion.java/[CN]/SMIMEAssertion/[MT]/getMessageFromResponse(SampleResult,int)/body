@@ -1,5 +1,5 @@
 {
-  SampleResult subResults[]=response.getSubResults();
+  SampleResult[] subResults=response.getSubResults();
   if (messageNumber >= subResults.length || messageNumber < 0) {
     throw new MessagingException("Message number not present in results: " + messageNumber);
   }
