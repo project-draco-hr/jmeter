@@ -3,10 +3,7 @@
     try {
       return new InitialContext();
     }
- catch (    NoClassDefFoundError e) {
-      throw new NamingException(e.toString());
-    }
-catch (    Exception e) {
+ catch (    NoClassDefFoundError|Exception e) {
       throw new NamingException(e.toString());
     }
   }

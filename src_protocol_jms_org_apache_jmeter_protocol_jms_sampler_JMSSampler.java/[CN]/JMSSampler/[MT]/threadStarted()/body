@@ -56,11 +56,7 @@
       LOGGER.debug("Connection started");
     }
   }
- catch (  Exception e) {
-    thrown=e;
-    LOGGER.error(e.getLocalizedMessage(),e);
-  }
-catch (  NoClassDefFoundError e) {
+ catch (  Exception|NoClassDefFoundError e) {
     thrown=e;
     LOGGER.error(e.getLocalizedMessage(),e);
   }

@@ -13,10 +13,7 @@
     try {
       ctx=new InitialContext(props);
     }
- catch (    NoClassDefFoundError e) {
-      throw new NamingException(e.toString());
-    }
-catch (    Exception e) {
+ catch (    NoClassDefFoundError|Exception e) {
       throw new NamingException(e.toString());
     }
     Context oldCtx=MAP.putIfAbsent(cacheKey,ctx);
