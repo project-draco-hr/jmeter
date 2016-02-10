@@ -1,6 +1,6 @@
 {
-  if (pos >= fieldPositions.length) {
-    pos=fieldPositions.length - 1;
+  if (pos >= FIELD_POSITIONS.length) {
+    pos=FIELD_POSITIONS.length - 1;
   }
-  return fieldPositions[pos];
+  return FIELD_POSITIONS[pos];
 }
