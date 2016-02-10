@@ -4,13 +4,7 @@
     m=ClassUtils.getPublicMethod(instance.getClass(),methodName,new Class[]{});
     m.invoke(instance,(Object[])null);
   }
- catch (  NoSuchMethodException e) {
-    throw new JMeterException(e);
-  }
-catch (  IllegalAccessException e) {
-    throw new JMeterException(e);
-  }
-catch (  InvocationTargetException e) {
+ catch (  NoSuchMethodException|InvocationTargetException|IllegalAccessException e) {
     throw new JMeterException(e);
   }
 }

@@ -5,25 +5,7 @@
     Constructor<?> constructor=clazz.getConstructor(Integer.TYPE);
     instance=constructor.newInstance(Integer.valueOf(parameter));
   }
- catch (  ClassNotFoundException e) {
-    throw new JMeterException(e);
-  }
-catch (  InstantiationException e) {
-    throw new JMeterException(e);
-  }
-catch (  IllegalAccessException e) {
-    throw new JMeterException(e);
-  }
-catch (  SecurityException e) {
-    throw new JMeterException(e);
-  }
-catch (  NoSuchMethodException e) {
-    throw new JMeterException(e);
-  }
-catch (  IllegalArgumentException e) {
-    throw new JMeterException(e);
-  }
-catch (  InvocationTargetException e) {
+ catch (  ClassNotFoundException|InvocationTargetException|IllegalArgumentException|NoSuchMethodException|SecurityException|IllegalAccessException|InstantiationException e) {
     throw new JMeterException(e);
   }
   return instance;

@@ -12,28 +12,12 @@
     manager.contextualize(ctx);
     manager.configure(c);
   }
- catch (  IllegalArgumentException e) {
+ catch (  IllegalArgumentException|ContextException|IOException|SAXException|ConfigurationException e) {
     System.out.println("Error processing logging config " + cfg);
     System.out.println(e.toString());
   }
 catch (  NullPointerException e) {
     System.out.println("Error processing logging config " + cfg);
     System.out.println("Perhaps a log target is missing?");
-  }
-catch (  ConfigurationException e) {
-    System.out.println("Error processing logging config " + cfg);
-    System.out.println(e.toString());
-  }
-catch (  SAXException e) {
-    System.out.println("Error processing logging config " + cfg);
-    System.out.println(e.toString());
-  }
-catch (  IOException e) {
-    System.out.println("Error processing logging config " + cfg);
-    System.out.println(e.toString());
-  }
-catch (  ContextException e) {
-    System.out.println("Error processing logging config " + cfg);
-    System.out.println(e.toString());
   }
 }

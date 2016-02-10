@@ -42,10 +42,7 @@
         tr.addError(theClazz,e);
       }
     }
-catch (    IllegalAccessException e) {
-      tr.addError(theClazz,e);
-    }
-catch (    IllegalArgumentException e) {
+catch (    IllegalAccessException|IllegalArgumentException e) {
       tr.addError(theClazz,e);
     }
     if (!tr.wasSuccessful()) {
