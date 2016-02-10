@@ -13,9 +13,7 @@
       log.info("Stored " + file + " as "+ alias);
       m.put(alias,new FileWrapper(frcc));
     }
- catch (    FileNotFoundException e) {
-    }
-catch (    IOException e) {
+ catch (    IOException e) {
     }
   }
 }
