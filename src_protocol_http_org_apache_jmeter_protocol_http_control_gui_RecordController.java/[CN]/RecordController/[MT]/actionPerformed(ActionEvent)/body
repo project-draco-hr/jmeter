@@ -1,0 +1,23 @@
+{
+  if (e.getSource() == clearButton) {
+    GuiPackage guiPackage=GuiPackage.getInstance();
+    JMeterTreeNode currentNode=guiPackage.getTreeListener().getCurrentNode();
+    if (!(currentNode.getUserObject() instanceof org.apache.jmeter.protocol.http.control.RecordingController)) {
+      Toolkit.getDefaultToolkit().beep();
+      return;
+    }
+    try {
+      guiPackage.updateCurrentNode();
+      JMeterTreeModel treeModel=guiPackage.getTreeModel();
+      int childCount=currentNode.getChildCount();
+      for (int i=0; i < childCount; i++) {
+        JMeterTreeNode node=(JMeterTreeNode)currentNode.getChildAt(0);
+        treeModel.removeNodeFromParent(node);
+      }
+    }
+ catch (    Exception err) {
+      Toolkit.getDefaultToolkit().beep();
+      log.error("Error while removing recorded samples",err);
+    }
+  }
+}

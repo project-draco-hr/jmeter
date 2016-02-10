@@ -1,0 +1,8 @@
+{
+  JPanel panel=new JPanel();
+  clearButton=new JButton(JMeterUtils.getResString("record_controller_clear_samples"));
+  clearButton.addActionListener(this);
+  panel.add(clearButton);
+  panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+  add(panel);
+}
