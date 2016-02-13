@@ -4,16 +4,16 @@
     return;
   }
   PropertyDescriptor[] descriptors=beanInfo.getPropertyDescriptors();
-  for (int i=0; i < descriptors.length; i++) {
-    if (descriptors[i].isHidden() || descriptors[i].getReadMethod() == null || descriptors[i].getWriteMethod() == null) {
+  for (  PropertyDescriptor descriptor : descriptors) {
+    if (descriptor.isHidden() || descriptor.getReadMethod() == null || descriptor.getWriteMethod() == null) {
       continue;
     }
-    if (TestElement.class.isAssignableFrom(descriptors[i].getPropertyType()) && descriptors[i].getPropertyEditorClass() == null) {
+    if (TestElement.class.isAssignableFrom(descriptor.getPropertyType()) && descriptor.getPropertyEditorClass() == null) {
       continue;
     }
-    String name=descriptors[i].getName();
+    String name=descriptor.getName();
     bundle.getString(name + ".displayName");
-    String group=(String)descriptors[i].getValue(GenericTestBeanCustomizer.GROUP);
+    String group=(String)descriptor.getValue(GenericTestBeanCustomizer.GROUP);
     if (group != null) {
       bundle.getString(group + ".displayName");
     }

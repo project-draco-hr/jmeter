@@ -4,9 +4,7 @@
   if (s.size() == 0) {
     return 0;
   }
-  Iterator<String> i=s.iterator();
-  while (i.hasNext()) {
-    String key=i.next();
+  for (  String key : s) {
     if (!m.get(key).equals(Boolean.TRUE)) {
       if (unseen == 0) {
         System.out.println("\nNames remaining in " + t + " Map:");

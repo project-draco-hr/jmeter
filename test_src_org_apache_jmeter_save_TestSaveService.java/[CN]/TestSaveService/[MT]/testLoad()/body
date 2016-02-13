@@ -1,6 +1,6 @@
 {
-  for (int i=0; i < FILES_LOAD_ONLY.length; i++) {
-    File file=findTestFile("testfiles/" + FILES_LOAD_ONLY[i]);
+  for (  String fileName : FILES_LOAD_ONLY) {
+    File file=findTestFile("testfiles/" + fileName);
     try {
       HashTree tree=SaveService.loadTree(file);
       assertNotNull(tree);

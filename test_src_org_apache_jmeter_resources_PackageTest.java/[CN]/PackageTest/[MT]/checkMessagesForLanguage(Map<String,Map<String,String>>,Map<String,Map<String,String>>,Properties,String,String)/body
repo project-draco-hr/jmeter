@@ -4,8 +4,7 @@
   InputStream inputStream=Thread.currentThread().getContextClassLoader().getResourceAsStream(languageBundle);
   if (inputStream == null) {
     Map<String,String> messagesAsProperties=new HashMap<>();
-    for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
-      Map.Entry<Object,Object> entry=iterator.next();
+    for (    Map.Entry<Object,Object> entry : messages.entrySet()) {
       messagesAsProperties.put((String)entry.getKey(),(String)entry.getValue());
     }
     missingLabelsPerBundle.put(languageBundle,messagesAsProperties);
@@ -13,8 +12,7 @@
   }
   messagesFr.load(inputStream);
   Map<String,String> missingLabels=new TreeMap<>();
-  for (Iterator<Map.Entry<Object,Object>> iterator=messages.entrySet().iterator(); iterator.hasNext(); ) {
-    Map.Entry<Object,Object> entry=iterator.next();
+  for (  Map.Entry<Object,Object> entry : messages.entrySet()) {
     String key=(String)entry.getKey();
     final String I18NString="[\\d% ]+";
     if (!messagesFr.containsKey(key)) {

@@ -4,8 +4,7 @@
   subTestFailures+=readRF(res,alf);
   Collections.sort(alf);
   String last="";
-  for (int i=0; i < alf.size(); i++) {
-    String curr=alf.get(i);
+  for (  String curr : alf) {
     if (curr.equals(last)) {
       subTestFailures++;
       System.out.println("\nDuplicate key =" + curr + " in "+ res);

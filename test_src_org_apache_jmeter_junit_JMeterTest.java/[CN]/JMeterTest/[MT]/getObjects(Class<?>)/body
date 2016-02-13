@@ -62,15 +62,15 @@ catch (      Exception e) {
     System.out.println("No classes found that extend " + exName + ". Check the following:");
     System.out.println("Search paths are:");
     String ss[]=JMeterUtils.getSearchPaths();
-    for (int i=0; i < ss.length; i++) {
-      System.out.println(ss[i]);
+    for (    String s : ss) {
+      System.out.println(s);
     }
     if (!classPathShown) {
       System.out.println("Class path is:");
       String cp=System.getProperty("java.class.path");
-      String cpe[]=JOrphanUtils.split(cp,java.io.File.pathSeparator);
-      for (int i=0; i < cpe.length; i++) {
-        System.out.println(cpe[i]);
+      String classPathElements[]=JOrphanUtils.split(cp,java.io.File.pathSeparator);
+      for (      String classPathElement : classPathElements) {
+        System.out.println(classPathElement);
       }
       classPathShown=true;
     }

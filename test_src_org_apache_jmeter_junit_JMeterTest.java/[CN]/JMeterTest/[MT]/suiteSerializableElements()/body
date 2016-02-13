@@ -1,8 +1,7 @@
 {
   TestSuite suite=new TestSuite("SerializableElements");
-  Iterator<Object> iter=getObjects(Serializable.class).iterator();
-  while (iter.hasNext()) {
-    Serializable serObj=(Serializable)iter.next();
+  for (  Object o : getObjects(Serializable.class)) {
+    Serializable serObj=(Serializable)o;
     if (serObj.getClass().getName().endsWith("_Stub")) {
       continue;
     }

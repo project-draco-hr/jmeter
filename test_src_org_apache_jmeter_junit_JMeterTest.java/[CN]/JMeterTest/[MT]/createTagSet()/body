@@ -7,10 +7,9 @@
   Element root=doc.getRootElement();
   Element body=root.getChild("body");
   @SuppressWarnings("unchecked") List<Element> sections=body.getChildren("section");
-  for (int i=0; i < sections.size(); i++) {
-    @SuppressWarnings("unchecked") List<Element> components=sections.get(i).getChildren("component");
-    for (int j=0; j < components.size(); j++) {
-      Element comp=components.get(j);
+  for (  Element section : sections) {
+    @SuppressWarnings("unchecked") List<Element> components=section.getChildren("component");
+    for (    Element comp : components) {
       guiTags.put(comp.getAttributeValue("tag"),Boolean.FALSE);
     }
   }

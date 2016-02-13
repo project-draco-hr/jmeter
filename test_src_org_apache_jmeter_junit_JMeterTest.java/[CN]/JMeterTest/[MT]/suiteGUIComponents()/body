@@ -1,8 +1,7 @@
 {
   TestSuite suite=new TestSuite("GuiComponents");
-  Iterator<Object> iter=getObjects(JMeterGUIComponent.class).iterator();
-  while (iter.hasNext()) {
-    JMeterGUIComponent item=(JMeterGUIComponent)iter.next();
+  for (  Object o : getObjects(JMeterGUIComponent.class)) {
+    JMeterGUIComponent item=(JMeterGUIComponent)o;
     if (item instanceof JMeterTreeNode) {
       System.out.println("o.a.j.junit.JMeterTest INFO: JMeterGUIComponent: skipping all tests  " + item.getClass().getName());
       continue;

@@ -1,12 +1,10 @@
 {
   boolean failed=false;
-  for (int i=0; i < FILES.length; i++) {
-    final String fileName=FILES[i];
+  for (  final String fileName : FILES) {
     final File testFile=findTestFile("testfiles/" + fileName);
     failed|=loadAndSave(testFile,fileName,true);
   }
-  for (int i=0; i < FILES_LINES.length; i++) {
-    final String fileName=FILES_LINES[i];
+  for (  final String fileName : FILES_LINES) {
     final File testFile=findTestFile("testfiles/" + fileName);
     failed|=loadAndSave(testFile,fileName,false);
   }

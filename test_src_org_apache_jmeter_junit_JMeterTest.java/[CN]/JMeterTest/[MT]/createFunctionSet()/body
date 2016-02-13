@@ -7,11 +7,10 @@
   Element root=doc.getRootElement();
   Element body=root.getChild("body");
   Element section=body.getChild("section");
-  @SuppressWarnings("unchecked") List<Element> sections=section.getChildren("subsection");
-  for (int i=0; i < sections.size(); i++) {
-    @SuppressWarnings("unchecked") List<Element> components=sections.get(i).getChildren("component");
-    for (int j=0; j < components.size(); j++) {
-      Element comp=components.get(j);
+  @SuppressWarnings("unchecked") List<Element> subSections=section.getChildren("subsection");
+  for (  Element subSection : subSections) {
+    @SuppressWarnings("unchecked") List<Element> components=subSection.getChildren("component");
+    for (    Element comp : components) {
       funcTitles.put(comp.getAttributeValue("name"),Boolean.FALSE);
       String tag=comp.getAttributeValue("tag");
       if (tag != null) {
