@@ -7,10 +7,7 @@
   for (int i=0; i < childCount; i++) {
     DefaultMutableTreeNode child=(DefaultMutableTreeNode)parent.getChildAt(i);
     JMeterTreeNode childUserObj=(JMeterTreeNode)child.getUserObject();
-    if (!childUserObj.equals(searchedTreeNode)) {
-      continue;
-    }
- else {
+    if (childUserObj.equals(searchedTreeNode)) {
       if (level == (testPlanPath.length - 1)) {
         return child.getPath();
       }

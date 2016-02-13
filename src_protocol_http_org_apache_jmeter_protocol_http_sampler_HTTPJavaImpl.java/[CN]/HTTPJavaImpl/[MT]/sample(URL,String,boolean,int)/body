@@ -18,8 +18,8 @@
     }
   }
   try {
-    int retry;
-    for (retry=0; retry <= MAX_CONN_RETRIES; retry++) {
+    int retry=0;
+    for (; retry <= MAX_CONN_RETRIES; retry++) {
       try {
         conn=setupConnection(url,method,res);
         savedConn=conn;
@@ -37,7 +37,6 @@
           conn.disconnect();
         }
         setUseKeepAlive(false);
-        continue;
       }
 catch (      IOException e) {
         log.debug("Connection failed, giving up");

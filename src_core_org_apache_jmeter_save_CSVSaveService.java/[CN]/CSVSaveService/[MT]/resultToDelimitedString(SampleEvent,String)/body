@@ -36,8 +36,8 @@
     String message=null;
     AssertionResult[] results=sample.getAssertionResults();
     if (results != null) {
-      for (int i=0; i < results.length; i++) {
-        message=results[i].getFailureMessage();
+      for (      AssertionResult result : results) {
+        message=result.getFailureMessage();
         if (message != null) {
           break;
         }

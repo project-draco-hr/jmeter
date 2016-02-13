@@ -11,7 +11,6 @@
         }
         previous=' ';
         buffer.append(current[0]);
-        continue;
       }
  else       if (current[0] == '(' && previous != ' ') {
         String funcName=buffer.toString();
@@ -32,7 +31,6 @@
  else {
           buffer.append(current[0]);
         }
-        continue;
       }
  else       if (current[0] == '}') {
         function=CompoundVariable.getNamedFunction(buffer.toString());

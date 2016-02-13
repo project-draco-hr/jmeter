@@ -13,8 +13,7 @@
           thd.start();
         }
       }
- catch (      InterruptedIOException e) {
-        continue;
+ catch (      InterruptedIOException ignored) {
       }
     }
     log.info("HTTP(S) Test Script Recorder stopped");

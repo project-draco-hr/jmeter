@@ -18,7 +18,6 @@
       }
       if (HTTPConstants.HEADER_CONTENT_LENGTH.equalsIgnoreCase(parts[0])) {
         contentLengthIndex=i;
-        continue;
       }
     }
   }

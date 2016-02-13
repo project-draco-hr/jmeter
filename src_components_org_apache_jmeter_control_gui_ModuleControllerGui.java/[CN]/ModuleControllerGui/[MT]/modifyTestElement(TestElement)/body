@@ -7,7 +7,7 @@
   }
   if (tn != null) {
     selected=tn;
-    if (selected != null && isTestElementAllowed(selected.getTestElement())) {
+    if (isTestElementAllowed(selected.getTestElement())) {
       ((ModuleController)element).setSelectedNode(selected);
     }
   }

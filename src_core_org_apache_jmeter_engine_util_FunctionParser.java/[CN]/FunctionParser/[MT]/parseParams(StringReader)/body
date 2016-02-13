@@ -14,7 +14,6 @@
         }
         previous=' ';
         buffer.append(current[0]);
-        continue;
       }
  else       if (current[0] == ',' && functionRecursion == 0) {
         CompoundVariable param=new CompoundVariable();

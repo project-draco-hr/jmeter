@@ -16,7 +16,6 @@
         }
         previous=' ';
         buffer.append(current[0]);
-        continue;
       }
  else       if (current[0] == '{' && previous == '$') {
         buffer.deleteCharAt(buffer.length() - 1);

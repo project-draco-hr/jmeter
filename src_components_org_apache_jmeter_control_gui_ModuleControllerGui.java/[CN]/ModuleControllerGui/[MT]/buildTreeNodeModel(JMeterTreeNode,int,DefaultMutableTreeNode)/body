@@ -8,12 +8,7 @@
         parent.add(newNode);
         buildTreeNodeModel(cur,level + 1,newNode);
       }
- else       if (te instanceof TestFragmentController) {
-        DefaultMutableTreeNode newNode=new DefaultMutableTreeNode(cur);
-        parent.add(newNode);
-        buildTreeNodeModel(cur,level + 1,newNode);
-      }
- else       if (te instanceof AbstractThreadGroup) {
+ else       if (te instanceof TestFragmentController || te instanceof AbstractThreadGroup) {
         DefaultMutableTreeNode newNode=new DefaultMutableTreeNode(cur);
         parent.add(newNode);
         buildTreeNodeModel(cur,level + 1,newNode);

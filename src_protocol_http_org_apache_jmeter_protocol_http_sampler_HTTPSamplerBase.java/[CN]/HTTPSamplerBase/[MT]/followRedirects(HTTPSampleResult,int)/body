@@ -54,7 +54,7 @@
     }
   }
   if (redirect >= MAX_REDIRECTS) {
-    lastRes=errorResult(new IOException("Exceeeded maximum number of redirects: " + MAX_REDIRECTS),new HTTPSampleResult(lastRes));
+    lastRes=errorResult(new IOException("Exceeded maximum number of redirects: " + MAX_REDIRECTS),new HTTPSampleResult(lastRes));
     totalRes.addSubResult(lastRes);
   }
   totalRes.setSampleLabel(totalRes.getSampleLabel() + "->" + lastRes.getSampleLabel());

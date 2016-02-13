@@ -10,8 +10,8 @@
     }
     writer.write(LINE_SEP);
   }
-  for (int idx=0; idx < data.size(); idx++) {
-    List<?> row=(List<?>)data.get(idx);
+  for (  Object o : data) {
+    List<?> row=(List<?>)o;
     for (int idy=0; idy < row.size(); idy++) {
       if (idy > 0) {
         writer.write(DELIM);

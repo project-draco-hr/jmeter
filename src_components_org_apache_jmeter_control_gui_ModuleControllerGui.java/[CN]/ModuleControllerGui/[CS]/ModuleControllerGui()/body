@@ -9,10 +9,7 @@
       if (lastSelected != null && lastSelected.getUserObject() instanceof JMeterTreeNode) {
         tn=(JMeterTreeNode)lastSelected.getUserObject();
       }
-      if (tn != null && isTestElementAllowed(tn.getTestElement())) {
-        return true;
-      }
-      return false;
+      return tn != null && isTestElementAllowed(tn.getTestElement());
     }
     @Override public void setSelectionPath(    TreePath path){
       DefaultMutableTreeNode lastSelected=(DefaultMutableTreeNode)path.getLastPathComponent();
