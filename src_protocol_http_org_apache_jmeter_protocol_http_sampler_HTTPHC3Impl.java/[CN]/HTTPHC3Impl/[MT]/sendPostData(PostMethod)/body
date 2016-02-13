@@ -8,9 +8,8 @@
     }
     final boolean browserCompatible=getDoBrowserCompatibleMultipart();
     List<PartBase> partlist=new ArrayList<>();
-    PropertyIterator args=getArguments().iterator();
-    while (args.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       String parameterName=arg.getName();
       if (arg.isSkippable(parameterName)) {
         continue;
@@ -93,9 +92,8 @@
           }
         }
         StringBuilder postBody=new StringBuilder();
-        PropertyIterator args=getArguments().iterator();
-        while (args.hasNext()) {
-          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+        for (        JMeterProperty jMeterProperty : getArguments()) {
+          HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
           String value;
           if (haveContentEncoding) {
             value=arg.getEncodedValue(contentEncoding);
@@ -112,9 +110,8 @@
         if (!hasContentTypeHeader) {
           post.setRequestHeader(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.APPLICATION_X_WWW_FORM_URLENCODED);
         }
-        PropertyIterator args=getArguments().iterator();
-        while (args.hasNext()) {
-          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+        for (        JMeterProperty jMeterProperty : getArguments()) {
+          HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
           String parameterName=arg.getName();
           if (arg.isSkippable(parameterName)) {
             continue;

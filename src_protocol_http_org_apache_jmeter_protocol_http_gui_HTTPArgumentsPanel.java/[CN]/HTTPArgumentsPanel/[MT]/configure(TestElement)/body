@@ -3,9 +3,8 @@
   if (el instanceof Arguments) {
     tableModel.clearData();
     HTTPArgument.convertArgumentsToHTTP((Arguments)el);
-    PropertyIterator iter=((Arguments)el).getArguments().iterator();
-    while (iter.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)iter.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : ((Arguments)el).getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       tableModel.addRow(arg);
     }
   }

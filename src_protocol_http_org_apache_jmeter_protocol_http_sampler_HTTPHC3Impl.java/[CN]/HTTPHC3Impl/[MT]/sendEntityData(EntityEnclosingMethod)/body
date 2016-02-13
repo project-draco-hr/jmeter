@@ -22,9 +22,8 @@
       haveContentEncoding=true;
     }
     StringBuilder putBodyContent=new StringBuilder();
-    PropertyIterator args=getArguments().iterator();
-    while (args.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       String value=null;
       if (haveContentEncoding) {
         value=arg.getEncodedValue(contentEncoding);

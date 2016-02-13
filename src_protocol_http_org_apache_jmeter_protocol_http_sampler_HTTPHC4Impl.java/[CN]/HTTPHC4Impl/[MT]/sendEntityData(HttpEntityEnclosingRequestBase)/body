@@ -18,9 +18,8 @@
  else   if (getSendParameterValuesAsPostBody()) {
     hasEntityBody=true;
     StringBuilder entityBodyContent=new StringBuilder();
-    PropertyIterator args=getArguments().iterator();
-    while (args.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       if (charset != null) {
         entityBodyContent.append(arg.getEncodedValue(charset));
       }

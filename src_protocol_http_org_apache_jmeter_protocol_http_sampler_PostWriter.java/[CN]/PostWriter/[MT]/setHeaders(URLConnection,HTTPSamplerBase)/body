@@ -9,9 +9,8 @@
     connection.setRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE,HTTPConstants.MULTIPART_FORM_DATA + "; boundary=" + getBoundary());
     ByteArrayOutputStream bos=new ByteArrayOutputStream();
     bos.write(getMultipartDivider());
-    PropertyIterator args=sampler.getArguments().iterator();
-    while (args.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : sampler.getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       String parameterName=arg.getName();
       if (arg.isSkippable(parameterName)) {
         continue;
@@ -83,9 +82,8 @@
           }
         }
         StringBuilder postBodyBuffer=new StringBuilder();
-        PropertyIterator args=sampler.getArguments().iterator();
-        while (args.hasNext()) {
-          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+        for (        JMeterProperty jMeterProperty : sampler.getArguments()) {
+          HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
           postBodyBuffer.append(arg.getEncodedValue(contentEncoding));
         }
         postBody=postBodyBuffer.toString();

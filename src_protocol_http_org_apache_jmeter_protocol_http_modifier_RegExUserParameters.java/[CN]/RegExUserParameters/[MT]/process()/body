@@ -12,9 +12,8 @@
     return;
   }
   HTTPSamplerBase sampler=(HTTPSamplerBase)entry;
-  PropertyIterator iter=sampler.getArguments().iterator();
-  while (iter.hasNext()) {
-    Argument arg=(Argument)iter.next().getObjectValue();
+  for (  JMeterProperty jMeterProperty : sampler.getArguments()) {
+    Argument arg=(Argument)jMeterProperty.getObjectValue();
     String oldValue=arg.getValue();
     String val=paramMap.get(arg.getName());
     if (val != null) {

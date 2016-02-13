@@ -1,13 +1,13 @@
 {
   int[] rowsSelected=getTable().getSelectedRows();
-  for (int i=0; i < rowsSelected.length; i++) {
-    String name=(String)tableModel.getValueAt(rowsSelected[i],0);
+  for (  int selectedRow : rowsSelected) {
+    String name=(String)tableModel.getValueAt(selectedRow,0);
     if (StringUtils.isNotBlank(name)) {
       name=name.trim();
       name=name.replaceAll("\\$","_");
       name=name.replaceAll("\\{","_");
       name=name.replaceAll("\\}","_");
-      tableModel.setValueAt("${" + name + "}",rowsSelected[i],1);
+      tableModel.setValueAt("${" + name + "}",selectedRow,1);
     }
   }
 }

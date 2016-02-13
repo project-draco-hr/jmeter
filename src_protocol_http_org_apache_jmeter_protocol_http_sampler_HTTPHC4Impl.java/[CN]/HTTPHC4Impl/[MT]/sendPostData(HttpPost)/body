@@ -9,9 +9,8 @@
       charset=Charset.forName(contentEncoding);
     }
     MultipartEntity multiPart=new MultipartEntity(getDoBrowserCompatibleMultipart() ? HttpMultipartMode.BROWSER_COMPATIBLE : HttpMultipartMode.STRICT,null,charset);
-    PropertyIterator args=getArguments().iterator();
-    while (args.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       String parameterName=arg.getName();
       if (arg.isSkippable(parameterName)) {
         continue;
@@ -77,9 +76,8 @@
           }
         }
         StringBuilder postBody=new StringBuilder();
-        PropertyIterator args=getArguments().iterator();
-        while (args.hasNext()) {
-          HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+        for (        JMeterProperty jMeterProperty : getArguments()) {
+          HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
           if (haveContentEncoding) {
             postBody.append(arg.getEncodedValue(contentEncoding));
           }

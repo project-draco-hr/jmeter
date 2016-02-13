@@ -26,9 +26,8 @@
     }
     ByteArrayOutputStream bos=new ByteArrayOutputStream();
     StringBuilder putBodyBuffer=new StringBuilder();
-    PropertyIterator args=sampler.getArguments().iterator();
-    while (args.hasNext()) {
-      HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+    for (    JMeterProperty jMeterProperty : sampler.getArguments()) {
+      HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       putBodyBuffer.append(arg.getEncodedValue(contentEncoding));
     }
     bos.write(putBodyBuffer.toString().getBytes(contentEncoding));

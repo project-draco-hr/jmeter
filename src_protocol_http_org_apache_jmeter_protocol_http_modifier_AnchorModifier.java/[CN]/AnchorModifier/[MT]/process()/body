@@ -35,9 +35,8 @@
     sampler.setDomain(url.getDomain());
     sampler.setPath(url.getPath());
     if (url.getMethod().equals(HTTPConstants.POST)) {
-      PropertyIterator iter=sampler.getArguments().iterator();
-      while (iter.hasNext()) {
-        Argument arg=(Argument)iter.next().getObjectValue();
+      for (      JMeterProperty jMeterProperty : sampler.getArguments()) {
+        Argument arg=(Argument)jMeterProperty.getObjectValue();
         modifyArgument(arg,url.getArguments());
       }
     }

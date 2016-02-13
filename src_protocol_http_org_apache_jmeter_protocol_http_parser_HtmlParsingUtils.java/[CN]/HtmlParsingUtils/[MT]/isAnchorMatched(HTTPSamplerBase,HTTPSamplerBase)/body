@@ -23,9 +23,8 @@
   if (!newLink.getPath().equals(path) && !matcher.matches(newLink.getPath(),patternCache.getPattern("[/]*" + path,Perl5Compiler.READ_ONLY_MASK))) {
     return false;
   }
-  PropertyIterator iter=arguments.iterator();
-  while (iter.hasNext()) {
-    Argument item=(Argument)iter.next().getObjectValue();
+  for (  JMeterProperty argument : arguments) {
+    Argument item=(Argument)argument.getObjectValue();
     final String name=item.getName();
     if (!query.contains(name + "=")) {
       if (!(matcher.contains(query,patternCache.getPattern(name,Perl5Compiler.READ_ONLY_MASK)))) {

@@ -1,8 +1,7 @@
 {
   StringBuilder postBody=new StringBuilder();
-  PropertyIterator args=arguments.iterator();
-  while (args.hasNext()) {
-    HTTPArgument arg=(HTTPArgument)args.next().getObjectValue();
+  for (  JMeterProperty argument : arguments) {
+    HTTPArgument arg=(HTTPArgument)argument.getObjectValue();
     String value=arg.getValue();
     if (crlfToLF) {
       value=value.replaceAll("\r\n","\n");
