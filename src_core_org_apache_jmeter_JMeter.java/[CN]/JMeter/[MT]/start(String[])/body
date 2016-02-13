@@ -128,7 +128,7 @@
     System.out.println(CLUtil.describeOptions(options).toString());
   }
 catch (  Throwable e) {
-    log.fatalError("An error occurred: ",e);
+    log.fatalError("An error occurred: " + e.getMessage(),e);
     System.out.println("An error occurred: " + e.getMessage());
     System.exit(1);
   }

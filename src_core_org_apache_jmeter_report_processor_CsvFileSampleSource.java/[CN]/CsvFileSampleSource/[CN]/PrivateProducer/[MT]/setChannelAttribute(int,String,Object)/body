@@ -5,8 +5,7 @@
       consumer.setChannelAttribute(channel,key,value);
     }
  catch (    Exception e) {
-      LOG.error("setChannelAttribute(): Consumer failed with message :" + e.getMessage(),e);
-      throw new SampleException(e);
+      throw new SampleException("Consumer failed with message :" + e.getMessage(),e);
     }
   }
 }

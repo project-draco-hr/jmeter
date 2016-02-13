@@ -4,8 +4,7 @@
       consumer.setSampleContext(context);
     }
  catch (    Exception e) {
-      LOG.error("produce(): Consumer failed with message :" + e.getMessage(),e);
-      throw new SampleException(e);
+      throw new SampleException("Consumer failed with message :" + e.getMessage(),e);
     }
   }
 }
