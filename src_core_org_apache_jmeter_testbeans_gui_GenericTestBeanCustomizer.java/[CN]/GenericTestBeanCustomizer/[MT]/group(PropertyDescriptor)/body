@@ -1,5 +1,5 @@
 {
-  String group=(String)d.getValue(GROUP);
+  String group=(String)descriptor.getValue(GROUP);
   if (group == null) {
     group=DEFAULT_GROUP;
   }
