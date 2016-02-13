@@ -38,7 +38,7 @@
         if (isUpload()) {
           String contents=getLocalFileContents();
           if (contents.length() > 0) {
-            byte bytes[]=contents.getBytes();
+            byte[] bytes=contents.getBytes();
             input=new ByteArrayInputStream(bytes);
             res.setBytes(bytes.length);
           }
