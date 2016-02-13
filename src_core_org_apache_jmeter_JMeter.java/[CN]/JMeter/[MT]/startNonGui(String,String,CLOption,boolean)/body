@@ -5,15 +5,15 @@
   driver.remoteStop=this.remoteStop;
   driver.parent=this;
   PluginManager.install(this,false);
-  String remote_hosts_string=null;
+  String remoteHostsString=null;
   if (remoteStart != null) {
-    remote_hosts_string=remoteStart.getArgument();
-    if (remote_hosts_string == null) {
-      remote_hosts_string=JMeterUtils.getPropDefault("remote_hosts","127.0.0.1");
+    remoteHostsString=remoteStart.getArgument();
+    if (remoteHostsString == null) {
+      remoteHostsString=JMeterUtils.getPropDefault("remote_hosts","127.0.0.1");
     }
   }
   if (testFile == null) {
     throw new IllegalUserActionException("Non-GUI runs require a test plan");
   }
-  driver.runNonGui(testFile,logFile,remoteStart != null,remote_hosts_string,generateReportDashboard);
+  driver.runNonGui(testFile,logFile,remoteStart != null,remoteHostsString,generateReportDashboard);
 }

@@ -1,16 +1,16 @@
 {
   TestElement element=null;
   String testClass=config.getAttribute("class");
-  String gui_class="";
+  String guiClass="";
   Configuration[] children=config.getChildren();
   for (int i=0; i < children.length; i++) {
     if (children[i].getName().equals("property")) {
       if (children[i].getAttribute("name").equals(TestElement.GUI_CLASS)) {
-        gui_class=children[i].getValue();
+        guiClass=children[i].getValue();
       }
     }
   }
-  String newClass=NameUpdater.getCurrentTestName(testClass,gui_class);
+  String newClass=NameUpdater.getCurrentTestName(testClass,guiClass);
   element=(TestElement)Class.forName(newClass).newInstance();
   for (int i=0; i < children.length; i++) {
     if (children[i].getName().equals("property")) {

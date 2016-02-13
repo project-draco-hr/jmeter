@@ -160,9 +160,9 @@ default :
 break;
 }
 }
-String sample_variables=(String)jmeterProps.get(SampleEvent.SAMPLE_VARIABLES);
-if (sample_variables != null) {
-remoteProps.put(SampleEvent.SAMPLE_VARIABLES,sample_variables);
+String sampleVariables=(String)jmeterProps.get(SampleEvent.SAMPLE_VARIABLES);
+if (sampleVariables != null) {
+remoteProps.put(SampleEvent.SAMPLE_VARIABLES,sampleVariables);
 }
 jmeterProps.put("jmeter.version",JMeterUtils.getJMeterVersion());
 }

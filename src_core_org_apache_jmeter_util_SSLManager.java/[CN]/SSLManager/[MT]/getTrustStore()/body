@@ -1,6 +1,6 @@
 {
-  if (!truststore_loaded) {
-    truststore_loaded=true;
+  if (!truststoreLoaded) {
+    truststoreLoaded=true;
     String fileName=System.getProperty(SSL_TRUST_STORE);
     if (fileName == null) {
       return null;
