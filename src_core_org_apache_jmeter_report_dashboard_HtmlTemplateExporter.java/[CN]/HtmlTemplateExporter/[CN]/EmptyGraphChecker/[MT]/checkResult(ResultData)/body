@@ -1,7 +1,7 @@
 {
   Boolean supportsControllerDiscrimination=findValue(Boolean.class,AbstractGraphConsumer.RESULT_SUPPORTS_CONTROLLERS_DISCRIMINATION,result);
   String message=null;
-  if (supportsControllerDiscrimination && showControllerSeriesOnly && excludesControllers) {
+  if (supportsControllerDiscrimination.booleanValue() && showControllerSeriesOnly && excludesControllers) {
     message=ReportGeneratorConfiguration.EXPORTER_KEY_SHOW_CONTROLLERS_ONLY + " is set while the graph excludes controllers.";
   }
  else {
@@ -20,10 +20,10 @@
             boolean isController=findValue(Boolean.class,AbstractGraphConsumer.RESULT_SERIES_IS_CONTROLLER,seriesData).booleanValue();
             matches=filterPattern.matcher(name).matches();
             if (matches) {
-              matches=!filtersOnlySampleSeries || !supportsControllerDiscrimination || isController|| !showControllerSeriesOnly;
+              matches=!filtersOnlySampleSeries || !supportsControllerDiscrimination.booleanValue() || isController|| !showControllerSeriesOnly;
             }
  else {
-              matches=filtersOnlySampleSeries && !supportsControllerDiscrimination;
+              matches=filtersOnlySampleSeries && !supportsControllerDiscrimination.booleanValue();
             }
           }
           index++;
