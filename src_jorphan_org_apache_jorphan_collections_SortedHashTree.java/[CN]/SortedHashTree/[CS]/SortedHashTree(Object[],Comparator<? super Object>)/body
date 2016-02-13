@@ -1,6 +1,6 @@
 {
   this(comper);
-  for (int x=0; x < keys.length; x++) {
-    data.put(keys[x],new SortedHashTree(comper));
+  for (  Object key : keys) {
+    data.put(key,new SortedHashTree(comper));
   }
 }

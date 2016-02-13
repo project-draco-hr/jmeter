@@ -1,12 +1,10 @@
 {
   HashTree tree=this;
-  Iterator<?> iter=treePath.iterator();
-  while (iter.hasNext()) {
+  for (  Object aTreePath : treePath) {
     if (tree == null) {
       return null;
     }
-    Object temp=iter.next();
-    tree=tree.getTree(temp);
+    tree=tree.getTree(aTreePath);
   }
   return tree;
 }

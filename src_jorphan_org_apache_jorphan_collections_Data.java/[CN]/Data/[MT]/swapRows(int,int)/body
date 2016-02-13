@@ -1,9 +1,8 @@
 {
   List<Object> temp;
   Object o;
-  Iterator<String> it=data.keySet().iterator();
-  while (it.hasNext()) {
-    temp=data.get(it.next());
+  for (  String s : data.keySet()) {
+    temp=data.get(s);
     o=temp.get(row1);
     temp.set(row1,temp.get(row2));
     temp.set(row2,o);

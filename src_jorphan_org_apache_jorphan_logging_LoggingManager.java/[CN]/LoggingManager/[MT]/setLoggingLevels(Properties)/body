@@ -1,7 +1,6 @@
 {
-  Iterator<?> props=appProperties.keySet().iterator();
-  while (props.hasNext()) {
-    String prop=(String)props.next();
+  for (  Object o : appProperties.keySet()) {
+    String prop=(String)o;
     if (prop.startsWith(LOG_PRIORITY + ".")) {
       String category=prop.substring(LOG_PRIORITY.length() + 1);
       setPriority(appProperties.getProperty(prop),category);

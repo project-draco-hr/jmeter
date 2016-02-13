@@ -7,9 +7,8 @@
   BasicAttributes attrs=new BasicAttributes(true);
   attrs.put(basicattribute);
   BasicAttribute attr;
-  PropertyIterator iter=getArguments().iterator();
-  while (iter.hasNext()) {
-    Argument item=(Argument)iter.next().getObjectValue();
+  for (  JMeterProperty jMeterProperty : getArguments()) {
+    Argument item=(Argument)jMeterProperty.getObjectValue();
     attr=getBasicAttribute(item.getName(),item.getValue());
     attrs.put(attr);
   }

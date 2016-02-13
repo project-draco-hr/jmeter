@@ -6,8 +6,8 @@
     valid=false;
   }
  else {
-    for (int count=0; count < dHeaders.length; count++) {
-      if (!header.contains(dHeaders[count])) {
+    for (    String dHeader : dHeaders) {
+      if (!header.contains(dHeader)) {
         valid=false;
         break;
       }
@@ -17,8 +17,8 @@
     currentPos=size;
     d.reset();
     while (d.next()) {
-      for (int count=0; count < headers.length; count++) {
-        addColumnValue(headers[count],d.getColumnValue(headers[count]));
+      for (      String aHeader : headers) {
+        addColumnValue(aHeader,d.getColumnValue(aHeader));
       }
     }
   }

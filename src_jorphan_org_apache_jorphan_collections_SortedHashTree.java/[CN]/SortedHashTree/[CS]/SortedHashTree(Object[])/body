@@ -1,6 +1,6 @@
 {
   this();
-  for (int x=0; x < keys.length; x++) {
-    data.put(keys[x],new SortedHashTree());
+  for (  Object key : keys) {
+    data.put(key,new SortedHashTree());
   }
 }

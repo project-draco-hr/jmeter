@@ -2,14 +2,14 @@
   String[] contents=getDataAsText();
   StringBuilder sb=new StringBuilder();
   boolean first=true;
-  for (int x=0; x < contents.length; x++) {
+  for (  String content : contents) {
     if (!first) {
       sb.append("\n");
     }
  else {
       first=false;
     }
-    sb.append(contents[x]);
+    sb.append(content);
   }
   return sb.toString();
 }
