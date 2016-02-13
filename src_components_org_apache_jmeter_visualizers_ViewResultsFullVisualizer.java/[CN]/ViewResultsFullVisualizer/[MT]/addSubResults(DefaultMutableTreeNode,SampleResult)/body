@@ -1,8 +1,7 @@
 {
   SampleResult[] subResults=res.getSubResults();
   int leafIndex=0;
-  for (int i=0; i < subResults.length; i++) {
-    SampleResult child=subResults[i];
+  for (  SampleResult child : subResults) {
     if (log.isDebugEnabled()) {
       log.debug("updateGui1 : child sample result - " + child);
     }
@@ -11,8 +10,7 @@
     addSubResults(leafNode,child);
     AssertionResult[] assertionResults=child.getAssertionResults();
     int assertionIndex=leafNode.getChildCount();
-    for (int j=0; j < assertionResults.length; j++) {
-      AssertionResult item=assertionResults[j];
+    for (    AssertionResult item : assertionResults) {
       if (item.isFailure() || item.isError()) {
         DefaultMutableTreeNode assertionNode=new DefaultMutableTreeNode(item);
         treeModel.insertNodeInto(assertionNode,leafNode,assertionIndex++);
