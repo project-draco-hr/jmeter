@@ -1,7 +1,7 @@
 {
   int height=getHeight();
   log.debug("Drawing a sample at " + x);
-  int adjustedWidth=(int)(x % width);
+  int adjustedWidth=(int)(x % WIDTH);
   if (wantData) {
     int data=(int)(oneSample.getData() * height / graphMax);
     if (oneSample.isSuccess()) {

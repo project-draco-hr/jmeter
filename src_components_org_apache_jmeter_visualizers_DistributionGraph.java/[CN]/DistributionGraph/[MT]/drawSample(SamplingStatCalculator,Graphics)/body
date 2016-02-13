@@ -4,18 +4,18 @@
   for (int y=0; y < 4; y++) {
     int q1=(int)(height - (height * 0.25 * y));
     g.setColor(Color.lightGray);
-    g.drawLine(xborder,q1,width,q1);
+    g.drawLine(X_BORDER,q1,width,q1);
     g.setColor(Color.black);
     g.drawString(String.valueOf((25 * y) + "%"),0,q1);
   }
   g.setColor(Color.black);
-  g.drawLine(xborder,(int)height,width,(int)height);
-  g.drawLine(xborder,0,xborder,(int)height);
-  if (p_model != null && p_model.getCount() > 50) {
-    Number ninety=p_model.getPercentPoint(0.90);
-    Number fifty=p_model.getPercentPoint(0.50);
-    long total=p_model.getCount();
-    Collection<Number[]> values=p_model.getDistribution().values();
+  g.drawLine(X_BORDER,(int)height,width,(int)height);
+  g.drawLine(X_BORDER,0,X_BORDER,(int)height);
+  if (pModel != null && pModel.getCount() > 50) {
+    Number ninety=pModel.getPercentPoint(0.90);
+    Number fifty=pModel.getPercentPoint(0.50);
+    long total=pModel.getCount();
+    Collection<Number[]> values=pModel.getDistribution().values();
     Number[][] objval=values.toArray(new Number[values.size()][]);
     Arrays.sort(objval,new NumberComparator());
     int len=objval.length;
@@ -26,7 +26,7 @@
       if (iheight < 1) {
         iheight=1.0;
       }
-      int ix=(count * 4) + xborder + 5;
+      int ix=(count * 4) + X_BORDER + 5;
       int dheight=(int)(height - iheight);
       g.setColor(Color.blue);
       g.drawLine(ix - 1,(int)height,ix - 1,dheight);
