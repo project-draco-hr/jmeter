@@ -12,7 +12,7 @@
     }
   }
   JMeterVariables jmvars=getThreadContext().getVariables();
-  String varNames[]=getVariableNames().split(COMMA);
+  String[] varNames=getVariableNames().split(COMMA);
   String resultVariable=getResultVariable().trim();
   List<Map<String,Object>> results=null;
   if (resultVariable.length() > 0) {

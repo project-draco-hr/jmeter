@@ -61,7 +61,7 @@
     if (n == ALL_MESSAGES || n > messageTotal) {
       n=messageTotal;
     }
-    Message messages[]=folder.getMessages(1,n);
+    Message[] messages=folder.getMessages(1,n);
     StringBuilder pdata=new StringBuilder();
     pdata.append(messages.length);
     pdata.append(" messages found\n");

@@ -6,22 +6,22 @@
   serverTypeBox=new JTextField(20);
   serverTypeBox.addActionListener(this);
   serverTypeBox.addFocusListener(this);
-  addField(settingsPanel,ServerTypeLabel,serverTypeBox,gbc);
+  addField(settingsPanel,serverTypeLabel,serverTypeBox,gbc);
   serverBox=new JTextField(20);
-  addField(settingsPanel,ServerLabel,serverBox,gbc);
+  addField(settingsPanel,serverLabel,serverBox,gbc);
   portBox=new JTextField(20);
-  addField(settingsPanel,PortLabel,portBox,gbc);
+  addField(settingsPanel,portLabel,portBox,gbc);
   usernameBox=new JTextField(20);
-  addField(settingsPanel,AccountLabel,usernameBox,gbc);
+  addField(settingsPanel,accountLabel,usernameBox,gbc);
   passwordBox=new JPasswordField(20);
-  addField(settingsPanel,PasswordLabel,passwordBox,gbc);
-  folderLabel=new JLabel(FolderLabel);
+  addField(settingsPanel,passwordLabel,passwordBox,gbc);
+  folderLabel=new JLabel(folderLabelStr);
   folderBox=new JTextField(INBOX,20);
   addField(settingsPanel,folderLabel,folderBox,gbc);
   HorizontalPanel numMessagesPanel=new HorizontalPanel();
-  numMessagesPanel.add(new JLabel(NumMessagesLabel));
+  numMessagesPanel.add(new JLabel(numMessagesLabel));
   ButtonGroup nmbg=new ButtonGroup();
-  allMessagesButton=new JRadioButton(AllMessagesLabel);
+  allMessagesButton=new JRadioButton(allMessagesLabel);
   allMessagesButton.addChangeListener(new ChangeListener(){
     @Override public void stateChanged(    ChangeEvent e){
       if (allMessagesButton.isSelected()) {
@@ -47,8 +47,8 @@
   numMessagesPanel.add(someMessagesButton);
   numMessagesPanel.add(someMessagesField);
   headerOnlyBox=new JCheckBox(headerOnlyLabel);
-  deleteBox=new JCheckBox(DeleteLabel);
-  storeMimeMessageBox=new JCheckBox(STOREMIME);
+  deleteBox=new JCheckBox(deleteLabel);
+  storeMimeMessageBox=new JCheckBox(storeMime);
   securitySettingsPanel=new SecuritySettingsPanel();
   JPanel settings=new VerticalPanel();
   settings.add(Box.createVerticalStrut(5));

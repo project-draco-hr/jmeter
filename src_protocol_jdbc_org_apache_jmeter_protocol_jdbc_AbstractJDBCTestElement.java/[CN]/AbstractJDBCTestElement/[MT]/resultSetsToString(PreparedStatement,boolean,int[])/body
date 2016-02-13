@@ -42,7 +42,7 @@
         sb.append("\n");
       }
     }
-    String varnames[]=getVariableNames().split(COMMA);
+    String[] varnames=getVariableNames().split(COMMA);
     if (varnames.length > 0) {
       JMeterVariables jmvars=getThreadContext().getVariables();
       for (int i=0; i < varnames.length && i < outputValues.size(); i++) {

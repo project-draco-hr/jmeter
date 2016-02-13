@@ -17,7 +17,7 @@
     }
  else     if (CALLABLE.equals(_queryType)) {
       CallableStatement cstmt=getCallableStatement(conn);
-      int out[]=setArguments(cstmt);
+      int[] out=setArguments(cstmt);
       boolean hasResultSet=cstmt.execute();
       String sb=resultSetsToString(cstmt,hasResultSet,out);
       return sb.getBytes(ENCODING);
