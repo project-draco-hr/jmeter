@@ -7,7 +7,7 @@
   boolean hasPutBody=false;
   String contentTypeHeader=connection.getRequestProperty(HTTPConstants.HEADER_CONTENT_TYPE);
   boolean hasContentTypeHeader=contentTypeHeader != null && contentTypeHeader.length() > 0;
-  HTTPFileArg files[]=sampler.getHTTPFiles();
+  HTTPFileArg[] files=sampler.getHTTPFiles();
   if (sampler.getArguments() != null && sampler.getArguments().getArgumentCount() == 0 && sampler.getSendFileAsPostBody()) {
     HTTPFileArg file=files[0];
     hasPutBody=true;

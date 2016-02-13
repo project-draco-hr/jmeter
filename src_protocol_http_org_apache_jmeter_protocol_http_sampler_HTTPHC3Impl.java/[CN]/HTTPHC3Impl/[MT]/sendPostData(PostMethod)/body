@@ -1,6 +1,6 @@
 {
   StringBuilder postedBody=new StringBuilder(1000);
-  HTTPFileArg files[]=getHTTPFiles();
+  HTTPFileArg[] files=getHTTPFiles();
   if (getUseMultipartForPost()) {
     String contentEncoding=getContentEncoding();
     if (isNullOrEmptyTrimmed(contentEncoding)) {

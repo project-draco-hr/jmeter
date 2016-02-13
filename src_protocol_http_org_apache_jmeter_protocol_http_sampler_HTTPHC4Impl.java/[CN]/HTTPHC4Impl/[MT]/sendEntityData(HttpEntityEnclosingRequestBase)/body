@@ -1,7 +1,7 @@
 {
   StringBuilder entityBody=new StringBuilder(1000);
   boolean hasEntityBody=false;
-  final HTTPFileArg files[]=getHTTPFiles();
+  final HTTPFileArg[] files=getHTTPFiles();
   final HTTPFileArg file=files.length > 0 ? files[0] : null;
   String contentTypeValue=null;
   if (file != null && file.getMimeType() != null && file.getMimeType().length() > 0) {

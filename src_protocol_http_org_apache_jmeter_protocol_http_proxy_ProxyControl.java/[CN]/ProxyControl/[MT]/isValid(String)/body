@@ -1,5 +1,5 @@
 {
-  String parts[]=subject.split("\\.");
+  String[] parts=subject.split("\\.");
   if (!parts[0].endsWith("*")) {
     return true;
   }

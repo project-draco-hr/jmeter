@@ -6,7 +6,7 @@
       JMeterTreeNode cur=(JMeterTreeNode)node.getChildAt(i);
       TestElement te=cur.getTestElement();
       if (te instanceof Controller) {
-        name.append(parent_name);
+        name.append(parentName);
         name.append(cur.getName());
         TreeNodeWrapper tnw=new TreeNodeWrapper(cur,name.toString());
         targetNodesModel.addElement(tnw);
