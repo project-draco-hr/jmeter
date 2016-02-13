@@ -1,5 +1,5 @@
 {
-  if (url.indexOf("//") > -1) {
+  if (url.contains("//")) {
     String protocol=url.substring(0,url.indexOf(':'));
     if (log.isDebugEnabled()) {
       log.debug("Proxy: setting protocol to : " + protocol);

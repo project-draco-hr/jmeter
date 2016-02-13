@@ -3,12 +3,12 @@
   for (  String part : parts) {
     String contentDisposition=getHeaderValue("Content-disposition",part);
     String contentType=getHeaderValue("Content-type",part);
-    if (contentDisposition != null && contentDisposition.indexOf("form-data") > -1) {
+    if (contentDisposition != null && contentDisposition.contains("form-data")) {
       final String namePrefix="name=\"";
       int index=contentDisposition.indexOf(namePrefix) + namePrefix.length();
       String name=contentDisposition.substring(index,contentDisposition.indexOf('\"',index));
       final String filenamePrefix="filename=\"";
-      if (contentDisposition.indexOf(filenamePrefix) > -1) {
+      if (contentDisposition.contains(filenamePrefix)) {
         index=contentDisposition.indexOf(filenamePrefix) + filenamePrefix.length();
         String path=contentDisposition.substring(index,contentDisposition.indexOf('\"',index));
         if (path != null && path.length() > 0) {

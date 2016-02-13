@@ -4,7 +4,7 @@
   List<String> strList=new ArrayList<>();
   while (tokens.hasMoreTokens()) {
     String tok=tokens.nextToken();
-    if (tok.length() == 1 && delims.indexOf(tok) != -1) {
+    if (tok.length() == 1 && delims.contains(tok)) {
       if (lastWasDelim) {
         strList.add(def);
       }

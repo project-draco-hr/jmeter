@@ -2,7 +2,7 @@
   this.USEFILE=true;
   boolean exc=false;
   for (  String excludeFile : this.EXCFILE) {
-    if (text.indexOf(excludeFile) > -1) {
+    if (text.contains(excludeFile)) {
       exc=true;
       this.USEFILE=false;
       break;

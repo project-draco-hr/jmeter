@@ -18,7 +18,7 @@
   if (HTTPConstants.GET.equals(getMethod()) || HTTPConstants.DELETE.equals(getMethod())) {
     String queryString=getQueryString(getContentEncoding());
     if (queryString.length() > 0) {
-      if (path.indexOf(QRY_PFX) > -1) {
+      if (path.contains(QRY_PFX)) {
         pathAndQuery.append(QRY_SEP);
       }
  else {

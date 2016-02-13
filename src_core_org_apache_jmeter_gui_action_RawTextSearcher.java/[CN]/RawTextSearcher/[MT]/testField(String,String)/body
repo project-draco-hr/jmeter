@@ -1,6 +1,6 @@
 {
   if (!StringUtils.isEmpty(value)) {
-    return value.toLowerCase().indexOf(searchedTextLowerCase) >= 0;
+    return value.toLowerCase().contains(searchedTextLowerCase);
   }
   return false;
 }

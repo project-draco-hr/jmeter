@@ -1,7 +1,7 @@
 {
   this.USEFILE=false;
   for (  String includeFile : this.INCFILE) {
-    if (text.indexOf(includeFile) > -1) {
+    if (text.contains(includeFile)) {
       this.USEFILE=true;
       break;
     }
