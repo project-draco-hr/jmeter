@@ -1,9 +1,8 @@
 {
   try {
     @SuppressWarnings("unchecked") Collection<JMeterProperty> newCol=value.getClass().newInstance();
-    PropertyIterator iter=iterator();
-    while (iter.hasNext()) {
-      newCol.add(iter.next().clone());
+    for (    JMeterProperty jMeterProperty : this) {
+      newCol.add(jMeterProperty.clone());
     }
     return newCol;
   }

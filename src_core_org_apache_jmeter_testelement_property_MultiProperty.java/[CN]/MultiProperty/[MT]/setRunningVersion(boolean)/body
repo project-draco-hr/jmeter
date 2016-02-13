@@ -1,7 +1,6 @@
 {
   super.setRunningVersion(running);
-  PropertyIterator iter=iterator();
-  while (iter.hasNext()) {
-    iter.next().setRunningVersion(running);
+  for (  JMeterProperty jMeterProperty : this) {
+    jMeterProperty.setRunningVersion(running);
   }
 }

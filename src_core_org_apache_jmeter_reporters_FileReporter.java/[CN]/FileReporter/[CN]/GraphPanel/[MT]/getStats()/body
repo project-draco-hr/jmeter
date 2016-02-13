@@ -3,11 +3,10 @@
   float totalValue=0;
   float maxValue=0;
   float minValue=999999;
-  for (int t=0; t < keys.size(); t++) {
-    String key=keys.get(t);
+  for (  String key : keys) {
     List<Integer> temp=data.get(key);
-    for (int j=0; j < temp.size(); j++) {
-      float f=temp.get(j).intValue();
+    for (    Integer t : temp) {
+      float f=t.intValue();
       minValue=Math.min(f,minValue);
       maxValue=Math.max(f,maxValue);
       totalValue+=f;

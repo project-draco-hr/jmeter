@@ -1,7 +1,7 @@
 {
-  for (int i=0; i < nodes.length; i++) {
-    Object userObject=nodes[i].getUserObject();
-    if (userObject instanceof org.apache.jmeter.threads.ThreadGroup || userObject instanceof TestPlan) {
+  for (  JMeterTreeNode node : nodes) {
+    Object userObject=node.getUserObject();
+    if (userObject instanceof ThreadGroup || userObject instanceof TestPlan) {
       return false;
     }
   }

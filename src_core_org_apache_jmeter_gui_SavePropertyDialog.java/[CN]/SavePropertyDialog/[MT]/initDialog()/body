@@ -4,12 +4,12 @@
   int x=(countMethods(methods) / 3) + 1;
   log.debug("grid panel is " + 3 + " by "+ x);
   JPanel checkPanel=new JPanel(new GridLayout(x,3));
-  for (int i=0; i < methods.length; i++) {
-    String name=methods[i].getName();
-    if (name.startsWith(NAME_SAVE_PFX) && methods[i].getParameterTypes().length == 0) {
+  for (  Method method : methods) {
+    String name=method.getName();
+    if (name.startsWith(NAME_SAVE_PFX) && method.getParameterTypes().length == 0) {
       try {
         name=name.substring(NAME_SAVE_PFX_LEN);
-        JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),((Boolean)methods[i].invoke(saveConfig,new Object[0])).booleanValue());
+        JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),((Boolean)method.invoke(saveConfig,new Object[0])).booleanValue());
         checkPanel.add(check,BorderLayout.NORTH);
         check.addActionListener(this);
         String actionCommand=NAME_SET_PREFIX + name;

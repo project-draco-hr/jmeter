@@ -1,7 +1,6 @@
 {
-  Iterator<Object> iter=new LinkedList<>(tree.list()).iterator();
-  while (iter.hasNext()) {
-    JMeterTreeNode item=(JMeterTreeNode)iter.next();
+  for (  Object o : new LinkedList<>(tree.list())) {
+    JMeterTreeNode item=(JMeterTreeNode)o;
     convertSubTree(tree.getTree(item));
     TestElement testElement=item.getTestElement();
     tree.replaceKey(item,testElement);
