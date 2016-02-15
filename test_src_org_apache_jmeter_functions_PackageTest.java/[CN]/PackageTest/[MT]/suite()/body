@@ -9,22 +9,11 @@
     bsh.addTest(new PackageTest("BSH1"));
     allsuites.addTest(bsh);
   }
-  TestSuite suite=new TestSuite("SingleThreaded");
-  suite.addTest(new PackageTest("CSVParams"));
-  suite.addTest(new PackageTest("CSVNoFile"));
-  suite.addTest(new PackageTest("CSVSetup"));
-  suite.addTest(new PackageTest("CSVRun"));
-  suite.addTest(new PackageTest("CSValias"));
-  suite.addTest(new PackageTest("CSVBlankLine"));
-  allsuites.addTest(suite);
-  suite.addTest(new PackageTest("CSVSetup"));
+  allsuites.addTest(new PackageTest("CSVSetup"));
   TestSuite par=new ActiveTestSuite("Parallel");
   par.addTest(new PackageTest("CSVThread1"));
   par.addTest(new PackageTest("CSVThread2"));
   allsuites.addTest(par);
-  TestSuite split=new TestSuite("SplitFunction");
-  split.addTest(new PackageTest("splitTest1"));
-  allsuites.addTest(split);
   TestSuite xpath=new TestSuite("XPath");
   xpath.addTest(new PackageTest("XPathtestColumns"));
   xpath.addTest(new PackageTest("XPathtestDefault"));

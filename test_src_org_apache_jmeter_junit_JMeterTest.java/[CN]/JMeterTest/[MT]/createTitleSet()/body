@@ -2,8 +2,7 @@
   guiTitles=new HashMap<>(90);
   String compref="../xdocs/usermanual/component_reference.xml";
   SAXBuilder bldr=new SAXBuilder();
-  Document doc;
-  doc=bldr.build(compref);
+  Document doc=bldr.build(compref);
   Element root=doc.getRootElement();
   Element body=root.getChild("body");
   @SuppressWarnings("unchecked") List<Element> sections=body.getChildren("section");

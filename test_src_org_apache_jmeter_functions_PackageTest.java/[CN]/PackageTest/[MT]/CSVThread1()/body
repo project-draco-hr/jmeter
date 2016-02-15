@@ -1,16 +1,16 @@
 {
   Thread.currentThread().setName("One");
-synchronized (baton) {
+synchronized (BATON) {
     assertEquals("b1",cr1.execute(null,null));
     assertEquals("",cr4.execute(null,null));
     assertEquals("b2",cr1.execute(null,null));
-    baton.pass();
+    BATON.pass();
     assertEquals("",cr4.execute(null,null));
     assertEquals("b4",cr1.execute(null,null));
     assertEquals("",cr4.execute(null,null));
-    baton.pass();
+    BATON.pass();
     assertEquals("b3",cr1.execute(null,null));
     assertEquals("",cr4.execute(null,null));
-    baton.done();
+    BATON.done();
   }
 }

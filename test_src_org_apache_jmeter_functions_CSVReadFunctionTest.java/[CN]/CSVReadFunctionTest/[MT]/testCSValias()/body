@@ -1,0 +1,27 @@
+{
+  CSVRead cr1=setCSVReadParams("testfiles/test.csv","*A");
+  CSVRead cr2=setCSVReadParams("*A","1");
+  CSVRead cr3=setCSVReadParams("*A","next");
+  CSVRead cr4=setCSVReadParams("testfiles/test.csv","*B");
+  CSVRead cr5=setCSVReadParams("*B","2");
+  CSVRead cr6=setCSVReadParams("*B","next");
+  String s;
+  s=cr1.execute(null,null);
+  assertEquals("",s);
+  s=cr2.execute(null,null);
+  assertEquals("b1",s);
+  s=cr4.execute(null,null);
+  assertEquals("",s);
+  s=cr5.execute(null,null);
+  assertEquals("c1",s);
+  s=cr3.execute(null,null);
+  assertEquals("",s);
+  s=cr2.execute(null,null);
+  assertEquals("b2",s);
+  s=cr5.execute(null,null);
+  assertEquals("c1",s);
+  s=cr6.execute(null,null);
+  assertEquals("",s);
+  s=cr5.execute(null,null);
+  assertEquals("c2",s);
+}

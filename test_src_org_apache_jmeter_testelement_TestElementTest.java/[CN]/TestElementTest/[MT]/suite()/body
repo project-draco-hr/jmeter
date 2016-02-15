@@ -1,0 +1,11 @@
+{
+  TestSuite suite=new TestSuite("TestElements");
+  Iterator<Object> iter=JMeterTest.getObjects(TestElement.class).iterator();
+  while (iter.hasNext()) {
+    TestElement item=(TestElement)iter.next();
+    TestSuite ts=new TestSuite(item.getClass().getName());
+    ts.addTest(new TestElementTest("runTestElement",item));
+    suite.addTest(ts);
+  }
+  return suite;
+}

@@ -1,0 +1,19 @@
+{
+  String s;
+  CSVRead cr1=setCSVReadParams("xtestfiles/test.csv","1");
+  log.info("Expecting file not found");
+  s=cr1.execute(null,null);
+  assertEquals("",s);
+  CSVRead cr2=setCSVReadParams("xtestfiles/test.csv","next");
+  log.info("Expecting no entry for file");
+  s=cr2.execute(null,null);
+  assertEquals("",s);
+  CSVRead cr3=setCSVReadParams("xtestfiles/test.csv","*ABC");
+  log.info("Expecting file not found");
+  s=cr3.execute(null,null);
+  assertEquals("",s);
+  CSVRead cr4=setCSVReadParams("*ABC","1");
+  log.info("Expecting cannot open file");
+  s=cr4.execute(null,null);
+  assertEquals("",s);
+}

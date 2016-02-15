@@ -58,7 +58,7 @@ catch (      Exception e) {
       System.out.println("Last error=" + caught);
     }
   }
-  if (objects.size() == 0) {
+  if (objects.isEmpty()) {
     System.out.println("No classes found that extend " + exName + ". Check the following:");
     System.out.println("Search paths are:");
     String ss[]=JMeterUtils.getSearchPaths();
