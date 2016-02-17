@@ -69,12 +69,7 @@
     httpMethod.releaseConnection();
     return res;
   }
- catch (  IllegalArgumentException e) {
-    res.sampleEnd();
-    errorResult(e,res);
-    return res;
-  }
-catch (  IOException e) {
+ catch (  IllegalArgumentException|IOException e) {
     res.sampleEnd();
     errorResult(e,res);
     return res;
