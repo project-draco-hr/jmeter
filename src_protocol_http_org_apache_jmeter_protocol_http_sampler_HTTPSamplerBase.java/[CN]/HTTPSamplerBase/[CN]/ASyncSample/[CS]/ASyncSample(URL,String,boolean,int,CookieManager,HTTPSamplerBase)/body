@@ -12,5 +12,6 @@
     CookieManager clonedCookieManager=(CookieManager)cookieManager.clone();
     this.sampler.setCookieManagerProperty(clonedCookieManager);
   }
+  this.sampler.setMD5(this.sampler.useMD5() || IGNORE_EMBEDDED_RESOURCES_DATA);
   this.jmeterContextOfParentThread=JMeterContextService.getContext();
 }
