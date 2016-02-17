@@ -1,0 +1,16 @@
+{
+  if (adaptee == null) {
+synchronized (this) {
+      if (adaptee == null) {
+        LOG.info("Setting up HTTPS TrustAll Socket Factory");
+        try {
+          adaptee=new HC4TrustAllSSLSocketFactory();
+        }
+ catch (        GeneralSecurityException e) {
+          LOG.warn("Failed to initialise HTTPS HC4TrustAllSSLSocketFactory",e);
+          adaptee=SSLSocketFactory.getSocketFactory();
+        }
+      }
+    }
+  }
+}

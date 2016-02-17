@@ -31,7 +31,7 @@
     if (resolver == null) {
       resolver=new SystemDefaultDnsResolver();
     }
-    ClientConnectionManager connManager=new MeasuringConnectionManager(SchemeRegistryFactory.createDefault(),resolver);
+    ClientConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver);
     httpClient=new DefaultHttpClient(connManager,clientParams){
       @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
         return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false);
@@ -47,9 +47,6 @@
     SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();
     if (SLOW_HTTP != null) {
       schemeRegistry.register(SLOW_HTTP);
-    }
-    if (HTTPS_SCHEME != null) {
-      schemeRegistry.register(HTTPS_SCHEME);
     }
     if (useProxy) {
       HttpHost proxy=new HttpHost(proxyHost,proxyPort);
