@@ -1,0 +1,13 @@
+{
+  final boolean wrongClass=this.cls.get() != cls;
+  if (wrongClass) {
+    return init(cls);
+  }
+  final boolean setterNotSupported=this.setter == null;
+  if (setterNotSupported) {
+    return null;
+  }
+  final Method s=setter.get();
+  final boolean setterLost=s == null;
+  return setterLost ? init(cls) : s;
+}

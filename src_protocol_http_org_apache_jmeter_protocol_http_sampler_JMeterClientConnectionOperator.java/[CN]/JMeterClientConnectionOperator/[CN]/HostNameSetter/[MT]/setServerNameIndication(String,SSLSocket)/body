@@ -1,0 +1,19 @@
+{
+  final Class<?> cls=sslsock.getClass();
+  final HostNameSetter current=CURRENT.get();
+  final Method setter=(current == null) ? init(cls) : current.reuse(cls);
+  if (setter != null) {
+    try {
+      setter.invoke(sslsock,hostname);
+    }
+ catch (    IllegalArgumentException e) {
+      setServerNameIndicationFail(e);
+    }
+catch (    IllegalAccessException e) {
+      setServerNameIndicationFail(e);
+    }
+catch (    InvocationTargetException e) {
+      setServerNameIndicationFail(e);
+    }
+  }
+}

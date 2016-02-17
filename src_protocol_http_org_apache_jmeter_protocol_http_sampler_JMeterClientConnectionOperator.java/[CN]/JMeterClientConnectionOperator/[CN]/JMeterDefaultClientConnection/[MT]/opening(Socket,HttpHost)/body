@@ -1,0 +1,6 @@
+{
+  super.opening(sock,target);
+  if (sock instanceof SSLSocket) {
+    HostNameSetter.setServerNameIndication(target.getHostName(),(SSLSocket)sock);
+  }
+}

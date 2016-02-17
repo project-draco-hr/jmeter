@@ -1,0 +1,4 @@
+{
+  this.cls=new WeakReference<Class<?>>(clazz);
+  this.setter=setter == null ? null : new WeakReference<Method>(setter);
+}
