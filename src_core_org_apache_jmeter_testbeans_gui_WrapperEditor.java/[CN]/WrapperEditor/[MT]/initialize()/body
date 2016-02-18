@@ -1,7 +1,7 @@
 {
   resetValue();
   if (guiEditor instanceof ComboStringEditor) {
-    String[] tags=((ComboStringEditor)guiEditor).getTags();
+    String[] tags=guiEditor.getTags();
     String v;
     if (!acceptsOther) {
       v="${}";
