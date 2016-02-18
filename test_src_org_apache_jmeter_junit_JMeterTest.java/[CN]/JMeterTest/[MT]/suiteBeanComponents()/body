@@ -1,7 +1,7 @@
 {
   TestSuite suite=new TestSuite("BeanComponents");
   for (  Object o : getObjects(TestBean.class)) {
-    Class<? extends Object> c=o.getClass();
+    Class<?> c=o.getClass();
     try {
       JMeterGUIComponent item=new TestBeanGUI(c);
       TestSuite ts=new TestSuite(item.getClass().getName());

@@ -1,9 +1,9 @@
 {
   StringBuilder builder=new StringBuilder();
   for (  Map.Entry<String,Map<String,String>> entry : missingLabelsPerBundle.entrySet()) {
-    builder.append("Missing labels in bundle:" + entry.getKey() + "\r\n");
+    builder.append("Missing labels in bundle:").append(entry.getKey()).append("\r\n");
     for (    Map.Entry<String,String> entry2 : entry.getValue().entrySet()) {
-      builder.append(entry2.getKey() + "=" + entry2.getValue()+ "\r\n");
+      builder.append(entry2.getKey()).append("=").append(entry2.getValue()).append("\r\n");
     }
     builder.append("======================================================\r\n");
   }

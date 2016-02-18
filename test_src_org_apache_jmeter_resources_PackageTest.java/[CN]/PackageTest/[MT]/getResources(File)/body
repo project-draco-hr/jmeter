@@ -1,8 +1,8 @@
 {
   Set<String> set=new TreeSet<>();
-  findFile(srcFiledir,set,new FilenameFilter(){
+  findFile(srcFileDir,set,new FilenameFilter(){
     @Override public boolean accept(    File dir,    String name){
-      return new File(dir,name).isDirectory() || (name.equals("messages.properties") || (name.endsWith("Resources.properties") && !name.matches("Example\\d+Resources\\.properties")));
+      return (name.equals("messages.properties") || (name.endsWith("Resources.properties") && !name.matches("Example\\d+Resources\\.properties"))) || new File(dir,name).isDirectory();
     }
   }
 );
