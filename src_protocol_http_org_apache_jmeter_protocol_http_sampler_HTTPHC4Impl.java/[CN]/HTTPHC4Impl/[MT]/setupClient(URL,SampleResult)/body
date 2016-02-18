@@ -29,7 +29,7 @@
     HttpParams clientParams=new DefaultedHttpParams(new BasicHttpParams(),DEFAULT_HTTP_PARAMS);
     DnsResolver resolver=this.testElement.getDNSResolver();
     if (resolver == null) {
-      resolver=new SystemDefaultDnsResolver();
+      resolver=SystemDefaultDnsResolver.INSTANCE;
     }
     ClientConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver);
     httpClient=new DefaultHttpClient(connManager,clientParams){
