@@ -5,7 +5,8 @@
     global=new ImporterTopLevel(cx);
     Scriptable bsf=Context.toObject(new BSFFunctions(mgr,this),global);
     global.put("bsf",global,bsf);
-    for (    BSFDeclaredBean declaredBean : (Iterable<BSFDeclaredBean>)declaredBeans) {
+    @SuppressWarnings("unchecked") final Vector<BSFDeclaredBean> beans=declaredBeans;
+    for (    BSFDeclaredBean declaredBean : beans) {
       declareBean(declaredBean);
     }
   }
