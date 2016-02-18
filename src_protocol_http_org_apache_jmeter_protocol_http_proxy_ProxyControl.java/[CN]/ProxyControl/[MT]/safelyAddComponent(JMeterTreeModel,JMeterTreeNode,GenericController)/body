@@ -1,0 +1,14 @@
+{
+  JMeterUtils.runSafe(true,new Runnable(){
+    @Override public void run(){
+      try {
+        model.addComponent(controller,node);
+      }
+ catch (      IllegalUserActionException e) {
+        log.error("Program error",e);
+        throw new Error(e);
+      }
+    }
+  }
+);
+}

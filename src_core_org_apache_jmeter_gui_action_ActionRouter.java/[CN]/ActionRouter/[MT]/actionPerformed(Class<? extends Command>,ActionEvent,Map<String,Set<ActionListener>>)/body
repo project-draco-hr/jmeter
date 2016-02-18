@@ -1,0 +1,11 @@
+{
+  if (action != null) {
+    Set<ActionListener> listenerSet=actionListeners.get(action.getName());
+    if (listenerSet != null && listenerSet.size() > 0) {
+      ActionListener[] listeners=listenerSet.toArray(new ActionListener[listenerSet.size()]);
+      for (      ActionListener listener : listeners) {
+        listener.actionPerformed(e);
+      }
+    }
+  }
+}

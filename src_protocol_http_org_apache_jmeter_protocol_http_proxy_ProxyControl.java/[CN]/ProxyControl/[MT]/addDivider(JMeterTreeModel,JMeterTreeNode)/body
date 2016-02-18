@@ -2,16 +2,5 @@
   final GenericController sc=new GenericController();
   sc.setProperty(TestElement.GUI_CLASS,LOGIC_CONTROLLER_GUI);
   sc.setName("-------------------");
-  JMeterUtils.runSafe(true,new Runnable(){
-    @Override public void run(){
-      try {
-        model.addComponent(sc,node);
-      }
- catch (      IllegalUserActionException e) {
-        log.error("Program error",e);
-        throw new Error(e);
-      }
-    }
-  }
-);
+  safelyAddComponent(model,node,sc);
 }

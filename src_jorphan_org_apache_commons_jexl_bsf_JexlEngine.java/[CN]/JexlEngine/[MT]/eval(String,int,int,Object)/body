@@ -3,7 +3,7 @@
     return null;
   }
   try {
-    Script jExpr=null;
+    Script jExpr;
     if (expr instanceof File) {
       jExpr=ScriptFactory.createScript((File)expr);
     }

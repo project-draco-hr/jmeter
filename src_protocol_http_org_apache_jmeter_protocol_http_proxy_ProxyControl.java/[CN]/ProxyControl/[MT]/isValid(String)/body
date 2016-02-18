@@ -1,7 +1,4 @@
 {
   String[] parts=subject.split("\\.");
-  if (!parts[0].endsWith("*")) {
-    return true;
-  }
-  return parts.length >= 3 && AbstractVerifier.acceptableCountryWildcard(subject);
+  return !parts[0].endsWith("*") || parts.length >= 3 && AbstractVerifier.acceptableCountryWildcard(subject);
 }

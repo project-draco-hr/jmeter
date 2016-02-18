@@ -1,11 +1,11 @@
 {
   if (content.length() == 0) {
-    emptyTag(tagname);
+    emptyTag(tagName);
   }
  else {
-    startTag(tagname);
+    startTag(tagName);
     sb.append(content);
-    endTag(tagname);
+    endTag(tagName);
   }
   return this;
 }

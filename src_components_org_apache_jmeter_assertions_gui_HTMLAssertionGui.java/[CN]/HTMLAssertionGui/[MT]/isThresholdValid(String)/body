@@ -1,0 +1,12 @@
+{
+  boolean isValid=true;
+  try {
+    if (Long.parseLong(errorThresholdString) < 0) {
+      isValid=false;
+    }
+  }
+ catch (  NumberFormatException ex) {
+    isValid=false;
+  }
+  return isValid;
+}

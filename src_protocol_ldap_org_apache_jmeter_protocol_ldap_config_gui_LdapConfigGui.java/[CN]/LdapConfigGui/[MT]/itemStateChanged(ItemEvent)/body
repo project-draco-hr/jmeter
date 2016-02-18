@@ -35,24 +35,10 @@
       delete.setText("");
     }
  else {
-      cl.show(cards,"");
-      tableAddPanel.clear();
-      add.setText("");
-      tableModifyPanel.clear();
-      modify.setText("");
-      searchbase.setText("");
-      searchfilter.setText("");
-      delete.setText("");
+      resetCardLayout(cl);
     }
   }
  else {
-    cl.show(cards,"");
-    tableAddPanel.clear();
-    add.setText("");
-    tableModifyPanel.clear();
-    modify.setText("");
-    searchbase.setText("");
-    searchfilter.setText("");
-    delete.setText("");
+    resetCardLayout(cl);
   }
 }

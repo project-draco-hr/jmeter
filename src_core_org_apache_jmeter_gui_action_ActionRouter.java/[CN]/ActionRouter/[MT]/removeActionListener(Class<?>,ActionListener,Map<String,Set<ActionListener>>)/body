@@ -1,0 +1,9 @@
+{
+  if (action != null) {
+    Set<ActionListener> set=actionListeners.get(action.getName());
+    if (set != null) {
+      set.remove(listener);
+      actionListeners.put(action.getName(),set);
+    }
+  }
+}

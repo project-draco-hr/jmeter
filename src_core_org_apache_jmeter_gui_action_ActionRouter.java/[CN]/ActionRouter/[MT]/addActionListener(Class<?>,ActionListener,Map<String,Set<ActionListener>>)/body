@@ -1,0 +1,10 @@
+{
+  if (action != null) {
+    Set<ActionListener> set=actionListeners.get(action.getName());
+    if (set == null) {
+      set=new HashSet<>();
+    }
+    set.add(listener);
+    actionListeners.put(action.getName(),set);
+  }
+}
