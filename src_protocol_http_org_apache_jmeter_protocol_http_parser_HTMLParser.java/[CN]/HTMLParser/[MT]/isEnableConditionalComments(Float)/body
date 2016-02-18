@@ -1,6 +1,3 @@
 {
-  if (ieVersion == null) {
-    return false;
-  }
-  return ieVersion.floatValue() < IE_10;
+  return ieVersion != null && ieVersion.floatValue() < IE_10;
 }

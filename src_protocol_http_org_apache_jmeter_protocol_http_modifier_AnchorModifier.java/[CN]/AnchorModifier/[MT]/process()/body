@@ -13,9 +13,7 @@
     result=(HTTPSampleResult)res;
   }
   List<HTTPSamplerBase> potentialLinks=new ArrayList<>();
-  String responseText="";
-  responseText=result.getResponseDataAsString();
-  Document html;
+  String responseText=result.getResponseDataAsString();
   int index=responseText.indexOf('<');
   if (index == -1) {
     index=0;
@@ -23,7 +21,7 @@
   if (log.isDebugEnabled()) {
     log.debug("Check for matches against: " + sampler.toString());
   }
-  html=(Document)HtmlParsingUtils.getDOM(responseText.substring(index));
+  Document html=(Document)HtmlParsingUtils.getDOM(responseText.substring(index));
   addAnchorUrls(html,result,sampler,potentialLinks);
   addFormUrls(html,result,sampler,potentialLinks);
   addFramesetUrls(html,result,sampler,potentialLinks);
@@ -44,10 +42,8 @@
       sampler.setArguments(url.getArguments());
     }
     sampler.setProtocol(url.getProtocol());
-    return;
   }
  else {
     log.debug("No matches found");
   }
-  return;
 }

@@ -5,14 +5,13 @@
   }
   Matcher matcher=IE_UA_PATTERN.matcher(userAgent);
   String ieVersion=null;
-  while (matcher.find()) {
+  if (matcher.find()) {
     if (matcher.groupCount() > 0) {
       ieVersion=matcher.group(1);
     }
  else {
       ieVersion=matcher.group();
     }
-    break;
   }
   if (ieVersion != null) {
     return Float.valueOf(ieVersion);
