@@ -1,0 +1,10 @@
+{
+  LOG.info("Setting up HTTPS TrustAll Socket Factory");
+  try {
+    return new HC4TrustAllSSLSocketFactory();
+  }
+ catch (  GeneralSecurityException e) {
+    LOG.warn("Failed to initialise HTTPS HC4TrustAllSSLSocketFactory",e);
+    return SSLSocketFactory.getSocketFactory();
+  }
+}

@@ -1,4 +1,3 @@
 {
-  checkAndInit();
-  return adaptee.connectSocket(sock,remoteAddress,localAddress,params);
+  return AdapteeHolder.getINSTANCE().connectSocket(sock,remoteAddress,localAddress,params);
 }

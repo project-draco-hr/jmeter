@@ -1,4 +1,3 @@
 {
-  checkAndInit();
-  return adaptee.isSecure(sock);
+  return AdapteeHolder.getINSTANCE().isSecure(sock);
 }

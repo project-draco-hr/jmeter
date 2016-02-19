@@ -1,4 +1,3 @@
 {
-  checkAndInit();
-  return adaptee.createLayeredSocket(socket,target,port,params);
+  return AdapteeHolder.getINSTANCE().createLayeredSocket(socket,target,port,params);
 }

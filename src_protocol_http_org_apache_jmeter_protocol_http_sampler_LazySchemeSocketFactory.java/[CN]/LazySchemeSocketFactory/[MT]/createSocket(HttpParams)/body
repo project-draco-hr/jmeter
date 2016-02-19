@@ -1,4 +1,3 @@
 {
-  checkAndInit();
-  return adaptee.createSocket(params);
+  return AdapteeHolder.getINSTANCE().createSocket(params);
 }
