@@ -33,7 +33,21 @@
         log.warn("Ignoring embedded URL match string: " + e.getMessage());
       }
     }
-    final List<Callable<AsynSamplerResultHolder>> liste=new ArrayList<>();
+    final List<Callable<AsynSamplerResultHolder>> list=new ArrayList<>();
+    int maxConcurrentDownloads=CONCURRENT_POOL_SIZE;
+    boolean isConcurrentDwn=isConcurrentDwn();
+    if (isConcurrentDwn) {
+      try {
+        maxConcurrentDownloads=Integer.parseInt(getConcurrentPool());
+      }
+ catch (      NumberFormatException nfe) {
+        log.warn("Concurrent download resources selected, " + "but pool size value is bad. Use default value");
+      }
+      if (maxConcurrentDownloads == 1) {
+        log.warn("Number of parallel downloads set to 1, (sampler name=" + getName() + ")");
+        isConcurrentDwn=false;
+      }
+    }
     while (urls.hasNext()) {
       Object binURL=urls.next();
       try {
@@ -65,8 +79,8 @@
             setParentSampleSuccess(res,false);
             continue;
           }
-          if (isConcurrentDwn()) {
-            liste.add(new ASyncSample(url,HTTPConstants.GET,false,frameDepth + 1,getCookieManager(),this));
+          if (isConcurrentDwn) {
+            list.add(new ASyncSample(url,HTTPConstants.GET,false,frameDepth + 1,getCookieManager(),this));
           }
  else {
             HTTPSampleResult binRes=sample(url,HTTPConstants.GET,false,frameDepth + 1);
@@ -80,16 +94,9 @@
         setParentSampleSuccess(res,false);
       }
     }
-    if (isConcurrentDwn()) {
-      int poolSize=CONCURRENT_POOL_SIZE;
-      try {
-        poolSize=Integer.parseInt(getConcurrentPool());
-      }
- catch (      NumberFormatException nfe) {
-        log.warn("Concurrent download resources selected, " + "but pool size value is bad. Use default value");
-      }
+    if (isConcurrentDwn && !list.isEmpty()) {
       final String parentThreadName=Thread.currentThread().getName();
-      final ThreadPoolExecutor exec=new ThreadPoolExecutor(poolSize,poolSize,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(),new ThreadFactory(){
+      final ThreadPoolExecutor exec=new ThreadPoolExecutor(maxConcurrentDownloads,maxConcurrentDownloads,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(),new ThreadFactory(){
         @Override public Thread newThread(        final Runnable r){
           Thread t=new CleanerThread(new Runnable(){
             @Override public void run(){
@@ -110,7 +117,7 @@
 );
       boolean tasksCompleted=false;
       try {
-        final List<Future<AsynSamplerResultHolder>> retExec=exec.invokeAll(liste);
+        final List<Future<AsynSamplerResultHolder>> retExec=exec.invokeAll(list);
         exec.shutdown();
         exec.awaitTermination(AWAIT_TERMINATION_TIMEOUT,TimeUnit.SECONDS);
         CookieManager cookieManager=getCookieManager();
@@ -135,7 +142,7 @@
         tasksCompleted=exec.awaitTermination(1,TimeUnit.MILLISECONDS);
       }
  catch (      InterruptedException ie) {
-        log.warn("Interruped fetching embedded resources",ie);
+        log.warn("Interrupted fetching embedded resources",ie);
       }
 catch (      ExecutionException ee) {
         log.warn("Execution issue when fetching embedded resources",ee);

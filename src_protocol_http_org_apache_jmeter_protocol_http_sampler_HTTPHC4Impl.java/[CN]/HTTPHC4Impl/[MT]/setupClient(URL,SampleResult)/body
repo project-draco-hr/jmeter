@@ -31,7 +31,15 @@
     if (resolver == null) {
       resolver=SystemDefaultDnsResolver.INSTANCE;
     }
-    ClientConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver);
+    MeasuringConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver);
+    if (this.testElement.isConcurrentDwn()) {
+      try {
+        int maxConcurrentDownloads=Integer.parseInt(this.testElement.getConcurrentPool());
+        connManager.setDefaultMaxPerRoute(Math.max(maxConcurrentDownloads,connManager.getDefaultMaxPerRoute()));
+      }
+ catch (      NumberFormatException nfe) {
+      }
+    }
     httpClient=new DefaultHttpClient(connManager,clientParams){
       @Override protected HttpRequestRetryHandler createHttpRequestRetryHandler(){
         return new DefaultHttpRequestRetryHandler(RETRY_COUNT,false);
