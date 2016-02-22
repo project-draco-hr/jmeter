@@ -4,9 +4,13 @@
       followRedirects.setSelected(false);
     }
   }
-  if (e.getSource() == followRedirects) {
+ else   if (e.getSource() == followRedirects) {
     if (followRedirects.isSelected()) {
       autoRedirects.setSelected(false);
     }
+  }
+ else   if (e.getSource() == method) {
+    boolean isPostMethod=HTTPConstants.POST.equals(method.getText());
+    useMultipartForPost.setEnabled(isPostMethod);
   }
 }

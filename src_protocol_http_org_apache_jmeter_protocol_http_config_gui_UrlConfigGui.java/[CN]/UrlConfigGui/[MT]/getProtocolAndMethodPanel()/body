@@ -11,6 +11,7 @@
   contentEncodingLabel.setLabelFor(contentEncoding);
   if (notConfigOnly) {
     method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray());
+    method.addChangeListener(this);
   }
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));
   if (showImplementation) {
