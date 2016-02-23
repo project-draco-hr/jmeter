@@ -33,6 +33,7 @@
   LOG.debug("End of samples processing");
   LOG.debug("Start data exporting");
   for (  Map.Entry<String,ExporterConfiguration> entry : configuration.getExportConfigurations().entrySet()) {
+    LOG.info("Exporting data using exporter:'" + entry.getKey() + "' of className:'"+ entry.getValue().getClassName()+ "'");
     exportData(sampleContext,entry.getKey(),entry.getValue());
   }
   LOG.debug("End of data exporting");

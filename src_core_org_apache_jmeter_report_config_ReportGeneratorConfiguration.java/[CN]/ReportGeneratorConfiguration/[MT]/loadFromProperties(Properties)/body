@@ -2,6 +2,9 @@
   LOG.debug(START_LOADING_MSG);
   ReportGeneratorConfiguration configuration=new ReportGeneratorConfiguration();
   final Props props=new Props();
+  if (LOG.isDebugEnabled()) {
+    LOG.debug("Loading properties:\r\n" + properties);
+  }
   props.load(properties);
   final File tempDirectory=getRequiredProperty(props,REPORT_GENERATOR_KEY_TEMP_DIR,REPORT_GENERATOR_KEY_TEMP_DIR_DEFAULT,File.class);
   configuration.setTempDirectory(tempDirectory);
@@ -19,7 +22,7 @@
   final Map<String,ExporterConfiguration> exportConfigurations=configuration.getExportConfigurations();
   loadSubConfiguration(exportConfigurations,props,REPORT_GENERATOR_EXPORTER_KEY_PREFIX,false,new ExporterConfigurationFactory(props));
   if (exportConfigurations.isEmpty()) {
-    LOG.warn("No export configuration found. None report will be generated.");
+    LOG.warn("No export configuration found. No report will be generated.");
   }
   LOG.debug(END_LOADING_MSG);
   return configuration;

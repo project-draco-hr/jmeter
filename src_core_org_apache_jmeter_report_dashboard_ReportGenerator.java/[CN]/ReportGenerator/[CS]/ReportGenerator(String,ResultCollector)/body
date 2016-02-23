@@ -2,6 +2,7 @@
   if (!CSV_OUTPUT_FORMAT) {
     throw new IllegalArgumentException("Report generation requires csv output format, check 'jmeter.save.saveservice.output_format' property");
   }
+  LOG.info("ReportGenerator will use for Parsing the separator:'" + CSV_DEFAULT_SEPARATOR + "'");
   File file=new File(resultsFile);
   if (resultCollector == null) {
     if (!(file.isFile() && file.canRead())) {
