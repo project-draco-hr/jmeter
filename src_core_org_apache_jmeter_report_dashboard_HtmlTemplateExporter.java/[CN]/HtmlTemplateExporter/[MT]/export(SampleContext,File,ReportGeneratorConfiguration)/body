@@ -5,9 +5,9 @@
   LOG.debug("Start template processing");
   DataContext dataContext=new DataContext();
   final ExporterConfiguration exportCfg=configuration.getExportConfigurations().get(getName());
-  File templateDirectory=getPropertyFromConfig(exportCfg,TEMPLATE_DIR,TEMPLATE_DIR_DEFAULT,File.class);
+  File templateDirectory=getPropertyFromConfig(exportCfg,TEMPLATE_DIR,new File(JMeterUtils.getJMeterBinDir(),TEMPLATE_DIR_NAME_DEFAULT),File.class);
   if (!templateDirectory.isDirectory()) {
-    String message=String.format(INVALID_TEMPLATE_DIRECTORY_FMT,templateDirectory);
+    String message=String.format(INVALID_TEMPLATE_DIRECTORY_FMT,templateDirectory.getAbsolutePath());
     LOG.error(message);
     throw new ExportException(message);
   }
