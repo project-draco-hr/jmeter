@@ -70,6 +70,8 @@
     }
   }
  else   if (action.equals(HANDLER_COMMAND)) {
+    String currentPolicy=policy.getText();
     policy.setValues(getPolicies(handlerMap.get(selectHandlerPanel.getSelectedItem())));
+    policy.setText(currentPolicy);
   }
 }
