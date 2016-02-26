@@ -1,0 +1,7 @@
+{
+  Sampler realSampler=sampler;
+  while (realSampler instanceof TransactionSampler) {
+    realSampler=((TransactionSampler)realSampler).getSubSampler();
+  }
+  return realSampler;
+}
