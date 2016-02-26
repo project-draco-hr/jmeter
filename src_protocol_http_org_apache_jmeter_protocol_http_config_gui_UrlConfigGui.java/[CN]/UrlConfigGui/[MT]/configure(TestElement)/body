@@ -6,11 +6,14 @@
     String postBody=computePostBody(arguments,true);
     postBodyContent.setInitialText(postBody);
     postBodyContent.setCaretPosition(0);
-    postContentTabbedPane.setSelectedIndex(TAB_RAW_BODY,false);
+    postContentTabbedPane.setSelectedIndex(tabRawBodyIndex,false);
   }
  else {
     argsPanel.configure(arguments);
     postContentTabbedPane.setSelectedIndex(TAB_PARAMETERS,false);
+    if (showFileUploadPane) {
+      filesPanel.configure(el);
+    }
   }
   domain.setText(el.getPropertyAsString(HTTPSamplerBase.DOMAIN));
   String portString=el.getPropertyAsString(HTTPSamplerBase.PORT);

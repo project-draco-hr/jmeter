@@ -22,6 +22,9 @@
   protocol.setText("");
   contentEncoding.setText("");
   argsPanel.clear();
+  if (showFileUploadPane) {
+    filesPanel.clear();
+  }
   if (showRawBodyPane) {
     postBodyContent.setInitialText("");
   }

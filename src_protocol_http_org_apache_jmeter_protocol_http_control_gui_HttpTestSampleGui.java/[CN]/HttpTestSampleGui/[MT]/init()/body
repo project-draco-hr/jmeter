@@ -2,7 +2,7 @@
   setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
   add(makeTitlePanel(),BorderLayout.NORTH);
-  urlConfigGui=new MultipartUrlConfigGui(true,!isAJP);
+  urlConfigGui=new UrlConfigGui(true,!isAJP,true,true);
   add(urlConfigGui,BorderLayout.CENTER);
   JPanel bottomPane=new VerticalPanel();
   bottomPane.add(createEmbeddedRsrcPanel());

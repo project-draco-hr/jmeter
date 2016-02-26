@@ -1,9 +1,13 @@
 {
-  if (oldSelectedIndex == TAB_RAW_BODY) {
+  if (oldSelectedIndex == tabRawBodyIndex) {
     return StringUtils.isEmpty(postBodyContent.getText().trim());
   }
  else {
+    boolean noData=true;
     Arguments element=(Arguments)argsPanel.createTestElement();
-    return StringUtils.isEmpty(computePostBody(element));
+    if (showFileUploadPane) {
+      noData&=!filesPanel.hasData();
+    }
+    return noData && StringUtils.isEmpty(computePostBody(element));
   }
 }

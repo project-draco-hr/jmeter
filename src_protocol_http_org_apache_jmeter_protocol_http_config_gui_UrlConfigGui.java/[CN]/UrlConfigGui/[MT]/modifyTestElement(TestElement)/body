@@ -1,5 +1,5 @@
 {
-  boolean useRaw=postContentTabbedPane.getSelectedIndex() == TAB_RAW_BODY;
+  boolean useRaw=postContentTabbedPane.getSelectedIndex() == tabRawBodyIndex;
   Arguments args;
   if (useRaw) {
     args=new Arguments();
@@ -11,6 +11,9 @@
  else {
     args=(Arguments)argsPanel.createTestElement();
     HTTPArgument.convertArgumentsToHTTP(args);
+    if (showFileUploadPane) {
+      filesPanel.modifyTestElement(element);
+    }
   }
   element.setProperty(HTTPSamplerBase.POST_BODY_RAW,useRaw,HTTPSamplerBase.POST_BODY_RAW_DEFAULT);
   element.setProperty(new TestElementProperty(HTTPSamplerBase.ARGUMENTS,args));

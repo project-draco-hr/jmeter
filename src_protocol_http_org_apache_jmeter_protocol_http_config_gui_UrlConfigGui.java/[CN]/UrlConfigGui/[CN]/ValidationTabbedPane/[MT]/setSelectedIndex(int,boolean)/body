@@ -1,17 +1,24 @@
 {
-  int oldSelectedIndex=getSelectedIndex();
+  int oldSelectedIndex=this.getSelectedIndex();
   if (!check || oldSelectedIndex == -1) {
     super.setSelectedIndex(index);
   }
- else   if (index != this.getSelectedIndex()) {
-    if (noData(getSelectedIndex())) {
+ else   if (index != oldSelectedIndex) {
+    if (noData(oldSelectedIndex)) {
       argsPanel.clear();
       postBodyContent.setInitialText("");
+      if (showFileUploadPane) {
+        filesPanel.clear();
+      }
       super.setSelectedIndex(index);
     }
  else {
-      if (oldSelectedIndex == TAB_RAW_BODY) {
-        if (postBodyContent.getText().equals(computePostBody((Arguments)argsPanel.createTestElement()).trim())) {
+      boolean filePanelHasData=false;
+      if (showFileUploadPane) {
+        filePanelHasData=filesPanel.hasData();
+      }
+      if (oldSelectedIndex == tabRawBodyIndex) {
+        if (index == TAB_PARAMETERS && postBodyContent.getText().equals(computePostBody((Arguments)argsPanel.createTestElement()).trim())) {
           super.setSelectedIndex(index);
         }
  else {
@@ -20,7 +27,11 @@
         }
       }
  else {
-        if (canConvertParameters()) {
+        if ((oldSelectedIndex == TAB_PARAMETERS && index == tabFileUploadIndex) || (oldSelectedIndex == tabFileUploadIndex && index == TAB_PARAMETERS)) {
+          super.setSelectedIndex(index);
+          return;
+        }
+        if (oldSelectedIndex == TAB_PARAMETERS && !filePanelHasData && canConvertParameters()) {
           Object[] options={JMeterUtils.getResString("confirm"),JMeterUtils.getResString("cancel")};
           int n=JOptionPane.showOptionDialog(this,JMeterUtils.getResString("web_parameters_lost_message"),JMeterUtils.getResString("warning"),JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
           if (n == JOptionPane.YES_OPTION) {
@@ -32,7 +43,8 @@
           }
         }
  else {
-          JOptionPane.showConfirmDialog(this,JMeterUtils.getResString("web_cannot_convert_parameters_to_raw"),JMeterUtils.getResString("warning"),JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
+          String messageKey=filePanelHasData ? "web_cannot_switch_tab" : "web_cannot_convert_parameters_to_raw";
+          JOptionPane.showConfirmDialog(this,JMeterUtils.getResString(messageKey),JMeterUtils.getResString("warning"),JOptionPane.DEFAULT_OPTION,JOptionPane.ERROR_MESSAGE);
           return;
         }
       }

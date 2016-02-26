@@ -2,9 +2,16 @@
   postContentTabbedPane=new ValidationTabbedPane();
   argsPanel=new HTTPArgumentsPanel();
   postContentTabbedPane.add(JMeterUtils.getResString("post_as_parameters"),argsPanel);
+  int indx=TAB_PARAMETERS;
   if (showRawBodyPane) {
+    tabRawBodyIndex=++indx;
     postBodyContent=new JSyntaxTextArea(30,50);
     postContentTabbedPane.add(JMeterUtils.getResString("post_body"),new JTextScrollPane(postBodyContent));
+  }
+  if (showFileUploadPane) {
+    tabFileUploadIndex=++indx;
+    filesPanel=new HTTPFileArgsPanel();
+    postContentTabbedPane.add(JMeterUtils.getResString("post_files_upload"),filesPanel);
   }
   return postContentTabbedPane;
 }

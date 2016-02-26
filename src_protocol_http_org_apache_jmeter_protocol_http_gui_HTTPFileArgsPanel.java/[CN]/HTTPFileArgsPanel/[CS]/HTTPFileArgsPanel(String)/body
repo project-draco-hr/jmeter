@@ -1,13 +1,4 @@
 {
-  ImageIcon image=JMeterUtils.getImage("collapse-open.png");
-  tableLabel=new JLabel(label,image,SwingConstants.LEFT);
+  tableLabel=new JLabel(label);
   init();
-  tableLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-  tableLabel.setToolTipText(JMeterUtils.getResString("collapse_tooltip"));
-  tableLabel.addMouseListener(new MouseAdapter(){
-    @Override public void mouseClicked(    MouseEvent e){
-      hideFileArgsMainPanel(null);
-    }
-  }
-);
 }
