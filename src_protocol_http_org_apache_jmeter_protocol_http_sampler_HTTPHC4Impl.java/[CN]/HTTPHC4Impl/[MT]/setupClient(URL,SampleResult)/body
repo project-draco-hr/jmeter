@@ -49,6 +49,7 @@
     if (IDLE_TIMEOUT > 0) {
       ((AbstractHttpClient)httpClient).setKeepAliveStrategy(IDLE_STRATEGY);
     }
+    ((AbstractHttpClient)httpClient).setReuseStrategy(DefaultClientConnectionReuseStrategy.INSTANCE);
     ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
     ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
     ((AbstractHttpClient)httpClient).addRequestInterceptor(METRICS_RESETTER);
