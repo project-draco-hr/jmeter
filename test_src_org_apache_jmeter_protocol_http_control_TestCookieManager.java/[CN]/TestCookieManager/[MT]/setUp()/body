@@ -3,9 +3,4 @@
   man=new CookieManager();
   man.setThreadContext(jmctx);
   man.testStarted();
-  man4=new CookieManager();
-  man4.setImplementation(HC4CookieHandler.class.getName());
-  man4.setCookiePolicy(HC4CookieHandler.DEFAULT_POLICY_NAME);
-  man4.setThreadContext(jmctx);
-  man4.testStarted();
 }

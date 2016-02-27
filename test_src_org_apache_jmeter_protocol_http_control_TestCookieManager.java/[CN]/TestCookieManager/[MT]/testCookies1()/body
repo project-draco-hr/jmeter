@@ -1,4 +1,6 @@
 {
+  man.setCookiePolicy(CookieSpecs.DEFAULT);
+  man.testStarted();
   URL url=new URL("http://a.b.c.d/testCookies1");
   man.addCookieFromHeader("test1=1; comment=\"how,now\", test2=2; version=1",url);
   assertEquals(2,man.getCookieCount());

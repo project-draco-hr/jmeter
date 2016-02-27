@@ -1,7 +1,5 @@
 {
-  man.setCookiePolicy(CookieSpecs.NETSCAPE);
-  man.testStarted();
-  URL url=new URL("http://www.order.now/sub1/moo.html");
+  URL url=new URL("http://order.now/sub1/moo.html");
   man.addCookieFromHeader("test1=moo1;",url);
   man.addCookieFromHeader("test2=moo2;path=/sub1",url);
   man.addCookieFromHeader("test2=moo3;path=/",url);
@@ -18,6 +16,5 @@
   assertEquals("/sub1",c.get(1).getPath());
   assertTrue(((BasicClientCookie)c.get(1)).containsAttribute(ClientCookie.PATH_ATTR));
   assertEquals("/",c.get(2).getPath());
-  assertTrue(((BasicClientCookie)c.get(2)).containsAttribute(ClientCookie.PATH_ATTR));
   assertEquals("test1=moo1; test2=moo2; test2=moo3",s);
 }
