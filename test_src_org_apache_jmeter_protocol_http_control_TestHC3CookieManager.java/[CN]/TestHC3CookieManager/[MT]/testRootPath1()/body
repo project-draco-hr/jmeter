@@ -1,0 +1,7 @@
+{
+  URL url=new URL("http://d.e.f/moo.html");
+  man.addCookieFromHeader("test=moo;path=/",url);
+  String s=man.getCookieHeaderForURL(new URL("http://d.e.f/goo.html"));
+  assertNotNull(s);
+  assertEquals("test=moo",s);
+}

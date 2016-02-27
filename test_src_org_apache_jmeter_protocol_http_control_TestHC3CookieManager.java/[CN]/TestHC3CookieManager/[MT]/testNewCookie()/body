@@ -1,0 +1,8 @@
+{
+  URL url=new URL("http://a.b.c/");
+  man.addCookieFromHeader("test=1; expires=Mon, 01-Jan-2990 00:00:00 GMT",url);
+  assertEquals(1,man.getCookieCount());
+  String s=man.getCookieHeaderForURL(url);
+  assertNotNull(s);
+  assertEquals("test=1",s);
+}

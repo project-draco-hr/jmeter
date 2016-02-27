@@ -1,0 +1,8 @@
+{
+  jmctx=JMeterContextService.getContext();
+  man=new CookieManager();
+  man.setImplementation(HC3CookieHandler.class.getName());
+  man.setCookiePolicy(HC3CookieHandler.DEFAULT_POLICY_NAME);
+  man.setThreadContext(jmctx);
+  man.testStarted();
+}
