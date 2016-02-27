@@ -6,4 +6,5 @@
   assertEquals(3,man.getCookieCount());
   String s=man.getCookieHeaderForURL(url);
   assertNotNull(s);
+  assertEquals("test2=moo2; test1=moo1; test2=moo3",s);
 }
