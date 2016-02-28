@@ -1,6 +1,0 @@
-{
-  DocumentBuilderFactory dbfactory=DocumentBuilderFactory.newInstance();
-  dbfactory.setNamespaceAware(true);
-  DocumentBuilder docbuild=dbfactory.newDocumentBuilder();
-  WSDLDOC=docbuild.parse(CONN.getInputStream());
-}
