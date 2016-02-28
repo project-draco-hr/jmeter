@@ -3,7 +3,7 @@
   tableModel.clearData();
   clearEachIteration.setSelected(false);
   selectHandlerPanel.setSelectedItem(DEFAULT_IMPLEMENTATION.substring(DEFAULT_IMPLEMENTATION.lastIndexOf('.') + 1));
-  policy.setText(HC4CookieHandler.DEFAULT_POLICY_NAME);
+  policy.setText(DEFAULT_POLICY);
   deleteButton.setEnabled(false);
   saveButton.setEnabled(false);
 }
