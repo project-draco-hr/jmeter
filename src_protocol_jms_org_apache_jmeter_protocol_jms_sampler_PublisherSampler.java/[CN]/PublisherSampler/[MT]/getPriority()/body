@@ -1,3 +1,9 @@
 {
-  return getPropertyAsString(JMS_PRIORITY,Utils.DEFAULT_PRIORITY_4);
+  String priority=getPropertyAsString(JMS_PRIORITY);
+  if (priority.length() == 0) {
+    return Utils.DEFAULT_PRIORITY_4;
+  }
+ else {
+    return priority;
+  }
 }

@@ -1,3 +1,9 @@
 {
-  return getPropertyAsString(JMS_EXPIRATION,Utils.DEFAULT_NO_EXPIRY);
+  String expiration=getPropertyAsString(JMS_EXPIRATION);
+  if (expiration.length() == 0) {
+    return Utils.DEFAULT_NO_EXPIRY;
+  }
+ else {
+    return expiration;
+  }
 }
