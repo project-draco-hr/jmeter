@@ -11,7 +11,7 @@
     LOG.error(message);
     throw new ExportException(message);
   }
-  File outputDir=getPropertyFromConfig(exportCfg,OUTPUT_DIR,OUTPUT_DIR_DEFAULT,File.class);
+  File outputDir=getPropertyFromConfig(exportCfg,OUTPUT_DIR,getReportOutputFolder(),File.class);
   LOG.info("Will generate dashboard in folder:" + outputDir);
   final boolean filtersOnlySampleSeries=exportCfg.filtersOnlySampleSeries();
   addToContext(DATA_CTX_FILTERS_ONLY_SAMPLE_SERIES,Boolean.valueOf(filtersOnlySampleSeries),dataContext);

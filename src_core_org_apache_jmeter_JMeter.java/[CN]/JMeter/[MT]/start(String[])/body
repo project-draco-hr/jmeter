@@ -94,6 +94,23 @@
         startOptionalServers();
       }
  else {
+        CLOption reportOutputFolderOpt=parser.getArgumentById(REPORT_OUTPUT_FOLDER_OPT);
+        if (reportOutputFolderOpt != null) {
+          String reportOutputFolder=parser.getArgumentById(REPORT_OUTPUT_FOLDER_OPT).getArgument();
+          File reportOutputFolderAsFile=new File(reportOutputFolder);
+          if (!reportOutputFolderAsFile.exists() || (reportOutputFolderAsFile.isDirectory() && reportOutputFolderAsFile.listFiles().length == 0)) {
+            if (!reportOutputFolderAsFile.exists()) {
+              if (!reportOutputFolderAsFile.mkdirs()) {
+                throw new IllegalArgumentException("Cannot create output report to:'" + reportOutputFolderAsFile.getAbsolutePath() + "' as I was not able to create it");
+              }
+            }
+            log.info("Setting property '" + JMETER_REPORT_OUTPUT_DIR_PROPERTY + "' to:'"+ reportOutputFolderAsFile.getAbsolutePath()+ "'");
+            JMeterUtils.setProperty(JMETER_REPORT_OUTPUT_DIR_PROPERTY,reportOutputFolderAsFile.getAbsolutePath());
+          }
+ else {
+            throw new IllegalArgumentException("Cannot output report to:'" + reportOutputFolderAsFile.getAbsolutePath() + "' as it would overwrite existing non empty folder");
+          }
+        }
         CLOption testReportOpt=parser.getArgumentById(REPORT_GENERATING_OPT);
         if (testReportOpt != null) {
           String reportFile=testReportOpt.getArgument();
