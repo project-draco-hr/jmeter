@@ -4,7 +4,7 @@
     localHost=InetAddress.getLocalHost();
   }
  catch (  UnknownHostException e1) {
-    log.error("Unable to get local host IP address.");
+    log.error("Unable to get local host IP address.",e1);
     return;
   }
   localHostIP=localHost.getHostAddress();
