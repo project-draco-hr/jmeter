@@ -12,6 +12,7 @@
     System.err.println("Error: " + error);
     System.out.println("Usage");
     System.out.println(CLUtil.describeOptions(options).toString());
+    System.out.println("Error: " + error);
     return;
   }
   try {
