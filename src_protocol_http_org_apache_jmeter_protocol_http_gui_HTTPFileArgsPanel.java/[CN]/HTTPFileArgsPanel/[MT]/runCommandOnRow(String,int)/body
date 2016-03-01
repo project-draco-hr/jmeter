@@ -4,6 +4,8 @@
   }
  else   if (BROWSE.equals(command)) {
     String path=browseAndGetFilePath();
-    tableModel.setValueAt(path,rowSelected,0);
+    if (StringUtils.isNotBlank(path)) {
+      tableModel.setValueAt(path,rowSelected,0);
+    }
   }
 }
