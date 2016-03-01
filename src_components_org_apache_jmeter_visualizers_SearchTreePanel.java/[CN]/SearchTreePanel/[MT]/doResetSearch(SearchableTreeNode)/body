@@ -1,0 +1,7 @@
+{
+  searchableTreeNode.reset();
+  searchableTreeNode.updateState();
+  for (int i=0; i < searchableTreeNode.getChildCount(); i++) {
+    doResetSearch((SearchableTreeNode)searchableTreeNode.getChildAt(i));
+  }
+}

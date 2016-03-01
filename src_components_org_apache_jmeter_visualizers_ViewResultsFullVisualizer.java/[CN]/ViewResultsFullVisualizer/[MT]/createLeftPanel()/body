@@ -2,7 +2,7 @@
   SampleResult rootSampleResult=new SampleResult();
   rootSampleResult.setSampleLabel("Root");
   rootSampleResult.setSuccessful(true);
-  root=new DefaultMutableTreeNode(rootSampleResult);
+  root=new SearchableTreeNode(rootSampleResult,null);
   treeModel=new DefaultTreeModel(root);
   jTree=new JTree(treeModel);
   jTree.setCellRenderer(new ResultsNodeRenderer());

@@ -1,0 +1,30 @@
+{
+  node.reset();
+  Object userObject=node.getUserObject();
+  try {
+    Searchable searchable=null;
+    if (userObject instanceof Searchable) {
+      searchable=(Searchable)userObject;
+    }
+ else {
+      return false;
+    }
+    if (searcher.search(searchable.getSearchableTokens())) {
+      node.setNodeHasMatched(true);
+    }
+    boolean foundInChildren=false;
+    for (int i=0; i < node.getChildCount(); i++) {
+      searchInNode(searcher,(SearchableTreeNode)node.getChildAt(i));
+      foundInChildren=searchInNode(searcher,(SearchableTreeNode)node.getChildAt(i)) || foundInChildren;
+    }
+    if (!node.isNodeHasMatched()) {
+      node.setChildrenNodesHaveMatched(foundInChildren);
+    }
+    node.updateState();
+    return node.isNodeHasMatched() || node.isChildrenNodesHaveMatched();
+  }
+ catch (  Exception e) {
+    LOG.error("Error extracting data from tree node");
+    return false;
+  }
+}

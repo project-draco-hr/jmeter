@@ -1,12 +1,12 @@
 {
-  DefaultMutableTreeNode currNode=new DefaultMutableTreeNode(res);
+  DefaultMutableTreeNode currNode=new SearchableTreeNode(res,treeModel);
   treeModel.insertNodeInto(currNode,root,root.getChildCount());
   addSubResults(currNode,res);
   AssertionResult[] assertionResults=res.getAssertionResults();
   int assertionIndex=currNode.getChildCount();
   for (  AssertionResult assertionResult : assertionResults) {
     if (assertionResult.isFailure() || assertionResult.isError()) {
-      DefaultMutableTreeNode assertionNode=new DefaultMutableTreeNode(assertionResult);
+      DefaultMutableTreeNode assertionNode=new SearchableTreeNode(assertionResult,treeModel);
       treeModel.insertNodeInto(assertionNode,currNode,assertionIndex++);
     }
   }

@@ -5,14 +5,14 @@
     if (log.isDebugEnabled()) {
       log.debug("updateGui1 : child sample result - " + child);
     }
-    DefaultMutableTreeNode leafNode=new DefaultMutableTreeNode(child);
+    DefaultMutableTreeNode leafNode=new SearchableTreeNode(child,treeModel);
     treeModel.insertNodeInto(leafNode,currNode,leafIndex++);
     addSubResults(leafNode,child);
     AssertionResult[] assertionResults=child.getAssertionResults();
     int assertionIndex=leafNode.getChildCount();
     for (    AssertionResult item : assertionResults) {
       if (item.isFailure() || item.isError()) {
-        DefaultMutableTreeNode assertionNode=new DefaultMutableTreeNode(item);
+        DefaultMutableTreeNode assertionNode=new SearchableTreeNode(item,treeModel);
         treeModel.insertNodeInto(assertionNode,leafNode,assertionIndex++);
       }
     }

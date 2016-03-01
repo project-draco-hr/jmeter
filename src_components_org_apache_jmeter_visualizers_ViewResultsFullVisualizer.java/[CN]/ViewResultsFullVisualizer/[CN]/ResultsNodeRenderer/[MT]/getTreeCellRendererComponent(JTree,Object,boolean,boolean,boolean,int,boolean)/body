@@ -16,5 +16,15 @@
  else {
     this.setIcon(imageSuccess);
   }
+  SearchableTreeNode node=(SearchableTreeNode)value;
+  if (node.isNodeHasMatched()) {
+    setBorder(RED_BORDER);
+  }
+ else   if (node.isChildrenNodesHaveMatched()) {
+    setBorder(BLUE_BORDER);
+  }
+ else {
+    setBorder(null);
+  }
   return this;
 }

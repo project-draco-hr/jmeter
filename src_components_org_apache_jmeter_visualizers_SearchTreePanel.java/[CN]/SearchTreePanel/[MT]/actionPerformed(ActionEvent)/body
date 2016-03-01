@@ -1,0 +1,8 @@
+{
+  if (e.getSource() == searchButton) {
+    doSearch(e);
+  }
+ else   if (e.getSource() == resetButton) {
+    doResetSearch((SearchableTreeNode)defaultMutableTreeNode);
+  }
+}

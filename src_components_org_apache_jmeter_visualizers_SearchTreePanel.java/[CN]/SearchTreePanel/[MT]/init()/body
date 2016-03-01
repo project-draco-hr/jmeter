@@ -1,0 +1,19 @@
+{
+  setLayout(new BorderLayout(10,10));
+  searchTF=new JLabeledTextField(JMeterUtils.getResString("search_text_field"),20);
+  isRegexpCB=new JCheckBox(JMeterUtils.getResString("search_text_chkbox_regexp"),false);
+  isCaseSensitiveCB=new JCheckBox(JMeterUtils.getResString("search_text_chkbox_case"),false);
+  isRegexpCB.setFont(FONT_SMALL);
+  isCaseSensitiveCB.setFont(FONT_SMALL);
+  searchButton=new JButton(JMeterUtils.getResString("search"));
+  searchButton.addActionListener(this);
+  resetButton=new JButton(JMeterUtils.getResString("reset"));
+  resetButton.addActionListener(this);
+  JPanel searchPanel=new JPanel(new FlowLayout(FlowLayout.LEFT));
+  searchPanel.add(searchTF);
+  searchPanel.add(isCaseSensitiveCB);
+  searchPanel.add(isRegexpCB);
+  searchPanel.add(searchButton);
+  searchPanel.add(resetButton);
+  add(searchPanel);
+}

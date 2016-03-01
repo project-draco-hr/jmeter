@@ -6,7 +6,10 @@
   leftSide=createLeftPanel();
   rightSide=new JTabbedPane();
   mainSplit=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,leftSide,rightSide);
-  add(mainSplit,BorderLayout.CENTER);
+  mainSplit.setOneTouchExpandable(true);
+  JSplitPane searchAndMainSP=new JSplitPane(JSplitPane.VERTICAL_SPLIT,new SearchTreePanel(root),mainSplit);
+  searchAndMainSP.setOneTouchExpandable(true);
+  add(searchAndMainSP,BorderLayout.CENTER);
   resultsRender.setRightSide(rightSide);
   resultsRender.init();
 }
