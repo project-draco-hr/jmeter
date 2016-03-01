@@ -2,13 +2,11 @@
   TestElementProperty prop=(TestElementProperty)arg0;
   writer.addAttribute(ConversionHelp.ATT_NAME,ConversionHelp.encode(prop.getName()));
   Class<?> clazz=prop.getObjectValue().getClass();
-  writer.addAttribute(ConversionHelp.ATT_ELEMENT_TYPE,SaveService.IS_TESTPLAN_FORMAT_22 ? mapper().serializedClass(clazz) : clazz.getName());
-  if (SaveService.IS_TESTPLAN_FORMAT_22) {
-    TestElement te=(TestElement)prop.getObjectValue();
-    ConversionHelp.saveSpecialProperties(te,writer);
-  }
+  writer.addAttribute(ConversionHelp.ATT_ELEMENT_TYPE,mapper().serializedClass(clazz));
+  TestElement te=(TestElement)prop.getObjectValue();
+  ConversionHelp.saveSpecialProperties(te,writer);
   for (  JMeterProperty jmp : prop) {
-    if (!SaveService.IS_TESTPLAN_FORMAT_22 || !ConversionHelp.isSpecialProperty(jmp.getName())) {
+    if (!ConversionHelp.isSpecialProperty(jmp.getName())) {
       if (!(TestElement.COMMENTS.equals(jmp.getName()) && jmp.getStringValue().isEmpty())) {
         writeItem(jmp,context,writer);
       }
