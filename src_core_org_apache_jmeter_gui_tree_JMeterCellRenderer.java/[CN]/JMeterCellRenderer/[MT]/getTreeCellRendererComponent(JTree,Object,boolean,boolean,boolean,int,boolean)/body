@@ -21,7 +21,7 @@
   }
   this.setEnabled(enabled);
   if (node.isMarkedBySearch()) {
-    setBorder(BorderFactory.createLineBorder(Color.red));
+    setBorder(RED_BORDER);
   }
  else {
     setBorder(null);
