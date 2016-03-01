@@ -13,7 +13,7 @@
     TestElement parent=stack.getLast();
     boolean duplicate=false;
     if (parent instanceof Controller && (child instanceof Sampler || child instanceof Controller)) {
-      if (!IS_USE_STATIC_SET && parent instanceof TestCompilerHelper) {
+      if (parent instanceof TestCompilerHelper) {
         TestCompilerHelper te=(TestCompilerHelper)parent;
         duplicate=!te.addTestElementOnce(child);
       }

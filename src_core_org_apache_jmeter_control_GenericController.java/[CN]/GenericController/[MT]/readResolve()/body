@@ -1,6 +1,6 @@
 {
   iterationListeners=new LinkedList<>();
-  children=TestCompiler.IS_USE_STATIC_SET ? null : new ConcurrentHashMap<TestElement,Object>();
+  children=new ConcurrentHashMap<TestElement,Object>();
   subControllersAndSamplers=new ArrayList<>();
   return this;
 }
