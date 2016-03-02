@@ -1,10 +1,20 @@
 {
+  boolean samplersToFilterMatch;
 synchronized (LOCK) {
     for (    SampleResult sampleResult : sampleResults) {
       getUserMetrics().add(sampleResult);
-      if (!summaryOnly && samplersToFilter.contains(sampleResult.getSampleLabel())) {
-        SamplerMetric samplerMetric=getSamplerMetric(sampleResult.getSampleLabel());
-        samplerMetric.add(sampleResult);
+      if (!summaryOnly) {
+        if (useRegexpForSamplersList) {
+          Matcher matcher=pattern.matcher(sampleResult.getSampleLabel());
+          samplersToFilterMatch=matcher.matches();
+        }
+ else {
+          samplersToFilterMatch=samplersToFilter.contains(sampleResult.getSampleLabel());
+        }
+        if (samplersToFilterMatch) {
+          SamplerMetric samplerMetric=getSamplerMetric(sampleResult.getSampleLabel());
+          samplerMetric.add(sampleResult);
+        }
       }
       SamplerMetric cumulatedMetrics=getSamplerMetric(CUMULATED_METRICS);
       cumulatedMetrics.add(sampleResult);

@@ -4,6 +4,7 @@
   graphitePort=context.getIntParameter("graphitePort",DEFAULT_PLAINTEXT_PROTOCOL_PORT);
   summaryOnly=context.getBooleanParameter("summaryOnly",true);
   samplersList=context.getParameter("samplersList","");
+  useRegexpForSamplersList=context.getBooleanParameter("useRegexpForSamplersList",false);
   rootMetricsPrefix=context.getParameter("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
   String percentilesAsString=context.getParameter("percentiles",DEFAULT_METRICS_PREFIX);
   String[] percentilesStringArray=percentilesAsString.split(SEPARATOR);
@@ -28,9 +29,14 @@
   Class<?> clazz=Class.forName(graphiteMetricsSenderClass);
   this.graphiteMetricsManager=(GraphiteMetricsSender)clazz.newInstance();
   graphiteMetricsManager.setup(graphiteHost,graphitePort,rootMetricsPrefix);
-  String[] samplers=samplersList.split(SEPARATOR);
-  samplersToFilter=new HashSet<>();
-  Collections.addAll(samplersToFilter,samplers);
+  if (useRegexpForSamplersList) {
+    pattern=Pattern.compile(samplersList);
+  }
+ else {
+    String[] samplers=samplersList.split(SEPARATOR);
+    samplersToFilter=new HashSet<>();
+    Collections.addAll(samplersToFilter,samplers);
+  }
   scheduler=Executors.newScheduledThreadPool(MAX_POOL_SIZE);
   this.timerHandle=scheduler.scheduleAtFixedRate(this,ONE_SECOND,ONE_SECOND,TimeUnit.SECONDS);
 }
