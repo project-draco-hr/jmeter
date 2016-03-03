@@ -57,7 +57,7 @@ catch (      IOException e) {
     byte[] responseData=readResponse(conn,res);
     res.sampleEnd();
     res.setResponseData(responseData);
-    @SuppressWarnings("null") int errorLevel=conn.getResponseCode();
+    int errorLevel=conn.getResponseCode();
     String respMsg=conn.getResponseMessage();
     String hdr=conn.getHeaderField(0);
     if (hdr == null) {
