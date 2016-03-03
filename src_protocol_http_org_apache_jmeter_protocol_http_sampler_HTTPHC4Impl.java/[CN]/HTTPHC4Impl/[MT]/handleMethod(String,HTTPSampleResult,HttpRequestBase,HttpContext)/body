@@ -1,9 +1,9 @@
 {
-  if (method.equals(HTTPConstants.POST)) {
+  if (httpRequest instanceof HttpPost) {
     String postBody=sendPostData((HttpPost)httpRequest);
     result.setQueryString(postBody);
   }
- else   if (method.equals(HTTPConstants.PUT) || method.equals(HTTPConstants.PATCH) || HttpWebdav.isWebdavMethod(method)|| method.equals(HTTPConstants.DELETE)) {
+ else   if (httpRequest instanceof HttpEntityEnclosingRequestBase) {
     String entityBody=sendEntityData((HttpEntityEnclosingRequestBase)httpRequest);
     result.setQueryString(entityBody);
   }
