@@ -26,10 +26,18 @@
   samplerDownloadImages.setSelected(false);
   samplerDownloadImages.addActionListener(this);
   samplerDownloadImages.setActionCommand(ENABLE_RESTART);
+  prefixHTTPSampleName=new JTextField(4);
+  prefixHTTPSampleName.addKeyListener(this);
+  prefixHTTPSampleName.setName(PREFIX_HTTP_SAMPLER_NAME);
+  prefixHTTPSampleName.setActionCommand(ENABLE_RESTART);
+  JLabel labelPrefix=new JLabel(JMeterUtils.getResString("proxy_prefix_http_sampler_name"));
+  labelPrefix.setLabelFor(prefixHTTPSampleName);
   HorizontalPanel panel=new HorizontalPanel();
   panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("proxy_sampler_settings")));
   panel.add(label2);
   panel.add(samplerTypeName);
+  panel.add(labelPrefix);
+  panel.add(prefixHTTPSampleName);
   panel.add(samplerRedirectAutomatically);
   panel.add(samplerFollowRedirects);
   panel.add(useKeepAlive);

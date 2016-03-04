@@ -16,4 +16,7 @@
  else   if (fieldName.equals(ENABLE_RESTART)) {
     enableRestart();
   }
+ else   if (fieldName.equals(PREFIX_HTTP_SAMPLER_NAME)) {
+    model.setPrefixHTTPSampleName(prefixHTTPSampleName.getText());
+  }
 }

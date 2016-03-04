@@ -33,6 +33,11 @@
       sampler.setFollowRedirects(samplerFollowRedirects);
       sampler.setUseKeepAlive(useKeepAlive);
       sampler.setImageParser(samplerDownloadImages);
+      String prefix=getPrefixHTTPSampleName();
+      if (!StringUtils.isEmpty(prefix)) {
+        sampler.setName(prefix + sampler.getName());
+        result.setSampleLabel(prefix + result.getSampleLabel());
+      }
       Authorization authorization=createAuthorization(subConfigs,sampler);
       if (authorization != null) {
         setAuthorization(authorization,myTarget);

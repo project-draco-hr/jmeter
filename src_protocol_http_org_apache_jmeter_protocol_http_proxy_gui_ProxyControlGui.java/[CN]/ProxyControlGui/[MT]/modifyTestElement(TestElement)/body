@@ -21,6 +21,7 @@
     model.setSamplerFollowRedirects(samplerFollowRedirects.isSelected());
     model.setUseKeepAlive(useKeepAlive.isSelected());
     model.setSamplerDownloadImages(samplerDownloadImages.isSelected());
+    model.setPrefixHTTPSampleName(prefixHTTPSampleName.getText());
     model.setNotifyChildSamplerListenerOfFilteredSamplers(notifyChildSamplerListenerOfFilteredSamplersCB.isSelected());
     model.setRegexMatch(regexMatch.isSelected());
     model.setContentTypeInclude(contentTypeInclude.getText());
