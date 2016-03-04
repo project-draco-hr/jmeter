@@ -12,9 +12,9 @@
   rampUpDelay();
   log.info("Thread started: " + Thread.currentThread().getName());
   threadContext.setSamplingStarted(true);
-  controller.initialize();
+  threadGroupLoopController.initialize();
   IterationListener iterationListener=new IterationListener();
-  controller.addIterationListener(iterationListener);
+  threadGroupLoopController.addIterationListener(iterationListener);
   threadStarted();
   return iterationListener;
 }

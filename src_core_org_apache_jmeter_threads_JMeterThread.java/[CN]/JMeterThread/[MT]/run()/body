@@ -3,7 +3,7 @@
   LoopIterationListener iterationListener=null;
   try {
     iterationListener=initRun(threadContext);
-    Sampler sam=controller.next();
+    Sampler sam=threadGroupLoopController.next();
     while (running && sam != null) {
       processSampler(sam,null,threadContext);
       threadContext.cleanAfterSample();
@@ -18,12 +18,12 @@
         threadContext.setRestartNextLoop(false);
         sam=null;
       }
-      if (sam == null && controller.isDone()) {
+      if (sam == null && threadGroupLoopController.isDone()) {
         running=false;
         log.info("Thread is done: " + threadName);
       }
  else {
-        sam=controller.next();
+        sam=threadGroupLoopController.next();
       }
     }
   }

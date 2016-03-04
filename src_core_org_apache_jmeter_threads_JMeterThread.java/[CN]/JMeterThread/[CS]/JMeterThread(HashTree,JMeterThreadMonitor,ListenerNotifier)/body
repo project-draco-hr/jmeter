@@ -3,7 +3,7 @@
   threadVars=new JMeterVariables();
   testTree=test;
   compiler=new TestCompiler(testTree);
-  controller=(Controller)testTree.getArray()[0];
+  threadGroupLoopController=(Controller)testTree.getArray()[0];
   SearchByClass<TestIterationListener> threadListenerSearcher=new SearchByClass<>(TestIterationListener.class);
   test.traverse(threadListenerSearcher);
   testIterationStartListeners=threadListenerSearcher.getSearchResults();

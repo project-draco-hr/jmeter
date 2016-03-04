@@ -8,6 +8,6 @@
     gp.getMainFrame().updateCounts();
   }
   if (iterationListener != null) {
-    controller.removeIterationListener(iterationListener);
+    threadGroupLoopController.removeIterationListener(iterationListener);
   }
 }
