@@ -1,8 +1,6 @@
 {
   authTable=new JTable(tableModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    authTable.setRowHeight((int)Math.round(authTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(authTable);
   authTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   authTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   authTable.setPreferredScrollableViewportSize(new Dimension(100,70));

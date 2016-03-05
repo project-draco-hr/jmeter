@@ -6,8 +6,6 @@
   if (this.background != null) {
     table.setBackground(this.background);
   }
-  if (JMeterUtils.getHiDPIMode()) {
-    table.setRowHeight((int)Math.round(table.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(table);
   return makeScrollPane(table);
 }

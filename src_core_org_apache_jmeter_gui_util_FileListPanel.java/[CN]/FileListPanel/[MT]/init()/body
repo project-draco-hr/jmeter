@@ -10,9 +10,7 @@
   add(buttons,BorderLayout.NORTH);
   this.initializeTableModel();
   files=new JTable(tableModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    files.setRowHeight((int)Math.round(files.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(files);
   files.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
   files.revalidate();
   JScrollPane scrollpane=new JScrollPane(files);

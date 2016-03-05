@@ -3,8 +3,6 @@
   table=new JTable(tableModel);
   table.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-  if (JMeterUtils.getHiDPIMode()) {
-    table.setRowHeight((int)Math.round(table.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(table);
   return makeScrollPane(table);
 }

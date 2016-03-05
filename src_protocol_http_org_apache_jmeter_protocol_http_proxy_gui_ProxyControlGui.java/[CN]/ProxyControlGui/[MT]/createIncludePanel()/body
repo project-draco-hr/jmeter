@@ -1,9 +1,7 @@
 {
   includeModel=new PowerTableModel(new String[]{INCLUDE_COL},new Class[]{String.class});
   includeTable=new JTable(includeModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    includeTable.setRowHeight((int)Math.round(includeTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(includeTable);
   includeTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   includeTable.setPreferredScrollableViewportSize(new Dimension(100,30));
   JPanel panel=new JPanel(new BorderLayout());

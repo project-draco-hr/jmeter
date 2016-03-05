@@ -1,8 +1,6 @@
 {
   jmsPropertiesTable=new JTable(tableModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    jmsPropertiesTable.setRowHeight((int)Math.round(jmsPropertiesTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(jmsPropertiesTable);
   jmsPropertiesTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   jmsPropertiesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   jmsPropertiesTable.setPreferredScrollableViewportSize(new Dimension(100,70));

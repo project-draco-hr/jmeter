@@ -1,8 +1,6 @@
 {
   headerTable=new JTable(tableModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    headerTable.setRowHeight((int)Math.round(headerTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(headerTable);
   headerTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   headerTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   headerTable.setPreferredScrollableViewportSize(new Dimension(100,70));

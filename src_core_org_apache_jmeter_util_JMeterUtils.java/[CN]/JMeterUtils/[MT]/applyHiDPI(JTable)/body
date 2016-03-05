@@ -1,0 +1,5 @@
+{
+  if (JMeterUtils.getHiDPIMode()) {
+    table.setRowHeight((int)Math.round(table.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
+  }
+}

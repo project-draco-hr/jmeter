@@ -6,9 +6,7 @@
   mainPanel.setLayout(new VerticalLayout(5,VerticalLayout.BOTH));
   mainPanel.add(makeTitlePanel());
   table=new JTable(model);
-  if (JMeterUtils.getHiDPIMode()) {
-    table.setRowHeight((int)Math.round(table.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(table);
   table.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   RendererUtils.applyRenderers(table,RENDERERS);
   tableScrollPanel=new JScrollPane(table);

@@ -1,8 +1,6 @@
 {
   dnsServersTable=new JTable(dnsServersTableModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    dnsServersTable.setRowHeight((int)Math.round(dnsServersTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(dnsServersTable);
   dnsServersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   dnsServersTable.setPreferredScrollableViewportSize(new Dimension(400,100));
   JPanel panel=new JPanel(new BorderLayout(0,5));

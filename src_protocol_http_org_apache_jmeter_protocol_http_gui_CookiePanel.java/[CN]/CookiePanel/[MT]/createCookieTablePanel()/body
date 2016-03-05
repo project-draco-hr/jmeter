@@ -1,8 +1,6 @@
 {
   cookieTable=new JTable(tableModel);
-  if (JMeterUtils.getHiDPIMode()) {
-    cookieTable.setRowHeight((int)Math.round(cookieTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
-  }
+  JMeterUtils.applyHiDPI(cookieTable);
   cookieTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   cookieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   cookieTable.setPreferredScrollableViewportSize(new Dimension(100,70));
