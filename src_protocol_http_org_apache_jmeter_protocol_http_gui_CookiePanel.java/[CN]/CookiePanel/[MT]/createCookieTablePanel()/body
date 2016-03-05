@@ -1,5 +1,8 @@
 {
   cookieTable=new JTable(tableModel);
+  if (HIDPI_MODE) {
+    cookieTable.setRowHeight((int)Math.round(cookieTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  }
   cookieTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   cookieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   cookieTable.setPreferredScrollableViewportSize(new Dimension(100,70));

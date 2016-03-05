@@ -12,17 +12,26 @@
   paneRaw=GuiUtils.makeScrollPane(stats);
   paneRaw.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
   tableResult=new JTable(resultModel);
+  if (HIDPI_MODE) {
+    tableResult.setRowHeight((int)Math.round(tableResult.getRowHeight() * HIDPI_SCALE_FACTOR));
+  }
   tableResult.setToolTipText(JMeterUtils.getResString("textbox_tooltip_cell"));
   tableResult.addMouseListener(new TextBoxDoubleClick(tableResult));
   setFirstColumnPreferredSize(tableResult);
   RendererUtils.applyRenderers(tableResult,RENDERERS_RESULT);
   tableResHeaders=new JTable(resHeadersModel);
+  if (HIDPI_MODE) {
+    tableResHeaders.setRowHeight((int)Math.round(tableResHeaders.getRowHeight() * HIDPI_SCALE_FACTOR));
+  }
   tableResHeaders.setToolTipText(JMeterUtils.getResString("textbox_tooltip_cell"));
   tableResHeaders.addMouseListener(new TextBoxDoubleClick(tableResHeaders));
   setFirstColumnPreferredSize(tableResHeaders);
   tableResHeaders.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   RendererUtils.applyRenderers(tableResHeaders,RENDERERS_HEADERS);
   tableResFields=new JTable(resFieldsModel);
+  if (HIDPI_MODE) {
+    tableResFields.setRowHeight((int)Math.round(tableResFields.getRowHeight() * HIDPI_SCALE_FACTOR));
+  }
   tableResFields.setToolTipText(JMeterUtils.getResString("textbox_tooltip_cell"));
   tableResFields.addMouseListener(new TextBoxDoubleClick(tableResFields));
   setFirstColumnPreferredSize(tableResFields);

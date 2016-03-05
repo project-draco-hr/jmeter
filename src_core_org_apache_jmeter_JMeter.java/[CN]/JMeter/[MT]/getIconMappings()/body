@@ -1,5 +1,6 @@
 {
   final String defaultIconProp="org/apache/jmeter/images/icon.properties";
+  final String iconSize=JMeterUtils.getPropDefault(TREE_ICON_SIZE,DEFAULT_TREE_ICON_SIZE);
   String iconProp=JMeterUtils.getPropDefault("jmeter.icons",defaultIconProp);
   Properties p=JMeterUtils.loadProperties(iconProp);
   if (p == null && !iconProp.equals(defaultIconProp)) {
@@ -19,9 +20,9 @@
     String key=(String)pe.nextElement();
     String[] icons=JOrphanUtils.split(p.getProperty(key)," ");
     iconlist[i][0]=key;
-    iconlist[i][1]=icons[0];
+    iconlist[i][1]=icons[0].replace(KEY_SIZE,iconSize);
     if (icons.length > 1) {
-      iconlist[i][2]=icons[1];
+      iconlist[i][2]=icons[1].replace(KEY_SIZE,iconSize);
     }
     i++;
   }
