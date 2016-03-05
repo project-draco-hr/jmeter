@@ -1,7 +1,7 @@
 {
   headerTable=new JTable(tableModel);
-  if (HIDPI_MODE) {
-    headerTable.setRowHeight((int)Math.round(headerTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  if (JMeterUtils.getHiDPIMode()) {
+    headerTable.setRowHeight((int)Math.round(headerTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
   }
   headerTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   headerTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

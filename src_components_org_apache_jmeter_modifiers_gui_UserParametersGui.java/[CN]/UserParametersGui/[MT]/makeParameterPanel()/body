@@ -4,8 +4,8 @@
   paramTable=new JTable(tableModel);
   paramTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
   paramTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-  if (HIDPI_MODE) {
-    paramTable.setRowHeight((int)Math.round(paramTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  if (JMeterUtils.getHiDPIMode()) {
+    paramTable.setRowHeight((int)Math.round(paramTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
   }
   paramPanel=new JPanel(new BorderLayout());
   paramPanel.add(tableLabel,BorderLayout.NORTH);

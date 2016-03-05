@@ -1,7 +1,7 @@
 {
   jmsPropertiesTable=new JTable(tableModel);
-  if (HIDPI_MODE) {
-    jmsPropertiesTable.setRowHeight((int)Math.round(jmsPropertiesTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  if (JMeterUtils.getHiDPIMode()) {
+    jmsPropertiesTable.setRowHeight((int)Math.round(jmsPropertiesTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
   }
   jmsPropertiesTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   jmsPropertiesTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

@@ -1,7 +1,7 @@
 {
   cookieTable=new JTable(tableModel);
-  if (HIDPI_MODE) {
-    cookieTable.setRowHeight((int)Math.round(cookieTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  if (JMeterUtils.getHiDPIMode()) {
+    cookieTable.setRowHeight((int)Math.round(cookieTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
   }
   cookieTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   cookieTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

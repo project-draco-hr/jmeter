@@ -1,8 +1,8 @@
 {
   excludeModel=new PowerTableModel(new String[]{EXCLUDE_COL},new Class[]{String.class});
   excludeTable=new JTable(excludeModel);
-  if (HIDPI_MODE) {
-    excludeTable.setRowHeight((int)Math.round(excludeTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  if (JMeterUtils.getHiDPIMode()) {
+    excludeTable.setRowHeight((int)Math.round(excludeTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
   }
   excludeTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   excludeTable.setPreferredScrollableViewportSize(new Dimension(100,30));

@@ -1,7 +1,7 @@
 {
   authTable=new JTable(tableModel);
-  if (HIDPI_MODE) {
-    authTable.setRowHeight((int)Math.round(authTable.getRowHeight() * HIDPI_SCALE_FACTOR));
+  if (JMeterUtils.getHiDPIMode()) {
+    authTable.setRowHeight((int)Math.round(authTable.getRowHeight() * JMeterUtils.getHiDPIScaleFactor()));
   }
   authTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
   authTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
