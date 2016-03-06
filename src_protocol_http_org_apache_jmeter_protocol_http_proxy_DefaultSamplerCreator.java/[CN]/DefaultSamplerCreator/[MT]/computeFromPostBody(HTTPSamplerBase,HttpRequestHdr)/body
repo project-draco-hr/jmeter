@@ -21,7 +21,6 @@
     if (urlConfig != null) {
       urlConfig.parseArguments(postData);
       sampler.setDoMultipartPost(true);
-      sampler.setDoBrowserCompatibleMultipart(true);
       request.getHeaderManager().removeHeaderNamed(HttpRequestHdr.CONTENT_TYPE);
       request.getHeaderManager().removeHeaderNamed(HttpRequestHdr.CONTENT_LENGTH);
       sampler.setArguments(urlConfig.getArguments());
