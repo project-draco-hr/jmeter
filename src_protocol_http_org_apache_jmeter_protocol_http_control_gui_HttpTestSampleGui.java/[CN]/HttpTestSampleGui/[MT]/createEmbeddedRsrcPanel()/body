@@ -3,7 +3,6 @@
   embeddedRsrcPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_testing_retrieve_title")));
   final JPanel checkBoxPanel=new HorizontalPanel();
   getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
-  getImages.setFont(FONT_SMALL);
   getImages.addItemListener(new ItemListener(){
     @Override public void itemStateChanged(    final ItemEvent e){
       if (e.getStateChange() == ItemEvent.SELECTED) {
@@ -16,7 +15,6 @@
   }
 );
   concurrentDwn=new JCheckBox(JMeterUtils.getResString("web_testing_concurrent_download"));
-  concurrentDwn.setFont(FONT_SMALL);
   concurrentDwn.addItemListener(new ItemListener(){
     @Override public void itemStateChanged(    final ItemEvent e){
       if (getImages.isSelected() && e.getStateChange() == ItemEvent.SELECTED) {
@@ -29,13 +27,11 @@
   }
 );
   concurrentPool=new JTextField(2);
-  concurrentPool.setFont(FONT_SMALL);
   concurrentPool.setMaximumSize(new Dimension(30,20));
   checkBoxPanel.add(getImages);
   checkBoxPanel.add(concurrentDwn);
   checkBoxPanel.add(concurrentPool);
   embeddedRsrcPanel.add(checkBoxPanel);
-  labelEmbeddedRE.setFont(FONT_SMALL);
   checkBoxPanel.add(labelEmbeddedRE);
   embeddedRE=new JTextField(10);
   checkBoxPanel.add(embeddedRE);

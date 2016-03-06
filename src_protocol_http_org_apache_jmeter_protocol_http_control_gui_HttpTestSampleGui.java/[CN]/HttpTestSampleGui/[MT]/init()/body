@@ -1,14 +1,17 @@
 {
   setLayout(new BorderLayout(0,5));
   setBorder(makeBorder());
-  add(makeTitlePanel(),BorderLayout.NORTH);
   urlConfigGui=new UrlConfigGui(true,!isAJP,true,true);
-  add(urlConfigGui,BorderLayout.CENTER);
-  JPanel bottomPane=new VerticalPanel();
-  bottomPane.add(createEmbeddedRsrcPanel());
-  JPanel optionAndSourcePane=new HorizontalPanel();
-  optionAndSourcePane.add(createSourceAddrPanel());
-  optionAndSourcePane.add(createOptionalTasksPanel());
-  bottomPane.add(optionAndSourcePane);
-  add(bottomPane,BorderLayout.SOUTH);
+  JPanel advancedPanel=new VerticalPanel();
+  advancedPanel.add(createEmbeddedRsrcPanel());
+  advancedPanel.add(createSourceAddrPanel());
+  advancedPanel.add(createOptionalTasksPanel());
+  JTabbedPane tabbedPane=new JTabbedPane();
+  tabbedPane.add(JMeterUtils.getResString("web_testing_basic"),urlConfigGui);
+  tabbedPane.add(JMeterUtils.getResString("web_testing_advanced"),advancedPanel);
+  JPanel emptyPanel=new JPanel();
+  emptyPanel.setMaximumSize(new Dimension());
+  add(makeTitlePanel(),BorderLayout.NORTH);
+  add(tabbedPane,BorderLayout.CENTER);
+  add(emptyPanel,BorderLayout.SOUTH);
 }

@@ -3,7 +3,6 @@
   sourceAddrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_testing_source_ip")));
   if (!isAJP) {
     sourceIpType.setSelectedIndex(HTTPSamplerBase.SourceType.HOSTNAME.ordinal());
-    sourceIpType.setFont(FONT_VERY_SMALL);
     sourceAddrPanel.add(sourceIpType);
     sourceIpAddr=new JTextField();
     sourceAddrPanel.add(sourceIpAddr);
