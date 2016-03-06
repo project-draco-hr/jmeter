@@ -8,31 +8,44 @@
     if (haveContentEncoding) {
       charset=Charset.forName(contentEncoding);
     }
-    MultipartEntity multiPart=new MultipartEntity(getDoBrowserCompatibleMultipart() ? HttpMultipartMode.BROWSER_COMPATIBLE : HttpMultipartMode.STRICT,null,charset);
+ else {
+      charset=MIME.DEFAULT_CHARSET;
+    }
+    if (log.isDebugEnabled()) {
+      log.debug("Building multipart with:getDoBrowserCompatibleMultipart():" + getDoBrowserCompatibleMultipart() + ", with charset:"+ charset+ ", haveContentEncoding:"+ haveContentEncoding);
+    }
+    MultipartEntityBuilder multipartEntityBuilder=MultipartEntityBuilder.create().setCharset(charset);
+    if (getDoBrowserCompatibleMultipart()) {
+      multipartEntityBuilder.setLaxMode();
+    }
+ else {
+      multipartEntityBuilder.setStrictMode();
+    }
     for (    JMeterProperty jMeterProperty : getArguments()) {
       HTTPArgument arg=(HTTPArgument)jMeterProperty.getObjectValue();
       String parameterName=arg.getName();
       if (arg.isSkippable(parameterName)) {
         continue;
       }
-      StringBody stringBody=new StringBody(arg.getValue(),charset);
-      FormBodyPart formPart=new FormBodyPart(arg.getName(),stringBody);
-      multiPart.addPart(formPart);
+      StringBody stringBody=new StringBody(arg.getValue(),ContentType.create("text/plain",charset));
+      FormBodyPart formPart=FormBodyPartBuilder.create(parameterName,stringBody).build();
+      multipartEntityBuilder.addPart(formPart);
     }
     ViewableFileBody[] fileBodies=new ViewableFileBody[files.length];
     for (int i=0; i < files.length; i++) {
       HTTPFileArg file=files[i];
       File reservedFile=FileServer.getFileServer().getResolvedFile(file.getPath());
       fileBodies[i]=new ViewableFileBody(reservedFile,file.getMimeType());
-      multiPart.addPart(file.getParamName(),fileBodies[i]);
+      multipartEntityBuilder.addPart(file.getParamName(),fileBodies[i]);
     }
-    post.setEntity(multiPart);
-    if (multiPart.isRepeatable()) {
+    HttpEntity entity=multipartEntityBuilder.build();
+    post.setEntity(entity);
+    if (entity.isRepeatable()) {
       ByteArrayOutputStream bos=new ByteArrayOutputStream();
       for (      ViewableFileBody fileBody : fileBodies) {
         fileBody.hideFileData=true;
       }
-      multiPart.writeTo(bos);
+      entity.writeTo(bos);
       for (      ViewableFileBody fileBody : fileBodies) {
         fileBody.hideFileData=false;
       }
