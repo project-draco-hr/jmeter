@@ -1,4 +1,4 @@
 {
-  HTMLParser p=HTMLParser.getParser(parserName);
+  HTMLParser p=(HTMLParser)BaseParser.getParser(parserName);
   filetest(p,SPECIFIC_PARSER_TESTS[testNumber].fileName,SPECIFIC_PARSER_TESTS[testNumber].baseURL,SPECIFIC_PARSER_TESTS[testNumber].expectedList,new ArrayList<URLString>(),true,SPECIFIC_PARSER_TESTS[testNumber].userAgent);
 }

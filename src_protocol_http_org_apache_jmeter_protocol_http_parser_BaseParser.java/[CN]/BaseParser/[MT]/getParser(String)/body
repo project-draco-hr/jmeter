@@ -1,0 +1,24 @@
+{
+  LinkExtractorParser parser=parsers.get(parserClassName);
+  if (parser != null) {
+    log.debug("Fetched " + parserClassName);
+    return parser;
+  }
+  try {
+    Object clazz=Class.forName(parserClassName).newInstance();
+    if (clazz instanceof LinkExtractorParser) {
+      parser=(LinkExtractorParser)clazz;
+    }
+ else {
+      throw new LinkExtractorParseException(new ClassCastException(parserClassName));
+    }
+  }
+ catch (  InstantiationException|ClassNotFoundException|IllegalAccessException e) {
+    throw new LinkExtractorParseException(e);
+  }
+  log.info("Created " + parserClassName);
+  if (parser.isReusable()) {
+    parsers.put(parserClassName,parser);
+  }
+  return parser;
+}

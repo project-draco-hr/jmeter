@@ -3,15 +3,14 @@
   try {
     final byte[] responseData=res.getResponseData();
     if (responseData.length > 0) {
-      String parserName=getParserClass(res);
-      if (parserName != null) {
-        final HTMLParser parser=parserName.length() > 0 ? HTMLParser.getParser(parserName) : HTMLParser.getParser();
+      final LinkExtractorParser parser=getParser(res);
+      if (parser != null) {
         String userAgent=getUserAgent(res);
         urls=parser.getEmbeddedResourceURLs(userAgent,responseData,res.getURL(),res.getDataEncodingWithDefault());
       }
     }
   }
- catch (  HTMLParseException e) {
+ catch (  LinkExtractorParseException e) {
     res.addSubResult(errorResult(e,new HTTPSampleResult(res)));
     setParentSampleSuccess(res,false);
   }

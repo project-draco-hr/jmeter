@@ -4,5 +4,5 @@
     p=JMeterUtils.getProperties("jmeter.properties");
   }
   p.setProperty(HTMLParser.PARSER_CLASSNAME,parserName);
-  HTMLParser.getParser();
+  BaseParser.getParser(p.getProperty(HTMLParser.PARSER_CLASSNAME));
 }

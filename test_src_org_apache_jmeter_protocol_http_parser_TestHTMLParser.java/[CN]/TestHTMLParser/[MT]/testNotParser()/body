@@ -3,7 +3,7 @@
     HTMLParser.getParser("java.lang.String");
     fail("Should not have been able to create the parser");
   }
- catch (  HTMLParseError e) {
+ catch (  LinkExtractorParseException e) {
     if (e.getCause() instanceof ClassCastException) {
       return;
     }

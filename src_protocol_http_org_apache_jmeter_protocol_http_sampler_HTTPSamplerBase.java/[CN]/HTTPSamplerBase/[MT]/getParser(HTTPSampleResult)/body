@@ -1,0 +1,7 @@
+{
+  String parserClassName=PARSERS_FOR_CONTENT_TYPE.get(res.getMediaType());
+  if (!StringUtils.isEmpty(parserClassName)) {
+    return BaseParser.getParser(parserClassName);
+  }
+  return null;
+}
