@@ -58,6 +58,7 @@
   try {
     currentRequest=httpRequest;
     handleMethod(method,res,httpRequest,localContext);
+    localContext.setAttribute(SAMPLER_RESULT_TOKEN,res);
     HttpResponse httpResponse=executeRequest(httpClient,httpRequest,localContext,url);
     final HttpRequest request=(HttpRequest)localContext.getAttribute(HttpCoreContext.HTTP_REQUEST);
     extractClientContextAfterSample(localContext);

@@ -75,8 +75,6 @@
       log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient) + " "+ key.toString());
     }
   }
-  MeasuringConnectionManager connectionManager=(MeasuringConnectionManager)httpClient.getConnectionManager();
-  connectionManager.setSample(res);
   setConnectionAuthorization(httpClient,url,getAuthManager(),key);
   return httpClient;
 }

@@ -1,4 +1,4 @@
 {
   ManagedClientConnection res=handler.getConnection(timeout,tunit);
-  return new MeasuredConnection(res,this.sample);
+  return new MeasuredConnection(res);
 }
