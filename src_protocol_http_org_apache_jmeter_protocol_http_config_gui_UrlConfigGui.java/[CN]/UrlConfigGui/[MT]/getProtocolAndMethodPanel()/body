@@ -10,7 +10,7 @@
   JLabel contentEncodingLabel=new JLabel(JMeterUtils.getResString("content_encoding"));
   contentEncodingLabel.setLabelFor(contentEncoding);
   if (notConfigOnly) {
-    method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray(),true);
+    method=new JLabeledChoice(JMeterUtils.getResString("method"),HTTPSamplerBase.getValidMethodsAsArray(),true,false);
     method.addChangeListener(this);
   }
   JPanel panel=new JPanel(new FlowLayout(FlowLayout.LEFT));

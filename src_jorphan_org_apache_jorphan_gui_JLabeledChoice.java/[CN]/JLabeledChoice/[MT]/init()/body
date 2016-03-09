@@ -14,7 +14,7 @@
 );
   this.add(mLabel);
   this.add(choiceList);
-  if (choiceList.isEditable()) {
+  if (withButtons) {
     add=new JButton("Add");
     add.setMargin(new Insets(1,1,1,1));
     add.addActionListener(new AddListener());
