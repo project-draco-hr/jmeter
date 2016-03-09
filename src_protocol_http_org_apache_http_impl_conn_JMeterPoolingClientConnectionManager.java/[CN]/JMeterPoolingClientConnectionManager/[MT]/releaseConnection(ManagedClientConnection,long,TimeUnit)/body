@@ -1,0 +1,42 @@
+{
+  Args.check(conn instanceof ManagedClientConnectionImpl,"Connection class mismatch, " + "connection not obtained from this manager");
+  final ManagedClientConnectionImpl managedConn=(ManagedClientConnectionImpl)conn;
+  Asserts.check(managedConn.getManager() == this,"Connection not obtained from this manager");
+synchronized (managedConn) {
+    final HttpPoolEntry entry=managedConn.detach();
+    if (entry == null) {
+      return;
+    }
+    try {
+      if (managedConn.isOpen() && !managedConn.isMarkedReusable()) {
+        try {
+          managedConn.shutdown();
+        }
+ catch (        final IOException iox) {
+          if (this.log.isDebugEnabled()) {
+            this.log.debug("I/O exception shutting down released connection",iox);
+          }
+        }
+      }
+      if (managedConn.isMarkedReusable()) {
+        entry.updateExpiry(keepalive,tunit != null ? tunit : TimeUnit.MILLISECONDS);
+        if (this.log.isDebugEnabled()) {
+          final String s;
+          if (keepalive > 0) {
+            s="for " + keepalive + " "+ tunit;
+          }
+ else {
+            s="indefinitely";
+          }
+          this.log.debug("Connection " + format(entry) + " can be kept alive "+ s);
+        }
+      }
+    }
+  finally {
+      this.pool.release(entry,managedConn.isMarkedReusable());
+    }
+    if (this.log.isDebugEnabled()) {
+      this.log.debug("Connection released: " + format(entry) + formatStats(entry.getRoute()));
+    }
+  }
+}

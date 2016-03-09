@@ -94,62 +94,28 @@
       }
     }
     if (isConcurrentDwn && !list.isEmpty()) {
-      final String parentThreadName=Thread.currentThread().getName();
-      final ThreadPoolExecutor exec=new ThreadPoolExecutor(maxConcurrentDownloads,maxConcurrentDownloads,KEEPALIVETIME,TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(),new ThreadFactory(){
-        @Override public Thread newThread(        final Runnable r){
-          Thread t=new CleanerThread(new Runnable(){
-            @Override public void run(){
-              try {
-                r.run();
-              }
-  finally {
-                ((CleanerThread)Thread.currentThread()).notifyThreadEnd();
-              }
-            }
-          }
-);
-          t.setName(parentThreadName + "-ResDownload-" + t.getName());
-          t.setDaemon(true);
-          return t;
-        }
-      }
-);
-      boolean tasksCompleted=false;
+      ResourcesDownloader resourcesDownloader=ResourcesDownloader.getInstance();
       try {
-        final List<Future<AsynSamplerResultHolder>> retExec=exec.invokeAll(list);
-        exec.shutdown();
-        exec.awaitTermination(AWAIT_TERMINATION_TIMEOUT,TimeUnit.SECONDS);
+        final List<Future<AsynSamplerResultHolder>> retExec=resourcesDownloader.invokeAllAndAwaitTermination(maxConcurrentDownloads,list);
         CookieManager cookieManager=getCookieManager();
         for (        Future<AsynSamplerResultHolder> future : retExec) {
-          AsynSamplerResultHolder binRes;
-          try {
-            binRes=future.get(1,TimeUnit.MILLISECONDS);
-            if (cookieManager != null) {
-              CollectionProperty cookies=binRes.getCookies();
-              for (              JMeterProperty jMeterProperty : cookies) {
-                Cookie cookie=(Cookie)jMeterProperty.getObjectValue();
-                cookieManager.add(cookie);
-              }
+          AsynSamplerResultHolder binRes=future.get();
+          if (cookieManager != null) {
+            CollectionProperty cookies=binRes.getCookies();
+            for (            JMeterProperty jMeterProperty : cookies) {
+              Cookie cookie=(Cookie)jMeterProperty.getObjectValue();
+              cookieManager.add(cookie);
             }
-            res.addSubResult(binRes.getResult());
-            setParentSampleSuccess(res,res.isSuccessful() && (binRes.getResult() != null ? binRes.getResult().isSuccessful() : true));
           }
- catch (          TimeoutException e) {
-            errorResult(e,res);
-          }
+          res.addSubResult(binRes.getResult());
+          setParentSampleSuccess(res,res.isSuccessful() && (binRes.getResult() != null ? binRes.getResult().isSuccessful() : true));
         }
-        tasksCompleted=exec.awaitTermination(1,TimeUnit.MILLISECONDS);
       }
  catch (      InterruptedException ie) {
         log.warn("Interrupted fetching embedded resources",ie);
       }
 catch (      ExecutionException ee) {
         log.warn("Execution issue when fetching embedded resources",ee);
-      }
- finally {
-        if (!tasksCompleted) {
-          exec.shutdownNow();
-        }
       }
     }
   }

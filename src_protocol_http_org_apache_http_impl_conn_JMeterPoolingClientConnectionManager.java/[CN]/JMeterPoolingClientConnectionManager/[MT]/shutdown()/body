@@ -1,0 +1,10 @@
+{
+  this.log.debug("Connection manager is shutting down");
+  try {
+    this.pool.shutdown();
+  }
+ catch (  final IOException ex) {
+    this.log.debug("I/O exception shutting down connection manager",ex);
+  }
+  this.log.debug("Connection manager shut down");
+}

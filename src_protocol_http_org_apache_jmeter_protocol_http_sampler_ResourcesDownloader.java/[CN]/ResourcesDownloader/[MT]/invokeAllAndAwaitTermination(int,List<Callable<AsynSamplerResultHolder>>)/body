@@ -1,0 +1,42 @@
+{
+  List<Future<AsynSamplerResultHolder>> submittedTasks=new ArrayList<>();
+  if (list.isEmpty()) {
+    return submittedTasks;
+  }
+  concurrentExecutor.setMaximumPoolSize(MAX_POOL_SIZE);
+  if (LOG.isDebugEnabled()) {
+    LOG.debug("PoolSize=" + concurrentExecutor.getPoolSize() + " LargestPoolSize="+ concurrentExecutor.getLargestPoolSize());
+  }
+  CompletionService<AsynSamplerResultHolder> completionService=new ExecutorCompletionService<>(concurrentExecutor);
+  int remainingTasksToTake=list.size();
+  try {
+    int i=0;
+    for (i=0; i < Math.min(maxConcurrentDownloads,list.size()); i++) {
+      Callable<AsynSamplerResultHolder> task=list.get(i);
+      submittedTasks.add(completionService.submit(task));
+    }
+    for (; i < list.size(); i++) {
+      Callable<AsynSamplerResultHolder> task=list.get(i);
+      completionService.take();
+      remainingTasksToTake--;
+      submittedTasks.add(completionService.submit(task));
+    }
+    while (remainingTasksToTake > 0) {
+      completionService.take();
+      remainingTasksToTake--;
+    }
+  }
+  finally {
+    if (remainingTasksToTake > 0) {
+      if (LOG.isDebugEnabled()) {
+        LOG.debug("Interrupted while waiting for resource downloads : cancelling remaining tasks");
+      }
+      for (      Future<AsynSamplerResultHolder> future : submittedTasks) {
+        if (!future.isDone()) {
+          future.cancel(true);
+        }
+      }
+    }
+  }
+  return submittedTasks;
+}

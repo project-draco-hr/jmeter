@@ -140,6 +140,7 @@ catch (  RuntimeException e) {
   }
  finally {
     currentRequest=null;
+    JMeterContextService.getContext().getSamplerContext().remove(HTTPCLIENT_TOKEN);
   }
   return res;
 }

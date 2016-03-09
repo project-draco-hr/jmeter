@@ -15,7 +15,13 @@
     proxyPass=PROXY_PASS;
   }
   HttpClientKey key=new HttpClientKey(url,useProxy,proxyHost,proxyPort,proxyUser,proxyPass);
-  HttpClient httpClient=mapHttpClientPerHttpClientKey.get(key);
+  HttpClient httpClient=null;
+  if (this.testElement.isConcurrentDwn()) {
+    httpClient=(HttpClient)JMeterContextService.getContext().getSamplerContext().get(HTTPCLIENT_TOKEN);
+  }
+  if (httpClient == null) {
+    httpClient=mapHttpClientPerHttpClientKey.get(key);
+  }
   if (httpClient != null && resetSSLContext && HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(url.getProtocol())) {
     ((AbstractHttpClient)httpClient).clearRequestInterceptors();
     ((AbstractHttpClient)httpClient).clearResponseInterceptors();
@@ -31,7 +37,7 @@
     if (resolver == null) {
       resolver=SystemDefaultDnsResolver.INSTANCE;
     }
-    MeasuringConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver);
+    MeasuringConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver,TIME_TO_LIVE,VALIDITY_AFTER_INACTIVITY_TIMEOUT);
     if (this.testElement.isConcurrentDwn()) {
       try {
         int maxConcurrentDownloads=Integer.parseInt(this.testElement.getConcurrentPool());
@@ -74,6 +80,9 @@
     if (log.isDebugEnabled()) {
       log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient) + " "+ key.toString());
     }
+  }
+  if (this.testElement.isConcurrentDwn()) {
+    JMeterContextService.getContext().getSamplerContext().put(HTTPCLIENT_TOKEN,httpClient);
   }
   setConnectionAuthorization(httpClient,url,getAuthManager(),key);
   return httpClient;

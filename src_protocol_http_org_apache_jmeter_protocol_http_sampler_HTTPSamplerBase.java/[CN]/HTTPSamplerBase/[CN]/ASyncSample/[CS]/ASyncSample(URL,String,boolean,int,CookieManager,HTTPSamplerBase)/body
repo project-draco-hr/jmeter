@@ -6,7 +6,7 @@
   this.sampler=(HTTPSamplerBase)base.clone();
   CacheManager cacheManager=base.getCacheManager();
   if (cacheManager != null) {
-    this.sampler.setCacheManagerProperty(cacheManager);
+    this.sampler.setCacheManagerProperty(cacheManager.createCacheManagerProxy());
   }
   if (cookieManager != null) {
     CookieManager clonedCookieManager=(CookieManager)cookieManager.clone();

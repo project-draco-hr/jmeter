@@ -1,0 +1,8 @@
+{
+  final StringBuilder buf=new StringBuilder();
+  buf.append("[route: ").append(route).append("]");
+  if (state != null) {
+    buf.append("[state: ").append(state).append("]");
+  }
+  return buf.toString();
+}

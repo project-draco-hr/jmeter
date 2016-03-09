@@ -1,0 +1,10 @@
+{
+  super();
+  Args.notNull(schemeRegistry,"Scheme registry");
+  Args.notNull(dnsResolver,"DNS resolver");
+  this.schemeRegistry=schemeRegistry;
+  this.dnsResolver=dnsResolver;
+  this.operator=createConnectionOperator(schemeRegistry);
+  this.pool=new HttpConnPool(this.log,this.operator,2,20,timeToLive,tunit);
+  pool.setValidateAfterInactivity(validateAfterInactivity);
+}

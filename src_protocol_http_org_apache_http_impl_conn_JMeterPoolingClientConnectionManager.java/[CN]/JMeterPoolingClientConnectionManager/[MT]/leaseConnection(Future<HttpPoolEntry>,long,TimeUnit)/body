@@ -1,0 +1,25 @@
+{
+  final HttpPoolEntry entry;
+  try {
+    entry=future.get(timeout,tunit);
+    if (entry == null || future.isCancelled()) {
+      throw new InterruptedException();
+    }
+    Asserts.check(entry.getConnection() != null,"Pool entry with no connection");
+    if (this.log.isDebugEnabled()) {
+      this.log.debug("Connection leased: " + format(entry) + formatStats(entry.getRoute()));
+    }
+    return new ManagedClientConnectionImpl(this,this.operator,entry);
+  }
+ catch (  final ExecutionException ex) {
+    Throwable cause=ex.getCause();
+    if (cause == null) {
+      cause=ex;
+    }
+    this.log.error("Unexpected exception leasing connection from pool",cause);
+    throw new InterruptedException();
+  }
+catch (  final TimeoutException ex) {
+    throw new ConnectionPoolTimeoutException("Timeout waiting for connection from pool");
+  }
+}

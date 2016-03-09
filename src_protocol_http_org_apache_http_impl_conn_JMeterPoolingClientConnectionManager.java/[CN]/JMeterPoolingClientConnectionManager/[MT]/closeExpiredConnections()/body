@@ -1,0 +1,4 @@
+{
+  this.log.debug("Closing expired connections");
+  this.pool.closeExpired();
+}

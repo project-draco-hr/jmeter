@@ -1,0 +1,20 @@
+{
+  if (concurrentExecutor.getPoolSize() > MIN_POOL_SIZE) {
+    concurrentExecutor.purge();
+    List<Runnable> drainList=new ArrayList<>();
+    concurrentExecutor.getQueue().drainTo(drainList);
+    if (!drainList.isEmpty()) {
+      LOG.warn("the pool executor workqueue is not empty size=" + drainList.size());
+      for (      Runnable runnable : drainList) {
+        if (runnable instanceof Future<?>) {
+          Future<?> f=(Future<?>)runnable;
+          f.cancel(true);
+        }
+ else {
+          LOG.warn("Content of workqueue is not an instance of Future");
+        }
+      }
+    }
+    concurrentExecutor.setMaximumPoolSize(MIN_POOL_SIZE);
+  }
+}

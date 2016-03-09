@@ -1,6 +1,0 @@
-{
-  for (  HTTPSamplerBase samplerBase : samplersToNotify) {
-    samplerBase.threadFinished();
-  }
-  samplersToNotify.clear();
-}
