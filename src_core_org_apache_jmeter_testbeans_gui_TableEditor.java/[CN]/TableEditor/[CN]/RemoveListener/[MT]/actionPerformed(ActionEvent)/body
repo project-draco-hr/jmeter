@@ -1,6 +1,6 @@
 {
-  int row=table.getSelectedRow();
-  if (row >= 0) {
-    model.removeRow(row);
+  int[] rows=table.getSelectedRows();
+  for (int i=0; i < rows.length; i++) {
+    model.removeRow(rows[i] - i);
   }
 }

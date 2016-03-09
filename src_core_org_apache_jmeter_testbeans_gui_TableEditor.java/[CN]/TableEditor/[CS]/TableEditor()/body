@@ -1,6 +1,8 @@
 {
   addButton=new JButton(JMeterUtils.getResString("add"));
   addButton.addActionListener(new AddListener());
+  clipButton=new JButton(JMeterUtils.getResString("add_from_clipboard"));
+  clipButton.addActionListener(new ClipListener());
   removeButton=new JButton(JMeterUtils.getResString("remove"));
   removeButton.addActionListener(new RemoveListener());
   clearButton=new JButton(JMeterUtils.getResString("clear"));
