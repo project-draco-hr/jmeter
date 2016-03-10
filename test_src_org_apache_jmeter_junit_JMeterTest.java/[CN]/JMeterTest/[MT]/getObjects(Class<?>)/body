@@ -37,7 +37,7 @@ catch (      IllegalAccessException e) {
         System.out.println("o.a.j.junit.JMeterTest WARN: " + exName + ": IllegalAccessException "+ n+ ":"+ e.getMessage());
         e.printStackTrace();
       }
-catch (      HeadlessException e) {
+catch (      HeadlessException|ExceptionInInitializerError e) {
         caught=e;
         System.out.println("o.a.j.junit.JMeterTest Error creating " + n + " "+ e.toString());
       }
