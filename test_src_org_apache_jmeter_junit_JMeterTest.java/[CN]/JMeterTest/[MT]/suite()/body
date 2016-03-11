@@ -1,10 +1,5 @@
 {
   TestSuite suite=new TestSuite("JMeterTest");
-  if (GraphicsEnvironment.isHeadless()) {
-    System.out.println("Skipping test:" + JMeterTest.class.getName() + ", cannot run in Headless mode");
-    log.warn("Skipping test:" + JMeterTest.class.getName() + ", cannot run in Headless mode");
-    return suite;
-  }
   JMeterUtils.setLocale(TEST_LOCALE);
   Locale.setDefault(TEST_LOCALE);
   suite.addTest(new JMeterTest("readAliases"));
