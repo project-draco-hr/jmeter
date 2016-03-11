@@ -1,0 +1,13 @@
+{
+  try {
+    return new JTextScrollPane(scriptField);
+  }
+ catch (  NullPointerException npe) {
+    if ("true".equals(System.getProperty("java.awt.headless"))) {
+      return new JTextScrollPane();
+    }
+ else {
+      throw npe;
+    }
+  }
+}

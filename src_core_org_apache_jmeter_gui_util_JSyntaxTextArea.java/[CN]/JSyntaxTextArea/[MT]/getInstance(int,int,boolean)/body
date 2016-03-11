@@ -1,0 +1,34 @@
+{
+  try {
+    return new JSyntaxTextArea(rows,cols,disableUndo);
+  }
+ catch (  HeadlessException e) {
+    if ("true".equals(System.getProperty("java.awt.headless"))) {
+      return new JSyntaxTextArea(disableUndo){
+        private static final long serialVersionUID=1L;
+        @Override protected void init(){
+          try {
+            super.init();
+          }
+ catch (          HeadlessException|NullPointerException e) {
+          }
+        }
+        @Override public void setCodeFoldingEnabled(        boolean b){
+        }
+        @Override public void setCaretPosition(        int b){
+        }
+        @Override public void discardAllEdits(){
+        }
+        @Override public void setText(        String t){
+        }
+        @Override public boolean isCodeFoldingEnabled(){
+          return true;
+        }
+      }
+;
+    }
+ else {
+      throw e;
+    }
+  }
+}
