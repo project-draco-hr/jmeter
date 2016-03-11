@@ -4,5 +4,8 @@
     if (nodePathList != null && nodePathList.size() > 0) {
       traverse(context,nodePathList,1);
     }
+    if (isRunningVersion() && selectedNode == null) {
+      throw new JMeterStopTestNowException("ModuleController:" + getName() + " has no selected Controller, test was stopped as a consequence");
+    }
   }
 }
