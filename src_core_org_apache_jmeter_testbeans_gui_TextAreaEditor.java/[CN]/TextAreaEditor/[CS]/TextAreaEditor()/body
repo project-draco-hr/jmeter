@@ -1,6 +1,6 @@
 {
   super();
-  textUI=new JSyntaxTextArea(20,20);
-  scroller=new JTextScrollPane(textUI,true);
+  textUI=JSyntaxTextArea.getInstance(20,20);
+  scroller=JTextScrollPane.getInstance(textUI,true);
   init();
 }

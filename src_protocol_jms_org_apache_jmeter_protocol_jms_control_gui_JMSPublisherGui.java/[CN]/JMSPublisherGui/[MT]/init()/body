@@ -22,7 +22,7 @@
   mainPanel.add(randomFile);
   JPanel messageContentPanel=new JPanel(new BorderLayout());
   messageContentPanel.add(new JLabel(JMeterUtils.getResString("jms_text_area")),BorderLayout.NORTH);
-  messageContentPanel.add(new JTextScrollPane(textMessage),BorderLayout.CENTER);
+  messageContentPanel.add(JTextScrollPane.getInstance(textMessage),BorderLayout.CENTER);
   mainPanel.add(messageContentPanel);
   useProperties.addChangeListener(this);
   useAuth.addChangeListener(this);

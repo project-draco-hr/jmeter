@@ -37,7 +37,7 @@
   messagePanel.add(messageNorthPanel,BorderLayout.NORTH);
   JPanel messageContentPanel=new JPanel(new BorderLayout());
   messageContentPanel.add(new JLabel(JMeterUtils.getResString("jms_msg_content")),BorderLayout.NORTH);
-  messageContentPanel.add(new JTextScrollPane(messageContent),BorderLayout.CENTER);
+  messageContentPanel.add(JTextScrollPane.getInstance(messageContent),BorderLayout.CENTER);
   messagePanel.add(messageContentPanel,BorderLayout.CENTER);
   jmsPropertiesPanel=new JMSPropertiesPanel();
   messagePanel.add(jmsPropertiesPanel,BorderLayout.SOUTH);
