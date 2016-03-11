@@ -30,12 +30,12 @@
       }
  catch (      NoClassDefFoundError e) {
         System.out.println("o.a.j.junit.JMeterTest WARN: " + exName + ": NoClassDefFoundError "+ n+ ":"+ e.getMessage());
-        e.printStackTrace();
+        e.printStackTrace(System.out);
       }
 catch (      IllegalAccessException e) {
         caught=e;
         System.out.println("o.a.j.junit.JMeterTest WARN: " + exName + ": IllegalAccessException "+ n+ ":"+ e.getMessage());
-        e.printStackTrace();
+        e.printStackTrace(System.out);
       }
 catch (      HeadlessException|ExceptionInInitializerError e) {
         caught=e;
