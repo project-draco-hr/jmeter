@@ -4,13 +4,14 @@
   int x=(countMethods(methods) / 3) + 1;
   log.debug("grid panel is " + 3 + " by "+ x);
   JPanel checkPanel=new JPanel(new GridLayout(x,3));
+  List<JCheckBox> checks=new ArrayList<>();
   for (  Method method : methods) {
     String name=method.getName();
     if (name.startsWith(NAME_SAVE_PFX) && method.getParameterTypes().length == 0) {
       try {
         name=name.substring(NAME_SAVE_PFX_LEN);
         JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),((Boolean)method.invoke(saveConfig,new Object[0])).booleanValue());
-        checkPanel.add(check,BorderLayout.NORTH);
+        checks.add(check);
         check.addActionListener(this);
         String actionCommand=NAME_SET_PREFIX + name;
         check.setActionCommand(actionCommand);
@@ -22,6 +23,23 @@
         log.warn("Problem creating save config dialog",e);
       }
     }
+  }
+  final String sortOrder=JMeterUtils.getPropDefault("saveconfig.sort","");
+  if (sortOrder.length() > 0) {
+    Collections.sort(checks,new Comparator<JCheckBox>(){
+      @Override public int compare(      JCheckBox o1,      JCheckBox o2){
+        if ("text".equals(sortOrder)) {
+          return o1.getText().compareToIgnoreCase(o2.getText());
+        }
+ else {
+          return o1.getActionCommand().compareToIgnoreCase(o2.getActionCommand());
+        }
+      }
+    }
+);
+  }
+  for (  JCheckBox check : checks) {
+    checkPanel.add(check,BorderLayout.NORTH);
   }
   getContentPane().add(checkPanel,BorderLayout.NORTH);
   JButton exit=new JButton(JMeterUtils.getResString("done"));
