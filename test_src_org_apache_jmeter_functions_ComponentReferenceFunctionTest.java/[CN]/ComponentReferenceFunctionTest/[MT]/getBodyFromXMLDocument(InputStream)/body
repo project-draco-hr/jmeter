@@ -1,0 +1,10 @@
+{
+  DocumentBuilderFactory dbf=DocumentBuilderFactory.newInstance();
+  dbf.setIgnoringElementContentWhitespace(true);
+  dbf.setIgnoringComments(true);
+  DocumentBuilder db=dbf.newDocumentBuilder();
+  Document doc=db.parse(new InputSource(stream));
+  org.w3c.dom.Element root=doc.getDocumentElement();
+  org.w3c.dom.Element body=(org.w3c.dom.Element)root.getElementsByTagName("body").item(0);
+  return body;
+}

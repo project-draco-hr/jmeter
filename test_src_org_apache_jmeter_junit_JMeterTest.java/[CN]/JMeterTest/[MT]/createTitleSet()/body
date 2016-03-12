@@ -1,19 +1,20 @@
 {
   guiTitles=new HashMap<>(90);
   String compref="../xdocs/usermanual/component_reference.xml";
-  SAXBuilder bldr=new SAXBuilder();
-  Document doc=bldr.build(compref);
-  Element root=doc.getRootElement();
-  Element body=root.getChild("body");
-  @SuppressWarnings("unchecked") List<Element> sections=body.getChildren("section");
-  for (  Element section : sections) {
-    @SuppressWarnings("unchecked") List<Element> components=section.getChildren("component");
-    for (    Element comp : components) {
-      String nm=comp.getAttributeValue("name");
-      if (!nm.equals("SSL Manager")) {
-        guiTitles.put(nm.replace(' ','_'),Boolean.FALSE);
+  try (InputStream stream=new FileInputStream(compref)){
+    org.w3c.dom.Element body=getBodyFromXMLDocument(stream);
+    NodeList sections=body.getElementsByTagName("section");
+    for (int i=0; i < sections.getLength(); i++) {
+      org.w3c.dom.Element section=(org.w3c.dom.Element)sections.item(i);
+      NodeList components=section.getElementsByTagName("component");
+      for (int j=0; j < components.getLength(); j++) {
+        org.w3c.dom.Element comp=(org.w3c.dom.Element)components.item(j);
+        String nm=comp.getAttribute("name");
+        if (!nm.equals("SSL Manager")) {
+          guiTitles.put(nm.replace(' ','_'),Boolean.FALSE);
+        }
       }
     }
   }
-  guiTitles.put("Example Sampler",Boolean.FALSE);
+   guiTitles.put("Example Sampler",Boolean.FALSE);
 }

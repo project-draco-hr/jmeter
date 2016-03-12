@@ -5,19 +5,19 @@
     return result.setResultForNull();
   }
   result.setFailure(false);
-  SAXBuilder builder=myBuilder.get();
-  try {
-    builder.build(new StringReader(resultData));
+  XMLReader builder=XML_READER.get();
+  if (XML_READER != null) {
+    try {
+      builder.parse(new InputSource(new StringReader(resultData)));
+    }
+ catch (    SAXException|IOException e) {
+      result.setError(true);
+      result.setFailureMessage(e.getMessage());
+    }
   }
- catch (  JDOMException e) {
-    log.debug("Cannot parse result content",e);
-    result.setFailure(true);
-    result.setFailureMessage(e.getMessage());
-  }
-catch (  IOException e) {
-    log.error("Cannot read result content",e);
+ else {
     result.setError(true);
-    result.setFailureMessage(e.getMessage());
+    result.setFailureMessage("Cannot initialize XMLReader in element:" + getName() + ", check jmeter.log file");
   }
   return result;
 }

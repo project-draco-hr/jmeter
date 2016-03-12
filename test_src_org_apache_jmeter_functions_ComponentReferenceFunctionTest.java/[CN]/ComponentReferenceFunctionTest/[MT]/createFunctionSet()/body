@@ -1,21 +1,20 @@
 {
   funcTitles=new HashMap<>(20);
   String compref="../xdocs/usermanual/functions.xml";
-  SAXBuilder bldr=new SAXBuilder();
-  Document doc=bldr.build(compref);
-  Element root=doc.getRootElement();
-  Element body=root.getChild("body");
-  Element section=body.getChild("section");
-  @SuppressWarnings("unchecked") List<Element> sections=section.getChildren("subsection");
-  for (int i=0; i < sections.size(); i++) {
-    @SuppressWarnings("unchecked") List<Element> components=sections.get(i).getChildren("component");
-    for (int j=0; j < components.size(); j++) {
-      Element comp=components.get(j);
-      funcTitles.put(comp.getAttributeValue("name"),Boolean.FALSE);
-      String tag=comp.getAttributeValue("tag");
-      if (tag != null) {
-        funcTitles.put(tag,Boolean.FALSE);
+  try (InputStream stream=new FileInputStream(compref)){
+    Element body=getBodyFromXMLDocument(stream);
+    Element section=(Element)body.getElementsByTagName("section").item(0);
+    NodeList subSections=section.getElementsByTagName("subsection");
+    for (int i=0; i < subSections.getLength(); i++) {
+      NodeList components=((Element)subSections.item(i)).getElementsByTagName("component");
+      for (int j=0; j < components.getLength(); j++) {
+        org.w3c.dom.Element comp=(org.w3c.dom.Element)components.item(j);
+        funcTitles.put(comp.getAttribute("name"),Boolean.FALSE);
+        String tag=comp.getAttribute("tag");
+        if (!StringUtils.isEmpty(tag)) {
+          funcTitles.put(tag,Boolean.FALSE);
+        }
       }
     }
   }
-}
+ }

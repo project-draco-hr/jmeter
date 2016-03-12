@@ -1,15 +1,19 @@
 {
   guiTags=new HashMap<>(90);
   String compref="../xdocs/usermanual/component_reference.xml";
-  SAXBuilder bldr=new SAXBuilder();
-  Document doc=bldr.build(compref);
-  Element root=doc.getRootElement();
-  Element body=root.getChild("body");
-  @SuppressWarnings("unchecked") List<Element> sections=body.getChildren("section");
-  for (  Element section : sections) {
-    @SuppressWarnings("unchecked") List<Element> components=section.getChildren("component");
-    for (    Element comp : components) {
-      guiTags.put(comp.getAttributeValue("tag"),Boolean.FALSE);
+  try (InputStream stream=new FileInputStream(compref)){
+    org.w3c.dom.Element body=getBodyFromXMLDocument(stream);
+    NodeList sections=body.getElementsByTagName("section");
+    for (int i=0; i < sections.getLength(); i++) {
+      org.w3c.dom.Element section=(org.w3c.dom.Element)sections.item(i);
+      NodeList components=section.getElementsByTagName("component");
+      for (int j=0; j < components.getLength(); j++) {
+        org.w3c.dom.Element comp=(org.w3c.dom.Element)components.item(j);
+        String tag=comp.getAttribute("tag");
+        if (!StringUtils.isEmpty(tag)) {
+          guiTags.put(tag,Boolean.FALSE);
+        }
+      }
     }
   }
-}
+ }
