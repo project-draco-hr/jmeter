@@ -4,8 +4,7 @@
   if (requiredType != thisClass) {
     throw new IllegalArgumentException("Unexpected class: " + requiredType.getName());
   }
-  SampleSaveConfiguration result=new SampleSaveConfiguration();
-  result.setBytes(false);
+  SampleSaveConfiguration result=new SampleSaveConfiguration(false);
   while (reader.hasMoreChildren()) {
     reader.moveDown();
     String nn=reader.getNodeName();
