@@ -1,6 +1,6 @@
 {
   JMSSampler sampler=new JMSSampler();
-  this.configureTestElement(sampler);
+  super.configureTestElement(sampler);
   transfer(sampler);
   return sampler;
 }

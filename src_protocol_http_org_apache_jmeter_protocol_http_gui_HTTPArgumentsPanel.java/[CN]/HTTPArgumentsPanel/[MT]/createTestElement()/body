@@ -1,5 +1,5 @@
 {
   Arguments args=getUnclonedParameters();
-  this.configureTestElement(args);
+  super.configureTestElement(args);
   return (TestElement)args.clone();
 }

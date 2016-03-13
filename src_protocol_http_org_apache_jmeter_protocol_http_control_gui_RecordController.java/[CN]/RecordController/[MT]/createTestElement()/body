@@ -1,5 +1,5 @@
 {
   RecordingController con=new RecordingController();
-  this.configureTestElement(con);
+  super.configureTestElement(con);
   return con;
 }

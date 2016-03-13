@@ -1,4 +1,4 @@
 {
-  this.configureTestElement(timer);
+  super.configureTestElement(timer);
   ((SampleTimeout)timer).setTimeout(timeoutField.getText());
 }

@@ -1,5 +1,5 @@
 {
-  this.configureTestElement(sampler);
+  super.configureTestElement(sampler);
   sampler.setUseJNDIProperties(String.valueOf(useProperties.isSelected()));
   sampler.setJNDIIntialContextFactory(jndiICF.getText());
   sampler.setProviderUrl(urlField.getText());

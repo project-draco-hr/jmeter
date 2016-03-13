@@ -1,5 +1,5 @@
 {
-  this.configureTestElement(element);
+  super.configureTestElement(element);
   if (!(element instanceof JMSSampler)) {
     return;
   }

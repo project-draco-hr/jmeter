@@ -1,5 +1,5 @@
 {
-  this.configureTestElement(s);
+  super.configureTestElement(s);
   if (s instanceof SoapSampler) {
     SoapSampler sampler=(SoapSampler)s;
     sampler.setURLData(urlField.getText());
