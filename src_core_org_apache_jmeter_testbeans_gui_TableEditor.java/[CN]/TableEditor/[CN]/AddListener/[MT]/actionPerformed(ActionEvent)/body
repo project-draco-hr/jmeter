@@ -1,6 +1,8 @@
 {
   try {
     model.addRow(clazz.newInstance());
+    removeButton.setEnabled(true);
+    clearButton.setEnabled(true);
   }
  catch (  Exception err) {
     LOG.error("The class type given to TableEditor was not instantiable. ",err);

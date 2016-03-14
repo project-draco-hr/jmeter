@@ -1,0 +1,14 @@
+{
+  cancelEditing();
+  int[] rowsSelected=table.getSelectedRows();
+  if (rowsSelected.length > 0 && rowsSelected[rowsSelected.length - 1] < table.getRowCount() - 1) {
+    table.clearSelection();
+    for (int i=rowsSelected.length - 1; i >= 0; i--) {
+      int rowSelected=rowsSelected[i];
+      model.moveRow(rowSelected,rowSelected + 1,rowSelected + 1);
+    }
+    for (    int rowSelected : rowsSelected) {
+      table.addRowSelectionInterval(rowSelected + 1,rowSelected + 1);
+    }
+  }
+}

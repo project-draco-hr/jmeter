@@ -3,4 +3,12 @@
   for (int i=0; i < rows.length; i++) {
     model.removeRow(rows[i] - i);
   }
+  if (model.getRowCount() > 1) {
+    upButton.setEnabled(true);
+    downButton.setEnabled(true);
+  }
+ else {
+    upButton.setEnabled(false);
+    downButton.setEnabled(false);
+  }
 }

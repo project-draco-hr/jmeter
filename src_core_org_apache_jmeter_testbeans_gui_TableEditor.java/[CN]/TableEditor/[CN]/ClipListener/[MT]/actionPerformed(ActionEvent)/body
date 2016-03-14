@@ -12,6 +12,14 @@
         model.setValueAt(columns[i],model.getRowCount() - 1,i);
       }
     }
+    if (model.getRowCount() > 1) {
+      upButton.setEnabled(true);
+      downButton.setEnabled(true);
+    }
+ else {
+      upButton.setEnabled(false);
+      downButton.setEnabled(false);
+    }
   }
  catch (  Exception err) {
     LOG.error("The class type given to TableEditor was not instantiable. ",err);

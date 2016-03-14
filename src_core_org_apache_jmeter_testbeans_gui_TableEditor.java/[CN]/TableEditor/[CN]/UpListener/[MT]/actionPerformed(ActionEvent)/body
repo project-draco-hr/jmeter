@@ -1,0 +1,13 @@
+{
+  cancelEditing();
+  int[] rowsSelected=table.getSelectedRows();
+  if (rowsSelected.length > 0 && rowsSelected[0] > 0) {
+    table.clearSelection();
+    for (    int rowSelected : rowsSelected) {
+      model.moveRow(rowSelected,rowSelected + 1,rowSelected - 1);
+    }
+    for (    int rowSelected : rowsSelected) {
+      table.addRowSelectionInterval(rowSelected - 1,rowSelected - 1);
+    }
+  }
+}

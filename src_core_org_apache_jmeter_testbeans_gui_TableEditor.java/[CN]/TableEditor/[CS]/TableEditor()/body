@@ -7,4 +7,8 @@
   removeButton.addActionListener(new RemoveListener());
   clearButton=new JButton(JMeterUtils.getResString("clear"));
   clearButton.addActionListener(new ClearListener());
+  upButton=new JButton(JMeterUtils.getResString("up"));
+  upButton.addActionListener(new UpListener());
+  downButton=new JButton(JMeterUtils.getResString("down"));
+  downButton.addActionListener(new DownListener());
 }

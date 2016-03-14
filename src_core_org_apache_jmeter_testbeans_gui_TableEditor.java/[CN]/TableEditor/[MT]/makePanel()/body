@@ -8,8 +8,14 @@
   JPanel south=new JPanel();
   south.add(addButton);
   south.add(clipButton);
+  removeButton.setEnabled(false);
   south.add(removeButton);
+  clearButton.setEnabled(false);
   south.add(clearButton);
+  upButton.setEnabled(false);
+  south.add(upButton);
+  downButton.setEnabled(false);
+  south.add(downButton);
   p.add(south,BorderLayout.SOUTH);
   return p;
 }
