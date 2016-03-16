@@ -1,0 +1,19 @@
+{
+  byte[] inputBuff=input;
+  if (inputBuff == null) {
+    inputBuff=new byte[0];
+  }
+  final GSSManager manager=getManager();
+  final GSSName serverName=manager.createName("HTTP@" + authServer,GSSName.NT_HOSTBASED_SERVICE);
+  final GSSCredential gssCredential;
+  if (credentials instanceof KerberosCredentials) {
+    gssCredential=((KerberosCredentials)credentials).getGSSCredential();
+  }
+ else {
+    gssCredential=null;
+  }
+  final GSSContext gssContext=manager.createContext(serverName.canonicalize(oid),oid,gssCredential,GSSContext.DEFAULT_LIFETIME);
+  gssContext.requestMutualAuth(true);
+  gssContext.requestCredDeleg(true);
+  return gssContext.initSecContext(inputBuff,0,inputBuff.length);
+}
