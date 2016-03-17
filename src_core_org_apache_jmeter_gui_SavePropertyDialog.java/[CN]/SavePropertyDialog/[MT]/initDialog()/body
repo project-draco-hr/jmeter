@@ -5,9 +5,9 @@
   JPanel checkPanel=new JPanel(new GridLayout(configCount,3));
   for (  final String name : SampleSaveConfiguration.SAVE_CONFIG_NAMES) {
     try {
-      JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),getSaveState(NAME_SAVE_PFX + name));
+      JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),getSaveState(SampleSaveConfiguration.getterName(name)));
       check.addActionListener(this);
-      final String actionCommand=NAME_SET_PREFIX + name;
+      final String actionCommand=SampleSaveConfiguration.setterName(name);
       check.setActionCommand(actionCommand);
       if (!functors.containsKey(actionCommand)) {
         functors.put(actionCommand,new Functor(actionCommand));
