@@ -1,45 +1,22 @@
 {
   this.getContentPane().setLayout(new BorderLayout());
-  Method[] methods=SampleSaveConfiguration.class.getMethods();
-  int x=(countMethods(methods) / 3) + 1;
-  log.debug("grid panel is " + 3 + " by "+ x);
-  JPanel checkPanel=new JPanel(new GridLayout(x,3));
-  List<JCheckBox> checks=new ArrayList<>();
-  for (  Method method : methods) {
-    String name=method.getName();
-    if (name.startsWith(NAME_SAVE_PFX) && method.getParameterTypes().length == 0) {
-      try {
-        name=name.substring(NAME_SAVE_PFX_LEN);
-        JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),((Boolean)method.invoke(saveConfig,new Object[0])).booleanValue());
-        checks.add(check);
-        check.addActionListener(this);
-        String actionCommand=NAME_SET_PREFIX + name;
-        check.setActionCommand(actionCommand);
-        if (!functors.containsKey(actionCommand)) {
-          functors.put(actionCommand,new Functor(actionCommand));
-        }
+  final int configCount=(SampleSaveConfiguration.SAVE_CONFIG_NAMES.size() / 3) + 1;
+  log.debug("grid panel is " + 3 + " by "+ configCount);
+  JPanel checkPanel=new JPanel(new GridLayout(configCount,3));
+  for (  final String name : SampleSaveConfiguration.SAVE_CONFIG_NAMES) {
+    try {
+      JCheckBox check=new JCheckBox(JMeterUtils.getResString(RESOURCE_PREFIX + name),getSaveState(NAME_SAVE_PFX + name));
+      check.addActionListener(this);
+      final String actionCommand=NAME_SET_PREFIX + name;
+      check.setActionCommand(actionCommand);
+      if (!functors.containsKey(actionCommand)) {
+        functors.put(actionCommand,new Functor(actionCommand));
       }
- catch (      IllegalAccessException|InvocationTargetException e) {
-        log.warn("Problem creating save config dialog",e);
-      }
+      checkPanel.add(check,BorderLayout.NORTH);
     }
-  }
-  final String sortOrder=JMeterUtils.getPropDefault("saveconfig.sort","");
-  if (sortOrder.length() > 0) {
-    Collections.sort(checks,new Comparator<JCheckBox>(){
-      @Override public int compare(      JCheckBox o1,      JCheckBox o2){
-        if ("text".equals(sortOrder)) {
-          return o1.getText().compareToIgnoreCase(o2.getText());
-        }
- else {
-          return o1.getActionCommand().compareToIgnoreCase(o2.getActionCommand());
-        }
-      }
+ catch (    NoSuchMethodException|IllegalAccessException|InvocationTargetException e) {
+      log.warn("Problem creating save config dialog",e);
     }
-);
-  }
-  for (  JCheckBox check : checks) {
-    checkPanel.add(check,BorderLayout.NORTH);
   }
   getContentPane().add(checkPanel,BorderLayout.NORTH);
   JButton exit=new JButton(JMeterUtils.getResString("done"));

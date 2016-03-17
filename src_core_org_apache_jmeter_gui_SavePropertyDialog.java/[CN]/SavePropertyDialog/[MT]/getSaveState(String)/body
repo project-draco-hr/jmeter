@@ -1,0 +1,4 @@
+{
+  Method method=SampleSaveConfiguration.class.getMethod(methodName);
+  return ((Boolean)method.invoke(saveConfig)).booleanValue();
+}

@@ -1,9 +1,0 @@
-{
-  int count=0;
-  for (  Method method : methods) {
-    if (method.getName().startsWith(NAME_SAVE_PFX)) {
-      count++;
-    }
-  }
-  return count;
-}
