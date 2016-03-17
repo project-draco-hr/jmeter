@@ -1,12 +1,12 @@
 {
-  final String[] REDIRECT_CODES={"301","302","303"};
+  final String[] REDIRECT_CODES={HTTPConstants.SC_MOVED_PERMANENTLY,HTTPConstants.SC_MOVED_TEMPORARILY,HTTPConstants.SC_SEE_OTHER};
   String code=getResponseCode();
   for (  String redirectCode : REDIRECT_CODES) {
     if (redirectCode.equals(code)) {
       return true;
     }
   }
-  if ("307".equals(code) && (HTTPConstants.GET.equals(getHTTPMethod()) || HTTPConstants.HEAD.equals(getHTTPMethod()))) {
+  if (HTTPConstants.SC_TEMPORARY_REDIRECT.equals(code) && (HTTPConstants.GET.equals(getHTTPMethod()) || HTTPConstants.HEAD.equals(getHTTPMethod()))) {
     return true;
   }
   return false;
