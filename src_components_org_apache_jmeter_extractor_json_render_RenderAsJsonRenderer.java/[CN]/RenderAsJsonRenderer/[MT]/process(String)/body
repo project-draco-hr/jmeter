@@ -1,14 +1,15 @@
 {
   try {
-    List<String> matchStrings=extractWithJSonPath(textToParse,jsonPathExpressionField.getText());
+    List<Object> matchStrings=extractWithJSonPath(textToParse,jsonPathExpressionField.getText());
     if (matchStrings.size() == 0) {
       return "NO MATCH";
     }
  else {
       StringBuilder builder=new StringBuilder();
       int i=0;
-      for (      String text : matchStrings) {
-        builder.append("Result[").append(i++).append("]=").append(text).append("\n");
+      for (      Object obj : matchStrings) {
+        String objAsString=obj != null ? obj.toString() : "";
+        builder.append("Result[").append(i++).append("]=").append(objAsString).append("\n");
       }
       return builder.toString();
     }
