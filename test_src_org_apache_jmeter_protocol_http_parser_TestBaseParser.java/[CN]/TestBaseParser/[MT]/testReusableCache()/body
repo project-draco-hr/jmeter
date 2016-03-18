@@ -1,0 +1,4 @@
+{
+  LinkExtractorParser parser=BaseParser.getParser(ReusableParser.class.getCanonicalName());
+  assertSame(parser,BaseParser.getParser(ReusableParser.class.getCanonicalName()));
+}
