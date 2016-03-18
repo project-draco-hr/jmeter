@@ -1,4 +1,3 @@
 {
-  CacheManager cm=new CacheManager(getCache(),this.useExpires);
-  return cm;
+  return new CacheManager(getCache(),this.useExpires);
 }
