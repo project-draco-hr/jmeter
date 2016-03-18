@@ -1,0 +1,8 @@
+{
+  for (  String method : VALID_METHODS) {
+    assertTrue(method + " is a HttpWebdav method",HttpWebdav.isWebdavMethod(method));
+  }
+  for (  String method : INVALID_METHODS) {
+    assertFalse(method + " is not a HttpWebdav method",HttpWebdav.isWebdavMethod(method));
+  }
+}
