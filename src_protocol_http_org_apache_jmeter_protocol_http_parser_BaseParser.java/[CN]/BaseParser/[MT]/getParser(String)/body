@@ -1,7 +1,7 @@
 {
-  LinkExtractorParser parser=parsers.get(parserClassName);
+  LinkExtractorParser parser=PARSERS.get(parserClassName);
   if (parser != null) {
-    log.debug("Fetched " + parserClassName);
+    LOG.debug("Fetched " + parserClassName);
     return parser;
   }
   try {
@@ -16,9 +16,9 @@
  catch (  InstantiationException|ClassNotFoundException|IllegalAccessException e) {
     throw new LinkExtractorParseException(e);
   }
-  log.info("Created " + parserClassName);
+  LOG.info("Created " + parserClassName);
   if (parser.isReusable()) {
-    parsers.put(parserClassName,parser);
+    PARSERS.put(parserClassName,parser);
   }
   return parser;
 }
