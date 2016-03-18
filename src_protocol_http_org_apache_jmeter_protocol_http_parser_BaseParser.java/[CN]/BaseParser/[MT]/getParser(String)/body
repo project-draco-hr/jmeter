@@ -18,7 +18,10 @@
   }
   LOG.info("Created " + parserClassName);
   if (parser.isReusable()) {
-    PARSERS.put(parserClassName,parser);
+    LinkExtractorParser currentParser=PARSERS.putIfAbsent(parserClassName,parser);
+    if (currentParser != null) {
+      return currentParser;
+    }
   }
   return parser;
 }
