@@ -9,16 +9,30 @@
   }
  else   if (e.getActionCommand().equals(ActionNames.ACTION_STOP)) {
     if (engine != null) {
-      log.info("Stopping test");
+      LOG.info("Stopping test");
       GuiPackage.getInstance().getMainFrame().showStoppingMessage("");
       engine.stopTest();
     }
   }
  else   if (e.getActionCommand().equals(ActionNames.ACTION_SHUTDOWN)) {
     if (engine != null) {
-      log.info("Shutting test down");
+      LOG.info("Shutting test down");
       GuiPackage.getInstance().getMainFrame().showStoppingMessage("");
       engine.askThreadsToStop();
+    }
+  }
+ else   if (e.getActionCommand().equals(ActionNames.RUN_TG) || e.getActionCommand().equals(ActionNames.RUN_TG_NO_TIMERS)) {
+    popupShouldSave(e);
+    boolean noTimers=e.getActionCommand().equals(ActionNames.RUN_TG_NO_TIMERS);
+    JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
+    JMeterTreeNode[] nodes=treeListener.getSelectedNodes();
+    nodes=Copy.keepOnlyAncestors(nodes);
+    AbstractThreadGroup[] tg=keepOnlyThreadGroups(nodes);
+    if (nodes.length > 0) {
+      startEngine(noTimers,tg);
+    }
+ else {
+      LOG.warn("No thread group selected the test will not be started");
     }
   }
 }

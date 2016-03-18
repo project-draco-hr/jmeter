@@ -1,6 +1,19 @@
 {
   JPopupMenu pop=new JPopupMenu();
   pop.add(MenuFactory.makeMenus(new String[]{MenuFactory.CONTROLLERS,MenuFactory.CONFIG_ELEMENTS,MenuFactory.TIMERS,MenuFactory.PRE_PROCESSORS,MenuFactory.SAMPLERS,MenuFactory.POST_PROCESSORS,MenuFactory.ASSERTIONS,MenuFactory.LISTENERS},JMeterUtils.getResString("add"),ActionNames.ADD));
+  if (this.isEnabled()) {
+    pop.addSeparator();
+    JMenuItem runTg=new JMenuItem(JMeterUtils.getResString("run_threadgroup"));
+    runTg.setName("run_threadgroup");
+    runTg.addActionListener(ActionRouter.getInstance());
+    runTg.setActionCommand(ActionNames.RUN_TG);
+    pop.add(runTg);
+    JMenuItem runTgNotimers=new JMenuItem(JMeterUtils.getResString("run_threadgroup_no_timers"));
+    runTgNotimers.setName("run_threadgroup_no_timers");
+    runTgNotimers.addActionListener(ActionRouter.getInstance());
+    runTgNotimers.setActionCommand(ActionNames.RUN_TG_NO_TIMERS);
+    pop.add(runTgNotimers);
+  }
   MenuFactory.addEditMenu(pop,true);
   MenuFactory.addFileMenu(pop,false);
   return pop;

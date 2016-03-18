@@ -1,0 +1,9 @@
+{
+  List<AbstractThreadGroup> nodes=new ArrayList<>();
+  for (  JMeterTreeNode jMeterTreeNode : currentNodes) {
+    if (jMeterTreeNode.getTestElement() instanceof AbstractThreadGroup) {
+      nodes.add((AbstractThreadGroup)jMeterTreeNode.getTestElement());
+    }
+  }
+  return nodes.toArray(new AbstractThreadGroup[nodes.size()]);
+}

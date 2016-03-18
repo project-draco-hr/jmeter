@@ -1,0 +1,23 @@
+{
+  LinkedList<Object> copyList=new LinkedList<>(testTree.list());
+  for (  Object o : copyList) {
+    TestElement item=(TestElement)o;
+    if (o instanceof AbstractThreadGroup) {
+      if (!isInThreadGroups(item,threadGroupsToKeep)) {
+        try {
+          item.setEnabled(false);
+          testTree.remove(item);
+        }
+  finally {
+          item.setEnabled(true);
+        }
+      }
+ else {
+        removeThreadGroupsFromHashTree(testTree.getTree(item),threadGroupsToKeep);
+      }
+    }
+ else {
+      removeThreadGroupsFromHashTree(testTree.getTree(item),threadGroupsToKeep);
+    }
+  }
+}

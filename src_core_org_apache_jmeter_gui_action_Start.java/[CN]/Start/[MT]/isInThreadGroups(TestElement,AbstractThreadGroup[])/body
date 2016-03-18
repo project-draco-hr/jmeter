@@ -1,0 +1,8 @@
+{
+  for (  AbstractThreadGroup abstractThreadGroup : threadGroups) {
+    if (item == abstractThreadGroup) {
+      return true;
+    }
+  }
+  return false;
+}
