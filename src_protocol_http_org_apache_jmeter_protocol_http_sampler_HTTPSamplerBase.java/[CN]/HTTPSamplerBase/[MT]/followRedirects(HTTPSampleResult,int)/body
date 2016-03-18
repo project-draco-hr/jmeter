@@ -17,9 +17,7 @@
       log.debug("Location after /. and space transforms: " + location);
     }
     String method=lastRes.getHTTPMethod();
-    if (!HTTPConstants.HEAD.equalsIgnoreCase(method)) {
-      method=HTTPConstants.GET;
-    }
+    method=computeMethodForRedirect(method,res.getResponseCode());
     try {
       URL url=ConversionUtils.makeRelativeURL(lastRes.getURL(),location);
       url=ConversionUtils.sanitizeUrl(url).toURL();

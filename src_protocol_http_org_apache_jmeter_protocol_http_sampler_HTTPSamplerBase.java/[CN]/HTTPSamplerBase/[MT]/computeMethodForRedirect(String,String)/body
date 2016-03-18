@@ -1,0 +1,6 @@
+{
+  if (!HTTPConstants.HEAD.equalsIgnoreCase(initialMethod)) {
+    return HTTPConstants.GET;
+  }
+  return initialMethod;
+}
