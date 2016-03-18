@@ -1,5 +1,4 @@
 {
   ClientConnectionRequest res=super.requestConnection(route,state);
-  MeasuringConnectionRequest measuredConnection=new MeasuringConnectionRequest(res);
-  return measuredConnection;
+  return new MeasuringConnectionRequest(res);
 }
