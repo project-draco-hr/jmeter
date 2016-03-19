@@ -1,3 +1,6 @@
 {
-  setProperty(JMS_PRIORITY,s,Utils.DEFAULT_PRIORITY_4);
+  if (Utils.DEFAULT_PRIORITY_4.equals(s)) {
+    s="";
+  }
+  setProperty(JMS_PRIORITY,s);
 }

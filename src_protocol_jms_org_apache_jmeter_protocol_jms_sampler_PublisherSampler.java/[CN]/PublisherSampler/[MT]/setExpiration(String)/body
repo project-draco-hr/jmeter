@@ -1,3 +1,6 @@
 {
-  setProperty(JMS_EXPIRATION,s,Utils.DEFAULT_NO_EXPIRY);
+  if (Utils.DEFAULT_NO_EXPIRY.equals(s)) {
+    s="";
+  }
+  setProperty(JMS_EXPIRATION,s);
 }
