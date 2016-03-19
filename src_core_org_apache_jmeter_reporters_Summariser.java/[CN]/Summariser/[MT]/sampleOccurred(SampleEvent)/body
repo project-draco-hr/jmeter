@@ -17,12 +17,9 @@ synchronized (myTotals) {
     }
   }
   if (reportNow) {
-    String str;
-    str=format(myName,myDelta,"+");
-    writeToLog(str);
+    writeToLog(format(myName,myDelta,"+"));
     if (myTotal != null && myDelta != null && myTotal.getNumSamples() != myDelta.getNumSamples()) {
-      str=format(myName,myTotal,"=");
-      writeToLog(str);
+      writeToLog(format(myName,myTotal,"="));
     }
   }
 }
