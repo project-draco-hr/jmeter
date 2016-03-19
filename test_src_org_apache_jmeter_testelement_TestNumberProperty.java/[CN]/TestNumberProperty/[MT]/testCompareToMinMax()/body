@@ -1,0 +1,5 @@
+{
+  NumberProperty n1=new DoubleProperty("n1",Double.MIN_VALUE);
+  NumberProperty n2=new DoubleProperty("n2",Double.MAX_VALUE);
+  assertTrue(n1.compareTo(n2) < 0);
+}

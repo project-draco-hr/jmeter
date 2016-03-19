@@ -1,0 +1,5 @@
+{
+  NumberProperty n1=new DoubleProperty("n1",1.0);
+  NumberProperty n2=new DoubleProperty("n2",0.0);
+  assertTrue(n1.compareTo(n2) > 0);
+}
