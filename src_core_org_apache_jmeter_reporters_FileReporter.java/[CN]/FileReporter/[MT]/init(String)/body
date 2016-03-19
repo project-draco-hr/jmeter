@@ -29,7 +29,10 @@
         List<Integer> v=getData(key);
         if (v == null) {
           v=Collections.synchronizedList(new ArrayList<Integer>());
-          this.data.put(key,v);
+          List<Integer> currentList=this.data.putIfAbsent(key,v);
+          if (currentList != null) {
+            v=currentList;
+          }
         }
         v.add(value);
       }
