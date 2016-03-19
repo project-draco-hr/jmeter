@@ -19,20 +19,10 @@ synchronized (myTotals) {
   if (reportNow) {
     String str;
     str=format(myName,myDelta,"+");
-    if (TOLOG) {
-      log.info(str);
-    }
-    if (TOOUT) {
-      System.out.println(str);
-    }
+    writeToLog(str);
     if (myTotal != null && myDelta != null && myTotal.getNumSamples() != myDelta.getNumSamples()) {
       str=format(myName,myTotal,"=");
-      if (TOLOG) {
-        log.info(str);
-      }
-      if (TOOUT) {
-        System.out.println(str);
-      }
+      writeToLog(str);
     }
   }
 }
