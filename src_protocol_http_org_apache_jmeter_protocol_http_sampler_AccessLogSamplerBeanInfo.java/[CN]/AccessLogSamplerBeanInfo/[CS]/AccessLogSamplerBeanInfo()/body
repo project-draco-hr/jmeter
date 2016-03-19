@@ -32,6 +32,7 @@
     p=property("protocol");
     p.setValue(NOT_UNDEFINED,Boolean.TRUE);
     p.setValue(DEFAULT,"http");
+    p.setValue(DEFAULT_NOT_SAVED,Boolean.TRUE);
     p=property("portString");
     p.setValue(NOT_UNDEFINED,Boolean.TRUE);
     p.setValue(DEFAULT,"");

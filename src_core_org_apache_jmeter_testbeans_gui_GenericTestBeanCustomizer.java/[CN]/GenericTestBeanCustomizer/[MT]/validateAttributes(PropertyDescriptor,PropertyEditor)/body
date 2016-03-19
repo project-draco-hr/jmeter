@@ -4,6 +4,9 @@
     if (notNull(pd)) {
       log.warn(getDetails(pd) + " requires a value but does not provide a default.");
     }
+    if (noSaveDefault(pd)) {
+      log.warn(getDetails(pd) + " specifies DEFAULT_NO_SAVE but does not provide a default.");
+    }
   }
  else {
     final Class<?> defltClass=deflt.getClass();
