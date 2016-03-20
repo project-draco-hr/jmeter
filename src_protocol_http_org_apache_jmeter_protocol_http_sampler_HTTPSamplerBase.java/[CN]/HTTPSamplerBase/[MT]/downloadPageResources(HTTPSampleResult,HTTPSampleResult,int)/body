@@ -84,7 +84,7 @@
  else {
             HTTPSampleResult binRes=sample(url,HTTPConstants.GET,false,frameDepth + 1);
             res.addSubResult(binRes);
-            setParentSampleSuccess(res,res.isSuccessful() && (binRes != null ? binRes.isSuccessful() : true));
+            setParentSampleSuccess(res,res.isSuccessful() && (binRes == null || binRes.isSuccessful()));
           }
         }
       }

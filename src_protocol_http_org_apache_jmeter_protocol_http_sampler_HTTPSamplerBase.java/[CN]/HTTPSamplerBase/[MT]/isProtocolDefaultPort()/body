@@ -1,8 +1,7 @@
 {
   final int port=getPortIfSpecified();
   final String protocol=getProtocol();
-  if (port == UNSPECIFIED_PORT || (HTTPConstants.PROTOCOL_HTTP.equalsIgnoreCase(protocol) && port == HTTPConstants.DEFAULT_HTTP_PORT) || (HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(protocol) && port == HTTPConstants.DEFAULT_HTTPS_PORT)) {
-    return true;
-  }
-  return false;
+  boolean isDefaultHTTPPort=HTTPConstants.PROTOCOL_HTTP.equalsIgnoreCase(protocol) && port == HTTPConstants.DEFAULT_HTTP_PORT;
+  boolean isDefaultHTTPSPort=HTTPConstants.PROTOCOL_HTTPS.equalsIgnoreCase(protocol) && port == HTTPConstants.DEFAULT_HTTPS_PORT;
+  return port == UNSPECIFIED_PORT || isDefaultHTTPPort || isDefaultHTTPSPort;
 }

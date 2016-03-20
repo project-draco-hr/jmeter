@@ -1,6 +1,7 @@
 {
   boolean fullUrl=path.startsWith(HTTP_PREFIX) || path.startsWith(HTTPS_PREFIX);
-  if (!fullUrl && (HTTPConstants.GET.equals(getMethod()) || HTTPConstants.DELETE.equals(getMethod()))) {
+  boolean getOrDelete=HTTPConstants.GET.equals(getMethod()) || HTTPConstants.DELETE.equals(getMethod());
+  if (!fullUrl && getOrDelete) {
     int index=path.indexOf(QRY_PFX);
     if (index > -1) {
       setProperty(PATH,path.substring(0,index));
