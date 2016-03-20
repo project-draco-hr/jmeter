@@ -1,13 +1,11 @@
 {
   boolean wasRedirected=false;
-  if (!areFollowingRedirect) {
-    if (res.isRedirect()) {
-      log.debug("Location set to - " + res.getRedirectLocation());
-      if (getFollowRedirects()) {
-        res=followRedirects(res,frameDepth);
-        areFollowingRedirect=true;
-        wasRedirected=true;
-      }
+  if (!areFollowingRedirect && res.isRedirect()) {
+    log.debug("Location set to - " + res.getRedirectLocation());
+    if (getFollowRedirects()) {
+      res=followRedirects(res,frameDepth);
+      areFollowingRedirect=true;
+      wasRedirected=true;
     }
   }
   if (isImageParser() && (SampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {

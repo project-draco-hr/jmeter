@@ -4,10 +4,8 @@
   }
   try {
     String escapedUrl=ConversionUtils.escapeIllegalURLCharacters(url);
-    if (!escapedUrl.equals(url)) {
-      if (log.isDebugEnabled()) {
-        log.debug("Url '" + url + "' has been escaped to '"+ escapedUrl+ "'. Please correct your webpage.");
-      }
+    if (!escapedUrl.equals(url) && log.isDebugEnabled()) {
+      log.debug("Url '" + url + "' has been escaped to '"+ escapedUrl+ "'. Please correct your webpage.");
     }
     return escapedUrl;
   }
