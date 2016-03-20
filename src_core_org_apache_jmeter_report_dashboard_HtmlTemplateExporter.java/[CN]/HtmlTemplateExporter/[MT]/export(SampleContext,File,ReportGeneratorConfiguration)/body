@@ -16,6 +16,7 @@
   if (!StringUtils.isEmpty(globallyDefinedOutputDir)) {
     outputDir=new File(globallyDefinedOutputDir);
   }
+  JOrphanUtils.canSafelyWriteToFolder(outputDir);
   LOG.info("Will generate dashboard in folder:" + outputDir.getAbsolutePath());
   final boolean filtersOnlySampleSeries=exportCfg.filtersOnlySampleSeries();
   addToContext(DATA_CTX_FILTERS_ONLY_SAMPLE_SERIES,Boolean.valueOf(filtersOnlySampleSeries),dataContext);

@@ -1,0 +1,17 @@
+{
+  if (folder.exists()) {
+    if (folder.isFile()) {
+      throw new IllegalArgumentException("Cannot write to '" + folder.getAbsolutePath() + "' as it is an existing file");
+    }
+ else {
+      if (folder.listFiles().length > 0) {
+        throw new IllegalArgumentException("Cannot write to '" + folder.getAbsolutePath() + "' as folder is not empty");
+      }
+    }
+  }
+ else {
+    if (!folder.getParentFile().canWrite()) {
+      throw new IllegalArgumentException("Cannot write to '" + folder.getAbsolutePath() + "' as folder does not exist and parent folder is not writable");
+    }
+  }
+}
