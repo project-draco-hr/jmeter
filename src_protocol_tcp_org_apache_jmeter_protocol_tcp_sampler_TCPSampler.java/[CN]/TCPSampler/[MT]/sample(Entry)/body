@@ -27,6 +27,7 @@
   res.sampleStart();
   try {
     Socket sock=getSocket(socketKey);
+    res.connectEnd();
     if (sock == null) {
       res.setResponseCode("500");
       res.setResponseMessage(getError());
