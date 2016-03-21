@@ -1,12 +1,12 @@
 {
   Arguments arguments=new Arguments();
-  arguments.addArgument("graphiteMetricsSender",TextGraphiteMetricsSender.class.getName());
-  arguments.addArgument("graphiteHost","");
-  arguments.addArgument("graphitePort",Integer.toString(DEFAULT_PLAINTEXT_PROTOCOL_PORT));
-  arguments.addArgument("rootMetricsPrefix",DEFAULT_METRICS_PREFIX);
-  arguments.addArgument("summaryOnly","true");
-  arguments.addArgument("samplersList","");
-  arguments.addArgument("useRegexpForSamplersList","false");
-  arguments.addArgument("percentiles",DEFAULT_PERCENTILES);
+  arguments.addArgument(GRAPHITE_METRICS_SENDER,TextGraphiteMetricsSender.class.getName());
+  arguments.addArgument(GRAPHITE_HOST,"");
+  arguments.addArgument(GRAPHITE_PORT,Integer.toString(DEFAULT_PLAINTEXT_PROTOCOL_PORT));
+  arguments.addArgument(ROOT_METRICS_PREFIX,DEFAULT_METRICS_PREFIX);
+  arguments.addArgument(SUMMARY_ONLY,"true");
+  arguments.addArgument(SAMPLERS_LIST,"");
+  arguments.addArgument(USE_REGEXP_FOR_SAMPLERS_LIST,"false");
+  arguments.addArgument(PERCENTILES,DEFAULT_PERCENTILES);
   return arguments;
 }
