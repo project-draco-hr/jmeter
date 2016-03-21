@@ -9,6 +9,7 @@
     }
     int current=headerLabelMethods.indexOf(label);
     if (current == -1) {
+      log.warn("Unknown column name " + label);
       return null;
     }
     if (current <= previous) {
