@@ -1,3 +1,4 @@
 {
+  args.removeArgument(GraphiteBackendListenerClient.USE_REGEXP_FOR_SAMPLERS_LIST,GraphiteBackendListenerClient.USE_REGEXP_FOR_SAMPLERS_LIST_DEFAULT);
   setProperty(new TestElementProperty(ARGUMENTS,args));
 }
