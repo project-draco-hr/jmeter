@@ -6,7 +6,7 @@
   arguments.addArgument(ROOT_METRICS_PREFIX,DEFAULT_METRICS_PREFIX);
   arguments.addArgument(SUMMARY_ONLY,"true");
   arguments.addArgument(SAMPLERS_LIST,"");
-  arguments.addArgument(USE_REGEXP_FOR_SAMPLERS_LIST,"false");
+  arguments.addArgument(USE_REGEXP_FOR_SAMPLERS_LIST,USE_REGEXP_FOR_SAMPLERS_LIST_DEFAULT);
   arguments.addArgument(PERCENTILES,DEFAULT_PERCENTILES);
   return arguments;
 }
