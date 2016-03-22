@@ -3,6 +3,7 @@
     final int newValue=errorOrFatal.incrementAndGet();
     SwingUtilities.invokeLater(new Runnable(){
       @Override public void run(){
+        errorsOrFatalsLabel.setForeground(Color.RED);
         errorsOrFatalsLabel.setText(Integer.toString(newValue));
       }
     }

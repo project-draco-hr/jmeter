@@ -2,6 +2,7 @@
   errorOrFatal.set(0);
   SwingUtilities.invokeLater(new Runnable(){
     @Override public void run(){
+      errorsOrFatalsLabel.setForeground(Color.BLACK);
       errorsOrFatalsLabel.setText(Integer.toString(errorOrFatal.get()));
     }
   }
