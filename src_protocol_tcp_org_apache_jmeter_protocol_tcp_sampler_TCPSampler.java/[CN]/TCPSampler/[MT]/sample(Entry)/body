@@ -26,8 +26,13 @@
   res.setSamplerData(sb.toString());
   res.sampleStart();
   try {
-    Socket sock=getSocket(socketKey);
-    res.connectEnd();
+    Socket sock;
+    try {
+      sock=getSocket(socketKey);
+    }
+  finally {
+      res.connectEnd();
+    }
     if (sock == null) {
       res.setResponseCode("500");
       res.setResponseMessage(getError());
