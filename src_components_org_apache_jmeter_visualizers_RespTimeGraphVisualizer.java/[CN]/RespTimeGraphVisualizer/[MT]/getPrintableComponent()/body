@@ -1,6 +1,9 @@
 {
   if (saveGraphToFile) {
     saveGraphToFile=false;
+    if (getData().length > 0 && getData()[0].length > 0) {
+      makeGraph();
+    }
     graphPanel.setBounds(graphPanel.getLocation().x,graphPanel.getLocation().y,graphPanel.width,graphPanel.height);
     return graphPanel;
   }
