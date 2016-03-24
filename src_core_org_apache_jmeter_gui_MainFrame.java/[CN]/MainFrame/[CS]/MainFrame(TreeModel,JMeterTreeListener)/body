@@ -5,6 +5,8 @@
   runningIndicator.setContentAreaFilled(false);
   runningIndicator.setMargin(new Insets(0,0,0,0));
   testTimeDuration=new JLabel("00:00:00");
+  testTimeDuration.setToolTipText(JMeterUtils.getResString("duration_tooltip"));
+  testTimeDuration.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
   totalThreads=new JLabel("0");
   totalThreads.setToolTipText(JMeterUtils.getResString("total_threads_tooltip"));
   activeThreads=new JLabel("0");
