@@ -1,8 +1,7 @@
 {
   GuiUtils.stopTableEditing(table);
-  Arguments arguments=null;
   if (args instanceof Arguments) {
-    arguments=(Arguments)args;
+    Arguments arguments=(Arguments)args;
     arguments.clear();
     @SuppressWarnings("unchecked") Iterator<Argument> modelData=(Iterator<Argument>)tableModel.iterator();
     while (modelData.hasNext()) {
