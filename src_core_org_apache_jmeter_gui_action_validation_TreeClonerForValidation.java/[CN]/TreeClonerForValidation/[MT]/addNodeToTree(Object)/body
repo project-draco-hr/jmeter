@@ -1,0 +1,15 @@
+{
+  if (VALIDATION_IGNORE_TIMERS && node instanceof Timer) {
+    return node;
+  }
+ else {
+    Object clonedNode=super.addNodeToTree(node);
+    if (clonedNode instanceof org.apache.jmeter.threads.ThreadGroup) {
+      ((ThreadGroup)clonedNode).setNumThreads(VALIDATION_NUMBER_OF_THREADS);
+      if (((AbstractThreadGroup)clonedNode).getSamplerController() instanceof LoopController) {
+        ((LoopController)((AbstractThreadGroup)clonedNode).getSamplerController()).setLoops(VALIDATION_ITERATIONS);
+      }
+    }
+    return clonedNode;
+  }
+}

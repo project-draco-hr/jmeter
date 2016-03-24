@@ -1,0 +1,11 @@
+{
+  Class<?> clazz;
+  try {
+    clazz=Class.forName(CLONER_FOR_VALIDATION_CLASS_NAME,true,Thread.currentThread().getContextClassLoader());
+    return (TreeCloner)clazz.newInstance();
+  }
+ catch (  InstantiationException|IllegalAccessException|ClassNotFoundException ex) {
+    LOG.error("Error instanciating class:'" + CLONER_FOR_VALIDATION_CLASS_NAME + "' defined in property :'"+ VALIDATION_CLONER_CLASS_PROPERTY_NAME+ "'",ex);
+    return new TreeClonerForValidation();
+  }
+}

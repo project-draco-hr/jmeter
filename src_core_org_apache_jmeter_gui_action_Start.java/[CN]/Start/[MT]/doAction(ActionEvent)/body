@@ -21,15 +21,16 @@
       engine.askThreadsToStop();
     }
   }
- else   if (e.getActionCommand().equals(ActionNames.RUN_TG) || e.getActionCommand().equals(ActionNames.RUN_TG_NO_TIMERS)) {
+ else   if (e.getActionCommand().equals(ActionNames.RUN_TG) || e.getActionCommand().equals(ActionNames.RUN_TG_NO_TIMERS) || e.getActionCommand().equals(ActionNames.VALIDATE_TG)) {
     popupShouldSave(e);
     boolean noTimers=e.getActionCommand().equals(ActionNames.RUN_TG_NO_TIMERS);
+    boolean isValidation=e.getActionCommand().equals(ActionNames.VALIDATE_TG);
     JMeterTreeListener treeListener=GuiPackage.getInstance().getTreeListener();
     JMeterTreeNode[] nodes=treeListener.getSelectedNodes();
     nodes=Copy.keepOnlyAncestors(nodes);
     AbstractThreadGroup[] tg=keepOnlyThreadGroups(nodes);
     if (nodes.length > 0) {
-      startEngine(noTimers,tg);
+      startEngine(noTimers,isValidation,tg);
     }
  else {
       LOG.warn("No thread group selected the test will not be started");
