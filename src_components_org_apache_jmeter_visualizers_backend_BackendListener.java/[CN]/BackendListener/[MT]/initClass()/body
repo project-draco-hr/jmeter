@@ -1,9 +1,10 @@
 {
   String name=getClassname().trim();
   try {
-    clientClass=Class.forName(name,false,Thread.currentThread().getContextClassLoader());
+    return Class.forName(name,false,Thread.currentThread().getContextClassLoader());
   }
  catch (  Exception e) {
     LOGGER.error(whoAmI() + "\tException initialising: " + name,e);
   }
+  return null;
 }

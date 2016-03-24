@@ -15,7 +15,7 @@ synchronized (LOCK) {
     myName=getName();
     listenerClientData=queuesByTestElementName.get(myName);
     if (listenerClientData == null) {
-      initClass();
+      clientClass=initClass();
       BackendListenerClient backendListenerClient=createBackendListenerClientImpl(clientClass);
       BackendListenerContext context=new BackendListenerContext((Arguments)getArguments().clone());
       listenerClientData=new ListenerClientData();
