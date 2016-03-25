@@ -1,19 +1,17 @@
 {
   Box toolPanel=new Box(BoxLayout.X_AXIS);
-  this.toolbar=JMeterToolBar.createToolbar(DISPLAY_TOOLBAR);
+  this.toolbar=JMeterToolBar.createToolbar(true);
   GuiPackage guiInstance=GuiPackage.getInstance();
   guiInstance.setMainToolbar(toolbar);
-  guiInstance.getMenuItemToolbar().getModel().setSelected(DISPLAY_TOOLBAR);
+  guiInstance.getMenuItemToolbar().getModel().setSelected(true);
   toolPanel.add(toolbar);
   toolPanel.add(Box.createRigidArea(new Dimension(10,15)));
   toolPanel.add(Box.createGlue());
   toolPanel.add(testTimeDuration);
   toolPanel.add(Box.createRigidArea(new Dimension(20,15)));
-  if (DISPLAY_ERROR_FATAL_COUNTER) {
-    toolPanel.add(errorsOrFatalsLabel);
-    toolPanel.add(warnIndicator);
-    toolPanel.add(Box.createRigidArea(new Dimension(20,15)));
-  }
+  toolPanel.add(errorsOrFatalsLabel);
+  toolPanel.add(warnIndicator);
+  toolPanel.add(Box.createRigidArea(new Dimension(20,15)));
   toolPanel.add(activeThreads);
   toolPanel.add(new JLabel(" / "));
   toolPanel.add(totalThreads);

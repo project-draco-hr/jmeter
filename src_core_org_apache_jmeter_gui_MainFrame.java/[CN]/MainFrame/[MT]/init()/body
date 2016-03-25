@@ -17,13 +17,8 @@
   }
   mainPanel=createMainPanel();
   logPanel=createLoggerPanel();
-  if (DISPLAY_ERROR_FATAL_COUNTER) {
-    errorsAndFatalsCounterLogTarget=new ErrorsAndFatalsCounterLogTarget();
-    LoggingManager.addLogTargetToRootLogger(new LogTarget[]{logPanel,errorsAndFatalsCounterLogTarget});
-  }
- else {
-    LoggingManager.addLogTargetToRootLogger(new LogTarget[]{logPanel});
-  }
+  errorsAndFatalsCounterLogTarget=new ErrorsAndFatalsCounterLogTarget();
+  LoggingManager.addLogTargetToRootLogger(new LogTarget[]{logPanel,errorsAndFatalsCounterLogTarget});
   topAndDown.setTopComponent(mainPanel);
   topAndDown.setBottomComponent(logPanel);
   treeAndMain.setRightComponent(topAndDown);
