@@ -1,0 +1,8 @@
+{
+  if (IGNORE_UNRECOVERABLE_PARSING_ERROR) {
+    LOG.warn("Failed to parse CSS: " + cssUrl + ", "+ LoggingCSSParseErrorHandler.createLoggingStringParseError(ex));
+  }
+ else {
+    throw new IllegalStateException("Failed to parse CSS: " + cssUrl + ", "+ LoggingCSSParseErrorHandler.createLoggingStringParseError(ex));
+  }
+}
