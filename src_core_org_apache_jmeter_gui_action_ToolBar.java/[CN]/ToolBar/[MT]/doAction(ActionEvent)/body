@@ -1,7 +1,0 @@
-{
-  if (ActionNames.TOOLBAR.equals(e.getActionCommand())) {
-    GuiPackage guiInstance=GuiPackage.getInstance();
-    final boolean isSelected=guiInstance.getMenuItemToolbar().getModel().isSelected();
-    guiInstance.getMainToolbar().setVisible(isSelected);
-  }
-}
