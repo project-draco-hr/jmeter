@@ -1,0 +1,50 @@
+{
+  try {
+    String cssContent=new String(data,encoding);
+    final CascadingStyleSheet aCSS=CSSReader.readFromString(cssContent,Charset.forName(encoding),ECSSVersion.CSS30,new LoggingCSSParseErrorHandler(),new LoggingCSSParseExceptionCallback(){
+      /** 
+ */
+      private static final long serialVersionUID=-9111232037888068394L;
+      /** 
+ * @see com.helger.css.handler.LoggingCSSParseExceptionCallback#onException(com.helger.css.parser.ParseException)
+ */
+      @Override public void onException(      ParseException ex){
+        if (IGNORE_UNRECOVERABLE_PARSING_ERROR) {
+          LOG.warn("Failed to parse CSS: " + baseUrl + ", "+ LoggingCSSParseErrorHandler.createLoggingStringParseError(ex));
+        }
+ else {
+          throw new IllegalStateException("Failed to parse CSS: " + baseUrl + ", "+ LoggingCSSParseErrorHandler.createLoggingStringParseError(ex));
+        }
+      }
+    }
+);
+    final List<URLString> list=new ArrayList<URLString>();
+    final URLCollection urlCollection=new URLCollection(list);
+    if (aCSS != null) {
+      CSSVisitor.visitCSSUrl(aCSS,new DefaultCSSUrlVisitor(){
+        @Override public void onImport(        final CSSImportRule importRule){
+          urlCollection.addURL(importRule.getLocationString(),baseUrl);
+        }
+        @Override public void onUrlDeclaration(        final ICSSTopLevelRule aTopLevelRule,        final CSSDeclaration aDeclaration,        final CSSExpressionMemberTermURI aURITerm){
+          urlCollection.addURL(aURITerm.getURIString(),baseUrl);
+        }
+      }
+);
+    }
+ else {
+      LOG.warn("Failed parsing url:" + baseUrl + ", got null CascadingStyleSheet");
+    }
+    if (LOG.isDebugEnabled()) {
+      StringBuilder builder=new StringBuilder();
+      for (Iterator iterator=urlCollection.iterator(); iterator.hasNext(); ) {
+        URL urlString=(URL)iterator.next();
+        builder.append(urlString).append(",");
+      }
+      LOG.debug("Parsed:" + baseUrl + ", got:"+ builder.toString());
+    }
+    return urlCollection.iterator();
+  }
+ catch (  Exception e) {
+    throw new LinkExtractorParseException(e);
+  }
+}
