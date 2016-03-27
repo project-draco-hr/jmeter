@@ -1,0 +1,18 @@
+{
+  Logger slf4jLogger=null;
+synchronized (this) {
+    slf4jLogger=loggerMap.get(name);
+    if (slf4jLogger == null) {
+      org.apache.log.Logger logbackLogger;
+      if (name.equalsIgnoreCase(Logger.ROOT_LOGGER_NAME)) {
+        logbackLogger=Hierarchy.getDefaultHierarchy().getRootLogger();
+      }
+ else {
+        logbackLogger=LoggingManager.getLoggerFor(name);
+      }
+      slf4jLogger=new LogbackLoggerAdapter(logbackLogger);
+      loggerMap.put(name,slf4jLogger);
+    }
+  }
+  return slf4jLogger;
+}

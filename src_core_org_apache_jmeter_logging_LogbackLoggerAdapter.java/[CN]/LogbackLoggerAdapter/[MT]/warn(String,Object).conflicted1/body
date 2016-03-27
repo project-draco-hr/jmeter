@@ -1,0 +1,6 @@
+{
+  if (logger.isWarnEnabled()) {
+    FormattingTuple ft=MessageFormatter.format(format,args);
+    logger.log(Priority.WARN,ft.getMessage(),ft.getThrowable());
+  }
+}

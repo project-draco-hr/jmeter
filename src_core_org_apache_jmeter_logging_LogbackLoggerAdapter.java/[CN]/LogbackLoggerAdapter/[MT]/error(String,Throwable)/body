@@ -1,0 +1,5 @@
+{
+  if (logger.isErrorEnabled()) {
+    logger.log(Priority.ERROR,message,throwable);
+  }
+}
