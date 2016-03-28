@@ -3,14 +3,14 @@
 synchronized (this) {
     slf4jLogger=loggerMap.get(name);
     if (slf4jLogger == null) {
-      org.apache.log.Logger logbackLogger;
+      org.apache.log.Logger logkitLogger;
       if (name.equalsIgnoreCase(Logger.ROOT_LOGGER_NAME)) {
-        logbackLogger=Hierarchy.getDefaultHierarchy().getRootLogger();
+        logkitLogger=Hierarchy.getDefaultHierarchy().getRootLogger();
       }
  else {
-        logbackLogger=LoggingManager.getLoggerFor(name);
+        logkitLogger=LoggingManager.getLoggerFor(name);
       }
-      slf4jLogger=new LogbackLoggerAdapter(logbackLogger);
+      slf4jLogger=new LogkitLoggerAdapter(logkitLogger);
       loggerMap.put(name,slf4jLogger);
     }
   }
