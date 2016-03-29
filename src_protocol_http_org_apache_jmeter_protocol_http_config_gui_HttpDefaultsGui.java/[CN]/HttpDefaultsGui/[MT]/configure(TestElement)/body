@@ -1,8 +1,12 @@
 {
   super.configure(el);
-  urlConfig.configure(el);
-  imageParser.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.IMAGE_PARSER));
-  concurrentDwn.setSelected(((AbstractTestElement)el).getPropertyAsBoolean(HTTPSamplerBase.CONCURRENT_DWN));
-  concurrentPool.setText(((AbstractTestElement)el).getPropertyAsString(HTTPSamplerBase.CONCURRENT_POOL));
-  embeddedRE.setText(((AbstractTestElement)el).getPropertyAsString(HTTPSamplerBase.EMBEDDED_URL_RE,""));
+  AbstractTestElement samplerBase=(AbstractTestElement)el;
+  urlConfigGui.configure(el);
+  retrieveEmbeddedResources.setSelected(samplerBase.getPropertyAsBoolean(HTTPSamplerBase.IMAGE_PARSER));
+  concurrentDwn.setSelected(samplerBase.getPropertyAsBoolean(HTTPSamplerBase.CONCURRENT_DWN));
+  concurrentPool.setText(samplerBase.getPropertyAsString(HTTPSamplerBase.CONCURRENT_POOL));
+  useMD5.setSelected(samplerBase.getPropertyAsBoolean(HTTPSamplerBase.MD5,false));
+  embeddedRE.setText(samplerBase.getPropertyAsString(HTTPSamplerBase.EMBEDDED_URL_RE,""));
+  sourceIpAddr.setText(samplerBase.getPropertyAsString(HTTPSamplerBase.IP_SOURCE));
+  sourceIpType.setSelectedIndex(samplerBase.getPropertyAsInt(HTTPSamplerBase.IP_SOURCE_TYPE,HTTPSamplerBase.SOURCE_TYPE_DEFAULT));
 }

@@ -1,17 +1,16 @@
 {
   ConfigTestElement cfg=(ConfigTestElement)config;
-  ConfigTestElement el=(ConfigTestElement)urlConfig.createTestElement();
+  ConfigTestElement el=(ConfigTestElement)urlConfigGui.createTestElement();
   cfg.clear();
   cfg.addConfigElement(el);
   super.configureTestElement(config);
-  if (imageParser.isSelected()) {
+  if (retrieveEmbeddedResources.isSelected()) {
     config.setProperty(new BooleanProperty(HTTPSamplerBase.IMAGE_PARSER,true));
-    enableConcurrentDwn(true);
   }
  else {
     config.removeProperty(HTTPSamplerBase.IMAGE_PARSER);
-    enableConcurrentDwn(false);
   }
+  enableConcurrentDwn(retrieveEmbeddedResources.isSelected());
   if (concurrentDwn.isSelected()) {
     config.setProperty(new BooleanProperty(HTTPSamplerBase.CONCURRENT_DWN,true));
   }
@@ -24,10 +23,24 @@
  else {
     config.setProperty(new StringProperty(HTTPSamplerBase.CONCURRENT_POOL,String.valueOf(HTTPSamplerBase.CONCURRENT_POOL_SIZE)));
   }
+  if (useMD5.isSelected()) {
+    config.setProperty(new BooleanProperty(HTTPSamplerBase.MD5,true));
+  }
+ else {
+    config.removeProperty(HTTPSamplerBase.MD5);
+  }
   if (!StringUtils.isEmpty(embeddedRE.getText())) {
     config.setProperty(new StringProperty(HTTPSamplerBase.EMBEDDED_URL_RE,embeddedRE.getText()));
   }
  else {
     config.removeProperty(HTTPSamplerBase.EMBEDDED_URL_RE);
+  }
+  if (!StringUtils.isEmpty(sourceIpAddr.getText())) {
+    config.setProperty(new StringProperty(HTTPSamplerBase.IP_SOURCE,sourceIpAddr.getText()));
+    config.setProperty(new IntegerProperty(HTTPSamplerBase.IP_SOURCE_TYPE,sourceIpType.getSelectedIndex()));
+  }
+ else {
+    config.removeProperty(HTTPSamplerBase.IP_SOURCE);
+    config.removeProperty(HTTPSamplerBase.IP_SOURCE_TYPE);
   }
 }

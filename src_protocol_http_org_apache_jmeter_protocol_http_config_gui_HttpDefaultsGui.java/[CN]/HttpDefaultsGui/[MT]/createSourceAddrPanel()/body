@@ -1,0 +1,9 @@
+{
+  final JPanel sourceAddrPanel=new HorizontalPanel();
+  sourceAddrPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_testing_source_ip")));
+  sourceIpType.setSelectedIndex(HTTPSamplerBase.SourceType.HOSTNAME.ordinal());
+  sourceAddrPanel.add(sourceIpType);
+  sourceIpAddr=new JTextField();
+  sourceAddrPanel.add(sourceIpAddr);
+  return sourceAddrPanel;
+}

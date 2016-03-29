@@ -1,0 +1,7 @@
+{
+  final JPanel checkBoxPanel=new VerticalPanel();
+  checkBoxPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("optional_tasks")));
+  useMD5=new JCheckBox(JMeterUtils.getResString("response_save_as_md5"));
+  checkBoxPanel.add(useMD5);
+  return checkBoxPanel;
+}
