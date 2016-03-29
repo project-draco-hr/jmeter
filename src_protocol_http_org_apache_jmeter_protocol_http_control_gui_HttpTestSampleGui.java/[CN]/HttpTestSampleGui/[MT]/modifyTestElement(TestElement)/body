@@ -2,8 +2,8 @@
   sampler.clear();
   urlConfigGui.modifyTestElement(sampler);
   final HTTPSamplerBase samplerBase=(HTTPSamplerBase)sampler;
-  samplerBase.setImageParser(getImages.isSelected());
-  enableConcurrentDwn(getImages.isSelected());
+  samplerBase.setImageParser(retrieveEmbeddedResources.isSelected());
+  enableConcurrentDwn(retrieveEmbeddedResources.isSelected());
   samplerBase.setConcurrentDwn(concurrentDwn.isSelected());
   samplerBase.setConcurrentPool(concurrentPool.getText());
   samplerBase.setMonitor(isMon.isSelected());

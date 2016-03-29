@@ -1,9 +1,6 @@
 {
-  final JPanel embeddedRsrcPanel=new VerticalPanel();
-  embeddedRsrcPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_testing_retrieve_title")));
-  final JPanel checkBoxPanel=new HorizontalPanel();
-  getImages=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
-  getImages.addItemListener(new ItemListener(){
+  retrieveEmbeddedResources=new JCheckBox(JMeterUtils.getResString("web_testing_retrieve_images"));
+  retrieveEmbeddedResources.addItemListener(new ItemListener(){
     @Override public void itemStateChanged(    final ItemEvent e){
       if (e.getStateChange() == ItemEvent.SELECTED) {
         enableConcurrentDwn(true);
@@ -17,7 +14,7 @@
   concurrentDwn=new JCheckBox(JMeterUtils.getResString("web_testing_concurrent_download"));
   concurrentDwn.addItemListener(new ItemListener(){
     @Override public void itemStateChanged(    final ItemEvent e){
-      if (getImages.isSelected() && e.getStateChange() == ItemEvent.SELECTED) {
+      if (retrieveEmbeddedResources.isSelected() && e.getStateChange() == ItemEvent.SELECTED) {
         concurrentPool.setEnabled(true);
       }
  else {
@@ -27,14 +24,14 @@
   }
 );
   concurrentPool=new JTextField(2);
-  concurrentPool.setMaximumSize(new Dimension(30,20));
-  checkBoxPanel.add(getImages);
-  checkBoxPanel.add(concurrentDwn);
-  checkBoxPanel.add(concurrentPool);
-  embeddedRsrcPanel.add(checkBoxPanel);
-  checkBoxPanel.add(labelEmbeddedRE);
-  embeddedRE=new JTextField(10);
-  checkBoxPanel.add(embeddedRE);
-  embeddedRsrcPanel.add(checkBoxPanel);
+  concurrentPool.setMinimumSize(new Dimension(10,(int)concurrentPool.getPreferredSize().getHeight()));
+  concurrentPool.setMaximumSize(new Dimension(30,(int)concurrentPool.getPreferredSize().getHeight()));
+  final JPanel embeddedRsrcPanel=new HorizontalPanel();
+  embeddedRsrcPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("web_testing_retrieve_title")));
+  embeddedRsrcPanel.add(retrieveEmbeddedResources);
+  embeddedRsrcPanel.add(concurrentDwn);
+  embeddedRsrcPanel.add(concurrentPool);
+  embeddedRE=new JLabeledTextField(JMeterUtils.getResString("web_testing_embedded_url_pattern"),20);
+  embeddedRsrcPanel.add(embeddedRE);
   return embeddedRsrcPanel;
 }
