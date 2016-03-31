@@ -12,6 +12,12 @@
       str.append(metaData);
     }
     str.append(arg.getValue());
+    final String desc=arg.getDescription();
+    if (desc != null) {
+      str.append("(");
+      str.append(desc);
+      str.append(")");
+    }
     if (iter.hasNext()) {
       str.append("&");
     }
