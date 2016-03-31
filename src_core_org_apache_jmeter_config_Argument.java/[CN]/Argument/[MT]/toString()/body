@@ -1,3 +1,9 @@
 {
-  return getName() + getMetaData() + getValue()+ " //"+ getDescription();
+  final String desc=getDescription();
+  if (DFLT_DESCRIPTION.equals(desc)) {
+    return getName() + getMetaData() + getValue();
+  }
+ else {
+    return getName() + getMetaData() + getValue()+ " //"+ getDescription();
+  }
 }
