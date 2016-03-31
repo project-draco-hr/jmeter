@@ -1,4 +1,10 @@
 {
+  try (InputStream inputStream=getClass().getResourceAsStream("/org/apache/jmeter/jmeter_as_ascii_art.txt")){
+    String text=IOUtils.toString(inputStream);
+    System.out.println(text);
+  }
+ catch (  IOException e1) {
+  }
   CLArgsParser parser=new CLArgsParser(args,options);
   String error=parser.getErrorString();
   if (error == null) {
