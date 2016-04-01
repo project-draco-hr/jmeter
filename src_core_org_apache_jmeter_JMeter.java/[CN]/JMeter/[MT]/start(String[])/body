@@ -1,12 +1,4 @@
 {
-  try (InputStream inputStream=JMeter.class.getResourceAsStream("jmeter_as_ascii_art.txt")){
-    if (inputStream != null) {
-      String text=IOUtils.toString(inputStream);
-      System.out.println(text);
-    }
-  }
- catch (  IOException e1) {
-  }
   CLArgsParser parser=new CLArgsParser(args,options);
   String error=parser.getErrorString();
   if (error == null) {
@@ -69,13 +61,14 @@
     JMeterUtils.setProperty("START.YMD",new SimpleDateFormat("yyyyMMdd").format(today));
     JMeterUtils.setProperty("START.HMS",new SimpleDateFormat("HHmmss").format(today));
     if (parser.getArgumentById(VERSION_OPT) != null) {
-      System.out.println(JMeterUtils.getJMeterCopyright());
-      System.out.println("Version " + JMeterUtils.getJMeterVersion());
+      displayAsciiArt();
     }
  else     if (parser.getArgumentById(HELP_OPT) != null) {
+      displayAsciiArt();
       System.out.println(JMeterUtils.getResourceFileAsText("org/apache/jmeter/help.txt"));
     }
  else     if (parser.getArgumentById(OPTIONS_OPT) != null) {
+      displayAsciiArt();
       System.out.println(CLUtil.describeOptions(options).toString());
     }
  else     if (parser.getArgumentById(SERVER_OPT) != null) {
@@ -138,8 +131,7 @@
     }
   }
  catch (  IllegalUserActionException e) {
-    System.out.println(e.getMessage());
-    System.out.println("Incorrect Usage");
+    System.out.println("Incorrect Usage:" + e.getMessage());
     System.out.println(CLUtil.describeOptions(options).toString());
   }
 catch (  Throwable e) {

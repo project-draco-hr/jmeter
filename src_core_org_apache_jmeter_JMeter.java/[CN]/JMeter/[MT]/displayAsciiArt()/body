@@ -1,0 +1,12 @@
+{
+  try (InputStream inputStream=JMeter.class.getResourceAsStream("jmeter_as_ascii_art.txt")){
+    if (inputStream != null) {
+      String text=IOUtils.toString(inputStream);
+      System.out.println(text);
+    }
+  }
+ catch (  Exception e1) {
+    System.out.println(JMeterUtils.getJMeterCopyright());
+    System.out.println("Version " + JMeterUtils.getJMeterVersion());
+  }
+}
