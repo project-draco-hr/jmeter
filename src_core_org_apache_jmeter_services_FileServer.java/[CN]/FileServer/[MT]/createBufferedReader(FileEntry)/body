@@ -1,4 +1,7 @@
 {
+  if (!fileEntry.file.canRead() || !fileEntry.file.isFile()) {
+    throw new IllegalArgumentException("File " + fileEntry.file.getName() + " must exist and be readable");
+  }
   FileInputStream fis=new FileInputStream(fileEntry.file);
   InputStreamReader isr=null;
   String charsetName=fileEntry.charSetEncoding;

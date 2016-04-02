@@ -1,6 +1,6 @@
 {
-  if (filename == null) {
-    throw new IllegalArgumentException("Filename must not be null");
+  if (filename == null || filename.isEmpty()) {
+    throw new IllegalArgumentException("Filename must not be null or empty");
   }
   if (alias == null) {
     throw new IllegalArgumentException("Alias must not be null");
@@ -18,18 +18,24 @@
     if (hasHeader) {
       try {
         fileEntry.headerLine=readLine(alias,false);
+        if (fileEntry.headerLine == null) {
+          fileEntry.exception=new EOFException("File is empty: " + fileEntry.file);
+        }
       }
- catch (      IOException e) {
+ catch (      IOException|IllegalArgumentException e) {
         fileEntry.exception=e;
-        throw new IllegalArgumentException("Could not read file header line",e);
-      }
-      if (fileEntry.headerLine == null) {
-        fileEntry.exception=new EOFException("File is empty: " + fileEntry.file);
       }
     }
   }
   if (hasHeader && fileEntry.headerLine == null) {
-    throw new IllegalArgumentException("Could not read file header line",fileEntry.exception);
+    throw new IllegalArgumentException("Could not read file header line for file " + filename,fileEntry.exception);
+  }
+  if (fileEntry.exception != null) {
+    Throwable exception=fileEntry.exception;
+    if (exception instanceof RuntimeException) {
+      throw (RuntimeException)exception;
+    }
+    throw new IllegalStateException(exception.getMessage(),exception);
   }
   return fileEntry.headerLine;
 }
