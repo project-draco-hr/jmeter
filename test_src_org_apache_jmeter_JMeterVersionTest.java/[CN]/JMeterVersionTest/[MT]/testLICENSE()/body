@@ -1,0 +1,47 @@
+{
+  HashSet<String> buildOnly=new HashSet<>();
+  buildOnly.addAll(Arrays.asList(new String[]{"bcprov","bcmail","bcpkix"}));
+  final HashSet<String> binaryJarNames=new HashSet<>();
+  for (  Map.Entry<String,String> me : versions.entrySet()) {
+    final String key=me.getKey();
+    final String jarName=key + "-" + me.getValue();
+    if (propNames.contains(key) && !buildOnly.contains(key)) {
+      binaryJarNames.add(jarName);
+    }
+  }
+  final BufferedReader license=new BufferedReader(new FileReader(getFileFromHome("LICENSE")));
+  final Pattern p=Pattern.compile("^\\* (\\S+?)\\.jar(.*)");
+  final HashSet<String> namesInLicenseFile=new HashSet<>();
+  final HashSet<String> externalNamesinLicenseFile=new HashSet<>();
+  String line;
+  while ((line=license.readLine()) != null) {
+    final Matcher m=p.matcher(line);
+    if (m.matches()) {
+      final String name=m.group(1);
+      assertTrue("Duplicate jar in LICENSE file " + line,namesInLicenseFile.add(name));
+      if (!binaryJarNames.contains(name)) {
+        fail("Unexpected entry in LICENCE file: " + line);
+      }
+      final String comment=m.group(2);
+      if (comment.length() > 0) {
+        externalNamesinLicenseFile.add(name);
+      }
+    }
+  }
+  license.close();
+  for (  String s : binaryJarNames) {
+    if (!namesInLicenseFile.contains(s)) {
+      fail("LICENSE does not contain entry for " + s);
+    }
+  }
+  for (  String s : externalNamesinLicenseFile) {
+    if (!liceFiles.contains(s)) {
+      fail("bin/licenses does not contain a file for " + s);
+    }
+  }
+  for (  String s : liceFiles) {
+    if (!namesInLicenseFile.contains(s)) {
+      fail("LICENSE does not contain entry for " + s);
+    }
+  }
+}

@@ -2,17 +2,10 @@
   Set<String> liceNames=new HashSet<>();
   for (  Map.Entry<String,String> me : versions.entrySet()) {
     final String key=me.getKey();
-    liceNames.add(key + "-" + me.getValue()+ ".txt");
+    liceNames.add(key + "-" + me.getValue());
   }
-  File licencesDir=getFileFromHome("licenses/bin");
-  String[] lice=licencesDir.list(new FilenameFilter(){
-    @Override public boolean accept(    File dir,    String name){
-      return !name.equalsIgnoreCase("README.txt") && !name.equals(".svn");
-    }
-  }
-);
-  assertTrue("Expected at least one license file",lice.length > 0);
-  for (  String l : lice) {
+  assertTrue("Expected at least one license file",liceFiles.size() > 0);
+  for (  String l : liceFiles) {
     if (!liceNames.remove(l)) {
       fail("Mismatched version in license file " + l);
     }

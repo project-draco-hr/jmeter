@@ -22,4 +22,14 @@
   buildProp.remove("checkstyle-all.loc");
   versions.remove("checkstyle-all");
   prop=buildProp;
+  final File licencesDir=getFileFromHome("licenses/bin");
+  licencesDir.list(new FilenameFilter(){
+    @Override public boolean accept(    File dir,    String name){
+      if (!name.equalsIgnoreCase("README.txt") && !name.equals(".svn")) {
+        liceFiles.add(name.replace(".txt",""));
+      }
+      return false;
+    }
+  }
+);
 }
