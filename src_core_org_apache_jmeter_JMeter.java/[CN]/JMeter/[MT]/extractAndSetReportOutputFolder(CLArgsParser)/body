@@ -1,0 +1,10 @@
+{
+  CLOption reportOutputFolderOpt=parser.getArgumentById(REPORT_OUTPUT_FOLDER_OPT);
+  if (reportOutputFolderOpt != null) {
+    String reportOutputFolder=parser.getArgumentById(REPORT_OUTPUT_FOLDER_OPT).getArgument();
+    File reportOutputFolderAsFile=new File(reportOutputFolder);
+    JOrphanUtils.canSafelyWriteToFolder(reportOutputFolderAsFile);
+    log.info("Setting property '" + JMETER_REPORT_OUTPUT_DIR_PROPERTY + "' to:'"+ reportOutputFolderAsFile.getAbsolutePath()+ "'");
+    JMeterUtils.setProperty(JMETER_REPORT_OUTPUT_DIR_PROPERTY,reportOutputFolderAsFile.getAbsolutePath());
+  }
+}
