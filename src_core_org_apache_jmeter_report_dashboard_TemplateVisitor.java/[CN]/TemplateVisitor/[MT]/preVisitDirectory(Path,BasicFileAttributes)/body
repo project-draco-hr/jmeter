@@ -1,7 +1,7 @@
 {
-  Path newDir=target.resolve(source.relativize(arg0));
+  Path newDir=target.resolve(source.relativize(file));
   try {
-    Files.copy(arg0,newDir);
+    Files.copy(file,newDir);
   }
  catch (  FileAlreadyExistsException ex) {
     FileUtils.cleanDirectory(newDir.toFile());
