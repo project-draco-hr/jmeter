@@ -3,7 +3,7 @@
   writeXmlHeader(outputStreamWriter);
   ScriptWrapper wrapper=new ScriptWrapper();
   wrapper.testPlan=tree;
-  JMXSAVER.marshal(wrapper,new PrettyPrintWriter(outputStreamWriter));
+  JMXSAVER.toXML(wrapper,outputStreamWriter);
   outputStreamWriter.write('\n');
   outputStreamWriter.close();
 }
