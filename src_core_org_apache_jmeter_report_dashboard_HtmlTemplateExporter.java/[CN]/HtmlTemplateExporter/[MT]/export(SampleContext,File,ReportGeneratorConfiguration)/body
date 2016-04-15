@@ -56,6 +56,9 @@
   formatTimestamp(ReportGenerator.END_DATE_CONSUMER_NAME,dataContext);
   TimeZone timezone=TimeZone.getDefault();
   addToContext(DATA_CTX_TIMEZONE_OFFSET,Integer.valueOf(timezone.getOffset(oldTimestamp)),dataContext);
+  if (!StringUtils.isEmpty(configuration.getReportTitle())) {
+    dataContext.put(DATA_CTX_REPORT_TITLE,StringEscapeUtils.escapeHtml4(configuration.getReportTitle()));
+  }
   addToContext(DATA_CTX_TESTFILE,file.getName(),dataContext);
   addToContext(DATA_CTX_OVERALL_FILTER,configuration.getSampleFilter(),dataContext);
   Configuration templateCfg=new Configuration(Configuration.getVersion());

@@ -14,6 +14,8 @@
   configuration.setApdexToleratedThreshold(apdexToleratedThreshold);
   final String sampleFilter=getOptionalProperty(props,REPORT_GENERATOR_KEY_SAMPLE_FILTER,String.class);
   configuration.setSampleFilter(sampleFilter);
+  final String reportTitle=getOptionalProperty(props,REPORT_GENERATOR_KEY_REPORT_TITLE,String.class);
+  configuration.setReportTitle(reportTitle);
   final Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
   loadSubConfiguration(graphConfigurations,props,REPORT_GENERATOR_GRAPH_KEY_PREFIX,false,new GraphConfigurationFactory(props));
   if (graphConfigurations.isEmpty()) {
