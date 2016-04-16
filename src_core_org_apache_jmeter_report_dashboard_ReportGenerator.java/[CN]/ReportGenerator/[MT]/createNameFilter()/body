@@ -3,8 +3,8 @@
   nameFilter.setName(NAME_FILTER_CONSUMER_NAME);
   nameFilter.setSamplePredicate(new SamplePredicate(){
     @Override public boolean matches(    Sample sample){
-      List<String> filteredSamples=configuration.getFilteredSamples();
-      return filteredSamples.isEmpty() || filteredSamples.contains(sample.getName());
+      Pattern filteredSamplesPattern=configuration.getFilteredSamplesPattern();
+      return filteredSamplesPattern == null || filteredSamplesPattern.matcher(sample.getName()).matches();
     }
   }
 );

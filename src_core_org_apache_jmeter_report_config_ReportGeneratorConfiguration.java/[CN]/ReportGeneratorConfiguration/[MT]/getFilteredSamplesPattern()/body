@@ -1,0 +1,9 @@
+{
+  if (StringUtils.isEmpty(sampleFilter)) {
+    return null;
+  }
+  if (filteredSamplesPattern == null) {
+    filteredSamplesPattern=Pattern.compile(sampleFilter);
+  }
+  return filteredSamplesPattern;
+}

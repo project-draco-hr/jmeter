@@ -1,11 +1,3 @@
 {
-  if (!Objects.equals(this.sampleFilter,sampleFilter)) {
-    this.sampleFilter=sampleFilter;
-    filteredSamples.clear();
-    if (sampleFilter != null) {
-      for (      String item : sampleFilter.split(",")) {
-        filteredSamples.add(item.trim());
-      }
-    }
-  }
+  this.sampleFilter=sampleFilter;
 }
