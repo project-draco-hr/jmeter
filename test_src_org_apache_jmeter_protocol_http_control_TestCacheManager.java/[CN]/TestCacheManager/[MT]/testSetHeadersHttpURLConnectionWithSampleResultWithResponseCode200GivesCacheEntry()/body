@@ -1,7 +1,0 @@
-{
-  saveDetailsWithConnectionAndSampleResultWithResponseCode("200");
-  setHeadersWithHttpUrlConnectionAndUrl();
-  Map<String,List<String>> properties=this.httpUrlConnection.getRequestProperties();
-  checkProperty(properties,HTTPConstants.IF_NONE_MATCH,EXPECTED_ETAG);
-  checkProperty(properties,HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT);
-}

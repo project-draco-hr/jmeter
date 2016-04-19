@@ -1,0 +1,15 @@
+{
+  this.cacheManager.setUseExpires(true);
+  this.cacheManager.testIterationStart(null);
+  assertNull("Should not find entry",getThreadCacheEntry(LOCAL_HOST));
+  assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
+  long start=System.currentTimeMillis();
+  setExpires(makeDate(new Date(start)));
+  setCacheControl("public, max-age=1");
+  cacheResult(sampleResultOK);
+  assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
+  assertTrue("Should find valid entry",this.cacheManager.inCache(url));
+  sleepTill(start + 1010);
+  assertNotNull("Should find entry",getThreadCacheEntry(LOCAL_HOST));
+  assertFalse("Should not find valid entry",this.cacheManager.inCache(url));
+}

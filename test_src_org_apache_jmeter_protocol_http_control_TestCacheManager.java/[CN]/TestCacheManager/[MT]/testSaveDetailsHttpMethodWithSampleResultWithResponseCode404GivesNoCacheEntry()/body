@@ -1,4 +1,0 @@
-{
-  saveDetailsWithHttpMethodAndSampleResultWithResponseCode("404");
-  assertNull("Saving SampleResult with HttpMethod & 404 response should not make cache entry.",getThreadCacheEntry(this.httpMethod.getPath()));
-}

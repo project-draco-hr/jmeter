@@ -1,6 +1,0 @@
-{
-  this.httpMethod.setURI(this.url.toURI());
-  saveDetailsWithHttpMethodAndSampleResultWithResponseCode("404");
-  setHeadersWithUrlAndHttpMethod();
-  assertNull("Saving SampleResult with HttpMethod & 404 response should not make cache entry.",getThreadCacheEntry(url.toString()));
-}

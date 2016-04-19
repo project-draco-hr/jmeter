@@ -1,8 +1,6 @@
 {
-  this.cacheManager=new CacheManager();
-  this.currentTimeInGMT=makeDate(new Date());
-  this.url=new URL(LOCAL_HOST);
+  super.setUp();
   this.httpMethod=new HttpPostStub();
-  httpResponse=new HttpResponseStub();
-  this.sampleResultOK=getSampleResultWithSpecifiedResponseCode("200");
+  this.httpResponse=new HttpResponseStub();
+  this.httpMethod.setURI(this.url.toURI());
 }

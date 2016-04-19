@@ -1,0 +1,4 @@
+{
+  Map<String,List<String>> properties=this.httpUrlConnection.getRequestProperties();
+  checkProperty(properties,requestHeader,expectedValue);
+}

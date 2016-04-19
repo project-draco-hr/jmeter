@@ -1,0 +1,6 @@
+{
+  this.cacheManager=new CacheManager();
+  this.currentTimeInGMT=makeDate(new Date());
+  this.url=new URL(LOCAL_HOST);
+  this.sampleResultOK=getSampleResultWithSpecifiedResponseCode("200");
+}

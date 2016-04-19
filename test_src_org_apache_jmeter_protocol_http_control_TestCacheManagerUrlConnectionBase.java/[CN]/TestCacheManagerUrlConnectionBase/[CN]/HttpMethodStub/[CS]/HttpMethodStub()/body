@@ -1,0 +1,5 @@
+{
+  this.lastModifiedHeader=new org.apache.commons.httpclient.Header(HTTPConstants.LAST_MODIFIED,currentTimeInGMT);
+  this.dateHeader=new org.apache.commons.httpclient.Header(HTTPConstants.DATE,currentTimeInGMT);
+  this.etagHeader=new org.apache.commons.httpclient.Header(HTTPConstants.ETAG,EXPECTED_ETAG);
+}

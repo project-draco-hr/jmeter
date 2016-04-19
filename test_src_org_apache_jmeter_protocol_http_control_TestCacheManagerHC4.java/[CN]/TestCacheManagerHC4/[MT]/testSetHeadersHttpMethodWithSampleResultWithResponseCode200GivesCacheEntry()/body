@@ -1,9 +1,0 @@
-{
-  this.httpMethod.setURI(this.url.toURI());
-  this.httpMethod.addHeader(new BasicHeader(HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT));
-  this.httpMethod.addHeader(new BasicHeader(HTTPConstants.ETAG,EXPECTED_ETAG));
-  saveDetailsWithHttpMethodAndSampleResultWithResponseCode("200");
-  setHeadersWithUrlAndHttpMethod();
-  checkRequestHeader(HTTPConstants.IF_NONE_MATCH,EXPECTED_ETAG);
-  checkRequestHeader(HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT);
-}

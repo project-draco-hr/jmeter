@@ -1,0 +1,4 @@
+{
+  cacheResultWithGivenCode("404");
+  assertNull("Saving SampleResult with HttpMethod & 404 response should not make cache entry.",getThreadCacheEntry(LOCAL_HOST));
+}

@@ -1,0 +1,8 @@
+{
+  addRequestHeader(HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT);
+  addRequestHeader(HTTPConstants.ETAG,EXPECTED_ETAG);
+  cacheResultWithGivenCode("200");
+  setRequestHeaders();
+  checkRequestHeader(HTTPConstants.IF_NONE_MATCH,EXPECTED_ETAG);
+  checkRequestHeader(HTTPConstants.IF_MODIFIED_SINCE,this.currentTimeInGMT);
+}
