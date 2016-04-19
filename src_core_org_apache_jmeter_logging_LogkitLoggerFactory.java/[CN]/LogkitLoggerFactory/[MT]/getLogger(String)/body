@@ -1,5 +1,8 @@
 {
   Logger slf4jLogger=null;
+  if (name == null) {
+    name=Logger.ROOT_LOGGER_NAME;
+  }
 synchronized (this) {
     slf4jLogger=loggerMap.get(name);
     if (slf4jLogger == null) {
