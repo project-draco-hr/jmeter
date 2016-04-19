@@ -1,22 +1,33 @@
 {
-  Transport tr=session.getTransport(getProtocol());
-  SynchronousTransportListener listener=null;
-  if (synchronousMode) {
-    listener=new SynchronousTransportListener();
-    tr.addTransportListener(listener);
-  }
-  if (useAuthentication) {
-    tr.connect(smtpServer,username,password);
-  }
+  Transport tr=null;
+  try {
+    tr=session.getTransport(getProtocol());
+    SynchronousTransportListener listener=null;
+    if (synchronousMode) {
+      listener=new SynchronousTransportListener();
+      tr.addTransportListener(listener);
+    }
+    if (useAuthentication) {
+      tr.connect(smtpServer,username,password);
+    }
  else {
-    tr.connect();
+      tr.connect();
+    }
+    tr.sendMessage(message,message.getAllRecipients());
+    if (listener != null) {
+      listener.attend();
+    }
   }
-  tr.sendMessage(message,message.getAllRecipients());
-  if (listener != null) {
-    listener.attend();
+  finally {
+    if (tr != null) {
+      try {
+        tr.close();
+      }
+ catch (      Exception e) {
+      }
+    }
+    logger.debug("transport closed");
   }
-  tr.close();
-  logger.debug("transport closed");
   logger.debug("message sent");
   return;
 }
