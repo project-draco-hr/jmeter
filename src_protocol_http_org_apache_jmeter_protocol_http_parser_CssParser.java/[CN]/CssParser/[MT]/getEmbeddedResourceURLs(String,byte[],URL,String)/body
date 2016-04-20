@@ -10,7 +10,6 @@
           urlCollection.addURL(importRule.getLocationString(),baseUrl);
         }
         @Override public void onUrlDeclaration(        final ICSSTopLevelRule aTopLevelRule,        final CSSDeclaration aDeclaration,        final CSSExpressionMemberTermURI aURITerm){
-          urlCollection.addURL(aURITerm.getURIString(),baseUrl);
         }
       }
 );
