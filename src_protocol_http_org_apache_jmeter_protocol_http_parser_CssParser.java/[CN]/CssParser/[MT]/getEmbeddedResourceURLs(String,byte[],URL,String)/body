@@ -7,7 +7,10 @@
     if (aCSS != null) {
       CSSVisitor.visitCSSUrl(aCSS,new DefaultCSSUrlVisitor(){
         @Override public void onImport(        final CSSImportRule importRule){
-          urlCollection.addURL(importRule.getLocationString(),baseUrl);
+          String location=importRule.getLocationString();
+          if (!StringUtils.isEmpty(location)) {
+            urlCollection.addURL(importRule.getLocationString(),baseUrl);
+          }
         }
         @Override public void onUrlDeclaration(        final ICSSTopLevelRule aTopLevelRule,        final CSSDeclaration aDeclaration,        final CSSExpressionMemberTermURI aURITerm){
         }
