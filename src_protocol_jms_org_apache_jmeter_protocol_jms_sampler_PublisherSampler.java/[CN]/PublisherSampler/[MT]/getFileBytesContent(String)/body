@@ -7,7 +7,7 @@
   }
  catch (  Exception e) {
     log.error(e.getLocalizedMessage(),e);
-    throw new IllegalStateException("Unable to load file",e);
+    throw new IllegalStateException("Unable to load file:'" + path + "'",e);
   }
  finally {
     JOrphanUtils.closeQuietly(inputStream);
