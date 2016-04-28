@@ -2,7 +2,7 @@
   long now=System.currentTimeMillis();
   println("Tidying up remote @ " + new Date(now) + " ("+ now+ ")");
   if (engines != null) {
-    println("Exitting remote servers");
+    println("Exiting remote servers");
     for (    JMeterEngine e : engines) {
       e.exit();
     }

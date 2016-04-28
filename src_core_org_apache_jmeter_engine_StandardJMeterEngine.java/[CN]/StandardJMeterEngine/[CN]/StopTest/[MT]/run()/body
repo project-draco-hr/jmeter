@@ -9,8 +9,8 @@
       if (JMeter.isNonGUI()) {
         log.fatalError(JMeterUtils.getResString("stopping_test_failed"));
         if (SYSTEM_EXIT_ON_STOP_FAIL) {
-          log.fatalError("Exitting");
-          System.out.println("Fatal error, could not stop test, exitting");
+          log.fatalError("Exiting");
+          System.out.println("Fatal error, could not stop test, exiting");
           System.exit(1);
         }
  else {
