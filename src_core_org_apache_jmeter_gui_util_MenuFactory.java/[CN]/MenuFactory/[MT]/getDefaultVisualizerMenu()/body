@@ -1,5 +1,6 @@
 {
   JPopupMenu pop=new JPopupMenu();
+  pop.add(MenuFactory.makeMenuItemRes("clear",ActionNames.CLEAR));
   MenuFactory.addEditMenu(pop,true);
   MenuFactory.addFileMenu(pop);
   return pop;
