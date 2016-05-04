@@ -84,7 +84,7 @@
     res.setResponseCode(Integer.toString(statusCode));
     res.setResponseMessage(statusLine.getReasonPhrase());
     res.setSuccessful(isSuccessCode(statusCode));
-    res.setResponseHeaders(getResponseHeaders(httpResponse));
+    res.setResponseHeaders(getResponseHeaders(httpResponse,localContext));
     if (res.isRedirect()) {
       final Header headerLocation=httpResponse.getLastHeader(HTTPConstants.HEADER_LOCATION);
       if (headerLocation == null) {

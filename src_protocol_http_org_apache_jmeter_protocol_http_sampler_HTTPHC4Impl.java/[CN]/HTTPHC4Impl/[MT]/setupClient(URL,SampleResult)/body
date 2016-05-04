@@ -56,7 +56,7 @@
       ((AbstractHttpClient)httpClient).setKeepAliveStrategy(IDLE_STRATEGY);
     }
     ((AbstractHttpClient)httpClient).setReuseStrategy(DefaultClientConnectionReuseStrategy.INSTANCE);
-    ((AbstractHttpClient)httpClient).addResponseInterceptor(new ResponseContentEncoding());
+    ((AbstractHttpClient)httpClient).addResponseInterceptor(RESPONSE_CONTENT_ENCODING);
     ((AbstractHttpClient)httpClient).addResponseInterceptor(METRICS_SAVER);
     ((AbstractHttpClient)httpClient).addRequestInterceptor(METRICS_RESETTER);
     SchemeRegistry schemeRegistry=httpClient.getConnectionManager().getSchemeRegistry();

@@ -4,10 +4,7 @@
     Header[] requestHeaders=method.getAllHeaders();
     for (    Header requestHeader : requestHeaders) {
       if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(requestHeader.getName())) {
-        hdrs.append(requestHeader.getName());
-        hdrs.append(": ");
-        hdrs.append(requestHeader.getValue());
-        hdrs.append("\n");
+        writeResponseHeader(hdrs,requestHeader);
       }
     }
     return hdrs.toString();
