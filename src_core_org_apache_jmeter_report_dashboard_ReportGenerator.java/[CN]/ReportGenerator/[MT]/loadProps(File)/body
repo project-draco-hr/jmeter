@@ -1,0 +1,11 @@
+{
+  final Properties props=new Properties();
+  try (FileInputStream inStream=new FileInputStream(file)){
+    props.load(inStream);
+  }
+ catch (  IOException e) {
+    LOG.error("Problem loading properties ",e);
+    System.err.println("Problem loading properties " + e);
+  }
+  return props;
+}

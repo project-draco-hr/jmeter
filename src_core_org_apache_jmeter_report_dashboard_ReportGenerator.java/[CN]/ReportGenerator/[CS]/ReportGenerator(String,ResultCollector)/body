@@ -18,5 +18,8 @@
   }
   this.resultCollector=resultCollector;
   this.testFile=file;
-  configuration=ReportGeneratorConfiguration.loadFromProperties(JMeterUtils.getJMeterProperties());
+  final Properties merged=new Properties();
+  merged.putAll(loadProps(new File(JMeterUtils.getJMeterBinDir(),REPORTGENERATOR_PROPERTIES)));
+  merged.putAll(JMeterUtils.getJMeterProperties());
+  configuration=ReportGeneratorConfiguration.loadFromProperties(merged);
 }
