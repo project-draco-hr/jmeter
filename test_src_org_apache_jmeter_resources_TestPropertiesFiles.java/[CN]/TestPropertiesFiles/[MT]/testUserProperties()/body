@@ -1,0 +1,4 @@
+{
+  Properties props=loadProps(new File(JMeterUtils.getJMeterBinDir(),"user.properties"));
+  assertTrue("user.properties should not contain any enabled properties",props.isEmpty());
+}

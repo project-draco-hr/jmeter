@@ -1,0 +1,7 @@
+{
+  Properties props=new Properties();
+  try (FileInputStream inStream=new FileInputStream(file)){
+    props.load(inStream);
+  }
+   return props;
+}

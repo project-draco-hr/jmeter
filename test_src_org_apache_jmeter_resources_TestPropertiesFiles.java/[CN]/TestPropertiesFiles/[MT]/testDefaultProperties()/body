@@ -1,0 +1,18 @@
+{
+  Properties jmeter=loadProps(new File(JMeterUtils.getJMeterBinDir(),"jmeter.properties"));
+  Properties report=loadProps(new File(JMeterUtils.getJMeterBinDir(),"reportgenerator.properties"));
+{
+    Enumeration<?> names=jmeter.propertyNames();
+    while (names.hasMoreElements()) {
+      final Object key=names.nextElement();
+      assertFalse("reportgenerator should not contain the jmeter key " + key,report.containsKey(key));
+    }
+  }
+{
+    Enumeration<?> names=report.propertyNames();
+    while (names.hasMoreElements()) {
+      final Object key=names.nextElement();
+      assertFalse("jmeter should not contain the reportgenerator key " + key,jmeter.containsKey(key));
+    }
+  }
+}
