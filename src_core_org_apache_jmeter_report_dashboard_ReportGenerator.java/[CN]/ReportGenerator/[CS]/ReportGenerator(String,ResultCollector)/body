@@ -19,7 +19,14 @@
   this.resultCollector=resultCollector;
   this.testFile=file;
   final Properties merged=new Properties();
-  merged.putAll(loadProps(new File(JMeterUtils.getJMeterBinDir(),REPORTGENERATOR_PROPERTIES)));
+  File rgp=new File(JMeterUtils.getJMeterBinDir(),REPORTGENERATOR_PROPERTIES);
+  if (LOG.isInfoEnabled()) {
+    LOG.info("Reading report generator properties from:" + rgp.getAbsolutePath());
+  }
+  merged.putAll(loadProps(rgp));
+  if (LOG.isInfoEnabled()) {
+    LOG.info("Merging with JMeter properties");
+  }
   merged.putAll(JMeterUtils.getJMeterProperties());
   configuration=ReportGeneratorConfiguration.loadFromProperties(merged);
 }
