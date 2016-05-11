@@ -6,16 +6,5 @@
   for (  Header responseHeader : rh) {
     writeResponseHeader(headerBuf,responseHeader);
   }
-  List<Header[]> backupHeaders=(List<Header[]>)localContext.getAttribute(JMETER_RESPONSE_BACKUP_HEADERS);
-  if (backupHeaders != null) {
-    for (    Header[] headers : backupHeaders) {
-      for (      Header responseHeader : headers) {
-        if (response.containsHeader(responseHeader.getName())) {
-          break;
-        }
-        writeResponseHeader(headerBuf,responseHeader);
-      }
-    }
-  }
   return headerBuf.toString();
 }
