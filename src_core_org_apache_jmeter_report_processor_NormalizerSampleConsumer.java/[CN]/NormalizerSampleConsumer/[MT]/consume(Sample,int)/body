@@ -2,15 +2,15 @@
   Date date=null;
   try {
     String tStr=s.getData(timestamp);
-    try {
+    if (isMillisFormat) {
       date=new Date(Long.parseLong(tStr));
     }
- catch (    NumberFormatException ex) {
-      date=df.parse(tStr);
+ else {
+      date=dateFormat.parse(tStr);
     }
   }
  catch (  Exception e) {
-    throw new SampleException(String.format(PARSE_TIMESTAMP_EXCEPTION_MESSAGE,s.getData(timestamp),s.toString()),e);
+    throw new SampleException(String.format(PARSE_TIMESTAMP_EXCEPTION_MESSAGE,s.getData(timestamp),TIMESTAMP_FORMAT,s.toString()),e);
   }
   long time=date.getTime();
   int cc=sampleMetadata.getColumnCount();

@@ -1,0 +1,12 @@
+{
+  if (SampleSaveConfiguration.NONE.equalsIgnoreCase(TIMESTAMP_FORMAT)) {
+    throw new SampleException("'none' format for 'jmeter.save.saveservice.timestamp_format' property is not accepted for report generation");
+  }
+  log.info("Using format:" + TIMESTAMP_FORMAT + " to parse timeStamp field");
+  isMillisFormat=SampleSaveConfiguration.MILLISECONDS.equalsIgnoreCase(TIMESTAMP_FORMAT);
+  SimpleDateFormat formatter=null;
+  if (!isMillisFormat) {
+    formatter=new SimpleDateFormat(TIMESTAMP_FORMAT);
+  }
+  return formatter;
+}
