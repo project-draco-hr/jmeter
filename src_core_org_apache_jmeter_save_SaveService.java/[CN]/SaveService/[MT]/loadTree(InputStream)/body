@@ -1,12 +1,12 @@
 {
   try {
-    return readTree(reader,null);
+    return readTree(inputStream,null);
   }
  catch (  IllegalArgumentException e) {
     log.error("Problem loading XML, message:" + e.getMessage(),e);
     return null;
   }
  finally {
-    JOrphanUtils.closeQuietly(reader);
+    JOrphanUtils.closeQuietly(inputStream);
   }
 }

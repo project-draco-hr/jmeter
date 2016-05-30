@@ -1,6 +1,6 @@
 {
   log.info("Loading file: " + file);
-  try (InputStream reader=new FileInputStream(file)){
-    return readTree(reader,file);
+  try (InputStream inputStream=new FileInputStream(file);BufferedInputStream bufferedInputStream=new BufferedInputStream(inputStream)){
+    return readTree(bufferedInputStream,file);
   }
  }
