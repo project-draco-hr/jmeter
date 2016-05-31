@@ -1,4 +1,9 @@
 {
   JsonPath jsonPathParser=getJsonPath(jsonPath);
-  return jsonPathParser.read(jsonString,DEFAULT_CONFIGURATION);
+  List<Object> extractedObjects=jsonPathParser.read(jsonString,DEFAULT_CONFIGURATION);
+  List<Object> results=new ArrayList<>(extractedObjects.size());
+  for (  Object obj : extractedObjects) {
+    results.add(stringifyJSONObject(obj));
+  }
+  return results;
 }

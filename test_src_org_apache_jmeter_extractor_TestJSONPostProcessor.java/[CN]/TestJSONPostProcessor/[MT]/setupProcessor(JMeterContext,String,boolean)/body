@@ -1,0 +1,8 @@
+{
+  JSONPostProcessor processor=new JSONPostProcessor();
+  processor.setThreadContext(context);
+  processor.setRefNames(VAR_NAME);
+  processor.setMatchNumbers(matchNumbers);
+  processor.setComputeConcatenation(computeConcatenation);
+  return processor;
+}

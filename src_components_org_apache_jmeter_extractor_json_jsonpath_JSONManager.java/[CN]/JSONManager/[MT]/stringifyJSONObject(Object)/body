@@ -1,0 +1,9 @@
+{
+  if (obj instanceof Map) {
+    return new JSONObject((Map<String,?>)obj).toJSONString();
+  }
+  if (obj instanceof JSONArray) {
+    return ((JSONArray)obj).toJSONString();
+  }
+  return obj == null ? "" : obj.toString();
+}

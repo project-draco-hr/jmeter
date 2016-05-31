@@ -1,0 +1,17 @@
+{
+  JMeterContext context=JMeterContextService.getContext();
+  JSONPostProcessor processor=setupProcessor(context,"0",false);
+  String innerValue="{\"a\":\"one\",\"b\":\"two\"}";
+  String data="{\"context\":" + innerValue + "}";
+  SampleResult result=new SampleResult();
+  result.setResponseData(data.getBytes(StandardCharsets.UTF_8));
+  JMeterVariables vars=new JMeterVariables();
+  context.setVariables(vars);
+  context.setPreviousResult(result);
+  processor.setJsonPathExpressions("$.context");
+  processor.process();
+  JSONParser parser=new JSONParser(0);
+  Object expectedValue=parser.parse(innerValue);
+  Assert.assertEquals(expectedValue,parser.parse(vars.get(VAR_NAME)));
+  Assert.assertEquals("1",vars.get(VAR_NAME + "_matchNr"));
+}

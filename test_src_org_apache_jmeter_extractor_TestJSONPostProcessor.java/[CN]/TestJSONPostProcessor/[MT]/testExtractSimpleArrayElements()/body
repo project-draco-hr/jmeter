@@ -1,0 +1,18 @@
+{
+  JMeterContext context=JMeterContextService.getContext();
+  JSONPostProcessor processor=setupProcessor(context,"-1");
+  String data="[1,2,3]";
+  SampleResult result=new SampleResult();
+  result.setResponseData(data.getBytes(StandardCharsets.UTF_8));
+  JMeterVariables vars=new JMeterVariables();
+  context.setVariables(vars);
+  context.setPreviousResult(result);
+  processor.setJsonPathExpressions("$[*]");
+  processor.process();
+  Assert.assertEquals("1,2,3",vars.get(VAR_NAME + "_ALL"));
+  for (int i=1; i <= 3; i++) {
+    String v=Integer.toString(i);
+    Assert.assertEquals(v,vars.get(VAR_NAME + "_" + v));
+  }
+  Assert.assertEquals("3",vars.get(VAR_NAME + "_matchNr"));
+}

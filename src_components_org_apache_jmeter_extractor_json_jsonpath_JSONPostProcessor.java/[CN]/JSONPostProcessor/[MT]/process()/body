@@ -49,10 +49,11 @@
             if (matchNumber < 0) {
               int index=1;
               StringBuilder concat=new StringBuilder(getComputeConcatenation() ? extractedValues.size() * 20 : 1);
-              for (              Object stringExtracted : extractedValues) {
-                vars.put(currentRefName + "_" + index,stringExtracted != null ? stringExtracted.toString() : "");
+              for (              Object extractedObject : extractedValues) {
+                String extractedString=stringify(extractedObject);
+                vars.put(currentRefName + "_" + index,extractedString);
                 if (getComputeConcatenation()) {
-                  concat.append(stringExtracted).append(JSONPostProcessor.JSON_CONCATENATION_SEPARATOR);
+                  concat.append(extractedString).append(JSONPostProcessor.JSON_CONCATENATION_SEPARATOR);
                 }
                 index++;
               }
@@ -63,8 +64,8 @@
             }
  else             if (matchNumber == 0) {
               int matchSize=extractedValues.size();
-              Object obj=extractedValues.get(JMeterUtils.getRandomInt(matchSize));
-              vars.put(currentRefName,obj != null ? obj.toString() : "");
+              int matchNr=JMeterUtils.getRandomInt(matchSize);
+              placeObjectIntoVars(vars,currentRefName,extractedValues,matchNr);
             }
  else {
               if (matchNumber > extractedValues.size()) {
@@ -74,17 +75,14 @@
                 vars.put(currentRefName,defaultValues[i]);
               }
  else {
-                Object obj=extractedValues.get(matchNumber - 1);
-                vars.put(currentRefName,obj != null ? obj.toString() : "");
+                placeObjectIntoVars(vars,currentRefName,extractedValues,matchNumber - 1);
               }
             }
           }
  else {
-            Object obj=extractedValues.get(0);
-            String objAsString=obj != null ? obj.toString() : "";
-            vars.put(currentRefName,objAsString);
+            placeObjectIntoVars(vars,currentRefName,extractedValues,0);
             if (matchNumber < 0 && getComputeConcatenation()) {
-              vars.put(currentRefName + ALL_SUFFIX,objAsString);
+              vars.put(currentRefName + ALL_SUFFIX,vars.get(currentRefName));
             }
           }
           vars.put(currentRefName + REF_MATCH_NR,Integer.toString(extractedValues.size()));
