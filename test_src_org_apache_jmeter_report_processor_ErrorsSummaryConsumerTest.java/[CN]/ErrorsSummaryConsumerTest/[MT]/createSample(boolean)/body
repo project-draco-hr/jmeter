@@ -1,0 +1,5 @@
+{
+  SampleMetadata metadata=new SampleMetadata(',',CSVSaveService.SUCCESSFUL);
+  Sample sample=new Sample(0,metadata,String.valueOf(success));
+  return sample;
+}

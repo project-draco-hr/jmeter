@@ -1,0 +1,10 @@
+{
+  ErrorsSummaryConsumer consumer=new ErrorsSummaryConsumer();
+  Sample sample=createSample(false);
+  AbstractSummaryConsumer<Long>.SummaryInfo info=consumer.new SummaryInfo(false);
+  Assert.assertEquals(null,info.getData());
+  consumer.updateData(info,sample);
+  Assert.assertEquals(Long.valueOf(1),info.getData());
+  consumer.updateData(info,sample);
+  Assert.assertEquals(Long.valueOf(2),info.getData());
+}
