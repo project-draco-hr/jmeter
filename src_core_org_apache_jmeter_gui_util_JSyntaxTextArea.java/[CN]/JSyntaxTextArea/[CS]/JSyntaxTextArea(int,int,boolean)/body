@@ -6,7 +6,13 @@
   super.setLineWrap(LINE_WRAP);
   super.setWrapStyleWord(WRAP_STYLE_WORD);
   this.disableUndo=disableUndo;
-  setFont(new Font(USER_FONT_FAMILY,Font.PLAIN,USER_FONT_SIZE));
+  if (USER_FONT_FAMILY != null) {
+    int fontSize=USER_FONT_SIZE > 0 ? USER_FONT_SIZE : getFont().getSize();
+    setFont(new Font(USER_FONT_FAMILY,Font.PLAIN,fontSize));
+    if (log.isDebugEnabled()) {
+      log.debug("Font is set to: " + getFont());
+    }
+  }
   if (disableUndo) {
     discardAllEdits();
   }
