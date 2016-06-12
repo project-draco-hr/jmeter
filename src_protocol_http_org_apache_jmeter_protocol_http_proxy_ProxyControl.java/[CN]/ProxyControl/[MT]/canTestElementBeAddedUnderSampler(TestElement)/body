@@ -1,0 +1,15 @@
+{
+  boolean isElementAddable=testElement instanceof Visualizer || testElement instanceof ConfigElement || testElement instanceof Assertion|| testElement instanceof Timer|| testElement instanceof PreProcessor|| testElement instanceof PostProcessor;
+  if (isElementAddable) {
+    if (testElement.getProperty(TestElement.GUI_CLASS) != null) {
+      return true;
+    }
+ else {
+      log.error("Cannot add element with no " + TestElement.GUI_CLASS + " property "+ "for testElement:"+ testElement);
+      return false;
+    }
+  }
+ else {
+    return false;
+  }
+}

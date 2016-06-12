@@ -28,7 +28,7 @@
       @SuppressWarnings("unchecked") Collection<ConfigTestElement> defaultConfigurations=(Collection<ConfigTestElement>)findApplicableElements(myTarget,ConfigTestElement.class,false);
       @SuppressWarnings("unchecked") Collection<Arguments> userDefinedVariables=(Collection<Arguments>)findApplicableElements(myTarget,Arguments.class,true);
       removeValuesFromSampler(sampler,defaultConfigurations);
-      replaceValues(sampler,subConfigs,userDefinedVariables);
+      replaceValues(sampler,testElements,userDefinedVariables);
       sampler.setAutoRedirects(samplerRedirectAutomatically);
       sampler.setFollowRedirects(samplerFollowRedirects);
       sampler.setUseKeepAlive(useKeepAlive);
@@ -38,11 +38,11 @@
         sampler.setName(prefix + sampler.getName());
         result.setSampleLabel(prefix + result.getSampleLabel());
       }
-      Authorization authorization=createAuthorization(subConfigs,sampler);
+      Authorization authorization=createAuthorization(testElements,sampler);
       if (authorization != null) {
         setAuthorization(authorization,myTarget);
       }
-      placeSampler(sampler,subConfigs,myTarget);
+      placeSampler(sampler,testElements,myTarget);
     }
  else {
       if (log.isDebugEnabled()) {

@@ -1,7 +1,7 @@
 {
   Header authHeader=null;
   Authorization authorization=null;
-  for (  TestElement te : subConfigs) {
+  for (  TestElement te : testElements) {
     if (te instanceof HeaderManager) {
       @SuppressWarnings("unchecked") List<TestElementProperty> headers=(ArrayList<TestElementProperty>)((HeaderManager)te).getHeaders().getObjectValue();
       for (Iterator<?> iterator=headers.iterator(); iterator.hasNext(); ) {

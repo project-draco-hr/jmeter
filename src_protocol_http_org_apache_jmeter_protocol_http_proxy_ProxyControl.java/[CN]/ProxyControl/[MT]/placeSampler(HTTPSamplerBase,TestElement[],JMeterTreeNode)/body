@@ -50,11 +50,9 @@
             }
             addTimers(treeModel,newNode,deltaTFinal);
           }
-          for (int i=0; subConfigs != null && i < subConfigs.length; i++) {
-            if (subConfigs[i] instanceof HeaderManager) {
-              final TestElement headerManager=subConfigs[i];
-              headerManager.setProperty(TestElement.GUI_CLASS,HEADER_PANEL);
-              treeModel.addComponent(headerManager,newNode);
+          for (int i=0; testElements != null && i < testElements.length; i++) {
+            if (canTestElementBeAddedUnderSampler(testElements[i])) {
+              treeModel.addComponent(testElements[i],newNode);
             }
           }
         }
