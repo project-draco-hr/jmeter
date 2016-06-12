@@ -1,6 +1,13 @@
 {
   log.info("Exiting");
-  backingEngine.exit();
+  Thread et=new Thread(){
+    @Override public void run(){
+      log.info("Stopping the backing engine");
+      backingEngine.exit();
+    }
+  }
+;
+  et.setDaemon(false);
   Registry reg=LocateRegistry.getRegistry(this.rmiPort);
   try {
     reg.unbind(JMETER_ENGINE_RMI_NAME);
@@ -10,4 +17,5 @@
   }
   log.info("Unbound from registry");
   JMeterUtils.helpGC();
+  et.start();
 }
