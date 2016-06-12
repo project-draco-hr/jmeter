@@ -1,0 +1,14 @@
+{
+  if (hasCorrectInterface(testElement,addableInterfaces)) {
+    if (testElement.getProperty(TestElement.GUI_CLASS) != null) {
+      return true;
+    }
+ else {
+      log.error("Cannot add element that lacks the " + TestElement.GUI_CLASS + " property "+ " as testElement:"+ testElement);
+      return false;
+    }
+  }
+ else {
+    return false;
+  }
+}

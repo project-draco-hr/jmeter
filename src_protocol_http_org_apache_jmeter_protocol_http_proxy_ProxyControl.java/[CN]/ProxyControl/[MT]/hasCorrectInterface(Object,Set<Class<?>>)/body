@@ -1,0 +1,8 @@
+{
+  for (  Class<?> klass : klasses) {
+    if (klass != null && klass.isInstance(obj)) {
+      return true;
+    }
+  }
+  return false;
+}

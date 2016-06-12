@@ -52,7 +52,7 @@
           }
           if (testElements != null) {
             for (            TestElement testElement : testElements) {
-              if (canTestElementBeAddedUnderSampler(testElement)) {
+              if (isAddableTestElement(testElement)) {
                 treeModel.addComponent(testElement,newNode);
               }
             }
