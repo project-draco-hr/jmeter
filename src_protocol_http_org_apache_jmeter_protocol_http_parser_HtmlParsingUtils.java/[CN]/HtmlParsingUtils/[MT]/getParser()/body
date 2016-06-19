@@ -1,8 +1,8 @@
 {
   log.debug("Start : getParser1");
   Tidy tidy=new Tidy();
-  tidy.setInputEncoding("UTF8");
-  tidy.setOutputEncoding("UTF8");
+  tidy.setInputEncoding(StandardCharsets.UTF_8.name());
+  tidy.setOutputEncoding(StandardCharsets.UTF_8.name());
   tidy.setQuiet(true);
   tidy.setShowWarnings(false);
   if (log.isDebugEnabled()) {

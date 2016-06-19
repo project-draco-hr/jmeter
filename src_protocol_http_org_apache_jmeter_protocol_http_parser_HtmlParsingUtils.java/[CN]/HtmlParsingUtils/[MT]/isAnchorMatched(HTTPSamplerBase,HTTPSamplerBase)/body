@@ -1,7 +1,7 @@
 {
   String query=null;
   try {
-    query=URLDecoder.decode(newLink.getQueryString(),"UTF-8");
+    query=URLDecoder.decode(newLink.getQueryString(),StandardCharsets.UTF_8.name());
   }
  catch (  UnsupportedEncodingException e) {
     log.error("UTF-8 encoding not supported!");

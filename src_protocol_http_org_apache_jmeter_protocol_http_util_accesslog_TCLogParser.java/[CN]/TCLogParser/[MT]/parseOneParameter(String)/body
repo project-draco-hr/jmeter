@@ -14,7 +14,7 @@
  else {
     if (decode) {
       try {
-        value=URLDecoder.decode(value,"UTF-8");
+        value=URLDecoder.decode(value,StandardCharsets.UTF_8.name());
       }
  catch (      UnsupportedEncodingException e) {
         log.warn(e.getMessage());

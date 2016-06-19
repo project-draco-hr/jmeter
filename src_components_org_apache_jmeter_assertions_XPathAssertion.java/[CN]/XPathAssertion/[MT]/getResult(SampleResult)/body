@@ -8,7 +8,7 @@
     if (isScopeVariable()) {
       String inputString=getThreadContext().getVariables().get(getVariableName());
       if (!StringUtils.isEmpty(inputString)) {
-        responseData=inputString.getBytes("UTF-8");
+        responseData=inputString.getBytes(StandardCharsets.UTF_8);
       }
     }
  else {
