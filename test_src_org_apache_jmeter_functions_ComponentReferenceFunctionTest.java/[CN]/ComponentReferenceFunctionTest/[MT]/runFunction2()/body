@@ -1,7 +1,5 @@
 {
-  Iterator<?> i=funcItem.getArgumentDesc().iterator();
-  while (i.hasNext()) {
-    Object o=i.next();
+  for (  Object o : funcItem.getArgumentDesc()) {
     assertTrue("Description must be a String",o instanceof String);
     assertFalse("Description must not start with [refkey",((String)o).startsWith("[refkey"));
   }
