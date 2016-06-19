@@ -1,12 +1,11 @@
 {
   String url=entry;
-  if (entry.indexOf('"') > -1 && checkMethod(entry)) {
-    StringTokenizer tokens=null;
-    tokens=this.tokenize(entry,"\"");
+  if (entry.contains("\"") && checkMethod(entry)) {
+    StringTokenizer tokens=this.tokenize(entry,"\"");
     while (tokens.hasMoreTokens()) {
-      String toke=tokens.nextToken();
-      if (checkMethod(toke)) {
-        StringTokenizer token2=this.tokenize(toke," ");
+      String token=tokens.nextToken();
+      if (checkMethod(token)) {
+        StringTokenizer token2=this.tokenize(token," ");
         while (token2.hasMoreTokens()) {
           String t=(String)token2.nextElement();
           if (t.equalsIgnoreCase(GET)) {

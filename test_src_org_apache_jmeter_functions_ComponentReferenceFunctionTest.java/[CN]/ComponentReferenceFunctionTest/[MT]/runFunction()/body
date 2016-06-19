@@ -5,7 +5,7 @@
     if (ct) {
       funcTitles.put(title,Boolean.TRUE);
     }
-    if (title.indexOf("(ALPHA") == -1 && title.indexOf("(EXPERIMENTAL") == -1) {
+    if (!title.contains("(ALPHA") && !title.contains("(EXPERIMENTAL")) {
       String s="function.xml needs '" + title + "' entry for "+ funcItem.getClass().getName();
       if (!ct) {
         LOG.warn(s);

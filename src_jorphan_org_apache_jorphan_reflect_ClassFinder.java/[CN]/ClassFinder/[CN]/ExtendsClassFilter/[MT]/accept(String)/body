@@ -1,11 +1,11 @@
 {
-  if (contains != null && className.indexOf(contains) == -1) {
+  if (contains != null && !className.contains(contains)) {
     return false;
   }
-  if (notContains != null && className.indexOf(notContains) != -1) {
+  if (notContains != null && className.contains(notContains)) {
     return false;
   }
-  if ((className.indexOf('$') == -1) || inner) {
+  if (!className.contains("$") || inner) {
     if (isChildOf(parents,className,contextClassLoader)) {
       return true;
     }

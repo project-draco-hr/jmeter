@@ -1,5 +1,5 @@
 {
-  if ((className.indexOf('$') == -1) || inner) {
+  if (!className.contains("$") || inner) {
     if (hasAnnotationOnMethod(annotations,className,contextClassLoader)) {
       return true;
     }

@@ -1,6 +1,6 @@
 {
   String dn=defaultBundle.getString("displayName").toUpperCase(Locale.ENGLISH);
-  if (dn.indexOf("(ALPHA") != -1 || dn.indexOf("(EXPERIMENTAL") != -1) {
+  if (dn.contains("(ALPHA") || dn.contains("(EXPERIMENTAL")) {
     return;
   }
   PropertyDescriptor[] descriptors=beanInfo.getPropertyDescriptors();
