@@ -1,0 +1,19 @@
+{
+  System.out.println(JMeterUtils.getProperty("jmeter.save.saveservice.timestamp_format"));
+  final String RESULT="1,2,3,4,5,6,7,true,,8,9,10,11,12";
+  SampleResult result=new SampleResult();
+  result.setSaveConfig(new SampleSaveConfiguration());
+  result.setStampAndTime(1,2);
+  result.setSampleLabel("3");
+  result.setResponseCode("4");
+  result.setResponseMessage("5");
+  result.setThreadName("6");
+  result.setDataType("7");
+  result.setSuccessful(true);
+  result.setBytes(8);
+  result.setGroupThreads(9);
+  result.setAllThreads(10);
+  result.setLatency(11);
+  result.setIdleTime(12);
+  assertEquals("Result text has changed",RESULT,CSVSaveService.resultToDelimitedString(new SampleEvent(result,"")));
+}
