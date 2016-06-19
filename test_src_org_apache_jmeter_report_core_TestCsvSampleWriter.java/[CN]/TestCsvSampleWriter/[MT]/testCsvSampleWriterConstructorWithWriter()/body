@@ -2,6 +2,6 @@
   try (Writer writer=new StringWriter();CsvSampleWriter csvWriter=new CsvSampleWriter(writer,metadata)){
     csvWriter.writeHeader();
     csvWriter.flush();
-    assertEquals("a,b\n",writer.toString());
+    assertEquals("a,b" + LINE_SEP,writer.toString());
   }
  }

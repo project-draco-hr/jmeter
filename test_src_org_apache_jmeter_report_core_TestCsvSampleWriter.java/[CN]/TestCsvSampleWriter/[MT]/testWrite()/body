@@ -3,6 +3,6 @@
     Sample sample=new SampleBuilder(metadata).add("a1").add("b1").build();
     csvWriter.write(sample);
     csvWriter.flush();
-    assertEquals("a1,b1\n",writer.toString());
+    assertEquals("a1,b1" + LINE_SEP,writer.toString());
   }
  }
