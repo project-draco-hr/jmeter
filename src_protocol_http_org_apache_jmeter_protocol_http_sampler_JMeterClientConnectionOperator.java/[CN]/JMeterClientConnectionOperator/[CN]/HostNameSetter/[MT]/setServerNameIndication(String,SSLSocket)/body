@@ -6,13 +6,7 @@
     try {
       setter.invoke(sslsock,hostname);
     }
- catch (    IllegalArgumentException e) {
-      setServerNameIndicationFail(e);
-    }
-catch (    IllegalAccessException e) {
-      setServerNameIndicationFail(e);
-    }
-catch (    InvocationTargetException e) {
+ catch (    IllegalArgumentException|IllegalAccessException|InvocationTargetException e) {
       setServerNameIndicationFail(e);
     }
   }

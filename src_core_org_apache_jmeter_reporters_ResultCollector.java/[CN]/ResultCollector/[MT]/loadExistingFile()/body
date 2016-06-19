@@ -28,10 +28,7 @@
             SaveService.loadTestResults(bufferedInputStream,new ResultCollectorHelper(this,visualizer));
             parsedOK=true;
           }
- catch (          ConversionException e) {
-            log.warn("Failed to load " + filename + " using XStream. Error was: "+ e);
-          }
-catch (          Exception e) {
+ catch (          Exception e) {
             log.warn("Failed to load " + filename + " using XStream. Error was: "+ e);
           }
         }

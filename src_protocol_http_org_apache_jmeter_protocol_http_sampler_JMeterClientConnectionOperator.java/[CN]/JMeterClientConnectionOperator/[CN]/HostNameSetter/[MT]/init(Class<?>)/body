@@ -3,10 +3,7 @@
   try {
     s=cls.getMethod("setHost",String.class);
   }
- catch (  SecurityException e) {
-    initFail(e);
-  }
-catch (  NoSuchMethodException e) {
+ catch (  SecurityException|NoSuchMethodException e) {
     initFail(e);
   }
   CURRENT.set(new HostNameSetter(cls,s));
