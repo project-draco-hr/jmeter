@@ -1,17 +1,12 @@
 {
   if (query != null && query.length() > 0) {
     try {
-      query=URLDecoder.decode(query,CHARSET_DECODE);
+      return URLDecoder.decode(query,CHARSET_DECODE);
     }
- catch (    IllegalArgumentException e) {
+ catch (    IllegalArgumentException|UnsupportedEncodingException e) {
       log.warn("Error decoding query, maybe your request parameters should be encoded:" + query,e);
-      return null;
+      return query;
     }
-catch (    UnsupportedEncodingException uee) {
-      log.warn("Error decoding query, maybe your request parameters should be encoded:" + query,uee);
-      return null;
-    }
-    return query;
   }
-  return null;
+  return "";
 }
