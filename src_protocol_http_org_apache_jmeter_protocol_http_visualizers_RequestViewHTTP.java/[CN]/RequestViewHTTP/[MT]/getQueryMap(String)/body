@@ -3,8 +3,7 @@
   String[] params=query.split(PARAM_CONCATENATE);
   for (  String param : params) {
     String[] paramSplit=param.split("=");
-    String name=paramSplit[0];
-    name=decodeQuery(name);
+    String name=decodeQuery(paramSplit[0]);
     if (name.trim().startsWith("<?")) {
       map.put(" ",new String[]{query});
       return map;
@@ -15,8 +14,7 @@
     }
     String value="";
     if (paramSplit.length > 1) {
-      value=paramSplit[1];
-      value=decodeQuery(value);
+      value=decodeQuery(paramSplit[1]);
     }
     String[] known=map.get(name);
     if (known == null) {
