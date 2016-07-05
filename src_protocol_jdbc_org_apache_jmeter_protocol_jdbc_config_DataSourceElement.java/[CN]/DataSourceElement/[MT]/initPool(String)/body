@@ -35,7 +35,10 @@
   dataSource.setTestWhileIdle(false);
   if (isKeepAlive()) {
     dataSource.setTestWhileIdle(true);
-    dataSource.setValidationQuery(getCheckQuery());
+    String validationQuery=getCheckQuery();
+    if (!StringUtils.isBlank(validationQuery)) {
+      dataSource.setValidationQuery(validationQuery);
+    }
     dataSource.setSoftMinEvictableIdleTimeMillis(Long.parseLong(getConnectionAge()));
     dataSource.setTimeBetweenEvictionRunsMillis(Integer.parseInt(getTrimInterval()));
   }
