@@ -1,6 +1,15 @@
 {
   JsonPath jsonPathParser=getJsonPath(jsonPath);
-  List<Object> extractedObjects=jsonPathParser.read(jsonString,DEFAULT_CONFIGURATION);
+  List<Object> extractedObjects;
+  try {
+    extractedObjects=jsonPathParser.read(jsonString,DEFAULT_CONFIGURATION);
+  }
+ catch (  PathNotFoundException e) {
+    if (log.isDebugEnabled()) {
+      log.debug("Could not find JSON Path " + jsonPath + " in ["+ jsonString+ "]: "+ e.getLocalizedMessage());
+    }
+    return Collections.emptyList();
+  }
   List<Object> results=new ArrayList<>(extractedObjects.size());
   for (  Object obj : extractedObjects) {
     results.add(stringifyJSONObject(obj));
