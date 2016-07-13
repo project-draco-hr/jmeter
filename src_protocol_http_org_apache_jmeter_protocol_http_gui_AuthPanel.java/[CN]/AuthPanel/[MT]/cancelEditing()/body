@@ -1,0 +1,6 @@
+{
+  if (authTable.isEditing()) {
+    TableCellEditor cellEditor=authTable.getCellEditor(authTable.getEditingRow(),authTable.getEditingColumn());
+    cellEditor.cancelCellEditing();
+  }
+}

@@ -1,0 +1,10 @@
+{
+  if (tableModel.getRowCount() == 0) {
+    deleteButton.setEnabled(false);
+    saveButton.setEnabled(false);
+  }
+ else {
+    deleteButton.setEnabled(true);
+    saveButton.setEnabled(true);
+  }
+}

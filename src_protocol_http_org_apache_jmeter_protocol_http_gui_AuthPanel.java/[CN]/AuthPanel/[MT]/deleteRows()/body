@@ -1,0 +1,19 @@
+{
+  cancelEditing();
+  int[] rowsSelected=authTable.getSelectedRows();
+  int anchorSelection=authTable.getSelectionModel().getAnchorSelectionIndex();
+  authTable.clearSelection();
+  if (rowsSelected.length > 0) {
+    for (int i=rowsSelected.length - 1; i >= 0; i--) {
+      tableModel.removeRow(rowsSelected[i]);
+    }
+    tableModel.fireTableDataChanged();
+    if (tableModel.getRowCount() > 0) {
+      if (anchorSelection >= tableModel.getRowCount()) {
+        anchorSelection=tableModel.getRowCount() - 1;
+      }
+      authTable.setRowSelectionInterval(anchorSelection,anchorSelection);
+    }
+    checkButtonsStatus();
+  }
+}
