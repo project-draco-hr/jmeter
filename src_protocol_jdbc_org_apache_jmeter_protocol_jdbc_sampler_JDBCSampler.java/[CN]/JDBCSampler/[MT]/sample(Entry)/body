@@ -19,10 +19,10 @@
       conn=DataSourceElement.getConnection(getDataSource());
     }
   finally {
-      res.latencyEnd();
+      res.connectEnd();
     }
     res.setResponseHeaders(conn.toString());
-    res.setResponseData(execute(conn));
+    res.setResponseData(execute(conn,res));
   }
  catch (  SQLException ex) {
     final String errCode=Integer.toString(ex.getErrorCode());
