@@ -1,39 +1,13 @@
 {
   String action=e.getActionCommand();
   if (action.equals(DELETE_COMMAND)) {
-    if (tableModel.getRowCount() > 0) {
-      if (headerTable.isEditing()) {
-        TableCellEditor cellEditor=headerTable.getCellEditor(headerTable.getEditingRow(),headerTable.getEditingColumn());
-        cellEditor.cancelCellEditing();
-      }
-      int rowSelected=headerTable.getSelectedRow();
-      if (rowSelected != -1) {
-        tableModel.removeRow(rowSelected);
-        tableModel.fireTableDataChanged();
-        if (tableModel.getRowCount() == 0) {
-          deleteButton.setEnabled(false);
-          saveButton.setEnabled(false);
-        }
- else {
-          int rowToSelect=rowSelected;
-          if (rowSelected >= tableModel.getRowCount()) {
-            rowToSelect=rowSelected - 1;
-          }
-          headerTable.setRowSelectionInterval(rowToSelect,rowToSelect);
-        }
-      }
-    }
+    deleteRows();
   }
  else   if (action.equals(ADD_COMMAND)) {
     GuiUtils.stopTableEditing(headerTable);
     tableModel.addNewRow();
     tableModel.fireTableDataChanged();
-    if (!deleteButton.isEnabled()) {
-      deleteButton.setEnabled(true);
-    }
-    if (!saveButton.isEnabled()) {
-      saveButton.setEnabled(true);
-    }
+    checkButtonsStatus();
     int rowToSelect=tableModel.getRowCount() - 1;
     headerTable.setRowSelectionInterval(rowToSelect,rowToSelect);
   }
@@ -43,10 +17,7 @@
       if (chooser != null) {
         headerManager.addFile(chooser.getSelectedFile().getAbsolutePath());
         tableModel.fireTableDataChanged();
-        if (tableModel.getRowCount() > 0) {
-          deleteButton.setEnabled(true);
-          saveButton.setEnabled(true);
-        }
+        checkButtonsStatus();
       }
     }
  catch (    IOException ex) {

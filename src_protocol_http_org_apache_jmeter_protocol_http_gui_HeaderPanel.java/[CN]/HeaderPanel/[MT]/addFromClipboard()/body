@@ -19,11 +19,10 @@
     }
     tableModel.fireTableDataChanged();
     if (headerTable.getRowCount() > rowCount) {
-      deleteButton.setEnabled(true);
-      saveButton.setEnabled(true);
       int rowToSelect=tableModel.getRowCount() - 1;
       headerTable.setRowSelectionInterval(rowCount,rowToSelect);
     }
+    checkButtonsStatus();
   }
  catch (  IOException ioe) {
     JOptionPane.showMessageDialog(this,"Could not add read headers from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);

@@ -1,0 +1,19 @@
+{
+  GuiUtils.cancelEditing(headerTable);
+  int[] rowsSelected=headerTable.getSelectedRows();
+  int anchorSelection=headerTable.getSelectionModel().getAnchorSelectionIndex();
+  headerTable.clearSelection();
+  if (rowsSelected.length > 0) {
+    for (int i=rowsSelected.length - 1; i >= 0; i--) {
+      tableModel.removeRow(rowsSelected[i]);
+    }
+    tableModel.fireTableDataChanged();
+    if (tableModel.getRowCount() > 0) {
+      if (anchorSelection >= tableModel.getRowCount()) {
+        anchorSelection=tableModel.getRowCount() - 1;
+      }
+      headerTable.setRowSelectionInterval(anchorSelection,anchorSelection);
+    }
+    checkButtonsStatus();
+  }
+}
