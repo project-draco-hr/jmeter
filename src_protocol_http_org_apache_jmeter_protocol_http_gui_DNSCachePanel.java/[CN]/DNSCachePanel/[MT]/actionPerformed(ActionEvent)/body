@@ -13,10 +13,7 @@
   }
   if (action.equals(DELETE_COMMAND)) {
     if (dnsServersTableModel.getRowCount() > 0) {
-      if (dnsServersTable.isEditing()) {
-        TableCellEditor cellEditor=dnsServersTable.getCellEditor(dnsServersTable.getEditingRow(),dnsServersTable.getEditingColumn());
-        cellEditor.cancelCellEditing();
-      }
+      GuiUtils.cancelEditing(dnsServersTable);
       int rowSelected=dnsServersTable.getSelectedRow();
       if (rowSelected != -1) {
         dnsServersTableModel.removeRow(rowSelected);

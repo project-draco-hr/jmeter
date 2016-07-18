@@ -2,10 +2,7 @@
   String action=e.getActionCommand();
   if (action.equals(DELETE_COMMAND)) {
     if (tableModel.getRowCount() > 0) {
-      if (jmsPropertiesTable.isEditing()) {
-        TableCellEditor cellEditor=jmsPropertiesTable.getCellEditor(jmsPropertiesTable.getEditingRow(),jmsPropertiesTable.getEditingColumn());
-        cellEditor.cancelCellEditing();
-      }
+      GuiUtils.cancelEditing(jmsPropertiesTable);
       int rowSelected=jmsPropertiesTable.getSelectedRow();
       if (rowSelected != -1) {
         tableModel.removeRow(rowSelected);

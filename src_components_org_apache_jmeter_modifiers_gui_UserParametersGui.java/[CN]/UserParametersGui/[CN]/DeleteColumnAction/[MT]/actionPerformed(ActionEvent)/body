@@ -1,8 +1,5 @@
 {
-  if (paramTable.isEditing()) {
-    TableCellEditor cellEditor=paramTable.getCellEditor(paramTable.getEditingRow(),paramTable.getEditingColumn());
-    cellEditor.cancelCellEditing();
-  }
+  GuiUtils.cancelEditing(paramTable);
   int colSelected=paramTable.getSelectedColumn();
   if (colSelected == 0 || colSelected == 1) {
     JOptionPane.showMessageDialog(null,JMeterUtils.getResString("column_delete_disallowed"),"Error",JOptionPane.ERROR_MESSAGE);

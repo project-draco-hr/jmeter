@@ -1,5 +1,5 @@
 {
-  cancelEditing();
+  GuiUtils.cancelEditing(table);
   int[] rowsSelected=table.getSelectedRows();
   int anchorSelection=table.getSelectionModel().getAnchorSelectionIndex();
   table.clearSelection();

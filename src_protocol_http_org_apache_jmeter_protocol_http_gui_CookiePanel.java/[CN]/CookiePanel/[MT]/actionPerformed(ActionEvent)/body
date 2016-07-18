@@ -2,10 +2,7 @@
   String action=e.getActionCommand();
   if (action.equals(DELETE_COMMAND)) {
     if (tableModel.getRowCount() > 0) {
-      if (cookieTable.isEditing()) {
-        TableCellEditor cellEditor=cookieTable.getCellEditor(cookieTable.getEditingRow(),cookieTable.getEditingColumn());
-        cellEditor.cancelCellEditing();
-      }
+      GuiUtils.cancelEditing(cookieTable);
       int rowSelected=cookieTable.getSelectedRow();
       if (rowSelected != -1) {
         tableModel.removeRow(rowSelected);

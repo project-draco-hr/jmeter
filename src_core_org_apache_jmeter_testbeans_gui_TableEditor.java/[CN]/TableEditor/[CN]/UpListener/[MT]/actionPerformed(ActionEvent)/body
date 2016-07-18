@@ -1,5 +1,5 @@
 {
-  cancelEditing();
+  GuiUtils.cancelEditing(table);
   int[] rowsSelected=table.getSelectedRows();
   if (rowsSelected.length > 0 && rowsSelected[0] > 0) {
     table.clearSelection();

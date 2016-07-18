@@ -1,5 +1,5 @@
 {
-  cancelEditing();
+  GuiUtils.cancelEditing(authTable);
   int[] rowsSelected=authTable.getSelectedRows();
   int anchorSelection=authTable.getSelectionModel().getAnchorSelectionIndex();
   authTable.clearSelection();

@@ -1,8 +1,5 @@
 {
-  if (table.isEditing()) {
-    TableCellEditor cellEditor=table.getCellEditor(table.getEditingRow(),table.getEditingColumn());
-    cellEditor.cancelCellEditing();
-  }
+  GuiUtils.cancelEditing(table);
   int rowSelected=table.getSelectedRow();
   if (rowSelected >= 0) {
     tableModel.removeRow(rowSelected);

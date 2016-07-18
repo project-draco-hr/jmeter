@@ -1,8 +1,5 @@
 {
-  if (stringTable.isEditing()) {
-    TableCellEditor cellEditor=stringTable.getCellEditor(stringTable.getEditingRow(),stringTable.getEditingColumn());
-    cellEditor.cancelCellEditing();
-  }
+  GuiUtils.cancelEditing(stringTable);
   int[] rowsSelected=stringTable.getSelectedRows();
   stringTable.clearSelection();
   if (rowsSelected.length > 0) {
