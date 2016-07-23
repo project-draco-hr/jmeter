@@ -1,8 +1,7 @@
 {
   GuiUtils.stopTableEditing(table);
   tableModel.addRow(new HTTPFileArg(path));
-  delete.setEnabled(true);
-  browse.setEnabled(true);
+  checkDeleteAndBrowseStatus();
   int rowToSelect=tableModel.getRowCount() - 1;
   table.setRowSelectionInterval(rowToSelect,rowToSelect);
 }
