@@ -4,5 +4,6 @@
     setWriter(new OutputStreamWriter(out,CHARSET));
   }
  catch (  UnsupportedEncodingException e) {
+    log.warn("Unsupported CHARSET: " + CHARSET,e);
   }
 }
