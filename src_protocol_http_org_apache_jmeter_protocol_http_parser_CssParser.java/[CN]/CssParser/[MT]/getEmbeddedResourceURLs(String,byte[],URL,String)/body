@@ -1,24 +1,37 @@
 {
   try {
-    String cssContent=new String(data,encoding);
-    final CascadingStyleSheet aCSS=CSSReader.readFromStringStream(cssContent,new CSSReaderSettings().setBrowserCompliantMode(true).setFallbackCharset(Charset.forName(encoding)).setCSSVersion(ECSSVersion.CSS30).setCustomErrorHandler(new LoggingCSSParseErrorHandler()).setCustomExceptionHandler(new CustomLoggingCSSParseExceptionCallback(baseUrl)));
-    final List<URLString> list=new ArrayList<>();
-    final URLCollection urlCollection=new URLCollection(list);
-    if (aCSS != null) {
-      CSSVisitor.visitCSSUrl(aCSS,new DefaultCSSUrlVisitor(){
-        @Override public void onImport(        final CSSImportRule importRule){
-          String location=importRule.getLocationString();
-          if (!StringUtils.isEmpty(location)) {
-            urlCollection.addURL(location,baseUrl);
+    boolean cacheEnabled=CSS_URL_CACHE_MAX_SIZE > 0;
+    String md5Key=null;
+    URLCollection urlCollection=null;
+    if (cacheEnabled) {
+      md5Key=DigestUtils.md5Hex(data);
+      urlCollection=CSS_URL_CACHE.get(md5Key);
+    }
+    if (urlCollection == null) {
+      String cssContent=new String(data,encoding);
+      final CascadingStyleSheet aCSS=CSSReader.readFromStringStream(cssContent,new CSSReaderSettings().setBrowserCompliantMode(true).setFallbackCharset(Charset.forName(encoding)).setCSSVersion(ECSSVersion.CSS30).setCustomErrorHandler(new LoggingCSSParseErrorHandler()).setCustomExceptionHandler(new CustomLoggingCSSParseExceptionCallback(baseUrl)));
+      final List<URLString> list=new ArrayList<>();
+      urlCollection=new URLCollection(list);
+      final URLCollection localCollection=urlCollection;
+      if (aCSS != null) {
+        CSSVisitor.visitCSSUrl(aCSS,new DefaultCSSUrlVisitor(){
+          @Override public void onImport(          final CSSImportRule importRule){
+            String location=importRule.getLocationString();
+            if (!StringUtils.isEmpty(location)) {
+              localCollection.addURL(location,baseUrl);
+            }
+          }
+          @Override public void onUrlDeclaration(          final ICSSTopLevelRule aTopLevelRule,          final CSSDeclaration aDeclaration,          final CSSExpressionMemberTermURI aURITerm){
           }
         }
-        @Override public void onUrlDeclaration(        final ICSSTopLevelRule aTopLevelRule,        final CSSDeclaration aDeclaration,        final CSSExpressionMemberTermURI aURITerm){
+);
+        if (cacheEnabled) {
+          CSS_URL_CACHE.put(md5Key,urlCollection);
         }
       }
-);
-    }
  else {
-      LOG.warn("Failed parsing url:" + baseUrl + ", got null CascadingStyleSheet");
+        LOG.warn("Failed parsing url:" + baseUrl + ", got null CascadingStyleSheet");
+      }
     }
     if (LOG.isDebugEnabled()) {
       StringBuilder builder=new StringBuilder();
