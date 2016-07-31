@@ -4,8 +4,7 @@
     return initial;
   }
   String path=initial.getPath();
-  Pattern p=Pattern.compile("^/((?:\\.\\./)+)");
-  Matcher m=p.matcher(path);
+  Matcher m=MAKE_RELATIVE_PATTERN.matcher(path);
   if (m.lookingAt()) {
     String prefix=m.group(1);
     if (location.startsWith(prefix)) {
