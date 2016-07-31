@@ -1,3 +1,7 @@
 {
+  if (endpoint instanceof InetSocketAddress) {
+    InetSocketAddress address=(InetSocketAddress)endpoint;
+    HostNameSetter.setServerNameIndication(address.getHostString(),sslSock);
+  }
   sslSock.connect(endpoint,timeout);
 }
