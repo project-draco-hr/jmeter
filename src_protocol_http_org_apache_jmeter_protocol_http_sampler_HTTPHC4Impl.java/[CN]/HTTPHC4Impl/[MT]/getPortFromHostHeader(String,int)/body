@@ -2,7 +2,7 @@
   String[] hostParts=hostHeaderValue.split(":");
   if (hostParts.length > 1) {
     String portString=hostParts[hostParts.length - 1];
-    if (portString.matches("^\\d+$")) {
+    if (PORT_PATTERN.matcher(portString).matches()) {
       return Integer.parseInt(portString);
     }
   }

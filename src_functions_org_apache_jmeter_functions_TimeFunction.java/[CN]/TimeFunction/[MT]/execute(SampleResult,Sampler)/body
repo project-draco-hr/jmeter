@@ -8,7 +8,7 @@
     if (fmt == null) {
       fmt=format;
     }
-    if (fmt.matches("/\\d+")) {
+    if (DIVISOR_PATTERN.matcher(fmt).matches()) {
       long div=Long.parseLong(fmt.substring(1));
       datetime=Long.toString((System.currentTimeMillis() / div));
     }
