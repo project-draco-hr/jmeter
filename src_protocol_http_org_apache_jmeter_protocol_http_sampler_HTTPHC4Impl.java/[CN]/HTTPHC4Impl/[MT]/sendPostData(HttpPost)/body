@@ -50,7 +50,7 @@
         fileBody.hideFileData=false;
       }
       bos.flush();
-      postedBody.append(new String(bos.toByteArray(),contentEncoding == null ? "US-ASCII" : contentEncoding));
+      postedBody.append(bos.toString(contentEncoding == null ? "US-ASCII" : contentEncoding));
       bos.close();
     }
  else {
@@ -131,12 +131,7 @@
           ByteArrayOutputStream bos=new ByteArrayOutputStream();
           post.getEntity().writeTo(bos);
           bos.flush();
-          if (contentEncoding != null) {
-            postedBody.append(new String(bos.toByteArray(),contentEncoding));
-          }
- else {
-            postedBody.append(new String(bos.toByteArray(),SampleResult.DEFAULT_HTTP_ENCODING));
-          }
+          postedBody.append(bos.toString(contentEncoding != null ? contentEncoding : SampleResult.DEFAULT_HTTP_ENCODING));
           bos.close();
         }
  else {

@@ -1,6 +1,6 @@
 {
   if (method != null) {
-    StringBuilder hdrs=new StringBuilder(100);
+    StringBuilder hdrs=new StringBuilder(150);
     Header[] requestHeaders=method.getAllHeaders();
     for (    Header requestHeader : requestHeaders) {
       if (!HTTPConstants.HEADER_COOKIE.equalsIgnoreCase(requestHeader.getName())) {

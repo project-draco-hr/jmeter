@@ -1,8 +1,8 @@
 {
-  StringBuilder headerBuf=new StringBuilder();
+  Header[] rh=response.getAllHeaders();
+  StringBuilder headerBuf=new StringBuilder(40 * (rh.length + 1));
   headerBuf.append(response.getStatusLine());
   headerBuf.append("\n");
-  Header[] rh=response.getAllHeaders();
   for (  Header responseHeader : rh) {
     writeResponseHeader(headerBuf,responseHeader);
   }

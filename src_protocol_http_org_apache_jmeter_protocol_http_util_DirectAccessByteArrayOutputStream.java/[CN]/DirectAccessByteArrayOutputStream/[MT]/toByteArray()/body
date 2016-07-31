@@ -1,0 +1,6 @@
+{
+  if (this.count == this.buf.length) {
+    return this.buf;
+  }
+  return Arrays.copyOf(buf,count);
+}

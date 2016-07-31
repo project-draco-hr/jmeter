@@ -1,27 +1,26 @@
 {
+  OutputStream w=null;
   try {
     byte[] readBuffer=new byte[8192];
     int bufferSize=32;
     MessageDigest md=null;
-    boolean asMD5=useMD5();
-    if (asMD5) {
+    boolean knownResponseLength=length > 0;
+    if (useMD5()) {
       try {
         md=MessageDigest.getInstance("MD5");
       }
  catch (      NoSuchAlgorithmException e) {
         log.error("Should not happen - could not find MD5 digest",e);
-        asMD5=false;
       }
     }
  else {
-      if (length <= 0) {
+      if (!knownResponseLength) {
         bufferSize=4 * 1024;
       }
  else {
         bufferSize=length;
       }
     }
-    ByteArrayOutputStream w=new ByteArrayOutputStream(bufferSize);
     int bytesRead=0;
     int totalBytes=0;
     boolean first=true;
@@ -29,29 +28,36 @@
       if (first) {
         sampleResult.latencyEnd();
         first=false;
+        if (md == null) {
+          if (knownResponseLength) {
+            w=new DirectAccessByteArrayOutputStream(bufferSize);
+          }
+ else {
+            w=new org.apache.commons.io.output.ByteArrayOutputStream(bufferSize);
+          }
+        }
       }
-      if (asMD5 && md != null) {
-        md.update(readBuffer,0,bytesRead);
-        totalBytes+=bytesRead;
+      if (md == null) {
+        w.write(readBuffer,0,bytesRead);
       }
  else {
-        w.write(readBuffer,0,bytesRead);
+        md.update(readBuffer,0,bytesRead);
+        totalBytes+=bytesRead;
       }
     }
     if (first) {
       sampleResult.latencyEnd();
+      return new byte[0];
     }
-    in.close();
-    w.flush();
-    if (asMD5 && md != null) {
+    if (md != null) {
       byte[] md5Result=md.digest();
-      w.write(JOrphanUtils.baToHexBytes(md5Result));
       sampleResult.setBytes(totalBytes);
+      return JOrphanUtils.baToHexBytes(md5Result);
     }
-    w.close();
-    return w.toByteArray();
+    return toByteArray(w);
   }
   finally {
     IOUtils.closeQuietly(in);
+    IOUtils.closeQuietly(w);
   }
 }

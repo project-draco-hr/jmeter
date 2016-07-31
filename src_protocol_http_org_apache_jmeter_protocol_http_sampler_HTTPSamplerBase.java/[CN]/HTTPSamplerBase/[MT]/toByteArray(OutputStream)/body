@@ -1,0 +1,10 @@
+{
+  if (w instanceof DirectAccessByteArrayOutputStream) {
+    return ((DirectAccessByteArrayOutputStream)w).toByteArray();
+  }
+  if (w instanceof org.apache.commons.io.output.ByteArrayOutputStream) {
+    return ((org.apache.commons.io.output.ByteArrayOutputStream)w).toByteArray();
+  }
+  log.warn("Unknown stream type " + w.getClass());
+  return null;
+}

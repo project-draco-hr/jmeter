@@ -1,4 +1,4 @@
 {
-  JMeterProperty jmp=getProperty(key);
-  return jmp instanceof NullProperty ? defaultValue : jmp.getIntValue();
+  JMeterProperty jmp=getRawProperty(key);
+  return jmp == null || jmp instanceof NullProperty ? defaultValue : jmp.getIntValue();
 }

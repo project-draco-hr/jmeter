@@ -16,7 +16,8 @@
   }
   HttpClientKey key=new HttpClientKey(url,useProxy,proxyHost,proxyPort,proxyUser,proxyPass);
   HttpClient httpClient=null;
-  if (this.testElement.isConcurrentDwn()) {
+  boolean concurrentDwn=this.testElement.isConcurrentDwn();
+  if (concurrentDwn) {
     httpClient=(HttpClient)JMeterContextService.getContext().getSamplerContext().get(HTTPCLIENT_TOKEN);
   }
   if (httpClient == null) {
@@ -38,7 +39,7 @@
       resolver=SystemDefaultDnsResolver.INSTANCE;
     }
     MeasuringConnectionManager connManager=new MeasuringConnectionManager(createSchemeRegistry(),resolver,TIME_TO_LIVE,VALIDITY_AFTER_INACTIVITY_TIMEOUT);
-    if (this.testElement.isConcurrentDwn()) {
+    if (concurrentDwn) {
       try {
         int maxConcurrentDownloads=Integer.parseInt(this.testElement.getConcurrentPool());
         connManager.setDefaultMaxPerRoute(Math.max(maxConcurrentDownloads,connManager.getDefaultMaxPerRoute()));
@@ -81,7 +82,7 @@
       log.debug("Reusing the HttpClient: @" + System.identityHashCode(httpClient) + " "+ key.toString());
     }
   }
-  if (this.testElement.isConcurrentDwn()) {
+  if (concurrentDwn) {
     JMeterContextService.getContext().getSamplerContext().put(HTTPCLIENT_TOKEN,httpClient);
   }
   setConnectionAuthorization(httpClient,url,getAuthManager(),key);

@@ -1,14 +1,16 @@
 {
   boolean wasRedirected=false;
   if (!areFollowingRedirect && res.isRedirect()) {
-    log.debug("Location set to - " + res.getRedirectLocation());
+    if (log.isDebugEnabled()) {
+      log.debug("Location set to - " + res.getRedirectLocation());
+    }
     if (getFollowRedirects()) {
       res=followRedirects(res,frameDepth);
       areFollowingRedirect=true;
       wasRedirected=true;
     }
   }
-  if (isImageParser() && (SampleResult.TEXT).equals(res.getDataType()) && res.isSuccessful()) {
+  if (res.isSuccessful() && SampleResult.TEXT.equals(res.getDataType()) && isImageParser()) {
     if (frameDepth > MAX_FRAME_DEPTH) {
       HTTPSampleResult errSubResult=new HTTPSampleResult(res);
       errSubResult.removeSubResults();
