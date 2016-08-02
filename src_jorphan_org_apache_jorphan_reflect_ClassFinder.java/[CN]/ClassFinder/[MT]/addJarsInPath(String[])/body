@@ -11,7 +11,9 @@
           }
         }
 );
-        Collections.addAll(fullList,jars);
+        if (jars != null) {
+          Collections.addAll(fullList,jars);
+        }
       }
     }
   }
