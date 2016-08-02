@@ -128,17 +128,11 @@
     log.debug("End : sample");
     return res;
   }
- catch (  IllegalArgumentException e) {
+ catch (  IllegalArgumentException|IOException e) {
     res.sampleEnd();
     if (httpMethod != null) {
       res.setRequestHeaders(getConnectionHeaders(httpMethod));
     }
-    errorResult(e,res);
-    return res;
-  }
-catch (  IOException e) {
-    res.sampleEnd();
-    res.setRequestHeaders(getConnectionHeaders(httpMethod));
     errorResult(e,res);
     return res;
   }
