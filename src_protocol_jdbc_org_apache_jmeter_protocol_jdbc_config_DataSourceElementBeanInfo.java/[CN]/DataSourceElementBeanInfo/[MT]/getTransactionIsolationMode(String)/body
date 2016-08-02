@@ -9,6 +9,9 @@
         log.warn("Illegal transaction isolation configuration '" + tag + "'");
       }
     }
+ else {
+      return isolationMode.intValue();
+    }
   }
   return -1;
 }
