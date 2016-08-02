@@ -6,7 +6,7 @@
     printDetails(System.err,s,t,c);
   }
  else {
-    Priority p=Priority.getPriorityForName(prio);
+    Priority p=Priority.getPriorityForName(prio.trim());
     if (log.isPriorityEnabled(p)) {
       String tn=Thread.currentThread().getName();
       StringBuilder sb=new StringBuilder(40);
