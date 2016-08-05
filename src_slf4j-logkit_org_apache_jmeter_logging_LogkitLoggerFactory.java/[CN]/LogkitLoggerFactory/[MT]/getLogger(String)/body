@@ -11,7 +11,7 @@ synchronized (this) {
         logkitLogger=Hierarchy.getDefaultHierarchy().getRootLogger();
       }
  else {
-        logkitLogger=LoggingManager.getLoggerFor(name);
+        logkitLogger=Hierarchy.getDefaultHierarchy().getLoggerFor(name);
       }
       slf4jLogger=new LogkitLoggerAdapter(logkitLogger);
       loggerMap.put(name,slf4jLogger);

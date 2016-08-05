@@ -1,0 +1,4 @@
+{
+  FormattingTuple ft=MessageFormatter.format(format,arg1,arg2);
+  logger.log(Priority.DEBUG,ft.getMessage(),ft.getThrowable());
+}
