@@ -6,6 +6,7 @@
   result.addResult(new ValueResultData(Long.valueOf(total)));
   result.addResult(new ValueResultData(Long.valueOf(errors)));
   result.addResult(new ValueResultData(Double.valueOf((double)errors * 100 / total)));
+  result.addResult(new ValueResultData(Double.valueOf(data.getMean().getResult())));
   result.addResult(new ValueResultData(Double.valueOf(data.getPercentile1().getResult())));
   result.addResult(new ValueResultData(Double.valueOf(data.getPercentile2().getResult())));
   result.addResult(new ValueResultData(Double.valueOf(data.getPercentile3().getResult())));
