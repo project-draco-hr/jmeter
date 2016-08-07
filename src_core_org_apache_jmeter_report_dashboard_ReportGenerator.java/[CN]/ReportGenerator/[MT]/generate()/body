@@ -12,12 +12,14 @@
   source.setSampleContext(sampleContext);
   NormalizerSampleConsumer normalizer=new NormalizerSampleConsumer();
   normalizer.setName(NORMALIZER_CONSUMER_NAME);
-  normalizer.addSampleConsumer(createBeginDateConsumer());
-  normalizer.addSampleConsumer(createEndDateConsumer());
+  FilterConsumer dateRangeConsumer=createFilterByDateRange();
+  dateRangeConsumer.addSampleConsumer(createBeginDateConsumer());
+  dateRangeConsumer.addSampleConsumer(createEndDateConsumer());
   FilterConsumer nameFilter=createNameFilter();
   FilterConsumer excludeControllerFilter=createExcludeControllerFilter();
   nameFilter.addSampleConsumer(excludeControllerFilter);
-  normalizer.addSampleConsumer(nameFilter);
+  dateRangeConsumer.addSampleConsumer(nameFilter);
+  normalizer.addSampleConsumer(dateRangeConsumer);
   source.addSampleConsumer(normalizer);
   Map<String,GraphConfiguration> graphConfigurations=configuration.getGraphConfigurations();
   for (  Map.Entry<String,GraphConfiguration> entryGraphCfg : graphConfigurations.entrySet()) {

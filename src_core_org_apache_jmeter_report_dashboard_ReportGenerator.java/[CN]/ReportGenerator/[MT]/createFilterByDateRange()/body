@@ -1,0 +1,30 @@
+{
+  FilterConsumer dateRangeFilter=new FilterConsumer();
+  dateRangeFilter.setName(DATE_RANGE_FILTER_CONSUMER_NAME);
+  dateRangeFilter.setSamplePredicate(new SamplePredicate(){
+    @Override public boolean matches(    Sample sample){
+      long sampleStartTime=sample.getStartTime();
+      if (configuration.getStartDate() != null) {
+        if ((sampleStartTime >= configuration.getStartDate().getTime())) {
+          if (configuration.getEndDate() != null) {
+            return sampleStartTime <= configuration.getEndDate().getTime();
+          }
+ else {
+            return true;
+          }
+        }
+        return false;
+      }
+ else {
+        if (configuration.getEndDate() != null) {
+          return sampleStartTime <= configuration.getEndDate().getTime();
+        }
+ else {
+          return true;
+        }
+      }
+    }
+  }
+);
+  return dateRangeFilter;
+}
