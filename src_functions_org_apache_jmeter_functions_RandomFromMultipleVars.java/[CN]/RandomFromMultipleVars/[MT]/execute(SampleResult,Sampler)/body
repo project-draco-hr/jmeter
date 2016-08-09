@@ -1,0 +1,31 @@
+{
+  String variablesNamesSplitBySeparatorValue=variablesNamesSplitBySeparator.execute().trim();
+  JMeterVariables vars=getVariables();
+  String outputValue="";
+  String separator="";
+  if (vars != null) {
+    List<String> results=new ArrayList<>();
+    String[] variables=variablesNamesSplitBySeparatorValue.split(SEPARATOR);
+    for (    String varName : variables) {
+      if (!StringUtils.isEmpty(varName)) {
+        extractVariableValuesToList(varName,vars,results);
+      }
+    }
+    if (results.size() > 0) {
+      int randomIndex=ThreadLocalRandom.current().nextInt(0,results.size());
+      outputValue=results.get(randomIndex);
+    }
+ else {
+      if (log.isDebugEnabled()) {
+        log.debug("RandomFromMultiResult didn't find <var>_matchNr in variables :'" + variablesNamesSplitBySeparatorValue + "' using separator:'"+ separator+ "', will return empty value");
+      }
+    }
+    if (varName != null) {
+      final String varTrim=varName.execute().trim();
+      if (varTrim.length() > 0) {
+        vars.put(varTrim,outputValue);
+      }
+    }
+  }
+  return outputValue;
+}

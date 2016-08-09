@@ -1,0 +1,15 @@
+{
+  String matchNumberAsStr=vars.get(variableName + "_matchNr");
+  if (!StringUtils.isEmpty(matchNumberAsStr)) {
+    int matchNumber=Integer.parseInt(matchNumberAsStr);
+    for (int i=1; i <= matchNumber; i++) {
+      results.add(vars.get(variableName + "_" + i));
+    }
+  }
+ else {
+    String value=vars.get(variableName);
+    if (!StringUtils.isEmpty(value)) {
+      results.add(vars.get(variableName));
+    }
+  }
+}

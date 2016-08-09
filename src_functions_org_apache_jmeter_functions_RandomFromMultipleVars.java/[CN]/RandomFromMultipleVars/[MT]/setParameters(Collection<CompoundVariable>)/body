@@ -1,0 +1,8 @@
+{
+  checkParameterCount(parameters,1,2);
+  Object[] values=parameters.toArray();
+  variablesNamesSplitBySeparator=(CompoundVariable)values[0];
+  if (values.length > 1) {
+    varName=(CompoundVariable)values[1];
+  }
+}
