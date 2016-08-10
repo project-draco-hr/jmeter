@@ -11,7 +11,7 @@
   String attribute=getAttribute();
   int matchNumber=getMatchNumber();
   final String defaultValue=getDefaultValue();
-  if (defaultValue.length() > 0) {
+  if (defaultValue.length() > 0 || isEmptyDefaultValue()) {
     vars.put(refName,defaultValue);
   }
   try {

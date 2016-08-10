@@ -6,6 +6,7 @@
     expressionField.setText(htmlExtractor.getExpression());
     attributeField.setText(htmlExtractor.getAttribute());
     defaultField.setText(htmlExtractor.getDefaultValue());
+    emptyDefaultValue.setSelected(htmlExtractor.isEmptyDefaultValue());
     matchNumberField.setText(htmlExtractor.getMatchNumberAsString());
     refNameField.setText(htmlExtractor.getRefName());
     extractorImplName.setSelectedItem(htmlExtractor.getExtractor());

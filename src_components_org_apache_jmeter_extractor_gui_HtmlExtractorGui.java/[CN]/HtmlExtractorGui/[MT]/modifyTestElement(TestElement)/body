@@ -7,6 +7,7 @@
     htmlExtractor.setExpression(expressionField.getText());
     htmlExtractor.setAttribute(attributeField.getText());
     htmlExtractor.setDefaultValue(defaultField.getText());
+    htmlExtractor.setDefaultEmptyValue(emptyDefaultValue.isSelected());
     htmlExtractor.setMatchNumber(matchNumberField.getText());
     if (extractorImplName.getSelectedIndex() < HtmlExtractor.getImplementations().length) {
       htmlExtractor.setExtractor(HtmlExtractor.getImplementations()[extractorImplName.getSelectedIndex()]);
