@@ -1,20 +1,21 @@
 {
-  int ret;
   getProperty(SWITCH_VALUE).recoverRunningVersion(null);
   String sel=getSelection();
-  try {
-    ret=Integer.parseInt(sel);
-    if (ret < 0 || ret >= getSubControllers().size()) {
-      ret=0;
-    }
+  if (StringUtils.isEmpty(sel)) {
+    return 0;
   }
- catch (  NumberFormatException e) {
-    if (sel.length() == 0) {
-      ret=0;
-    }
  else {
-      ret=scanControllerNames(sel);
+    try {
+      if (StringUtils.isNumeric(sel)) {
+        int ret=Integer.parseInt(sel);
+        if (ret < 0 || ret >= getSubControllers().size()) {
+          ret=0;
+        }
+        return ret;
+      }
     }
+ catch (    NumberFormatException e) {
+    }
+    return scanControllerNames(sel);
   }
-  return ret;
 }
