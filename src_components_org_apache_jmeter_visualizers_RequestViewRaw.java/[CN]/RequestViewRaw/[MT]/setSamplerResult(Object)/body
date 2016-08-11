@@ -16,6 +16,7 @@
     }
     if (sb.length() > 0) {
       sampleDataField.setText(sb.toString());
+      sampleDataField.setCaretPosition(1);
     }
  else {
       sampleDataField.setText(JMeterUtils.getResString("view_results_table_request_raw_nodata"));
