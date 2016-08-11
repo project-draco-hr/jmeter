@@ -10,7 +10,6 @@
     varName=((CompoundVariable)values[1]).execute().trim();
   }
   String resultStr="";
-  log.debug("Script=" + script);
   try {
     if (currentSampler != null) {
       bshInterpreter.set("Sampler",currentSampler);
@@ -34,7 +33,7 @@
     log.warn("Error running BSH script",ex);
   }
   if (log.isDebugEnabled()) {
-    log.debug("Output=" + resultStr);
+    log.debug("__Beanshell(" + script + ","+ varName+ ")="+ resultStr);
   }
   return resultStr;
 }
