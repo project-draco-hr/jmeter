@@ -1,5 +1,6 @@
 {
+  GuiUtils.stopTableEditing(stringTable);
   tableModel.addNewRow();
-  deletePattern.setEnabled(true);
+  checkButtonsStatus();
   tableModel.fireTableDataChanged();
 }

@@ -1,0 +1,28 @@
+{
+  deletePattern.setEnabled(true);
+  GuiUtils.stopTableEditing(stringTable);
+  int rowCount=stringTable.getRowCount();
+  try {
+    String clipboardContent=GuiUtils.getPastedText();
+    if (clipboardContent == null) {
+      return;
+    }
+    String[] clipboardLines=clipboardContent.split("\n");
+    for (    String clipboardLine : clipboardLines) {
+      tableModel.addRow(new Object[]{clipboardLine.trim()});
+    }
+    if (stringTable.getRowCount() > rowCount) {
+      checkButtonsStatus();
+      int rowToSelect=tableModel.getRowCount() - 1;
+      stringTable.setRowSelectionInterval(rowCount,rowToSelect);
+      stringTable.scrollRectToVisible(stringTable.getCellRect(rowCount,0,true));
+    }
+  }
+ catch (  IOException ioe) {
+    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),"Could not add data from clipboard:\n" + ioe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+catch (  UnsupportedFlavorException ufe) {
+    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),"Could not add retrieve " + DataFlavor.stringFlavor.getHumanPresentableName() + " from clipboard"+ ufe.getLocalizedMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+  }
+  tableModel.fireTableDataChanged();
+}

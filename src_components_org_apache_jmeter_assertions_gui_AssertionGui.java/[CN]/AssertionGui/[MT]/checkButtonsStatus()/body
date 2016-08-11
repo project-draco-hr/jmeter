@@ -1,0 +1,8 @@
+{
+  if (tableModel.getRowCount() == 0) {
+    deletePattern.setEnabled(false);
+  }
+ else {
+    deletePattern.setEnabled(true);
+  }
+}

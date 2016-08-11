@@ -2,6 +2,8 @@
   tableModel=new PowerTableModel(new String[]{COL_RESOURCE_NAME},new Class[]{String.class});
   stringTable=new JTable(tableModel);
   stringTable.getTableHeader().setDefaultRenderer(new HeaderAsPropertyRenderer());
+  stringTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+  JMeterUtils.applyHiDPI(stringTable);
   TextAreaCellRenderer renderer=new TextAreaCellRenderer();
   stringTable.setRowHeight(renderer.getPreferredHeight());
   stringTable.setDefaultRenderer(String.class,renderer);

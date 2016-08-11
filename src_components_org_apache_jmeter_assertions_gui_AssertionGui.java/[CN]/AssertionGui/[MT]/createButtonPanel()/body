@@ -1,11 +1,14 @@
 {
   JButton addPattern=new JButton(JMeterUtils.getResString("add"));
   addPattern.addActionListener(new AddPatternListener());
+  JButton addFromClipboardPattern=new JButton(JMeterUtils.getResString("add_from_clipboard"));
+  addFromClipboardPattern.addActionListener(new AddFromClipboardListener());
   deletePattern=new JButton(JMeterUtils.getResString("delete"));
   deletePattern.addActionListener(new ClearPatternsListener());
   deletePattern.setEnabled(false);
   JPanel buttonPanel=new JPanel();
   buttonPanel.add(addPattern);
+  buttonPanel.add(addFromClipboardPattern);
   buttonPanel.add(deletePattern);
   return buttonPanel;
 }
