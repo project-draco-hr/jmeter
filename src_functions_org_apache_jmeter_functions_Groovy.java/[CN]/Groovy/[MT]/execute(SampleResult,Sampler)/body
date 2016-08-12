@@ -1,0 +1,43 @@
+{
+  Bindings bindings=scriptEngine.createBindings();
+  populateBindings(bindings);
+  String script=((CompoundVariable)values[0]).execute();
+  String varName="";
+  if (values.length > 1) {
+    varName=((CompoundVariable)values[1]).execute().trim();
+  }
+  String resultStr="";
+  try {
+    if (currentSampler != null) {
+      bindings.put("sampler",currentSampler);
+    }
+    if (previousResult != null) {
+      bindings.put("prev",previousResult);
+    }
+    bindings.put("log",log);
+    bindings.put("threadName",Thread.currentThread().getName());
+    JMeterContext jmctx=JMeterContextService.getContext();
+    bindings.put("ctx",jmctx);
+    JMeterVariables vars=jmctx.getVariables();
+    bindings.put("vars",vars);
+    Properties props=JMeterUtils.getJMeterProperties();
+    bindings.put("props",props);
+    bindings.put("OUT",System.out);
+    Object out=scriptEngine.eval(script,bindings);
+    if (out != null) {
+      resultStr=out.toString();
+    }
+    if (varName.length() > 0) {
+      if (vars != null) {
+        vars.put(varName,resultStr);
+      }
+    }
+  }
+ catch (  Exception ex) {
+    log.warn("Error running groovy script",ex);
+  }
+  if (log.isDebugEnabled()) {
+    log.debug("__groovy(" + script + ","+ varName+ ")="+ resultStr);
+  }
+  return resultStr;
+}
