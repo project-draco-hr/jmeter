@@ -1,7 +1,6 @@
 {
   if (guiPack == null) {
-    guiPack=new GuiPackage(treeModel,listener);
-    guiPack.undoHistory.add(treeModel,"Created");
+    initInstance(listener,treeModel);
   }
-  return guiPack;
+  return GuiPackage.guiPack;
 }

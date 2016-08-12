@@ -1,0 +1,5 @@
+{
+  GuiPackage guiPack=new GuiPackage(treeModel,listener);
+  guiPack.undoHistory.add(treeModel,"Created");
+  GuiPackage.guiPack=guiPack;
+}
