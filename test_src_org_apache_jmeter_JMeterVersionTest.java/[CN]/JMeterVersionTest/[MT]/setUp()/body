@@ -21,6 +21,10 @@
   propNames.remove("checkstyle-all");
   buildProp.remove("checkstyle-all.loc");
   versions.remove("checkstyle-all");
+  propNames.remove("rat");
+  versions.remove("rat");
+  propNames.remove("rat-tasks");
+  versions.remove("rat-tasks");
   prop=buildProp;
   final File licencesDir=getFileFromHome("licenses/bin");
   licencesDir.list(new FilenameFilter(){
