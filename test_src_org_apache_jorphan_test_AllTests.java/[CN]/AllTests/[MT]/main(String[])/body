@@ -47,6 +47,13 @@
     }
   }
   log.info(sb.toString());
+  try {
+    int maxKeyLen=Cipher.getMaxAllowedKeyLength("AES");
+    System.out.println("JCE max key length = " + maxKeyLen);
+  }
+ catch (  NoSuchAlgorithmException e1) {
+    e1.printStackTrace();
+  }
   System.out.println("+++++++++++");
   logprop("java.awt.headless",true);
   logprop("java.awt.graphicsenv",true);
