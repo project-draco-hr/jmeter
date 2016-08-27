@@ -1,7 +1,6 @@
 {
   long now=System.currentTimeMillis();
   println("Tidying up ...    @ " + new Date(now) + " ("+ now+ ")");
-  checkForRemainingThreads();
   try {
     generateReport();
   }
@@ -9,5 +8,6 @@
     System.err.println("Error generating the report: " + e);
     log.error("Error generating the report",e);
   }
+  checkForRemainingThreads();
   println("... end of run");
 }
