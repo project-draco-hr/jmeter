@@ -1,0 +1,6 @@
+{
+  Map<String,GroupInfo> groupInfos=new HashMap<>(1);
+  SyntheticSeriesSelector syntheticSeriesSelector=new SyntheticSeriesSelector();
+  groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new SumAggregatorFactory(),syntheticSeriesSelector,new CountValueSelector(),false,false));
+  return groupInfos;
+}

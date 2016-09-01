@@ -1,0 +1,17 @@
+{
+  if (!sample.getSuccess()) {
+    return Arrays.asList(FAILED_LABEL);
+  }
+ else {
+    long elapsedTime=sample.getElapsedTime();
+    if (elapsedTime <= getSatifiedThreshold()) {
+      return Arrays.asList(SATISFIED_LABEL.format(new Object[]{Long.valueOf(getSatifiedThreshold())}));
+    }
+ else     if (elapsedTime <= getToleratedThreshold()) {
+      return Arrays.asList(TOLERATED_LABEL.format(new Object[]{Long.valueOf(getSatifiedThreshold()),Long.valueOf(getToleratedThreshold())}));
+    }
+ else {
+      return Arrays.asList(UNTOLERATED_LABEL.format(new Object[]{Long.valueOf(getToleratedThreshold())}));
+    }
+  }
+}

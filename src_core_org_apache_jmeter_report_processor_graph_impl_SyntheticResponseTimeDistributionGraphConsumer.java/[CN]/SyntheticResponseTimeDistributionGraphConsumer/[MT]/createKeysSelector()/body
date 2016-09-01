@@ -1,0 +1,22 @@
+{
+  return new GraphKeysSelector(){
+    @Override public Double select(    Sample sample){
+      if (sample.getSuccess()) {
+        long elapsedTime=sample.getElapsedTime();
+        if (elapsedTime <= satifiedThreshold) {
+          return Double.valueOf(0);
+        }
+ else         if (elapsedTime <= toleratedThreshold) {
+          return Double.valueOf(1);
+        }
+ else {
+          return Double.valueOf(2);
+        }
+      }
+ else {
+        return Double.valueOf(3);
+      }
+    }
+  }
+;
+}
