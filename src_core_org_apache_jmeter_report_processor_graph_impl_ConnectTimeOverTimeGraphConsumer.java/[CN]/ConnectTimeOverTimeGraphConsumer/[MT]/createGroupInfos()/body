@@ -1,0 +1,8 @@
+{
+  if (!CONNECT_TIME_SAVED) {
+    return Collections.emptyMap();
+  }
+  HashMap<String,GroupInfo> groupInfos=new HashMap<>();
+  groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new MeanAggregatorFactory(),new NameSeriesSelector(),new ConnectTimeValueSelector(),false,false));
+  return groupInfos;
+}
