@@ -3,7 +3,7 @@
   if (data instanceof ResultData) {
     ResultData result=(ResultData)data;
     if (checker != null) {
-      checker.checkResult(result);
+      checker.checkResult(dataContext,result);
     }
     if (customizer != null) {
       result=customizer.customizeResult(result);

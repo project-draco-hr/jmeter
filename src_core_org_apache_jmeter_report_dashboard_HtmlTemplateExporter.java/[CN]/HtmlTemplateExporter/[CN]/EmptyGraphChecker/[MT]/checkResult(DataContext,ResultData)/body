@@ -1,8 +1,8 @@
 {
   Boolean supportsControllerDiscrimination=findValue(Boolean.class,AbstractGraphConsumer.RESULT_SUPPORTS_CONTROLLERS_DISCRIMINATION,result);
-  String message=null;
   if (supportsControllerDiscrimination.booleanValue() && showControllerSeriesOnly && excludesControllers) {
-    message=ReportGeneratorConfiguration.EXPORTER_KEY_SHOW_CONTROLLERS_ONLY + " is set while the graph excludes controllers.";
+    LOG.warn(ReportGeneratorConfiguration.EXPORTER_KEY_SHOW_CONTROLLERS_ONLY + " is set while the graph excludes controllers.");
+    return false;
   }
  else {
     if (filterPattern != null) {
@@ -29,12 +29,11 @@
           index++;
         }
         if (!matches) {
-          message="None series matches the " + ReportGeneratorConfiguration.EXPORTER_KEY_SERIES_FILTER;
+          LOG.warn("No serie matches the " + ReportGeneratorConfiguration.EXPORTER_KEY_SERIES_FILTER);
+          return false;
         }
       }
     }
   }
-  if (message != null) {
-    LOG.warn(String.format(EMPTY_GRAPH_FMT,graphId,message));
-  }
+  return true;
 }
