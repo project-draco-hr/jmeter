@@ -1,4 +1,4 @@
 {
   final String responseCode=res.getResponseCode();
-  return isCacheableMethod(res) && "200".compareTo(responseCode) <= 0 && "299".compareTo(responseCode) >= 0;
+  return isCacheableMethod(res) && (("200".compareTo(responseCode) <= 0 && "299".compareTo(responseCode) >= 0) || "304".equals(responseCode));
 }
