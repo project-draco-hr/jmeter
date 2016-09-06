@@ -1,0 +1,8 @@
+{
+  int property=JMeterUtils.getPropDefault(propertyKey,defaultValue);
+  PercentileAggregatorFactory factory=new PercentileAggregatorFactory();
+  factory.setPercentileIndex(property);
+  StaticSeriesSelector seriesSelector=new StaticSeriesSelector();
+  seriesSelector.setSeriesName(serieName);
+  return new GroupInfo(factory,seriesSelector,new SuccessfulElapsedTimeValueSelector(),false,false);
+}

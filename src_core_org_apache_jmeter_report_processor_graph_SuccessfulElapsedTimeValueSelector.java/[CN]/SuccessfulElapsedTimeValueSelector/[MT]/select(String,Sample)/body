@@ -1,0 +1,8 @@
+{
+  if (!sample.isEmptyController() && sample.getSuccess()) {
+    return Double.valueOf(sample.getElapsedTime());
+  }
+ else {
+    return null;
+  }
+}

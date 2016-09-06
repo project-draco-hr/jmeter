@@ -1,0 +1,5 @@
+{
+  StaticSeriesSelector seriesSelector=new StaticSeriesSelector();
+  seriesSelector.setSeriesName("Min");
+  return new GroupInfo(new MinAggregatorFactory(),seriesSelector,new SuccessfulElapsedTimeValueSelector(),false,false);
+}

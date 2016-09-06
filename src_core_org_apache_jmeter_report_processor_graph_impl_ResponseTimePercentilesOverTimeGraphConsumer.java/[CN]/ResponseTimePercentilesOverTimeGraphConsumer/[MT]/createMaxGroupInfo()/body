@@ -1,0 +1,5 @@
+{
+  StaticSeriesSelector seriesSelector=new StaticSeriesSelector();
+  seriesSelector.setSeriesName("Max");
+  return new GroupInfo(new MaxAggregatorFactory(),seriesSelector,new SuccessfulElapsedTimeValueSelector(),false,false);
+}
