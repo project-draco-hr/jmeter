@@ -1,3 +1,8 @@
 {
-  return sample.getLatency();
+  if (!sample.isEmptyController()) {
+    return Double.valueOf(sample.getLatency());
+  }
+ else {
+    return null;
+  }
 }

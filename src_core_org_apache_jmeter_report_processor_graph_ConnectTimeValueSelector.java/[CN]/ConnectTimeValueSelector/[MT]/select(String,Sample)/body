@@ -1,3 +1,8 @@
 {
-  return sample.getConnectTime();
+  if (!sample.isEmptyController()) {
+    return Double.valueOf(sample.getConnectTime());
+  }
+ else {
+    return null;
+  }
 }

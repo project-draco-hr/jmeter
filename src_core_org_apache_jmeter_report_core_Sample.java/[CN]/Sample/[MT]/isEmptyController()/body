@@ -1,0 +1,4 @@
+{
+  String message=getResponseMessage();
+  return message != null && message.startsWith(EMPTY_CONTROLLER_PATTERN);
+}
