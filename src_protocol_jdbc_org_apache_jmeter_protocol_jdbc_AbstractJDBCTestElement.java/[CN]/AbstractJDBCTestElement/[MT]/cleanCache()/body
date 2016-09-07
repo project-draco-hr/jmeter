@@ -1,6 +1,0 @@
-{
-  for (  Map<String,PreparedStatement> element : perConnCache.values()) {
-    closeAllStatements(element.values());
-  }
-  perConnCache.clear();
-}

@@ -1,35 +1,11 @@
 {
-  Map<String,PreparedStatement> preparedStatementMap=perConnCache.get(conn);
-  if (null == preparedStatementMap) {
-    @SuppressWarnings("unchecked") Map<String,PreparedStatement> lruMap=new LRUMap(MAX_OPEN_PREPARED_STATEMENTS){
-      private static final long serialVersionUID=1L;
-      @Override protected boolean removeLRU(      LinkEntry entry){
-        PreparedStatement preparedStatement=(PreparedStatement)entry.getValue();
-        close(preparedStatement);
-        return true;
-      }
-    }
-;
-    preparedStatementMap=Collections.<String,PreparedStatement>synchronizedMap(lruMap);
-    perConnCache.put(conn,preparedStatementMap);
-  }
-  PreparedStatement pstmt=preparedStatementMap.get(getQuery());
-  if (null == pstmt) {
-    if (callable) {
-      pstmt=conn.prepareCall(getQuery());
-    }
- else {
-      pstmt=conn.prepareStatement(getQuery());
-    }
-    pstmt.setQueryTimeout(getIntegerQueryTimeout());
-    preparedStatementMap.put(getQuery(),pstmt);
+  PreparedStatement pstmt;
+  if (callable) {
+    pstmt=conn.prepareCall(getQuery());
   }
  else {
-    int timeoutInS=getIntegerQueryTimeout();
-    if (pstmt.getQueryTimeout() != timeoutInS) {
-      pstmt.setQueryTimeout(getIntegerQueryTimeout());
-    }
+    pstmt=conn.prepareStatement(getQuery());
   }
-  pstmt.clearParameters();
+  pstmt.setQueryTimeout(getIntegerQueryTimeout());
   return pstmt;
 }
