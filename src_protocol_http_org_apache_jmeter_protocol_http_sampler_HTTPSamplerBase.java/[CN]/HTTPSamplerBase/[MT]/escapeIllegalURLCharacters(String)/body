@@ -1,5 +1,5 @@
 {
-  if (url == null || url.toLowerCase().startsWith("file:")) {
+  if (url == null || StringUtils.startsWithIgnoreCase(url,"file:")) {
     return url;
   }
   try {
