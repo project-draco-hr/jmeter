@@ -12,7 +12,7 @@
   }
   data.incTotalCount();
   overallData.incTotalCount();
-  if (sample.getSuccess()) {
+  if (sample.getSuccess() && !sample.isEmptyController()) {
     long elapsedTime=sample.getElapsedTime();
     ApdexThresholdsInfo thresholdsInfo=data.getApdexThresholdInfo();
     if (elapsedTime <= thresholdsInfo.getSatisfiedThreshold()) {

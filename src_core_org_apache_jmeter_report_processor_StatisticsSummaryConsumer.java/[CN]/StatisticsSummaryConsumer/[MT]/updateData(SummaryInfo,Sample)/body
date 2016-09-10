@@ -10,6 +10,8 @@
     data=new StatisticsSummaryData(PERCENTILE_INDEX1,PERCENTILE_INDEX2,PERCENTILE_INDEX3);
     info.setData(data);
   }
-  aggregateSample(sample,data);
-  aggregateSample(sample,overallData);
+  if (!sample.isEmptyController()) {
+    aggregateSample(sample,data);
+    aggregateSample(sample,overallData);
+  }
 }
