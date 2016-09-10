@@ -37,7 +37,7 @@
       }
     }
  catch (    NullPointerException e) {
-      throw new SQLException("Could not set argument no: " + (i + 1) + " - missing parameter marker?");
+      throw new SQLException("Could not set argument no: " + (i + 1) + " - missing parameter marker?",e);
     }
   }
   return outputs;

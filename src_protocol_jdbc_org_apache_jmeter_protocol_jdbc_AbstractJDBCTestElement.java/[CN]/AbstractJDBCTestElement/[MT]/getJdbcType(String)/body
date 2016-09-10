@@ -5,7 +5,7 @@
       entry=Integer.decode(jdbcType);
     }
  catch (    NumberFormatException e) {
-      throw new SQLException("Invalid data type: " + jdbcType);
+      throw new SQLException("Invalid data type: " + jdbcType,e);
     }
   }
   return (entry).intValue();
