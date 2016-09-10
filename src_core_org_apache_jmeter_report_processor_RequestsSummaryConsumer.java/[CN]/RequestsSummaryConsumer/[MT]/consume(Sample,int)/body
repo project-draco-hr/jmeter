@@ -1,7 +1,9 @@
 {
-  count++;
-  if (!sample.getSuccess()) {
-    errorCount++;
+  if (!sample.isController()) {
+    count++;
+    if (!sample.getSuccess()) {
+      errorCount++;
+    }
   }
   super.produce(sample,channel);
 }
