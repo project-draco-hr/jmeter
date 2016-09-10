@@ -11,7 +11,7 @@
     info.setData(data);
   }
   if (!sample.isEmptyController()) {
-    aggregateSample(sample,data);
-    aggregateSample(sample,overallData);
+    aggregateSample(sample,data,false);
+    aggregateSample(sample,overallData,true);
   }
 }
