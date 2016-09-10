@@ -1,4 +1,7 @@
 {
+  if (sample.isEmptyController()) {
+    return;
+  }
   SummaryInfo overallInfo=getOverallInfo();
   ApdexSummaryData overallData=overallInfo.getData();
   if (overallData == null) {
@@ -12,7 +15,7 @@
   }
   data.incTotalCount();
   overallData.incTotalCount();
-  if (sample.getSuccess() && !sample.isEmptyController()) {
+  if (sample.getSuccess()) {
     long elapsedTime=sample.getElapsedTime();
     ApdexThresholdsInfo thresholdsInfo=data.getApdexThresholdInfo();
     if (elapsedTime <= thresholdsInfo.getSatisfiedThreshold()) {
