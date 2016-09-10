@@ -1,8 +1,13 @@
 {
-  if (!sample.isEmptyController()) {
-    return Double.valueOf(sample.getLatency());
+  if (isIgnoreTransactionController()) {
+    if (!sample.isController()) {
+      return Double.valueOf(sample.getLatency());
+    }
   }
  else {
-    return null;
+    if (!sample.isEmptyController()) {
+      return Double.valueOf(sample.getLatency());
+    }
   }
+  return null;
 }

@@ -8,7 +8,7 @@
   }
 ,new GraphValueSelector(){
     @Override public Double select(    String series,    Sample sample){
-      if (!sample.isEmptyController()) {
+      if (!sample.isController()) {
         return Double.valueOf((RECEIVED_BYTES_SERIES_LABEL.equals(series)) ? sample.getReceivedBytes() : sample.getSentBytes());
       }
  else {

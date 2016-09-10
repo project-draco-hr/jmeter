@@ -1,8 +1,13 @@
 {
-  if (!sample.isEmptyController()) {
-    return ONE;
+  if (isIgnoreTransactionController()) {
+    if (!sample.isController()) {
+      return ONE;
+    }
   }
  else {
-    return ZERO;
+    if (!sample.isEmptyController()) {
+      return ONE;
+    }
   }
+  return ZERO;
 }

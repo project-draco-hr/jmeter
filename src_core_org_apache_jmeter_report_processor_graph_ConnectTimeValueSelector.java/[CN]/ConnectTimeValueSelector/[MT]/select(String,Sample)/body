@@ -1,8 +1,13 @@
 {
-  if (!sample.isEmptyController()) {
-    return Double.valueOf(sample.getConnectTime());
+  if (isIgnoreTransactionController()) {
+    if (!sample.isController()) {
+      return Double.valueOf(sample.getConnectTime());
+    }
   }
  else {
-    return null;
+    if (!sample.isEmptyController()) {
+      return Double.valueOf(sample.getConnectTime());
+    }
   }
+  return null;
 }

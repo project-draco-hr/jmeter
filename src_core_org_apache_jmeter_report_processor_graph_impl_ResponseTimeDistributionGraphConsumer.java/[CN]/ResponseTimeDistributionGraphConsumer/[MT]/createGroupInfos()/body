@@ -1,5 +1,5 @@
 {
   HashMap<String,GroupInfo> groupInfos=new HashMap<>(1);
-  groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new SumAggregatorFactory(),new NameSeriesSelector(),new CountValueSelector(),false,false));
+  groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new SumAggregatorFactory(),new NameSeriesSelector(),new CountValueSelector(false),false,false));
   return groupInfos;
 }
