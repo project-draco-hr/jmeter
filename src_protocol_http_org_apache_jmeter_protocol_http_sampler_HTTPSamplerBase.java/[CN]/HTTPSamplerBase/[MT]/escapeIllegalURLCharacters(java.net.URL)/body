@@ -1,0 +1,12 @@
+{
+  if (url == null || url.getProtocol().equals("file")) {
+    return url;
+  }
+  try {
+    return ConversionUtils.sanitizeUrl(url).toURL();
+  }
+ catch (  Exception e1) {
+    log.error("Error escaping URL:'" + url + "', message:"+ e1.getMessage());
+    return url;
+  }
+}

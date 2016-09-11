@@ -55,26 +55,22 @@
           log.warn("Null URL detected (should not happen)");
         }
  else {
-          String urlstr=url.toString();
-          String urlStrEnc=escapeIllegalURLCharacters(encodeSpaces(urlstr));
-          if (!urlstr.equals(urlStrEnc)) {
-            try {
-              url=new URL(urlStrEnc);
-            }
- catch (            MalformedURLException e) {
-              res.addSubResult(errorResult(new Exception(urlStrEnc + " is not a correct URI"),new HTTPSampleResult(res)));
-              setParentSampleSuccess(res,false);
-              continue;
-            }
+          try {
+            url=escapeIllegalURLCharacters(url);
           }
-          if (pattern != null && localMatcher != null && !localMatcher.matches(urlStrEnc,pattern)) {
+ catch (          Exception e) {
+            res.addSubResult(errorResult(new Exception(url.toString() + " is not a correct URI"),new HTTPSampleResult(res)));
+            setParentSampleSuccess(res,false);
+            continue;
+          }
+          if (pattern != null && localMatcher != null && !localMatcher.matches(url.toString(),pattern)) {
             continue;
           }
           try {
             url=url.toURI().normalize().toURL();
           }
  catch (          MalformedURLException|URISyntaxException e) {
-            res.addSubResult(errorResult(new Exception(urlStrEnc + " URI can not be normalized",e),new HTTPSampleResult(res)));
+            res.addSubResult(errorResult(new Exception(url.toString() + " URI can not be normalized",e),new HTTPSampleResult(res)));
             setParentSampleSuccess(res,false);
             continue;
           }
