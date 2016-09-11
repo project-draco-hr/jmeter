@@ -1,5 +1,8 @@
 {
   SampleResult s=e.getResult();
+  if (IGNORE_TC_GENERATED_SAMPLERESULT && TransactionController.isFromTransactionController(s)) {
+    return;
+  }
   long now=System.currentTimeMillis() / 1000;
   SummariserRunningSample myDelta=null;
   SummariserRunningSample myTotal=null;
