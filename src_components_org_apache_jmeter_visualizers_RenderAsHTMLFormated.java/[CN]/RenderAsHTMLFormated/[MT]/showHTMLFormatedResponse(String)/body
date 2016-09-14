@@ -1,0 +1,8 @@
+{
+  results.setContentType("text/plain");
+  results.setText(response == null ? "" : Jsoup.parse(response).html());
+  results.setCaretPosition(0);
+  resultsScrollPane.setViewportView(results);
+  resultsScrollPane.setPreferredSize(resultsScrollPane.getMinimumSize());
+  results.revalidate();
+}
