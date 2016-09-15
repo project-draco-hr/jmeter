@@ -1,4 +1,10 @@
 {
-  log.info("Using DataStrippingSampleSender for this run");
+  if (isClientConfigured()) {
+    stripAlsoOnError=clientConfiguredStripAlsoOnError;
+  }
+ else {
+    stripAlsoOnError=SERVER_CONFIGURED_STRIP_ALSO_ON_ERROR;
+  }
+  log.info("Using DataStrippingSampleSender for this run with stripAlsoOnError:" + stripAlsoOnError);
   return this;
 }

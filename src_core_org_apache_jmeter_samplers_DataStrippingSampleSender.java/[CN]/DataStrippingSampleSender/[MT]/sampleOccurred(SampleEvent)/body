@@ -1,6 +1,6 @@
 {
   SampleResult result=event.getResult();
-  if (result.isSuccessful()) {
+  if (stripAlsoOnError || result.isSuccessful()) {
     stripResponse(result);
     for (    SampleResult subResult : result.getSubResults()) {
       stripResponse(subResult);
