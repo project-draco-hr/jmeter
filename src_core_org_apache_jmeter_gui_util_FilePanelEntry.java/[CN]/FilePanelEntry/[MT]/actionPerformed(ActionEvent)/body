@@ -2,10 +2,10 @@
   if (e.getActionCommand().equals(ACTION_BROWSE)) {
     JFileChooser chooser;
     if (filetypes == null || filetypes.length == 0) {
-      chooser=FileDialoger.promptToOpenFile(filename.getText());
+      chooser=FileDialoger.promptToOpenFile(filename.getText(),onlyDirectories);
     }
  else {
-      chooser=FileDialoger.promptToOpenFile(filetypes,filename.getText());
+      chooser=FileDialoger.promptToOpenFile(filetypes,filename.getText(),onlyDirectories);
     }
     if (chooser != null && chooser.getSelectedFile() != null) {
       filename.setText(chooser.getSelectedFile().getPath());

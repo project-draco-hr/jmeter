@@ -1,5 +1,3 @@
 {
-  super(JMeterUtils.getResString("file_visualizer_filename"),l);
-  this.title=title;
-  init();
+  this(l,title,false);
 }

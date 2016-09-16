@@ -1,31 +1,3 @@
 {
-  if (!StringUtils.isEmpty(existingFileName)) {
-    File existingFileStart=new File(existingFileName);
-    if (existingFileStart.exists() && existingFileStart.canRead()) {
-      jfc.setCurrentDirectory(new File(existingFileName));
-    }
-  }
- else   if (lastJFCDirectory == null) {
-    String start=System.getProperty("user.dir","");
-    if (start.length() > 0) {
-      jfc.setCurrentDirectory(new File(start));
-    }
-  }
-  clearFileFilters();
-  if (exts != null && exts.length > 0) {
-    JMeterFileFilter currentFilter=new JMeterFileFilter(exts);
-    jfc.addChoosableFileFilter(currentFilter);
-    jfc.setAcceptAllFileFilterUsed(true);
-    jfc.setFileFilter(currentFilter);
-  }
-  if (lastJFCDirectory == null) {
-    lastJFCDirectory=System.getProperty("user.dir","");
-  }
-  jfc.setCurrentDirectory(new File(lastJFCDirectory));
-  int retVal=jfc.showOpenDialog(GuiPackage.getInstance().getMainFrame());
-  lastJFCDirectory=jfc.getCurrentDirectory().getAbsolutePath();
-  if (retVal == JFileChooser.APPROVE_OPTION) {
-    return jfc;
-  }
-  return null;
+  return promptToOpenFile(exts,null,false);
 }
