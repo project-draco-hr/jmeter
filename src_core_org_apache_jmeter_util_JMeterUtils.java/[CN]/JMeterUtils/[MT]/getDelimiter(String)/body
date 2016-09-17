@@ -1,0 +1,9 @@
+{
+  if (delimiterValue.equals("\\t")) {
+    delimiterValue="\t";
+  }
+  if (delimiterValue.length() != 1) {
+    throw new JMeterError("Delimiter '" + delimiterValue + "' must be of length 1.");
+  }
+  return delimiterValue;
+}
