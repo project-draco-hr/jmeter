@@ -2,7 +2,14 @@
   long totalDelay=0;
   for (  Timer timer : timers) {
     TestBeanHelper.prepare((TestElement)timer);
-    totalDelay+=timer.delay();
+    long delay=timer.delay();
+    if (TIMER_FACTOR != ONE_AS_FLOAT && ((timer instanceof ModifiableTimer) && ((ModifiableTimer)timer).isModifiable())) {
+      if (log.isDebugEnabled()) {
+        log.debug("Applying TIMER_FACTOR:" + TIMER_FACTOR + " on timer:"+ ((TestElement)timer).getName()+ " for thread:"+ getThreadName());
+      }
+      delay=Math.round(delay * TIMER_FACTOR);
+    }
+    totalDelay+=delay;
   }
   if (totalDelay > 0) {
     try {

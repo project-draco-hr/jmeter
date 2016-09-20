@@ -1,0 +1,11 @@
+{
+  float ans;
+  try {
+    ans=Float.parseFloat(appProperties.getProperty(propName,Float.toString(defaultVal)).trim());
+  }
+ catch (  Exception e) {
+    log.warn("Exception '" + e.getMessage() + "' occurred when fetching float property:'"+ propName+ "', defaulting to:"+ defaultVal);
+    ans=defaultVal;
+  }
+  return ans;
+}
