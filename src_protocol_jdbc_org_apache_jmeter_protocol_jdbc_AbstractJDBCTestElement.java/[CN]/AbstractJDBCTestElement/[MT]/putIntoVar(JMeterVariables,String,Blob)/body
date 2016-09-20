@@ -1,0 +1,23 @@
+{
+  if (RS_STORE_AS_OBJECT.equals(resultSetHandler)) {
+    try {
+      long length=Math.max(blob.length(),MAX_RETAIN_SIZE);
+      jmvars.putObject(name,IOUtils.toByteArray(blob.getBinaryStream(0,length)));
+    }
+ catch (    IOException e) {
+      log.warn("Could not read BLOB into " + name + " as object.",e);
+    }
+  }
+ else   if (RS_COUNT_RECORDS.equals(resultSetHandler)) {
+    jmvars.put(name,blob.length() + " bytes");
+  }
+ else {
+    try {
+      long length=Math.max(blob.length(),MAX_RETAIN_SIZE);
+      jmvars.put(name,IOUtils.toString(blob.getBinaryStream(0,length),ENCODING));
+    }
+ catch (    IOException e) {
+      log.warn("Can't convert BLOB to String using " + ENCODING,e);
+    }
+  }
+}

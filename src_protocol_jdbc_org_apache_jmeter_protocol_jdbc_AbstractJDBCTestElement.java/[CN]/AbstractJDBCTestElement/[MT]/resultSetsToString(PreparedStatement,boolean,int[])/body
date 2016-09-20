@@ -50,16 +50,13 @@
         if (name.length() > 0) {
           Object o=outputValues.get(i);
           if (o instanceof java.sql.ResultSet) {
-            ResultSet resultSet=(ResultSet)o;
-            if (RS_STORE_AS_OBJECT.equals(resultSetHandler)) {
-              jmvars.putObject(name,o);
-            }
- else             if (RS_COUNT_RECORDS.equals(resultSetHandler)) {
-              jmvars.put(name,o.toString() + " " + countRows(resultSet)+ " rows");
-            }
- else {
-              jmvars.put(name,o.toString());
-            }
+            putIntoVar(jmvars,name,(java.sql.ResultSet)o);
+          }
+ else           if (o instanceof java.sql.Clob) {
+            putIntoVar(jmvars,name,(java.sql.Clob)o);
+          }
+ else           if (o instanceof java.sql.Blob) {
+            putIntoVar(jmvars,name,(java.sql.Blob)o);
           }
  else {
             jmvars.put(name,o == null ? null : o.toString());

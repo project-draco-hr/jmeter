@@ -1,0 +1,11 @@
+{
+  if (RS_STORE_AS_OBJECT.equals(resultSetHandler)) {
+    jmvars.putObject(name,resultSet);
+  }
+ else   if (RS_COUNT_RECORDS.equals(resultSetHandler)) {
+    jmvars.put(name,resultSet.toString() + " " + countRows(resultSet)+ " rows");
+  }
+ else {
+    jmvars.put(name,resultSet.toString());
+  }
+}
