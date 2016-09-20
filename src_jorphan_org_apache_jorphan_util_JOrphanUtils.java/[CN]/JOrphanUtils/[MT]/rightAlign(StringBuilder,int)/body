@@ -6,6 +6,6 @@
   if (pfx > SPACES_LEN) {
     pfx=SPACES_LEN;
   }
-  in.insert(0,SPACES.substring(0,pfx));
+  in.insert(0,SPACES_CHARS,0,pfx);
   return in;
 }

@@ -4,9 +4,9 @@
   if (hasProxy) {
     sb.append(" via ");
     sb.append(proxyUser);
-    sb.append("@");
+    sb.append('@');
     sb.append(proxyHost);
-    sb.append(":");
+    sb.append(':');
     sb.append(proxyPort);
   }
   return sb.toString();

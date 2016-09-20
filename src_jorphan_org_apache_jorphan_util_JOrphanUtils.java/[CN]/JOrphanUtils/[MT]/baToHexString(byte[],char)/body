@@ -6,7 +6,7 @@
     }
     int j=ba[i] & 0xff;
     if (j < 16) {
-      sb.append("0");
+      sb.append('0');
     }
     sb.append(Integer.toHexString(j));
   }

@@ -1,11 +1,11 @@
 {
   DecimalFormat dfDouble=new DecimalFormat("#0.0");
   StringBuilder tmp=new StringBuilder(20);
-  StringBuilder sb=new StringBuilder(100);
+  StringBuilder sb=new StringBuilder(140);
   sb.append(name);
-  sb.append(" ");
+  sb.append(' ');
   sb.append(type);
-  sb.append(" ");
+  sb.append(' ');
   sb.append(longToSb(tmp,summariserRunningSample.getNumSamples(),6));
   sb.append(" in ");
   long elapsed=summariserRunningSample.getElapsed();
@@ -28,7 +28,7 @@
   sb.append(longToSb(tmp,summariserRunningSample.getErrorCount(),5));
   sb.append(" (");
   sb.append(summariserRunningSample.getErrorPercentageString());
-  sb.append(")");
+  sb.append(')');
   if ("+".equals(type)) {
     ThreadCounts tc=JMeterContextService.getThreadCounts();
     sb.append(" Active: ");

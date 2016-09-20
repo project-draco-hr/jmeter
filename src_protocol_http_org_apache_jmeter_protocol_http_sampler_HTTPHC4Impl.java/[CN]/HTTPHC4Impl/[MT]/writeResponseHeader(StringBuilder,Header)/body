@@ -1,9 +1,9 @@
 {
   if (responseHeader instanceof BufferedHeader) {
     CharArrayBuffer buffer=((BufferedHeader)responseHeader).getBuffer();
-    headerBuffer.append(buffer.buffer(),0,buffer.length()).append("\n");
+    headerBuffer.append(buffer.buffer(),0,buffer.length()).append('\n');
   }
  else {
-    headerBuffer.append(responseHeader.getName()).append(": ").append(responseHeader.getValue()).append("\n");
+    headerBuffer.append(responseHeader.getName()).append(": ").append(responseHeader.getValue()).append('\n');
   }
 }

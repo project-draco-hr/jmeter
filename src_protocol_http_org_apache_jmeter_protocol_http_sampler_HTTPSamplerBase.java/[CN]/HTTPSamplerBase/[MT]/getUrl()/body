@@ -11,7 +11,7 @@
   }
  else {
     if (!path.startsWith("/")) {
-      pathAndQuery.append("/");
+      pathAndQuery.append('/');
     }
   }
   pathAndQuery.append(path);

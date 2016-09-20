@@ -4,7 +4,7 @@
   sb.append("Log: ");
   sb.append(tn);
   if (c.length() > 0) {
-    sb.append(" ");
+    sb.append(' ');
     sb.append(c);
   }
  else {
@@ -12,7 +12,7 @@
   }
   sb.append(s);
   if (t != null) {
-    sb.append(" ");
+    sb.append(' ');
     ps.print(sb.toString());
     t.printStackTrace(ps);
   }

@@ -3,7 +3,7 @@
   for (  byte b : ba) {
     int j=b & 0xff;
     if (j < 16) {
-      sb.append("0");
+      sb.append('0');
     }
     sb.append(Integer.toHexString(j));
   }

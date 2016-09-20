@@ -6,6 +6,6 @@
   if (sfx > SPACES_LEN) {
     sfx=SPACES_LEN;
   }
-  in.append(SPACES.substring(0,sfx));
+  in.append(SPACES_CHARS,0,sfx);
   return in;
 }
