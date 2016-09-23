@@ -2,12 +2,17 @@
   HashMap<String,GroupInfo> groupInfos=new HashMap<>(1);
   groupInfos.put(AbstractGraphConsumer.DEFAULT_GROUP,new GroupInfo(new MeanAggregatorFactory(),new AbstractSeriesSelector(){
     @Override public Iterable<String> select(    Sample sample){
-      String threadName=sample.getThreadName();
-      int index=threadName.lastIndexOf(" ");
-      if (index >= 0) {
-        threadName=threadName.substring(0,index);
+      if (!sample.isEmptyController()) {
+        String threadName=sample.getThreadName();
+        int index=threadName.lastIndexOf(" ");
+        if (index >= 0) {
+          threadName=threadName.substring(0,index);
+        }
+        return Arrays.asList(new String[]{threadName});
       }
-      return Arrays.asList(new String[]{threadName});
+ else {
+        return Collections.<String>emptyList();
+      }
     }
   }
 ,new GraphValueSelector(){
