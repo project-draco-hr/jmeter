@@ -33,7 +33,10 @@
   if (hasEntityBody) {
     final HttpEntity entityEntry=entity.getEntity();
     if (entityEntry.isRepeatable()) {
-      entityBody.append("<actual file content, not shown here>");
+      entityBody.append(IOUtils.toString(new BoundedInputStream(entityEntry.getContent(),MAX_BODY_RETAIN_SIZE)));
+      if (entityEntry.getContentLength() > MAX_BODY_RETAIN_SIZE) {
+        entityBody.append("<actual file content shortened>");
+      }
     }
  else {
       entityBody.append("<RequestEntity was not repeatable, cannot view what was sent>");
