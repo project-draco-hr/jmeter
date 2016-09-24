@@ -1,9 +1,5 @@
 {
-  String lang=getScriptLanguage();
-  if (StringUtils.isEmpty(lang)) {
-    lang=DEFAULT_SCRIPT_LANGUAGE;
-    setScriptLanguage(lang);
-  }
+  String lang=getScriptLanguageWithDefault();
   ScriptEngine scriptEngine=getInstance().getEngineByName(lang);
   if (scriptEngine == null) {
     throw new ScriptException("Cannot find engine named: '" + lang + "', ensure you set language field in JSR223 Test Element: "+ getName());

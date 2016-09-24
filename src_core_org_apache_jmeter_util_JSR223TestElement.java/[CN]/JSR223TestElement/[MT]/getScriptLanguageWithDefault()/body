@@ -1,0 +1,7 @@
+{
+  String lang=getScriptLanguage();
+  if (!StringUtils.isNotEmpty(lang)) {
+    return lang;
+  }
+  return DEFAULT_SCRIPT_LANGUAGE;
+}
