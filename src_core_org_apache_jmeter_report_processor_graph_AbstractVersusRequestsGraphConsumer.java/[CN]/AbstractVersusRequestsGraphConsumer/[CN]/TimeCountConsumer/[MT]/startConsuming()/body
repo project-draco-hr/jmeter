@@ -4,7 +4,7 @@
   if (!workDir.exists()) {
     createdWorkDir=workDir.mkdir();
     if (!createdWorkDir) {
-      String message=String.format("Cannot create create working directory \"%s\"",workDir);
+      String message=String.format("Cannot create working directory \"%s\"",workDir);
       log.error(message);
       throw new SampleException(message);
     }
