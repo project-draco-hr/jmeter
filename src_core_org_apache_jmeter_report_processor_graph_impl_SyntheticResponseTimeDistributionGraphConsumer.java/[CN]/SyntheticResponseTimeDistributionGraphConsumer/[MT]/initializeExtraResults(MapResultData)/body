@@ -1,6 +1,6 @@
 {
   ListResultData listResultData=new ListResultData();
-  String[] messages=new String[]{SATISFIED_LABEL.format(new Object[]{Long.valueOf(getSatifiedThreshold())}),TOLERATED_LABEL.format(new Object[]{Long.valueOf(getSatifiedThreshold()),Long.valueOf(getToleratedThreshold())}),UNTOLERATED_LABEL.format(new Object[]{Long.valueOf(getToleratedThreshold())}),FAILED_LABEL};
+  String[] messages=new String[]{SATISFIED_LABEL.format(new Object[]{Long.valueOf(getSatisfiedThreshold())}),TOLERATED_LABEL.format(new Object[]{Long.valueOf(getSatisfiedThreshold()),Long.valueOf(getToleratedThreshold())}),UNTOLERATED_LABEL.format(new Object[]{Long.valueOf(getToleratedThreshold())}),FAILED_LABEL};
   for (int i=0; i < messages.length; i++) {
     ListResultData array=new ListResultData();
     array.addResult(new ValueResultData(Integer.valueOf(i)));

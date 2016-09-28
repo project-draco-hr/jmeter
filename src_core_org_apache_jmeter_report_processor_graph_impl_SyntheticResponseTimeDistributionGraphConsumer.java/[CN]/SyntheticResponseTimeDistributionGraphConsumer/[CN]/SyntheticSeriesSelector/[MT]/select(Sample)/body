@@ -4,11 +4,11 @@
   }
  else {
     long elapsedTime=sample.getElapsedTime();
-    if (elapsedTime <= getSatifiedThreshold()) {
-      return Arrays.asList(SATISFIED_LABEL.format(new Object[]{Long.valueOf(getSatifiedThreshold())}));
+    if (elapsedTime <= getSatisfiedThreshold()) {
+      return Arrays.asList(SATISFIED_LABEL.format(new Object[]{Long.valueOf(getSatisfiedThreshold())}));
     }
  else     if (elapsedTime <= getToleratedThreshold()) {
-      return Arrays.asList(TOLERATED_LABEL.format(new Object[]{Long.valueOf(getSatifiedThreshold()),Long.valueOf(getToleratedThreshold())}));
+      return Arrays.asList(TOLERATED_LABEL.format(new Object[]{Long.valueOf(getSatisfiedThreshold()),Long.valueOf(getToleratedThreshold())}));
     }
  else {
       return Arrays.asList(UNTOLERATED_LABEL.format(new Object[]{Long.valueOf(getToleratedThreshold())}));

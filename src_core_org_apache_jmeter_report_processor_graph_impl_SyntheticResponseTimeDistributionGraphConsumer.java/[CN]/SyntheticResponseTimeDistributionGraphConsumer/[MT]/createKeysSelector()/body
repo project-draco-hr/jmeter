@@ -3,7 +3,7 @@
     @Override public Double select(    Sample sample){
       if (sample.getSuccess()) {
         long elapsedTime=sample.getElapsedTime();
-        if (elapsedTime <= satifiedThreshold) {
+        if (elapsedTime <= satisfiedThreshold) {
           return Double.valueOf(0);
         }
  else         if (elapsedTime <= toleratedThreshold) {
