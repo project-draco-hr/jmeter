@@ -4,4 +4,6 @@
   add(makeTitlePanel());
   style=new JCheckBox(JMeterUtils.getResString("ignore_subcontrollers"));
   add(CheckBoxPanel.wrap(style));
+  accrossThreads=new JCheckBox(JMeterUtils.getResString("interleave_accross_threads"));
+  add(CheckBoxPanel.wrap(accrossThreads));
 }

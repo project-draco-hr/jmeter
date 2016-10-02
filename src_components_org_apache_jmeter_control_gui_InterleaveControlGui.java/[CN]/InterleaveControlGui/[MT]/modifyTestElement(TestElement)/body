@@ -1,9 +1,11 @@
 {
   configureTestElement(ic);
+  InterleaveControl controller=(InterleaveControl)ic;
   if (style.isSelected()) {
-    ((InterleaveControl)ic).setStyle(InterleaveControl.IGNORE_SUB_CONTROLLERS);
+    controller.setStyle(InterleaveControl.IGNORE_SUB_CONTROLLERS);
   }
  else {
-    ((InterleaveControl)ic).setStyle(InterleaveControl.USE_SUB_CONTROLLERS);
+    controller.setStyle(InterleaveControl.USE_SUB_CONTROLLERS);
   }
+  controller.setInterleaveAccrossThreads(accrossThreads.isSelected());
 }

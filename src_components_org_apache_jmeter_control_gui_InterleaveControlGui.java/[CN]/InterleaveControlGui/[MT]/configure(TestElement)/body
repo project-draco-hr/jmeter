@@ -1,9 +1,11 @@
 {
   super.configure(el);
-  if (((InterleaveControl)el).getStyle() == InterleaveControl.IGNORE_SUB_CONTROLLERS) {
+  InterleaveControl controller=(InterleaveControl)el;
+  if (controller.getStyle() == InterleaveControl.IGNORE_SUB_CONTROLLERS) {
     style.setSelected(true);
   }
  else {
     style.setSelected(false);
   }
+  accrossThreads.setSelected(controller.getInterleaveAccrossThreads());
 }

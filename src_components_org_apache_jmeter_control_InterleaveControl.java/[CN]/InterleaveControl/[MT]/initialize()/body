@@ -1,0 +1,6 @@
+{
+  super.initialize();
+  if (getInterleaveAccrossThreads()) {
+    this.current=getThreadContext().getThreadNum() % getSubControllers().size();
+  }
+}
