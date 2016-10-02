@@ -1,5 +1,25 @@
 {
-  XStream xstream=new XStream(new DomDriver());
+  XStream xstream=new XStream(new DomDriver(){
+    /** 
+ * Create the DocumentBuilderFactory instance.
+ * See https://blog.compass-security.com/2012/08/secure-xml-parser-configuration/
+ * See https://github.com/x-stream/xstream/issues/25
+ * @return the new instance
+ */
+    @Override protected DocumentBuilderFactory createDocumentBuilderFactory(){
+      final DocumentBuilderFactory factory=DocumentBuilderFactory.newInstance();
+      try {
+        factory.setFeature("http://xml.org/sax/features/external-general-entities",false);
+        factory.setFeature("http://xml.org/sax/features/external-parameter-entities",false);
+      }
+ catch (      ParserConfigurationException e) {
+        throw new StreamException(e);
+      }
+      factory.setExpandEntityReferences(false);
+      return factory;
+    }
+  }
+);
   xstream.alias("template",Template.class);
   xstream.alias("templates",Templates.class);
   xstream.useAttributeFor(Template.class,"isTestPlan");
