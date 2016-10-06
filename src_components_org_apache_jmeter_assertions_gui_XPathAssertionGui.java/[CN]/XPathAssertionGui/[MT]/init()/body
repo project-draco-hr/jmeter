@@ -1,17 +1,17 @@
 {
-  setLayout(new VerticalLayout(5,VerticalLayout.BOTH,VerticalLayout.TOP));
+  setLayout(new BorderLayout());
   setBorder(makeBorder());
-  add(makeTitlePanel());
-  Box box=Box.createVerticalBox();
-  box.add(createScopePanel(true));
-  add(box);
+  Box topBox=Box.createVerticalBox();
+  topBox.add(makeTitlePanel());
+  topBox.add(createScopePanel(true));
+  xml=new XMLConfPanel();
+  xml.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("xpath_assertion_option")));
+  topBox.add(xml);
+  add(topBox,BorderLayout.NORTH);
   JPanel sizePanel=new JPanel(new BorderLayout());
   sizePanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
   sizePanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),getXPathAttributesTitle()));
   xpath=new XPathPanel();
   sizePanel.add(xpath);
-  xml=new XMLConfPanel();
-  xml.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(),JMeterUtils.getResString("xpath_assertion_option")));
-  add(xml);
-  add(sizePanel);
+  add(sizePanel,BorderLayout.CENTER);
 }

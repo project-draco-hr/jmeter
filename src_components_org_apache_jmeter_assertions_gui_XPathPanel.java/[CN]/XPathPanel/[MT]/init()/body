@@ -1,13 +1,12 @@
 {
+  setLayout(new BorderLayout());
   Box hbox=Box.createHorizontalBox();
   hbox.add(Box.createHorizontalGlue());
-  hbox.add(JTextScrollPane.getInstance(getXPathField()));
+  hbox.add(getNegatedCheckBox());
   hbox.add(Box.createHorizontalGlue());
   hbox.add(getCheckXPathButton());
-  Box vbox=Box.createVerticalBox();
-  vbox.add(hbox);
-  vbox.add(Box.createVerticalGlue());
-  vbox.add(getNegatedCheckBox());
-  add(vbox);
+  hbox.add(Box.createHorizontalGlue());
+  add(JTextScrollPane.getInstance(getXPathField()),BorderLayout.CENTER);
+  add(hbox,BorderLayout.SOUTH);
   setDefaultValues();
 }
