@@ -5,7 +5,7 @@
   if (delim.equals("\\t")) {
     delim="\t";
   }
- else   if (delim.length() == 0) {
+ else   if (delim.isEmpty()) {
     log.warn("Empty delimiter converted to ','");
     delim=",";
   }
@@ -42,6 +42,7 @@ throw new IllegalArgumentException("Could not split CSV header line from file:" 
 server.reserveFile(_fileName,getFileEncoding(),alias);
 vars=JOrphanUtils.split(names,",");
 }
+trimVarNames(vars);
 }
 JMeterVariables threadVars=context.getVariables();
 String[] lineValues={};
