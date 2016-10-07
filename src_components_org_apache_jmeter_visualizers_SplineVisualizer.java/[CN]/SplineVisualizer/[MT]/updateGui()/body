@@ -1,9 +1,0 @@
-{
-  repaint();
-synchronized (this) {
-    setMinimum(model.getMinimum());
-    setMaximum(model.getMaximum());
-    setAverage(model.getAverage());
-    setIncoming(model.getCurrent());
-  }
-}
