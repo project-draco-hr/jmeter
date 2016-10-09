@@ -38,6 +38,9 @@
   if (save.saveBytes()) {
     writer.addAttribute(ATT_BYTES,String.valueOf(res.getBytes()));
   }
+  if (save.saveSentBytes()) {
+    writer.addAttribute(ATT_SENT_BYTES,String.valueOf(res.getSentBytes()));
+  }
   if (save.saveSampleCount()) {
     writer.addAttribute(ATT_SAMPLE_COUNT,String.valueOf(res.getSampleCount()));
     writer.addAttribute(ATT_ERROR_COUNT,String.valueOf(res.getErrorCount()));

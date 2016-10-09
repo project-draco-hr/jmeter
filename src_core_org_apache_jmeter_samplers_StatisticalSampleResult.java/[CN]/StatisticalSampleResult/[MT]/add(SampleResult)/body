@@ -1,6 +1,7 @@
 {
   setSampleCount(getSampleCount() + res.getSampleCount());
   setBytes(getBytes() + res.getBytes());
+  setSentBytes(getSentBytes() + res.getSentBytes());
   if (!res.isSuccessful()) {
     errorCount++;
     this.setSuccessful(false);

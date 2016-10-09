@@ -5,6 +5,9 @@
   if (fieldName.equals(NODE_BYTES)) {
     return false;
   }
+  if (fieldName.equals(NODE_SENT_BYTES)) {
+    return false;
+  }
   if (fieldName.equals(NODE_URL)) {
     return false;
   }

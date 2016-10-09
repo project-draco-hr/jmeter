@@ -96,6 +96,11 @@
       text=parts[i++];
       result.setBytes(Integer.parseInt(text));
     }
+    if (saveConfig.saveSentBytes()) {
+      field=CSV_SENT_BYTES;
+      text=parts[i++];
+      result.setSentBytes(Long.parseLong(text));
+    }
     if (saveConfig.saveThreadCounts()) {
       field=CSV_THREAD_COUNT1;
       text=parts[i++];

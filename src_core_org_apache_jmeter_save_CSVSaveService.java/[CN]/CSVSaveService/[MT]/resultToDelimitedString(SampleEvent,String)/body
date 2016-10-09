@@ -53,6 +53,9 @@
   if (saveConfig.saveBytes()) {
     text.append(sample.getBytes());
   }
+  if (saveConfig.saveSentBytes()) {
+    text.append(sample.getSentBytes());
+  }
   if (saveConfig.saveThreadCounts()) {
     text.append(sample.getGroupThreads());
     text.append(sample.getAllThreads());

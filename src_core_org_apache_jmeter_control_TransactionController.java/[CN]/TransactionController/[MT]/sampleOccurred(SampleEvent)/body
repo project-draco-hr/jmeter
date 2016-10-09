@@ -4,6 +4,7 @@
       SampleResult sampleResult=se.getResult();
       res.setThreadName(sampleResult.getThreadName());
       res.setBytes(res.getBytes() + sampleResult.getBytes());
+      res.setSentBytes(res.getSentBytes() + sampleResult.getSentBytes());
       if (!isIncludeTimers()) {
         pauseTime+=sampleResult.getEndTime() - sampleResult.getTime() - prevEndTime;
         prevEndTime=sampleResult.getEndTime();

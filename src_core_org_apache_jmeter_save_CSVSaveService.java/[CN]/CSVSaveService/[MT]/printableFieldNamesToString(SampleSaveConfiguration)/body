@@ -41,6 +41,10 @@
     text.append(CSV_BYTES);
     text.append(delim);
   }
+  if (saveConfig.saveSentBytes()) {
+    text.append(CSV_SENT_BYTES);
+    text.append(delim);
+  }
   if (saveConfig.saveThreadCounts()) {
     text.append(CSV_THREAD_COUNT1);
     text.append(delim);
