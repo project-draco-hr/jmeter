@@ -16,7 +16,7 @@
   res.setIdleTime(Converter.getLong(reader.getAttribute(ATT_IDLETIME)));
   res.setLatency(Converter.getLong(reader.getAttribute(ATT_LATENCY)));
   res.setConnectTime(Converter.getLong(reader.getAttribute(ATT_CONNECT_TIME)));
-  res.setBytes(Converter.getInt(reader.getAttribute(ATT_BYTES)));
+  res.setBytes(Converter.getLong(reader.getAttribute(ATT_BYTES)));
   res.setSentBytes(Converter.getLong(reader.getAttribute(ATT_SENT_BYTES)));
   res.setSampleCount(Converter.getInt(reader.getAttribute(ATT_SAMPLE_COUNT),1));
   res.setErrorCount(Converter.getInt(reader.getAttribute(ATT_ERROR_COUNT),0));

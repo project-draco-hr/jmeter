@@ -15,10 +15,10 @@
       statsBuff.append(JMeterUtils.getResString("view_results_load_time")).append(sampleResult.getTime()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_connect_time")).append(sampleResult.getConnectTime()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_latency")).append(sampleResult.getLatency()).append(NL);
-      statsBuff.append(JMeterUtils.getResString("view_results_size_in_bytes")).append(sampleResult.getBytes()).append(NL);
+      statsBuff.append(JMeterUtils.getResString("view_results_size_in_bytes")).append(sampleResult.getBytesAsLong()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_sent_bytes")).append(sampleResult.getSentBytes()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_size_headers_in_bytes")).append(sampleResult.getHeadersSize()).append(NL);
-      statsBuff.append(JMeterUtils.getResString("view_results_size_body_in_bytes")).append(sampleResult.getBodySize()).append(NL);
+      statsBuff.append(JMeterUtils.getResString("view_results_size_body_in_bytes")).append(sampleResult.getBodySizeAsLong()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_sample_count")).append(sampleResult.getSampleCount()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_error_count")).append(sampleResult.getErrorCount()).append(NL);
       statsBuff.append(JMeterUtils.getResString("view_results_datatype")).append(sampleResult.getDataType()).append(NL);
@@ -66,10 +66,10 @@ resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_sample
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_load_time"),sampleResult.getTime()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_connect_time"),sampleResult.getConnectTime()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_latency"),sampleResult.getLatency()));
-resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_size_in_bytes"),sampleResult.getBytes()));
+resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_size_in_bytes"),sampleResult.getBytesAsLong()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_sent_bytes"),sampleResult.getSentBytes()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_size_headers_in_bytes"),sampleResult.getHeadersSize()));
-resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_size_body_in_bytes"),sampleResult.getBodySize()));
+resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_size_body_in_bytes"),sampleResult.getBodySizeAsLong()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_sample_count"),sampleResult.getSampleCount()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_error_count"),sampleResult.getErrorCount()));
 resultModel.addRow(new RowResult(JMeterUtils.getParsedLabel("view_results_response_code"),responseCode));

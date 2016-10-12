@@ -5,13 +5,24 @@
   res.setSampleLabel(url.toString());
   InputStream is=null;
   res.sampleStart();
-  try {
+  int bufferSize=4096;
+  try (org.apache.commons.io.output.ByteArrayOutputStream bos=new org.apache.commons.io.output.ByteArrayOutputStream(bufferSize)){
     byte[] responseData;
     URLConnection conn=url.openConnection();
     is=conn.getInputStream();
-    responseData=IOUtils.toByteArray(is);
+    byte[] readBuffer=new byte[bufferSize];
+    int bytesReadInBuffer=0;
+    long totalBytes=0;
+    while ((bytesReadInBuffer=is.read(readBuffer)) > -1) {
+      if (totalBytes + bytesReadInBuffer <= MAX_BYTES_TO_STORE_PER_REQUEST) {
+        bos.write(readBuffer,0,bytesReadInBuffer);
+      }
+      totalBytes+=bytesReadInBuffer;
+    }
+    responseData=bos.toByteArray();
     res.sampleEnd();
     res.setResponseData(responseData);
+    res.setBodySize(totalBytes);
     res.setResponseCodeOK();
     res.setResponseMessageOK();
     res.setSuccessful(true);

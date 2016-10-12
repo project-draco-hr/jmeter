@@ -94,7 +94,7 @@
     if (saveConfig.saveBytes()) {
       field=CSV_BYTES;
       text=parts[i++];
-      result.setBytes(Integer.parseInt(text));
+      result.setBytes(Long.parseLong(text));
     }
     if (saveConfig.saveSentBytes()) {
       field=CSV_SENT_BYTES;

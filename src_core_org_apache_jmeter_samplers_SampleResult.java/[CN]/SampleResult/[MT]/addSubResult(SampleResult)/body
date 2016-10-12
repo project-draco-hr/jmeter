@@ -9,9 +9,9 @@
   }
   subResult.setThreadName(tn);
   setEndTime(Math.max(getEndTime(),subResult.getEndTime() + nanoTimeOffset - subResult.nanoTimeOffset));
-  setBytes(getBytes() + subResult.getBytes());
+  setBytes(getBytesAsLong() + subResult.getBytesAsLong());
   setSentBytes(getSentBytes() + subResult.getSentBytes());
   setHeadersSize(getHeadersSize() + subResult.getHeadersSize());
-  setBodySize(getBodySize() + subResult.getBodySize());
+  setBodySize(getBodySizeAsLong() + subResult.getBodySizeAsLong());
   addRawSubResult(subResult);
 }

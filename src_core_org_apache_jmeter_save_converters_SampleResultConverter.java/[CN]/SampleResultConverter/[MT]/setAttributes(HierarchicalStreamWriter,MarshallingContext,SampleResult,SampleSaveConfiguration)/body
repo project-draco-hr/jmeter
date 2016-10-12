@@ -36,7 +36,7 @@
     writer.addAttribute(ATT_DATA_ENCODING,ConversionHelp.encode(res.getDataEncodingNoDefault()));
   }
   if (save.saveBytes()) {
-    writer.addAttribute(ATT_BYTES,String.valueOf(res.getBytes()));
+    writer.addAttribute(ATT_BYTES,String.valueOf(res.getBytesAsLong()));
   }
   if (save.saveSentBytes()) {
     writer.addAttribute(ATT_SENT_BYTES,String.valueOf(res.getSentBytes()));

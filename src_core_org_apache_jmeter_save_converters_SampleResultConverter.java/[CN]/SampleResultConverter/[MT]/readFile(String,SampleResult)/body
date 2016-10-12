@@ -1,7 +1,7 @@
 {
   File in=new File(resultFileName);
   try (FileInputStream fis=new FileInputStream(in);BufferedInputStream bis=new BufferedInputStream(fis)){
-    ByteArrayOutputStream outstream=new ByteArrayOutputStream(res.getBytes());
+    ByteArrayOutputStream outstream=new ByteArrayOutputStream(4096);
     byte[] buffer=new byte[4096];
     int len;
     while ((len=bis.read(buffer)) > 0) {

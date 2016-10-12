@@ -18,43 +18,47 @@
         bufferSize=4 * 1024;
       }
  else {
-        bufferSize=length;
+        bufferSize=(int)Math.min(MAX_BUFFER_SIZE,length);
       }
     }
-    int bytesRead=0;
-    int totalBytes=0;
+    int bytesReadInBuffer=0;
+    long totalBytes=0;
     boolean first=true;
-    while ((bytesRead=in.read(readBuffer)) > -1) {
+    while ((bytesReadInBuffer=in.read(readBuffer)) > -1) {
       if (first) {
         sampleResult.latencyEnd();
         first=false;
         if (md == null) {
-          if (knownResponseLength) {
-            w=new DirectAccessByteArrayOutputStream(bufferSize);
+          if (!knownResponseLength) {
+            w=new org.apache.commons.io.output.ByteArrayOutputStream(bufferSize);
           }
  else {
-            w=new org.apache.commons.io.output.ByteArrayOutputStream(bufferSize);
+            w=new DirectAccessByteArrayOutputStream(bufferSize);
           }
         }
       }
       if (md == null) {
-        w.write(readBuffer,0,bytesRead);
+        if (totalBytes + bytesReadInBuffer <= MAX_BYTES_TO_STORE_PER_REQUEST) {
+          w.write(readBuffer,0,bytesReadInBuffer);
+        }
       }
  else {
-        md.update(readBuffer,0,bytesRead);
-        totalBytes+=bytesRead;
+        md.update(readBuffer,0,bytesReadInBuffer);
       }
+      totalBytes+=bytesReadInBuffer;
     }
     if (first) {
       sampleResult.latencyEnd();
       return new byte[0];
     }
-    if (md != null) {
+    if (md == null) {
+      return toByteArray(w);
+    }
+ else {
       byte[] md5Result=md.digest();
       sampleResult.setBytes(totalBytes);
       return JOrphanUtils.baToHexBytes(md5Result);
     }
-    return toByteArray(w);
   }
   finally {
     IOUtils.closeQuietly(in);

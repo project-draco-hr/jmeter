@@ -6,7 +6,7 @@
     String variableName=getVariableName();
     String value=getThreadContext().getVariables().get(variableName);
     try {
-      resultSize=Integer.parseInt(value);
+      resultSize=Long.parseLong(value);
     }
  catch (    NumberFormatException e) {
       result.setFailure(true);
@@ -18,7 +18,7 @@
     resultSize=response.getHeadersSize();
   }
  else   if (isTestFieldResponseBody()) {
-    resultSize=response.getBodySize();
+    resultSize=response.getBodySizeAsLong();
   }
  else   if (isTestFieldResponseCode()) {
     resultSize=response.getResponseCode().length();
@@ -27,7 +27,7 @@
     resultSize=response.getResponseMessage().length();
   }
  else {
-    resultSize=response.getBytes();
+    resultSize=response.getBytesAsLong();
   }
   final String msg=compareSize(resultSize);
   if (msg.length() > 0) {

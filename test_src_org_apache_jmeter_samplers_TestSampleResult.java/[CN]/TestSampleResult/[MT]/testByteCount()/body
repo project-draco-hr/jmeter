@@ -4,6 +4,6 @@
   res.setBytes(100);
   res.setSampleLabel("sample of size 100 bytes");
   res.sampleEnd();
-  assertEquals(100,res.getBytes());
+  assertEquals(100,res.getBytesAsLong());
   assertEquals("sample of size 100 bytes",res.getSampleLabel());
 }

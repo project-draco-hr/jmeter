@@ -51,7 +51,7 @@
     }
   }
   if (saveConfig.saveBytes()) {
-    text.append(sample.getBytes());
+    text.append(sample.getBytesAsLong());
   }
   if (saveConfig.saveSentBytes()) {
     text.append(sample.getSentBytes());

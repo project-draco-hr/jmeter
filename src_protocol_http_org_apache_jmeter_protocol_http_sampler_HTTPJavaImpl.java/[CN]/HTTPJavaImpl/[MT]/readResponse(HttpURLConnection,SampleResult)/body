@@ -1,6 +1,6 @@
 {
   BufferedInputStream in;
-  final int contentLength=conn.getContentLength();
+  final long contentLength=conn.getContentLength();
   if ((contentLength == 0) && OBEY_CONTENT_LENGTH) {
     log.info("Content-Length: 0, not reading http-body");
     res.setResponseHeaders(getResponseHeaders(conn));
@@ -57,7 +57,7 @@ catch (  Exception e) {
   }
   byte[] responseData=readResponse(res,in,contentLength);
   if (instream != null) {
-    res.setBodySize(((CountingInputStream)instream).getCount());
+    res.setBodySize(((CountingInputStream)instream).getByteCount());
     instream.close();
   }
   return responseData;

@@ -101,7 +101,7 @@ catch (      IOException e) {
     }
     res.setHeadersSize(responseHeaders.replaceAll("\n","\r\n").length() + 2);
     if (log.isDebugEnabled()) {
-      log.debug("Response headersSize=" + res.getHeadersSize() + " bodySize="+ res.getBodySize()+ " Total="+ (res.getHeadersSize() + res.getBodySize()));
+      log.debug("Response headersSize=" + res.getHeadersSize() + " bodySize="+ res.getBodySizeAsLong()+ " Total="+ (res.getHeadersSize() + res.getBodySizeAsLong()));
     }
     if (getAutoRedirects()) {
       res.setURL(conn.getURL());
