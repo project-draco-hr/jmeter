@@ -10,6 +10,7 @@
   titles.addResult(new ValueResultData(String.format(JMeterUtils.getResString("reportgenerator_summary_statistics_percentile_fmt"),Integer.valueOf(PERCENTILE_INDEX3))));
   titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_statistics_throughput")));
   titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_statistics_kbytes")));
+  titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_statistics_sent_kbytes")));
   titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_statistics_min")));
   titles.addResult(new ValueResultData(JMeterUtils.getResString("reportgenerator_summary_statistics_max")));
   return titles;

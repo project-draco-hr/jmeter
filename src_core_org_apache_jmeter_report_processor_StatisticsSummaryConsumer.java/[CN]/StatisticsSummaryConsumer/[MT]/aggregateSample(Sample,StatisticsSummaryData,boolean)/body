@@ -4,6 +4,7 @@
   }
   data.incTotal();
   data.incBytes(sample.getReceivedBytes());
+  data.incSentBytes(sample.getSentBytes());
   if (!sample.getSuccess()) {
     data.incErrors();
   }

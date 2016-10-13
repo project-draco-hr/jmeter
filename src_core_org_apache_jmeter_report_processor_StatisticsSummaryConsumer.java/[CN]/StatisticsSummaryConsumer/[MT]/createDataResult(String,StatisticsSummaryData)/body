@@ -12,6 +12,7 @@
   result.addResult(new ValueResultData(Double.valueOf(data.getPercentile3().getResult())));
   result.addResult(new ValueResultData(Double.valueOf(data.getThroughput())));
   result.addResult(new ValueResultData(Double.valueOf(data.getKBytesPerSecond())));
+  result.addResult(new ValueResultData(Double.valueOf(data.getSentKBytesPerSecond())));
   result.addResult(new ValueResultData(Long.valueOf(data.getMin())));
   result.addResult(new ValueResultData(Long.valueOf(data.getMax())));
   return result;
