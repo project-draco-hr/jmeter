@@ -5,6 +5,7 @@
 synchronized (calculator) {
     calculator.addValue(res.getTime(),res.getSampleCount());
     calculator.addBytes(res.getBytesAsLong());
+    calculator.addSentBytes(res.getSentBytes());
     setStartTime(res);
     eCount=getCurrentSample().getErrorCount();
     eCount+=res.getErrorCount();

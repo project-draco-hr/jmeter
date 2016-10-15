@@ -1,5 +1,6 @@
 {
   addBytes(res.getBytesAsLong());
+  addSentBytes(res.getSentBytes());
   addValue(res.getTime(),res.getSampleCount());
   errors+=res.getErrorCount();
   if (startTime == 0) {
