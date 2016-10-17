@@ -3,7 +3,12 @@
   PropertyDescriptor p;
   p=property("scriptLanguage");
   p.setValue(NOT_UNDEFINED,Boolean.TRUE);
-  p.setValue(DEFAULT,"");
+  if (JSR223TestElement.class.isAssignableFrom(beanClass)) {
+    p.setValue(DEFAULT,"groovy");
+  }
+ else {
+    p.setValue(DEFAULT,"");
+  }
   if (rb != null) {
     p.setValue(RESOURCE_BUNDLE,rb);
   }
