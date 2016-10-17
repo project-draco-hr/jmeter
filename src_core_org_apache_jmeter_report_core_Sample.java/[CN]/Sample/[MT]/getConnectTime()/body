@@ -1,3 +1,8 @@
 {
-  return getData(long.class,CSVSaveService.CSV_CONNECT_TIME).longValue();
+  if (metadata.indexOf(CSVSaveService.CSV_CONNECT_TIME) >= 0) {
+    return getData(long.class,CSVSaveService.CSV_CONNECT_TIME).longValue();
+  }
+ else {
+    return 0L;
+  }
 }

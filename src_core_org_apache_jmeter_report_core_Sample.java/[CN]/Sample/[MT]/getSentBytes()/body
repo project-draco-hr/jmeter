@@ -1,3 +1,8 @@
 {
-  return getData(long.class,CSVSaveService.CSV_SENT_BYTES).longValue();
+  if (metadata.indexOf(CSVSaveService.CSV_SENT_BYTES) >= 0) {
+    return getData(long.class,CSVSaveService.CSV_SENT_BYTES).longValue();
+  }
+ else {
+    return 0L;
+  }
 }
