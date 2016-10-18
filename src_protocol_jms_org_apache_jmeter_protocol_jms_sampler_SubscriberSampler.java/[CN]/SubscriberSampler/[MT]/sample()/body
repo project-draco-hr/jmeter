@@ -49,7 +49,7 @@
     result.setResponseData(buffer.toString().getBytes());
   }
  else {
-    result.setBytes(buffer.toString().length());
+    result.setBytes((long)buffer.toString().length());
   }
   result.setResponseHeaders(propBuffer.toString());
   if (read == 0) {
