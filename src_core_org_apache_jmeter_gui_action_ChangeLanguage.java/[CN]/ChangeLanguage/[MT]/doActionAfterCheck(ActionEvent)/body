@@ -1,8 +1,4 @@
 {
-  if (JMeterContextService.getTestStartTime() > 0) {
-    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("language_change_test_running"),JMeterUtils.getResString("language_change_title"),JOptionPane.WARNING_MESSAGE);
-    return;
-  }
   String locale=((Component)e.getSource()).getName();
   Locale loc;
   int sep=locale.indexOf('_');

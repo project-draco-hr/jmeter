@@ -1,0 +1,7 @@
+{
+  if (JMeterUtils.isTestRunning()) {
+    JOptionPane.showMessageDialog(GuiPackage.getInstance().getMainFrame(),JMeterUtils.getResString("action_check_message"),JMeterUtils.getResString("action_check_title"),JOptionPane.WARNING_MESSAGE);
+    return;
+  }
+  doActionAfterCheck(e);
+}
