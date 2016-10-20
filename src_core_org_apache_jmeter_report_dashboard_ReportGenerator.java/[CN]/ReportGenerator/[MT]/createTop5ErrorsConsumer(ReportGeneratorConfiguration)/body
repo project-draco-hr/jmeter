@@ -1,0 +1,7 @@
+{
+  Top5ErrorsBySamplerConsumer top5ErrorsBySamplerConsumer=new Top5ErrorsBySamplerConsumer();
+  top5ErrorsBySamplerConsumer.setName(TOP5_ERRORS_BY_SAMPLER_CONSUMER_NAME);
+  top5ErrorsBySamplerConsumer.setHasOverallResult(true);
+  top5ErrorsBySamplerConsumer.setIgnoreTransactionController(configuration.isIgnoreTCFromTop5ErrorsBySampler());
+  return top5ErrorsBySamplerConsumer;
+}

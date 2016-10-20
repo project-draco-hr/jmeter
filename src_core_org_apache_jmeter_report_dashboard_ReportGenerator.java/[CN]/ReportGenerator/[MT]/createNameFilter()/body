@@ -11,5 +11,6 @@
   nameFilter.addSampleConsumer(createApdexSummaryConsumer());
   nameFilter.addSampleConsumer(createRequestsSummaryConsumer());
   nameFilter.addSampleConsumer(createStatisticsSummaryConsumer());
+  nameFilter.addSampleConsumer(createTop5ErrorsConsumer(configuration));
   return nameFilter;
 }

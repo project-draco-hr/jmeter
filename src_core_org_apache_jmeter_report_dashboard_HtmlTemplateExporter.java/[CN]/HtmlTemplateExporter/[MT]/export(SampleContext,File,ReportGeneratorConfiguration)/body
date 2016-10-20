@@ -41,6 +41,7 @@
   addResultToContext(ReportGenerator.ERRORS_SUMMARY_CONSUMER_NAME,storedData,dataContext,jsonizer);
   addResultToContext(ReportGenerator.REQUESTS_SUMMARY_CONSUMER_NAME,storedData,dataContext,jsonizer);
   addResultToContext(ReportGenerator.STATISTICS_SUMMARY_CONSUMER_NAME,storedData,dataContext,jsonizer);
+  addResultToContext(ReportGenerator.TOP5_ERRORS_BY_SAMPLER_CONSUMER_NAME,storedData,dataContext,jsonizer);
   ExtraOptionsResultCustomizer customizer=new ExtraOptionsResultCustomizer();
   EmptyGraphChecker checker=new EmptyGraphChecker(filtersOnlySampleSeries,showControllerSeriesOnly,filterPattern);
   for (  Map.Entry<String,GraphConfiguration> graphEntry : configuration.getGraphConfigurations().entrySet()) {

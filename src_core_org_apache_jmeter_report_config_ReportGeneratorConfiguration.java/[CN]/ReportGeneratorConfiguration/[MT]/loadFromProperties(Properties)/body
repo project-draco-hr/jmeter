@@ -12,6 +12,8 @@
   configuration.setApdexSatisfiedThreshold(apdexSatisfiedThreshold);
   final long apdexToleratedThreshold=getRequiredProperty(props,REPORT_GENERATOR_KEY_APDEX_TOLERATED_THRESHOLD,REPORT_GENERATOR_KEY_APDEX_TOLERATED_THRESHOLD_DEFAULT,long.class).longValue();
   configuration.setApdexToleratedThreshold(apdexToleratedThreshold);
+  final boolean ignoreTCFromTop5ErrorsBySampler=getRequiredProperty(props,REPORT_GENERATOR_KEY_EXCLUDE_TC_FROM_TOP5_ERRORS_BY_SAMPLER,Boolean.TRUE,Boolean.class).booleanValue();
+  configuration.setIgnoreTCFromTop5ErrorsBySampler(ignoreTCFromTop5ErrorsBySampler);
   final String sampleFilter=getOptionalProperty(props,REPORT_GENERATOR_KEY_SAMPLE_FILTER,String.class);
   configuration.setSampleFilter(sampleFilter);
   final String reportTitle=getOptionalProperty(props,REPORT_GENERATOR_KEY_REPORT_TITLE,String.class);

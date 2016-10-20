@@ -1,0 +1,9 @@
+{
+  Long value=countPerError.get(errorMessage);
+  if (value == null) {
+    countPerError.put(errorMessage,ONE);
+  }
+ else {
+    countPerError.put(errorMessage,Long.valueOf(value.longValue() + 1));
+  }
+}

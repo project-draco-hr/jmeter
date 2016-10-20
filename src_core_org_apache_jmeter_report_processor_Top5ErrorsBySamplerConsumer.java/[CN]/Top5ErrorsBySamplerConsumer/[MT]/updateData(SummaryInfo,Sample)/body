@@ -1,0 +1,17 @@
+{
+  SummaryInfo overallInfo=getOverallInfo();
+  Top5ErrorsSummaryData overallData=overallInfo.getData();
+  if (overallData == null) {
+    overallData=new Top5ErrorsSummaryData();
+    overallInfo.setData(overallData);
+  }
+  Top5ErrorsSummaryData data=info.getData();
+  if (data == null) {
+    data=new Top5ErrorsSummaryData();
+    info.setData(data);
+  }
+  if (!sample.isEmptyController()) {
+    aggregateSample(sample,data,false);
+    aggregateSample(sample,overallData,true);
+  }
+}

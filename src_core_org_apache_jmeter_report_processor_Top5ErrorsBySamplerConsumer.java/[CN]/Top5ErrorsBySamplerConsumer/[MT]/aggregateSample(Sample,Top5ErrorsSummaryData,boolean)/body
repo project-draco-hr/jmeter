@@ -1,0 +1,13 @@
+{
+  if (isOverall && sample.isController()) {
+    return;
+  }
+  if (ignoreTCFromTop5ErrorsBySampler && sample.isController()) {
+    return;
+  }
+  if (!sample.getSuccess()) {
+    data.registerError(getError(sample));
+    data.incErrors();
+  }
+  data.incTotal();
+}
