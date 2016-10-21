@@ -1,0 +1,15 @@
+{
+  JMeterContext context=JMeterContextService.getContext();
+  JSONPostProcessor processor=setupProcessor(context,"-1",true);
+  JMeterVariables vars=new JMeterVariables();
+  processor.setDefaultValues("NONE");
+  processor.setJsonPathExpressions("$[*]");
+  processor.setRefNames("varname");
+  processor.setScopeVariable("contentvar");
+  context.setVariables(vars);
+  vars.put("contentvar","[\"one\", \"two\"]");
+  processor.process();
+  assertThat(vars.get("varname_1"),CoreMatchers.is("one"));
+  assertThat(vars.get("varname_2"),CoreMatchers.is("two"));
+  assertThat(vars.get("varname_matchNr"),CoreMatchers.is("2"));
+}

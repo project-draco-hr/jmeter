@@ -1,0 +1,13 @@
+{
+  vars.put("content","one");
+  extractor.setMatchNumber(-1);
+  extractor.setRefName("varname");
+  extractor.setRegex("(\\w+)");
+  extractor.setScopeVariable("content");
+  extractor.setThreadContext(jmctx);
+  extractor.setTemplate("$1$");
+  extractor.process();
+  assertThat(vars.get("varname"),CoreMatchers.is(CoreMatchers.nullValue()));
+  assertThat(vars.get("varname_1"),CoreMatchers.is("one"));
+  assertThat(vars.get("varname_matchNr"),CoreMatchers.is("1"));
+}
