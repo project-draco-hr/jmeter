@@ -1,7 +1,10 @@
 {
   boolean failed=false;
-  FileStats orig=computeFileStats(new BufferedReader(new FileReader(testFile)));
-  HashTree tree=SaveService.loadTree(testFile);
+  final FileStats orig;
+  try (FileReader fileReader=new FileReader(testFile);BufferedReader bufferedReader=new BufferedReader(fileReader)){
+    orig=computeFileStats(bufferedReader);
+  }
+   HashTree tree=SaveService.loadTree(testFile);
   ByteArrayOutputStream out=new ByteArrayOutputStream(1000000);
   try {
     SaveService.saveTree(tree,out);
@@ -9,9 +12,11 @@
   finally {
     out.close();
   }
-  ByteArrayInputStream ins=new ByteArrayInputStream(out.toByteArray());
-  FileStats output=computeFileStats(new BufferedReader(new InputStreamReader(ins)));
-  if ((checkSize && !orig.isSameSize(output)) || !orig.hasSameLinesCount(output)) {
+  final FileStats output;
+  try (ByteArrayInputStream ins=new ByteArrayInputStream(out.toByteArray());Reader insReader=new InputStreamReader(ins);BufferedReader bufferedReader=new BufferedReader(insReader)){
+    output=computeFileStats(bufferedReader);
+  }
+   if ((checkSize && !orig.isSameSize(output)) || !orig.hasSameLinesCount(output)) {
     failed=true;
     System.out.println();
     System.out.println("Loading file testfiles/" + fileName + " and "+ "saving it back changes its size from "+ orig.size+ " to "+ output.size+ ".");
