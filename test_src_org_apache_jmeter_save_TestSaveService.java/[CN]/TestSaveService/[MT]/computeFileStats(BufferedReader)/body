@@ -9,7 +9,7 @@
         length+=line.length();
       }
     }
-    return new int[]{length,lines};
+    return new FileStats(length,lines);
   }
   finally {
     br.close();
