@@ -1,0 +1,8 @@
+{
+  if (testFile == null || !testFile.exists()) {
+    return FileStats.NO_STATS;
+  }
+  try (FileReader fileReader=new FileReader(testFile);BufferedReader bufferedReader=new BufferedReader(fileReader)){
+    return computeFileStats(bufferedReader);
+  }
+ }

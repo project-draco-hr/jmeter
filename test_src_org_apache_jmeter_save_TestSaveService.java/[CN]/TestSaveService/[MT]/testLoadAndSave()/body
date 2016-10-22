@@ -2,11 +2,13 @@
   boolean failed=false;
   for (  final String fileName : FILES) {
     final File testFile=findTestFile("testfiles/" + fileName);
-    failed|=loadAndSave(testFile,fileName,true);
+    final File savedFile=findTestFile("testfiles/Saved" + fileName);
+    failed|=loadAndSave(testFile,fileName,true,savedFile);
   }
   for (  final String fileName : FILES_LINES) {
     final File testFile=findTestFile("testfiles/" + fileName);
-    failed|=loadAndSave(testFile,fileName,false);
+    final File savedFile=findTestFile("testfiles/Saved" + fileName);
+    failed|=loadAndSave(testFile,fileName,false,savedFile);
   }
   if (failed) {
     fail("One or more failures detected");
