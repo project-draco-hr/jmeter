@@ -1,6 +1,6 @@
 {
   try {
-    final JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
+    final JMeterTreeModel treeModel=getJmeterTreeModel();
     boolean firstInBatch=false;
     long now=System.currentTimeMillis();
     long deltaT=now - lastTime;

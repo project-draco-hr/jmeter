@@ -1,0 +1,33 @@
+{
+  JMeterUtils.setJMeterHome("./");
+  JMeterUtils.loadJMeterProperties(JMeterUtils.getJMeterBinDir() + "/jmeter.properties");
+  JMeterUtils.initLocale();
+  TestPlan testPlan=new TestPlan();
+  ThreadGroup threadGroup=new ThreadGroup();
+  ListedHashTree testPlanTree=new ListedHashTree();
+  testPlanTree.add(testPlan);
+  testPlanTree.add(threadGroup,testPlan);
+  JMeterTreeModel treeModel=new JMeterTreeModel(new Object());
+  JMeterTreeNode root=(JMeterTreeNode)treeModel.getRoot();
+  treeModel.addSubTree(testPlanTree,root);
+  ProxyControl proxy=new ProxyControl();
+  proxy.setNonGuiTreeModel(treeModel);
+  proxy.setTarget(treeModel.getNodeOf(threadGroup));
+  proxy.setPort(8282);
+  treeModel.addComponent(proxy,(JMeterTreeNode)root.getChildAt(1));
+  proxy.startProxy();
+  HttpHost proxyHost=new HttpHost("localhost",8282);
+  DefaultProxyRoutePlanner routePlanner=new DefaultProxyRoutePlanner(proxyHost);
+  CloseableHttpClient httpclient=HttpClients.custom().setRoutePlanner(routePlanner).build();
+  try {
+    httpclient.execute(new HttpGet("http://example.invalid"));
+  }
+ catch (  Exception e) {
+  }
+  proxy.stopProxy();
+  try (ByteArrayOutputStream out=new ByteArrayOutputStream()){
+    SaveService.saveTree(treeModel.getTestPlan(),out);
+    out.close();
+    System.out.println(out.toString());
+  }
+ }

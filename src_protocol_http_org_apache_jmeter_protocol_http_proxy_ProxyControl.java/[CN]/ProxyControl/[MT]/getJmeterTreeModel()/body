@@ -1,0 +1,6 @@
+{
+  if (this.nonGuiTreeModel == null) {
+    return GuiPackage.getInstance().getTreeModel();
+  }
+  return this.nonGuiTreeModel;
+}

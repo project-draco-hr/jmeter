@@ -1,5 +1,5 @@
 {
-  JMeterTreeModel jmeterTreeModel=GuiPackage.getInstance().getTreeModel();
+  JMeterTreeModel jmeterTreeModel=getJmeterTreeModel();
   List<JMeterTreeNode> authManagerNodes=jmeterTreeModel.getNodesOfType(AuthManager.class);
   if (authManagerNodes.size() == 0) {
     try {

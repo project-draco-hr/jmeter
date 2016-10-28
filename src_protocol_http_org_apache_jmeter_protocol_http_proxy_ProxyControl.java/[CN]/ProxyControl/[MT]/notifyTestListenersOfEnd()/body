@@ -1,5 +1,5 @@
 {
-  JMeterTreeModel treeModel=GuiPackage.getInstance().getTreeModel();
+  JMeterTreeModel treeModel=getJmeterTreeModel();
   JMeterTreeNode myNode=treeModel.getNodeOf(this);
   Enumeration<JMeterTreeNode> kids=myNode.children();
   while (kids.hasMoreElements()) {
