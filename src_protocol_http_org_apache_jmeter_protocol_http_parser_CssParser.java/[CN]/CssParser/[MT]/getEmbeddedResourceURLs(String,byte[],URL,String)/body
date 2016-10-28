@@ -9,7 +9,11 @@
     }
     if (urlCollection == null) {
       String cssContent=new String(data,encoding);
-      final CascadingStyleSheet aCSS=CSSReader.readFromStringStream(cssContent,new CSSReaderSettings().setBrowserCompliantMode(true).setFallbackCharset(Charset.forName(encoding)).setCSSVersion(ECSSVersion.CSS30).setCustomErrorHandler(new LoggingCSSParseErrorHandler()).setCustomExceptionHandler(new CustomLoggingCSSParseExceptionCallback(baseUrl)));
+      final CSSReaderSettings cssSettings=new CSSReaderSettings().setBrowserCompliantMode(true).setFallbackCharset(Charset.forName(encoding)).setCSSVersion(ECSSVersion.CSS30).setCustomErrorHandler(new LoggingCSSParseErrorHandler()).setCustomExceptionHandler(new CustomLoggingCSSParseExceptionCallback(baseUrl));
+      if (IGNORE_ALL_CSS_ERRORS) {
+        cssSettings.setInterpretErrorHandler(new DoNothingCSSInterpretErrorHandler());
+      }
+      final CascadingStyleSheet aCSS=CSSReader.readFromStringStream(cssContent,cssSettings);
       final List<URLString> list=new ArrayList<>();
       urlCollection=new URLCollection(list);
       final URLCollection localCollection=urlCollection;

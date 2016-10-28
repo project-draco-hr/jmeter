@@ -1,0 +1,5 @@
+{
+  List<?> result;
+  result=extractUrls("@import url(http://example.com/abc.css);");
+  assertThat(result.isEmpty(),CoreMatchers.is(false));
+}

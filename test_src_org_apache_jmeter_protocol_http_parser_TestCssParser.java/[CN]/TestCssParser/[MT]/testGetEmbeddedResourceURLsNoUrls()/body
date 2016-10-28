@@ -1,0 +1,5 @@
+{
+  CssParser nonIgnoreParser=new CssParser();
+  List<?> result=extractUrls(nonIgnoreParser,"..");
+  assertThat(result.isEmpty(),CoreMatchers.is(true));
+}
